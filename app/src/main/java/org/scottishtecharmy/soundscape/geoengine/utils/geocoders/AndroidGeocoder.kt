@@ -4,6 +4,7 @@ import android.content.Context
 import android.location.Address
 import android.location.Geocoder
 import android.os.Build
+import android.os.Bundle
 import android.util.Log
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -36,42 +37,63 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
         Analytics.getInstance().logEvent("androidGeocode", null)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             return suspendCoroutine { continuation ->
-                val geocodeListener = object : Geocoder.GeocodeListener {
-                    override fun onGeocode(addresses: MutableList<Address>) {
-                        Log.d(TAG, "getFromLocationName results count " + addresses.size.toString())
-                        if (addresses.isNotEmpty()) {
-                            continuation.resume(addresses)
-                        } else {
+                try {
+                    val geocodeListener = object : Geocoder.GeocodeListener {
+                        override fun onGeocode(addresses: MutableList<Address>) {
+                            Log.d(
+                                TAG,
+                                "getFromLocationName results count " + addresses.size.toString()
+                            )
+                            if (addresses.isNotEmpty()) {
+                                continuation.resume(addresses)
+                            } else {
+                                continuation.resume(null)
+                            }
+                        }
+
+                        override fun onError(errorMessage: String?) {
+                            Log.d(TAG, "AndroidGeocoder error: $errorMessage")
                             continuation.resume(null)
                         }
                     }
-                    override fun onError(errorMessage: String?) {
-                        Log.d(TAG,"AndroidGeocoder error: $errorMessage")
-                        continuation.resume(null)
-                    }
+                    geocoder.getFromLocationName(
+                        locationName,
+                        5,
+                        nearbyLocation.latitude - 10.0,
+                        nearbyLocation.longitude - 10.0,
+                        nearbyLocation.latitude + 10.0,
+                        nearbyLocation.longitude + 10.0,
+                        geocodeListener
+                    )
+                } catch (e: Exception) {
+                    val bundle = Bundle().apply { putString("exception", e.toString()) }
+                    Analytics.getInstance().logEvent("androidGeocoderError", bundle)
+                    Log.d(TAG, "AndroidGeocoder error: $e")
+                    continuation.resume(null)
                 }
-                geocoder.getFromLocationName(
+            }?.map{feature -> feature.toLocationDescription(locationName) }
+        } else {
+            @Suppress("DEPRECATION")
+            try {
+                val addresses = geocoder.getFromLocationName(
                     locationName,
                     5,
                     nearbyLocation.latitude - 10.0,
                     nearbyLocation.longitude - 10.0,
                     nearbyLocation.latitude + 10.0,
                     nearbyLocation.longitude + 10.0,
-                    geocodeListener
                 )
-            }?.mapNotNull{feature -> feature.toLocationDescription(locationName) }
-        } else {
-            @Suppress("DEPRECATION")
-            val addresses = geocoder.getFromLocationName(
-                locationName,
-                5,
-                nearbyLocation.latitude - 10.0,
-                nearbyLocation.longitude - 10.0,
-                nearbyLocation.latitude + 10.0,
-                nearbyLocation.longitude + 10.0,
-            )
-            if(addresses != null) {
-                return addresses.mapNotNull{feature -> feature.toLocationDescription(locationName) }
+                if (addresses != null) {
+                    return addresses.mapNotNull { feature ->
+                        feature.toLocationDescription(
+                            locationName
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                val bundle = Bundle().apply { putString("exception", e.toString()) }
+                Analytics.getInstance().logEvent("androidGeocoderError", bundle)
+                Log.d(TAG, "AndroidGeocoder error: $e")
             }
         }
         return null
@@ -86,34 +108,52 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
         val location = userGeometry.location
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             return suspendCoroutine { continuation ->
-                geocoder.getFromLocation(
-                    location.latitude, location.longitude, 5,
-                    object : Geocoder.GeocodeListener {
-                        override fun onGeocode(addresses: MutableList<Address>) {
-                            Log.d(TAG,"getAddressFromLocationName results count " + addresses.size.toString())
-                            val name = userGeometry.mapMatchedWay?.name
-                            if(name != null) {
-                                for (address in addresses) {
-                                    Log.d(TAG, "$address")
-                                    if (address.thoroughfare.fuzzyCompare(name, false) < 0.3) {
-                                        continuation.resume(address)
-                                        return
+                try {
+                    geocoder.getFromLocation(
+                        location.latitude, location.longitude, 5,
+                        object : Geocoder.GeocodeListener {
+                            override fun onGeocode(addresses: MutableList<Address>) {
+                                Log.d(
+                                    TAG,
+                                    "getAddressFromLocationName results count " + addresses.size.toString()
+                                )
+                                val name = userGeometry.mapMatchedWay?.name
+                                if (name != null) {
+                                    for (address in addresses) {
+                                        Log.d(TAG, "$address")
+                                        if (address.thoroughfare.fuzzyCompare(name, false) < 0.3) {
+                                            continuation.resume(address)
+                                            return
+                                        }
                                     }
                                 }
+                                continuation.resume(addresses.firstOrNull())
                             }
-                            continuation.resume(addresses.firstOrNull())
+
+                            override fun onError(errorMessage: String?) {
+                                Log.d(TAG, "AndroidGeocoder error: $errorMessage")
+                                continuation.resume(null)
+                            }
                         }
-                        override fun onError(errorMessage: String?) {
-                            Log.d(TAG,"AndroidGeocoder error: $errorMessage")
-                            continuation.resume(null)
-                        }
-                    }
-                )
+                    )
+                } catch (e: Exception) {
+                    val bundle = Bundle().apply { putString("exception", e.toString()) }
+                    Analytics.getInstance().logEvent("androidGeocoderError", bundle)
+                    Log.d(TAG, "AndroidGeocoder error: $e")
+                    continuation.resume(null)
+                }
             }?.toLocationDescription(null)
         } else {
             @Suppress("DEPRECATION")
-            val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 5)
-            return addresses?.firstOrNull()?.toLocationDescription(null)
+            try {
+                val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 5)
+                return addresses?.firstOrNull()?.toLocationDescription(null)
+            } catch (e: Exception) {
+                val bundle = Bundle().apply { putString("exception", e.toString()) }
+                Analytics.getInstance().logEvent("androidGeocoderError", bundle)
+                Log.d(TAG, "AndroidGeocoder error: $e")
+            }
+            return null
         }
     }
 
