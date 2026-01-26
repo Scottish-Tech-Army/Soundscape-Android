@@ -2423,5 +2423,31 @@ As always please report any problems, however small they may be via the *Contact
 <string name="osm_parking_space" tools:ignore="MissingTranslation">Parking Space</string>
 <!-- Open Street Map term motorcycle_parking. Area or designated spaces reserved for parking motorcycles.-->
 <string name="osm_motorcycle_parking" tools:ignore="MissingTranslation">Motorcycle Parking</string>
+<!-- Open Street Map term city. A city. -->
+<string name="osm_city" tools:ignore="MissingTranslation">City</string>
+<!-- Open Street Map term city. A town. -->
+<string name="osm_town" tools:ignore="MissingTranslation">Town</string>
+<!-- Open Street Map term city. A neighbourhood within a town or city. -->
+<string name="osm_neighbourhood" tools:ignore="MissingTranslation">Neighborhood</string>
+<!-- Open Street Map term city. A village. -->
+<string name="osm_village" tools:ignore="MissingTranslation">Village</string>
+<!-- Open Street Map term city. A hamlet. -->
+<string name="osm_hamlet" tools:ignore="MissingTranslation">Hamlet</string>
+<!-- Open Street Map term for a playing field of recreation ground for sport. -->
+<string name="osm_recreation_ground" tools:ignore="MissingTranslation">Recreation Ground</string>
+<!-- Open Street Map term for a river. -->
+<string name="osm_river" tools:ignore="MissingTranslation">River</string>
+<!-- Open Street Map term for a railway line. -->
+<string name="osm_railway" tools:ignore="MissingTranslation">Railway</string>
+<!-- Open Street Map term for a wood or forest. -->
+<string name="osm_wood" tools:ignore="MissingTranslation">Wood</string>
+<!-- Open Street Map term for a sports pavillion. -->
+<string name="osm_pavillion" tools:ignore="MissingTranslation">Pavillion</string>
+<!-- Open Street Map term for a sports venue where we don't know the sport. -->
+<string name="osm_sport" tools:ignore="MissingTranslation">Sport</string>
+<!-- Open Street Map term for a health food shop. -->
+<string name="osm_health_food" tools:ignore="MissingTranslation">Health Food</string>
+<!-- Open Street Map term for an events venue. -->
+<string name="osm_events_venue" tools:ignore="MissingTranslation">Events Venue</string>
 
 </resources>

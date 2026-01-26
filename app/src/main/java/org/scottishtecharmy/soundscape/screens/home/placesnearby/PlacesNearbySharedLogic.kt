@@ -132,7 +132,7 @@ fun filterLocations(uiState: PlacesNearbyUiState, context: Context): List<Locati
             feature.deferredToLocationDescription(
                 LocationSource.OfflineGeocoder,
                 getDistanceToFeature(location, feature, ruler).point,
-                getTextForFeature(context, feature as MvtFeature).text
+                getTextForFeature(context, feature as MvtFeature)
             )
         }.sortedBy {
             uiState.userLocation?.let { location ->

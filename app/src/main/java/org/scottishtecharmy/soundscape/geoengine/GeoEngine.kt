@@ -971,7 +971,10 @@ class GeoEngine {
     }
 }
 
-data class TextForFeature(val text: String = "", val generic: Boolean= false)
+data class TextForFeature(
+    val text: String = "",
+    val generic: Boolean= false,
+    val additionalText: String? = null)
 
 /**
  * getNameForFeature returns text describing the feature for callouts. Usually it returns a name
@@ -1072,28 +1075,34 @@ fun getTextForFeature(localizedContext: Context?, feature: MvtFeature) : TextFor
             localizedContext.getString(R.string.osm_entrance_with_destination, destinationName, entranceText)
     }
 
-    if (text == null) {
-        val osmClass =
-            feature.featureClass ?: return TextForFeature("", true)
-        val osmSubClass =
-            feature.featureSubClass
+    val osmClass =
+        feature.featureClass ?: return TextForFeature("", true)
+    val osmSubClass =
+        feature.featureSubClass
 
-        val id = ResourceMapper.getResourceId(osmClass) ?: ResourceMapper.getResourceId(osmSubClass)
-        text = if (id == null) {
-            osmClass.replace("_", " ")
-        } else {
-            localizedContext.getString(id)
-        }
-        generic = true
+    val id = ResourceMapper.getResourceId(osmClass) ?: ResourceMapper.getResourceId(osmSubClass)
+    val osmText = if (id == null) {
+        null        //osmClass.replace("_", " ").capitalize(Locale.getDefault())
+    } else {
+        localizedContext.getString(id)
     }
-    val capitalizedText = text.replaceFirstChar {
+    var additionalText :String? = null
+    if (text == null) {
+        text = osmText
+        generic = true
+    } else {
+        additionalText = osmText
+    }
+    val capitalizedText = text?.replaceFirstChar {
         if (it.isLowerCase())
             it.titlecase(localizedContext.resources.configuration.getLocales().get(0))
         else
             it.toString()
     }
+    if(capitalizedText == null)
+        return TextForFeature("", generic, additionalText)
 
-    return TextForFeature(capitalizedText, generic)
+    return TextForFeature(capitalizedText, generic, additionalText)
 }
 
 /**

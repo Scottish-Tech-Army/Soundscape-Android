@@ -9,6 +9,8 @@ import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.getPhotonLanguage
+import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -82,7 +84,16 @@ class PhotonGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                 accumulator
             }
 
-        return deduplicate.mapNotNull{feature -> feature.toLocationDescription(LocationSource.PhotonGeocoder) }
+        return deduplicate.map { feature ->
+            val mvt = MvtFeature()
+            mvt.properties = feature.properties
+            mvt.name = feature.properties?.get("name").toString()
+            mvt.featureClass = feature.properties?.get("osm_value").toString()
+            feature.toLocationDescription(
+                LocationSource.PhotonGeocoder,
+                featureName = getTextForFeature(localizedContext, mvt)
+            )
+        }
     }
 
     override suspend fun getAddressFromLngLat(userGeometry: UserGeometry, localizedContext: Context?) : LocationDescription? {

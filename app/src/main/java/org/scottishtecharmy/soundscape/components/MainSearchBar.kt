@@ -213,7 +213,16 @@ fun MainSearchBar(
                             modifier = Modifier.padding(spacing.small)
                         )
                     } else {
-                        LazyColumn(modifier = Modifier.padding(top = spacing.medium)) {
+                        val imePadding = WindowInsets.ime.asPaddingValues()
+                        LazyColumn(
+                            modifier = Modifier
+                                .weight(1f)
+                                .fillMaxWidth()
+                                .padding(top = spacing.medium),
+                            contentPadding = PaddingValues(
+                                bottom = imePadding.calculateBottomPadding() + (spacing.targetSize * 2)
+                            )
+                        ) {
                             itemsIndexed(results) { index, item ->
                                 val modifier =
                                     Modifier.semantics {
