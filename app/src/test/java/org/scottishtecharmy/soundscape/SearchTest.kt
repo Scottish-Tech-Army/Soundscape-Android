@@ -6,6 +6,7 @@ import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
@@ -20,6 +21,48 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import kotlin.test.assertEquals
 
 class SearchTest {
+    @Test
+    fun offlineReverseGeocode() {
+        runBlocking {
+
+            val currentLocation = LngLatAlt(-4.3103500, 55.9396160)
+            val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
+            val settlementState = getGridStateForLocation(currentLocation, 12, 3)
+            val tileSearch = TileSearch(offlineExtractPath, gridState, settlementState)
+            val offlineGeocoder = OfflineGeocoder(gridState, settlementState, tileSearch)
+
+            // The first test force ignoring of any house numbering so that we get the location
+            // description instead.
+            val result1 = offlineGeocoder.getAddressFromLngLat(
+                UserGeometry(LngLatAlt(-4.3103500, 55.9396160), 90.0),
+                null,
+                ignoreHouseNumbers = true
+            )
+            assertEquals(result1!!.name, "On Dougalston Avenue between Glasgow Road and Path to Dougalston Gardens North")
+
+            val result2 = offlineGeocoder.getAddressFromLngLat(
+                UserGeometry(LngLatAlt(-4.3088339, 55.9396215), 90.0),
+                null,
+                ignoreHouseNumbers = true
+            )
+            assertEquals(result2!!.name, "On Dougalston Avenue between South Glassford Street and Briarwell Road")
+
+            val result3 = offlineGeocoder.getAddressFromLngLat(
+                UserGeometry(LngLatAlt(-4.3069511, 55.9400774), 90.0),
+                null,
+                ignoreHouseNumbers = true
+            )
+            assertEquals(result3!!.name, "On Dougalston Avenue between Briarwell Road and Connell Crescent to dead end")
+
+            // Check that the street address also works
+            val result4 = offlineGeocoder.getAddressFromLngLat(
+                UserGeometry(LngLatAlt(-4.3069511, 55.9400774), 90.0),
+                null,
+                ignoreHouseNumbers = false
+            )
+            assertEquals(result4!!.name, "21 Dougalston Avenue")
+        }
+    }
 
     @Test
     fun offlineSearch() {

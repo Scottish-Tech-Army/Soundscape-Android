@@ -99,7 +99,9 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
         return null
     }
 
-    override suspend fun getAddressFromLngLat(userGeometry: UserGeometry, localizedContext: Context?) : LocationDescription? {
+    override suspend fun getAddressFromLngLat(userGeometry: UserGeometry,
+                                              localizedContext: Context?,
+                                              ignoreHouseNumbers: Boolean) : LocationDescription? {
         if(!enabled)
             return null
 

@@ -532,7 +532,7 @@ class GeoEngine {
 
                         val list: MutableList<PositionedString> = mutableListOf()
 
-                        val ld = geocoder.getAddressFromLngLat(userGeometry, localizedContext)
+                        val ld = geocoder.getAddressFromLngLat(userGeometry, localizedContext, false)
                         if (ld != null) {
                             // We've got an address to call out
                             val facingDirection =
@@ -955,7 +955,7 @@ class GeoEngine {
 
         val geocode = runBlocking {
             withContext(gridState.treeContext) {
-                geocoder.getAddressFromLngLat(UserGeometry(location), localizedContext)
+                geocoder.getAddressFromLngLat(UserGeometry(location), localizedContext, false)
             }
         }
         if(geocode != null) return geocode

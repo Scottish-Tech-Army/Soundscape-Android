@@ -71,7 +71,9 @@ class MultiGeocoder(applicationContext: Context,
         return results
     }
 
-    override suspend fun getAddressFromLngLat(userGeometry: UserGeometry, localizedContext: Context?) : LocationDescription? {
-        return pickGeocoder()?.getAddressFromLngLat(userGeometry, localizedContext)
+    override suspend fun getAddressFromLngLat(userGeometry: UserGeometry,
+                                              localizedContext: Context?,
+                                              ignoreHouseNumbers: Boolean) : LocationDescription? {
+        return pickGeocoder()?.getAddressFromLngLat(userGeometry, localizedContext, ignoreHouseNumbers)
     }
 }

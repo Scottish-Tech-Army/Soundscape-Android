@@ -92,11 +92,13 @@ class FusedGeocoder(applicationContext: Context,
         return results
     }
 
-    override suspend fun getAddressFromLngLat(userGeometry: UserGeometry, localizedContext: Context?) : LocationDescription? {
+    override suspend fun getAddressFromLngLat(userGeometry: UserGeometry,
+                                              localizedContext: Context?,
+                                              ignoreHouseNumbers: Boolean) : LocationDescription? {
         val deferredResults = geocoderList.map { geocoder ->
             coroutineScope {
                 async {
-                    geocoder.getAddressFromLngLat(userGeometry, localizedContext)
+                    geocoder.getAddressFromLngLat(userGeometry, localizedContext, ignoreHouseNumbers)
                 }
             }
         }

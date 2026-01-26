@@ -912,23 +912,29 @@
 <!-- Text for button to clear the whole markers and routes database -->
 <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">"Delete all markers and routes"</string>
 <!-- Text for dialog to check that the user really does want to delete all the markers and routes -->
-<string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">"Deleting all of the markers and routes cannot be undone, do you want to continue?</string>
+<string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">"Deleting all of the markers and routes cannot be undone, do you want to continue?"</string>
 <!-- Text for confirmation message after all markers and routes have been deleted -->
-<string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">"Markers and routes deleted</string>
+<string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">"Markers and routes deleted"</string>
 <!-- Hint for location list item e.g. when editing route. Indicates that current item is selected. -->
-<string name="location_item_selected" tools:ignore="MissingTranslation">"Selected</string>
+<string name="location_item_selected" tools:ignore="MissingTranslation">"Selected"</string>
 <!-- Hint for location list item e.g. when editing route. Indicates that current item is not selected. -->
-<string name="location_item_not_selected" tools:ignore="MissingTranslation">"Not selected</string>
+<string name="location_item_not_selected" tools:ignore="MissingTranslation">"Not selected"</string>
 <!-- Hint for location list item when editing list order. Indicates action moves the item up in the list. -->
-<string name="location_item_move_up" tools:ignore="MissingTranslation">"Move up in list</string>
+<string name="location_item_move_up" tools:ignore="MissingTranslation">"Move up in list"</string>
 <!-- Hint for location list item when editing list order. Indicates action moves the item down in the list. -->
-<string name="location_item_move_down" tools:ignore="MissingTranslation">"Move down in list</string>
+<string name="location_item_move_down" tools:ignore="MissingTranslation">"Move down in list"</string>
+<!-- Callout text when on a street (1) between two points (2 and 3) e.g. On Royal Road between First Street and 2nd Street-->
+<string name="street_description_between" tools:ignore="MissingTranslation">"On %1$s between %2$s and %3$s"</string>
+<!-- Callout text when on a street (1) and heading towards a point (3) but a distance (2) away e.g. On Royal Road, 125m until 32nd Street -->
+<string name="street_description_until" tools:ignore="MissingTranslation">"On %1$s, %2$s until %3$s"</string>
+<!-- Callout text when on a street (1) having come from a point (3) and having travelled a distance (2) e.g. On Royal Road, 125m since 32nd Street -->
+<string name="street_description_since" tools:ignore="MissingTranslation">"On %1$s, %2$s since %3$s"</string>
 <!-- Title for dialog which explains what is new in the current release -->
-<string name="new_version_info_text" tools:ignore="MissingTranslation">"New release information</string>
+<string name="new_version_info_text" tools:ignore="MissingTranslation">"New release information"</string>
 <!-- Button at end of new release dialog so that the user can continue on and use the app -->
-<string name="new_version_info_completed" tools:ignore="MissingTranslation">"Close new release dialog</string>
+<string name="new_version_info_completed" tools:ignore="MissingTranslation">"Close new release dialog"</string>
 <!-- Title of screen that contains all of the information about the open source licenses of the packages used within the app -->
-<string name="menu_open_source_licenses" tools:ignore="MissingTranslation">"Open source licenses</string>
+<string name="menu_open_source_licenses" tools:ignore="MissingTranslation">"Open source licenses"</string>
 <!-- Text for dialog which explains what is new in the current release. This is in markdown format. -->
 <string name="new_version_info_details" tools:ignore="MissingTranslation">"
 The main changes in this release are for *Search* and describing the current address. When there is network available, *Search* will use Android as well as our own Photon server to find places. The main improvements here are firstly that searching by street number should work much better in many parts of the world. Secondly, we have also added offline search which uses any downloaded maps to search for addresses and points of interest. Offline search works up to around 5 miles around the user.

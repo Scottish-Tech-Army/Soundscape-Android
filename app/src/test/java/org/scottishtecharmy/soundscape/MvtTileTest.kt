@@ -895,7 +895,7 @@ class MvtTileTest {
                 val wayName = userGeometry.mapMatchedWay?.properties?.get("pavement") as String? ?: userGeometry.mapMatchedWay?.name
                 if(wayName != null) {
                     val lg = OfflineGeocoder(gridState, settlementGrid)
-                    val calloutText = lg.getAddressFromLngLat(userGeometry, null)
+                    val calloutText = lg.getAddressFromLngLat(userGeometry, null, false)
                     position.properties?.set("callout", calloutText?.name)
 
                     val description = StreetDescription(wayName, gridState)

@@ -1,8 +1,10 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
 import android.content.Context
+import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.withContext
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
@@ -70,7 +72,8 @@ class OfflineGeocoder(
     }
 
     override suspend fun getAddressFromLngLat(userGeometry: UserGeometry,
-                                              localizedContext: Context?) : LocationDescription? {
+                                              localizedContext: Context?,
+                                              ignoreHouseNumbers: Boolean) : LocationDescription? {
 
         val location = userGeometry.location
         // We can only use the local geocoder for local locations
@@ -102,7 +105,7 @@ class OfflineGeocoder(
                 val description = StreetDescription(nearbyName, gridState)
                 description.createDescription(nearbyWay, localizedContext)
                 val nearestWay = description.nearestWayOnStreet(userGeometry.location)
-                if (nearestWay != null) {
+                if ((nearestWay != null) && !ignoreHouseNumbers) {
                     val houseNumber =
                         description.getStreetNumber(nearestWay.first, userGeometry.location)
                     if(houseNumber.first.isNotEmpty()) {
@@ -138,24 +141,24 @@ class OfflineGeocoder(
                 else if (result.behind.distance < 10.0) {
                     text = result.behind.name
                 }
-                else {
+                else if(result.ahead.name.isNotEmpty() && result.behind.name.isNotEmpty()) {
+                    val formatString = (localizedContext?.getString(R.string.street_description_between) ?:
+                                        "On %s between %s and %s")
+                    text = formatString.format(nearbyName, result.behind.name, result.ahead.name)
+                } else {
                     if(result.ahead.name.isNotEmpty()) {
-                        // We want to default to describing how far to the next point
-                        text = "$formattedAheadDistance until ${result.ahead.name}"
+                        val formatString = (localizedContext?.getString(R.string.street_description_until) ?:
+                        "On %s, %s until %s")
+                        text = formatString.format(nearbyName, formattedAheadDistance, result.ahead.name)
                     }
                     else if(result.behind.name.isNotEmpty()) {
-                        // But describe how far we've come as a back up
-                        text = "$formattedBehindDistance since ${result.behind.name}"
+                        val formatString = (localizedContext?.getString(R.string.street_description_since) ?:
+                        "On %s, %s since %s")
+                        text = formatString.format(nearbyName, formattedAheadDistance, result.behind.name)
                     }
                 }
                 if(text.isNotEmpty()) {
-                    val houseFeature = MvtFeature()
-                    houseFeature.properties = hashMapOf()
-                    houseFeature.properties?.let { props ->
-                        props["housenumber"] = text
-                    }
-                    houseFeature.geometry = Point(userGeometry.location)
-                    return houseFeature.toLocationDescription(LocationSource.OfflineGeocoder)
+                    return LocationDescription(text, userGeometry.location)
                 }
             }
         }
