@@ -29,6 +29,7 @@ open class MvtFeature : Feature() {
     var osmId : Long = 0L
     var name : String? = null
     var housenumber : String? = null
+    var street : String? = null
     var side : Boolean? = null
     var streetConfidence : Boolean = false
     var featureClass : String? = null
@@ -52,6 +53,7 @@ open class MvtFeature : Feature() {
         osmId = other.osmId
         name = other.name
         housenumber = other.housenumber
+        street = other.street
         side = other.side
         streetConfidence = other.streetConfidence
         featureClass = other.featureClass
@@ -373,7 +375,7 @@ fun vectorTileToGeoJson(tileX: Int,
             var featureClass : String? = null
             var featureSubClass : String? = null
             var housenumber : String? = null
-            var street : String = "null"
+            var street : String? = null
 
             // Convert coordinates to GeoJSON. This is where we find out how many features
             // we're actually dealing with as there can be multiple features that have the
@@ -620,12 +622,13 @@ fun vectorTileToGeoJson(tileX: Int,
                     // TODO: What if there's no street? That's an OSM error, but there are plenty of
                     //  cases where it happens.
                     geoFeature.superCategory = SuperCategoryId.HOUSENUMBER
-                    if(!streetNumberMap.containsKey(street)) {
-                        streetNumberMap[street] = FeatureCollection()
+                    if(!streetNumberMap.containsKey(street.toString())) {
+                        streetNumberMap[street.toString()] = FeatureCollection()
                     }
                     streetNumberMap[street]?.addFeature(geoFeature)
                 } else {
                     geoFeature.name = name
+                    geoFeature.street = street
                     geoFeature.featureClass = featureClass
                     geoFeature.featureSubClass = featureSubClass
                     geoFeature.properties = properties

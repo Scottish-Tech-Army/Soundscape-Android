@@ -58,7 +58,7 @@ class FusedGeocoder(applicationContext: Context,
                     // If the search string contained a number then we assume that it was a street
                     // number and so copy over the street name as the name of the location
                     if(locationName.containsNumber())
-                        streetResult.name = streetResult.description?.substringBefore('\n') ?: streetResult.name
+                        streetResult.name = streetResult.description?.substringBefore(", ") ?: streetResult.name
 
                     results.add(androidResult)
                     break

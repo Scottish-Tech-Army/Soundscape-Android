@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
+import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
@@ -23,6 +24,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.utils.deferredToLocationDescription
 
 class PlacesNearbySharedLogic(
     private val soundscapeServiceConnection: SoundscapeServiceConnection,
@@ -127,9 +129,10 @@ fun filterLocations(uiState: PlacesNearbyUiState, context: Context): List<Locati
             featureIsInFilterGroup(feature, uiState.filter) &&
                     getTextForFeature(context, feature as MvtFeature).text.isNotEmpty()
         }.map { feature ->
-            LocationDescription(
-                name = getTextForFeature(context, feature as MvtFeature).text,
-                location = getDistanceToFeature(location, feature, ruler).point
+            feature.deferredToLocationDescription(
+                LocationSource.OfflineGeocoder,
+                getDistanceToFeature(location, feature, ruler).point,
+                getTextForFeature(context, feature as MvtFeature).text
             )
         }.sortedBy {
             uiState.userLocation?.let { location ->

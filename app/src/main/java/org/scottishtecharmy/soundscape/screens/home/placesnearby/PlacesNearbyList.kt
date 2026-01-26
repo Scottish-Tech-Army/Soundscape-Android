@@ -28,6 +28,7 @@ import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.utils.process
 
 data class Folder(
     val name: String,
@@ -84,6 +85,7 @@ fun PlacesNearbyList(
                         color = MaterialTheme.colorScheme.outlineVariant
                     )
                 }
+                locationDescription.process()
                 LocationItem(
                     item = locationDescription,
                     decoration = LocationItemDecoration(

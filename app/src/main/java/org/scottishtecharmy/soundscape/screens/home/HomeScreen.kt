@@ -78,9 +78,7 @@ data class RouteFunctions(val viewModel: HomeViewModel?) {
 }
 
 data class SearchFunctions(val viewModel: HomeViewModel?) {
-    val onSearchTextChange: (String) -> Unit = { viewModel?.onSearchTextChange(it) }
-    val onToggleSearch = { viewModel?.onToggleSearch() }
-    val onTriggerSearch = { viewModel?.onTriggerSearch() }
+    val onTriggerSearch: (String) -> Unit = { viewModel?.onTriggerSearch(it) }
 }
 
 data class StreetPreviewFunctions(val viewModel: HomeViewModel?) {

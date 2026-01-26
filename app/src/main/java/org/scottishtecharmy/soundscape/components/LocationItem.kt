@@ -26,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -33,6 +34,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.tooling.preview.Preview
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -76,6 +78,9 @@ fun LocationItem(
 ) {
     val context = LocalContext.current
     var distanceString = ""
+    val selectionText = if (decoration.editRoute.value) stringResource(R.string.location_item_selected) else stringResource(R.string.location_item_not_selected)
+    val moveUpLabel = stringResource(R.string.location_item_move_up)
+    val moveUpDown = stringResource(R.string.location_item_move_down)
     if(userLocation != null) {
         val ruler = item.location.createCheapRuler()
         distanceString = formatDistanceAndDirection(
@@ -99,38 +104,31 @@ fun LocationItem(
             }
             .testTag("LocationItem-${item.name}-${item.orderId}")
             .clearAndSetSemantics {
+                contentDescription = when {
+                    decoration.editRoute.enabled ->
+                        "$selectionText. ${item.name}"
+
+                    decoration.index != -1 ->
+                        "${decoration.indexDescription} ${decoration.index + 1}. ${item.name}"
+
+                    else -> item.description?.takeIf { it.startsWith(item.name) }
+                        ?: listOfNotNull(item.name, item.description).joinToString(", ")
+                }
+
                 if (decoration.editRoute.enabled) {
-                    // Provide a clearer description of the current state and what
-                    // happens when the user double taps.
-                    contentDescription = if (decoration.editRoute.value)
-                       "Selected. ${item.name}"
-                    else
-                       "Not selected. ${item.name}"
                     onClick(
-                        label =
-                            if(decoration.editRoute.value) decoration.editRoute.hintWhenOn
-                            else decoration.editRoute.hintWhenOff,
+                        label = if (decoration.editRoute.value) decoration.editRoute.hintWhenOn else decoration.editRoute.hintWhenOff,
                         action = { false }
                     )
-                } else {
-                    contentDescription = if(decoration.index != -1) {
-                        "${decoration.indexDescription} ${decoration.index + 1}. ${item.name}"
-                    } else {
-                        val description = item.description
-                        if((description != null) && description.startsWith(item.name))
-                            description
-                        else
-                            item.name + ", " + item.description
-                    }
                 }
                 if(decoration.reorderable) {
                     customActions = listOf(
                         CustomAccessibilityAction(
-                            label = "Move Up",
+                            label = moveUpLabel,
                             action = { decoration.moveUp(decoration.index) }
                         ),
                         CustomAccessibilityAction(
-                            label = "Move Down",
+                            label = moveUpDown,
                             action = { decoration.moveDown(decoration.index) }
                         ),
                     )

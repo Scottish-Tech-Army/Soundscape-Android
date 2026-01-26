@@ -154,6 +154,8 @@
 <string name="route_update_success_title">"Update Complete!"</string>
 <!-- Title of a waypoint used in a route, this is used in the form "Waypoint 1", "Waypoint 2" etc. -->
 <string name="waypoint_title">"Waypoint"</string>
+<!-- Text shown when a route isn't found in the database  -->
+<string name="route_not_found" tools:ignore="MissingTranslation">"Route not found"</string>
 <!-- Alert action to save as marker -->
 <string name="universal_links_alert_action_marker">"Save as Marker"</string>
 <!-- Message to display alongside a URL that can be used to import a marker. Quotes written as \" -->
@@ -901,6 +903,8 @@
 <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">"Export markers and routes database"</string>
 <!-- Button text for loading from a file the markers and routes database -->
 <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">"Import markers and routes database"</string>
+<!-- Text that appears in the content chooser when exporting the database -->
+<string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">"Export"</string>
 <!-- Text for alert that shows after an import has been successfully complete -->
 <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">"Import of markers and routes completed."</string>
 <!-- Text for alert that shows after an import has failed -->
@@ -911,6 +915,14 @@
 <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">"Deleting all of the markers and routes cannot be undone, do you want to continue?</string>
 <!-- Text for confirmation message after all markers and routes have been deleted -->
 <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">"Markers and routes deleted</string>
+<!-- Hint for location list item e.g. when editing route. Indicates that current item is selected. -->
+<string name="location_item_selected" tools:ignore="MissingTranslation">"Selected</string>
+<!-- Hint for location list item e.g. when editing route. Indicates that current item is not selected. -->
+<string name="location_item_not_selected" tools:ignore="MissingTranslation">"Not selected</string>
+<!-- Hint for location list item when editing list order. Indicates action moves the item up in the list. -->
+<string name="location_item_move_up" tools:ignore="MissingTranslation">"Move up in list</string>
+<!-- Hint for location list item when editing list order. Indicates action moves the item down in the list. -->
+<string name="location_item_move_down" tools:ignore="MissingTranslation">"Move down in list</string>
 <!-- Title for dialog which explains what is new in the current release -->
 <string name="new_version_info_text" tools:ignore="MissingTranslation">"New release information</string>
 <!-- Button at end of new release dialog so that the user can continue on and use the app -->
@@ -922,6 +934,8 @@
 The main changes in this release are for *Search* and describing the current address. When there is network available, *Search* will use Android as well as our own Photon server to find places. The main improvements here are firstly that searching by street number should work much better in many parts of the world. Secondly, we have also added offline search which uses any downloaded maps to search for addresses and points of interest. Offline search works up to around 5 miles around the user.
 
 Tips for searching:
+
+The search UI has changed slightly since the last release as it didn't correctly support talkback editing. It also requires the user to hit enter/search to start the search after entering the search text.
 
 Offline search requires offline maps to be downloaded. Download them from the Settings/Offline maps screen.
 
