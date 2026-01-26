@@ -80,6 +80,7 @@ class FusedGeocoder(applicationContext: Context,
                             // Photon knows about then this will fill it in correctly
                             streetResult.name = photonResult.name
                             streetResult.location = photonResult.location
+                            streetResult.typeDescription = photonResult.typeDescription
                             continue
                         }
                     }

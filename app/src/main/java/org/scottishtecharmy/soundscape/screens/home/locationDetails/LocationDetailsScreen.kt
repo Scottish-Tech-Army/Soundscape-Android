@@ -49,6 +49,7 @@ import org.commonmark.renderer.html.HtmlRenderer
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.geoengine.TextForFeature
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.fromLatLng
@@ -382,6 +383,20 @@ private fun LocationDescriptionTextsSection(
             color = MaterialTheme.colorScheme.onSurface,
         )
 
+        locationDescription.typeDescription?.let {
+            if(it.additionalText?.isNotEmpty() == true) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(spacing.small),
+                ) {
+                    Text(
+                        text = it.additionalText,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                }
+            }
+        }
         if(distanceString.isNotEmpty()) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -427,6 +442,7 @@ fun LocationDetailsPreview() {
             name = "Pizza hut",
             location = LngLatAlt(),
             description = "139 boulevard gambetta \n59000 Lille\nFrance",
+            typeDescription = TextForFeature("Blah", false,"Restaurant")
         ),
         createBeacon = { _ ->
         },

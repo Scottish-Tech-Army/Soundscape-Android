@@ -15,6 +15,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertGeometryAndClipLineToTile
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.parseGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.pointIsOffTile
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.translateProperties
 import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
 import org.scottishtecharmy.soundscape.geoengine.utils.getCentroidOfPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
@@ -541,6 +542,7 @@ class TileSearch(val offlineExtractPath: String,
             mvt.name = result.properties.get("name") as? String?
             mvt.properties = result.properties
             mvt.geometry = Point(result.location)
+            translateProperties(mvt)
 
             // We've got results, see if we can improve the description from our GridState
             runBlocking {

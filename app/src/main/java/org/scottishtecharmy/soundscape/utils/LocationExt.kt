@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.utils
 import android.location.Address
 import org.json.JSONObject
 import org.scottishtecharmy.soundscape.components.LocationSource
+import org.scottishtecharmy.soundscape.geoengine.TextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -17,7 +18,7 @@ private fun setIfLower(newType: LocationType, oldType: LocationType) : LocationT
 
 fun Feature.deferredToLocationDescription(source: LocationSource,
                                           alternateLocation: LngLatAlt = LngLatAlt(),
-                                          featureName: String? = null): LocationDescription {
+                                          featureName: TextForFeature? = null): LocationDescription {
     val location =
         when (geometry.type) {
             "Point" -> (geometry as Point).coordinates
@@ -37,7 +38,7 @@ fun Feature.deferredToLocationDescription(source: LocationSource,
 
 fun Feature.toLocationDescription(source: LocationSource,
                                   alternateLocation: LngLatAlt = LngLatAlt(),
-                                  featureName: String? = null): LocationDescription {
+                                  featureName: TextForFeature? = null): LocationDescription {
     val location =
         when (geometry.type) {
             "Point" -> (geometry as Point).coordinates
@@ -65,42 +66,45 @@ fun Feature.toLocationDescription(source: LocationSource,
 fun LocationDescription.process() {
     if (feature != null) {
         feature?.let { feature ->
+            var address = false
+            val jsonObject = JSONObject()
+            var oppositeProperty = false
+            var locationTypeProperty: LocationType = LocationType.Country
+            val mvt = (feature as? MvtFeature)
+            var nameLocal: String? = null
+
             feature.properties?.let { properties ->
                 // We use the AndroidAddressFormatter library to try and generate addresses which are
                 // locale correct e.g. street numbers before/after street name
                 // It's got a clunky API that takes in JSON which might be a problem if any of our
                 // strings aren't JSON friendly. It would be better to have an API which took in the
-
-                val formatter = AndroidAddressFormatter(false, false, false)
-                val jsonObject = JSONObject()
-                var oppositeProperty = false
-                var locationTypeProperty: LocationType = LocationType.Country
-                val mvt = (feature as? MvtFeature)
-
-                var address = false
                 properties.forEach { (key, value) ->
                     when (key) {
                         "countrycode" -> jsonObject.put("country_code", value.toString())
                         "housenumber" -> {
                             jsonObject.put("house_number", value.toString())
-                            locationTypeProperty = setIfLower(LocationType.StreetNumber, locationTypeProperty)
+                            locationTypeProperty =
+                                setIfLower(LocationType.StreetNumber, locationTypeProperty)
                         }
 
                         "street" -> {
                             jsonObject.put("road", value.toString())
-                            locationTypeProperty = setIfLower(LocationType.Street, locationTypeProperty)
+                            locationTypeProperty =
+                                setIfLower(LocationType.Street, locationTypeProperty)
                             address = true
                         }
 
                         "district" -> {
                             jsonObject.put("neighbourhood", value.toString())
-                            locationTypeProperty = setIfLower(LocationType.City, locationTypeProperty)
+                            locationTypeProperty =
+                                setIfLower(LocationType.City, locationTypeProperty)
                             address = true
                         }
 
                         "city" -> {
                             jsonObject.put(key, value.toString())
-                            locationTypeProperty = setIfLower(LocationType.City, locationTypeProperty)
+                            locationTypeProperty =
+                                setIfLower(LocationType.City, locationTypeProperty)
                             address = true
                         }
 
@@ -109,6 +113,7 @@ fun LocationDescription.process() {
                         "postcode", "country", "state" -> {} // Don't include the include country or state
                     }
                 }
+                nameLocal = properties["name"] as String?
                 if (mvt != null) {
                     if (mvt.housenumber != null) {
                         jsonObject.put("house_number", mvt.housenumber)
@@ -119,32 +124,36 @@ fun LocationDescription.process() {
                         address = true
                     }
                 }
-
-                if (address) {
-                    var json = jsonObject.toString()
-                    json = json.replace("\\/", "/")
-                    var fallbackCountryCode = getCurrentLocale().country
-                    if (fallbackCountryCode.isEmpty()) fallbackCountryCode = "GB"
-                    val formattedAddress = formatter.format(json, fallbackCountryCode)
-                    var nameLocal: String? = properties["name"] as String?
-                    if (nameLocal != null) {
-                        // Named locations are as good a street number
-                        locationTypeProperty = setIfLower(LocationType.StreetNumber, locationTypeProperty)
-                    }
-                    if (mvt != null) {
-                        nameLocal = mvt.name
-                    }
-
-                    name = nameLocal ?: formattedAddress.substringBefore('\n')
-                    description = formattedAddress.replace("\n", ", ").substringBeforeLast(",")
-                    opposite = oppositeProperty
-                    locationType = locationTypeProperty
-                } else {
-                    name = mvt?.name ?: featureName ?: ""
-                    opposite = oppositeProperty
-                    locationType = locationTypeProperty
-                }
             }
+            if (address) {
+                val formatter = AndroidAddressFormatter(false, false, false)
+                var json = jsonObject.toString()
+                json = json.replace("\\/", "/")
+                var fallbackCountryCode = getCurrentLocale().country
+                if (fallbackCountryCode.isEmpty()) fallbackCountryCode = "GB"
+                val formattedAddress = formatter.format(json, fallbackCountryCode)
+                if (nameLocal != null) {
+                    // Named locations are as good a street number
+                    locationTypeProperty = setIfLower(LocationType.StreetNumber, locationTypeProperty)
+                }
+                if (mvt != null) {
+                    nameLocal = mvt.name
+                }
+
+                name = nameLocal ?: formattedAddress.substringBefore('\n')
+                description = formattedAddress.replace("\n", ", ").substringBeforeLast(",")
+                opposite = oppositeProperty
+                locationType = locationTypeProperty
+            } else {
+                name = mvt?.name?.takeIf { it.isNotEmpty() } ?: featureName?.text ?: ""
+                if(name == "")
+                {
+                    println("!")
+                }
+                opposite = oppositeProperty
+                locationType = locationTypeProperty
+            }
+            typeDescription = featureName
         }
         this.feature = null
     }

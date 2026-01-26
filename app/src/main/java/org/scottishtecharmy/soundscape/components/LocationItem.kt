@@ -112,7 +112,7 @@ fun LocationItem(
                         "${decoration.indexDescription} ${decoration.index + 1}. ${item.name}"
 
                     else -> item.description?.takeIf { it.startsWith(item.name) }
-                        ?: listOfNotNull(item.name, item.description).joinToString(", ")
+                        ?: listOfNotNull(item.name, item.typeDescription?.additionalText, item.description).joinToString(", ")
                 }
 
                 if (decoration.editRoute.enabled) {
@@ -176,6 +176,15 @@ fun LocationItem(
                         text = it,
                         color = MaterialTheme.colorScheme.onSurface,
                         style = MaterialTheme.typography.bodyMedium,
+                    )
+                }
+            }
+            if(item.typeDescription?.generic != true) {
+                item.typeDescription?.additionalText?.let { text ->
+                    Text(
+                        text = text,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        style = MaterialTheme.typography.bodySmall,
                     )
                 }
             }

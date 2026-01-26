@@ -7,14 +7,12 @@ import androidx.preference.PreferenceManager
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeoutOrNull
 import okhttp3.internal.platform.PlatformRegistry.applicationContext
-import org.junit.Assert.assertNotEquals
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -23,6 +21,7 @@ import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
@@ -30,6 +29,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.FusedGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.OfflineGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.PhotonGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SoundscapeGeocoder
+import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -389,6 +389,33 @@ class GeocoderTest {
 
             val tarland = LngLatAlt(-2.8581118922791124, 57.1274095150638)
             val tarlandResults = geocoder.getAddressFromLocationName("Commercial Hotel, Tarland", tarland, appContext)
+        }
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun osmNameAddition() {
+        Analytics.getInstance(true)
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        val gridState = ProtomapsGridState()
+        gridState.validateContext = false
+        gridState.start(ApplicationProvider.getApplicationContext())
+
+        val milngavie = LngLatAlt(-4.317166334292434, 55.941822016283)
+        runBlocking {
+            gridState.locationUpdate(milngavie, emptySet())
+
+            val features = gridState.getFeatureCollection(TreeId.POIS)
+            features.forEach { feature ->
+                val mvt = feature as MvtFeature
+                if(mvt.name == "Greggs") {
+                    val ld = feature.toLocationDescription(
+                        LocationSource.OfflineGeocoder,
+                        getDistanceToFeature(milngavie, feature, gridState.ruler).point,
+                        getTextForFeature(appContext, mvt)
+                    )
+                }
+            }
         }
     }
 }

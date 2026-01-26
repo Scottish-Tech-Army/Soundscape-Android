@@ -55,8 +55,7 @@ class MultiGeocoder(applicationContext: Context,
                     val score = haystack.fuzzyCompare(needle, true)
                     if(score < 0.25) {
                         val ld = mvt.toLocationDescription(LocationSource.OfflineGeocoder)
-                        if(ld != null)
-                            results.add(ld)
+                        results.add(ld)
                     }
                 }
             }
