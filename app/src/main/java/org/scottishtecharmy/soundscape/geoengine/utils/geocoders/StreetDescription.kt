@@ -409,9 +409,9 @@ class StreetDescription(val name: String, val gridState: GridState) {
                 if(intersection.intersectionType != IntersectionType.TILE_EDGE) {
                     if(descriptiveIntersection(intersection, localizedContext))
                         descriptivePoints[totalDistance] = intersection
-                    totalDistance += way.first.length
                 }
             }
+            totalDistance += way.first.length
             if (way == ways.last()) {
                 val lastIntersection =
                     if (way.second)
@@ -660,7 +660,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
                             nonGenericOnly = true
                         )
                         if(crossStreetName.isNotEmpty())
-                            return "intersection with $crossStreetName"
+                            return crossStreetName
                     }
                 }
             }

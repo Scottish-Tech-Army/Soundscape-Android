@@ -96,7 +96,9 @@ class PhotonGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
         }
     }
 
-    override suspend fun getAddressFromLngLat(userGeometry: UserGeometry, localizedContext: Context?) : LocationDescription? {
+    override suspend fun getAddressFromLngLat(userGeometry: UserGeometry,
+                                              localizedContext: Context?,
+                                              ignoreHouseNumbers: Boolean) : LocationDescription? {
 
         val location = userGeometry.mapMatchedLocation?.point ?: userGeometry.location
         val searchResult = withContext(Dispatchers.IO) {

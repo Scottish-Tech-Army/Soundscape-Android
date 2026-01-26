@@ -47,7 +47,7 @@ class GeocoderTest {
         userGeometry: UserGeometry,
         localizedContext: Context
     ): LocationDescription? {
-        val description = geocoder.getAddressFromLngLat(userGeometry, localizedContext)
+        val description = geocoder.getAddressFromLngLat(userGeometry, localizedContext, false   )
         return description
     }
 
@@ -375,8 +375,6 @@ class GeocoderTest {
 
             val wellKnownLocation = LngLatAlt(-4.3215166, 55.9404307)
             val halfordsResults = geocoder.getAddressFromLocationName("halfords crow road", wellKnownLocation, appContext)
-            halfordsResults?.get(1)?.process()
-            halfordsResults?.get(1)?.process()
 
             val wellKnownResults = geocoder.getAddressFromLocationName("20 braeside avenue milngavie", wellKnownLocation, appContext)
 
