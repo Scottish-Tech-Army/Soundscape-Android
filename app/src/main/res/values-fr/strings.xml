@@ -1194,4 +1194,26 @@
     <string name="search_no_results" tools:ignore="MissingTranslation">Aucun résultat de recherche trouvé</string>
     <string name="search_searching" tools:ignore="MissingTranslation">Recherche en cours…</string>
     <string name="menu_manage_search" tools:ignore="MissingTranslation">Gérer la recherche</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">Itinéraire introuvable</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Exporter</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">Sélectionné</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">Non sélectionné</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">Monter dans la liste</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">Descendre dans la liste</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">Sur %1$s entre %2$s et %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">Sur %1$s, %2$s jusqu’à %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">Sur %1$s, %2$s depuis %3$s</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">Ville</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">Ville</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">Quartier</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">Village</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">Hameau</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">Terrain de sport</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">Rivière</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">Voie ferrée</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">Bois</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">Pavillon</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">Installation sportive</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">Magasin d\'aliments naturels</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">Salle d\'événements</string>
 </resources>
