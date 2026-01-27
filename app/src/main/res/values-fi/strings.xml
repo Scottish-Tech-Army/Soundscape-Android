@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Merkinnät ja reitit poistettu</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Uuden julkaisun tiedot</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Sulje uuden julkaisun valintaikkuna</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nTämän julkaisun tärkeimmät muutokset koskevat *Haku*-toimintoa ja nykyisen osoitteen kuvaamista. Kun verkko on käytettävissä, *Haku* käyttää sekä Androidia että omaa Photon-palvelintamme paikkojen etsimiseen. Keskeiset parannukset ovat ensinnäkin se, että haku katu­numerolla toimii monissa maailman osissa paljon paremmin. Toiseksi olemme lisänneet offline-haun, joka hyödyntää ladattuja karttoja osoitteiden ja kiinnostavien kohteiden etsimiseen. Offline-haku toimii käyttäjän ympärillä noin 5 mailin säteellä.\n\nVinkkejä hakemiseen:\n\nOffline-haku edellyttää offline-karttojen lataamista. Lataa ne Asetukset/Offline-kartat -näytöltä.\n\nHaun voi asettaa käyttämään pelkästään offline-tilaa asetuksissa. Oletusasetus *Automaattinen* tarkoittaa, että se käyttää online-hakua, kun verkko on saatavilla, ja offline-hakua, kun verkkoa ei ole.\n\nKun haet katuosoitetta, kaupungin tai paikkakunnan nimen lisääminen on tärkeää online-haussa, vaikka se voidaan jättää pois offline-haussa.\n\nOpenStreetMap-aineistomme katujen numeroinnin kattavuus vaihtelee sijainnin mukaan. Offline-haku käyttää katu- ja talonumeroita, kun ne ovat saatavilla, mutta tähän vaaditaan sovellukseen ladattu offline-kartta, joka on ladattu 19. tammikuuta 2026 jälkeen.\n\nKuten aina, ilmoita kaikista ongelmista — vaikka ne olisivat pieniä — käyttämällä päävalikon *Ota yhteyttä tukeen* -vaihtoehtoa.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nTämän julkaisun tärkeimmät muutokset koskevat *Hakua* ja nykyisen osoitteen kuvaamista. Kun verkko on käytettävissä, *Haku* käyttää sekä Androidin hakupalveluja että omaa Photon‑palvelintamme paikkojen etsimiseen. Suurimmat parannukset ovat ensin se, että hakeminen katuosoitteen numerolla toimii nyt monissa maailman osissa paljon paremmin. Toiseksi olemme lisänneet offline‑haun, joka käyttää ladattuja karttoja osoitteiden ja kiinnostavien kohteiden etsimiseen. Offline‑haku toimii noin 5 mailin säteellä käyttäjästä.\n\nVinkkejä hakuun:\n\nHakukäyttöliittymä on muuttunut hieman viime julkaisusta, koska se ei aiemmin tukenut TalkBackin kautta tehtävää muokkausta oikein. Nyt hakun aloittamiseksi käyttäjän tulee painaa Enter/etsi sen jälkeen, kun hakuteksti on syötetty.\n\nOffline‑haku vaatii offline‑karttojen lataamisen. Lataa ne Asetukset → Offline‑kartat -näytöltä.\n\nHaun voi pakottaa toimimaan vain offline‑tilassa asetuksista. Oletusasetuksena oleva Automaattinen tarkoittaa, että verkon ollessa käytettävissä käytetään online‑hakua ja verkon puuttuessa offline‑hakua.\n\nKun etsit katuosoitetta, kaupunkinimen lisääminen on tärkeää online‑haussa, vaikka offline‑haussa se voidaan jättää pois.\n\nKäyttämämme OpenStreetMap‑karttatietojen katujen numeroinnin kattavuus vaihtelee sijainnin mukaan. Offline‑haku hyödyntää kadun numeroita, kun ne ovat saatavilla, mutta se edellyttää sovellukseen ladattua offline‑karttaa, joka on ladattu 19. tammikuuta 2026 jälkeen.\n\nKerrothan, jos havaitset ongelmia, vaikka ne olisivat pieniäkin, käyttämällä valikon *Ota yhteyttä tukeen* -valintaa.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Avoimen lähdekoodin lisenssit</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Lauttaterminaali</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s lauttaterminaali</string>
@@ -1194,4 +1194,26 @@
     <string name="search_no_results" tools:ignore="MissingTranslation">Hakutuloksia ei löytynyt</string>
     <string name="search_searching" tools:ignore="MissingTranslation">Haetaan…</string>
     <string name="menu_manage_search" tools:ignore="MissingTranslation">Hallitse hakua</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">Reittiä ei löytynyt</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Vie</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">Valittu</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">Ei valittu</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">Siirrä luettelossa ylöspäin</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">Siirrä luettelossa alaspäin</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">Kadulla %1$s, välillä %2$s ja %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">Kadulla %1$s, %2$s ennen %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">Kadulla %1$s, %2$s kuljettu %3$s:stä lähtien</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">Kaupunki</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">Kaupunki</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">Naapurusto</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">Kylä</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">Pikkukylä</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">Urheilukenttä</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">Joki</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">Rautatie</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">Metsä</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">Paviljonki</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">Urheilupaikka</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">Terveysruokakauppa</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">Tapahtumapaikka</string>
 </resources>
