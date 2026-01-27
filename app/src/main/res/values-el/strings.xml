@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Οι δείκτες και οι διαδρομές διαγράφηκαν</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Πληροφορίες νέας έκδοσης</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Κλείσιμο διαλόγου νέας έκδοσης</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nΟι κύριες αλλαγές αυτής της έκδοσης αφορούν την *Αναζήτηση* και την περιγραφή της τρέχουσας διεύθυνσης. Όταν υπάρχει διαθέσιμο δίκτυο, η *Αναζήτηση* θα χρησιμοποιεί το Android καθώς και τον δικό μας εξυπηρετητή Photon για να εντοπίζει τοποθεσίες. Οι βασικές βελτιώσεις εδώ είναι, πρώτον, ότι η αναζήτηση με αριθμό οικίας θα λειτουργεί πολύ καλύτερα σε πολλά μέρη του κόσμου. Δεύτερον, προσθέσαμε αναζήτηση εκτός σύνδεσης που χρησιμοποιεί οποιους χάρτες έχουν ληφθεί για να αναζητά διευθύνσεις και σημεία ενδιαφέροντος. Η αναζήτηση εκτός σύνδεσης λειτουργεί σε απόσταση περίπου 5 μιλίων γύρω από τον χρήστη.\n\nΣυμβουλές για αναζήτηση:\n\nΗ αναζήτηση εκτός σύνδεσης απαιτεί να έχουν ληφθεί χάρτες εκτός σύνδεσης. Κατεβάστε τους από την οθόνη Ρυθμίσεις/Χάρτες εκτός σύνδεσης.\n\nΜπορείτε να επιβάλετε η αναζήτηση να είναι αποκλειστικά εκτός σύνδεσης από τις ρυθμίσεις. Η προεπιλεγμένη ρύθμιση *Αυτόματο* σημαίνει ότι χρησιμοποιεί αναζήτηση σε σύνδεση όταν υπάρχει διαθέσιμο δίκτυο και αναζήτηση εκτός σύνδεσης όταν δεν υπάρχει.\n\nΚατά την αναζήτηση μιας διεύθυνσης δρόμου, η συμπερίληψη του ονόματος της πόλης είναι σημαντική για την αναζήτηση σε σύνδεση, αν και μπορεί να παραληφθεί στην αναζήτηση εκτός σύνδεσης.\n\nΗ χαρτογράφηση των αριθμών δρόμων στα δεδομένα OpenStreetMap που χρησιμοποιούμε ποικίλλει ανάλογα με την περιοχή. Η αναζήτηση εκτός σύνδεσης θα χρησιμοποιεί αριθμούς δρόμων όταν είναι διαθέσιμοι, ωστόσο απαιτείται ένας χάρτης εκτός σύνδεσης που να έχει ληφθεί στην εφαρμογή μετά τις 19 Ιανουαρίου 2026.\n\nΌπως πάντα, αναφέρετε τυχόν προβλήματα, όσο μικρά κι αν είναι, μέσω της επιλογής *Επικοινωνία με την υποστήριξη* στο κύριο μενού.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nΟι κύριες αλλαγές σε αυτή την έκδοση αφορούν την *Αναζήτηση* και την περιγραφή της τρέχουσας διεύθυνσης. Όταν υπάρχει διαθέσιμη σύνδεση δικτύου, η *Αναζήτηση* θα χρησιμοποιεί το Android καθώς και τον δικό μας διακομιστή Photon για την εύρεση τοποθεσιών. Οι βασικές βελτιώσεις εδώ είναι, πρώτον, ότι η αναζήτηση με αριθμό δρόμου θα λειτουργεί πολύ καλύτερα σε πολλά μέρη του κόσμου. Δεύτερον, προσθέσαμε αναζήτηση εκτός σύνδεσης που χρησιμοποιεί οποιουσδήποτε χάρτες έχετε κατεβάσει για να αναζητήσει διευθύνσεις και σημεία ενδιαφέροντος. Η αναζήτηση εκτός σύνδεσης λειτουργεί σε απόσταση περίπου 5 μιλίων γύρω από τον χρήστη.\n\nΣυμβουλές για αναζητήσεις:\n\nΤο περιβάλλον αναζήτησης έχει αλλάξει ελαφρώς από την προηγούμενη έκδοση επειδή δεν υποστηριζόταν σωστά η επεξεργασία με talkback. Επίσης, απαιτείται από τον χρήστη να πατήσει Enter/Αναζήτηση για να ξεκινήσει η αναζήτηση αφού εισάγει το κείμενο αναζήτησης.\n\nΗ αναζήτηση εκτός σύνδεσης προϋποθέτει ότι έχετε κατεβάσει χάρτες εκτός σύνδεσης. Κατεβάστε τους από την οθόνη Ρυθμίσεις/Χάρτες εκτός σύνδεσης.\n\nΗ αναζήτηση μπορεί να ρυθμιστεί ώστε να γίνεται μόνο εκτός σύνδεσης από τις ρυθμίσεις. Η προεπιλεγμένη ρύθμιση «Αυτόματο» σημαίνει ότι χρησιμοποιεί την αναζήτηση στο διαδίκτυο όταν υπάρχει δίκτυο και την αναζήτηση εκτός σύνδεσης όταν δεν υπάρχει.\n\nΚατά την αναζήτηση για διεύθυνση δρόμου, η συμπερίληψη του ονόματος της πόλης είναι σημαντική για την αναζήτηση online, αν και μπορεί να παραλειφθεί στην αναζήτηση εκτός σύνδεσης.\n\nΗ αντιστοίχιση αριθμών δρόμων στα δεδομένα OpenStreetMap που χρησιμοποιούμε ποικίλλει ανάλογα με την περιοχή. Η αναζήτηση εκτός σύνδεσης θα χρησιμοποιεί αριθμούς δρόμων όταν αυτοί είναι διαθέσιμοι, αλλά απαιτείται ένας χάρτης εκτός σύνδεσης που να έχει ληφθεί στην εφαρμογή μετά την 19η Ιανουαρίου 2026.\n\nΌπως πάντα, αναφέρετε τυχόν προβλήματα, όσο μικρά και αν είναι, μέσω της επιλογής *Επικοινωνία με την υποστήριξη* στο κύριο μενού.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Άδειες ανοιχτού κώδικα</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Τερματικός Σταθμός Φεριμπότ</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Τερματικός Σταθμός Φεριμπότ</string>
@@ -1194,4 +1194,26 @@
     <string name="search_no_results" tools:ignore="MissingTranslation">Δεν βρέθηκαν αποτελέσματα αναζήτησης</string>
     <string name="search_searching" tools:ignore="MissingTranslation">Αναζήτηση…</string>
     <string name="menu_manage_search" tools:ignore="MissingTranslation">Διαχείριση αναζήτησης</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">Η διαδρομή δεν βρέθηκε</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Εξαγωγή</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">Επιλεγμένο</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">Μη επιλεγμένο</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">Μετακίνηση προς τα πάνω στη λίστα</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">Μετακίνηση προς τα κάτω στη λίστα</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">Στην %1$s, μεταξύ %2$s και %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">Στην %1$s, %2$s μέχρι %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">Στην %1$s, %2$s από %3$s</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">Πόλη</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">Κωμόπολη</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">Γειτονιά</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">Χωριό</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">Οικισμός</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">Αθλητικό γήπεδο</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">Ποτάμι</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">Σιδηρόδρομος</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">Δάσος</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">Περίπτερο</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">Αθλητικός χώρος</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">Κατάστημα υγιεινών τροφίμων</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">Χώρος εκδηλώσεων</string>
 </resources>
