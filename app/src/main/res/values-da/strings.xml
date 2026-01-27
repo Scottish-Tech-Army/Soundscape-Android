@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Mærker og ruter er slettet</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Oplysninger om ny udgivelse</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Luk dialog om ny udgivelse</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDe største ændringer i denne udgivelse vedrører *Søgning* og visning af den aktuelle adresse. Når der er netværk tilgængeligt, vil *Søgning* bruge både Android og vores egen Photon-server til at finde steder. De væsentligste forbedringer er for det første, at søgning efter husnummer bør fungere meget bedre i mange dele af verden. For det andet har vi tilføjet offline-søgning, som bruger eventuelle downloadede kort til at søge efter adresser og interessepunkter. Offline-søgning virker inden for cirka 5 miles omkring brugeren.\n\nTips til søgning:\n\nOffline-søgning kræver, at offline-kort er hentet. Hent dem fra skærmen Indstillinger/Offline-kort.\n\nDu kan indstille søgning til kun at være offline i indstillingerne. Standardindstillingen Automatisk betyder, at appen bruger online-søgning, når der er netværk, og offline-søgning, når der ikke er.\n\nNår du søger efter en gadeadresse, er det vigtigt at inkludere bynavnet for online-søgning, selvom det kan udelades ved offline-søgning.\n\nKortlægningen af husnumre i det OpenStreetMap-data, vi bruger, varierer efter område. Offline-søgning vil bruge husnumre, når de er tilgængelige, men det kræver et offline-kort downloadet i appen efter 19. januar 2026.\n\nSom altid, rapporter venligst eventuelle problemer, uanset hvor små de måtte være, via indstillingen *Kontakt support* i hovedmenuen.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDe væsentligste ændringer i denne udgivelse vedrører *Søgning* og beskrivelsen af den aktuelle adresse. Når der er netværk tilgængeligt, bruger *Søgning* både Android og vores egen Photon-server til at finde steder. De vigtigste forbedringer er for det første, at søgning efter husnummer bør fungere meget bedre i mange dele af verden. For det andet har vi tilføjet offline-søgning, som bruger eventuelle downloadede kort til at søge efter adresser og interessepunkter. Offline-søgning fungerer i op til cirka 5 miles omkring brugeren.\n\nTips til søgning:\n\nSøgegrænsefladen er ændret en smule siden sidste udgivelse, da den ikke korrekt understøttede TalkBack-redigering. Derudover kræver den, at brugeren trykker på Enter/Søg for at starte selve søgningen, efter at søgeteksten er indtastet.\n\nOffline-søgning kræver, at offline-kort er downloadet. Hent dem fra skærmen Indstillinger/Offline-kort.\n\nSøgning kan tvinges til kun at være offline i indstillingerne. Standardindstillingen *Automatisk* betyder, at der bruges online-søgning, når der er netværk, og offline-søgning, når der ikke er.\n\nNår du søger efter en gadeadresse, er det vigtigt at medtage bynavnet for online-søgning, selvom det kan udelades ved offline-søgning.\n\nKortlægningen af husnumre i de OpenStreetMap-data, vi bruger, varierer afhængigt af sted. Offline-søgning vil bruge husnumre, når de findes, men kræver et offline-kort, der er downloadet i appen efter 19. januar 2026.\n\nSom altid bedes du rapportere eventuelle problemer, uanset hvor små de måtte være, via *Kontakt support*-muligheden i hovedmenuen.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Open source-licenser</string>
     <string name="osm_office" tools:ignore="MissingTranslation">Kontor</string>
     <string name="osm_school" tools:ignore="MissingTranslation">Skole</string>
@@ -1194,4 +1194,26 @@
     <string name="search_no_results" tools:ignore="MissingTranslation">Ingen søgeresultater fundet</string>
     <string name="search_searching" tools:ignore="MissingTranslation">Søger…</string>
     <string name="menu_manage_search" tools:ignore="MissingTranslation">Administrer søgning</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">Rute ikke fundet</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Eksporter</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">Valgt</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">Ikke valgt</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">Flyt op i listen</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">Flyt ned i listen</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">På %1$s mellem %2$s og %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">På %1$s, %2$s indtil %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">På %1$s, %2$s siden %3$s</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">By</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">By</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">Nabolag</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">Landsby</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">Lille landsby</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">Idrætsplads</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">Flod</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">Jernbane</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">Skov</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">Pavillon</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">Sportssted</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">Helsekost</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">Eventsted</string>
 </resources>
