@@ -236,7 +236,13 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         assert(tree != null)
 
         val from = LngLatAlt(lonLat.x(), lonLat.y())
-        return Iterables.filter(tree!!.nearest(lonLat, distance, maxCount))
+        val treeResults =
+            if(maxCount < 1)
+                tree!!.search(lonLat, distance)             // Find all
+            else
+                tree!!.nearest(lonLat, distance, maxCount)  // Find up to maxCount
+
+        return Iterables.filter(treeResults)
         { entry ->
             entryWithinDistance(entry, distance, from, ruler)
         }
@@ -457,20 +463,15 @@ class FeatureTree(featureCollection: FeatureCollection?) {
             val distanceResults = Iterables.toList(nearestWithinDistance(
                 Geometries.pointGeographic(location.longitude, location.latitude),
                 distance,
-                maxCount,
+                -1,
                 ruler)
             )
 
             // Deduplicate returned entries and add them to a list ready to sort by distance
-            val deduplicationSet = mutableSetOf<Feature>()
             data class EntryWithDistance(val entry: Entry<Feature, Geometry?>, val distance: Double)
-            val unsortedList = mutableListOf<EntryWithDistance>()
-            for (entry in distanceResults) {
-                if(!deduplicationSet.contains(entry.value())) {
-                    unsortedList.add(EntryWithDistance(entry, distanceToEntry(entry, location, ruler)))
-                    deduplicationSet.add(entry.value())
-                }
-            }
+            val unsortedList = distanceResults
+                .distinctBy { it.value() }
+                .map { entry -> EntryWithDistance(entry, distanceToEntry(entry, location, ruler)) }
 
             // Sort the list
             val sortedList = unsortedList.sortedBy { entryWithinDistance->
@@ -485,6 +486,7 @@ class FeatureTree(featureCollection: FeatureCollection?) {
             var newItem: EntryWithDistance? = if (newItemIterator.hasNext()) newItemIterator.next() else null
 
             while((initialItem != null) or (newItem != null)) {
+                if(featureCollection.features.size > maxCount) break
                 if (initialItem != null) {
                     var addInitial = false
                     if (newItem == null) addInitial = true
