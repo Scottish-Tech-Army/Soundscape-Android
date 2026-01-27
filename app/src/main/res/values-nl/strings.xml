@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markeringen en routes verwijderd</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informatie over de nieuwe release</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Nieuwe releasedialoog sluiten</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDe belangrijkste wijzigingen in deze release betreffen *Zoeken* en het beschrijven van het huidige adres. Als er een netwerk beschikbaar is, gebruikt *Zoeken* zowel Android als onze eigen Photon-server om plaatsen te vinden. De belangrijkste verbeteringen zijn ten eerste dat zoeken op huisnummer in veel delen van de wereld veel beter zou moeten werken. Ten tweede hebben we ook offline zoeken toegevoegd, waarbij gedownloade kaarten worden gebruikt om naar adressen en interessepunten te zoeken. Offline zoeken werkt tot ongeveer 5 mijl rond de gebruiker.\n\nTips voor het zoeken:\n\nOffline zoeken vereist dat offline kaarten zijn gedownload. Download ze via Instellingen &gt; Offline kaarten.\n\nZoeken kan in de instellingen worden geforceerd naar alleen offline. De standaardinstelling Automatisch betekent dat online zoeken wordt gebruikt wanneer er netwerk beschikbaar is en offline zoeken wanneer dat niet het geval is.\n\nBij het zoeken naar een straatadres is het belangrijk de plaatsnaam op te nemen voor online zoeken; bij offline zoeken kan die weggelaten worden.\n\nDe registratie van huisnummers in de Open Street Map-gegevens die we gebruiken varieert per locatie. Offline zoeken gebruikt huisnummers wanneer die beschikbaar zijn, maar daarvoor is een offline kaart vereist die in de app is gedownload na 19 januari 2026.\n\nZoals altijd kunt u eventuele problemen, hoe klein ook, melden via de optie *Contact opnemen met ondersteuning* in het hoofdmenu.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDe belangrijkste wijzigingen in deze release hebben betrekking op *Zoeken* en het aangeven van het huidige adres. Wanneer er netwerk beschikbaar is, gebruikt *Zoeken* zowel Android als onze eigen Photon-server om plaatsen te vinden. De belangrijkste verbeteringen zijn dat het zoeken op huisnummer in veel delen van de wereld aanzienlijk beter zou moeten werken. Daarnaast hebben we offline zoeken toegevoegd: hiermee wordt gebruikgemaakt van gedownloade kaarten om naar adressen en interessante punten te zoeken. Offline zoeken werkt binnen ongeveer 5 mijl rondom de gebruiker.\n\nTips voor zoeken:\n\nDe zoekinterface is sinds de vorige release licht aangepast, omdat deze TalkBack-bewerking niet correct ondersteunde. Na het invoeren van de zoektekst moet u bovendien op Enter/Zoeken drukken om de zoekopdracht te starten.\n\nOffline zoeken vereist dat er offline kaarten zijn gedownload. Download deze via Instellingen / Offline kaarten.\n\nU kunt het zoeken in de instellingen dwingen om alleen offline te werken. De standaardinstelling Automatisch betekent dat er online gezocht wordt wanneer er netwerk is en offline wanneer dat niet het geval is.\n\nBij het zoeken naar een straatadres is het belangrijk om ook de plaatsnaam (town) op te nemen voor online zoeken; bij offline zoeken kan dit worden weggelaten.\n\nDe vastlegging van huisnummers in de OpenStreetMap-gegevens die wij gebruiken varieert per locatie. Offline zoeken gebruikt huisnummers wanneer die beschikbaar zijn, maar daarvoor is een offline kaart vereist die in de app is gedownload na 19 januari 2026.\n\nZoals altijd vragen we u eventuele problemen, hoe klein ook, te melden via de optie *Contact opnemen met ondersteuning* in het hoofdmenu.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Open-sourcelicenties</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Veerterminal</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Veerterminal</string>
@@ -1194,4 +1194,26 @@
     <string name="search_no_results" tools:ignore="MissingTranslation">Geen zoekresultaten gevonden</string>
     <string name="search_searching" tools:ignore="MissingTranslation">Zoeken…</string>
     <string name="menu_manage_search" tools:ignore="MissingTranslation">Zoeken beheren</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">Route niet gevonden</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Exporteren</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">Geselecteerd</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">Niet geselecteerd</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">Naar boven verplaatsen</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">Naar beneden verplaatsen</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">Op %1$s tussen %2$s en %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">Op %1$s, %2$s tot %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">Op %1$s, %2$s sinds %3$s</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">Stad</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">Plaats</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">Wijk</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">Dorp</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">Gehucht</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">Sportveld</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">Rivier</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">Spoorlijn</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">Bos</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">Paviljoen</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">Sport</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">Natuurvoedingswinkel</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">Evenementenlocatie</string>
 </resources>
