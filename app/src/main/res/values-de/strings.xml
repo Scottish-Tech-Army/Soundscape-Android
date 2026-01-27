@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markierungen und Routen gelöscht</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informationen zur neuen Version</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Dialog zur neuen Version schließen</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDie wichtigsten Änderungen in dieser Version betreffen *Suche* und die Beschreibung der aktuellen Adresse. Wenn eine Netzwerkverbindung verfügbar ist, verwendet die *Suche* sowohl Android als auch unseren eigenen Photon-Server, um Orte zu finden. Die wesentlichen Verbesserungen sind erstens, dass die Suche nach Hausnummern in vielen Teilen der Welt deutlich besser funktionieren sollte. Zweitens haben wir eine Offline-Suche hinzugefügt, die heruntergeladene Karten nutzt, um Adressen und Points-of-Interest zu durchsuchen. Die Offline-Suche funktioniert in einem Umkreis von etwa 5 Meilen um Ihren Standort.\n\nTipps zur Suche:\n\nFür die Offline-Suche müssen Offline-Karten heruntergeladen werden. Laden Sie diese unter Einstellungen &gt; Offline-Karten herunter.\n\nIn den Einstellungen können Sie die Suche so einstellen, dass nur die Offline-Suche verwendet wird. Die Standardeinstellung \'Automatisch\' bedeutet, dass die Online-Suche verwendet wird, wenn eine Netzwerkverbindung vorhanden ist, und die Offline-Suche, wenn keine Verbindung besteht.\n\nBei der Suche nach einer Straßenadresse ist die Angabe des Ortsnamens für die Online-Suche wichtig; in der Offline-Suche kann er weggelassen werden.\n\nDie Darstellung von Hausnummern in den OpenStreetMap-Daten, die wir verwenden, variiert je nach Region. Die Offline-Suche verwendet Hausnummern, wenn sie vorhanden sind; dafür ist jedoch eine Offline-Karte erforderlich, die nach dem 19. Januar 2026 in der App heruntergeladen wurde.\n\nWie immer: Bitte melden Sie alle Probleme — auch kleine — über die Option *Support kontaktieren* im Hauptmenü.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDie wichtigsten Änderungen in dieser Version betreffen die *Suche* und die Ansage der aktuellen Adresse. Wenn eine Netzwerkverbindung vorhanden ist, verwendet die *Suche* sowohl Android als auch unseren eigenen Photon‑Server, um Orte zu finden. Die wichtigsten Verbesserungen sind erstens, dass die Suche nach Hausnummern in vielen Regionen deutlich besser funktionieren sollte. Zweitens haben wir eine Offline‑Suche hinzugefügt, die heruntergeladene Karten verwendet, um nach Adressen und Points of Interest zu suchen. Die Offline‑Suche funktioniert in einem Umkreis von etwa 5 Meilen um den Benutzer.\n\nTipps zur Suche:\n\nDie Such‑Benutzeroberfläche hat sich seit der letzten Version leicht geändert, da zuvor die Bearbeitung mit TalkBack nicht korrekt unterstützt wurde. Außerdem müssen Benutzer nach Eingabe des Suchtexts die Eingabetaste / die Such‑Taste drücken, um die Suche zu starten.\n\nFür die Offline‑Suche müssen Offline‑Karten heruntergeladen sein. Laden Sie diese über Einstellungen/Offline‑Karten herunter.\n\nIn den Einstellungen kann die Suche so konfiguriert werden, dass sie ausschließlich offline durchgeführt wird. Die Standardeinstellung „Automatisch“ bedeutet, dass online gesucht wird, wenn eine Netzwerkverbindung vorhanden ist, und offline, wenn keine Verbindung besteht.\n\nBei der Suche nach einer Straßenadresse ist es für die Online‑Suche wichtig, den Ortsnamen (Stadt/Ort) anzugeben; in der Offline‑Suche kann dieser weggelassen werden.\n\nDie Abbildung von Hausnummern in den verwendeten OpenStreetMap‑Daten variiert je nach Region. Die Offline‑Suche verwendet Hausnummern, sofern diese vorhanden sind; dafür ist jedoch eine Offline‑Karte erforderlich, die in der App nach dem 19. Januar 2026 heruntergeladen wurde.\n\nWie immer melden Sie bitte jegliche Probleme, auch kleine, über die Option *„Support kontaktieren“* im Hauptmenü.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Open-Source-Lizenzen</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Fährterminal</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Fährterminal</string>
@@ -1194,4 +1194,26 @@
     <string name="search_no_results" tools:ignore="MissingTranslation">Keine Suchergebnisse gefunden</string>
     <string name="search_searching" tools:ignore="MissingTranslation">Suche...</string>
     <string name="menu_manage_search" tools:ignore="MissingTranslation">Suche verwalten</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">Route nicht gefunden</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Exportieren</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">Ausgewählt</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">Nicht ausgewählt</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">In Liste nach oben verschieben</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">In Liste nach unten verschieben</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">Auf %1$s zwischen %2$s und %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">Auf %1$s, noch %2$s bis %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">Auf %1$s, %2$s seit %3$s</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">Stadt</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">Stadt</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">Stadtteil</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">Dorf</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">Weiler</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">Sportplatz</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">Fluss</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">Eisenbahn</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">Wald</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">Pavillon</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">Sport</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">Naturkostladen</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">Veranstaltungsort</string>
 </resources>
