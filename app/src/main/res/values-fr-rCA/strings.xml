@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Marqueurs et itinéraires supprimés</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informations sur la nouvelle version</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Fermer les informations sur la nouvelle version</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nLes principaux changements de cette version concernent la *Recherche* et la description de l’adresse actuelle. Lorsqu’une connexion réseau est disponible, la *Recherche* utilisera Android ainsi que notre propre serveur Photon pour trouver des lieux. Les améliorations principales sont, premièrement, que la recherche par numéro de rue devrait fonctionner beaucoup mieux dans de nombreuses régions du monde. Deuxièmement, nous avons ajouté la recherche hors ligne qui utilise les cartes téléchargées pour rechercher des adresses et des points d’intérêt. La recherche hors ligne fonctionne sur une zone d’environ 5 miles autour de l’utilisateur.\n\nConseils pour la recherche :\n\nLa recherche hors ligne nécessite le téléchargement de cartes hors ligne. Téléchargez-les depuis l’écran Réglages / Cartes hors ligne.\n\nVous pouvez forcer la recherche à n’utiliser que le mode hors ligne dans les Réglages. Le réglage par défaut *Automatique* signifie qu’elle utilise la recherche en ligne lorsqu’une connexion réseau est disponible et la recherche hors ligne lorsqu’elle ne l’est pas.\n\nLors de la recherche d’une adresse postale, inclure le nom de la localité (ville) est important pour la recherche en ligne, même s’il peut être omis pour la recherche hors ligne.\n\nLa manière dont les numéros de rue sont cartographiés dans les données OpenStreetMap que nous utilisons varie selon les lieux. La recherche hors ligne utilisera les numéros de rue lorsqu’ils sont disponibles, mais nécessite qu’une carte hors ligne téléchargée dans l’application après le 19 janvier 2026 soit présente.\n\nComme toujours, veuillez signaler tout problème, même mineur, via l’option *Contacter le support* dans le menu principal.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nLes principaux changements de cette version concernent *la Recherche* et la description de l’adresse actuelle. Lorsqu’une connexion réseau est disponible, *la Recherche* utilisera à la fois Android et notre propre serveur Photon pour trouver des lieux. Les améliorations principales sont, d’une part, que la recherche par numéro de rue fonctionne beaucoup mieux dans de nombreuses régions du monde. D’autre part, nous avons ajouté la recherche hors ligne qui utilise les cartes téléchargées pour rechercher des adresses et des points d’intérêt. La recherche hors ligne fonctionne sur une zone d’environ 5 miles autour de l’utilisateur.\n\nConseils pour la recherche :\n\nL’interface de recherche a légèrement changé depuis la dernière version car elle ne prenait pas correctement en charge l’édition avec TalkBack. Il est désormais nécessaire d’appuyer sur Entrée (ou sur le bouton Rechercher) pour lancer la recherche après avoir saisi le texte.\n\nLa recherche hors ligne nécessite que des cartes hors ligne soient téléchargées. Téléchargez-les depuis Réglages &gt; Cartes hors ligne.\n\nIl est possible de forcer la recherche en mode hors ligne uniquement dans les réglages. Le réglage par défaut « Automatique » signifie qu’il utilise la recherche en ligne lorsqu’un réseau est disponible et la recherche hors ligne lorsqu’il n’y en a pas.\n\nLorsque vous recherchez une adresse postale, inclure le nom de la ville est important pour la recherche en ligne, même si cela peut être omis en recherche hors ligne.\n\nLa manière dont les numéros de rue sont cartographiés dans les données OpenStreetMap que nous utilisons varie selon les lieux. La recherche hors ligne utilisera les numéros de rue quand ils sont disponibles, mais elle nécessite qu’une carte hors ligne ait été téléchargée dans l’appli après le 19 janvier 2026.\n\nComme toujours, signalez-nous tout problème, même minime, via l’option *Contacter le support* dans le menu principal.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licences open source</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal de traversier</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Terminal de traversier</string>
@@ -1194,4 +1194,26 @@
     <string name="search_no_results" tools:ignore="MissingTranslation">Aucun résultat de recherche trouvé</string>
     <string name="search_searching" tools:ignore="MissingTranslation">Recherche en cours…</string>
     <string name="menu_manage_search" tools:ignore="MissingTranslation">Gérer la recherche</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">Itinéraire introuvable</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Exporter</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">Sélectionné</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">Non sélectionné</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">Monter dans la liste</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">Descendre dans la liste</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">Sur %1$s entre %2$s et %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">Sur %1$s, %2$s jusqu’à %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">Sur %1$s, %2$s depuis %3$s</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">Ville</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">Ville</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">Quartier</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">Village</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">Hameau</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">Terrain de sport</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">Rivière</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">Voie ferrée</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">Bois</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">Pavillon</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">Équipement sportif</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">Aliments santé</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">Lieu d\'événements</string>
 </resources>
