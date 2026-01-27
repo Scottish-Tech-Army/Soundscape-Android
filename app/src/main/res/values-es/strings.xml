@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Marcadores y rutas eliminados</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Información sobre la nueva versión</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Cerrar el cuadro de diálogo de la nueva versión</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nLos principales cambios de esta versión afectan a *Buscar* y a la forma en que se describe la dirección actual. Cuando hay red disponible, *Buscar* utilizará Android además de nuestro propio servidor Photon para encontrar lugares. Las mejoras principales son, en primer lugar, que la búsqueda por número de calle debería funcionar mucho mejor en muchas partes del mundo. En segundo lugar, también hemos añadido la búsqueda sin conexión, que usa los mapas descargados para buscar direcciones y puntos de interés. La búsqueda sin conexión funciona en un radio de aproximadamente 5 millas alrededor del usuario.\n\nConsejos para buscar:\n\nLa búsqueda sin conexión requiere que se hayan descargado mapas sin conexión. Descárguelos desde la pantalla Ajustes/Mapas sin conexión.\n\nSe puede forzar que la búsqueda sea solo sin conexión desde los ajustes. La opción predeterminada \"Auto\" indica que usa la búsqueda en línea cuando hay red disponible y la búsqueda sin conexión cuando no la hay.\n\nAl buscar una dirección postal, incluir el nombre de la población es importante para la búsqueda en línea, aunque puede omitirse en la búsqueda sin conexión.\n\nLa representación de los números de calle en los datos de OpenStreetMap que usamos varía según la ubicación. La búsqueda sin conexión usará números de calle cuando estén disponibles; sin embargo, se requiere un mapa sin conexión descargado en la aplicación con fecha posterior al 19 de enero de 2026.\n\nComo siempre, por favor comunique cualquier problema, por pequeño que sea, a través de la opción *Contacto con soporte* en el menú principal.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nLos cambios principales de esta versión afectan a *Búsqueda* y a la descripción de la dirección actual. Cuando hay red disponible, *Búsqueda* usará Android además de nuestro propio servidor Photon para encontrar lugares. Las mejoras principales son, en primer lugar, que la búsqueda por número de calle debería funcionar mucho mejor en muchas partes del mundo. En segundo lugar, también hemos añadido la búsqueda sin conexión, que utiliza los mapas descargados para buscar direcciones y puntos de interés. La búsqueda sin conexión funciona en un radio de aproximadamente 5 millas alrededor del usuario.\n\nConsejos para buscar:\n\nLa interfaz de búsqueda ha cambiado ligeramente desde la última versión, ya que no admitía correctamente la edición con TalkBack. Además, ahora es necesario que el usuario pulse Enter/Buscar para iniciar la búsqueda después de introducir el texto.\n\nLa búsqueda sin conexión requiere que se hayan descargado mapas sin conexión. Descárguelos desde la pantalla Ajustes/Mapas sin conexión.\n\nLa búsqueda puede configurarse para que sea únicamente sin conexión desde los ajustes. La opción por defecto \"Auto\" significa que usará la búsqueda en línea cuando haya red disponible y la búsqueda sin conexión cuando no la haya.\n\nAl buscar una dirección postal, incluir el nombre del pueblo/ciudad es importante para la búsqueda en línea, aunque puede omitirse en la búsqueda sin conexión.\n\nLa forma en que los números de calle están mapeados en los datos de OpenStreetMap que usamos varía según la ubicación. La búsqueda sin conexión utilizará números de calle cuando estén disponibles; sin embargo, se requiere haber descargado un mapa sin conexión en la aplicación después del 19 de enero de 2026.\n\nComo siempre, por favor informe de cualquier problema, por pequeño que sea, a través de la opción *Contacto con soporte* en el menú principal.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licencias de código abierto</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal de ferry</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">Terminal de ferry %s</string>
@@ -1194,4 +1194,26 @@
     <string name="search_no_results" tools:ignore="MissingTranslation">No se han encontrado resultados de búsqueda</string>
     <string name="search_searching" tools:ignore="MissingTranslation">Buscando...</string>
     <string name="menu_manage_search" tools:ignore="MissingTranslation">Administrar búsqueda</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">Ruta no encontrada</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Exportar</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">Seleccionado</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">No seleccionado</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">Mover hacia arriba en la lista</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">Mover hacia abajo en la lista</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">En %1$s, entre %2$s y %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">En %1$s, a %2$s hasta %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">En %1$s, a %2$s desde %3$s</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">Ciudad</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">Pueblo</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">Barrio</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">Aldea</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">Caserío</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">Campo de recreo</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">Río</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">Ferrocarril</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">Bosque</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">Pabellón</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">Instalación deportiva</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">Tienda de productos naturales</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">Recinto para eventos</string>
 </resources>
