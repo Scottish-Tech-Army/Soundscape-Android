@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Мітки та маршрути видалено</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Інформація про нове оновлення</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Закрити вікно про нове оновлення</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nГоловні зміни в цьому випуску стосуються *Пошуку* та відображення поточної адреси. Якщо доступне підключення до мережі, *Пошук* використовуватиме як сервіси Android, так і наш власний сервер Photon для знаходження місць. Основні поліпшення: по‑перше, пошук за номером будинку має працювати значно краще в багатьох регіонах світу. По‑друге, ми також додали офлайн‑пошук, який використовує завантажені карти для пошуку адрес і точок інтересу. Офлайн‑пошук працює приблизно в радіусі 5 миль від користувача.\n\nПоради щодо пошуку:\n\nОфлайн‑пошук вимагає завантаження офлайн‑карт. Завантажте їх на екрані Налаштування/Офлайн‑карти.\n\nПошук можна примусово встановити тільки в офлайн‑режимі в налаштуваннях. Налаштування за замовчуванням — *Авто* — означає, що при наявності мережі використовується онлайн‑пошук, а за її відсутності — офлайн‑пошук.\n\nПри пошуку вуличної адреси для онлайн‑пошуку важливо вказувати також назву міста; в офлайн‑пошуку це можна опустити.\n\nВідображення номерів будинків у даних OpenStreetMap, які ми використовуємо, залежить від регіону і може відрізнятися. Офлайн‑пошук використовуватиме номери будинків, якщо вони є, але для цього потрібна офлайн‑карта, завантажена в додатку після 19 січня 2026 року.\n\nЯк і завжди, будь ласка, повідомляйте про будь‑які проблеми, навіть незначні, через опцію *Звернутися до служби підтримки* у головному меню.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nОсновні зміни цього релізу стосуються *Пошуку* та опису поточної адреси. Якщо є підключення до мережі, *Пошук* використовуватиме як Android, так і наш власний сервер Photon для пошуку місць. Головні покращення тут: по‑перше, пошук за номером будинку повинен працювати значно краще в багатьох частинах світу; по‑друге, додано офлайн‑пошук, який використовує будь‑які завантажені карти для пошуку адрес та точок інтересу. Офлайн‑пошук працює приблизно в радіусі 5 миль навколо користувача.\n\nПоради щодо пошуку:\n\nІнтерфейс пошуку трохи змінився з останнього релізу, оскільки раніше він некоректно підтримував редагування з TalkBack. Тепер після введення тексту пошуку потрібно натиснути Enter/Пошук, щоб розпочати пошук.\n\nОфлайн‑пошук вимагає попереднього завантаження офлайн‑карт. Завантажте їх на екрані Налаштування → Офлайн‑карти.\n\nПошук можна примусово встановити тільки в офлайн‑режимі в налаштуваннях. За умовчанням режим «Авто» означає: використовувати онлайн‑пошук за наявності мережі і офлайн‑пошук, коли мережі немає.\n\nПри пошуку вуличної адреси для онлайн‑пошуку важливо вказувати також назву населеного пункту; в офлайн‑пошуку це можна опустити.\n\nВідображення номерів будинків у даних OpenStreetMap, які ми використовуємо, залежить від місцевості. Офлайн‑пошук використовуватиме номери будинків, коли вони доступні, але для цього потрібна офлайн‑карта, завантажена в додатку після 19 січня 2026 року.\n\nЯк і завжди, будь‑ласка, повідомляйте про будь‑які проблеми, навіть незначні, через опцію *Звернутися до служби підтримки* у головному меню.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Ліцензії з відкритим кодом</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Поромний термінал</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s поромний термінал</string>
@@ -1194,4 +1194,26 @@
     <string name="search_no_results" tools:ignore="MissingTranslation">Результатів пошуку не знайдено</string>
     <string name="search_searching" tools:ignore="MissingTranslation">Пошук...</string>
     <string name="menu_manage_search" tools:ignore="MissingTranslation">Керування пошуком</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">Маршрут не знайдено</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Експорт</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">Вибрано</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">Не вибрано</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">Перемістити вгору у списку</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">Перемістити вниз у списку</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">На %1$s між %2$s та %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">На %1$s, за %2$s до %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">На %1$s, %2$s після %3$s</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">Місто</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">Містечко</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">Район</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">Село</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">Хутір</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">Рекреаційна територія</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">Річка</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">Залізниця</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">Ліс</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">Павільйон</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">Спортивний майданчик</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">Магазин здорового харчування</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">Місце проведення заходів</string>
 </resources>
