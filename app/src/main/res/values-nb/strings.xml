@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markører og ruter er slettet</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informasjon om ny versjon</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Lukk dialog for ny versjon</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nHovedendringene i denne utgivelsen gjelder *Søk* og hvordan gjeldende adresse beskrives. Når nettverk er tilgjengelig, vil *Søk* bruke både Android og vår egen Photon-server for å finne steder. De viktigste forbedringene er først og fremst at søk etter gatenummer nå bør fungere mye bedre i mange deler av verden. For det andre har vi lagt til frakoblet søk som bruker nedlastede kart til å søke etter adresser og interessepunkter. Frakoblet søk fungerer innenfor omtrent 5 engelske mil rundt brukeren.\n\nTips for søk:\n\nFrakoblet søk krever at offline-kart er lastet ned. Last dem ned fra skjermen Innstillinger/Offline-kart.\n\nSøk kan tvinges til å være kun frakoblet i innstillingene. Standardvalget Automatiske betyr at appen bruker online-søk når nettverk er tilgjengelig og frakoblet søk når det ikke er det.\n\nNår du søker etter en gateadresse, er det viktig å inkludere bynavnet for online-søk, selv om det kan utelates ved frakoblet søk.\n\nKartlegging av gatenummer i OpenStreetMap-dataene vi bruker, varierer etter sted. Frakoblet søk vil bruke gatenummer når de er tilgjengelige, men krever at offlinekartet er lastet ned i appen etter 19. januar 2026.\n\nSom alltid, vennligst rapporter eventuelle problemer, uansett hvor små de måtte være, via alternativet *Kontakt brukerstøtte* i hovedmenyen.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nHovedendringene i denne utgivelsen gjelder *Søk* og utskrift av gjeldende adresse. Når nettverk er tilgjengelig, vil *Søk* bruke Android i tillegg til vår egen Photon‑server for å finne steder. De viktigste forbedringene er for det første at søk etter gatenummer nå bør fungere mye bedre i mange deler av verden. For det andre har vi også lagt til frakoblet søk som bruker nedlastede kart til å søke etter adresser og interessepunkter. Frakoblet søk fungerer opptil cirka 5 engelske mil rundt brukeren.\n\nTips for søk:\n\nSøkegrensesnittet har endret seg litt siden forrige utgivelse fordi det ikke støttet TalkBack‑redigering riktig. Det kreves nå at du trykker enter/søk for å starte søket etter at du har skrevet inn søketeksten.\n\nFrakoblet søk krever at offline‑kart er lastet ned. Last dem ned fra Innstillinger/Offline‑kart‑skjermen.\n\nSøk kan tvinges til kun å bruke frakoblet modus i innstillingene. Standardinnstillingen Automatisk betyr at appen bruker online‑søk når nettverk er tilgjengelig og frakoblet søk når det ikke er det.\n\nNår du søker etter en gateadresse er det viktig å inkludere by‑ eller stedsnavnet for online‑søk, selv om det kan utelates ved frakoblet søk.\n\nKartfesting av gatenummer i OpenStreetMap‑dataene vi bruker varierer etter sted. Frakoblet søk vil bruke gatenummer når de er tilgjengelige, men dette krever et offline‑kart som er lastet ned i appen etter 19. januar 2026.\n\nSom alltid, vennligst rapporter eventuelle problemer, uansett hvor små de måtte være, via valget *Kontakt brukerstøtte* i hovedmenyen.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Åpne kildekodelisenser</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Fergeterminal</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s fergeterminal</string>
@@ -1194,4 +1194,26 @@
     <string name="search_no_results" tools:ignore="MissingTranslation">Ingen søkeresultater funnet</string>
     <string name="search_searching" tools:ignore="MissingTranslation">Søker...</string>
     <string name="menu_manage_search" tools:ignore="MissingTranslation">Administrer søk</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">Ruten ble ikke funnet</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Eksporter</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">Valgt</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">Ikke valgt</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">Flytt opp i listen</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">Flytt ned i listen</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">På %1$s mellom %2$s og %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">På %1$s, %2$s til %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">På %1$s, %2$s siden %3$s</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">By</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">Tettsted</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">Nabolag</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">Landsby</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">Grend</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">Idrettsplass</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">Elv</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">Jernbane</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">Skog</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">Paviljong</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">Idrett</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">Helsekost</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">Arrangementslokale</string>
 </resources>
