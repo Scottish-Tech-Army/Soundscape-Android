@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Platsmarkörer och rutter har tagits bort</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Information om ny version</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Stäng dialogrutan om ny version</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDe viktigaste ändringarna i den här versionen gäller *Sök* och beskrivning av aktuell adress. När nätverk finns tillgängligt kommer *Sök* att använda både Androids söktjänst och vår egen Photon-server för att hitta platser. De största förbättringarna är dels att sökning på gatunummer bör fungera mycket bättre i många delar av världen, och dels att vi har lagt till offlinesökning som använder nedladdade kartor för att söka efter adresser och intressepunkter. Offlinesökning fungerar upp till cirka 5 miles runt användaren.\n\nTips för sökning:\n\nOfflinesökning kräver att offlinekartor laddats ned. Ladda ner dem från skärmen Inställningar/Offlinekartor.\n\nDu kan tvinga sökningen att endast vara offline i inställningarna. Standardinställningen Auto innebär att onlinesökning används när nätverk är tillgängligt och offlinesökning när det inte är det.\n\nNär du söker efter en gatuadress är det viktigt att ange ortens namn för onlinesökning, även om det kan utelämnas vid offlinesökning.\n\nHur gatunummer kartläggs i den OpenStreetMap-data vi använder varierar beroende på plats. Offlinesökning använder gatunummer när de är tillgängliga, men det krävs en offlinekarta som laddats ned i appen efter 19 januari 2026.\n\nSom alltid, rapportera gärna eventuella problem, även små, via alternativet *Kontakta supporten* i huvudmenyn.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDe viktigaste ändringarna i den här versionen gäller *Sök* och hur den aktuella adressen beskrivs. När nätverk finns tillgängligt kommer *Sök* att använda både Android och vår egen Photon-server för att hitta platser. De största förbättringarna är först och främst att sökningar med gatunummer bör fungera mycket bättre i många delar av världen. För det andra har vi lagt till offline‑sökning som använder nedladdade kartor för att söka efter adresser och intressepunkter. Offlinesökning fungerar upp till ungefär 5 miles runt användaren.\n\nTips för sökning:\n\nSökgränssnittet har ändrats något sedan förra versionen eftersom det inte hanterade TalkBack‑redigering korrekt. Du måste nu också trycka på Enter/Sök för att starta sökningen efter att du matat in söktexten.\n\nOfflinesökning kräver att offlinekartor har laddats ner. Ladda ner dem från Inställningar/Offlinekartor.\n\nSökning kan tvingas till endast offline i inställningarna. Standardinställningen Auto innebär att online‑sökning används när nätverk finns och offlinesökning när det inte finns.\n\nNär du söker efter en gatuadress är det viktigt att inkludera ortens namn för onlinesökning, även om det kan utelämnas vid offlinesökning.\n\nHur gatunummer är kartlagda i OpenStreetMap‑data som vi använder varierar beroende på plats. Offlinesökning använder gatunummer när de finns, men en offlinekarta nedladdad i appen efter 19 januari 2026 krävs.\n\nSom alltid, rapportera gärna problem — även små — via alternativet *Kontakta supporten* i huvudmenyn.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licenser för öppen källkod</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Färjeterminal</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Färjeterminal</string>
@@ -1194,4 +1194,26 @@
     <string name="search_no_results" tools:ignore="MissingTranslation">Inga sökresultat hittades</string>
     <string name="search_searching" tools:ignore="MissingTranslation">Söker...</string>
     <string name="menu_manage_search" tools:ignore="MissingTranslation">Hantera sökning</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">Rutten hittades inte</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Exportera</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">Vald</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">Inte vald</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">Flytta upp i listan</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">Flytta ner i listan</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">På %1$s mellan %2$s och %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">På %1$s, %2$s tills %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">På %1$s, %2$s sedan %3$s</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">Stad</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">Ort</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">Stadsdel</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">By</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">Småort</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">Idrottsplats</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">Flod</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">Järnväg</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">Skog</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">Paviljong</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">Sport</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">Hälsokost</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">Evenemangslokal</string>
 </resources>
