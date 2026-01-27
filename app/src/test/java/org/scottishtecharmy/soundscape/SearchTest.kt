@@ -61,6 +61,14 @@ class SearchTest {
                 ignoreHouseNumbers = false
             )
             assertEquals(result4!!.name, "21 Dougalston Avenue")
+
+            val result5 = offlineGeocoder.getAddressFromLngLat(
+                UserGeometry(LngLatAlt( -4.3117919, 55.9486518), 0.0),
+                null,
+                ignoreHouseNumbers = true
+            )
+            assertEquals(result5!!.name, "On Craigmillar Avenue between Service to dead-end and Service to Craigmillar Avenue")
+
         }
     }
 
