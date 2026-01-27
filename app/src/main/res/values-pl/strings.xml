@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Znaczniki i trasy usunięte</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informacje o nowej wersji</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Zamknij okno informacji o nowej wersji</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nGłówne zmiany w tej wersji dotyczą *Wyszukiwania* i opisywania bieżącego adresu. Gdy dostępna jest sieć, *Wyszukiwanie* będzie korzystać z Androida oraz z naszego własnego serwera Photon, aby odnajdywać miejsca. Najważniejsze usprawnienia to po pierwsze: wyszukiwanie według numeru budynku powinno działać znacznie lepiej w wielu częściach świata. Po drugie, dodaliśmy wyszukiwanie offline, które korzysta z dowolnych pobranych map do wyszukiwania adresów i punktów zainteresowania. Wyszukiwanie offline działa w promieniu około 5 mil od użytkownika.\n\nWskazówki dotyczące wyszukiwania:\n\nWyszukiwanie offline wymaga pobrania map offline. Pobierz je z ekranu Ustawienia / Mapy offline.\n\nW ustawieniach można wymusić wyłącznie tryb offline. Domyślne ustawienie *Automatyczny* oznacza, że aplikacja używa wyszukiwania online, gdy dostępna jest sieć, a wyszukiwania offline, gdy jej nie ma.\n\nPodczas wyszukiwania adresu ulicznego ważne jest podanie nazwy miejscowości dla wyszukiwania online — w wyszukiwaniu offline można ją pominąć.\n\nSposób oznaczania numerów budynków w danych OpenStreetMap, z których korzystamy, różni się w zależności od lokalizacji. Wyszukiwanie offline wykorzysta numery budynków, gdy są dostępne, jednak wymagane jest pobranie mapy offline w aplikacji po 19 stycznia 2026 r.\n\nJak zawsze, prosimy o zgłaszanie wszelkich problemów, nawet drobnych, za pomocą opcji *Kontakt z pomocą techniczną* w menu głównym.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nGłówne zmiany w tym wydaniu dotyczą *Wyszukiwania* oraz opisywania bieżącego adresu. Gdy dostępna jest sieć, *Wyszukiwanie* korzysta zarówno z usług Androida, jak i z naszego serwera Photon, aby znaleźć miejsca. Najważniejsze ulepszenia to: po pierwsze, wyszukiwanie po numerze ulicy powinno działać znacznie lepiej w wielu częściach świata; po drugie, dodaliśmy wyszukiwanie offline, które korzysta z pobranych map do wyszukiwania adresów i punktów zainteresowania. Wyszukiwanie offline działa w promieniu około 5 mil wokół użytkownika.\n\nWskazówki dotyczące wyszukiwania:\n\nInterfejs wyszukiwania został nieco zmieniony od ostatniego wydania, ponieważ poprzednio nie obsługiwał poprawnie edycji z TalkBack. Teraz po wpisaniu tekstu wyszukiwania wymagane jest naciśnięcie Enter/przycisku Szukaj, aby rozpocząć wyszukiwanie.\n\nWyszukiwanie offline wymaga pobranych map offline. Pobierz je z ekranu Ustawienia/Mapy offline.\n\nW ustawieniach można wymusić użycie wyłącznie trybu offline. Domyślne ustawienie „Automatyczny” oznacza, że aplikacja używa wyszukiwania online, gdy jest dostępna sieć, a wyszukiwania offline, gdy sieci brak.\n\nPodczas wyszukiwania adresu ulicy ważne jest podanie także nazwy miejscowości dla wyszukiwania online — w wyszukiwaniu offline można ją pominąć.\n\nMapowanie numerów budynków w danych OpenStreetMap, z których korzystamy, różni się w zależności od lokalizacji. Wyszukiwanie offline będzie używać numerów budynków, gdy są dostępne, jednak wymagana jest mapa offline pobrana w aplikacji po 19 stycznia 2026 r.\n\nJak zawsze, zgłaszaj wszelkie problemy, nawet drobne, za pomocą opcji *„Kontakt z pomocą techniczną”* w głównym menu.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licencje open source</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal promowy</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Terminal promowy</string>
@@ -1194,4 +1194,26 @@
     <string name="search_no_results" tools:ignore="MissingTranslation">Nie znaleziono wyników wyszukiwania</string>
     <string name="search_searching" tools:ignore="MissingTranslation">Wyszukiwanie...</string>
     <string name="menu_manage_search" tools:ignore="MissingTranslation">Zarządzaj wyszukiwaniem</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">Nie znaleziono trasy</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Eksportuj</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">Wybrano</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">Nie wybrano</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">Przenieś wyżej na liście</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">Przenieś niżej na liście</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">Na %1$s, między %2$s a %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">Na %1$s, %2$s do %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">Na %1$s, %2$s od %3$s</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">Miasto</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">Miasteczko</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">Dzielnica</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">Wieś</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">Osada</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">Teren rekreacyjny</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">Rzeka</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">Linia kolejowa</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">Las</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">Pawilon</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">Obiekt sportowy</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">Sklep ze zdrową żywnością</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">Miejsce wydarzeń</string>
 </resources>
