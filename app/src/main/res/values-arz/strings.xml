@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">تم حذف العلامات والطرق</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">معلومات الإصدار الجديد</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">إغلاق مربع حوار الإصدار الجديد</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nالتغييرات الرئيسية في هذا الإصدار تتعلق بـ*البحث* ووصف العنوان الحالي. عندما تتوفر شبكة، سيستخدم *البحث* كل من Android وخادم Photon الخاص بنا للعثور على الأماكن. التحسينات الأساسية هنا هي، أولًا، أن البحث بحسب رقم الشارع ينبغي أن يعمل بشكل أفضل بكثير في أجزاء عديدة من العالم. ثانيًا، أضفنا أيضًا البحث دون اتصال الذي يستخدم أي خرائط تم تنزيلها للبحث عن العناوين ونقاط الاهتمام. يعمل البحث دون اتصال في نطاق يقارب حوالي 5 أميال حول المستخدم.\n\nنصائح للبحث:\n\nيتطلب البحث دون اتصال تنزيل خرائط دون اتصال. قم بتنزيلها من شاشة الإعدادات/الخرائط دون اتصال.\n\nيمكن إجبار البحث ليعمل دون اتصال فقط من خلال الإعدادات. يعني الإعداد الافتراضي *آلي* أنه يستخدم البحث عبر الإنترنت عندما تتوفر الشبكة، ويستخدم البحث دون اتصال عندما لا تتوفر.\n\nعند البحث عن عنوان شارع، فإن تضمين اسم المدينة مهم للبحث عبر الإنترنت، رغم أنه يمكن حذفه عند البحث دون اتصال.\n\nتختلف طريقة تمثيل أرقام الشوارع في بيانات OpenStreetMap التي نستخدمها حسب الموقع. سيستخدم البحث دون اتصال أرقام الشوارع عندما تتوفر، لكن يلزم تنزيل خريطة دون اتصال في التطبيق بعد 19 يناير 2026.\n\nكالعادة، يرجى الإبلاغ عن أي مشكلات، مهما صغرت، عبر خيار *الاتصال للدعم* في القائمة الرئيسية.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nأهم التغييرات في هذا الإصدار تتعلق بـ *البحث* ووصف العنوان الحالي. عندما تتوفر شبكة، سيستخدم *البحث* بيانات Android بالإضافة إلى خادم Photon الخاص بنا للعثور على الأماكن. التحسينات الأساسية هنا هي أولًا أن البحث بحسب رقم الشارع يجب أن يعمل بشكل أفضل في أجزاء كثيرة من العالم. ثانيًا، أضفنا ميزة البحث دون اتصال التي تستخدم أي خرائط تم تنزيلها للبحث عن العناوين ونقاط الاهتمام. يعمل البحث دون اتصال حتى حوالي 5 أميال حول المستخدم.\n\nنصائح للبحث:\n\nواجهة البحث تغيرت قليلًا منذ الإصدار السابق لأنها لم تكن تدعم تحرير TalkBack بشكل صحيح. كما أنها تتطلب من المستخدم الضغط على Enter/بحث لبدء البحث بعد إدخال النص.\n\nيتطلب البحث دون اتصال تنزيل خرائط دون اتصال. قم بتنزيلها من شاشة الإعدادات/الخرائط دون اتصال.\n\nيمكن إجبار البحث ليعمل دون اتصال فقط من خلال الإعدادات. إعداد \"آلي\" الافتراضي يعني أنه يستخدم البحث المتصل عندما تتوفر شبكة، ويستخدم البحث دون اتصال عندما لا تتوفر شبكة.\n\nعند البحث عن عنوان شارع، من المهم إدراج اسم البلدة للبحث المتصل، رغم أنه يمكن حذفه في البحث دون اتصال.\n\nترميز أرقام الشوارع في بيانات OpenStreetMap التي نستخدمها يختلف حسب الموقع. سيستخدم البحث دون اتصال أرقام الشوارع عندما تكون متاحة، لكن يلزم وجود خريطة دون اتصال تم تنزيلها في التطبيق بعد 19 يناير 2026.\n\nكالعادة، نرجو الإبلاغ عن أي مشاكل، حتى لو كانت صغيرة، عبر خيار *الاتصال للدعم* في القائمة الرئيسية.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">تراخيص المصادر المفتوحة</string>
     <string name="osm_office" tools:ignore="MissingTranslation">مكتب</string>
     <string name="osm_school" tools:ignore="MissingTranslation">مدرسة</string>
@@ -1194,4 +1194,26 @@
     <string name="search_no_results" tools:ignore="MissingTranslation">لم يتم العثور على نتائج بحث</string>
     <string name="search_searching" tools:ignore="MissingTranslation">جاري البحث...</string>
     <string name="menu_manage_search" tools:ignore="MissingTranslation">إدارة البحث</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">لم يتم العثور على الطريق</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">تصدير</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">محدد</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">غير محدد</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">نقل للأعلى في القائمة</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">نقل للأسفل في القائمة</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">في %1$s بين %2$s و %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">في %1$s، %2$s حتى %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">في %1$s، %2$s منذ %3$s</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">مدينة</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">بلدة</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">حي</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">قرية</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">مستوطنة صغيرة</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">ملعب رياضي</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">نهر</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">سكة حديد</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">غابة</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">جناح</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">مرفق رياضي</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">محل أطعمة صحية</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">مكان فعاليات</string>
 </resources>
