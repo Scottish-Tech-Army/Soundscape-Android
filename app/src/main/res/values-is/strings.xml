@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Merki og leiðir eytt</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Upplýsingar um nýja útgáfu</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Loka útgáfuupplýsingum</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nHelstu breytingarnar í þessari útgáfu snúa að *Leit* og lýsingu á núverandi heimilisfangi. Þegar nettenging er tiltæk mun *Leit* nota bæði Android og okkar eigin Photon‑þjón til að finna staði. Helstu umbæturnar eru annars vegar að leit eftir götuheiti með húsnúmeri ætti að virka mun betur á mörgum stöðum í heiminum. Hins vegar höfum við einnig bætt við *ónettengdri leit* sem notar öll niðurhöld kort til að leita að heimilisföngum og áhugaverðum stöðum. Ónettengd leit virkar um það bil upp að 5 mílum í kringum notandann.\n\nRáð um leit:\n\nÓnettengd leit krefst þess að ónettengd kort séu hlaðin niður. Hlaðið þeim niður í Stillingar → Ónettengd kort.\n\nÍ stillingunum er hægt að láta leitina vera eingöngu ónettengda. Sjálfvirka (Auto) stillingin þýðir að forritið notar leit á netinu þegar nettenging er tiltæk og ónettengd leit þegar hún er ekki til staðar.\n\nVið leit að götuheiti er mikilvægt að taka með nafn bæjar eða sveitarfélags fyrir leit á netinu, þó megi oft sleppa því við ónettengda leit.\n\nKortlagning húsnúmera í OpenStreetMap‑gögnum sem við notum er mismunandi eftir staðsetningu. Ónettengd leit mun nota húsnúmer þegar þau eru til staðar, en það krefst að ónettengt kort hafi verið niðurhlaðið í forritið eftir 19. janúar 2026.\n\nEins og áður, vinsamlegast tilkynnið öll vandamál — jafnvel smávægileg — með valkostinum *\"hafa samband, stuðningur\"* í aðalvalmyndinni.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nHelstu breytingarnar í þessari útgáfu snúa að *Leit* og því að lýsa núverandi heimilisfangi. Þegar nettenging er til staðar mun *Leit* nota Android-leitina auk okkar eigin Photon-þjóns til að finna staði. Helstu framfarirnar eru annars vegar að leit eftir húsnúmeri ætti að virka mun betur í mörgum heimshlutum. Hins vegar höfum við einnig bætt við ónettengdri leit sem notar öll niðurhöld kort til að leita að heimilisföngum og áhugaverðum stöðum. Ónettengd leit virkar í um það bil 5 mílna radíus frá notandanum.\n\nRáð við leit:\n\nLeitarviðmótið hefur breyst örlítið frá síðustu útgáfu þar sem það studdi ekki rétt vinnslu með TalkBack. Nú þarf notandann að ýta á Enter/Leita til að hefja leitina eftir að leitartextinn hefur verið sleginn inn.\n\nÓnettengd leit krefst þess að ónettengd kort séu niðurhlaðin. Hlaðið þeim niður í Stillingar / Ónettengd kort skjánum.\n\nÍ stillingum er hægt að velja að neyða leit til að vera eingöngu ónettengd. Sjálfgefin stilling „Sjálfvirkt“ notar netleit þegar tenging er til staðar og ónettengda leit þegar engin tenging er til.\n\nVið leit að götulegu/heimilisfangi skiptir bæjarnafnið mestu máli fyrir netleit, þó megi yfirleitt sleppa því í ónettengdri leit.\n\nKortlagning húseininga í OpenStreetMap-gögnum sem við notum er mismunandi eftir staðsetningu. Ónettengd leit mun nota húsnúmer þegar þau eru til, en til þess þarf ónettengt kort sem hefur verið niðurhlaðið í forritið þann 19. janúar 2026 eða síðar.\n\nEins og alltaf, vinsamlegast tilkynnið öll vandamál, jafnvel þótt þau virðist smávægileg, með því að nota valkostinn *hafa samband, stuðningur* í aðalvalmyndinni.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Leyfi opins hugbúnaðar</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Ferjuhöfn</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s ferjuhöfn</string>
@@ -1194,4 +1194,26 @@
     <string name="search_no_results" tools:ignore="MissingTranslation">Engar leitarniðurstöður fundust</string>
     <string name="search_searching" tools:ignore="MissingTranslation">Leita…</string>
     <string name="menu_manage_search" tools:ignore="MissingTranslation">Stjórna leit</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">Leið fannst ekki</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Flytja út</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">Valið</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">Ekki valið</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">Færa upp í lista</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">Færa niður í lista</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">Á %1$s milli %2$s og %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">Á %1$s, %2$s þar til %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">Á %1$s, %2$s síðan %3$s</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">Borg</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">Bær</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">Hverfi</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">Þorp</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">Býli</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">Íþróttavöllur</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">Á</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">Járnbraut</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">Skógur</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">Paviljón</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">Íþróttasvæði</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">Heilsuvöruverslun</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">Viðburðastaður</string>
 </resources>
