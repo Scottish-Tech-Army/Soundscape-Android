@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">マーカーおよびルートを削除しました</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">新しいリリース情報</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">新しいリリース情報を閉じる</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nこのリリースの主な変更点は、*検索* 機能と現在の住所表示に関するものです。ネットワークが利用可能な場合、*検索* は Android の検索機能と当社の Photon サーバーの両方を用いて場所を探します。主な改善点は、まず多くの地域で番地（ストリート番号）による検索が大幅に改善されることです。次に、ダウンロード済みの地図を使って住所や特定地点を検索するオフライン検索を追加しました。オフライン検索はユーザーの周囲おおよそ5マイル以内で機能します。\n\n検索のヒント:\n\nオフライン検索を利用するにはオフライン地図をダウンロードしておく必要があります。設定 &gt; オフライン地図 の画面からダウンロードしてください。\n\n検索をオフライン専用に強制する設定があります。既定の「自動」設定では、ネットワークが利用可能なときはオンライン検索を、利用できないときはオフライン検索を使用します。\n\n番地で検索する際、オンライン検索では市区町村名を含めることが重要です。オフライン検索では市区町村名を省略しても構いません。\n\n当社が利用している OpenStreetMap データにおける番地の登録状況は地域によって異なります。オフライン検索は番地情報が利用可能な場合にそれを使用しますが、2026年1月19日以降にアプリでダウンロードされたオフライン地図が必要です。\n\nいつもどおり、どんなに小さな問題でも、メインメニューの *サポートに連絡* からご報告ください。\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nこのリリースの主な変更点は、*検索* と現在の住所の説明に関するものです。ネットワークが利用可能な場合、*検索* は Android と当社の Photon サーバーの両方を使用して場所を検索します。主な改善点は、第一に番地（ストリート番号）での検索が多くの地域で大幅に改善されること、第二にダウンロード済みの地図を使って住所やポイントオブインタレストを検索するオフライン検索機能を追加したことです。オフライン検索はユーザーの周囲約5マイルの範囲で動作します。\n\n検索のヒント:\n\n前回リリース以降、検索の UI を若干変更しました。これは TalkBack の編集操作に正しく対応していなかったためです。また、検索テキストを入力した後に検索を開始するには Enter／検索キーを押す必要があります。\n\nオフライン検索を使用するには、オフライン地図をダウンロードしておく必要があります。ダウンロードは [設定] の「オフライン地図」画面から行ってください。\n\n設定で検索をオフラインのみ（強制オフライン）にすることもできます。既定の「自動」設定では、ネットワークが利用可能なときはオンライン検索を使用し、利用できないときはオフライン検索を使用します。\n\n住所を検索する際、オンライン検索では町名を含めることが重要です。オフライン検索では町名を省略できる場合があります。\n\n当社が利用している OpenStreetMap のストリート番号のマッピングは地域によって異なります。オフライン検索はストリート番号が利用可能な場合にそれを使用しますが、アプリで 2026 年 1 月 19 日以降にダウンロードされたオフライン地図が必要です。\n\nいつものように、どんなに小さな問題でも、メインメニューの *サポートに連絡* からお知らせください。\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">オープンソースライセンス</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">フェリーターミナル</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s フェリーターミナル</string>
@@ -1194,4 +1194,26 @@
     <string name="search_no_results" tools:ignore="MissingTranslation">検索結果が見つかりませんでした</string>
     <string name="search_searching" tools:ignore="MissingTranslation">検索中…</string>
     <string name="menu_manage_search" tools:ignore="MissingTranslation">検索を管理</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">ルートが見つかりません</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">エクスポート</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">選択済み</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">未選択</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">リスト内で上に移動します</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">リスト内で下に移動します</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">%1$s（%2$s と %3$s の間）</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">%1$s、%3$s まで %2$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">%1$s、%3$s から %2$s 進んでいます</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">都市</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">町</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">地区</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">村</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">集落</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">運動場</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">川</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">鉄道</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">林</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">パビリオン</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">スポーツ施設</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">健康食品店</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">イベント会場</string>
 </resources>
