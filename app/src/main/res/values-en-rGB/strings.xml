@@ -523,7 +523,7 @@
     <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Delete all markers and routes</string>
     <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Deleting all of the markers and routes cannot be undone, do you want to continue?</string>
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markers and routes deleted</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nThe main changes in this release are for *Search* and for describing the current address. When a network is available, *Search* will use Android as well as our own Photon server to find places. The main improvements are that searching by street number should work much better in many parts of the world, and we have added offline search which uses any downloaded maps to find addresses and points of interest. Offline search works to roughly 5 miles from the user.\n\nTips for searching:\n\nOffline search requires offline maps to be downloaded. Download them from the Settings/Offline maps screen.\n\nSearching can be forced to offline-only in Settings. The default Auto setting uses online search when a network is available and offline search when there is not.\n\nWhen searching for a street address, including the town name is important for online search, though it can be omitted in offline search.\n\nThe mapping of street numbers in the OpenStreetMap data we use varies by location. Offline search will use street numbers when they are available, but this requires an offline map downloaded in the app after 19 January 2026.\n\nAs always, please report any problems, however small, via the *Contact support* option in the main menu.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nThe main changes in this release are to *Search* and to how the current address is described. When a network connection is available, *Search* will use Android in addition to our Photon server to find places. The key improvements are that searching by street number should work much better in many parts of the world, and that we have added offline search which uses any downloaded maps to find addresses and points of interest. Offline search covers roughly a 5-mile radius around the user.\n\nTips for searching:\n\nThe search UI has changed slightly since the last release because it did not correctly support talkback editing. You now need to press Enter/Search to start the search after entering the text.\n\nOffline search requires offline maps to be downloaded. Download them from Settings → Offline maps.\n\nYou can force searches to be offline only in Settings. The default Auto setting uses online search when a network is available and offline search when it is not.\n\nWhen searching for a street address, including the town name is important for online search, although it can often be omitted for offline searches.\n\nThe mapping of street numbers in the OpenStreetMap data we use varies by location. Offline search will use street numbers when they are present, but requires an offline map downloaded in the app after January 19th 2026.\n\nAs always, please report any problems, however small, via the *Contact Support* option in the main menu.\n</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Release Notes</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Close Release Notes</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Open-source Licences</string>
@@ -1194,4 +1194,26 @@
     <string name="search_no_results" tools:ignore="MissingTranslation">No search results found</string>
     <string name="search_searching" tools:ignore="MissingTranslation">Searching...</string>
     <string name="menu_manage_search" tools:ignore="MissingTranslation">Manage search</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">Route not found</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Export</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">Selected</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">Not selected</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">Move up in list</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">Move down in list</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">On %1$s between %2$s and %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">On %1$s, %2$s until %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">On %1$s, %2$s since %3$s</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">City</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">Town</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">Neighbourhood</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">Village</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">Hamlet</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">Recreation Ground</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">River</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">Railway</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">Wood</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">Pavilion</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">Sport</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">Health Food</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">Events Venue</string>
 </resources>
