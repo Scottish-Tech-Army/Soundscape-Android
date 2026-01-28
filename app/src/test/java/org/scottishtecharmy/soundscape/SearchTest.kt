@@ -25,34 +25,61 @@ class SearchTest {
     fun offlineReverseGeocode() {
         runBlocking {
 
-            val currentLocation = LngLatAlt(-4.3103500, 55.9396160)
+            val currentLocation = LngLatAlt(-4.3108846, 55.9495440)
             val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
             val settlementState = getGridStateForLocation(currentLocation, 12, 3)
             val tileSearch = TileSearch(offlineExtractPath, gridState, settlementState)
             val offlineGeocoder = OfflineGeocoder(gridState, settlementState, tileSearch)
 
-            // The first test force ignoring of any house numbering so that we get the location
-            // description instead.
+            val result8 = offlineGeocoder.getAddressFromLngLat(
+                UserGeometry(LngLatAlt( -4.3118, 55.9400), 90.0),
+                null,
+                ignoreHouseNumbers = true
+            )
+            assertEquals("On Crossveggate between Killermont Road to dead end and Glasgow Road", result8!!.name)
+
+            val result7 = offlineGeocoder.getAddressFromLngLat(
+                UserGeometry(LngLatAlt( -4.3108846, 55.9495440), 180.0),
+                null,
+                ignoreHouseNumbers = true
+            )
+            assertEquals("On Craigmillar Avenue, 345 metres until Tannoch Drive", result7!!.name)
+
+
+            val result5 = offlineGeocoder.getAddressFromLngLat(
+                UserGeometry(LngLatAlt( -4.3117919, 55.9486518), 0.0),
+                null,
+                ignoreHouseNumbers = true
+            )
+            assertEquals("On Craigmillar Avenue, 220 metres since Tannoch Drive", result5!!.name)
+
+            val result6 = offlineGeocoder.getAddressFromLngLat(
+                UserGeometry(LngLatAlt( -4.3107229, 55.9438725), 0.0),
+                null,
+                ignoreHouseNumbers = true
+            )
+            assertEquals("On Strathblane Road between Kersland Lane and Path to Kersland Drive", result6!!.name)
+
             val result1 = offlineGeocoder.getAddressFromLngLat(
                 UserGeometry(LngLatAlt(-4.3103500, 55.9396160), 90.0),
                 null,
                 ignoreHouseNumbers = true
             )
-            assertEquals(result1!!.name, "On Dougalston Avenue between Glasgow Road and Path to Dougalston Gardens North")
+            assertEquals("On Dougalston Avenue between Glasgow Road and Path to Dougalston Gardens North", result1!!.name)
 
             val result2 = offlineGeocoder.getAddressFromLngLat(
                 UserGeometry(LngLatAlt(-4.3088339, 55.9396215), 90.0),
                 null,
                 ignoreHouseNumbers = true
             )
-            assertEquals(result2!!.name, "On Dougalston Avenue between South Glassford Street and Briarwell Road")
+            assertEquals("On Dougalston Avenue between South Glassford Street and Briarwell Road", result2!!.name)
 
             val result3 = offlineGeocoder.getAddressFromLngLat(
                 UserGeometry(LngLatAlt(-4.3069511, 55.9400774), 90.0),
                 null,
                 ignoreHouseNumbers = true
             )
-            assertEquals(result3!!.name, "On Dougalston Avenue between Briarwell Road and Connell Crescent to dead end")
+            assertEquals("On Dougalston Avenue between Briarwell Road and Connell Crescent to dead end", result3!!.name)
 
             // Check that the street address also works
             val result4 = offlineGeocoder.getAddressFromLngLat(
@@ -60,15 +87,7 @@ class SearchTest {
                 null,
                 ignoreHouseNumbers = false
             )
-            assertEquals(result4!!.name, "21 Dougalston Avenue")
-
-            val result5 = offlineGeocoder.getAddressFromLngLat(
-                UserGeometry(LngLatAlt( -4.3117919, 55.9486518), 0.0),
-                null,
-                ignoreHouseNumbers = true
-            )
-            assertEquals(result5!!.name, "On Craigmillar Avenue between Service to dead-end and Service to Craigmillar Avenue")
-
+            assertEquals("21 Dougalston Avenue", result4!!.name)
         }
     }
 

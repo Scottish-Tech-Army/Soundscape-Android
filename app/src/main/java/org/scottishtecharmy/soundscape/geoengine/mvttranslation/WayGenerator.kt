@@ -102,7 +102,8 @@ class Way : MvtFeature() {
     fun getName(direction: Boolean? = null,
                 gridState: GridState? = null,
                 localizedContext: Context? = null,
-                nonGenericOnly: Boolean = false) : String {
+                nonGenericOnly: Boolean = false,
+                noGenericDeadEnds: Boolean = false) : String {
 
         var destinationModifier: Any? = null
         var passesModifier: Any?
@@ -148,6 +149,9 @@ class Way : MvtFeature() {
                 }
 
                 if (destinationModifier != null) {
+                    if((destinationModifier == "dead-end") && noGenericDeadEnds)
+                        return ""
+
                     return if(passesString.isNotEmpty()) {
                         localizedContext?.getString(R.string.confect_name_to_via)
                             ?.format(result,destinationModifier, passesString) ?: "$result to $destinationModifier via $passesString"
