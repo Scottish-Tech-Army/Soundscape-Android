@@ -317,13 +317,26 @@ class StreetDescription(val name: String, val gridState: GridState) {
                 // Skip over pavements
                 continue
             }
+            val direction = member.intersections[WayEnd.START.id] == intersection
             val segmentName = member.getName(
-                member.intersections[WayEnd.START.id] == intersection,
+                direction,
                 gridState,
                 localizedContext,
-                nonGenericOnly = true
+                nonGenericOnly = true,
+                noGenericDeadEnds = true
             )
-            if(segmentName.isNotEmpty()) ++count
+            if(segmentName.isEmpty()) continue
+
+            val segmentNameReverse = member.getName(
+                !direction,
+                gridState,
+                localizedContext,
+                nonGenericOnly = true,
+                noGenericDeadEnds = true
+            )
+            // If the description is the same in both directions, then we don't want to include it
+            // as it's probably a loop joining on to our road
+            if(segmentName.isNotEmpty() && ((segmentName == member.name) || (segmentName != segmentNameReverse))) ++count
         }
 
         return count > 0
@@ -399,16 +412,16 @@ class StreetDescription(val name: String, val gridState: GridState) {
         // to our linear map
         var totalDistance = 0.0
         for(way in ways) {
-            val intersection =
+            val beginIntersection =
                 if (way.second)
                     way.first.intersections[WayEnd.START.id]
                 else
                     way.first.intersections[WayEnd.END.id]
 
-            if (intersection != null) {
-                if(intersection.intersectionType != IntersectionType.TILE_EDGE) {
-                    if(descriptiveIntersection(intersection, localizedContext))
-                        descriptivePoints[totalDistance] = intersection
+            if (beginIntersection != null) {
+                if(beginIntersection.intersectionType != IntersectionType.TILE_EDGE) {
+                    if(descriptiveIntersection(beginIntersection, localizedContext))
+                        descriptivePoints[totalDistance] = beginIntersection
                 }
             }
             totalDistance += way.first.length
