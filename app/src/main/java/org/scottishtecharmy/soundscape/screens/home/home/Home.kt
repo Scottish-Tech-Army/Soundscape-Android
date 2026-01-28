@@ -284,7 +284,7 @@ fun HomeTopAppBar(
 
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape", showBackground = true)
-@Preview(showBackground = true)
+@Preview(showBackground = true, locale = "pl")
 @Composable
 fun HomePreview() {
     SoundscapeTheme {
