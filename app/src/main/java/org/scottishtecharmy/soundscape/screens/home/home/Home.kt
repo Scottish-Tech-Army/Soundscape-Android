@@ -82,6 +82,8 @@ fun Home(
     getCurrentLocationDescription: () -> LocationDescription,
     rateSoundscape: () -> Unit,
     contactSupport: () -> Unit,
+    toggleTutorial: () -> Unit,
+    tutorialRunning: Boolean,
     routeFunctions: RouteFunctions,
     streetPreviewFunctions : StreetPreviewFunctions,
     modifier: Modifier = Modifier,
@@ -120,6 +122,8 @@ fun Home(
                     val ld = LocationDescription("", state.location ?: LngLatAlt())
                     onNavigate(generateOfflineMapScreenRoute(ld))
                 },
+                toggleTutorial = toggleTutorial,
+                tutorialRunning = tutorialRunning,
                 preferences = preferences,
                 newReleaseDialog = newReleaseDialog
             )
@@ -156,7 +160,7 @@ fun Home(
         ) { innerPadding ->
 
             if(newReleaseDialog.value) {
-                newReleaseDialog(innerPadding, sharedPreferences, newReleaseDialog)
+                NewReleaseDialog(innerPadding, sharedPreferences, newReleaseDialog, toggleTutorial)
             }
 
             if (fullscreenMap.value) {
@@ -302,6 +306,8 @@ fun HomePreview() {
             },
             rateSoundscape = {},
             contactSupport = {},
+            toggleTutorial = {},
+            tutorialRunning = false,
             searchFunctions = SearchFunctions(null),
             routeFunctions = RouteFunctions(null),
             streetPreviewFunctions = StreetPreviewFunctions(null),
@@ -330,6 +336,8 @@ fun HomeSearchPreview() {
             },
             rateSoundscape = {},
             contactSupport = {},
+            toggleTutorial = {},
+            tutorialRunning = false,
             searchFunctions = SearchFunctions(null),
             routeFunctions = RouteFunctions(null),
             streetPreviewFunctions = StreetPreviewFunctions(null),
@@ -372,6 +380,8 @@ fun HomeRoutePreview() {
             },
             rateSoundscape = {},
             contactSupport = {},
+            toggleTutorial = {},
+            tutorialRunning = false,
             searchFunctions = SearchFunctions(null),
             routeFunctions = RouteFunctions(null),
             streetPreviewFunctions = StreetPreviewFunctions(null),
@@ -408,6 +418,8 @@ fun StreetPreview() {
             },
             rateSoundscape = {},
             contactSupport = {},
+            toggleTutorial = {},
+            tutorialRunning = false,
             searchFunctions = SearchFunctions(null),
             routeFunctions = RouteFunctions(null),
             streetPreviewFunctions = StreetPreviewFunctions(null),

@@ -47,6 +47,7 @@ import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageScree
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageViewModel
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
+import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
 import java.net.URLDecoder
@@ -63,11 +64,26 @@ class Navigator {
 
 // To reduce the number of viewmodel functions passed around, use these data classes instead. They
 // still provide insulation from the viewmodel so that they can be used in Preview.
-data class BottomButtonFunctions(val viewModel: HomeViewModel?) {
-    val myLocation = { viewModel?.myLocation() }
-    val aheadOfMe = { viewModel?.aheadOfMe() }
-    val aroundMe = { viewModel?.whatsAroundMe() }
-    val nearbyMarkers = { viewModel?.nearbyMarkers() }
+data class BottomButtonFunctions(
+    val viewModel: HomeViewModel?,
+    private val audioTour: AudioTour? = null
+) {
+    val myLocation = {
+        viewModel?.myLocation()
+        audioTour?.onButtonPressed(org.scottishtecharmy.soundscape.audio.TourButton.MY_LOCATION)
+    }
+    val aheadOfMe = {
+        viewModel?.aheadOfMe()
+        audioTour?.onButtonPressed(org.scottishtecharmy.soundscape.audio.TourButton.AHEAD_OF_ME)
+    }
+    val aroundMe = {
+        viewModel?.whatsAroundMe()
+        audioTour?.onButtonPressed(org.scottishtecharmy.soundscape.audio.TourButton.AROUND_ME)
+    }
+    val nearbyMarkers = {
+        viewModel?.nearbyMarkers()
+        audioTour?.onButtonPressed(org.scottishtecharmy.soundscape.audio.TourButton.NEARBY_MARKERS)
+    }
 }
 
 data class RouteFunctions(val viewModel: HomeViewModel?) {
@@ -105,6 +121,7 @@ fun HomeScreen(
     navController: NavHostController,
     preferences: SharedPreferences,
     viewModel: HomeViewModel = hiltViewModel(),
+    audioTour: AudioTour,
     rateSoundscape: () -> Unit,
     contactSupport: () -> Unit,
     permissionsRequired: Boolean
@@ -113,7 +130,7 @@ fun HomeScreen(
     val routeFunctions = remember(viewModel) { RouteFunctions(viewModel) }
     val searchFunctions = remember(viewModel) { SearchFunctions(viewModel) }
     val streetPreviewFunctions = remember(viewModel) { StreetPreviewFunctions(viewModel) }
-    val bottomButtonFunctions = remember(viewModel) { BottomButtonFunctions(viewModel) }
+    val bottomButtonFunctions = remember(viewModel, audioTour) { BottomButtonFunctions(viewModel, audioTour) }
     val onMapLongClickListener = remember(viewModel) {
         OnMapLongClickListener { latLong ->
             val location = LngLatAlt(latLong.longitude, latLong.latitude)
@@ -142,6 +159,8 @@ fun HomeScreen(
                 searchFunctions = searchFunctions,
                 rateSoundscape = rateSoundscape,
                 contactSupport = contactSupport,
+                toggleTutorial = { audioTour.toggleState() },
+                tutorialRunning = audioTour.isRunning(),
                 routeFunctions = routeFunctions,
                 streetPreviewFunctions = streetPreviewFunctions,
                 goToAppSettings = viewModel::goToAppSettings,

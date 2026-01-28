@@ -437,9 +437,10 @@
 <!-- Title in settings to Manage Callouts preferences-->
 <string name="menu_manage_search" tools:ignore="MissingTranslation">"Manage search"</string>
 <!-- Title for Help and Tutorials screen-->
+<string name="menu_help_and_tutorials" tools:ignore="MissingTranslation">"Help and Tutorials"</string>
+<string name="menu_help" tools:ignore="MissingTranslation">"Help"</string>
 <!-- Title, Rate the app in App Store -->
 <string name="menu_rate">"Rate"</string>
-<string name="menu_help_and_tutorials">"Help and Tutorials"</string>
 <!-- Title for menu option to contact support by email -->
 <string name="menu_contact_support" tools:ignore="MissingTranslation">"Contact support"</string>
 <!-- Title for menu option to go to markers and routes advanced settings screen -->
@@ -2455,5 +2456,43 @@ As always please report any problems, however small they may be via the *Contact
 <string name="osm_health_food" tools:ignore="MissingTranslation">Health Food</string>
 <!-- Open Street Map term for an events venue. -->
 <string name="osm_events_venue" tools:ignore="MissingTranslation">Events Venue</string>
+
+<!-- Audio Tutorial strings -->
+<!-- Welcome message for the audio tutorial -->
+<string name="tour_welcome" tools:ignore="MissingTranslation">"Welcome to the Soundscape tutorial. This tutorial will guide you through the main features of the app. You can stop the tutorial at any time by tapping on Cancel Audio Tutorial in the Main Menu. Let's start with Places Nearby, which lets you find places of interest. The Places Nearby button is on the Home screen just below the Search bar. Tap it now to try it."</string>
+<!-- Prompt to select a place from the list -->
+<string name="tour_select_place" tools:ignore="MissingTranslation">Places Nearby groups points of interest by type. Have a browse of the places in the lists and select one.</string>
+<!-- Prompt to save a marker -->
+<string name="tour_create_marker_started" tools:ignore="MissingTranslation">"Great! You're now on the Location Details screen. This screen allows you to select various actions including saving the location as a Marker. With Soundscape, you can mark anything around that you care about. For example, you can mark your home, your bus stop, or even just the spot where you are. Let's give it a try. Save this location as a marker by tapping Save as Marker."</string>
+<!-- Prompt to save a marker -->
+<string name="tour_create_marker_done" tools:ignore="MissingTranslation">"Super! When creating a marker, you can edit its name and add additional notes. Try that now, and when you're ready tap on Done."</string>
+<!-- Prompt to tap the My Location button -->
+<string name="tour_my_location" tools:ignore="MissingTranslation">"Now that you know how to use Markers, let's look at some of the other features. At the bottom of the screen, there are four buttons that we'll try in turn. The button on the left is My Location, which describes your current location. Try tapping on it now."</string>
+<!-- Prompt to tap the Around Me button -->
+<string name="tour_around_me" tools:ignore="MissingTranslation">The next button is Around Me. This tells you what is nearby in each direction. Tap Around Me.</string>
+<!-- Prompt to tap the Ahead of Me button -->
+<string name="tour_ahead" tools:ignore="MissingTranslation">The next button is Ahead of Me. It tells you what is in front of you. Tap Ahead of Me.</string>
+<!-- Prompt to tap the Nearby Markers button -->
+<string name="tour_nearby_markers" tools:ignore="MissingTranslation">The final button is Nearby Markers, which announces saved places around you. Tap Nearby Markers to try that.</string>
+<!-- Prompt to tap markers and routes -->
+<string name="tour_markers_and_routes" tools:ignore="MissingTranslation">"You have now successfully created a marker. Let's play an audio beacon to guide us to that location. Tap on Markers and Routes, which is just below Places Nearby."</string>
+<!-- Prompt to tap markers tab -->
+<string name="tour_markers" tools:ignore="MissingTranslation">The Markers and Routes screen has two tabs, one listing routes which are playlists of markers, and the other listing individual markers. Tap on Markers to switch to the Markers tab to find the marker that you created.</string>
+<!-- Prompt to select marker and start beacon -->
+<string name="tour_start_beacon" tools:ignore="MissingTranslation">"You're now on the Markers tab which lists all your saved markers. Select a marker, and when the Location Details screen appears, tap Start Audio Beacon."</string>
+<!-- Explanation of the beacon sound -->
+<string name="tour_beacon_demo" tools:ignore="MissingTranslation">You can now hear the audio beacon. It plays from the direction of your destination. As you change the direction your phone is pointing, you can hear the audio beacon move and change how it sounds. Try it now.</string>
+<!-- Explanation of the beacon behaviour when the phone is locked -->
+<string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">When your phone is locked, the beacon will still play. If you are walking or in a vehicle, then the app uses the direction of your travel when playing the audio beacon. However, even when locked you can hold your phone flat in front of you, like a compass, and it will use the direction that your phone is pointing in. Give it a try.</string>
+<!-- Stopping the audio beacon -->
+<string name="tour_stop_beacon" tools:ignore="MissingTranslation">"When you're ready to stop the beacon, tap the Stop Route button."</string>
+<!-- Tutorial completion message -->
+<string name="tour_finish" tools:ignore="MissingTranslation">"That completes the tutorial. You can run it again from the main menu. We hope you find the app useful!"</string>
+<!-- Tutorial cancellation message -->
+<string name="tour_cancel" tools:ignore="MissingTranslation">"The audio tutorial has been cancelled. If you wish, you can run it again from the main menu."</string>
+<!-- Menu item for starting the audio tutorial -->
+<string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Audio Tutorial</string>
+<!-- Menu item for cancelling the audio tutorial -->
+<string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Cancel Audio Tutorial</string>
 
 </resources>

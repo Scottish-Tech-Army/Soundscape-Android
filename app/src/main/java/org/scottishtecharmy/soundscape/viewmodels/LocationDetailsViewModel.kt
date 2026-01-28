@@ -9,6 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
+import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
@@ -22,11 +23,18 @@ import javax.inject.Inject
 @HiltViewModel
 class LocationDetailsViewModel @Inject constructor(
     private val soundscapeServiceConnection : SoundscapeServiceConnection,
-    private val routeDao: RouteDao
+    private val routeDao: RouteDao,
+    private val audioTour: AudioTour
 ): ViewModel() {
+
+    init {
+        // Notify audio tour that a place has been selected
+        audioTour.onPlaceSelected()
+    }
 
     fun startBeacon(location: LngLatAlt, name: String) {
         soundscapeServiceConnection.soundscapeService?.startBeacon(location, name)
+        audioTour.onBeaconStarted()
     }
 
     fun enableStreetPreview(location: LngLatAlt) {
@@ -53,6 +61,7 @@ class LocationDetailsViewModel @Inject constructor(
                     ),
                     false
                 )
+                audioTour.onMarkerCreateDone()
             },
             onFailure = {
                 Log.e("LocationDetailsViewModel", failureMessage)
@@ -114,6 +123,10 @@ class LocationDetailsViewModel @Inject constructor(
 
     fun getLocationDescription(location: LngLatAlt) : LocationDescription? {
         return soundscapeServiceConnection.soundscapeService?.getLocationDescription(location)
+    }
+
+    fun showDialog() {
+        audioTour.onMarkerCreateStarted()
     }
 
     companion object {

@@ -42,6 +42,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
+import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
@@ -68,6 +69,12 @@ class MainActivity : AppCompatActivity() {
     lateinit var navigator : Navigator
     @Inject
     lateinit var soundscapeIntents : SoundscapeIntents
+    @Inject
+    lateinit var audioTour : AudioTour
+
+    init {
+        Analytics.getInstance(false)
+    }
 
     // we need notification permission to be able to display a notification for the foreground service
     private val notificationPermissionLauncher =
@@ -220,7 +227,6 @@ class MainActivity : AppCompatActivity() {
 //                     }
 //                     .build()
 //        )
-        Analytics.getInstance(false)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val timeNow = System.currentTimeMillis()
@@ -344,6 +350,7 @@ class MainActivity : AppCompatActivity() {
                 HomeScreen(
                     navController = navController,
                     preferences = sharedPreferences,
+                    audioTour = audioTour,
                     rateSoundscape = {
                         this.rateSoundscape()
                     },
@@ -630,5 +637,6 @@ class MainActivity : AppCompatActivity() {
         const val GEOCODER_MODE_KEY = "GeocoderMode"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
+        const val AUDIO_TOUR_SHOWN_KEY = "AudioTourShown"
     }
 }
