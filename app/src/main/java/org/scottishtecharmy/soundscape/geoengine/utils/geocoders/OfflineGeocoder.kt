@@ -154,7 +154,7 @@ class OfflineGeocoder(
                     else if(result.behind.name.isNotEmpty()) {
                         val formatString = (localizedContext?.getString(R.string.street_description_since) ?:
                         "On %s, %s since %s")
-                        text = formatString.format(nearbyName, formattedAheadDistance, result.behind.name)
+                        text = formatString.format(nearbyName, formattedBehindDistance, result.behind.name)
                     }
                 }
                 if(text.isNotEmpty()) {
