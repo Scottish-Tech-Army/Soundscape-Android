@@ -35,7 +35,7 @@ fun FlexibleAppBar(title : String = "",
                     .talkbackDescription(title),
                 text = title,
                 color = MaterialTheme.colorScheme.onSurface,
-                style = MaterialTheme.typography.headlineMedium,
+                style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center
             )
