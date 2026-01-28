@@ -470,8 +470,9 @@ class FeatureTree(featureCollection: FeatureCollection?) {
             // Deduplicate returned entries and add them to a list ready to sort by distance
             data class EntryWithDistance(val entry: Entry<Feature, Geometry?>, val distance: Double)
             val unsortedList = distanceResults
-                .distinctBy { it.value() }
                 .map { entry -> EntryWithDistance(entry, distanceToEntry(entry, location, ruler)) }
+                .groupBy { it.entry.value() }
+                .map { (_, entries) -> entries.minBy { it.distance } }
 
             // Sort the list
             val sortedList = unsortedList.sortedBy { entryWithinDistance->
