@@ -110,7 +110,6 @@ fun HomeScreen(
     permissionsRequired: Boolean
 ) {
     val state = viewModel.state.collectAsStateWithLifecycle()
-    val searchText = viewModel.searchText.collectAsStateWithLifecycle()
     val routeFunctions = remember(viewModel) { RouteFunctions(viewModel) }
     val searchFunctions = remember(viewModel) { SearchFunctions(viewModel) }
     val streetPreviewFunctions = remember(viewModel) { StreetPreviewFunctions(viewModel) }
@@ -140,7 +139,6 @@ fun HomeScreen(
                 onMapLongClick = onMapLongClickListener,
                 bottomButtonFunctions = bottomButtonFunctions,
                 getCurrentLocationDescription = { getCurrentLocationDescription(viewModel, state.value) },
-                searchText = searchText.value,
                 searchFunctions = searchFunctions,
                 rateSoundscape = rateSoundscape,
                 contactSupport = contactSupport,

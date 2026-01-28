@@ -30,8 +30,6 @@ class HomeViewModel
     ) : ViewModel() {
     private val _state: MutableStateFlow<HomeState> = MutableStateFlow(HomeState())
     val state: StateFlow<HomeState> = _state.asStateFlow()
-    private val _searchText: MutableStateFlow<String> = MutableStateFlow("")
-    val searchText: StateFlow<String> = _searchText.asStateFlow()
 
     private var job : Job? = null
     private var spJob : Job? = null
@@ -226,10 +224,6 @@ class HomeViewModel
         return soundscapeServiceConnection.soundscapeService?.getLocationDescription(location)
     }
 
-    fun onSearchTextChange(text: String) {
-        _searchText.value = text
-    }
-
     fun onTriggerSearch(text: String) {
         viewModelScope.launch {
             _state.update { it.copy(searchInProgress = true) }
@@ -237,10 +231,6 @@ class HomeViewModel
                 soundscapeServiceConnection.soundscapeService?.searchResult(text)
             _state.update { it.copy(searchItems = result,searchInProgress = false) }
         }
-    }
-
-    fun onToggleSearch() {
-        _state.update { it.copy(isSearching = !it.isSearching) }
     }
 
     fun setRoutesAndMarkersTab(pickRoutes: Boolean) {
