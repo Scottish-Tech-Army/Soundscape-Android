@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
+import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import javax.inject.Inject
@@ -27,6 +28,7 @@ class HomeViewModel
     @Inject
     constructor(
         private val soundscapeServiceConnection: SoundscapeServiceConnection,
+        val audioTour: AudioTour
     ) : ViewModel() {
     private val _state: MutableStateFlow<HomeState> = MutableStateFlow(HomeState())
     val state: StateFlow<HomeState> = _state.asStateFlow()
@@ -217,6 +219,7 @@ class HomeViewModel
     fun routeStop() {
         viewModelScope.launch {
             soundscapeServiceConnection.routeStop()
+            audioTour.onBeaconStopped()
         }
     }
 

@@ -149,6 +149,8 @@ class DocumentationScreens {
                 searchFunctions = SearchFunctions(null),
                 rateSoundscape = { },
                 contactSupport = { },
+                toggleTutorial = {},
+                tutorialRunning = false,
                 routeFunctions = RouteFunctions(viewModel = null),
                 streetPreviewFunctions = StreetPreviewFunctions(viewModel = null),
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
@@ -191,6 +193,8 @@ class DocumentationScreens {
                 searchFunctions = SearchFunctions(null),
                 rateSoundscape = { },
                 contactSupport = {},
+                toggleTutorial = {},
+                tutorialRunning = false,
                 routeFunctions = RouteFunctions(viewModel = null),
                 streetPreviewFunctions = StreetPreviewFunctions(viewModel = null),
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
@@ -288,7 +292,7 @@ class DocumentationScreens {
 
         for (page in helpPages) {
 
-            if(page.titleId == R.string.menu_help_and_tutorials)
+            if(page.titleId == R.string.menu_help)
                 continue
             val pageTitle = targetContext.getString(page.titleId)
 

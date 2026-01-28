@@ -13,6 +13,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.Comment
 import androidx.compose.material.icons.automirrored.rounded.HelpOutline
+import androidx.compose.material.icons.rounded.Headphones
 import androidx.compose.material.icons.rounded.Markunread
 import androidx.compose.material.icons.rounded.Download
 import androidx.compose.material.icons.rounded.Settings
@@ -28,6 +29,8 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -49,11 +52,14 @@ fun DrawerContent(
     contactSupport: () -> Unit,
     shareRecording: () -> Unit,
     offlineMaps: () -> Unit,
+    toggleTutorial: () -> Unit,
+    tutorialRunning: Boolean,
     preferences: SharedPreferences?,
     newReleaseDialog: MutableState<Boolean>?
 ) {
     val scope = rememberCoroutineScope()
     val recordingEnabled = preferences?.getBoolean(RECORD_TRAVEL_KEY, RECORD_TRAVEL_DEFAULT) == true
+    val running = remember(tutorialRunning) { mutableStateOf(tutorialRunning) }
 
     ModalDrawerSheet(
         drawerContainerColor = MaterialTheme.colorScheme.background,
@@ -118,18 +124,22 @@ fun DrawerContent(
                     modifier = Modifier.testTag("menuSettings")
                 )
                 DrawerMenuItem(
-                    onClick = { onNavigate(HomeRoutes.Help.route + "/page${R.string.menu_help_and_tutorials}") },
-                    label = stringResource(R.string.menu_help_and_tutorials),
+                    onClick = { onNavigate(HomeRoutes.Help.route + "/page${R.string.menu_help}") },
+                    label = stringResource(R.string.menu_help),
                     Icons.AutoMirrored.Rounded.HelpOutline,
                     modifier = Modifier.testTag("menuHelpAndTutorials")
                 )
 
-// Not implemented yet
-//                DrawerMenuItem(
-//                    onClick = { notAvailableToast() },
-//                    label = stringResource(R.string.menu_send_feedback),
-//                    icon = Icons.Rounded.MailOutline,
-//                )
+                DrawerMenuItem(
+                    onClick = {
+                        scope.launch { drawerState.close() }
+                        toggleTutorial()
+                    },
+                    label = if(running.value) stringResource(R.string.menu_audio_tutorial_cancel) else stringResource(R.string.menu_audio_tutorial),
+                    Icons.Rounded.Headphones,
+                    modifier = Modifier.testTag("menuAudioTutorial")
+                )
+
                 DrawerMenuItem(
                     onClick = { rateSoundscape() },
                     label = stringResource(R.string.menu_rate),
@@ -196,6 +206,8 @@ fun PreviewDrawerContent() {
         contactSupport = { },
         shareRecording = { },
         offlineMaps = { },
+        toggleTutorial = { },
+        tutorialRunning = false,
         preferences = null,
         newReleaseDialog = null
     )

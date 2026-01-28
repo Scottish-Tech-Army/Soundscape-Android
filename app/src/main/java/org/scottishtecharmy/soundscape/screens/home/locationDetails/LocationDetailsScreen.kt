@@ -118,6 +118,9 @@ fun LocationDetailsScreen(
         offlineMaps = { locationDescription ->
             navController.navigate(generateOfflineMapScreenRoute(locationDescription))
         },
+        showDialog = {
+            viewModel.showDialog()
+        },
         location = location,
         heading = heading,
         modifier = modifier,
@@ -139,6 +142,7 @@ fun LocationDetails(
     enableStreetPreview: (location: LngLatAlt) -> Unit,
     shareLocation: (message: String, description : LocationDescription) -> Unit,
     offlineMaps: (locationDescription: LocationDescription) -> Unit,
+    showDialog: () -> Unit,
     getLocationDescription: (location: LngLatAlt) -> LocationDescription,
     modifier: Modifier = Modifier) {
 
@@ -218,7 +222,8 @@ fun LocationDetails(
                             enableStreetPreview = enableStreetPreview,
                             shareLocation = shareLocation,
                             offlineMaps = offlineMaps,
-                            dialogState = dialogState
+                            dialogState = dialogState,
+                            showDialog = showDialog
                         )
 
                         MapContainerLibre(
@@ -266,7 +271,8 @@ private fun LocationDescriptionButtonsSection(
     enableStreetPreview: (location: LngLatAlt) -> Unit,
     shareLocation: (message: String, locationDescription : LocationDescription) -> Unit,
     offlineMaps: (locationDescription: LocationDescription) -> Unit,
-    dialogState: MutableState<Boolean>
+    dialogState: MutableState<Boolean>,
+    showDialog: () -> Unit
 ) {
     val parser: Parser = Parser.builder().build()
     val document: Node? = parser.parse(stringResource(R.string.universal_links_marker_share_message))
@@ -317,6 +323,7 @@ private fun LocationDescriptionButtonsSection(
                     .defaultMinSize(minHeight = spacing.targetSize)
                     .testTag("locationDetailsSaveAsMarker")
             ) {
+                showDialog()
                 dialogState.value = true
             }
         }
@@ -457,6 +464,7 @@ fun LocationDetailsPreview() {
         saveMarker = {_,_,_ ->},
         deleteMarker = {},
         shareLocation = {_,_ ->},
-        offlineMaps = {_ ->}
+        offlineMaps = {_ ->},
+        showDialog = {}
     )
 }

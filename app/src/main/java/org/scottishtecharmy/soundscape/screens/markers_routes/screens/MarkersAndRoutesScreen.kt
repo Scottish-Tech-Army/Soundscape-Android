@@ -9,6 +9,7 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -34,7 +35,12 @@ fun MarkersAndRoutesScreen(
     modifier: Modifier
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-
+    LaunchedEffect(state.routesTabSelected) {
+        if(state.routesTabSelected)
+            viewModel.audioTour.onMarkerAndRoutes()
+        else
+            viewModel.audioTour.onMarkers()
+    }
     Scaffold(
         modifier = modifier,
         topBar = {

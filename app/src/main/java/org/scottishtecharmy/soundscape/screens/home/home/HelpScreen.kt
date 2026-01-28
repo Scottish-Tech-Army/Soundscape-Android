@@ -249,7 +249,7 @@ val helpPages = listOf(
     ),
 
     Sections(
-        R.string.menu_help_and_tutorials,
+        R.string.menu_help,
         listOf(
             Section(R.string.help_configuration_section_title, SectionType.Title),
             Section(R.string.voice_voices, SectionType.Link),
@@ -355,7 +355,7 @@ fun HelpScreen(
     } else {
         // Default to home
         for (page in helpPages) {
-            if(page.titleId == R.string.menu_help_and_tutorials) {
+            if(page.titleId == R.string.menu_help) {
                 sections = page
             }
         }
@@ -487,7 +487,7 @@ fun HelpScreen(
 @Composable
 fun HomeHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.menu_help_and_tutorials}",
+        topic = "page${R.string.menu_help}",
         navController = rememberNavController(),
         modifier = Modifier
     )
