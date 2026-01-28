@@ -146,7 +146,6 @@ class DocumentationScreens {
                         location = location
                     )
                 },
-                searchText = "",
                 searchFunctions = SearchFunctions(null),
                 rateSoundscape = { },
                 contactSupport = { },
@@ -189,7 +188,6 @@ class DocumentationScreens {
                         location = location
                     )
                 },
-                searchText = "",
                 searchFunctions = SearchFunctions(null),
                 rateSoundscape = { },
                 contactSupport = {},
