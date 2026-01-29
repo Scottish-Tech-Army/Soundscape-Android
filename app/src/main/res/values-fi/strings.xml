@@ -1216,4 +1216,23 @@
     <string name="osm_sport" tools:ignore="MissingTranslation">Urheilupaikka</string>
     <string name="osm_health_food" tools:ignore="MissingTranslation">Terveysruokakauppa</string>
     <string name="osm_events_venue" tools:ignore="MissingTranslation">Tapahtumapaikka</string>
+    <string name="menu_help" tools:ignore="MissingTranslation">Ohjeet</string>
+    <string name="tour_welcome" tools:ignore="MissingTranslation">Tervetuloa Soundscape-tutoriaaliin. Tämä tutoriaali opastaa sinut sovelluksen tärkeimpiin ominaisuuksiin. Voit keskeyttää tutoriaalin milloin tahansa valitsemalla päävalikosta Peruuta äänitutoriaali. Aloitetaan Lähiympäristön paikoista, joiden avulla löydät kiinnostavia kohteita. Lähiympäristön paikat -painike löytyy aloitusnäytöltä hakupalkin alapuolelta. Napauta sitä nyt kokeillaksesi.</string>
+    <string name="tour_select_place" tools:ignore="MissingTranslation">Lähiympäristön paikat ryhmittelee kiinnostavat kohteet tyypin mukaan. Selaa listoja ja valitse yksi paikka.</string>
+    <string name="tour_create_marker_started" tools:ignore="MissingTranslation">Hienoa! Olet nyt Sijainnin tiedot -näytössä. Tältä näytöltä voit valita erilaisia toimintoja, kuten tallentaa sijainnin merkinnäksi. Soundscapen avulla voit merkitä mitä tahansa sinulle tärkeää: esimerkiksi kotisi, bussipysäkkisi tai vaikka juuri siinä olevan paikan. Kokeillaan. Tallenna tämä sijainti merkinnäksi napauttamalla Tallenna merkintänä.</string>
+    <string name="tour_create_marker_done" tools:ignore="MissingTranslation">Mahtavaa! Merkintää luodessasi voit muokata sen nimeä ja lisätä lisätietoja. Kokeile sitä nyt, ja kun olet valmis, napauta Valmis.</string>
+    <string name="tour_my_location" tools:ignore="MissingTranslation">Nyt kun osaat käyttää merkintöjä, tutustutaan muihin toimintoihin. Näytön alareunassa on neljä painiketta, joita kokeilemme vuorotellen. Vasen painike on Oma sijaintini, joka kuvailee nykyistä sijaintiasi. Kokeile napauttaa sitä nyt.</string>
+    <string name="tour_around_me" tools:ignore="MissingTranslation">Seuraava painike on Lähiympäristö. Tämä kertoo, mitä lähellä on kussakin suunnassa. Napauta Lähiympäristöä.</string>
+    <string name="tour_ahead" tools:ignore="MissingTranslation">Seuraava painike on Edessäpäin. Se kertoo, mitä edessäsi on. Napauta Edessäpäin.</string>
+    <string name="tour_nearby_markers" tools:ignore="MissingTranslation">Viimeinen painike on Merkinnät, joka ilmoittaa tallennetut paikat ympärilläsi. Napauta Merkinnät kokeillaksesi.</string>
+    <string name="tour_markers_and_routes" tools:ignore="MissingTranslation">Olet nyt onnistuneesti luonut merkinnän. Soitetaan äänimajakka opastamaan meitä sinne. Napauta Merkinnät ja reitit -kohtaa, joka sijaitsee juuri Lähiympäristön paikat -painikkeen alapuolella.</string>
+    <string name="tour_markers" tools:ignore="MissingTranslation">Merkinnät ja reitit -näytöllä on kaksi välilehteä: toinen listaa reitit (merkintöjen sarjoja) ja toinen yksittäiset merkinnät. Napauta Merkinnät-välilehteä ja etsi luomasi merkintä.</string>
+    <string name="tour_start_beacon" tools:ignore="MissingTranslation">Olet nyt Merkinnät-välilehdellä, joka listaa kaikki tallennetut merkintäsi. Valitse merkintä ja kun Sijainnin tiedot -näyttö avautuu, napauta Käynnistä äänimajakka.</string>
+    <string name="tour_beacon_demo" tools:ignore="MissingTranslation">Nyt kuulet äänimajakan. Se kuuluu määränpään suunnasta. Kun muutat puhelimen osoittamaa suuntaa, kuulet majakan liikkuvan ja äänen muuttuvan. Kokeile nyt.</string>
+    <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">Kun puhelimesi on lukittu, majakka soi silti. Jos kävelet tai olet ajoneuvossa, sovellus käyttää liikkumissuuntaa majakan toistamiseen. Kuitenkin myös lukittuna voit pitää puhelinta vaakatasossa edessäsi, kuin kompassia, ja se käyttää puhelimen osoittamaa suuntaa. Kokeile sitä.</string>
+    <string name="tour_stop_beacon" tools:ignore="MissingTranslation">Kun haluat lopettaa majakan, napauta Pysäytä reitti -painiketta.</string>
+    <string name="tour_finish" tools:ignore="MissingTranslation">Tämä päättää tutoriaalin. Voit suorittaa sen uudelleen päävalikosta. Toivomme, että sovellus on sinulle hyödyllinen!</string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation">Äänitutoriaali on peruutettu. Halutessasi voit suorittaa sen uudelleen päävalikosta.</string>
+    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Äänitutoriaali</string>
+    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Peruuta äänitutoriaali</string>
 </resources>
