@@ -1216,4 +1216,23 @@
     <string name="osm_sport" tools:ignore="MissingTranslation">Sport</string>
     <string name="osm_health_food" tools:ignore="MissingTranslation">Hälsokost</string>
     <string name="osm_events_venue" tools:ignore="MissingTranslation">Evenemangslokal</string>
+    <string name="menu_help" tools:ignore="MissingTranslation">Hjälp</string>
+    <string name="tour_welcome" tools:ignore="MissingTranslation">Välkommen till Soundscapes självstudie. Den här självstudien visar appens huvudfunktioner. Du kan när som helst avbryta självstudien genom att trycka på Avbryt ljudsjälvstudie i huvudmenyn. Vi börjar med Platser i närheten, som låter dig hitta intressanta platser. Knappen Platser i närheten finns på startskärmen precis under sökfältet. Tryck på den nu för att prova.</string>
+    <string name="tour_select_place" tools:ignore="MissingTranslation">Platser i närheten grupperar intressepunkter efter typ. Bläddra i listorna och välj en plats.</string>
+    <string name="tour_create_marker_started" tools:ignore="MissingTranslation">Toppen! Du är nu på skärmen Platsuppgifter. Här kan du välja olika åtgärder, bland annat att spara platsen som en platsmarkör. I Soundscape kan du markera allt som är viktigt för dig – till exempel ditt hem, din busshållplats eller själva platsen där du står. Låt oss prova. Spara den här platsen som en platsmarkör genom att trycka på Spara som platsmarkör.</string>
+    <string name="tour_create_marker_done" tools:ignore="MissingTranslation">Bra! När du skapar en platsmarkör kan du ändra dess namn och lägga till anteckningar. Prova det nu, och när du är klar trycker du på Klart.</string>
+    <string name="tour_my_location" tools:ignore="MissingTranslation">Nu när du vet hur man använder platsmarkörer tittar vi på några andra funktioner. Längst ned på skärmen finns fyra knappar som vi ska prova i tur och ordning. Knappen längst till vänster är Min plats, som beskriver din aktuella plats. Tryck på den nu.</string>
+    <string name="tour_around_me" tools:ignore="MissingTranslation">Nästa knapp är Omkring mig. Den berättar vad som finns i varje riktning runt dig. Tryck på Omkring mig.</string>
+    <string name="tour_ahead" tools:ignore="MissingTranslation">Nästa knapp är Framför mig. Den berättar vad som finns framför dig. Tryck på Framför mig.</string>
+    <string name="tour_nearby_markers" tools:ignore="MissingTranslation">Sista knappen är Platsmarkörer i närheten, som läser upp sparade platser runt dig. Tryck på Platsmarkörer i närheten för att prova.</string>
+    <string name="tour_markers_and_routes" tools:ignore="MissingTranslation">Du har nu skapat en platsmarkör. Vi ska spela upp en ljudfyr som vägleder oss till den platsen. Tryck på Platsmarkörer och rutter, som ligger precis under Platser i närheten.</string>
+    <string name="tour_markers" tools:ignore="MissingTranslation">Skärmen Platsmarkörer och rutter har två flikar: en som listar rutter (spellistor av platsmarkörer) och en som listar enskilda platsmarkörer. Tryck på Platsmarkörer för att byta till fliken Platsmarkörer och hitta den platsmarkör du skapade.</string>
+    <string name="tour_start_beacon" tools:ignore="MissingTranslation">Du är nu på fliken Platsmarkörer som visar alla dina sparade platsmarkörer. Välj en platsmarkör och när skärmen Platsuppgifter visas trycker du på Ställ in ljudfyr.</string>
+    <string name="tour_beacon_demo" tools:ignore="MissingTranslation">Nu kan du höra ljudfyren. Den spelas upp från målets riktning. När du ändrar vilken riktning telefonen pekar i hör du hur ljudet rör sig och ändrar karaktär. Prova nu.</string>
+    <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">När telefonen är låst fortsätter ljudfyren att spelas. Om du går eller färdas i ett fordon använder appen din färdriktning för ljudfyren. Även när telefonen är låst kan du hålla den plant framför dig som en kompass – då använder appen den riktning som telefonen pekar mot. Prova det.</string>
+    <string name="tour_stop_beacon" tools:ignore="MissingTranslation">När du vill stoppa ljudfyren trycker du på knappen Stoppa rutten.</string>
+    <string name="tour_finish" tools:ignore="MissingTranslation">Detta avslutar självstudien. Du kan köra den igen från huvudmenyn. Vi hoppas att du får nytta av appen!</string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation">Ljudsjälvstudien har avbrutits. Om du vill kan du köra den igen från huvudmenyn.</string>
+    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Ljudsjälvstudie</string>
+    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Avbryt ljudsjälvstudie</string>
 </resources>
