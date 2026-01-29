@@ -404,6 +404,7 @@ fun OfflineMapsScreen(
                                 color = MaterialTheme.colorScheme.onSurface,
                                 modifier = Modifier
                                     .align(Alignment.CenterVertically)
+                                    .padding(spacing.tiny)
                                     .semantics { heading() }
                             )
                         }
@@ -442,6 +443,7 @@ fun OfflineMapsScreen(
                             color = MaterialTheme.colorScheme.onSurface,
                             modifier = Modifier
                                 .align(Alignment.CenterVertically)
+                                .padding(spacing.tiny)
                                 .semantics { heading() }
                         )
                     }
