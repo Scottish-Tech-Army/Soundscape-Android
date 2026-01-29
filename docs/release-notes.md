@@ -7,8 +7,21 @@ has_toc: false
 
 # Release notes
 
-# 0.1.x
+# 0.2.x
 We've bumped the minor release number and aim to update release notes each time we do this instead of on each minor build.
+
+## Changes since 0.1.8
+The main focus has been on improving Search and My Location. We now have offline search which uses downloaded offline maps and allows search without any Internet connection. The Search UI has changed in that it requires the user to tap on the Search key to trigger a search, and the results displayed now include street address where possible. Searching on street addresses should work much better and uses a combination of Android system and our own search server. Offline search will find street addresses if the Open Street Map data includes them.
+
+Where searches returns points of interest they now include the type of the place e.g. restaurant, bakery, convenience store. This also appears in Places Nearby and hopefully helps clear up an problems telling businesses apart.
+
+In Settings, there's a new option to only use offline search which won't search using the Internet.
+
+Other changes include:
+
+* Cyclepaths are treated the same as sidewalks for describing surroundings so that the street name is used instead of any cyclepath name. This is useful for heavily mapped areas which have cyclepaths running along side roads.
+* Talkback editing of the query text within the Search text field should now work.
+
 
 ## Changes since 0.0.118
 
