@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -267,7 +268,9 @@ fun Settings(
                     text = stringResource(R.string.menu_manage_callouts),
                     color = textColor,
                     style = MaterialTheme.typography.headlineSmall,
-                    modifier = Modifier.semantics { heading() },
+                    modifier = Modifier
+                        .semantics { heading() }
+                        .padding(spacing.tiny)
                 )
             }
             switchPreference(
@@ -341,7 +344,9 @@ fun Settings(
                     text = stringResource(R.string.menu_manage_search),
                     color = textColor,
                     style = MaterialTheme.typography.headlineSmall,
-                    modifier = Modifier.semantics { heading() },
+                    modifier = Modifier
+                        .semantics { heading() }
+                        .padding(spacing.tiny)
                 )
             }
             listPreference(
@@ -381,7 +386,9 @@ fun Settings(
                     text = stringResource(R.string.menu_manage_accessibility),
                     style = MaterialTheme.typography.headlineSmall,
                     color = textColor,
-                    modifier = Modifier.semantics { heading() },
+                    modifier = Modifier
+                        .semantics { heading() }
+                        .padding(spacing.tiny)
                 )
             }
 
@@ -446,7 +453,9 @@ fun Settings(
                     text = stringResource(R.string.offline_map_storage_title),
                     color = textColor,
                     style = MaterialTheme.typography.headlineSmall,
-                    modifier = Modifier.semantics { heading() },
+                    modifier = Modifier
+                        .semantics { heading() }
+                        .padding(spacing.tiny)
                 )
                 StorageDropDownMenu(
                     storages = storages,
@@ -461,7 +470,9 @@ fun Settings(
                     text = stringResource(R.string.menu_manage_audio),
                     style = MaterialTheme.typography.headlineSmall,
                     color = textColor,
-                    modifier = Modifier.semantics { heading() },
+                    modifier = Modifier
+                        .semantics { heading() }
+                        .padding(spacing.tiny)
                 )
             }
             listPreference(
@@ -537,7 +548,9 @@ fun Settings(
                     text = stringResource(R.string.first_launch_change_language),
                     color = textColor,
                     style = MaterialTheme.typography.headlineSmall,
-                    modifier = Modifier.semantics { heading() },
+                    modifier = Modifier
+                        .semantics { heading() }
+                        .padding(spacing.tiny)
                 )
                 LanguageDropDownMenu(
                     allLanguages = supportedLanguages,
@@ -551,8 +564,10 @@ fun Settings(
                     text = stringResource(R.string.settings_debug_heading),
                     style = MaterialTheme.typography.headlineSmall,
                     color = textColor,
-                    modifier = Modifier.semantics { heading() },
-                    )
+                    modifier = Modifier
+                        .semantics { heading() }
+                        .padding(spacing.tiny)
+                )
             }
             switchPreference(
                 key = MainActivity.RECORD_TRAVEL_KEY,
