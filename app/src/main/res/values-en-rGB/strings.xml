@@ -1216,4 +1216,23 @@
     <string name="osm_sport" tools:ignore="MissingTranslation">Sport</string>
     <string name="osm_health_food" tools:ignore="MissingTranslation">Health Food</string>
     <string name="osm_events_venue" tools:ignore="MissingTranslation">Events Venue</string>
+    <string name="menu_help" tools:ignore="MissingTranslation">Help</string>
+    <string name="tour_welcome" tools:ignore="MissingTranslation">Welcome to the Soundscape tutorial. This tutorial will guide you through the main features of the app. You can stop the tutorial at any time by tapping Cancel Audio Tutorial in the main menu. Let\'s start with Places Nearby, which helps you find places of interest. The Places Nearby button is on the Home screen just below the search bar. Tap it now to try it.</string>
+    <string name="tour_select_place" tools:ignore="MissingTranslation">Places Nearby groups points of interest by type. Have a browse through the lists and select one.</string>
+    <string name="tour_create_marker_started" tools:ignore="MissingTranslation">Great! You’re now on the Location Details screen. This screen lets you choose various actions, including saving the location as a Marker. With Soundscape, you can mark anything around you that matters to you — for example your home, your bus stop, or even the exact spot where you are. Let’s give it a try. Save this location as a marker by tapping Save as Marker.</string>
+    <string name="tour_create_marker_done" tools:ignore="MissingTranslation">Super! When creating a marker you can edit its name and add additional notes. Try that now, and when you’re ready tap Done.</string>
+    <string name="tour_my_location" tools:ignore="MissingTranslation">Now that you know how to use Markers, let’s look at some of the other features. At the bottom of the screen there are four buttons that we’ll try in turn. The button on the left is My Location, which describes your current location. Try tapping it now.</string>
+    <string name="tour_around_me" tools:ignore="MissingTranslation">The next button is Around Me. This tells you what’s nearby in each direction. Tap Around Me.</string>
+    <string name="tour_ahead" tools:ignore="MissingTranslation">The next button is Ahead of Me. It tells you what’s in front of you. Tap Ahead of Me.</string>
+    <string name="tour_nearby_markers" tools:ignore="MissingTranslation">The final button is Nearby Markers, which announces saved places around you. Tap Nearby Markers to try it.</string>
+    <string name="tour_markers_and_routes" tools:ignore="MissingTranslation">You have now successfully created a marker. Let’s play an audio beacon to guide us to that location. Tap Markers and Routes, which is just below Places Nearby.</string>
+    <string name="tour_markers" tools:ignore="MissingTranslation">The Markers and Routes screen has two tabs: one listing routes (playlists of markers) and the other listing individual markers. Tap Markers to switch to the Markers tab and find the marker you created.</string>
+    <string name="tour_start_beacon" tools:ignore="MissingTranslation">You’re now on the Markers tab, which lists all your saved markers. Select a marker, and when the Location Details screen appears tap Start Audio Beacon.</string>
+    <string name="tour_beacon_demo" tools:ignore="MissingTranslation">You can now hear the audio beacon. It plays from the direction of your destination. As you change the direction the phone is pointing, you’ll hear the beacon move and change how it sounds. Try it now.</string>
+    <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">When your phone is locked the beacon will still play. If you’re walking or in a vehicle, the app uses your direction of travel when playing the audio beacon. However, even when locked you can hold your phone flat (like a compass) and it will use the direction the phone is pointing. Give it a try.</string>
+    <string name="tour_stop_beacon" tools:ignore="MissingTranslation">When you’re ready to stop the beacon, tap the Stop Route button.</string>
+    <string name="tour_finish" tools:ignore="MissingTranslation">That completes the tutorial. You can run it again from the main menu. We hope you find the app useful!</string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation">The audio tutorial has been cancelled. If you wish, you can run it again from the main menu.</string>
+    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Audio Tutorial</string>
+    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Cancel Audio Tutorial</string>
 </resources>
