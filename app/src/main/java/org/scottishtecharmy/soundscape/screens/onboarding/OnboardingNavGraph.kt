@@ -12,6 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import org.scottishtecharmy.soundscape.screens.onboarding.accessibility.AccessibilityOnboardingScreenVM
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.AudioBeaconsScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.finish.FinishScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.hearing.HearingScreen
@@ -87,12 +88,22 @@ fun SetUpOnboardingNavGraph(
         }
         composable(OnboardingScreens.OfflineStorage.route) {
             OfflineStorageOnboardingScreenVM(
+                onNavigate = { navController.navigate(OnboardingScreens.Accessibility.route) },
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
+            )
+        }
+
+        composable(OnboardingScreens.Accessibility.route) {
+            AccessibilityOnboardingScreenVM(
                 onNavigate = { navController.navigate(OnboardingScreens.Terms.route) },
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
                     .semantics { testTagsAsResourceId = true }
             )
         }
+
         composable(OnboardingScreens.Terms.route) {
             TermsScreen(onNavigate = {
                 navController.navigate(OnboardingScreens.Finish.route)

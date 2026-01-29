@@ -6,7 +6,7 @@
 <string name="general_alert_cancel">"Cancel"</string>
 <!-- Text for button to accept as done a dialog -->
 <string name="general_alert_done">"Done"</string>
-<!-- Text displayed whilst app is starting Street Preview mode -->
+<!-- Text displayed whilst app is starting location simulation mode -->
 <string name="general_loading_start">"Getting things ready…"</string>
 <!-- Error message that Soundscape is having trouble determining current location -->
 <string name="general_error_location_services_find_location_error">"We are having trouble finding your current location."</string>
@@ -78,11 +78,11 @@
 <string name="beacon_action_unmute_beacon">"Unmute Beacon"</string>
 <!-- Talkback hint for the mute button which sets the volume on the audio beacon to 100%. -->
 <string name="beacon_action_unmute_beacon_acc_hint">"unmute the audio beacon."</string>
-<!-- Street Preview is functionality that allows the user to select any location in the world to preview the area at street level in order to familiarise and build a mental map of the space. -->
-<string name="preview_title">"Street Preview"</string>
+<!-- This is the title for functionality that allows the user to select any location in the world to preview the area at street level in order to familiarise and build a mental map of the space. -->
+<string name="preview_title">"Simulate Location"</string>
 <!-- Text for button to go to the next intersection -->
 <string name="preview_go_title">"Go"</string>
-<!-- Initial street preview state for Go button which is indicating that pressing the button will take the user to the nearest intersection -->
+<!-- Initial location simulation state for Go button which is indicating that pressing the button will take the user to the nearest intersection -->
 <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">"Go to nearest intersection"</string>
 <!-- Notification, %s is the last entry in a comma delimited list e.g. roads within an intersection. e.g. " and Moor Road" -->
 <string name="last_entry_in_list" tools:ignore="MissingTranslation">" and %s"</string>
@@ -804,8 +804,8 @@
 <!-- Setting hints for keeping or using a value from a list-->
 <string name="settings_keep_value" tools:ignore="MissingTranslation">"keep"</string>
 <string name="settings_use_value" tools:ignore="MissingTranslation">"use"</string>
-<!-- Button text for exiting Street Preview mode -->
-<string name="street_preview_exit" tools:ignore="MissingTranslation">"Exit Street Preview"</string>
+<!-- Button text for exiting location simulation mode -->
+<string name="street_preview_exit" tools:ignore="MissingTranslation">"Exit location simulation"</string>
 <!-- Settings option for enabling recording of travel locations -->
 <string name="settings_travel_recording" tools:ignore="MissingTranslation">"Enable recording of travel"</string>
 <!-- Settings option for enabling a map styling which has improved accessibility -->
@@ -874,6 +874,12 @@
 <string name="offline_map_storage_description" tools:ignore="MissingTranslation">"So that Soundscape can be used without an Internet connection it is possible to download maps and store them on the phone. The default storage is any external storage on your phone, but you can select an alternative destination here."</string>
 <!-- Offscreen map download option to use WiFi Only and not mobile data -->
 <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">"Use WiFi only for map download"</string>
+<!-- Accessibility onboarding screen title -->
+<string name="accessibility_title" tools:ignore="MissingTranslation">"Accessibility"</string>
+<!-- If there is a screen reader enabled, then this text is shown to the user during onboarding. -->
+<string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">"Because you have a screen reader enabled, we recommend running the app with the user interface's graphical maps turned off. You can change that setting here, or just continue on."</string>
+<!-- If there is no screen reader enabled, then this text is shown to the user during onboarding. -->
+<string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">"Because you do not have a screen reader enabled, we assume that you want the graphical maps in the user interface to be displayed. You can change that setting here, or just continue on."</string>
 <!-- Content description for button which clears text edit boxes -->
 <string name="text_field_clear_text" tools:ignore="MissingTranslation">Clear Text</string>
 <!-- Content description for marker name - always preceded by "Double tap to " -->
