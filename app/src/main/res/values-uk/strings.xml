@@ -1216,4 +1216,23 @@
     <string name="osm_sport" tools:ignore="MissingTranslation">Спортивний майданчик</string>
     <string name="osm_health_food" tools:ignore="MissingTranslation">Магазин здорового харчування</string>
     <string name="osm_events_venue" tools:ignore="MissingTranslation">Місце проведення заходів</string>
+    <string name="menu_help" tools:ignore="MissingTranslation">Довідка</string>
+    <string name="tour_welcome" tools:ignore="MissingTranslation">Ласкаво просимо до навчального аудіоуроку Soundscape. Цей посібник проведе вас через основні функції програми. Ви можете зупинити його в будь‑який момент, вибравши «Скасувати аудіоурок» у головному меню. Розпочнемо з «Навколишніх місць», що дозволяє знайти цікаві локації. Кнопка «Навколишні місця» знаходиться на головному екрані безпосередньо під панеллю пошуку. Натисніть її зараз, щоб спробувати.</string>
+    <string name="tour_select_place" tools:ignore="MissingTranslation">«Навколишні місця» групують точки інтересу за типами. Перегляньте списки місць і виберіть будь‑яке з них.</string>
+    <string name="tour_create_marker_started" tools:ignore="MissingTranslation">Чудово! Ви тепер на екрані «Деталі місця». Тут доступні різні дії, зокрема збереження місця як мітки. У Soundscape ви можете позначати будь‑що, що вам важливо — наприклад, дім, вашу автобусну зупинку або просто поточне місце. Спробуймо: збережіть це місце як мітку, торкнувшись «Зберегти як мітку».</string>
+    <string name="tour_create_marker_done" tools:ignore="MissingTranslation">Супер! Під час створення мітки ви можете змінити її назву й додати додаткові нотатки. Спробуйте зараз, а коли будете готові — натисніть «Готово».</string>
+    <string name="tour_my_location" tools:ignore="MissingTranslation">Тепер, коли ви знаєте, як користуватися мітками, розглянемо інші функції. У нижній частині екрана є чотири кнопки, які ми спробуємо по черзі. Кнопка ліворуч — «Моє місцезнаходження», вона описує ваше поточне місцезнаходження. Натисніть її зараз.</string>
+    <string name="tour_around_me" tools:ignore="MissingTranslation">Наступна кнопка — «Навколо Мене». Вона повідомляє, що знаходиться поблизу в кожному напрямку. Натисніть «Навколо Мене».</string>
+    <string name="tour_ahead" tools:ignore="MissingTranslation">Далі — кнопка «Попереду Мене». Вона розповідає, що знаходиться перед вами. Натисніть «Попереду Мене».</string>
+    <string name="tour_nearby_markers" tools:ignore="MissingTranslation">Остання кнопка — «Навколишні мітки», яка оголошує збережені місця навколо вас. Натисніть «Навколишні мітки», щоб спробувати.</string>
+    <string name="tour_markers_and_routes" tools:ignore="MissingTranslation">Ви успішно створили мітку. Давайте відтворимо звуковий маячок, щоб він провів нас до цього місця. Натисніть «Мітки та Маршрути», що знаходиться трохи нижче «Навколишніх місць».</string>
+    <string name="tour_markers" tools:ignore="MissingTranslation">На екрані «Мітки та Маршрути» є дві вкладки: одна показує маршрути — списки міток, інша — окремі мітки. Натисніть вкладку «Мітки», щоб перейти до списку міток і знайти створену вами мітку.</string>
+    <string name="tour_start_beacon" tools:ignore="MissingTranslation">Ви на вкладці «Мітки», де перелічені всі збережені мітки. Виберіть мітку, а коли з\'явиться екран «Деталі місця», натисніть «Запустити звуковий маячок».</string>
+    <string name="tour_beacon_demo" tools:ignore="MissingTranslation">Тепер ви чуєте звуковий маячок. Він лунає з напрямку вашого пункту призначення. Коли ви змінюєте напрямок, у який спрямований телефон, маячок зміщується та змінює звучання. Спробуйте зараз.</string>
+    <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">Коли телефон заблоковано, маячок усе одно відтворюватиметься. Якщо ви йдете або перебуваєте в транспорті, програма враховує напрямок вашого руху при відтворенні звуку маячка. Проте навіть у заблокованому стані можна тримати телефон горизонтально перед собою, як компас, і маячок визначатиме напрямок за тим, куди спрямований телефон. Спробуйте.</string>
+    <string name="tour_stop_beacon" tools:ignore="MissingTranslation">Коли будете готові зупинити маячок, натисніть кнопку «Зупинити навігацію».</string>
+    <string name="tour_finish" tools:ignore="MissingTranslation">Навчання завершено. Ви можете запустити його знову через головне меню. Сподіваємося, програма буде вам корисною!</string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation">Аудіоурок було скасовано. За бажанням ви можете запустити його знову з головного меню.</string>
+    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Аудіоурок</string>
+    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Скасувати аудіоурок</string>
 </resources>
