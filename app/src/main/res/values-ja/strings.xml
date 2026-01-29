@@ -1216,4 +1216,23 @@
     <string name="osm_sport" tools:ignore="MissingTranslation">スポーツ施設</string>
     <string name="osm_health_food" tools:ignore="MissingTranslation">健康食品店</string>
     <string name="osm_events_venue" tools:ignore="MissingTranslation">イベント会場</string>
+    <string name="menu_help" tools:ignore="MissingTranslation">ヘルプ</string>
+    <string name="tour_welcome" tools:ignore="MissingTranslation">Soundscape のチュートリアルへようこそ。このチュートリアルではアプリの主な機能を案内します。チュートリアルはいつでもメインメニューの「音声チュートリアルを中止する」をタップして停止できます。まずは「近くの場所」を使って、興味のある場所を探してみましょう。「近くの場所」ボタンはホーム画面の検索バーのすぐ下にあります。今すぐタップして試してください。</string>
+    <string name="tour_select_place" tools:ignore="MissingTranslation">「近くの場所」では特定地点を種類別にグループ化しています。リストを見て回り、ひとつ選択してください。</string>
+    <string name="tour_create_marker_started" tools:ignore="MissingTranslation">いいですね！現在は「場所の詳細」画面にいます。この画面では場所をマーカーとして保存するなどの操作ができます。Soundscape では自宅やバス停、今いる地点など、関心のある場所を何でもマークできます。試してみましょう。[マーカーを保存] をタップしてこの場所をマーカーとして保存してください。</string>
+    <string name="tour_create_marker_done" tools:ignore="MissingTranslation">完了です！マーカー作成時は名前を編集したり追加のメモを付けたりできます。今それを試してみて、準備ができたら [完了] をタップしてください。</string>
+    <string name="tour_my_location" tools:ignore="MissingTranslation">マーカーの使い方がわかったところで、他の機能も見てみましょう。画面下部には順に試す 4 つのボタンがあります。左端のボタンは「現在地」で、現在地に関する説明をしてくれます。今すぐタップしてみてください。</string>
+    <string name="tour_around_me" tools:ignore="MissingTranslation">次のボタンは「周辺」です。各方向にある近くの場所について教えてくれます。「周辺」をタップしてください。</string>
+    <string name="tour_ahead" tools:ignore="MissingTranslation">次のボタンは「前方」です。あなたの前方にあるものについて教えてくれます。「前方」をタップしてください。</string>
+    <string name="tour_nearby_markers" tools:ignore="MissingTranslation">最後のボタンは「近くのマーカー」で、保存した場所を周囲から案内します。「近くのマーカー」をタップして試してみてください。</string>
+    <string name="tour_markers_and_routes" tools:ignore="MissingTranslation">これでマーカーが作成されました。次に、その場所へ誘導する音声ビーコンを鳴らしてみましょう。「近くの場所」のすぐ下にある「マーカーおよびルート」をタップしてください。</string>
+    <string name="tour_markers" tools:ignore="MissingTranslation">「マーカーおよびルート」画面には 2 つのタブがあります。ルートはマーカーのプレイリストを一覧表示するタブ、もう一方は個別のマーカーを一覧表示するタブです。作成したマーカーを探すために「マーカー」タブをタップしてください。</string>
+    <string name="tour_start_beacon" tools:ignore="MissingTranslation">いま「マーカー」タブを表示しており、保存したマーカーが一覧で表示されています。マーカーを選択し、「場所の詳細」画面が表示されたら [音声ビーコンを開始] をタップしてください。</string>
+    <string name="tour_beacon_demo" tools:ignore="MissingTranslation">音声ビーコンが聞こえるはずです。目的地の方向から再生されます。端末の向きを変えるとビーコンの音が移動して聞こえ方が変わるのが分かります。今試してみてください。</string>
+    <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">端末がロックされていてもビーコンは再生されます。歩行中や乗り物に乗っているときは、移動方向を基にビーコンが再生されます。ただしロック中でも、コンパスのように端末を水平に前方に向ければ、その向きを使って音が再生されます。試してみてください。</string>
+    <string name="tour_stop_beacon" tools:ignore="MissingTranslation">ビーコンを止める準備ができたら、[ルートを中止する] ボタンをタップしてください。</string>
+    <string name="tour_finish" tools:ignore="MissingTranslation">これでチュートリアルは終了です。メインメニューからいつでも再度実行できます。アプリがお役に立てることを願っています！</string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation">音声チュートリアルは中止されました。必要であれば、メインメニューから再度実行できます。</string>
+    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">音声チュートリアル</string>
+    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">音声チュートリアルを中止する</string>
 </resources>
