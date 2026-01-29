@@ -1216,4 +1216,23 @@
     <string name="osm_sport" tools:ignore="MissingTranslation">Íþróttasvæði</string>
     <string name="osm_health_food" tools:ignore="MissingTranslation">Heilsuvöruverslun</string>
     <string name="osm_events_venue" tools:ignore="MissingTranslation">Viðburðastaður</string>
+    <string name="menu_help" tools:ignore="MissingTranslation">Hjálp</string>
+    <string name="tour_welcome" tools:ignore="MissingTranslation">Velkomin(n) í kynningu Soundscape. Þessi leiðsögn mun leiða þig í gegnum helstu eiginleika forritsins. Þú getur hætt leiðsögninni hvenær sem er með því að velja „Hætta við hljóðleiðsögn“ í aðalvalmyndinni. Byrjum á „Nálægir staðir“, sem gerir þér kleift að finna áhugaverða staði. Hnappurinn „Nálægir staðir“ er á heimaskjánum, beint undir leitarstikunni. Ýttu á hann núna til að prófa.</string>
+    <string name="tour_select_place" tools:ignore="MissingTranslation">Nálægir staðir flokka áhugaverða staði eftir tegund. Skoðaðu staðina í listunum og veldu einn.</string>
+    <string name="tour_create_marker_started" tools:ignore="MissingTranslation">Frábært! Þú ert nú á upplýsingasíðu staðarins. Þessi skjár leyfir þér að velja ýmsar aðgerðir, þar á meðal að vista staðinn sem merki. Með Soundscape geturðu merkt allt sem þér skiptir máli – til dæmis heimilið þitt, strætóstoppið eða bara staðinn þar sem þú ert núna. Við skulum prófa. Vistaðu þessa staðsetningu sem merki með því að ýta á „Vista sem merki“.</string>
+    <string name="tour_create_marker_done" tools:ignore="MissingTranslation">Frábært! Þegar þú býrð til merki geturðu breytt nafni þess og bætt við frekari athugasemdum. Prófaðu það núna, og þegar þú ert tilbúinn ýttu á „Lokið“.</string>
+    <string name="tour_my_location" tools:ignore="MissingTranslation">Nú þegar þú veist hvernig á að nota merki skulum við skoða nokkra aðra eiginleika. Neðst á skjánum eru fjórir hnappir sem við ætlum að prófa. Hnappurinn lengst til vinstri heitir „Mín staðsetning“ og lýsir núverandi staðsetningu þinni. Ýttu á hann núna.</string>
+    <string name="tour_around_me" tools:ignore="MissingTranslation">Næsti hnappurinn er „Í kringum mig“. Hann segir þér hvað er nálægt í hverri átt. Ýttu á „Í kringum mig“.</string>
+    <string name="tour_ahead" tools:ignore="MissingTranslation">Næsti hnappurinn er „Fyrir framan mig“. Hann segir þér hvað er fyrir framan þig. Ýttu á „Fyrir framan mig“.</string>
+    <string name="tour_nearby_markers" tools:ignore="MissingTranslation">Síðasti hnappurinn er „Nálæg merki“, sem segir frá vistuðum stöðum í kringum þig. Ýttu á „Nálæg merki“ til að prófa.</string>
+    <string name="tour_markers_and_routes" tools:ignore="MissingTranslation">Þú hefur nú búið til merki. Við skulum spila hljóðviti til að leiða okkur að þeim stað. Ýttu á „Merki og leiðir“, sem er beint undir „Nálægir staðir“.</string>
+    <string name="tour_markers" tools:ignore="MissingTranslation">Skjárinn „Merki og leiðir“ hefur tvo flipa: einn sýnir leiðir sem eru röð af merkjum og hinn listar einstök merki. Ýttu á „Merki“ til að fara yfir á flipann Merki og finna merkið sem þú bjóst til.</string>
+    <string name="tour_start_beacon" tools:ignore="MissingTranslation">Nú ertu á flipanum Merki sem sýnir öll vistuð merkin þín. Veldu eitt merki og þegar upplýsingasíða staðarins birtist, ýttu á „Hljóðviti“ til að kveikja á hljóðvitann.</string>
+    <string name="tour_beacon_demo" tools:ignore="MissingTranslation">Nú geturðu heyrt hljóðvitann. Hann heyrist í þeirri átt sem áfangastaðurinn er. Þegar þú breytir stefnu sem síminn vísar í heyrirðu hljóðvitann færa sig og hljóðið breytast. Prófaðu það núna.</string>
+    <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">Þó síminn sé læstur mun hljóðvitinn samt spila. Ef þú ert að ganga eða í ökutæki notar forritið stefnu ferðalagsins þegar það spilar hljóðvitann. Hins vegar, jafnvel þegar síminn er læstur geturðu haldið honum flötum fyrir framan þig eins og áttaviti, og hann mun nota þá stefnu sem síminn vísar í. Prófaðu það.</string>
+    <string name="tour_stop_beacon" tools:ignore="MissingTranslation">Þegar þú ert tilbúinn að stöðva hljóðvitann skaltu ýta á hnappinn „Ljúka leið“.</string>
+    <string name="tour_finish" tools:ignore="MissingTranslation">Þetta lýkur leiðsögninni. Þú getur keyrt hana aftur úr aðalvalmyndinni. Við vonum að þú finnur forritið gagnlegt!</string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation">Hljóðleiðsögnin hefur verið hætt. Ef þú vilt geturðu keyrt hana aftur úr aðalvalmyndinni.</string>
+    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Hljóðleiðsögn</string>
+    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Hætta við hljóðleiðsögn</string>
 </resources>
