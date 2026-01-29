@@ -1216,4 +1216,23 @@
     <string name="osm_sport" tools:ignore="MissingTranslation">Idrett</string>
     <string name="osm_health_food" tools:ignore="MissingTranslation">Helsekost</string>
     <string name="osm_events_venue" tools:ignore="MissingTranslation">Arrangementslokale</string>
+    <string name="menu_help" tools:ignore="MissingTranslation">Hjelp</string>
+    <string name="tour_welcome" tools:ignore="MissingTranslation">Velkommen til Soundscape‑veiledningen. Denne veiledningen vil lede deg gjennom appens hovedfunksjoner. Du kan stoppe veiledningen når som helst ved å trykke på Avbryt lydveiledning i hovedmenyen. La oss begynne med Steder i nærheten, som lar deg finne interessante steder. Knappen Steder i nærheten ligger på startskjermen rett under søkefeltet. Trykk på den nå for å prøve.</string>
+    <string name="tour_select_place" tools:ignore="MissingTranslation">Steder i nærheten grupperer interessepunkter etter kategori. Se gjennom stedene i listene og velg ett.</string>
+    <string name="tour_create_marker_started" tools:ignore="MissingTranslation">Supert! Du er nå på skjermen Posisjonsinformasjon. Denne skjermen lar deg velge ulike handlinger, blant annet å lagre posisjonen som en markør. Med Soundscape kan du markere hva som helst rundt deg som er viktig for deg. For eksempel kan du markere hjemmet ditt, busstoppet ditt eller bare stedet du står. La oss prøve. Lagre denne posisjonen som en markør ved å trykke på Lagre som markør.</string>
+    <string name="tour_create_marker_done" tools:ignore="MissingTranslation">Supert! Når du oppretter en markør kan du redigere navnet og legge til tilleggsnotater. Prøv det nå, og når du er klar trykker du på Ferdig.</string>
+    <string name="tour_my_location" tools:ignore="MissingTranslation">Nå som du vet hvordan du bruker markører, la oss se på noen av de andre funksjonene. Nederst på skjermen er det fire knapper som vi skal prøve etter tur. Knappen helt til venstre er Min posisjon, som beskriver din nåværende posisjon. Prøv å trykke på den nå.</string>
+    <string name="tour_around_me" tools:ignore="MissingTranslation">Neste knapp er Rundt meg. Denne forteller deg hva som er i nærheten i hver retning. Trykk på Rundt meg.</string>
+    <string name="tour_ahead" tools:ignore="MissingTranslation">Neste knapp er Foran meg. Den forteller deg hva som er foran deg. Trykk på Foran meg.</string>
+    <string name="tour_nearby_markers" tools:ignore="MissingTranslation">Den siste knappen er Markører i nærheten, som leser opp lagrede steder rundt deg. Trykk på Markører i nærheten for å prøve.</string>
+    <string name="tour_markers_and_routes" tools:ignore="MissingTranslation">Du har nå opprettet en markør. La oss spille av et lydsignal som kan veilede oss til dette stedet. Trykk på Markører og ruter, som ligger rett under Steder i nærheten.</string>
+    <string name="tour_markers" tools:ignore="MissingTranslation">Skjermen Markører og ruter har to faner: én som viser ruter (spillelister av markører) og en annen som viser individuelle markører. Trykk på fanen Markører for å bytte til markørfanen og finne markøren du opprettet.</string>
+    <string name="tour_start_beacon" tools:ignore="MissingTranslation">Du er nå på fanen Markører som viser alle lagrede markører. Velg en markør, og når skjermen Posisjonsinformasjon vises, trykk på Start lydsignal.</string>
+    <string name="tour_beacon_demo" tools:ignore="MissingTranslation">Nå kan du høre lydsignalet. Det spilles fra retningen til destinasjonen din. Når du endrer hvilken retning telefonen peker, kan du høre at lydsignalet beveger seg og endrer lyd. Prøv det nå.</string>
+    <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">Når telefonen er låst, vil lydsignalet fortsatt spilles. Hvis du går eller er i et kjøretøy, bruker appen retningen du beveger deg i når den spiller av lydsignalet. Selv når den er låst kan du imidlertid holde telefonen flatt foran deg, som et kompass, og den vil bruke retningen telefonen peker mot. Prøv det.</string>
+    <string name="tour_stop_beacon" tools:ignore="MissingTranslation">Når du er klar til å stoppe lydsignalet, trykker du på knappen Stopp rute.</string>
+    <string name="tour_finish" tools:ignore="MissingTranslation">Det var alt i veiledningen. Du kan kjøre den igjen fra hovedmenyen. Vi håper appen er nyttig for deg!</string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation">Lydveiledningen ble avbrutt. Hvis du vil, kan du kjøre den igjen fra hovedmenyen.</string>
+    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Lydveiledning</string>
+    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Avbryt lydveiledning</string>
 </resources>
