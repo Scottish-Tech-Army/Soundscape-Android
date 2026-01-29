@@ -1216,4 +1216,23 @@
     <string name="osm_sport" tools:ignore="MissingTranslation">مرفق رياضي</string>
     <string name="osm_health_food" tools:ignore="MissingTranslation">محل أطعمة صحية</string>
     <string name="osm_events_venue" tools:ignore="MissingTranslation">مكان فعاليات</string>
+    <string name="menu_help" tools:ignore="MissingTranslation">المساعدة</string>
+    <string name="tour_welcome" tools:ignore="MissingTranslation">مرحبًا بك في الدرس التعليمي الخاص بـ Soundscape. هذا الدرس سيرشدك عبر الميزات الرئيسية للتطبيق. يمكنك إيقاف الدرس في أي وقت بالضغط على «إلغاء البرنامج التعليمي الصوتي» من القائمة الرئيسية. نبدأ بـ «الأماكن القريبة» التي تُمكّنك من العثور على أماكن تهمك. زر «الأماكن القريبة» موجود على الشاشة الرئيسية أسفل شريط البحث مباشرة. اضغط عليه الآن لتجربته.</string>
+    <string name="tour_select_place" tools:ignore="MissingTranslation">تجميعة «الأماكن القريبة» بتجمّع نقاط الاهتمام حسب النوع. تصفّح القوائم واختر مكانًا.</string>
+    <string name="tour_create_marker_started" tools:ignore="MissingTranslation">ممتاز! أنت الآن في شاشة تفاصيل الموقع. الشاشة دي بتتيح لك تنفيذ عدة إجراءات منها حفظ الموقع كعلامة. في Soundscape تقدر تعلّم أي مكان حواليك يهمك — مثلاً منزلك، موقف الأتوبيس، أو حتى المكان اللي أنت واقف فيه دلوقتي. خلّينا نجرب. احفظ هذا الموقع كعلامة بالضغط على «حفظ كعلامة».</string>
+    <string name="tour_create_marker_done" tools:ignore="MissingTranslation">رائع! لما تنشئ علامة تقدر تعدل اسمها وتضيف ملاحظات إضافية. جرّب ده الآن، ولما تكون جاهزًا اضغط «تم».</string>
+    <string name="tour_my_location" tools:ignore="MissingTranslation">دلوقتي بعد ما عرفت تستخدم العلامات، هنبص على بعض الميزات التانية. في أسفل الشاشة أربع أزرار هنجرّبها واحدًا تلو الآخر. الزر اليسار هو «موقعي» وبيشرح موقعك الحالي. جرّب الضغط عليه الآن.</string>
+    <string name="tour_around_me" tools:ignore="MissingTranslation">الزر اللي بعده هو «حولي». ده بيقولك إيه الموجود حواليك في كل اتجاه. اضغط «حولي».</string>
+    <string name="tour_ahead" tools:ignore="MissingTranslation">الزر التالي هو «أمامي». ده بيخبرك إيه الموجود قدامك. اضغط «أمامي».</string>
+    <string name="tour_nearby_markers" tools:ignore="MissingTranslation">آخر زر هو «العلامات القريبة» واللي بيعلن عن الأماكن المحفوظة حواليك. اضغط «العلامات القريبة» لتجربته.</string>
+    <string name="tour_markers_and_routes" tools:ignore="MissingTranslation">لقد أنشأت علامة بنجاح. هنجرب تشغيل منارة صوتية ترشدنا للموقع ده. اضغط على «العلامات والطرق» الموجودة تحت «الأماكن القريبة».</string>
+    <string name="tour_markers" tools:ignore="MissingTranslation">شاشة «العلامات والطرق» فيها تابّين: واحد للطرق (قوائم تشغيل من العلامات) والتاني للعلامات الفردية. اضغط على «العلامات» للانتقال لتبويب العلامات ولإيجاد العلامة اللي أنشأتها.</string>
+    <string name="tour_start_beacon" tools:ignore="MissingTranslation">أنت الآن في تبويب العلامات اللي بيعرض كل العلامات المحفوظة. اختر علامة، ولما تظهر شاشة تفاصيل الموقع اضغط «ابدأ منارة الصوت».</string>
+    <string name="tour_beacon_demo" tools:ignore="MissingTranslation">هتسمع دلوقتي منارة الصوت. الصوت بيصدر من اتجاه وجهتك. لما تغيّر اتجاه الهاتف هتلاحظ المنارة بتتحرّك ويتغير شكل صوتها. جرّب كده الآن.</string>
+    <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">لما يكون هاتفك مقفول، المنارة هتشتغل برضه. لو كنت ماشي أو في وسيلة مواصلات، التطبيق هيستخدم اتجاه حركتك لتشغيل المنارة. لكن حتى لو الهاتف مقفول تقدر تمسكه مسطح قدامك زي البوصلة، وهيستخدم الاتجاه اللي الهاتف مشير ليه. جرّب كده.</string>
+    <string name="tour_stop_beacon" tools:ignore="MissingTranslation">لما تكون جاهز توقف المنارة، اضغط زر «ايقاف الطريق».</string>
+    <string name="tour_finish" tools:ignore="MissingTranslation">بهذا ينتهي الدرس التعليمي. يمكنك تشغيله مرة أخرى من القائمة الرئيسية. نأمل أن تجد التطبيق مفيدًا!</string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation">تم إلغاء الدرس التعليمي الصوتي. إذا رغبت، يمكنك تشغيله مرة أخرى من القائمة الرئيسية.</string>
+    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">البرنامج التعليمي الصوتي</string>
+    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">إلغاء البرنامج التعليمي الصوتي</string>
 </resources>
