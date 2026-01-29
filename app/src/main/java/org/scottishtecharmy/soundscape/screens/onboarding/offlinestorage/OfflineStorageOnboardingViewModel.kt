@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage
 
 import android.content.Context
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.preference.PreferenceManager
 import dagger.hilt.android.lifecycle.HiltViewModel
