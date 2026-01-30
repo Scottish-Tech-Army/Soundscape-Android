@@ -112,7 +112,7 @@ fun LocationItem(
                         "${decoration.indexDescription} ${decoration.index + 1}. ${item.name}"
 
                     else -> item.description?.takeIf { it.startsWith(item.name) }
-                        ?: listOfNotNull(item.name, item.typeDescription?.additionalText, item.description).joinToString(", ")
+                        ?: listOfNotNull(item.name, item.typeDescription?.additionalText, item.description, distanceString).joinToString(", ")
                 }
 
                 if (decoration.editRoute.enabled) {
