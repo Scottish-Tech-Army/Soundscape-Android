@@ -25,31 +25,31 @@
     <string name="beacon_styles_mallet_very_slow">"Percussor (Muito Lento)"</string>
     <string name="beacon_audio_beacon">"Sinal de Áudio"</string>
     <string name="beacon_action_mute_beacon">"Desativar Sinal"</string>
-    <string name="beacon_action_mute_beacon_acc_hint">"Faça duplo toque para desativar o sinal de áudio."</string>
+    <string name="beacon_action_mute_beacon_acc_hint">"desativar o sinal de áudio."</string>
     <string name="beacon_action_unmute_beacon">"Ativar Sinal"</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">"Faça duplo toque para ativar o sinal de áudio."</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">"ativar o sinal de áudio."</string>
     <string name="preview_title">Simular Localização</string>
     <string name="preview_go_title">"Seguir"</string>
     <string name="preview_include_unnamed_roads_title">"Ruas sem Nome"</string>
     <string name="location_detail_title_default">"Detalhes da Localização"</string>
     <string name="location_detail_action_beacon">"Iniciar Sinal de Áudio"</string>
-    <string name="location_detail_action_beacon_hint">"Faça duplo toque para definir um sinal de áudio nesta localização"</string>
-    <string name="location_detail_action_save_hint">"Faça duplo toque para guardar esta localização como um marco"</string>
-    <string name="location_detail_action_edit_hint">"Faça duplo toque para editar o marco"</string>
-    <string name="location_detail_action_share_hint">"Faça duplo toque para partilhar esta localização"</string>
-    <string name="location_detail_action_preview_hint">"Faça duplo toque para começar a pré-visualização nesta localização"</string>
-    <string name="location_detail_add_waypoint_existing_hint">"Faça duplo toque para remover este marco da rota."</string>
-    <string name="location_detail_add_waypoint_new_hint">"Faça duplo toque para adicionar este marco à rota."</string>
+    <string name="location_detail_action_beacon_hint">"definir um sinal de áudio nesta localização"</string>
+    <string name="location_detail_action_save_hint">"guardar esta localização como um marco"</string>
+    <string name="location_detail_action_edit_hint">"editar o marco"</string>
+    <string name="location_detail_action_share_hint">"partilhar esta localização"</string>
+    <string name="location_detail_action_preview_hint">"começar a pré-visualização nesta localização"</string>
+    <string name="location_detail_add_waypoint_existing_hint">"remover este marco da rota."</string>
+    <string name="location_detail_add_waypoint_new_hint">"adicionar este marco à rota."</string>
     <string name="route_detail_action_start_route">"Iniciar Rota"</string>
     <string name="route_detail_action_stop_route">"Parar Rota"</string>
     <string name="route_detail_action_edit">"Editar Rota"</string>
-    <string name="route_detail_action_start_route_hint">"Faça duplo toque para iniciar esta rota"</string>
+    <string name="route_detail_action_start_route_hint">"iniciar esta rota"</string>
     <string name="route_detail_action_start_route_disabled_hint">"Adicione pontos de passagem antes de iniciar a rota"</string>
-    <string name="route_detail_action_stop_route_hint">"Faça duplo toque para parar esta rota"</string>
-    <string name="route_detail_action_share_hint">"Faça duplo toque para partilhar esta rota"</string>
-    <string name="route_detail_action_edit_hint">"Faça duplo toque para editar esta rota"</string>
+    <string name="route_detail_action_stop_route_hint">"parar esta rota"</string>
+    <string name="route_detail_action_share_hint">"partilhar esta rota"</string>
+    <string name="route_detail_action_edit_hint">"editar esta rota"</string>
     <string name="route_detail_action_create">"Nova Rota"</string>
-    <string name="route_detail_action_create_hint">"Faça duplo toque para criar uma nova rota"</string>
+    <string name="route_detail_action_create_hint">"criar uma nova rota"</string>
     <string name="route_end_completed_accessibility">"Rota Concluída! %s"</string>
     <string name="route_detail_action_previous">"Ponto de Passagem Anterior"</string>
     <string name="route_detail_action_previous_hint">mover o sinal para o ponto de passagem anterior</string>
@@ -88,9 +88,9 @@
     <string name="search_use_current_location">"Localização Atual"</string>
     <string name="search_nearby_screen_title">"Locais nas Proximidades"</string>
     <string name="search_view_markers">Marcos e Rotas</string>
-    <string name="search_button_markers_accessibility_hint">"Faça duplo toque para selecionar ou editar os marcos que guardou"</string>
-    <string name="search_button_nearby_accessibility_hint">"Faça duplo toque para explorar restaurantes, paragens e outros pontos nas proximidades"</string>
-    <string name="search_button_current_location_accessibility_hint">"Faça duplo toque para pré-visualizar, marcar ou partilhar a sua localização atual com um amigo"</string>
+    <string name="search_button_markers_accessibility_hint">"selecionar ou editar os marcos que guardou"</string>
+    <string name="search_button_nearby_accessibility_hint">"explorar restaurantes, paragens e outros pontos nas proximidades"</string>
+    <string name="search_button_current_location_accessibility_hint">"pré-visualizar, marcar ou partilhar a sua localização atual com um amigo"</string>
     <string name="filter_all">"Todos os Locais"</string>
     <string name="filter_transit">"Transportes Públicos"</string>
     <string name="filter_food_drink">Gastronomia</string>
@@ -107,7 +107,7 @@
     <string name="sleep_sleep">"Suspender"</string>
     <string name="sleep_sleeping">"Em Modo de Suspensão"</string>
     <string name="sleep_sleeping_message">"O Soundscape está atualmente em modo de suspensão. Isto impede que o Soundscape utilize os Serviços de localização ou transfira dados. Isto poupa a bateria quando não estiver a utilizar o Soundscape. Toque no botão abaixo para reativar o Soundscape."</string>
-    <string name="sleep_sleep_acc_hint">"Faça duplo toque para suspender o Soundscape"</string>
+    <string name="sleep_sleep_acc_hint">"suspender o Soundscape"</string>
     <string name="sleep_wake_up_now">"Reativar Agora"</string>
     <string name="intersection_approaching_intersection">"A aproximar-se de um cruzamento"</string>
     <string name="directions_at_poi">"Em %s"</string>
@@ -170,15 +170,15 @@
     <string name="distance_format_feet">"%s pés"</string>
     <string name="distance_format_miles">"%s milhas"</string>
     <string name="ui_action_button_my_location">"A Minha\nLocalização"</string>
-    <string name="ui_action_button_my_location_acc_hint">"Faça duplo toque para ouvir informações sobre a sua localização atual"</string>
+    <string name="ui_action_button_my_location_acc_hint">"ouvir informações sobre a sua localização atual"</string>
     <string name="ui_action_button_nearby_markers">"Marcos nas\nProximidades"</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">"Faça duplo toque para ouvir informações sobre locais nas proximidades que marcou"</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">"ouvir informações sobre locais nas proximidades que marcou"</string>
     <string name="ui_action_button_around_me">"Em Meu\nRedor"</string>
-    <string name="ui_action_button_around_me_acc_hint">"Faça duplo toque para ouvir informações sobre locais nos quatro quadrantes em seu redor"</string>
+    <string name="ui_action_button_around_me_acc_hint">"ouvir informações sobre locais nos quatro quadrantes em seu redor"</string>
     <string name="ui_action_button_ahead_of_me">"À Minha\nFrente"</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">"Faça duplo toque para ouvir informações sobre locais à sua frente"</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">"ouvir informações sobre locais à sua frente"</string>
     <string name="ui_menu">"Menu"</string>
-    <string name="ui_menu_hint">"Faça duplo toque para abrir o menu"</string>
+    <string name="ui_menu_hint">"abrir o menu"</string>
     <string name="ui_menu_close">"Fechar Menu"</string>
     <string name="ui_continue">"Continuar"</string>
     <string name="menu_manage_callouts">"Gerir Avisos"</string>
@@ -1236,13 +1236,13 @@
     <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Tutorial de Áudio</string>
     <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Cancelar o Tutorial de Áudio</string>
     <string name="search_bar_hint" tools:ignore="MissingTranslation">Introduza o nome de um destino ou um endereço</string>
-    <string name="all_places_nearby_description" tools:ignore="MissingTranslation">Faça duplo toque para ver uma lista não filtrada de todos os locais nas proximidades</string>
-    <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">Faça duplo toque para ver uma lista de transportes públicos nas proximidades</string>
-    <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">Faça duplo toque para ver uma lista de restaurantes e bares nas proximidades</string>
-    <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">Faça duplo toque para ver uma lista de mercearias e lojas de conveniência nas proximidades</string>
-    <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">Faça duplo toque para ver uma lista de bancos e caixas multibanco nas proximidades</string>
-    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">Faça duplo toque para ver uma lista de cruzamentos nas proximidades</string>
-    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">Faça duplo toque para escolher a partir de uma lista de locais nas proximidades</string>
+    <string name="all_places_nearby_description" tools:ignore="MissingTranslation">ver uma lista não filtrada de todos os locais nas proximidades</string>
+    <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">ver uma lista de transportes públicos nas proximidades</string>
+    <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">ver uma lista de restaurantes e bares nas proximidades</string>
+    <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">ver uma lista de mercearias e lojas de conveniência nas proximidades</string>
+    <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">ver uma lista de bancos e caixas multibanco nas proximidades</string>
+    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">ver uma lista de cruzamentos nas proximidades</string>
+    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">escolher a partir de uma lista de locais nas proximidades</string>
     <string name="accessibility_title" tools:ignore="MissingTranslation">Acessibilidade</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Como tem um leitor de ecrã ativado, recomendamos executar a aplicação com os mapas gráficos da interface do utilizador desativados. Pode alterar essa definição aqui ou simplesmente continuar.</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Como não tem um leitor de ecrã ativado, assumimos que pretende ver os mapas gráficos na interface da aplicação. Pode alterar essa definição aqui ou simplesmente continuar.</string>
