@@ -28,9 +28,14 @@ import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.navigation.NavHostController
+import org.commonmark.node.HardLineBreak
 import org.commonmark.node.Heading
 import org.commonmark.node.Link
 import org.commonmark.node.Node
+import org.commonmark.node.Paragraph
+import org.commonmark.node.SoftLineBreak
+import org.commonmark.node.Text
+import org.commonmark.node.ThematicBreak
 import org.commonmark.parser.Parser
 import org.commonmark.renderer.html.HtmlRenderer
 import org.commonmark.renderer.text.TextContentRenderer
@@ -49,7 +54,6 @@ class MarkdownPage(val title: String, val content: String) {
     }
 }
 
-
 private fun Node.collectChildren(): List<Node> {
     val children = mutableListOf<Node>()
     var node: Node? = this.firstChild
@@ -60,6 +64,52 @@ private fun Node.collectChildren(): List<Node> {
     return children
 }
 
+private fun Node.tryGetOnlyChild(): Node? {
+    val firstChild = this.firstChild
+    if (firstChild == null || firstChild.next != null) {
+        return null
+    }
+    return firstChild
+}
+
+class LinksPage {
+    class Section(val title: String) {
+        val links: MutableList<Link> = mutableListOf()
+    }
+
+    val sections: MutableList<Section> = mutableListOf()
+}
+
+fun List<Node>.withoutAnyRootHeading(): List<Node> {
+    val firstNode = this[0]
+    if (firstNode is Heading && firstNode.level == 1) {
+        return this.drop(1)
+    }
+    return this
+}
+
+class StructureLogNodeRenderer(private val structureLog: StructureLog)
+{
+    fun render(node: Node) {
+        when (node) {
+            is Text -> {
+                structureLog.unstructured("[Text: '${node.literal}']")
+            }
+            is SoftLineBreak, is HardLineBreak, is ThematicBreak -> {
+                structureLog.unstructured(node.javaClass.name)
+            }
+            else -> {
+                structureLog.start(node.javaClass.name)
+                val children = node.collectChildren()
+                for (child in children) {
+                    render(child)
+                }
+                structureLog.end(node.javaClass.name)
+            }
+        }
+    }
+}
+
 @Composable
 fun MarkdownHelpScreen(
     topic: String,
@@ -67,7 +117,7 @@ fun MarkdownHelpScreen(
     modifier: Modifier,
     structureLog: StructureLog = StructureLog {}
 ) {
-    structureLog.start("MarkdownHelpScreen")
+    structureLog.start("HelpScreen")
     // NOTE 2025-12-12 Hugh Greene: Annoyingly, we can't use the org.commonmark.node.Visitor
     // approach because its method aren't @Composable.  We could make an entirely @Composable copy
     // of that, but I'm going to just do the minimum necessary to get things working here, and hope
@@ -122,7 +172,7 @@ fun MarkdownHelpScreen(
         
         [Creating Markers](help-creating-markers.md)
         
-        [Customising Markers](help-customizing-markers.md)
+        [Customizing Markers](help-customizing-markers.md)
         
         ## Frequently Asked Questions
         
@@ -151,6 +201,7 @@ fun MarkdownHelpScreen(
 
     val textContentRenderer = TextContentRenderer.builder().build()
     val htmlRenderer = HtmlRenderer.builder().build()
+    val nodeStructureRenderer = StructureLogNodeRenderer(structureLog)
 
     Scaffold(
         modifier = modifier,
@@ -182,13 +233,13 @@ fun MarkdownHelpScreen(
                     // TODO 2025-12-12 Hugh Greene: Check whether this is a "headings and links
                     // only" page and, if so, render the structure bit-by-bit; otherwise just render
                     // as HTML???
-                    val rootChildren = page.root.collectChildren()
+                    val rootChildren = page.root.collectChildren().withoutAnyRootHeading()
 
                     items(rootChildren) { node ->
                         structureLog.start("LazyColumn item")
                         if (node is Heading) {
                             if (node.level != 2) {
-                                // TODO 2025-12-1 Hugh Greene: Handle other levels better!
+                                // TODO 2025-12-18 Hugh Greene: Handle other levels better!
                                 structureLog.unstructured("Skipping Heading level ${node.level}")
                                 structureLog.end("LazyColumn item")
                                 return@items
@@ -208,10 +259,11 @@ fun MarkdownHelpScreen(
                                 color = MaterialTheme.colorScheme.onSurface,
                             )
                         }
-                        else if (node is Link) {
+                        else if (node is Paragraph && node.tryGetOnlyChild() is Link) {
+                            val link = node.tryGetOnlyChild() as Link
                             Button(
                                 onClick = {
-                                    navController.navigate("${HomeRoutes.Help.route}/page${node.title}")
+                                    navController.navigate("${HomeRoutes.Help.route}/page${link.title}")
                                 },
                                 modifier = Modifier
                                     .fillMaxWidth(),
@@ -223,8 +275,16 @@ fun MarkdownHelpScreen(
                                     Modifier.weight(6f)
                                 ) {
                                     structureLog.start("Box for text")
+                                    // NOTE 2025-12-21 Hugh Greene: To get the text of the Markdown
+                                    // link we can't just use textContentRenderer.render(link) as
+                                    // that includes the link destination and/or title as well.
+                                    val text = link.collectChildren().joinToString {
+                                        textContentRenderer.render(it)
+                                    }
+                                    structureLog.unstructured("Text for Button: '${text}'")
+//                                    nodeStructureRenderer.render(link)
                                     Text(
-                                        text = node.title,
+                                        text = text ?: "No title",
                                         textAlign = TextAlign.Start,
                                         style = MaterialTheme.typography.titleMedium,
                                     )
@@ -254,7 +314,7 @@ fun MarkdownHelpScreen(
                                 )
                                 // TODO 2025-11-17 Hugh Greene: Add linkInteractionListener
                             )
-                            structureLog.unstructured("Text for HTML section: '${text}'")
+                            nodeStructureRenderer.render(node)
                             Text(
                                 text = text,
                                 style = MaterialTheme.typography.bodyMedium,
@@ -275,5 +335,5 @@ fun MarkdownHelpScreen(
             structureLog.end("Scaffold content")
         }
     )
-    structureLog.end("MarkdownHelpScreen")
+    structureLog.end("HelpScreen")
 }

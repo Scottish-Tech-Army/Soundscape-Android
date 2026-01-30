@@ -122,7 +122,7 @@
 'LazyColumn item' start
   'Button' start
     'Box for text' start
-      Text for Button: 'Customizing Markers'
+      Text for Button: 'Customising Markers'
     'Box for text' end
     'Box for icon' start
     'Box for icon' end
