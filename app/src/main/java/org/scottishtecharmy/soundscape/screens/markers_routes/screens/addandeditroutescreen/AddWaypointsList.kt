@@ -35,6 +35,7 @@ import org.scottishtecharmy.soundscape.components.FolderItem
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.Folder
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.filterLocations
+import org.scottishtecharmy.soundscape.utils.process
 
 @Composable
 fun AddWaypointsList(
@@ -121,6 +122,7 @@ fun AddWaypointsList(
                         color = MaterialTheme.colorScheme.outlineVariant
                     )
                 }
+                locationDescription.process()
                 LocationItem(
                     item = locationDescription,
                     decoration = LocationItemDecoration(
