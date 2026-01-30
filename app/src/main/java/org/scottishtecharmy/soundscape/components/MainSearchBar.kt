@@ -60,7 +60,7 @@ fun MainSearchBar(
     var query by rememberSaveable { mutableStateOf("") }
     var expanded by rememberSaveable { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
-    val searchLocation = remember { userLocation }
+    val searchLocation = remember { mutableStateOf(userLocation) }
 
     // Collapsed search bar
     Surface(
@@ -148,6 +148,7 @@ fun MainSearchBar(
                                     onSearch = {
                                         val trimmed = query.trim()
                                         if (trimmed.isNotEmpty()) {
+                                            searchLocation.value = userLocation
                                             searchFunctions.onTriggerSearch(trimmed)
                                         }
                                     }
@@ -259,7 +260,7 @@ fun MainSearchBar(
                                             )
                                         ),
                                         modifier = modifier,
-                                        userLocation = searchLocation
+                                        userLocation = searchLocation.value
                                     )
                                 }
                             }
