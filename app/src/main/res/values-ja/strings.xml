@@ -25,21 +25,21 @@
     <string name="beacon_styles_mallet_very_slow">"マレット (非常に遅い)"</string>
     <string name="beacon_audio_beacon">"音声ビーコン"</string>
     <string name="beacon_action_mute_beacon">"ビーコンをミュート"</string>
-    <string name="beacon_action_mute_beacon_acc_hint">"音声ビーコンをミュートするにはダブルタップします。"</string>
+    <string name="beacon_action_mute_beacon_acc_hint">"音声ビーコンをミュートする"</string>
     <string name="beacon_action_unmute_beacon">"ビーコンのミュートを解除"</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">"音声ビーコンのミュートを解除するにはダブルタップします。"</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">"音声ビーコンのミュートを解除する"</string>
     <string name="preview_title">位置のシミュレーション</string>
     <string name="preview_go_title">"移動"</string>
     <string name="preview_include_unnamed_roads_title">"無名道路"</string>
     <string name="location_detail_title_default">"場所の詳細"</string>
     <string name="location_detail_action_beacon">"音声ビーコンを開始"</string>
-    <string name="location_detail_action_beacon_hint">"この場所に音声ビーコンを設定するにはダブルタップします"</string>
-    <string name="location_detail_action_save_hint">"この場所をマーカーとして保存するにはダブルタップします"</string>
-    <string name="location_detail_action_edit_hint">"マーカーを編集するにはダブルタップします"</string>
-    <string name="location_detail_action_share_hint">"この場所を共有するにはダブルタップします"</string>
-    <string name="location_detail_action_preview_hint">"この場所のプレビューを開始するにはダブルタップします"</string>
-    <string name="location_detail_add_waypoint_existing_hint">"ダブル タップしてルートからこのマーカーを削除します。"</string>
-    <string name="location_detail_add_waypoint_new_hint">"ダブル タップしてルートにこのマーカーを追加します。"</string>
+    <string name="location_detail_action_beacon_hint">"この場所に音声ビーコンを設定する"</string>
+    <string name="location_detail_action_save_hint">"この場所をマーカーとして保存する"</string>
+    <string name="location_detail_action_edit_hint">"マーカーを編集する"</string>
+    <string name="location_detail_action_share_hint">"この場所を共有する"</string>
+    <string name="location_detail_action_preview_hint">"この場所のプレビューを開始する"</string>
+    <string name="location_detail_add_waypoint_existing_hint">"ルートからこのマーカーを削除します。"</string>
+    <string name="location_detail_add_waypoint_new_hint">"ルートにこのマーカーを追加します。"</string>
     <string name="route_detail_action_start_route">"ルートを開始する"</string>
     <string name="route_detail_action_stop_route">"ルートを中止する"</string>
     <string name="route_detail_action_edit">"ルートを編集"</string>
@@ -47,9 +47,9 @@
     <string name="route_detail_action_start_route_disabled_hint">"ルートを開始する前にウェイポイントを追加します"</string>
     <string name="route_detail_action_stop_route_hint">"ダブル タップすると、このルートを停止します"</string>
     <string name="route_detail_action_share_hint">"ダブル タップすると、このルートを共有します"</string>
-    <string name="route_detail_action_edit_hint">"ダブル タップしてこのルートを編集します"</string>
+    <string name="route_detail_action_edit_hint">"このルートを編集します"</string>
     <string name="route_detail_action_create">"新しいルート"</string>
-    <string name="route_detail_action_create_hint">"ダブル タップして新しいルートを作成します"</string>
+    <string name="route_detail_action_create_hint">"新しいルートを作成します"</string>
     <string name="route_end_completed_accessibility">"ルートが終了しました! %s"</string>
     <string name="route_detail_action_previous">"以前のウェイポイント"</string>
     <string name="route_detail_action_previous_hint">ビーコンを前のウェイポイントに移動します</string>
@@ -88,9 +88,9 @@
     <string name="search_use_current_location">"現在地"</string>
     <string name="search_nearby_screen_title">"近くの場所"</string>
     <string name="search_view_markers">マーカーおよびルート</string>
-    <string name="search_button_markers_accessibility_hint">"保存したマーカーを選択または編集するにはダブルタップします"</string>
-    <string name="search_button_nearby_accessibility_hint">"近くのレストランや停留所などを探すにはダブルタップします"</string>
-    <string name="search_button_current_location_accessibility_hint">"現在地のプレビュー、マーカーの作成、友達との共有をするには、ダブルタップします"</string>
+    <string name="search_button_markers_accessibility_hint">"保存したマーカーを選択または編集する"</string>
+    <string name="search_button_nearby_accessibility_hint">"近くのレストランや停留所などを探す"</string>
+    <string name="search_button_current_location_accessibility_hint">"現在地のプレビュー、マーカーの作成、友達との共有をする"</string>
     <string name="filter_all">"すべての場所"</string>
     <string name="filter_transit">"公共交通機関"</string>
     <string name="filter_food_drink">飲食店</string>
@@ -107,7 +107,7 @@
     <string name="sleep_sleep">"スリープ"</string>
     <string name="sleep_sleeping">"スリープ中"</string>
     <string name="sleep_sleeping_message">"Soundscape は現在スリープ状態です。そのため、位置情報サービスの使用やデータのダウンロードができません。スリープ モードでは、Soundscape を使用しない間のバッテリー消費が抑えられます。Soundscape のスリープを解除するには、下のボタンをタップしてください。"</string>
-    <string name="sleep_sleep_acc_hint">"Soundscape をスリープ モードにするにはダブルタップします"</string>
+    <string name="sleep_sleep_acc_hint">"Soundscape をスリープ モードにする"</string>
     <string name="sleep_wake_up_now">"すぐにスリープ解除"</string>
     <string name="intersection_approaching_intersection">"まもなく交差点"</string>
     <string name="directions_at_poi">"現在地: %s"</string>
@@ -170,13 +170,13 @@
     <string name="distance_format_feet">"%s フィート"</string>
     <string name="distance_format_miles">"%s マイル"</string>
     <string name="ui_action_button_my_location">現在地</string>
-    <string name="ui_action_button_my_location_acc_hint">"現在地の情報を聞くにはダブルタップします"</string>
+    <string name="ui_action_button_my_location_acc_hint">"現在地の情報を聞く"</string>
     <string name="ui_action_button_nearby_markers">"近くの\nマーカー"</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">"マーカーを設定した近くの場所の情報を聞くにはダブルタップします"</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">"マーカーを設定した近くの場所の情報を聞く"</string>
     <string name="ui_action_button_around_me">周辺</string>
     <string name="ui_action_button_around_me_acc_hint">"自分の周辺の 4 方向の情報を聞くにはダブル タップします"</string>
     <string name="ui_action_button_ahead_of_me">前方</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">"自分の前方の情報を聞くにはダブルタップします"</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">"自分の前方の情報を聞く"</string>
     <string name="ui_menu">"メニュー"</string>
     <string name="ui_menu_hint">"ダブル タップすると、メニューが開きます"</string>
     <string name="ui_menu_close">"メニューを閉じる"</string>
@@ -411,8 +411,8 @@
     <string name="voice_engine" tools:ignore="MissingTranslation">テキスト読み上げエンジン</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">最寄りの交差点へ移動</string>
     <string name="last_entry_in_list" tools:ignore="MissingTranslation">" と %s"</string>
-    <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">地図を全画面表示にするにはダブルタップします</string>
-    <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">全画面表示を終了するにはダブルタップします</string>
+    <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">地図を全画面表示にする</string>
+    <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">全画面表示を終了する</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">ルートが既に開始地点にあるため無効です</string>
     <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">ルートが既に終了地点にあるため無効です</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">%1$s 付近、%2$s の近く</string>
@@ -511,7 +511,7 @@
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape は、革新的な音声ベースの技術の活用を通じて、人々が周囲の環境に対するより豊かな認識を築けるようにし、その結果、外出時の自信と自立を高めることを目指すアプリです。</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">オフライン地図データのダウンロードに失敗しました</string>
     <string name="settings_reset_button" tools:ignore="MissingTranslation">設定をデフォルトに戻す</string>
-    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">設定をデフォルトに戻してアプリを再起動するにはダブルタップします。</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">設定をデフォルトに戻してアプリを再起動する</string>
     <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">よろしいですか?</string>
     <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">設定をリセットするとアプリの設定がすべて削除されます。続行しますか?</string>
     <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">マーカーおよびルートの詳細設定</string>

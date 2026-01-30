@@ -25,31 +25,31 @@
     <string name="beacon_styles_mallet_very_slow">"Hammer (meget langsom)"</string>
     <string name="beacon_audio_beacon">"Lydfyr"</string>
     <string name="beacon_action_mute_beacon">"Slå lydfyr fra"</string>
-    <string name="beacon_action_mute_beacon_acc_hint">"Dobbelttryk for at slå lydfyret fra."</string>
+    <string name="beacon_action_mute_beacon_acc_hint">"slå lydfyret fra."</string>
     <string name="beacon_action_unmute_beacon">"Slå lydfyr til"</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">"Dobbelttryk for at slå lydfyret til."</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">"slå lydfyret til."</string>
     <string name="preview_title">Simuler placering</string>
     <string name="preview_go_title">"Gå"</string>
     <string name="preview_include_unnamed_roads_title">"Unavngivne veje"</string>
     <string name="location_detail_title_default">"Oplysninger om placering"</string>
     <string name="location_detail_action_beacon">"Start lydfyr"</string>
-    <string name="location_detail_action_beacon_hint">"Dobbelttryk for at indstille et lydfyr på denne placering"</string>
-    <string name="location_detail_action_save_hint">"Dobbelttryk for at gemme denne placering som et mærke"</string>
-    <string name="location_detail_action_edit_hint">"Dobbelttryk for at redigere mærket"</string>
-    <string name="location_detail_action_share_hint">"Dobbelttryk for at dele denne placering"</string>
-    <string name="location_detail_action_preview_hint">"Dobbelttryk for at starte eksempelvisningen af denne placering"</string>
-    <string name="location_detail_add_waypoint_existing_hint">"Dobbelttryk for at fjerne dette mærke fra ruten."</string>
-    <string name="location_detail_add_waypoint_new_hint">"Dobbelttryk for at føje dette mærke til ruten."</string>
+    <string name="location_detail_action_beacon_hint">"indstille et lydfyr på denne placering"</string>
+    <string name="location_detail_action_save_hint">"gemme denne placering som et mærke"</string>
+    <string name="location_detail_action_edit_hint">"redigere mærket"</string>
+    <string name="location_detail_action_share_hint">"at dele denne placering"</string>
+    <string name="location_detail_action_preview_hint">"starte eksempelvisningen af denne placering"</string>
+    <string name="location_detail_add_waypoint_existing_hint">"fjerne dette mærke fra ruten."</string>
+    <string name="location_detail_add_waypoint_new_hint">"føje dette mærke til ruten."</string>
     <string name="route_detail_action_start_route">"Start rute"</string>
     <string name="route_detail_action_stop_route">"Stop rute"</string>
     <string name="route_detail_action_edit">"Rediger rute"</string>
-    <string name="route_detail_action_start_route_hint">"Dobbelttryk for at starte denne rute"</string>
+    <string name="route_detail_action_start_route_hint">"starte denne rute"</string>
     <string name="route_detail_action_start_route_disabled_hint">"Tilføj vejpunkter, før ruten startes"</string>
-    <string name="route_detail_action_stop_route_hint">"Dobbelttryk for at stoppe denne rute"</string>
-    <string name="route_detail_action_share_hint">"Dobbelttryk for at dele denne rute"</string>
-    <string name="route_detail_action_edit_hint">"Dobbelttryk for at redigere denne rute"</string>
+    <string name="route_detail_action_stop_route_hint">"stoppe denne rute"</string>
+    <string name="route_detail_action_share_hint">"dele denne rute"</string>
+    <string name="route_detail_action_edit_hint">"redigere denne rute"</string>
     <string name="route_detail_action_create">"Ny Rute"</string>
-    <string name="route_detail_action_create_hint">"Dobbelttryk for at oprette en ny rute"</string>
+    <string name="route_detail_action_create_hint">"oprette en ny rute"</string>
     <string name="route_end_completed_accessibility">"Rute afsluttet! %s"</string>
     <string name="route_detail_action_previous">"Forrige waypoint"</string>
     <string name="route_detail_action_previous_hint">flytte lydfyret til det forrige vejpunkt</string>
@@ -88,9 +88,9 @@
     <string name="search_use_current_location">"Aktuel placering"</string>
     <string name="search_nearby_screen_title">"Steder i nærheden"</string>
     <string name="search_view_markers">Mærker og Ruter</string>
-    <string name="search_button_markers_accessibility_hint">"Dobbelttryk for at vælge eller redigere mærker, du har gemt"</string>
-    <string name="search_button_nearby_accessibility_hint">"Dobbelttryk for at udforske restauranter i nærheden, transitstop og meget mere"</string>
-    <string name="search_button_current_location_accessibility_hint">"Dobbelttryk for at få vist et eksempel, markere eller dele din aktuelle placering med en ven"</string>
+    <string name="search_button_markers_accessibility_hint">"vælge eller redigere mærker, du har gemt"</string>
+    <string name="search_button_nearby_accessibility_hint">"udforske restauranter i nærheden, transitstop og meget mere"</string>
+    <string name="search_button_current_location_accessibility_hint">"få vist et eksempel, markere eller dele din aktuelle placering med en ven"</string>
     <string name="filter_all">"Alle steder"</string>
     <string name="filter_transit">"Offentlig transport"</string>
     <string name="filter_food_drink">Mad og drikke</string>
@@ -107,7 +107,7 @@
     <string name="sleep_sleep">"Dvale"</string>
     <string name="sleep_sleeping">"I dvale"</string>
     <string name="sleep_sleeping_message">"Soundscape er i øjeblikket i dvale. Dette forhindrer Soundscape i at bruge lokalitetstjenester eller hente data. Dette sparer på batteriet, når du ikke bruger Soundscape. Tryk på knappen nedenfor for at aktivere Soundscape."</string>
-    <string name="sleep_sleep_acc_hint">"Dobbelttryk for at sætte Soundscape i dvale"</string>
+    <string name="sleep_sleep_acc_hint">"sætte Soundscape i dvale"</string>
     <string name="sleep_wake_up_now">"Aktivér nu"</string>
     <string name="intersection_approaching_intersection">"Nærmer sig kryds"</string>
     <string name="directions_at_poi">"Ved %s"</string>
@@ -170,15 +170,15 @@
     <string name="distance_format_feet">"%s fod"</string>
     <string name="distance_format_miles">"%s miles"</string>
     <string name="ui_action_button_my_location">"Min\nplacering"</string>
-    <string name="ui_action_button_my_location_acc_hint">"Dobbelttryk for at høre om din aktuelle placering"</string>
+    <string name="ui_action_button_my_location_acc_hint">"høre om din aktuelle placering"</string>
     <string name="ui_action_button_nearby_markers">"Mærker\ni nærheden"</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">"Dobbelttryk for at høre om steder i nærheden, som du har markeret"</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">"høre om steder i nærheden, som du har markeret"</string>
     <string name="ui_action_button_around_me">"Omkring\nmig"</string>
-    <string name="ui_action_button_around_me_acc_hint">"Dobbelttryk for at høre om steder i de fire kvadranter omkring dig"</string>
+    <string name="ui_action_button_around_me_acc_hint">"høre om steder i de fire kvadranter omkring dig"</string>
     <string name="ui_action_button_ahead_of_me">"Foran\nmig"</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">"Dobbelttryk for at høre om steder foran dig"</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">"høre om steder foran dig"</string>
     <string name="ui_menu">"Menu"</string>
-    <string name="ui_menu_hint">"Dobbelttryk for at åbne menuen"</string>
+    <string name="ui_menu_hint">"åbne menuen"</string>
     <string name="ui_menu_close">"Luk menuen"</string>
     <string name="ui_continue">"Fortsæt"</string>
     <string name="menu_manage_callouts">"Administrer lydbeskeder"</string>
@@ -1236,13 +1236,13 @@
     <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Lydtutorial</string>
     <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Annuller lydtutorial</string>
     <string name="search_bar_hint" tools:ignore="MissingTranslation">Skriv et destinationsnavn eller en adresse</string>
-    <string name="all_places_nearby_description" tools:ignore="MissingTranslation">Dobbelttryk for at se en ufiltreret liste over alle steder i nærheden</string>
-    <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">Dobbelttryk for at se en liste over offentlige transportmuligheder i nærheden</string>
-    <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">Dobbelttryk for at se en liste over restauranter og barer i nærheden</string>
-    <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">Dobbelttryk for at se en liste over dagligvarebutikker i nærheden</string>
-    <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">Dobbelttryk for at se en liste over banker og hæveautomater i nærheden</string>
-    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">Dobbelttryk for at se en liste over vejkryds i nærheden</string>
-    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">Dobbelttryk for at vælge fra en liste over steder i nærheden</string>
+    <string name="all_places_nearby_description" tools:ignore="MissingTranslation">se en ufiltreret liste over alle steder i nærheden</string>
+    <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">se en liste over offentlige transportmuligheder i nærheden</string>
+    <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">se en liste over restauranter og barer i nærheden</string>
+    <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">se en liste over dagligvarebutikker i nærheden</string>
+    <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">se en liste over banker og hæveautomater i nærheden</string>
+    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">se en liste over vejkryds i nærheden</string>
+    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">vælge fra en liste over steder i nærheden</string>
     <string name="accessibility_title" tools:ignore="MissingTranslation">Tilgængelighed</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Da du har en skærmlæser aktiveret, anbefaler vi, at du kører appen med brugergrænsefladens grafiske kort slået fra. Du kan ændre den indstilling her eller blot fortsætte.</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Da du ikke har en skærmlæser aktiveret, antager vi, at du ønsker, at brugergrænsefladens grafiske kort vises. Du kan ændre den indstilling her eller blot fortsætte.</string>
