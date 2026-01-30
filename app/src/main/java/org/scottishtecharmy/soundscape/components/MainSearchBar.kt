@@ -39,6 +39,7 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.SearchFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.screens.talkbackLive
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -83,10 +84,11 @@ fun MainSearchBar(
             )
             Spacer(Modifier.width(spacing.small))
             Text(
-                text = query.ifEmpty { hint },
+                text = query.ifEmpty { stringResource(R.string.settings_section_search) },
                 style = textStyle.copy(
                     color = if (query.isEmpty()) colors.onSurfaceVariant else colors.onSurface
-                )
+                ),
+                modifier = Modifier.talkbackDescription(hint)
             )
         }
     }
@@ -157,7 +159,7 @@ fun MainSearchBar(
                                     Box(Modifier.fillMaxWidth()) {
                                         if (query.isEmpty()) {
                                             Text(
-                                                text = hint,
+                                                text = stringResource(R.string.settings_section_search),
                                                 style = textStyle.copy(color = colors.onSurfaceVariant)
                                             )
                                         }
