@@ -28,7 +28,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">"Appuyez deux fois pour désactiver le son de la balise sonore."</string>
     <string name="beacon_action_unmute_beacon">"Réactiver le son de la balise"</string>
     <string name="beacon_action_unmute_beacon_acc_hint">"Appuyez deux fois pour réactiver le son de la balise sonore."</string>
-    <string name="preview_title">Street Preview</string>
+    <string name="preview_title">Simuler un emplacement</string>
     <string name="preview_go_title">"Atteindre"</string>
     <string name="preview_include_unnamed_roads_title">"Routes sans nom"</string>
     <string name="location_detail_title_default">"Détails de l’emplacement"</string>
@@ -446,7 +446,7 @@
     <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s est le choix %2$s de %3$s</string>
     <string name="settings_keep_value" tools:ignore="MissingTranslation">Conserver</string>
     <string name="settings_use_value" tools:ignore="MissingTranslation">valeur d\'usage</string>
-    <string name="street_preview_exit" tools:ignore="MissingTranslation">Quitter Street Preview</string>
+    <string name="street_preview_exit" tools:ignore="MissingTranslation">Quitter la simulation d’emplacement</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Activer l \' enregistrement des voyages</string>
     <string name="settings_accessible_map" tools:ignore="MissingTranslation">Activer le style de carte accessible</string>
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">Paramètres de débogage</string>
@@ -1235,4 +1235,15 @@
     <string name="tour_cancel" tools:ignore="MissingTranslation">Le didacticiel audio a été annulé. Si vous le souhaitez, vous pouvez le relancer depuis le menu principal.</string>
     <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Didacticiel audio</string>
     <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Annuler le didacticiel audio</string>
+    <string name="search_bar_hint" tools:ignore="MissingTranslation">Saisissez le nom d’une destination ou une adresse</string>
+    <string name="all_places_nearby_description" tools:ignore="MissingTranslation">voir la liste complète de tous les emplacements à proximité</string>
+    <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">voir la liste des arrêts de transport en commun à proximité</string>
+    <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">voir la liste des restaurants et bars à proximité</string>
+    <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">voir la liste des épiceries à proximité</string>
+    <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">voir la liste des banques à proximité</string>
+    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">voir la liste des intersections routières à proximité</string>
+    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">pour choisir parmi une liste d’emplacements à proximité</string>
+    <string name="accessibility_title" tools:ignore="MissingTranslation">Accessibilité</string>
+    <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Comme vous avez un lecteur d’écran activé, nous vous recommandons d’utiliser l’application avec les cartes graphiques de l’interface utilisateur désactivées. Vous pouvez modifier ce réglage ici, ou simplement continuer.</string>
+    <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Comme vous n’avez pas de lecteur d’écran activé, nous supposons que vous souhaitez que les cartes graphiques de l’interface utilisateur soient affichées. Vous pouvez modifier ce réglage ici, ou simplement continuer.</string>
 </resources>
