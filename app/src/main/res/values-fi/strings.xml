@@ -28,7 +28,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">"Kaksoisnapauta hiljentääksesi äänimajakan."</string>
     <string name="beacon_action_unmute_beacon">"Poista majakan hiljennys"</string>
     <string name="beacon_action_unmute_beacon_acc_hint">"Kaksoisnapauta poistaaksesi äänimajakan hiljennyksen."</string>
-    <string name="preview_title">Katunäkymän esikatselu</string>
+    <string name="preview_title">Sijainnin esikatselu</string>
     <string name="preview_go_title">"Lähde"</string>
     <string name="preview_include_unnamed_roads_title">"Nimettömät tiet"</string>
     <string name="location_detail_title_default">"Sijainnin tiedot"</string>
@@ -465,7 +465,7 @@
     <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s on valinta %2$s (yhteensä %3$s)</string>
     <string name="settings_keep_value" tools:ignore="MissingTranslation">Pidä</string>
     <string name="settings_use_value" tools:ignore="MissingTranslation">Käytä</string>
-    <string name="street_preview_exit" tools:ignore="MissingTranslation">Poistu katu-esikatselusta</string>
+    <string name="street_preview_exit" tools:ignore="MissingTranslation">Poistu sijainnin esikatselusta</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Ota matkojen tallennus käyttöön</string>
     <string name="settings_accessible_map" tools:ignore="MissingTranslation">Ota saavutettava karttatyyli käyttöön</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">Näytä kartta näytöllä</string>
@@ -1235,4 +1235,15 @@
     <string name="tour_cancel" tools:ignore="MissingTranslation">Äänitutoriaali on peruutettu. Halutessasi voit suorittaa sen uudelleen päävalikosta.</string>
     <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Äänitutoriaali</string>
     <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Peruuta äänitutoriaali</string>
+    <string name="search_bar_hint" tools:ignore="MissingTranslation">Kirjoita määränpään nimi tai osoite</string>
+    <string name="all_places_nearby_description" tools:ignore="MissingTranslation">Kaksoisnapauta nähdäksesi kaikki lähellä olevat paikat suodattamattomana luettelona</string>
+    <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">Kaksoisnapauta nähdäksesi lähellä olevat julkisen liikenteen pysäkit</string>
+    <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">Kaksoisnapauta nähdäksesi lähellä olevat ravintolat ja baarit</string>
+    <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">Kaksoisnapauta nähdäksesi lähellä olevat ruokakaupat</string>
+    <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">Kaksoisnapauta nähdäksesi lähellä olevat pankit ja pankkiautomaatit</string>
+    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">Kaksoisnapauta nähdäksesi lähellä olevat risteykset</string>
+    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">valitaksesi lähellä olevista paikoista</string>
+    <string name="accessibility_title" tools:ignore="MissingTranslation">Saavutettavuus</string>
+    <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Koska sinulla on ruudunlukija käytössä, suosittelemme, että käytät sovellusta ilman käyttöliittymän graafisia karttoja. Voit muuttaa tätä asetusta täällä tai jatkaa eteenpäin.</string>
+    <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Koska sinulla ei ole ruudunlukijaa käytössä, oletamme, että haluat käyttöliittymän graafisten karttojen näkyvän. Voit muuttaa tätä asetusta täällä tai jatkaa eteenpäin.</string>
 </resources>
