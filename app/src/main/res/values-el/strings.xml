@@ -28,7 +28,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">"Πατήστε δύο φορές για σίγαση του ηχητικού σήματος."</string>
     <string name="beacon_action_unmute_beacon">"Κατάργηση σίγασης ηχητικού σήματος"</string>
     <string name="beacon_action_unmute_beacon_acc_hint">"Πατήστε δύο φορές για να καταργήσετε τη σίγαση του ηχητικού σήματος."</string>
-    <string name="preview_title">Προεπισκόπηση δρόμου</string>
+    <string name="preview_title">Προσομοίωση τοποθεσίας</string>
     <string name="preview_go_title">"Μετάβαση"</string>
     <string name="preview_include_unnamed_roads_title">"Μη κατονομαζόμενες οδικές αρτηρίες"</string>
     <string name="location_detail_title_default">"Λεπτομέρειες τοποθεσίας"</string>
@@ -465,7 +465,7 @@
     <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s είναι η επιλογή %2$s από τις %3$s</string>
     <string name="settings_keep_value" tools:ignore="MissingTranslation">Διατήρηση</string>
     <string name="settings_use_value" tools:ignore="MissingTranslation">Χρήση</string>
-    <string name="street_preview_exit" tools:ignore="MissingTranslation">Έξοδος από την προεπισκόπηση δρόμου</string>
+    <string name="street_preview_exit" tools:ignore="MissingTranslation">Έξοδος από την προσομοίωση τοποθεσίας</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Ενεργοποίηση καταγραφής διαδρομών</string>
     <string name="settings_accessible_map" tools:ignore="MissingTranslation">Ενεργοποίηση προσβάσιμης εμφάνισης χάρτη</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">Εμφάνιση χαρτών στην οθόνη</string>
@@ -1235,4 +1235,15 @@
     <string name="tour_cancel" tools:ignore="MissingTranslation">Ο ηχητικός οδηγός ακυρώθηκε. Εάν θέλετε, μπορείτε να τον τρέξετε ξανά από το κύριο μενού.</string>
     <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Ηχητικός οδηγός</string>
     <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Ακύρωση ηχητικού οδηγού</string>
+    <string name="search_bar_hint" tools:ignore="MissingTranslation">Πληκτρολογήστε το όνομα ή τη διεύθυνση του προορισμού</string>
+    <string name="all_places_nearby_description" tools:ignore="MissingTranslation">δείτε μια μη φιλτραρισμένη λίστα με όλες τις κοντινές τοποθεσίες</string>
+    <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">δείτε μια λίστα με κοντινές στάσεις συγκοινωνίας</string>
+    <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">δείτε μια λίστα με κοντινά εστιατόρια και μπαρ</string>
+    <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">δείτε μια λίστα με κοντινά σούπερ μάρκετ</string>
+    <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">δείτε μια λίστα με κοντινές τράπεζες</string>
+    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">δείτε μια λίστα με κοντινές διασταυρώσεις δρόμων</string>
+    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">να επιλέξετε από μια λίστα με κοντινές τοποθεσίες</string>
+    <string name="accessibility_title" tools:ignore="MissingTranslation">Προσβασιμότητα</string>
+    <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Επειδή έχετε ενεργοποιήσει έναν αναγνώστη οθόνης, προτείνουμε να χρησιμοποιείτε την εφαρμογή με τους γραφικούς χάρτες της διεπαφής απενεργοποιημένους. Μπορείτε να αλλάξετε αυτή τη ρύθμιση εδώ ή να συνεχίσετε.</string>
+    <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Επειδή δεν έχετε ενεργοποιημένο αναγνώστη οθόνης, υποθέτουμε ότι θέλετε να εμφανίζονται οι γραφικοί χάρτες στη διεπαφή χρήστη. Μπορείτε να αλλάξετε αυτή τη ρύθμιση εδώ ή να συνεχίσετε.</string>
 </resources>
