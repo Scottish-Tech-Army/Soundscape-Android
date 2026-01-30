@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.CollectionItemInfo
 import androidx.compose.ui.semantics.collectionItemInfo
@@ -101,6 +102,9 @@ fun MainSearchBar(
             },
             properties = PopupProperties(focusable = true)
         ) {
+            // Get keyboard controller inside Popup since it has its own window
+            val keyboardController = LocalSoftwareKeyboardController.current
+
             // Request focus on the text field when the search overlay opens
             LaunchedEffect(expanded) {
                 if (expanded) {
@@ -149,6 +153,7 @@ fun MainSearchBar(
                                         val trimmed = query.trim()
                                         if (trimmed.isNotEmpty()) {
                                             searchLocation.value = userLocation
+                                            keyboardController?.hide()
                                             searchFunctions.onTriggerSearch(trimmed)
                                         }
                                     }
