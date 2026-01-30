@@ -24,6 +24,8 @@
 <string name="settings_units_metric" tools:ignore="MissingTranslation">"Metric (Meters)"</string>
 <!-- In the Settings page the title of the section for selecting which search system to use -->
 <string name="settings_section_search" tools:ignore="MissingTranslation">"Search"</string>
+<!-- A hint for the search bar explaining what it's for -->
+<string name="search_bar_hint" tools:ignore="MissingTranslation">"Type a destination name or address"</string>
 <!-- The option for setting the search to use the online search engines -->
 <string name="settings_search_online" tools:ignore="MissingTranslation">"Online"</string>
 <!-- The option for setting the search to use the offline search engine -->
