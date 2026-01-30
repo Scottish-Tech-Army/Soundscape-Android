@@ -43,7 +43,7 @@ fun ComposeTestRule.dumpLayoutTree(): String {
     return sb.toString()
 }
 
-private val regexForAnonymousLambdaNames = Regex("\\$[0-9]+")
+private val regexForAnonymousLambdaNames = Regex("(\\$[0-9]+)+")
 private val regexForObjectIds = Regex("@[0-9a-f]+")
 private val regexForLambdas = Regex("ExternalSyntheticLambda[^@]+@")
 
@@ -65,6 +65,8 @@ private fun SemanticsNode.layoutInfo(): String {
             // Lambdas appear as semantics properties, but the exact name could change under
             // maintenance.
             .replace(regexForLambdas, "ExternalSyntheticLambdaX@")
+            // Ignore the fact that we're switching to a new help screen class name.
+            .replace("MarkdownHelpScreen", "HelpScreen")
     }
     return "(bounds=${bounds.toShortString()}, modifiers=[$modifiers])"
 }
