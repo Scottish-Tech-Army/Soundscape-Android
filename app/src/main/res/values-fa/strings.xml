@@ -67,7 +67,7 @@
     <!-- Talkback hint for the mute button which sets the volume on the audio beacon to 100%. -->
 <string name="beacon_action_unmute_beacon_acc_hint">صدای جهت‌نمای صوتی را متصل کنید.</string>
     <!-- Street Preview is functionality that allows the user to select any location in the world to preview the area at street level in order to familiarise and build a mental map of the space. -->
-<string name="preview_title">آشنایی با محل</string>
+<string name="preview_title">شبیه‌سازی موقعیت مکانی</string>
     <!-- Text for button to go to the next intersection -->
 <string name="preview_go_title">حرکت</string>
     <!-- Initial street preview state for Go button which is indicating that pressing the button will take the user to the nearest intersection -->
@@ -915,7 +915,7 @@
 <string name="settings_keep_value" tools:ignore="MissingTranslation">این گزینه را نگه دارید</string>
     <string name="settings_use_value" tools:ignore="MissingTranslation">از این گزینه استفاده کنید</string>
     <!-- Button text for exiting Street Preview mode -->
-<string name="street_preview_exit" tools:ignore="MissingTranslation">خروج از حالت آشنایی با محل</string>
+<string name="street_preview_exit" tools:ignore="MissingTranslation">خروج از شبیه‌سازی موقعیت مکانی</string>
     <!-- Settings option for enabling recording of travel locations -->
 <string name="settings_travel_recording" tools:ignore="MissingTranslation">فعال‌سازی ضبط سفر</string>
     <!-- Settings option for enabling a map styling which has improved accessibility -->
@@ -1706,4 +1706,15 @@
     <string name="tour_cancel" tools:ignore="MissingTranslation">آموزش صوتی لغو شد. در صورت تمایل می‌توانید آن را دوباره از منوی اصلی اجرا کنید.</string>
     <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">آموزش صوتی</string>
     <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">لغو آموزش صوتی</string>
+    <string name="search_bar_hint" tools:ignore="MissingTranslation">نام مقصد یا آدرس را تایپ کنید</string>
+    <string name="all_places_nearby_description" tools:ignore="MissingTranslation">فهرستی کامل و بدون فیلتر از همه‌ی مکان‌های نزدیک را ببینید</string>
+    <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">فهرستی از ایستگاه‌های حمل‌و‌نقل عمومی نزدیک را ببینید</string>
+    <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">فهرستی از رستوران‌ها و بارهای نزدیک را ببینید</string>
+    <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">فهرستی از بقالی‌ها و سوپرمارکت‌های نزدیک را ببینید</string>
+    <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">فهرستی از بانک‌ها و دستگاه‌های خودپرداز نزدیک را ببینید</string>
+    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">فهرستی از تقاطع‌های نزدیک را ببینید</string>
+    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">برای انتخاب از فهرست مکان‌های نزدیک</string>
+    <string name="accessibility_title" tools:ignore="MissingTranslation">دسترسی‌پذیری</string>
+    <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">از آنجا که یک خوانندهٔ صفحه فعال دارید، پیشنهاد می‌کنیم اپ را با خاموش بودن نقشه‌های گرافیکی رابط کاربری اجرا کنید. می‌توانید این تنظیم را در اینجا تغییر دهید یا به‌سادگی ادامه دهید.</string>
+    <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">از آنجا که خوانندهٔ صفحه فعال ندارید، فرض می‌کنیم می‌خواهید نقشه‌های گرافیکی در رابط کاربری نمایش داده شوند. می‌توانید این تنظیم را در اینجا تغییر دهید یا به‌سادگی ادامه دهید.</string>
 </resources>
