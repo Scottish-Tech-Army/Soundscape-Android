@@ -54,6 +54,7 @@ retrofit = "3.0.0"
 review = "2.0.2"
 reviewKtx = "2.0.2"
 media3 = "1.8.0"
+robolectric = "4.14.1"
 roomCompiler = "2.7.2"
 roomRuntime = "2.7.2"
 rtree2 = "0.9.3"
@@ -124,6 +125,7 @@ play-services-location = { module = "com.google.android.gms:play-services-locati
 protobuf-kotlin-lite = { module = "com.google.protobuf:protobuf-kotlin-lite", version.ref = "protobufKotlinLite" }
 pmtilesreader = { module = "ch.poole.geo.pmtiles-reader:Reader", version.ref = "pmtilesreader" }
 reorderable = { module = "sh.calvin.reorderable:reorderable", version.ref = "reorderable" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 review = { module = "com.google.android.play:review", version.ref = "review" }
 review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "reviewKtx" }

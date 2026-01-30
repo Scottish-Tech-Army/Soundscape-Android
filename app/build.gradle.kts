@@ -115,6 +115,16 @@ android {
         }
     }
 
+    sourceSets {
+        getByName("test") {
+            java.srcDirs("src/test/java", "src/sharedTest/java")
+        }
+        getByName("androidTest") {
+            java.srcDirs("src/androidTest/java", "src/sharedTest/java")
+            assets.srcDirs("src/androidTest/assets")
+        }
+    }
+
     buildTypes {
 
 // For debugging proguard uncomment the following:
@@ -137,6 +147,12 @@ android {
             )
         }
     }
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_19
         targetCompatibility = JavaVersion.VERSION_19
@@ -215,6 +231,8 @@ dependencies {
 
 
     testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.ui.test.junit4)
     testImplementation(libs.androidx.core.testing)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation (libs.kotlin.test.junit)

@@ -85,11 +85,17 @@ private sealed class AssertResult {
  * - If missing, writes a temporary new file to context.filesDir
  * - If mismatched, prints a diff
  */
-fun ComposeTestRule.assertLayoutMatchesHybridBaseline(filenameBase: String, structureLog: String) {
-    val results = listOf(
-        assertHybridBaseline("${filenameBase}.txt", dumpLayoutTree(), "Layout"),
-        assertHybridBaseline("${filenameBase}.structure.txt", structureLog, "Structure")
-    )
+fun ComposeTestRule.assertLayoutMatchesHybridBaseline(
+    filenameBase: String,
+    structureLog: String,
+    includeLayout: Boolean = true
+) {
+    val results = mutableListOf<AssertResult>()
+    if (includeLayout) {
+        results.add(assertHybridBaseline("${filenameBase}.txt", dumpLayoutTree(), "Layout"))
+    }
+    results.add(assertHybridBaseline("${filenameBase}.structure.txt", structureLog, "Structure"))
+
     val failedResults = results.filterIsInstance<AssertResult.Failed>()
     if (failedResults.isNotEmpty()) {
         fail(failedResults.joinToString("\n") { it.message })
