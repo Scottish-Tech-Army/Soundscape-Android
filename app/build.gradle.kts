@@ -25,6 +25,11 @@ android {
 
     buildFeatures {
         buildConfig = true
+        compose = true
+    }
+
+    testFixtures {
+        enable = true
     }
 
     bundle {
@@ -117,10 +122,10 @@ android {
 
     sourceSets {
         getByName("test") {
-            java.srcDirs("src/test/java", "src/sharedTest/java")
+            java.srcDirs("src/test/java")
         }
         getByName("androidTest") {
-            java.srcDirs("src/androidTest/java", "src/sharedTest/java")
+            java.srcDirs("src/androidTest/java")
             assets.srcDirs("src/androidTest/assets")
         }
     }
@@ -234,6 +239,7 @@ dependencies {
     testImplementation(libs.robolectric)
     testImplementation(libs.ui.test.junit4)
     testImplementation(libs.androidx.core.testing)
+    testImplementation(testFixtures(project(":app")))
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation (libs.kotlin.test.junit)
     testImplementation(libs.junit.jupiter)
@@ -242,6 +248,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core.v351)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
+    androidTestImplementation(testFixtures(project(":app")))
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
@@ -346,6 +353,14 @@ dependencies {
 
     // PMTiles reading libraries
     implementation(libs.pmtilesreader)
+
+    testFixturesImplementation(libs.ui.test.junit4)
+    testFixturesImplementation(libs.androidx.media3.common)
+    testFixturesImplementation(libs.androidx.junit.v121)
+    testFixturesImplementation(libs.ui)
+    testFixturesImplementation(libs.material3)
+    testFixturesImplementation(libs.androidx.navigation.compose)
+    testFixturesImplementation(libs.junit)
 }
 
 fun adbPath(): String {
