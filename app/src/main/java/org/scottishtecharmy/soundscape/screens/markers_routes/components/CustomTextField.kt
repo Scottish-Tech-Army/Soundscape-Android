@@ -52,7 +52,8 @@ fun CustomTextField(
         label = {
             Text(
                 modifier = Modifier
-                    .padding(top = spacing.small, bottom = spacing.small),
+                    .padding(top = spacing.small, bottom = spacing.small)
+                    .talkbackDescription(fieldHint),
                 text = fieldName,
                 style = MaterialTheme.typography.bodyMedium,
             )
