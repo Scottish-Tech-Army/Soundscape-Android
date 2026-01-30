@@ -28,7 +28,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">"Pulse dos veces para silenciar la señal de audio."</string>
     <string name="beacon_action_unmute_beacon">"Reactivar señal"</string>
     <string name="beacon_action_unmute_beacon_acc_hint">"Pulse dos veces para reactivar la señal de audio."</string>
-    <string name="preview_title">Street Preview</string>
+    <string name="preview_title">Simular ubicación</string>
     <string name="preview_go_title">"Ir"</string>
     <string name="preview_include_unnamed_roads_title">"Carreteras sin nombre"</string>
     <string name="location_detail_title_default">"Detalles de la ubicación"</string>
@@ -446,7 +446,7 @@
     <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s es la elección %2$s de %3$s</string>
     <string name="settings_keep_value" tools:ignore="MissingTranslation">mantener</string>
     <string name="settings_use_value" tools:ignore="MissingTranslation">uso</string>
-    <string name="street_preview_exit" tools:ignore="MissingTranslation">Salir Street Preview</string>
+    <string name="street_preview_exit" tools:ignore="MissingTranslation">Salir de la simulación de ubicación</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Habilitar grabación de viaje</string>
     <string name="settings_accessible_map" tools:ignore="MissingTranslation">Habilitar estilo de mapa accesible</string>
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">Ajustes de depuración</string>
@@ -1235,4 +1235,15 @@
     <string name="tour_cancel" tools:ignore="MissingTranslation">El tutorial de audio ha sido cancelado. Si lo desea, puede volver a ejecutarlo desde el menú principal.</string>
     <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Tutorial de audio</string>
     <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Cancelar tutorial de audio</string>
+    <string name="search_bar_hint" tools:ignore="MissingTranslation">Escriba el nombre de un destino o una dirección</string>
+    <string name="all_places_nearby_description" tools:ignore="MissingTranslation">Ver una lista sin filtrar de todos los lugares cercanos</string>
+    <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">Ver una lista de paradas de transporte público cercanas</string>
+    <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">Ver una lista de restaurantes y bares cercanos</string>
+    <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">Ver una lista de tiendas de comestibles cercanas</string>
+    <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">Ver una lista de bancos cercanos</string>
+    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">Ver una lista de intersecciones de carreteras cercanas</string>
+    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">Para elegir entre una lista de lugares cercanos</string>
+    <string name="accessibility_title" tools:ignore="MissingTranslation">Accesibilidad</string>
+    <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Dado que tiene un lector de pantalla activado, recomendamos ejecutar la aplicación con los mapas gráficos de la interfaz de usuario desactivados. Puede cambiar esa configuración aquí o simplemente continuar.</string>
+    <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Dado que no tiene un lector de pantalla activado, asumimos que desea que se muestren los mapas gráficos en la interfaz de usuario. Puede cambiar esa configuración aquí o simplemente continuar.</string>
 </resources>
