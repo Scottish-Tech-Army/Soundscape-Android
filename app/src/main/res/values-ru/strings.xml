@@ -209,7 +209,7 @@
     <string name="settings_use_value" tools:ignore="MissingTranslation">использовать</string>
     <string name="confect_name_pavement" tools:ignore="MissingTranslation">Тротуар</string>
     <string name="confect_name_dead_end" tools:ignore="MissingTranslation">тупик</string>
-    <string name="preview_title">Предварительный просмотр улицы</string>
+    <string name="preview_title">Симуляция местоположения</string>
     <string name="last_entry_in_list" tools:ignore="MissingTranslation">" и %s"</string>
     <string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation">С</string>
     <string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation">СВ</string>
@@ -312,7 +312,7 @@
     <string name="settings_theme_auto" tools:ignore="MissingTranslation">Авто</string>
     <string name="settings_theme_is_light" tools:ignore="MissingTranslation">Использовать светлую тему</string>
     <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s это выбор %2$s из %3$s</string>
-    <string name="street_preview_exit" tools:ignore="MissingTranslation">Выйти из просмотра улицы</string>
+    <string name="street_preview_exit" tools:ignore="MissingTranslation">Выйти из режима симуляции местоположения</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Включить запись поездки</string>
     <string name="settings_accessible_map" tools:ignore="MissingTranslation">Включить доступный стиль карты</string>
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">Настройки отладки</string>
@@ -1235,4 +1235,15 @@
     <string name="tour_cancel" tools:ignore="MissingTranslation">Аудиоурок отменён. При желании вы можете запустить его снова через главное меню.</string>
     <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Аудиоурок</string>
     <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Отменить аудиоурок</string>
+    <string name="search_bar_hint" tools:ignore="MissingTranslation">Введите название пункта назначения или адрес</string>
+    <string name="all_places_nearby_description" tools:ignore="MissingTranslation">посмотреть нефильтрованный список всех ближайших мест</string>
+    <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">посмотреть список ближайших остановок общественного транспорта</string>
+    <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">посмотреть список ближайших ресторанов и баров</string>
+    <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">посмотреть список ближайших продуктовых магазинов</string>
+    <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">посмотреть список ближайших банков</string>
+    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">посмотреть список ближайших перекрёстков</string>
+    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">чтобы выбрать из списка ближайших мест</string>
+    <string name="accessibility_title" tools:ignore="MissingTranslation">Доступность</string>
+    <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Поскольку у вас включена программа чтения с экрана, мы рекомендуем запускать приложение с отключёнными графическими картами интерфейса. Вы можете изменить этот параметр здесь или просто продолжить.</string>
+    <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Поскольку у вас не включена программа чтения с экрана, мы предполагаем, что вы хотите отображать графические карты в интерфейсе. Вы можете изменить этот параметр здесь или просто продолжить.</string>
 </resources>
