@@ -6,12 +6,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.AttachMoney
-import androidx.compose.material.icons.rounded.ControlCamera
-import androidx.compose.material.icons.rounded.DirectionsBus
-import androidx.compose.material.icons.rounded.Fastfood
-import androidx.compose.material.icons.rounded.ForkLeft
-import androidx.compose.material.icons.rounded.LocalGroceryStore
 import androidx.compose.material.icons.rounded.LocationSearching
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
@@ -35,6 +29,8 @@ import org.scottishtecharmy.soundscape.components.FolderItem
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.Folder
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.filterLocations
+import org.scottishtecharmy.soundscape.screens.home.placesnearby.placesNearbyFolders
+import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.utils.process
 
 @Composable
@@ -74,16 +70,9 @@ fun AddWaypointsList(
 
     // Add PlacesNearby entries
     val levelZeroFolders = listOf(
-        Folder(stringResource(R.string.search_nearby_screen_title), Icons.Rounded.LocationSearching, ""),
+        Folder(R.string.search_nearby_screen_title, Icons.Rounded.LocationSearching, "", R.string.places_nearby_selection_description),
     )
-    val levelOneFolders = listOf(
-        Folder(stringResource(R.string.filter_all), Icons.Rounded.ControlCamera, ""),
-        Folder(stringResource(R.string.filter_transit), Icons.Rounded.DirectionsBus, "transit"),
-        Folder(stringResource(R.string.filter_food_drink), Icons.Rounded.Fastfood, "food_and_drink"),
-        Folder(stringResource(R.string.filter_groceries), Icons.Rounded.LocalGroceryStore, "groceries"),
-        Folder(stringResource(R.string.filter_banks), Icons.Rounded.AttachMoney, "banks"),
-        Folder(stringResource(R.string.osm_intersection), Icons.Rounded.ForkLeft, "intersections"),
-    )
+    val levelOneFolders = placesNearbyFolders
     val context = LocalContext.current
     val nearbyLocations = remember(placesNearbyUiState) {
         filterLocations(placesNearbyUiState, context)
@@ -106,12 +95,15 @@ fun AddWaypointsList(
                         color = MaterialTheme.colorScheme.outlineVariant
                     )
                 }
+                val name = stringResource(folderItem.nameResource)
                 FolderItem(
-                    name = folderItem.name,
+                    name = name,
                     icon = folderItem.icon,
                     onClick = {
-                        onClickFolder(folderItem.filter, folderItem.name)
-                    }
+                        onClickFolder(folderItem.filter, name)
+                    },
+                    modifier = Modifier
+                        .talkbackHint(stringResource(folderItem.talkbackDescriptionResource))
                 )
             }
         } else {

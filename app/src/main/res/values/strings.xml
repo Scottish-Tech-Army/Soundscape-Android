@@ -222,6 +222,20 @@
 <string name="search_button_current_location_accessibility_hint">"preview, mark, or share your current location with a friend"</string>
 <!-- Places nearby that shows all of the places -->
 <string name="filter_all">"All Places"</string>
+<!-- Talkback hint text. Talkback reads this as "Double tap to " followed by the string.-->
+<string name="all_places_nearby_description" tools:ignore="MissingTranslation">"see an unfiltered list of all of the nearby places"</string>
+<!-- Talkback hint text for nearby public transit. Talkback reads this as "Double tap to " followed by the string.-->
+<string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">"see a list of nearby public transit"</string>
+<!-- Talkback hint text for nearby restaurants and bars. Talkback reads this as "Double tap to " followed by the string.-->
+<string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">"see a list of nearby restaurants and bars"</string>
+<!-- Talkback hint text for nearby grocery stores. Talkback reads this as "Double tap to " followed by the string.-->
+<string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">"see a list of nearby grocery stores"</string>
+<!-- Talkback hint text for nearby banks and ATMs. Talkback reads this as "Double tap to " followed by the string.-->
+<string name="banks_places_nearby_description" tools:ignore="MissingTranslation">"see a list of nearby banks"</string>
+<!-- Talkback hint text for nearby road intersections. Talkback reads this as "Double tap to " followed by the string.-->
+<string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">"see a list of nearby road intersections"</string>
+<!-- A description of a button that opens the places nearby selection list -->
+<string name="places_nearby_selection_description" tools:ignore="MissingTranslation">"to choose from a list of places nearby"</string>
 <!-- Places nearby filter that shows public transport relates places e.g. bus stops and railway stations -->
 <string name="filter_transit">"Public Transit"</string>
 <!-- Places nearby filter that shows food and drink relates places e.g. restaurants and cafes -->
