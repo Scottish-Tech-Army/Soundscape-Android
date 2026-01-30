@@ -32,7 +32,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">كتم منارة الصوت.</string>
     <string name="beacon_action_unmute_beacon">الغاء كتم صوت المناره</string>
     <string name="beacon_action_unmute_beacon_acc_hint">إلغاء كتم منارة الصوت.</string>
-    <string name="preview_title">وضع عرض الشارع Soundscape</string>
+    <string name="preview_title">محاكاة الموقع</string>
     <string name="preview_go_title">اذهب</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">اذهب إلى أقرب تقاطع</string>
     <string name="last_entry_in_list" tools:ignore="MissingTranslation">" و %s"</string>
@@ -458,7 +458,7 @@
     <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s \nهو \n%2$s \nالمحدد من \n%3$s</string>
     <string name="settings_keep_value" tools:ignore="MissingTranslation">يحفظ</string>
     <string name="settings_use_value" tools:ignore="MissingTranslation">يستخدم</string>
-    <string name="street_preview_exit" tools:ignore="MissingTranslation">انهاء معاينة الشارع</string>
+    <string name="street_preview_exit" tools:ignore="MissingTranslation">الخروج من محاكاة الموقع</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">تمكين تسجيل السفر</string>
     <string name="settings_accessible_map" tools:ignore="MissingTranslation">تفعيل الخرائط القابله للوصول</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">عرض الخرائط على الشاشة</string>
@@ -1235,4 +1235,15 @@
     <string name="tour_cancel" tools:ignore="MissingTranslation">تم إلغاء الدرس التعليمي الصوتي. إذا رغبت، يمكنك تشغيله مرة أخرى من القائمة الرئيسية.</string>
     <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">البرنامج التعليمي الصوتي</string>
     <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">إلغاء البرنامج التعليمي الصوتي</string>
+    <string name="search_bar_hint" tools:ignore="MissingTranslation">اكتب اسم الوجهة أو العنوان</string>
+    <string name="all_places_nearby_description" tools:ignore="MissingTranslation">عرض قائمة بكل الأماكن القريبة</string>
+    <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">عرض قائمة بمحطات ووسائل النقل العام القريبة</string>
+    <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">عرض قائمة بالمطاعم والحانات القريبة</string>
+    <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">عرض قائمة بمحلات البقالة القريبة</string>
+    <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">عرض قائمة بالبنوك وماكينات الصرافة القريبة</string>
+    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">عرض قائمة بتقاطعات الطرق القريبة</string>
+    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">لاختيار مكان من قائمة الأماكن القريبة</string>
+    <string name="accessibility_title" tools:ignore="MissingTranslation">إمكانية الوصول</string>
+    <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">نظرًا لتفعيل قارئ الشاشة لديك، نوصي بتشغيل التطبيق مع إيقاف عرض الخرائط الرسومية في واجهة المستخدم. يمكنك تغيير هذا الإعداد هنا، أو المتابعة كما هي.</string>
+    <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">نظرًا لعدم تفعيل قارئ شاشة لديك، نفترض أنك تفضّل عرض الخرائط الرسومية في واجهة المستخدم. يمكنك تغيير هذا الإعداد هنا، أو المتابعة كما هي.</string>
 </resources>
