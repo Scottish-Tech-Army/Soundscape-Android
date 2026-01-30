@@ -28,7 +28,7 @@
     <string name="beacon_action_mute_beacon_acc_hint">"Dobbelttryk for at slå lydfyret fra."</string>
     <string name="beacon_action_unmute_beacon">"Slå lydfyr til"</string>
     <string name="beacon_action_unmute_beacon_acc_hint">"Dobbelttryk for at slå lydfyret til."</string>
-    <string name="preview_title">Gadeeksempelvisning</string>
+    <string name="preview_title">Simuler placering</string>
     <string name="preview_go_title">"Gå"</string>
     <string name="preview_include_unnamed_roads_title">"Unavngivne veje"</string>
     <string name="location_detail_title_default">"Oplysninger om placering"</string>
@@ -465,7 +465,7 @@
     <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s er valg %2$s ud af %3$s</string>
     <string name="settings_keep_value" tools:ignore="MissingTranslation">behold</string>
     <string name="settings_use_value" tools:ignore="MissingTranslation">brug</string>
-    <string name="street_preview_exit" tools:ignore="MissingTranslation">Afslut gadeeksempelvisning</string>
+    <string name="street_preview_exit" tools:ignore="MissingTranslation">Afslut lokalitetssimulering</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Aktivér optagelse af rejser</string>
     <string name="settings_accessible_map" tools:ignore="MissingTranslation">Aktivér kortvisning med forbedret tilgængelighed</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">Vis kort på skærmen</string>
@@ -1235,4 +1235,15 @@
     <string name="tour_cancel" tools:ignore="MissingTranslation">Lydtutorialen er blevet annulleret. Hvis du ønsker det, kan du køre den igen fra hovedmenuen.</string>
     <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Lydtutorial</string>
     <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Annuller lydtutorial</string>
+    <string name="search_bar_hint" tools:ignore="MissingTranslation">Skriv et destinationsnavn eller en adresse</string>
+    <string name="all_places_nearby_description" tools:ignore="MissingTranslation">Dobbelttryk for at se en ufiltreret liste over alle steder i nærheden</string>
+    <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">Dobbelttryk for at se en liste over offentlige transportmuligheder i nærheden</string>
+    <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">Dobbelttryk for at se en liste over restauranter og barer i nærheden</string>
+    <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">Dobbelttryk for at se en liste over dagligvarebutikker i nærheden</string>
+    <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">Dobbelttryk for at se en liste over banker og hæveautomater i nærheden</string>
+    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">Dobbelttryk for at se en liste over vejkryds i nærheden</string>
+    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">Dobbelttryk for at vælge fra en liste over steder i nærheden</string>
+    <string name="accessibility_title" tools:ignore="MissingTranslation">Tilgængelighed</string>
+    <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Da du har en skærmlæser aktiveret, anbefaler vi, at du kører appen med brugergrænsefladens grafiske kort slået fra. Du kan ændre den indstilling her eller blot fortsætte.</string>
+    <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Da du ikke har en skærmlæser aktiveret, antager vi, at du ønsker, at brugergrænsefladens grafiske kort vises. Du kan ændre den indstilling her eller blot fortsætte.</string>
 </resources>
