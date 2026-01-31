@@ -8,6 +8,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -22,7 +23,8 @@ import javax.inject.Inject
 @HiltViewModel
 class RoutesViewModel @Inject constructor(
     private val routeDao: RouteDao,
-    @param:ApplicationContext private val context: Context
+    @param:ApplicationContext private val context: Context,
+    private val soundscapeServiceConnection: SoundscapeServiceConnection
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(MarkersAndRoutesUiState(markers = false))
@@ -73,5 +75,9 @@ class RoutesViewModel @Inject constructor(
 
     fun clearErrorMessage() {
         _uiState.value = _uiState.value.copy(errorMessage = null)
+    }
+
+    fun startRoute(routeId: Long) {
+        soundscapeServiceConnection.routeStart(routeId)
     }
 }

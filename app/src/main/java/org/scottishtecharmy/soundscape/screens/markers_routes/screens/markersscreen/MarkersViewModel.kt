@@ -8,6 +8,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -24,6 +25,7 @@ class MarkersViewModel
     constructor(
         private val routeDao: RouteDao,
         @param:ApplicationContext private val context: Context,
+        private val soundscapeServiceConnection: SoundscapeServiceConnection
     ) : ViewModel() {
         private val _uiState = MutableStateFlow(MarkersAndRoutesUiState(markers = true))
         val uiState: StateFlow<MarkersAndRoutesUiState> = _uiState
@@ -68,6 +70,10 @@ class MarkersViewModel
 
         fun clearErrorMessage() {
             _uiState.value = _uiState.value.copy(errorMessage = null)
+        }
+
+        fun startBeacon(location: LngLatAlt, name: String) {
+            soundscapeServiceConnection.startBeacon(location, name)
         }
     }
 

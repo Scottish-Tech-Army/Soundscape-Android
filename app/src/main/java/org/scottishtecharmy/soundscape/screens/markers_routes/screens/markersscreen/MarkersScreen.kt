@@ -58,7 +58,8 @@ fun MarkersScreenVM(
         clearErrorMessage = { viewModel.clearErrorMessage() },
         onToggleSortOrder = { viewModel.toggleSortOrder() },
         onToggleSortByName = { viewModel.toggleSortByName() },
-        userLocation = userLocation
+        userLocation = userLocation,
+        onStartBeacon = { location, name -> viewModel.startBeacon(location, name) }
     )
 }
 
@@ -69,7 +70,8 @@ fun MarkersScreen(
     clearErrorMessage: () -> Unit,
     onToggleSortOrder: () -> Unit,
     onToggleSortByName: () -> Unit,
-    userLocation: LngLatAlt?
+    userLocation: LngLatAlt?,
+    onStartBeacon: (LngLatAlt, String) -> Unit = { _, _ -> }
 ) {
     Column(
         modifier =
@@ -169,13 +171,16 @@ fun MarkersScreen(
                             onToggleSortByName = onToggleSortByName
                         )
 
-                        // Display the list of routes
+                        // Display the list of markers
                         MarkersAndRoutesList(
                             uiState = uiState,
                             userLocation = userLocation,
                             modifier = Modifier.weight(1f),
                             onSelect = { desc ->
                                 homeNavController.navigate(generateLocationDetailsRoute(desc))
+                            },
+                            onStartBeacon = { desc ->
+                                onStartBeacon(desc.location, desc.name)
                             }
                         )
                     }

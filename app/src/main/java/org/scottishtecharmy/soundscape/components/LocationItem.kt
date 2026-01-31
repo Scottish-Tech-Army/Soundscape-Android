@@ -48,7 +48,8 @@ data class EnabledFunction(
     var functionBoolean: (Boolean) -> Unit = {},
     var value: Boolean = false,
     var hintWhenOn: String = "",
-    var hintWhenOff: String = ""
+    var hintWhenOff: String = "",
+    var hint: String = ""
 )
 enum class LocationSource {
     AndroidGeocoder,
@@ -66,7 +67,8 @@ data class LocationItemDecoration(
     var indexDescription: String = "",
     var reorderable: Boolean = false,
     var moveUp: (Int) -> Boolean = { false },
-    var moveDown: (Int) -> Boolean = { false }
+    var moveDown: (Int) -> Boolean = { false },
+    var startPlayback: EnabledFunction = EnabledFunction()
 )
 
 @Composable
@@ -81,6 +83,8 @@ fun LocationItem(
     val selectionText = if (decoration.editRoute.value) stringResource(R.string.location_item_selected) else stringResource(R.string.location_item_not_selected)
     val moveUpLabel = stringResource(R.string.location_item_move_up)
     val moveUpDown = stringResource(R.string.location_item_move_down)
+    val defaultStartPlaybackLabel = stringResource(R.string.route_detail_action_start_route_hint)
+    val startPlaybackLabel = decoration.startPlayback.hint.ifEmpty { defaultStartPlaybackLabel }
     if(userLocation != null) {
         val ruler = item.location.createCheapRuler()
         distanceString = formatDistanceAndDirection(
@@ -130,6 +134,17 @@ fun LocationItem(
                         CustomAccessibilityAction(
                             label = moveUpDown,
                             action = { decoration.moveDown(decoration.index) }
+                        ),
+                    )
+                }
+                if(decoration.startPlayback.enabled) {
+                    customActions = listOf(
+                        CustomAccessibilityAction(
+                            label = startPlaybackLabel,
+                            action = {
+                                decoration.startPlayback.functionLocation(item)
+                                true
+                            }
                         ),
                     )
                 }

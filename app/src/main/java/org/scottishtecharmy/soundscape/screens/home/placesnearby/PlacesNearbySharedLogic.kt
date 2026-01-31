@@ -42,6 +42,10 @@ class PlacesNearbySharedLogic(
     internal val internalUiState = MutableStateFlow(PlacesNearbyUiState())
     val uiState: StateFlow<PlacesNearbyUiState> = internalUiState
 
+    fun startBeacon(location: LngLatAlt, name: String) {
+        soundscapeServiceConnection.startBeacon(location, name)
+    }
+
     init {
         // Collect the flow for the service connection and use it to start and stop collecting the
         // Location and GridState flows
