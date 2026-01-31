@@ -15,6 +15,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 
@@ -37,6 +38,9 @@ fun PlacesNearbyScreenVM(
             else
                 viewModel.onClickBack()
         },
+        onStartBeacon = { desc ->
+            viewModel.startBeacon(desc.location, desc.name)
+        },
         modifier = modifier
     )
 }
@@ -48,6 +52,7 @@ fun PlacesNearbyScreen(
     modifier: Modifier = Modifier,
     onClickFolder: (String, String) -> Unit = {_,_ ->},
     onClickBack: () -> Unit = {},
+    onStartBeacon: (LocationDescription) -> Unit = {},
 ) {
 
     Scaffold(
@@ -67,11 +72,12 @@ fun PlacesNearbyScreen(
         },
     ) { innerPadding ->
         Box(Modifier.extraSmallPadding()) {
-            // Display the list of routes
+            // Display the list of places
             PlacesNearbyList(
                 uiState = uiState,
                 navController = homeNavController,
                 onClickFolder = onClickFolder,
+                onStartBeacon = onStartBeacon,
                 modifier = modifier.padding(innerPadding)
             )
         }

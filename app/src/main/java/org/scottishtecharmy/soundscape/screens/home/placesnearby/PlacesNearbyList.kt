@@ -26,6 +26,7 @@ import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.FolderItem
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -52,7 +53,8 @@ fun PlacesNearbyList(
     uiState: PlacesNearbyUiState,
     navController: NavController,
     onClickFolder: (String, String) -> Unit,
-    modifier: Modifier
+    onStartBeacon: (LocationDescription) -> Unit,
+    modifier: Modifier,
 ) {
     val context = LocalContext.current
     val locations = remember(uiState) {
@@ -103,7 +105,12 @@ fun PlacesNearbyList(
                                     generateLocationDetailsRoute(locationDescription)
                                 )
                             }
-                        )
+                        ),
+                        startPlayback = EnabledFunction(
+                            enabled = true,
+                            functionLocation = onStartBeacon,
+                            hint = stringResource(R.string.location_detail_action_beacon_hint)
+                        ),
                     ),
                     userLocation = uiState.userLocation,
                     modifier = Modifier.testTag("placesNearby-$index")
