@@ -29,9 +29,9 @@
     <string name="beacon_styles_mallet_very_slow">مطرقة (بطيئة جدا)</string>
     <string name="beacon_audio_beacon">منارة الصوت</string>
     <string name="beacon_action_mute_beacon">كتم المناره</string>
-    <string name="beacon_action_mute_beacon_acc_hint">كتم منارة الصوت.</string>
+    <string name="beacon_action_mute_beacon_acc_hint">كتم منارة الصوت</string>
     <string name="beacon_action_unmute_beacon">الغاء كتم صوت المناره</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">إلغاء كتم منارة الصوت.</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">إلغاء كتم منارة الصوت</string>
     <string name="preview_title">محاكاة الموقع</string>
     <string name="preview_go_title">اذهب</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">اذهب إلى أقرب تقاطع</string>
@@ -39,13 +39,13 @@
     <string name="preview_include_unnamed_roads_title">طرق لم تسمها</string>
     <string name="location_detail_title_default">تفاصيل الموقع</string>
     <string name="location_detail_action_beacon">ابدأ منارة الصوت</string>
-    <string name="location_detail_action_beacon_hint">اضف الاشاره الصوتيه لهذا الموقع</string>
+    <string name="location_detail_action_beacon_hint">اضبط منارة الصوت على هذا الموقع</string>
     <string name="location_detail_action_save_hint">احفظ هذا الموقع كعلامة</string>
-    <string name="location_detail_action_edit_hint">تعديل النقاط المفضله</string>
+    <string name="location_detail_action_edit_hint">تحرير العلامة</string>
     <string name="location_detail_action_share_hint">شارك هذا الموقع</string>
-    <string name="location_detail_action_preview_hint">ابدء معايناة هذا الموقع</string>
-    <string name="location_detail_add_waypoint_existing_hint">أزل هذه العلامة من طريقك.</string>
-    <string name="location_detail_add_waypoint_new_hint">أضف هذه العلامة إلى طريقك.</string>
+    <string name="location_detail_action_preview_hint">ابدأ معاينة هذا الموقع</string>
+    <string name="location_detail_add_waypoint_existing_hint">أزل هذه العلامة من مسارك</string>
+    <string name="location_detail_add_waypoint_new_hint">أضف هذه العلامة إلى مسارك</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">اجعل الخريطة ملء الشاشة</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">الخروج من خريطة ملء الشاشة</string>
     <string name="route_detail_action_start_route">ابدأ الطريق</string>
@@ -53,16 +53,16 @@
     <string name="route_detail_action_edit">تحرير الطريق</string>
     <string name="route_detail_action_start_route_hint">ابدأ هذا الطريق</string>
     <string name="route_detail_action_start_route_disabled_hint">أضف نقاط قبل بدء الطريق</string>
-    <string name="route_detail_action_stop_route_hint">توقف عن هذا الطريق</string>
+    <string name="route_detail_action_stop_route_hint">أوقف هذا الطريق</string>
     <string name="route_detail_action_share_hint">شارك هذا الطريق</string>
     <string name="route_detail_action_edit_hint">تحرير هذا الطريق</string>
     <string name="route_detail_action_create">طريق جديد</string>
-    <string name="route_detail_action_create_hint">إنشاء طريق جديد</string>
+    <string name="route_detail_action_create_hint">أنشئ طريقًا جديدًا</string>
     <string name="route_end_completed_accessibility">لقد وصلت الى وجهتك %s</string>
     <string name="route_detail_action_previous">نقطة الطريق السابقة</string>
-    <string name="route_detail_action_previous_hint">لضبط الاشاره على النقطه السابقه</string>
+    <string name="route_detail_action_previous_hint">انقل منارة الصوت إلى نقطة الطريق السابقة</string>
     <string name="route_detail_action_next">نقطة الطريق التالية</string>
-    <string name="route_detail_action_next_hint">لضبط الاشاره على النقطه التاليه</string>
+    <string name="route_detail_action_next_hint">انقل منارة الصوت إلى نقطة الطريق التالية</string>
     <string name="route_detail_edit_description">وصف</string>
     <string name="route_detail_edit_waypoints_button">أضف نقاط الطرق</string>
     <string name="route_detail_edit_delete">حذف الطريق</string>
@@ -96,9 +96,9 @@
     <string name="search_use_current_location">الموقع الحالي</string>
     <string name="search_nearby_screen_title">الأماكن القريبة</string>
     <string name="search_view_markers">العلامات والطرق</string>
-    <string name="search_button_markers_accessibility_hint">حدد أو تحرير العلامات التي قمت بحفظها</string>
-    <string name="search_button_nearby_accessibility_hint">استكشاف المطاعم القريبة ومحطات العبور والمزيد</string>
-    <string name="search_button_current_location_accessibility_hint">معاينة أو علامة أو مشاركة موقعك الحالي مع صديق</string>
+    <string name="search_button_markers_accessibility_hint">اختر أو حرر العلامات التي حفظتها</string>
+    <string name="search_button_nearby_accessibility_hint">استكشف المطاعم القريبة ومحطات النقل والمزيد</string>
+    <string name="search_button_current_location_accessibility_hint">عاين أو احفظ أو شارك موقعك الحالي مع صديق</string>
     <string name="filter_all">جميع الأماكن</string>
     <string name="filter_transit">العبور العام</string>
     <string name="filter_food_drink">الطعام والشراب</string>
@@ -115,7 +115,7 @@
     <string name="sleep_sleep">وضع الخمول</string>
     <string name="sleep_sleeping">خامل</string>
     <string name="sleep_sleeping_message">Soundscape ساكن حاليًا. هذا يمنع Soundscape من استخدام خدمات الموقع أو تنزيل البيانات. هذا يحفظ البطارية عندما لا تستخدم Soundscape. اضغط على الزر أدناه لإيقاظ Soundscape.</string>
-    <string name="sleep_sleep_acc_hint">ضع soundscape في السكون</string>
+    <string name="sleep_sleep_acc_hint">ضع Soundscape في وضع الخمول</string>
     <string name="sleep_wake_up_now">استيقظ الآن</string>
     <string name="intersection_approaching_intersection">تقترب من التقاطع</string>
     <string name="directions_at_poi">في %s</string>
@@ -189,11 +189,11 @@
     <string name="ui_action_button_my_location">موقعي\n↵</string>
     <string name="ui_action_button_my_location_acc_hint">اسمع عن موقعك الحالي</string>
     <string name="ui_action_button_nearby_markers">علامات\nقريبه</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">حول الأماكن القريبة التي حددتها</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">عن الأماكن القريبة التي حفظتها كعلامات</string>
     <string name="ui_action_button_around_me">ما\nحولي</string>
     <string name="ui_action_button_around_me_acc_hint">اسمع عن الأماكن في الاتجاهات الأربعة من حولك</string>
     <string name="ui_action_button_ahead_of_me">ما\nامامي</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">اسمع عن أماكن امامك</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">اسمع عن الأماكن أمامك</string>
     <string name="ui_menu">القائمه</string>
     <string name="ui_menu_hint">افتح القائمة</string>
     <string name="ui_menu_close">إغلاق القائمة</string>
@@ -1246,4 +1246,6 @@
     <string name="accessibility_title" tools:ignore="MissingTranslation">إمكانية الوصول</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">نظرًا لتفعيل قارئ الشاشة لديك، نوصي بتشغيل التطبيق مع إيقاف عرض الخرائط الرسومية في واجهة المستخدم. يمكنك تغيير هذا الإعداد هنا، أو المتابعة كما هي.</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">نظرًا لعدم تفعيل قارئ شاشة لديك، نفترض أنك تفضّل عرض الخرائط الرسومية في واجهة المستخدم. يمكنك تغيير هذا الإعداد هنا، أو المتابعة كما هي.</string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation">تابع</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">إغلاق مربع الحوار ومتابعة البرنامج التعليمي الصوتي</string>
 </resources>
