@@ -419,7 +419,7 @@ tasks.register<Copy>("extractComposeBaselines") {
     from(tarTree(composeBaselinesTarFile))
     // NOTE 2025-11-18 Hugh Greene: It's hacky to hard-code the path here, but I don't know of a
     // better way to get it.
-    val localTargetDir = "$projectDir/src/androidTest/assets/baselines"
+    val localTargetDir = "$projectDir/src/debug/assets/baselines"
     into(localTargetDir)
     // Remove leading 'baselines/' from entries if desired
     eachFile {
