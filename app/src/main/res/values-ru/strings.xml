@@ -29,21 +29,21 @@
     <string name="beacon_styles_mallet_very_slow">Молот (очень медленно)</string>
     <string name="beacon_audio_beacon">Звуковой маяк</string>
     <string name="beacon_action_mute_beacon">Отключить маяк</string>
-    <string name="beacon_action_mute_beacon_acc_hint">отключить звуковой маяк.</string>
+    <string name="beacon_action_mute_beacon_acc_hint">Отключить звуковой маяк</string>
     <string name="beacon_action_unmute_beacon">Включить маяк</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">включить звуковой маяк.</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">Включить звуковой маяк</string>
     <string name="preview_go_title">Идти</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Идти к следующему перекрёстку</string>
     <string name="preview_include_unnamed_roads_title">Безымянные дороги</string>
     <string name="location_detail_title_default">Сведения о местоположении</string>
     <string name="location_detail_action_beacon">Включить звуковой маяк</string>
     <string name="location_detail_action_beacon_hint">Установить звуковой маяк в этом месте</string>
-    <string name="location_detail_action_save_hint">Сохраните это место как отметку</string>
-    <string name="location_detail_action_edit_hint">изменить отметку</string>
+    <string name="location_detail_action_save_hint">Сохранить это место как отметку</string>
+    <string name="location_detail_action_edit_hint">Изменить отметку</string>
     <string name="location_detail_action_share_hint">Поделиться этим местом</string>
-    <string name="location_detail_action_preview_hint">Начать предварительный просмотр в этом месте</string>
-    <string name="location_detail_add_waypoint_existing_hint">Удалить эту отметку из пути.</string>
-    <string name="location_detail_add_waypoint_new_hint">Добавить эту отметку в путь.</string>
+    <string name="location_detail_action_preview_hint">Начать предварительный просмотр этого места</string>
+    <string name="location_detail_add_waypoint_existing_hint">Удалить эту отметку из маршрута</string>
+    <string name="location_detail_add_waypoint_new_hint">Добавить эту отметку в маршрут</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Развернуть карту на весь экран</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Выйти из полноэкранного режима карты</string>
     <string name="route_detail_action_start_route">Начать маршрут</string>
@@ -58,9 +58,9 @@
     <string name="route_detail_action_create_hint">Создать новый маршрут</string>
     <string name="route_end_completed_accessibility">Маршрут завершён! %s</string>
     <string name="route_detail_action_previous">Предыдущая путевая точка</string>
-    <string name="route_detail_action_previous_hint">переместить маяк на предыдущую путевую точку</string>
+    <string name="route_detail_action_previous_hint">Переместить маяк к предыдущей путевой точке</string>
     <string name="route_detail_action_next">Следующая путевая точка</string>
-    <string name="route_detail_action_next_hint">переместить маяк на следующую путевую точку</string>
+    <string name="route_detail_action_next_hint">Переместить маяк к следующей путевой точке</string>
     <string name="route_detail_edit_description">Описание</string>
     <string name="route_detail_edit_waypoints_button">Добавить путевые точки</string>
     <string name="route_detail_edit_delete">Удалить маршрут</string>
@@ -94,9 +94,9 @@
     <string name="search_use_current_location">Текущее место</string>
     <string name="search_nearby_screen_title">Места рядом</string>
     <string name="search_view_markers">Отметки и пути</string>
-    <string name="search_button_markers_accessibility_hint">Выберите или отредактируйте сохранённые отметки</string>
-    <string name="search_button_nearby_accessibility_hint">Исследуйте ближайшие рестораны, остановки общественного транспорта и многое другое</string>
-    <string name="search_button_current_location_accessibility_hint">Просмотреть, отметить или поделится своим текущим местоположением</string>
+    <string name="search_button_markers_accessibility_hint">Выбрать или изменить сохранённые отметки</string>
+    <string name="search_button_nearby_accessibility_hint">Просмотреть ближайшие рестораны, остановки общественного транспорта и другое</string>
+    <string name="search_button_current_location_accessibility_hint">Просмотреть, отметить или поделиться своим текущим местоположением с другом</string>
     <string name="filter_all">Все места</string>
     <string name="filter_transit">Общественный транспорт</string>
     <string name="filter_food_drink">Еда и напитки</string>
@@ -173,7 +173,7 @@
     <string name="directions_cardinal_west" tools:ignore="MissingTranslation">Запад</string>
     <string name="directions_cardinal_north_west" tools:ignore="MissingTranslation">Северо-Запад</string>
     <string name="ui_menu">Меню</string>
-    <string name="ui_menu_hint">открыть это меню</string>
+    <string name="ui_menu_hint">Открыть меню</string>
     <string name="ui_menu_close">Закрыть меню</string>
     <string name="ui_continue">Продолжить</string>
     <string name="menu_help_and_tutorials">Помощь и руководство</string>
@@ -224,13 +224,13 @@
     <string name="distance_format_feet">%s футов</string>
     <string name="distance_format_miles">%s миль</string>
     <string name="ui_action_button_my_location">Моё\nместо</string>
-    <string name="ui_action_button_my_location_acc_hint">слышать о своём текущем местоположении</string>
+    <string name="ui_action_button_my_location_acc_hint">Узнать о вашем текущем местоположении</string>
     <string name="ui_action_button_nearby_markers">Ближайшие\nотметки</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">о близлежащих местах, которые ты отметил(а)</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">Узнать о ближайших местах, которые вы отметили</string>
     <string name="ui_action_button_around_me">Вокруг\nменя</string>
-    <string name="ui_action_button_around_me_acc_hint">Узнай о местах в четырёх квадрантах вокруг тебя</string>
+    <string name="ui_action_button_around_me_acc_hint">Узнать о местах в четырёх квадрантах вокруг вас</string>
     <string name="ui_action_button_ahead_of_me">Впереди\nменя</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">Узнай о местах перед тобой</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">Узнать о местах перед вами</string>
     <string name="menu_manage_callouts">Управление сносками</string>
     <string name="behavior_scavenger_hunt_callout_next_flag">Маяк установлен на %1$s, %2$s от тебя, %3$s из %4$s</string>
     <string name="help_configuration_section_title">Настройка звукового ландшафта</string>
@@ -1246,4 +1246,6 @@
     <string name="accessibility_title" tools:ignore="MissingTranslation">Доступность</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Поскольку у вас включена программа чтения с экрана, мы рекомендуем запускать приложение с отключёнными графическими картами интерфейса. Вы можете изменить этот параметр здесь или просто продолжить.</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Поскольку у вас не включена программа чтения с экрана, мы предполагаем, что вы хотите отображать графические карты в интерфейсе. Вы можете изменить этот параметр здесь или просто продолжить.</string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation">Продолжить</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">Закрыть всплывающее окно и продолжить аудиоурок</string>
 </resources>
