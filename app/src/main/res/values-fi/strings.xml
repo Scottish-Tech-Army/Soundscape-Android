@@ -25,36 +25,36 @@
     <string name="beacon_styles_mallet_very_slow">"Nuija (erittäin hidas)"</string>
     <string name="beacon_audio_beacon">"Äänimajakka"</string>
     <string name="beacon_action_mute_beacon">"Hiljennä majakka"</string>
-    <string name="beacon_action_mute_beacon_acc_hint">hiljennä hiljentääksesi äänimajakan.</string>
+    <string name="beacon_action_mute_beacon_acc_hint">Hiljennä äänimajakka</string>
     <string name="beacon_action_unmute_beacon">"Poista majakan hiljennys"</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">poista äänimajakan hiljennyksen.</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">Poista äänimajakan hiljennys</string>
     <string name="preview_title">Sijainnin esikatselu</string>
     <string name="preview_go_title">"Lähde"</string>
     <string name="preview_include_unnamed_roads_title">"Nimettömät tiet"</string>
     <string name="location_detail_title_default">"Sijainnin tiedot"</string>
     <string name="location_detail_action_beacon">"Käynnistä äänimajakka"</string>
-    <string name="location_detail_action_beacon_hint">aseta määrittääksesi äänimajakan tähän sijaintiin</string>
-    <string name="location_detail_action_save_hint">tallenna tämän sijainnin merkintänä</string>
-    <string name="location_detail_action_edit_hint">muokkaa merkintänä</string>
-    <string name="location_detail_action_share_hint">jaa tämän sijainnin</string>
-    <string name="location_detail_action_preview_hint">aloita esikatselun tässä sijainnissa</string>
-    <string name="location_detail_add_waypoint_existing_hint">poista tämän merkinnän reitiltäsi.</string>
-    <string name="location_detail_add_waypoint_new_hint">lisää tämän merkinnän reitillesi.</string>
+    <string name="location_detail_action_beacon_hint">Aseta äänimajakka tähän sijaintiin</string>
+    <string name="location_detail_action_save_hint">Tallenna tämä sijainti merkinnäksi</string>
+    <string name="location_detail_action_edit_hint">Muokkaa merkintää</string>
+    <string name="location_detail_action_share_hint">Jaa tämä sijainti</string>
+    <string name="location_detail_action_preview_hint">Aloita esikatselu tässä sijainnissa</string>
+    <string name="location_detail_add_waypoint_existing_hint">Poista tämä merkintä reitiltäsi</string>
+    <string name="location_detail_add_waypoint_new_hint">Lisää tämä merkintä reitillesi</string>
     <string name="route_detail_action_start_route">"Aloita reitti"</string>
     <string name="route_detail_action_stop_route">"Pysäytä reitti"</string>
     <string name="route_detail_action_edit">"Muokkaa reittiä"</string>
-    <string name="route_detail_action_start_route_hint">aloita tämän reitin</string>
+    <string name="route_detail_action_start_route_hint">Aloita tämä reitti</string>
     <string name="route_detail_action_start_route_disabled_hint">"Lisää reittipisteitä ennen reitin aloitusta"</string>
-    <string name="route_detail_action_stop_route_hint">pysäytä tämän reitin</string>
-    <string name="route_detail_action_share_hint">jaa tämän reitin</string>
-    <string name="route_detail_action_edit_hint">muokkaa tätä reittiä</string>
+    <string name="route_detail_action_stop_route_hint">Pysäytä tämä reitti</string>
+    <string name="route_detail_action_share_hint">Jaa tämä reitti</string>
+    <string name="route_detail_action_edit_hint">Muokkaa tätä reittiä</string>
     <string name="route_detail_action_create">"Uusi reitti"</string>
-    <string name="route_detail_action_create_hint">luo uuden reitin</string>
+    <string name="route_detail_action_create_hint">Luo uusi reitti</string>
     <string name="route_end_completed_accessibility">"Reitti kuljettu! %s"</string>
     <string name="route_detail_action_previous">"Edellinen reittipiste"</string>
-    <string name="route_detail_action_previous_hint">siirtääksesi äänimajakan edelliseen reittipisteeseen</string>
+    <string name="route_detail_action_previous_hint">Siirrä äänimajakka edelliseen reittipisteeseen</string>
     <string name="route_detail_action_next">"Seuraava reittipiste"</string>
-    <string name="route_detail_action_next_hint">siirtääksesi äänimajakan seuraavaan reittipisteeseen</string>
+    <string name="route_detail_action_next_hint">Siirrä äänimajakka seuraavaan reittipisteeseen</string>
     <string name="route_detail_edit_description">"Kuvaus"</string>
     <string name="route_detail_edit_waypoints_button">"Lisää reittipisteitä"</string>
     <string name="route_detail_edit_delete">"Poista reitti"</string>
@@ -88,9 +88,9 @@
     <string name="search_use_current_location">"Nykyinen sijainti"</string>
     <string name="search_nearby_screen_title">"Lähiympäristön paikat"</string>
     <string name="search_view_markers">Merkinnät ja reitit</string>
-    <string name="search_button_markers_accessibility_hint">valitse ja muokataksesi merkintöjä, jotka olet tallentanut</string>
-    <string name="search_button_nearby_accessibility_hint">tutustu lähiympäristön ravintoloihin, liikennepysäkkeihin ja muihin kohteisiin</string>
-    <string name="search_button_current_location_accessibility_hint">esikatsele, merkitäksesi tai jakaaksesi nykyisen sijaintisi ystävän kanssa</string>
+    <string name="search_button_markers_accessibility_hint">Valitse tai muokkaa tallentamiasi merkintöjä</string>
+    <string name="search_button_nearby_accessibility_hint">Tutki lähialueen ravintoloita, pysäkkejä ja muita kohteita</string>
+    <string name="search_button_current_location_accessibility_hint">Esikatsele, tallenna tai jaa nykyinen sijaintisi ystävän kanssa</string>
     <string name="filter_all">"Kaikki paikat"</string>
     <string name="filter_transit">"Julkinen liikenne"</string>
     <string name="filter_food_drink">Ruoka ja juoma</string>
@@ -107,7 +107,7 @@
     <string name="sleep_sleep">"Siirry lepotilaan"</string>
     <string name="sleep_sleeping">"Lepotilassa"</string>
     <string name="sleep_sleeping_message">"Soundscape on lepotilassa. Tämä estää Soundscapea käyttämästä sijaintipalveluita tai lataamasta tietoja. Tämä säästää akkua, kun et käytä Soundscapea. Napauta alla olevaa painiketta herättääksesi Soundscapen."</string>
-    <string name="sleep_sleep_acc_hint">laita Soundscapen lepotilaan</string>
+    <string name="sleep_sleep_acc_hint">Laita Soundscape lepotilaan</string>
     <string name="sleep_wake_up_now">"Herää nyt"</string>
     <string name="intersection_approaching_intersection">"Lähestytään risteystä"</string>
     <string name="directions_at_poi">"Kohteessa %s"</string>
@@ -170,15 +170,15 @@
     <string name="distance_format_feet">"%s jalkaa"</string>
     <string name="distance_format_miles">"%s mailia"</string>
     <string name="ui_action_button_my_location">"Oma si-\njaintini"</string>
-    <string name="ui_action_button_my_location_acc_hint">kuulla tietoja nykyisestä sijainnistasi</string>
+    <string name="ui_action_button_my_location_acc_hint">Kuule tietoja nykyisestä sijainnistasi</string>
     <string name="ui_action_button_nearby_markers">"Merkin-\nnät"</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">kuulla tietoja lähiympäristön paikoista, jotka olet merkinnännyt</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">Tietoja lähellä olevista merkinnöistäsi</string>
     <string name="ui_action_button_around_me">"Lähiym-\npäristö"</string>
-    <string name="ui_action_button_around_me_acc_hint">kuulla tietoja paikoista lähiympäristösi neljästä neljänneksestä</string>
+    <string name="ui_action_button_around_me_acc_hint">Kuule tietoja neljästä ympärilläsi olevasta neljänneksestä</string>
     <string name="ui_action_button_ahead_of_me">"Edessä-\npäin"</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">kuulla tietoja paikoista, jotka ovat edessäsi</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">Kuule tietoja edessäsi olevista paikoista</string>
     <string name="ui_menu">"Valikko"</string>
-    <string name="ui_menu_hint">avaa valikon</string>
+    <string name="ui_menu_hint">Avaa valikko</string>
     <string name="ui_menu_close">"Sulje valikko"</string>
     <string name="ui_continue">"Jatka"</string>
     <string name="menu_manage_callouts">"Hallitse ilmoituksia"</string>
@@ -1246,4 +1246,6 @@
     <string name="accessibility_title" tools:ignore="MissingTranslation">Saavutettavuus</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Koska sinulla on ruudunlukija käytössä, suosittelemme, että käytät sovellusta ilman käyttöliittymän graafisia karttoja. Voit muuttaa tätä asetusta täällä tai jatkaa eteenpäin.</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Koska sinulla ei ole ruudunlukijaa käytössä, oletamme, että haluat käyttöliittymän graafisten karttojen näkyvän. Voit muuttaa tätä asetusta täällä tai jatkaa eteenpäin.</string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation">Jatka</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">Sulje ponnahdusikkuna ja jatka tutoriaalia</string>
 </resources>
