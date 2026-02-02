@@ -25,36 +25,36 @@
     <string name="beacon_styles_mallet_very_slow">"Maillet (très lent)"</string>
     <string name="beacon_audio_beacon">"Balise sonore"</string>
     <string name="beacon_action_mute_beacon">"Désactiver le son de la balise"</string>
-    <string name="beacon_action_mute_beacon_acc_hint">désactiver le son de la balise sonore.</string>
+    <string name="beacon_action_mute_beacon_acc_hint">Désactiver le son de la balise sonore.</string>
     <string name="beacon_action_unmute_beacon">"Réactiver le son de la balise"</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">réactiver le son de la balise sonore.</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">Réactiver le son de la balise sonore.</string>
     <string name="preview_title">Simuler un emplacement</string>
     <string name="preview_go_title">"Atteindre"</string>
     <string name="preview_include_unnamed_roads_title">"Routes sans nom"</string>
     <string name="location_detail_title_default">"Détails de l’emplacement"</string>
     <string name="location_detail_action_beacon">"Démarrer la balise sonore"</string>
-    <string name="location_detail_action_beacon_hint">définir une balise sonore à cet endroit</string>
-    <string name="location_detail_action_save_hint">enregistrer cet emplacement en tant que marqueur</string>
-    <string name="location_detail_action_edit_hint">modifier le marqueur</string>
-    <string name="location_detail_action_share_hint">partager cet emplacement</string>
-    <string name="location_detail_action_preview_hint">démarrer l’aperçu à cet emplacement</string>
-    <string name="location_detail_add_waypoint_existing_hint">Cliquez (avec le stylet) deux fois pour supprimer ce Marqueur de votre Itinéraire.</string>
-    <string name="location_detail_add_waypoint_new_hint">Cliquez (avec le stylet) deux fois pour ajouter ce Marqueur à votre Itinéraire.</string>
+    <string name="location_detail_action_beacon_hint">Placer une balise sonore à cet emplacement.</string>
+    <string name="location_detail_action_save_hint">Enregistrer cet emplacement en tant que marqueur.</string>
+    <string name="location_detail_action_edit_hint">Modifier le marqueur.</string>
+    <string name="location_detail_action_share_hint">Partager cet emplacement.</string>
+    <string name="location_detail_action_preview_hint">Démarrer la prévisualisation à cet emplacement.</string>
+    <string name="location_detail_add_waypoint_existing_hint">Retirer ce marqueur de votre itinéraire.</string>
+    <string name="location_detail_add_waypoint_new_hint">Ajouter ce marqueur à votre itinéraire.</string>
     <string name="route_detail_action_start_route">"Démarrer un Itinéraire"</string>
     <string name="route_detail_action_stop_route">"Arrêter l’Itinéraire"</string>
     <string name="route_detail_action_edit">"Modifier l’itinéraire"</string>
-    <string name="route_detail_action_start_route_hint">démarrer cet itinéraire</string>
+    <string name="route_detail_action_start_route_hint">Démarrer cet itinéraire.</string>
     <string name="route_detail_action_start_route_disabled_hint">"Ajoutez des points de repère avant de commencer l’Itinéraire"</string>
-    <string name="route_detail_action_stop_route_hint">arrêter cet itinéraire</string>
-    <string name="route_detail_action_share_hint">partager cet itinéraire</string>
-    <string name="route_detail_action_edit_hint">Cliquez (avec le stylet) deux fois pour modifier cet Itinéraire</string>
+    <string name="route_detail_action_stop_route_hint">Arrêter cet itinéraire.</string>
+    <string name="route_detail_action_share_hint">Partager cet itinéraire.</string>
+    <string name="route_detail_action_edit_hint">Modifier cet itinéraire.</string>
     <string name="route_detail_action_create">"Nouvel Itinéraire"</string>
-    <string name="route_detail_action_create_hint">Cliquez (avec le stylet) deux fois pour créer un Itinéraire</string>
+    <string name="route_detail_action_create_hint">Créer un nouvel itinéraire.</string>
     <string name="route_end_completed_accessibility">"Itinéraire terminé! %s"</string>
     <string name="route_detail_action_previous">"Point de repère précédent"</string>
-    <string name="route_detail_action_previous_hint">définir une balise sur le point de repère suivant</string>
+    <string name="route_detail_action_previous_hint">Déplacer la balise vers le point de repère précédent.</string>
     <string name="route_detail_action_next">"Prochain point de repère"</string>
-    <string name="route_detail_action_next_hint">définir une balise sur le prochain point de repère</string>
+    <string name="route_detail_action_next_hint">Déplacer la balise vers le point de repère suivant.</string>
     <string name="route_detail_edit_description">"Description"</string>
     <string name="route_detail_edit_waypoints_button">"Ajouter des points de repère"</string>
     <string name="route_detail_edit_delete">"Supprimer l’Itinéraire"</string>
@@ -88,9 +88,9 @@
     <string name="search_use_current_location">"Emplacement actuel"</string>
     <string name="search_nearby_screen_title">"Emplacements à proximité"</string>
     <string name="search_view_markers">Marqueurs et Itinéraires</string>
-    <string name="search_button_markers_accessibility_hint">sélectionner ou modifier les marqueurs que vous avez enregistrés</string>
-    <string name="search_button_nearby_accessibility_hint">découvrir les restaurants à proximité, les arrêts de transport en commun et plus encore</string>
-    <string name="search_button_current_location_accessibility_hint">prévisualiser, marquer ou partager votre emplacement actuel avec un ami</string>
+    <string name="search_button_markers_accessibility_hint">Sélectionner ou modifier les marqueurs que vous avez enregistrés.</string>
+    <string name="search_button_nearby_accessibility_hint">Explorer les restaurants, arrêts de transport et autres lieux à proximité.</string>
+    <string name="search_button_current_location_accessibility_hint">Prévisualiser, marquer ou partager votre emplacement actuel avec un ami.</string>
     <string name="filter_all">"Tous les emplacements"</string>
     <string name="filter_transit">"Transport public"</string>
     <string name="filter_food_drink">Alimentation et boissons</string>
@@ -107,7 +107,7 @@
     <string name="sleep_sleep">"Mettre en veille"</string>
     <string name="sleep_sleeping">"En veille"</string>
     <string name="sleep_sleeping_message">"Soundscape est actuellement en veille. Cela empêche Soundscape d’utiliser les services de localisation ou de télécharger des données. Cela économise de la batterie lorsque vous n’utilisez pas Soundscape. Appuyez sur le bouton ci-dessous pour faire sortir Soundscape de veille."</string>
-    <string name="sleep_sleep_acc_hint">Appuyer deux fois pour mettre Soundscape en veille</string>
+    <string name="sleep_sleep_acc_hint">Mettre Soundscape en veille.</string>
     <string name="sleep_wake_up_now">"Sortir de veille maintenant"</string>
     <string name="intersection_approaching_intersection">"Vous approchez d’une intersection"</string>
     <string name="directions_at_poi">"À %s"</string>
@@ -170,15 +170,15 @@
     <string name="distance_format_feet">"%s pieds"</string>
     <string name="distance_format_miles">"%s miles"</string>
     <string name="ui_action_button_my_location">"Mon\nemplacement"</string>
-    <string name="ui_action_button_my_location_acc_hint">Appuyer deux fois pour en savoir plus sur votre emplacement actuel</string>
+    <string name="ui_action_button_my_location_acc_hint">Entendre des informations sur votre emplacement actuel.</string>
     <string name="ui_action_button_nearby_markers">"Marqueurs\nà proximité"</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">Appuyer deux fois pour en savoir plus sur les emplacements à proximité que vous avez marqués</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">Entendre des informations sur les lieux à proximité que vous avez marqués.</string>
     <string name="ui_action_button_around_me">"Autour\nde moi"</string>
-    <string name="ui_action_button_around_me_acc_hint">Appuyer deux fois pour en savoir plus sur les quatre points cardinaux qui vous entourent</string>
+    <string name="ui_action_button_around_me_acc_hint">Entendre des informations sur les lieux situés dans les quatre quadrants autour de vous.</string>
     <string name="ui_action_button_ahead_of_me">"Devant\nmoi"</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">Appuyer deux fois pour en savoir plus sur les lieux en face de vous</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">Entendre des informations sur les lieux situés devant vous.</string>
     <string name="ui_menu">"Menu"</string>
-    <string name="ui_menu_hint">ouvrir le menu</string>
+    <string name="ui_menu_hint">Ouvrir le menu.</string>
     <string name="ui_menu_close">"Fermer le menu"</string>
     <string name="ui_continue">"Continuer"</string>
     <string name="menu_manage_callouts">"Gérer les notifications"</string>
@@ -1246,4 +1246,6 @@
     <string name="accessibility_title" tools:ignore="MissingTranslation">Accessibilité</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Comme vous avez un lecteur d’écran activé, nous vous recommandons d’utiliser l’application avec les cartes graphiques de l’interface utilisateur désactivées. Vous pouvez modifier ce réglage ici, ou simplement continuer.</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Comme vous n’avez pas de lecteur d’écran activé, nous supposons que vous souhaitez que les cartes graphiques de l’interface utilisateur soient affichées. Vous pouvez modifier ce réglage ici, ou simplement continuer.</string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation">Continuer</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">Fermer la fenêtre contextuelle et poursuivre le didacticiel</string>
 </resources>
