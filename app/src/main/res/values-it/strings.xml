@@ -25,36 +25,36 @@
     <string name="beacon_styles_mallet_very_slow">"Mazzuola (molto lento)"</string>
     <string name="beacon_audio_beacon">"Audiofaro"</string>
     <string name="beacon_action_mute_beacon">"Disattiva audio audiofaro"</string>
-    <string name="beacon_action_mute_beacon_acc_hint">disattivare l\'audio dell\'audiofaro.</string>
+    <string name="beacon_action_mute_beacon_acc_hint">Disattivare l\'audiofaro.</string>
     <string name="beacon_action_unmute_beacon">"Attiva audio audiofaro"</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">attivare l\'audio dell\'audiofaro.</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">Riattivare l\'audiofaro.</string>
     <string name="preview_title">Simula posizione</string>
     <string name="preview_go_title">"Vai"</string>
     <string name="preview_include_unnamed_roads_title">"Strade senza nome"</string>
     <string name="location_detail_title_default">"Dettagli posizione"</string>
     <string name="location_detail_action_beacon">"Avvia audiofaro"</string>
-    <string name="location_detail_action_beacon_hint">impostare un audiofaro su questa posizione</string>
-    <string name="location_detail_action_save_hint">salvare questa posizione come indicatore</string>
-    <string name="location_detail_action_edit_hint">modificare l\'indicatore</string>
-    <string name="location_detail_action_share_hint">condividere questa posizione</string>
-    <string name="location_detail_action_preview_hint">avviare l\'anteprima in questa posizione</string>
-    <string name="location_detail_add_waypoint_existing_hint">rimuovere l\'indicatore dal percorso.</string>
-    <string name="location_detail_add_waypoint_new_hint">aggiungere l\'indicatore al percorso.</string>
+    <string name="location_detail_action_beacon_hint">Impostare un audiofaro in questa posizione</string>
+    <string name="location_detail_action_save_hint">Salvare questa posizione come indicatore</string>
+    <string name="location_detail_action_edit_hint">Modificare questo indicatore</string>
+    <string name="location_detail_action_share_hint">Condividere questa posizione</string>
+    <string name="location_detail_action_preview_hint">Avviare l\'anteprima in questa posizione</string>
+    <string name="location_detail_add_waypoint_existing_hint">Rimuovere questo indicatore dal tuo percorso</string>
+    <string name="location_detail_add_waypoint_new_hint">Aggiungere questo indicatore al tuo percorso</string>
     <string name="route_detail_action_start_route">"Avvia Percorso"</string>
     <string name="route_detail_action_stop_route">"Interrompi Percorso"</string>
     <string name="route_detail_action_edit">"Modifica percorso"</string>
-    <string name="route_detail_action_start_route_hint">avviare questo percorso</string>
+    <string name="route_detail_action_start_route_hint">Avviare questo percorso</string>
     <string name="route_detail_action_start_route_disabled_hint">"Aggiungi waypoint prima di avviare il percorso"</string>
-    <string name="route_detail_action_stop_route_hint">interrompere questo percorso</string>
-    <string name="route_detail_action_share_hint">condividere questo percorso</string>
-    <string name="route_detail_action_edit_hint">modificare questo percorso</string>
+    <string name="route_detail_action_stop_route_hint">Interrompere questo percorso</string>
+    <string name="route_detail_action_share_hint">Condividere questo percorso</string>
+    <string name="route_detail_action_edit_hint">Modificare questo percorso</string>
     <string name="route_detail_action_create">"Nuovo Percorso"</string>
-    <string name="route_detail_action_create_hint">creare un nuovo percorso</string>
+    <string name="route_detail_action_create_hint">Creare un nuovo percorso</string>
     <string name="route_end_completed_accessibility">"Percorso completato! %s"</string>
     <string name="route_detail_action_previous">"Waypoint precedente"</string>
-    <string name="route_detail_action_previous_hint">sposta il faro al waypoint precedente</string>
+    <string name="route_detail_action_previous_hint">Spostare l\'audiofaro al waypoint precedente</string>
     <string name="route_detail_action_next">"Waypoint successivo"</string>
-    <string name="route_detail_action_next_hint">sposta il faro al waypoint successivo</string>
+    <string name="route_detail_action_next_hint">Spostare l\'audiofaro al waypoint successivo</string>
     <string name="route_detail_edit_description">"Descrizione"</string>
     <string name="route_detail_edit_waypoints_button">"Aggiungi waypoint"</string>
     <string name="route_detail_edit_delete">"Elimina Percorso"</string>
@@ -88,9 +88,9 @@
     <string name="search_use_current_location">"Posizione attuale"</string>
     <string name="search_nearby_screen_title">"Luoghi nelle vicinanze"</string>
     <string name="search_view_markers">Indicatori e Percorsi</string>
-    <string name="search_button_markers_accessibility_hint">selezionare o modificare gli indicatori che hai salvato</string>
-    <string name="search_button_nearby_accessibility_hint">esplorare i ristoranti nelle vicinanze, le fermate dei mezzi pubblici e altro ancora</string>
-    <string name="search_button_current_location_accessibility_hint">avviare l\'anteprima, contrassegnare o condividere la tua posizione attuale con un amico</string>
+    <string name="search_button_markers_accessibility_hint">Selezionare o modificare gli indicatori che hai salvato</string>
+    <string name="search_button_nearby_accessibility_hint">Esplorare ristoranti, fermate del trasporto e altro nelle vicinanze</string>
+    <string name="search_button_current_location_accessibility_hint">Visualizzare l\'anteprima, contrassegnare o condividere la tua posizione attuale con un amico</string>
     <string name="filter_all">"Tutti i luoghi"</string>
     <string name="filter_transit">"Trasporto pubblico"</string>
     <string name="filter_food_drink">Cibi e bevande</string>
@@ -107,7 +107,7 @@
     <string name="sleep_sleep">"Sospendi"</string>
     <string name="sleep_sleeping">"In modalità Sospendi"</string>
     <string name="sleep_sleeping_message">"Soundscape è attualmente in modalità Sospendi. Questa modalità impedisce a Soundscape di utilizzare i servizi di localizzazione o di scaricare dati in modo da risparmiare la batteria quando Soundscape non viene utilizzato. Tocca il pulsante in basso per riattivare Soundscape."</string>
-    <string name="sleep_sleep_acc_hint">sospendere Soundscape</string>
+    <string name="sleep_sleep_acc_hint">Mettere Soundscape in modalità Sospendi</string>
     <string name="sleep_wake_up_now">"Riattiva ora"</string>
     <string name="intersection_approaching_intersection">"Ti stai avvicinando all'incrocio"</string>
     <string name="directions_at_poi">"Presso %s"</string>
@@ -170,15 +170,15 @@
     <string name="distance_format_feet">"%s piedi"</string>
     <string name="distance_format_miles">"%s miglia"</string>
     <string name="ui_action_button_my_location">"La mia\nposizione"</string>
-    <string name="ui_action_button_my_location_acc_hint">ascoltare la tua posizione attuale</string>
+    <string name="ui_action_button_my_location_acc_hint">Ascoltare informazioni sulla tua posizione attuale</string>
     <string name="ui_action_button_nearby_markers">"Indicatori\nnelle vicinanze"</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">ascoltare i luoghi nelle vicinanze che hai contrassegnato</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">Ascoltare informazioni sui luoghi nelle vicinanze che hai contrassegnato</string>
     <string name="ui_action_button_around_me">"Intorno\na me"</string>
-    <string name="ui_action_button_around_me_acc_hint">ascoltare i luoghi nei quattro quadranti intorno a te</string>
+    <string name="ui_action_button_around_me_acc_hint">Ascoltare informazioni sui luoghi nei quattro quadranti intorno a te</string>
     <string name="ui_action_button_ahead_of_me">"Davanti\na me"</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">ascoltare i luoghi di fronte a te</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">Ascoltare informazioni sui luoghi davanti a te</string>
     <string name="ui_menu">"Menu"</string>
-    <string name="ui_menu_hint">aprire il menu</string>
+    <string name="ui_menu_hint">Aprire il menu</string>
     <string name="ui_menu_close">"Chiudi menu"</string>
     <string name="ui_continue">"Continua"</string>
     <string name="menu_manage_callouts">"Gestisci notifiche"</string>
@@ -1246,4 +1246,6 @@
     <string name="accessibility_title" tools:ignore="MissingTranslation">Accessibilità</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Poiché hai un lettore di schermo attivato, ti consigliamo di usare l\'app con le mappe grafiche dell\'interfaccia utente disattivate. Puoi modificare questa impostazione qui oppure continuare.</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Poiché non hai un lettore di schermo attivato, presumiamo che tu voglia visualizzare le mappe grafiche nell\'interfaccia utente. Puoi modificare questa impostazione qui oppure continuare.</string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation">Continua</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">Chiudi il popup e continua con il tutorial</string>
 </resources>
