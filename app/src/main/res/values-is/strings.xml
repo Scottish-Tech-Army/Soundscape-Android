@@ -29,9 +29,9 @@
     <string name="beacon_styles_mallet_very_slow">Sleggja, mjög hæt</string>
     <string name="beacon_audio_beacon">Hljóðviti</string>
     <string name="beacon_action_mute_beacon">slökkva á hljóðmerki vita</string>
-    <string name="beacon_action_mute_beacon_acc_hint">slökkva á hljóðmerki vita.</string>
+    <string name="beacon_action_mute_beacon_acc_hint">slökkva á hljóðvita.</string>
     <string name="beacon_action_unmute_beacon">virkja hljóðmerki vita</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">virkja hljóðmerki vita.</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">virkja hljóðvita.</string>
     <string name="preview_title">Herma staðsetningu</string>
     <string name="preview_go_title">fara á næstu gatnamót</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">fara á nálægustu gatnamót</string>
@@ -39,30 +39,30 @@
     <string name="preview_include_unnamed_roads_title">nafnlaus vegur</string>
     <string name="location_detail_title_default">upplýsingar um staðsetningu</string>
     <string name="location_detail_action_beacon">hljóð viti</string>
-    <string name="location_detail_action_beacon_hint">setja hljóðvita hér</string>
-    <string name="location_detail_action_save_hint">vista þessa staðsetningu sem merki</string>
-    <string name="location_detail_action_edit_hint">uppfæra merki</string>
-    <string name="location_detail_action_share_hint">deila staðsetningu</string>
-    <string name="location_detail_action_preview_hint">hefja forskoðun hér</string>
-    <string name="location_detail_add_waypoint_existing_hint">fjarlægja merki úr leið.</string>
-    <string name="location_detail_add_waypoint_new_hint">bæta merki við leið.</string>
+    <string name="location_detail_action_beacon_hint">setja hljóðvita á þennan stað.</string>
+    <string name="location_detail_action_save_hint">vista þessa staðsetningu sem merki.</string>
+    <string name="location_detail_action_edit_hint">uppfæra merki.</string>
+    <string name="location_detail_action_share_hint">deila þessari staðsetningu.</string>
+    <string name="location_detail_action_preview_hint">byrja að herma staðsetningu á þessum stað.</string>
+    <string name="location_detail_add_waypoint_existing_hint">fjarlægja þetta merki úr leiðinni þinni.</string>
+    <string name="location_detail_add_waypoint_new_hint">bæta þessu merki við leiðina þína.</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">stækka kort til að fylla skjá</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">fara úr fullum skjá</string>
     <string name="route_detail_action_start_route">upphaf leiðar</string>
     <string name="route_detail_action_stop_route">ljúka leið</string>
     <string name="route_detail_action_edit">Uppfæra Leið</string>
-    <string name="route_detail_action_start_route_hint">hefja leið</string>
+    <string name="route_detail_action_start_route_hint">byrja þessa leið.</string>
     <string name="route_detail_action_start_route_disabled_hint">bæta við punktum áður en leið er hafin</string>
-    <string name="route_detail_action_stop_route_hint">stöðva leið</string>
-    <string name="route_detail_action_share_hint">deila leið</string>
-    <string name="route_detail_action_edit_hint">uppfæra leið</string>
+    <string name="route_detail_action_stop_route_hint">ljúka þessari leið.</string>
+    <string name="route_detail_action_share_hint">deila þessari leið.</string>
+    <string name="route_detail_action_edit_hint">uppfæra þessa leið.</string>
     <string name="route_detail_action_create">ný leið</string>
-    <string name="route_detail_action_create_hint">búa til nýja leið</string>
+    <string name="route_detail_action_create_hint">búa til nýja leið.</string>
     <string name="route_end_completed_accessibility">leið lokiðleið lokið %s</string>
     <string name="route_detail_action_previous">fyrri leiðarpunktur</string>
-    <string name="route_detail_action_previous_hint">flytja hljóðvitann á fyrri leiðarpunkt</string>
+    <string name="route_detail_action_previous_hint">færa hljóðvita á fyrri leiðarpunkt.</string>
     <string name="route_detail_action_next">næsti leiðarpunktur</string>
-    <string name="route_detail_action_next_hint">flytja hljóðvitann á næsta leiðarpunkt</string>
+    <string name="route_detail_action_next_hint">færa hljóðvita á næsta leiðarpunkt.</string>
     <string name="route_detail_edit_waypoints_button">bæta við punkti</string>
     <string name="route_detail_edit_delete">eyða leið</string>
     <string name="route_update_success_title">uppfærslu lokið!</string>
@@ -96,9 +96,9 @@
     <string name="search_use_current_location">staðsetning</string>
     <string name="search_nearby_screen_title">nálægir staðir</string>
     <string name="search_view_markers">merki og leiðir</string>
-    <string name="search_button_markers_accessibility_hint">veldu og uppfærðu vistuð merki</string>
-    <string name="search_button_nearby_accessibility_hint">skoða nálæga veitingastaði, stoppistöðvar og annað</string>
-    <string name="search_button_current_location_accessibility_hint">skoðaðu, merktu eða sentu merki á vin</string>
+    <string name="search_button_markers_accessibility_hint">velja eða breyta vistuðum merkjum.</string>
+    <string name="search_button_nearby_accessibility_hint">kanna nálæga veitingastaði, strætóstopp og fleira.</string>
+    <string name="search_button_current_location_accessibility_hint">skoða, merkja eða deila núverandi staðsetningu þinni með vini.</string>
     <string name="filter_all">allir staðir</string>
     <string name="filter_transit">almenningssamgöngur</string>
     <string name="filter_food_drink">matur og drykkur</string>
@@ -115,7 +115,7 @@
     <string name="sleep_sleep">fara í dvala</string>
     <string name="sleep_sleeping">í dvala</string>
     <string name="sleep_sleeping_message">soundscape er í dvala. Þetta kemur í veg fyrir niðurhal á gögnum. og sparar rafhlöðu. Virkjaðu hnappinn fyrir neðan til að vekja soundscape.</string>
-    <string name="sleep_sleep_acc_hint">setja Soundscape í dvala</string>
+    <string name="sleep_sleep_acc_hint">setja Soundscape í dvala.</string>
     <string name="sleep_wake_up_now">úr dvala</string>
     <string name="intersection_approaching_intersection">nálgast gatnamót</string>
     <string name="directions_at_poi">við %s</string>
@@ -195,15 +195,15 @@
     <string name="distance_format_feet">%s fet</string>
     <string name="distance_format_miles">%s mílur</string>
     <string name="ui_action_button_my_location">Mín\nStaðsettning</string>
-    <string name="ui_action_button_my_location_acc_hint">heyra um staðsettningu</string>
+    <string name="ui_action_button_my_location_acc_hint">fá upplýsingar um núverandi staðsetningu þína.</string>
     <string name="ui_action_button_nearby_markers">Nálæg\nMerki</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">um nálæg merki sem þú hefur vistað</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">fá upplýsingar um nálæga staði sem þú hefur merkt.</string>
     <string name="ui_action_button_around_me">Í kringum\nMig</string>
-    <string name="ui_action_button_around_me_acc_hint">fáðu upplýsingar um staði í kringum þig eftir höfuðáttum</string>
+    <string name="ui_action_button_around_me_acc_hint">fá upplýsingar um staði í fjórum fjórðungum í kringum þig.</string>
     <string name="ui_action_button_ahead_of_me">Fyrir\nFraman\nMig</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">fáðu upplýsingar um staði fyrir framan þig</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">fá upplýsingar um staði fyrir framan þig.</string>
     <string name="ui_menu">valmöguleikar</string>
-    <string name="ui_menu_hint">opna valmöguleika</string>
+    <string name="ui_menu_hint">opna valmyndina.</string>
     <string name="ui_menu_close">loka</string>
     <string name="ui_continue">áfram</string>
     <string name="menu_manage_callouts">stilla tilkynningar</string>
@@ -1246,4 +1246,6 @@
     <string name="accessibility_title" tools:ignore="MissingTranslation">Aðgengi</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Vegna þess að þú ert með skjálesara virkan mælum við með að þú hafir myndrænu kortin í notendaviðmótinu slökkt. Þú getur breytt þessari stillingu hér, eða bara haldið áfram.</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Vegna þess að þú ert ekki með skjálesara virkan gerum við ráð fyrir að þú viljir að myndrænu kortin í notendaviðmótinu séu sýnd. Þú getur breytt þessari stillingu hér, eða bara haldið áfram.</string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation">áfram</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">loka sprettiglugga og halda áfram með hljóðleiðsögn</string>
 </resources>
