@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.locationprovider
 
 import android.content.Context
 import android.util.Log
-import com.google.android.gms.location.DeviceOrientation
 import io.ticofab.androidgpxparser.parser.GPXParser
 import io.ticofab.androidgpxparser.parser.domain.Gpx
 import kotlinx.coroutines.CoroutineScope
@@ -63,10 +62,12 @@ class GpxDrivenProvider  {
                                 LngLatAlt(point.longitude, point.latitude),
                                 LngLatAlt(nextPoint.longitude, nextPoint.latitude))
 
-                            val orientation = DeviceOrientation.Builder(FloatArray(4),
-                                heading.toFloat(),
-                                0.0F,
-                                1000000).build()
+                            val orientation = DeviceDirection(
+                                attitude = FloatArray(4),
+                                headingDegrees = heading.toFloat(),
+                                headingAccuracyDegrees = 0.0F,
+                                elapsedRealtimeNanos = 1000000
+                            )
                             directionProvider.mutableOrientationFlow.value = orientation
                         }
                     }

@@ -6,8 +6,8 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
 import android.util.Log
-import com.google.android.gms.location.DeviceOrientation
 import dagger.hilt.android.scopes.ActivityRetainedScoped
+import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -31,7 +31,7 @@ class SoundscapeServiceConnection @Inject constructor() {
     fun getLocationFlow() : StateFlow<android.location.Location?>? {
         return soundscapeService?.locationProvider?.locationFlow
     }
-    fun getOrientationFlow() : StateFlow<DeviceOrientation?>? {
+    fun getOrientationFlow() : StateFlow<DeviceDirection?>? {
         return soundscapeService?.directionProvider?.orientationFlow
     }
     fun getBeaconFlow(): StateFlow<BeaconState>? {

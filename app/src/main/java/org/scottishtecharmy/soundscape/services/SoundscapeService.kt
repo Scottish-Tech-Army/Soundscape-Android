@@ -50,10 +50,12 @@ import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.hasPlayServices
 import org.scottishtecharmy.soundscape.locationprovider.AndroidDirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.AndroidLocationProvider
+import org.scottishtecharmy.soundscape.locationprovider.GooglePlayDirectionProvider
+import org.scottishtecharmy.soundscape.locationprovider.GooglePlayLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
@@ -166,12 +168,20 @@ class SoundscapeService : MediaSessionService() {
             // Use static location, but phone's direction
             if(location != null) {
                 locationProvider = StaticLocationProvider(location)
-                directionProvider = AndroidDirectionProvider(this)
+                directionProvider = if(hasPlayServices(this))
+                    GooglePlayDirectionProvider(this)
+                else
+                    AndroidDirectionProvider(this)
             }
         } else {
             // Switch back to phone's location and direction
-            locationProvider = AndroidLocationProvider(this)
-            directionProvider = AndroidDirectionProvider(this)
+            if(hasPlayServices(this)) {
+                locationProvider = GooglePlayLocationProvider(this)
+                directionProvider = GooglePlayDirectionProvider(this)
+            } else {
+                locationProvider = AndroidLocationProvider(this)
+                directionProvider = AndroidDirectionProvider(this)
+            }
         }
 
         // Set the StreetPreview state prior to starting the location provider. Otherwise there's a
@@ -231,8 +241,13 @@ class SoundscapeService : MediaSessionService() {
 
             routePlayer = RoutePlayer(this, applicationContext)
 
-            locationProvider = AndroidLocationProvider(this)
-            directionProvider = AndroidDirectionProvider(this)
+            if(hasPlayServices(this)) {
+                locationProvider = GooglePlayLocationProvider(this)
+                directionProvider = GooglePlayDirectionProvider(this)
+            } else {
+                locationProvider = AndroidLocationProvider(this)
+                directionProvider = AndroidDirectionProvider(this)
+            }
 
             // create new RealmDB or open existing
             startRealms(applicationContext)
