@@ -3,7 +3,9 @@ package org.scottishtecharmy.soundscape.screens.home
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.activity.compose.LocalActivity
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
@@ -28,6 +30,7 @@ import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.home.AudioTourInstructionDialog
 import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.Home
 import org.scottishtecharmy.soundscape.screens.home.home.OfflineMapsScreenVM
@@ -48,6 +51,7 @@ import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageViewM
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 import org.scottishtecharmy.soundscape.audio.AudioTour
+import org.scottishtecharmy.soundscape.audio.AudioTourInstruction
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
 import java.net.URLDecoder
@@ -127,6 +131,7 @@ fun HomeScreen(
     permissionsRequired: Boolean
 ) {
     val state = viewModel.state.collectAsStateWithLifecycle()
+    val audioTourInstruction by audioTour.currentInstruction.collectAsStateWithLifecycle()
     val routeFunctions = remember(viewModel) { RouteFunctions(viewModel) }
     val searchFunctions = remember(viewModel) { SearchFunctions(viewModel) }
     val streetPreviewFunctions = remember(viewModel) { StreetPreviewFunctions(viewModel) }
@@ -143,33 +148,34 @@ fun HomeScreen(
     }
 
 
-    NavHost(
-        navController = navController,
-        startDestination = HomeRoutes.Home.route,
-    ) {
-        // Main navigation
-        composable(HomeRoutes.Home.route) {
-            Home(
-                state = state.value,
-                onNavigate = { dest -> navController.navigate(dest) },
-                preferences = preferences,
-                onMapLongClick = onMapLongClickListener,
-                bottomButtonFunctions = bottomButtonFunctions,
-                getCurrentLocationDescription = { getCurrentLocationDescription(viewModel, state.value) },
-                searchFunctions = searchFunctions,
-                rateSoundscape = rateSoundscape,
-                contactSupport = contactSupport,
-                toggleTutorial = { audioTour.toggleState() },
-                tutorialRunning = audioTour.isRunning(),
-                routeFunctions = routeFunctions,
-                streetPreviewFunctions = streetPreviewFunctions,
-                goToAppSettings = viewModel::goToAppSettings,
-                modifier = Modifier
-                    .windowInsetsPadding(WindowInsets.safeDrawing)
-                    .semantics { testTagsAsResourceId = true },
-                permissionsRequired = permissionsRequired
-            )
-        }
+    Box(modifier = Modifier.fillMaxSize()) {
+        NavHost(
+            navController = navController,
+            startDestination = HomeRoutes.Home.route,
+        ) {
+            // Main navigation
+            composable(HomeRoutes.Home.route) {
+                Home(
+                    state = state.value,
+                    onNavigate = { dest -> navController.navigate(dest) },
+                    preferences = preferences,
+                    onMapLongClick = onMapLongClickListener,
+                    bottomButtonFunctions = bottomButtonFunctions,
+                    getCurrentLocationDescription = { getCurrentLocationDescription(viewModel, state.value) },
+                    searchFunctions = searchFunctions,
+                    rateSoundscape = rateSoundscape,
+                    contactSupport = contactSupport,
+                    toggleTutorial = { audioTour.toggleState() },
+                    tutorialRunning = audioTour.isRunning(),
+                    routeFunctions = routeFunctions,
+                    streetPreviewFunctions = streetPreviewFunctions,
+                    goToAppSettings = viewModel::goToAppSettings,
+                    modifier = Modifier
+                        .windowInsetsPadding(WindowInsets.safeDrawing)
+                        .semantics { testTagsAsResourceId = true },
+                    permissionsRequired = permissionsRequired
+                )
+            }
 
         // Settings screen
         composable(HomeRoutes.Settings.route) {
@@ -377,6 +383,15 @@ fun HomeScreen(
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
                     .semantics { testTagsAsResourceId = true }
+            )
+        }
+    }
+
+        // Show tutorial dialog on top of all screens
+        audioTourInstruction?.let { instruction ->
+            AudioTourInstructionDialog(
+                instruction = instruction,
+                onContinue = { audioTour.onInstructionAcknowledged() }
             )
         }
     }
