@@ -28,6 +28,7 @@ android {
         compose = true
     }
 
+    @Suppress("UnstableApiUsage")
     testFixtures {
         enable = true
     }
@@ -122,10 +123,10 @@ android {
 
     sourceSets {
         getByName("test") {
-            java.srcDirs("src/test/java")
+            java.srcDirs("src/test/java", "src/testFixtures/java")
         }
         getByName("androidTest") {
-            java.srcDirs("src/androidTest/java")
+            java.srcDirs("src/androidTest/java", "src/testFixtures/java")
             assets.srcDirs("src/androidTest/assets")
         }
     }

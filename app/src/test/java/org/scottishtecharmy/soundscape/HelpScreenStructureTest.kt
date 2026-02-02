@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape
 
 import androidx.compose.ui.ExperimentalComposeUiApi
 import org.junit.runner.RunWith
-import org.junit.runners.Parameterized
 import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.annotation.Config
 
@@ -21,7 +20,7 @@ class HelpScreenStructureTest(testTopic: String) : HelpScreenRegressionTestBase(
 
     companion object {
         @JvmStatic
-        @Parameterized.Parameters(name = "{index}: {0}")
+        @ParameterizedRobolectricTestRunner.Parameters(name = "{index}: {0}")
         fun data(): Iterable<Array<String>> {
             return HelpScreenTestShared.data()
         }

@@ -14,7 +14,6 @@ import androidx.navigation.NavHostController
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runners.Parameterized
 import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.MarkdownHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.StructureLog
@@ -43,8 +42,7 @@ abstract class HelpScreenRegressionTestBase(protected val testTopic: String) {
                             .semantics { testTagsAsResourceId = true },
                         structureLog = StructureLog { structureLog.append(it).append("\n") }
                     )
-                }
-                else {
+                } else {
                     HelpScreen(
                         topic = topic,
                         navController = NavHostController(targetContext),
