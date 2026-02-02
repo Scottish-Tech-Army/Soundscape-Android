@@ -29,9 +29,9 @@
     <string name="beacon_styles_mallet_very_slow">Pałeczka (bardzo wolna)</string>
     <string name="beacon_audio_beacon">Dźwięk naprowadzający</string>
     <string name="beacon_action_mute_beacon">Wycisz dźwięk naprowadzający</string>
-    <string name="beacon_action_mute_beacon_acc_hint">wycisz dźwięk naprowadzający.</string>
+    <string name="beacon_action_mute_beacon_acc_hint">wycisz dźwięk naprowadzający</string>
     <string name="beacon_action_unmute_beacon">Włącz dźwięk naprowadzający</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">włącz dźwięk naprowadzający.</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">włącz dźwięk naprowadzający</string>
     <string name="preview_title">Podgląd lokalizacji</string>
     <string name="preview_go_title">Idź</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Idź do najbliższego skrzyżowania</string>
@@ -39,30 +39,30 @@
     <string name="preview_include_unnamed_roads_title">Drogi bez nazwy</string>
     <string name="location_detail_title_default">Szczegóły lokalizacji</string>
     <string name="location_detail_action_beacon">Uruchom dźwięk naprowadzający</string>
-    <string name="location_detail_action_beacon_hint">ustaw dźwięk naprowadzający w tej lokalizacji</string>
-    <string name="location_detail_action_save_hint">zapisz to miejsce jako znacznik (pinezkę)</string>
+    <string name="location_detail_action_beacon_hint">ustaw dźwięk naprowadzający dla tej lokalizacji</string>
+    <string name="location_detail_action_save_hint">zapisz tę lokalizację jako znacznik (pinezkę)</string>
     <string name="location_detail_action_edit_hint">edytuj znacznik (pinezkę)</string>
-    <string name="location_detail_action_share_hint">udostępnij to miejsce</string>
-    <string name="location_detail_action_preview_hint">rozpocznij podgląd w tym miejscu</string>
-    <string name="location_detail_add_waypoint_existing_hint">usuń ten znacznik z trasy.</string>
-    <string name="location_detail_add_waypoint_new_hint">dodaj ten znacznik do trasy.</string>
+    <string name="location_detail_action_share_hint">udostępnij tę lokalizację</string>
+    <string name="location_detail_action_preview_hint">rozpocznij podgląd tej lokalizacji</string>
+    <string name="location_detail_add_waypoint_existing_hint">usuń ten znacznik z trasy</string>
+    <string name="location_detail_add_waypoint_new_hint">dodaj ten znacznik do trasy</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Wyświetl mapę na pełnym ekranie</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Zamknij tryb pełnoekranowy mapy</string>
     <string name="route_detail_action_start_route">Rozpocznij trasę</string>
     <string name="route_detail_action_stop_route">Zatrzymaj trasę</string>
     <string name="route_detail_action_edit">Edytuj trasę</string>
-    <string name="route_detail_action_start_route_hint">rozpocznij trasę</string>
+    <string name="route_detail_action_start_route_hint">rozpocznij tę trasę</string>
     <string name="route_detail_action_start_route_disabled_hint">Dodaj punkty trasy, aby rozpocząć trasę</string>
-    <string name="route_detail_action_stop_route_hint">zatrzymaj trasę</string>
-    <string name="route_detail_action_share_hint">udostępnij trasę</string>
-    <string name="route_detail_action_edit_hint">edytuj trasę</string>
+    <string name="route_detail_action_stop_route_hint">zatrzymaj tę trasę</string>
+    <string name="route_detail_action_share_hint">udostępnij tę trasę</string>
+    <string name="route_detail_action_edit_hint">edytuj tę trasę</string>
     <string name="route_detail_action_create">Nowa trasa</string>
     <string name="route_detail_action_create_hint">utwórz nową trasę</string>
     <string name="route_end_completed_accessibility">Trasa ukończona! %s</string>
     <string name="route_detail_action_previous">Poprzedni punkt trasy</string>
-    <string name="route_detail_action_previous_hint">przenieś dźwięk naprowadzający do poprzedniego punktu trasy</string>
+    <string name="route_detail_action_previous_hint">przenieś dźwięk naprowadzający na poprzedni punkt trasy</string>
     <string name="route_detail_action_next">Następny punkt trasy</string>
-    <string name="route_detail_action_next_hint">przenieś dźwięk naprowadzający do następnego punktu trasy</string>
+    <string name="route_detail_action_next_hint">przenieś dźwięk naprowadzający na następny punkt trasy</string>
     <string name="route_detail_edit_description">Opis</string>
     <string name="route_detail_edit_waypoints_button">Dodaj punkty trasy</string>
     <string name="route_detail_edit_delete">Usuń trasę</string>
@@ -97,8 +97,8 @@
     <string name="search_nearby_screen_title">Miejsca w pobliżu</string>
     <string name="search_view_markers">Znaczniki (pinezki) i trasy</string>
     <string name="search_button_markers_accessibility_hint">wybierz lub edytuj zapisane znaczniki (pinezki)</string>
-    <string name="search_button_nearby_accessibility_hint">odkrywaj pobliskie restauracje, przystanki i inne miejsca</string>
-    <string name="search_button_current_location_accessibility_hint">sprawdź, oznacz lub udostępnij znajomemu swoją bieżącą lokalizację</string>
+    <string name="search_button_nearby_accessibility_hint">przeglądaj pobliskie restauracje, przystanki i inne miejsca</string>
+    <string name="search_button_current_location_accessibility_hint">podejrzyj, oznacz lub udostępnij swoją bieżącą lokalizację znajomemu</string>
     <string name="filter_all">Wszystkie miejsca</string>
     <string name="filter_transit">Transport publiczny</string>
     <string name="filter_food_drink">Jedzenie i napoje</string>
@@ -115,7 +115,7 @@
     <string name="sleep_sleep">Tryb uśpienia</string>
     <string name="sleep_sleeping">Aplikacja w trybie uśpienia</string>
     <string name="sleep_sleeping_message">Soundscape jest obecnie w trybie uśpienia. Uniemożliwia to korzystanie przez Soundscape z usług lokalizacyjnych oraz pobieranie danych. Dzięki temu oszczędzasz baterię, gdy nie używasz aplikacji. Stuknij przycisk poniżej, aby obudzić Soundscape.</string>
-    <string name="sleep_sleep_acc_hint">Przełącz Soundscape w tryb uśpienia</string>
+    <string name="sleep_sleep_acc_hint">uśpij Soundscape</string>
     <string name="sleep_wake_up_now">Obudź teraz</string>
     <string name="intersection_approaching_intersection">Zbliżasz się do skrzyżowania</string>
     <string name="directions_at_poi">Przy %s</string>
@@ -195,13 +195,13 @@
     <string name="distance_format_feet">%s stóp</string>
     <string name="distance_format_miles">%s mil</string>
     <string name="ui_action_button_my_location">Moja\nlokaliz</string>
-    <string name="ui_action_button_my_location_acc_hint">Odsłuchaj informacji o swojej aktualnej lokalizacji</string>
+    <string name="ui_action_button_my_location_acc_hint">usłysz informacje o swojej bieżącej lokalizacji</string>
     <string name="ui_action_button_nearby_markers">Bliskie\nMiejsca</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">Informacje o oznaczonych przez Ciebie pobliskich miejscach</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">informacje o pobliskich miejscach, które oznaczyłeś</string>
     <string name="ui_action_button_around_me">Wokół\nmnie</string>
-    <string name="ui_action_button_around_me_acc_hint">Odsłuchaj informacje o miejscach w czterech kierunkach wokół ciebie</string>
+    <string name="ui_action_button_around_me_acc_hint">usłysz informacje o miejscach w czterech ćwiartkach wokół ciebie</string>
     <string name="ui_action_button_ahead_of_me">Przede\nmną</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">Odsłuchaj informacji o miejscach przed tobą</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">usłysz informacje o miejscach przed tobą</string>
     <string name="ui_menu">Menu</string>
     <string name="ui_menu_hint">otwórz menu</string>
     <string name="ui_menu_close">Zamknij menu</string>
@@ -1246,4 +1246,6 @@
     <string name="accessibility_title" tools:ignore="MissingTranslation">Ułatwienia dostępu</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Ponieważ masz włączony czytnik ekranu, zalecamy korzystanie z aplikacji przy wyłączonych graficznych mapach interfejsu użytkownika. Możesz zmienić to ustawienie tutaj lub po prostu kontynuować.</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Ponieważ nie masz włączonego czytnika ekranu, zakładamy, że chcesz, aby graficzne mapy interfejsu użytkownika były wyświetlane. Możesz zmienić to ustawienie tutaj lub po prostu kontynuować.</string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation">Kontynuuj</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">zamknij wyskakujące okno i kontynuuj samouczek</string>
 </resources>
