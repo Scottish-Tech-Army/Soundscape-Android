@@ -55,11 +55,23 @@ import org.scottishtecharmy.soundscape.utils.processMaps
 import java.io.File
 import java.util.Locale
 import javax.inject.Inject
+import androidx.core.net.toUri
 
 data class ThemeState(
     val hintsEnabled: Boolean = false,
     val themeIsLight: Boolean = true,
     val themeContrast: String = "High")
+
+fun hasPlayServices(context: Context): Boolean {
+    return try {
+        val availability = com.google.android.gms.common.GoogleApiAvailability.getInstance()
+            .isGooglePlayServicesAvailable(context)
+        availability == com.google.android.gms.common.ConnectionResult.SUCCESS
+    } catch (e: Exception) {
+        // GMS classes not available at all (e.g., device without Play Services)
+        false
+    }
+}
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -73,7 +85,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var audioTour : AudioTour
 
     init {
-        Analytics.getInstance(false)
+        // Use dummy analytics if we don't have play services
+        Analytics.getInstance(!hasPlayServices(this))
     }
 
     // we need notification permission to be able to display a notification for the foreground service
@@ -372,24 +385,46 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun rateSoundscape() {
-        val reviewManager = ReviewManagerFactory.create(this)
-        val request = reviewManager.requestReviewFlow()
-        request.addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                // We got the ReviewInfo object
-                val reviewInfo = task.result
+        if (!hasPlayServices(this)) {
+            // No Play Services - open Play Store directly as fallback
+            openPlayStoreListing()
+            return
+        }
 
-                val flow = reviewManager.launchReviewFlow(this, reviewInfo)
-                flow.addOnCompleteListener { _ ->
-                    // The flow has finished. The API does not indicate whether the user
-                    // reviewed or not, or even whether the review dialog was shown. Thus, no
-                    // matter the result, we continue our app flow.
+        try {
+            val reviewManager = ReviewManagerFactory.create(this)
+            val request = reviewManager.requestReviewFlow()
+            request.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // We got the ReviewInfo object
+                    val reviewInfo = task.result
+
+                    val flow = reviewManager.launchReviewFlow(this, reviewInfo)
+                    flow.addOnCompleteListener { _ ->
+                        // The flow has finished. The API does not indicate whether the user
+                        // reviewed or not, or even whether the review dialog was shown. Thus, no
+                        // matter the result, we continue our app flow.
+                    }
+                } else {
+                    // There was some problem, log or handle the error code.
+                    @ReviewErrorCode val reviewErrorCode = (task.exception as ReviewException).errorCode
+                    Log.e(TAG, "Error requesting review: $reviewErrorCode")
                 }
-            } else {
-                // There was some problem, log or handle the error code.
-                @ReviewErrorCode val reviewErrorCode = (task.exception as ReviewException).errorCode
-                Log.e(TAG, "Error requesting review: $reviewErrorCode")
             }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error with in-app review, falling back to Play Store", e)
+            openPlayStoreListing()
+        }
+    }
+
+    private fun openPlayStoreListing() {
+        try {
+            // Try to open in Play Store app
+            startActivity(Intent(Intent.ACTION_VIEW, "market://details?id=$packageName".toUri()))
+        } catch (e: Exception) {
+            // Fall back to browser
+            startActivity(Intent(Intent.ACTION_VIEW,
+                "https://play.google.com/store/apps/details?id=$packageName".toUri()))
         }
     }
 

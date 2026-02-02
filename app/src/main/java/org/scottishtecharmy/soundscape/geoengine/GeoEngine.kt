@@ -9,8 +9,8 @@ import android.net.Uri
 import android.os.Environment
 import android.util.Log
 import androidx.preference.PreferenceManager
-import com.google.android.gms.location.DeviceOrientation
 import com.google.firebase.crashlytics.FirebaseCrashlytics
+import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -156,7 +156,7 @@ class GeoEngine {
      */
     private fun createUserGeometry(
         location: Location?,
-        orientation: DeviceOrientation?,
+        orientation: DeviceDirection?,
         headingMode: UserGeometry.HeadingMode,
         mapMatchFilter: MapMatchFilter? = null,
     ) : UserGeometry {
@@ -476,7 +476,7 @@ class GeoEngine {
                         directionProvider.orientationFlow,
                         locationProvider.filteredLocationFlow,
 
-                        ) { orientation: DeviceOrientation?, location: Location? ->
+                        ) { orientation: DeviceDirection?, location: Location? ->
 
                             createUserGeometry(
                                 location = location,
