@@ -37,24 +37,24 @@
     <string name="location_detail_action_save_hint">この場所をマーカーとして保存する</string>
     <string name="location_detail_action_edit_hint">マーカーを編集する</string>
     <string name="location_detail_action_share_hint">この場所を共有する</string>
-    <string name="location_detail_action_preview_hint">この場所のプレビューを開始する</string>
-    <string name="location_detail_add_waypoint_existing_hint">ルートからこのマーカーを削除します。</string>
-    <string name="location_detail_add_waypoint_new_hint">ルートにこのマーカーを追加します。</string>
+    <string name="location_detail_action_preview_hint">この場所でプレビューを開始する</string>
+    <string name="location_detail_add_waypoint_existing_hint">このマーカーをルートから削除する</string>
+    <string name="location_detail_add_waypoint_new_hint">このマーカーをルートに追加する</string>
     <string name="route_detail_action_start_route">"ルートを開始する"</string>
     <string name="route_detail_action_stop_route">"ルートを中止する"</string>
     <string name="route_detail_action_edit">"ルートを編集"</string>
-    <string name="route_detail_action_start_route_hint">ダブル タップすると、このルートを開始します</string>
+    <string name="route_detail_action_start_route_hint">このルートを開始する</string>
     <string name="route_detail_action_start_route_disabled_hint">"ルートを開始する前にウェイポイントを追加します"</string>
-    <string name="route_detail_action_stop_route_hint">ダブル タップすると、このルートを停止します</string>
-    <string name="route_detail_action_share_hint">ダブル タップすると、このルートを共有します</string>
-    <string name="route_detail_action_edit_hint">このルートを編集します</string>
+    <string name="route_detail_action_stop_route_hint">このルートを中止する</string>
+    <string name="route_detail_action_share_hint">このルートを共有する</string>
+    <string name="route_detail_action_edit_hint">このルートを編集する</string>
     <string name="route_detail_action_create">"新しいルート"</string>
-    <string name="route_detail_action_create_hint">新しいルートを作成します</string>
+    <string name="route_detail_action_create_hint">新しいルートを作成する</string>
     <string name="route_end_completed_accessibility">"ルートが終了しました! %s"</string>
     <string name="route_detail_action_previous">"以前のウェイポイント"</string>
-    <string name="route_detail_action_previous_hint">ビーコンを前のウェイポイントに移動します</string>
+    <string name="route_detail_action_previous_hint">ビーコンを前のウェイポイントに移動する</string>
     <string name="route_detail_action_next">"次のウェイポイント"</string>
-    <string name="route_detail_action_next_hint">ビーコンを次のウェイポイントに移動します</string>
+    <string name="route_detail_action_next_hint">ビーコンを次のウェイポイントに移動する</string>
     <string name="route_detail_edit_description">"説明"</string>
     <string name="route_detail_edit_waypoints_button">"ウェイポイントを追加"</string>
     <string name="route_detail_edit_delete">"ルートを削除する"</string>
@@ -89,8 +89,8 @@
     <string name="search_nearby_screen_title">"近くの場所"</string>
     <string name="search_view_markers">マーカーおよびルート</string>
     <string name="search_button_markers_accessibility_hint">保存したマーカーを選択または編集する</string>
-    <string name="search_button_nearby_accessibility_hint">近くのレストランや停留所などを探す</string>
-    <string name="search_button_current_location_accessibility_hint">現在地のプレビュー、マーカーの作成、友達との共有をする</string>
+    <string name="search_button_nearby_accessibility_hint">近くのレストラン、交通停留所などを探索する</string>
+    <string name="search_button_current_location_accessibility_hint">現在地をプレビュー、マーク、または友人と共有する</string>
     <string name="filter_all">"すべての場所"</string>
     <string name="filter_transit">"公共交通機関"</string>
     <string name="filter_food_drink">飲食店</string>
@@ -107,7 +107,7 @@
     <string name="sleep_sleep">"スリープ"</string>
     <string name="sleep_sleeping">"スリープ中"</string>
     <string name="sleep_sleeping_message">"Soundscape は現在スリープ状態です。そのため、位置情報サービスの使用やデータのダウンロードができません。スリープ モードでは、Soundscape を使用しない間のバッテリー消費が抑えられます。Soundscape のスリープを解除するには、下のボタンをタップしてください。"</string>
-    <string name="sleep_sleep_acc_hint">Soundscape をスリープ モードにする</string>
+    <string name="sleep_sleep_acc_hint">Soundscape をスリープにする</string>
     <string name="sleep_wake_up_now">"すぐにスリープ解除"</string>
     <string name="intersection_approaching_intersection">"まもなく交差点"</string>
     <string name="directions_at_poi">"現在地: %s"</string>
@@ -172,13 +172,13 @@
     <string name="ui_action_button_my_location">現在地</string>
     <string name="ui_action_button_my_location_acc_hint">現在地の情報を聞く</string>
     <string name="ui_action_button_nearby_markers">"近くの\nマーカー"</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">マーカーを設定した近くの場所の情報を聞く</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">近くに保存した場所について聞く</string>
     <string name="ui_action_button_around_me">周辺</string>
-    <string name="ui_action_button_around_me_acc_hint">自分の周辺の 4 方向の情報を聞くにはダブル タップします</string>
+    <string name="ui_action_button_around_me_acc_hint">周辺の4方向にある場所について聞く</string>
     <string name="ui_action_button_ahead_of_me">前方</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">自分の前方の情報を聞く</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">前方にある場所について聞く</string>
     <string name="ui_menu">"メニュー"</string>
-    <string name="ui_menu_hint">ダブル タップすると、メニューが開きます</string>
+    <string name="ui_menu_hint">メニューを開く</string>
     <string name="ui_menu_close">"メニューを閉じる"</string>
     <string name="ui_continue">"続行"</string>
     <string name="menu_manage_callouts">"コールアウトを管理"</string>
@@ -1246,4 +1246,6 @@
     <string name="accessibility_title" tools:ignore="MissingTranslation">アクセシビリティ</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">スクリーンリーダーが有効になっているため、ユーザーインターフェースの地図表示はオフにしてアプリを実行することをおすすめします。ここで設定を変更するか、そのまま続行してください。</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">スクリーンリーダーが有効になっていないため、ユーザーインターフェースに地図を表示することを想定しています。ここで設定を変更するか、そのまま続行してください。</string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation">続行</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">ポップアップを閉じてチュートリアルを続行します</string>
 </resources>
