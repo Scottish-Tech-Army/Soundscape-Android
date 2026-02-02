@@ -28,9 +28,9 @@
     <string name="beacon_styles_mallet_very_slow">Молоточок (дуже повільно)</string>
     <string name="beacon_audio_beacon">Звуковий маячок</string>
     <string name="beacon_action_mute_beacon">Вимкнути звук маячка</string>
-    <string name="beacon_action_mute_beacon_acc_hint">Зменшити гучність звукового маячка до нуля.</string>
+    <string name="beacon_action_mute_beacon_acc_hint">Вимкнути звук маячка</string>
     <string name="beacon_action_unmute_beacon">Увімкнути звук маячка</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">Збільшити гучність звукового маячка до визначеного значення.</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">Увімкнути звук маячка</string>
     <string name="preview_title">Симулювати місцезнаходження</string>
     <string name="preview_go_title">Далі</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Перейти до найближчого перехрестя</string>
@@ -38,30 +38,30 @@
     <string name="preview_include_unnamed_roads_title">Дороги без назв</string>
     <string name="location_detail_title_default">Деталі місця</string>
     <string name="location_detail_action_beacon">Запустити звуковий маячок</string>
-    <string name="location_detail_action_beacon_hint">Встановити звуковий маячок для цього місця</string>
+    <string name="location_detail_action_beacon_hint">Встановити звуковий маячок у цьому місці</string>
     <string name="location_detail_action_save_hint">Зберегти це місце як мітку</string>
     <string name="location_detail_action_edit_hint">Редагувати мітку</string>
     <string name="location_detail_action_share_hint">Поділитися цим місцем</string>
-    <string name="location_detail_action_preview_hint">Розпочати перегляд у цьому місці</string>
-    <string name="location_detail_add_waypoint_existing_hint">Видалити цю мітку з маршруту.</string>
-    <string name="location_detail_add_waypoint_new_hint">Додати цю мітку до маршруту.</string>
+    <string name="location_detail_action_preview_hint">Почати попередній перегляд цього місця</string>
+    <string name="location_detail_add_waypoint_existing_hint">Видалити цю мітку з вашого маршруту</string>
+    <string name="location_detail_add_waypoint_new_hint">Додати цю мітку до вашого маршруту</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Розгорнути карту на весь екран</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Вийти з повноекранного режиму карти</string>
     <string name="route_detail_action_start_route">Розпочати навігацыю</string>
     <string name="route_detail_action_stop_route">Зупинити навігацію</string>
     <string name="route_detail_action_edit">Редагувати маршрут</string>
-    <string name="route_detail_action_start_route_hint">Розпочати навігацію за цим маршрутом</string>
+    <string name="route_detail_action_start_route_hint">Розпочати цей маршрут</string>
     <string name="route_detail_action_start_route_disabled_hint">Щоб розпочати навігацію, спершу додайте маршрутні точки</string>
-    <string name="route_detail_action_stop_route_hint">Зупинити навігацію за цим маршрутом</string>
+    <string name="route_detail_action_stop_route_hint">Зупинити цей маршрут</string>
     <string name="route_detail_action_share_hint">Поділитися цим маршрутом</string>
     <string name="route_detail_action_edit_hint">Редагувати цей маршрут</string>
     <string name="route_detail_action_create">Новий маршрут</string>
     <string name="route_detail_action_create_hint">Створити новий маршрут</string>
     <string name="route_end_completed_accessibility">Маршрут подолано! %s</string>
     <string name="route_detail_action_previous">Попередня маршрутна точка</string>
-    <string name="route_detail_action_previous_hint">перемістити маячок до попередньої маршрутної точки</string>
+    <string name="route_detail_action_previous_hint">Перемістити маячок до попередньої маршрутної точки</string>
     <string name="route_detail_action_next">Наступна маршрутна точка</string>
-    <string name="route_detail_action_next_hint">перемістити маячок до наступної маршрутної точки</string>
+    <string name="route_detail_action_next_hint">Перемістити маячок до наступної маршрутної точки</string>
     <string name="route_detail_edit_description">Опис</string>
     <string name="route_detail_edit_waypoints_button">Додати маршрутні точки</string>
     <string name="route_detail_edit_delete">Видалити маршрут</string>
@@ -95,9 +95,9 @@
     <string name="search_use_current_location">Поточне місцезнаходження</string>
     <string name="search_nearby_screen_title">Навколишні місця</string>
     <string name="search_view_markers">Мітки та Маршрути</string>
-    <string name="search_button_markers_accessibility_hint">Виберіть або відредагуйте збережені мітки</string>
-    <string name="search_button_nearby_accessibility_hint">досліджуйте місця поблизу: ресторани, зупинки громадського транспорту тощо</string>
-    <string name="search_button_current_location_accessibility_hint">Переглянути, зберегти або поділитися вашим поточним місцезнаходженням із друзями</string>
+    <string name="search_button_markers_accessibility_hint">Вибрати або редагувати збережені мітки</string>
+    <string name="search_button_nearby_accessibility_hint">Досліджуйте найближчі ресторани, зупинки громадського транспорту та інше</string>
+    <string name="search_button_current_location_accessibility_hint">Переглянути, позначити або поділитися своїм поточним місцезнаходженням з другом</string>
     <string name="filter_all">Всі місця</string>
     <string name="filter_transit">Громадський транспорт</string>
     <string name="filter_food_drink">Їжа та напої</string>
@@ -114,7 +114,7 @@
     <string name="sleep_sleep">Сон</string>
     <string name="sleep_sleeping">Спить</string>
     <string name="sleep_sleeping_message">Зараз Soundscape перебуває в режимі сну. У цьому режимі Soundscape не використовує геодані та не завантажує дані. Це зберігає заряд акумулятора, коли ви не використовуєте Soundscape. Натисніть кнопку нижче, щоб вивести Soundscape з режиму сну.</string>
-    <string name="sleep_sleep_acc_hint">перевести Soundscape в режим сну</string>
+    <string name="sleep_sleep_acc_hint">Перевести Soundscape у режим сну</string>
     <string name="sleep_wake_up_now">Розбудити зараз</string>
     <string name="intersection_approaching_intersection">Наближення до перехрестя</string>
     <string name="directions_at_poi">%s,у точці</string>
@@ -194,15 +194,15 @@
     <string name="distance_format_feet">%s футів</string>
     <string name="distance_format_miles">%s миль</string>
     <string name="ui_action_button_my_location">Моє\nмісце</string>
-    <string name="ui_action_button_my_location_acc_hint">Інформація про ваше поточне місцезнаходження</string>
+    <string name="ui_action_button_my_location_acc_hint">Дізнатися про ваше поточне місцезнаходження</string>
     <string name="ui_action_button_nearby_markers">Мітки\nпоблизу</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">Інформація про найближчі позначені вами місця</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">Дізнатися про місця поблизу, які ви позначили</string>
     <string name="ui_action_button_around_me">Навколо\nМене</string>
-    <string name="ui_action_button_around_me_acc_hint">Інформація про місця в чотирьох квадрантах навколо вас</string>
+    <string name="ui_action_button_around_me_acc_hint">Дізнатися про місця у чотирьох квадрантах навколо вас</string>
     <string name="ui_action_button_ahead_of_me">Попереду\nмене</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">Інформація про місця перед вами</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">Дізнатися про місця попереду вас</string>
     <string name="ui_menu">Меню</string>
-    <string name="ui_menu_hint">відкрити меню</string>
+    <string name="ui_menu_hint">Відкрити меню</string>
     <string name="ui_menu_close">Закрити меню</string>
     <string name="ui_continue">Продовжити</string>
     <string name="menu_manage_callouts">Налаштування оголошень</string>
@@ -1246,4 +1246,6 @@
     <string name="accessibility_title" tools:ignore="MissingTranslation">Доступність</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Оскільки у вас увімкнено зчитувач екрану, ми рекомендуємо вимкнути відображення графічних карт в інтерфейсі програми. Ви можете змінити цей параметр тут або продовжити далі.</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Оскільки у вас не увімкнено зчитувач екрану, ми припускаємо, що ви хочете бачити графічні карти в інтерфейсі програми. Ви можете змінити цей параметр тут або продовжити далі.</string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation">Продовжити</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">Закрити спливаюче вікно та продовжити аудіоурок</string>
 </resources>
