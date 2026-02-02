@@ -25,36 +25,36 @@
     <string name="beacon_styles_mallet_very_slow">"Hammer (svært langsom)"</string>
     <string name="beacon_audio_beacon">"Lydsignal"</string>
     <string name="beacon_action_mute_beacon">"Slå av lydsignal"</string>
-    <string name="beacon_action_mute_beacon_acc_hint">slå av lydsignalet.</string>
+    <string name="beacon_action_mute_beacon_acc_hint">Slå av lydsignalet.</string>
     <string name="beacon_action_unmute_beacon">"Slå på lydsignal"</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">slå på lydsignalet.</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">Slå på lydsignalet.</string>
     <string name="preview_title">Simuler posisjon</string>
     <string name="preview_go_title">"Start"</string>
     <string name="preview_include_unnamed_roads_title">"Veier uten navn"</string>
     <string name="location_detail_title_default">"Posisjonsinformasjon"</string>
     <string name="location_detail_action_beacon">"Start lydsignal"</string>
-    <string name="location_detail_action_beacon_hint">angi et lydsignal på denne posisjonen</string>
-    <string name="location_detail_action_save_hint">lagre denne posisjonen som en markør</string>
-    <string name="location_detail_action_edit_hint">redigere markøren</string>
-    <string name="location_detail_action_share_hint">dele denne posisjonen</string>
-    <string name="location_detail_action_preview_hint">starte forhåndsvisning ved denne posisjonen</string>
-    <string name="location_detail_add_waypoint_existing_hint">fjerne denne markøren fra ruten.</string>
-    <string name="location_detail_add_waypoint_new_hint">legge til denne markøren i ruten.</string>
+    <string name="location_detail_action_beacon_hint">Angi et lydsignal på dette stedet.</string>
+    <string name="location_detail_action_save_hint">Lagre dette stedet som en markør.</string>
+    <string name="location_detail_action_edit_hint">Rediger markøren.</string>
+    <string name="location_detail_action_share_hint">Del dette stedet.</string>
+    <string name="location_detail_action_preview_hint">Start forhåndsvisning av dette stedet.</string>
+    <string name="location_detail_add_waypoint_existing_hint">Fjern denne markøren fra ruten din.</string>
+    <string name="location_detail_add_waypoint_new_hint">Legg denne markøren til i ruten din.</string>
     <string name="route_detail_action_start_route">"Start rute"</string>
     <string name="route_detail_action_stop_route">"Stopp rute"</string>
     <string name="route_detail_action_edit">"Rediger rute"</string>
-    <string name="route_detail_action_start_route_hint">starte denne ruten</string>
+    <string name="route_detail_action_start_route_hint">Start denne ruten.</string>
     <string name="route_detail_action_start_route_disabled_hint">"Legg til veipunkter før du starter ruten"</string>
-    <string name="route_detail_action_stop_route_hint">stoppe denne ruten</string>
-    <string name="route_detail_action_share_hint">dele denne ruten</string>
-    <string name="route_detail_action_edit_hint">redigere denne ruten</string>
+    <string name="route_detail_action_stop_route_hint">Stopp denne ruten.</string>
+    <string name="route_detail_action_share_hint">Del denne ruten.</string>
+    <string name="route_detail_action_edit_hint">Rediger denne ruten.</string>
     <string name="route_detail_action_create">"Ny rute"</string>
-    <string name="route_detail_action_create_hint">opprette en ny rute</string>
+    <string name="route_detail_action_create_hint">Opprett en ny rute.</string>
     <string name="route_end_completed_accessibility">"Ruten er fullført. %s"</string>
     <string name="route_detail_action_previous">"Forrige veipunkt"</string>
-    <string name="route_detail_action_previous_hint">flytte lydsignalet til forrige veipunkt</string>
+    <string name="route_detail_action_previous_hint">Flytt lydsignalet til forrige veipunkt.</string>
     <string name="route_detail_action_next">"Neste veipunkt"</string>
-    <string name="route_detail_action_next_hint">flytte lydsignalet til neste veipunkt</string>
+    <string name="route_detail_action_next_hint">Flytt lydsignalet til neste veipunkt.</string>
     <string name="route_detail_edit_description">"Beskrivelse"</string>
     <string name="route_detail_edit_waypoints_button">"Legg til veipunkter"</string>
     <string name="route_detail_edit_delete">"Slett rute"</string>
@@ -88,9 +88,9 @@
     <string name="search_use_current_location">"Nåværende posisjon"</string>
     <string name="search_nearby_screen_title">"Steder i nærheten"</string>
     <string name="search_view_markers">Markører og ruter</string>
-    <string name="search_button_markers_accessibility_hint">velge eller redigere markører du har lagret</string>
-    <string name="search_button_nearby_accessibility_hint">utforske restauranter, kollektivstopp med mer i nærheten</string>
-    <string name="search_button_current_location_accessibility_hint">forhåndsvise, markere eller dele nåværende posisjon med en venn</string>
+    <string name="search_button_markers_accessibility_hint">Velg eller rediger markører du har lagret.</string>
+    <string name="search_button_nearby_accessibility_hint">Utforsk nærliggende restauranter, holdeplasser for kollektivtransport og mer.</string>
+    <string name="search_button_current_location_accessibility_hint">Forhåndsvis, lagre eller del din nåværende posisjon med en venn.</string>
     <string name="filter_all">"Alle steder"</string>
     <string name="filter_transit">"Offentlig transport"</string>
     <string name="filter_food_drink">Mat og drikke</string>
@@ -107,7 +107,7 @@
     <string name="sleep_sleep">"Sett i dvalemodus"</string>
     <string name="sleep_sleeping">"I dvalemodus"</string>
     <string name="sleep_sleeping_message">"Soundscape er for øyeblikket i dvalemodus. Det hindrer Soundscape i å bruke stedstjenester eller å laste ned data. Dette sparer batteri når du ikke bruker Soundscape. Trykk på knappen nedenfor for å vekke Soundscape."</string>
-    <string name="sleep_sleep_acc_hint">sette Soundscape i dvalemodus</string>
+    <string name="sleep_sleep_acc_hint">Sett Soundscape i dvalemodus.</string>
     <string name="sleep_wake_up_now">"Vekk nå"</string>
     <string name="intersection_approaching_intersection">"Du nærmer deg et veikryss"</string>
     <string name="directions_at_poi">"Ved %s"</string>
@@ -170,15 +170,15 @@
     <string name="distance_format_feet">"%s fot"</string>
     <string name="distance_format_miles">"%s engelske mil"</string>
     <string name="ui_action_button_my_location">"Min\nposisjon"</string>
-    <string name="ui_action_button_my_location_acc_hint">høre om nåværende posisjon</string>
+    <string name="ui_action_button_my_location_acc_hint">Hør om din nåværende posisjon.</string>
     <string name="ui_action_button_nearby_markers">Markører\ni nærh</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">høre om steder i nærheten som du har markert</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">Hør om steder i nærheten som du har markert.</string>
     <string name="ui_action_button_around_me">"Rundt\nmeg"</string>
-    <string name="ui_action_button_around_me_acc_hint">høre om steder i de fire kvadrantene rundt deg</string>
+    <string name="ui_action_button_around_me_acc_hint">Hør om steder i de fire kvadrantene rundt deg.</string>
     <string name="ui_action_button_ahead_of_me">"Foran\nmeg"</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">høre om steder foran deg</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">Hør om steder foran deg.</string>
     <string name="ui_menu">"Meny"</string>
-    <string name="ui_menu_hint">åpne menyen</string>
+    <string name="ui_menu_hint">Åpne menyen.</string>
     <string name="ui_menu_close">"Lukk meny"</string>
     <string name="ui_continue">"Fortsett"</string>
     <string name="menu_manage_callouts">"Administrer meldinger"</string>
@@ -1246,4 +1246,6 @@
     <string name="accessibility_title" tools:ignore="MissingTranslation">Tilgjengelighet</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Siden du har en skjermleser aktiv, anbefaler vi at du kjører appen med de grafiske kartene i brukergrensesnittet slått av. Du kan endre denne innstillingen her, eller bare fortsette.</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Siden du ikke har en skjermleser aktiv, antar vi at du ønsker at de grafiske kartene i brukergrensesnittet skal vises. Du kan endre denne innstillingen her, eller bare fortsette.</string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation">Fortsett</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">Lukk popupen og fortsett med lydveiledningen</string>
 </resources>
