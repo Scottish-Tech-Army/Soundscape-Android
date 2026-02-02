@@ -9,12 +9,16 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
-import org.scottishtecharmy.soundscape.geoengine.PositionedString
-import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import javax.inject.Inject
+
+data class AudioTourInstruction(
+    val text: String
+)
 
 enum class AudioTourStep {
     NOT_STARTED,
@@ -54,6 +58,12 @@ class AudioTour @Inject constructor(
 ) {
     private val _currentStep = MutableStateFlow(AudioTourStep.NOT_STARTED)
 
+    private val _currentInstruction = MutableStateFlow<AudioTourInstruction?>(null)
+    val currentInstruction: StateFlow<AudioTourInstruction?> = _currentInstruction.asStateFlow()
+
+    // Track the pending step to advance to after dialog acknowledgment
+    private var pendingStepAfterAcknowledgment: AudioTourStep? = null
+
     private val coroutineScope = CoroutineScope(Dispatchers.Main + Job())
 
     fun isRunning() : Boolean {
@@ -70,9 +80,45 @@ class AudioTour @Inject constructor(
     fun start() {
         Log.d(TAG, "Starting audio tour")
         _currentStep.value = AudioTourStep.WELCOME
-        coroutineScope.launch {
-            speakTourInstruction(context.getString(R.string.tour_welcome))
+        showTourInstruction(context.getString(R.string.tour_welcome))
+    }
+
+    fun onInstructionAcknowledged() {
+        Log.d(TAG, "Instruction acknowledged, current step: ${_currentStep.value}")
+        _currentInstruction.value = null
+
+        when (_currentStep.value) {
+            AudioTourStep.BEACON_DEMO -> {
+                // Start delay timer after dialog dismissal
+                coroutineScope.launch {
+                    delay(5000)
+                    advanceToStep(AudioTourStep.BEACON_DEMO_LOCKED)
+                }
+            }
+            AudioTourStep.BEACON_DEMO_LOCKED -> {
+                // Start delay timer after dialog dismissal
+                coroutineScope.launch {
+                    delay(5000)
+                    advanceToStep(AudioTourStep.STOP_BEACON)
+                }
+            }
+            AudioTourStep.FINISH, AudioTourStep.CANCEL -> {
+                // Reset to NOT_STARTED after dialog dismissal
+                _currentStep.value = AudioTourStep.NOT_STARTED
+            }
+            else -> {
+                // For other steps, advance to pending step if set
+                pendingStepAfterAcknowledgment?.let { step ->
+                    pendingStepAfterAcknowledgment = null
+                    _currentStep.value = step
+                }
+            }
         }
+    }
+
+    private fun showTourInstruction(text: String) {
+        Log.d(TAG, "Showing instruction: $text")
+        _currentInstruction.value = AudioTourInstruction(text)
     }
 
     fun stop() {
@@ -86,34 +132,22 @@ class AudioTour @Inject constructor(
         when (_currentStep.value) {
             AudioTourStep.MY_LOCATION_WAIT -> {
                 if (button == TourButton.MY_LOCATION) {
-                    coroutineScope.launch {
-                        waitForAudioComplete()
-                        advanceToStep(AudioTourStep.AROUND_ME_PROMPT)
-                    }
+                    advanceToStep(AudioTourStep.AROUND_ME_PROMPT)
                 }
             }
             AudioTourStep.AROUND_ME_WAIT -> {
                 if (button == TourButton.AROUND_ME) {
-                    coroutineScope.launch {
-                        waitForAudioComplete()
-                        advanceToStep(AudioTourStep.AHEAD_PROMPT)
-                    }
+                    advanceToStep(AudioTourStep.AHEAD_PROMPT)
                 }
             }
             AudioTourStep.AHEAD_WAIT -> {
                 if (button == TourButton.AHEAD_OF_ME) {
-                    coroutineScope.launch {
-                        waitForAudioComplete()
-                        advanceToStep(AudioTourStep.NEARBY_MARKERS_PROMPT)
-                    }
+                    advanceToStep(AudioTourStep.NEARBY_MARKERS_PROMPT)
                 }
             }
             AudioTourStep.NEARBY_MARKERS_WAIT -> {
                 if (button == TourButton.NEARBY_MARKERS) {
-                    coroutineScope.launch {
-                        waitForAudioComplete()
-                        advanceToStep(AudioTourStep.FINISH)
-                    }
+                    advanceToStep(AudioTourStep.FINISH)
                 }
             }
             else -> { /* Ignore button presses in other states */ }
@@ -182,96 +216,63 @@ class AudioTour @Inject constructor(
             return
 
         _currentStep.value = step
-        coroutineScope.launch {
-            when (step) {
-                AudioTourStep.MY_LOCATION_PROMPT -> {
-                    speakTourInstruction(context.getString(R.string.tour_my_location))
-                    _currentStep.value = AudioTourStep.MY_LOCATION_WAIT
-                }
-                AudioTourStep.AROUND_ME_PROMPT -> {
-                    speakTourInstruction(context.getString(R.string.tour_around_me))
-                    _currentStep.value = AudioTourStep.AROUND_ME_WAIT
-                }
-                AudioTourStep.AHEAD_PROMPT -> {
-                    speakTourInstruction(context.getString(R.string.tour_ahead))
-                    _currentStep.value = AudioTourStep.AHEAD_WAIT
-                }
-                AudioTourStep.NEARBY_MARKERS_PROMPT -> {
-                    speakTourInstruction(context.getString(R.string.tour_nearby_markers))
-                    _currentStep.value = AudioTourStep.NEARBY_MARKERS_WAIT
-                }
-                AudioTourStep.SELECT_PLACE -> {
-                    speakTourInstruction(context.getString(R.string.tour_select_place))
-                }
-                AudioTourStep.CREATE_MARKER_STARTED -> {
-                    speakTourInstruction(context.getString(R.string.tour_create_marker_started))
-                }
-                AudioTourStep.CREATE_MARKER_DONE -> {
-                    speakTourInstruction(context.getString(R.string.tour_create_marker_done))
-                }
-                AudioTourStep.MARKERS_AND_ROUTES -> {
-                    speakTourInstruction(context.getString(R.string.tour_markers_and_routes))
-                }
-                AudioTourStep.MARKERS -> {
-                    speakTourInstruction(context.getString(R.string.tour_markers))
-                }
-                AudioTourStep.START_BEACON -> {
-                    speakTourInstruction(context.getString(R.string.tour_start_beacon))
-                }
-                AudioTourStep.BEACON_DEMO -> {
-                    speakTourInstruction(context.getString(R.string.tour_beacon_demo))
-                    waitForAudioComplete()
-                    // Give user time to hear the beacon
-                    delay(5000)
-                    advanceToStep(AudioTourStep.BEACON_DEMO_LOCKED)
-                }
-                AudioTourStep.BEACON_DEMO_LOCKED -> {
-                    speakTourInstruction(context.getString(R.string.tour_beacon_demo_locked))
-                    waitForAudioComplete()
-                    // Give user time to hear the beacon
-                    delay(5000)
-                    advanceToStep(AudioTourStep.STOP_BEACON)
-                }
-                AudioTourStep.STOP_BEACON -> {
-                    speakTourInstruction(context.getString(R.string.tour_stop_beacon))
-                }
-                AudioTourStep.FINISH -> {
-                    speakTourInstruction(context.getString(R.string.tour_finish))
-                    _currentStep.value = AudioTourStep.NOT_STARTED
-                }
-                AudioTourStep.CANCEL -> {
-                    serviceConnection.soundscapeService?.audioEngine?.clearTextToSpeechQueue()
-                    speakTourInstruction(context.getString(R.string.tour_cancel))
-                    _currentStep.value = AudioTourStep.NOT_STARTED
-                }
-                else -> { /* No action needed */ }
+        when (step) {
+            AudioTourStep.MY_LOCATION_PROMPT -> {
+                showTourInstruction(context.getString(R.string.tour_my_location))
+                pendingStepAfterAcknowledgment = AudioTourStep.MY_LOCATION_WAIT
             }
-        }
-    }
-
-    private suspend fun waitForAudioComplete() {
-        while(true) {
-            // Wait for the audio queue to empty, debounce and then check it's still not busy
-            Log.d(TAG, "Waiting for audio to complete")
-            while ((serviceConnection.soundscapeService?.isAudioEngineBusy() == true)) {
-                delay(100)
+            AudioTourStep.AROUND_ME_PROMPT -> {
+                showTourInstruction(context.getString(R.string.tour_around_me))
+                pendingStepAfterAcknowledgment = AudioTourStep.AROUND_ME_WAIT
             }
-            Log.d(TAG, "Audio debounce")
-            delay(1500)
-            if (serviceConnection.soundscapeService?.isAudioEngineBusy() == false) break
+            AudioTourStep.AHEAD_PROMPT -> {
+                showTourInstruction(context.getString(R.string.tour_ahead))
+                pendingStepAfterAcknowledgment = AudioTourStep.AHEAD_WAIT
+            }
+            AudioTourStep.NEARBY_MARKERS_PROMPT -> {
+                showTourInstruction(context.getString(R.string.tour_nearby_markers))
+                pendingStepAfterAcknowledgment = AudioTourStep.NEARBY_MARKERS_WAIT
+            }
+            AudioTourStep.SELECT_PLACE -> {
+                showTourInstruction(context.getString(R.string.tour_select_place))
+            }
+            AudioTourStep.CREATE_MARKER_STARTED -> {
+                showTourInstruction(context.getString(R.string.tour_create_marker_started))
+            }
+            AudioTourStep.CREATE_MARKER_DONE -> {
+                showTourInstruction(context.getString(R.string.tour_create_marker_done))
+            }
+            AudioTourStep.MARKERS_AND_ROUTES -> {
+                showTourInstruction(context.getString(R.string.tour_markers_and_routes))
+            }
+            AudioTourStep.MARKERS -> {
+                showTourInstruction(context.getString(R.string.tour_markers))
+            }
+            AudioTourStep.START_BEACON -> {
+                showTourInstruction(context.getString(R.string.tour_start_beacon))
+            }
+            AudioTourStep.BEACON_DEMO -> {
+                // Show dialog, delay timer starts in onInstructionAcknowledged()
+                showTourInstruction(context.getString(R.string.tour_beacon_demo))
+            }
+            AudioTourStep.BEACON_DEMO_LOCKED -> {
+                // Show dialog, delay timer starts in onInstructionAcknowledged()
+                showTourInstruction(context.getString(R.string.tour_beacon_demo_locked))
+            }
+            AudioTourStep.STOP_BEACON -> {
+                showTourInstruction(context.getString(R.string.tour_stop_beacon))
+            }
+            AudioTourStep.FINISH -> {
+                // Show dialog, reset to NOT_STARTED in onInstructionAcknowledged()
+                showTourInstruction(context.getString(R.string.tour_finish))
+            }
+            AudioTourStep.CANCEL -> {
+                serviceConnection.soundscapeService?.audioEngine?.clearTextToSpeechQueue()
+                // Show dialog, reset to NOT_STARTED in onInstructionAcknowledged()
+                showTourInstruction(context.getString(R.string.tour_cancel))
+            }
+            else -> { /* No action needed */ }
         }
-        Log.d(TAG, "Audio has completed")
-    }
-
-    private fun speakTourInstruction(text: String) {
-        Log.d(TAG, "Speaking: $text")
-        val callout = TrackedCallout(
-            positionedStrings = listOf(
-                PositionedString(text = text, type = AudioType.STANDARD)
-            ),
-            filter = false
-        )
-        serviceConnection.soundscapeService?.speakCallout(callout, false)
     }
 
     companion object {
