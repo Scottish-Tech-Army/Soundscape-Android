@@ -25,36 +25,36 @@
     <string name="beacon_styles_mallet_very_slow">Mallet (Very Slow)</string>
     <string name="beacon_audio_beacon">Audio Beacon</string>
     <string name="beacon_action_mute_beacon">Mute Beacon</string>
-    <string name="beacon_action_mute_beacon_acc_hint">mute the audio beacon.</string>
+    <string name="beacon_action_mute_beacon_acc_hint">Mute the audio beacon.</string>
     <string name="beacon_action_unmute_beacon">Unmute Beacon</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">unmute the audio beacon.</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">Unmute the audio beacon.</string>
     <string name="preview_title">Simulate Location</string>
     <string name="preview_go_title">Go</string>
     <string name="preview_include_unnamed_roads_title">Unnamed Roads</string>
     <string name="location_detail_title_default">Location Details</string>
     <string name="location_detail_action_beacon">Start Audio Beacon</string>
-    <string name="location_detail_action_beacon_hint">set an audio beacon at this location</string>
-    <string name="location_detail_action_save_hint">save this location as a marker</string>
-    <string name="location_detail_action_edit_hint">edit marker</string>
-    <string name="location_detail_action_share_hint">share this location</string>
-    <string name="location_detail_action_preview_hint">start previewing at this location</string>
-    <string name="location_detail_add_waypoint_existing_hint">remove this marker from your route.</string>
-    <string name="location_detail_add_waypoint_new_hint">add this marker to your route.</string>
+    <string name="location_detail_action_beacon_hint">Set an audio beacon at this location</string>
+    <string name="location_detail_action_save_hint">Save this location as a marker</string>
+    <string name="location_detail_action_edit_hint">Edit marker</string>
+    <string name="location_detail_action_share_hint">Share this location</string>
+    <string name="location_detail_action_preview_hint">Start previewing at this location</string>
+    <string name="location_detail_add_waypoint_existing_hint">Remove this marker from your route.</string>
+    <string name="location_detail_add_waypoint_new_hint">Add this marker to your route.</string>
     <string name="route_detail_action_start_route">Start Route</string>
     <string name="route_detail_action_stop_route">Stop Route</string>
     <string name="route_detail_action_edit">Edit Route</string>
-    <string name="route_detail_action_start_route_hint">start this route</string>
+    <string name="route_detail_action_start_route_hint">Start this route</string>
     <string name="route_detail_action_start_route_disabled_hint">Add waypoints before starting the route</string>
-    <string name="route_detail_action_stop_route_hint">stop this route</string>
-    <string name="route_detail_action_share_hint">share this route</string>
-    <string name="route_detail_action_edit_hint">edit this route</string>
+    <string name="route_detail_action_stop_route_hint">Stop this route</string>
+    <string name="route_detail_action_share_hint">Share this route</string>
+    <string name="route_detail_action_edit_hint">Edit this route</string>
     <string name="route_detail_action_create">New Route</string>
-    <string name="route_detail_action_create_hint">create a new route</string>
+    <string name="route_detail_action_create_hint">Create a new route</string>
     <string name="route_end_completed_accessibility">Route Completed! %s</string>
     <string name="route_detail_action_previous">Previous Waypoint</string>
-    <string name="route_detail_action_previous_hint">move the beacon to the previous waypoint</string>
+    <string name="route_detail_action_previous_hint">Move the beacon to the previous waypoint</string>
     <string name="route_detail_action_next">Next Waypoint</string>
-    <string name="route_detail_action_next_hint">move the beacon to the next waypoint</string>
+    <string name="route_detail_action_next_hint">Move the beacon to the next waypoint</string>
     <string name="route_detail_edit_description">Description</string>
     <string name="route_detail_edit_waypoints_button">Add Waypoints</string>
     <string name="route_detail_edit_delete">Delete Route</string>
@@ -88,9 +88,9 @@
     <string name="search_use_current_location">Current Location</string>
     <string name="search_nearby_screen_title">Places Nearby</string>
     <string name="search_view_markers">Markers and Routes</string>
-    <string name="search_button_markers_accessibility_hint">select or edit markers you have saved</string>
-    <string name="search_button_nearby_accessibility_hint">explore nearby restaurants, public transport and more</string>
-    <string name="search_button_current_location_accessibility_hint">preview, mark, or share your current location with a friend</string>
+    <string name="search_button_markers_accessibility_hint">Select or edit markers you have saved</string>
+    <string name="search_button_nearby_accessibility_hint">Explore nearby restaurants, transport stops and more</string>
+    <string name="search_button_current_location_accessibility_hint">Preview, mark, or share your current location with a friend</string>
     <string name="filter_all">All Places</string>
     <string name="filter_transit">Public Transport</string>
     <string name="filter_food_drink">Food and Drink</string>
@@ -107,7 +107,7 @@
     <string name="sleep_sleep">Sleep</string>
     <string name="sleep_sleeping">Sleeping</string>
     <string name="sleep_sleeping_message">Soundscape is currently sleeping. This prevents Soundscape from using Location Services or downloading data. This conserves battery when you are not using Soundscape. Tap the button below to wake up Soundscape.</string>
-    <string name="sleep_sleep_acc_hint">put Soundscape to sleep</string>
+    <string name="sleep_sleep_acc_hint">Put Soundscape to sleep</string>
     <string name="sleep_wake_up_now">Wake Up Now</string>
     <string name="intersection_approaching_intersection">Approaching intersection</string>
     <string name="directions_at_poi">At %s</string>
@@ -170,15 +170,15 @@
     <string name="distance_format_feet">%s feet</string>
     <string name="distance_format_miles">%s miles</string>
     <string name="ui_action_button_my_location">My\nLocation</string>
-    <string name="ui_action_button_my_location_acc_hint">hear about your current location</string>
+    <string name="ui_action_button_my_location_acc_hint">Hear about your current location</string>
     <string name="ui_action_button_nearby_markers">Nearby\nMarkers</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">hear about nearby places that you have marked</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">Hear about nearby places that you have marked</string>
     <string name="ui_action_button_around_me">Around\nMe</string>
-    <string name="ui_action_button_around_me_acc_hint">hear about places in the four quadrants around you</string>
+    <string name="ui_action_button_around_me_acc_hint">Hear about places in the four quadrants around you</string>
     <string name="ui_action_button_ahead_of_me">Ahead\nof Me</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">hear about places in front of you</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">Hear about places in front of you</string>
     <string name="ui_menu">Menu</string>
-    <string name="ui_menu_hint">open the menu</string>
+    <string name="ui_menu_hint">Open the menu</string>
     <string name="ui_menu_close">Close Menu</string>
     <string name="ui_continue">Continue</string>
     <string name="menu_manage_callouts">Manage Callouts</string>
@@ -1246,4 +1246,6 @@
     <string name="accessibility_title" tools:ignore="MissingTranslation">Accessibility</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Because you have a screen reader enabled, we recommend running the app with the user interface\'s graphical maps turned off. You can change that setting here, or just continue on.</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Because you do not have a screen reader enabled, we assume that you want the graphical maps in the user interface to be displayed. You can change that setting here, or just continue on.</string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation">Continue</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">Close the pop-up and continue with the tutorial</string>
 </resources>
