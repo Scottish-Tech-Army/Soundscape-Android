@@ -25,36 +25,36 @@
     <string name="beacon_styles_mallet_very_slow">"Hamer (heel traag)"</string>
     <string name="beacon_audio_beacon">"Audiobaken"</string>
     <string name="beacon_action_mute_beacon">"Baken dempen"</string>
-    <string name="beacon_action_mute_beacon_acc_hint">Dubbeltik om het audiobaken te dempen.</string>
+    <string name="beacon_action_mute_beacon_acc_hint">Audiobaken dempen</string>
     <string name="beacon_action_unmute_beacon">"Baken dempen opheffen"</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">Dubbeltik om het dempen van het audiobaken op te heffen.</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">Baken dempen opheffen</string>
     <string name="preview_title">Locatie simuleren</string>
     <string name="preview_go_title">"Start"</string>
     <string name="preview_include_unnamed_roads_title">"Naamloze straten"</string>
     <string name="location_detail_title_default">"Locatiedetails"</string>
     <string name="location_detail_action_beacon">"Audiobaken starten"</string>
-    <string name="location_detail_action_beacon_hint">Dubbeltik om een audiobaken op deze locatie in te stellen</string>
-    <string name="location_detail_action_save_hint">Dubbeltik om deze locatie als een markering op te slaan</string>
-    <string name="location_detail_action_edit_hint">Dubbeltik om markering te bewerken</string>
-    <string name="location_detail_action_share_hint">Dubbeltik om deze locatie te delen</string>
-    <string name="location_detail_action_preview_hint">Dubbeltik om een voorbeeld van deze locatie te starten</string>
-    <string name="location_detail_add_waypoint_existing_hint">Dubbeltik om deze markering te verwijderen uit uw route.</string>
-    <string name="location_detail_add_waypoint_new_hint">Dubbeltik om deze markering toe te voegen aan uw route.</string>
+    <string name="location_detail_action_beacon_hint">Een audiobaken instellen op deze locatie</string>
+    <string name="location_detail_action_save_hint">Deze locatie opslaan als markering</string>
+    <string name="location_detail_action_edit_hint">Markering bewerken</string>
+    <string name="location_detail_action_share_hint">Deze locatie delen</string>
+    <string name="location_detail_action_preview_hint">Voorvertoning starten op deze locatie</string>
+    <string name="location_detail_add_waypoint_existing_hint">Deze markering uit uw route verwijderen</string>
+    <string name="location_detail_add_waypoint_new_hint">Deze markering aan uw route toevoegen</string>
     <string name="route_detail_action_start_route">"Route starten"</string>
     <string name="route_detail_action_stop_route">"Route stoppen"</string>
     <string name="route_detail_action_edit">"Route bewerken"</string>
-    <string name="route_detail_action_start_route_hint">Dubbeltik om deze route te starten</string>
+    <string name="route_detail_action_start_route_hint">Deze route starten</string>
     <string name="route_detail_action_start_route_disabled_hint">"Voeg routepunten toe voordat u de route start"</string>
-    <string name="route_detail_action_stop_route_hint">Dubbeltik om deze route te stoppen</string>
-    <string name="route_detail_action_share_hint">Dubbeltik om deze route te delen</string>
-    <string name="route_detail_action_edit_hint">Dubbeltik om deze route te bewerken</string>
+    <string name="route_detail_action_stop_route_hint">Deze route stoppen</string>
+    <string name="route_detail_action_share_hint">Deze route delen</string>
+    <string name="route_detail_action_edit_hint">Deze route bewerken</string>
     <string name="route_detail_action_create">"Nieuwe route"</string>
-    <string name="route_detail_action_create_hint">Dubbeltik om een nieuwe route te maken</string>
+    <string name="route_detail_action_create_hint">Een nieuwe route maken</string>
     <string name="route_end_completed_accessibility">"Route voltooid! %s"</string>
     <string name="route_detail_action_previous">"Vorige routepunt"</string>
-    <string name="route_detail_action_previous_hint">verplaats het baken naar het vorige routepunt</string>
+    <string name="route_detail_action_previous_hint">Het baken naar het vorige routepunt verplaatsen</string>
     <string name="route_detail_action_next">"Volgende routepunt"</string>
-    <string name="route_detail_action_next_hint">verplaats het baken naar het volgende routepunt</string>
+    <string name="route_detail_action_next_hint">Het baken naar het volgende routepunt verplaatsen</string>
     <string name="route_detail_edit_description">"Beschrijving"</string>
     <string name="route_detail_edit_waypoints_button">"Routepunten toevoegen"</string>
     <string name="route_detail_edit_delete">"Route verwijderen"</string>
@@ -88,9 +88,9 @@
     <string name="search_use_current_location">"Huidige locatie"</string>
     <string name="search_nearby_screen_title">"Plaatsen in de buurt"</string>
     <string name="search_view_markers">Markeringen en routes</string>
-    <string name="search_button_markers_accessibility_hint">Dubbeltik om opgeslagen markeringen te selecteren of te bewerken</string>
-    <string name="search_button_nearby_accessibility_hint">Dubbeltik om in de omgeving te zoeken naar restaurants, haltes van het openbaar vervoer en meer</string>
-    <string name="search_button_current_location_accessibility_hint">Dubbeltik om een voorbeeld te zien van uw huidige locatie, en om deze te markeren of te delen met een vriend</string>
+    <string name="search_button_markers_accessibility_hint">Markeringen die u hebt opgeslagen selecteren of bewerken</string>
+    <string name="search_button_nearby_accessibility_hint">Verken nabijgelegen restaurants, haltes en meer</string>
+    <string name="search_button_current_location_accessibility_hint">Uw huidige locatie bekijken, markeren of met een vriend delen</string>
     <string name="filter_all">"Alle plaatsen"</string>
     <string name="filter_transit">"Openbaar vervoer"</string>
     <string name="filter_food_drink">Eten en drinken</string>
@@ -107,7 +107,7 @@
     <string name="sleep_sleep">"Slapen"</string>
     <string name="sleep_sleeping">"Slaapstand"</string>
     <string name="sleep_sleeping_message">"Soundscape staat momenteel in de slaapstand. Soundscape kan nu niet gebruikmaken van Locatievoorzieningen en geen gegevens downloaden. Dit bespaart batterijvoeding wanneer u Soundscape niet gebruikt. Tik op de knop hieronder om Soundscape te activeren."</string>
-    <string name="sleep_sleep_acc_hint">Dubbeltik om Soundscape in de slaapstand te zetten</string>
+    <string name="sleep_sleep_acc_hint">Soundscape in slaapstand zetten</string>
     <string name="sleep_wake_up_now">"Nu activeren"</string>
     <string name="intersection_approaching_intersection">"U nadert een kruispunt"</string>
     <string name="directions_at_poi">"Bij %s"</string>
@@ -170,15 +170,15 @@
     <string name="distance_format_feet">"%s voet"</string>
     <string name="distance_format_miles">"%s mijl"</string>
     <string name="ui_action_button_my_location">"Mijn\nlocatie"</string>
-    <string name="ui_action_button_my_location_acc_hint">Dubbeltik voor informatie over uw huidige locatie</string>
+    <string name="ui_action_button_my_location_acc_hint">Informatie over uw huidige locatie horen</string>
     <string name="ui_action_button_nearby_markers">"Marker.\nvlakbij"</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">Dubbeltik voor informatie over plaatsen in de buurt die u hebt gemarkeerd</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">Informatie over nabijgelegen plaatsen die u hebt gemarkeerd</string>
     <string name="ui_action_button_around_me">"Om me\nheen"</string>
-    <string name="ui_action_button_around_me_acc_hint">Dubbeltik voor informatie over plaatsen in de vier kwadranten om u heen</string>
+    <string name="ui_action_button_around_me_acc_hint">Informatie horen over plaatsen in de vier kwadranten om u heen</string>
     <string name="ui_action_button_ahead_of_me">"Vóór\nme"</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">Dubbeltik voor informatie over plaatsen vóór u</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">Informatie horen over plaatsen vóór u</string>
     <string name="ui_menu">"Menu"</string>
-    <string name="ui_menu_hint">Dubbeltik om het menu te openen</string>
+    <string name="ui_menu_hint">Menu openen</string>
     <string name="ui_menu_close">"Menu sluiten"</string>
     <string name="ui_continue">"Doorgaan"</string>
     <string name="menu_manage_callouts">"Waarschuwingen beheren"</string>
@@ -1246,4 +1246,6 @@
     <string name="accessibility_title" tools:ignore="MissingTranslation">Toegankelijkheid</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Omdat u een schermlezer hebt ingeschakeld, raden we aan de app te gebruiken met de grafische kaarten in de gebruikersinterface uitgeschakeld. U kunt die instelling hier wijzigen, of gewoon doorgaan.</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Omdat u geen schermlezer hebt ingeschakeld, gaan we ervan uit dat u de grafische kaarten in de gebruikersinterface wilt weergeven. U kunt die instelling hier wijzigen, of gewoon doorgaan.</string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation">Doorgaan</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">het pop-upvenster sluiten en doorgaan met de tutorial</string>
 </resources>
