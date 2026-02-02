@@ -25,9 +25,9 @@
     <string name="beacon_styles_mallet_very_slow">"Percutor (muy lento)"</string>
     <string name="beacon_audio_beacon">"Señal de audio"</string>
     <string name="beacon_action_mute_beacon">"Silenciar señal"</string>
-    <string name="beacon_action_mute_beacon_acc_hint">silenciar la señal de audio.</string>
+    <string name="beacon_action_mute_beacon_acc_hint">Silenciar la señal de audio.</string>
     <string name="beacon_action_unmute_beacon">"Reactivar señal"</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">reactivar la señal de audio.</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">Reactivar la señal de audio.</string>
     <string name="preview_title">Simular ubicación</string>
     <string name="preview_go_title">"Ir"</string>
     <string name="preview_include_unnamed_roads_title">"Carreteras sin nombre"</string>
@@ -35,26 +35,26 @@
     <string name="location_detail_action_beacon">"Iniciar señal de audio"</string>
     <string name="location_detail_action_beacon_hint">Establecer una señal de audio en esta ubicación</string>
     <string name="location_detail_action_save_hint">Guardar esta ubicación como marcador</string>
-    <string name="location_detail_action_edit_hint">editar marcador</string>
+    <string name="location_detail_action_edit_hint">Editar marcador</string>
     <string name="location_detail_action_share_hint">Compartir esta ubicación</string>
-    <string name="location_detail_action_preview_hint">Iniciar vista previa en esta ubicación</string>
-    <string name="location_detail_add_waypoint_existing_hint">Eliminar este marcador de la ruta.</string>
-    <string name="location_detail_add_waypoint_new_hint">Agregar este marcador a la ruta.</string>
+    <string name="location_detail_action_preview_hint">Iniciar la vista previa en esta ubicación</string>
+    <string name="location_detail_add_waypoint_existing_hint">Quitar este marcador de su ruta.</string>
+    <string name="location_detail_add_waypoint_new_hint">Agregar este marcador a su ruta.</string>
     <string name="route_detail_action_start_route">"Iniciar ruta"</string>
     <string name="route_detail_action_stop_route">"Detener ruta"</string>
     <string name="route_detail_action_edit">"Editar ruta"</string>
-    <string name="route_detail_action_start_route_hint">iniciar esta ruta</string>
+    <string name="route_detail_action_start_route_hint">Iniciar esta ruta</string>
     <string name="route_detail_action_start_route_disabled_hint">"Agregar puntos de ruta antes de iniciar la ruta"</string>
-    <string name="route_detail_action_stop_route_hint">detener esta ruta</string>
-    <string name="route_detail_action_share_hint">compartir esta ruta</string>
-    <string name="route_detail_action_edit_hint">editar esta ruta</string>
+    <string name="route_detail_action_stop_route_hint">Detener esta ruta</string>
+    <string name="route_detail_action_share_hint">Compartir esta ruta</string>
+    <string name="route_detail_action_edit_hint">Editar esta ruta</string>
     <string name="route_detail_action_create">"Nueva ruta"</string>
-    <string name="route_detail_action_create_hint">crear una nueva ruta</string>
+    <string name="route_detail_action_create_hint">Crear una nueva ruta</string>
     <string name="route_end_completed_accessibility">"Ruta completada. %s"</string>
     <string name="route_detail_action_previous">"Punto de ruta anterior"</string>
-    <string name="route_detail_action_previous_hint">mover la señal en el punto de ruta anterior</string>
+    <string name="route_detail_action_previous_hint">Mover la señal de audio al punto de ruta anterior</string>
     <string name="route_detail_action_next">"Siguiente punto de ruta"</string>
-    <string name="route_detail_action_next_hint">mover la señal en el siguiente punto de ruta</string>
+    <string name="route_detail_action_next_hint">Mover la señal de audio al siguiente punto de ruta</string>
     <string name="route_detail_edit_description">"Descripción"</string>
     <string name="route_detail_edit_waypoints_button">"Agregar puntos de ruta"</string>
     <string name="route_detail_edit_delete">"Eliminar ruta"</string>
@@ -88,9 +88,9 @@
     <string name="search_use_current_location">"Ubicación actual"</string>
     <string name="search_nearby_screen_title">"Lugares cercanos"</string>
     <string name="search_view_markers">Marcadores y rutas</string>
-    <string name="search_button_markers_accessibility_hint">seleccionar o editar marcadores que haya seleccionado</string>
-    <string name="search_button_nearby_accessibility_hint">Explorar restaurantes cercanos, paradas de tránsito y más</string>
-    <string name="search_button_current_location_accessibility_hint">obtener una vista previa, marcar o compartir su ubicación actual con un amigo</string>
+    <string name="search_button_markers_accessibility_hint">Seleccionar o editar los marcadores que ha guardado</string>
+    <string name="search_button_nearby_accessibility_hint">Explorar restaurantes, paradas de transporte y más lugares cercanos</string>
+    <string name="search_button_current_location_accessibility_hint">Previsualizar, marcar o compartir su ubicación actual con un amigo</string>
     <string name="filter_all">"Todos los lugares"</string>
     <string name="filter_transit">"Transporte público"</string>
     <string name="filter_food_drink">Comida y bebidas</string>
@@ -107,7 +107,7 @@
     <string name="sleep_sleep">"Suspender"</string>
     <string name="sleep_sleeping">"Suspendiendo"</string>
     <string name="sleep_sleeping_message">"Soundscape se encuentra actualmente en el modo de suspensión. Evita que Soundscape use Servicios de localización o descargue datos y ahorra energía de la batería cuando no se usa Soundscape. Pulse en el botón a continuación para reactivar Soundscape."</string>
-    <string name="sleep_sleep_acc_hint">poner a Soundscape en suspensión</string>
+    <string name="sleep_sleep_acc_hint">Poner Soundscape en modo de suspensión</string>
     <string name="sleep_wake_up_now">"Reactivar ahora"</string>
     <string name="intersection_approaching_intersection">"Aproximándose al cruce"</string>
     <string name="directions_at_poi">"En %s"</string>
@@ -170,15 +170,15 @@
     <string name="distance_format_feet">"%s pies"</string>
     <string name="distance_format_miles">"%s millas"</string>
     <string name="ui_action_button_my_location">"Mi\nubicación"</string>
-    <string name="ui_action_button_my_location_acc_hint">oír información acerca de su ubicación actual</string>
+    <string name="ui_action_button_my_location_acc_hint">Oír información acerca de su ubicación actual</string>
     <string name="ui_action_button_nearby_markers">"Marcadores\ncercanos"</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">oír información acerca de los lugares cercanos que ha marcado</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">Información sobre los lugares cercanos que ha marcado</string>
     <string name="ui_action_button_around_me">"Alrededor de\nmí"</string>
-    <string name="ui_action_button_around_me_acc_hint">oír información acerca de los lugares de los cuatro cuadrantes de su alrededor</string>
+    <string name="ui_action_button_around_me_acc_hint">Oír información sobre lugares en los cuatro cuadrantes a su alrededor</string>
     <string name="ui_action_button_ahead_of_me">"Delante\nde mí"</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">oír información sobre los lugares que se encuentran delante</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">Oír información sobre los lugares que están delante de usted</string>
     <string name="ui_menu">"Menú"</string>
-    <string name="ui_menu_hint">abrir el menú</string>
+    <string name="ui_menu_hint">Abrir el menú</string>
     <string name="ui_menu_close">"Menú Cerrar"</string>
     <string name="ui_continue">"Continuar"</string>
     <string name="menu_manage_callouts">"Administrar avisos"</string>
@@ -1246,4 +1246,6 @@
     <string name="accessibility_title" tools:ignore="MissingTranslation">Accesibilidad</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Dado que tiene un lector de pantalla activado, recomendamos ejecutar la aplicación con los mapas gráficos de la interfaz de usuario desactivados. Puede cambiar esa configuración aquí o simplemente continuar.</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Dado que no tiene un lector de pantalla activado, asumimos que desea que se muestren los mapas gráficos en la interfaz de usuario. Puede cambiar esa configuración aquí o simplemente continuar.</string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation">Continuar</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">Cerrar la ventana emergente y continuar con el tutorial</string>
 </resources>
