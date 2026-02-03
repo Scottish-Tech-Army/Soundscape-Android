@@ -33,21 +33,21 @@
     <string name="preview_include_unnamed_roads_title">"Μη κατονομαζόμενες οδικές αρτηρίες"</string>
     <string name="location_detail_title_default">"Λεπτομέρειες τοποθεσίας"</string>
     <string name="location_detail_action_beacon">"Έναρξη Ηχητικού σήματος"</string>
-    <string name="location_detail_action_beacon_hint">Ορίστε ένα ηχητικό σήμα σε αυτήν την τοποθεσία</string>
-    <string name="location_detail_action_save_hint">Αποθηκεύστε αυτήν την τοποθεσία ως δείκτη</string>
-    <string name="location_detail_action_edit_hint">Επεξεργαστείτε τον δείκτη</string>
-    <string name="location_detail_action_share_hint">Μοιραστείτε αυτήν την τοποθεσία</string>
+    <string name="location_detail_action_beacon_hint">Καθοδηγήστε προς αυτήν την τοποθεσία με ήχο.</string>
+    <string name="location_detail_action_save_hint">Αποθηκεύστε αυτήν την τοποθεσία για να τη χρησιμοποιήσετε αργότερα</string>
+    <string name="location_detail_action_edit_hint">Αλλάξτε το όνομα του δείκτη ή προσθέστε επιπλέον σημειώσεις</string>
+    <string name="location_detail_action_share_hint">Μοιραστείτε αυτήν την τοποθεσία με άλλη εφαρμογή</string>
     <string name="location_detail_action_preview_hint">Ξεκινήστε την προεπισκόπηση σε αυτήν την τοποθεσία</string>
     <string name="location_detail_add_waypoint_existing_hint">Αφαιρέστε αυτόν τον δείκτη από τη διαδρομή σας.</string>
-    <string name="location_detail_add_waypoint_new_hint">Προσθέστε αυτόν τον δείκτη στη διαδρομή σας.</string>
+    <string name="location_detail_add_waypoint_new_hint">Προσθέστε αυτόν τον δείκτη ως σημείο πορείας στη διαδρομή σας.</string>
     <string name="route_detail_action_start_route">"Έναρξη διαδρομής"</string>
     <string name="route_detail_action_stop_route">"Διακοπή διαδρομής"</string>
     <string name="route_detail_action_edit">"Επεξεργασία διαδρομής"</string>
-    <string name="route_detail_action_start_route_hint">Ξεκινήστε αυτή τη διαδρομή</string>
+    <string name="route_detail_action_start_route_hint">Ξεκινήστε την αναπαραγωγή αυτής της διαδρομής</string>
     <string name="route_detail_action_start_route_disabled_hint">"Προσθήκη σημείων πορείας πριν ξεκινήσετε τη διαδρομή"</string>
-    <string name="route_detail_action_stop_route_hint">Διακόψτε αυτή τη διαδρομή</string>
-    <string name="route_detail_action_share_hint">Μοιραστείτε αυτή τη διαδρομή</string>
-    <string name="route_detail_action_edit_hint">Επεξεργαστείτε αυτή τη διαδρομή</string>
+    <string name="route_detail_action_stop_route_hint">Σταματήστε την αναπαραγωγή αυτής της διαδρομής</string>
+    <string name="route_detail_action_share_hint">Μοιραστείτε αυτή τη διαδρομή με άλλη εφαρμογή</string>
+    <string name="route_detail_action_edit_hint">Αλλάξτε τα σημεία πορείας στη διαδρομή ή αναδιατάξτε τα.</string>
     <string name="route_detail_action_create">"Νέα διαδρομή"</string>
     <string name="route_detail_action_create_hint">Δημιουργήστε μια νέα διαδρομή</string>
     <string name="route_end_completed_accessibility">"Η διαδρομή ολοκληρώθηκε! %s"</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Επειδή δεν έχετε ενεργοποιημένο αναγνώστη οθόνης, υποθέτουμε ότι θέλετε να εμφανίζονται οι γραφικοί χάρτες στη διεπαφή χρήστη. Μπορείτε να αλλάξετε αυτή τη ρύθμιση εδώ ή να συνεχίσετε.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Συνέχεια</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">Κλείστε το αναδυόμενο παράθυρο και συνεχίστε με τον ηχητικό οδηγό</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Έναρξη Ηχητικού σήματος σε αυτόν τον δείκτη</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Εμφάνιση του χάρτη σε πλήρη οθόνη και επεξεργασία της θέσης του δείκτη</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Έξοδος από τη λειτουργία επεξεργασίας της θέσης του δείκτη</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">Στην %1$s, λίγο πριν από %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">Στην %1$s, λίγο μετά από %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Κοντά στη διασταύρωση %s</string>
 </resources>
