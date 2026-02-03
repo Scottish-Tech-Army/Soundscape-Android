@@ -107,7 +107,11 @@ fun SaveAndEditMarkerDialog(
             }
         },
         floatingActionButton = {
-            if(showMap) FullScreenMapFab(fullscreenMap)
+            if(showMap) FullScreenMapFab(
+                fullscreenMap = fullscreenMap,
+                openMapHint = R.string.location_detail_full_screen_for_edit_hint,
+                closeMapHint = R.string.location_detail_exit_full_screen_for_edit_hint
+            )
         },
         content = { padding ->
             if(fullscreenMap.value) {
@@ -160,7 +164,7 @@ fun SaveAndEditMarkerDialog(
                     MapContainerLibre(
                         beaconLocation = newLocation,
                         mapCenter = newLocation,
-                        editBeaconLocation = true,
+                        editBeaconLocation = false,
                         allowScrolling = true,
                         userLocation = location ?: LngLatAlt(),
                         userSymbolRotation = heading,

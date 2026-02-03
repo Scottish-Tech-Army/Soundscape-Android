@@ -114,6 +114,10 @@
 <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">"Make the map full screen"</string>
 <!-- Talkback hint for button that stops map being full screen -->
 <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">"Exit full screen map"</string>
+<!-- Talkback hint for button that makes map full screen to enable editing of the location -->
+<string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">"Make the map full screen and edit the marker location"</string>
+<!-- Talkback hint for button that stops map editing mode -->
+<string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">"Exit marker location editing mode"</string>
 <!-- Title for the action to start playing the audio for a route -->
 <string name="route_detail_action_start_route">"Start Route"</string>
 <!-- Title for the action to stop playing the audio for a route -->
