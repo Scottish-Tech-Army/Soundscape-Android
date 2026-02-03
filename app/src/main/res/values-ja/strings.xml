@@ -33,21 +33,21 @@
     <string name="preview_include_unnamed_roads_title">"無名道路"</string>
     <string name="location_detail_title_default">"場所の詳細"</string>
     <string name="location_detail_action_beacon">"音声ビーコンを開始"</string>
-    <string name="location_detail_action_beacon_hint">この場所に音声ビーコンを設定する</string>
-    <string name="location_detail_action_save_hint">この場所をマーカーとして保存する</string>
-    <string name="location_detail_action_edit_hint">マーカーを編集する</string>
-    <string name="location_detail_action_share_hint">この場所を共有する</string>
+    <string name="location_detail_action_beacon_hint">音声でこの場所へ案内する</string>
+    <string name="location_detail_action_save_hint">後で使用するためにこの場所を保存する</string>
+    <string name="location_detail_action_edit_hint">マーカー名を変更するか注記を追加する</string>
+    <string name="location_detail_action_share_hint">別のアプリでこの場所を共有する</string>
     <string name="location_detail_action_preview_hint">この場所でプレビューを開始する</string>
     <string name="location_detail_add_waypoint_existing_hint">このマーカーをルートから削除する</string>
-    <string name="location_detail_add_waypoint_new_hint">このマーカーをルートに追加する</string>
+    <string name="location_detail_add_waypoint_new_hint">このマーカーをルートのウェイポイントとして追加する</string>
     <string name="route_detail_action_start_route">"ルートを開始する"</string>
     <string name="route_detail_action_stop_route">"ルートを中止する"</string>
     <string name="route_detail_action_edit">"ルートを編集"</string>
-    <string name="route_detail_action_start_route_hint">このルートを開始する</string>
+    <string name="route_detail_action_start_route_hint">このルートの再生を開始する</string>
     <string name="route_detail_action_start_route_disabled_hint">"ルートを開始する前にウェイポイントを追加します"</string>
-    <string name="route_detail_action_stop_route_hint">このルートを中止する</string>
-    <string name="route_detail_action_share_hint">このルートを共有する</string>
-    <string name="route_detail_action_edit_hint">このルートを編集する</string>
+    <string name="route_detail_action_stop_route_hint">このルートの再生を中止する</string>
+    <string name="route_detail_action_share_hint">別のアプリでこのルートを共有する</string>
+    <string name="route_detail_action_edit_hint">ルートのウェイポイントを変更する、または順序を並べ替える</string>
     <string name="route_detail_action_create">"新しいルート"</string>
     <string name="route_detail_action_create_hint">新しいルートを作成する</string>
     <string name="route_end_completed_accessibility">"ルートが終了しました! %s"</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">スクリーンリーダーが有効になっていないため、ユーザーインターフェースに地図を表示することを想定しています。ここで設定を変更するか、そのまま続行してください。</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">続行</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">ポップアップを閉じてチュートリアルを続行します</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">このマーカーで音声ビーコンを開始する</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">地図を全画面表示にしてマーカーの位置を編集する</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">マーカーの位置編集モードを終了する</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">%1$s（%2$s の手前）</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">%1$s（%2$s の直後）</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">%s の交差点付近</string>
 </resources>
