@@ -38,23 +38,23 @@
     <string name="preview_include_unnamed_roads_title">Дороги без назв</string>
     <string name="location_detail_title_default">Деталі місця</string>
     <string name="location_detail_action_beacon">Запустити звуковий маячок</string>
-    <string name="location_detail_action_beacon_hint">Встановити звуковий маячок у цьому місці</string>
-    <string name="location_detail_action_save_hint">Зберегти це місце як мітку</string>
-    <string name="location_detail_action_edit_hint">Редагувати мітку</string>
-    <string name="location_detail_action_share_hint">Поділитися цим місцем</string>
+    <string name="location_detail_action_beacon_hint">Провести вас до цього місця за допомогою звуку.</string>
+    <string name="location_detail_action_save_hint">Зберегти це місце, щоб використовувати пізніше</string>
+    <string name="location_detail_action_edit_hint">Змінити назву мітки або додати додаткові примітки</string>
+    <string name="location_detail_action_share_hint">Поділитися цим місцем з іншою програмою</string>
     <string name="location_detail_action_preview_hint">Почати попередній перегляд цього місця</string>
     <string name="location_detail_add_waypoint_existing_hint">Видалити цю мітку з вашого маршруту</string>
-    <string name="location_detail_add_waypoint_new_hint">Додати цю мітку до вашого маршруту</string>
+    <string name="location_detail_add_waypoint_new_hint">Додати цю мітку як маршрутну точку до вашого маршруту.</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Розгорнути карту на весь екран</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Вийти з повноекранного режиму карти</string>
     <string name="route_detail_action_start_route">Розпочати навігацыю</string>
     <string name="route_detail_action_stop_route">Зупинити навігацію</string>
     <string name="route_detail_action_edit">Редагувати маршрут</string>
-    <string name="route_detail_action_start_route_hint">Розпочати цей маршрут</string>
+    <string name="route_detail_action_start_route_hint">Розпочати відтворення цього маршруту</string>
     <string name="route_detail_action_start_route_disabled_hint">Щоб розпочати навігацію, спершу додайте маршрутні точки</string>
-    <string name="route_detail_action_stop_route_hint">Зупинити цей маршрут</string>
-    <string name="route_detail_action_share_hint">Поділитися цим маршрутом</string>
-    <string name="route_detail_action_edit_hint">Редагувати цей маршрут</string>
+    <string name="route_detail_action_stop_route_hint">Зупинити відтворення цього маршруту</string>
+    <string name="route_detail_action_share_hint">Поділитися цим маршрутом з іншою програмою</string>
+    <string name="route_detail_action_edit_hint">Змінити маршрутні точки в маршруті або їхній порядок.</string>
     <string name="route_detail_action_create">Новий маршрут</string>
     <string name="route_detail_action_create_hint">Створити новий маршрут</string>
     <string name="route_end_completed_accessibility">Маршрут подолано! %s</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Оскільки у вас не увімкнено зчитувач екрану, ми припускаємо, що ви хочете бачити графічні карти в інтерфейсі програми. Ви можете змінити цей параметр тут або продовжити далі.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Продовжити</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">Закрити спливаюче вікно та продовжити аудіоурок</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Запустити звуковий маячок на цій мітці</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Розгорнути карту на весь екран та відредагувати місцезнаходження мітки</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Вийти з режиму редагування місцезнаходження мітки</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">На %1$s, одразу перед %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">На %1$s, одразу після %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Поблизу перехрестя %s</string>
 </resources>
