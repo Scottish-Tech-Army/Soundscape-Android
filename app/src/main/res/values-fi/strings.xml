@@ -33,21 +33,21 @@
     <string name="preview_include_unnamed_roads_title">"Nimettömät tiet"</string>
     <string name="location_detail_title_default">"Sijainnin tiedot"</string>
     <string name="location_detail_action_beacon">"Käynnistä äänimajakka"</string>
-    <string name="location_detail_action_beacon_hint">Aseta äänimajakka tähän sijaintiin</string>
-    <string name="location_detail_action_save_hint">Tallenna tämä sijainti merkinnäksi</string>
-    <string name="location_detail_action_edit_hint">Muokkaa merkintää</string>
-    <string name="location_detail_action_share_hint">Jaa tämä sijainti</string>
+    <string name="location_detail_action_beacon_hint">Opasta sinut tähän sijaintiin äänellä.</string>
+    <string name="location_detail_action_save_hint">Tallenna tämä sijainti myöhempää käyttöä varten</string>
+    <string name="location_detail_action_edit_hint">Muokkaa merkinnän nimeä tai lisää lisätietoja</string>
+    <string name="location_detail_action_share_hint">Jaa tämä sijainti toisen sovelluksen kanssa</string>
     <string name="location_detail_action_preview_hint">Aloita esikatselu tässä sijainnissa</string>
     <string name="location_detail_add_waypoint_existing_hint">Poista tämä merkintä reitiltäsi</string>
-    <string name="location_detail_add_waypoint_new_hint">Lisää tämä merkintä reitillesi</string>
+    <string name="location_detail_add_waypoint_new_hint">Lisää tämä merkintä reittisi reittipisteeksi.</string>
     <string name="route_detail_action_start_route">"Aloita reitti"</string>
     <string name="route_detail_action_stop_route">"Pysäytä reitti"</string>
     <string name="route_detail_action_edit">"Muokkaa reittiä"</string>
-    <string name="route_detail_action_start_route_hint">Aloita tämä reitti</string>
+    <string name="route_detail_action_start_route_hint">Aloita tämän reitin toisto</string>
     <string name="route_detail_action_start_route_disabled_hint">"Lisää reittipisteitä ennen reitin aloitusta"</string>
-    <string name="route_detail_action_stop_route_hint">Pysäytä tämä reitti</string>
-    <string name="route_detail_action_share_hint">Jaa tämä reitti</string>
-    <string name="route_detail_action_edit_hint">Muokkaa tätä reittiä</string>
+    <string name="route_detail_action_stop_route_hint">Pysäytä tämän reitin toisto</string>
+    <string name="route_detail_action_share_hint">Jaa tämä reitti toisen sovelluksen kanssa</string>
+    <string name="route_detail_action_edit_hint">Muokkaa reitin reittipisteitä tai muuta niiden järjestystä.</string>
     <string name="route_detail_action_create">"Uusi reitti"</string>
     <string name="route_detail_action_create_hint">Luo uusi reitti</string>
     <string name="route_end_completed_accessibility">"Reitti kuljettu! %s"</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Koska sinulla ei ole ruudunlukijaa käytössä, oletamme, että haluat käyttöliittymän graafisten karttojen näkyvän. Voit muuttaa tätä asetusta täällä tai jatkaa eteenpäin.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Jatka</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">Sulje ponnahdusikkuna ja jatka tutoriaalia</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Käynnistä äänimajakka tälle merkinnälle</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Näytä kartta koko näytöllä ja muokkaa merkinnän sijaintia</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Poistu merkinnän sijainnin muokkaustilasta</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">Kadulla %1$s juuri ennen %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">Kadulla %1$s juuri %2$s jälkeen</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Lähellä risteystä %s</string>
 </resources>
