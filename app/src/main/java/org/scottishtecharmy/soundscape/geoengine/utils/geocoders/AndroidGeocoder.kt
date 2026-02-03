@@ -117,7 +117,7 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                             override fun onGeocode(addresses: MutableList<Address>) {
                                 Log.d(
                                     TAG,
-                                    "getAddressFromLocationName results count " + addresses.size.toString()
+                                    "getAddressFromLngLat results count " + addresses.size.toString()
                                 )
                                 val name = userGeometry.mapMatchedWay?.name
                                 if (name != null) {
