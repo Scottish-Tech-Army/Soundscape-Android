@@ -33,21 +33,21 @@
     <string name="preview_include_unnamed_roads_title">"Vägar utan namn"</string>
     <string name="location_detail_title_default">"Platsuppgifter"</string>
     <string name="location_detail_action_beacon">"Ställ in ljudfyr"</string>
-    <string name="location_detail_action_beacon_hint">Ställ in en ljudfyr på den här platsen</string>
-    <string name="location_detail_action_save_hint">Spara den här platsen som en platsmarkör</string>
-    <string name="location_detail_action_edit_hint">Redigera platsmarkör</string>
-    <string name="location_detail_action_share_hint">Dela den här platsen</string>
+    <string name="location_detail_action_beacon_hint">Vägled dig till den här platsen med ljud.</string>
+    <string name="location_detail_action_save_hint">Spara den här platsen för att använda senare</string>
+    <string name="location_detail_action_edit_hint">Ändra namn på platsmarkören eller lägg till ytterligare anteckningar</string>
+    <string name="location_detail_action_share_hint">Dela den här platsen med en annan app</string>
     <string name="location_detail_action_preview_hint">Starta förhandsgranskning av den här platsen</string>
     <string name="location_detail_add_waypoint_existing_hint">Ta bort den här platsmarkören från din rutt</string>
-    <string name="location_detail_add_waypoint_new_hint">Lägg till den här platsmarkören i din rutt</string>
+    <string name="location_detail_add_waypoint_new_hint">Lägg till den här platsmarkören som brytpunkt på din rutt.</string>
     <string name="route_detail_action_start_route">"Starta rutt"</string>
     <string name="route_detail_action_stop_route">"Stoppa rutten"</string>
     <string name="route_detail_action_edit">"Redigera rutt"</string>
-    <string name="route_detail_action_start_route_hint">Starta den här rutten</string>
+    <string name="route_detail_action_start_route_hint">Starta uppspelning av den här rutten</string>
     <string name="route_detail_action_start_route_disabled_hint">"Lägg till brytpunkter innan du startar rutten"</string>
-    <string name="route_detail_action_stop_route_hint">Stoppa den här rutten</string>
-    <string name="route_detail_action_share_hint">Dela den här rutten</string>
-    <string name="route_detail_action_edit_hint">Redigera den här rutten</string>
+    <string name="route_detail_action_stop_route_hint">Stoppa uppspelning av den här rutten</string>
+    <string name="route_detail_action_share_hint">Dela den här rutten med en annan app</string>
+    <string name="route_detail_action_edit_hint">Ändra brytpunkterna i rutten eller ändra deras ordning.</string>
     <string name="route_detail_action_create">"Ny rutt"</string>
     <string name="route_detail_action_create_hint">Skapa en ny rutt</string>
     <string name="route_end_completed_accessibility">"Rutten är avklarad! %s"</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Eftersom du inte har någon skärmläsare aktiverad antar vi att du vill att de grafiska kartorna i användargränssnittet ska visas. Du kan ändra den inställningen här eller bara fortsätta.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Fortsätt</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">Stäng popupfönstret och fortsätt med självstudien</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Ställ in ljudfyr på den här platsmarkören</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Gör kartan full skärm och redigera platsmarkörens läge</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Avsluta redigering av platsmarkörens läge</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">På %1$s precis innan %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">På %1$s precis efter %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Nära korsningen %s</string>
 </resources>
