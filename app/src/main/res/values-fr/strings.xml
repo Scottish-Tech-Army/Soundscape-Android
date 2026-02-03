@@ -33,21 +33,21 @@
     <string name="preview_include_unnamed_roads_title">"Routes sans nom"</string>
     <string name="location_detail_title_default">"Détails de l’emplacement"</string>
     <string name="location_detail_action_beacon">Démarrer la Balise sonore</string>
-    <string name="location_detail_action_beacon_hint">Définir une balise sonore à cet emplacement</string>
-    <string name="location_detail_action_save_hint">Enregistrer cet emplacement en tant que marqueur</string>
-    <string name="location_detail_action_edit_hint">Modifier ce marqueur</string>
-    <string name="location_detail_action_share_hint">Partager cet emplacement</string>
+    <string name="location_detail_action_beacon_hint">Guider vers cet emplacement grâce à un signal sonore.</string>
+    <string name="location_detail_action_save_hint">Enregistrer cet emplacement pour l’utiliser ultérieurement</string>
+    <string name="location_detail_action_edit_hint">Modifier le nom du marqueur ou ajouter une annotation</string>
+    <string name="location_detail_action_share_hint">Partager cet emplacement avec une autre application</string>
     <string name="location_detail_action_preview_hint">Démarrer la prévisualisation à cet emplacement</string>
     <string name="location_detail_add_waypoint_existing_hint">Supprimer ce marqueur de votre itinéraire.</string>
-    <string name="location_detail_add_waypoint_new_hint">Ajouter ce marqueur à votre itinéraire.</string>
+    <string name="location_detail_add_waypoint_new_hint">Ajouter ce marqueur en tant que point de repère sur votre itinéraire.</string>
     <string name="route_detail_action_start_route">"Démarrer un Itinéraire"</string>
     <string name="route_detail_action_stop_route">"Arrêter l’Itinéraire"</string>
     <string name="route_detail_action_edit">"Modifier l’itinéraire"</string>
-    <string name="route_detail_action_start_route_hint">Démarrer cet itinéraire</string>
+    <string name="route_detail_action_start_route_hint">Démarrer la lecture de cet itinéraire</string>
     <string name="route_detail_action_start_route_disabled_hint">"Ajoutez des points de repère avant de commencer l’Itinéraire"</string>
-    <string name="route_detail_action_stop_route_hint">Arrêter cet itinéraire</string>
-    <string name="route_detail_action_share_hint">Partager cet itinéraire</string>
-    <string name="route_detail_action_edit_hint">Modifier cet itinéraire</string>
+    <string name="route_detail_action_stop_route_hint">Arrêter la lecture de cet itinéraire</string>
+    <string name="route_detail_action_share_hint">Partager cet itinéraire avec une autre application</string>
+    <string name="route_detail_action_edit_hint">Modifier les points de repère de l’itinéraire ou les réorganiser.</string>
     <string name="route_detail_action_create">"Nouvel Itinéraire"</string>
     <string name="route_detail_action_create_hint">Créer un nouvel itinéraire</string>
     <string name="route_end_completed_accessibility">"Itinéraire terminé ! %s"</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Comme vous n’avez pas de lecteur d’écran activé, nous supposons que vous souhaitez que les cartes graphiques de l’interface utilisateur soient affichées. Vous pouvez modifier ce réglage ici, ou simplement continuer.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Continuer</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">Fermer la fenêtre contextuelle et continuer le tutoriel</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Démarrer la balise sonore sur ce marqueur</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Afficher la carte en plein écran et modifier l’emplacement du marqueur</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Quitter le mode d’édition de l’emplacement du marqueur</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">Sur %1$s juste avant %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">Sur %1$s juste après %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Près de l’intersection de %s</string>
 </resources>
