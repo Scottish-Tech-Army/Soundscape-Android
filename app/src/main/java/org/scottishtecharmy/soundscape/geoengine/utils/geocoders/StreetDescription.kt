@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
 import android.content.Context
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
@@ -677,7 +678,10 @@ class StreetDescription(val name: String, val gridState: GridState) {
                     }
                 }
             }
-            return "Intersection of ${intersection.members[0]} with ${intersection.members[1]}"
+
+            val formatString = (localizedContext?.getString(R.string.street_description_intersection) ?:
+            "Near intersection of %s")
+            return formatString.format(intersection.name)
         }
         return null
     }

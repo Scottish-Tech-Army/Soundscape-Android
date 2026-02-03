@@ -958,6 +958,12 @@
 <string name="street_description_until" tools:ignore="MissingTranslation">"On %1$s, %2$s until %3$s"</string>
 <!-- Callout text when on a street (1) having come from a point (3) and having travelled a distance (2) e.g. On Royal Road, 125m since 32nd Street -->
 <string name="street_description_since" tools:ignore="MissingTranslation">"On %1$s, %2$s since %3$s"</string>
+<!-- Callout text when on a street (1) and just before a cross street or point of interest (2) -->
+<string name="street_description_relative_before" tools:ignore="MissingTranslation">"On %1$s just before %2$s"</string>
+<!-- Callout text when on a street (1) and just after a cross street or point of interest (2) -->
+<string name="street_description_relative_after" tools:ignore="MissingTranslation">"On %1$s just after %2$s"</string>
+<!-- Callout text when at an intersection where we don't know which road we're on -->
+<string name="street_description_intersection" tools:ignore="MissingTranslation">"Near intersection of %s"</string>
 <!-- Title for dialog which explains what is new in the current release -->
 <string name="new_version_info_text" tools:ignore="MissingTranslation">"New release information"</string>
 <!-- Button at end of new release dialog so that the user can continue on and use the app -->
