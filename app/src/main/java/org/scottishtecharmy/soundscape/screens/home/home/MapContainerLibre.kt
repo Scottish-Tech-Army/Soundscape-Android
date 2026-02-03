@@ -126,7 +126,11 @@ fun createLocationMarkerDrawable(context: Context, number: Int): Drawable {
 }
 
 @Composable
-fun FullScreenMapFab(fullscreenMap: MutableState<Boolean>, modifier: Modifier = Modifier) {
+fun FullScreenMapFab(
+    fullscreenMap: MutableState<Boolean>,
+    modifier: Modifier = Modifier,
+    openMapHint: Int = R.string.location_detail_full_screen_hint,
+    closeMapHint: Int = R.string.location_detail_exit_full_screen_hint) {
     FloatingActionButton(
         onClick = { fullscreenMap.value = !fullscreenMap.value },
         containerColor = MaterialTheme.colorScheme.surfaceContainer,
@@ -137,9 +141,9 @@ fun FullScreenMapFab(fullscreenMap: MutableState<Boolean>, modifier: Modifier = 
             imageVector = if(fullscreenMap.value) Icons.Rounded.FullscreenExit else Icons.Rounded.Fullscreen,
             tint = MaterialTheme.colorScheme.onSurface,
             contentDescription = if(fullscreenMap.value)
-                stringResource(R.string.location_detail_exit_full_screen_hint)
+                stringResource(closeMapHint)
             else
-                stringResource(R.string.location_detail_full_screen_hint)
+                stringResource(openMapHint)
         )
     }
 }
