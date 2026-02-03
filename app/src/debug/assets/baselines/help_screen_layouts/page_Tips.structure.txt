@@ -32,3 +32,7 @@
   Text for HTML section: 'You can turn on and off the rhythmic sound of the beacon using the mute button on the home screen. If the beacon is muted you will still get updates about your distance to your destination every 50 meters or so.
 '
 'LazyColumn item' end
+'LazyColumn item' start
+  Text for HTML section: 'If you still want to interact with Soundscape but don’t want to hear automatic callouts you can turn callouts off by going to the "Manage Callouts" section of the "Settings" screen from the menu. Or, if you aren’t going to be using Soundscape you can put it in either Sleep or Snooze mode using the "Sleep" button on the home screen.
+'
+'LazyColumn item' end

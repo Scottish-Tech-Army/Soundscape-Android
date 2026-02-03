@@ -122,7 +122,37 @@
 'LazyColumn item' start
   'Button' start
     'Box for text' start
-      Text for Button: 'Customising Markers'
+      Text for Button: 'Customizing Markers'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for Title: 'Frequently Asked Questions'
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Frequently Asked Questions'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Tips'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Why is Soundscape working offline?'
     'Box for text' end
     'Box for icon' start
     'Box for icon' end

@@ -36,3 +36,13 @@ When you are about to cross a road or just need the app to be quiet, you can tur
 'LazyColumn item' start
   Text for Title: 'How does it work?'
 'LazyColumn item' end
+'LazyColumn item' start
+  Text for HTML section: 'Turning callouts on or off :
+Turning callouts off will silence the app. Callouts can be turned on or off in the "Manage Callouts" section of the "Settings" screen where you can tap the "Allow Callouts" toggle to turn callouts on or off. You can also turn callouts on or off by using the "skip forward" command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the "Sleep" button in the upper right hand corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+'
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for HTML section: 'Managing which callouts you hear :
+To choose the types of things Soundscape will automatically callout, go to the "Settings" screen using the menu on the "Home" screen. The "Manage Callouts" section of the "Settings" screen contains a list of types of things the app can callout. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the "Allow Callouts" toggle at the top of the list.
+'
+'LazyColumn item' end

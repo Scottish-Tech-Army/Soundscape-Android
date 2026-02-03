@@ -7,7 +7,7 @@ import org.robolectric.annotation.Config
 
 @OptIn(ExperimentalComposeUiApi::class)
 @RunWith(ParameterizedRobolectricTestRunner::class)
-@Config(sdk = [34], manifest = Config.NONE)
+@Config(sdk = [34], manifest = Config.NONE, qualifiers = "w1000dp-h100000dp")
 class HelpScreenStructureTest(testTopic: String) : HelpScreenRegressionTestBase(testTopic) {
     override fun compareAgainstBaseline(actualLayout: String) {
         // Compare against baseline file

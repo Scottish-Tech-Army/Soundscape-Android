@@ -104,3 +104,150 @@
     'Box for icon' end
   'Button' end
 'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Why doesn’t Soundscape announce every business that I pass?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Why do some callouts stop when I'm in a vehicle?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'What if I don't understand a callout or miss it because of ambient noise?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for Title: 'How does Soundscape work?'
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'What phone does Soundscape run on?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'What headphones should I use with Soundscape?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How does Soundscape impact my phone’s battery?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How does my choice of headphones affect the battery life of my phone?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How does running Soundscape in the background impact battery life of my phone?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How much mobile data does Soundscape use?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How is Soundscape different from other map apps?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How do I use Soundscape with a wayfinding app?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How do I control what I hear and when I hear it in Soundscape?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Do I need to hold the phone in my hand all the time?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'What is Open Street Map and why do we use it for Soundscape?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end

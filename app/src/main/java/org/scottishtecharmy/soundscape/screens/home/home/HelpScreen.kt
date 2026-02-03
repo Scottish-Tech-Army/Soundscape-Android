@@ -390,8 +390,6 @@ fun HelpScreen(
             ) {
                 structureLog.start("Box")
                 // Help topic page
-                structureLog.start("LazyColumn")
-                if (Build.FINGERPRINT != "robolectric") {
                     LazyColumn(
                         modifier = modifier
                             .fillMaxWidth()
@@ -399,24 +397,12 @@ fun HelpScreen(
                             .mediumPadding(),
                         verticalArrangement = Arrangement.spacedBy(spacing.small),
                     ) {
+                        structureLog.start("LazyColumn")
                         items(sections.sections) {
                             HelpItem(structureLog, navController, it)
                         }
+                        structureLog.end("LazyColumn")
                     }
-                } else {
-                    Column(
-                        modifier = modifier
-                            .fillMaxWidth()
-                            .background(MaterialTheme.colorScheme.surface)
-                            .mediumPadding(),
-                        verticalArrangement = Arrangement.spacedBy(spacing.small),
-                    ) {
-                        sections.sections.forEach {
-                            HelpItem(structureLog, navController, it)
-                        }
-                    }
-                }
-                structureLog.end("LazyColumn")
                 structureLog.end("Box")
             }
             structureLog.end("Scaffold content")
