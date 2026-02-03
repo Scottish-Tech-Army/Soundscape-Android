@@ -33,21 +33,21 @@
     <string name="preview_include_unnamed_roads_title">"Naamloze straten"</string>
     <string name="location_detail_title_default">"Locatiedetails"</string>
     <string name="location_detail_action_beacon">"Audiobaken starten"</string>
-    <string name="location_detail_action_beacon_hint">Een audiobaken instellen op deze locatie</string>
-    <string name="location_detail_action_save_hint">Deze locatie opslaan als markering</string>
-    <string name="location_detail_action_edit_hint">Markering bewerken</string>
-    <string name="location_detail_action_share_hint">Deze locatie delen</string>
+    <string name="location_detail_action_beacon_hint">U naar deze locatie leiden met geluid.</string>
+    <string name="location_detail_action_save_hint">Deze locatie opslaan om later te gebruiken</string>
+    <string name="location_detail_action_edit_hint">De naam van de markering wijzigen of aanvullende aantekeningen toevoegen</string>
+    <string name="location_detail_action_share_hint">Deze locatie met een andere app delen</string>
     <string name="location_detail_action_preview_hint">Voorvertoning starten op deze locatie</string>
     <string name="location_detail_add_waypoint_existing_hint">Deze markering uit uw route verwijderen</string>
-    <string name="location_detail_add_waypoint_new_hint">Deze markering aan uw route toevoegen</string>
+    <string name="location_detail_add_waypoint_new_hint">Deze markering als routepunt aan uw route toevoegen.</string>
     <string name="route_detail_action_start_route">"Route starten"</string>
     <string name="route_detail_action_stop_route">"Route stoppen"</string>
     <string name="route_detail_action_edit">"Route bewerken"</string>
-    <string name="route_detail_action_start_route_hint">Deze route starten</string>
+    <string name="route_detail_action_start_route_hint">Het afspelen van deze route starten</string>
     <string name="route_detail_action_start_route_disabled_hint">"Voeg routepunten toe voordat u de route start"</string>
-    <string name="route_detail_action_stop_route_hint">Deze route stoppen</string>
-    <string name="route_detail_action_share_hint">Deze route delen</string>
-    <string name="route_detail_action_edit_hint">Deze route bewerken</string>
+    <string name="route_detail_action_stop_route_hint">Het afspelen van deze route stoppen</string>
+    <string name="route_detail_action_share_hint">Deze route met een andere app delen</string>
+    <string name="route_detail_action_edit_hint">De routepunten van deze route wijzigen of de volgorde ervan aanpassen.</string>
     <string name="route_detail_action_create">"Nieuwe route"</string>
     <string name="route_detail_action_create_hint">Een nieuwe route maken</string>
     <string name="route_end_completed_accessibility">"Route voltooid! %s"</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Omdat u geen schermlezer hebt ingeschakeld, gaan we ervan uit dat u de grafische kaarten in de gebruikersinterface wilt weergeven. U kunt die instelling hier wijzigen, of gewoon doorgaan.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Doorgaan</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">het pop-upvenster sluiten en doorgaan met de tutorial</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Audiobaken starten op deze markering</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">De kaart op volledig scherm weergeven en de locatie van de markering bewerken</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Bewerking van de markeringlocatie afsluiten</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">Op %1$s net voor %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">Op %1$s net na %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Bij het kruispunt van %s</string>
 </resources>
