@@ -81,19 +81,19 @@
     <!-- Title for the action to start playing an audio beacon -->
 <string name="location_detail_action_beacon">فعال‌سازی جهت‌نمای صوتی</string>
     <!-- Talkback hint for the action to set an audio beacon at this location -->
-<string name="location_detail_action_beacon_hint">جهت‌نمای صوتی را روی این مکان تنظیم کنید</string>
+<string name="location_detail_action_beacon_hint">شما را با صدا به این مکان هدایت کنید.</string>
     <!-- Talkback hint for the action to save marker -->
-<string name="location_detail_action_save_hint">این مکان را به‌عنوان نشانه ذخیره کنید</string>
+<string name="location_detail_action_save_hint">این مکان را برای استفادهٔ بعدی ذخیره کنید</string>
     <!-- Talkback hint for the action to edit marker -->
-<string name="location_detail_action_edit_hint">نشانه را ویرایش کنید</string>
+<string name="location_detail_action_edit_hint">نام نشانه را تغییر دهید یا یادداشت‌های اضافی اضافه کنید</string>
     <!-- Talkback hint for the action to share -->
-<string name="location_detail_action_share_hint">این مکان را به اشتراک بگذارید</string>
+<string name="location_detail_action_share_hint">این مکان را با یک اپلیکیشن دیگر به اشتراک بگذارید</string>
     <!-- Talkback hint for the action to preview -->
 <string name="location_detail_action_preview_hint">پیش‌نمایش را از این مکان آغاز کنید</string>
     <!-- Accessibility hint for markers in a list which could be removed from the list -->
 <string name="location_detail_add_waypoint_existing_hint">این نشانه را از مسیر خود حذف کنید.</string>
     <!-- Accessibility hint for markers in a list that can be added to a list -->
-<string name="location_detail_add_waypoint_new_hint">این نشانه را به مسیر خود اضافه کنید.</string>
+<string name="location_detail_add_waypoint_new_hint">این نشانه را به‌عنوان یک نقطه‌ی بین‌راهی به مسیر خود اضافه کنید.</string>
     <!-- Talkback hint for button that makes map full screen -->
 <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">نقشه را در حالت تمام‌صفحه قرار دهید</string>
     <!-- Talkback hint for button that stops map being full screen -->
@@ -105,15 +105,15 @@
     <!-- Text for the action to start editing a route -->
 <string name="route_detail_action_edit">ویرایش مسیر</string>
     <!-- Talkback hint for the action to start the route -->
-<string name="route_detail_action_start_route_hint">این مسیر را شروع کنید</string>
+<string name="route_detail_action_start_route_hint">پخش این مسیر را آغاز کنید</string>
     <!-- Talkback hint for the action to start the route when the action is disabled. This action is only disabled when no waypoints have been added to a route yet. -->
 <string name="route_detail_action_start_route_disabled_hint">پیش از شروع مسیر نقاط بین‌راهی را اضافه کنید</string>
     <!-- Talkback hint for the action to stop the route -->
-<string name="route_detail_action_stop_route_hint">این مسیر را متوقف کنید</string>
+<string name="route_detail_action_stop_route_hint">پخش این مسیر را متوقف کنید</string>
     <!-- Talkback hint for the action to share -->
-<string name="route_detail_action_share_hint">این مسیر را به اشتراک بگذارید</string>
+<string name="route_detail_action_share_hint">این مسیر را با یک اپلیکیشن دیگر به اشتراک بگذارید</string>
     <!-- Accessibility hint for the edit button on the Route Detail screen -->
-<string name="route_detail_action_edit_hint">این مسیر را ویرایش کنید</string>
+<string name="route_detail_action_edit_hint">نقاط بین‌راهی مسیر را تغییر دهید یا ترتیب آنها را عوض کنید.</string>
     <!-- Add button on the Route list screen -->
 <string name="route_detail_action_create">مسیر جدید</string>
     <!-- Talkback hint for the add button on the Route list screen -->
@@ -1719,4 +1719,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">از آنجا که خوانندهٔ صفحه فعال ندارید، فرض می‌کنیم می‌خواهید نقشه‌های گرافیکی در رابط کاربری نمایش داده شوند. می‌توانید این تنظیم را در اینجا تغییر دهید یا به‌سادگی ادامه دهید.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">ادامه</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">پنجره‌ی پاپ‌آپ را ببندید و به آموزش ادامه دهید</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">فعال‌سازی جهت‌نمای صوتی روی این نشانه</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">نقشه را در حالت تمام‌صفحه قرار دهید و مکان نشانه را ویرایش کنید</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">از حالت ویرایش مکان نشانه خارج شوید</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">در %1$s درست قبل از %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">در %1$s درست بعد از %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">نزدیک تقاطع %s</string>
 </resources>
