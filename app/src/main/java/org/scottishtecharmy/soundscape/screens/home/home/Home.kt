@@ -21,6 +21,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -92,7 +93,7 @@ fun Home(
     permissionsRequired: Boolean
 ) {
     val context = LocalContext.current
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val sharedPreferences = remember { PreferenceManager.getDefaultSharedPreferences(context) }
     val showMap = sharedPreferences.getBoolean(SHOW_MAP_KEY, SHOW_MAP_DEFAULT)
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -106,6 +107,17 @@ fun Home(
         )
     }
 
+    // Memoize drawer callbacks to avoid recreating on every recomposition
+    val shareRecording = remember { { (context as MainActivity).shareRecording() } }
+    // Use rememberUpdatedState so the lambda is stable but always uses current location
+    val currentLocation by rememberUpdatedState(state.location)
+    val offlineMaps = remember(onNavigate) {
+        {
+            val ld = LocationDescription("", currentLocation ?: LngLatAlt())
+            onNavigate(generateOfflineMapScreenRoute(ld))
+        }
+    }
+
     ModalNavigationDrawer(
         drawerState = drawerState,
         gesturesEnabled = drawerState.isOpen,
@@ -115,13 +127,8 @@ fun Home(
                 drawerState = drawerState,
                 rateSoundscape = rateSoundscape,
                 contactSupport = contactSupport,
-                shareRecording = { (context as MainActivity).shareRecording() },
-                offlineMaps = {
-                    // Generate a LocationDescription for our current location and
-                    // pass it in to the OfflineMapScreen
-                    val ld = LocationDescription("", state.location ?: LngLatAlt())
-                    onNavigate(generateOfflineMapScreenRoute(ld))
-                },
+                shareRecording = shareRecording,
+                offlineMaps = offlineMaps,
                 toggleTutorial = toggleTutorial,
                 tutorialRunning = tutorialRunning,
                 preferences = preferences,
