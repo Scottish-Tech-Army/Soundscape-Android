@@ -33,21 +33,21 @@
     <string name="preview_include_unnamed_roads_title">"Unavngivne veje"</string>
     <string name="location_detail_title_default">"Oplysninger om placering"</string>
     <string name="location_detail_action_beacon">"Start lydfyr"</string>
-    <string name="location_detail_action_beacon_hint">Indstil et lydfyr på denne placering</string>
-    <string name="location_detail_action_save_hint">Gem denne placering som et mærke</string>
-    <string name="location_detail_action_edit_hint">Rediger mærke</string>
-    <string name="location_detail_action_share_hint">Del denne placering</string>
+    <string name="location_detail_action_beacon_hint">Vejled dig mod denne placering ved hjælp af lyd.</string>
+    <string name="location_detail_action_save_hint">Gem denne placering, så du kan bruge den senere</string>
+    <string name="location_detail_action_edit_hint">Ændr navnet på mærket eller tilføj yderligere noter</string>
+    <string name="location_detail_action_share_hint">Del denne placering med en anden app</string>
     <string name="location_detail_action_preview_hint">Start forhåndsvisning på denne placering</string>
     <string name="location_detail_add_waypoint_existing_hint">Fjern dette mærke fra din rute.</string>
-    <string name="location_detail_add_waypoint_new_hint">Tilføj dette mærke til din rute.</string>
+    <string name="location_detail_add_waypoint_new_hint">Tilføj dette mærke som et vejpunkt på din rute.</string>
     <string name="route_detail_action_start_route">"Start rute"</string>
     <string name="route_detail_action_stop_route">"Stop rute"</string>
     <string name="route_detail_action_edit">"Rediger rute"</string>
-    <string name="route_detail_action_start_route_hint">Start denne rute</string>
+    <string name="route_detail_action_start_route_hint">Start afspilning af denne rute</string>
     <string name="route_detail_action_start_route_disabled_hint">"Tilføj vejpunkter, før ruten startes"</string>
-    <string name="route_detail_action_stop_route_hint">Stop denne rute</string>
-    <string name="route_detail_action_share_hint">Del denne rute</string>
-    <string name="route_detail_action_edit_hint">Rediger denne rute</string>
+    <string name="route_detail_action_stop_route_hint">Stop afspilning af denne rute</string>
+    <string name="route_detail_action_share_hint">Del denne rute med en anden app</string>
+    <string name="route_detail_action_edit_hint">Rediger vejpunkterne på ruten, eller omarranger deres rækkefølge.</string>
     <string name="route_detail_action_create">"Ny Rute"</string>
     <string name="route_detail_action_create_hint">Opret en ny rute</string>
     <string name="route_end_completed_accessibility">"Rute afsluttet! %s"</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Da du ikke har en skærmlæser aktiveret, antager vi, at du ønsker, at brugergrænsefladens grafiske kort vises. Du kan ændre den indstilling her eller blot fortsætte.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Fortsæt</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">Luk dialogen og fortsæt med tutorialen</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Start lydfyr ved dette mærke</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Vis kortet i fuld skærm, og rediger mærkets placering.</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Afslut redigering af mærkets placering</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">På %1$s lige før %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">På %1$s lige efter %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Nær krydset ved %s</string>
 </resources>
