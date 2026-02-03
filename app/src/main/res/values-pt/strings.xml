@@ -33,21 +33,21 @@
     <string name="preview_include_unnamed_roads_title">"Ruas sem Nome"</string>
     <string name="location_detail_title_default">"Detalhes da Localização"</string>
     <string name="location_detail_action_beacon">"Iniciar Sinal de Áudio"</string>
-    <string name="location_detail_action_beacon_hint">definir um sinal de áudio nesta localização</string>
-    <string name="location_detail_action_save_hint">guardar esta localização como um marco</string>
-    <string name="location_detail_action_edit_hint">editar marco</string>
-    <string name="location_detail_action_share_hint">partilhar esta localização</string>
+    <string name="location_detail_action_beacon_hint">orientá‑lo até esta localização com som</string>
+    <string name="location_detail_action_save_hint">guardar esta localização para utilizar mais tarde</string>
+    <string name="location_detail_action_edit_hint">alterar o nome do marco ou adicionar notas adicionais</string>
+    <string name="location_detail_action_share_hint">partilhar esta localização com outra aplicação</string>
     <string name="location_detail_action_preview_hint">iniciar pré-visualização nesta localização</string>
     <string name="location_detail_add_waypoint_existing_hint">remover este marco da sua rota</string>
-    <string name="location_detail_add_waypoint_new_hint">adicionar este marco à sua rota</string>
+    <string name="location_detail_add_waypoint_new_hint">adicionar este marco como um ponto de passagem na sua rota</string>
     <string name="route_detail_action_start_route">"Iniciar Rota"</string>
     <string name="route_detail_action_stop_route">"Parar Rota"</string>
     <string name="route_detail_action_edit">"Editar Rota"</string>
-    <string name="route_detail_action_start_route_hint">iniciar esta rota</string>
+    <string name="route_detail_action_start_route_hint">iniciar a reprodução desta rota</string>
     <string name="route_detail_action_start_route_disabled_hint">"Adicione pontos de passagem antes de iniciar a rota"</string>
-    <string name="route_detail_action_stop_route_hint">parar esta rota</string>
-    <string name="route_detail_action_share_hint">partilhar esta rota</string>
-    <string name="route_detail_action_edit_hint">editar esta rota</string>
+    <string name="route_detail_action_stop_route_hint">parar a reprodução desta rota</string>
+    <string name="route_detail_action_share_hint">partilhar esta rota com outra aplicação</string>
+    <string name="route_detail_action_edit_hint">alterar os pontos de passagem na rota ou reordená‑los</string>
     <string name="route_detail_action_create">"Nova Rota"</string>
     <string name="route_detail_action_create_hint">criar uma nova rota</string>
     <string name="route_end_completed_accessibility">"Rota Concluída! %s"</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Como não tem um leitor de ecrã ativado, assumimos que pretende ver os mapas gráficos na interface da aplicação. Pode alterar essa definição aqui ou simplesmente continuar.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Continuar</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">Fechar o pop-up e continuar com o tutorial</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Iniciar Sinal de Áudio neste Marco</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">colocar o mapa em ecrã inteiro e editar a localização do marco</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">sair do modo de edição da localização do marco</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">Em %1$s, pouco antes de %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">Em %1$s, pouco depois de %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Perto do cruzamento de %s</string>
 </resources>
