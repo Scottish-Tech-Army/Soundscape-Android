@@ -39,23 +39,23 @@
     <string name="preview_include_unnamed_roads_title">Drogi bez nazwy</string>
     <string name="location_detail_title_default">Szczegóły lokalizacji</string>
     <string name="location_detail_action_beacon">Uruchom dźwięk naprowadzający</string>
-    <string name="location_detail_action_beacon_hint">ustaw dźwięk naprowadzający dla tej lokalizacji</string>
-    <string name="location_detail_action_save_hint">zapisz tę lokalizację jako znacznik (pinezkę)</string>
-    <string name="location_detail_action_edit_hint">edytuj znacznik (pinezkę)</string>
-    <string name="location_detail_action_share_hint">udostępnij tę lokalizację</string>
+    <string name="location_detail_action_beacon_hint">prowadź do tej lokalizacji dźwiękiem</string>
+    <string name="location_detail_action_save_hint">zapisz tę lokalizację, aby użyć jej później</string>
+    <string name="location_detail_action_edit_hint">zmień nazwę znacznika lub dodaj adnotację</string>
+    <string name="location_detail_action_share_hint">udostępnij tę lokalizację w innej aplikacji</string>
     <string name="location_detail_action_preview_hint">rozpocznij podgląd tej lokalizacji</string>
     <string name="location_detail_add_waypoint_existing_hint">usuń ten znacznik z trasy</string>
-    <string name="location_detail_add_waypoint_new_hint">dodaj ten znacznik do trasy</string>
+    <string name="location_detail_add_waypoint_new_hint">dodaj ten znacznik jako punkt trasy</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Wyświetl mapę na pełnym ekranie</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Zamknij tryb pełnoekranowy mapy</string>
     <string name="route_detail_action_start_route">Rozpocznij trasę</string>
     <string name="route_detail_action_stop_route">Zatrzymaj trasę</string>
     <string name="route_detail_action_edit">Edytuj trasę</string>
-    <string name="route_detail_action_start_route_hint">rozpocznij tę trasę</string>
+    <string name="route_detail_action_start_route_hint">rozpocznij odtwarzanie tej trasy</string>
     <string name="route_detail_action_start_route_disabled_hint">Dodaj punkty trasy, aby rozpocząć trasę</string>
-    <string name="route_detail_action_stop_route_hint">zatrzymaj tę trasę</string>
-    <string name="route_detail_action_share_hint">udostępnij tę trasę</string>
-    <string name="route_detail_action_edit_hint">edytuj tę trasę</string>
+    <string name="route_detail_action_stop_route_hint">zatrzymaj odtwarzanie tej trasy</string>
+    <string name="route_detail_action_share_hint">udostępnij tę trasę w innej aplikacji</string>
+    <string name="route_detail_action_edit_hint">zmień punkty trasy lub ich kolejność</string>
     <string name="route_detail_action_create">Nowa trasa</string>
     <string name="route_detail_action_create_hint">utwórz nową trasę</string>
     <string name="route_end_completed_accessibility">Trasa ukończona! %s</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Ponieważ nie masz włączonego czytnika ekranu, zakładamy, że chcesz, aby graficzne mapy interfejsu użytkownika były wyświetlane. Możesz zmienić to ustawienie tutaj lub po prostu kontynuować.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Kontynuuj</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">zamknij wyskakujące okno i kontynuuj samouczek</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Uruchom dźwięk naprowadzający na tym znaczniku</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">wyświetl mapę w trybie pełnoekranowym i edytuj lokalizację znacznika</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">zakończ tryb edycji lokalizacji znacznika</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">Na %1$s tuż przed %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">Na %1$s tuż po %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">W pobliżu skrzyżowania %s</string>
 </resources>
