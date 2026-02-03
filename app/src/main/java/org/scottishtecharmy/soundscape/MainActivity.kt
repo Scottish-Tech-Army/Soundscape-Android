@@ -405,10 +405,6 @@ class MainActivity : AppCompatActivity() {
                         // reviewed or not, or even whether the review dialog was shown. Thus, no
                         // matter the result, we continue our app flow.
                     }
-                } else {
-                    // There was some problem, log or handle the error code.
-                    @ReviewErrorCode val reviewErrorCode = (task.exception as ReviewException).errorCode
-                    Log.e(TAG, "Error requesting review: $reviewErrorCode")
                 }
             }
         } catch (e: Exception) {
