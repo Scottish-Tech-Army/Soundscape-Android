@@ -16,6 +16,8 @@ import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import java.io.File
 import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
@@ -128,13 +130,23 @@ class RouteDetailsViewModel @Inject constructor(
 
     private fun writeRouteAndReturnUri(context: Context, route: RouteWithMarkers?) : Uri? {
 
+        if(route == null) return null
+
         // Write the route to a file and share it
         val path = "${context.filesDir}/route/"
         val routeStorageDir = File(path)
         if (!routeStorageDir.exists()) {
             routeStorageDir.mkdirs()
         }
-        val outputFile = File(routeStorageDir, "route.json")
+
+        // Include a timestamp in the file name
+        val timeStampFormatter = SimpleDateFormat("yyyyMMdd_HHmm")
+        val dateString = timeStampFormatter.format(Date())
+        // Sanitize route name for use in filename - remove characters invalid in filenames
+        val routeName = route.route.name
+            .replace(Regex("[/\\\\:*?\"<>|\\x00]"), "_")
+            .take(100) // Limit length to avoid overly long filenames
+        val outputFile = File(routeStorageDir, "soundscape-route-$routeName-$dateString.json")
         generateRouteJson(route, outputFile)
 
         return getUriForFile(context, "${context.packageName}.provider", outputFile)

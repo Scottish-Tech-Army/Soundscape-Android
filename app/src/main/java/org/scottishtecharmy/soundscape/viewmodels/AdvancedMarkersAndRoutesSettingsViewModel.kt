@@ -75,7 +75,9 @@ class AdvancedMarkersAndRoutesSettingsViewModel @Inject constructor(
 
     private fun zipGpx(zipOutputStream: ZipOutputStream, route: RouteWithMarkers, usedNames: MutableMap<String, Int>) {
         // Sanitize route name to create a valid filename
-        var fileRoot = route.route.name.replace(Regex("[^a-zA-Z0-9.-]"), "_")
+        var fileRoot = route.route.name
+            .replace(Regex("[/\\\\:*?\"<>|\\x00]"), "_")
+            .take(100) // Limit length to avoid overly long filenames
         val gpxContent = generateGpxString(route)
 
         // De-duplicate routes that have the same name
