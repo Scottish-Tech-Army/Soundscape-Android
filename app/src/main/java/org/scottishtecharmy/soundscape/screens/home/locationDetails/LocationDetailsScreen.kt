@@ -274,17 +274,21 @@ private fun LocationDescriptionButtonsSection(
     dialogState: MutableState<Boolean>,
     showDialog: () -> Unit
 ) {
-    val parser: Parser = Parser.builder().build()
-    val document: Node? = parser.parse(stringResource(R.string.universal_links_marker_share_message))
-    val renderer = HtmlRenderer.builder().build()
-    val shareMessage = AnnotatedString.fromHtml(
-        htmlString = renderer.render(document),
-        linkStyles = TextLinkStyles(
-            style = SpanStyle(
-                textDecoration = TextDecoration.Underline,
+    // Parse markdown only once, not on every recomposition
+    val shareMessageResource = stringResource(R.string.universal_links_marker_share_message)
+    val shareMessage = remember(shareMessageResource) {
+        val parser: Parser = Parser.builder().build()
+        val document: Node? = parser.parse(shareMessageResource)
+        val renderer = HtmlRenderer.builder().build()
+        AnnotatedString.fromHtml(
+            htmlString = renderer.render(document),
+            linkStyles = TextLinkStyles(
+                style = SpanStyle(
+                    textDecoration = TextDecoration.Underline,
+                )
             )
-        )
-    ).text
+        ).text
+    }
 
     Column(
         verticalArrangement = Arrangement.spacedBy(spacing.none),
