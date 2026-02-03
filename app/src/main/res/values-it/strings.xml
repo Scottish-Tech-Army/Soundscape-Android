@@ -33,21 +33,21 @@
     <string name="preview_include_unnamed_roads_title">"Strade senza nome"</string>
     <string name="location_detail_title_default">"Dettagli posizione"</string>
     <string name="location_detail_action_beacon">"Avvia audiofaro"</string>
-    <string name="location_detail_action_beacon_hint">Impostare un audiofaro in questa posizione</string>
-    <string name="location_detail_action_save_hint">Salvare questa posizione come indicatore</string>
-    <string name="location_detail_action_edit_hint">Modificare questo indicatore</string>
-    <string name="location_detail_action_share_hint">Condividere questa posizione</string>
+    <string name="location_detail_action_beacon_hint">Guidarti verso questa posizione con l\'audio.</string>
+    <string name="location_detail_action_save_hint">Salvare questa posizione per usarla in seguito</string>
+    <string name="location_detail_action_edit_hint">Modificare il nome dell\'indicatore o aggiungere note aggiuntive</string>
+    <string name="location_detail_action_share_hint">Condividere questa posizione con un\'altra app</string>
     <string name="location_detail_action_preview_hint">Avviare l\'anteprima in questa posizione</string>
     <string name="location_detail_add_waypoint_existing_hint">Rimuovere questo indicatore dal tuo percorso</string>
-    <string name="location_detail_add_waypoint_new_hint">Aggiungere questo indicatore al tuo percorso</string>
+    <string name="location_detail_add_waypoint_new_hint">Aggiungere questo indicatore come waypoint al tuo percorso.</string>
     <string name="route_detail_action_start_route">"Avvia Percorso"</string>
     <string name="route_detail_action_stop_route">"Interrompi Percorso"</string>
     <string name="route_detail_action_edit">"Modifica percorso"</string>
-    <string name="route_detail_action_start_route_hint">Avviare questo percorso</string>
+    <string name="route_detail_action_start_route_hint">Avviare la riproduzione di questo percorso</string>
     <string name="route_detail_action_start_route_disabled_hint">"Aggiungi waypoint prima di avviare il percorso"</string>
-    <string name="route_detail_action_stop_route_hint">Interrompere questo percorso</string>
-    <string name="route_detail_action_share_hint">Condividere questo percorso</string>
-    <string name="route_detail_action_edit_hint">Modificare questo percorso</string>
+    <string name="route_detail_action_stop_route_hint">Interrompere la riproduzione di questo percorso</string>
+    <string name="route_detail_action_share_hint">Condividere questo percorso con un\'altra app</string>
+    <string name="route_detail_action_edit_hint">Modificare i waypoint del percorso o riordinarli.</string>
     <string name="route_detail_action_create">"Nuovo Percorso"</string>
     <string name="route_detail_action_create_hint">Creare un nuovo percorso</string>
     <string name="route_end_completed_accessibility">"Percorso completato! %s"</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Poiché non hai un lettore di schermo attivato, presumiamo che tu voglia visualizzare le mappe grafiche nell\'interfaccia utente. Puoi modificare questa impostazione qui oppure continuare.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Continua</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">Chiudi il popup e continua con il tutorial</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Avviare l\'audiofaro su questo indicatore</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Fare la mappa a schermo intero e modificare la posizione dell\'indicatore</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Uscire dalla modalità di modifica della posizione dell\'indicatore</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">Su %1$s appena prima di %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">Su %1$s appena dopo %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Nei pressi dell\'incrocio tra %s</string>
 </resources>
