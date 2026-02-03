@@ -39,23 +39,23 @@
     <string name="preview_include_unnamed_roads_title">طرق لم تسمها</string>
     <string name="location_detail_title_default">تفاصيل الموقع</string>
     <string name="location_detail_action_beacon">ابدأ منارة الصوت</string>
-    <string name="location_detail_action_beacon_hint">اضبط منارة الصوت على هذا الموقع</string>
-    <string name="location_detail_action_save_hint">احفظ هذا الموقع كعلامة</string>
-    <string name="location_detail_action_edit_hint">تحرير العلامة</string>
-    <string name="location_detail_action_share_hint">شارك هذا الموقع</string>
+    <string name="location_detail_action_beacon_hint">يوجهك إلى هذا الموقع باستخدام الصوت.</string>
+    <string name="location_detail_action_save_hint">احفظ هذا الموقع لاستخدامه لاحقًا</string>
+    <string name="location_detail_action_edit_hint">غيّر اسم العلامة أو أضف ملاحظات إضافية</string>
+    <string name="location_detail_action_share_hint">شارك هذا الموقع مع تطبيق آخر</string>
     <string name="location_detail_action_preview_hint">ابدأ معاينة هذا الموقع</string>
     <string name="location_detail_add_waypoint_existing_hint">أزل هذه العلامة من مسارك</string>
-    <string name="location_detail_add_waypoint_new_hint">أضف هذه العلامة إلى مسارك</string>
+    <string name="location_detail_add_waypoint_new_hint">أضف هذه العلامة كنقطة طريق إلى مسارك.</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">اجعل الخريطة ملء الشاشة</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">الخروج من خريطة ملء الشاشة</string>
     <string name="route_detail_action_start_route">ابدأ الطريق</string>
     <string name="route_detail_action_stop_route">ايقاف الطريق</string>
     <string name="route_detail_action_edit">تحرير الطريق</string>
-    <string name="route_detail_action_start_route_hint">ابدأ هذا الطريق</string>
+    <string name="route_detail_action_start_route_hint">ابدأ تشغيل هذا الطريق</string>
     <string name="route_detail_action_start_route_disabled_hint">أضف نقاط قبل بدء الطريق</string>
-    <string name="route_detail_action_stop_route_hint">أوقف هذا الطريق</string>
-    <string name="route_detail_action_share_hint">شارك هذا الطريق</string>
-    <string name="route_detail_action_edit_hint">تحرير هذا الطريق</string>
+    <string name="route_detail_action_stop_route_hint">أوقف تشغيل هذا الطريق</string>
+    <string name="route_detail_action_share_hint">شارك هذا الطريق مع تطبيق آخر</string>
+    <string name="route_detail_action_edit_hint">غيّر نقاط الطريق في المسار أو أعد ترتيبها.</string>
     <string name="route_detail_action_create">طريق جديد</string>
     <string name="route_detail_action_create_hint">أنشئ طريقًا جديدًا</string>
     <string name="route_end_completed_accessibility">لقد وصلت الى وجهتك %s</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">نظرًا لعدم تفعيل قارئ شاشة لديك، نفترض أنك تفضّل عرض الخرائط الرسومية في واجهة المستخدم. يمكنك تغيير هذا الإعداد هنا، أو المتابعة كما هي.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">تابع</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">إغلاق مربع الحوار ومتابعة البرنامج التعليمي الصوتي</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">ابدأ منارة الصوت عند هذه العلامة</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">اجعل الخريطة ملء الشاشة وحرّر موقع العلامة</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">الخروج من وضع تحرير موقع العلامة</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">في %1$s قبل %2$s بقليل</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">في %1$s بعد %2$s بقليل</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">بالقرب من تقاطع %s</string>
 </resources>
