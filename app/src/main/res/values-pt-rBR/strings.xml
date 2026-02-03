@@ -33,21 +33,21 @@
     <string name="preview_include_unnamed_roads_title">"Ruas Sem Nome"</string>
     <string name="location_detail_title_default">"Detalhes da Localização"</string>
     <string name="location_detail_action_beacon">"Iniciar Sinalizador Sonoro"</string>
-    <string name="location_detail_action_beacon_hint">Definir um sinalizador sonoro neste local</string>
-    <string name="location_detail_action_save_hint">Salvar esta localização como favorito</string>
-    <string name="location_detail_action_edit_hint">Editar favorito</string>
-    <string name="location_detail_action_share_hint">Compartilhar esta localização</string>
+    <string name="location_detail_action_beacon_hint">Guiar você até este local com som.</string>
+    <string name="location_detail_action_save_hint">Salvar este local para usar mais tarde</string>
+    <string name="location_detail_action_edit_hint">Alterar o nome do favorito ou adicionar anotações</string>
+    <string name="location_detail_action_share_hint">Compartilhar esta localização com outro aplicativo</string>
     <string name="location_detail_action_preview_hint">Iniciar a pré-visualização neste local</string>
     <string name="location_detail_add_waypoint_existing_hint">Remover este favorito da sua rota.</string>
-    <string name="location_detail_add_waypoint_new_hint">Adicionar este favorito à sua rota.</string>
+    <string name="location_detail_add_waypoint_new_hint">Adicionar este favorito como localizador na sua rota.</string>
     <string name="route_detail_action_start_route">"Iniciar Rota"</string>
     <string name="route_detail_action_stop_route">"Interromper Rota"</string>
     <string name="route_detail_action_edit">"Editar Rota"</string>
-    <string name="route_detail_action_start_route_hint">Iniciar esta rota</string>
+    <string name="route_detail_action_start_route_hint">Iniciar a reprodução desta rota</string>
     <string name="route_detail_action_start_route_disabled_hint">"Adicionar localizadores antes de iniciar a rota"</string>
-    <string name="route_detail_action_stop_route_hint">Interromper esta rota</string>
-    <string name="route_detail_action_share_hint">Compartilhar esta rota</string>
-    <string name="route_detail_action_edit_hint">Editar esta rota</string>
+    <string name="route_detail_action_stop_route_hint">Interromper a reprodução desta rota</string>
+    <string name="route_detail_action_share_hint">Compartilhar esta rota com outro aplicativo</string>
+    <string name="route_detail_action_edit_hint">Alterar os localizadores da rota ou reordená‑los.</string>
     <string name="route_detail_action_create">"Nova Rota"</string>
     <string name="route_detail_action_create_hint">Criar uma nova rota</string>
     <string name="route_end_completed_accessibility">"Rota Concluída! %s"</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Como você não tem um leitor de tela ativado, presumimos que deseja que os mapas gráficos da interface do usuário sejam exibidos. Você pode alterar essa configuração aqui ou continuar.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Continuar</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">fechar o diálogo e continuar com o tutorial</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Iniciar Sinalizador Sonoro neste Favorito</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Exibir o mapa em tela cheia e editar a localização do favorito</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Sair do modo de edição da localização do favorito</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">Em %1$s, logo antes de %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">Em %1$s, logo após %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Perto do cruzamento de %s</string>
 </resources>
