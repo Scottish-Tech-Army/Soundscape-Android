@@ -27,7 +27,6 @@ import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.MainActivity
-import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.AudioTourInstructionDialog
@@ -51,7 +50,6 @@ import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageViewM
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 import org.scottishtecharmy.soundscape.audio.AudioTour
-import org.scottishtecharmy.soundscape.audio.AudioTourInstruction
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
 import java.net.URLDecoder
@@ -226,12 +224,14 @@ fun HomeScreen(
 
         // Location details screen
         composable(HomeRoutes.LocationDetails.route + "/{json}") { navBackStackEntry ->
-
-            // Parse the LocationDescription out of the json provided by the caller
-            val gson = GsonBuilder().create()
             val urlEncodedJson = navBackStackEntry.arguments?.getString("json")
-            val json = URLDecoder.decode(urlEncodedJson, StandardCharsets.UTF_8.toString())
-            val locationDescription = gson.fromJson(json, LocationDescription::class.java)
+
+            // Parse the LocationDescription only once, not on every recomposition
+            val locationDescription = remember(urlEncodedJson) {
+                val gson = GsonBuilder().create()
+                val json = URLDecoder.decode(urlEncodedJson, StandardCharsets.UTF_8.toString())
+                gson.fromJson(json, LocationDescription::class.java)
+            }
 
             LocationDetailsScreen(
                 locationDescription = locationDescription,
@@ -284,15 +284,19 @@ fun HomeScreen(
             val command = backStackEntry.arguments?.getString("command") ?: ""
             val data = backStackEntry.arguments?.getString("data") ?: ""
 
-            var routeData : RouteWithMarkers? = null
-            when(command) {
-                "import" -> {
-                    try {
-                        val json = URLDecoder.decode(data, StandardCharsets.UTF_8.toString())
-                        routeData = parseSimpleRouteData(json)
-                    } catch(e: Exception) {
-                        Log.e("RouteDetailsScreen", "Error parsing route data: $e")
+            // Parse route data only once, not on every recomposition
+            val routeData = remember(command, data) {
+                when (command) {
+                    "import" -> {
+                        try {
+                            val json = URLDecoder.decode(data, StandardCharsets.UTF_8.toString())
+                            parseSimpleRouteData(json)
+                        } catch (e: Exception) {
+                            Log.e("RouteDetailsScreen", "Error parsing route data: $e")
+                            null
+                        }
                     }
+                    else -> null
                 }
             }
 
@@ -370,12 +374,14 @@ fun HomeScreen(
         }
 
         composable(HomeRoutes.OfflineMaps.route + "/{json}") { navBackStackEntry ->
-
-            // Parse the LocationDescription out of the json provided by the caller
-            val gson = GsonBuilder().create()
             val urlEncodedJson = navBackStackEntry.arguments?.getString("json")
-            val json = URLDecoder.decode(urlEncodedJson, StandardCharsets.UTF_8.toString())
-            val locationDescription = gson.fromJson(json, LocationDescription::class.java)
+
+            // Parse the LocationDescription only once, not on every recomposition
+            val locationDescription = remember(urlEncodedJson) {
+                val gson = GsonBuilder().create()
+                val json = URLDecoder.decode(urlEncodedJson, StandardCharsets.UTF_8.toString())
+                gson.fromJson(json, LocationDescription::class.java)
+            }
 
             OfflineMapsScreenVM(
                 navController = navController,
