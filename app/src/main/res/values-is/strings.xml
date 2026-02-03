@@ -39,23 +39,23 @@
     <string name="preview_include_unnamed_roads_title">nafnlaus vegur</string>
     <string name="location_detail_title_default">upplýsingar um staðsetningu</string>
     <string name="location_detail_action_beacon">hljóð viti</string>
-    <string name="location_detail_action_beacon_hint">setja hljóðvita á þennan stað.</string>
-    <string name="location_detail_action_save_hint">vista þessa staðsetningu sem merki.</string>
-    <string name="location_detail_action_edit_hint">uppfæra merki.</string>
-    <string name="location_detail_action_share_hint">deila þessari staðsetningu.</string>
+    <string name="location_detail_action_beacon_hint">leiða þig að þessum stað með hljóði.</string>
+    <string name="location_detail_action_save_hint">vista þessa staðsetningu til að nota síðar.</string>
+    <string name="location_detail_action_edit_hint">breyta nafni merkisins eða bæta við frekari athugasemdum.</string>
+    <string name="location_detail_action_share_hint">deila þessari staðsetningu með öðru forriti.</string>
     <string name="location_detail_action_preview_hint">byrja að herma staðsetningu á þessum stað.</string>
     <string name="location_detail_add_waypoint_existing_hint">fjarlægja þetta merki úr leiðinni þinni.</string>
-    <string name="location_detail_add_waypoint_new_hint">bæta þessu merki við leiðina þína.</string>
+    <string name="location_detail_add_waypoint_new_hint">bæta þessu merki sem leiðarpunkt við leiðina þína.</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">stækka kort til að fylla skjá</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">fara úr fullum skjá</string>
     <string name="route_detail_action_start_route">upphaf leiðar</string>
     <string name="route_detail_action_stop_route">ljúka leið</string>
     <string name="route_detail_action_edit">Uppfæra Leið</string>
-    <string name="route_detail_action_start_route_hint">byrja þessa leið.</string>
+    <string name="route_detail_action_start_route_hint">hefja spilun þessarar leiðar.</string>
     <string name="route_detail_action_start_route_disabled_hint">bæta við punktum áður en leið er hafin</string>
-    <string name="route_detail_action_stop_route_hint">ljúka þessari leið.</string>
-    <string name="route_detail_action_share_hint">deila þessari leið.</string>
-    <string name="route_detail_action_edit_hint">uppfæra þessa leið.</string>
+    <string name="route_detail_action_stop_route_hint">stöðva spilun þessarar leiðar.</string>
+    <string name="route_detail_action_share_hint">deila þessari leið með öðru forriti.</string>
+    <string name="route_detail_action_edit_hint">breyta leiðarpunktum á leiðinni eða endurraða þeim.</string>
     <string name="route_detail_action_create">ný leið</string>
     <string name="route_detail_action_create_hint">búa til nýja leið.</string>
     <string name="route_end_completed_accessibility">leið lokiðleið lokið %s</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Vegna þess að þú ert ekki með skjálesara virkan gerum við ráð fyrir að þú viljir að myndrænu kortin í notendaviðmótinu séu sýnd. Þú getur breytt þessari stillingu hér, eða bara haldið áfram.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">áfram</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">loka sprettiglugga og halda áfram með hljóðleiðsögn</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">kveikja á hljóðvita á þessu merki</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">gera kortið fullskjá og breyta staðsetningu merkisins.</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">hætta að breyta staðsetningu merkisins.</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">Á %1$s rétt áður en %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">Á %1$s rétt eftir %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Nálægt gatnamótum %s</string>
 </resources>
