@@ -37,23 +37,23 @@
     <string name="preview_include_unnamed_roads_title">Безымянные дороги</string>
     <string name="location_detail_title_default">Сведения о местоположении</string>
     <string name="location_detail_action_beacon">Включить звуковой маяк</string>
-    <string name="location_detail_action_beacon_hint">Установить звуковой маяк в этом месте</string>
-    <string name="location_detail_action_save_hint">Сохранить это место как отметку</string>
-    <string name="location_detail_action_edit_hint">Изменить отметку</string>
-    <string name="location_detail_action_share_hint">Поделиться этим местом</string>
+    <string name="location_detail_action_beacon_hint">Направит вас к этому месту с помощью звука.</string>
+    <string name="location_detail_action_save_hint">Сохранить это место для последующего использования</string>
+    <string name="location_detail_action_edit_hint">Изменить название отметки или добавить дополнительные заметки</string>
+    <string name="location_detail_action_share_hint">Поделиться этим местоположением с другим приложением</string>
     <string name="location_detail_action_preview_hint">Начать предварительный просмотр этого места</string>
     <string name="location_detail_add_waypoint_existing_hint">Удалить эту отметку из маршрута</string>
-    <string name="location_detail_add_waypoint_new_hint">Добавить эту отметку в маршрут</string>
+    <string name="location_detail_add_waypoint_new_hint">Добавить эту отметку как путевую точку в ваш маршрут.</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Развернуть карту на весь экран</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Выйти из полноэкранного режима карты</string>
     <string name="route_detail_action_start_route">Начать маршрут</string>
     <string name="route_detail_action_stop_route">Остановить маршрут</string>
     <string name="route_detail_action_edit">Изменить маршрут</string>
-    <string name="route_detail_action_start_route_hint">Начать этот маршрут</string>
+    <string name="route_detail_action_start_route_hint">Начать воспроизведение этого маршрута</string>
     <string name="route_detail_action_start_route_disabled_hint">Добавить путевые точки перед началом маршрута</string>
-    <string name="route_detail_action_stop_route_hint">Остановить этот маршрут</string>
-    <string name="route_detail_action_share_hint">Поделиться этим маршрутом</string>
-    <string name="route_detail_action_edit_hint">Изменить этот маршрут</string>
+    <string name="route_detail_action_stop_route_hint">Остановить воспроизведение этого маршрута</string>
+    <string name="route_detail_action_share_hint">Поделиться этим маршрутом с другим приложением</string>
+    <string name="route_detail_action_edit_hint">Изменить путевые точки маршрута или их порядок.</string>
     <string name="route_detail_action_create">Новый маршрут</string>
     <string name="route_detail_action_create_hint">Создать новый маршрут</string>
     <string name="route_end_completed_accessibility">Маршрут завершён! %s</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Поскольку у вас не включена программа чтения с экрана, мы предполагаем, что вы хотите отображать графические карты в интерфейсе. Вы можете изменить этот параметр здесь или просто продолжить.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Продолжить</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">Закрыть всплывающее окно и продолжить аудиоурок</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Включить звуковой маяк на этой отметке</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Развернуть карту на весь экран и отредактировать местоположение отметки</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Выйти из режима редактирования местоположения отметки</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">На %1$s, прямо перед %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">На %1$s, сразу после %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Рядом с перекрёстком %s</string>
 </resources>
