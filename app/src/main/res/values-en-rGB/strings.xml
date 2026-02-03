@@ -33,21 +33,21 @@
     <string name="preview_include_unnamed_roads_title">Unnamed Roads</string>
     <string name="location_detail_title_default">Location Details</string>
     <string name="location_detail_action_beacon">Start Audio Beacon</string>
-    <string name="location_detail_action_beacon_hint">Set an audio beacon at this location</string>
-    <string name="location_detail_action_save_hint">Save this location as a marker</string>
-    <string name="location_detail_action_edit_hint">Edit marker</string>
-    <string name="location_detail_action_share_hint">Share this location</string>
+    <string name="location_detail_action_beacon_hint">Guide you towards this location with sound.</string>
+    <string name="location_detail_action_save_hint">Save this location to use later</string>
+    <string name="location_detail_action_edit_hint">Change the marker name or add additional notes</string>
+    <string name="location_detail_action_share_hint">Share this location with another app</string>
     <string name="location_detail_action_preview_hint">Start previewing at this location</string>
     <string name="location_detail_add_waypoint_existing_hint">Remove this marker from your route.</string>
-    <string name="location_detail_add_waypoint_new_hint">Add this marker to your route.</string>
+    <string name="location_detail_add_waypoint_new_hint">Add this marker as a waypoint on your route.</string>
     <string name="route_detail_action_start_route">Start Route</string>
     <string name="route_detail_action_stop_route">Stop Route</string>
     <string name="route_detail_action_edit">Edit Route</string>
-    <string name="route_detail_action_start_route_hint">Start this route</string>
+    <string name="route_detail_action_start_route_hint">Start playback of this route</string>
     <string name="route_detail_action_start_route_disabled_hint">Add waypoints before starting the route</string>
-    <string name="route_detail_action_stop_route_hint">Stop this route</string>
-    <string name="route_detail_action_share_hint">Share this route</string>
-    <string name="route_detail_action_edit_hint">Edit this route</string>
+    <string name="route_detail_action_stop_route_hint">Stop playback of this route</string>
+    <string name="route_detail_action_share_hint">Share this route with another app</string>
+    <string name="route_detail_action_edit_hint">Change the waypoints in the route, or reorder them.</string>
     <string name="route_detail_action_create">New Route</string>
     <string name="route_detail_action_create_hint">Create a new route</string>
     <string name="route_end_completed_accessibility">Route Completed! %s</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Because you do not have a screen reader enabled, we assume that you want the graphical maps in the user interface to be displayed. You can change that setting here, or just continue on.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Continue</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">Close the pop-up and continue with the tutorial</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Start audio beacon at this marker</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Make the map full screen and edit the marker location</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Exit marker location editing mode</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">On %1$s, just before %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">On %1$s, just after %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Near the intersection of %s</string>
 </resources>
