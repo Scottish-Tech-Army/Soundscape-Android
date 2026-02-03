@@ -29,7 +29,7 @@ fun ComposeTestRule.dumpLayoutTree(): String {
             .append(info.config.getOrNull(SemanticsProperties.Text)?.joinToString("") { it.text } ?: "''")
             .append("  ")
             .append(info.layoutInfo())
-            .append("\n")
+            .appendLine()
     }
 
     fun dump(info: SemanticsNode, indent: String = "") {

@@ -124,6 +124,7 @@ android {
     sourceSets {
         getByName("test") {
             java.srcDirs("src/test/java", "src/testFixtures/java")
+            assets.srcDirs("src/debug/assets")
         }
         getByName("androidTest") {
             java.srcDirs("src/androidTest/java", "src/testFixtures/java")

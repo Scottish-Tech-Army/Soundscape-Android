@@ -23,6 +23,12 @@ abstract class HelpScreenRegressionTestBase(protected val testTopic: String) {
     @get:Rule
     val composeTestRule = createComposeRule()
 
+    /**
+     * Some testTopic names contain a smart-quote apostrophe, which roboelectric fails to read from
+     * the Windows filesystem, even though it works okay under an Android emulator.
+     */
+    protected val filenameSafeTestTopic = testTopic.replace("’", "'")
+
     @Test
     fun structure_regression() {
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
@@ -40,7 +46,7 @@ abstract class HelpScreenRegressionTestBase(protected val testTopic: String) {
                         modifier = Modifier
                             .windowInsetsPadding(WindowInsets.safeDrawing)
                             .semantics { testTagsAsResourceId = true },
-                        structureLog = StructureLog { structureLog.append(it).append("\n") }
+                        structureLog = StructureLog { structureLog.appendLine(it) }
                     )
                 } else {
                     HelpScreen(
@@ -49,7 +55,7 @@ abstract class HelpScreenRegressionTestBase(protected val testTopic: String) {
                         modifier = Modifier
                             .windowInsetsPadding(WindowInsets.safeDrawing)
                             .semantics { testTagsAsResourceId = true },
-                        structureLog = StructureLog { structureLog.append(it).append("\n") }
+                        structureLog = StructureLog { structureLog.appendLine(it) }
                     )
                 }
             }

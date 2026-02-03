@@ -13,7 +13,7 @@ class HelpScreenRegressionTest(testTopic: String) : HelpScreenRegressionTestBase
     override fun compareAgainstBaseline(actualLayout: String) {
         // Compare against baseline file
         composeTestRule.assertLayoutMatchesHybridBaseline(
-            "help_screen_layouts/${testTopic}",
+            "help_screen_layouts/${filenameSafeTestTopic}",
             actualLayout
         )
     }
