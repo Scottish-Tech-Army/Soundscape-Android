@@ -127,7 +127,7 @@ android {
         }
         getByName("androidTest") {
             java.srcDirs("src/androidTest/java", "src/testFixtures/java")
-            assets.srcDirs("src/androidTest/assets")
+            assets.srcDirs("src/androidTest/assets", "src/debug/assets")
         }
     }
 
@@ -455,3 +455,8 @@ tasks.configureEach {
        finalizedBy("extractComposeBaselines")
     }
 }
+
+tasks.withType<Test> {
+    systemProperty("test.baselineOutputDir", layout.buildDirectory.dir("outputs/robolectric-baselines").get().asFile.absolutePath)
+}
+

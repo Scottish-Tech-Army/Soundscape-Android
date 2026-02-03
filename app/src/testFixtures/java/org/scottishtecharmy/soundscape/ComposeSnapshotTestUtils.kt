@@ -9,6 +9,7 @@ import androidx.compose.ui.semantics.getOrNull
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.fail
 import java.nio.file.Path
+import java.nio.file.Paths
 import kotlin.io.path.createDirectories
 import kotlin.io.path.writeText
 
@@ -108,16 +109,17 @@ private fun assertHybridBaseline(filename: String, snapshot: String, snapshotTyp
     val baselineText = loadBaselineFromAssets(context, baselineSubpathString)
 
     val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
-    val filesDir = targetContext.filesDir.toPath()
+    val outputDir: Path = (System.getProperty("test.baselineOutputDir") as String?)
+        ?.let { Paths.get(it) }
+        ?: Paths.get(targetContext.filesDir.absolutePath)
 
     if (baselineText == null) {
-        // If no baseline in assets, create a new one on the Android device for review.
-        val androidSideBaselineFile =
-            generateAndroidSideBaselineFile(filesDir, baselineSubpathString, snapshot)
+        // If no baseline in assets, create a new one on the Android device (or host if Robolectric)
+        // for review.
+        val outputBaselineFile = generateBaselineFile(outputDir, baselineSubpathString, snapshot)
         return AssertResult.Failed(
             "No $snapshotType baseline found in 'assets/$baselineSubpathString'. " +
-            "A new one will be written to '${androidSideBaselineFile}' under " +
-            "'src/androidTest/assets/baselines/'; review then commit it.")
+            "A new one will be written to '${outputBaselineFile}'; review then commit it.")
     }
     else {
         // We check the result of the diff, rather than comparing the baseline and snapshot
@@ -127,13 +129,12 @@ private fun assertHybridBaseline(filename: String, snapshot: String, snapshotTyp
             // If baseline exists but differs, print diff and fail.
             println("\n$snapshotType changed! Diff:\n")
             println(diff)
-            val androidSideBaselineFile =
-                generateAndroidSideBaselineFile(filesDir, baselineSubpathString, snapshot)
-            println("New $snapshotType snapshot written to: ${androidSideBaselineFile}")
+            val outputBaselineFile = generateBaselineFile(outputDir, baselineSubpathString, snapshot)
+            println("New $snapshotType snapshot written to: ${outputBaselineFile}")
             return AssertResult.Failed(
                 "$snapshotType does not match baseline. See diff above. " +
-                "An updated version will be copied into ${androidSideBaselineFile} under " +
-                "'src/androidTest/assets/baselines/'; review the changes before committing.")
+                "An updated version will be copied into ${outputBaselineFile}; " +
+                "review the changes before committing.")
         }
         else {
             println("$snapshotType matches baseline.")
@@ -157,15 +158,15 @@ fun loadBaselineFromAssets(context: Context, filename: String): String? {
     }
 }
 
-private fun generateAndroidSideBaselineFile(filesDir: Path, filename: String, snapshot: String): Path? {
-    val androidSideBaselineFile = filesDir.resolve(filename)
-    ensureAndroidSideBaselineDirExistsAndIsReadable(filesDir, androidSideBaselineFile.parent)
-    androidSideBaselineFile.writeText(snapshot)
-    androidSideBaselineFile.toFile().setReadable(true, false)
-    return androidSideBaselineFile
+private fun generateBaselineFile(outputDir: Path, filename: String, snapshot: String): Path {
+    val outputBaselineFile = outputDir.resolve(filename)
+    ensureBaselineDirExistsAndIsReadable(outputDir, outputBaselineFile.parent)
+    outputBaselineFile.writeText(snapshot)
+    outputBaselineFile.toFile().setReadable(true, false)
+    return outputBaselineFile
 }
 
-fun ensureAndroidSideBaselineDirExistsAndIsReadable(filesDir: Path, path: Path) {
+fun ensureBaselineDirExistsAndIsReadable(outputDir: Path, path: Path) {
 
     fun Path.makeReadableAndTraversable() {
         val dir = toFile()
@@ -176,7 +177,7 @@ fun ensureAndroidSideBaselineDirExistsAndIsReadable(filesDir: Path, path: Path) 
     path.createDirectories().makeReadableAndTraversable()
     // Recursively ensure all parents are world-readable and -executable.
     generateSequence(path) { it.parent }
-        .takeWhile { it.startsWith(filesDir) }
+        .takeWhile { it.startsWith(outputDir) }
         .forEach { it.makeReadableAndTraversable() }
 }
 
