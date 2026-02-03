@@ -33,21 +33,21 @@
     <string name="preview_include_unnamed_roads_title">"Unbenannte Straßen"</string>
     <string name="location_detail_title_default">"Standortdetails"</string>
     <string name="location_detail_action_beacon">"Audiobeacon starten"</string>
-    <string name="location_detail_action_beacon_hint">An diesem Standort ein Audiobeacon setzen.</string>
-    <string name="location_detail_action_save_hint">Diesen Standort als Markierung speichern.</string>
-    <string name="location_detail_action_edit_hint">Markierung bearbeiten.</string>
-    <string name="location_detail_action_share_hint">Diesen Standort teilen.</string>
+    <string name="location_detail_action_beacon_hint">Mit Ton zu diesem Standort führen.</string>
+    <string name="location_detail_action_save_hint">Diesen Standort speichern, um ihn später zu verwenden.</string>
+    <string name="location_detail_action_edit_hint">Den Namen der Markierung ändern oder zusätzliche Notizen hinzufügen.</string>
+    <string name="location_detail_action_share_hint">Diesen Standort mit einer anderen App teilen.</string>
     <string name="location_detail_action_preview_hint">Vorschau an diesem Standort starten.</string>
     <string name="location_detail_add_waypoint_existing_hint">Diese Markierung von Ihrer Route entfernen.</string>
-    <string name="location_detail_add_waypoint_new_hint">Diese Markierung zu Ihrer Route hinzufügen.</string>
+    <string name="location_detail_add_waypoint_new_hint">Diese Markierung als Wegpunkt zu Ihrer Route hinzufügen.</string>
     <string name="route_detail_action_start_route">"Route starten"</string>
     <string name="route_detail_action_stop_route">"Route anhalten"</string>
     <string name="route_detail_action_edit">"Route bearbeiten"</string>
-    <string name="route_detail_action_start_route_hint">Diese Route starten.</string>
+    <string name="route_detail_action_start_route_hint">Wiedergabe dieser Route starten.</string>
     <string name="route_detail_action_start_route_disabled_hint">"Fügen Sie Wegpunkte hinzu, bevor Sie die Route starten"</string>
-    <string name="route_detail_action_stop_route_hint">Diese Route anhalten.</string>
-    <string name="route_detail_action_share_hint">Diese Route teilen.</string>
-    <string name="route_detail_action_edit_hint">Diese Route bearbeiten.</string>
+    <string name="route_detail_action_stop_route_hint">Wiedergabe dieser Route stoppen.</string>
+    <string name="route_detail_action_share_hint">Diese Route mit einer anderen App teilen.</string>
+    <string name="route_detail_action_edit_hint">Wegpunkte der Route ändern oder ihre Reihenfolge anpassen.</string>
     <string name="route_detail_action_create">"Neue Route"</string>
     <string name="route_detail_action_create_hint">Neue Route erstellen.</string>
     <string name="route_end_completed_accessibility">"Route abgeschlossen! %s"</string>
@@ -1248,4 +1248,10 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Da Sie keinen Bildschirmleser aktiviert haben, gehen wir davon aus, dass die grafischen Karten in der Benutzeroberfläche angezeigt werden sollen. Sie können diese Einstellung hier ändern oder einfach fortfahren.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Weiter</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">das Popup zu schließen und mit dem Tutorial fortzufahren</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Audiobeacon an dieser Markierung starten</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Karte im Vollbild anzeigen und den Markierungsstandort bearbeiten.</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Bearbeitungsmodus für Markierungsstandort beenden.</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">Auf %1$s, kurz vor %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">Auf %1$s, kurz nach %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">In der Nähe der Kreuzung von %s</string>
 </resources>
