@@ -94,20 +94,22 @@
 <string name="location_detail_title_default">"Location Details"</string>
 <!-- Title for the action to start playing an audio beacon -->
 <string name="location_detail_action_beacon">"Start Audio Beacon"</string>
+<!-- Title for the action to start playing an audio beacon from the markers list -->
+<string name="location_detail_action_beacon_from_markers"  tools:ignore="MissingTranslation">"Start audio beacon at this marker"</string>
 <!-- Talkback hint for the action to set an audio beacon at this location. This is always preceded by "Double tap to " -->
-<string name="location_detail_action_beacon_hint">"Set an audio beacon at this location"</string>
+<string name="location_detail_action_beacon_hint">"Guide you towards this location with sound."</string>
 <!-- Talkback hint for the action to save marker. This is always preceded by "Double tap to " -->
-<string name="location_detail_action_save_hint">"Save this location as a marker"</string>
+<string name="location_detail_action_save_hint">"Save this location to use later"</string>
 <!-- Talkback hint for the action to edit marker. This is always preceded by "Double tap to " -->
-<string name="location_detail_action_edit_hint">"Edit marker"</string>
+<string name="location_detail_action_edit_hint">"Change the marker name or add additional notes"</string>
 <!-- Talkback hint for the action to share. This is always preceded by "Double tap to " -->
-<string name="location_detail_action_share_hint">"Share this location"</string>
+<string name="location_detail_action_share_hint">"Share this location with another app"</string>
 <!-- Talkback hint for the action to preview. This is always preceded by "Double tap to " -->
 <string name="location_detail_action_preview_hint">"Start previewing at this location"</string>
 <!-- Accessibility hint for markers in a list which could be removed from the list. This is always preceded by "Double tap to " -->
 <string name="location_detail_add_waypoint_existing_hint">"Remove this marker from your route."</string>
 <!-- Accessibility hint for markers in a list that can be added to a list. This is always preceded by "Double tap to " -->
-<string name="location_detail_add_waypoint_new_hint">"Add this marker to your route."</string>
+<string name="location_detail_add_waypoint_new_hint">"Add this marker as a waypoint on your route."</string>
 <!-- Talkback hint for button that makes map full screen -->
 <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">"Make the map full screen"</string>
 <!-- Talkback hint for button that stops map being full screen -->
@@ -119,15 +121,15 @@
 <!-- Text for the action to start editing a route -->
 <string name="route_detail_action_edit">"Edit Route"</string>
 <!-- Talkback hint for the action to start the route. This is always preceded by "Double tap to " -->
-<string name="route_detail_action_start_route_hint">"Start this route"</string>
+<string name="route_detail_action_start_route_hint">"Start playback of this route"</string>
 <!-- Talkback hint for the action to start the route when the action is disabled. This action is only disabled when no waypoints have been added to a route yet. This is always preceded by "Double tap to " -->
 <string name="route_detail_action_start_route_disabled_hint">"Add waypoints before starting the route"</string>
 <!-- Talkback hint for the action to stop the route. This is always preceded by "Double tap to " -->
-<string name="route_detail_action_stop_route_hint">"Stop this route"</string>
+<string name="route_detail_action_stop_route_hint">"Stop playback of this route"</string>
 <!-- Talkback hint for the action to share. This is always preceded by "Double tap to " -->
-<string name="route_detail_action_share_hint">"Share this route"</string>
+<string name="route_detail_action_share_hint">"Share this route with another app"</string>
 <!-- Accessibility hint for the edit button on the Route Detail screen . This is always preceded by "Double tap to " -->
-<string name="route_detail_action_edit_hint">"Edit this route"</string>
+<string name="route_detail_action_edit_hint">"Change the waypoints in the route, or reorder them."</string>
 <!-- Add button on the Route list screen -->
 <string name="route_detail_action_create">"New Route"</string>
 <!-- Talkback hint for the add button on the Route list screen. This is always preceded by "Double tap to " -->
