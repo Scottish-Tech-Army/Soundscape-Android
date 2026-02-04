@@ -43,7 +43,6 @@ fun AddWaypointsList(
     getCurrentLocationDescription: () -> LocationDescription
 ) {
     val update = remember { mutableStateOf(true) }
-    val fullerDescription = remember { getCurrentLocationDescription() }
 
     // Create our list of locations, with those already in the route first
     val locations = remember(uiState.routeMembers, uiState.markers) {
@@ -148,7 +147,7 @@ fun AddWaypointsList(
                             details = EnabledFunction(
                                 true,
                                 {
-                                    onSelectLocation(fullerDescription)
+                                    onSelectLocation(getCurrentLocationDescription())
                                 }
                             ),
                         ),
