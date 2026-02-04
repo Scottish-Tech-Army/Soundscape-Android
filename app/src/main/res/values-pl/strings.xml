@@ -1254,4 +1254,5 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">Na %1$s tuż przed %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">Na %1$s tuż po %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">W pobliżu skrzyżowania %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">W tej trasie już znajduje się znacznik w tej lokalizacji. Nie możemy dodać go ponownie.</string>
 </resources>
