@@ -1254,4 +1254,5 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">%1$s（%2$s の手前）</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">%1$s（%2$s の直後）</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">%s の交差点付近</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">この場所は既にルートに含まれているため、再度追加することはできません。</string>
 </resources>
