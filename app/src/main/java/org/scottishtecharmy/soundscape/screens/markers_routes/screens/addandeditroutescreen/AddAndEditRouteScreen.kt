@@ -250,22 +250,37 @@ fun AddAndEditRouteScreen(
             placesNearbyUiState = placesNearbyUiState,
             onAddWaypointComplete = {
                 // Create the final list of markers within the route
-                // Keep route members that weren't toggled out
-                val members = uiState.routeMembers
-                    .filter { marker ->
-                        !uiState.toggledMembers.any { it.databaseId == marker.databaseId }
-                    }
+
+                // Determine which ids to keep (from uiState, not toggled out)
+                val keepIds = uiState.routeMembers
+                    .filter { marker -> !uiState.toggledMembers.any { it.databaseId == marker.databaseId } }
+                    .map { it.databaseId }
+                    .toSet()
+
+                // Filter routeMembers (preserving user's reordering) to keep only those ids in order
+                val routeMemberIds = routeMembers.map { it.databaseId }.toSet()
+                val members = routeMembers
+                    .filter { it.databaseId in keepIds }
                     .toMutableList()
+
+                // Add entries that are in keepIds but weren't in routeMembers (added while dialog open)
+                val missingFromReorder = uiState.routeMembers
+                    .filter { it.databaseId in keepIds && it.databaseId !in routeMemberIds }
+                members.addAll(missingFromReorder)
+
+                val highestIndex = members.maxOfOrNull { it.orderId } ?: 0L
                 // Add toggled members that weren't already in the route
                 for(marker in uiState.toggledMembers) {
-                    if(!uiState.routeMembers.any { it.databaseId == marker.databaseId })
+                    if(!uiState.routeMembers.any { it.databaseId == marker.databaseId }) {
                         members.add(marker)
+                    }
                 }
-                val nonMutableMembers = members.toList()
-                for((index, marker) in nonMutableMembers.withIndex()) {
+                // Reset orderId values
+                for((index, marker) in members.withIndex()) {
                     marker.orderId = index.toLong()
                 }
-                routeMembers = nonMutableMembers
+
+                routeMembers = members
                 addWaypointDialog = false
             },
             onClickFolder = onClickFolder,
