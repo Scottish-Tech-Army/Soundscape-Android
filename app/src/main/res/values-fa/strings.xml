@@ -1725,4 +1725,5 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">در %1$s درست قبل از %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">در %1$s درست بعد از %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">نزدیک تقاطع %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">در این مکان در مسیر از پیش نشانه‌ای وجود دارد؛ نمی‌توان آن را دوباره اضافه کرد.</string>
 </resources>
