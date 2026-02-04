@@ -1254,4 +1254,5 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">Kadulla %1$s juuri ennen %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">Kadulla %1$s juuri %2$s jälkeen</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">Lähellä risteystä %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Tässä sijainnissa on jo merkintä reitillä. Emme voi lisätä sitä uudelleen.</string>
 </resources>
