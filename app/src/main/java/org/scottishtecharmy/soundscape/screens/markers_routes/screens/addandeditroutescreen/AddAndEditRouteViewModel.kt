@@ -223,8 +223,22 @@ class AddAndEditRouteViewModel @Inject constructor(
         if(newLevel > 0) newLevel -= 1
         logic.internalUiState.value = logic.uiState.value.copy(level = newLevel)
     }
-    fun onSelectLocation(location: LocationDescription) {
-        logic.internalUiState.value = logic.uiState.value.copy(markerDescription = location)
+    fun onSelectLocation(locationDescription: LocationDescription) {
+
+        val existingMarker = routeDao.getMarkerByLocation(
+            locationDescription.location.longitude,
+            locationDescription.location.latitude
+        )
+        if(existingMarker != null) {
+            val existingLocationDescription = LocationDescription(
+                name = existingMarker.name,
+                location = LngLatAlt(existingMarker.longitude, existingMarker.latitude),
+                databaseId = existingMarker.markerId
+            )
+            logic.internalUiState.value = logic.uiState.value.copy(markerDescription = existingLocationDescription)
+        } else {
+            logic.internalUiState.value = logic.uiState.value.copy(markerDescription = locationDescription)
+        }
     }
 
     fun toggleMember(locationDescription: LocationDescription) {
