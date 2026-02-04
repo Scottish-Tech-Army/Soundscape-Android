@@ -131,23 +131,33 @@ class AudioTour @Inject constructor(
 
         when (_currentStep.value) {
             AudioTourStep.MY_LOCATION_WAIT -> {
-                if (button == TourButton.MY_LOCATION) {
+                coroutineScope.launch {
+                    waitForAudioComplete()
                     advanceToStep(AudioTourStep.AROUND_ME_PROMPT)
                 }
             }
             AudioTourStep.AROUND_ME_WAIT -> {
                 if (button == TourButton.AROUND_ME) {
-                    advanceToStep(AudioTourStep.AHEAD_PROMPT)
+                    coroutineScope.launch {
+                        waitForAudioComplete()
+                        advanceToStep(AudioTourStep.AHEAD_PROMPT)
+                    }
                 }
             }
             AudioTourStep.AHEAD_WAIT -> {
                 if (button == TourButton.AHEAD_OF_ME) {
-                    advanceToStep(AudioTourStep.NEARBY_MARKERS_PROMPT)
+                    coroutineScope.launch {
+                        waitForAudioComplete()
+                        advanceToStep(AudioTourStep.NEARBY_MARKERS_PROMPT)
+                    }
                 }
             }
             AudioTourStep.NEARBY_MARKERS_WAIT -> {
                 if (button == TourButton.NEARBY_MARKERS) {
-                    advanceToStep(AudioTourStep.FINISH)
+                    coroutineScope.launch {
+                        waitForAudioComplete()
+                        advanceToStep(AudioTourStep.FINISH)
+                    }
                 }
             }
             else -> { /* Ignore button presses in other states */ }
@@ -272,6 +282,17 @@ class AudioTour @Inject constructor(
                 showTourInstruction(context.getString(R.string.tour_cancel))
             }
             else -> { /* No action needed */ }
+        }
+    }
+
+    private suspend fun waitForAudioComplete() {
+        while(true) {
+            // Wait for the audio queue to empty, debounce and then check it's still not busy
+            while ((serviceConnection.soundscapeService?.isAudioEngineBusy() == true)) {
+                delay(100)
+            }
+            delay(1000)
+            if (serviceConnection.soundscapeService?.isAudioEngineBusy() == false) break
         }
     }
 
