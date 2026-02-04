@@ -1254,4 +1254,5 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">På %1$s rett før %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">På %1$s rett etter %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">Nær veikrysset %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Det finnes allerede en markør i ruten på denne posisjonen. Vi kan ikke legge den til på nytt.</string>
 </resources>
