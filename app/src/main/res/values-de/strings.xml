@@ -1254,4 +1254,5 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">Auf %1$s, kurz vor %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">Auf %1$s, kurz nach %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">In der Nähe der Kreuzung von %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">An diesem Standort ist bereits eine Markierung in der Route vorhanden. Sie kann nicht erneut hinzugefügt werden.</string>
 </resources>
