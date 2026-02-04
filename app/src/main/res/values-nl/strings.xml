@@ -1254,4 +1254,5 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">Op %1$s net voor %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">Op %1$s net na %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">Bij het kruispunt van %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Er staat al een markering op deze locatie in de route; we kunnen deze niet opnieuw toevoegen.</string>
 </resources>
