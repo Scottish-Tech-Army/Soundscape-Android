@@ -1254,4 +1254,5 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">Á %1$s rétt áður en %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">Á %1$s rétt eftir %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">Nálægt gatnamótum %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Þetta merki er þegar í leiðinni á þessari staðsetningu. Við getum ekki bætt því við aftur.</string>
 </resources>
