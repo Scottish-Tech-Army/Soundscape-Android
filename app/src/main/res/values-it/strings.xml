@@ -1254,4 +1254,5 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">Su %1$s appena prima di %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">Su %1$s appena dopo %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">Nei pressi dell\'incrocio tra %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">In questo percorso è già presente un indicatore per questa posizione; non è possibile aggiungerne un altro.</string>
 </resources>
