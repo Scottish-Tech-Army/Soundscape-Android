@@ -12,6 +12,8 @@
 <string name="general_error_location_services_find_location_error">"We are having trouble finding your current location."</string>
 <!-- Error message that Soundscape is having trouble adding a marker to this location.-->
 <string name="general_error_add_marker_error">"We are having trouble marking this place. Try again later."</string>
+<!-- Error message that Soundscape can't add a marker to a route because it's already in the route.-->
+<string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">"There's already a marker in the route at this location, we cannot add it again."</string>
 <!-- Menu button to get to the Settings page -->
 <string name="settings_screen_title">"Settings"</string>
 <!-- Menu button to information about the Soundscape app -->
