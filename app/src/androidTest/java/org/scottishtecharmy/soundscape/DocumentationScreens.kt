@@ -271,8 +271,14 @@ class DocumentationScreens {
                 onClickFolder = { _, _ -> },
                 onClickBack = { },
                 onSelectLocation = { },
-                createAndAddMarker = { _, _, _ -> },
-                getCurrentLocationDescription = { LocationDescription("Current Location", location) },
+                createAndAddMarker = { _, _, _, _ -> },
+                getCurrentLocationDescription = {
+                    LocationDescription(
+                        "Current Location",
+                        location
+                    )
+                },
+                onToggleMember = {},
             )
         }
     }
