@@ -1254,4 +1254,5 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">Em %1$s, logo antes de %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">Em %1$s, logo após %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">Perto do cruzamento de %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Já existe um favorito na rota neste local. Não podemos adicioná‑lo novamente.</string>
 </resources>
