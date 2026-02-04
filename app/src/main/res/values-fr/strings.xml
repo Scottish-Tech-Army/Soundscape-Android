@@ -1254,4 +1254,5 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">Sur %1$s juste avant %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">Sur %1$s juste après %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">Près de l’intersection de %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Il y a déjà un marqueur à cet emplacement dans l’itinéraire. Nous ne pouvons pas l’ajouter une nouvelle fois.</string>
 </resources>
