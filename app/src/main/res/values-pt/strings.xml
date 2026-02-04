@@ -1254,4 +1254,5 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">Em %1$s, pouco antes de %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">Em %1$s, pouco depois de %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">Perto do cruzamento de %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Já existe um marco nesta localização na rota; não podemos adicioná‑lo novamente.</string>
 </resources>
