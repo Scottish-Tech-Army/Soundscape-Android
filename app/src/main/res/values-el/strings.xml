@@ -1254,4 +1254,5 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">Στην %1$s, λίγο πριν από %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">Στην %1$s, λίγο μετά από %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">Κοντά στη διασταύρωση %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Υπάρχει ήδη ένας δείκτης στη διαδρομή σε αυτήν την τοποθεσία, δεν μπορούμε να τον προσθέσουμε ξανά.</string>
 </resources>
