@@ -1254,4 +1254,5 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">På %1$s precis innan %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">På %1$s precis efter %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">Nära korsningen %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Det finns redan en platsmarkör på den här platsen i rutten, vi kan inte lägga till den igen.</string>
 </resources>
