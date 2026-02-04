@@ -1254,4 +1254,5 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">في %1$s قبل %2$s بقليل</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">في %1$s بعد %2$s بقليل</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">بالقرب من تقاطع %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">هناك بالفعل علامة في المسار عند هذا الموقع، لا يمكن إضافتها مرة أخرى.</string>
 </resources>
