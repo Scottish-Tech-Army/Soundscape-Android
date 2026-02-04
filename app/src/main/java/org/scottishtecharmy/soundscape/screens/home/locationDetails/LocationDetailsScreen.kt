@@ -82,18 +82,37 @@ fun LocationDetailsScreen(
 ) {
     val context = LocalContext.current
 
+    // Check if this location already exists as a marker in the database
+    val finalLocationDescription = remember(locationDescription) {
+        if (locationDescription.databaseId == 0L) {
+            val existingMarker = viewModel.getMarkerAtLocation(locationDescription.location)
+            if (existingMarker != null) {
+                locationDescription.copy(
+                    databaseId = existingMarker.markerId,
+                    name = existingMarker.name,
+                    description = existingMarker.fullAddress
+                )
+            } else {
+                locationDescription
+            }
+        } else {
+            locationDescription
+        }
+    }
+
     LocationDetails(
         navController = navController,
-        locationDescription = locationDescription,
+        locationDescription = finalLocationDescription,
         createBeacon = { loc ->
-            viewModel.startBeacon(loc, locationDescription.name)
+            viewModel.startBeacon(loc, finalLocationDescription.name)
             navController.popBackStack(HomeRoutes.Home.route, false)
         },
-        saveMarker = { description, successMessage, failureMessage ->
+        saveMarker = { description, successMessage, failureMessage, duplicateMessage ->
             viewModel.createMarker(
                 description,
                 successMessage,
-                failureMessage)
+                failureMessage,
+                duplicateMessage)
             navController.popBackStack(HomeRoutes.Home.route, false)
         },
         deleteMarker = { id ->
@@ -137,7 +156,8 @@ fun LocationDetails(
     saveMarker: (
         description: LocationDescription,
         successMessage: String,
-        failureMessage: String) -> Unit,
+        failureMessage: String,
+        duplicateMessage: String) -> Unit,
     deleteMarker: (objectId: Long) -> Unit,
     enableStreetPreview: (location: LngLatAlt) -> Unit,
     shareLocation: (message: String, description : LocationDescription) -> Unit,
@@ -465,7 +485,7 @@ fun LocationDetailsPreview() {
         navController = NavHostController(LocalContext.current),
         location = null,
         heading = 45.0F,
-        saveMarker = {_,_,_ ->},
+        saveMarker = {_,_,_,_ ->},
         deleteMarker = {},
         shareLocation = {_,_ ->},
         offlineMaps = {_ ->},

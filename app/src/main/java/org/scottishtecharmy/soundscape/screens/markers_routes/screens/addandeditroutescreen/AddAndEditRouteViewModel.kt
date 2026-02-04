@@ -58,16 +58,17 @@ class AddAndEditRouteViewModel @Inject constructor(
                     }
                     if(newMarker != null) {
                         // Add the new marker to our route
-                        val updatedList = uiState.value.routeMembers.toMutableList()
+                        val updatedList = uiState.value.toggledMembers.toMutableList()
                         updatedList.add(newMarker)
                         _uiState.value = _uiState.value.copy(
                             markers = markerVMs.toMutableList(),
-                            routeMembers = updatedList
+                            toggledMembers = updatedList
                         )
                         return@collect
                     }
+                } else {
+                    _uiState.value = _uiState.value.copy(markers = markerVMs.toMutableList())
                 }
-                _uiState.value = _uiState.value.copy(markers = markerVMs.toMutableList())
 
                 // Initialization complete
                 postInit = true
@@ -113,8 +114,8 @@ class AddAndEditRouteViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 // Read the route from the database
-                val route = routeDao.getRouteWithMarkers(routeId)
-                if(route == null) throw Exception("Route not found")
+                val route =
+                    routeDao.getRouteWithMarkers(routeId) ?: throw Exception("Route not found")
                 initializeRoute(route)
             } catch (e: Exception) {
                 Log.e("EditRouteViewModel", "Error loading route: ${e.message}")
@@ -147,14 +148,14 @@ class AddAndEditRouteViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 routeDao.removeRoute(objectId)
-                Log.d("EditRouteViewModel", "Route deleted successfully: \$routeName")
+                Log.d("EditRouteViewModel", "Route deleted successfully: $objectId")
                 _uiState.value = _uiState.value.copy(
                     doneActionCompleted = true,
                     actionType = ActionType.DELETE
                 )
             } catch (e: Exception) {
                 Log.e("EditRouteViewModel", "Error deleting route: ${e.message}")
-                _uiState.value = _uiState.value.copy(errorMessage = "Error deleting route: \${e.message}")
+                _uiState.value = _uiState.value.copy(errorMessage = "Error deleting route: ${e.message}")
             }
         }
     }
@@ -170,7 +171,10 @@ class AddAndEditRouteViewModel @Inject constructor(
     }
 
     // Add/Edit has been completed
-    fun editComplete() {
+    fun editComplete(members: List<LocationDescription>) {
+        // Finalize the list of route members, and clear the toggled list as they
+        // are all now in/out of the routeMembers list
+        _uiState.value = _uiState.value.copy(routeMembers = members, toggledMembers = emptyList())
         viewModelScope.launch {
 
             // Until it's been put in the database, the routeObjectId will be null
@@ -216,11 +220,22 @@ class AddAndEditRouteViewModel @Inject constructor(
 
     fun onClickBack() {
         var newLevel = logic.uiState.value.level
-        if(newLevel > 0) newLevel = newLevel - 1
+        if(newLevel > 0) newLevel -= 1
         logic.internalUiState.value = logic.uiState.value.copy(level = newLevel)
     }
     fun onSelectLocation(location: LocationDescription) {
         logic.internalUiState.value = logic.uiState.value.copy(markerDescription = location)
+    }
+
+    fun toggleMember(locationDescription: LocationDescription) {
+        val currentToggled = _uiState.value.toggledMembers
+        val isToggled = currentToggled.any { it.databaseId == locationDescription.databaseId }
+        val newToggled = if (isToggled) {
+            currentToggled.filter { it.databaseId != locationDescription.databaseId }
+        } else {
+            currentToggled + locationDescription
+        }
+        _uiState.value = _uiState.value.copy(toggledMembers = newToggled)
     }
 
     fun onClickFolder(filter: String, title: String) {
@@ -232,36 +247,85 @@ class AddAndEditRouteViewModel @Inject constructor(
     fun createAndAddMarker(
         locationDescription: LocationDescription,
         successMessage: String,
-        failureMessage: String
+        failureMessage: String,
+        duplicateMessage: String
     ) {
-        // Kick off adding the marker to the database
-        createMarker(locationDescription, routeDao, viewModelScope,
-            onSuccess = {
+        // Check if a marker already exists at this location
+        val existingMarker = routeDao.getMarkerByLocation(
+            locationDescription.location.longitude,
+            locationDescription.location.latitude
+        )
+
+        if (existingMarker != null) {
+            // Marker already exists
+            val existingLocationDescription = LocationDescription(
+                name = existingMarker.name,
+                location = LngLatAlt(existingMarker.longitude, existingMarker.latitude),
+                databaseId = existingMarker.markerId
+            )
+            val markerInRoute = _uiState.value.routeMembers.any { it.databaseId == existingLocationDescription.databaseId }
+            val markerToggled = _uiState.value.toggledMembers.any { it.databaseId == existingLocationDescription.databaseId }
+            if(markerInRoute != markerToggled) {
+
+                // The marker is either in the route and not toggled, or not in the route and toggled.
+                // Either way, it's already included and can't be added again.
                 soundscapeServiceConnection.soundscapeService?.speakCallout(
                     TrackedCallout(
                         positionedStrings = listOf(
-                            PositionedString(
-                                text = successMessage,
-                                type = AudioType.STANDARD
-                            )
+                            PositionedString(text = duplicateMessage, type = AudioType.STANDARD)
                         ),
                         filter = false
                     ),
                     false
                 )
-            },
-            onFailure = {
+
+            } else {
+
+                // The marker is not in the toggle group, so add it
+                val updatedList = _uiState.value.toggledMembers.toMutableList()
+                updatedList.add(existingLocationDescription)
+                _uiState.value = _uiState.value.copy(toggledMembers = updatedList)
+
                 soundscapeServiceConnection.soundscapeService?.speakCallout(
                     TrackedCallout(
                         positionedStrings = listOf(
-                            PositionedString(text = failureMessage, type = AudioType.STANDARD)
+                            PositionedString(text = successMessage, type = AudioType.STANDARD)
                         ),
                         filter = false
                     ),
                     false
                 )
             }
-        )
+        } else {
+            // Kick off adding the marker to the database
+            createMarker(locationDescription, routeDao, viewModelScope,
+                onSuccess = {
+                    soundscapeServiceConnection.soundscapeService?.speakCallout(
+                        TrackedCallout(
+                            positionedStrings = listOf(
+                                PositionedString(
+                                    text = successMessage,
+                                    type = AudioType.STANDARD
+                                )
+                            ),
+                            filter = false
+                        ),
+                        false
+                    )
+                },
+                onFailure = {
+                    soundscapeServiceConnection.soundscapeService?.speakCallout(
+                        TrackedCallout(
+                            positionedStrings = listOf(
+                                PositionedString(text = failureMessage, type = AudioType.STANDARD)
+                            ),
+                            filter = false
+                        ),
+                        false
+                    )
+                }
+            )
+        }
 
         // And ensure we're on the top level
         logic.internalUiState.value = logic.uiState.value.copy(
