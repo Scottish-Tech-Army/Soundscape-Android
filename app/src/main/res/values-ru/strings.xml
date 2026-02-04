@@ -1254,4 +1254,5 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">На %1$s, прямо перед %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">На %1$s, сразу после %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">Рядом с перекрёстком %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">В маршруте уже есть отметка в этом месте, добавить её повторно невозможно.</string>
 </resources>
