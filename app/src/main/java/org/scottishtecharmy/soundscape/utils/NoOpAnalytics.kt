@@ -7,4 +7,7 @@ class NoOpAnalytics @Inject constructor() : Analytics {
     override fun logEvent(name: String, params: Bundle?) {
         // Do nothing
     }
+    override fun logCostlyEvent(name: String, params: Bundle?) {
+        // Do nothing
+    }
 }
