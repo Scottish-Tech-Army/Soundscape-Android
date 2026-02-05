@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ExitToApp
+import androidx.compose.material.icons.automirrored.rounded.ExitToApp
 import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material.icons.rounded.Snooze
 import androidx.compose.material3.DrawerState
@@ -264,7 +264,7 @@ fun HomeTopAppBar(
                         .talkbackHint(stringResource(R.string.street_preview_exit))
                 ) {
                     Icon(
-                        Icons.Rounded.ExitToApp,
+                        Icons.AutoMirrored.Rounded.ExitToApp,
                         contentDescription = stringResource(R.string.street_preview_exit),
                         tint = MaterialTheme.colorScheme.onSurface,
                     )
