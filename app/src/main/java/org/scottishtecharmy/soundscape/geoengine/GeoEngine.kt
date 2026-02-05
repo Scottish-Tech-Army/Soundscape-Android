@@ -435,7 +435,7 @@ class GeoEngine {
                     }
 
                     if(updated) {
-                        Analytics.getInstance().logEvent("gridUpdated", null)
+                        Analytics.getInstance().logCostlyEvent("gridUpdated", null)
 
                         // The grid updated, if we're in StreetPreview and were initializing, the
                         // service needs to update the state to ON.

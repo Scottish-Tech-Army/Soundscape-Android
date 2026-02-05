@@ -414,7 +414,7 @@ open class GridState(
                     val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
                     val streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
                     val tileCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
-                    Analytics.getInstance().logEvent("updateTile", null)
+                    Analytics.getInstance().logCostlyEvent("updateTile", null)
                     for (retry in 1..5) {
                         ret = updateTile(
                             tile.tileX,

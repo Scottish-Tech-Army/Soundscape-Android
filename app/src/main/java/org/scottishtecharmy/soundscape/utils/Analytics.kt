@@ -3,6 +3,7 @@ import android.os.Bundle
 
 interface Analytics {
     fun logEvent(name: String, params: Bundle? = null)
+    fun logCostlyEvent(name: String, params: Bundle? = null)
 
     companion object {
         @Volatile

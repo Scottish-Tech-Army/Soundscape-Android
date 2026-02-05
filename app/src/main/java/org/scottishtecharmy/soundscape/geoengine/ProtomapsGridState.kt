@@ -58,10 +58,11 @@ open class ProtomapsGridState(
         if (extracts != currentExtracts) {
             println("Change in offline extracts")
             currentExtracts = extracts
+            // These events don't really tell us very much, so mark them as costly
             if (currentExtracts.isEmpty())
-                Analytics.getInstance().logEvent("GridNoOfflineMap", null)
+                Analytics.getInstance().logCostlyEvent("GridNoOfflineMap", null)
             else
-                Analytics.getInstance().logEvent("GridWithOfflineMap", null)
+                Analytics.getInstance().logCostlyEvent("GridWithOfflineMap", null)
 
             // Close old file readers
             for (reader in fileTileReaders)
