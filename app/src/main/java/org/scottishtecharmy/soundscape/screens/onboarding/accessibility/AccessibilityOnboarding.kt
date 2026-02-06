@@ -43,7 +43,6 @@ fun AccessibilityOnboardingScreenVM(
     AccessibilityOnboardingScreen(
         onNavigate = onNavigate,
         uiState = uiState,
-        onEnableGraphicalMap = { viewModel.enableGraphicalMaps(it)},
         modifier = modifier
     )
 }
@@ -52,7 +51,6 @@ fun AccessibilityOnboardingScreenVM(
 fun AccessibilityOnboardingScreen(
     onNavigate: (() -> Unit)?,
     uiState: AccessibilityOnboardingUiState,
-    onEnableGraphicalMap: (Boolean) -> Unit,
     modifier: Modifier = Modifier
 ) {
     BoxWithGradientBackground(
@@ -127,6 +125,5 @@ fun OfflineStorageOnboardingScreenPreview() {
     AccessibilityOnboardingScreen(
         onNavigate = null,
         AccessibilityOnboardingUiState(false),
-        onEnableGraphicalMap = { _ -> },
     )
 }

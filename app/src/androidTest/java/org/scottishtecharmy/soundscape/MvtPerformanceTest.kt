@@ -27,9 +27,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
 import org.scottishtecharmy.soundscape.utils.Analytics
-import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
-import java.time.Duration
 
 class MvtPerformanceTest {
 
@@ -38,7 +36,7 @@ class MvtPerformanceTest {
         tileY: Int,
         filename: String,
         cropPoints: Boolean = true
-    ):  Array<FeatureCollection>? {
+    ): Array<FeatureCollection> {
 
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val remoteTile = context.assets.open(filename)

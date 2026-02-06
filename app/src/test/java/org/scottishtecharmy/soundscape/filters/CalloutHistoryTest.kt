@@ -8,10 +8,8 @@ import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
-import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.screens.home.home.USER_POSITION_MARKER_NAME
 
 class CalloutHistoryTest {
 
@@ -93,7 +91,7 @@ class CalloutHistoryTest {
             )
             if(filter.shouldUpdate(userGeometry, destination)) {
                 println("Updating on $distanceAway")
-                calloutCount = calloutCount + 1
+                calloutCount += 1
                 filter.update(userGeometry)
             }
         }

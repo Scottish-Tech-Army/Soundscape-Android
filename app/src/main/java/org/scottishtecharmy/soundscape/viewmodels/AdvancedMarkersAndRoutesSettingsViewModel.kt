@@ -167,7 +167,7 @@ class AdvancedMarkersAndRoutesSettingsViewModel @Inject constructor(
         }
     }
 
-    fun triggerImport(context: Context) {
+    fun triggerImport() {
         viewModelScope.launch {
             _importEvent.emit(Unit)
         }

@@ -58,7 +58,6 @@ import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.maplibre.android.style.layers.Property
 import org.maplibre.android.style.sources.GeoJsonSource
 import org.maplibre.android.style.sources.VectorSource
-import org.maplibre.android.tile.TileOperation
 import org.maplibre.geojson.FeatureCollection
 import org.maplibre.geojson.MultiPolygon
 import org.maplibre.geojson.Polygon
@@ -296,7 +295,7 @@ fun MapContainerLibre(
                     .withIconSize(1.5f)
             }
 
-            val currentRouteData = remember { mutableStateOf<RouteWithMarkers?>(routeData) }
+            val currentRouteData = remember { mutableStateOf(routeData) }
             val routeMarkers = remember { mutableStateOf<List<Symbol>?>(null) }
             val beaconLocationMarker = remember { mutableStateOf<Symbol?>(null) }
             val symbol = remember { mutableStateOf<Symbol?>(null) }
@@ -645,7 +644,7 @@ fun MapContainerLibre(
 
             // Check if the route has been updated
             if (routeData != currentRouteData.value) {
-                symbolManager.value?.let() { sm ->
+                symbolManager.value?.let { sm ->
                     // And add new ones
                     val annotationList = mutableListOf<Symbol>()
                     updateRouteMarkers(sm, annotationList, routeData, routeMarkers)

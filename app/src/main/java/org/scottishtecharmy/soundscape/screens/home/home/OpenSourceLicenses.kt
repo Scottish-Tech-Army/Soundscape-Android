@@ -134,7 +134,7 @@ fun OpenSourceLicenses(
 
 @Preview(showBackground = true)
 @Composable
-fun openSourceLicensesPreview() {
+fun OpenSourceLicensesPreview() {
     OpenSourceLicenses(
         listOf(
             LicenseInfo(

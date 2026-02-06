@@ -42,7 +42,7 @@ class GpxDrivenProvider  {
                 val point = parsedGpx?.tracks?.get(0)?.trackSegments?.get(0)?.trackPoints?.get(trackPointIndex)
 
                 var heading = 0.0
-                point?.let { it ->
+                point?.let {
                     if(stepsInPoint == 0) {
                         val pointLngLatAlt = LngLatAlt(it.longitude, it.latitude)
                         val nextPoint =

@@ -52,7 +52,6 @@ fun MainSearchBar(
     hint: String = stringResource(R.string.settings_section_search),
     onItemClick: (LocationDescription) -> Unit,
     userLocation: LngLatAlt?,
-    beaconLocation: LngLatAlt? = null,
     isSearching: Boolean = false)
 {
     val shape = RoundedCornerShape(spacing.small)

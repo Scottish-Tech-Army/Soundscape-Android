@@ -587,7 +587,7 @@ class MapMatchFilter {
     //
 
 
-    val followerList: MutableList<RoadFollower> = mutableListOf<RoadFollower>()
+    val followerList: MutableList<RoadFollower> = mutableListOf()
     var matchedLocation: PointAndDistanceAndHeading? = null
     var matchedWay: Way? = null
     var matchedFollower: RoadFollower? = null

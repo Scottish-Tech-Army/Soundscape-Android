@@ -204,7 +204,6 @@ fun Home(
                             },
                             hint = stringResource(R.string.search_bar_hint),
                             userLocation = state.location,
-                            beaconLocation = state.beaconState?.location,
                             isSearching = state.searchInProgress
                         )
                     },

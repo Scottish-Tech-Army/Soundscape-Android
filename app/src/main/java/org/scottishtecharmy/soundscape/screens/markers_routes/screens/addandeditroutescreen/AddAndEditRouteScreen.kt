@@ -268,7 +268,6 @@ fun AddAndEditRouteScreen(
                     .filter { it.databaseId in keepIds && it.databaseId !in routeMemberIds }
                 members.addAll(missingFromReorder)
 
-                val highestIndex = members.maxOfOrNull { it.orderId } ?: 0L
                 // Add toggled members that weren't already in the route
                 for(marker in uiState.toggledMembers) {
                     if(!uiState.routeMembers.any { it.databaseId == marker.databaseId }) {

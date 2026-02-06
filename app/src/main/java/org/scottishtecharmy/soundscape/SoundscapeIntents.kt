@@ -89,8 +89,8 @@ class SoundscapeIntents
         url: String,
         context: Context?,
     ) : String {
-        var urlTmp: URL? = null
-        var connection: HttpURLConnection? = null
+        var urlTmp: URL?
+        var connection: HttpURLConnection?
 
         try {
             Log.d(TAG, "Open URL $url")

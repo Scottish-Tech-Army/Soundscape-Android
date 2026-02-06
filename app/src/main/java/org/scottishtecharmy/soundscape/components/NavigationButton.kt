@@ -19,10 +19,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.semantics.LiveRegionMode
-import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.liveRegion
-import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -33,9 +29,9 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 fun NavigationButton(
     onClick: () -> Unit = {},
     text: String,
+    modifier: Modifier = Modifier,
     icon: ImageVector? = null,
     horizontalPadding: Dp = spacing.medium,
-    modifier: Modifier = Modifier
 ) {
     Button(
         onClick = { onClick() },

@@ -698,37 +698,6 @@ private fun getInterpolationPointsFromTileFeatureCollection(tileFeatureCollectio
 }
 
 /**
- * Given a valid Tile feature collection this will parse the collection and return a paths
- * feature collection. Uses the "footway", "path", "cycleway", "bridleway" feature_value to extract
- * Paths from Feature Collection.
- * @param tileFeatureCollection
- * A FeatureCollection object.
- * @return A FeatureCollection object that contains only paths.
- */
-private fun getPathsFeatureCollectionFromTileFeatureCollection(
-    tileFeatureCollection: FeatureCollection
-): FeatureCollection{
-    val pathsFeatureCollection = FeatureCollection()
-
-    for(feature in tileFeatureCollection) {
-        // We're only going to add linestrings to the roads feature collection
-        val mvtFeature = feature as MvtFeature
-        when(mvtFeature.geometry.type) {
-            "LineString", "MultiLineString" -> {
-                if (mvtFeature.featureType == "highway")
-                    when (mvtFeature.featureValue) {
-                        "footway" -> pathsFeatureCollection.addFeature(feature)
-                        "path" -> pathsFeatureCollection.addFeature(feature)
-                        "cycleway" -> pathsFeatureCollection.addFeature(feature)
-                        "bridleway" -> pathsFeatureCollection.addFeature(feature)
-                    }
-            }
-        }
-    }
-    return pathsFeatureCollection
-}
-
-/**
  * Parses out all the Entrances in a tile FeatureCollection using the "gd_entrance_list" feature_type.
  * @param tileFeatureCollection
  * A FeatureCollection object.

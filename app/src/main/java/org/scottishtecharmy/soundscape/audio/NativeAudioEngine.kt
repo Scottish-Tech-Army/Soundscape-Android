@@ -86,7 +86,11 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         if(service == null) {
             geometryUpdateJob = engineCoroutineScope.launch {
                 while (isActive) { // Loop while the coroutine is active
-                    updateGeometry(0.0, 0.0, 0.0, true, true, 15.0)
+                    updateGeometry(0.0, 0.0, 0.0,
+                        focusGained = true,
+                        duckingAllowed = true,
+                        proximityNear = 15.0
+                    )
                     delay(100L) // Wait for 100 milliseconds
                 }
             }

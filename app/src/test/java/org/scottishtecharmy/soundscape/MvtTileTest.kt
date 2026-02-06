@@ -750,12 +750,10 @@ class MvtTileTest {
                 )
                 time += 1000L
 
-                val geocoder = OfflineGeocoder(gridState, settlementGrid)
                 val callout = autoCallout.updateLocation(
                     userGeometry,
                     gridState,
-                    settlementGrid,
-                    geocoder
+                    settlementGrid
                 )
                 if(callout != null) {
                     // We've got a new callout, so add it to our geoJSON as a triangle for the
@@ -875,7 +873,7 @@ class MvtTileTest {
                 }
 
                 // Update the nearest road filter with our new location
-                val mapMatchedResult = mapMatchFilter.filter(
+                mapMatchFilter.filter(
                     LngLatAlt(location.longitude, location.latitude),
                     gridState,
                     collection,
@@ -1187,7 +1185,7 @@ class MvtTileTest {
                 true,
                 52992372
             )
-            val namedStationEntranceDetails = EntranceDetails(
+            EntranceDetails(
                 "St Enoch",
                 "subway_entrance",
                 null,

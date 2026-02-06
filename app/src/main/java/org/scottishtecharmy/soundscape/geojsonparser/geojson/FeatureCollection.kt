@@ -12,7 +12,7 @@ import com.squareup.moshi.Json
 
 open class FeatureCollection : GeoJsonObject(), Iterable<Feature> {
     @field:Json(name = "features")
-    var features: ArrayList<Feature> = arrayListOf<Feature>()
+    var features: ArrayList<Feature> = arrayListOf()
 
     init {
         type = "FeatureCollection"

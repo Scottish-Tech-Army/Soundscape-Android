@@ -49,8 +49,8 @@ class OffscreenStorageOnboardingViewModel @Inject constructor(@param:Application
         )
     }
 
-    fun selectStorage(path: String, context: Context) {
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    fun selectStorage(path: String) {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)
         sharedPreferences.edit(commit = true) { putString(MainActivity.SELECTED_STORAGE_KEY, path) }
 
         var currentIndex = -1

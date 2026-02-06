@@ -526,7 +526,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
     }
 
     fun getInterpolateLocation(needle: Int, sortedNumbers: SortedMap<Double, MvtFeature>) : Pair<LngLatAlt, String>? {
-        var lastKey : Double = 0.0
+        var lastKey = 0.0
         var lastParsed : Int = Int.MAX_VALUE
         var lastPoint : LngLatAlt? = null
         for (number in sortedNumbers) {

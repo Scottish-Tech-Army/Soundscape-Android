@@ -36,7 +36,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.Analytics
-import org.scottishtecharmy.soundscape.utils.process
 import org.scottishtecharmy.soundscape.utils.toLocationDescription
 
 @RunWith(AndroidJUnit4::class)
