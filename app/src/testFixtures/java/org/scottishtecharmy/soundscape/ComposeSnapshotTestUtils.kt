@@ -44,9 +44,8 @@ fun ComposeTestRule.dumpLayoutTree(): String {
     return sb.toString()
 }
 
-private val regexForAnonymousLambdaNames = Regex("(\\$[0-9]+)+")
+private val regexForLambdas = Regex("(\\$[0-9]+|ExternalSyntheticLambda[^@]+)+@")
 private val regexForObjectIds = Regex("@[0-9a-f]+")
-private val regexForLambdas = Regex("ExternalSyntheticLambda[^@]+@")
 
 /**
  * Dumps the full layout and semantics tree as a deterministic string.
@@ -59,15 +58,14 @@ private fun SemanticsNode.layoutInfo(): String {
     // Simplified modifier info for testing (truncate long chains)
     val modifiers = this.layoutInfo.getModifierInfo().joinToString(", ") {
         it.toString()
-            // Strip anonymous lambda names, because they might appear as meaningless diffs.
-            .replace(regexForAnonymousLambdaNames, "\\$<N>")
+            // Strip anonymous and synthetic lambda names, because are irrelevant diffs.
+            .replace(regexForLambdas, "\\$<N>@")
             // Strip explicit object IDs, because they might appear as meaningless diffs.
             .replace(regexForObjectIds, "@<id>")
-            // Lambdas appear as semantics properties, but the exact name could change under
-            // maintenance.
-            .replace(regexForLambdas, "ExternalSyntheticLambdaX@")
             // Ignore the fact that we're switching to a new help screen class name.
             .replace("MarkdownHelpScreen", "HelpScreen")
+            // Ignore (for now) the fact that we refactored the regression tests.
+            .replace("HelpScreenRegressionTestBase", "HelpScreenRegressionTest")
     }
     return "(bounds=${bounds.toShortString()}, modifiers=[$modifiers])"
 }
