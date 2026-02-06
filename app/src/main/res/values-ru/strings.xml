@@ -13,7 +13,7 @@
     <string name="voice_settings_speaking_rate">Скорость речи</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">Преобразование текста в речь</string>
     <string name="voice_voices">Голоса</string>
-    <string name="beacon_settings_style">Аудиостили</string>
+    <string name="beacon_settings_style">Стили звукового маяка</string>
     <string name="beacon_styles_current">Текущий</string>
     <string name="beacon_styles_original">Исходный</string>
     <string name="beacon_styles_flare">Вспышка</string>
@@ -231,7 +231,7 @@
     <string name="ui_action_button_around_me_acc_hint">Узнать о местах в четырёх квадрантах вокруг вас</string>
     <string name="ui_action_button_ahead_of_me">Впереди\nменя</string>
     <string name="ui_action_button_ahead_of_me_acc_hint">Узнать о местах перед вами</string>
-    <string name="menu_manage_callouts">Управление сносками</string>
+    <string name="menu_manage_callouts">Управление уточнениями</string>
     <string name="behavior_scavenger_hunt_callout_next_flag">Маяк установлен на %1$s, %2$s от тебя, %3$s из %4$s</string>
     <string name="help_configuration_section_title">Настройка звукового ландшафта</string>
     <string name="settings_help_section_beacons_and_pois">Маяки и сноски</string>
@@ -306,8 +306,8 @@
     <string name="osm_subway_named" tools:ignore="MissingTranslation">Станция метро %s</string>
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Паромный терминал</string>
     <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">Паромный причал %s</string>
-    <string name="menu_manage_audio" tools:ignore="MissingTranslation">Настройки звука</string>
-    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Настройки доступности</string>
+    <string name="menu_manage_audio" tools:ignore="MissingTranslation">Аудио</string>
+    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Доступность</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Светлая или тёмная тема</string>
     <string name="settings_theme_auto" tools:ignore="MissingTranslation">Авто</string>
     <string name="settings_theme_is_light" tools:ignore="MissingTranslation">Использовать светлую тему</string>
@@ -315,7 +315,7 @@
     <string name="street_preview_exit" tools:ignore="MissingTranslation">Выйти из режима симуляции местоположения</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Включить запись поездки</string>
     <string name="settings_accessible_map" tools:ignore="MissingTranslation">Включить доступный стиль карты</string>
-    <string name="settings_debug_heading" tools:ignore="MissingTranslation">Настройки отладки</string>
+    <string name="settings_debug_heading" tools:ignore="MissingTranslation">Параметры отладки</string>
     <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">Поделиться записью поездки</string>
     <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s ко %2$s через %3$s</string>
     <string name="confect_name_to" tools:ignore="MissingTranslation">\'%1$s ко %2$s</string>
@@ -368,10 +368,10 @@
     <string name="help_text_destination_beacons_how_1">**Чтобы установить маяк**:\n\nСначала просмотрите информацию о местоположении, используя строку поиска или нажав одну из кнопок «Места рядом», «Сохранённые маркеры» или «Текущее местоположение» и выбрав местоположение. На экране сведений о местоположении можно нажать кнопку «Включить звуковой сигнал». Нажатие этой кнопки вернёт вас на главный экран и включит звуковой сигнал, исходящий с выбранного вами места. Название выбранного вами места, а также расстояние до него и физический адрес (если доступны) будут отображаться на главном экране приложения.</string>
     <string name="help_text_destination_beacons_how_2">**Чтобы отключить звуковой маяк**:\n\nНажмите кнопку «Отключить маяк» рядом с кнопкой «Отключить маяк» на главном экране.</string>
     <string name="help_text_destination_beacons_how_3">**Чтобы отключить звуковой сигнал маяка**:\n\nНажмите кнопку «Отключить сигнал маяка» рядом с кнопкой «Остановить сигнал маяка» на главном экране.</string>
-    <string name="help_text_automatic_callouts_what">Soundscape может сообщать вам о предметах вокруг по мере приближения, озвучивая их названия из направления, в котором они находятся. Приложение будет делать это автоматически для самых разных объектов — например, для предприятий, автобусных остановок и даже перекрёстков. Вы можете настроить, что приложение будет озвучивать автоматически, в разделе «Управление сносками» экрана «Настройки», а при необходимости отключить все уточнения, чтобы приложение было тихим.</string>
+    <string name="help_text_automatic_callouts_what">Soundscape может сообщать вам о предметах вокруг по мере приближения, произнося их название с того направления, где они находятся. Приложение будет делать это автоматически для самых разных объектов — например, для предприятий, автобусных остановок и даже перекрёстков. Вы можете настроить, какие объекты приложение будет озвучивать автоматически, в разделе «Управление уточнениями» на экране «Настройки», а чтобы приложение было тихим, вы можете отключить все уточнения.</string>
     <string name="help_text_automatic_callouts_when_1">**Исследование новой местности**:\n\nВключите автоматические подсказки и прогуляйтесь, чтобы услышать обо всех разных магазинах, ресторанах и тому подобном, мимо которых вы проходите.</string>
     <string name="help_text_automatic_callouts_when_2">**Пешая прогулка к конкретному месту:**\n\nКогда вы направляетесь в определённое место, автоматические уточнения перекрёстков могут быть особенно полезны. Уточнения перекрёстков сообщают о планировке перекрёстков по мере приближения и подтверждают дорогу, на которой вы находитесь, когда вы покидаете перекрёсток.</string>
-    <string name="help_text_automatic_callouts_how_1">**Включение или отключение уточнений:**\n\nОтключение уточнений выключит озвучивание приложения. Уточнения можно включить или отключить в разделе «Управление сносками» на экране «Настройки» — там нажмите переключатель «Разрешить уточнения», чтобы включить или выключить их. Вы также можете включать или отключать уточнения, используя команду «перемотать вперёд» (двойное нажатие с удержанием), если у ваших наушников есть кнопки управления мультимедиа. Кроме того, вы можете воспользоваться кнопкой «Сон» в правом верхнем углу главного экрана, чтобы приостановить воспроизведение уточнений до тех пор, пока вы не решите разбудить Soundscape.</string>
+    <string name="help_text_automatic_callouts_how_1">**Включение или отключение уточнений :**\n\nОтключение уточнений заставит приложение молчать. Их можно включить или выключить в разделе «Управление уточнениями» на экране «Настройки», нажав переключатель «Разрешить уточнения». Также уточнения можно включать и выключать с помощью команды «Перемотка вперёд» (двойное нажатие и удержание), если на ваших наушниках есть кнопки мультимедиа. Кроме того, вы можете использовать кнопку «Сон» в правом верхнем углу главного экрана, чтобы приостановить воспроизведение уточнений Soundscape до тех пор, пока вы не разбудите приложение.</string>
     <string name="help_text_my_location_what">Кнопка «Моё местоположение» быстро даёт информацию, помогающую понять, где вы находитесь. «Моё местоположение» сообщает о вашем текущем местоположении, в том числе о направлении, в котором вы смотрите, о близлежащих дорогах или перекрёстках и о ближайших объектах интереса.</string>
     <string name="help_text_my_location_when">Кнопка «Моё местоположение» полезна, когда нужно понять, где вы находитесь или в каком кардинальном направлении вы смотрите.</string>
     <string name="help_text_my_location_how">Как и для всех четырёх кнопок внизу главного экрана, держите телефон ровно (экран вверх, к небу) и направьте верх телефона в ту сторону, куда вы смотрите, прежде чем нажать кнопку «Моё местоположение». Это действует как компас, указывая приложению направление, в котором вы смотрите. Просто нажмите кнопку «Моё местоположение» и послушайте.</string>
@@ -385,7 +385,7 @@
     <string name="first_launch_change_language" tools:ignore="MissingTranslation">Изменить язык</string>
     <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">чтобы изменить язык, используемый приложением</string>
     <string name="help_text_automatic_callouts_when_3">**Когда вам нужна тишина:**\n\nЕсли вы собираетесь переходить дорогу или вам просто нужно, чтобы приложение молчало, вы можете отключить уточнения. Когда уточнения отключены, приложение будет сообщать информацию только если вы вручную нажмёте одну из кнопок «Моё местоположение», «Отметки рядом», «Вокруг меня» или «Передо мной».</string>
-    <string name="help_text_automatic_callouts_how_2">**Управление тем, какие уточнения вы слышите:**\n\nЧтобы выбрать типы объектов, которые Soundscape будет озвучивать автоматически, откройте экран «Настройки» через меню на главном экране. В разделе «Управление сносками» находится список типов объектов, которые приложение может озвучивать. У каждого пункта есть переключатель, который можно включить или выключить. Если вы хотите отключить все уточнения, нажмите переключатель «Разрешить уточнения» вверху списка.</string>
+    <string name="help_text_automatic_callouts_how_2">**Управление тем, какие уточнения вы слышите :**\n\nЧтобы выбрать категории объектов, которые Soundscape будет озвучивать автоматически, перейдите в раздел «Настройки» через меню на главном экране. Раздел «Управление уточнениями» на экране «Настройки» содержит список типов объектов, которые приложение может озвучивать. У каждого пункта есть переключатель, который можно включить или отключить. Если вы хотите отключить все уточнения, нажмите переключатель «Разрешить уточнения» вверху списка.</string>
     <string name="help_text_nearby_markers_what">Кнопка «Отметки рядом» сообщает о до четырёх отметках, которые находятся к вам ближе всего. «Отметки рядом» предназначена помочь вам сориентироваться, используя места, которые вам уже знакомы.</string>
     <string name="help_text_nearby_markers_when">Когда вы пытаетесь сориентироваться и понять своё окружение, используйте «Отметки рядом», чтобы услышать о расположении знакомых вам мест.</string>
     <string name="help_text_nearby_markers_how">Как и для всех четырёх кнопок внизу главного экрана, держите телефон ровно (экран вверх, к небу) и направьте верх телефона в ту сторону, куда вы смотрите, прежде чем нажать кнопку «Отметки рядом». Это действует как компас, указывая приложению направление, в котором вы смотрите. Просто нажмите кнопку «Отметки рядом», и вы услышите до четырёх отметок рядом с вами.</string>
@@ -466,7 +466,7 @@
     <string name="faq_use_with_wayfinding_apps_question">Как использовать Soundscape вместе с навигационным приложением?</string>
     <string name="faq_use_with_wayfinding_apps_answer">Soundscape предназначен как приложение для повышения осведомлённости об окружении и заполнения подробностей, которые вы могли бы не заметить. Хотя оно не является приложением для пошаговой навигации, его можно использовать совместно с такими приложениями для получения дополнительных сведений. Чтобы использовать Soundscape вместе с навигацией, сначала запустите ваше навигационное приложение. Затем переключитесь в Soundscape и установите маяк на ту же цель, что и в навигации. В этот момент оба приложения будут работать одновременно: вы будете слышать указания при ходьбе от навигационного приложения и получать от Soundscape обновления о точках интереса, перекрёстках и расстоянии до пункта назначения.</string>
     <string name="faq_controlling_what_you_hear_question">Как управлять тем, что и когда я слышу в Soundscape?</string>
-    <string name="faq_controlling_what_you_hear_answer">Soundscape предоставляет несколько способов управлять тем, что и когда вы слышите:\n\n1. Немедленно остановить весь звук: дважды коснитесь экрана двумя пальцами, чтобы мгновенно отключить весь звук, включая любое воспроизводимое автоматическое уточнение и маяк, если он включён. Автоматические уточнения возобновятся автоматически, когда вы подойдёте к следующему перекрёстку или точке интереса, но звуковой маяк — нет. Чтобы снова слышать маяк, на главном экране нажмите кнопку «Включить маяк».\n\n2. Отключить автоматические уточнения: когда вы не в пути или уже достигли пункта назначения, вам, вероятно, не нужно, чтобы Soundscape продолжал уведомлять о происходящем вокруг. Вместо выхода из приложения вы можете перевести Soundscape в режим «Snooze» — он разбудится, когда вы уйдёте, или в спящий режим — он останется выключенным, пока вы сами не включите его. Кроме того, вы можете в меню выбрать «Настройки» и в разделе «Управление сносками» отключить все уточнения.\n\n3. Отключить маяк: бывают ситуации, когда вы устанавливаете цель, но не хотите, чтобы звуковой маяк был включён. Например, вы можете точно знать, как добраться до пункта назначения, но при этом хотеть получать автоматические обновления о расстоянии до него; либо вы примерно ориентируетесь и нуждаетесь в маяке только по мере приближения. В любом случае вы можете выбирать, когда слышать маяк, переключая кнопки «Отключить маяк»/«Включить маяк» на главном экране.</string>
+    <string name="faq_controlling_what_you_hear_answer">Soundscape предлагает несколько способов управлять тем, что вы слышите и когда:\n\n1. Немедленно отключить весь звук: дважды коснитесь экрана двумя пальцами, чтобы мгновенно выключить весь звук, включая текущее уточнение и маяк, если он включён. Уточнения будут возобновляться автоматически при приближении к следующему перекрёстку или объекту интереса, а слышимый маяк — нет. Чтобы снова услышать маяк, нажмите кнопку «Включить маяк» на главном экране.\n\n2. Отключить автоматические уточнения: когда вы не в пути или достигли пункта назначения, вам, вероятно, не нужно, чтобы Soundscape продолжал оповещать вас о происходящем вокруг. Вместо выхода из приложения вы можете перевести Soundscape в режим «Snooze» — он разбудится, когда вы покинете текущее место, или перевести в спящий режим — он останется выключенным, пока вы не включите его снова. Кроме того, вы можете выбрать «Настройки» в меню и отключить все уточнения в разделе «Управление уточнениями».\n\n3. Остановить маяк: бывают ситуации, когда вы устанавливаете пункт назначения, но не хотите держать слышимый маяк включённым. Например, вы точно знаете маршрут, но хотите получать автоматические обновления о расстоянии до пункта назначения. Или вы примерно знаете путь и нуждаетесь в маяке только по мере приближения. В любом случае вы можете решать, когда слышать маяк, переключая кнопку «Отключить маяк»/«Включить маяк» на главном экране.</string>
     <string name="faq_holding_phone_flat_question">Нужно ли всё время держать телефон в руках?</string>
     <string name="faq_holding_phone_flat_answer">Нет! Во время прогулки вы можете положить телефон в сумку, карман или в любое удобное место. Soundscape будет использовать направление вашей ходьбы, чтобы решать, какие уточнения озвучивать слева и справа. Когда вы остановитесь, приложение не будет знать, куда вы повернуты; если звуковой маяк включён, его громкость станет тише, пока вы не начнёте двигаться снова. Вы в любой момент можете достать телефон, чтобы нажать кнопки местоположения и исследования внизу экрана, но убедитесь, что держите телефон так, чтобы верхняя часть корпуса была направлена в ту сторону, куда вы смотрите, а экран — вверх. В таком «плоском» положении Soundscape использует компас телефона для определения направления взгляда и выдаёт точные пространственные уточнения. Если маяк включён, вы заметите, что его громкость возвращается в норму.</string>
     <string name="faq_what_is_osm_question">Что такое Open Street Map и почему мы используем его в Soundscape?</string>
@@ -475,7 +475,7 @@
     <string name="faq_tip_setting_beacon_on_address">Вы можете установить маяк на любой адрес. На главном экране Soundscape найдите адрес через поиск. После выбора адреса в результатах поиска откроется экран «Сведения о местоположении», где есть опция «Включить звуковой маяк» для этого адреса. Таким образом вы можете установить маяк на бизнесы, места, точки интереса и жилые адреса, которых нет в Open Street Map.</string>
     <string name="faq_tip_finding_bus_stops">Вы можете найти ближайшие автобусные остановки, выбрав фильтр «Общественный транспорт» в списке «Места рядом».</string>
     <string name="faq_tip_turning_beacon_off">Вы можете включать и выключать ритмический звук маяка с помощью кнопки «Отключить маяк» на главном экране. Если маяк отключён, вы всё равно будете получать обновления о расстоянии до пункта назначения примерно каждые 50 метров.</string>
-    <string name="faq_tip_turning_off_auto_callouts">Если вы хотите продолжать использовать Soundscape, но не хотите слышать автоматические уточнения, вы можете отключить их в разделе «Управление сносками» на экране «Настройки» в меню. Или, если вы не собираетесь пользоваться Soundscape, переведите приложение в режим «Сон» или в режим «Snooze», нажав кнопку «Сон» на главном экране.</string>
+    <string name="faq_tip_turning_off_auto_callouts">Если вы хотите продолжать пользоваться Soundscape, но не слышать автоматические уточнения, вы можете отключить их в разделе «Управление уточнениями» на экране «Настройки» через меню. Или, если вы не собираетесь пользоваться Soundscape, переведите приложение либо в спящий режим, либо в режим «Snooze», используя кнопку «Сон» на главном экране.</string>
     <string name="faq_tip_hold_phone_flat">Soundscape работает лучше всего, когда вы держите телефон горизонтально: экраном вверх (к небу), а верхней частью — от себя.</string>
     <string name="faq_tip_create_marker_at_bus_stop">Если вы регулярно пользуетесь автобусным маршрутом, отметьте остановки посадки и высадки как отметки. Так они сохранятся, и вы сможете легко найти их позже — откройте меню и выберите «Управление отметками», затем найдите их в списке. Вы можете установить на них маяк, и будете периодически получать уведомления о том, насколько близко вы находитесь к остановке высадки. Примечание: вы можете отключить ритмический звук, при этом уведомления о расстоянии продолжат приходить.</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">Показывать карты на экране</string>
@@ -1192,8 +1192,8 @@
     <string name="settings_search_offline" tools:ignore="MissingTranslation">Офлайн</string>
     <string name="settings_search_auto" tools:ignore="MissingTranslation">Авто</string>
     <string name="search_no_results" tools:ignore="MissingTranslation">Результаты поиска не найдены</string>
-    <string name="search_searching" tools:ignore="MissingTranslation">Поиск...</string>
-    <string name="menu_manage_search" tools:ignore="MissingTranslation">Управление поиском</string>
+    <string name="search_searching" tools:ignore="MissingTranslation">Поиск…</string>
+    <string name="menu_manage_search" tools:ignore="MissingTranslation">Поиск</string>
     <string name="route_not_found" tools:ignore="MissingTranslation">Маршрут не найден</string>
     <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Экспорт</string>
     <string name="location_item_selected" tools:ignore="MissingTranslation">Выбрано</string>
@@ -1212,7 +1212,7 @@
     <string name="osm_river" tools:ignore="MissingTranslation">Река</string>
     <string name="osm_railway" tools:ignore="MissingTranslation">Железная дорога</string>
     <string name="osm_wood" tools:ignore="MissingTranslation">Лес</string>
-    <string name="osm_pavillion" tools:ignore="MissingTranslation">Спортивный павильон</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">Павильон</string>
     <string name="osm_sport" tools:ignore="MissingTranslation">Спортивное сооружение</string>
     <string name="osm_health_food" tools:ignore="MissingTranslation">Магазин здорового питания</string>
     <string name="osm_events_venue" tools:ignore="MissingTranslation">Площадка для мероприятий</string>
@@ -1255,4 +1255,16 @@
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">На %1$s, сразу после %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">Рядом с перекрёстком %s</string>
     <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">В маршруте уже есть отметка в этом месте, добавить её повторно невозможно.</string>
+    <string name="settings_explanation" tools:ignore="MissingTranslation">Настройки приложения организованы по группам ниже. Нажмите на группу, чтобы развернуть её и посмотреть доступные параметры.</string>
+    <string name="settings_section_units_description" tools:ignore="MissingTranslation">Выберите единицы измерения для расстояний</string>
+    <string name="settings_section_search_network" tools:ignore="MissingTranslation">Режим поиска</string>
+    <string name="settings_section_search_network_description" tools:ignore="MissingTranslation">Укажите, будет ли поиск использовать только офлайн‑данные</string>
+    <string name="beacon_settings_style_description" tools:ignore="MissingTranslation">Выберите стиль звукового маяка, который вы хотите использовать</string>
+    <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">Включать безымянные дороги во время симуляции местоположения</string>
+    <string name="callouts_allow_callouts_description" tools:ignore="MissingTranslation">Включить или отключить все уточнения</string>
+    <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Ближайшие места, такие как магазины и рестораны</string>
+    <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Информация о перекрёстках и транспорте</string>
+    <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Обновления о расстоянии до звукового маяка, когда он установлен</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Язык и регион "</string>
+    <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Онлайн‑поиск может возвращать результаты на местном языке или принудительно выдавать их на английском, французском или немецком.</string>
 </resources>
