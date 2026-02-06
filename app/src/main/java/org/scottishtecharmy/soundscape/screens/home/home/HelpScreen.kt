@@ -1,14 +1,11 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
-import android.os.Build
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyItemScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -390,125 +387,116 @@ fun HelpScreen(
             ) {
                 structureLog.start("Box")
                 // Help topic page
-                    LazyColumn(
-                        modifier = modifier
-                            .fillMaxWidth()
-                            .background(MaterialTheme.colorScheme.surface)
-                            .mediumPadding(),
-                        verticalArrangement = Arrangement.spacedBy(spacing.small),
-                    ) {
-                        structureLog.start("LazyColumn")
-                        items(sections.sections) {
-                            HelpItem(structureLog, navController, it)
+                LazyColumn(
+                    modifier = modifier
+                        .fillMaxWidth()
+                        .background(MaterialTheme.colorScheme.surface)
+                        .mediumPadding(),
+                    verticalArrangement = Arrangement.spacedBy(spacing.small),
+                ) {
+                    structureLog.start("LazyColumn")
+                    items(sections.sections) {
+                        structureLog.start("LazyColumn item")
+                        when (it.type) {
+                            SectionType.Title -> {
+                                val text = stringResource(it.textId)
+                                structureLog.unstructured("Text for Title: '${text}'")
+                                Text(
+                                    text = text,
+                                    style = MaterialTheme.typography.titleMedium,
+                                    modifier = Modifier
+                                        .padding(top = spacing.medium)
+                                        .semantics {
+                                            heading()
+                                            if (it.skipTalkback)
+                                                invisibleToUser()
+                                        },
+                                    color = MaterialTheme.colorScheme.onSurface,
+                                )
+                            }
+
+                            SectionType.Paragraph -> {
+                                var htmlText = stringResource(it.textId)
+                                if (it.markdown) {
+                                    val parser: Parser = Parser.builder().build()
+                                    val document: Node? = parser.parse(htmlText)
+                                    val renderer = HtmlRenderer.builder().build()
+                                    htmlText = renderer.render(document)
+                                }
+                                val text = AnnotatedString.fromHtml(
+                                    htmlString = htmlText,
+                                    linkStyles = TextLinkStyles(
+                                        style = SpanStyle(
+                                            textDecoration = TextDecoration.Underline,
+                                        )
+                                    )
+                                )
+                                structureLog.unstructured("Text for HTML section: '${text}'")
+                                Text(
+                                    text = text,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onSurface,
+                                    modifier = Modifier
+                                        .semantics {
+                                            if (it.skipTalkback)
+                                                invisibleToUser()
+                                        }
+                                )
+                            }
+
+                            SectionType.Link, SectionType.Faq -> {
+                                Button(
+                                    onClick = {
+                                        if (it.type == SectionType.Faq) {
+                                            navController.navigate("${HomeRoutes.Help.route}/faq${it.textId}.${it.faqAnswer}")
+                                        } else {
+                                            navController.navigate("${HomeRoutes.Help.route}/page${it.textId}")
+                                        }
+                                    },
+                                    modifier = Modifier
+                                        .fillMaxWidth(),
+                                    shape = RoundedCornerShape(spacing.extraSmall),
+                                    colors = currentAppButtonColors
+                                ) {
+                                    structureLog.start("Button")
+                                    Box(
+                                        Modifier.weight(6f)
+                                    ) {
+                                        structureLog.start("Box for text")
+                                        val text = stringResource(it.textId)
+                                        structureLog.unstructured("Text for Button: '${text}'")
+                                        Text(
+                                            text = text,
+                                            textAlign = TextAlign.Start,
+                                            style = MaterialTheme.typography.titleMedium,
+                                        )
+                                        structureLog.end("Box for text")
+                                    }
+                                    Box(
+                                        Modifier.weight(1f)
+                                    ) {
+                                        structureLog.start("Box for icon")
+                                        Icon(
+                                            Icons.Rounded.ChevronRight,
+                                            null,
+                                            modifier = Modifier.align(Alignment.CenterEnd)
+                                        )
+                                        structureLog.end("Box for icon")
+                                    }
+                                    structureLog.end("Button")
+                                }
+                            }
                         }
-                        structureLog.end("LazyColumn")
+                        structureLog.end("LazyColumn item")
                     }
+                    structureLog.end("LazyColumn")
+                }
                 structureLog.end("Box")
             }
             structureLog.end("Scaffold content")
         }
     )
     structureLog.end("HelpScreen")
-}
-
-@Composable
-private fun HelpItem(
-    structureLog: StructureLog,
-    navController: NavHostController,
-    section: Section
-): Unit {
-    structureLog.start("LazyColumn item")
-    when (section.type) {
-        SectionType.Title -> {
-            val text = stringResource(section.textId)
-            structureLog.unstructured("Text for Title: '${text}'")
-            Text(
-                text = text,
-                style = MaterialTheme.typography.titleMedium,
-                modifier = Modifier
-                    .padding(top = spacing.medium)
-                    .semantics {
-                        heading()
-                        if (section.skipTalkback)
-                            invisibleToUser()
-                    },
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-        }
-
-        SectionType.Paragraph -> {
-            var htmlText = stringResource(section.textId)
-            if (section.markdown) {
-                val parser: Parser = Parser.builder().build()
-                val document: Node? = parser.parse(htmlText)
-                val renderer = HtmlRenderer.builder().build()
-                htmlText = renderer.render(document)
-            }
-            val text = AnnotatedString.fromHtml(
-                htmlString = htmlText,
-                linkStyles = TextLinkStyles(
-                    style = SpanStyle(
-                        textDecoration = TextDecoration.Underline,
-                    )
-                )
-            )
-            structureLog.unstructured("Text for HTML section: '${text}'")
-            Text(
-                text = text,
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier
-                    .semantics {
-                        if (section.skipTalkback)
-                            invisibleToUser()
-                    }
-            )
-        }
-
-        SectionType.Link, SectionType.Faq -> {
-            Button(
-                onClick = {
-                    if (section.type == SectionType.Faq) {
-                        navController.navigate("${HomeRoutes.Help.route}/faq${section.textId}.${section.faqAnswer}")
-                    } else {
-                        navController.navigate("${HomeRoutes.Help.route}/page${section.textId}")
-                    }
-                },
-                modifier = Modifier
-                    .fillMaxWidth(),
-                shape = RoundedCornerShape(spacing.extraSmall),
-                colors = currentAppButtonColors
-            ) {
-                structureLog.start("Button")
-                Box(
-                    Modifier.weight(6f)
-                ) {
-                    structureLog.start("Box for text")
-                    val text = stringResource(section.textId)
-                    structureLog.unstructured("Text for Button: '${text}'")
-                    Text(
-                        text = text,
-                        textAlign = TextAlign.Start,
-                        style = MaterialTheme.typography.titleMedium,
-                    )
-                    structureLog.end("Box for text")
-                }
-                Box(
-                    Modifier.weight(1f)
-                ) {
-                    structureLog.start("Box for icon")
-                    Icon(
-                        Icons.Rounded.ChevronRight,
-                        null,
-                        modifier = Modifier.align(Alignment.CenterEnd)
-                    )
-                    structureLog.end("Box for icon")
-                }
-                structureLog.end("Button")
-            }
-        }
-    }
-    structureLog.end("LazyColumn item")
 }
 
 @Preview(showBackground = true)
