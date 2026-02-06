@@ -467,6 +467,16 @@ fun Settings(
                     )
                 },
             )
+            switchPreference(
+                key = MainActivity.MARKDOWN_HELP_KEY,
+                defaultValue = MainActivity.MARKDOWN_HELP_DEFAULT,
+                title = {
+                    Text(
+                        text = "Enable new Help screens",
+                        color = textColor
+                    )
+                },
+            )
         }
     }
 }

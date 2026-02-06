@@ -57,10 +57,15 @@ class MarkdownPage(val title: String, val content: String) {
 }
 
 private fun loadMarkdownAsset(context: android.content.Context, topic: String): String? {
-    val fileName = when (topic) {
-        "Help and Tutorials" -> "help-and-tutorials.md"
-        else -> if (topic.endsWith(".md")) topic else "$topic.md"
+    val helpAndTutorialsTitle = context.getString(R.string.menu_help_and_tutorials)
+    val fileName = when {
+        topic == helpAndTutorialsTitle || topic == "page$helpAndTutorialsTitle" -> "help-and-tutorials.md"
+        else -> {
+            val stripped = topic.removePrefix("page")
+            if (stripped.endsWith(".md")) stripped else "$stripped.md"
+        }
     }
+
 
     return try {
         context.assets.open("help/$fileName").bufferedReader().use { it.readText() }
@@ -146,7 +151,13 @@ fun MarkdownHelpScreen(
     val context = LocalContext.current
     val content = loadMarkdownAsset(context, topic) ?: "# Error\n\nFailed to load help content for '$topic'"
     
-    val page = MarkdownPage(topic, content)
+    val helpAndTutorialsTitle = stringResource(R.string.menu_help_and_tutorials)
+    val displayTitle = when {
+        topic == helpAndTutorialsTitle || topic == "page$helpAndTutorialsTitle" -> helpAndTutorialsTitle
+        else -> topic.removePrefix("page").removeSuffix(".md")
+    }
+    val page = MarkdownPage(displayTitle, content)
+
 
 
     // TODO 2025-11-28 Hugh Greene: Render main page sections as "titles" and sub-sections as

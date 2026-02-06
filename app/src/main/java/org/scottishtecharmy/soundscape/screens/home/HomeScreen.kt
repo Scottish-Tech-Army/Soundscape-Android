@@ -283,8 +283,13 @@ fun HomeScreen(
 
         composable(HomeRoutes.Help.route + "/{topic}") { backStackEntry ->
             val topic = backStackEntry.arguments?.getString("topic") ?: ""
-            if (topic == "page${R.string.menu_help_and_tutorials}" || topic.endsWith(".md")) {
+            val useMarkdownHelp = preferences.getBoolean(
+                MainActivity.MARKDOWN_HELP_KEY,
+                MainActivity.MARKDOWN_HELP_DEFAULT
+            )
+            if (useMarkdownHelp && (topic.startsWith("page${R.string.menu_help_and_tutorials}") || topic.endsWith(".md"))) {
                 MarkdownHelpScreen(
+
                     topic = topic,
                     navController = navController,
                     modifier = Modifier
