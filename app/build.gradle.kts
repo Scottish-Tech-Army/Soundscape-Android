@@ -356,6 +356,7 @@ dependencies {
     // PMTiles reading libraries
     implementation(libs.pmtilesreader)
 
+    testFixturesImplementation(platform(libs.androidx.compose.bom))
     testFixturesImplementation(libs.ui.test.junit4)
     testFixturesImplementation(libs.androidx.media3.common)
     testFixturesImplementation(libs.androidx.junit.v121)
@@ -389,8 +390,11 @@ val composeBaselinesTarFile = File(composeBaselinesTempTargetDir, "baselines.tar
 
 tasks.register<Exec>("pullComposeBaselines") {
 
+    // Need to create these at configuration time, not execution time, so we can set standardOutput.
+    Path(composeBaselinesTempTargetDir).createDirectories()
+    composeBaselinesTarFile.createNewFile()
+
     doFirst {
-        Path(composeBaselinesTempTargetDir).createDirectories()
         println("Pulling Compose baseline snapshots from emulator to '$composeBaselinesTarFile'")
     }
 
