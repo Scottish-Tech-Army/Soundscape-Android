@@ -9,7 +9,7 @@
     <string name="settings_about_app">"Soundscape"</string>
     <string name="voice_settings_speaking_rate">"Sprechgeschwindigkeit"</string>
     <string name="voice_voices">"Stimmen"</string>
-    <string name="beacon_settings_style">"Audio-Stile"</string>
+    <string name="beacon_settings_style">Audio-Stile</string>
     <string name="beacon_styles_current">"Aktuell"</string>
     <string name="beacon_styles_original">"Original"</string>
     <string name="beacon_styles_flare">"Leuchtsignal"</string>
@@ -181,7 +181,7 @@
     <string name="ui_menu_hint">Menü öffnen.</string>
     <string name="ui_menu_close">"Menü schließen"</string>
     <string name="ui_continue">"Weiter"</string>
-    <string name="menu_manage_callouts">"Hinweise verwalten"</string>
+    <string name="menu_manage_callouts">Hinweise verwalten</string>
     <string name="menu_help_and_tutorials">Hilfe und Tutorials</string>
     <string name="menu_rate">"Bewerten"</string>
     <string name="ui_back_button_title">"Zurück"</string>
@@ -246,8 +246,8 @@
     <string name="help_text_automatic_callouts_when_1">"**Erkunden eines neuen Gebiets**:\n\n Aktivieren Sie die automatischen Hinweise, und laufen Sie herum, um Hinweise zu den Geschäften, Restaurants und anderen Points-of-Interest, an denen Sie vorbeilaufen, zu erhalten."</string>
     <string name="help_text_automatic_callouts_when_2">"**Unterwegs zu einem bestimmten Standort**:\n\n Wenn Sie auf dem Weg zu einem bestimmten Standort sind, können automatische Hinweise auf Kreuzungen besonders nützlich sein. Hinweise auf Kreuzungen informieren Sie über die Art der Kreuzung, der Sie sich nähern, und bestätigen die Straße, auf der Sie sich befinden, wenn Sie die Kreuzung passiert haben."</string>
     <string name="help_text_automatic_callouts_when_3">"**Wenn Sie Ruhe brauchen**:\n\n Wenn Sie eine Straße überqueren müssen oder die App einfach stummschalten möchten, können Sie die Hinweise deaktivieren. Dann wird die App Sie nur noch informieren, wenn Sie manuell auf eine der Schaltflächen *„Mein Standort“*, *„Markierungen in der Nähe“*, *„Um mich herum“* oder *„Vor mir“* tippen."</string>
-    <string name="help_text_automatic_callouts_how_1">"**Hinweise ein- oder ausschalten**:\n\n Durch Ausschalten der Hinweise wird die App stummgeschaltet. Hinweise können im Abschnitt „Hinweise verwalten“ auf dem Bildschirm „Einstellungen“ ein- oder ausgeschaltet werden. Tippen Sie dazu auf den Umschalter „Hinweise zulassen“. Ebenfalls können Sie die Hinweise mit dem Befehl „Vorwärts springen“ (doppeltippen und halten) ein- oder ausschalten, wenn Ihre Kopfhörer über Mediensteuerungstasten verfügt. Verwenden Sie alternativ die Schaltfläche „Ruhemodus aktivieren“ in der oberen rechten Ecke des Startbildschirms, um Soundscape davon abzuhalten, Hinweise anzusagen, bis Sie es wieder aktivieren."</string>
-    <string name="help_text_automatic_callouts_how_2">"**Festlegen, welche Hinweise Sie hören**:\n\nUm die Art von automatischen Hinweise von Soundscape festzulegen, wechseln Sie zum Bildschirm „Einstellungen“ über das Menü auf dem Startbildschirm. Der Abschnitt „Hinweise verwalten“ enthält eine Liste von Dingen, auf die die App hinweisen kann. Jedes Element hat einen Umschalter, mit dem Sie es aktivieren oder deaktivieren können. Wenn Sie alle Hinweise deaktivieren möchten, tippen Sie auf den Umschalter „Hinweise zulassen“ oben in der Liste."</string>
+    <string name="help_text_automatic_callouts_how_1">**Hinweise ein- oder ausschalten**:\n\n Durch Ausschalten der Hinweise wird die App stummgeschaltet. Hinweise können im Abschnitt „Hinweise verwalten“ auf dem Bildschirm „Einstellungen“ ein- oder ausgeschaltet werden. Tippen Sie dazu auf den Umschalter „Hinweise zulassen“. Ebenfalls können Sie die Hinweise mit dem Befehl „Vorwärts springen“ (doppeltippen und halten) ein- oder ausschalten, wenn Ihre Kopfhörer über Mediensteuerungstasten verfügt. Verwenden Sie alternativ die Schaltfläche „Ruhemodus aktivieren“ in der oberen rechten Ecke des Startbildschirms, um Soundscape davon abzuhalten, Hinweise anzusagen, bis Sie es wieder aktivieren.</string>
+    <string name="help_text_automatic_callouts_how_2">**Festlegen, welche Hinweise Sie hören**:\n\nUm die Art von automatischen Hinweise von Soundscape festzulegen, wechseln Sie zum Bildschirm „Einstellungen“ über das Menü auf dem Startbildschirm. Der Abschnitt „Hinweise verwalten“ enthält eine Liste von Dingen, auf die die App hinweisen kann. Jedes Element hat einen Umschalter, mit dem Sie es aktivieren oder deaktivieren können. Wenn Sie alle Hinweise deaktivieren möchten, tippen Sie auf den Umschalter „Hinweise zulassen“ oben in der Liste.</string>
     <string name="help_text_my_location_what">"Über *„Mein Standort“* können Sie einfach ermitteln, wo Sie sich gerade befinden. *„Mein Standort“* bietet Ihnen Informationen zu Ihrem aktuellen Standort, Ihrer Blickrichtung und den Orten, Kreuzungen oder Points-of-Interest in der Nähe."</string>
     <string name="help_text_my_location_when">"*„Mein Standort“* ist nützlich, wenn Sie wissen möchten, wo Sie sich befinden oder in welche Himmelsrichtung Sie schauen."</string>
     <string name="help_text_my_location_how">"Wie bei allen vier Schaltflächen am unteren Rand des Startbildschirms halten Sie das Telefon mit dem Bildschirm flach (zum Himmel zeigend) und mit der Oberseite in die Richtung, in die Sie schauen, bevor Sie die Schaltfläche *„Mein Standort“* antippen. Dies wirkt wie ein Kompass, der der App mitteilt, in welche Richtung Sie blicken. Tippen Sie einfach auf die Taste *„Mein Standort“*, und hören Sie zu."</string>
