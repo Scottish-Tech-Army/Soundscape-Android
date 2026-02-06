@@ -29,14 +29,11 @@ import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.navigation.NavHostController
-import org.commonmark.node.HardLineBreak
 import org.commonmark.node.Heading
 import org.commonmark.node.Link
 import org.commonmark.node.Node
 import org.commonmark.node.Paragraph
-import org.commonmark.node.SoftLineBreak
-import org.commonmark.node.Text
-import org.commonmark.node.ThematicBreak
+import org.commonmark.node.StrongEmphasis
 import org.commonmark.parser.Parser
 import org.commonmark.renderer.html.HtmlRenderer
 import org.commonmark.renderer.text.TextContentRenderer
@@ -76,8 +73,47 @@ private fun String.processMarkdownContent(): String {
 
 private fun loadMarkdownAsset(context: android.content.Context, topic: String): String? {
     val helpAndTutorialsTitle = context.getString(R.string.menu_help_and_tutorials)
+
+    if (topic.startsWith("faq") && topic.contains(".")) {
+        val ids = topic.substring(3).split(".")
+        try {
+            val question = context.getString(ids[0].toInt())
+            val answer = context.getString(ids[1].toInt())
+            return "## $question\n\n$answer"
+        } catch (e: Exception) {
+            // Fall through
+        }
+    }
+
     val fileName = when {
         topic == helpAndTutorialsTitle || topic == "page$helpAndTutorialsTitle" -> "help-and-tutorials.md"
+        topic.startsWith("page") -> {
+            val idStr = topic.substring(4)
+            val id = idStr.toIntOrNull()
+            if (id != null) {
+                when (id) {
+                    R.string.voice_voices -> "help-voices.md"
+                    R.string.help_remote_page_title -> "help-using-media-controls.md"
+                    R.string.beacon_audio_beacon -> "help-audio-beacon.md"
+                    R.string.callouts_automatic_callouts -> "help-automatic-callouts.md"
+                    R.string.directions_my_location -> "help-my-location.md"
+                    R.string.help_orient_page_title -> "help-around-me.md"
+                    R.string.help_explore_page_title -> "help-ahead-of-me.md"
+                    R.string.callouts_nearby_markers -> "help-nearby-markers.md"
+                    R.string.markers_title -> "help-markers.md"
+                    R.string.routes_title -> "help-routes.md"
+                    R.string.help_creating_markers_page_title -> "help-creating-markers.md"
+                    R.string.help_edit_markers_page_title -> "help-customizing-markers.md"
+                    R.string.faq_title -> "help-frequently-asked-questions.md"
+                    R.string.faq_tips_title -> "help-tips.md"
+                    R.string.help_offline_page_title -> "help-why-is-soundscape-working-offline-.md"
+                    R.string.settings_about_app -> "help-about-soundscape.md"
+                    else -> "$idStr.md"
+                }
+            } else {
+                if (idStr.endsWith(".md")) idStr else "$idStr.md"
+            }
+        }
         else -> {
             val stripped = topic.removePrefix("page")
             if (stripped.endsWith(".md")) stripped else "$stripped.md"
@@ -92,7 +128,7 @@ private fun loadMarkdownAsset(context: android.content.Context, topic: String): 
         "help/$localeTag/$fileName",
         "help/$lang/$fileName",
         "help/$fileName"
-    ).distinct()
+    ).distinct() // in case $localTag and $lang are the same
 
     for (path in candidatePaths) {
         try {
@@ -104,8 +140,6 @@ private fun loadMarkdownAsset(context: android.content.Context, topic: String): 
 
     return null
 }
-
-
 
 private fun Node.collectChildren(): List<Node> {
     val children = mutableListOf<Node>()
@@ -141,28 +175,6 @@ fun List<Node>.withoutAnyRootHeading(): List<Node> {
     return this
 }
 
-class StructureLogNodeRenderer(private val structureLog: StructureLog)
-{
-    fun render(node: Node) {
-        when (node) {
-            is Text -> {
-                structureLog.unstructured("[Text: '${node.literal}']")
-            }
-            is SoftLineBreak, is HardLineBreak, is ThematicBreak -> {
-                structureLog.unstructured(node.javaClass.name)
-            }
-            else -> {
-                structureLog.start(node.javaClass.name)
-                val children = node.collectChildren()
-                for (child in children) {
-                    render(child)
-                }
-                structureLog.end(node.javaClass.name)
-            }
-        }
-    }
-}
-
 @Composable
 fun MarkdownHelpScreen(
     topic: String,
@@ -186,6 +198,11 @@ fun MarkdownHelpScreen(
     val helpAndTutorialsTitle = stringResource(R.string.menu_help_and_tutorials)
     val displayTitle = when {
         topic == helpAndTutorialsTitle || topic == "page$helpAndTutorialsTitle" -> helpAndTutorialsTitle
+        topic.startsWith("page") -> {
+            val id = topic.substring(4).toIntOrNull()
+            if (id != null) stringResource(id) else topic.removePrefix("page").removeSuffix(".md")
+        }
+        topic.startsWith("faq") -> stringResource(R.string.faq_title_abbreviated)
         else -> topic.removePrefix("page").removeSuffix(".md")
     }
     val page = MarkdownPage(displayTitle, content)
@@ -205,7 +222,6 @@ fun MarkdownHelpScreen(
 
     val textContentRenderer = TextContentRenderer.builder().build()
     val htmlRenderer = HtmlRenderer.builder().build()
-    val nodeStructureRenderer = StructureLogNodeRenderer(structureLog)
 
     Scaffold(
         modifier = modifier,
@@ -238,23 +254,61 @@ fun MarkdownHelpScreen(
                     // only" page and, if so, render the structure bit-by-bit; otherwise just render
                     // as HTML???
                     val rootChildren = page.root.collectChildren().withoutAnyRootHeading()
+                    val groupedNodes = mutableListOf<MutableList<Node>>()
+                    val emojiMarkers = listOf('⏯', '⏭', '⏮', '⏩', '⏪', '⏺')
 
-                    items(rootChildren) { node ->
+                    for (node in rootChildren) {
+                        val startsNewItem = when {
+                            node is Heading -> true
+                            node is Paragraph && node.tryGetOnlyChild() is Link -> true
+                            node is Paragraph && (node.firstChild is StrongEmphasis) -> true
+                            else -> {
+                                if (groupedNodes.isEmpty()) true
+                                else {
+                                    val lastGroup = groupedNodes.last()
+                                    val lastNode = lastGroup.last()
+                                    val isFaq = topic.startsWith("faq")
+
+                                    if (lastNode is Heading) true
+                                    else if (lastNode is Paragraph && lastNode.tryGetOnlyChild() is Link) true
+                                    else if (isFaq) false // Group everything in FAQ answer
+                                    else {
+                                        // Heuristic for Markers vs Media Controls vs Audio Beacon
+                                        val lastText = textContentRenderer.render(lastNode).trim()
+                                        val currentText = textContentRenderer.render(node).trim()
+                                        val lastEndsInColon = lastText.endsWith(":")
+                                        val currentStartsInEmoji = currentText.isNotEmpty() && emojiMarkers.contains(currentText[0])
+
+                                        !lastEndsInColon && !currentStartsInEmoji
+                                    }
+                                }
+                            }
+                        }
+
+                        if (startsNewItem) {
+                            groupedNodes.add(mutableListOf(node))
+                        } else {
+                            groupedNodes.last().add(node)
+                        }
+                    }
+
+                    items(groupedNodes) { nodes ->
                         structureLog.start("LazyColumn item")
-                        if (node is Heading) {
-                            if (node.level != 2) {
+                        val firstNode = nodes.first()
+                        if (firstNode is Heading) {
+                            if (firstNode.level < 2) {
                                 // TODO 2025-12-18 Hugh Greene: Handle other levels better!
-                                structureLog.unstructured("Skipping Heading level ${node.level}")
+                                structureLog.unstructured("Skipping Heading level ${firstNode.level}")
                                 structureLog.end("LazyColumn item")
                                 return@items
                             }
-                            val text = textContentRenderer.render(node)
+                            val text = textContentRenderer.render(firstNode)
                             structureLog.unstructured("Text for Title: '${text}'")
                             Text(
                                 text = text,
-                                style = MaterialTheme.typography.titleMedium,
+                                style = if (firstNode.level == 2) MaterialTheme.typography.titleMedium else MaterialTheme.typography.titleSmall,
                                 modifier = Modifier
-                                    .padding(top = spacing.medium)
+                                    .padding(top = if (firstNode.level == 2) spacing.medium else spacing.small)
                                     .semantics {
                                         heading()
 //                                        if (node.skipTalkback)
@@ -262,15 +316,13 @@ fun MarkdownHelpScreen(
                                     },
                                 color = MaterialTheme.colorScheme.onSurface,
                             )
-                        }
-                        else if (node is Paragraph && node.tryGetOnlyChild() is Link) {
-                            val link = node.tryGetOnlyChild() as Link
+                        } else if (nodes.size == 1 && firstNode is Paragraph && firstNode.tryGetOnlyChild() is Link) {
+                            val link = firstNode.tryGetOnlyChild() as Link
                             Button(
                                 onClick = {
                                     navController.navigate("${HomeRoutes.Help.route}/${link.destination}")
                                 },
                                 modifier = Modifier
-
                                     .fillMaxWidth(),
                                 shape = RoundedCornerShape(spacing.extraSmall),
                                 colors = currentAppButtonColors
@@ -283,13 +335,12 @@ fun MarkdownHelpScreen(
                                     // NOTE 2025-12-21 Hugh Greene: To get the text of the Markdown
                                     // link we can't just use textContentRenderer.render(link) as
                                     // that includes the link destination and/or title as well.
-                                    val text = link.collectChildren().joinToString {
+                                    val text = link.collectChildren().joinToString("") {
                                         textContentRenderer.render(it)
                                     }
                                     structureLog.unstructured("Text for Button: '${text}'")
-//                                    nodeStructureRenderer.render(link)
                                     Text(
-                                        text = text ?: "No title",
+                                        text = text,
                                         textAlign = TextAlign.Start,
                                         style = MaterialTheme.typography.titleMedium,
                                     )
@@ -308,10 +359,10 @@ fun MarkdownHelpScreen(
                                 }
                                 structureLog.end("Button")
                             }
-                        }
-                        else {
+                        } else {
+                            val htmlContent = nodes.joinToString("") { htmlRenderer.render(it) }
                             val text = AnnotatedString.fromHtml(
-                                htmlString = htmlRenderer.render(node),
+                                htmlString = htmlContent,
                                 linkStyles = TextLinkStyles(
                                     style = SpanStyle(
                                         textDecoration = TextDecoration.Underline,
@@ -319,7 +370,7 @@ fun MarkdownHelpScreen(
                                 )
                                 // TODO 2025-11-17 Hugh Greene: Add linkInteractionListener
                             )
-                            nodeStructureRenderer.render(node)
+                            structureLog.unstructured("Text for HTML section: '${text}'")
                             Text(
                                 text = text,
                                 style = MaterialTheme.typography.bodyMedium,
