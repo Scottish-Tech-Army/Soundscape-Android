@@ -13,7 +13,7 @@
     <string name="voice_engine" tools:ignore="MissingTranslation">محركات نص إلى كلام</string>
     <string name="voice_settings_speaking_rate">سرعة القراءه</string>
     <string name="voice_voices">أصوات</string>
-    <string name="beacon_settings_style">أنماط الصوت</string>
+    <string name="beacon_settings_style">أنماط منارات الصوت</string>
     <string name="beacon_styles_current">الحالي</string>
     <string name="beacon_styles_original">عام</string>
     <string name="beacon_styles_flare">توهج</string>
@@ -198,7 +198,7 @@
     <string name="ui_menu_hint">افتح القائمة</string>
     <string name="ui_menu_close">إغلاق القائمة</string>
     <string name="ui_continue">تابع</string>
-    <string name="menu_manage_callouts">إدارة وسيلة الشرح</string>
+    <string name="menu_manage_callouts">إدارة وسائل الارشاد</string>
     <string name="menu_help_and_tutorials">المساعدة والدروس</string>
     <string name="menu_rate">قيم</string>
     <string name="ui_back_button_title">رجوع</string>
@@ -271,12 +271,12 @@
     <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">ج غ</string>
     <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">غ</string>
     <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">ش غ</string>
-    <string name="help_text_automatic_callouts_what">يمكن أن يخبرك SoundScape بالأشياء من حولك وأنت تقترب منها من خلال استدعاء اسمها من الاتجاه الذي يقعون فيه. وسيقوم التطبيق بذلك تلقائيًا لجميع أنواع الأشياء مثل الشركات ومحطات الحافلات وحتى التقاطعات. يمكنك تكوين ما يستدعيه التطبيق تلقائيًا في قسم \"إدارة وسائل المساعدة\" * من شاشة * \"الإعدادات\" * ، ويمكنك إيقاف تشغيل جميع وسائل الشرح عندما تريد أن يكون التطبيق صامتًا.</string>
+    <string name="help_text_automatic_callouts_what">يمكن لـ Soundscape أن يخبرك بالأشياء حولك أثناء اقترابك منها عن طريق نطق اسمها من الاتجاه الذي توجد فيه. سيقوم التطبيق بذلك تلقائيًا لأنواع مختلفة من الأشياء مثل المتاجر ومحطات الحافلات وحتى التقاطعات. يمكنك تكوين ما يُنطق تلقائيًا في قسم *\"وسائل الارشاد\"* في شاشة *\"الإعدادات\"*، ويمكنك إيقاف جميع وسائل الارشاد عندما تريد أن يكون التطبيق صامتًا.</string>
     <string name="help_text_automatic_callouts_when_1">قم بتشغيل وسائل الشرح التلقائية وتجول لسماع جميع المتاجر والمطاعم المختلفة وما شابه ذلك.</string>
     <string name="help_text_automatic_callouts_when_2">عندما تكون في طريقك إلى موقع معين ، يمكن أن تكون وسائل الشرح التلقائية للتقاطعات مفيدة بشكل خاص. تخبرك شرح التقاطع عن تخطيط التقاطعات مع اقترابها ، وتأكيد الطريق الذي تسير فيه عند تركها.</string>
     <string name="help_text_automatic_callouts_when_3">عندما تكون على وشك عبور طريق أو فقط تحتاج إلى أن يكون التطبيق هادئًا ، يمكنك إيقاف شرح الشرح. عندما يتم إيقاف شرح الشرح ، لن يخبرك التطبيق بالمعلومات فقط إذا قمت بالنقر على أحد الأزرار \" *\" *أو \"العلامات القريبة\" *أو *\"حولي\" *أو *\"أمامي\" *.</string>
-    <string name="help_text_automatic_callouts_how_1">سيؤدي إيقاف تشغيل وسائل الشرح إلى إسكات التطبيق. يمكن تشغيل أو إيقاف تشغيل وسائل الشرح في قسم * \"إدارة وسائل الشرح\" * من شاشة * \"إعدادات\" * حيث يمكنك النقر فوق * \"السماح للرسائل المسحية\" * بتبديل لتشغيل وسائل الشرح أو إيقاف تشغيلها. يمكنك أيضًا تشغيل أو إيقاف تشغيل شرح الشرح أو إيقاف تشغيله باستخدام الأمر * \"Skip Forward\" * (النقر المزدوج مع الاستمرار) إذا كانت سماعات الرأس الخاصة بك تحتوي على أزرار تحكم في الوسائط. بدلاً من ذلك ، يمكنك استخدام زر * \"Sleep\" * في الركن الأيمن العلوي من الشاشة الرئيسية لمنع Soundscape من صنع وسائل الشرح حتى تختار استيقاظه مرة أخرى.</string>
-    <string name="help_text_automatic_callouts_how_2">لاختيار أنواع الأشياء التي سيقوم Soundscape بالترسيق تلقائيًا ، انتقل إلى شاشة * \"الإعدادات\" * باستخدام القائمة على شاشة * \"home\" *. يحتوي قسم * \"إدارة الشرح\" * على شاشة * \"Settings\" * على قائمة بأنواع الأشياء التي يمكن للتطبيق استدعاءها. يحتوي كل عنصر على زر تبديل يمكنك تشغيله أو إيقافه. إذا كنت ترغب في إيقاف تشغيل جميع وسائل الشرح ، فانقر فوق * \"السماح للرسائل المسحية\" * بتبديل في الجزء العلوي من القائمة.</string>
+    <string name="help_text_automatic_callouts_how_1">**تفعيل أو إيقاف وسائل الارشاد :**\n\nإيقاف وسائل الارشاد سيجعل التطبيق صامتًا. يمكن تشغيل أو إيقاف وسائل الارشاد من خلال قسم *\"وسائل الارشاد\"* في شاشة *\"الإعدادات\"* حيث يمكنك النقر على مفتاح التبديل *\"وسائل الارشاد\"* لتشغيلها أو إيقافها. يمكنك أيضًا تشغيل أو إيقاف وسائل الارشاد باستخدام أمر *\"skip forward\"* (انقر مرتين مع الاستمرار) إذا كانت سماعاتك تحتوي على أزرار تحكم بالوسائط. بدلاً من ذلك، يمكنك استخدام زر *\"Sleep\"* في الزاوية العلوية اليمنى من الشاشة الرئيسية لإيقاف Soundscape عن إصدار وسائل الارشاد حتى تختار إيقاظه مرة أخرى.</string>
+    <string name="help_text_automatic_callouts_how_2">**إدارة أنواع وسائل الارشاد التي تسمعها :**\n\nلاختيار أنواع الأشياء التي سيُعلن عنها Soundscape تلقائيًا، اذهب إلى شاشة *\"الإعدادات\"* من القائمة على شاشة *\"الرئيسية\"*. يحتوي قسم *\"وسائل الارشاد\"* في شاشة *\"الإعدادات\"* على قائمة بأنواع الأشياء التي يستطيع التطبيق الإعلان عنها. لكل عنصر زر تبديل يمكنك تشغيله أو إيقافه. إذا رغبت في إيقاف كل الوسائل، اضغط على مفتاح التبديل *\"وسائل الارشاد\"* في أعلى القائمة.</string>
     <string name="help_text_my_location_what">يمنحك زر * \"موقعي\" * بسرعة معلومات تساعدك على معرفة مكان وجودك حاليًا. * \"موقعي\"* يخبرك عن موقعك الحالي بما في ذلك أشياء مثل الاتجاه الذي تواجهه ، حيث توجد الطرق أو التقاطعات القريبة ، وحيث توجد نقاط اهتمام قريبة.</string>
     <string name="help_text_my_location_when">* \"موقعي\"* مفيد عندما تحتاج إلى معرفة مكانك أو الاتجاه الأساسي الذي تواجهه.</string>
     <string name="help_text_my_location_how">كما هو الحال مع جميع الأزرار الأربعة الموجودة في أسفل الشاشة الرئيسية ، امسك هاتفك مع الشاشة شقة (في مواجهة السماء) وأعلى الهاتف يشير إلى الاتجاه الذي تواجهه قبل الضغط على زر * \"My Fork\" *. هذا يتصرف مثل بوصلة تخبر التطبيق عن الاتجاه الذي تواجهه. ببساطة ، انقر فوق الزر \"My Focation\" * واستمع.</string>
@@ -420,7 +420,7 @@
     <string name="faq_use_with_wayfinding_apps_question">كيف يمكنني استخدام Soundscape مع تطبيق لإنشاء الطريق؟</string>
     <string name="faq_use_with_wayfinding_apps_answer">تم تصميم SoundScape كتطبيق توعية للمساعدة في ملء التفاصيل حول بيئتك التي قد لا تكون على دراية بها. على الرغم من أنه غير مصمم كتطبيق تنقل بدوره ، إلا أنه يمكن استخدامه جنبًا إلى جنب مع هذه التطبيقات لتوفير معلومات تكميلية. لاستخدام SoundScape مع هذه التطبيقات ، ابدأ تطبيق التنقل أولاً. بعد ذلك ، انتقل إلى Soundscape وقم بتعيين منارة على نفس الوجهة كما في تطبيق التنقل. في هذه المرحلة ، سيتم تشغيل كلا التطبيقات وستسمع اتجاهات المشي من تطبيق التنقل الخاص بك ، مع الحصول على تحديثات حول نقاط الاهتمام والتقاطعات ومسافة وجهتك من SoundScape.</string>
     <string name="faq_controlling_what_you_hear_question">كيف أتحكم في ما أسمعه وعندما أسمعه في Soundscape؟</string>
-    <string name="faq_controlling_what_you_hear_answer">يوفر Soundscape عدة طرق للتحكم في ما تسمعه ومتى:\n1. أوقف على الفور كل الصوت: انقر فوق الشاشة المزدوجة مع إصبعين لإيقاف كل الصوت على الفور ، بما في ذلك أي وسيلة شرح يتم تشغيلها حاليًا والمنارة إذا كانت قيد التشغيل. ستستأنف الشرح تلقائيًا عند الاقتراب من التقاطع التالي أو نقطة الاهتمام ، لكن منارة مسموعة لن تفعل ذلك. حدد * \"Unmute Beacon Button\" * على الشاشة الرئيسية لاستئناف سماع المنارة.\n2. أوقف وسائل الشرح التلقائية: عندما لا تسافر أو تصل إلى وجهة ، فربما لن تحتاج إلى شريط صوتي لمواصلة إخطارك بالأشياء من حولك. بدلاً من الخروج من التطبيق ، يمكنك وضع Soundscape في وضع الغفوة وسيستيقظ مرة أخرى عند المغادرة ، أو يمكنك وضع Soundscape في وضع السكون وسيبقى بعيدًا حتى تختار تشغيله مرة أخرى. بدلاً من ذلك ، يمكنك تحديد * \"الإعدادات\" * من القائمة واختيار إيقاف تشغيل جميع الشرح في القسم * \"إدارة الشرح\" *.</string>
+    <string name="faq_controlling_what_you_hear_answer">يوفر Soundscape عدة طرق للتحكم فيما تسمعه ومتى:\n\n1. إيقاف كل الصوت فورًا: انقر على الشاشة مرتين بإصبعين لإيقاف كل الصوت فورًا، بما في ذلك أي وسيلة إرشاد تُشغّل حاليًا ومنارة الصوت إن كانت مفعّلة. ستستأنف وسائل الارشاد تلقائيًا عندما تقترب من التقاطع التالي أو نقطة اهتمام، لكن المنارة المسموعة لن تستأنف تلقائيًا. اختر زر *\"إلغاء كتم منارة الصوت\"* على الشاشة الرئيسية لاستئناف سماع المنارة.\n\n2. إيقاف وسائل الارشاد التلقائية: عندما لا تكون في حالة تنقّل أو وصلت إلى وجهتك، ربما لا تحتاج أن يستمر Soundscape في إخبارك بالأشياء من حولك. بدلًا من الخروج من التطبيق، يمكنك وضع Soundscape في وضع *الغفوة* وسيستيقظ عندما تغادر، أو يمكنك وضعه في وضع *الخمول* وسيبقى مُعطّلًا حتى تختار تشغيله مرة أخرى. بدلاً من ذلك، يمكنك اختيار *\"الإعدادات\"* من القائمة والاختيار لإيقاف كل وسائل الارشاد في قسم *\"وسائل الارشاد\"*.\n\n3. إيقاف المنارة: هناك حالات قد تضبط فيها وجهة لكنك لا تحتاج أن تكون المنارة المسموعة مفعّلة. على سبيل المثال، قد تعرف بالضبط كيف تصل إلى وجهتك لكنك تريد تحديثات تلقائية عن المسافة المتبقية، أو قد تعرف تقريبًا الطريق وتحتاج المنارة فقط عند اقترابك من الوجهة. في كل الحالات، يمكنك اختيار متى تسمع المنارة عن طريق تبديل زر *\"كتم المنارة\"*/\"*إلغاء كتم منارة الصوت\"* على الشاشة الرئيسية.</string>
     <string name="faq_holding_phone_flat_question">هل أحتاج إلى حمل الهاتف في يدي طوال الوقت؟</string>
     <string name="faq_holding_phone_flat_answer">لا! أثناء المشي ، يمكنك وضع الهاتف بعيدًا في حقيبة أو جيب أو في أي مكان مناسب. ستستخدم SoundScape الاتجاه الذي تسير فيه لمعرفة أيسستس يجب أن تعلن على يسارك وإلى يمينك. عندما تتوقف عن الحركة ، لا يعرف Soundscape الاتجاه الذي تواجهه. إذا كانت المنارة المسموعة قيد التشغيل ، فستلاحظ أنها تهدأ حتى تبدأ في التحرك مرة أخرى. يمكنك سحب الهاتف للخارج للضغط على أزرار الموقع وأزرار الاستكشاف في أسفل الشاشة في أي وقت ولكن تأكد من حمل الهاتف مع الجزء العلوي من الهاتف يشير إلى الاتجاه الذي تواجهه مع الشاشة إلى السماء. في هذا الموضع * \"Flat\" * ، ستستخدم SoundScape بوصلة الهاتف لتحديد الطريقة التي تواجه بها وتوفر شرح مكاني دقيق. إذا كان المنارة قيد التشغيل ، ستلاحظ أيضًا أنه يعود إلى حجم كامل.</string>
     <string name="faq_what_is_osm_question">ما هي خريطة الشارع المفتوحة ولماذا نستخدمها في Soundscape؟</string>
@@ -429,7 +429,7 @@
     <string name="faq_tip_setting_beacon_on_address">يمكنك تعيين منارة على أي عنوان. من شاشة Soundscape الرئيسية ، ابحث عن العنوان. بعد تحديد العنوان في نتائج البحث ، سيتم عرض شاشة * \"تفاصيل الموقع\" * ولديها خيار ل * \"بدء صوتي منارة\" * على العنوان. وبهذه الطريقة ، يمكنك تعيين منارة على الشركات والأماكن ونقاط الاهتمام والمساكن التي لا تكون في خرائط الشوارع المفتوحة.</string>
     <string name="faq_tip_finding_bus_stops">يمكنك العثور على محطات الحافلات القريبة عن طريق تحديد مرشح * \"النقل العام\" * في قائمة الأماكن القريبة.</string>
     <string name="faq_tip_turning_beacon_off">يمكنك تشغيل وإيقاف الصوت الإيقاعي للمعارة باستخدام زر كتم الصوت على الشاشة الرئيسية. إذا كان منارة صامتة ، فستظل تحصل على تحديثات حول المسافة إلى وجهتك كل 50 مترًا أو نحو ذلك.</string>
-    <string name="faq_tip_turning_off_auto_callouts">إذا كنت لا تزال تريد التفاعل مع Soundscape لكنك لا تريد سماع وسائل الشرح التلقائية، يمكنك إيقاف وسائل الشرح بالذهاب إلى قسم *\"إدارة وسيلة الشرح\"* في شاشة *\"الإعدادات\"* من القائمة. أو، إذا لن تستخدم Soundscape، يمكنك وضعه في وضع *\"Sleep\"* أو *\"Snooze\"* باستخدام زر *\"Sleep\"* على الشاشة الرئيسية.</string>
+    <string name="faq_tip_turning_off_auto_callouts">إذا كنت لا تزال تريد التفاعل مع Soundscape لكن لا ترغب في سماع الوسائل التلقائية، يمكنك إيقاف وسائل الارشاد عن طريق الذهاب إلى قسم *\"وسائل الارشاد\"* في شاشة *\"الإعدادات\"* من القائمة. أو إذا لم تكن ستستخدم Soundscape، يمكنك وضعه في وضع *الخمول* أو *الغفوة* باستخدام زر *\"Sleep\"* على الشاشة الرئيسية.</string>
     <string name="faq_tip_hold_phone_flat">يعمل SoundScape بشكل أفضل عندما تمسك الهاتف مسطحًا مع الشاشة التي تواجه السماء وأعلى الهاتف يشير بعيدًا عنك.</string>
     <string name="faq_tip_create_marker_at_bus_stop">إذا كان هناك طريق للحافلة تأخذك بانتظام ، فقم بتعيين التوقف والخروج من العلامات. وبهذه الطريقة ، سيتم حفظها حتى تتمكن من العثور عليها مرة أخرى بسهولة ، فقط انتقل إلى * \"إدارة العلامات\" * من القائمة والعثور عليها في القائمة. يمكنك تعيين منارة عليها وستحصل على تحديثات دورية حول مدى قربك من توقفك. ملاحظة: يمكنك إيقاف تشغيل الصوت الإيقاعي وستظل تحصل على تحديثات عن بعد على طول الطريق.</string>
     <string name="no_language_selected">لم يتم اختيار لغة</string>
@@ -444,8 +444,8 @@
     <string name="osm_subway_named" tools:ignore="MissingTranslation">%s محطة مترو الأنفاق</string>
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">محطة العبارة</string>
     <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s\nالعبارة</string>
-    <string name="menu_manage_audio" tools:ignore="MissingTranslation">إدارة الصوت</string>
-    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">إدارة إمكانية الوصول</string>
+    <string name="menu_manage_audio" tools:ignore="MissingTranslation">الصوت</string>
+    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">إمكانية الوصول</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">موضوع خفيف أو مظلم</string>
     <string name="settings_theme_auto" tools:ignore="MissingTranslation">آلي</string>
     <string name="settings_theme_is_light" tools:ignore="MissingTranslation">استخدم موضوع الضوء</string>
@@ -462,7 +462,7 @@
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">تمكين تسجيل السفر</string>
     <string name="settings_accessible_map" tools:ignore="MissingTranslation">تفعيل الخرائط القابله للوصول</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">عرض الخرائط على الشاشة</string>
-    <string name="settings_debug_heading" tools:ignore="MissingTranslation">إعدادات التصحيح</string>
+    <string name="settings_debug_heading" tools:ignore="MissingTranslation">خيارات التصحيح</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">لغة البحث</string>
     <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">مشاركة تسجيل السفر</string>
     <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$sل\n\n%2$sعبر\n\n%3$s</string>
@@ -1192,8 +1192,8 @@
     <string name="settings_search_offline" tools:ignore="MissingTranslation">دون اتصال</string>
     <string name="settings_search_auto" tools:ignore="MissingTranslation">آلي</string>
     <string name="search_no_results" tools:ignore="MissingTranslation">لم يتم العثور على نتائج بحث</string>
-    <string name="search_searching" tools:ignore="MissingTranslation">جاري البحث...</string>
-    <string name="menu_manage_search" tools:ignore="MissingTranslation">إدارة البحث</string>
+    <string name="search_searching" tools:ignore="MissingTranslation">جارٍ البحث…</string>
+    <string name="menu_manage_search" tools:ignore="MissingTranslation">البحث</string>
     <string name="route_not_found" tools:ignore="MissingTranslation">لم يتم العثور على الطريق</string>
     <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">تصدير</string>
     <string name="location_item_selected" tools:ignore="MissingTranslation">محدد</string>
@@ -1255,4 +1255,16 @@
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">في %1$s بعد %2$s بقليل</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">بالقرب من تقاطع %s</string>
     <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">هناك بالفعل علامة في المسار عند هذا الموقع، لا يمكن إضافتها مرة أخرى.</string>
+    <string name="settings_explanation" tools:ignore="MissingTranslation">الإعدادات المختلفة للتطبيق مُنظَّمَة في مجموعات أدناه. اضغط على مجموعة لتوسيعها ورؤية الخيارات المتاحة.</string>
+    <string name="settings_section_units_description" tools:ignore="MissingTranslation">اختر وحدات القياس المستخدمة للمسافة</string>
+    <string name="settings_section_search_network" tools:ignore="MissingTranslation">وضع البحث</string>
+    <string name="settings_section_search_network_description" tools:ignore="MissingTranslation">تحكم فيما إذا كان البحث يستخدم البيانات دون اتصال فقط</string>
+    <string name="beacon_settings_style_description" tools:ignore="MissingTranslation">اختر نمط منارة الصوت الذي ترغب في استخدامه</string>
+    <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">تضمين الطرق غير المسماة أثناء محاكاة الموقع</string>
+    <string name="callouts_allow_callouts_description" tools:ignore="MissingTranslation">قم بتشغيل أو إيقاف جميع وسائل الارشاد</string>
+    <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">أماكن قريبة مثل المحلات والمطاعم</string>
+    <string name="callouts_mobility_description" tools:ignore="MissingTranslation">معلومات عن التقاطعات ووسائل النقل</string>
+    <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">تحديثات حول المسافة إلى منارة الصوت عند تعيينها</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">"اللغة والمنطقة "</string>
+    <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">يمكن للبحث عبر الإنترنت أن يستخدم اللغة المحلية للنتيجة، أو إجباره على إرجاع النتائج بالإنجليزية أو الفرنسية أو الألمانية.</string>
 </resources>
