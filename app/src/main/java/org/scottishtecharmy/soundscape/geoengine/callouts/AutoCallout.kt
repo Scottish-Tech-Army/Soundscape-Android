@@ -184,6 +184,9 @@ class AutoCallout(
             val name = getTextForFeature(localizedContext, feature as MvtFeature)
             val nearestPoint = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
 
+            if(name.text.isEmpty())
+                return@filter true
+
             val callout = TrackedCallout(
                 userGeometry,
                 name.text,
