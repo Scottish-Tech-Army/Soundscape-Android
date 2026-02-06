@@ -54,6 +54,7 @@ import java.io.File
 import java.util.Locale
 import javax.inject.Inject
 import androidx.core.net.toUri
+import androidx.core.content.edit
 
 data class ThemeState(
     val hintsEnabled: Boolean = false,
@@ -279,6 +280,13 @@ class MainActivity : AppCompatActivity() {
 
         // Debug - dump preferences
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+
+        // We've deprecated "Online" as a mode. The only options are "Auto" and "Offline". Online
+        // and Auto worked the same anyway...
+        if(sharedPreferences.getString(GEOCODER_MODE_KEY, GEOCODER_MODE_DEFAULT) == "Online") {
+            sharedPreferences.edit { putString(GEOCODER_MODE_KEY, GEOCODER_MODE_DEFAULT) }
+        }
+
         for (pref in sharedPreferences.all) {
             Log.d(TAG, "Preference: " + pref.key + " = " + pref.value)
         }
