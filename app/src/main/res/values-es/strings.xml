@@ -9,7 +9,7 @@
     <string name="settings_about_app">"Acerca de Soundscape"</string>
     <string name="voice_settings_speaking_rate">"Velocidad de habla"</string>
     <string name="voice_voices">"Voces"</string>
-    <string name="beacon_settings_style">"Estilos de audio"</string>
+    <string name="beacon_settings_style">Estilos de audio</string>
     <string name="beacon_styles_current">"Actual"</string>
     <string name="beacon_styles_original">"Original"</string>
     <string name="beacon_styles_flare">"Bengala"</string>
@@ -181,7 +181,7 @@
     <string name="ui_menu_hint">Abrir el menú</string>
     <string name="ui_menu_close">"Menú Cerrar"</string>
     <string name="ui_continue">"Continuar"</string>
-    <string name="menu_manage_callouts">"Administrar avisos"</string>
+    <string name="menu_manage_callouts">Administrar avisos</string>
     <string name="menu_help_and_tutorials">Ayuda y tutoriales</string>
     <string name="menu_rate">"Calificación"</string>
     <string name="ui_back_button_title">"Atrás"</string>
@@ -246,8 +246,8 @@
     <string name="help_text_automatic_callouts_when_1">"**Exploración de una zona nueva**:\n\n active los avisos automáticos y dé una vuelta para oír información acerca de todas las diferentes tiendas, restaurantes y lugares similares cuando pase por ellos."</string>
     <string name="help_text_automatic_callouts_when_2">"**Caminar hasta una ubicación específica**:\n\n cuando se dirija a una ubicación concreta, los avisos automáticos para cruces pueden ser especialmente útiles. Los avisos de cruces le informan de la disposición de cruces cuando se aproxima a ellos y confirman la carretera en la que se encuentra al salir de ellos."</string>
     <string name="help_text_automatic_callouts_when_3">"**Cuando necesite silencio**:\n\n cuando esté a punto de cruzar una carretera o simplemente necesite que la aplicación esté en silencio, puede desactivar los avisos. Cuando los avisos estén desactivados, la aplicación solo le dará información si pulsa manualmente en uno de los botones *\"Mi ubicación\"*, *\"Marcadores cercanos\"*, *\"Alrededor de mí\"* o *\"Delante de mí\"*."</string>
-    <string name="help_text_automatic_callouts_how_1">"**Activación y desactivación de avisos**:\n\n la desactivación de avisos silenciará la aplicación. Para activarlos o desactivarlos, en la sección \"Administrar avisos\" de la pantalla \"Ajustes\", pulse en la alternancia \"Permitir avisos\". También puede activar o desactivar avisos con el comando \"saltar adelante\" (pulse dos veces y mantenga pulsado) si los auriculares tienen botones de control multimedia. También puede usar el botón \"Suspender\" en la esquina superior derecha de la pantalla principal para que Soundscape deje de realizar avisos hasta que elija reactivarlos de nuevo."</string>
-    <string name="help_text_automatic_callouts_how_2">"**Administración de los avisos que oye**:\n\n para elegir los tipos de elementos de los que avisará Soundscape automáticamente, vaya a la pantalla \"Ajustes\" con el menú de la pantalla \"Inicio\". La sección \"Administrar avisos\" de la pantalla \"Ajustes\" incluye una lista de tipos de elementos de los que puede avisar la aplicación. Cada elemento tiene un botón de alternancia que puede activar o desactivar. Si desea desactivar todos los avisos, pulse en el botón de alternancia \"Permitir avisos\" en la parte superior de la lista."</string>
+    <string name="help_text_automatic_callouts_how_1">**Activación y desactivación de avisos**:\n\n la desactivación de avisos silenciará la aplicación. Para activarlos o desactivarlos, en la sección \"Administrar avisos\" de la pantalla \"Ajustes\", pulse en la alternancia \"Permitir avisos\". También puede activar o desactivar avisos con el comando \"saltar adelante\" (pulse dos veces y mantenga pulsado) si los auriculares tienen botones de control multimedia. También puede usar el botón \"Suspender\" en la esquina superior derecha de la pantalla principal para que Soundscape deje de realizar avisos hasta que elija reactivarlos de nuevo.</string>
+    <string name="help_text_automatic_callouts_how_2">**Administración de los avisos que oye**:\n\n para elegir los tipos de elementos de los que avisará Soundscape automáticamente, vaya a la pantalla \"Ajustes\" con el menú de la pantalla \"Inicio\". La sección \"Administrar avisos\" de la pantalla \"Ajustes\" incluye una lista de tipos de elementos de los que puede avisar la aplicación. Cada elemento tiene un botón de alternancia que puede activar o desactivar. Si desea desactivar todos los avisos, pulse en el botón de alternancia \"Permitir avisos\" en la parte superior de la lista.</string>
     <string name="help_text_my_location_what">"El botón *\"Mi ubicación\"* le ofrece información rápidamente que le ayuda a averiguar dónde se encuentra actualmente. *\"Mi ubicación\"* le informa acerca de su ubicación actual, incluidas cosas como la dirección hacia la que está orientado, dónde se encuentran cruces o carreteras cercanas, y dónde hay puntos de interés cercanos."</string>
     <string name="help_text_my_location_when">"*\"Mi ubicación\"* es útil cuando necesita averiguar dónde se encuentra o hacia qué dirección cardinal está orientado."</string>
     <string name="help_text_my_location_how">"Como con los cuatro botones de la parte inferior de la pantalla principal, mantenga el teléfono con la pantalla en posición horizontal (hacia arriba) y la parte superior del teléfono apuntando en la dirección hacia la que está orientado antes de presionar el botón *\"Mi ubicación\"*. Esto actúa como una brújula que le indica a la aplicación hacia qué dirección está orientado. Solo tiene que pulsar en el botón *\"Mi ubicación\"* y escuchar."</string>
