@@ -9,7 +9,7 @@
     <string name="settings_about_app">"Om Soundscape"</string>
     <string name="voice_settings_speaking_rate">"Talehastighet"</string>
     <string name="voice_voices">"Stemmer"</string>
-    <string name="beacon_settings_style">"Lydstiler"</string>
+    <string name="beacon_settings_style">Lydstiler</string>
     <string name="beacon_styles_current">"Nåværende"</string>
     <string name="beacon_styles_original">"Original"</string>
     <string name="beacon_styles_flare">"Lysglimt"</string>
@@ -181,7 +181,7 @@
     <string name="ui_menu_hint">Åpne menyen.</string>
     <string name="ui_menu_close">"Lukk meny"</string>
     <string name="ui_continue">"Fortsett"</string>
-    <string name="menu_manage_callouts">"Administrer meldinger"</string>
+    <string name="menu_manage_callouts">Administrer meldinger</string>
     <string name="menu_help_and_tutorials">Hjelp og veiledninger</string>
     <string name="menu_rate">"Vurder"</string>
     <string name="ui_back_button_title">"Tilbake"</string>
@@ -246,8 +246,8 @@
     <string name="help_text_automatic_callouts_when_1">"**Utforsk et nytt område**:\n\n Slå på automatiske meldinger og gå rundt for å høre alt om de ulike butikkene, restaurantene og lignende når du går forbi dem."</string>
     <string name="help_text_automatic_callouts_when_2">"**Gå til et bestemt sted**:\n\n Når du er på vei til et bestemt sted, kan automatiske meldinger for veikryss være svært nyttige. Veikryssmeldinger kan fortelle deg om oppsettet til veikryss når du nærmer deg, og bekrefte veien du er på, når du forlater dem."</string>
     <string name="help_text_automatic_callouts_when_3">"**Når du trenger stillhet**:\n\n Når du er i ferd med å krysse en vei eller bare vil at appen skal være stille, kan du slå av meldinger. Når meldinger er av, forteller appen bare informasjonen hvis du manuelt trykker på en knappene *Min posisjon*, *Markører i nærheten*, *Rundt meg* eller *Foran meg*."</string>
-    <string name="help_text_automatic_callouts_how_1">"**Slå meldinger av eller på**:\n\n Hvis du slår av meldinger, slås lyden av for appen. Meldinger kan slås av og på i delen Administrer meldinger på skjermen Innstillinger der du kan trykke på veksleknappen Tillat meldinger for å slå meldinger av og på. Du kan også slå av eller på meldinger ved å bruke kommandoen Hopp fremover (dobbelttrykk og hold) hvis hodetelefonene har mediekontrollknapper. Du kan også bruke knappen Sett i dvalemodus øverst til høyre på startskjermen til å stoppe Soundscape fra å lese opp meldinger frem til du velger å aktivere den igjen."</string>
-    <string name="help_text_automatic_callouts_how_2">"**Administrer hvilke meldinger du hører**:\n\n Hvis du vil velge tingene som Soundscape automatisk skal lese opp, går du til skjermen Innstillinger ved å bruke menyen på skjermen Start. Delen Administrer meldinger på skjermen Innstillinger inneholder en liste over ting som appen kan lese opp. Hvert element har en veksleknapp som du kan slå av eller på. Hvis du vil slå av alle meldinger, trykker du på vekslebryteren Tillat meldinger øverst på listen."</string>
+    <string name="help_text_automatic_callouts_how_1">**Slå meldinger av eller på**:\n\n Hvis du slår av meldinger, slås lyden av for appen. Meldinger kan slås av og på i delen Administrer meldinger på skjermen Innstillinger der du kan trykke på veksleknappen Tillat meldinger for å slå meldinger av og på. Du kan også slå av eller på meldinger ved å bruke kommandoen Hopp fremover (dobbelttrykk og hold) hvis hodetelefonene har mediekontrollknapper. Du kan også bruke knappen Sett i dvalemodus øverst til høyre på startskjermen til å stoppe Soundscape fra å lese opp meldinger frem til du velger å aktivere den igjen.</string>
+    <string name="help_text_automatic_callouts_how_2">**Administrer hvilke meldinger du hører**:\n\n Hvis du vil velge tingene som Soundscape automatisk skal lese opp, går du til skjermen Innstillinger ved å bruke menyen på skjermen Start. Delen Administrer meldinger på skjermen Innstillinger inneholder en liste over ting som appen kan lese opp. Hvert element har en veksleknapp som du kan slå av eller på. Hvis du vil slå av alle meldinger, trykker du på vekslebryteren Tillat meldinger øverst på listen.</string>
     <string name="help_text_my_location_what">"Knappen *Min posisjon* gir deg raskt informasjon som hjelper deg med å finne ut hvor du er. *Min posisjon* forteller deg om nåværende posisjon deriblant ting som retningen du er vendt mot, hvor veier og veikryss i nærheten er og hvor interessepunkter i nærheten er."</string>
     <string name="help_text_my_location_when">"*Min posisjon* er nyttig når du må finne ut hvor du er eller hvilken himmelretning du er vendt mot."</string>
     <string name="help_text_my_location_how">"Som med alle de fire knappene nederst på startskjermen holder du telefonen flatt (vendt mot himmelen) og toppen av telefonen pekende i retningen du er vendt mot, før du trykker på knappen *Min posisjon*. Denne fungerer som et kompass som forteller appen hvilken retning du er vendt mot. Trykk på knappen *Min posisjon* og lytt."</string>
