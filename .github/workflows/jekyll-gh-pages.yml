@@ -80,9 +80,8 @@ jobs:
 
       - name: Sync assets to docs
         run: |
-          mkdir -p users/en users/en_GB
-          cp ../app/src/main/assets/help/en/*.md users/en/
-          cp ../app/src/main/assets/help/en-rGB/*.md users/en_GB/
+          mkdir -p users
+          cp ../app/src/main/assets/help/en/*.md users
         working-directory: docs
 
       - name: Build with Jekyll
