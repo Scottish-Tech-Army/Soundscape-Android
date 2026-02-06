@@ -146,10 +146,6 @@ fun LocationDescription.process() {
                 locationType = locationTypeProperty
             } else {
                 name = mvt?.name?.takeIf { it.isNotEmpty() } ?: featureName?.text ?: ""
-                if(name == "")
-                {
-                    println("!")
-                }
                 opposite = oppositeProperty
                 locationType = locationTypeProperty
             }
