@@ -101,7 +101,11 @@ class SearchTest {
             val tileSearch = TileSearch(offlineExtractPath, gridState, settlementState)
             val offlineGeocoder = OfflineGeocoder(gridState, settlementState, tileSearch)
 
-            var results = offlineGeocoder.getAddressFromLocationName("5 buchanan street milngavie", currentLocation, null)!!
+            var results = offlineGeocoder.getAddressFromLocationName( "Greggs", currentLocation, null)!!
+            assertEquals("Greggs", results[0].name)
+            assertEquals("OSM Feature", results[0].featureName?.additionalText ?: "")
+
+            results = offlineGeocoder.getAddressFromLocationName("5 buchanan street milngavie", currentLocation, null)!!
             assertEquals("5 Buchanan Street", results[0].name)
             assertEquals("5 Buchanan Street, Milngavie", results[0].description)
 
