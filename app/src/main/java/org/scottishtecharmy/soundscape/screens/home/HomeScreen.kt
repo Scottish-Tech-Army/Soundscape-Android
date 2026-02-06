@@ -25,10 +25,13 @@ import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
+import org.scottishtecharmy.soundscape.screens.home.home.MarkdownHelpScreen
+
 import org.scottishtecharmy.soundscape.screens.home.home.Home
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenVM
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
@@ -280,14 +283,25 @@ fun HomeScreen(
 
         composable(HomeRoutes.Help.route + "/{topic}") { backStackEntry ->
             val topic = backStackEntry.arguments?.getString("topic") ?: ""
-            HelpScreen(
-                topic = topic,
-                navController = navController,
-                modifier = Modifier
-                    .windowInsetsPadding(WindowInsets.safeDrawing)
-                    .semantics { testTagsAsResourceId = true }
-            )
+            if (topic == "page${R.string.menu_help_and_tutorials}" || topic.endsWith(".md")) {
+                MarkdownHelpScreen(
+                    topic = topic,
+                    navController = navController,
+                    modifier = Modifier
+                        .windowInsetsPadding(WindowInsets.safeDrawing)
+                        .semantics { testTagsAsResourceId = true }
+                )
+            } else {
+                HelpScreen(
+                    topic = topic,
+                    navController = navController,
+                    modifier = Modifier
+                        .windowInsetsPadding(WindowInsets.safeDrawing)
+                        .semantics { testTagsAsResourceId = true }
+                )
+            }
         }
+
         composable(HomeRoutes.Sleep.route) {
             SleepScreenVM(
                 navController = navController,

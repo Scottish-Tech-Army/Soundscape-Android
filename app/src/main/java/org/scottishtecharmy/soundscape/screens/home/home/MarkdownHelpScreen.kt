@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -45,14 +46,29 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomA
 import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import java.io.IOException
 
 class MarkdownPage(val title: String, val content: String) {
     val root: Node by lazy {
         val parser: Parser = Parser.builder().build()
         // TODO 2025-12-12 Hugh Greene: proper error handling here (log, and better UI output?)
-        parser.parse(content) ?: return@lazy org.commonmark.node.Text("Failed to parse '${title}'")
+        parser.parse(content) ?: org.commonmark.node.Text("Failed to parse '${title}'")
     }
 }
+
+private fun loadMarkdownAsset(context: android.content.Context, topic: String): String? {
+    val fileName = when (topic) {
+        "Help and Tutorials" -> "help-and-tutorials.md"
+        else -> if (topic.endsWith(".md")) topic else "$topic.md"
+    }
+
+    return try {
+        context.assets.open("help/$fileName").bufferedReader().use { it.readText() }
+    } catch (e: IOException) {
+        null
+    }
+}
+
 
 private fun Node.collectChildren(): List<Node> {
     val children = mutableListOf<Node>()
@@ -124,67 +140,14 @@ fun MarkdownHelpScreen(
     // that nobody introduces any fancy Markdown usage in future which breaks this rendering without
     // the tests picking it up.
 
-    // TODO 2025-11-27 Hugh Greene: Get localised Markdown page contents as raw text, main page only.
-
     // TODO 2025-12-12 Hugh Greene: Use https://github.com/commonmark/commonmark-java#yaml-front-matter
     // extension setup to parse out and skip the front-matter.
-/*
-    val mainPageStubContent = """
-        ---
-        title: Help and Tutorials
-        layout: page
-        nav_order: 1
-        ---
 
-        etc., etc.
-        """
-*/
-    val mainPageStubContent = """
-        # Help and Tutorials
-        
-        ## Configuring Soundscape
-        
-        [Voices](help-voices.md)
+    val context = LocalContext.current
+    val content = loadMarkdownAsset(context, topic) ?: "# Error\n\nFailed to load help content for '$topic'"
+    
+    val page = MarkdownPage(topic, content)
 
-        [Using Media Controls](help-using-media-controls.md)
-        
-        ## Beacons and Callouts
-        
-        [Audio Beacon](help-audio-beacon.md)
-        
-        [Automatic Callouts](help-automatic-callouts.md)
-        
-        ## Home Screen Buttons
-        
-        [My Location](help-my-location.md)
-        
-        [Around Me](help-around-me.md)
-        
-        [Ahead of Me](help-ahead-of-me.md)
-        
-        [Nearby Markers](help-nearby-markers.md)
-        
-        ## Markers and Routes
-        
-        [Markers](help-markers.md)
-        
-        [Routes](help-routes.md)
-        
-        [Creating Markers](help-creating-markers.md)
-        
-        [Customizing Markers](help-customizing-markers.md)
-        
-        ## Frequently Asked Questions
-        
-        [Frequently Asked Questions](help-frequently-asked-questions.md)
-        
-        [Tips](help-tips.md)
-        
-        [Why is Soundscape working offline?](help-why-is-soundscape-working-offline-.md)
-                        
-        """.trimIndent()
-    // TODO 2025-11-27 Hugh Greene: Select Markdown page based on topic.
-    val page = MarkdownPage("Help and Tutorials", mainPageStubContent)
 
     // TODO 2025-11-28 Hugh Greene: Render main page sections as "titles" and sub-sections as
     // buttons, using Composables as below.
@@ -263,9 +226,10 @@ fun MarkdownHelpScreen(
                             val link = node.tryGetOnlyChild() as Link
                             Button(
                                 onClick = {
-                                    navController.navigate("${HomeRoutes.Help.route}/page${link.title}")
+                                    navController.navigate("${HomeRoutes.Help.route}/${link.destination}")
                                 },
                                 modifier = Modifier
+
                                     .fillMaxWidth(),
                                 shape = RoundedCornerShape(spacing.extraSmall),
                                 colors = currentAppButtonColors
