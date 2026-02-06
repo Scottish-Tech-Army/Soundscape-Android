@@ -9,7 +9,7 @@
     <string name="settings_about_app">"Over Soundscape"</string>
     <string name="voice_settings_speaking_rate">"Spreeksnelheid"</string>
     <string name="voice_voices">"Stemmen"</string>
-    <string name="beacon_settings_style">"Audiostijlen"</string>
+    <string name="beacon_settings_style">Audiostijlen</string>
     <string name="beacon_styles_current">"Huidig"</string>
     <string name="beacon_styles_original">"Oorspronkelijk"</string>
     <string name="beacon_styles_flare">"Flits"</string>
@@ -181,7 +181,7 @@
     <string name="ui_menu_hint">Menu openen</string>
     <string name="ui_menu_close">"Menu sluiten"</string>
     <string name="ui_continue">"Doorgaan"</string>
-    <string name="menu_manage_callouts">"Waarschuwingen beheren"</string>
+    <string name="menu_manage_callouts">Waarschuwingen beheren</string>
     <string name="menu_help_and_tutorials">Help en zelfstudies</string>
     <string name="menu_rate">"Beoordelen"</string>
     <string name="ui_back_button_title">"Vorige"</string>
@@ -246,8 +246,8 @@
     <string name="help_text_automatic_callouts_when_1">"**Een nieuw gebied verkennen**:\n\n Schakel automatische waarschuwingen in en loop rond om informatie te horen over verschillende winkels, restaurants en andere punten die u passeert."</string>
     <string name="help_text_automatic_callouts_when_2">"**Lopen naar een specifieke locatie**:\n\n Als u onderweg bent naar een bepaalde locatie, zijn automatische waarschuwingen voor kruispunten heel handig. Waarschuwingen voor kruispunten geven de indeling van het kruispunt aan terwijl u ernaartoe loopt en bevestigen op welke weg u bent, wanneer u het kruispunt verlaat."</string>
     <string name="help_text_automatic_callouts_when_3">"**Wanneer u stilte wilt**:\n\n Wanneer u een weg wilt oversteken of wilt dat de app stil is, kunt u de waarschuwingen uitzetten. Wanneer waarschuwingen uit zijn, geeft de app alleen informatie door als u handmatig tikt op de knoppen *Mijn locatie*, *Markeringen in de buurt*, *Om me heen* of *Vóór me*."</string>
-    <string name="help_text_automatic_callouts_how_1">"**Waarschuwingen in- of uitschakelen**:\n\n Als u waarschuwingen uitzet, wordt het geluid van de app gedempt. U kunt waarschuwingen in- of uitschakelen in de sectie Waarschuwingen beheren van het scherm Instellingen. Tik op de wisselknop Waarschuwingen toestaan om waarschuwingen uit of aan te zetten. U kunt waarschuwingen ook in- of uitschakelen met de opdracht Vooruitspringen (dubbeltikken en vasthouden) als uw koptelefoon mediaregelaars heeft. Of gebruik de knop Slapen rechtsboven in het startscherm om waarschuwingen te stoppen totdat u Soundscape weer activeert."</string>
-    <string name="help_text_automatic_callouts_how_2">"**Beheren welke waarschuwingen u hoort**:\n\n Als u wilt bepalen voor welke dingen Soundscape automatisch een waarschuwing geeft, gaat u naar het scherm Instellingen via het menu op het startscherm. De sectie Waarschuwingen beheren van het scherm Instellingen bevat een lijst met items waarvoor u een waarschuwing kunt ontvangen. Elk item heeft een wisselknop die u kunt in- of uitschakelen. Als u alle waarschuwingen wilt uitschakelen, tikt u op de wisselknop Waarschuwingen toestaan boven aan de lijst."</string>
+    <string name="help_text_automatic_callouts_how_1">**Waarschuwingen in- of uitschakelen**:\n\n Als u waarschuwingen uitzet, wordt het geluid van de app gedempt. U kunt waarschuwingen in- of uitschakelen in de sectie Waarschuwingen beheren van het scherm Instellingen. Tik op de wisselknop Waarschuwingen toestaan om waarschuwingen uit of aan te zetten. U kunt waarschuwingen ook in- of uitschakelen met de opdracht Vooruitspringen (dubbeltikken en vasthouden) als uw koptelefoon mediaregelaars heeft. Of gebruik de knop Slapen rechtsboven in het startscherm om waarschuwingen te stoppen totdat u Soundscape weer activeert.</string>
+    <string name="help_text_automatic_callouts_how_2">**Beheren welke waarschuwingen u hoort**:\n\n Als u wilt bepalen voor welke dingen Soundscape automatisch een waarschuwing geeft, gaat u naar het scherm Instellingen via het menu op het startscherm. De sectie Waarschuwingen beheren van het scherm Instellingen bevat een lijst met items waarvoor u een waarschuwing kunt ontvangen. Elk item heeft een wisselknop die u kunt in- of uitschakelen. Als u alle waarschuwingen wilt uitschakelen, tikt u op de wisselknop Waarschuwingen toestaan boven aan de lijst.</string>
     <string name="help_text_my_location_what">"De knop *Mijn locatie* geeft snel informatie over de omgeving zodat u kunt achterhalen waar u zich bevindt. *Mijn locatie* geeft informatie over uw huidige locatie, de richting waarin u kijkt, en waar naburige wegen, kruispunten en referentiepunten zijn."</string>
     <string name="help_text_my_location_when">"*Mijn locatie* is handig wanneer u wilt weten waar u bent of wat de hoofdrichting is waarin u loopt."</string>
     <string name="help_text_my_location_how">"Net als met de vier knoppen onderaan het hoofdscherm houdt u de telefoon met het scherm horizontaal en met de bovenkant in de richting waarin u loopt, voordat u op *Mijn locatie* drukt. Dit werkt als een kompas en geeft aan de app door in welke richting u kijkt. Tik op de knop *Mijn locatie* en luister."</string>
