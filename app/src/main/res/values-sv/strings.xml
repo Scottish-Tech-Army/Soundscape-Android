@@ -9,7 +9,7 @@
     <string name="settings_about_app">"Om Soundscape"</string>
     <string name="voice_settings_speaking_rate">"Talhastighet"</string>
     <string name="voice_voices">"Röster"</string>
-    <string name="beacon_settings_style">"Ljudstilar"</string>
+    <string name="beacon_settings_style">Ljudstilar</string>
     <string name="beacon_styles_current">"Aktuell"</string>
     <string name="beacon_styles_original">"Original"</string>
     <string name="beacon_styles_flare">"Bloss"</string>
@@ -181,7 +181,7 @@
     <string name="ui_menu_hint">Öppna menyn</string>
     <string name="ui_menu_close">"Stäng menyn"</string>
     <string name="ui_continue">"Fortsätt"</string>
-    <string name="menu_manage_callouts">"Hantera informationsljud"</string>
+    <string name="menu_manage_callouts">Hantera informationsljud</string>
     <string name="menu_help_and_tutorials">Hjälp och självstudier</string>
     <string name="menu_rate">"Betygsätt"</string>
     <string name="ui_back_button_title">"Tillbaka"</string>
@@ -246,8 +246,8 @@
     <string name="help_text_automatic_callouts_when_1">"**Utforska ett nytt område**:\n\n Aktivera automatiska informationsljud om du vill höra om olika butiker, restauranger och annat medan du passerar dem."</string>
     <string name="help_text_automatic_callouts_when_2">"**Gå till en viss plats**:\n\n När du är på väg till en viss plats kan det vara användbart med automatiska informationsljud för vägkorsningar. Sådana informationsljud berättar om vilka vägar som finns i vägkorsningen medan du närmar dig, och berättar vilken väg du går på när du lämnat korsningen."</string>
     <string name="help_text_automatic_callouts_when_3">"**När du vill att det ska vara tyst**:\n\n När du ska korsa en väg eller bara vill att appen ska vara tyst kan du inaktivera informationsljuden. När de är inaktiverade får du bara information från appen om du manuellt trycker på någon av knapparna *\"Min plats\"*, *\"Platsmarkörer i närheten\"*, *\"Omkring mig\"* eller *\"Framför mig\"*."</string>
-    <string name="help_text_automatic_callouts_how_1">"**Aktivera/inaktivera informationsljud**:\n\n Om du inaktiverar informationsljuden tystnar appen. Du kan inaktivera och aktivera informationsljuden i avsnittet \"Hantera informationsljud\" på skärmen \"Inställningar\" där du kan trycka på \"Tillåt informationsljud\" för att aktivera och inaktivera informationsljud. Du kan också inaktivera och aktivera informationsljud genom att använda kommandot \"Hoppa framåt\" (dubbelknacka och håll ned) om dina hörlurar har mediekontrollknappar. Du kan också använda knappen \"Inaktivera\" i det övre högra hörnet på startskärmen om du vill att Soundscape ska sluta med informationsljuden tills du väljer att aktivera dem igen."</string>
-    <string name="help_text_automatic_callouts_how_2">"**Hantera vilka informationsljuden du hör**:\n\n Om du vill välja vilka typer av saker som Soundscape läser upp automatiskt går du till skärmen \"Inställningar\" med hjälp av menyn på skärmen \"Start\". Avsnittet \"Hantera informationsljud\" på skärmen \"Inställningar\" innehåller en lista med saker som appen kan läsa upp. Varje objekt har en växlingsknapp som gör att du kan aktivera eller inaktivera informationsljuden. Tryck på växlingsknappen \"Tillåt informationsljud\" högst upp i listan om du vill inaktivera alla informationsljud."</string>
+    <string name="help_text_automatic_callouts_how_1">**Aktivera/inaktivera informationsljud**:\n\n Om du inaktiverar informationsljuden tystnar appen. Du kan inaktivera och aktivera informationsljuden i avsnittet \"Hantera informationsljud\" på skärmen \"Inställningar\" där du kan trycka på \"Tillåt informationsljud\" för att aktivera och inaktivera informationsljud. Du kan också inaktivera och aktivera informationsljud genom att använda kommandot \"Hoppa framåt\" (dubbelknacka och håll ned) om dina hörlurar har mediekontrollknappar. Du kan också använda knappen \"Inaktivera\" i det övre högra hörnet på startskärmen om du vill att Soundscape ska sluta med informationsljuden tills du väljer att aktivera dem igen.</string>
+    <string name="help_text_automatic_callouts_how_2">**Hantera vilka informationsljuden du hör**:\n\n Om du vill välja vilka typer av saker som Soundscape läser upp automatiskt går du till skärmen \"Inställningar\" med hjälp av menyn på skärmen \"Start\". Avsnittet \"Hantera informationsljud\" på skärmen \"Inställningar\" innehåller en lista med saker som appen kan läsa upp. Varje objekt har en växlingsknapp som gör att du kan aktivera eller inaktivera informationsljuden. Tryck på växlingsknappen \"Tillåt informationsljud\" högst upp i listan om du vill inaktivera alla informationsljud.</string>
     <string name="help_text_my_location_what">"Med knappen *\"Min plats\"* får du snabbt information som hjälper dig att komma på var du befinner dig. *\"Min plats\"* berättar om den aktuella platsen, bland att vilken riktning du går i och vilka vägar, vägkorsningar eller intressepunkter som finns i närheten."</string>
     <string name="help_text_my_location_when">"*\"Min plats\"* är användbar när du behöver ta reda på var du är eller i vilken riktning du går."</string>
     <string name="help_text_my_location_how">"Som med alla fyra knappar längst ned på startskärmen ska du hålla telefonen plant med skärmen riktad uppåt och peka med telefonen i färdriktningen innan du trycker på knappen *\"Min plats\"*. Detta fungerar som en kompass som talar om för appen vilken riktning du står i. Tryck på knappen *\"Min plats mig\"* och lyssna."</string>
