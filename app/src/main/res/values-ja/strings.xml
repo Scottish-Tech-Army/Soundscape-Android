@@ -9,7 +9,7 @@
     <string name="settings_about_app">"Soundscape について"</string>
     <string name="voice_settings_speaking_rate">"読み上げ速度"</string>
     <string name="voice_voices">"声"</string>
-    <string name="beacon_settings_style">"音声スタイル"</string>
+    <string name="beacon_settings_style">音声スタイル</string>
     <string name="beacon_styles_current">"最新"</string>
     <string name="beacon_styles_original">"オリジナル"</string>
     <string name="beacon_styles_flare">"フレア"</string>
@@ -181,7 +181,7 @@
     <string name="ui_menu_hint">メニューを開く</string>
     <string name="ui_menu_close">"メニューを閉じる"</string>
     <string name="ui_continue">"続行"</string>
-    <string name="menu_manage_callouts">"コールアウトを管理"</string>
+    <string name="menu_manage_callouts">コールアウトを管理</string>
     <string name="menu_help_and_tutorials">ヘルプとチュートリアル</string>
     <string name="menu_rate">"評価する"</string>
     <string name="ui_back_button_title">"戻る"</string>
@@ -246,8 +246,8 @@
     <string name="help_text_automatic_callouts_when_1">"**新しい場所の探索**:\n\n 自動コールアウトをオンにして歩くと、移動に応じて近くの店舗やレストランなどさまざまな情報を耳で確認できます。"</string>
     <string name="help_text_automatic_callouts_when_2">"**特定の場所への移動**:\n\n 特定の場所に向かって歩く際には、交差点の自動コールアウトが特に役立つ可能性があります。交差点のコールアウトを使用すると、交差点に近付くとその交差点の構造がわかり、交差点を出るときには、どの道路にいるかを確認できます。"</string>
     <string name="help_text_automatic_callouts_when_3">"**無音にしたい場合**:\n\n 交差点を横断するときや、単にアプリの音声を消したい場合、コールアウトをオフにすることができます。コールアウトをオフにすると、[*現在地*]、[*近くのマーカー*]、[*周辺*]、[*前方*] のいずれかのボタンをタップしたときにだけ、情報が伝えられます。"</string>
-    <string name="help_text_automatic_callouts_how_1">"**コールアウトのオン/オフの切り替え**:\n\n コールアウトをオフにするとアプリが静かになります。コールアウトのオン/オフを切り替えるには、[設定] 画面の [コールアウトを管理] セクションで [コールアウトを使用] のトグルをタップしてオン/オフを切り替えます。また、ヘッドホンにメディアコントロール ボタンがある場合は、[前方スキップ] コマンド (ダブルタップして長押し) を使用してコールアウトのオン/オフを切り替えることもできます。または、ホーム画面の右上隅にある [スリープ] ボタンを使用すると、スリープ モードを解除するまで、Soundscape のコールアウトを停止することができます。"</string>
-    <string name="help_text_automatic_callouts_how_2">"**聞きたいコールアウトの管理**:\n\n Soundscape で自動的にコールアウトされる内容を選択するには、ホーム画面のメニューから [設定] 画面を開きます。[設定] 画面の [コールアウトを管理] セクションには、アプリでコールアウトできる項目の一覧が表示されます。項目ごとにトグル ボタンがあり、オン/オフを切り替えることができます。すべてのコールアウトをオフにするには、一覧の上にある [コールアウトを使用] のトグルをタップします。"</string>
+    <string name="help_text_automatic_callouts_how_1">**コールアウトのオン/オフの切り替え**:\n\n コールアウトをオフにするとアプリが静かになります。コールアウトのオン/オフを切り替えるには、[設定] 画面の [コールアウトを管理] セクションで [コールアウトを使用] のトグルをタップしてオン/オフを切り替えます。また、ヘッドホンにメディアコントロール ボタンがある場合は、[前方スキップ] コマンド (ダブルタップして長押し) を使用してコールアウトのオン/オフを切り替えることもできます。または、ホーム画面の右上隅にある [スリープ] ボタンを使用すると、スリープ モードを解除するまで、Soundscape のコールアウトを停止することができます。</string>
+    <string name="help_text_automatic_callouts_how_2">**聞きたいコールアウトの管理**:\n\n Soundscape で自動的にコールアウトされる内容を選択するには、ホーム画面のメニューから [設定] 画面を開きます。[設定] 画面の [コールアウトを管理] セクションには、アプリでコールアウトできる項目の一覧が表示されます。項目ごとにトグル ボタンがあり、オン/オフを切り替えることができます。すべてのコールアウトをオフにするには、一覧の上にある [コールアウトを使用] のトグルをタップします。</string>
     <string name="help_text_my_location_what">"[*現在地*] ボタンを使用すると、自分の現在地を簡単に確認できるように情報が提供されます。[*現在地*] ボタンでは、自分が向いている方向、近くの道路や交差点がどこにあるか、近くの特定地点がどこにあるかなど、現在地に関する情報がわかります。"</string>
     <string name="help_text_my_location_when">"[*現在地*] は、自分の現在地や向かっている方向を確認する必要がある場合に役立ちます。"</string>
     <string name="help_text_my_location_how">"ホーム画面の下部の 4 つのボタンはどれも同じですが、スマートフォンの画面を上 (空) に向けて水平に持ち、スマートフォンの画面上部を自分が向いている方向に合わせてから、[*現在地*] ボタンを押します。これにより、コンパスを合わせるように、自分が向いている方向をアプリに伝えることができます。[*現在地*] ボタンをタップすると、音声が聞こえます。"</string>
