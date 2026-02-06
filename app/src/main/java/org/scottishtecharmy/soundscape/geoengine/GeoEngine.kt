@@ -57,7 +57,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.phoneHeldFlat
-import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
@@ -419,7 +418,7 @@ class GeoEngine {
                         withContext(gridState.treeContext) {
                             // Update the nearest road filter with our new location. For the map
                             // matching we use the unfiltered location
-                            locationProvider.locationFlow.value?.let() { unfilteredLocation ->
+                            locationProvider.locationFlow.value?.let { unfilteredLocation ->
                                 val mapMatchTime = measureTime {
                                     mapMatchFilter.filter(
                                         LngLatAlt(unfilteredLocation.longitude, unfilteredLocation.latitude),
@@ -450,8 +449,7 @@ class GeoEngine {
                             autoCallout.updateLocation(
                                 getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
                                 gridState,
-                                settlementGrid,
-                                geocoder)
+                                settlementGrid)
                         if (callouts != null) {
                             // Tell the service that we've got some callouts to tell the user about
                             soundscapeService.speakCallout(callouts, false)
@@ -615,7 +613,7 @@ class GeoEngine {
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    fun whatsAroundMe() : TrackedCallout? {
+    fun whatsAroundMe() : TrackedCallout {
         // Duplicate original Soundscape behaviour:
         //   In findCalloutsFor it tries to get a POI in each quadrant. It starts off searching
         //   within 200m and keeps increasing by 200m until it hits the maximum of 1000m. It only
@@ -924,34 +922,15 @@ class GeoEngine {
         return results
     }
 
-    private suspend fun reverseGeocodeResult(location: LngLatAlt) =
-        withContext(Dispatchers.IO) {
-            try {
-                return@withContext PhotonSearchProvider
-                    .getInstance()
-                    .reverseGeocodeLocation(
-                        latitude = location.latitude,
-                        longitude = location.longitude
-                    ).execute()
-                    .body()
-            } catch(e: Exception) {
-                Log.e(TAG, "Error getting reverse geocode result:", e)
-                return@withContext null
-            }
-        }
-
     /**
      * getLocationDescription returns a LocationDescription object for the current location. This
      * is basically a reverse geocode. It initially tries to generate it from local tile data, but
      * falls back to geocoding via the Photon server if network is available.
      * @param location to reverse geocode
-     * @param preserveLocation ensures that the returned LocationDescription contains the passed in
-     * location rather than overwriting it with the location of a POI that it geocoded to.
      * @return a LocationDescription object containing an address of the location
      */
     @OptIn(ExperimentalCoroutinesApi::class)
-    fun getLocationDescription(location: LngLatAlt,
-                               preserveLocation: Boolean = true) : LocationDescription? {
+    fun getLocationDescription(location: LngLatAlt) : LocationDescription {
 
         val geocode = runBlocking {
             withContext(gridState.treeContext) {
@@ -1228,14 +1207,14 @@ fun travellingReverseGeocode(location: LngLatAlt,
         // We only want 'interesting' non-generic names i.e. no "Path" or "Service"
         val roadName = nearestRoad.getName(null, gridState, localizedContext, true)
         if(roadName.isNotEmpty()) {
-            if(nearestSettlementName != null) {
-                return LocationDescription(
+            return if(nearestSettlementName != null) {
+                LocationDescription(
                     name = localizedContext?.getString(R.string.directions_near_road_and_settlement)
                         ?.format(roadName, nearestSettlementName) ?: "Near $roadName and close to $nearestSettlementName",
                     location = location,
                 )
             } else {
-                return LocationDescription(
+                LocationDescription(
                     name = localizedContext?.getString(R.string.directions_near_name)
                         ?.format(roadName) ?: "Near $roadName",
                     location = location,

@@ -186,17 +186,3 @@ fun findExtractPaths(path: String) : List<String> {
     }
     return emptyList()
 }
-
-fun isMidDownload(path: String) : Long {
-    val extractsDir = File(path)
-    if (extractsDir.exists() && extractsDir.isDirectory) {
-        val files =
-            extractsDir.listFiles { file -> file.name.endsWith(".downloadId") }?.toList()
-                ?: emptyList()
-
-        if(files.isNotEmpty()) {
-            return files[0].readText().toLong()
-        }
-    }
-    return -1
-}

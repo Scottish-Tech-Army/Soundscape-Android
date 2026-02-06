@@ -21,7 +21,7 @@ import java.util.*
  */
 abstract class Geometry<T>() : GeoJsonObject() {
     @field:Json(name = "coordinates")
-    var coordinates: ArrayList<T> = arrayListOf<T>()
+    var coordinates: ArrayList<T> = arrayListOf()
 
     init {
         type = "Geometry"

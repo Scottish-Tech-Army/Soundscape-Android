@@ -267,9 +267,10 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
  *
  * @param description The description of the intersection to callout
  * @param localizedContext A context for obtaining localized strings
- * @param results The list of callouts that is appended to
  * @param calloutHistory An optional CalloutHistory to use so as to filter out recently played out
- * callouts
+ * @param gridState The current gridState
+ *
+ * @return A TrackedCallout for the intersection if one was found, otherwise null.
  */
 fun addIntersectionCalloutFromDescription(
     description: IntersectionDescription,

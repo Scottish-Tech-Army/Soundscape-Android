@@ -484,7 +484,7 @@ class SoundscapeService : MediaSessionService() {
         return geoEngine.searchResult(searchString)
     }
 
-    fun getLocationDescription(location: LngLatAlt) : LocationDescription? {
+    fun getLocationDescription(location: LngLatAlt) : LocationDescription {
         return geoEngine.getLocationDescription(location)
     }
 

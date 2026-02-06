@@ -1,5 +1,3 @@
-import org.gradle.internal.impldep.junit.runner.Version.id
-
 pluginManagement {
     repositories {
         google {

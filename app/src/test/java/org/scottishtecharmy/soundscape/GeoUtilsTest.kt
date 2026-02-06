@@ -969,8 +969,8 @@ class GeoUtilsTest {
    }
     @Test
     fun cheapRulerWrapTest(){
-        var a = LngLatAlt(0.0, 0.0)
-        var b = LngLatAlt(0.0, 0.0)
+        val a = LngLatAlt(0.0, 0.0)
+        val b = LngLatAlt(0.0, 0.0)
         a.createCheapRuler().distance(b, a)
 
         a.longitude = -181.0

@@ -218,8 +218,6 @@ class PlacesNearbyScreenTest {
         // by the screen. The actual accessibility action on location items is tested
         // through MarkersScreenTest since both screens use the same LocationItem
         // component with the same startPlayback/startBeacon pattern.
-        var beaconStarted = false
-
         composeTestRule.setContent {
             SoundscapeTheme {
                 PlacesNearbyScreen(
@@ -228,7 +226,7 @@ class PlacesNearbyScreenTest {
                         level = 0,
                         nearbyPlaces = FeatureCollection()
                     ),
-                    onStartBeacon = { beaconStarted = true }
+                    onStartBeacon = { }
                 )
             }
         }
