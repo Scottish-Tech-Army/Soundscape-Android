@@ -56,6 +56,24 @@ class MarkdownPage(val title: String, val content: String) {
     }
 }
 
+private fun String.processMarkdownContent(): String {
+    // Strip YAML front matter
+    val content = if (this.startsWith("---")) {
+        val endOfFrontMatter = this.indexOf("---", 3)
+        if (endOfFrontMatter != -1) {
+            this.substring(endOfFrontMatter + 3).trimStart()
+        } else {
+            this
+        }
+    } else {
+        this
+    }
+
+    // Resolve {% link ... %} tags
+    // Replace {% link path/to/file.md %}, {% link file.md %}, etc. with just the filename file.md
+    return content.replace(Regex("""\{% link (?:[^/]+/)*([^ ]+\.md) %\}"""), "$1")
+}
+
 private fun loadMarkdownAsset(context: android.content.Context, topic: String): String? {
     val helpAndTutorialsTitle = context.getString(R.string.menu_help_and_tutorials)
     val fileName = when {
@@ -66,13 +84,27 @@ private fun loadMarkdownAsset(context: android.content.Context, topic: String): 
         }
     }
 
+    val locale = java.util.Locale.getDefault()
+    val localeTag = locale.toLanguageTag() // e.g., en-GB
+    val lang = locale.language // e.g., en
 
-    return try {
-        context.assets.open("help/$fileName").bufferedReader().use { it.readText() }
-    } catch (e: IOException) {
-        null
+    val candidatePaths = listOf(
+        "help/$localeTag/$fileName",
+        "help/$lang/$fileName",
+        "help/$fileName"
+    ).distinct()
+
+    for (path in candidatePaths) {
+        try {
+            return context.assets.open(path).bufferedReader().use { it.readText() }.processMarkdownContent()
+        } catch (e: IOException) {
+            // Try next path
+        }
     }
+
+    return null
 }
+
 
 
 private fun Node.collectChildren(): List<Node> {
@@ -157,8 +189,6 @@ fun MarkdownHelpScreen(
         else -> topic.removePrefix("page").removeSuffix(".md")
     }
     val page = MarkdownPage(displayTitle, content)
-
-
 
     // TODO 2025-11-28 Hugh Greene: Render main page sections as "titles" and sub-sections as
     // buttons, using Composables as below.

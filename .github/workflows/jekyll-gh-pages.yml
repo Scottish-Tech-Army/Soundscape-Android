@@ -78,8 +78,15 @@ jobs:
         with:
           path: docs
 
+      - name: Sync assets to docs
+        run: |
+          mkdir -p users/en users/en_GB
+          cp ../app/src/main/assets/help/en/*.md users/en/
+          cp ../app/src/main/assets/help/en-rGB/*.md users/en_GB/
+        working-directory: docs
 
       - name: Build with Jekyll
+
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
         env:
