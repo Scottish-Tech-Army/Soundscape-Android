@@ -9,7 +9,7 @@
     <string name="settings_about_app">"Soundscape について"</string>
     <string name="voice_settings_speaking_rate">"読み上げ速度"</string>
     <string name="voice_voices">"声"</string>
-    <string name="beacon_settings_style">音声スタイル</string>
+    <string name="beacon_settings_style">音声ビーコンのスタイル</string>
     <string name="beacon_styles_current">"最新"</string>
     <string name="beacon_styles_original">"オリジナル"</string>
     <string name="beacon_styles_flare">"フレア"</string>
@@ -181,7 +181,7 @@
     <string name="ui_menu_hint">メニューを開く</string>
     <string name="ui_menu_close">"メニューを閉じる"</string>
     <string name="ui_continue">"続行"</string>
-    <string name="menu_manage_callouts">コールアウトを管理</string>
+    <string name="menu_manage_callouts">コールアウト</string>
     <string name="menu_help_and_tutorials">ヘルプとチュートリアル</string>
     <string name="menu_rate">"評価する"</string>
     <string name="ui_back_button_title">"戻る"</string>
@@ -242,12 +242,12 @@
     <string name="help_text_destination_beacons_how_1">"**ビーコンを設定するには**:\n\n まず、場所の詳細を表示します。それには、検索バーを使って場所を検索するか、[近くの場所]、[保存したマーカー]、[現在地] のいずれかのボタンをタップして、場所を選択します。 場所の詳細画面で [音声ビーコンを開始] ボタンを選択できます。このボタンをタップするとホーム画面に戻り、選択した場所の方向から聞こえる音声ビーコンが有効になります。選択した場所の名前と距離、住所がわかる場合はその住所がアプリのメイン画面に表示されます。"</string>
     <string name="help_text_destination_beacons_how_2">**現在のビーコンを削除するには**:\n\n ホーム画面の [ビーコンを削除] ボタンを押します。</string>
     <string name="help_text_destination_beacons_how_3">**音声ビーコンをミュートするには**:\n\n ホーム画面の [ビーコンを削除] ボタンの下にある [ビーコンをミュート] ボタンをタップします。</string>
-    <string name="help_text_automatic_callouts_what">Soundscape は、周囲の場所に近付くと、それらがある方向から名前を読み上げて周辺の情報を教えてくれます。店舗やバス停、交差点など様々なものが自動的にコールアウトされます。アプリが自動的にコールアウトする内容は、[設定] 画面の [コールアウトを管理] セクションで設定できます。また、アプリを無音にしたいときはすべてのコールアウトをオフにできます。</string>
+    <string name="help_text_automatic_callouts_what">Soundscape は、近づくと周囲のものについて、それが存在する方向から名前を読み上げて知らせます。店舗やバス停、さらには交差点など、さまざまなものについてこの読み上げを自動で行います。自動的にどの項目をコールアウトするかは、[*設定*] 画面の [*コールアウト*] セクションで設定できます。アプリを静かにしたいときは、すべてのコールアウトをオフにすることもできます。</string>
     <string name="help_text_automatic_callouts_when_1">"**新しい場所の探索**:\n\n 自動コールアウトをオンにして歩くと、移動に応じて近くの店舗やレストランなどさまざまな情報を耳で確認できます。"</string>
     <string name="help_text_automatic_callouts_when_2">"**特定の場所への移動**:\n\n 特定の場所に向かって歩く際には、交差点の自動コールアウトが特に役立つ可能性があります。交差点のコールアウトを使用すると、交差点に近付くとその交差点の構造がわかり、交差点を出るときには、どの道路にいるかを確認できます。"</string>
     <string name="help_text_automatic_callouts_when_3">"**無音にしたい場合**:\n\n 交差点を横断するときや、単にアプリの音声を消したい場合、コールアウトをオフにすることができます。コールアウトをオフにすると、[*現在地*]、[*近くのマーカー*]、[*周辺*]、[*前方*] のいずれかのボタンをタップしたときにだけ、情報が伝えられます。"</string>
-    <string name="help_text_automatic_callouts_how_1">**コールアウトのオン/オフの切り替え**:\n\n コールアウトをオフにするとアプリが静かになります。コールアウトのオン/オフを切り替えるには、[設定] 画面の [コールアウトを管理] セクションで [コールアウトを使用] のトグルをタップしてオン/オフを切り替えます。また、ヘッドホンにメディアコントロール ボタンがある場合は、[前方スキップ] コマンド (ダブルタップして長押し) を使用してコールアウトのオン/オフを切り替えることもできます。または、ホーム画面の右上隅にある [スリープ] ボタンを使用すると、スリープ モードを解除するまで、Soundscape のコールアウトを停止することができます。</string>
-    <string name="help_text_automatic_callouts_how_2">**聞きたいコールアウトの管理**:\n\n Soundscape で自動的にコールアウトされる内容を選択するには、ホーム画面のメニューから [設定] 画面を開きます。[設定] 画面の [コールアウトを管理] セクションには、アプリでコールアウトできる項目の一覧が表示されます。項目ごとにトグル ボタンがあり、オン/オフを切り替えることができます。すべてのコールアウトをオフにするには、一覧の上にある [コールアウトを使用] のトグルをタップします。</string>
+    <string name="help_text_automatic_callouts_how_1">**コールアウトのオン／オフ切り替え:**\n\n コールアウトをオフにするとアプリは無音になります。コールアウトは、[*設定*] 画面の [*コールアウト*] セクションで、[*コールアウトを使用*] トグルをタップしてオン／オフを切り替えられます。ヘッドホンにメディアコントロールボタンがある場合は、*前方スキップ* コマンド（ダブルタップして保持）でコールアウトをオン／オフすることもできます。あるいは、ホーム画面右上の [*スリープ*] ボタンを使って、スリープ解除するまで Soundscape によるコールアウトを停止することもできます。</string>
+    <string name="help_text_automatic_callouts_how_2">**どのコールアウトを聞くかを管理する:**\n\n Soundscape が自動的にコールアウトするカテゴリを選ぶには、[*ホーム*] 画面のメニューから [*設定*] を開いてください。[*設定*] 画面の [*コールアウト*] セクションには、アプリがコールアウトできる項目の一覧があります。各項目にはオン／オフのトグルがあり、切り替えて設定できます。すべてのコールアウトをオフにしたい場合は、一覧の先頭にある [*コールアウトを使用*] トグルをタップしてください。</string>
     <string name="help_text_my_location_what">"[*現在地*] ボタンを使用すると、自分の現在地を簡単に確認できるように情報が提供されます。[*現在地*] ボタンでは、自分が向いている方向、近くの道路や交差点がどこにあるか、近くの特定地点がどこにあるかなど、現在地に関する情報がわかります。"</string>
     <string name="help_text_my_location_when">"[*現在地*] は、自分の現在地や向かっている方向を確認する必要がある場合に役立ちます。"</string>
     <string name="help_text_my_location_how">"ホーム画面の下部の 4 つのボタンはどれも同じですが、スマートフォンの画面を上 (空) に向けて水平に持ち、スマートフォンの画面上部を自分が向いている方向に合わせてから、[*現在地*] ボタンを押します。これにより、コンパスを合わせるように、自分が向いている方向をアプリに伝えることができます。[*現在地*] ボタンをタップすると、音声が聞こえます。"</string>
@@ -391,7 +391,7 @@
     <string name="faq_use_with_wayfinding_apps_question">"Soundscape をウェイファインディング アプリと同時に使用するには、どうしたらよいですか?"</string>
     <string name="faq_use_with_wayfinding_apps_answer">"Soundscape は、従来の方法では知りえなかった、自分の周辺の情報を知ることができる視覚サポート アプリです。道順を案内するアプリではありませんが、道案内のアプリと併せて使用すると、補助的な情報が得られます。そのようなアプリと Soundscape を併用する場合は、道案内のアプリを先に起動します。それから Soundscape に切り替えて、道案内のアプリと同じ目的地にビーコンを設定します。この状態で両方のアプリを実行しておくと、道案内アプリで進む道の指示が聞こえるのと同時に、Soundscape で特定地点や交差点、目的地までの距離に関する情報を確認できます。"</string>
     <string name="faq_controlling_what_you_hear_question">"Soundscape のどの音声案内をいつ鳴らすかを指定することはできますか?"</string>
-    <string name="faq_controlling_what_you_hear_answer">Soundscape では、聞く内容やタイミングを制御するための方法をいくつか提供しています。\n\n1. すべての音声を即座に止める: 画面を2本の指でダブル タップすると、現在再生中のコールアウトやビーコンを含め、すべての音声を即座にオフにできます。交差点や特定地点に近づくとコールアウトは自動的に再開しますが、音声ビーコンは自動的には再開しません。メイン画面の「ビーコンのミュートを解除」ボタンを選択するとビーコンを再開できます。\n\n2. 自動コールアウトを止める: 移動していないときや目的地に到着したときは、周囲の通知が不要な場合があります。アプリを終了する代わりに、Soundscape をスヌーズ モードにすれば離れると自動的に再開しますし、スリープ モードにすれば自分で再開するまでオフのままにできます。あるいはメニューから「設定」を開き、[コールアウトを管理] セクションで全てのコールアウトをオフにすることもできます。\n\n3. ビーコンを止める: 目的地を設定していても音声ビーコンが不要な場面はあります。たとえば目的地への行き方がはっきり分かっていて距離の更新だけほしい場合や、目的地に近づいたときだけビーコンがほしい場合などです。その場合は、メイン画面の「ビーコンをミュート」/「ビーコンのミュートを解除」ボタンでビーコンのオン/オフを切り替えてください。</string>
+    <string name="faq_controlling_what_you_hear_answer">Soundscape では、聞く内容やタイミングを制御するためのいくつかの方法を提供しています。\n\n1. すべての音声を即時に停止する: 画面を 2 本指でダブルタップすると、再生中のコールアウトや（設定されている場合の）ビーコンを含め、すべての音声が即座にオフになります。コールアウトは次の交差点や特定地点に近づくと自動的に再開しますが、音声ビーコンは再開しません。ビーコンの音を再度聞きたい場合は、メイン画面の「ビーコンのミュートを解除」ボタンを選択してください。\n\n2. 自動コールアウトを停止する: 移動していないときや目的地に到着したときは、Soundscape による周囲の通知を継続して受け取る必要はない場合が多いでしょう。アプリを終了する代わりに、Soundscape をスヌーズ モードにすると離れるまで自動的に低電力状態になり、離れると再び動作します。または、スリープ モードにすると自分で再開するまで停止したままにできます。あるいはメニューから [*設定*] を開き、[*コールアウト*] セクションで全てのコールアウトをオフにすることもできます。\n\n3. ビーコンを停止する: 目的地を設定していても、常に音声ビーコンをオンにする必要がない場面があります。たとえば、目的地への行き方が正確に分かっていて、目的地までの距離だけ自動で知りたい場合や、目的地に近づいたときだけビーコンを使いたい場合などです。どのタイミングでビーコンを聞くかは、メイン画面の [*ビーコンをミュート*]／[*ビーコンのミュートを解除*] ボタンで切り替えて選択できます。</string>
     <string name="faq_holding_phone_flat_question">"常にスマートフォンを手に持っている必要がありますか?"</string>
     <string name="faq_holding_phone_flat_answer">いいえ！歩いている間はスマートフォンをバッグやポケットなどに入れておいて構いません。Soundscape は歩行方向を使って左右どちらのコールアウトを流すかを判断します。立ち止まると、Soundscape はどちらを向いているかわからなくなります。音声ビーコンがオンの場合は、再び動き出すまでビーコンが静かになります。画面下部の現在地や探索ボタンを押すためにスマートフォンを取り出すことはいつでもできますが、そのときは端末を水平に（画面を上に向け）持ち、端末の上側が自分の向いている方向を向くようにしてください。この「水平」な持ち方をすると、端末のコンパスで向きを判定して正確な立体的コールアウトを提供します。ビーコンがオンの場合は、同時に音量が元に戻るのが分かります。</string>
     <string name="faq_what_is_osm_question">"Open Street Map とは何ですか、なぜ Soundscape で使用されているのですか?"</string>
@@ -400,7 +400,7 @@
     <string name="faq_tip_setting_beacon_on_address">任意の住所にビーコンを設定できます。メイン画面で住所を検索し、検索結果で住所を選択すると「場所の詳細」画面が表示され、その住所に対して「音声ビーコンを開始」するオプションがあります。この方法で、OpenStreetMap に登録されていない店舗や場所、特定地点、住宅にもビーコンを設定できます。</string>
     <string name="faq_tip_finding_bus_stops">近くのバス停は、[近くの場所] の一覧で「公共交通機関」フィルタを選択すると見つけられます。</string>
     <string name="faq_tip_turning_beacon_off">"ホーム画面のミュート ボタンを使うと、一定のリズムのビーコンのサウンドのオン/オフを切り替えることができます。ビーコンがミュートされていても、目的地までの距離に関する情報は、約 50 メートルごとに通知されます。"</string>
-    <string name="faq_tip_turning_off_auto_callouts">Soundscape とやりとりはしたいが自動コールアウトを聞きたくない場合は、メニューから「設定」を開き、[コールアウトを管理] セクションでコールアウトをオフにしてください。あるいは、しばらく使わない場合はホーム画面の「スリープ」ボタンでスリープまたはスヌーズ モードにしてください。</string>
+    <string name="faq_tip_turning_off_auto_callouts">Soundscape とやり取りはしたいが自動コールアウトを聞きたくない場合は、メニューから [*設定*] を開き [*コールアウト*] セクションでコールアウトをオフにしてください。あるいは、しばらく使用しない場合はホーム画面の [*スリープ*] ボタンで Soundscape をスリープまたはスヌーズ モードにしてください。</string>
     <string name="faq_tip_hold_phone_flat">"スマートフォンの画面を上 (空) に向けて水平に持ち、画面の下側を自分に向けると、Soundscape が適切に動作しやすくなります。"</string>
     <string name="faq_tip_create_marker_at_bus_stop">よく利用するバス路線がある場合は、乗車停留所と降車停留所をマーカーとして設定してください。こうして保存しておけば、メニューの「マーカーを管理」で一覧から簡単に見つけられます。それらにビーコンを設定すれば、降車停留所までの距離を定期的に知らせてもらえます。注: リズミカルな音をオフにしても、移動中の距離更新は受け取れます。</string>
     <string name="first_launch_permissions_notification">通知</string>
@@ -451,8 +451,8 @@
     <string name="osm_subway_named" tools:ignore="MissingTranslation">%s 地下鉄駅</string>
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">フェリーターミナル</string>
     <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s フェリーターミナル</string>
-    <string name="menu_manage_audio" tools:ignore="MissingTranslation">オーディオを管理</string>
-    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">アクセシビリティを管理</string>
+    <string name="menu_manage_audio" tools:ignore="MissingTranslation">音声</string>
+    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">アクセシビリティ</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">ライトまたはダーク テーマ</string>
     <string name="settings_theme_auto" tools:ignore="MissingTranslation">自動</string>
     <string name="settings_theme_is_light" tools:ignore="MissingTranslation">ライトテーマを使用</string>
@@ -469,7 +469,7 @@
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">移動の記録を有効にする</string>
     <string name="settings_accessible_map" tools:ignore="MissingTranslation">アクセシブルな地図スタイルを有効にする</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">画面に地図を表示する</string>
-    <string name="settings_debug_heading" tools:ignore="MissingTranslation">デバッグ設定</string>
+    <string name="settings_debug_heading" tools:ignore="MissingTranslation">デバッグオプション</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">検索言語</string>
     <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">移動記録を共有</string>
     <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s から %2$s へ（%3$s 経由）</string>
@@ -1193,7 +1193,7 @@
     <string name="settings_search_auto" tools:ignore="MissingTranslation">自動</string>
     <string name="search_no_results" tools:ignore="MissingTranslation">検索結果が見つかりませんでした</string>
     <string name="search_searching" tools:ignore="MissingTranslation">検索中…</string>
-    <string name="menu_manage_search" tools:ignore="MissingTranslation">検索を管理</string>
+    <string name="menu_manage_search" tools:ignore="MissingTranslation">検索</string>
     <string name="route_not_found" tools:ignore="MissingTranslation">ルートが見つかりません</string>
     <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">エクスポート</string>
     <string name="location_item_selected" tools:ignore="MissingTranslation">選択済み</string>
@@ -1255,4 +1255,16 @@
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">%1$s（%2$s の直後）</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">%s の交差点付近</string>
     <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">この場所は既にルートに含まれているため、再度追加することはできません。</string>
+    <string name="settings_explanation" tools:ignore="MissingTranslation">アプリの各種設定は下のグループに分類されています。グループをタップして展開し、利用可能なオプションを表示してください。</string>
+    <string name="settings_section_units_description" tools:ignore="MissingTranslation">距離に使用する測定単位を選択します</string>
+    <string name="settings_section_search_network" tools:ignore="MissingTranslation">検索モード</string>
+    <string name="settings_section_search_network_description" tools:ignore="MissingTranslation">検索がオフラインデータのみを使用するかどうかを制御します</string>
+    <string name="beacon_settings_style_description" tools:ignore="MissingTranslation">使用する音声ビーコンのスタイルを選択します</string>
+    <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">位置シミュレーション中に無名道路を含めます</string>
+    <string name="callouts_allow_callouts_description" tools:ignore="MissingTranslation">すべてのコールアウトをオンまたはオフにします</string>
+    <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">近くの店舗やレストランなど</string>
+    <string name="callouts_mobility_description" tools:ignore="MissingTranslation">交差点および交通に関する情報</string>
+    <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">音声ビーコンが設定されているときの距離に関する更新</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">"言語と地域 "</string>
+    <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">オンライン検索は、結果の現地言語を使用するか、英語・フランス語・ドイツ語のいずれかで返すように設定できます。</string>
 </resources>
