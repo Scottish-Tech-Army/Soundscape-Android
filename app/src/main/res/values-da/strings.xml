@@ -9,7 +9,7 @@
     <string name="settings_about_app">"Om Soundscape"</string>
     <string name="voice_settings_speaking_rate">"Talehastighed"</string>
     <string name="voice_voices">"Stemmer"</string>
-    <string name="beacon_settings_style">"Lydtyper"</string>
+    <string name="beacon_settings_style">Lydtyper</string>
     <string name="beacon_styles_current">"Igangværende"</string>
     <string name="beacon_styles_original">"Oprindelig"</string>
     <string name="beacon_styles_flare">"Lysglimt"</string>
@@ -181,7 +181,7 @@
     <string name="ui_menu_hint">Åbn menuen</string>
     <string name="ui_menu_close">"Luk menuen"</string>
     <string name="ui_continue">"Fortsæt"</string>
-    <string name="menu_manage_callouts">"Administrer lydbeskeder"</string>
+    <string name="menu_manage_callouts">Administrer lydbeskeder</string>
     <string name="menu_help_and_tutorials">Hjælp og selvstudier</string>
     <string name="menu_rate">"Bedøm"</string>
     <string name="ui_back_button_title">"Tilbage"</string>
@@ -246,8 +246,8 @@
     <string name="help_text_automatic_callouts_when_1">"**Udforskning af et nyt område**:\n\n Slå automatiske lydbeskeder til, og gå rundt for at høre om alle de forskellige butikker, restauranter og lignende, når du passerer dem."</string>
     <string name="help_text_automatic_callouts_when_2">"**Når du går til et bestemt sted**:\n\n Når du er på vej til et bestemt sted, kan automatiske lydbeskeder om kryds være særligt nyttige. Lydbeskeder om kryds fortæller dig om krydsenes opbygning, når du nærmer dig dem, og bekræfter den vej, du er på, når du forlader dem."</string>
     <string name="help_text_automatic_callouts_when_3">"**Når du har brug for stilhed**:\n\n Når du er ved at krydse en vej eller bare har brug for, at appen er stille, kan du slå lydbeskeder fra. Når lydbeskeder er slået fra, sender appen dig kun oplysninger, hvis du manuelt trykker på én af knapperne *\"Min placering\"*, *\"Mærker i nærheden\"*, *\"Omkring mig\"* eller *\"Foran mig\"*."</string>
-    <string name="help_text_automatic_callouts_how_1">"**Slå lydbeskeder til eller fra**:\n\n Hvis du slår lydbeskeder fra, lukkes der for lyden i appen. Du kan slå lydbeskeder til eller fra i afsnittet \"Administrer lydbeskeder\" på skærmbilledet \"Indstillinger\", hvor du kan trykke på omskifteren \"Tillad lydbeskeder\" for at slå lydbeskeder til eller fra. Du kan også slå lydbeskeder til eller fra ved hjælp af kommandoen \"spring fremad\" (dobbelttryk og hold), hvis hovedtelefonerne har mediebetjeningsknapper. Du kan også bruge knappen \"Dvale\" i øverste højre hjørne af startskærmen til at forhindre Soundscape i at sende lydbeskeder, indtil du vælger at vække dem igen."</string>
-    <string name="help_text_automatic_callouts_how_2">"**Administrer, hvilke lydbeskeder du hører**:\n\n Hvis du vil vælge de typer ting, som Soundscape automatisk vil sende lydbeskeder om, skal du gå til skærmen \"Indstillinger\" ved hjælp af menuen på skærmen \"Start\". Afsnittet \"Administrer lydbeskeder\" på skærmbilledet \"Indstillinger\" indeholder en liste over de typer ting, som appen kan sende lydbesked om. Hvert element har en omskifterknap, som du kan slå til eller fra. Hvis du vil slå alle lydbeskeder fra, skal du trykke på omskifteren \"Tillad lydbeskeder\" øverst på listen."</string>
+    <string name="help_text_automatic_callouts_how_1">**Slå lydbeskeder til eller fra**:\n\n Hvis du slår lydbeskeder fra, lukkes der for lyden i appen. Du kan slå lydbeskeder til eller fra i afsnittet \"Administrer lydbeskeder\" på skærmbilledet \"Indstillinger\", hvor du kan trykke på omskifteren \"Tillad lydbeskeder\" for at slå lydbeskeder til eller fra. Du kan også slå lydbeskeder til eller fra ved hjælp af kommandoen \"spring fremad\" (dobbelttryk og hold), hvis hovedtelefonerne har mediebetjeningsknapper. Du kan også bruge knappen \"Dvale\" i øverste højre hjørne af startskærmen til at forhindre Soundscape i at sende lydbeskeder, indtil du vælger at vække dem igen.</string>
+    <string name="help_text_automatic_callouts_how_2">**Administrer, hvilke lydbeskeder du hører**:\n\n Hvis du vil vælge de typer ting, som Soundscape automatisk vil sende lydbeskeder om, skal du gå til skærmen \"Indstillinger\" ved hjælp af menuen på skærmen \"Start\". Afsnittet \"Administrer lydbeskeder\" på skærmbilledet \"Indstillinger\" indeholder en liste over de typer ting, som appen kan sende lydbesked om. Hvert element har en omskifterknap, som du kan slå til eller fra. Hvis du vil slå alle lydbeskeder fra, skal du trykke på omskifteren \"Tillad lydbeskeder\" øverst på listen.</string>
     <string name="help_text_my_location_what">"Knappen *\"Min placering\"* giver dig hurtigt oplysninger, der hjælper dig med at finde ud af, hvor du er i øjeblikket. *\"Min placering\"* fortæller dig om din aktuelle placering, herunder ting som den retning, du vender mod, hvor veje eller kryds i nærheden er, og hvor der er interessepunkter i nærheden."</string>
     <string name="help_text_my_location_when">"*\"Min placering\"* er nyttig, når du skal finde ud af, hvor du er, eller i hvilken kardinalretning du vender."</string>
     <string name="help_text_my_location_how">"Som med alle fire knapper nederst på startskærmen skal du holde telefonen med skærmen vandret (så den vender mod himlen), og toppen af telefonen skal pege i den retning, du vender, før du trykker på knappen *\"Min placering\"*. Dette fungerer som et kompas, der fortæller appen, i hvilken retning du vender. Du skal blot trykke på knappen *\"Min placering\"* og lytte."</string>
