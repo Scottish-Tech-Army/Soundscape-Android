@@ -22,6 +22,8 @@
 <string name="settings_about_app">"About Soundscape"</string>
 <!-- In the Settings page the title of the section for the units of measurement e.g. metric or imperial -->
 <string name="settings_section_units" tools:ignore="MissingTranslation">"Units of Measure"</string>
+<!-- In the Settings page this is the description of the option to control which units are used -->
+<string name="settings_section_units_description" tools:ignore="MissingTranslation">"Select the units of measurement to use for distance"</string>
 <!-- The option for setting the units of measurement to miles and feet -->
 <string name="settings_units_imperial" tools:ignore="MissingTranslation">"Imperial (Feet)"</string>
 <!-- The option for setting the units of measurement to kilometers and meters -->
@@ -30,6 +32,10 @@
 <string name="settings_section_search" tools:ignore="MissingTranslation">"Search"</string>
 <!-- A hint for the search bar explaining what it's for -->
 <string name="search_bar_hint" tools:ignore="MissingTranslation">"Type a destination name or address"</string>
+<!-- This is the setting to control whether the Search uses offline data or can use an online server -->
+<string name="settings_section_search_network" tools:ignore="MissingTranslation">"Search mode"</string>
+<!-- This is the description for the search mode -->
+<string name="settings_section_search_network_description" tools:ignore="MissingTranslation">"Control whether search uses only offline data"</string>
 <!-- The option for setting the search to use the online search engines -->
 <string name="settings_search_online" tools:ignore="MissingTranslation">"Online"</string>
 <!-- The option for setting the search to use the offline search engine -->
@@ -39,7 +45,7 @@
 <!-- Text shown when no search results were found -->
 <string name="search_no_results" tools:ignore="MissingTranslation">"No search results found"</string>
 <!-- Text shown when no search in progress -->
-<string name="search_searching" tools:ignore="MissingTranslation">"Searching..."</string>
+<string name="search_searching" tools:ignore="MissingTranslation">"Searching…"</string>
 <!-- Title for option to set the speed of the text-to-speech voice. -->
 <string name="voice_settings_speaking_rate">"Speaking Rate"</string>
 <!-- Title for option to select the text-to-speech engine to use. -->
@@ -47,7 +53,9 @@
 <!-- Title for option to select the text-to-speech voice to use. -->
 <string name="voice_voices">"Voices"</string>
 <!-- Title of a section in the beacon settings page where the user can select which style of beacon that they want. -->
-<string name="beacon_settings_style">"Audio Styles"</string>
+<string name="beacon_settings_style">"Audio beacon styles"</string>
+<!-- Description of the choice of beacon settings. -->
+<string name="beacon_settings_style_description" tools:ignore="MissingTranslation">"Choose the style of audio beacon you wish to use"</string>
 <!-- Name of a beacon style. This is the name of the most recent version of the beacon audio we had in Soundscape as of the v4.1 release, so we refer to it as the "current" beacon. -->
 <string name="beacon_styles_current">"Current"</string>
 <!-- Name of a beacon style. This is the name of the first style of beacon audio we had in Soundscape, so we refer to it as "Original" -->
@@ -94,6 +102,8 @@
 <string name="last_entry_in_list" tools:ignore="MissingTranslation">" and %s"</string>
 <!-- Title for a setting to include unnamed roads -->
 <string name="preview_include_unnamed_roads_title">"Unnamed Roads"</string>
+<!-- A description for the setting that includes unnamed roads during location simulation-->
+<string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">"Include unnamed roads during location simulation"</string>
 <!-- Location Details page title. This page shows information about the location including the address and a map. -->
 <string name="location_detail_title_default">"Location Details"</string>
 <!-- Title for the action to start playing an audio beacon -->
@@ -258,12 +268,20 @@
 <string name="callouts_panel_title">"Hear My Surroundings"</string>
 <!-- Settings option to allow audio callouts - callouts are the descriptions of the nearby roads. -->
 <string name="callouts_allow_callouts">"Allow Callouts"</string>
+<!-- A description for the audio callouts setting. -->
+<string name="callouts_allow_callouts_description" tools:ignore="MissingTranslation">"Turn all callouts on or off"</string>
 <!-- Settings option to allow finer control of which places are called out - in this case places and landmarks -->
 <string name="callouts_places_and_landmarks">"Places and Landmarks"</string>
+<!-- A description for the places and landmarks callout setting. -->
+<string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">"Nearby places like shops and restaurants"</string>
 <!-- Settings option to allow finer control of which places are called out - in this case mobility relates places -->
 <string name="callouts_mobility">"Mobility"</string>
+<!-- A description for the mobility callouts setting. -->
+<string name="callouts_mobility_description" tools:ignore="MissingTranslation">"Intersection and transportation info"</string>
 <!-- Title for a setting under the Manage Callouts settings section. This toggle enables or disables periodic callouts that inform the user about their distance from the location of the audio beacon. -->
 <string name="callouts_audio_beacon">"Distance to the Audio Beacon"</string>
+<!-- A description for the distance to audio beacon setting. -->
+<string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">"Updates about distance to the audio beacon when it's set"</string>
 <!-- Help title for automatic callouts -->
 <string name="callouts_automatic_callouts">"Automatic Callouts"</string>
 <!-- Speech callout indicating that there's no useful information available -->
@@ -459,7 +477,7 @@
 <!-- Button, Continue to progress to the next stage-->
 <string name="ui_continue">"Continue"</string>
 <!-- Title in settings for callouts preferences-->
-<string name="menu_manage_callouts">"Audio callouts"</string>
+<string name="menu_manage_callouts">"Manage callouts"</string>
 <!-- Title in settings to search preferences-->
 <string name="menu_manage_search" tools:ignore="MissingTranslation">"Search"</string>
 <!-- Title for Help and Tutorials screen-->
@@ -806,7 +824,7 @@
 <!-- Title for settings page group of audio settings -->
 <string name="menu_manage_audio" tools:ignore="MissingTranslation">"Audio"</string>
 <!-- Title for settings page group of language settings -->
-<string name="menu_manage_language" tools:ignore="MissingTranslation">"Language"</string>
+<string name="menu_manage_language" tools:ignore="MissingTranslation">"Language and Region "</string>
 <!-- Title for settings page group of accessibility settings -->
 <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">"Accessibility"</string>
 <!-- App theme light/dark description -->
@@ -844,6 +862,8 @@
 <string name="settings_debug_heading" tools:ignore="MissingTranslation">"Debug options"</string>
 <!-- Settings title for choosing the languages returned by search -->
 <string name="settings_search_results_language" tools:ignore="MissingTranslation">"Search language"</string>
+<!-- Description of what the search language option does -->
+<string name="settings_search_results_language_description" tools:ignore="MissingTranslation">"Online search can use the local language of the result, or be forced to return English, French or German."</string>
 <!-- Menu option for sharing the recorded travel route via another app -->
 <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">"Share recording of travel"</string>
 <!-- Description of path to another road that passes steps/tunnel/bridge e.g. "Path to Moor Road via steps" -->
@@ -2489,7 +2509,7 @@ As always please report any problems, however small they may be via the *Contact
 <!-- Open Street Map term for a wood or forest. -->
 <string name="osm_wood" tools:ignore="MissingTranslation">Wood</string>
 <!-- Open Street Map term for a sports pavillion. -->
-<string name="osm_pavillion" tools:ignore="MissingTranslation">Pavillion</string>
+<string name="osm_pavillion" tools:ignore="MissingTranslation">Pavilion</string>
 <!-- Open Street Map term for a sports venue where we don't know the sport. -->
 <string name="osm_sport" tools:ignore="MissingTranslation">Sport</string>
 <!-- Open Street Map term for a health food shop. -->
