@@ -4,17 +4,22 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import org.junit.runner.RunWith
 import org.robolectric.ParameterizedRobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.scottishtecharmy.soundscape.screens.home.home.StructureLog
 
 @OptIn(ExperimentalComposeUiApi::class)
 @RunWith(ParameterizedRobolectricTestRunner::class)
 @Config(sdk = [34], manifest = Config.NONE, qualifiers = "w1000dp-h100000dp")
 class HelpScreenStructureTest(testTopic: String) : HelpScreenRegressionTestBase(testTopic) {
-    override fun compareAgainstBaseline(actualLayout: String) {
+    private val structure = StringBuilder()
+
+    override fun makeStructureLog(): StructureLog = StructureLog { structure.appendLine(it) }
+
+    override fun compareAgainstBaseline(structureLog: StructureLog) {
         // Compare against baseline file
-        composeTestRule.assertLayoutMatchesHybridBaseline(
-            "help_screen_layouts/${filenameSafeTestTopic}",
-            actualLayout,
-            includeLayout = false
+        assertLayoutMatchesHybridBaseline(
+            "help_screen_layouts/${filenameSafeTestTopic}.structure.txt",
+            structure.toString(),
+            "Structure"
         )
     }
 

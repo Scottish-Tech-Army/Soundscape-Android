@@ -3,18 +3,20 @@
 package org.scottishtecharmy.soundscape
 
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.test.junit4.createComposeRule
-import org.junit.Rule
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
+import org.scottishtecharmy.soundscape.screens.home.home.StructureLog
 
 @RunWith(Parameterized::class)
-class HelpScreenRegressionTest(testTopic: String) : HelpScreenRegressionTestBase(testTopic) {
-    override fun compareAgainstBaseline(actualLayout: String) {
+class HelpScreenLayoutTest(testTopic: String) : HelpScreenRegressionTestBase(testTopic) {
+    override fun makeStructureLog(): StructureLog = StructureLog { }
+
+    override fun compareAgainstBaseline(structureLog: StructureLog) {
         // Compare against baseline file
-        composeTestRule.assertLayoutMatchesHybridBaseline(
-            "help_screen_layouts/${filenameSafeTestTopic}",
-            actualLayout
+        assertLayoutMatchesHybridBaseline(
+            "help_screen_layouts/${filenameSafeTestTopic}.txt",
+            composeTestRule.dumpLayoutTree(),
+            "Layout"
         )
     }
 

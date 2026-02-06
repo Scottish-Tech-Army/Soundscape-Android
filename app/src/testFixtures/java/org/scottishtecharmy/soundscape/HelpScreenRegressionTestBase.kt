@@ -30,11 +30,11 @@ abstract class HelpScreenRegressionTestBase(protected val testTopic: String) {
     protected val filenameSafeTestTopic = testTopic.replace("’", "'")
 
     @Test
-    fun structure_regression() {
+    fun help_screen_regression() {
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
         val topic = HelpScreenTestShared.getTopic(testTopic)
 
-        val structureLog = StringBuilder()
+        val structureLog = makeStructureLog()
         composeTestRule.setContent {
             SoundscapeTheme {
                 // TODO 2025-12-12 Hugh Greene: This is just a special case for the root page,
@@ -46,7 +46,7 @@ abstract class HelpScreenRegressionTestBase(protected val testTopic: String) {
                         modifier = Modifier
                             .windowInsetsPadding(WindowInsets.safeDrawing)
                             .semantics { testTagsAsResourceId = true },
-                        structureLog = StructureLog { structureLog.appendLine(it) }
+                        structureLog = structureLog
                     )
                 } else {
                     HelpScreen(
@@ -55,14 +55,16 @@ abstract class HelpScreenRegressionTestBase(protected val testTopic: String) {
                         modifier = Modifier
                             .windowInsetsPadding(WindowInsets.safeDrawing)
                             .semantics { testTagsAsResourceId = true },
-                        structureLog = StructureLog { structureLog.appendLine(it) }
+                        structureLog = structureLog
                     )
                 }
             }
         }
 
-        compareAgainstBaseline(structureLog.toString())
+        compareAgainstBaseline(structureLog)
     }
 
-    protected abstract fun compareAgainstBaseline(actualLayout: String)
+    protected abstract fun makeStructureLog(): StructureLog
+
+    protected abstract fun compareAgainstBaseline(structureLog: StructureLog)
 }

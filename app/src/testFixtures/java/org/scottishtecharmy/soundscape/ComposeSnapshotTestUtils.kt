@@ -84,24 +84,11 @@ private sealed class AssertResult {
  * - If missing, writes a temporary new file to context.filesDir
  * - If mismatched, prints a diff
  */
-fun ComposeTestRule.assertLayoutMatchesHybridBaseline(
-    filenameBase: String,
-    structureLog: String,
-    includeLayout: Boolean = true
+fun assertLayoutMatchesHybridBaseline(
+    filename: String,
+    snapshot: String,
+    snapshotType: String
 ) {
-    val results = mutableListOf<AssertResult>()
-    if (includeLayout) {
-        results.add(assertHybridBaseline("${filenameBase}.txt", dumpLayoutTree(), "Layout"))
-    }
-    results.add(assertHybridBaseline("${filenameBase}.structure.txt", structureLog, "Structure"))
-
-    val failedResults = results.filterIsInstance<AssertResult.Failed>()
-    if (failedResults.isNotEmpty()) {
-        fail(failedResults.joinToString("\n") { it.message })
-    }
-}
-
-private fun assertHybridBaseline(filename: String, snapshot: String, snapshotType: String): AssertResult {
     val context = InstrumentationRegistry.getInstrumentation().context
     val baselineSubpathString = "baselines/${filename}"
     val baselineText = loadBaselineFromAssets(context, baselineSubpathString)
@@ -115,7 +102,7 @@ private fun assertHybridBaseline(filename: String, snapshot: String, snapshotTyp
         // If no baseline in assets, create a new one on the Android device (or host if Robolectric)
         // for review.
         val outputBaselineFile = generateBaselineFile(outputDir, baselineSubpathString, snapshot)
-        return AssertResult.Failed(
+        fail(
             "No $snapshotType baseline found in 'assets/$baselineSubpathString'. " +
             "A new one will be written to '${outputBaselineFile}'; review then commit it.")
     }
@@ -129,14 +116,13 @@ private fun assertHybridBaseline(filename: String, snapshot: String, snapshotTyp
             println(diff)
             val outputBaselineFile = generateBaselineFile(outputDir, baselineSubpathString, snapshot)
             println("New $snapshotType snapshot written to: ${outputBaselineFile}")
-            return AssertResult.Failed(
+            fail(
                 "$snapshotType does not match baseline. See diff above. " +
                 "An updated version will be copied into ${outputBaselineFile}; " +
                 "review the changes before committing.")
         }
         else {
             println("$snapshotType matches baseline.")
-            return AssertResult.Passed
         }
     }
 }
