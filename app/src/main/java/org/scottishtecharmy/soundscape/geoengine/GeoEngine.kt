@@ -445,14 +445,14 @@ class GeoEngine {
                     // need. Auto Callouts use the direction of travel if there is one, otherwise
                     // falling back to use the phone direction.
                     if(!soundscapeService.isAudioEngineBusy() && !autoCalloutDisabled) {
-                        val callouts =
+                        val callout =
                             autoCallout.updateLocation(
                                 getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
                                 gridState,
                                 settlementGrid)
-                        if (callouts != null) {
+                        if (callout != null) {
                             // Tell the service that we've got some callouts to tell the user about
-                            soundscapeService.speakCallout(callouts, false)
+                            soundscapeService.speakCallout(callout, false)
                         }
 
                         // Save the location data to a file if enabled
@@ -974,15 +974,6 @@ fun getTextForFeature(localizedContext: Context?, feature: MvtFeature) : TextFor
         return TextForFeature(name ?: feature.housenumber ?: "", false)
     }
 
-    if(localizedContext == null) {
-        if(name == null) {
-            val osmClass = feature.featureClass
-            return TextForFeature(osmClass ?: "", true)
-        }
-
-        return TextForFeature(name, false)
-    }
-
     if(isMarker) {
         // If the feature is a Marker, return the unadulterated name along with prefix indicating
         // that it's a Marker and any extra description (annotation).
@@ -995,9 +986,11 @@ fun getTextForFeature(localizedContext: Context?, feature: MvtFeature) : TextFor
                 text = description as String
         }
         return if(text != null)
-                TextForFeature(localizedContext.getString(R.string.markers_marker_with_name, text), false)
+                TextForFeature(
+                    localizedContext?.getString(R.string.markers_marker_with_name, text)
+                        ?: "Marker. $text", false)
             else
-                TextForFeature(localizedContext.getString(R.string.markers_generic_name), false)
+                TextForFeature(localizedContext?.getString(R.string.markers_generic_name) ?: "Marker", false)
     }
 
     var text = name
@@ -1012,9 +1005,9 @@ fun getTextForFeature(localizedContext: Context?, feature: MvtFeature) : TextFor
     }
     if(namedTransit != null) {
         text = if (name != null)
-            localizedContext.getString(namedTransit.first, name)
+            localizedContext?.getString(namedTransit.first, name) ?: "$name Transit Stop"
         else
-            localizedContext.getString(namedTransit.second)
+            localizedContext?.getString(namedTransit.second) ?: "Transit"
     }
 
     if(entranceType != null) {
@@ -1036,34 +1029,39 @@ fun getTextForFeature(localizedContext: Context?, feature: MvtFeature) : TextFor
 
         val entranceText =
             if(entranceType == "main")
-                localizedContext.getString(R.string.osm_main_entrance)
+                localizedContext?.getString(R.string.osm_main_entrance) ?: "Main entrance"
             else
-                localizedContext.getString(R.string.osm_entrance)
+                localizedContext?.getString(R.string.osm_entrance)  ?: "Entrance"
 
 
         text = if(entranceName != null) {
-            localizedContext.getString(
+            localizedContext?.getString(
                 R.string.osm_entrance_named_with_destination,
                 destinationName,
                 entranceText,
                 entranceName,
-
-            )
+            ) ?: "$destinationName $entranceText to $entranceName"
         }
         else
-            localizedContext.getString(R.string.osm_entrance_with_destination, destinationName, entranceText)
+            localizedContext?.getString(R.string.osm_entrance_with_destination, destinationName, entranceText)
+                ?: "$destinationName $entranceText"
     }
 
-    val osmClass =
-        feature.featureClass ?: return TextForFeature("", true)
-    val osmSubClass =
-        feature.featureSubClass
+    if((feature.featureClass == null) && (feature.featureSubClass == null)) {
+        // Some Feature do not have a featureClass e.g. Buildings. Those can have names and so we
+        // should return those
+        return if(text == null)
+            TextForFeature("", true)
+        else
+            TextForFeature(text, false)
+    }
 
-    val id = ResourceMapper.getResourceId(osmClass) ?: ResourceMapper.getResourceId(osmSubClass)
+    val id = ResourceMapper.getResourceId(feature.featureClass) ?:
+             ResourceMapper.getResourceId(feature.featureSubClass)
     val osmText = if (id == null) {
-        null        //osmClass.replace("_", " ").capitalize(Locale.getDefault())
+        null
     } else {
-        localizedContext.getString(id)
+        localizedContext?.getString(id) ?: "OSM Feature"
     }
     var additionalText :String? = null
     if (text == null) {
@@ -1073,7 +1071,7 @@ fun getTextForFeature(localizedContext: Context?, feature: MvtFeature) : TextFor
         additionalText = osmText
     }
     val capitalizedText = text?.replaceFirstChar {
-        if (it.isLowerCase())
+        if (it.isLowerCase() && (localizedContext != null))
             it.titlecase(localizedContext.resources.configuration.getLocales().get(0))
         else
             it.toString()
