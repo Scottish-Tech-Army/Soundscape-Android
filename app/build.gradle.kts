@@ -299,9 +299,9 @@ dependencies {
     implementation(files("libs/fmod.jar"))
 
     // Firebase
-    releaseImplementation(platform(libs.firebase.bom))
-    releaseImplementation(libs.firebase.crashlytics)
-    releaseImplementation(libs.firebase.analytics)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.analytics)
 
     // GPX parser
     implementation (libs.android.gpx.parser)
