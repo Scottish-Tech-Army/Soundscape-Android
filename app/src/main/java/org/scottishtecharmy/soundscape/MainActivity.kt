@@ -8,7 +8,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.os.StrictMode
+import android.provider.Settings
 import android.text.Html
 import android.util.Log
 import android.view.View
@@ -24,6 +24,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.content.edit
+import androidx.core.net.toUri
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -36,9 +38,9 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
-import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
@@ -51,9 +53,6 @@ import org.scottishtecharmy.soundscape.utils.processMaps
 import java.io.File
 import java.util.Locale
 import javax.inject.Inject
-import androidx.core.net.toUri
-import androidx.core.content.edit
-import org.scottishtecharmy.soundscape.BuildConfig
 
 data class ThemeState(
     val hintsEnabled: Boolean = false,
@@ -81,11 +80,6 @@ class MainActivity : AppCompatActivity() {
     lateinit var soundscapeIntents : SoundscapeIntents
     @Inject
     lateinit var audioTour : AudioTour
-
-    init {
-        // Use dummy analytics if we don't have play services or if build is configured for it
-        Analytics.getInstance(BuildConfig.DUMMY_ANALYTICS || !hasPlayServices(this))
-    }
 
     // we need notification permission to be able to display a notification for the foreground service
     private val notificationPermissionLauncher =
@@ -238,6 +232,21 @@ class MainActivity : AppCompatActivity() {
 //                     }
 //                     .build()
 //        )
+
+        // Use dummy analytics if any of the following is true:
+        //
+        //  1. DUMMY_ANALYTICS is set meaning that we're not a release build
+        //  2. We don't have Google Play Services
+        //  3. We're running in Test Lab which is what happens when Google tests app releases. The
+        //    test for this is mentioned here:
+        //    https://firebase.google.com/docs/test-lab/android/android-studio#modify_instrumented_test_behavior_for
+        //
+        val testLabSetting: String? = Settings.System.getString(contentResolver, "firebase.test.lab")
+        Analytics.getInstance(
+            BuildConfig.DUMMY_ANALYTICS ||
+                    !hasPlayServices(this) ||
+                    "true" == testLabSetting)
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val timeNow = System.currentTimeMillis()
