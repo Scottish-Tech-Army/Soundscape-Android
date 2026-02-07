@@ -1,13 +1,19 @@
 package org.scottishtecharmy.soundscape.utils
 
+import android.content.Context
 import android.os.Bundle
 import com.google.firebase.Firebase
+import com.google.firebase.FirebaseApp
 import com.google.firebase.analytics.analytics
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import com.google.firebase.crashlytics.crashlytics
 import javax.inject.Inject
 
-class FirebaseAnalyticsImpl @Inject constructor() : Analytics {
+class FirebaseAnalyticsImpl @Inject constructor(context: Context) : Analytics {
+    init {
+        // We disabled auto initialization, so initialize now
+        FirebaseApp.initializeApp(context)
+    }
     override fun logEvent(name: String, params: Bundle?) {
         Firebase.analytics.logEvent(name, params)
     }

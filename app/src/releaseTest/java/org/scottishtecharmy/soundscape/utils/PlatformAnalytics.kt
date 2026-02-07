@@ -1,3 +1,5 @@
 package org.scottishtecharmy.soundscape.utils
 
-fun createPlatformAnalytics(): Analytics = NoOpAnalytics()
+import android.content.Context
+
+fun createPlatformAnalytics(@Suppress("UNUSED_PARAMETER") context: Context): Analytics = NoOpAnalytics()

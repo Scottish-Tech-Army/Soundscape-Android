@@ -1,3 +1,5 @@
 package org.scottishtecharmy.soundscape.utils
 
-fun createPlatformAnalytics(): Analytics = FirebaseAnalyticsImpl()
+import android.content.Context
+
+fun createPlatformAnalytics(context: Context): Analytics = FirebaseAnalyticsImpl(context)

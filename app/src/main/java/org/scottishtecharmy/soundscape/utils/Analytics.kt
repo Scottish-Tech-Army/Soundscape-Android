@@ -1,4 +1,5 @@
 package org.scottishtecharmy.soundscape.utils
+import android.content.Context
 import android.os.Bundle
 
 interface Analytics {
@@ -11,12 +12,12 @@ interface Analytics {
     companion object {
         @Volatile
         private var INSTANCE: Analytics? = null
-        fun getInstance(dummy: Boolean? = null) : Analytics {
+        fun getInstance(dummy: Boolean? = null, context: Context? = null) : Analytics {
             synchronized(this) {
                 var instance = INSTANCE
                 if (instance == null) {
                     instance = if(dummy == false)
-                        createPlatformAnalytics()
+                        createPlatformAnalytics(context!!)
                     else
                         NoOpAnalytics()
                     INSTANCE = instance
