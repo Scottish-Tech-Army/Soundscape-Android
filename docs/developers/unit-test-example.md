@@ -13,17 +13,9 @@ At this point, it's worth making sure that you are familiar with the [geoengine 
 
 ## The boilerplate required
 
-The tests have grown organically and as always there are improvements that could be made. However, here's what's currently required:
+The tests have grown organically and as always there are improvements that could be made. However, here's what's currently required.
 
-Before anything else in a test:
-
-```
-Analytics.getInstance(true)
-```
-
-This ensures that no Firebase analytics code is run. Android APIs like Firebase are only available on Android and not in the unit tests.
-
-Most unit tests then create grids of geo data just like the app. These are 2x2 grids of decoded map tiles at the maximum zoom level surrounding the current location. The map data is taken from pmtiles found in `offlineExtractPath` which is currently set to `src/test/res/org/scottishtecharmy/soundscape`. The unit tests use 3 separate map extracts and a manifest which can be downloaded from Cloudflare:
+Most unit tests create grids of geo data just like the app. These are 2x2 grids of decoded map tiles at the maximum zoom level surrounding the current location. The map data is taken from pmtiles found in `offlineExtractPath` which is currently set to `src/test/res/org/scottishtecharmy/soundscape`. The unit tests use 3 separate map extracts and a manifest which can be downloaded from Cloudflare:
 
 ```
 wget https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/bristol-gb.pmtiles  -O app/src/test/res/org/scottishtecharmy/soundscape/bristol-gb.pmtiles

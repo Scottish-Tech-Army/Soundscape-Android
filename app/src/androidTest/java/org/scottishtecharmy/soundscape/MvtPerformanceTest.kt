@@ -123,7 +123,6 @@ class MvtPerformanceTest {
     @Test
     fun testRouting() {
 
-        Analytics.getInstance(true)
         if(!tileProviderAvailable())
             return
 
@@ -174,7 +173,6 @@ class MvtPerformanceTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun testGridCache(boundingBox: BoundingBox, count: Int = 1 ) {
 
-        Analytics.getInstance(true)
         if(!tileProviderAvailable())
             return
 
@@ -232,7 +230,6 @@ class MvtPerformanceTest {
     @Test
     fun testSingleGridCache() {
 
-        Analytics.getInstance(true)
         if(!tileProviderAvailable())
             return
 

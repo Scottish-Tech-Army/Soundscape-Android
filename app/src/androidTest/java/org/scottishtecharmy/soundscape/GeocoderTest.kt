@@ -35,7 +35,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.toLocationDescription
 
 @RunWith(AndroidJUnit4::class)
@@ -113,7 +112,6 @@ class GeocoderTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun reverseGeocodeTest() {
-        Analytics.getInstance(true)
         runBlocking {
             // Context of the app under test.
             val appContext = InstrumentationRegistry.getInstrumentation().targetContext
@@ -289,7 +287,6 @@ class GeocoderTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun geocodeTest() {
-        Analytics.getInstance(true)
         runBlocking {
             // Context of the app under test.
             val appContext = InstrumentationRegistry.getInstrumentation().targetContext
@@ -361,7 +358,6 @@ class GeocoderTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun fusedGeocodeTest() {
-        Analytics.getInstance(true)
         runBlocking {
             // Context of the app under test.
             val appContext = InstrumentationRegistry.getInstrumentation().targetContext
@@ -392,7 +388,6 @@ class GeocoderTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun osmNameAddition() {
-        Analytics.getInstance(true)
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val gridState = ProtomapsGridState()
         gridState.validateContext = false
