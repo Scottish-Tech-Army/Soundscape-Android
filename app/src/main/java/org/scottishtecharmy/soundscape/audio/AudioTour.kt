@@ -53,7 +53,7 @@ enum class TourButton {
 
 @ActivityRetainedScoped
 class AudioTour @Inject constructor(
-    @ApplicationContext private val context: Context,
+    @param:ApplicationContext private val context: Context,
     private val serviceConnection: SoundscapeServiceConnection
 ) {
     private val _currentStep = MutableStateFlow(AudioTourStep.NOT_STARTED)

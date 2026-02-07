@@ -519,7 +519,7 @@ class MvtTileTest {
 
         // Copy
         val copyFeatureCollection = FeatureCollection()
-        copyFeatureCollection.features = newFeatureCollection.features.clone() as ArrayList<Feature>
+        copyFeatureCollection.features = ArrayList(newFeatureCollection.features)
         println(copyFeatureCollection.features[0].id)
 
         // newFeatureCollection is new, but the features that it contains are not

@@ -198,7 +198,7 @@ class OfflineMapsTest {
                     val extractName = feature.properties?.get("filename")
 
                     val memberCities = StringBuilder()
-                    val cities = feature.properties?.get("city_names") as List<String>?
+                    val cities = (feature.properties?.get("city_names") as? List<*>)?.filterIsInstance<String>()
                     if(cities != null) {
                         if(cities.size > 1) {
                             memberCities.append(" (")
