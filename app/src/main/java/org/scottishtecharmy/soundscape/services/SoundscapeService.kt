@@ -24,10 +24,6 @@ import androidx.core.app.ServiceCompat
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
-import com.google.firebase.Firebase
-import com.google.firebase.analytics.analytics
-import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.google.firebase.crashlytics.crashlytics
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -60,6 +56,7 @@ import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.utils.Analytics
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -215,7 +212,7 @@ class SoundscapeService : MediaSessionService() {
             }
 
             if(!started) {
-                Firebase.crashlytics.log("Start geo-engine")
+                Analytics.getInstance().crashLogNotes("Start geo-engine")
                 locationProvider.start(this)
                 directionProvider.start(audioEngine, locationProvider)
 
@@ -300,6 +297,7 @@ class SoundscapeService : MediaSessionService() {
      */
     private fun startAsForegroundService() : Boolean {
 
+        val analytics = Analytics.getInstance()
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 // Code to simulate startForeground failing
@@ -319,13 +317,13 @@ class SoundscapeService : MediaSessionService() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
                 && e is ForegroundServiceStartNotAllowedException
             ) {
-                Firebase.crashlytics.log("ForegroundServiceStartNotAllowedException caught")
-                Firebase.analytics.logEvent("startAsForegroundServiceError", null)
-                FirebaseCrashlytics.getInstance().setCustomKey("Service start success", "false")
+                analytics.crashLogNotes("ForegroundServiceStartNotAllowedException caught")
+                analytics.logEvent("startAsForegroundServiceError", null)
+                Analytics.getInstance().crashSetCustomKey("Service start success", "false")
                 return false
             }
         }
-        FirebaseCrashlytics.getInstance().setCustomKey("Service start success", "true")
+        analytics.crashSetCustomKey("Service start success", "true")
         return true
     }
 

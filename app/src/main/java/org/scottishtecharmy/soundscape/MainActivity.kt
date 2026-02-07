@@ -32,8 +32,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import androidx.preference.PreferenceManager
 import com.google.android.play.core.review.ReviewManagerFactory
-import com.google.firebase.Firebase
-import com.google.firebase.crashlytics.crashlytics
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -55,6 +53,7 @@ import java.util.Locale
 import javax.inject.Inject
 import androidx.core.net.toUri
 import androidx.core.content.edit
+import org.scottishtecharmy.soundscape.BuildConfig
 
 data class ThemeState(
     val hintsEnabled: Boolean = false,
@@ -84,8 +83,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var audioTour : AudioTour
 
     init {
-        // Use dummy analytics if we don't have play services
-        Analytics.getInstance(!hasPlayServices(this))
+        // Use dummy analytics if we don't have play services or if build is configured for it
+        Analytics.getInstance(BuildConfig.DUMMY_ANALYTICS || !hasPlayServices(this))
     }
 
     // we need notification permission to be able to display a notification for the foreground service
@@ -220,7 +219,7 @@ class MainActivity : AppCompatActivity() {
             if(soundscapeServiceConnection.soundscapeService?.running == false) {
                 // This can happen if the service failed to move to the foreground.
                 // Simply start the service now
-                Firebase.crashlytics.log("Attempt to start non-running service from onResume")
+                Analytics.getInstance().crashLogNotes("Attempt to start non-running service from onResume")
                 setServiceState(true)
             }
         }
