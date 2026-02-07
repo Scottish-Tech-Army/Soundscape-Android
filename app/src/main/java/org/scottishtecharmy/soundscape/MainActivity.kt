@@ -245,7 +245,8 @@ class MainActivity : AppCompatActivity() {
         Analytics.getInstance(
             BuildConfig.DUMMY_ANALYTICS ||
                     !hasPlayServices(this) ||
-                    "true" == testLabSetting)
+                    "true" == testLabSetting,
+            context = this)
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {

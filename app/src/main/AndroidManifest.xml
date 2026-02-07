@@ -129,6 +129,12 @@
 
         <!-- Disable screen_view events in Firebase -->
         <meta-data android:name="google_analytics_automatic_screen_reporting_enabled" android:value="false" />
+
+        <!-- Disable Firebase auto-initialization at app startup -->
+        <provider
+            android:name="com.google.firebase.provider.FirebaseInitProvider"
+            android:authorities="${applicationId}.firebaseinitprovider"
+            tools:node="remove" />
     </application>
 
     <queries>
