@@ -451,7 +451,7 @@ class SoundscapeService : MediaSessionService() {
     fun whatsAroundMe() {
         coroutineScope.launch {
             val results = geoEngine.whatsAroundMe()
-            if(results != null) {
+            if(results.positionedStrings.isNotEmpty()) {
                 audioEngine.clearTextToSpeechQueue()
                 speakCallout(results, true)
             }

@@ -32,7 +32,7 @@ data class OpenSourceLicensesUiState(
 
 @HiltViewModel
 class OpenSourceLicensesViewModel @Inject constructor(
-    @ApplicationContext private val appContext: Context
+    @param:ApplicationContext private val appContext: Context
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(OpenSourceLicensesUiState())
