@@ -200,6 +200,14 @@ jobs:
         run: ./gradlew ${{ env.main_project_module }}:bundleRelease
 
       # Upload Artifact Build
+      # Noted For Output [main_project_module]/build/outputs/apk/releaseTest/
+      - name: Upload APK ReleaseTest
+        uses: actions/upload-artifact@v4
+        with:
+          name: releaseTest-apk
+          path: |
+            ${{ env.main_project_module }}/build/outputs/apk/releaseTest/
+
       # Noted For Output [main_project_module]/build/outputs/apk/release/
       - name: Upload APK Release
         uses: actions/upload-artifact@v4
@@ -224,10 +232,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download app APK
+      - name: Download app releaseTest APK
         uses: actions/download-artifact@v4
         with:
-          name: release-apk
+          name: releaseTest-apk
 
       - name: Auth
         uses: google-github-actions/auth@v2
@@ -241,4 +249,4 @@ jobs:
         run: gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID }}
 
       - name: Run Robo test in Firebase Test Lab
-        run: gcloud firebase test android run --type robo --app=app-release.apk --timeout=300s --device model=shiba,version=34,locale=en,orientation=portrait
+        run: gcloud firebase test android run --type robo --app=app-releaseTest.apk --timeout=300s --device model=shiba,version=34,locale=en,orientation=portrait
