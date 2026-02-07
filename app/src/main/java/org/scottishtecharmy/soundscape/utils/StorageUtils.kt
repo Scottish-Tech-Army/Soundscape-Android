@@ -57,6 +57,7 @@ object StorageUtils {
 
         val sm = context.getSystemService(Context.STORAGE_SERVICE) as StorageManager
         for (dir in externalFilesDirs) {
+            @Suppress("SENSELESS_COMPARISON")
             if (dir == null) {
                 // dir can be null if a storage device is not mounted, etc.
                 continue
