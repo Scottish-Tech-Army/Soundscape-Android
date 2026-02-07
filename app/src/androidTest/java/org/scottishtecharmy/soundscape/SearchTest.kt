@@ -227,8 +227,6 @@ class SearchTest {
                           streetName: String,
                           describeLocation: LngLatAlt? = null) {
 
-        Analytics.getInstance(true)
-
         val gridState = ProtomapsGridState()
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)

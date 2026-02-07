@@ -14,10 +14,6 @@ interface Analytics {
         fun getInstance(dummy: Boolean? = null) : Analytics {
             synchronized(this) {
                 var instance = INSTANCE
-
-                // Check that we've initialized the instance
-                if(dummy == null) assert(instance != null)
-
                 if (instance == null) {
                     instance = if(dummy == false)
                         createPlatformAnalytics()

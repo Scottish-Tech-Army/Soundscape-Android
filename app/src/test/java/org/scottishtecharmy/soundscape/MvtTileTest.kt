@@ -39,7 +39,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
-import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import java.io.File
 import java.io.FileOutputStream
@@ -71,7 +70,6 @@ private fun vectorTileToGeoJsonFromFile(
     streetNumberMap: HashMap<String, FeatureCollection>
 ): Array<FeatureCollection> {
 
-    Analytics.getInstance(true)
     val gridState = FileGridState()
     val result: Array<FeatureCollection> = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
 
@@ -152,7 +150,6 @@ fun getGridStateForLocation(
     gridSize: Int
 ): GridState {
 
-    Analytics.getInstance(true)
     val gridState = FileGridState(zoomLevel, gridSize)
     gridState.start(
         null,
@@ -188,8 +185,6 @@ class MvtTileTest {
 
     @Test
     fun testVectorToGeoJsonGreggs() {
-        Analytics.getInstance(true)
-
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
         val streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
         val geojson = vectorTileToGeoJsonFromFile(7995, 5108, intersectionMap, streetNumberMap)
@@ -206,8 +201,6 @@ class MvtTileTest {
 
     @Test
     fun testVectorToGeoJsonMilngavie() {
-        Analytics.getInstance(true)
-
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
         val streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
         val geojson = vectorTileToGeoJsonFromFile(15991/2, 10214/2, intersectionMap, streetNumberMap)
@@ -443,8 +436,6 @@ class MvtTileTest {
 
     @Test
     fun testRtree() {
-        Analytics.getInstance(true)
-
         // Make a large grid to aid analysis
         val featureCollection = FeatureCollection()
         for (x in 7995..7995) {
@@ -502,8 +493,6 @@ class MvtTileTest {
 
     @Test
     fun testObjects() {
-        Analytics.getInstance(true)
-
         // This test is to show how Kotlin doesn't copy objects by default. featureCopy isn't a copy
         // as it might be in C++, but a reference to the same object. There's no copy() defined
         // for Feature. This means that in all the machinations with FeatureCollections, the Features
@@ -786,8 +775,6 @@ class MvtTileTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testCallouts() {
-        Analytics.getInstance(true)
-
         val directoryPath = Path("src/test/res/org/scottishtecharmy/soundscape/gpxFiles/")
 
         val resultsStoragePath =  "gpxFiles/"
@@ -942,8 +929,6 @@ class MvtTileTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun replayStreetNumbers() {
-        Analytics.getInstance(true)
-
         val directoryPath = Path("src/test/res/org/scottishtecharmy/soundscape/gpxFiles/")
 
         val resultsStoragePath =  "gpxFiles/"
@@ -1259,8 +1244,6 @@ class MvtTileTest {
 
     @Test
     fun extractSwitchingTest() {
-        Analytics.getInstance(true)
-
         // This test ensures that the GridState code can successfully switch between offline
         // extracts
         val gridState = FileGridState(MAX_ZOOM_LEVEL, GRID_SIZE)
