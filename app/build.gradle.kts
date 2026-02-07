@@ -125,6 +125,10 @@ android {
 //            )
 //        }
 
+        debug {
+            buildConfigField("Boolean", "DUMMY_ANALYTICS", "true")
+        }
+
         release {
             isMinifyEnabled = true
             isShrinkResources = true
@@ -133,6 +137,12 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("Boolean", "DUMMY_ANALYTICS", "false")
+        }
+
+        create("releaseTest") {
+            initWith(getByName("release"))
+            buildConfigField("Boolean", "DUMMY_ANALYTICS", "true")
         }
     }
     compileOptions {
@@ -289,9 +299,9 @@ dependencies {
     implementation(files("libs/fmod.jar"))
 
     // Firebase
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.crashlytics)
-    implementation(libs.firebase.analytics)
+    releaseImplementation(platform(libs.firebase.bom))
+    releaseImplementation(libs.firebase.crashlytics)
+    releaseImplementation(libs.firebase.analytics)
 
     // GPX parser
     implementation (libs.android.gpx.parser)

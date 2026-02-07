@@ -11,7 +11,6 @@ import android.speech.tts.UtteranceProgressListener
 import android.speech.tts.Voice
 import android.util.Log
 import androidx.preference.PreferenceManager
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
@@ -55,14 +54,15 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
         textToSpeech = if (engineLabelAndName.isNullOrEmpty())
             TextToSpeech(context, this)
         else {
+            val analytics = Analytics.getInstance()
             val bundle = Bundle().apply {
                 putString("engine", engineLabelAndName)
                 putString("voice", textToSpeechVoiceType)
             }
             // Log an event so that we can get statistics
-            Analytics.getInstance().logEvent("TTSEngine", bundle)
+            analytics.logEvent("TTSEngine", bundle)
             // And set a custom key so that any crashes we get we know which TTS engine is in use
-            FirebaseCrashlytics.getInstance().setCustomKey("TTSEngine", "$engineLabelAndName - $textToSpeechVoiceType")
+            analytics.crashSetCustomKey("TTSEngine", "$engineLabelAndName - $textToSpeechVoiceType")
             TextToSpeech(context, this, engineLabelAndName.substringAfter(":::"))
         }
         Log.d(TAG, "initialize returning")

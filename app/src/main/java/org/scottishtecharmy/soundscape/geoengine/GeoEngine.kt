@@ -9,7 +9,6 @@ import android.net.Uri
 import android.os.Environment
 import android.util.Log
 import androidx.preference.PreferenceManager
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -400,8 +399,9 @@ class GeoEngine {
                 newLocation?.let { location ->
 
                     // Add location to crash dumps
-                    FirebaseCrashlytics.getInstance().setCustomKey("latitude", newLocation.latitude)
-                    FirebaseCrashlytics.getInstance().setCustomKey("longitude", newLocation.longitude)
+                    val analytics = Analytics.getInstance()
+                    analytics.crashSetCustomKey("latitude", newLocation.latitude.toString())
+                    analytics.crashSetCustomKey("longitude", newLocation.longitude.toString())
 
                     // Update the main grid state
                     val updated = gridState.locationUpdate(

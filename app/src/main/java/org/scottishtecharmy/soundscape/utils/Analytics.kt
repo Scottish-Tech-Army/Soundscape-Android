@@ -5,6 +5,9 @@ interface Analytics {
     fun logEvent(name: String, params: Bundle? = null)
     fun logCostlyEvent(name: String, params: Bundle? = null)
 
+    fun crashSetCustomKey(key: String, value: String)
+    fun crashLogNotes(name: String)
+
     companion object {
         @Volatile
         private var INSTANCE: Analytics? = null
@@ -17,7 +20,7 @@ interface Analytics {
 
                 if (instance == null) {
                     instance = if(dummy == false)
-                        FirebaseAnalyticsImpl()
+                        createPlatformAnalytics()
                     else
                         NoOpAnalytics()
                     INSTANCE = instance
