@@ -47,7 +47,8 @@ android {
         versionName = "0.2.9"
 
         // Maintaining this list means that we can exclude translations that aren't complete yet
-        resourceConfigurations.addAll(listOf(
+        @Suppress("UnstableApiUsage")
+        androidResources.localeFilters.addAll(listOf(
             "arz",
             "da",
             "de",
