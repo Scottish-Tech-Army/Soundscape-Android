@@ -121,21 +121,21 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: release-apk
-          path: ${{ env.main_project_module }}/build/outputs/apk/release/
+          path: ${{ env.main_project_module }}/build/outputs/apk/releaseTest/
 
       # Generate android instrumentation tests APK
-      - name: Assemble Android Instrumentation Tests
-        env:
-          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
-          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
-          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
-        run: ./gradlew assembleAndroidTest
-      - name: Upload Android Test APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: release-androidTest
-          path: ${{ env.main_project_module }}/build/outputs/apk/androidTest/release/app-release-androidTest.apk
+#      - name: Assemble Android Instrumentation Tests
+#        env:
+#          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
+#          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+#          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+#          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+#        run: ./gradlew assembleAndroidTest -DtestBuildType=debug
+#      - name: Upload Android Test APK
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: release-androidTest
+#          path: ${{ env.main_project_module }}/build/outputs/apk/androidTest/debug/app-release-androidTest.apk
 
 #  instrumentation-tests:
 #    name: Run matrix of instrumentation tests
@@ -230,4 +230,4 @@ jobs:
 #        run: gcloud firebase test android run --type instrumentation --use-orchestrator --app app-release.apk --test app-release-androidTest.apk --device model=shiba,version=34,locale=en,orientation=portrait
 
       - name: Run Robo test in Firebase Test Lab
-        run: gcloud firebase test android run --type robo --app=app-release.apk --timeout=1800s --device model=shiba,version=34,locale=en,orientation=portrait
+        run: gcloud firebase test android run --type robo --app=app-releaseTest.apk --timeout=1800s --device model=shiba,version=34,locale=en,orientation=portrait
