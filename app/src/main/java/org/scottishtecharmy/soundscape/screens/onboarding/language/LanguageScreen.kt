@@ -134,6 +134,7 @@ fun LanguageComposable(
 data object MockLanguagePreviewData {
     val languages = listOf(
         Language("العربية المصرية", "arz", "EG"),
+        Language("中国人", "zh", "CN"),
         Language("Dansk", "da", "DK"),
         Language("Deutsch", "de", "DE"),
         Language("Ελληνικά", "el", "GR"),
@@ -144,6 +145,7 @@ data object MockLanguagePreviewData {
         Language("Suomi", "fi", "FI"),
         Language("Français", "fr", "FR"),
         Language("Français (Canada)", "fr", "CA"),
+        Language("हिंदी", "hi", "IN"),
         Language("Íslenska", "is", "IS"),
         Language("Italiano", "it", "IT"),
         Language("日本語", "ja", "JP"),
@@ -153,6 +155,7 @@ data object MockLanguagePreviewData {
         Language("Português (Brasil)", "pt", "BR"),
         Language("Português (Portugal)", "pt", "PT"),
         Language("Русский", "ru", "RU"),
+        Language("Română", "ro", "RO"),
         Language("Svenska", "sv", "SE"),
         Language("українська", "uk", "UK")
     )
