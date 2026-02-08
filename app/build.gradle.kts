@@ -49,6 +49,7 @@ android {
         // Maintaining this list means that we can exclude translations that aren't complete yet
         resourceConfigurations.addAll(listOf(
             "arz",
+            "zh-rCN",
             "da",
             "de",
             "el",
@@ -59,6 +60,7 @@ android {
             "fi",
             "fr",
             "fr-rCA",
+            "hi",
             "is",
             "it",
             "ja",
@@ -67,6 +69,7 @@ android {
             "pl",
             "pt",
             "pt-rBR",
+            "ro",
             "ru",
             "sv",
             "uk"

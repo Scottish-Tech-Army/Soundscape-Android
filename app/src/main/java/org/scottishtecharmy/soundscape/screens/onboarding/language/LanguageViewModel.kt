@@ -36,6 +36,7 @@ class LanguageViewModel @Inject constructor(): ViewModel() {
         val allLanguages = mutableListOf<Language>()
 
         addIfSpeechSupports(allLanguages, Language("العربية المصرية", "arz", "EG"))
+        addIfSpeechSupports(allLanguages, Language("中国人", "zh", "CN"))
         addIfSpeechSupports(allLanguages, Language("Dansk", "da", "DK"))
         addIfSpeechSupports(allLanguages, Language("Deutsch", "de", "DE"))
         addIfSpeechSupports(allLanguages, Language("Ελληνικά", "el", "GR"))
@@ -46,6 +47,7 @@ class LanguageViewModel @Inject constructor(): ViewModel() {
         addIfSpeechSupports(allLanguages, Language("Suomi", "fi", "FI"))
         addIfSpeechSupports(allLanguages, Language("Français (France)", "fr", "FR"))
         addIfSpeechSupports(allLanguages, Language("Français (Canada)", "fr", "CA"))
+        addIfSpeechSupports(allLanguages, Language("हिंदी", "hi", "IN"))
         addIfSpeechSupports(allLanguages, Language("Íslenska", "is", "IS"))
         addIfSpeechSupports(allLanguages, Language("Italiano", "it", "IT"))
         addIfSpeechSupports(allLanguages, Language("日本語", "ja", "JP"))
@@ -55,6 +57,7 @@ class LanguageViewModel @Inject constructor(): ViewModel() {
         addIfSpeechSupports(allLanguages, Language("Português (Portugal)", "pt", "PT"))
         addIfSpeechSupports(allLanguages, Language("Português (Brasil)", "pt", "BR"))
         addIfSpeechSupports(allLanguages, Language("Русский", "ru", "RU"))
+        addIfSpeechSupports(allLanguages,Language("Română", "ro", "RO"))
         addIfSpeechSupports(allLanguages, Language("Svenska", "sv", "SE"))
         addIfSpeechSupports(allLanguages, Language("українська", "uk", "UK"))
 
