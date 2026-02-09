@@ -30,6 +30,7 @@ import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.utils.supportedLanguages
 
 @Composable
 fun LanguageScreen(
@@ -132,33 +133,7 @@ fun LanguageComposable(
 
 // Data used by preview
 data object MockLanguagePreviewData {
-    val languages = listOf(
-        Language("العربية المصرية", "arz", "EG"),
-        Language("中国人", "zh", "CN"),
-        Language("Dansk", "da", "DK"),
-        Language("Deutsch", "de", "DE"),
-        Language("Ελληνικά", "el", "GR"),
-        Language("English", "en", "US"),
-        Language("English (UK)", "en", "GB"),
-        Language("Español", "es", "ES"),
-        Language("فارسی", "fa", "IR"),
-        Language("Suomi", "fi", "FI"),
-        Language("Français", "fr", "FR"),
-        Language("Français (Canada)", "fr", "CA"),
-        Language("हिंदी", "hi", "IN"),
-        Language("Íslenska", "is", "IS"),
-        Language("Italiano", "it", "IT"),
-        Language("日本語", "ja", "JP"),
-        Language("Norsk", "nb", "NO"),
-        Language("Nederlands", "nl", "NL"),
-        Language("Polski", "pl", "PL"),
-        Language("Português (Brasil)", "pt", "BR"),
-        Language("Português (Portugal)", "pt", "PT"),
-        Language("Русский", "ru", "RU"),
-        Language("Română", "ro", "RO"),
-        Language("Svenska", "sv", "SE"),
-        Language("українська", "uk", "UK")
-    )
+    val languages = supportedLanguages
 }
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
