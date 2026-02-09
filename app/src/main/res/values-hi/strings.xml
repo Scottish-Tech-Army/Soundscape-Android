@@ -1267,4 +1267,8 @@
     <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">ट्यूटोरियल रद्द करें</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">जारी रखें</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">पॉपअप बंद करें और ट्यूटोरियल जारी रखें</string>
+    <string name="language_mismatch_title" tools:ignore="MissingTranslation">नई भाषा उपलब्ध है</string>
+    <string name="language_mismatch_message" tools:ignore="MissingTranslation">आपके फोन की भाषा %1$s पर सेट है और वह भाषा अब Soundscape में उपलब्ध है। क्या आप Soundscape को %1$s में बदलना चाहेंगे?</string>
+    <string name="language_mismatch_switch" tools:ignore="MissingTranslation">%1$s में बदलें</string>
+    <string name="language_mismatch_keep" tools:ignore="MissingTranslation">वर्तमान भाषा रखें</string>
 </resources>
