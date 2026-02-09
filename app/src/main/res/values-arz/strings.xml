@@ -1267,4 +1267,8 @@
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">تحديثات حول المسافة إلى منارة الصوت عند تعيينها</string>
     <string name="menu_manage_language" tools:ignore="MissingTranslation">"اللغة والمنطقة "</string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">يمكن للبحث عبر الإنترنت أن يستخدم اللغة المحلية للنتيجة، أو إجباره على إرجاع النتائج بالإنجليزية أو الفرنسية أو الألمانية.</string>
+    <string name="language_mismatch_title" tools:ignore="MissingTranslation">لغة جديدة متاحة</string>
+    <string name="language_mismatch_message" tools:ignore="MissingTranslation">هاتفك مضبوط على %1$s وهذه اللغة أصبحت متاحة الآن في Soundscape. هل تود تحويل Soundscape لاستخدام %1$s؟</string>
+    <string name="language_mismatch_switch" tools:ignore="MissingTranslation">التبديل إلى %1$s</string>
+    <string name="language_mismatch_keep" tools:ignore="MissingTranslation">ابقَ على اللغة الحالية</string>
 </resources>
