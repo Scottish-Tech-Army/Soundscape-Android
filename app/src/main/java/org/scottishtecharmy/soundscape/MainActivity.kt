@@ -8,6 +8,7 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.provider.Settings
 import android.text.Html
 import android.util.Log
@@ -41,6 +42,7 @@ import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
@@ -48,6 +50,7 @@ import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.LogcatHelper
+import org.scottishtecharmy.soundscape.utils.findExtracts
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
 import org.scottishtecharmy.soundscape.utils.processMaps
 import java.io.File
@@ -474,13 +477,25 @@ class MainActivity : AppCompatActivity() {
         val bodyText = StringBuilder()
 
         bodyText.append("-----------------------------<br/>")
+        bodyText.append(tableRow("Summary", subjectText))
         bodyText.append(tableRow("Product", product))
         bodyText.append(tableRow("Manufacturer", manufacturer))
         talkBackDescription(bodyText, applicationContext)
 
-
         bodyText.append(tableRow("AndroidGeocoder", AndroidGeocoder.enabled.toString()))
 
+        val extractPath = sharedPreferences.getString(SELECTED_STORAGE_KEY, SELECTED_STORAGE_DEFAULT)!!
+        val extractCollection = findExtracts(File(extractPath, Environment.DIRECTORY_DOWNLOADS).path)
+        if(extractCollection != null) {
+            for (extract in extractCollection.features) {
+                bodyText.append(tableRow
+                    (
+                    "Offline extract",
+                    "${extract.properties?.get("name")}, ${extract.properties?.get("filename")}"
+                    )
+                )
+            }
+        }
         preferences.forEach { pref -> bodyText.append(tableRow(pref.key, pref.value.toString())) }
         bodyText.append("-----------------------------<br/><br/>")
 
