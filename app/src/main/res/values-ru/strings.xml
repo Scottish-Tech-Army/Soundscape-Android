@@ -1267,4 +1267,8 @@
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Обновления о расстоянии до звукового маяка, когда он установлен</string>
     <string name="menu_manage_language" tools:ignore="MissingTranslation">"Язык и регион "</string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Онлайн‑поиск может возвращать результаты на местном языке или принудительно выдавать их на английском, французском или немецком.</string>
+    <string name="language_mismatch_title" tools:ignore="MissingTranslation">Доступен новый язык</string>
+    <string name="language_mismatch_message" tools:ignore="MissingTranslation">На вашем телефоне установлен язык %1$s, и этот язык теперь доступен в Soundscape. Хотите переключить Soundscape на %1$s?</string>
+    <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Переключиться на %1$s</string>
+    <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Оставить текущий язык</string>
 </resources>
