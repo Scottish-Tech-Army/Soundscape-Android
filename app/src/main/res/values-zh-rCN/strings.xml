@@ -1267,4 +1267,8 @@
     <string name="first_launch_permissions_title">使用 Soundscape 导航</string>
     <string name="first_launch_permissions_message">使用 Soundscape 导航时，您将通过音频信标获得引导。为此，Soundscape 需要您启用以下权限：</string>
     <string name="first_launch_permissions_location">定位服务（精确定位）</string>
+    <string name="language_mismatch_title" tools:ignore="MissingTranslation">新语言可用</string>
+    <string name="language_mismatch_message" tools:ignore="MissingTranslation">您的手机语言设置为%1$s，该语言现在已在 Soundscape 中可用。是否将 Soundscape 切换为使用 %1$s？</string>
+    <string name="language_mismatch_switch" tools:ignore="MissingTranslation">切换为 %1$s</string>
+    <string name="language_mismatch_keep" tools:ignore="MissingTranslation">保留当前语言</string>
 </resources>
