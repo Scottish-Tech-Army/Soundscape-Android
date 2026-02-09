@@ -1267,4 +1267,8 @@
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Uppfærslur um fjarlægð að hljóðvita þegar hann er settur</string>
     <string name="menu_manage_language" tools:ignore="MissingTranslation">"Tungumál og svæði "</string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Netleit getur notað staðbundið tungumál niðurstaðna, eða verið stillt til að skila niðurstöðum á ensku, frönsku eða þýsku.</string>
+    <string name="language_mismatch_title" tools:ignore="MissingTranslation">Nýtt tungumál í boði</string>
+    <string name="language_mismatch_message" tools:ignore="MissingTranslation">Síminn þinn er stilltur á %1$s og það tungumál er nú í boði í Soundscape. Viltu að Soundscape noti %1$s?</string>
+    <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Skipta yfir í %1$s</string>
+    <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Halda núverandi tungumáli</string>
 </resources>
