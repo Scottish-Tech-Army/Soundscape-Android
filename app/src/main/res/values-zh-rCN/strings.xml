@@ -1,3 +1,1270 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="general_alert_cancel">取消</string>
+    <string name="general_alert_done">完成</string>
+    <string name="general_loading_start">正在准备…</string>
+    <string name="general_error_location_services_find_location_error">我们无法确定您当前的位置。</string>
+    <string name="general_error_add_marker_error">无法标记此地点，请稍后再试。</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">该位置已在路线中存在标记点，无法重复添加。</string>
+    <string name="settings_screen_title">设置</string>
+    <string name="settings_explanation" tools:ignore="MissingTranslation">以下各项设置按分组排列。点击某个分组可展开查看可用选项。</string>
+    <string name="settings_about_app">关于 Soundscape</string>
+    <string name="settings_section_units" tools:ignore="MissingTranslation">计量单位</string>
+    <string name="settings_section_units_description" tools:ignore="MissingTranslation">选择用于距离的计量单位</string>
+    <string name="settings_units_imperial" tools:ignore="MissingTranslation">英制（英尺）</string>
+    <string name="settings_units_metric" tools:ignore="MissingTranslation">公制（米）</string>
+    <string name="settings_section_search" tools:ignore="MissingTranslation">搜索</string>
+    <string name="search_bar_hint" tools:ignore="MissingTranslation">输入目的地名称或地址</string>
+    <string name="settings_section_search_network" tools:ignore="MissingTranslation">搜索模式</string>
+    <string name="settings_section_search_network_description" tools:ignore="MissingTranslation">控制搜索是否仅使用离线数据</string>
+    <string name="settings_search_online" tools:ignore="MissingTranslation">在线</string>
+    <string name="settings_search_offline" tools:ignore="MissingTranslation">离线</string>
+    <string name="settings_search_auto" tools:ignore="MissingTranslation">自动</string>
+    <string name="search_no_results" tools:ignore="MissingTranslation">未找到搜索结果</string>
+    <string name="search_searching" tools:ignore="MissingTranslation">正在搜索…</string>
+    <string name="voice_settings_speaking_rate">语速</string>
+    <string name="voice_engine" tools:ignore="MissingTranslation">文字转语音引擎</string>
+    <string name="voice_voices">语音</string>
+    <string name="beacon_settings_style">音频信标样式</string>
+    <string name="beacon_settings_style_description" tools:ignore="MissingTranslation">选择您想使用的音频信标样式</string>
+    <string name="beacon_styles_current">当前</string>
+    <string name="beacon_styles_original">经典</string>
+    <string name="beacon_styles_flare">Flare</string>
+    <string name="beacon_styles_shimmer">Shimmer</string>
+    <string name="beacon_styles_tactile">Tactile</string>
+    <string name="beacon_styles_ping">Ping</string>
+    <string name="beacon_styles_drop">Drop</string>
+    <string name="beacon_styles_signal">Signal</string>
+    <string name="beacon_styles_signal_slow">Signal（慢速）</string>
+    <string name="beacon_styles_signal_very_slow">Signal（极慢）</string>
+    <string name="beacon_styles_mallet">Mallet</string>
+    <string name="beacon_styles_mallet_slow">Mallet（慢速）</string>
+    <string name="beacon_styles_mallet_very_slow">Mallet（极慢）</string>
+    <string name="beacon_audio_beacon">音频信标</string>
+    <string name="beacon_action_mute_beacon">静音信标</string>
+    <string name="beacon_action_mute_beacon_acc_hint">将音频信标静音。</string>
+    <string name="beacon_action_unmute_beacon">取消静音信标</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">取消音频信标的静音。</string>
+    <string name="preview_title">模拟位置</string>
+    <string name="preview_go_title">前进</string>
+    <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">前往最近的路口</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" 和%s"</string>
+    <string name="preview_include_unnamed_roads_title">无名道路</string>
+    <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">在位置模拟期间包含无名道路</string>
+    <string name="location_detail_title_default">位置详情</string>
+    <string name="location_detail_action_beacon">启动音频信标</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">在此标记点启动音频信标</string>
+    <string name="location_detail_action_beacon_hint">通过声音引导您前往此位置。</string>
+    <string name="location_detail_action_save_hint">保存此位置以备后用</string>
+    <string name="location_detail_action_edit_hint">更改标记点名称或添加备注</string>
+    <string name="location_detail_action_share_hint">通过其他应用分享此位置</string>
+    <string name="location_detail_action_preview_hint">开始在此位置进行预览</string>
+    <string name="location_detail_add_waypoint_existing_hint">从路线中移除此标记点。</string>
+    <string name="location_detail_add_waypoint_new_hint">将此标记点作为航点添加到路线中。</string>
+    <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">将地图全屏显示</string>
+    <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">退出全屏地图</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">将地图全屏显示并编辑标记点位置</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">退出标记点位置编辑模式</string>
+    <string name="route_detail_action_start_route">开始路线</string>
+    <string name="route_detail_action_stop_route">停止路线</string>
+    <string name="route_detail_action_edit">编辑路线</string>
+    <string name="route_detail_action_start_route_hint">开始播放此路线</string>
+    <string name="route_detail_action_start_route_disabled_hint">请先添加航点再开始路线</string>
+    <string name="route_detail_action_stop_route_hint">停止播放此路线</string>
+    <string name="route_detail_action_share_hint">通过其他应用分享此路线</string>
+    <string name="route_detail_action_edit_hint">更改路线中的航点或重新排序。</string>
+    <string name="route_detail_action_create">新建路线</string>
+    <string name="route_detail_action_create_hint">创建新路线</string>
+    <string name="route_end_completed_accessibility">路线已完成！%s</string>
+    <string name="route_detail_action_previous">上一个航点</string>
+    <string name="route_detail_action_previous_hint">将信标移至上一个航点</string>
+    <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">已在路线起点，无法后退</string>
+    <string name="route_detail_action_next">下一个航点</string>
+    <string name="route_detail_action_next_hint">将信标移至下一个航点</string>
+    <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">已在路线终点，无法前进</string>
+    <string name="route_detail_edit_description">描述</string>
+    <string name="route_detail_edit_waypoints_button">添加航点</string>
+    <string name="route_detail_edit_delete">删除路线</string>
+    <string name="route_update_success_title">更新完成！</string>
+    <string name="waypoint_title">航点</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">未找到路线</string>
+    <string name="universal_links_alert_action_marker">保存为标记点</string>
+    <string name="universal_links_marker_share_message">我与您分享了一个 Soundscape 标记点！*\"%s\"*</string>
+    <string name="user_activity_save_marker_title">保存标记点</string>
+    <string name="routes_title">路线</string>
+    <string name="routes_action_deleted">路线已删除</string>
+    <string name="routes_no_routes_title">开始使用路线航点</string>
+    <string name="routes_no_routes_hint_1">通过将一组标记点组织为路线上的航点，为自己或他人创建路线。</string>
+    <string name="routes_no_routes_hint_2">在使用 Soundscape 行走路线时，到达每个航点时您会收到通知，音频信标会自动前进到下一个航点。</string>
+    <string name="routes_sort_by_name">按名称排序</string>
+    <string name="routes_sort_by_distance">按距离排序</string>
+    <string name="markers_title">标记点</string>
+    <string name="markers_action_delete">删除标记点</string>
+    <string name="markers_sort_button_sort_by_name">名称</string>
+    <string name="markers_sort_button_sort_by_name_voiceover">已按名称排序</string>
+    <string name="markers_sort_button_sort_by_distance">距离</string>
+    <string name="markers_sort_button_sort_by_distance_voiceover">已按距离排序</string>
+    <string name="markers_no_markers_title">开始使用标记点</string>
+    <string name="markers_no_markers_hint_1">为常去的目的地、路线上的航点或任何想要提示的地点创建标记点。只需从主屏幕选择一个地点或您的当前位置，然后选择*\"保存为标记点\"*。</string>
+    <string name="markers_no_markers_hint_2">试着标记您的家、工作地点的入口或公园里您最喜欢的地方。</string>
+    <string name="markers_edit_screen_title_edit">编辑标记点</string>
+    <string name="markers_generic_name">标记点</string>
+    <string name="markers_marker_with_name">标记点。%s</string>
+    <string name="markers_marker_created">标记点已创建</string>
+    <string name="markers_annotation">附加备注</string>
+    <string name="search_choose_destination">选择目的地</string>
+    <string name="search_use_current_location">当前位置</string>
+    <string name="search_nearby_screen_title">附近地点</string>
+    <string name="search_view_markers">标记点和路线</string>
+    <string name="search_button_markers_accessibility_hint">选择或编辑您保存的标记点</string>
+    <string name="search_button_nearby_accessibility_hint">探索附近的餐厅、公交站等</string>
+    <string name="search_button_current_location_accessibility_hint">预览、标记或与朋友分享您的当前位置</string>
+    <string name="filter_all">所有地点</string>
+    <string name="all_places_nearby_description" tools:ignore="MissingTranslation">查看附近所有地点的完整列表</string>
+    <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">查看附近的公共交通列表</string>
+    <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">查看附近的餐厅和酒吧列表</string>
+    <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">查看附近的杂货店列表</string>
+    <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">查看附近的银行列表</string>
+    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">查看附近的道路路口列表</string>
+    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">从附近地点列表中选择</string>
+    <string name="filter_transit">公共交通</string>
+    <string name="filter_food_drink">餐饮</string>
+    <string name="filter_groceries">杂货店和便利店</string>
+    <string name="filter_banks">银行和自动取款机</string>
+    <string name="callouts_panel_title">聆听周围环境</string>
+    <string name="callouts_allow_callouts">允许提示</string>
+    <string name="callouts_allow_callouts_description" tools:ignore="MissingTranslation">开启或关闭所有提示</string>
+    <string name="callouts_places_and_landmarks">地点和地标</string>
+    <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">附近的商店和餐厅等地点</string>
+    <string name="callouts_mobility">出行</string>
+    <string name="callouts_mobility_description" tools:ignore="MissingTranslation">路口和交通信息</string>
+    <string name="callouts_audio_beacon">到音频信标的距离</string>
+    <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">设置音频信标后，提供距离更新</string>
+    <string name="callouts_automatic_callouts">自动提示</string>
+    <string name="callouts_nothing_to_call_out_now">当前没有可提示的信息</string>
+    <string name="callouts_nearby_markers">附近标记点</string>
+    <string name="sleep_sleep">休眠</string>
+    <string name="osm_playground" tools:ignore="MissingTranslation">游乐场</string>
+    <string name="osm_pitch" tools:ignore="MissingTranslation">运动场</string>
+    <string name="osm_swimming_pool" tools:ignore="MissingTranslation">游泳池</string>
+    <string name="osm_garden" tools:ignore="MissingTranslation">花园</string>
+    <string name="osm_park" tools:ignore="MissingTranslation">公园</string>
+    <string name="osm_picnic_table" tools:ignore="MissingTranslation">野餐桌</string>
+    <string name="osm_picnic_site" tools:ignore="MissingTranslation">野餐区</string>
+    <string name="osm_information" tools:ignore="MissingTranslation">信息</string>
+    <string name="osm_fire_extinguisher" tools:ignore="MissingTranslation">灭火器</string>
+    <string name="osm_defibrillator" tools:ignore="MissingTranslation">除颤器</string>
+    <string name="osm_guide" tools:ignore="MissingTranslation">指路牌</string>
+    <string name="osm_water" tools:ignore="MissingTranslation">水域</string>
+    <string name="osm_fire_hose" tools:ignore="MissingTranslation">消防水带</string>
+    <string name="osm_fire_flapper" tools:ignore="MissingTranslation">灭火拍</string>
+    <string name="osm_information_point" tools:ignore="MissingTranslation">信息点</string>
+    <string name="osm_wetland" tools:ignore="MissingTranslation">湿地</string>
+    <string name="osm_mud" tools:ignore="MissingTranslation">泥地</string>
+    <string name="osm_access_point" tools:ignore="MissingTranslation">出入口</string>
+    <string name="osm_life_ring" tools:ignore="MissingTranslation">救生圈</string>
+    <string name="osm_generic_info" tools:ignore="MissingTranslation">一般信息</string>
+    <string name="osm_turntable" tools:ignore="MissingTranslation">转车台</string>
+    <string name="osm_survey_point" tools:ignore="MissingTranslation">测量点</string>
+    <string name="osm_snow_net" tools:ignore="MissingTranslation">防雪网</string>
+    <string name="osm_silo" tools:ignore="MissingTranslation">筒仓</string>
+    <string name="osm_mast" tools:ignore="MissingTranslation">桅杆</string>
+    <string name="osm_bird_hide" tools:ignore="MissingTranslation">观鸟棚</string>
+    <string name="osm_transformer_tower" tools:ignore="MissingTranslation">变压器塔</string>
+    <string name="osm_generic_object" tools:ignore="MissingTranslation">一般物体</string>
+    <string name="osm_signal" tools:ignore="MissingTranslation">信号灯</string>
+    <string name="osm_rock" tools:ignore="MissingTranslation">岩石</string>
+    <string name="osm_kiln" tools:ignore="MissingTranslation">窑</string>
+    <string name="osm_crane" tools:ignore="MissingTranslation">起重机</string>
+    <string name="osm_rune_stone" tools:ignore="MissingTranslation">如尼石碑</string>
+    <string name="osm_milestone" tools:ignore="MissingTranslation">里程碑</string>
+    <string name="osm_lifeguard_platform" tools:ignore="MissingTranslation">救生员瞭望台</string>
+    <string name="osm_water_tank" tools:ignore="MissingTranslation">水塔</string>
+    <string name="osm_sty" tools:ignore="MissingTranslation">猪圈</string>
+    <string name="osm_navigationaid" tools:ignore="MissingTranslation">助航标志</string>
+    <string name="osm_terminal" tools:ignore="MissingTranslation">航站楼</string>
+    <string name="osm_water_tap" tools:ignore="MissingTranslation">水龙头</string>
+    <string name="osm_water_well" tools:ignore="MissingTranslation">水井</string>
+    <string name="osm_petroleum_well" tools:ignore="MissingTranslation">油井</string>
+    <string name="osm_cross" tools:ignore="MissingTranslation">十字架</string>
+    <string name="osm_gallows" tools:ignore="MissingTranslation">绞刑架</string>
+    <string name="osm_speed_camera" tools:ignore="MissingTranslation">测速摄像头</string>
+    <string name="osm_siren" tools:ignore="MissingTranslation">警报器</string>
+    <string name="osm_pylon" tools:ignore="MissingTranslation">电力塔</string>
+    <string name="osm_mineshaft" tools:ignore="MissingTranslation">矿井</string>
+    <string name="osm_flagpole" tools:ignore="MissingTranslation">旗杆</string>
+    <string name="osm_optical_telegraph" tools:ignore="MissingTranslation">光学电报塔</string>
+    <string name="osm_cannon" tools:ignore="MissingTranslation">大炮</string>
+    <string name="osm_boundary_stone" tools:ignore="MissingTranslation">界碑</string>
+    <string name="osm_shed" tools:ignore="MissingTranslation">棚屋</string>
+    <string name="osm_traffic_cones" tools:ignore="MissingTranslation">交通锥</string>
+    <string name="osm_firepit" tools:ignore="MissingTranslation">火坑</string>
+    <string name="osm_stone" tools:ignore="MissingTranslation">石碑</string>
+    <string name="osm_surveillance" tools:ignore="MissingTranslation">监控</string>
+    <string name="osm_monitoring_station" tools:ignore="MissingTranslation">监测站</string>
+    <string name="osm_wayside_shrine" tools:ignore="MissingTranslation">路边神龛</string>
+    <string name="osm_wayside_cross" tools:ignore="MissingTranslation">路边十字架</string>
+    <string name="osm_tomb" tools:ignore="MissingTranslation">墓</string>
+    <string name="osm_traffic_signals" tools:ignore="MissingTranslation">交通信号灯</string>
+    <string name="osm_hut" tools:ignore="MissingTranslation">小屋</string>
+    <string name="osm_static_caravan" tools:ignore="MissingTranslation">固定房车</string>
+    <string name="osm_bollard" tools:ignore="MissingTranslation">护柱</string>
+    <string name="osm_block" tools:ignore="MissingTranslation">路障</string>
+    <string name="osm_waste_disposal" tools:ignore="MissingTranslation">废物处理站</string>
+    <string name="osm_photo_booth" tools:ignore="MissingTranslation">照相亭</string>
+    <string name="osm_bbq" tools:ignore="MissingTranslation">烧烤台</string>
+    <string name="osm_shop" tools:ignore="MissingTranslation">商店</string>
+    <string name="osm_newsagent" tools:ignore="MissingTranslation">报刊店</string>
+    <string name="osm_anime" tools:ignore="MissingTranslation">动漫店</string>
+    <string name="osm_musical_instrument" tools:ignore="MissingTranslation">乐器店</string>
+    <string name="osm_vacuum_cleaner" tools:ignore="MissingTranslation">吸尘器店</string>
+    <string name="osm_mobile_phone" tools:ignore="MissingTranslation">手机店</string>
+    <string name="osm_carpet" tools:ignore="MissingTranslation">地毯店</string>
+    <string name="osm_trade" tools:ignore="MissingTranslation">建材店</string>
+    <string name="osm_garden_centre" tools:ignore="MissingTranslation">园艺中心</string>
+    <string name="osm_florist" tools:ignore="MissingTranslation">花店</string>
+    <string name="osm_fireplace" tools:ignore="MissingTranslation">壁炉</string>
+    <string name="osm_massage" tools:ignore="MissingTranslation">按摩店</string>
+    <string name="osm_herbalist" tools:ignore="MissingTranslation">草药店</string>
+    <string name="osm_bag" tools:ignore="MissingTranslation">箱包店</string>
+    <string name="osm_pastry" tools:ignore="MissingTranslation">糕点店</string>
+    <string name="osm_deli" tools:ignore="MissingTranslation">熟食店</string>
+    <string name="osm_beverages" tools:ignore="MissingTranslation">饮品店</string>
+    <string name="osm_alcohol" tools:ignore="MissingTranslation">酒类专卖店</string>
+    <string name="osm_substation" tools:ignore="MissingTranslation">变电站</string>
+    <string name="osm_travel_agent" tools:ignore="MissingTranslation">旅行社</string>
+    <string name="osm_research" tools:ignore="MissingTranslation">研究机构</string>
+    <string name="osm_newspaper" tools:ignore="MissingTranslation">报刊店</string>
+    <string name="osm_ammunition" tools:ignore="MissingTranslation">弹药店</string>
+    <string name="osm_wildlife_hide" tools:ignore="MissingTranslation">野生动物观察棚</string>
+    <string name="osm_watchmaker" tools:ignore="MissingTranslation">钟表店</string>
+    <string name="osm_tinsmith" tools:ignore="MissingTranslation">白铁铺</string>
+    <string name="osm_sun_protection" tools:ignore="MissingTranslation">防晒用品店</string>
+    <string name="osm_sculptor" tools:ignore="MissingTranslation">雕塑工作室</string>
+    <string name="osm_metal_construction" tools:ignore="MissingTranslation">金属加工厂</string>
+    <string name="osm_handicraft" tools:ignore="MissingTranslation">手工艺品店</string>
+    <string name="osm_cowshed" tools:ignore="MissingTranslation">牛棚</string>
+    <string name="osm_cabin" tools:ignore="MissingTranslation">小木屋</string>
+    <string name="osm_barn" tools:ignore="MissingTranslation">谷仓</string>
+    <string name="osm_warehouse" tools:ignore="MissingTranslation">仓库</string>
+    <string name="osm_houseboat" tools:ignore="MissingTranslation">船屋</string>
+    <string name="osm_book_store" tools:ignore="MissingTranslation">书店</string>
+    <string name="osm_generic_place" tools:ignore="MissingTranslation">地点</string>
+    <string name="osm_hunting_stand" tools:ignore="MissingTranslation">狩猎台</string>
+    <string name="osm_game_feeding" tools:ignore="MissingTranslation">动物投喂点</string>
+    <string name="osm_crypt" tools:ignore="MissingTranslation">地下墓室</string>
+    <string name="osm_animal_shelter" tools:ignore="MissingTranslation">动物收容所</string>
+    <string name="osm_animal_boarding" tools:ignore="MissingTranslation">宠物寄养所</string>
+    <string name="osm_blood_donation" tools:ignore="MissingTranslation">献血站</string>
+    <string name="osm_nursing_home" tools:ignore="MissingTranslation">养老院</string>
+    <string name="osm_dentist" tools:ignore="MissingTranslation">牙科诊所</string>
+    <string name="osm_baby_hatch" tools:ignore="MissingTranslation">弃婴安全岛</string>
+    <string name="osm_language_school" tools:ignore="MissingTranslation">语言学校</string>
+    <string name="osm_public_bookcase" tools:ignore="MissingTranslation">公共书架</string>
+    <string name="osm_biergarten" tools:ignore="MissingTranslation">露天啤酒园</string>
+    <string name="osm_running" tools:ignore="MissingTranslation">跑道</string>
+    <string name="osm_glaziery" tools:ignore="MissingTranslation">玻璃店</string>
+    <string name="osm_garages" tools:ignore="MissingTranslation">车库</string>
+    <string name="osm_retail" tools:ignore="MissingTranslation">零售店</string>
+    <string name="osm_hotel" tools:ignore="MissingTranslation">酒店</string>
+    <string name="osm_camp_site" tools:ignore="MissingTranslation">露营地</string>
+    <string name="osm_rugby_league" tools:ignore="MissingTranslation">橄榄球联赛球场</string>
+    <string name="osm_roller_skating" tools:ignore="MissingTranslation">轮滑场</string>
+    <string name="osm_multi" tools:ignore="MissingTranslation">综合运动场</string>
+    <string name="osm_ice_hockey" tools:ignore="MissingTranslation">冰球场</string>
+    <string name="osm_hapkido" tools:ignore="MissingTranslation">合气道馆</string>
+    <string name="osm_croquet" tools:ignore="MissingTranslation">槌球场</string>
+    <string name="osm_cricket" tools:ignore="MissingTranslation">板球场</string>
+    <string name="osm_cockfighting" tools:ignore="MissingTranslation">斗鸡场</string>
+    <string name="osm_boxing" tools:ignore="MissingTranslation">拳击馆</string>
+    <string name="osm_bmx" tools:ignore="MissingTranslation">BMX赛道</string>
+    <string name="osm_billiards" tools:ignore="MissingTranslation">台球厅</string>
+    <string name="osm_toys" tools:ignore="MissingTranslation">玩具店</string>
+    <string name="osm_pyrotechnics" tools:ignore="MissingTranslation">烟花爆竹店</string>
+    <string name="osm_laundry" tools:ignore="MissingTranslation">洗衣店</string>
+    <string name="osm_funeral_directors" tools:ignore="MissingTranslation">殡仪馆</string>
+    <string name="osm_dry_cleaning" tools:ignore="MissingTranslation">干洗店</string>
+    <string name="osm_copyshop" tools:ignore="MissingTranslation">复印店</string>
+    <string name="osm_chalet" tools:ignore="MissingTranslation">度假小屋</string>
+    <string name="osm_apartment" tools:ignore="MissingTranslation">公寓</string>
+    <string name="osm_water_ski" tools:ignore="MissingTranslation">滑水场</string>
+    <string name="osm_water_polo" tools:ignore="MissingTranslation">水球场</string>
+    <string name="osm_table_soccer" tools:ignore="MissingTranslation">桌上足球</string>
+    <string name="osm_table_tennis" tools:ignore="MissingTranslation">乒乓球</string>
+    <string name="osm_skateboard" tools:ignore="MissingTranslation">滑板运动</string>
+    <string name="osm_sailing" tools:ignore="MissingTranslation">帆船运动</string>
+    <string name="osm_safety_training" tools:ignore="MissingTranslation">安全培训</string>
+    <string name="osm_rowing" tools:ignore="MissingTranslation">赛艇</string>
+    <string name="osm_model_aerodrome" tools:ignore="MissingTranslation">模型飞机场</string>
+    <string name="osm_korfball" tools:ignore="MissingTranslation">合球</string>
+    <string name="osm_ice_stock" tools:ignore="MissingTranslation">冰上掷壶</string>
+    <string name="osm_gymnastics" tools:ignore="MissingTranslation">体操</string>
+    <string name="osm_football" tools:ignore="MissingTranslation">足球</string>
+    <string name="osm_field_hockey" tools:ignore="MissingTranslation">曲棍球</string>
+    <string name="osm_equestrian" tools:ignore="MissingTranslation">马术</string>
+    <string name="osm_cycling" tools:ignore="MissingTranslation">骑行</string>
+    <string name="osm_curling" tools:ignore="MissingTranslation">冰壶</string>
+    <string name="osm_cricket_nets" tools:ignore="MissingTranslation">板球练习网</string>
+    <string name="osm_cliff_diving" tools:ignore="MissingTranslation">悬崖跳水</string>
+    <string name="osm_boules" tools:ignore="MissingTranslation">滚球</string>
+    <string name="osm_bobsleigh" tools:ignore="MissingTranslation">有舵雪橇</string>
+    <string name="osm_baseball" tools:ignore="MissingTranslation">棒球</string>
+    <string name="osm_aikido" tools:ignore="MissingTranslation">合气道</string>
+    <string name="osm_10pin" tools:ignore="MissingTranslation">十瓶保龄球</string>
+    <string name="osm_weapons" tools:ignore="MissingTranslation">武器商店</string>
+    <string name="osm_pet" tools:ignore="MissingTranslation">宠物店</string>
+    <string name="osm_money_lender" tools:ignore="MissingTranslation">借贷机构</string>
+    <string name="osm_gift" tools:ignore="MissingTranslation">礼品店</string>
+    <string name="osm_books" tools:ignore="MissingTranslation">书店</string>
+    <string name="osm_bookmaker" tools:ignore="MissingTranslation">博彩店</string>
+    <string name="osm_photo" tools:ignore="MissingTranslation">照相馆</string>
+    <string name="osm_craft" tools:ignore="MissingTranslation">手工艺品店</string>
+    <string name="osm_motorcycle" tools:ignore="MissingTranslation">摩托车店</string>
+    <string name="osm_hunting" tools:ignore="MissingTranslation">狩猎用品店</string>
+    <string name="osm_window_blind" tools:ignore="MissingTranslation">窗帘百叶窗店</string>
+    <string name="osm_curtain" tools:ignore="MissingTranslation">窗帘店</string>
+    <string name="osm_antiques" tools:ignore="MissingTranslation">古董店</string>
+    <string name="osm_paint" tools:ignore="MissingTranslation">油漆店</string>
+    <string name="osm_tattoo" tools:ignore="MissingTranslation">纹身工作室</string>
+    <string name="osm_nutrition_supplements" tools:ignore="MissingTranslation">营养保健品店</string>
+    <string name="osm_hearing_aids" tools:ignore="MissingTranslation">助听器店</string>
+    <string name="osm_cosmetics" tools:ignore="MissingTranslation">化妆品店</string>
+    <string name="osm_watches" tools:ignore="MissingTranslation">钟表店</string>
+    <string name="osm_jewelry" tools:ignore="MissingTranslation">珠宝店</string>
+    <string name="osm_boutique" tools:ignore="MissingTranslation">精品店</string>
+    <string name="osm_baby_goods" tools:ignore="MissingTranslation">母婴用品店</string>
+    <string name="osm_tea" tools:ignore="MissingTranslation">茶叶店</string>
+    <string name="osm_pasta" tools:ignore="MissingTranslation">意面店</string>
+    <string name="osm_coffee" tools:ignore="MissingTranslation">咖啡店</string>
+    <string name="osm_quango" tools:ignore="MissingTranslation">半官方机构</string>
+    <string name="osm_political_party" tools:ignore="MissingTranslation">政党办公室</string>
+    <string name="osm_association" tools:ignore="MissingTranslation">协会</string>
+    <string name="osm_architect" tools:ignore="MissingTranslation">建筑师事务所</string>
+    <string name="osm_advertising_agency" tools:ignore="MissingTranslation">广告公司</string>
+    <string name="osm_summer_camp" tools:ignore="MissingTranslation">夏令营</string>
+    <string name="osm_dance" tools:ignore="MissingTranslation">舞蹈工作室</string>
+    <string name="osm_amusement_arcade" tools:ignore="MissingTranslation">电子游戏厅</string>
+    <string name="osm_adult_gaming_centre" tools:ignore="MissingTranslation">成人游戏中心</string>
+    <string name="osm_window_construction" tools:ignore="MissingTranslation">门窗制造</string>
+    <string name="osm_upholsterer" tools:ignore="MissingTranslation">软垫装饰师</string>
+    <string name="osm_shoemaker" tools:ignore="MissingTranslation">鞋匠</string>
+    <string name="osm_sawmill" tools:ignore="MissingTranslation">锯木厂</string>
+    <string name="osm_pottery" tools:ignore="MissingTranslation">陶艺工作室</string>
+    <string name="osm_key_cutter" tools:ignore="MissingTranslation">配钥匙店</string>
+    <string name="osm_hvac" tools:ignore="MissingTranslation">暖通空调承包商</string>
+    <string name="osm_clockmaker" tools:ignore="MissingTranslation">钟表匠</string>
+    <string name="osm_carpenter" tools:ignore="MissingTranslation">木匠</string>
+    <string name="osm_builder" tools:ignore="MissingTranslation">建筑承包商</string>
+    <string name="osm_bookbinder" tools:ignore="MissingTranslation">装订工坊</string>
+    <string name="osm_boatbuilder" tools:ignore="MissingTranslation">造船厂</string>
+    <string name="osm_brewery" tools:ignore="MissingTranslation">啤酒厂</string>
+    <string name="osm_blacksmith" tools:ignore="MissingTranslation">铁匠</string>
+    <string name="osm_basket_maker" tools:ignore="MissingTranslation">编篮工坊</string>
+    <string name="osm_greenhouse" tools:ignore="MissingTranslation">温室</string>
+    <string name="osm_farm_auxiliary" tools:ignore="MissingTranslation">农场附属设施</string>
+    <string name="osm_civic" tools:ignore="MissingTranslation">市政建筑</string>
+    <string name="osm_bungalow" tools:ignore="MissingTranslation">平房</string>
+    <string name="osm_detached" tools:ignore="MissingTranslation">独栋住宅</string>
+    <string name="osm_hair_dresser" tools:ignore="MissingTranslation">美发店</string>
+    <string name="osm_clothing_store" tools:ignore="MissingTranslation">服装店</string>
+    <string name="osm_user" tools:ignore="MissingTranslation">用户</string>
+    <string name="osm_dojo" tools:ignore="MissingTranslation">武馆</string>
+    <string name="osm_nightclub" tools:ignore="MissingTranslation">夜总会</string>
+    <string name="osm_community_centre" tools:ignore="MissingTranslation">社区中心</string>
+    <string name="osm_brothel" tools:ignore="MissingTranslation">妓院</string>
+    <string name="osm_veterinary" tools:ignore="MissingTranslation">兽医诊所</string>
+    <string name="osm_social_facility" tools:ignore="MissingTranslation">社会服务机构</string>
+    <string name="osm_clinic" tools:ignore="MissingTranslation">诊所</string>
+    <string name="osm_charging_station" tools:ignore="MissingTranslation">充电站</string>
+    <string name="osm_kindergarten" tools:ignore="MissingTranslation">幼儿园</string>
+    <string name="osm_ice_cream" tools:ignore="MissingTranslation">冰淇淋店</string>
+    <string name="osm_fast_food" tools:ignore="MissingTranslation">快餐店</string>
+    <string name="osm_commercial" tools:ignore="MissingTranslation">商业建筑</string>
+    <string name="osm_canoe" tools:ignore="MissingTranslation">皮划艇</string>
+    <string name="osm_scuba_diving" tools:ignore="MissingTranslation">水肺潜水</string>
+    <string name="osm_fishing" tools:ignore="MissingTranslation">钓鱼</string>
+    <string name="osm_optician" tools:ignore="MissingTranslation">眼镜店</string>
+    <string name="osm_confectionery" tools:ignore="MissingTranslation">糖果店</string>
+    <string name="osm_bunker" tools:ignore="MissingTranslation">地堡</string>
+    <string name="osm_sleeping_pods" tools:ignore="MissingTranslation">睡眠舱</string>
+    <string name="osm_motel" tools:ignore="MissingTranslation">汽车旅馆</string>
+    <string name="osm_guest_house" tools:ignore="MissingTranslation">民宿</string>
+    <string name="osm_wrestling" tools:ignore="MissingTranslation">摔跤</string>
+    <string name="osm_toboggan" tools:ignore="MissingTranslation">平底雪橇</string>
+    <string name="osm_skiing" tools:ignore="MissingTranslation">滑雪</string>
+    <string name="osm_rc_car" tools:ignore="MissingTranslation">遥控车</string>
+    <string name="osm_paddle_tennis" tools:ignore="MissingTranslation">板式网球</string>
+    <string name="osm_hockey" tools:ignore="MissingTranslation">曲棍球</string>
+    <string name="osm_fencing" tools:ignore="MissingTranslation">击剑</string>
+    <string name="osm_bowls" tools:ignore="MissingTranslation">草地滚球</string>
+    <string name="osm_badminton" tools:ignore="MissingTranslation">羽毛球</string>
+    <string name="osm_archery" tools:ignore="MissingTranslation">射箭</string>
+    <string name="osm_american_football" tools:ignore="MissingTranslation">美式橄榄球</string>
+    <string name="osm_travel_agency" tools:ignore="MissingTranslation">旅行社</string>
+    <string name="osm_tobacco" tools:ignore="MissingTranslation">烟草店</string>
+    <string name="osm_e_cigarette" tools:ignore="MissingTranslation">电子烟店</string>
+    <string name="osm_video" tools:ignore="MissingTranslation">音像店</string>
+    <string name="osm_car_repair" tools:ignore="MissingTranslation">汽车修理</string>
+    <string name="osm_hifi" tools:ignore="MissingTranslation">音响店</string>
+    <string name="osm_lamps" tools:ignore="MissingTranslation">灯具店</string>
+    <string name="osm_kitchen" tools:ignore="MissingTranslation">厨具店</string>
+    <string name="osm_interior_decoration" tools:ignore="MissingTranslation">室内装饰店</string>
+    <string name="osm_houseware" tools:ignore="MissingTranslation">家居用品店</string>
+    <string name="osm_erotic" tools:ignore="MissingTranslation">成人用品店</string>
+    <string name="osm_beauty" tools:ignore="MissingTranslation">美容店</string>
+    <string name="osm_wine" tools:ignore="MissingTranslation">葡萄酒店</string>
+    <string name="osm_dairy" tools:ignore="MissingTranslation">乳制品店</string>
+    <string name="osm_cheese" tools:ignore="MissingTranslation">奶酪店</string>
+    <string name="osm_bakery" tools:ignore="MissingTranslation">面包店</string>
+    <string name="osm_telecommunication" tools:ignore="MissingTranslation">通讯店</string>
+    <string name="osm_tax" tools:ignore="MissingTranslation">税务事务所</string>
+    <string name="osm_real_estate_agent" tools:ignore="MissingTranslation">房产中介</string>
+    <string name="osm_notary" tools:ignore="MissingTranslation">公证处</string>
+    <string name="osm_ngo" tools:ignore="MissingTranslation">非政府组织办公室</string>
+    <string name="osm_lawyer" tools:ignore="MissingTranslation">律师事务所</string>
+    <string name="osm_it" tools:ignore="MissingTranslation">IT服务</string>
+    <string name="osm_foundation" tools:ignore="MissingTranslation">基金会</string>
+    <string name="osm_employment_agency" tools:ignore="MissingTranslation">职业介绍所</string>
+    <string name="osm_educational_institution" tools:ignore="MissingTranslation">教育机构</string>
+    <string name="osm_adoption_agency" tools:ignore="MissingTranslation">收养机构</string>
+    <string name="osm_miniature_golf" tools:ignore="MissingTranslation">迷你高尔夫</string>
+    <string name="osm_building" tools:ignore="MissingTranslation">建筑</string>
+    <string name="osm_winery" tools:ignore="MissingTranslation">酒庄</string>
+    <string name="osm_tiler" tools:ignore="MissingTranslation">瓷砖工</string>
+    <string name="osm_chimney_sweeper" tools:ignore="MissingTranslation">烟囱清洁工</string>
+    <string name="osm_stand_builder" tools:ignore="MissingTranslation">展台搭建商</string>
+    <string name="osm_saddler" tools:ignore="MissingTranslation">马具匠</string>
+    <string name="osm_plumber" tools:ignore="MissingTranslation">水管工</string>
+    <string name="osm_plasterer" tools:ignore="MissingTranslation">抹灰工</string>
+    <string name="osm_painter" tools:ignore="MissingTranslation">油漆工</string>
+    <string name="osm_jeweller" tools:ignore="MissingTranslation">珠宝店</string>
+    <string name="osm_floorer" tools:ignore="MissingTranslation">地板工</string>
+    <string name="osm_distillery" tools:ignore="MissingTranslation">酿酒厂</string>
+    <string name="osm_carpet_layer" tools:ignore="MissingTranslation">地毯铺设工</string>
+    <string name="osm_beekeeper" tools:ignore="MissingTranslation">养蜂人</string>
+    <string name="osm_public" tools:ignore="MissingTranslation">公共设施</string>
+    <string name="osm_dormitory" tools:ignore="MissingTranslation">宿舍</string>
+    <string name="osm_apartments" tools:ignore="MissingTranslation">公寓</string>
+    <string name="osm_internet_cafe" tools:ignore="MissingTranslation">网吧</string>
+    <string name="osm_shoe_shop" tools:ignore="MissingTranslation">鞋店</string>
+    <string name="osm_generic_shop" tools:ignore="MissingTranslation">商店</string>
+    <string name="osm_coffee_shop" tools:ignore="MissingTranslation">咖啡店</string>
+    <string name="osm_coworking_space" tools:ignore="MissingTranslation">共享办公空间</string>
+    <string name="osm_stripclub" tools:ignore="MissingTranslation">脱衣舞俱乐部</string>
+    <string name="osm_ev_charging" tools:ignore="MissingTranslation">电动车充电站</string>
+    <string name="osm_pub" tools:ignore="MissingTranslation">酒吧</string>
+    <string name="osm_obstacle_course" tools:ignore="MissingTranslation">障碍赛道</string>
+    <string name="osm_volleyball" tools:ignore="MissingTranslation">排球场</string>
+    <string name="osm_tennis" tools:ignore="MissingTranslation">网球场</string>
+    <string name="osm_soccer" tools:ignore="MissingTranslation">足球场</string>
+    <string name="osm_shooting" tools:ignore="MissingTranslation">射击场</string>
+    <string name="osm_rugby_union" tools:ignore="MissingTranslation">橄榄球场</string>
+    <string name="osm_orienteering" tools:ignore="MissingTranslation">定向越野</string>
+    <string name="osm_netball" tools:ignore="MissingTranslation">无挡板篮球场</string>
+    <string name="osm_motor" tools:ignore="MissingTranslation">汽车商店</string>
+    <string name="osm_kitesurfing" tools:ignore="MissingTranslation">风筝冲浪</string>
+    <string name="osm_karting" tools:ignore="MissingTranslation">卡丁车赛道</string>
+    <string name="osm_judo" tools:ignore="MissingTranslation">柔道馆</string>
+    <string name="osm_horseshoes" tools:ignore="MissingTranslation">马蹄铁投掷场</string>
+    <string name="osm_handball" tools:ignore="MissingTranslation">手球场</string>
+    <string name="osm_golf" tools:ignore="MissingTranslation">高尔夫球场</string>
+    <string name="osm_gaelic_games" tools:ignore="MissingTranslation">盖尔运动场</string>
+    <string name="osm_diving" tools:ignore="MissingTranslation">潜水场</string>
+    <string name="osm_darts" tools:ignore="MissingTranslation">飞镖场</string>
+    <string name="osm_climbing_adventure" tools:ignore="MissingTranslation">攀岩探险</string>
+    <string name="osm_basketball" tools:ignore="MissingTranslation">篮球场</string>
+    <string name="osm_bandy" tools:ignore="MissingTranslation">班迪球场</string>
+    <string name="osm_australian_football" tools:ignore="MissingTranslation">澳式橄榄球场</string>
+    <string name="osm_9pin" tools:ignore="MissingTranslation">九瓶保龄球</string>
+    <string name="osm_vacant" tools:ignore="MissingTranslation">空置</string>
+    <string name="osm_lottery" tools:ignore="MissingTranslation">彩票店</string>
+    <string name="osm_trophy" tools:ignore="MissingTranslation">奖杯店</string>
+    <string name="osm_music" tools:ignore="MissingTranslation">乐器店</string>
+    <string name="osm_games" tools:ignore="MissingTranslation">游戏店</string>
+    <string name="osm_tyres" tools:ignore="MissingTranslation">轮胎店</string>
+    <string name="osm_sports" tools:ignore="MissingTranslation">体育用品店</string>
+    <string name="osm_outdoor" tools:ignore="MissingTranslation">户外用品店</string>
+    <string name="osm_car" tools:ignore="MissingTranslation">汽车经销商</string>
+    <string name="osm_electronics" tools:ignore="MissingTranslation">电子产品店</string>
+    <string name="osm_computer" tools:ignore="MissingTranslation">电脑店</string>
+    <string name="osm_furniture" tools:ignore="MissingTranslation">家具店</string>
+    <string name="osm_candles" tools:ignore="MissingTranslation">蜡烛店</string>
+    <string name="osm_hardware" tools:ignore="MissingTranslation">五金店</string>
+    <string name="osm_gas" tools:ignore="MissingTranslation">加油站</string>
+    <string name="osm_energy" tools:ignore="MissingTranslation">能源公司</string>
+    <string name="osm_doityourself" tools:ignore="MissingTranslation">DIY建材店</string>
+    <string name="osm_bathroom_furnishing" tools:ignore="MissingTranslation">卫浴店</string>
+    <string name="osm_medical_supply" tools:ignore="MissingTranslation">医疗器械店</string>
+    <string name="osm_variety_store" tools:ignore="MissingTranslation">杂货店</string>
+    <string name="osm_second_hand" tools:ignore="MissingTranslation">二手店</string>
+    <string name="osm_charity" tools:ignore="MissingTranslation">慈善商店</string>
+    <string name="osm_fashion" tools:ignore="MissingTranslation">时装店</string>
+    <string name="osm_fabric" tools:ignore="MissingTranslation">布料店</string>
+    <string name="osm_clothes" tools:ignore="MissingTranslation">服装店</string>
+    <string name="osm_butcher" tools:ignore="MissingTranslation">肉店</string>
+    <string name="osm_water_utility" tools:ignore="MissingTranslation">自来水公司</string>
+    <string name="osm_realtor" tools:ignore="MissingTranslation">房产中介</string>
+    <string name="osm_company" tools:ignore="MissingTranslation">公司</string>
+    <string name="osm_accountant" tools:ignore="MissingTranslation">会计师</string>
+    <string name="osm_bunker_silo" tools:ignore="MissingTranslation">地堡式筒仓</string>
+    <string name="osm_hackerspace" tools:ignore="MissingTranslation">创客空间</string>
+    <string name="osm_lifeguard_base" tools:ignore="MissingTranslation">救生员站</string>
+    <string name="osm_roofer" tools:ignore="MissingTranslation">屋顶工</string>
+    <string name="osm_rigger" tools:ignore="MissingTranslation">索具工</string>
+    <string name="osm_parquet_layer" tools:ignore="MissingTranslation">木地板铺设工</string>
+    <string name="osm_gardener" tools:ignore="MissingTranslation">园丁</string>
+    <string name="osm_stable" tools:ignore="MissingTranslation">马厩</string>
+    <string name="osm_garage" tools:ignore="MissingTranslation">车库</string>
+    <string name="osm_transportation" tools:ignore="MissingTranslation">交通设施</string>
+    <string name="osm_house" tools:ignore="MissingTranslation">住宅</string>
+    <string name="osm_helipad" tools:ignore="MissingTranslation">直升机停机坪</string>
+    <string name="osm_apron" tools:ignore="MissingTranslation">停机坪</string>
+    <string name="osm_consumer_electronics_store" tools:ignore="MissingTranslation">电子产品店</string>
+    <string name="osm_speciality_store" tools:ignore="MissingTranslation">专卖店</string>
+    <string name="osm_defined" tools:ignore="MissingTranslation">已定义</string>
+    <string name="osm_sauna" tools:ignore="MissingTranslation">桑拿房</string>
+    <string name="osm_gym" tools:ignore="MissingTranslation">健身房</string>
+    <string name="osm_crematorium" tools:ignore="MissingTranslation">火葬场</string>
+    <string name="osm_gambling" tools:ignore="MissingTranslation">赌场</string>
+    <string name="osm_music_school" tools:ignore="MissingTranslation">音乐学校</string>
+    <string name="osm_bar" tools:ignore="MissingTranslation">酒吧</string>
+    <string name="osm_farm" tools:ignore="MissingTranslation">农场</string>
+    <string name="osm_bicycle" tools:ignore="MissingTranslation">自行车店</string>
+    <string name="osm_tailor" tools:ignore="MissingTranslation">裁缝店</string>
+    <string name="osm_locksmith" tools:ignore="MissingTranslation">锁匠</string>
+    <string name="osm_industrial" tools:ignore="MissingTranslation">工业区</string>
+    <string name="osm_wilderness_hut" tools:ignore="MissingTranslation">野外小屋</string>
+    <string name="osm_hostel" tools:ignore="MissingTranslation">青年旅舍</string>
+    <string name="osm_caravan_site" tools:ignore="MissingTranslation">房车营地</string>
+    <string name="osm_weightlifting" tools:ignore="MissingTranslation">举重馆</string>
+    <string name="osm_taekwondo" tools:ignore="MissingTranslation">跆拳道馆</string>
+    <string name="osm_swimming" tools:ignore="MissingTranslation">游泳池</string>
+    <string name="osm_surfing" tools:ignore="MissingTranslation">冲浪区</string>
+    <string name="osm_skating" tools:ignore="MissingTranslation">溜冰场</string>
+    <string name="osm_racquet" tools:ignore="MissingTranslation">球拍运动场</string>
+    <string name="osm_pelota" tools:ignore="MissingTranslation">回力球场</string>
+    <string name="osm_paragliding" tools:ignore="MissingTranslation">滑翔伞场</string>
+    <string name="osm_parachuting" tools:ignore="MissingTranslation">跳伞场</string>
+    <string name="osm_motocross" tools:ignore="MissingTranslation">越野摩托赛道</string>
+    <string name="osm_ice_skating" tools:ignore="MissingTranslation">溜冰场</string>
+    <string name="osm_horse_racing" tools:ignore="MissingTranslation">赛马场</string>
+    <string name="osm_dog_racing" tools:ignore="MissingTranslation">赛狗场</string>
+    <string name="osm_climbing" tools:ignore="MissingTranslation">攀岩区</string>
+    <string name="osm_chess" tools:ignore="MissingTranslation">国际象棋俱乐部</string>
+    <string name="osm_canadian_football" tools:ignore="MissingTranslation">加拿大式橄榄球场</string>
+    <string name="osm_beachvolleyball" tools:ignore="MissingTranslation">沙滩排球场</string>
+    <string name="osm_base" tools:ignore="MissingTranslation">基地</string>
+    <string name="osm_athletics" tools:ignore="MissingTranslation">田径场</string>
+    <string name="osm_pawnbroker" tools:ignore="MissingTranslation">典当行</string>
+    <string name="osm_ticket" tools:ignore="MissingTranslation">售票处</string>
+    <string name="osm_stationery" tools:ignore="MissingTranslation">文具店</string>
+    <string name="osm_video_games" tools:ignore="MissingTranslation">电子游戏店</string>
+    <string name="osm_model" tools:ignore="MissingTranslation">模型店</string>
+    <string name="osm_frame" tools:ignore="MissingTranslation">画框店</string>
+    <string name="osm_art" tools:ignore="MissingTranslation">美术用品店</string>
+    <string name="osm_car_parts" tools:ignore="MissingTranslation">汽车配件店</string>
+    <string name="osm_radiotechnics" tools:ignore="MissingTranslation">无线电器材店</string>
+    <string name="osm_bed" tools:ignore="MissingTranslation">寝具店</string>
+    <string name="osm_garden_furniture" tools:ignore="MissingTranslation">户外家具店</string>
+    <string name="osm_electrical" tools:ignore="MissingTranslation">电气用品店</string>
+    <string name="osm_perfumery" tools:ignore="MissingTranslation">香水店</string>
+    <string name="osm_hairdresser" tools:ignore="MissingTranslation">美发店</string>
+    <string name="osm_drugstore" tools:ignore="MissingTranslation">药妆店</string>
+    <string name="osm_shoes" tools:ignore="MissingTranslation">鞋店</string>
+    <string name="osm_leather" tools:ignore="MissingTranslation">皮具店</string>
+    <string name="osm_general" tools:ignore="MissingTranslation">杂货店</string>
+    <string name="osm_seafood" tools:ignore="MissingTranslation">海鲜店</string>
+    <string name="osm_organic" tools:ignore="MissingTranslation">有机食品店</string>
+    <string name="osm_greengrocer" tools:ignore="MissingTranslation">果蔬店</string>
+    <string name="osm_chocolate" tools:ignore="MissingTranslation">巧克力店</string>
+    <string name="osm_brewing_supplies" tools:ignore="MissingTranslation">酿酒用品店</string>
+    <string name="osm_tax_advisor" tools:ignore="MissingTranslation">税务顾问</string>
+    <string name="osm_private_investigator" tools:ignore="MissingTranslation">私家侦探</string>
+    <string name="osm_government" tools:ignore="MissingTranslation">政府机关</string>
+    <string name="osm_forestry" tools:ignore="MissingTranslation">林业</string>
+    <string name="osm_estate_agent" tools:ignore="MissingTranslation">房产中介</string>
+    <string name="osm_spring" tools:ignore="MissingTranslation">泉水</string>
+    <string name="osm_golf_course" tools:ignore="MissingTranslation">高尔夫球场</string>
+    <string name="osm_ses_station" tools:ignore="MissingTranslation">紧急救援站</string>
+    <string name="osm_lifeguard_place" tools:ignore="MissingTranslation">救生员岗位</string>
+    <string name="osm_stonemason" tools:ignore="MissingTranslation">石匠</string>
+    <string name="osm_scaffolder" tools:ignore="MissingTranslation">脚手架工</string>
+    <string name="osm_sailmaker" tools:ignore="MissingTranslation">帆匠</string>
+    <string name="osm_photographic_laboratory" tools:ignore="MissingTranslation">照片冲洗室</string>
+    <string name="osm_photographer" tools:ignore="MissingTranslation">摄影师</string>
+    <string name="osm_insulation" tools:ignore="MissingTranslation">隔热材料</string>
+    <string name="osm_electrician" tools:ignore="MissingTranslation">电工</string>
+    <string name="osm_dressmaker" tools:ignore="MissingTranslation">裁缝</string>
+    <string name="osm_caterer" tools:ignore="MissingTranslation">餐饮服务</string>
+    <string name="osm_terrace" tools:ignore="MissingTranslation">露台</string>
+    <string name="osm_toy_shop" tools:ignore="MissingTranslation">玩具店</string>
+    <string name="osm_dive_centre" tools:ignore="MissingTranslation">潜水中心</string>
+    <string name="osm_swingerclub" tools:ignore="MissingTranslation">交友俱乐部</string>
+    <string name="osm_doctors" tools:ignore="MissingTranslation">诊所</string>
+    <string name="osm_driving_school" tools:ignore="MissingTranslation">驾校</string>
+    <string name="osm_free_flying" tools:ignore="MissingTranslation">自由飞行</string>
+    <string name="osm_religion" tools:ignore="MissingTranslation">宗教场所</string>
+    <string name="osm_kiosk" tools:ignore="MissingTranslation">售货亭</string>
+    <string name="osm_residential" tools:ignore="MissingTranslation">住宅区</string>
+    <string name="osm_food" tools:ignore="MissingTranslation">食品店</string>
+    <string name="osm_waterfall" tools:ignore="MissingTranslation">瀑布</string>
+    <string name="osm_boatyard" tools:ignore="MissingTranslation">船坞</string>
+    <string name="osm_theme_park" tools:ignore="MissingTranslation">主题公园</string>
+    <string name="osm_roundhouse" tools:ignore="MissingTranslation">机车库</string>
+    <string name="osm_generator" tools:ignore="MissingTranslation">发电机</string>
+    <string name="osm_beach" tools:ignore="MissingTranslation">海滩</string>
+    <string name="osm_naval_base" tools:ignore="MissingTranslation">海军基地</string>
+    <string name="osm_works" tools:ignore="MissingTranslation">工厂</string>
+    <string name="osm_water_works" tools:ignore="MissingTranslation">自来水厂</string>
+    <string name="osm_telescope" tools:ignore="MissingTranslation">望远镜</string>
+    <string name="osm_pier" tools:ignore="MissingTranslation">码头栈桥</string>
+    <string name="osm_observatory" tools:ignore="MissingTranslation">天文台</string>
+    <string name="osm_reservoir" tools:ignore="MissingTranslation">水库</string>
+    <string name="osm_monument" tools:ignore="MissingTranslation">纪念碑</string>
+    <string name="osm_battlefield" tools:ignore="MissingTranslation">古战场</string>
+    <string name="osm_planetarium" tools:ignore="MissingTranslation">天文馆</string>
+    <string name="osm_social_centre" tools:ignore="MissingTranslation">社区活动中心</string>
+    <string name="osm_prison" tools:ignore="MissingTranslation">监狱</string>
+    <string name="osm_courthouse" tools:ignore="MissingTranslation">法院</string>
+    <string name="osm_bridge" tools:ignore="MissingTranslation">桥梁</string>
+    <string name="osm_hangar" tools:ignore="MissingTranslation">机库</string>
+    <string name="osm_tower" tools:ignore="MissingTranslation">塔</string>
+    <string name="osm_attraction" tools:ignore="MissingTranslation">景点</string>
+    <string name="osm_zoo" tools:ignore="MissingTranslation">动物园</string>
+    <string name="osm_gallery" tools:ignore="MissingTranslation">画廊</string>
+    <string name="osm_artwork" tools:ignore="MissingTranslation">艺术品</string>
+    <string name="osm_alpine_hut" tools:ignore="MissingTranslation">高山木屋</string>
+    <string name="osm_plant" tools:ignore="MissingTranslation">工业厂房</string>
+    <string name="osm_insurance" tools:ignore="MissingTranslation">保险公司</string>
+    <string name="osm_airfield" tools:ignore="MissingTranslation">飞机场</string>
+    <string name="osm_water_tower" tools:ignore="MissingTranslation">水塔</string>
+    <string name="osm_pumping_station" tools:ignore="MissingTranslation">泵站</string>
+    <string name="osm_hot_water_tank" tools:ignore="MissingTranslation">热水罐</string>
+    <string name="osm_campanile" tools:ignore="MissingTranslation">钟楼</string>
+    <string name="osm_sports_centre" tools:ignore="MissingTranslation">体育中心</string>
+    <string name="osm_fitness_centre" tools:ignore="MissingTranslation">健身中心</string>
+    <string name="osm_beach_resort" tools:ignore="MissingTranslation">海滨度假村</string>
+    <string name="osm_village_green" tools:ignore="MissingTranslation">村庄绿地</string>
+    <string name="osm_ship" tools:ignore="MissingTranslation">船舶</string>
+    <string name="osm_memorial" tools:ignore="MissingTranslation">纪念地</string>
+    <string name="osm_synagogue" tools:ignore="MissingTranslation">犹太教堂</string>
+    <string name="osm_mosque" tools:ignore="MissingTranslation">清真寺</string>
+    <string name="osm_chapel" tools:ignore="MissingTranslation">小教堂</string>
+    <string name="osm_cathedral" tools:ignore="MissingTranslation">大教堂</string>
+    <string name="osm_train_terminal" tools:ignore="MissingTranslation">火车总站</string>
+    <string name="osm_college" tools:ignore="MissingTranslation">学院</string>
+    <string name="osm_arts_centre" tools:ignore="MissingTranslation">艺术中心</string>
+    <string name="osm_ranger_station" tools:ignore="MissingTranslation">护林站</string>
+    <string name="osm_hospital" tools:ignore="MissingTranslation">医院</string>
+    <string name="osm_track" tools:ignore="MissingTranslation">跑道</string>
+    <string name="osm_conference_centre" tools:ignore="MissingTranslation">会议中心</string>
+    <string name="osm_viewpoint" tools:ignore="MissingTranslation">观景点</string>
+    <string name="osm_supermarket" tools:ignore="MissingTranslation">超市</string>
+    <string name="osm_peak" tools:ignore="MissingTranslation">山峰</string>
+    <string name="osm_storage_tank" tools:ignore="MissingTranslation">储罐</string>
+    <string name="osm_lighthouse" tools:ignore="MissingTranslation">灯塔</string>
+    <string name="osm_beacon" tools:ignore="MissingTranslation">航标</string>
+    <string name="osm_port" tools:ignore="MissingTranslation">港口</string>
+    <string name="osm_archaeological_site" tools:ignore="MissingTranslation">考古遗址</string>
+    <string name="osm_train_station" tools:ignore="MissingTranslation">火车站</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s火车站</string>
+    <string name="osm_shrine" tools:ignore="MissingTranslation">神社</string>
+    <string name="osm_church" tools:ignore="MissingTranslation">教堂</string>
+    <string name="osm_historic_monument" tools:ignore="MissingTranslation">历史古迹</string>
+    <string name="osm_generic_landmark" tools:ignore="MissingTranslation">地标</string>
+    <string name="osm_tourism_museum" tools:ignore="MissingTranslation">博物馆</string>
+    <string name="osm_register_office" tools:ignore="MissingTranslation">登记处</string>
+    <string name="osm_grave_yard" tools:ignore="MissingTranslation">墓地</string>
+    <string name="osm_marketplace" tools:ignore="MissingTranslation">集市</string>
+    <string name="osm_fire_station" tools:ignore="MissingTranslation">消防站</string>
+    <string name="osm_ruins" tools:ignore="MissingTranslation">遗迹</string>
+    <string name="osm_weir" tools:ignore="MissingTranslation">堰</string>
+    <string name="osm_museum" tools:ignore="MissingTranslation">博物馆</string>
+    <string name="osm_mall" tools:ignore="MissingTranslation">购物中心</string>
+    <string name="osm_volcano" tools:ignore="MissingTranslation">火山</string>
+    <string name="osm_hot_spring" tools:ignore="MissingTranslation">温泉</string>
+    <string name="osm_glacier" tools:ignore="MissingTranslation">冰川</string>
+    <string name="osm_wastewater_plant" tools:ignore="MissingTranslation">污水处理厂</string>
+    <string name="osm_offshore_platform" tools:ignore="MissingTranslation">海上平台</string>
+    <string name="osm_gasometer" tools:ignore="MissingTranslation">储气罐</string>
+    <string name="osm_water_park" tools:ignore="MissingTranslation">水上乐园</string>
+    <string name="osm_bandstand" tools:ignore="MissingTranslation">露天演奏台</string>
+    <string name="osm_wreck" tools:ignore="MissingTranslation">沉船</string>
+    <string name="osm_pillory" tools:ignore="MissingTranslation">耻辱柱</string>
+    <string name="osm_monastery" tools:ignore="MissingTranslation">修道院</string>
+    <string name="osm_locomotive" tools:ignore="MissingTranslation">火车头</string>
+    <string name="osm_fort" tools:ignore="MissingTranslation">堡垒</string>
+    <string name="osm_services" tools:ignore="MissingTranslation">服务区</string>
+    <string name="osm_lifeguard_tower" tools:ignore="MissingTranslation">救生塔</string>
+    <string name="osm_temple" tools:ignore="MissingTranslation">寺庙</string>
+    <string name="osm_national_park" tools:ignore="MissingTranslation">国家公园</string>
+    <string name="osm_heliport" tools:ignore="MissingTranslation">直升机场</string>
+    <string name="osm_public_park" tools:ignore="MissingTranslation">公园</string>
+    <string name="osm_department_store" tools:ignore="MissingTranslation">百货商店</string>
+    <string name="osm_studio" tools:ignore="MissingTranslation">工作室</string>
+    <string name="osm_public_building" tools:ignore="MissingTranslation">公共建筑</string>
+    <string name="osm_clock" tools:ignore="MissingTranslation">钟</string>
+    <string name="osm_casino" tools:ignore="MissingTranslation">赌场</string>
+    <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">渡轮码头</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s渡轮码头</string>
+    <string name="osm_stadium" tools:ignore="MissingTranslation">体育场</string>
+    <string name="osm_dam" tools:ignore="MissingTranslation">大坝</string>
+    <string name="osm_dock" tools:ignore="MissingTranslation">船坞码头</string>
+    <string name="osm_geyser" tools:ignore="MissingTranslation">间歇泉</string>
+    <string name="osm_bay" tools:ignore="MissingTranslation">海湾</string>
+    <string name="osm_barracks" tools:ignore="MissingTranslation">军营</string>
+    <string name="osm_windmill" tools:ignore="MissingTranslation">风车</string>
+    <string name="osm_watermill" tools:ignore="MissingTranslation">水车磨坊</string>
+    <string name="osm_communications_tower" tools:ignore="MissingTranslation">通信塔</string>
+    <string name="osm_swimming_area" tools:ignore="MissingTranslation">游泳区</string>
+    <string name="osm_slipway" tools:ignore="MissingTranslation">船台</string>
+    <string name="osm_nature_reserve" tools:ignore="MissingTranslation">自然保护区</string>
+    <string name="osm_marina" tools:ignore="MissingTranslation">游艇码头</string>
+    <string name="osm_ice_rink" tools:ignore="MissingTranslation">溜冰场</string>
+    <string name="osm_manor" tools:ignore="MissingTranslation">庄园</string>
+    <string name="osm_city_gate" tools:ignore="MissingTranslation">城门</string>
+    <string name="osm_castle" tools:ignore="MissingTranslation">城堡</string>
+    <string name="osm_aircraft" tools:ignore="MissingTranslation">飞机</string>
+    <string name="osm_digester" tools:ignore="MissingTranslation">消化池</string>
+    <string name="osm_sally_port" tools:ignore="MissingTranslation">出击门</string>
+    <string name="osm_aerodrome" tools:ignore="MissingTranslation">机场</string>
+    <string name="osm_shopping_mall" tools:ignore="MissingTranslation">购物中心</string>
+    <string name="osm_cinema" tools:ignore="MissingTranslation">电影院</string>
+    <string name="osm_rescue_station" tools:ignore="MissingTranslation">救援站</string>
+    <string name="osm_airport" tools:ignore="MissingTranslation">机场</string>
+    <string name="osm_theatre" tools:ignore="MissingTranslation">剧院</string>
+    <string name="osm_library" tools:ignore="MissingTranslation">图书馆</string>
+    <string name="osm_university" tools:ignore="MissingTranslation">大学</string>
+    <string name="osm_police" tools:ignore="MissingTranslation">警察局</string>
+    <string name="osm_embassy" tools:ignore="MissingTranslation">大使馆</string>
+    <string name="osm_bus_station" tools:ignore="MissingTranslation">公交车站</string>
+    <string name="osm_station" tools:ignore="MissingTranslation">车站</string>
+    <string name="osm_toll_booth" tools:ignore="MissingTranslation">收费站</string>
+    <string name="osm_lift" tools:ignore="MissingTranslation">电梯</string>
+    <string name="osm_unmanaged_crossing" tools:ignore="MissingTranslation">无管理人行横道</string>
+    <string name="osm_pharmacy" tools:ignore="MissingTranslation">药店</string>
+    <string name="osm_kneipp_water_cure" tools:ignore="MissingTranslation">克奈普水疗</string>
+    <string name="osm_food_court" tools:ignore="MissingTranslation">美食广场</string>
+    <string name="osm_chemist" tools:ignore="MissingTranslation">药妆店</string>
+    <string name="osm_checkpoint" tools:ignore="MissingTranslation">检查站</string>
+    <string name="osm_dog_park" tools:ignore="MissingTranslation">宠物公园</string>
+    <string name="osm_kissing_gate" tools:ignore="MissingTranslation">单通门</string>
+    <string name="osm_car_rental" tools:ignore="MissingTranslation">汽车租赁</string>
+    <string name="osm_pedestrianised_area" tools:ignore="MissingTranslation">步行区</string>
+    <string name="osm_escalator" tools:ignore="MissingTranslation">自动扶梯</string>
+    <string name="osm_shelter" tools:ignore="MissingTranslation">凉亭</string>
+    <string name="osm_water_point" tools:ignore="MissingTranslation">取水点</string>
+    <string name="osm_subway_entrance" tools:ignore="MissingTranslation">地铁入口</string>
+    <string name="osm_cave_entrance" tools:ignore="MissingTranslation">洞穴入口</string>
+    <string name="osm_swing_gate" tools:ignore="MissingTranslation">旋转门</string>
+    <string name="osm_stile" tools:ignore="MissingTranslation">翻越梯</string>
+    <string name="osm_car_sharing" tools:ignore="MissingTranslation">共享汽车</string>
+    <string name="osm_customer_service" tools:ignore="MissingTranslation">客户服务</string>
+    <string name="osm_watering_place" tools:ignore="MissingTranslation">饮水处</string>
+    <string name="osm_platform" tools:ignore="MissingTranslation">站台</string>
+    <string name="osm_horse_stile" tools:ignore="MissingTranslation">马匹通道</string>
+    <string name="osm_bureau_de_change" tools:ignore="MissingTranslation">外币兑换处</string>
+    <string name="osm_stairs" tools:ignore="MissingTranslation">楼梯</string>
+    <string name="osm_bicycle_rental" tools:ignore="MissingTranslation">自行车租赁</string>
+    <string name="osm_tram_stop" tools:ignore="MissingTranslation">有轨电车站</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s有轨电车站</string>
+    <string name="osm_subway" tools:ignore="MissingTranslation">地铁站</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s地铁站</string>
+    <string name="osm_hampshire_gate" tools:ignore="MissingTranslation">汉普郡门</string>
+    <string name="osm_full_height_turnstile" tools:ignore="MissingTranslation">全高旋转闸</string>
+    <string name="osm_boat_sharing" tools:ignore="MissingTranslation">共享船只</string>
+    <string name="osm_help_point" tools:ignore="MissingTranslation">求助点</string>
+    <string name="osm_open_space" tools:ignore="MissingTranslation">开放空间</string>
+    <string name="osm_spending_area" tools:ignore="MissingTranslation">活动区域</string>
+    <string name="osm_bicycle_repair_station" tools:ignore="MissingTranslation">自行车维修站</string>
+    <string name="osm_motorcycle_barrier" tools:ignore="MissingTranslation">摩托车路障</string>
+    <string name="osm_kent_carriage_gap" tools:ignore="MissingTranslation">马车通道口</string>
+    <string name="osm_shared_space" tools:ignore="MissingTranslation">共享空间</string>
+    <string name="osm_cliff" tools:ignore="MissingTranslation">悬崖</string>
+    <string name="osm_training_area" tools:ignore="MissingTranslation">训练场</string>
+    <string name="osm_log" tools:ignore="MissingTranslation">原木</string>
+    <string name="osm_jersey_barrier" tools:ignore="MissingTranslation">隔离墩</string>
+    <string name="osm_construction_site" tools:ignore="MissingTranslation">建筑工地</string>
+    <string name="osm_ridge" tools:ignore="MissingTranslation">山脊</string>
+    <string name="osm_nuclear_explosion_site" tools:ignore="MissingTranslation">核爆地点</string>
+    <string name="osm_dyke" tools:ignore="MissingTranslation">堤坝</string>
+    <string name="osm_sump_buster" tools:ignore="MissingTranslation">底盘限高障碍</string>
+    <string name="osm_rope" tools:ignore="MissingTranslation">绳索</string>
+    <string name="osm_debris" tools:ignore="MissingTranslation">碎石堆</string>
+    <string name="osm_road_works" tools:ignore="MissingTranslation">道路施工</string>
+    <string name="osm_lock_gate" tools:ignore="MissingTranslation">船闸门</string>
+    <string name="osm_sinkhole" tools:ignore="MissingTranslation">天坑</string>
+    <string name="osm_range" tools:ignore="MissingTranslation">射击场</string>
+    <string name="osm_ambulance_station" tools:ignore="MissingTranslation">急救站</string>
+    <string name="osm_spikes" tools:ignore="MissingTranslation">路面钉刺</string>
+    <string name="osm_generic_hazard" tools:ignore="MissingTranslation">一般危险区</string>
+    <string name="osm_contact_line" tools:ignore="MissingTranslation">接触线</string>
+    <string name="osm_danger_area" tools:ignore="MissingTranslation">危险区域</string>
+    <string name="osm_chain" tools:ignore="MissingTranslation">链条路障</string>
+    <string name="osm_parking_space" tools:ignore="MissingTranslation">停车位</string>
+    <string name="osm_motorcycle_parking" tools:ignore="MissingTranslation">摩托车停车场</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">城市</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">城镇</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">街区</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">村庄</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">自然村</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">运动场</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">河流</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">铁路</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">树林</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">体育馆</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">体育场所</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">健康食品</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">活动场所</string>
+    <string name="tour_welcome" tools:ignore="MissingTranslation">欢迎使用Soundscape教程。本教程将引导您了解应用的主要功能。您可以随时在主菜单中点击取消语音教程来停止教程。让我们从附近地点开始，它可以帮您发现感兴趣的地点。附近地点按钮位于主屏幕搜索栏下方。现在点击它来试试看。</string>
+    <string name="tour_select_place" tools:ignore="MissingTranslation">附近地点按类型对兴趣点进行分组。浏览列表中的地点并选择一个。</string>
+    <string name="tour_create_marker_started" tools:ignore="MissingTranslation">很好！您现在进入了位置详情屏幕。此屏幕允许您执行各种操作，包括将位置保存为标记点。使用Soundscape，您可以标记周围任何您关心的地方。例如，您可以标记您的家、公交车站，甚至只是您当前所在的位置。让我们来试试。点击保存为标记点来保存此位置。</string>
+    <string name="tour_create_marker_done" tools:ignore="MissingTranslation">太棒了！创建标记点时，您可以编辑名称并添加附加注释。现在试试看，准备好后点击完成。</string>
+    <string name="tour_my_location" tools:ignore="MissingTranslation">既然您已经知道如何使用标记点，让我们来看看其他一些功能。屏幕底部有四个按钮，我们将依次尝试。左侧的按钮是我的位置，它会描述您当前的位置。现在试着点击它。</string>
+    <string name="tour_around_me" tools:ignore="MissingTranslation">下一个按钮是周围。它会告诉您每个方向附近有什么。点击周围。</string>
+    <string name="tour_ahead" tools:ignore="MissingTranslation">下一个按钮是前方。它会告诉您前面有什么。点击前方。</string>
+    <string name="tour_nearby_markers" tools:ignore="MissingTranslation">最后一个按钮是附近标记点，它会播报您周围已保存的地点。点击附近标记点来试试。</string>
+    <string name="tour_markers_and_routes" tools:ignore="MissingTranslation">您已成功创建了一个标记点。接下来让我们播放音频信标来引导我们前往该位置。点击标记点与路线，它就在附近地点下方。</string>
+    <string name="tour_markers" tools:ignore="MissingTranslation">标记点与路线屏幕有两个选项卡，一个列出路线（即标记点的播放列表），另一个列出各个标记点。点击标记点切换到标记点选项卡，找到您创建的标记点。</string>
+    <string name="tour_start_beacon" tools:ignore="MissingTranslation">您现在进入了标记点选项卡，这里列出了您所有已保存的标记点。选择一个标记点，当位置详情屏幕出现时，点击启动音频信标。</string>
+    <string name="tour_beacon_demo" tools:ignore="MissingTranslation">您现在可以听到音频信标了。它从您目的地的方向播放声音。当您改变手机指向的方向时，您可以听到音频信标移动并改变声音。现在试试看。</string>
+    <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">当您的手机锁屏时，信标仍会继续播放。如果您在步行或乘车，应用会使用您的行进方向来播放音频信标。不过，即使在锁屏状态下，您也可以将手机平放在面前，像指南针一样，它会使用手机指向的方向。试试看。</string>
+    <string name="tour_stop_beacon" tools:ignore="MissingTranslation">当您准备好停止信标时，点击停止路线按钮。</string>
+    <string name="tour_finish" tools:ignore="MissingTranslation">教程到此结束。您可以从主菜单再次运行教程。希望您觉得这个应用有用！</string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation">语音教程已取消。如果需要，您可以从主菜单再次运行。</string>
+    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">教程</string>
+    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">取消教程</string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation">继续</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">关闭弹窗并继续教程</string>
+    <string name="first_launch_permissions_motion">运动与健身</string>
+    <string name="first_launch_permissions_required">此权限为必需权限</string>
+    <string name="permissions_required" tools:ignore="MissingTranslation">应用需要位置权限才能运行。</string>
+    <string name="permissions_button" tools:ignore="MissingTranslation">在应用设置中更改权限</string>
+    <string name="first_launch_beacon_title">选择音频信标</string>
+    <string name="first_launch_beacon_message_1">使用Soundscape导航时，您将听到音频信标从目的地方向传来的声音。跟随信标的声音，您就能始终知道该往哪个方向走。</string>
+    <string name="first_launch_beacon_message_2">请收听可用的音频信标并选择您喜欢的。</string>
+    <string name="first_launch_beacon_message_3">稍后可以在应用设置中更改。</string>
+    <string name="first_launch_prompt_title">一切就绪！</string>
+    <string name="first_launch_prompt_message">您已准备好与Soundscape一起出发。现在就来试试吧，只需选择一个附近的目的地，启动音频信标，您就会听到信标从目的地方向传来的声音。</string>
+    <string name="first_launch_prompt_button">完成</string>
+    <string name="first_launch_change_language" tools:ignore="MissingTranslation">更改语言</string>
+    <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">更改应用使用的语言</string>
+    <string name="help_text_destination_beacons_what">在附近地点上设置信标后，Soundscape会从该地点的方向播放音频信标声音，让您随时了解方位。您可以在主屏幕上将信标设为静音或取消静音。此外，Soundscape还会在主屏幕上显示该地点的相关信息，包括到该地点的距离以及其街道地址（如果已知）。</string>
+    <string name="help_text_destination_beacons_when">当您想在探索新区域时保持对某个熟悉地标的追踪，或者当您在前往某地途中想了解周围环境时，设置信标非常有用。信标功能不会提供逐向导航，但它会持续播放音频声音，告诉您信标相对于您当前位置的方向。借助音频信标、您自身的导航技能，甚至您常用的导航应用，您可以自行选择如何到达附近地点。</string>
+    <string name="help_text_destination_beacons_how_1">**设置信标：**\n\n首先，查看某个地点的详细信息——您可以使用搜索栏搜索地点，也可以点击*\"附近地点\"*、*\"已保存标记点\"*或*\"当前位置\"*按钮并选择一个地点。在地点详情页面中，您可以点击*\"启动音频信标\"*按钮。点击后将返回主屏幕，并开启从您所选地点方向传来的音频信标。您所选地点的名称及其距离和实际地址（如果有）将显示在应用主屏幕上。</string>
+    <string name="help_text_destination_beacons_how_2">**移除当前信标：**\n\n只需按下主屏幕上的*\"停止信标\"*按钮。</string>
+    <string name="help_text_destination_beacons_how_3">**将音频信标设为静音：**\n\n点击主屏幕上*\"停止信标\"*按钮旁边的*\"信标静音\"*按钮。</string>
+    <string name="help_text_automatic_callouts_what">当您接近周围的事物时，Soundscape可以从其所在方向播报名称来告知您。应用会自动为各类事物执行此操作，如商铺、公交站甚至路口。您可以在*\"设置\"*页面的*\"播报\"*部分配置应用自动播报的内容，也可以在需要安静时关闭所有播报。</string>
+    <string name="help_text_automatic_callouts_when_1">**探索新区域：**\n\n打开自动播报，四处走走，当您经过各种商店、餐馆等时就会听到相关播报。</string>
+    <string name="help_text_automatic_callouts_when_2">**步行前往特定地点：**\n\n当您在前往某个特定地点的途中，路口自动播报特别有用。路口提示会在您接近路口时告诉您路口的布局，并在您离开路口时确认您所在的道路。</string>
+    <string name="help_text_automatic_callouts_when_3">**当您需要安静时：**\n\n当您准备过马路或只是需要应用保持安静时，可以关闭播报。关闭播报后，应用只会在您手动点击*\"我的位置\"*、*\"附近标记点\"*、*\"周围\"*或*\"前方\"*按钮时才会播报信息。</string>
+    <string name="help_text_automatic_callouts_how_1">**开启或关闭播报：**\n\n关闭播报将使应用静音。您可以在*\"设置\"*页面的*\"播报\"*部分中点击*\"允许播报\"*开关来开启或关闭播报。您也可以使用耳机上的媒体控制按钮通过*\"快进\"*命令（双击并按住）来开启或关闭播报。此外，您还可以使用主屏幕右上角的*\"休眠\"*按钮，让Soundscape停止播报，直到您选择再次唤醒它。</string>
+    <string name="help_text_automatic_callouts_how_2">**管理您听到的播报内容：**\n\n要选择Soundscape自动播报的类型，请通过*\"主页\"*屏幕菜单进入*\"设置\"*页面。*\"设置\"*页面的*\"播报\"*部分包含应用可以播报的类型列表。每个项目都有一个开关，您可以打开或关闭。如果您希望关闭所有播报，请点击列表顶部的*\"允许播报\"*开关。</string>
+    <string name="help_text_my_location_what">*\"我的位置\"*按钮可以快速为您提供帮助确定当前位置的信息。*\"我的位置\"*会告诉您当前位置的相关信息，包括您面朝的方向、附近的道路或路口，以及附近的兴趣点。</string>
+    <string name="help_text_my_location_when">当您需要确定自己所在的位置或面朝的方向时，*\"我的位置\"*非常有用。</string>
+    <string name="help_text_my_location_how">与主屏幕底部的所有四个按钮一样，在按下*\"我的位置\"*按钮之前，请将手机屏幕朝上平放（面向天空），手机顶部指向您面朝的方向。这就像指南针一样告诉应用您面朝的方向。只需点击*\"我的位置\"*按钮并聆听即可。</string>
+    <string name="help_text_nearby_markers_what">*\"附近标记点\"*按钮会告诉您距您最近的最多四个标记点。*\"附近标记点\"*旨在帮助您使用已知的地点来确定方位。</string>
+    <string name="help_text_nearby_markers_when">当您试图确定方位并了解周围环境时，使用*\"附近标记点\"*来听取您熟悉的地点位置信息。</string>
+    <string name="help_text_nearby_markers_how">与主屏幕底部的所有四个按钮一样，在按下*\"附近标记点\"*按钮之前，请将手机屏幕朝上平放（面向天空），手机顶部指向您面朝的方向。这就像指南针一样告诉应用您面朝的方向。只需点击*\"附近标记点\"*按钮，您就会听到附近最多四个标记点的信息。</string>
+    <string name="help_text_around_me_what">*\"周围\"*按钮会告诉您周围四个象限（前方、右侧、后方和左侧）各一个事物。*\"周围\"*旨在帮助您了解周围环境。</string>
+    <string name="help_text_around_me_when">当您试图确定方位并了解周围环境时，使用*\"周围\"*来听取您周围的事物。</string>
+    <string name="help_text_around_me_how">与主屏幕底部的所有四个按钮一样，在按下*\"周围\"*按钮之前，请将手机屏幕朝上平放（面向天空），手机顶部指向您面朝的方向。这就像指南针一样告诉应用您面朝的方向。只需点击*\"周围\"*按钮，您就会听到分布在您周围的四个兴趣点。</string>
+    <string name="help_text_ahead_of_me_what">*\"前方\"*按钮会告诉您前方的四个事物。*\"前方\"*旨在帮助您在探索新区域时了解前方的情况。</string>
+    <string name="help_text_ahead_of_me_when">当您走在街上时，尝试使用*\"前方\"*来发现前方街道两侧即将出现的地点和事物。</string>
+    <string name="help_text_ahead_of_me_how">与主屏幕底部的所有四个按钮一样，在按下*\"前方\"*按钮之前，请将手机屏幕朝上平放（面向天空），手机顶部指向您面朝的方向。这就像指南针一样告诉应用您面朝的方向。只需点击*\"前方\"*按钮，您就会听到大致在您前方的多个兴趣点。</string>
+    <string name="help_text_remote_control_what">您可以借助耳机上的媒体控制按钮使用Soundscape的某些功能。此功能适用于任何带有媒体控制按钮（如播放、暂停、下一曲、上一曲等）的有线或蓝牙耳机。不同的耳机可能包含不同的按钮，请参考以下操作列表来确定哪些功能可供您使用。</string>
+    <string name="help_text_remote_control_when">在Soundscape运行时可以使用耳机媒体控制。无论您当前正在使用Soundscape还是Soundscape在后台运行，甚至设备已锁定，都可以使用。但请注意，如果您正在使用其他应用播放音乐、播客或视频等音频内容，耳机媒体控制按钮将无法与Soundscape配合使用。</string>
+    <string name="help_text_remote_control_how">您可以使用耳机上的媒体控制按钮在Soundscape中使用以下功能：\n\n⏯ 播放/暂停：将当前播报静音，如果已设置音频信标，则切换信标音频。\n\n⏭ 下一曲：播报*\"我的位置\"*。\n\n⏮ 上一曲：重复上一条播报。\n\n⏩ 快进：切换播报的开启和关闭。\n\n⏪ 快退：播报*\"周围\"*。</string>
+    <string name="help_text_markers_content_1">使用Soundscape，您可以标记您的世界和您关心的任何事物，就像在地图上插图钉一样。</string>
+    <string name="help_text_markers_content_2">您可以标记与您个人相关的事物，如您的家、办公室和常去的杂货店。您可以标记任何地点或地址，也可以标记传统地图上可能没有的事物，例如建筑物或公园的入口、行人过街按钮、人行横道或桥梁、公交站，甚至您家狗最喜欢的树，并将这些作为步行途中的参考点。</string>
+    <string name="help_text_markers_content_3">为了让您体验标记的地点，Soundscape会在您经过或接近已标记的地点时自动播报。您也可以使用Soundscape主屏幕底部的附近标记点按钮，听取周围标记地点的空间播报。此外，您还可以在任何已标记的地点上设置音频信标。设置后，您熟悉的Soundscape音频信标将会响起，您可以像往常一样操作它。</string>
+    <string name="help_text_creating_markers_content_1">您可以通过三种方式创建标记点：使用搜索栏搜索您想保存的地点，通过*\"附近地点\"*按钮查找位置，或使用*\"使用当前位置\"*按钮，这些都可以在Soundscape主屏幕上找到。找到您想要的地点后，选择它将带您进入*\"位置详情\"*页面。在此页面上，点击*\"保存标记点\"*按钮。</string>
+    <string name="help_text_creating_markers_content_2">现在您可以自定义此标记点。您可以更改标记点的名称，还可以添加注释，注释会与标记点一起播报以提供额外信息。完成后，点击*\"完成\"*按钮保存您的标记点。</string>
+    <string name="help_text_customizing_markers_content_1">如果您想重命名之前创建的标记点或为其添加注释，可以在*\"标记点和路线\"*页面的*\"标记点\"*选项卡中选择该标记点，然后点击*\"编辑标记点\"*按钮。您可以使用此功能为标记点设置描述性或实用的昵称，也可以使用注释字段为其添加更详细的描述。</string>
+    <string name="help_text_customizing_markers_content_2">在此*\"编辑\"*页面中，如果您不再需要某个标记点，也可以将其删除。</string>
+    <string name="help_text_routes_content_what">路线是一系列航点。当您到达每个航点时会收到通知，音频信标会自动前进到下一个航点。</string>
+    <string name="help_text_routes_content_when">您可能想在熟悉的地方创建并使用路线以确保不偏离方向，也可能想将其作为工具来帮助自己熟悉新的旅程。</string>
+    <string name="help_text_routes_content_how_1">**创建路线：**\n\n首先，进入*\"标记点和路线\"*，选择*\"路线\"*选项卡，然后点击*\"新建路线\"*按钮。为路线命名并添加可选的描述，然后随行添加航点或从您的标记点列表中选择。您可以随时通过编辑路线来重新排列航点的顺序。</string>
+    <string name="help_text_routes_content_how_2">**编辑路线：**\n\n在*\"标记点和路线\"*页面选择您的路线，然后点击*\"编辑路线\"*。在此页面您可以添加和移除航点，以及编辑路线的名称和描述。</string>
+    <string name="help_text_routes_content_how_3">**分享路线：**\n\n在*\"标记点和路线\"*页面选择您的路线，然后选择*\"分享\"*选项，使用所有可用的分享方式进行分享。</string>
+    <string name="share_title">分享</string>
+    <string name="faq_title">常见问题</string>
+    <string name="faq_title_abbreviated">常见问题</string>
+    <string name="faq_tips_title">使用技巧</string>
+    <string name="faq_section_what_is_soundscape">什么是Soundscape，我该如何使用？</string>
+    <string name="faq_when_to_use_soundscape_question">我应该在什么时候使用Soundscape？</string>
+    <string name="faq_when_to_use_soundscape_answer">Soundscape的功能和优势涵盖多种场景和时间跨度。此外，Soundscape对您的价值可能会随时间演变，因此您今天的使用方式可能与三个月后有所不同。人们常常以*\"这个应用能解决什么问题？\"*的角度来看待应用。Soundscape当然可以在您有特定信息需求时按需使用——例如在前往目的地途中追踪目的地位置、从地铁站出来时帮助您辨别方向、下车后确定方位，或者查找下一个路口的街道名称和距离。然而，Soundscape背后的理念是*\"用声音照亮您的世界\"*，设计初衷是在您外出时随时使用，提供对周围环境的感知，例如让您了解所在街道的名称、行进方向以及经过的商家名称。在这种使用模式下，我们的用户将Soundscape称为*\"不错的伴侣应用\"*，支持*\"偶然发现\"*，能*\"填补心理地图中的空白\"*，并在*\"步行时提供更多信心\"*。以下是我们用户将Soundscape融入生活的一些其他例子：\n\n\"Soundscape帮助我在下错公交车后重新找到了方向。\"\n\n\"即使在我已经住了3年的城镇，使用Soundscape后，我对周围环境有了更好的了解。\"\n\n\"3D声音增强了我的步行体验，因为我感觉与环境的联系更加紧密……有了这个应用，我更愿意尝试新路线了。\"\n\n\"我怀念走在路上偶然发现事物的感觉。有了Soundscape真好——无需任何努力就能听到周围事物的信息。位置关系信息非常有用，是一款很棒的情境感知和探索商业区的应用。\"\n\n\"我用Soundscape在约克市中心找到一家酒吧。我使用了它的多种功能先定位再实际找到它。它把我带到了距离门口3米以内的地方——太棒了！\"</string>
+    <string name="faq_markers_function_question">什么是标记点，如何充分利用它们？</string>
+    <string name="faq_markers_function_answer">标记点是您保存的地点。它们可以是应用中可发现的地点，也可以是您自己添加的全新地点。您可以通过在主屏幕上点击*\"使用当前位置\"*按钮，然后选择*\"保存为标记点\"*，将当前位置保存为标记点。您也可以通过搜索栏搜索想要保存的地点，或通过*\"附近地点\"*按钮查找位置来将其他地点保存为标记点，这些功能都可以在Soundscape主屏幕上找到。找到您想要的地点后，选择它将带您进入*\"位置详情\"*页面。在此页面上，点击*\"保存为标记点\"*按钮。</string>
+    <string name="faq_section_getting_the_best_experience">如何获得Soundscape的最佳体验？</string>
+    <string name="faq_what_can_I_set_question">我可以在什么上设置信标？</string>
+    <string name="faq_what_can_I_set_answer">您可以在任何商铺、地点、兴趣点、地址或路口上设置音频信标。有几种方式可以在某个位置添加信标。首先，查看某个地点的详细信息——您可以使用搜索栏搜索地点，也可以点击*\"附近地点\"*、*\"已保存标记点\"*或*\"当前位置\"*按钮并选择一个地点。在*\"位置详情\"*页面中，您可以点击*\"启动音频信标\"*按钮。点击后将返回主屏幕，并开启从您所选地点方向传来的音频信标。您所选地点的名称及其距离和实际地址（如果有）将显示在应用主屏幕上。</string>
+    <string name="faq_how_to_use_beacon_question">如何像专家一样使用信标？</string>
+    <string name="faq_how_to_use_beacon_answer">您可以将音频信标想象成一座*\"耳朵的灯塔\"*，告诉您目的地相对于您位置的方向（直线方向）。就像灯塔一样，它不会告诉您如何到达——您在途中可能需要做出许多导航选择，就像帆船需要多次*\"调向\"*才能接近灯塔。音频信标持续的节奏声从目的地方向传来，帮助您在步行时始终了解目的地相对于您的位置。当您直接朝目的地方向行走或将手机指向目的地时，会听到一个较高音调的*\"铃声\"*。此功能可帮助您精确定位目的地的方向，因为在嗰杂的环境中，节奏声的方向有时可能难以辨别。在寻找较高音调的*\"铃声\"*时，将手机平放并缓慢扫动；同时转头使面朝方向与手机指向一致，可确保获得最佳的空间音频体验。\n\n信标设计的灯塔比喻有几个自然的含义：\n\n1. 使用信标时没有*\"正确的\"*行进方向，使用Soundscape时由您自己选择如何到达；\n\n2. 较高音调的*\"铃声\"*仅帮助您确定目的地的方向——它不是告诉您应该如何到达那里；\n\n3. 如果您大致知道如何前往目的地，可以在大部分行程中将信标静音，只在接近目的地时再打开。</string>
+    <string name="faq_why_does_beacon_disappear_question">为什么音频信标有时会消失？</string>
+    <string name="faq_why_does_beacon_disappear_answer">Soundscape的音频信标本质上是一个方向提示，告诉您目的地相对于您面朝方向的位置。当Soundscape无法确定您面朝的方向时，它会降低信标的音量。这种情况通常发生在您将手机放在口袋或包中行走并停下来（例如等过马路）时。当您重新开始行走或将手机平放并指向您面朝的方向时，信标音量会恢复。</string>
+    <string name="faq_beacon_on_address_question">我可以在地址上设置信标吗？</string>
+    <string name="faq_beacon_on_address_answer">是的，可以。地址默认不会列出，但可以通过搜索字段找到。要保存此地址以便下次无需再搜索，您可以在主屏幕上点击*\"保存为标记点\"*按钮将其添加为标记点。</string>
+    <string name="faq_beacon_on_home_question">如何在我家设置信标？</string>
+    <string name="faq_beacon_on_home_answer">Soundscape支持在地址上设置信标。要在您的家或任何其他地址上设置信标，请在Soundscape主屏幕上搜索该位置。在*\"位置详情\"*页面上，点击*\"启动音频信标\"*按钮。</string>
+    <string name="faq_how_close_to_destination_question">当我在目的地设置信标后，Soundscape能把我带到多近的距离？</string>
+    <string name="faq_how_close_to_destination_answer">Soundscape可以将目的地的位置确定到几米范围内，但不会更精确。当Soundscape判定您已接近目的地时，您会听到一条最终播报提示目的地就在附近，信标随即关闭。</string>
+    <string name="faq_turn_beacon_back_on_question">当我接近目的地时可以重新打开信标吗？</string>
+    <string name="faq_turn_beacon_back_on_answer">是的，当Soundscape关闭信标后，您可以点击*\"取消静音信标按钮\"*重新打开信标；但由于定位服务的精度约为10米，当您在目的地几米范围内时，我们无法保证信标的行为。</string>
+    <string name="faq_road_names_question">为什么Soundscape在我接近路口时会播报两次路名？</string>
+    <string name="faq_road_names_answer">为了适应各种路口配置，Soundscape将路口描述为从一个公共点出发的道路段。Soundscape使用空间音频依次指示左侧道路的名称、正前方继续的道路名称以及右侧道路的名称。如果路口描述以您所在的道路开头而不是左侧的道路，那么这是一个T形路口，您所在的道路继续向前延伸，另一条道路从右侧交汇。同样，如果描述只包含左侧和右侧的道路，您就知道您所在的道路在前方的T形路口处终止。这种描述路口的方法也适用于道路在路口处更名的情况。</string>
+    <string name="faq_why_not_every_business_question">为什么Soundscape不会播报我经过的每家商铺？</string>
+    <string name="faq_why_not_every_business_answer">Soundscape的设计避免过于频繁地播报。此外，它使用Open Street Map作为后端数据源。Open Street Map（OSM，https://www.openstreetmap.org/）是一个由社区开发和编辑的世界地图，依赖个人来输入和维护数据。如果某个商铺或兴趣点没有被Soundscape播报，最可能的原因是该商铺尚未被OSM社区成员添加，或在某些情况下尚未被更新。</string>
+    <string name="faq_callouts_stopping_in_vehicle_question">为什么某些播报在我乘坐交通工具时停止了？</string>
+    <string name="faq_callouts_stopping_in_vehicle_answer">为了避免播报数量过多，某些类别（如路口）在您乘坐交通工具行驶时不会自动播报。</string>
+    <string name="faq_miss_a_callout_question">如果我没听清播报或因环境噪音错过了怎么办？</string>
+    <string name="faq_miss_a_callout_answer">Soundscape有一个最近播报列表，方便您查看可能错过的播报。要找到此列表，请点击Soundscape主屏幕上的搜索栏。在页面底部，有一个*\"最近播报\"*部分，您错过的播报会列在其中。</string>
+    <string name="faq_section_how_soundscape_works">Soundscape如何运作？</string>
+    <string name="faq_supported_phones_question">Soundscape可以在什么手机上运行？</string>
+    <string name="faq_supported_phones_answer">Soundscape安卓版目前适用于运行Android 11或更高版本的安卓手机。</string>
+    <string name="faq_supported_headsets_question">使用Soundscape应该搭配什么耳机？</string>
+    <string name="faq_supported_headsets_answer">使用Soundscape搭配哪种耳机是个人偏好的问题，每种选择都有其优缺点。唯一的特定要求是使用一副立体声耳机，以便您能充分利用Soundscape的3D空间音频播报。</string>
+    <string name="faq_battery_impact_question">Soundscape对我手机电池有什么影响？</string>
+    <string name="faq_battery_impact_answer">电池续航因手机型号和使用年限而有很大差异。屏幕常亮是最大的耗电因素，因此为了延长手机电池续航，您应尽可能保持屏幕锁定。为了帮助减少对手机电池的影响，Soundscape现在提供了休眠模式。要进一步减少电池消耗，当您不使用Soundscape时，应通过手机的应用切换器强制关闭它。</string>
+    <string name="faq_sleep_mode_battery_question">如何使用休眠模式来减少Soundscape对手机电池的影响？</string>
+    <string name="faq_sleep_mode_battery_answer">要将Soundscape设为休眠模式，请点击屏幕右上角的*\"休眠\"*按钮。选择后，Soundscape将停止使用定位服务和移动数据，直到您选择再次唤醒它。</string>
+    <string name="faq_snooze_mode_battery_question">如何使用小睡模式来减少Soundscape对手机电池的影响？</string>
+    <string name="faq_snooze_mode_battery_answer">要将Soundscape设为小睡模式，请点击屏幕右上角的*\"休眠\"*按钮。Soundscape进入休眠模式后，点击*\"离开时唤醒\"*按钮，Soundscape将进入低功耗状态，直到您离开当前位置。</string>
+    <string name="faq_headset_battery_impact_question">耳机的选择如何影响手机的电池续航？</string>
+    <string name="faq_headset_battery_impact_answer">在我们的测试中，蓝牙耳机的电池消耗与有线耳机相当，在选择耳机时不应将其视为重要考虑因素。</string>
+    <string name="faq_background_battery_impact_question">在后台运行Soundscape对手机电池续航有什么影响？</string>
+    <string name="faq_background_battery_impact_answer">Soundscape是一款基于位置的应用，使用定位服务来确定您的位置。在我们的测试中，Soundscape的电池消耗不会超过一般地图应用；但如果您担心使用手机时的电池消耗，以下是一些有助于降低用量的建议：\n\n1. 在不与应用交互时，尽可能关闭屏幕显示。\n\n2. 不使用应用时，请将其关闭。Soundscape在运行时会持续使用定位服务，以便始终了解您的位置，即使您没有移动。别忘了在继续旅程时重新启动应用。\n\n3. 在寒冷天气中，请保持手机温暖，因为电池在较低温度下性能会下降。</string>
+    <string name="faq_mobile_data_use_question">Soundscape使用多少移动数据？</string>
+    <string name="faq_mobile_data_use_answer">移动数据的使用量取决于您如何使用Soundscape。我们设计Soundscape在您外出时仅使用少量数据，例如在您走过时保存地点数据，这样您再次回到已经去过的地方时就无需重新下载。要减少移动数据使用量，请确保尽可能连接Wi-Fi，特别是在下载应用时。当您不使用Soundscape时，应使用*\"休眠\"*按钮让Soundscape进入休眠状态或强制关闭应用。</string>
+    <string name="faq_difference_from_map_apps_question">Soundscape与其他地图应用有何不同？</string>
+    <string name="faq_difference_from_map_apps_answer">Soundscape提供对周围环境的氛围描述，帮助您探索和寻路。使用空间音频，Soundscape会在您步行时从事物所在的方向播报兴趣点、公园、道路和路口。例如，如果您右侧经过一家商店，您会听到商店名称从右边传来。当您接近路口时，您会听到每条道路的名称从其延伸方向传来，依次是左侧、正前方和右侧。\n\n与其他地图应用通常提供的逐向导航不同，Soundscape会在目的地方向播放音频信标，使您能够凭借对周围环境的增强感知和目的地位置信息，按自己的方式前往。Soundscape设计为可在后台运行，让您能同时使用逐向导航应用，同时在前往目的地途中继续提供环境感知。</string>
+    <string name="faq_use_with_wayfinding_apps_question">如何将Soundscape与导航应用一起使用？</string>
+    <string name="faq_use_with_wayfinding_apps_answer">Soundscape是一款环境感知应用，旨在帮助您了解可能不知道的周围环境细节。虽然它不是一款逐向导航应用，但可以与此类应用配合使用以提供补充信息。要将Soundscape与这些应用一起使用，请先启动您的导航应用。然后切换到Soundscape，在与导航应用相同的目的地上设置信标。此时，两个应用都将运行，您将听到导航应用的步行路线指引，同时从Soundscape获取兴趣点、路口以及到目的地距离的更新信息。</string>
+    <string name="faq_controlling_what_you_hear_question">如何控制在Soundscape中听到的内容和时间？</string>
+    <string name="faq_controlling_what_you_hear_answer">Soundscape提供了多种方式来控制您听到的内容和时间：\n\n1. 立即停止所有音频：用两根手指双击屏幕可立即关闭所有音频，包括当前正在播放的播报以及信标（如果已开启）。当您接近下一个路口或兴趣点时，播报会自动恢复，但音频信标不会。点击主屏幕上的*\"取消静音信标按钮\"*可恢复信标声音。\n\n2. 停止自动播报：当您不在行走或已到达目的地时，可能不需要Soundscape继续通知您周围的事物。您可以将Soundscape设为小睡模式，它会在您离开时自动唤醒；或者将Soundscape设为休眠模式，它会保持关闭直到您选择重新开启。您也可以从菜单中选择*\"设置\"*，在*\"播报\"*部分选择关闭所有播报。\n\n3. 停止信标：在某些情况下您可能设置了目的地，但不需要音频信标开启。例如，您可能确切知道如何到达目的地，只想获取关于距目的地距离的自动更新。或者，您大致知道如何到达目的地，只需在接近目的地时使用音频信标。无论哪种情况，您都可以通过切换主屏幕上的*\"信标静音\"*/*\"取消静音信标\"*按钮来选择何时听到信标。</string>
+    <string name="faq_holding_phone_flat_question">我需要一直将手机拿在手上吗？</string>
+    <string name="faq_holding_phone_flat_answer">不需要！步行时，您可以将手机放在包里、口袋里或任何方便的地方。Soundscape将使用您的行走方向来确定哪些播报在您的左侧和右侧。当您停止移动时，Soundscape无法判断您面朝的方向。如果音频信标已开启，您会注意到它在您停止移动后变安静，直到您重新开始移动。您可以随时拿出手机按下屏幕底部的位置和探索按钮，但请确保将手机平放，顶部指向您面朝的方向，屏幕面向天空。在这种*\"平放\"*位置下，Soundscape会使用手机的指南针来确定您面朝的方向，并提供准确的空间播报。如果信标已开启，您也会注意到它恢复到正常音量。</string>
+    <string name="faq_what_is_osm_question">什么是Open Street Map，为什么Soundscape使用它？</string>
+    <string name="faq_what_is_osm_answer">Soundscape利用地理地图数据提供应用中的信息播报。我们使用的主要地图数据源是Open Street Map（www.openstreetmap.org），这是一个丰富的社区生成的地图平台，使组织和个人能够使用Open Street Map地图编辑工具改善所提供信息的质量和精细度以及其空间的无障碍性。</string>
+    <string name="faq_tip_beacon_quiet">如果您将手机放在口袋里并停止移动，信标声音会变安静，因为Soundscape无法判断您面朝的方向。解决方法是重新开始走动，或拿出手机平放。</string>
+    <string name="faq_tip_setting_beacon_on_address">您可以在任何地址上设置信标。在Soundscape主屏幕上搜索地址。选择搜索结果中的地址后，将显示*\"位置详情\"*页面，其中有*\"启动音频信标\"*选项。通过这种方式，您可以在Open Street Maps中没有的商铺、地点、兴趣点和住宅上设置信标。</string>
+    <string name="faq_tip_finding_bus_stops">您可以通过在附近地点列表中选择*\"公共交通\"*筛选条件来查找附近的公交站。</string>
+    <string name="faq_tip_turning_beacon_off">您可以使用主屏幕上的静音按钮来开启和关闭信标的节奏声。如果信标被静音，您仍会每隀50米左右收到关于到目的地距离的更新。</string>
+    <string name="faq_tip_turning_off_auto_callouts">如果您仍想与Soundscape互动但不想听到自动播报，可以通过菜单进入*\"设置\"*页面的*\"播报\"*部分来关闭播报。或者，如果您不打算使用Soundscape，可以使用主屏幕上的*\"休眠\"*按钮将其设为休眠或小睡模式。</string>
+    <string name="faq_tip_hold_phone_flat">Soundscape在您将手机平放、屏幕朝向天空、手机顶部指向远离您的方向时效果最佳。</string>
+    <string name="faq_tip_create_marker_at_bus_stop">如果有一条您经常乘坐的公交线路，请将您的上车站和下车站设为标记点。这样它们会被保存，方便您再次找到，只需从菜单中进入*\"管理标记点\"*并在列表中找到它们。您可以在上面设置信标，这样会定期收到关于距下车站距离的更新。注意：您可以关闭节奏声，仍然会收到沿途的距离更新。</string>
+    <string name="no_language_selected">未选择语言</string>
+    <string name="first_launch_permissions_notification">通知</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">我们正在前台运行此定位服务</string>
+    <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">取消搜索</string>
+    <string name="menu_manage_audio" tools:ignore="MissingTranslation">音频</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">"语言和地区 "</string>
+    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">无障碍</string>
+    <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">浅色或深色主题</string>
+    <string name="settings_theme_auto" tools:ignore="MissingTranslation">自动</string>
+    <string name="settings_theme_is_light" tools:ignore="MissingTranslation">使用浅色主题</string>
+    <string name="settings_theme_light" tools:ignore="MissingTranslation">浅色</string>
+    <string name="settings_theme_dark" tools:ignore="MissingTranslation">深色</string>
+    <string name="settings_theme_contrast" tools:ignore="MissingTranslation">主题对比度</string>
+    <string name="settings_theme_contrast_regular" tools:ignore="MissingTranslation">标准</string>
+    <string name="settings_theme_contrast_medium" tools:ignore="MissingTranslation">中等</string>
+    <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">高</string>
+    <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s 是第 %2$s 个选项，共 %3$s 个</string>
+    <string name="settings_keep_value" tools:ignore="MissingTranslation">保留</string>
+    <string name="settings_use_value" tools:ignore="MissingTranslation">使用</string>
+    <string name="street_preview_exit" tools:ignore="MissingTranslation">退出位置模拟</string>
+    <string name="settings_travel_recording" tools:ignore="MissingTranslation">启用行程录制</string>
+    <string name="settings_accessible_map" tools:ignore="MissingTranslation">启用无障碍地图样式</string>
+    <string name="settings_show_map" tools:ignore="MissingTranslation">在屏幕上显示地图</string>
+    <string name="settings_debug_heading" tools:ignore="MissingTranslation">调试选项</string>
+    <string name="settings_search_results_language" tools:ignore="MissingTranslation">搜索语言</string>
+    <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">在线搜索可以使用结果的本地语言，或强制返回英语、法语或德语。</string>
+    <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">分享行程录制</string>
+    <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s 到 %2$s 经由 %3$s</string>
+    <string name="confect_name_to" tools:ignore="MissingTranslation">%1$s通往%2$s</string>
+    <string name="confect_name_joins" tools:ignore="MissingTranslation">%1$s连接%2$s和%3$s</string>
+    <string name="confect_name_via" tools:ignore="MissingTranslation">%1$s经由%2$s</string>
+    <string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation">%1$s旁的人行道</string>
+    <string name="confect_name_pavement" tools:ignore="MissingTranslation">人行道</string>
+    <string name="confect_name_dead_end" tools:ignore="MissingTranslation">死胡同</string>
+    <string name="offline_maps_title" tools:ignore="MissingTranslation">离线地图</string>
+    <string name="offline_map_details_title" tools:ignore="MissingTranslation">离线地图详情</string>
+    <string name="offline_maps_loading" tools:ignore="MissingTranslation">加载中…</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">正在下载%s</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">服务器正在准备%s以供下载。这可能需要几分钟，下载将自动开始。</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s可用</string>
+    <string name="offline_maps_storage" tools:ignore="MissingTranslation">地图保存在%1$s上，剩余%2$s可用空间</string>
+    <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">已下载的地图</string>
+    <string name="offline_maps_nearby" tools:ignore="MissingTranslation">附近的离线地图</string>
+    <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">正在加载离线地图列表</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">下载离线地图数据失败</string>
+    <string name="offline_map_details_delete" tools:ignore="MissingTranslation">删除离线地图</string>
+    <string name="offline_map_details_download" tools:ignore="MissingTranslation">下载离线地图</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">手机上的大小：%s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">下载大小：%s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">地图名称：%s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">地图包含以下地点：%s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">这些地点的其他名称：%s</string>
+    <string name="offline_map_storage_title" tools:ignore="MissingTranslation">离线地图存储</string>
+    <string name="offline_map_storage_description" tools:ignore="MissingTranslation">为了在没有网络连接时也能使用Soundscape，您可以下载地图并存储在手机上。默认存储位置为手机的外部存储，您也可以在此选择其他存储位置。</string>
+    <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">仅通过WiFi下载地图</string>
+    <string name="accessibility_title" tools:ignore="MissingTranslation">无障碍</string>
+    <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">由于您启用了屏幕阅读器，我们建议您关闭用户界面中的图形地图来运行本应用。您可以在此更改该设置，或直接继续。</string>
+    <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">由于您未启用屏幕阅读器，我们默认显示用户界面中的图形地图。您可以在此更改该设置，或直接继续。</string>
+    <string name="text_field_clear_text" tools:ignore="MissingTranslation">清除文本</string>
+    <string name="marker_name_description_hint" tools:ignore="MissingTranslation">编辑标记点名称</string>
+    <string name="annotation_description_hint" tools:ignore="MissingTranslation">添加可选备注，帮助您以后识别此标记点</string>
+    <string name="route_name_description_hint" tools:ignore="MissingTranslation">编辑路线名称</string>
+    <string name="route_description_description_hint" tools:ignore="MissingTranslation">为此路线添加可选描述</string>
+    <string name="fab_add_item" tools:ignore="MissingTranslation">添加项目</string>
+    <string name="fab_add_route" tools:ignore="MissingTranslation">添加路线</string>
+    <string name="route_waypoint_progress" tools:ignore="MissingTranslation">路线%1$s，位于第%2$s个航点，共%3$s个</string>
+    <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape 主页</string>
+    <string name="settings_reset_button" tools:ignore="MissingTranslation">恢复默认设置</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">将设置恢复为默认值，然后重新启动应用。</string>
+    <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">确定要执行此操作吗？</string>
+    <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">恢复设置将删除应用中所有已配置的设置，确定要继续吗？</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">导出标记点和路线数据库</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">导入标记点和路线数据库</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">导出</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">标记点和路线导入完成。</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">标记点和路线导入失败。</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">删除所有标记点和路线</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">删除所有标记点和路线后将无法撤销，确定要继续吗？</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">标记点和路线已删除</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">已选中</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">未选中</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">在列表中上移</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">在列表中下移</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">在%1$s上，位于%2$s和%3$s之间</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">在%1$s上，距离%3$s还有%2$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">在%1$s上，已过%3$s %2$s</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">在%1$s上，即将到达%2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">在%1$s上，刚过%2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">在%s交叉路口附近</string>
+    <string name="new_version_info_text" tools:ignore="MissingTranslation">新版本信息</string>
+    <string name="new_version_info_completed" tools:ignore="MissingTranslation">关闭新版本对话框</string>
+    <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">开源许可证</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\n本次更新的主要变化涉及*搜索*功能和当前地址描述。在有网络的情况下，*搜索*将同时使用Android和我们自己的Photon服务器来查找地点。主要改进首先是在世界许多地区按门牌号搜索的效果大幅提升。其次，我们还增加了离线搜索功能，可利用已下载的地图搜索地址和兴趣点。离线搜索范围约为用户周围5英里。\n\n搜索提示：\n\n自上一版本以来，搜索界面略有变化，因为之前未能正确支持TalkBack编辑。用户输入搜索文本后，还需要按回车/搜索键才能开始搜索。\n\n离线搜索需要先下载离线地图。请前往设置/离线地图页面下载。\n\n可以在设置中强制仅使用离线搜索。默认的“自动”设置表示有网络时使用在线搜索，无网络时使用离线搜索。\n\n搜索街道地址时，在线搜索中包含城镇名称很重要，但在离线搜索中可以省略。\n\n我们使用的OpenStreetMap数据中，门牌号的映射因地区而异。离线搜索会在有门牌号数据时使用它们，但需要使用2026年1月19日之后在应用中下载的离线地图。\n\n如往常一样，无论问题多小，请通过主菜单中的*联系支持*选项报告任何问题。\n</string>
+    <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape 探索使用创新的音频技术，帮助人们更好地感知周围环境，从而更加自信、自主地出行。</string>
+    <string name="osm_office_building" tools:ignore="MissingTranslation">办公楼</string>
+    <string name="osm_school_building" tools:ignore="MissingTranslation">教学楼</string>
+    <string name="osm_covered_pavilion" tools:ignore="MissingTranslation">有顶凉亭</string>
+    <string name="osm_convenience_store" tools:ignore="MissingTranslation">便利店</string>
+    <string name="osm_building_entrance" tools:ignore="MissingTranslation">建筑入口</string>
+    <string name="osm_restroom" tools:ignore="MissingTranslation">洗手间</string>
+    <string name="osm_parking_lot" tools:ignore="MissingTranslation">停车场</string>
+    <string name="osm_taxi_waiting_area" tools:ignore="MissingTranslation">出租车等候区</string>
+    <string name="osm_bike_parking" tools:ignore="MissingTranslation">自行车停车处</string>
+    <string name="osm_gas_station" tools:ignore="MissingTranslation">加油站</string>
+    <string name="osm_bus_stop_named" tools:ignore="MissingTranslation">%s公交站</string>
+    <string name="osm_recycling_bin" tools:ignore="MissingTranslation">回收箱</string>
+    <string name="osm_water_fountain" tools:ignore="MissingTranslation">饮水台</string>
+    <string name="osm_sports_field" tools:ignore="MissingTranslation">运动场</string>
+    <string name="osm_picnic_area" tools:ignore="MissingTranslation">野餐区</string>
+    <string name="osm_main_entrance" tools:ignore="MissingTranslation">正门</string>
+    <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s，来自%3$s</string>
+    <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
+    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">渡轮码头</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s渡轮码头</string>
+    <string name="osm_crossing" tools:ignore="MissingTranslation">人行横道</string>
+    <string name="osm_construction" tools:ignore="MissingTranslation">施工区</string>
+    <string name="osm_dangerous_area" tools:ignore="MissingTranslation">危险区域</string>
+    <string name="osm_townhall" tools:ignore="MissingTranslation">市政厅</string>
+    <string name="osm_steps" tools:ignore="MissingTranslation">台阶</string>
+    <string name="osm_elevator" tools:ignore="MissingTranslation">电梯</string>
+    <string name="osm_walking_path" tools:ignore="MissingTranslation">步行道</string>
+    <string name="osm_pedestrian_street" tools:ignore="MissingTranslation">步行街</string>
+    <string name="osm_bicycle_path" tools:ignore="MissingTranslation">自行车道</string>
+    <string name="osm_residential_street" tools:ignore="MissingTranslation">住宅街道</string>
+    <string name="osm_service_road" tools:ignore="MissingTranslation">辅路</string>
+    <string name="osm_road" tools:ignore="MissingTranslation">道路</string>
+    <string name="osm_highway" tools:ignore="MissingTranslation">公路</string>
+    <string name="osm_highway_named" tools:ignore="MissingTranslation">公路名称</string>
+    <string name="osm_highway_refed" tools:ignore="MissingTranslation">公路编号</string>
+    <string name="osm_intersection" tools:ignore="MissingTranslation">交叉路口</string>
+    <string name="osm_roundabout" tools:ignore="MissingTranslation">环形交叉路口</string>
+    <string name="osm_highway_ramp" tools:ignore="MissingTranslation">公路匝道</string>
+    <string name="osm_merging_lane" tools:ignore="MissingTranslation">汇入车道</string>
+    <string name="osm_office" tools:ignore="MissingTranslation">办公室</string>
+    <string name="osm_school" tools:ignore="MissingTranslation">学校</string>
+    <string name="osm_roof" tools:ignore="MissingTranslation">屋顶</string>
+    <string name="osm_convenience" tools:ignore="MissingTranslation">便利店</string>
+    <string name="osm_entrance" tools:ignore="MissingTranslation">入口</string>
+    <string name="osm_assembly_point" tools:ignore="MissingTranslation">集合点</string>
+    <string name="osm_cycle_barrier" tools:ignore="MissingTranslation">自行车限行桩</string>
+    <string name="osm_turnstile" tools:ignore="MissingTranslation">旋转门</string>
+    <string name="osm_cattle_grid" tools:ignore="MissingTranslation">防畜栅格</string>
+    <string name="osm_gate" tools:ignore="MissingTranslation">大门</string>
+    <string name="osm_lift_gate" tools:ignore="MissingTranslation">升降栏杆</string>
+    <string name="osm_toilets" tools:ignore="MissingTranslation">卫生间</string>
+    <string name="osm_parking" tools:ignore="MissingTranslation">停车场</string>
+    <string name="osm_parking_entrance" tools:ignore="MissingTranslation">停车场入口</string>
+    <string name="osm_bench" tools:ignore="MissingTranslation">长椅</string>
+    <string name="osm_taxi" tools:ignore="MissingTranslation">出租车站</string>
+    <string name="osm_post_office" tools:ignore="MissingTranslation">邮局</string>
+    <string name="osm_post_box" tools:ignore="MissingTranslation">邮筒</string>
+    <string name="osm_waste_basket" tools:ignore="MissingTranslation">垃圾桶</string>
+    <string name="osm_shower" tools:ignore="MissingTranslation">淋浴间</string>
+    <string name="osm_bicycle_parking" tools:ignore="MissingTranslation">自行车停车处</string>
+    <string name="osm_cafe" tools:ignore="MissingTranslation">咖啡馆</string>
+    <string name="osm_restaurant" tools:ignore="MissingTranslation">餐厅</string>
+    <string name="osm_telephone" tools:ignore="MissingTranslation">公用电话</string>
+    <string name="osm_fuel" tools:ignore="MissingTranslation">加油站</string>
+    <string name="osm_bank" tools:ignore="MissingTranslation">银行</string>
+    <string name="osm_atm" tools:ignore="MissingTranslation">自动取款机</string>
+    <string name="osm_atm_named" tools:ignore="MissingTranslation">指定自动取款机</string>
+    <string name="osm_atm_refed" tools:ignore="MissingTranslation">自动取款机编号</string>
+    <string name="osm_bus_stop" tools:ignore="MissingTranslation">公交站</string>
+    <string name="osm_recycling" tools:ignore="MissingTranslation">回收站</string>
+    <string name="osm_fountain" tools:ignore="MissingTranslation">喷泉</string>
+    <string name="osm_place_of_worship" tools:ignore="MissingTranslation">宗教场所</string>
+    <string name="osm_drinking_water" tools:ignore="MissingTranslation">饮用水</string>
+    <string name="osm_car_wash" tools:ignore="MissingTranslation">洗车场</string>
+    <string name="osm_vending_machine" tools:ignore="MissingTranslation">自动售货机</string>
+    <string name="sleep_sleeping">休眠中</string>
+    <string name="sleep_sleeping_message">Soundscape 当前处于休眠状态。这将阻止 Soundscape 使用定位服务或下载数据，从而在您不使用 Soundscape 时节省电量。点击下方按钮唤醒 Soundscape。</string>
+    <string name="sleep_sleep_acc_hint">将 Soundscape 设为休眠</string>
+    <string name="sleep_wake_up_now">立即唤醒</string>
+    <string name="intersection_approaching_intersection">正在接近路口</string>
+    <string name="directions_at_poi">在%s</string>
+    <string name="directions_my_location">我的位置</string>
+    <string name="directions_near_name">靠近%s</string>
+    <string name="directions_name_goes_left">%s，向左延伸</string>
+    <string name="directions_name_goes_right">%s，向右延伸</string>
+    <string name="directions_name_continues_ahead">%s，向前延伸</string>
+    <string name="directions_direction_ahead">前方</string>
+    <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">靠近%1$s，接近%2$s</string>
+    <string name="directions_traveling_n">向北行驶</string>
+    <string name="directions_traveling_ne">向东北行驶</string>
+    <string name="directions_traveling_e">向东行驶</string>
+    <string name="directions_traveling_se">向东南行驶</string>
+    <string name="directions_traveling_s">向南行驶</string>
+    <string name="directions_traveling_sw">向西南行驶</string>
+    <string name="directions_traveling_w">向西行驶</string>
+    <string name="directions_traveling_nw">向西北行驶</string>
+    <string name="directions_facing_n">面向北</string>
+    <string name="directions_facing_ne">面向东北</string>
+    <string name="directions_facing_e">面向东</string>
+    <string name="directions_facing_se">面向东南</string>
+    <string name="directions_facing_s">面向南</string>
+    <string name="directions_facing_sw">面向西南</string>
+    <string name="directions_facing_w">面向西</string>
+    <string name="directions_facing_nw">面向西北</string>
+    <string name="directions_heading_n">向北前行</string>
+    <string name="directions_heading_ne">向东北前行</string>
+    <string name="directions_heading_e">向东前行</string>
+    <string name="directions_heading_se">向东南前行</string>
+    <string name="directions_heading_s">向南前行</string>
+    <string name="directions_heading_sw">向西南前行</string>
+    <string name="directions_heading_w">向西前行</string>
+    <string name="directions_heading_nw">向西北前行</string>
+    <string name="directions_along_traveling_n">沿%s向北行驶</string>
+    <string name="directions_along_traveling_ne">沿%s向东北行驶</string>
+    <string name="directions_along_traveling_e">沿%s向东行驶</string>
+    <string name="directions_along_traveling_se">沿%s向东南行驶</string>
+    <string name="directions_along_traveling_s">沿%s向南行驶</string>
+    <string name="directions_along_traveling_sw">沿%s向西南行驶</string>
+    <string name="directions_along_traveling_w">沿%s向西行驶</string>
+    <string name="directions_along_traveling_nw">沿%s向西北行驶</string>
+    <string name="directions_along_facing_n">在%s上面向北</string>
+    <string name="directions_along_facing_ne">在%s上面向东北</string>
+    <string name="directions_along_facing_e">在%s上面向东</string>
+    <string name="directions_along_facing_se">在%s上面向东南</string>
+    <string name="directions_along_facing_s">在%s上面向南</string>
+    <string name="directions_along_facing_sw">在%s上面向西南</string>
+    <string name="directions_along_facing_w">在%s上面向西</string>
+    <string name="directions_along_facing_nw">在%s上面向西北</string>
+    <string name="directions_along_heading_n">沿%s向北前行</string>
+    <string name="directions_along_heading_ne">沿%s向东北前行</string>
+    <string name="directions_along_heading_e">沿%s向东前行</string>
+    <string name="directions_along_heading_se">沿%s向东南前行</string>
+    <string name="directions_along_heading_s">沿%s向南前行</string>
+    <string name="directions_along_heading_sw">沿%s向西南前行</string>
+    <string name="directions_along_heading_w">沿%s向西前行</string>
+    <string name="directions_along_heading_nw">沿%s向西北前行</string>
+    <string name="directions_cardinal_north" tools:ignore="MissingTranslation">北</string>
+    <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">东北</string>
+    <string name="directions_cardinal_east" tools:ignore="MissingTranslation">东</string>
+    <string name="directions_cardinal_south_east" tools:ignore="MissingTranslation">东南</string>
+    <string name="directions_cardinal_south" tools:ignore="MissingTranslation">南</string>
+    <string name="directions_cardinal_south_west" tools:ignore="MissingTranslation">西南</string>
+    <string name="directions_cardinal_west" tools:ignore="MissingTranslation">西</string>
+    <string name="directions_cardinal_north_west" tools:ignore="MissingTranslation">西北</string>
+    <string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation">北</string>
+    <string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation">东北</string>
+    <string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">东</string>
+    <string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation">东南</string>
+    <string name="directions_cardinal_south_abb" tools:ignore="MissingTranslation">南</string>
+    <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">西南</string>
+    <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">西</string>
+    <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">西北</string>
+    <string name="distance_format_meters">%s米</string>
+    <string name="distance_format_km">%s公里</string>
+    <string name="distance_format_feet">%s英尺</string>
+    <string name="distance_format_miles">%s英里</string>
+    <string name="ui_action_button_my_location">我的\n位置</string>
+    <string name="ui_action_button_my_location_acc_hint">收听您当前位置的信息</string>
+    <string name="ui_action_button_nearby_markers">附近\n标记点</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">收听您标记的附近地点信息</string>
+    <string name="ui_action_button_around_me">我的\n周围</string>
+    <string name="ui_action_button_around_me_acc_hint">收听您四周各方向的地点信息</string>
+    <string name="ui_action_button_ahead_of_me">我的\n前方</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">收听您前方的地点信息</string>
+    <string name="ui_menu">菜单</string>
+    <string name="ui_menu_hint">打开菜单</string>
+    <string name="ui_menu_close">关闭菜单</string>
+    <string name="ui_continue">继续</string>
+    <string name="menu_manage_callouts">管理提示</string>
+    <string name="menu_manage_search" tools:ignore="MissingTranslation">搜索</string>
+    <string name="menu_help_and_tutorials" tools:ignore="MissingTranslation">帮助与教程</string>
+    <string name="menu_help" tools:ignore="MissingTranslation">帮助</string>
+    <string name="menu_rate">评分</string>
+    <string name="menu_contact_support" tools:ignore="MissingTranslation">联系支持</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">高级标记点与路线</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">此页面允许您导出和导入标记点与路线，以及删除所有现有的标记点和路线。</string>
+    <string name="ui_back_button_title">返回</string>
+    <string name="behavior_experiences_route_nav_title">路线详情</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag">音频信标已设在%1$s，距离%2$s，第%3$s个，共%4$s个</string>
+    <string name="help_configuration_section_title">配置 Soundscape</string>
+    <string name="settings_help_section_beacons_and_pois">信标与提示</string>
+    <string name="settings_help_section_home_screen_buttons">主屏幕按钮</string>
+    <string name="help_config_voices_content">Soundscape 可以使用您在 Android 手机的文字转语音输出设置中下载的任何语音。在 Soundscape 应用中，您可以从主菜单进入“设置”，然后选择*\"语音\"*来选择默认 Android 语音以外的其他语音。</string>
+    <string name="help_offline_page_title">为什么 Soundscape 在离线模式下运行？</string>
+    <string name="help_offline_description">当没有网络连接或 Soundscape 服务中断时，Soundscape 将切换至离线模式。不过 Soundscape 仍会继续工作，但部分功能可能受到限制。</string>
+    <string name="help_offline_limitations_heading">功能限制</string>
+    <string name="help_offline_limitations_description">如果您在之前走过的区域内且该区域已存储在提示历史记录中，提示功能将继续运作。同样，您可以在提示历史记录中已存储的地点设置音频信标或创建标记点。</string>
+    <string name="help_offline_troubleshooting_heading">您可以做什么？</string>
+    <string name="help_offline_troubleshooting_description">当您的手机连接到 Wi-Fi 或启用蜂窝数据并处于信号良好的区域时，Soundscape 将尝试恢复正常运行。如果您的手机已有良好的网络连接但 Soundscape 未恢复正常运行，则可能是 Soundscape 服务出现了故障。</string>
+    <string name="help_orient_page_title">周围</string>
+    <string name="help_explore_page_title">前方</string>
+    <string name="help_creating_markers_page_title">创建标记点</string>
+    <string name="help_edit_markers_page_title">自定义标记点</string>
+    <string name="help_remote_page_title">使用媒体控制</string>
+    <string name="help_text_section_title_what">这是什么？</string>
+    <string name="help_text_section_title_when">什么时候使用？</string>
+    <string name="help_text_section_title_how">如何使用？</string>
+    <string name="terms_of_use_title">使用条款</string>
+    <string name="terms_of_use_message">您对 Soundscape 的使用受%s的条款及以下条款（合称*\"使用条款\"*）的约束。</string>
+    <string name="terms_of_use_service_agreement">Scottish Tech Army 服务协议</string>
+    <string name="terms_of_use_accept_checkbox_acc_label">接受使用条款</string>
+    <string name="terms_of_use_medical_safety_disclaimer">您确认 Soundscape (1) 并非设计、预期或提供为医疗设备，(2) 并非设计或预期替代专业医疗建议、诊断、治疗或判断，不应用于替代专业医疗建议、诊断、治疗或判断。\n\n安全须知\n\nSoundscape 是一款导航辅助工具，不应取代出行技能、环境感知和良好的判断力。在导航环境时请保持谨慎，因为 Soundscape 程序中使用的地图数据来源于第三方程序，因此所提供信息的准确性可能存在局限。</string>
+    <string name="first_launch_soundscape_language">Soundscape 语言</string>
+    <string name="first_launch_soundscape_language_text">选择您希望 Soundscape 使用的语言。您随时可以在应用设置中更改选择。</string>
+    <string name="first_launch_welcome_title">欢迎！</string>
+    <string name="first_launch_welcome_description">借助 Soundscape 空间音频，自信导航</string>
+    <string name="first_launch_welcome_button">开始使用</string>
+    <string name="first_launch_headphones_title">聆听 Soundscape</string>
+    <string name="first_launch_headphones_message_1">Soundscape 可与任何耳机配合使用。如果您想使用耳机，请现在准备好。</string>
+    <string name="first_launch_headphones_message_2">如果您没有耳机或不想使用耳机，也没关系！Soundscape 可以通过手机扬声器播放。</string>
+    <string name="first_launch_callouts_title">聆听周围环境</string>
+    <string name="first_launch_callouts_message">Soundscape 通过在您接近道路、路口和兴趣点时进行语音提示，帮助您了解自己所在的位置和前进的方向。</string>
+    <string name="first_launch_callouts_listen">收听 Soundscape 在您下次步行时可能发出的提示示例</string>
+    <string name="first_launch_callouts_listen_accessibility_label">收听</string>
+    <string name="first_launch_callouts_example_1">咖啡馆</string>
+    <string name="first_launch_callouts_example_3">大街向左延伸</string>
+    <string name="first_launch_callouts_example_4">大街向右延伸</string>
+    <string name="first_launch_permissions_title">使用 Soundscape 导航</string>
+    <string name="first_launch_permissions_message">使用 Soundscape 导航时，您将通过音频信标获得引导。为此，Soundscape 需要您启用以下权限：</string>
+    <string name="first_launch_permissions_location">定位服务（精确定位）</string>
 </resources>
