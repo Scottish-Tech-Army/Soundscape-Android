@@ -1267,4 +1267,8 @@
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Päivityksiä etäisyydestä äänimajakkaan, kun majakka on asetettu</string>
     <string name="menu_manage_language" tools:ignore="MissingTranslation">"Kieli ja alue "</string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Online‑haku voi käyttää hakutulosten paikallista kieltä tai pakottaa tulokset palautumaan englanniksi, ranskaksi tai saksaksi.</string>
+    <string name="language_mismatch_title" tools:ignore="MissingTranslation">Uusi kieli saatavilla</string>
+    <string name="language_mismatch_message" tools:ignore="MissingTranslation">Puhelimesi kieli on asetettu kieleksi %1$s, ja tämä kieli on nyt saatavilla Soundscapessa. Haluatko vaihtaa Soundscapen kieleksi %1$s?</string>
+    <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Vaihda kieleksi %1$s</string>
+    <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Pidä nykyinen kieli</string>
 </resources>
