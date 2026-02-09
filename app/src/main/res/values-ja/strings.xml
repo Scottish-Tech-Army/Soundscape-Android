@@ -1267,4 +1267,8 @@
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">音声ビーコンが設定されているときの距離に関する更新</string>
     <string name="menu_manage_language" tools:ignore="MissingTranslation">"言語と地域 "</string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">オンライン検索は、結果の現地言語を使用するか、英語・フランス語・ドイツ語のいずれかで返すように設定できます。</string>
+    <string name="language_mismatch_title" tools:ignore="MissingTranslation">新しい言語が利用可能です</string>
+    <string name="language_mismatch_message" tools:ignore="MissingTranslation">お使いの端末の言語が %1$s に設定されており、その言語が Soundscape で利用できるようになりました。Soundscape を %1$s に切り替えますか?</string>
+    <string name="language_mismatch_switch" tools:ignore="MissingTranslation">%1$s に切り替える</string>
+    <string name="language_mismatch_keep" tools:ignore="MissingTranslation">現在の言語を保持する</string>
 </resources>
