@@ -990,6 +990,15 @@
 <string name="street_description_relative_after" tools:ignore="MissingTranslation">"On %1$s just after %2$s"</string>
 <!-- Callout text when at an intersection where we don't know which road we're on -->
 <string name="street_description_intersection" tools:ignore="MissingTranslation">"Near intersection of %s"</string>
+<!-- Title for language mismatch dialog -->
+<string name="language_mismatch_title" tools:ignore="MissingTranslation">"New language available"</string>
+<!-- Message for language mismatch dialog. %1$s is the phone language name -->
+<string name="language_mismatch_message" tools:ignore="MissingTranslation">"Your phone is set to %1$s and that language is now available in Soundscape. Would you like to switch Soundscape to use %1$s?"</string>
+<!-- Button to switch app language in the language mismatch dialog. %1$s is the language name -->
+<string name="language_mismatch_switch" tools:ignore="MissingTranslation">"Switch to %1$s"</string>
+<!-- Button to keep the current app language in the language mismatch dialog -->
+<string name="language_mismatch_keep" tools:ignore="MissingTranslation">"Keep current language"</string>
+
 <!-- Title for dialog which explains what is new in the current release -->
 <string name="new_version_info_text" tools:ignore="MissingTranslation">"New release information"</string>
 <!-- Button at end of new release dialog so that the user can continue on and use the app -->

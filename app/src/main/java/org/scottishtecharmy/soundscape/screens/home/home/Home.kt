@@ -40,6 +40,8 @@ import kotlinx.coroutines.launch
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.MainActivity.Companion.LANGUAGE_SUPPORTED_PROMPTED_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.LANGUAGE_SUPPORTED_PROMPTED_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.LAST_NEW_RELEASE_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.LAST_NEW_RELEASE_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
@@ -65,6 +67,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.Flexibl
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.utils.getLanguageMismatch
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 
 @Composable
@@ -104,6 +107,13 @@ fun Home(
         mutableStateOf(
             sharedPreferences.getString(LAST_NEW_RELEASE_KEY, LAST_NEW_RELEASE_DEFAULT)
                     != BuildConfig.VERSION_NAME.substringBeforeLast(".")
+        )
+    }
+    val phoneLanguage = remember { getLanguageMismatch(context) }
+    val languageMismatchDialog = remember {
+        mutableStateOf(
+            phoneLanguage != null &&
+            !sharedPreferences.getBoolean(LANGUAGE_SUPPORTED_PROMPTED_KEY, LANGUAGE_SUPPORTED_PROMPTED_DEFAULT)
         )
     }
 
@@ -166,7 +176,11 @@ fun Home(
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
         ) { innerPadding ->
 
-            if(newReleaseDialog.value) {
+            // Prioritise the new language dialog over new release so that users can get
+            // the translated version of the new release dialog!
+            if(languageMismatchDialog.value && phoneLanguage != null) {
+                LanguageMismatchDialog(innerPadding, sharedPreferences, languageMismatchDialog, phoneLanguage)
+            } else if(newReleaseDialog.value) {
                 NewReleaseDialog(innerPadding, sharedPreferences, newReleaseDialog, toggleTutorial)
             }
 

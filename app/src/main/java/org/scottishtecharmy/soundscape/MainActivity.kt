@@ -679,6 +679,8 @@ class MainActivity : AppCompatActivity() {
         const val SELECTED_STORAGE_KEY = "SelectedStorage"
         const val LAST_NEW_RELEASE_DEFAULT = ""
         const val LAST_NEW_RELEASE_KEY = "LastNewRelease"
+        const val LANGUAGE_SUPPORTED_PROMPTED_DEFAULT = false
+        const val LANGUAGE_SUPPORTED_PROMPTED_KEY = "LanguageSupported"
         const val GEOCODER_MODE_DEFAULT = "Auto"
         const val GEOCODER_MODE_KEY = "GeocoderMode"
 
