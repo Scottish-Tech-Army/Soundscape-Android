@@ -1738,4 +1738,8 @@
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">به‌روزرسانی‌هایی دربارهٔ فاصله تا جهت‌نمای صوتی هنگام فعال‌بودن آن</string>
     <string name="menu_manage_language" tools:ignore="MissingTranslation">"زبان و منطقه "</string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">جستجوی آنلاین می‌تواند نتایج را به زبان محلی نمایش دهد، یا می‌توان آن را طوری تنظیم کرد که نتایج فقط به انگلیسی، فرانسوی یا آلمانی بازگردانده شوند.</string>
+    <string name="language_mismatch_title" tools:ignore="MissingTranslation">زبان جدید در دسترس است</string>
+    <string name="language_mismatch_message" tools:ignore="MissingTranslation">گوشی شما به زبان %1$s تنظیم شده و این زبان اکنون در ساند‌اسکیپ موجود است. آیا مایلید ساند‌اسکیپ از زبان %1$s استفاده کند؟</string>
+    <string name="language_mismatch_switch" tools:ignore="MissingTranslation">تغییر به %1$s</string>
+    <string name="language_mismatch_keep" tools:ignore="MissingTranslation">حفظ زبان فعلی</string>
 </resources>
