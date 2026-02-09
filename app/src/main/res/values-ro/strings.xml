@@ -1267,4 +1267,8 @@
     <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Anulează tutorialul</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Continuă</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">Închide fereastra și continuă tutorialul</string>
+    <string name="language_mismatch_title" tools:ignore="MissingTranslation">Limbă nouă disponibilă</string>
+    <string name="language_mismatch_message" tools:ignore="MissingTranslation">Telefonul tău este setat la %1$s și acea limbă este acum disponibilă în Soundscape. Dorești să schimbi Soundscape pentru a folosi %1$s?</string>
+    <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Comută la %1$s</string>
+    <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Păstrează limba curentă</string>
 </resources>
