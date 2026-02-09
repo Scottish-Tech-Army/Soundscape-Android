@@ -1267,4 +1267,8 @@
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Ενημερώσεις σχετικά με την απόσταση από το ηχητικό σήμα όταν έχει οριστεί</string>
     <string name="menu_manage_language" tools:ignore="MissingTranslation">"Γλώσσα και περιοχή "</string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Η διαδικτυακή αναζήτηση μπορεί να χρησιμοποιήσει την τοπική γλώσσα του αποτελέσματος ή να επιβάλει επιστροφή αποτελεσμάτων στα Αγγλικά, Γαλλικά ή Γερμανικά.</string>
+    <string name="language_mismatch_title" tools:ignore="MissingTranslation">Νέα γλώσσα διαθέσιμη</string>
+    <string name="language_mismatch_message" tools:ignore="MissingTranslation">Το τηλέφωνό σας έχει ρυθμιστεί στη γλώσσα %1$s και αυτή η γλώσσα είναι πλέον διαθέσιμη στο Soundscape. Θέλετε να αλλάξετε το Soundscape ώστε να χρησιμοποιεί τη γλώσσα %1$s;</string>
+    <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Αλλαγή σε %1$s</string>
+    <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Διατήρηση τρέχουσας γλώσσας</string>
 </resources>
