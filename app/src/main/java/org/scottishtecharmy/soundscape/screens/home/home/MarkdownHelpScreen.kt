@@ -29,11 +29,15 @@ import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.navigation.NavHostController
+import org.commonmark.node.Emphasis
+import org.commonmark.node.HardLineBreak
 import org.commonmark.node.Heading
 import org.commonmark.node.Link
 import org.commonmark.node.Node
 import org.commonmark.node.Paragraph
+import org.commonmark.node.SoftLineBreak
 import org.commonmark.node.StrongEmphasis
+import org.commonmark.node.Text
 import org.commonmark.parser.Parser
 import org.commonmark.renderer.html.HtmlRenderer
 import org.commonmark.renderer.text.TextContentRenderer
@@ -51,6 +55,54 @@ class MarkdownPage(val title: String, val content: String) {
         // TODO 2025-12-12 Hugh Greene: proper error handling here (log, and better UI output?)
         parser.parse(content) ?: org.commonmark.node.Text("Failed to parse '${title}'")
     }
+}
+
+private fun Node.toLogText(): String {
+    val sb = StringBuilder()
+    accept(object : org.commonmark.node.AbstractVisitor() {
+        override fun visit(text: Text) {
+            sb.append(text.literal)
+        }
+
+        override fun visit(emphasis: Emphasis) {
+            sb.append("*")
+            visitChildren(emphasis)
+            sb.append("*")
+        }
+
+        override fun visit(strongEmphasis: StrongEmphasis) {
+            sb.append("**")
+            visitChildren(strongEmphasis)
+            sb.append("**")
+        }
+
+        override fun visit(softLineBreak: SoftLineBreak) {
+            sb.append(" ")
+        }
+
+        override fun visit(hardLineBreak: HardLineBreak) {
+            sb.append("\n")
+        }
+
+        override fun visit(paragraph: Paragraph) {
+            visitChildren(paragraph)
+            sb.append("\n")
+        }
+
+        override fun visit(heading: Heading) {
+            visitChildren(heading)
+            sb.append("\n")
+        }
+
+        override fun visit(link: Link) {
+            visitChildren(link)
+        }
+    })
+    return sb.toString().trim()
+}
+
+private fun List<Node>.toLogText(): String {
+    return joinToString("") { it.toLogText() + "\n" }.trim()
 }
 
 private fun String.processMarkdownContent(): String {
@@ -303,7 +355,7 @@ fun MarkdownHelpScreen(
                                 return@items
                             }
                             val text = textContentRenderer.render(firstNode).trim()
-                            structureLog.unstructured("Text for Title: '${text}'")
+                            structureLog.unstructured("Text for Title: '${firstNode.toLogText()}'")
                             Text(
                                 text = text,
                                 style = if (firstNode.level == 2) MaterialTheme.typography.titleMedium else MaterialTheme.typography.titleSmall,
@@ -338,7 +390,7 @@ fun MarkdownHelpScreen(
                                     val text = link.collectChildren().joinToString("") {
                                         textContentRenderer.render(it)
                                     }.trim()
-                                    structureLog.unstructured("Text for Button: '${text}'")
+                                    structureLog.unstructured("Text for Button: '${link.toLogText()}'")
                                     Text(
                                         text = text,
                                         textAlign = TextAlign.Start,
@@ -370,7 +422,7 @@ fun MarkdownHelpScreen(
                                 )
                                 // TODO 2025-11-17 Hugh Greene: Add linkInteractionListener
                             )
-                            structureLog.unstructured("Text for HTML section: '${text.trim()}'")
+                            structureLog.unstructured("Text for HTML section: '${nodes.toLogText()}'")
                             Text(
                                 text = text,
                                 style = MaterialTheme.typography.bodyMedium,
