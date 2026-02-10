@@ -300,7 +300,7 @@ fun MapContainerLibre(
             val beaconLocationMarker = remember { mutableStateOf<Symbol?>(null) }
             val symbol = remember { mutableStateOf<Symbol?>(null) }
             val symbolManager = remember { mutableStateOf<SymbolManager?>(null) }
-            val filesDir = context.filesDir.toString()
+            val filesDir = remember { context.filesDir.toString() }
 
             val res = context.resources
             val userPositionDrawable = remember {

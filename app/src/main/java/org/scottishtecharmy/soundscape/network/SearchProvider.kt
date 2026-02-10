@@ -63,7 +63,7 @@ interface PhotonSearchProvider {
         }
         private val logging = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            .callTimeout(20, TimeUnit.SECONDS)
+            .callTimeout(5, TimeUnit.SECONDS)
             .build()
 
         fun getInstance(): PhotonSearchProvider {

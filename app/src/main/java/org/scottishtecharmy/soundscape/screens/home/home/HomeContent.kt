@@ -29,6 +29,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -148,6 +152,7 @@ fun HomeContent(
     permissionsRequired: Boolean,
     showMap: Boolean) {
     val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
 
     Column(
         verticalArrangement = Arrangement.spacedBy(spacing.small),
@@ -191,8 +196,12 @@ fun HomeContent(
             NavigationButton(
                 onClick = {
                     if (location != null) {
-                        val ld = getCurrentLocationDescription()
-                        onNavigate(generateLocationDetailsRoute(ld))
+                        coroutineScope.launch {
+                            val ld = withContext(Dispatchers.IO) {
+                                getCurrentLocationDescription()
+                            }
+                            onNavigate(generateLocationDetailsRoute(ld))
+                        }
                     }
                 },
                 text = stringResource(R.string.search_use_current_location),
