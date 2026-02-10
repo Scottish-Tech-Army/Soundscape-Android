@@ -13,10 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
@@ -80,6 +82,7 @@ fun AddWaypointsList(
     val nearbyLocations = remember(placesNearbyUiState) {
         filterLocations(placesNearbyUiState, context)
     }
+    val coroutineScope = rememberCoroutineScope()
 
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
@@ -149,7 +152,9 @@ fun AddWaypointsList(
                             details = EnabledFunction(
                                 true,
                                 {
-                                    onSelectLocation(getCurrentLocationDescription())
+                                    coroutineScope.launch {
+                                        onSelectLocation(getCurrentLocationDescription())
+                                    }
                                 }
                             ),
                         ),
