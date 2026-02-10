@@ -77,8 +77,8 @@ private fun loadMarkdownAsset(context: android.content.Context, topic: String): 
     if (topic.startsWith("faq") && topic.contains(".")) {
         val ids = topic.substring(3).split(".")
         try {
-            val question = context.getString(ids[0].toInt())
-            val answer = context.getString(ids[1].toInt())
+            val question = context.getString(ids[0].toInt()).trim()
+            val answer = context.getString(ids[1].toInt()).trim()
             return "## $question\n\n$answer"
         } catch (e: Exception) {
             // Fall through
@@ -302,7 +302,7 @@ fun MarkdownHelpScreen(
                                 structureLog.end("LazyColumn item")
                                 return@items
                             }
-                            val text = textContentRenderer.render(firstNode)
+                            val text = textContentRenderer.render(firstNode).trim()
                             structureLog.unstructured("Text for Title: '${text}'")
                             Text(
                                 text = text,
@@ -337,7 +337,7 @@ fun MarkdownHelpScreen(
                                     // that includes the link destination and/or title as well.
                                     val text = link.collectChildren().joinToString("") {
                                         textContentRenderer.render(it)
-                                    }
+                                    }.trim()
                                     structureLog.unstructured("Text for Button: '${text}'")
                                     Text(
                                         text = text,
@@ -360,7 +360,7 @@ fun MarkdownHelpScreen(
                                 structureLog.end("Button")
                             }
                         } else {
-                            val htmlContent = nodes.joinToString("") { htmlRenderer.render(it) }
+                            val htmlContent = nodes.joinToString("") { htmlRenderer.render(it) }.trim()
                             val text = AnnotatedString.fromHtml(
                                 htmlString = htmlContent,
                                 linkStyles = TextLinkStyles(
@@ -370,7 +370,7 @@ fun MarkdownHelpScreen(
                                 )
                                 // TODO 2025-11-17 Hugh Greene: Add linkInteractionListener
                             )
-                            structureLog.unstructured("Text for HTML section: '${text}'")
+                            structureLog.unstructured("Text for HTML section: '${text.trim()}'")
                             Text(
                                 text = text,
                                 style = MaterialTheme.typography.bodyMedium,
