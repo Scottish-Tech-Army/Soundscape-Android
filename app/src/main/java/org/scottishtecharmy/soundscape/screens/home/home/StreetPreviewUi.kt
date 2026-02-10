@@ -13,7 +13,6 @@ import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
-import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
 import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
@@ -22,7 +21,6 @@ import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 @Composable
 fun StreetPreview(
     state: StreetPreviewState,
-    heading: Float,
     streetPreviewFunctions: StreetPreviewFunctions
 ) {
     Column {
@@ -32,10 +30,6 @@ fun StreetPreview(
                 Modifier.mediumPadding()
             )
         } else {
-            val bestChoice = remember(state.choices, heading) {
-                state.choices.minByOrNull { calculateHeadingOffset(it.heading, heading.toDouble()) }
-            }
-
             val roads = remember(state.choices) {
                 state.choices.map { it.name }.distinct()
             }
@@ -47,9 +41,9 @@ fun StreetPreview(
                     stringResource(R.string.last_entry_in_list).format(roads.last())
             }
 
-            val text = if (bestChoice != null)
-                stringResource(R.string.preview_go_title) + " - " + bestChoice.name + " " + stringResource(
-                    getCompassLabel(bestChoice.heading.toInt())
+            val text = if (state.bestChoice != null)
+                stringResource(R.string.preview_go_title) + " - " + state.bestChoice.name + " " + stringResource(
+                    getCompassLabel(state.bestChoice.heading.toInt())
                 )
             else stringResource(R.string.preview_go_nearest_intersection)
 
@@ -76,7 +70,6 @@ fun StreetPreviewInitializingPreview() {
                 StreetPreviewEnabled.INITIALIZING,
                 emptyList()
             ),
-            90.0F,
             StreetPreviewFunctions(null)
         )
     }
@@ -93,9 +86,9 @@ fun StreetPreviewOnPreview() {
                     StreetPreviewChoice(90.0, "Main Street", Way()),
                     StreetPreviewChoice(-90.0, "Main Street", Way()),
                     StreetPreviewChoice(0.0, "1st Street", Way()),
-                )
+                ),
+                bestChoice = StreetPreviewChoice(90.0, "Main Street", Way())
             ),
-            179.0F,
             StreetPreviewFunctions(null)
         )
     }

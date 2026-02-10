@@ -422,7 +422,8 @@ fun StreetPreview() {
                     StreetPreviewEnabled.ON,
                     listOf(
                         StreetPreviewChoice(45.0, "Main Street", Way())
-                    )
+                    ),
+                    bestChoice = StreetPreviewChoice(45.0, "Main Street", Way())
                 ),
                 heading = 90f,
                 location = LngLatAlt(10.0, 10.0)

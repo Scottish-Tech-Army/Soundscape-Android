@@ -444,7 +444,7 @@ class GeoEngine {
                     // So long as the AudioEngine is not already busy, run any auto callouts that we
                     // need. Auto Callouts use the direction of travel if there is one, otherwise
                     // falling back to use the phone direction.
-                    if(!soundscapeService.isAudioEngineBusy() && !autoCalloutDisabled) {
+                    if((!soundscapeService.isAudioEngineBusy() || streetPreview.running) && !autoCalloutDisabled) {
                         val callout =
                             autoCallout.updateLocation(
                                 getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
@@ -485,6 +485,11 @@ class GeoEngine {
                     }.collect { geometry ->
                         lastGeometry = geometry
                         updateAudioEngineGeometry(soundscapeService, geometry)
+                        checkStreetPreviewBestChoice(
+                            soundscapeService,
+                            soundscapeService.streetPreviewFlow.value.choices,
+                            geometry.phoneHeading
+                        )
                     }
                 }
                 if(geometry == null) {
@@ -497,7 +502,13 @@ class GeoEngine {
                         else
                             last.phoneHeading = null
 
-                        updateAudioEngineGeometry(soundscapeService, last) }
+                        updateAudioEngineGeometry(soundscapeService, last)
+                        checkStreetPreviewBestChoice(
+                            soundscapeService,
+                            soundscapeService.streetPreviewFlow.value.choices,
+                            last.phoneHeading
+                        )
+                    }
                 }
             }
         }
@@ -851,6 +862,42 @@ class GeoEngine {
             filter = false,
             positionedStrings = results
         )
+    }
+
+    var lastGoTime = 0L
+    private var bestChoiceAnnouncementPending = false
+
+    private fun checkStreetPreviewBestChoice(
+        soundscapeService: SoundscapeService,
+        choices: List<StreetPreviewChoice>,
+        phoneHeading: Double?
+    ) {
+        if (streetPreview.running && choices.isNotEmpty() && phoneHeading != null) {
+            val now = System.currentTimeMillis()
+            if (now - lastGoTime > 2000) {
+                val newBest = streetPreview.updateBestChoice(choices, phoneHeading)
+                if(newBest != null) {
+                    soundscapeService.updateStreetPreviewBestChoice(newBest)
+                    bestChoiceAnnouncementPending = true
+                }
+            }
+
+            if (bestChoiceAnnouncementPending && !soundscapeService.isAudioEngineBusy()) {
+                val currentBest = soundscapeService.streetPreviewFlow.value.bestChoice
+                if (currentBest != null) {
+                    soundscapeService.announceStreetPreviewBestChoice(currentBest)
+                    bestChoiceAnnouncementPending = false
+                }
+            }
+        }
+    }
+
+    fun recomputeStreetPreviewBestChoice(soundscapeService: SoundscapeService) {
+        streetPreview.resetBestChoice()
+        bestChoiceAnnouncementPending = false
+        lastGoTime = System.currentTimeMillis()
+        val state = soundscapeService.streetPreviewFlow.value
+        checkStreetPreviewBestChoice(soundscapeService, state.choices, lastPhoneHeading)
     }
 
     fun streetPreviewGo() : List<StreetPreviewChoice> {

@@ -43,8 +43,10 @@ import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GridState
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
+import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.hasPlayServices
@@ -192,10 +194,12 @@ class SoundscapeService : MediaSessionService() {
 
     fun tileGridUpdated() {
         if(_streetPreviewFlow.value.enabled == StreetPreviewEnabled.INITIALIZING) {
+            val choices = geoEngine.streetPreviewGo()
             _streetPreviewFlow.value = StreetPreviewState(
                 StreetPreviewEnabled.ON,
-                geoEngine.streetPreviewGo()
+                choices
             )
+            geoEngine.recomputeStreetPreviewBestChoice(this)
         }
         _gridStateFlow.value = geoEngine.gridState
     }
@@ -591,8 +595,21 @@ class SoundscapeService : MediaSessionService() {
      * streetPreviewGo is called when the 'GO' button is pressed when in StreetPreview mode.
      * It indicates that the user has selected the direction of travel in which they which to move.
      */
+
     fun streetPreviewGo() {
-        _streetPreviewFlow.value = _streetPreviewFlow.value.copy(choices = geoEngine.streetPreviewGo())
+        val choices = geoEngine.streetPreviewGo()
+        _streetPreviewFlow.value = _streetPreviewFlow.value.copy(choices = choices, bestChoice = null)
+        geoEngine.recomputeStreetPreviewBestChoice(this)
+    }
+
+    fun updateStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {
+        _streetPreviewFlow.value = _streetPreviewFlow.value.copy(bestChoice = bestChoice)
+    }
+
+    fun announceStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {
+        val compassLabel = geoEngine.localizedContext.getString(getCompassLabel(bestChoice.heading.toInt()))
+        val go = geoEngine.localizedContext.getString(R.string.preview_go_title)
+        speakText("$go ${bestChoice.name} $compassLabel", AudioType.STANDARD)
     }
 
     fun appInForeground(foreground: Boolean) {

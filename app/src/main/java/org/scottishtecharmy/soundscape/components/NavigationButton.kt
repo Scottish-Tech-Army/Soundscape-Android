@@ -27,11 +27,11 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun NavigationButton(
-    onClick: () -> Unit = {},
     text: String,
     modifier: Modifier = Modifier,
+    onClick: () -> Unit = {},
     icon: ImageVector? = null,
-    horizontalPadding: Dp = spacing.medium,
+    horizontalPadding: Dp = spacing.medium
 ) {
     Button(
         onClick = { onClick() },
@@ -60,14 +60,7 @@ fun NavigationButton(
                 text,
                 style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Start,
-                modifier = Modifier
-// TODO: this was a bit too assertive
-//                    .semantics {
-//                        liveRegion = LiveRegionMode.Assertive
-//                        this.contentDescription = text
-//                    }
-                    .weight(1f)
-
+                modifier = Modifier.weight(1f)
             )
             Icon(
                 Icons.Rounded.ChevronRight,
