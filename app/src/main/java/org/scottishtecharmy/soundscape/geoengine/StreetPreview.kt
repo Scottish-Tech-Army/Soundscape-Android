@@ -21,7 +21,8 @@ enum class StreetPreviewEnabled {
 }
 data class StreetPreviewState(
     val enabled: StreetPreviewEnabled = StreetPreviewEnabled.OFF,
-    val choices: List<StreetPreviewChoice> = emptyList()
+    val choices: List<StreetPreviewChoice> = emptyList(),
+    val bestChoice: StreetPreviewChoice? = null
 )
 
 class StreetPreview {
@@ -35,9 +36,11 @@ class StreetPreview {
     private var previewRoad: StreetPreviewChoice? = null
 
     private var lastHeading = Double.NaN
+    private var currentBestChoice: StreetPreviewChoice? = null
     var running = false
     fun start() {
         previewState = PreviewState.INITIAL
+        currentBestChoice = null
         running = true
     }
 
@@ -188,6 +191,27 @@ class StreetPreview {
 
     fun getLastHeading() : Double {
         return lastHeading
+    }
+
+    /**
+     * updateBestChoice computes the best direction choice for the given heading.
+     * Returns the new best choice only if it changed from the previous one, null otherwise.
+     */
+    fun updateBestChoice(
+        choices: List<StreetPreviewChoice>,
+        heading: Double
+    ): StreetPreviewChoice? {
+        val best = choices.minByOrNull { calculateHeadingOffset(it.heading, heading) }
+            ?: return null
+        if (best.name == currentBestChoice?.name && best.heading == currentBestChoice?.heading) {
+            return null
+        }
+        currentBestChoice = best
+        return best
+    }
+
+    fun resetBestChoice() {
+        currentBestChoice = null
     }
 
     companion object {
