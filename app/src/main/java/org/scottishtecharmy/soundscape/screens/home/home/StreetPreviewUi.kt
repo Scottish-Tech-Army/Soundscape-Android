@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.screens.home.home
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,40 +32,24 @@ fun StreetPreview(
                 Modifier.mediumPadding()
             )
         } else {
-            // Find best match
-            var bestChoice = -1
-            var bestHeading = Double.POSITIVE_INFINITY
-            val roads = mutableSetOf<String>()
-            for ((index, choice) in state.choices.withIndex()) {
-                val headingDelta = calculateHeadingOffset(choice.heading, heading.toDouble())
-                if (headingDelta < bestHeading) {
-                    bestHeading = headingDelta
-                    bestChoice = index
-                }
-                roads.add(choice.name)
+            val bestChoice = remember(state.choices, heading) {
+                state.choices.minByOrNull { calculateHeadingOffset(it.heading, heading.toDouble()) }
             }
 
-            // Create intersection description
-            var intersectionText = ""
-            var lastName: String? = null
-            for (road in roads) {
-                if (lastName != null) {
-                    if (intersectionText.isNotEmpty()) intersectionText += ", "
-                    intersectionText += lastName
-                }
-                lastName = road
-            }
-            if (lastName != null) {
-                if (intersectionText.isEmpty()) {
-                    intersectionText = lastName
-                } else {
-                    intersectionText += stringResource(R.string.last_entry_in_list).format(lastName)
-                }
+            val roads = remember(state.choices) {
+                state.choices.map { it.name }.distinct()
             }
 
-            val text = if (bestChoice != -1)
-                stringResource(R.string.preview_go_title) + " - " + state.choices[bestChoice].name + " " + stringResource(
-                    getCompassLabel(state.choices[bestChoice].heading.toInt())
+            val intersectionText = when {
+                roads.isEmpty() -> ""
+                roads.size == 1 -> roads.first()
+                else -> roads.dropLast(1).joinToString(", ") +
+                    stringResource(R.string.last_entry_in_list).format(roads.last())
+            }
+
+            val text = if (bestChoice != null)
+                stringResource(R.string.preview_go_title) + " - " + bestChoice.name + " " + stringResource(
+                    getCompassLabel(bestChoice.heading.toInt())
                 )
             else stringResource(R.string.preview_go_nearest_intersection)
 
