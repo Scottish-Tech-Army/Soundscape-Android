@@ -1742,4 +1742,5 @@
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">گوشی شما به زبان %1$s تنظیم شده و این زبان اکنون در ساند‌اسکیپ موجود است. آیا مایلید ساند‌اسکیپ از زبان %1$s استفاده کند؟</string>
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">تغییر به %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">حفظ زبان فعلی</string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation">در این جهت حرکت کنید تا به تقاطع بعدی برسید.</string>
 </resources>

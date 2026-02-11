@@ -1271,4 +1271,5 @@
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Το τηλέφωνό σας έχει ρυθμιστεί στη γλώσσα %1$s και αυτή η γλώσσα είναι πλέον διαθέσιμη στο Soundscape. Θέλετε να αλλάξετε το Soundscape ώστε να χρησιμοποιεί τη γλώσσα %1$s;</string>
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Αλλαγή σε %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Διατήρηση τρέχουσας γλώσσας</string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation">Προχωρήστε σε αυτή την κατεύθυνση μέχρι την επόμενη διασταύρωση.</string>
 </resources>

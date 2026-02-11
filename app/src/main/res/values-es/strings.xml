@@ -1271,4 +1271,5 @@
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Su teléfono está configurado en %1$s y ese idioma ya está disponible en Soundscape. ¿Desea cambiar Soundscape para usar %1$s?</string>
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Cambiar a %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Mantener el idioma actual</string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation">Moverse en esta dirección hasta la siguiente intersección.</string>
 </resources>

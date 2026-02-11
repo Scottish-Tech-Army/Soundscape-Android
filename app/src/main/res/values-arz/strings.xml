@@ -1271,4 +1271,5 @@
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">هاتفك مضبوط على %1$s وهذه اللغة أصبحت متاحة الآن في Soundscape. هل تود تحويل Soundscape لاستخدام %1$s؟</string>
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">التبديل إلى %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">ابقَ على اللغة الحالية</string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation">تحرّك في هذا الاتجاه نحو التقاطع التالي.</string>
 </resources>

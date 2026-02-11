@@ -1271,4 +1271,5 @@
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Puhelimesi kieli on asetettu kieleksi %1$s, ja tämä kieli on nyt saatavilla Soundscapessa. Haluatko vaihtaa Soundscapen kieleksi %1$s?</string>
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Vaihda kieleksi %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Pidä nykyinen kieli</string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation">Mene tässä suunnassa seuraavaan risteykseen.</string>
 </resources>

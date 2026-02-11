@@ -1271,4 +1271,5 @@
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Síminn þinn er stilltur á %1$s og það tungumál er nú í boði í Soundscape. Viltu að Soundscape noti %1$s?</string>
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Skipta yfir í %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Halda núverandi tungumáli</string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation">fara þessa leið að næstu gatnamót.</string>
 </resources>
