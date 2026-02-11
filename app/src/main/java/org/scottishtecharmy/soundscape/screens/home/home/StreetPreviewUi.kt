@@ -15,6 +15,7 @@ import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
 import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
+import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 
@@ -41,12 +42,6 @@ fun StreetPreview(
                     stringResource(R.string.last_entry_in_list).format(roads.last())
             }
 
-            val text = if (state.bestChoice != null)
-                stringResource(R.string.preview_go_title) + " - " + state.bestChoice.name + " " + stringResource(
-                    getCompassLabel(state.bestChoice.heading.toInt())
-                )
-            else stringResource(R.string.preview_go_nearest_intersection)
-
             if (intersectionText.isNotEmpty()) {
                 Text(text = stringResource(R.string.directions_at_poi).format(intersectionText))
             }
@@ -54,7 +49,8 @@ fun StreetPreview(
                 onClick = {
                     streetPreviewFunctions.go()
                 },
-                text = text
+                text = stringResource(R.string.preview_go_title),
+                modifier = Modifier.talkbackHint(stringResource(R.string.preview_go_hint))
             )
         }
     }
