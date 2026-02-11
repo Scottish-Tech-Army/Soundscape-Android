@@ -29,11 +29,14 @@ import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.navigation.NavHostController
+import org.commonmark.node.BulletList
 import org.commonmark.node.Emphasis
 import org.commonmark.node.HardLineBreak
 import org.commonmark.node.Heading
 import org.commonmark.node.Link
+import org.commonmark.node.ListItem
 import org.commonmark.node.Node
+import org.commonmark.node.OrderedList
 import org.commonmark.node.Paragraph
 import org.commonmark.node.SoftLineBreak
 import org.commonmark.node.StrongEmphasis
@@ -96,6 +99,30 @@ private fun Node.toLogText(): String {
 
         override fun visit(link: Link) {
             visitChildren(link)
+        }
+
+        override fun visit(bulletList: BulletList) {
+            visitChildren(bulletList)
+        }
+
+        override fun visit(orderedList: OrderedList) {
+            visitChildren(orderedList)
+        }
+
+        override fun visit(listItem: ListItem) {
+            val parent = listItem.parent
+            if (parent is BulletList) {
+                sb.append("- ")
+            } else if (parent is OrderedList) {
+                var count = parent.startNumber
+                var prev = listItem.previous
+                while (prev != null) {
+                    count++
+                    prev = prev.previous
+                }
+                sb.append("$count. ")
+            }
+            visitChildren(listItem)
         }
     })
     return sb.toString().trim()
