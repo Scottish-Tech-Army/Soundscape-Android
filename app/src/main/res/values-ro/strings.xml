@@ -1271,4 +1271,5 @@
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Telefonul tău este setat la %1$s și acea limbă este acum disponibilă în Soundscape. Dorești să schimbi Soundscape pentru a folosi %1$s?</string>
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Comută la %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Păstrează limba curentă</string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation">Mergi în această direcție până la următoarea intersecție.</string>
 </resources>

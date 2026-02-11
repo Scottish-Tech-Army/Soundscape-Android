@@ -1271,4 +1271,5 @@
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">お使いの端末の言語が %1$s に設定されており、その言語が Soundscape で利用できるようになりました。Soundscape を %1$s に切り替えますか?</string>
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">%1$s に切り替える</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">現在の言語を保持する</string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation">この方向に進んで次の交差点へ移動する</string>
 </resources>
