@@ -1,24 +1,40 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.LocationSearching
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
@@ -83,6 +99,7 @@ fun AddWaypointsList(
         filterLocations(placesNearbyUiState, context)
     }
     val coroutineScope = rememberCoroutineScope()
+    var fetchingLocation by remember { mutableStateOf(false) }
 
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
@@ -140,26 +157,54 @@ fun AddWaypointsList(
         if (placesNearbyUiState.level == 0) {
             userLocation?.let { currentLocation ->
                 items(1) {
-                    val summaryDescription = LocationDescription(
-                        "Current location",
-                        location = currentLocation
-                    )
-                    LocationItem(
-                        item = summaryDescription,
-                        decoration = LocationItemDecoration(
-                            location = true,
-                            editRoute = EnabledFunction(false),
-                            details = EnabledFunction(
-                                true,
-                                {
-                                    coroutineScope.launch {
-                                        onSelectLocation(getCurrentLocationDescription())
+                    if (fetchingLocation) {
+                        var announceLoading by remember { mutableStateOf(false) }
+                        LaunchedEffect(Unit) {
+                            kotlinx.coroutines.delay(1500)
+                            announceLoading = true
+                        }
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .defaultMinSize(minHeight = 48.dp)
+                                .then(
+                                    if (announceLoading) Modifier.semantics {
+                                        contentDescription = context.getString(R.string.general_loading_start)
+                                        liveRegion = LiveRegionMode.Polite
+                                    } else Modifier
+                                )
+                                .testTag("addWaypointsCurrentLocationLoading"),
+                        ) {
+                            CircularProgressIndicator()
+                        }
+                    } else {
+                        val summaryDescription = LocationDescription(
+                            "Current location",
+                            location = currentLocation
+                        )
+                        LocationItem(
+                            item = summaryDescription,
+                            decoration = LocationItemDecoration(
+                                location = true,
+                                editRoute = EnabledFunction(false),
+                                details = EnabledFunction(
+                                    true,
+                                    {
+                                        fetchingLocation = true
+                                        coroutineScope.launch {
+                                            val ld = withContext(Dispatchers.IO) {
+                                                getCurrentLocationDescription()
+                                            }
+                                            fetchingLocation = false
+                                            onSelectLocation(ld)
+                                        }
                                     }
-                                }
+                                ),
                             ),
-                        ),
-                        userLocation = currentLocation
-                    )
+                            userLocation = currentLocation
+                        )
+                    }
                 }
             }
             items(locations) { locationDescription ->
