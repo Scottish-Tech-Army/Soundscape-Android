@@ -180,7 +180,7 @@ fun AddWaypointsList(
                         }
                     } else {
                         val summaryDescription = LocationDescription(
-                            "Current location",
+                            stringResource(R.string.search_use_current_location),
                             location = currentLocation
                         )
                         LocationItem(
