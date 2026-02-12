@@ -14,7 +14,6 @@ import androidx.navigation.NavHostController
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Rule
 import org.junit.Test
-import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.MarkdownHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.StructureLog
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme

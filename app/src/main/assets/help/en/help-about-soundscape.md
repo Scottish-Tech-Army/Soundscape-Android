@@ -37,7 +37,7 @@ Soundscape wouldn't be possible without these fantastic third party libraries an
 
 [square/leakcanary](https://github.com/square/leakcanary/blob/main/LICENSE.txt) for adding mermaid diagrams to Dokka documentation.
 
-[ticofab/android-gpx-parser](github.com/ticofab/android-gpx-parser/blob/master/LICENSE) for GPX parsing.
+[ticofab/android-gpx-parser](https://github.com/ticofab/android-gpx-parser/blob/master/LICENSE) for GPX parsing.
 
 [zhanghai/ComposePreference](https://github.com/zhanghai/ComposePreference/blob/master/LICENSE) for a simple settings UI.
 

@@ -1,5 +1,7 @@
 package org.scottishtecharmy.soundscape
 
+import androidx.annotation.OptIn
+import androidx.media3.common.util.UnstableApi
 import androidx.media3.common.util.Util.unescapeFileName
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.fail
@@ -35,18 +37,22 @@ object HelpScreenTestShared {
         return defaultContext.getString(id)
     }
 
+    @OptIn(UnstableApi::class)
     fun getTopic(testTopic: String): String {
+        @Suppress("CAST_NEVER_SUCCEEDS")
+        fun _fail(message: String): Nothing = fail(message) as Nothing
+
         return when {
             testTopic.startsWith("page_") -> {
                 val title = unescapeFileName(testTopic.substring(5))
-                val helpPage = (helpPagesByTitleString[title]
-                    ?: (fail("Failed to find page with title '${title}'") as Nothing))
+                val helpPage = helpPagesByTitleString[title]
+                    ?: _fail("Failed to find page with title '${title}'")
                 "page${helpPage.titleId}"
             }
             testTopic.startsWith("faq_") -> {
                 val title = unescapeFileName(testTopic.substring(4))
                 val section = faqPagesByTitleString[title]
-                    ?: (fail("Failed to find FAQ entry with title '${title}'") as Nothing)
+                    ?: _fail("Failed to find FAQ entry with title '${title}'")
                 "faq${section.textId}.${section.faqAnswer}"
             }
             else -> testTopic

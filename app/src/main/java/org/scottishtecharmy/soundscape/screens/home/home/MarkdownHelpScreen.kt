@@ -115,7 +115,7 @@ private fun Node.toLogText(): String {
             if (parent is BulletList) {
                 sb.append("- ")
             } else if (parent is OrderedList) {
-                var count = parent.startNumber
+                var count = parent.markerStartNumber
                 var prev = listItem.previous
                 while (prev != null) {
                     count++
@@ -197,7 +197,7 @@ private fun loadMarkdownAsset(context: android.content.Context, topic: String): 
             val question = context.getString(ids[0].toInt()).trim()
             val answer = context.getString(ids[1].toInt()).trim()
             return "## $question\n\n$answer"
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             // Fall through
         }
     }
@@ -217,7 +217,7 @@ private fun loadMarkdownAsset(context: android.content.Context, topic: String): 
     for (path in candidatePaths) {
         try {
             return context.assets.open(path).bufferedReader().use { it.readText() }.processMarkdownContent()
-        } catch (e: IOException) {
+        } catch (_: IOException) {
             // Try next path
         }
     }
@@ -243,14 +243,6 @@ private fun Node.tryGetOnlyChild(): Node? {
     return firstChild
 }
 
-class LinksPage {
-    class Section(val title: String) {
-        val links: MutableList<Link> = mutableListOf()
-    }
-
-    val sections: MutableList<Section> = mutableListOf()
-}
-
 fun List<Node>.withoutAnyRootHeading(): List<Node> {
     val firstNode = this[0]
     if (firstNode is Heading && firstNode.level == 1) {
@@ -272,37 +264,23 @@ fun MarkdownHelpScreen(
     val textContentRenderer = remember { TextContentRenderer.builder().build() }
     val htmlRenderer = remember { HtmlRenderer.builder().build() }
 
-    val isFaqSubPage = topic.startsWith("faq:")
-    val faqSubPageInfo = if (isFaqSubPage) {
+    val faqSubPageInfo = if (topic.startsWith("faq:")) {
         val parts = topic.substring(4).split(":", limit = 2)
         if (parts.size == 2) parts[0] to parts[1] else null
     } else {
         null
     }
+    val isFaqSubPage = faqSubPageInfo != null
 
-    val helpAndTutorialsTitle = stringResource(R.string.menu_help_and_tutorials)
-    val displayTitle = when {
-        isFaqSubPage -> stringResource(R.string.faq_title_abbreviated)
-        topic == helpAndTutorialsTitle || topic == "page$helpAndTutorialsTitle" -> helpAndTutorialsTitle
-        topic.startsWith("page") -> {
-            val id = topic.substring(4).toIntOrNull()
-            if (id != null) stringResource(id) else topic.removePrefix("page").removeSuffix(".md")
-        }
-        topic.startsWith("faq") -> stringResource(R.string.faq_title_abbreviated)
-        else -> topic.removePrefix("page").removeSuffix(".md")
-    }
-
-    val rawContent = if (faqSubPageInfo != null) {
-        loadMarkdownAsset(context, "page${faqSubPageInfo.first}")
-    } else {
-        loadMarkdownAsset(context, topic)
-    } ?: "# Error\n\nFailed to load help content for '$topic'"
+    val displayTitle = getDisplayTitle(topic, isFaqSubPage)
+    val topicForLoading = if (isFaqSubPage) "faq:${faqSubPageInfo.first}" else topic
+    val rawContent = loadMarkdownAsset(context, topicForLoading)
+        ?: "# Error\n\nFailed to load help content for '$topic'"
 
     val page = MarkdownPage(displayTitle, rawContent)
     val rootNodes = page.root.collectChildren()
     val isFaqListPage = !isFaqSubPage && rootNodes.any { it is Heading && it.level == 3 }
-
-    val nodesToRender = if (faqSubPageInfo != null) {
+    val nodesToRender = if (isFaqSubPage) {
         filterNodesForFaq(rootNodes, faqSubPageInfo.second, textContentRenderer)
     } else {
         rootNodes.withoutAnyRootHeading()
@@ -346,7 +324,6 @@ fun MarkdownHelpScreen(
                         val firstNode = nodes.first()
                         if (firstNode is Heading) {
                             if (firstNode.level < 2) {
-                                // TODO 2025-12-18 Hugh Greene: Handle other levels better!
                                 structureLog.unstructured("Skipping Heading level ${firstNode.level}")
                                 structureLog.end("LazyColumn item")
                                 return@items
@@ -403,12 +380,7 @@ fun MarkdownHelpScreen(
                             Text(
                                 text = text,
                                 style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurface,
-                                modifier = Modifier
-                                    .semantics {
-//                                        if(node.skipTalkback)
-//                                            invisibleToUser()
-                                    }
+                                color = MaterialTheme.colorScheme.onSurface
                             )
                         }
                         structureLog.end("LazyColumn item")
@@ -421,6 +393,27 @@ fun MarkdownHelpScreen(
         }
     )
     structureLog.end("HelpScreen")
+}
+
+@Composable
+private fun getDisplayTitle(
+    topic: String,
+    isFaqSubPage: Boolean
+): String {
+    val helpAndTutorialsTitle = stringResource(R.string.menu_help_and_tutorials)
+    val displayTitle = when {
+        isFaqSubPage -> stringResource(R.string.faq_title_abbreviated)
+        topic == helpAndTutorialsTitle || topic == "page$helpAndTutorialsTitle" -> helpAndTutorialsTitle
+        topic.startsWith("page") -> {
+            val restOfTopic = topic.removePrefix("page")
+            val id = restOfTopic.toIntOrNull()
+            if (id != null) stringResource(id) else restOfTopic.removeSuffix(".md")
+        }
+
+        topic.startsWith("faq") -> stringResource(R.string.faq_title_abbreviated)
+        else -> topic.removeSuffix(".md")
+    }
+    return displayTitle
 }
 
 @Composable
@@ -505,48 +498,66 @@ private fun groupNodesByHeadings(
     textContentRenderer: TextContentRenderer
 ): MutableList<MutableList<Node>> {
     val groupedNodes = mutableListOf<MutableList<Node>>()
-    val emojiMarkers = listOf('⏯', '⏭', '⏮', '⏩', '⏪', '⏺')
+    val mediaControlCharacters = listOf('⏯', '⏭', '⏮', '⏩', '⏪', '⏺')
 
     for (node in nodes) {
-        val startsNewItem = when {
-            node is Heading -> !isFaqListPage || node.level <= 3
-            node is Paragraph && node.tryGetOnlyChild() is Link -> true
-            node is Paragraph && (node.firstChild is StrongEmphasis) -> true
-            else -> {
-                if (groupedNodes.isEmpty()) true
-                else {
-                    val lastGroup = groupedNodes.last()
-                    val firstInLastGroup = lastGroup.first()
-                    val lastNode = lastGroup.last()
-                    val isFaq = topic.startsWith("faq")
-
-                    if (isFaqListPage && firstInLastGroup is Heading && firstInLastGroup.level == 3) {
-                        false
-                    } else if (lastNode is Heading) {
-                        true
-                    } else if (lastNode is Paragraph && lastNode.tryGetOnlyChild() is Link) {
-                        true
-                    } else if (isFaq) {
-                        false // Group everything in FAQ answer
-                    } else {
-                        // Heuristic for Markers vs Media Controls vs Audio Beacon
-                        val lastText = textContentRenderer.render(lastNode).trim()
-                        val currentText = textContentRenderer.render(node).trim()
-                        val lastEndsInColon = lastText.endsWith(":")
-                        val currentStartsInEmoji =
-                            currentText.isNotEmpty() && emojiMarkers.contains(currentText[0])
-
-                        !lastEndsInColon && !currentStartsInEmoji
-                    }
-                }
-            }
-        }
-
-        if (startsNewItem) {
+        if (nodeStartsNewItem(
+                node,
+                isFaqListPage,
+                groupedNodes,
+                topic,
+                textContentRenderer,
+                mediaControlCharacters
+            )
+        ) {
             groupedNodes.add(mutableListOf(node))
         } else {
             groupedNodes.last().add(node)
         }
     }
     return groupedNodes
+}
+
+private fun nodeStartsNewItem(
+    node: Node,
+    isFaqListPage: Boolean,
+    groupedNodes: MutableList<MutableList<Node>>,
+    topic: String,
+    textContentRenderer: TextContentRenderer,
+    mediaControlCharacters: List<Char>
+): Boolean {
+    val startsNewItem = when {
+        node is Heading -> !isFaqListPage || node.level <= 3
+        node is Paragraph && node.tryGetOnlyChild() is Link -> true
+        node is Paragraph && (node.firstChild is StrongEmphasis) -> true
+        else -> {
+            if (groupedNodes.isEmpty()) true
+            else {
+                val lastGroup = groupedNodes.last()
+                val firstInLastGroup = lastGroup.first()
+                val lastNode = lastGroup.last()
+                val isFaq = topic.startsWith("faq")
+
+                if (isFaqListPage && firstInLastGroup is Heading && firstInLastGroup.level == 3) {
+                    false
+                } else if (lastNode is Heading) {
+                    true
+                } else if (lastNode is Paragraph && lastNode.tryGetOnlyChild() is Link) {
+                    true
+                } else if (isFaq) {
+                    false // Group everything in FAQ answer
+                } else {
+                    // Heuristic for Markers vs Media Controls vs Audio Beacon
+                    val lastText = textContentRenderer.render(lastNode).trim()
+                    val currentText = textContentRenderer.render(node).trim()
+                    val lastEndsInColon = lastText.endsWith(":")
+                    val currentStartsInMediaControls =
+                        currentText.isNotEmpty() && mediaControlCharacters.contains(currentText[0])
+
+                    !lastEndsInColon && !currentStartsInMediaControls
+                }
+            }
+        }
+    }
+    return startsNewItem
 }

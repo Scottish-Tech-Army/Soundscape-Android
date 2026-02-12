@@ -19,6 +19,7 @@ import kotlin.io.path.writeText
  *
  * @author ChatGPT (via Hugh Greene)
  */
+@Suppress("unused") // It's used in HelpScreenLayoutTest but IntelliJ is confused by the same dir being in multiple sourceSets.
 fun ComposeTestRule.dumpLayoutTree(): String {
     val sb = StringBuilder()
 
@@ -73,11 +74,6 @@ private fun SemanticsNode.layoutInfo(): String {
 private fun androidx.compose.ui.geometry.Rect.toShortString(): String =
     "(${left.toInt()},${top.toInt()} - ${right.toInt()},${bottom.toInt()})"
 
-private sealed class AssertResult {
-    object Passed : AssertResult()
-    data class Failed(val message: String) : AssertResult()
-}
-
 /**
  * Hybrid baseline assertion:
  * - Reads committed baseline from assets/
@@ -94,7 +90,7 @@ fun assertLayoutMatchesHybridBaseline(
     val baselineText = loadBaselineFromAssets(context, baselineSubpathString)
 
     val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
-    val outputDir: Path = (System.getProperty("test.baselineOutputDir") as String?)
+    val outputDir: Path = System.getProperty("test.baselineOutputDir")
         ?.let { Paths.get(it) }
         ?: Paths.get(targetContext.filesDir.absolutePath)
 
