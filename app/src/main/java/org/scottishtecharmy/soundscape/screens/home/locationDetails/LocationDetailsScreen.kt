@@ -312,6 +312,7 @@ private fun LocationDescriptionButtonsSection(
 
     Column(
         verticalArrangement = Arrangement.spacedBy(spacing.none),
+        modifier = Modifier.fillMaxWidth()
     ) {
         IconWithTextButton(
             icon = Icons.Filled.LocationOn,
@@ -320,6 +321,7 @@ private fun LocationDescriptionButtonsSection(
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .defaultMinSize(minHeight = spacing.targetSize)
+                .fillMaxWidth()
                 .testTag("locationDetailsStartBeacon")
         ) {
             createBeacon(locationDescription.location)
@@ -333,6 +335,7 @@ private fun LocationDescriptionButtonsSection(
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .defaultMinSize(minHeight = spacing.targetSize)
+                    .fillMaxWidth()
                     .testTag("locationDetailsEditMarker")
             ) {
                 dialogState.value = true
@@ -345,6 +348,7 @@ private fun LocationDescriptionButtonsSection(
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .defaultMinSize(minHeight = spacing.targetSize)
+                    .fillMaxWidth()
                     .testTag("locationDetailsSaveAsMarker")
             ) {
                 showDialog()
@@ -359,6 +363,7 @@ private fun LocationDescriptionButtonsSection(
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .defaultMinSize(minHeight = spacing.targetSize)
+                .fillMaxWidth()
                 .testTag("locationDetailsStreetPreview")
         ) {
             enableStreetPreview(locationDescription.location)
@@ -371,6 +376,7 @@ private fun LocationDescriptionButtonsSection(
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .defaultMinSize(minHeight = spacing.targetSize)
+                .fillMaxWidth()
                 .testTag("locationDetailsShare")
         ) {
             shareLocation(shareMessage, locationDescription)
@@ -382,6 +388,7 @@ private fun LocationDescriptionButtonsSection(
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .defaultMinSize(minHeight = spacing.targetSize)
+                .fillMaxWidth()
                 .testTag("locationDetailsOfflineMaps")
         ) {
             offlineMaps(locationDescription)
@@ -412,6 +419,7 @@ private fun LocationDescriptionTextsSection(
             text = locationDescription.name,
             style = MaterialTheme.typography.titleLarge,
             color = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier.fillMaxWidth()
         )
 
         locationDescription.typeDescription?.let {
@@ -419,6 +427,7 @@ private fun LocationDescriptionTextsSection(
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(spacing.small),
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
                         text = it.additionalText,
@@ -432,6 +441,7 @@ private fun LocationDescriptionTextsSection(
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(spacing.small),
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Icon(
                     imageVector = Icons.Filled.Map,
@@ -442,6 +452,7 @@ private fun LocationDescriptionTextsSection(
                     text = distanceString,
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
         }
@@ -449,6 +460,7 @@ private fun LocationDescriptionTextsSection(
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(spacing.small),
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Icon(
                     imageVector = Icons.Filled.LocationOn,
@@ -458,7 +470,8 @@ private fun LocationDescriptionTextsSection(
                 Text(
                     text = it,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
         }
