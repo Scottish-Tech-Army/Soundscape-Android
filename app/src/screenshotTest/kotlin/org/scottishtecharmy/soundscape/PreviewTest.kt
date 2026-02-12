@@ -6,8 +6,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.android.tools.screenshot.PreviewTest
 import org.scottishtecharmy.soundscape.screens.home.PreviewDrawerContent
 import org.scottishtecharmy.soundscape.screens.home.home.AboutHelpPreview
+import org.scottishtecharmy.soundscape.screens.home.home.AdvancedMarkersAndRoutesSettingsPreview
 import org.scottishtecharmy.soundscape.screens.home.home.AheadOfMeHelpPreview
 import org.scottishtecharmy.soundscape.screens.home.home.AroundMeHelpPreview
+import org.scottishtecharmy.soundscape.screens.home.home.AudioTourDialogTest
 import org.scottishtecharmy.soundscape.screens.home.home.AutomaticCalloutsHelpPreview
 import org.scottishtecharmy.soundscape.screens.home.home.BeaconHelpPreview
 import org.scottishtecharmy.soundscape.screens.home.home.CreatingMarkersHelpPreview
@@ -32,6 +34,12 @@ import org.scottishtecharmy.soundscape.screens.home.locationDetails.AddRouteScre
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsPreview
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyPreview
 import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreview
+import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreviewAccessibility
+import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreviewAudio
+import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreviewCallouts
+import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreviewDebug
+import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreviewOfflineMaps
+import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreviewSearch
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddWaypointsScreenPopulatedPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.EditRouteScreenPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.NewRouteScreenPreview
@@ -46,6 +54,8 @@ import org.scottishtecharmy.soundscape.screens.onboarding.hearing.HearingPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguagePreview
 import org.scottishtecharmy.soundscape.screens.onboarding.listening.ListeningPreview
 import org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage.OfflineStorageOnboardingScreenPreview
+import org.scottishtecharmy.soundscape.screens.onboarding.terms.TermsPreview
+import org.scottishtecharmy.soundscape.screens.onboarding.welcome.PreviewWelcome
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Preview(name = "Arabic", locale = "arz", group = "Language", showBackground = true, device = "id:small_phone")
@@ -76,13 +86,8 @@ annotation class LocalePreviews
 @Preview(name = "LargeFont", fontScale = 1.15f, group = "FontScale", device = "id:small_phone")
 annotation class FontSizePreviews
 
-@Preview(name = "MediumPhone", group = "Devices", device = "spec:width=411dp,height=891dp,dpi=420", showSystemUi = true)
-@Preview(name = "Tablet", group = "Devices", device = Devices.PIXEL_C, showSystemUi = true)
-annotation class DevicePreviews
-
 @LocalePreviews
 @FontSizePreviews
-@DevicePreviews
 annotation class CustomPreviews
 
 /**
@@ -206,9 +211,57 @@ class ThemeTestClass {
     @CustomPreviews
     @Composable
     @PreviewTest
-    fun SettingsPreviewTest() {
+    fun SettingsCalloutsPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
-            SettingsPreview("callouts")
+            SettingsPreviewCallouts()
+        }
+    }
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun SettingsPreviewSearchTest() {
+        SoundscapeTheme(testTheme = testTheme) {
+            SettingsPreviewSearch()
+        }
+    }
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun SettingsPreviewAccessibilityTest() {
+        SoundscapeTheme(testTheme = testTheme) {
+            SettingsPreviewAccessibility()
+        }
+    }
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun SettingsPreviewOfflineMapsTest() {
+        SoundscapeTheme(testTheme = testTheme) {
+            SettingsPreviewOfflineMaps()
+        }
+    }
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun SettingsPreviewAudioTest() {
+        SoundscapeTheme(testTheme = testTheme) {
+            SettingsPreviewAudio()
+        }
+    }
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun SettingsPreviewOfflineMapsLanguage() {
+        SoundscapeTheme(testTheme = testTheme) {
+            SettingsPreviewOfflineMaps()
+        }
+    }
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun SettingsPreviewDebugTest() {
+        SoundscapeTheme(testTheme = testTheme) {
+            SettingsPreviewDebug()
         }
     }
 
@@ -459,9 +512,42 @@ class ThemeTestClass {
     @CustomPreviews
     @Composable
     @PreviewTest
-    fun AddWaypointsScreenPopulatedPreviewText() {
+    fun AddWaypointsScreenPopulatedPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             AddWaypointsScreenPopulatedPreview()
+        }
+    }
+
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun AdvancedMarkersAndRoutesSettingsPreviewTest() {
+        SoundscapeTheme(testTheme = testTheme) {
+            AdvancedMarkersAndRoutesSettingsPreview()
+        }
+    }
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun AudioTourDialogTestTest() {
+        SoundscapeTheme(testTheme = testTheme) {
+            AudioTourDialogTest()
+        }
+    }
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun PreviewWelcomeTest() {
+        SoundscapeTheme(testTheme = testTheme) {
+            PreviewWelcome()
+        }
+    }
+    @CustomPreviews
+    @Composable
+    @PreviewTest
+    fun TermsPreviewTest() {
+        SoundscapeTheme(testTheme = testTheme) {
+            TermsPreview()
         }
     }
 }
