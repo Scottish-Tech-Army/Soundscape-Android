@@ -84,17 +84,17 @@ private fun Node.toLogText(): String {
         }
 
         override fun visit(hardLineBreak: HardLineBreak) {
-            sb.append("\n")
+            sb.appendLine()
         }
 
         override fun visit(paragraph: Paragraph) {
             visitChildren(paragraph)
-            sb.append("\n")
+            sb.appendLine()
         }
 
         override fun visit(heading: Heading) {
             visitChildren(heading)
-            sb.append("\n")
+            sb.appendLine()
         }
 
         override fun visit(link: Link) {
