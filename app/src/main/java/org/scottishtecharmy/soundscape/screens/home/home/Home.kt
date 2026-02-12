@@ -314,6 +314,7 @@ fun HomeTopAppBar(
 @Preview(showBackground = true, locale = "pl")
 @Composable
 fun HomePreview() {
+    val currentLocationText = stringResource(R.string.search_use_current_location)
     SoundscapeTheme {
         Home(
             state = HomeState(),
@@ -323,7 +324,7 @@ fun HomePreview() {
             bottomButtonFunctions = BottomButtonFunctions(null),
             getCurrentLocationDescription = {
                 LocationDescription(
-                    "Current Location",
+                    currentLocationText,
                     LngLatAlt()
                 )
             },
@@ -344,6 +345,7 @@ fun HomePreview() {
 @Preview(showBackground = true)
 @Composable
 fun HomeSearchPreview() {
+    val currentLocationText = stringResource(R.string.search_use_current_location)
     SoundscapeTheme {
         Home(
             state = HomeState(),
@@ -353,7 +355,7 @@ fun HomeSearchPreview() {
             bottomButtonFunctions = BottomButtonFunctions(null),
             getCurrentLocationDescription = {
                 LocationDescription(
-                    "Current Location",
+                    currentLocationText,
                     LngLatAlt()
                 )
             },
@@ -374,6 +376,7 @@ fun HomeSearchPreview() {
 @Preview(showBackground = true)
 @Composable
 fun HomeRoutePreview() {
+    val currentLocationText = stringResource(R.string.search_use_current_location)
     val routePlayerState = RoutePlayerState(
         routeData = RouteWithMarkers(
             RouteEntity(
@@ -397,7 +400,7 @@ fun HomeRoutePreview() {
             bottomButtonFunctions = BottomButtonFunctions(null),
             getCurrentLocationDescription = {
                 LocationDescription(
-                    "Current Location",
+                    currentLocationText,
                     LngLatAlt()
                 )
             },
@@ -417,6 +420,7 @@ fun HomeRoutePreview() {
 @Preview(showBackground = true)
 @Composable
 fun StreetPreview() {
+    val currentLocationText = stringResource(R.string.search_use_current_location)
     SoundscapeTheme {
         Home(
             state = HomeState(
@@ -436,7 +440,7 @@ fun StreetPreview() {
             bottomButtonFunctions = BottomButtonFunctions(null),
             getCurrentLocationDescription = {
                 LocationDescription(
-                    "Current Location",
+                    currentLocationText,
                     LngLatAlt()
                 )
             },
