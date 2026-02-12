@@ -332,44 +332,7 @@ fun MarkdownHelpScreen(
                     // TODO 2025-12-12 Hugh Greene: Check whether this is a "headings and links
                     // only" page and, if so, render the structure bit-by-bit; otherwise just render
                     // as HTML???
-                    val rootChildren = page.root.collectChildren().withoutAnyRootHeading()
-                    val groupedNodes = mutableListOf<MutableList<Node>>()
-                    val emojiMarkers = listOf('⏯', '⏭', '⏮', '⏩', '⏪', '⏺')
-
-                    for (node in rootChildren) {
-                        val startsNewItem = when {
-                            node is Heading -> true
-                            node is Paragraph && node.tryGetOnlyChild() is Link -> true
-                            node is Paragraph && (node.firstChild is StrongEmphasis) -> true
-                            else -> {
-                                if (groupedNodes.isEmpty()) true
-                                else {
-                                    val lastGroup = groupedNodes.last()
-                                    val lastNode = lastGroup.last()
-                                    val isFaq = topic.startsWith("faq")
-
-                                    if (lastNode is Heading) true
-                                    else if (lastNode is Paragraph && lastNode.tryGetOnlyChild() is Link) true
-                                    else if (isFaq) false // Group everything in FAQ answer
-                                    else {
-                                        // Heuristic for Markers vs Media Controls vs Audio Beacon
-                                        val lastText = textContentRenderer.render(lastNode).trim()
-                                        val currentText = textContentRenderer.render(node).trim()
-                                        val lastEndsInColon = lastText.endsWith(":")
-                                        val currentStartsInEmoji = currentText.isNotEmpty() && emojiMarkers.contains(currentText[0])
-
-                                        !lastEndsInColon && !currentStartsInEmoji
-                                    }
-                                }
-                            }
-                        }
-
-                        if (startsNewItem) {
-                            groupedNodes.add(mutableListOf(node))
-                        } else {
-                            groupedNodes.last().add(node)
-                        }
-                    }
+                    val groupedNodes = groupNodesByHeadings(page, topic, textContentRenderer)
 
                     items(groupedNodes) { nodes ->
                         structureLog.start("LazyColumn item")
@@ -471,4 +434,51 @@ fun MarkdownHelpScreen(
         }
     )
     structureLog.end("HelpScreen")
+}
+
+private fun groupNodesByHeadings(
+    page: MarkdownPage,
+    topic: String,
+    textContentRenderer: TextContentRenderer
+): MutableList<MutableList<Node>> {
+    val rootChildren = page.root.collectChildren().withoutAnyRootHeading()
+    val groupedNodes = mutableListOf<MutableList<Node>>()
+    val emojiMarkers = listOf('⏯', '⏭', '⏮', '⏩', '⏪', '⏺')
+
+    for (node in rootChildren) {
+        val startsNewItem = when {
+            node is Heading -> true
+            node is Paragraph && node.tryGetOnlyChild() is Link -> true
+            node is Paragraph && (node.firstChild is StrongEmphasis) -> true
+            else -> {
+                if (groupedNodes.isEmpty()) true
+                else {
+                    val lastGroup = groupedNodes.last()
+                    val lastNode = lastGroup.last()
+                    val isFaq = topic.startsWith("faq")
+
+                    if (lastNode is Heading) true
+                    else if (lastNode is Paragraph && lastNode.tryGetOnlyChild() is Link) true
+                    else if (isFaq) false // Group everything in FAQ answer
+                    else {
+                        // Heuristic for Markers vs Media Controls vs Audio Beacon
+                        val lastText = textContentRenderer.render(lastNode).trim()
+                        val currentText = textContentRenderer.render(node).trim()
+                        val lastEndsInColon = lastText.endsWith(":")
+                        val currentStartsInEmoji =
+                            currentText.isNotEmpty() && emojiMarkers.contains(currentText[0])
+
+                        !lastEndsInColon && !currentStartsInEmoji
+                    }
+                }
+            }
+        }
+
+        if (startsNewItem) {
+            groupedNodes.add(mutableListOf(node))
+        } else {
+            groupedNodes.last().add(node)
+        }
+    }
+    return groupedNodes
 }
