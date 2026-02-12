@@ -105,15 +105,17 @@ fun Home(
     val routePlaying = (state.currentRouteData.routeData != null)
     val newReleaseDialog = remember {
         mutableStateOf(
-            sharedPreferences.getString(LAST_NEW_RELEASE_KEY, LAST_NEW_RELEASE_DEFAULT)
-                    != BuildConfig.VERSION_NAME.substringBeforeLast(".")
+            (sharedPreferences.getString(LAST_NEW_RELEASE_KEY, LAST_NEW_RELEASE_DEFAULT)
+                    != BuildConfig.VERSION_NAME.substringBeforeLast(".")) &&
+                    BuildConfig.DUMMY_ANALYTICS != true
         )
     }
     val phoneLanguage = remember { getLanguageMismatch(context) }
     val languageMismatchDialog = remember {
         mutableStateOf(
-            phoneLanguage != null &&
-            !sharedPreferences.getBoolean(LANGUAGE_SUPPORTED_PROMPTED_KEY, LANGUAGE_SUPPORTED_PROMPTED_DEFAULT)
+            (phoneLanguage != null &&
+            !sharedPreferences.getBoolean(LANGUAGE_SUPPORTED_PROMPTED_KEY, LANGUAGE_SUPPORTED_PROMPTED_DEFAULT))  &&
+            BuildConfig.DUMMY_ANALYTICS != true
         )
     }
 

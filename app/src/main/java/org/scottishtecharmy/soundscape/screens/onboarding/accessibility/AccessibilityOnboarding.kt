@@ -121,7 +121,7 @@ fun AccessibilityOnboardingScreen(
 
 @Preview
 @Composable
-fun OfflineStorageOnboardingScreenPreview() {
+fun AccessibilityOnboardingScreenPreview() {
     AccessibilityOnboardingScreen(
         onNavigate = null,
         AccessibilityOnboardingUiState(false),
