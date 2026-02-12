@@ -355,41 +355,13 @@ fun MarkdownHelpScreen(
                             if (isFaqListPage && firstNode.level == 3) {
                                 val questionText = textContentRenderer.render(firstNode).trim()
                                 val fileName = getMarkdownFileName(context, topic) ?: ""
-                                Button(
-                                    onClick = {
-                                        navController.navigate("${HomeRoutes.Help.route}/faq:$fileName:$questionText")
-                                    },
-                                    modifier = Modifier
-                                        .fillMaxWidth(),
-                                    shape = RoundedCornerShape(spacing.extraSmall),
-                                    colors = currentAppButtonColors
-                                ) {
-                                    structureLog.start("Button")
-                                    Box(
-                                        Modifier.weight(6f)
-                                    ) {
-                                        structureLog.start("Box for text")
-                                        structureLog.unstructured("Text for Button: '${firstNode.toLogText()}'")
-                                        Text(
-                                            text = questionText,
-                                            textAlign = TextAlign.Start,
-                                            style = MaterialTheme.typography.titleMedium,
-                                        )
-                                        structureLog.end("Box for text")
-                                    }
-                                    Box(
-                                        Modifier.weight(1f)
-                                    ) {
-                                        structureLog.start("Box for icon")
-                                        Icon(
-                                            Icons.Rounded.ChevronRight,
-                                            null,
-                                            modifier = Modifier.align(Alignment.CenterEnd)
-                                        )
-                                        structureLog.end("Box for icon")
-                                    }
-                                    structureLog.end("Button")
-                                }
+                                LinkButton(
+                                    text = questionText,
+                                    route = "${HomeRoutes.Help.route}/faq:$fileName:$questionText",
+                                    navController = navController,
+                                    structureLog = structureLog,
+                                    logText = firstNode.toLogText()
+                                )
                             } else {
                                 val text = textContentRenderer.render(firstNode).trim()
                                 structureLog.unstructured("Text for Title: '${firstNode.toLogText()}'")
@@ -406,47 +378,16 @@ fun MarkdownHelpScreen(
                             }
                         } else if (nodes.size == 1 && firstNode is Paragraph && firstNode.tryGetOnlyChild() is Link) {
                             val link = firstNode.tryGetOnlyChild() as Link
-                            Button(
-                                onClick = {
-                                    navController.navigate("${HomeRoutes.Help.route}/${link.destination}")
-                                },
-                                modifier = Modifier
-                                    .fillMaxWidth(),
-                                shape = RoundedCornerShape(spacing.extraSmall),
-                                colors = currentAppButtonColors
-                            ) {
-                                structureLog.start("Button")
-                                Box(
-                                    Modifier.weight(6f)
-                                ) {
-                                    structureLog.start("Box for text")
-                                    // NOTE 2025-12-21 Hugh Greene: To get the text of the Markdown
-                                    // link we can't just use textContentRenderer.render(link) as
-                                    // that includes the link destination and/or title as well.
-                                    val text = link.collectChildren().joinToString("") {
-                                        textContentRenderer.render(it)
-                                    }.trim()
-                                    structureLog.unstructured("Text for Button: '${link.toLogText()}'")
-                                    Text(
-                                        text = text,
-                                        textAlign = TextAlign.Start,
-                                        style = MaterialTheme.typography.titleMedium,
-                                    )
-                                    structureLog.end("Box for text")
-                                }
-                                Box(
-                                    Modifier.weight(1f)
-                                ) {
-                                    structureLog.start("Box for icon")
-                                    Icon(
-                                        Icons.Rounded.ChevronRight,
-                                        null,
-                                        modifier = Modifier.align(Alignment.CenterEnd)
-                                    )
-                                    structureLog.end("Box for icon")
-                                }
-                                structureLog.end("Button")
-                            }
+                            val text = link.collectChildren().joinToString("") {
+                                textContentRenderer.render(it)
+                            }.trim()
+                            LinkButton(
+                                text = text,
+                                route = "${HomeRoutes.Help.route}/${link.destination}",
+                                navController = navController,
+                                structureLog = structureLog,
+                                logText = link.toLogText()
+                            )
                         } else {
                             val htmlContent = nodes.joinToString("") { htmlRenderer.render(it) }.trim()
                             val text = AnnotatedString.fromHtml(
@@ -480,6 +421,50 @@ fun MarkdownHelpScreen(
         }
     )
     structureLog.end("HelpScreen")
+}
+
+@Composable
+private fun LinkButton(
+    text: String,
+    route: String,
+    navController: NavHostController,
+    structureLog: StructureLog,
+    logText: String
+) {
+    Button(
+        onClick = {
+            navController.navigate(route)
+        },
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(spacing.extraSmall),
+        colors = currentAppButtonColors
+    ) {
+        structureLog.start("Button")
+        Box(
+            Modifier.weight(6f)
+        ) {
+            structureLog.start("Box for text")
+            structureLog.unstructured("Text for Button: '$logText'")
+            Text(
+                text = text,
+                textAlign = TextAlign.Start,
+                style = MaterialTheme.typography.titleMedium,
+            )
+            structureLog.end("Box for text")
+        }
+        Box(
+            Modifier.weight(1f)
+        ) {
+            structureLog.start("Box for icon")
+            Icon(
+                Icons.Rounded.ChevronRight,
+                null,
+                modifier = Modifier.align(Alignment.CenterEnd)
+            )
+            structureLog.end("Box for icon")
+        }
+        structureLog.end("Button")
+    }
 }
 
 private fun filterNodesForFaq(
