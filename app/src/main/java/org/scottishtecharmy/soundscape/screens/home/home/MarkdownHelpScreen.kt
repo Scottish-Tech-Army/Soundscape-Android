@@ -16,6 +16,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -150,21 +151,10 @@ private fun String.processMarkdownContent(): String {
     return content.replace(Regex("""\{% link (?:[^/]+/)*([^ ]+\.md) %\}"""), "$1")
 }
 
-private fun loadMarkdownAsset(context: android.content.Context, topic: String): String? {
+private fun getMarkdownFileName(context: android.content.Context, topic: String): String? {
     val helpAndTutorialsTitle = context.getString(R.string.menu_help_and_tutorials)
 
-    if (topic.startsWith("faq") && topic.contains(".")) {
-        val ids = topic.substring(3).split(".")
-        try {
-            val question = context.getString(ids[0].toInt()).trim()
-            val answer = context.getString(ids[1].toInt()).trim()
-            return "## $question\n\n$answer"
-        } catch (e: Exception) {
-            // Fall through
-        }
-    }
-
-    val fileName = when {
+    return when {
         topic == helpAndTutorialsTitle || topic == "page$helpAndTutorialsTitle" -> "help-and-tutorials.md"
         topic.startsWith("page") -> {
             val idStr = topic.substring(4)
@@ -198,6 +188,21 @@ private fun loadMarkdownAsset(context: android.content.Context, topic: String): 
             if (stripped.endsWith(".md")) stripped else "$stripped.md"
         }
     }
+}
+
+private fun loadMarkdownAsset(context: android.content.Context, topic: String): String? {
+    if (topic.startsWith("faq") && topic.contains(".")) {
+        val ids = topic.substring(3).split(".")
+        try {
+            val question = context.getString(ids[0].toInt()).trim()
+            val answer = context.getString(ids[1].toInt()).trim()
+            return "## $question\n\n$answer"
+        } catch (e: Exception) {
+            // Fall through
+        }
+    }
+
+    val fileName = getMarkdownFileName(context, topic) ?: return null
 
     val locale = java.util.Locale.getDefault()
     val localeTag = locale.toLanguageTag() // e.g., en-GB
@@ -262,20 +267,22 @@ fun MarkdownHelpScreen(
     structureLog: StructureLog = StructureLog {}
 ) {
     structureLog.start("HelpScreen")
-    // NOTE 2025-12-12 Hugh Greene: Annoyingly, we can't use the org.commonmark.node.Visitor
-    // approach because its method aren't @Composable.  We could make an entirely @Composable copy
-    // of that, but I'm going to just do the minimum necessary to get things working here, and hope
-    // that nobody introduces any fancy Markdown usage in future which breaks this rendering without
-    // the tests picking it up.
-
-    // TODO 2025-12-12 Hugh Greene: Use https://github.com/commonmark/commonmark-java#yaml-front-matter
-    // extension setup to parse out and skip the front-matter.
 
     val context = LocalContext.current
-    val content = loadMarkdownAsset(context, topic) ?: "# Error\n\nFailed to load help content for '$topic'"
-    
+    val textContentRenderer = remember { TextContentRenderer.builder().build() }
+    val htmlRenderer = remember { HtmlRenderer.builder().build() }
+
+    val isFaqSubPage = topic.startsWith("faq:")
+    val faqSubPageInfo = if (isFaqSubPage) {
+        val parts = topic.substring(4).split(":", limit = 2)
+        if (parts.size == 2) parts[0] to parts[1] else null
+    } else {
+        null
+    }
+
     val helpAndTutorialsTitle = stringResource(R.string.menu_help_and_tutorials)
     val displayTitle = when {
+        isFaqSubPage -> stringResource(R.string.faq_title_abbreviated)
         topic == helpAndTutorialsTitle || topic == "page$helpAndTutorialsTitle" -> helpAndTutorialsTitle
         topic.startsWith("page") -> {
             val id = topic.substring(4).toIntOrNull()
@@ -284,23 +291,25 @@ fun MarkdownHelpScreen(
         topic.startsWith("faq") -> stringResource(R.string.faq_title_abbreviated)
         else -> topic.removePrefix("page").removeSuffix(".md")
     }
-    val page = MarkdownPage(displayTitle, content)
 
-    // TODO 2025-11-28 Hugh Greene: Render main page sections as "titles" and sub-sections as
-    // buttons, using Composables as below.
+    val rawContent = if (faqSubPageInfo != null) {
+        loadMarkdownAsset(context, "page${faqSubPageInfo.first}")
+    } else {
+        loadMarkdownAsset(context, topic)
+    } ?: "# Error\n\nFailed to load help content for '$topic'"
 
-    // TODO 2025-11-28 Hugh Greene: Render other sections based on help topic navigation, which is
-    // set up in HomeScreen.  The markdown files could all be parsed on start-up, or on demand (not
-    // cached) to save memory, and sub-sections for the FAQ page can be pulled out into separate
-    // commonmark Nodes, so we can select the right one to render.  I think we can have some rule
-    // whereby pages with three heading levels, and no text within the first and second levels, can
-    // be split into "sub-pages" and linked with buttons.
+    val page = MarkdownPage(displayTitle, rawContent)
+    val rootNodes = page.root.collectChildren()
+    val isFaqListPage = !isFaqSubPage && rootNodes.any { it is Heading && it.level == 3 }
+
+    val nodesToRender = if (faqSubPageInfo != null) {
+        filterNodesForFaq(rootNodes, faqSubPageInfo.second, textContentRenderer)
+    } else {
+        rootNodes.withoutAnyRootHeading()
+    }
 
     // TODO 2025-11-28 Hugh Greene: Also, pull out the route building and parsing into a class, so
     // it's more obvious which bits of code are related in the codebase.
-
-    val textContentRenderer = TextContentRenderer.builder().build()
-    val htmlRenderer = HtmlRenderer.builder().build()
 
     Scaffold(
         modifier = modifier,
@@ -329,10 +338,8 @@ fun MarkdownHelpScreen(
                     verticalArrangement = Arrangement.spacedBy(spacing.small),
                 ) {
                     structureLog.start("LazyColumn")
-                    // TODO 2025-12-12 Hugh Greene: Check whether this is a "headings and links
-                    // only" page and, if so, render the structure bit-by-bit; otherwise just render
-                    // as HTML???
-                    val groupedNodes = groupNodesByHeadings(page, topic, textContentRenderer)
+                    val groupedNodes = groupNodesByHeadings(
+                        nodesToRender, topic, isFaqListPage, textContentRenderer)
 
                     items(groupedNodes) { nodes ->
                         structureLog.start("LazyColumn item")
@@ -344,20 +351,59 @@ fun MarkdownHelpScreen(
                                 structureLog.end("LazyColumn item")
                                 return@items
                             }
-                            val text = textContentRenderer.render(firstNode).trim()
-                            structureLog.unstructured("Text for Title: '${firstNode.toLogText()}'")
-                            Text(
-                                text = text,
-                                style = if (firstNode.level == 2) MaterialTheme.typography.titleMedium else MaterialTheme.typography.titleSmall,
-                                modifier = Modifier
-                                    .padding(top = if (firstNode.level == 2) spacing.medium else spacing.small)
-                                    .semantics {
-                                        heading()
-//                                        if (node.skipTalkback)
-//                                            invisibleToUser()
+
+                            if (isFaqListPage && firstNode.level == 3) {
+                                val questionText = textContentRenderer.render(firstNode).trim()
+                                val fileName = getMarkdownFileName(context, topic) ?: ""
+                                Button(
+                                    onClick = {
+                                        navController.navigate("${HomeRoutes.Help.route}/faq:$fileName:$questionText")
                                     },
-                                color = MaterialTheme.colorScheme.onSurface,
-                            )
+                                    modifier = Modifier
+                                        .fillMaxWidth(),
+                                    shape = RoundedCornerShape(spacing.extraSmall),
+                                    colors = currentAppButtonColors
+                                ) {
+                                    structureLog.start("Button")
+                                    Box(
+                                        Modifier.weight(6f)
+                                    ) {
+                                        structureLog.start("Box for text")
+                                        structureLog.unstructured("Text for Button: '${firstNode.toLogText()}'")
+                                        Text(
+                                            text = questionText,
+                                            textAlign = TextAlign.Start,
+                                            style = MaterialTheme.typography.titleMedium,
+                                        )
+                                        structureLog.end("Box for text")
+                                    }
+                                    Box(
+                                        Modifier.weight(1f)
+                                    ) {
+                                        structureLog.start("Box for icon")
+                                        Icon(
+                                            Icons.Rounded.ChevronRight,
+                                            null,
+                                            modifier = Modifier.align(Alignment.CenterEnd)
+                                        )
+                                        structureLog.end("Box for icon")
+                                    }
+                                    structureLog.end("Button")
+                                }
+                            } else {
+                                val text = textContentRenderer.render(firstNode).trim()
+                                structureLog.unstructured("Text for Title: '${firstNode.toLogText()}'")
+                                Text(
+                                    text = text,
+                                    style = if (firstNode.level == 2) MaterialTheme.typography.titleMedium else MaterialTheme.typography.titleSmall,
+                                    modifier = Modifier
+                                        .padding(top = if (firstNode.level == 2) spacing.medium else spacing.small)
+                                        .semantics {
+                                            heading()
+                                        },
+                                    color = MaterialTheme.colorScheme.onSurface,
+                                )
+                            }
                         } else if (nodes.size == 1 && firstNode is Paragraph && firstNode.tryGetOnlyChild() is Link) {
                             val link = firstNode.tryGetOnlyChild() as Link
                             Button(
@@ -436,31 +482,68 @@ fun MarkdownHelpScreen(
     structureLog.end("HelpScreen")
 }
 
+private fun filterNodesForFaq(
+    nodes: List<Node>,
+    questionTitle: String,
+    textContentRenderer: TextContentRenderer
+): List<Node> {
+    val result = mutableListOf<Node>()
+    var found = false
+    for (node in nodes) {
+        if (node is Heading && node.level == 3) {
+            val title = textContentRenderer.render(node).trim()
+            if (title == questionTitle) {
+                found = true
+            } else if (found) {
+                // Next H3 heading, stop
+                break
+            }
+        } else if (node is Heading && node.level < 3 && found) {
+            // Next H1 or H2, stop
+            break
+        }
+        if (found) {
+            result.add(node)
+        }
+    }
+    return if (result.isEmpty()) {
+        listOf(org.commonmark.node.Text("Question not found: $questionTitle"))
+    } else {
+        result
+    }
+}
+
 private fun groupNodesByHeadings(
-    page: MarkdownPage,
+    nodes: List<Node>,
     topic: String,
+    isFaqListPage: Boolean,
     textContentRenderer: TextContentRenderer
 ): MutableList<MutableList<Node>> {
-    val rootChildren = page.root.collectChildren().withoutAnyRootHeading()
     val groupedNodes = mutableListOf<MutableList<Node>>()
     val emojiMarkers = listOf('⏯', '⏭', '⏮', '⏩', '⏪', '⏺')
 
-    for (node in rootChildren) {
+    for (node in nodes) {
         val startsNewItem = when {
-            node is Heading -> true
+            node is Heading -> !isFaqListPage || node.level <= 3
             node is Paragraph && node.tryGetOnlyChild() is Link -> true
             node is Paragraph && (node.firstChild is StrongEmphasis) -> true
             else -> {
                 if (groupedNodes.isEmpty()) true
                 else {
                     val lastGroup = groupedNodes.last()
+                    val firstInLastGroup = lastGroup.first()
                     val lastNode = lastGroup.last()
                     val isFaq = topic.startsWith("faq")
 
-                    if (lastNode is Heading) true
-                    else if (lastNode is Paragraph && lastNode.tryGetOnlyChild() is Link) true
-                    else if (isFaq) false // Group everything in FAQ answer
-                    else {
+                    if (isFaqListPage && firstInLastGroup is Heading && firstInLastGroup.level == 3) {
+                        false
+                    } else if (lastNode is Heading) {
+                        true
+                    } else if (lastNode is Paragraph && lastNode.tryGetOnlyChild() is Link) {
+                        true
+                    } else if (isFaq) {
+                        false // Group everything in FAQ answer
+                    } else {
                         // Heuristic for Markers vs Media Controls vs Audio Beacon
                         val lastText = textContentRenderer.render(lastNode).trim()
                         val currentText = textContentRenderer.render(node).trim()
