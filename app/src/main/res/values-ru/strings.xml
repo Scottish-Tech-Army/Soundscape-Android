@@ -1235,7 +1235,7 @@
     <string name="tour_cancel" tools:ignore="MissingTranslation">Аудиоурок отменён. При желании вы можете запустить его снова через главное меню.</string>
     <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Аудиоурок</string>
     <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Отменить аудиоурок</string>
-    <string name="search_bar_hint" tools:ignore="MissingTranslation">Введите название пункта назначения или адрес</string>
+    <string name="search_bar_hint" tools:ignore="MissingTranslation">Введите название или адрес места назначения.</string>
     <string name="all_places_nearby_description" tools:ignore="MissingTranslation">посмотреть нефильтрованный список всех ближайших мест</string>
     <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">посмотреть список ближайших остановок общественного транспорта</string>
     <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">посмотреть список ближайших ресторанов и баров</string>
@@ -1255,7 +1255,7 @@
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">На %1$s, сразу после %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">Рядом с перекрёстком %s</string>
     <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">В маршруте уже есть отметка в этом месте, добавить её повторно невозможно.</string>
-    <string name="settings_explanation" tools:ignore="MissingTranslation">Настройки приложения организованы по группам ниже. Нажмите на группу, чтобы развернуть её и посмотреть доступные параметры.</string>
+    <string name="settings_explanation" tools:ignore="MissingTranslation">Различные настройки приложения сгруппированы ниже. Нажмите на группу, чтобы развернуть ее и увидеть доступные параметры.</string>
     <string name="settings_section_units_description" tools:ignore="MissingTranslation">Выберите единицы измерения для расстояний</string>
     <string name="settings_section_search_network" tools:ignore="MissingTranslation">Режим поиска</string>
     <string name="settings_section_search_network_description" tools:ignore="MissingTranslation">Укажите, будет ли поиск использовать только офлайн‑данные</string>
