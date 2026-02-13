@@ -1235,7 +1235,7 @@
     <string name="tour_cancel" tools:ignore="MissingTranslation">Аудиоурок отменён. При желании вы можете запустить его снова через главное меню.</string>
     <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Аудиоурок</string>
     <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Отменить аудиоурок</string>
-    <string name="search_bar_hint" tools:ignore="MissingTranslation">Введите название или адрес места назначения.</string>
+    <string name="search_bar_hint" tools:ignore="MissingTranslation">Введите название или адрес места назначения</string>
     <string name="all_places_nearby_description" tools:ignore="MissingTranslation">посмотреть нефильтрованный список всех ближайших мест</string>
     <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">посмотреть список ближайших остановок общественного транспорта</string>
     <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">посмотреть список ближайших ресторанов и баров</string>
