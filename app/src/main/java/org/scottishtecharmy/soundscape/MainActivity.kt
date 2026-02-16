@@ -27,6 +27,8 @@ import androidx.compose.runtime.remember
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.core.content.edit
+import androidx.core.content.pm.ShortcutInfoCompat
+import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.net.toUri
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
@@ -43,7 +45,6 @@ import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
@@ -351,6 +352,8 @@ class MainActivity : AppCompatActivity() {
                 if (it) {
                     // The service has started
 
+                    registerRouteShortcuts()
+
                     // Update the app state in the service
                     this@MainActivity.lifecycle.addObserver(AppLifecycleObserver())
 
@@ -401,6 +404,31 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferencesListener)
         super.onDestroy()
+    }
+
+    private fun registerRouteShortcuts() {
+        val db = org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase.getMarkersInstance(this)
+        val routeDao = db.routeDao()
+        val routes = routeDao.getAllRoutes()
+
+        for (route in routes) {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.action = Intent.ACTION_VIEW
+            intent.data = "soundscape://route/${route.name}".toUri()
+
+            val shortcut = ShortcutInfoCompat.Builder(this, "route_${route.routeId}")
+                .setShortLabel(route.name)
+                .setLongLabel(route.name)
+                .addCapabilityBinding(
+                    "actions.intent.START_EXERCISE",
+                    "exercise.name",
+                    listOf(route.name)
+                )
+                .setIntent(intent)
+                .build()
+
+            ShortcutManagerCompat.pushDynamicShortcut(this, shortcut)
+        }
     }
 
     private fun rateSoundscape() {
