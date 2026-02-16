@@ -25,8 +25,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.core.content.ContextCompat
-import androidx.core.content.pm.ShortcutInfoCompat
-import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.content.FileProvider
 import androidx.core.content.edit
 import androidx.core.net.toUri
@@ -353,8 +351,6 @@ class MainActivity : AppCompatActivity() {
                 if (it) {
                     // The service has started
 
-                    registerIntents()
-
                     // Update the app state in the service
                     this@MainActivity.lifecycle.addObserver(AppLifecycleObserver())
 
@@ -407,21 +403,6 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    private fun registerIntents() {
-        // Define the dynamic shortcut for an item
-        val intent = Intent(this, MainActivity::class.java)
-        intent.setPackage("org.scottishtecharmy.soundscape")
-        intent.setAction(Intent.ACTION_VIEW)
-
-        val shortcutInfo: ShortcutInfoCompat = ShortcutInfoCompat.Builder(this, "unique_id_for_shortcut")
-            .setShortLabel("Route")
-            .setLongLabel("Start a route")
-            .addCapabilityBinding("actions.intent.START_EXERCISE", "exercise.name", listOf("To Tesco"))
-            .setIntent(intent)
-            .build()
-
-        ShortcutManagerCompat.pushDynamicShortcut(this, shortcutInfo);
-    }
     private fun rateSoundscape() {
         if (!hasPlayServices(this)) {
             // No Play Services - open Play Store directly as fallback
