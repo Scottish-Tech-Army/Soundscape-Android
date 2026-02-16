@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="feature_routes"
+        android:shortcutShortLabel="@string/routes_title"
+        android:shortcutLongLabel="@string/routes_title">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="org.scottishtecharmy.soundscape"
+            android:targetClass="org.scottishtecharmy.soundscape.MainActivity"
+            android:data="soundscape://feature/routes" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="feature_markers"
+        android:shortcutShortLabel="@string/markers_title"
+        android:shortcutLongLabel="@string/markers_title">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="org.scottishtecharmy.soundscape"
+            android:targetClass="org.scottishtecharmy.soundscape.MainActivity"
+            android:data="soundscape://feature/markers" />
+    </shortcut>
     <capability android:name="actions.intent.START_EXERCISE">
         <intent
             android:action="android.intent.action.VIEW"

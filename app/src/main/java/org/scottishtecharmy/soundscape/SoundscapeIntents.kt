@@ -13,6 +13,7 @@ import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
@@ -197,6 +198,17 @@ class SoundscapeIntents
                 else -> {
                     val uriData: String =
                         URLDecoder.decode(intent.data.toString(), Charsets.UTF_8.name())
+
+                    // Check for soundscape://feature/{name} intent to open a feature screen
+                    val featureRegex = Regex("soundscape://feature/(routes|markers)")
+                    val featureMatch = featureRegex.find(uriData)
+                    if (featureMatch != null) {
+                        val feature = featureMatch.groupValues[1]
+                        Log.d(TAG, "Opening feature from intent: $feature")
+                        Analytics.getInstance().logEvent("intentOpenFeature", null)
+                        navigator.navigate("${HomeRoutes.MarkersAndRoutes.route}?tab=$feature")
+                        return
+                    }
 
                     // Check for soundscape://route/{name} intent to start a saved route
                     val routeRegex = Regex("soundscape://route/(.+)")
