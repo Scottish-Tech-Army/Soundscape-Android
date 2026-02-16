@@ -19,7 +19,7 @@ plugins {
 
 android {
     namespace = "org.scottishtecharmy.soundscape"
-    compileSdk = 35
+    compileSdk = 36
 
     buildFeatures {
         buildConfig = true
