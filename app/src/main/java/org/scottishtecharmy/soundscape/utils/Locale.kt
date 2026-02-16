@@ -45,7 +45,7 @@ val supportedLanguages = listOf(
     Language("Русский", "ru", "RU"),
     Language("Română", "ro", "RO"),
     Language("Svenska", "sv", "SE"),
-    Language("українська", "uk", "UK"),
+    Language("Українська", "uk", "UK"),
 )
 
 /**
