@@ -1009,21 +1009,11 @@
 <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">"Open source licenses"</string>
 <!-- Text for dialog which explains what is new in the current release. This is in markdown format. -->
 <string name="new_version_info_details" tools:ignore="MissingTranslation">"
-The main changes in this release are for *Search* and describing the current address. When there is network available, *Search* will use Android as well as our own Photon server to find places. The main improvements here are firstly that searching by street number should work much better in many parts of the world. Secondly, we have also added offline search which uses any downloaded maps to search for addresses and points of interest. Offline search works up to around 5 miles around the user.
+We are approaching the point where we move out of Beta release. That just means that we think the app is working well for most people. Now's a great time to let us know if there are problems either within the app functionality, or within the translations.
 
-Tips for searching:
+For all languages where Android supports it, the app now has actions to start and stop routes as well as to open the app at the Markers or Routes screen. You can find these out by saying "Hey Google, what can I do with Soundscape?".
 
-The search UI has changed slightly since the last release as it didn't correctly support talkback editing. It also requires the user to hit enter/search to start the search after entering the search text.
-
-Offline search requires offline maps to be downloaded. Download them from the Settings/Offline maps screen.
-
-Searching can be forced to be offline only in the settings. The default Auto setting means that it uses online search when there's network available and offline search when there's none.
-
-When searching for a street address, including the town name is important for online search, though it can be omitted in offline search.
-
-Mapping of street numbers in the OpenStreetMap data that we use varies depending on location. Offline search will use street numbers when they are available, though an offline map downloaded in the app after January 19th 2026 is required.
-
-As always please report any problems, however small they may be via the *Contact Support* option in the main menu.
+Please report any problems that you have, however small they may be via the *Contact Support* option in the main menu.
 "</string>
 <!-- Text for the About Soundscape menu option. It describes what the app does -->
 <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explores the use of innovative audio-based technology to enable people to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around.</string>
