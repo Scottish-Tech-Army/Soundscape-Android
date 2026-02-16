@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <capability android:name="actions.intent.START_EXERCISE">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="org.scottishtecharmy.soundscape"
+            android:targetClass="org.scottishtecharmy.soundscape.MainActivity">
+            <parameter android:name="exercise.name" android:key="exerciseType" />
+            <url-template android:value="soundscape://route/{exerciseType}"/>
+        </intent>
+    </capability>
+</shortcuts>

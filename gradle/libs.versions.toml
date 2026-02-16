@@ -15,6 +15,7 @@ androidGpxParser = "2.3.1"
 composePreferenceLibrary = "1.1.1"
 converterMoshi = "3.0.0"
 converterProtobuf = "3.0.0"
+coreGoogleShortcuts = "1.1.0"
 htmlMermaidDokkaPlugin = "0.6.0"
 jtsCore = "1.20.0"
 leakcanaryAndroid = "2.14"
@@ -95,6 +96,7 @@ commonmark = { module = "org.commonmark:commonmark", version.ref = "commonmark" 
 converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "converterMoshi" }
 converter-protobuf = { module = "com.squareup.retrofit2:converter-protobuf", version.ref = "converterProtobuf" }
 converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "converterScalars" }
+core-google-shortcuts = { module = "androidx.core:core-google-shortcuts", version.ref = "coreGoogleShortcuts" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }

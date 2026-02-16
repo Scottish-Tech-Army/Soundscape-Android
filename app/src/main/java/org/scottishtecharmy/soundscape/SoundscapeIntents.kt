@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.generateRouteDetailsRoute
 import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.parseGpxFile
 import java.io.BufferedReader
 import java.io.IOException
@@ -196,6 +197,29 @@ class SoundscapeIntents
                 else -> {
                     val uriData: String =
                         URLDecoder.decode(intent.data.toString(), Charsets.UTF_8.name())
+
+                    // Check for soundscape://route/{name} intent to start a saved route
+                    val routeRegex = Regex("soundscape://route/(.+)")
+                    val routeMatch = routeRegex.find(uriData)
+                    if (routeMatch != null) {
+                        val routeName = routeMatch.groupValues[1]
+                        Log.d(TAG, "Starting route from intent: name=$routeName")
+                        val db = org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
+                            .getMarkersInstance(mainActivity)
+                        val route = db.routeDao().getAllRoutes()
+                            .map { it to routeName.fuzzyCompare(it.name, true) }
+                            .filter { it.second < 0.3 }
+                            .minByOrNull { it.second }
+                            ?.first
+                        if (route != null) {
+                            Log.d(TAG, "Matched route: ${route.name} (id=${route.routeId})")
+                            Analytics.getInstance().logEvent("intentStartRoute", null)
+                            mainActivity.soundscapeServiceConnection.routeStart(route.routeId)
+                        } else {
+                            Log.w(TAG, "No route found matching name: $routeName")
+                        }
+                        return
+                    }
 
                     // Check for geo or soundscape intent which is simply a latitude and longitude
                     val regex =

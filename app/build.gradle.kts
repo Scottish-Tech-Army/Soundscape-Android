@@ -247,6 +247,7 @@ dependencies {
     implementation(libs.androidx.media3.session)
     implementation(libs.androidx.lifecycle.process)
     implementation(libs.screenshot.validation.api)
+    implementation(libs.core.google.shortcuts)
 
     testImplementation(libs.junit)
     testImplementation(libs.androidx.core.testing)
