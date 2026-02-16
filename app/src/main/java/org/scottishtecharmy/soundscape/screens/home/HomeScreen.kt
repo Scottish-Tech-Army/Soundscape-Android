@@ -245,7 +245,21 @@ fun HomeScreen(
         }
 
         // MarkersAndRoutesScreen with tab selection
-        composable(HomeRoutes.MarkersAndRoutes.route) {
+        composable(
+            HomeRoutes.MarkersAndRoutes.route + "?tab={tab}",
+            arguments = listOf(navArgument("tab") {
+                type = NavType.StringType
+                defaultValue = ""
+            })
+        ) { backStackEntry ->
+            val tab = backStackEntry.arguments?.getString("tab") ?: ""
+            LaunchedEffect(tab) {
+                if (tab == "markers") {
+                    viewModel.setRoutesAndMarkersTab(false)
+                } else if (tab == "routes") {
+                    viewModel.setRoutesAndMarkersTab(true)
+                }
+            }
             MarkersAndRoutesScreen(
                 navController = navController,
                 viewModel = viewModel,
