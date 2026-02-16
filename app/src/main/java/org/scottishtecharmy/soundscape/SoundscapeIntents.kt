@@ -210,6 +210,14 @@ class SoundscapeIntents
                         return
                     }
 
+                    // Check for soundscape://route/stop intent to stop route playback
+                    if (uriData == "soundscape://route/stop") {
+                        Log.d(TAG, "Stopping route from intent")
+                        Analytics.getInstance().logEvent("intentStopRoute", null)
+                        mainActivity.soundscapeServiceConnection.routeStop()
+                        return
+                    }
+
                     // Check for soundscape://route/{name} intent to start a saved route
                     val routeRegex = Regex("soundscape://route/(.+)")
                     val routeMatch = routeRegex.find(uriData)

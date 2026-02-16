@@ -29,4 +29,12 @@
             <url-template android:value="soundscape://route/{exerciseType}"/>
         </intent>
     </capability>
+    <capability android:name="actions.intent.STOP_EXERCISE">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="org.scottishtecharmy.soundscape"
+            android:targetClass="org.scottishtecharmy.soundscape.MainActivity">
+            <url-template android:value="soundscape://route/stop"/>
+        </intent>
+    </capability>
 </shortcuts>
