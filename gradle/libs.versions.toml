@@ -15,7 +15,6 @@ androidGpxParser = "2.3.1"
 composePreferenceLibrary = "1.1.1"
 converterMoshi = "3.0.0"
 converterProtobuf = "3.0.0"
-coreGoogleShortcuts = "1.1.0"
 htmlMermaidDokkaPlugin = "0.6.0"
 jtsCore = "1.20.0"
 leakcanaryAndroid = "2.14"
@@ -67,7 +66,6 @@ lifecycleRuntimeComposeAndroid = "2.9.2"
 lifecycleProcess = "2.9.2"
 uiautomator = "2.3.0"
 jaredsburrows-license = "0.9.8"
-widgets = "0.0.1"
 
 # These libraries can't go any higher without breaking map zooming
 composeBom = "2025.04.00"
@@ -97,7 +95,6 @@ commonmark = { module = "org.commonmark:commonmark", version.ref = "commonmark" 
 converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "converterMoshi" }
 converter-protobuf = { module = "com.squareup.retrofit2:converter-protobuf", version.ref = "converterProtobuf" }
 converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "converterScalars" }
-core-google-shortcuts = { module = "androidx.core:core-google-shortcuts", version.ref = "coreGoogleShortcuts" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
@@ -148,7 +145,6 @@ androidx-media3-session = { group = "androidx.media3", name = "media3-session", 
 maplibre-annotations = { module = "org.maplibre.gl:android-plugin-annotation-v9", version.ref = "mapLibreAnnotation" }
 androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycleProcess" }
 screenshot-validation-api = { group = "com.android.tools.screenshot", name = "screenshot-validation-api", version.ref = "screenshotValidationApi" }
-widgets = { module = "com.google.assistant.appactions:widgets", version.ref = "widgets" }
 
 [plugins]
 screenshot = { id = "com.android.compose.screenshot", version.ref = "screenshot"}
