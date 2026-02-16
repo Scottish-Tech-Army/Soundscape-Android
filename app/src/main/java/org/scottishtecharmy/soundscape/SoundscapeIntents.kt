@@ -176,6 +176,9 @@ class SoundscapeIntents
             intent: Intent,
             mainActivity: MainActivity,
         ) {
+            Log.w(TAG, "${intent.action}")
+            Log.w(TAG, "${intent.type}")
+
             when {
                 intent.action == Intent.ACTION_SEND -> {
                     if ("text/plain" == intent.type) {
@@ -194,8 +197,14 @@ class SoundscapeIntents
                 }
 
                 else -> {
+                    val startFollowing = intent.extras?.getString("exerciseType")
+                    if (startFollowing != null){
+                        Log.e(TAG, "startFollowing: $startFollowing")
+                    }
                     val uriData: String =
                         URLDecoder.decode(intent.data.toString(), Charsets.UTF_8.name())
+
+                    Log.e(TAG, "uriData: $uriData")
 
                     // Check for geo or soundscape intent which is simply a latitude and longitude
                     val regex =

@@ -82,6 +82,9 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
 
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
             <!--
             Once we have share.soundscape.services (or similar) server set up, then we can uncomment
             this and test deep linking. This is so that iOS shared markers such as:

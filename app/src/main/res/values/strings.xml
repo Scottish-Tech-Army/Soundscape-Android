@@ -2569,4 +2569,7 @@ As always please report any problems, however small they may be via the *Contact
 <string name="tour_continue_button" tools:ignore="MissingTranslation">Continue</string>
 <!-- Tutorial dialog continue button hint. This is always preceded by "Double tap to " -->
 <string name="tour_continue_hint" tools:ignore="MissingTranslation">Close the popup and continue with the tutorial</string>
+
+<!-- Shortcuts -->
+<string name="following"  translatable="false">Following</string>
 </resources>
