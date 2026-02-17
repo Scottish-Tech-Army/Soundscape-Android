@@ -7,7 +7,7 @@
     <string name="general_error_add_marker_error">无法标记此地点，请稍后再试。</string>
     <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">该位置已在路线中存在标记点，无法重复添加。</string>
     <string name="settings_screen_title">设置</string>
-    <string name="settings_explanation" tools:ignore="MissingTranslation">以下各项设置按分组排列。点击某个分组可展开查看可用选项。</string>
+    <string name="settings_explanation" tools:ignore="MissingTranslation">以下各项设置按分组排列。点击分组可展开查看可用选项。</string>
     <string name="settings_about_app">关于 Soundscape</string>
     <string name="settings_section_units" tools:ignore="MissingTranslation">计量单位</string>
     <string name="settings_section_units_description" tools:ignore="MissingTranslation">选择用于距离的计量单位</string>
@@ -1130,9 +1130,9 @@
     <string name="directions_at_poi">在%s</string>
     <string name="directions_my_location">我的位置</string>
     <string name="directions_near_name">靠近%s</string>
-    <string name="directions_name_goes_left">%s，向左延伸</string>
-    <string name="directions_name_goes_right">%s，向右延伸</string>
-    <string name="directions_name_continues_ahead">%s，向前延伸</string>
+    <string name="directions_name_goes_left">%s，左转</string>
+    <string name="directions_name_goes_right">%s，右转</string>
+    <string name="directions_name_continues_ahead">%s，直行</string>
     <string name="directions_direction_ahead">前方</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">靠近%1$s，接近%2$s</string>
     <string name="directions_traveling_n">向北行驶</string>
