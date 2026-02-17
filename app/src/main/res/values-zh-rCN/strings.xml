@@ -1045,7 +1045,7 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">新版本信息</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">关闭新版本对话框</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">开源许可证</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\n本次更新的主要变化涉及*搜索*功能和当前地址描述。在有网络的情况下，*搜索*将同时使用Android和我们自己的Photon服务器来查找地点。主要改进首先是在世界许多地区按门牌号搜索的效果大幅提升。其次，我们还增加了离线搜索功能，可利用已下载的地图搜索地址和兴趣点。离线搜索范围约为用户周围5英里。\n\n搜索提示：\n\n自上一版本以来，搜索界面略有变化，因为之前未能正确支持TalkBack编辑。用户输入搜索文本后，还需要按回车/搜索键才能开始搜索。\n\n离线搜索需要先下载离线地图。请前往设置/离线地图页面下载。\n\n可以在设置中强制仅使用离线搜索。默认的“自动”设置表示有网络时使用在线搜索，无网络时使用离线搜索。\n\n搜索街道地址时，在线搜索中包含城镇名称很重要，但在离线搜索中可以省略。\n\n我们使用的OpenStreetMap数据中，门牌号的映射因地区而异。离线搜索会在有门牌号数据时使用它们，但需要使用2026年1月19日之后在应用中下载的离线地图。\n\n如往常一样，无论问题多小，请通过主菜单中的*联系支持*选项报告任何问题。\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\n我们即将结束 Beta 测试阶段，进入正式发布。这只是表示我们认为该应用对大多数用户而言运行良好。现在正是向我们反馈问题的好时机，无论是应用功能方面的问题，还是翻译方面的问题。\n\n请通过主菜单中的*联系支持*选项报告您遇到的任何问题，不论问题大小。\n</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape 探索使用创新的音频技术，帮助人们更好地感知周围环境，从而更加自信、自主地出行。</string>
     <string name="osm_office_building" tools:ignore="MissingTranslation">办公楼</string>
     <string name="osm_school_building" tools:ignore="MissingTranslation">教学楼</string>
