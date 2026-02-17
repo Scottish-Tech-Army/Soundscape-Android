@@ -1272,9 +1272,4 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Vaihda kieleksi %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Pidä nykyinen kieli</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">Mene tässä suunnassa seuraavaan risteykseen.</string>
-    <string name="fmod_copyright" translatable="false"></string>
-    <string name="openmaptiles_copyright" translatable="false"></string>
-    <string name="copyright_notices" translatable="false"></string>
-    <string name="app_name" translatable="false"></string>
-    <string name="osm_copyright" translatable="false"></string>
 </resources>
