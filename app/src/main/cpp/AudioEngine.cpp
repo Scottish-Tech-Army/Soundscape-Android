@@ -7,6 +7,7 @@
 #include <memory>
 #include <mutex>
 #include <android/log.h>
+#include <android/asset_manager_jni.h>
 #include <jni.h>
 #include <cassert>
 
@@ -140,77 +141,17 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         }
 };
 
-#if 0
-    static FMOD_RESULT F_CALLBACK LoggingCallback(FMOD_DEBUG_FLAGS flags,
-                                                  const char *file,
-                                                  int line,
-                                                  const char *func,
-                                                  const char *message)
-    {
-        TRACE("%d of %s: %s", line, file, message);
-        return FMOD_OK;
-    }
-#endif
-
-    AudioEngine::AudioEngine() noexcept
-               : m_BeaconTypeIndex(1) {
-        FMOD_RESULT result;
+    AudioEngine::AudioEngine(AAssetManager *assetManager) noexcept
+               : m_pAssetManager(assetManager),
+                 m_BeaconTypeIndex(1) {
 
         TRACE("%s %p", __FUNCTION__, this);
 
-        // Create a System object and initialize
-        FMOD::System *system = nullptr;
-        FMOD::System_Create(&system);
-        m_pSystem = system;
-
-        // As of FMOD 2.03.06 Android spatial audio is supported. Prior to that version we set the
-        // setSoftwareFormat with FMOD_SPEAKERMODE_SURROUND, but since spatial audio support was
-        // added the behaviour changed and the audio wasn't always appearing in the correct
-        // location. Intersection callouts in particular all seemed to be called out from directly
-        // ahead. We now set it to FMOD_SPEAKERMODE_STEREO. In future we can investigate using
-        // Android spatial audio.
-        result = m_pSystem->setSoftwareFormat(22050, FMOD_SPEAKERMODE_STEREO, 0);
-        ERROR_CHECK(result);
-
-        result = m_pSystem->init(32, FMOD_INIT_NORMAL, nullptr);
-        ERROR_CHECK(result);
-
-        // The final parameter here is how much attenuation per metre to apply to
-        // sounds. Set to a very low value means that far and near beacons sound
-        // at nearly the same volume. Currently it applies to all positioned audio,
-        // so speech, earcons and beacons.
-        result = m_pSystem->set3DSettings(1.0, 1.0, 0.01f);
-        ERROR_CHECK(result);
-
-        // Create the channel groups
-        result = system->createChannelGroup("beacons", &m_pBeaconChannelGroup);
-        ERROR_CHECK(result);
-        result = system->createChannelGroup("speech", &m_pSpeechChannelGroup);
-        ERROR_CHECK(result);
-
-#if 0
-        int numdrivers = 0;
-        result = m_pSystem->getNumDrivers(&numdrivers);
-        ERROR_CHECK(result);
-        for(int id = 0; id < numdrivers; ++id) {
-            char name[256];
-            FMOD_GUID guid;
-            int systemrate;
-            FMOD_SPEAKERMODE speakermode;
-            int speakermodechannels;
-
-            result = m_pSystem->getDriverInfo(id,
-                    name,
-                    sizeof(name),
-                    &guid,
-                    &systemrate,
-                    &speakermode,
-                    &speakermodechannels);
-            ERROR_CHECK(result);
-
-            TRACE("Audio driver: %s  %d %d %d", name, systemrate, speakermode, speakermodechannels);
+        // Create and start the audio mixer (Oboe + Steam Audio)
+        m_pMixer = std::make_unique<AudioMixer>();
+        if (!m_pMixer->start()) {
+            TRACE("AudioEngine: mixer failed to start");
         }
-#endif
     }
 
     AudioEngine::~AudioEngine() {
@@ -230,14 +171,12 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
             }
         }
 
-        TRACE("Release groups");
-        m_pBeaconChannelGroup->release();
-        m_pSpeechChannelGroup->release();
+        // Stop the mixer after all sources are removed
+        if (m_pMixer) {
+            m_pMixer->stop();
+        }
 
-        TRACE("System release");
-        auto result = m_pSystem->release();
-        ERROR_CHECK(result);
-        m_pSystem = nullptr;
+        TRACE("AudioEngine destroyed");
 
         // We rely on clearBeaconEventsListener having been called prior to this call
         assert(m_pJvm == nullptr);
@@ -252,9 +191,6 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
             return;
         }
 
-        // Create a global reference to the listener object (NativeAudioEngine instance)
-        // Make sure to delete this global reference when the listener is no longer needed
-        // (e.g., in a ClearBeaconEventsListener method or destructor)
         if (m_jBeaconListener != nullptr) {
             env->DeleteGlobalRef(m_jBeaconListener);
             m_jBeaconListener = nullptr;
@@ -265,7 +201,6 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
             return;
         }
 
-        // Get the class of the listener object
         jclass listener_class = env->GetObjectClass(m_jBeaconListener);
         if (listener_class == nullptr) {
             TRACE("AudioEngine::SetBeaconEventsListener - Failed to get listener class");
@@ -274,14 +209,11 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
             return;
         }
 
-        // Get the method ID for the callback method in NativeAudioEngine.kt
-        // The method signature "()V" means a method with no arguments that returns void.
         m_jMethodId_onAllBeaconsCleared = env->GetMethodID(listener_class, "onAllBeaconsCleared", "()V");
         if (m_jMethodId_onAllBeaconsCleared == nullptr) {
             TRACE("AudioEngine::SetBeaconEventsListener - Failed to get method ID for onAllBeaconsCleared");
             env->DeleteGlobalRef(m_jBeaconListener);
             m_jBeaconListener = nullptr;
-            // No need to delete listener_class, it's a local reference.
             return;
         }
         TRACE("AudioEngine::SetBeaconEventsListener - Successfully set up listener.");
@@ -305,11 +237,9 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
 
         JNIEnv *env;
         bool didAttach = false;
-        // Check if the current thread is attached to the JVM
         int getEnvStat = m_pJvm->GetEnv(reinterpret_cast<void**>(&env), JNI_VERSION_1_6);
 
         if (getEnvStat == JNI_EDETACHED) {
-            // If not attached, attach it
             if (m_pJvm->AttachCurrentThread(&env, nullptr) != 0) {
                 TRACE("NotifyAllBeaconsCleared: Failed to attach current thread to JVM");
                 return;
@@ -322,17 +252,14 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
             // Already attached
         }
 
-        // Call the Kotlin method
         env->CallVoidMethod(m_jBeaconListener, m_jMethodId_onAllBeaconsCleared);
 
-        // Check for exceptions from the JNI call (good practice)
         if (env->ExceptionCheck()) {
             TRACE("NotifyAllBeaconsCleared: Exception occurred calling Kotlin method");
             env->ExceptionDescribe();
             env->ExceptionClear();
         }
 
-        // If we attached the thread, detach it
         if (didAttach) {
             m_pJvm->DetachCurrentThread();
         }
@@ -351,34 +278,27 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
     AudioEngine::UpdateGeometry(double listenerLatitude, double listenerLongitude,
                                 double listenerHeading, bool focusGained, bool duckingAllowed,
                                 double proximityNear) {
-        const FMOD_VECTOR up = {0.0f, 1.0f, 0.0f};
 
-        //
-        // What action do we take if we have no heading available? (i.e. locked phone not laying flat)
-        //
-        // Beacons need to be 'dim', but we also need relative positioning of TTS so that we can at
-        // least do some of the callouts. The iOS docs suggest that My Location, Nearby Markers,
-        // Around Me and  Ahead of Me should all still play out.
-        //
         if (listenerHeading > 10000.0)
             listenerHeading = NAN;
-        if(focusGained) {
-            // Drop volume if we have no valid heading
-            m_pSpeechChannelGroup->setVolume(1.0);
-            if (listenerHeading == NAN) {
-                m_pBeaconChannelGroup->setVolume(0.2);
+
+        // Volume control via mixer
+        if (m_pMixer) {
+            if (focusGained) {
+                m_pMixer->setSpeechVolume(1.0f);
+                if (isnan(listenerHeading)) {
+                    m_pMixer->setBeaconVolume(0.2f);
+                } else {
+                    m_pMixer->setBeaconVolume(1.0f);
+                }
             } else {
-                m_pBeaconChannelGroup->setVolume(1.0);
-            }
-        } else {
-            // We have lost audio focus. If we're allowed to duck our audio, drop the volume,
-            // otherwise we have to mute.
-            if(duckingAllowed) {
-                m_pBeaconChannelGroup->setVolume(0.1);
-                m_pSpeechChannelGroup->setVolume(0.2);
-            } else {
-                m_pBeaconChannelGroup->setVolume(0.0);
-                m_pSpeechChannelGroup->setVolume(0.0);
+                if (duckingAllowed) {
+                    m_pMixer->setBeaconVolume(0.1f);
+                    m_pMixer->setSpeechVolume(0.2f);
+                } else {
+                    m_pMixer->setBeaconVolume(0.0f);
+                    m_pMixer->setSpeechVolume(0.0f);
+                }
             }
         }
 
@@ -387,25 +307,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         m_LastLongitude = listenerLongitude;
         m_LastHeading = listenerHeading;
 
-        // Set listener direction
-        FMOD_VECTOR forward = {0.0f, 0.0f, 1.0f};
-        if(!isnan(listenerHeading))
         {
-            auto rads = static_cast<float>((listenerHeading * M_PI) / 180.0);
-            forward = {sin(rads), 0.0f, cos(rads)};
-        }
-        //TRACE("heading: %d %f, %f %f", heading, rads, forward.x, forward.z)
-
-        {
-            // Each time through we need to:
-            //
-            // 1. Check for any EOF and delete those Beacons. If the beacon was in the list of
-            //    queued beacons, then we should also start playback of the next queued beacon if
-            //    there is one.
-            // 2. Update the listener location and heading in each active Beacon. This allows
-            //    beacons to switch the audio being played when the listener is pointing away from
-            //    the beacon.
-            //
             std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
 
             bool wasEmpty = m_Beacons.empty();
@@ -415,14 +317,11 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
             while(it != m_Beacons.end()) {
                 if((*it)->IsEof()) {
                     if(*m_QueuedBeacons.begin() == *it) {
-                        //TRACE("EOF from first queued beacon");
-                        // The EOF is from the head of the list of queued beacons so start the next one
                         m_QueuedBeacons.pop_front();
                         start_next = true;
                         m_QueuedBeaconPlaying = false;
                     }
 
-                    //TRACE("Remove EOF beacon");
                     auto id = (long long)*it;
                     delete *it;
                     it = m_Beacons.begin();
@@ -438,15 +337,12 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
             if(!m_QueuedBeacons.empty()) {
                 auto queued_beacon = *m_QueuedBeacons.begin();
                 if (start_next && queued_beacon->CanStart()) {
-                    //TRACE("PlayNow on next queued beacon");
                     m_Beacons.insert(queued_beacon);
                     queued_beacon->PlayNow();
                     m_QueuedBeaconPlaying = true;
                 }
                 else if(!m_QueuedBeaconPlaying) {
-                    //TRACE("No queued beacon playing");
                     if(queued_beacon->CanStart()) {
-                        //TRACE("PlayNow on CanStart beacon");
                         m_Beacons.insert(queued_beacon);
                         queued_beacon->PlayNow();
                         m_QueuedBeaconPlaying = true;
@@ -454,31 +350,16 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 }
             }
 
-            // Check if m_Beacons is empty *after* all removals and potential additions from queue
             if (m_Beacons.empty() && !wasEmpty && m_QueuedBeacons.empty()) {
                 NotifyAllBeaconsCleared(__LINE__);
             }
         }
-        //TRACE("Queues: %d and %d", m_Beacons.size(), m_QueuedBeacons.size());
-
-        // We're not going to include velocity in our audio modelling, set it to 0.0 (no doppler!)
-        FMOD_VECTOR vel = {0.0, 0.0, 0.0};
-        auto listener_position = TranslateToFmodVector(listenerLongitude, listenerLatitude);
-        auto result = m_pSystem->set3DListenerAttributes(0, &listener_position, &vel, &forward, &up);
-        ERROR_CHECK(result);
-
-        result = m_pSystem->update();
-        ERROR_CHECK(result);
     }
 
     void AudioEngine::SetBeaconType(int beaconType)
     {
         if(beaconType < (sizeof(msc_BeaconDescriptors)/sizeof(BeaconDescriptor))) {
             m_BeaconTypeIndex = beaconType;
-
-            // TODO: This call only has any effect when made prior to Beacon creation. Any Beacons
-            //  which are already sounding will not currently be affected. To support this we need
-            //  to reinitialize Beacons with the new beacon type.
             return;
         }
         TRACE("BeaconType failed, invalid type: %d", beaconType);
@@ -530,14 +411,12 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 m_QueuedBeaconPlaying = true;
             }
             m_QueuedBeacons.push_back(beacon);
-            //TRACE("Queue of %zu", m_QueuedBeacons.size());
         }
         else
         {
             beacon->Mute(m_BeaconMute);
             m_Beacons.insert(beacon);
             TRACE("AddBeacon -> %zu beacons", m_Beacons.size());
-
         }
     }
 
@@ -548,10 +427,8 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
     }
 
     bool AudioEngine::ToggleBeaconMute() {
-        // Toggle the mute state
         m_BeaconMute ^= true;
 
-        // Update beacons
         std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
         for(const auto &beacon: m_Beacons) {
             beacon->Mute(m_BeaconMute);
@@ -560,35 +437,25 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         return m_BeaconMute;
     }
 
-    FMOD_VECTOR AudioEngine::TranslateToFmodVector(double longitude, double latitude)
-    {
-        // For the translation from longitude/latitude into FMOD coordinates we want the origin to
-        // be close by as that improves accuracy. We're just going to use the first location that
-        // we get.
-        if(m_FmodOriginLatitude == 0.0 && m_FmodOriginLongitude == 0.0) {
-            m_FmodOriginLatitude = latitude;
-            m_FmodOriginLongitude = longitude;
-        }
-        double x, y;
-        translateLocationForFmod(latitude, longitude,
-                                 m_FmodOriginLatitude, m_FmodOriginLongitude,
-                                 x, y);
-        return FMOD_VECTOR{(float)x, 0.0f, (float)y};
-    }
-
     void AudioEngine::Eof(long long id) {
         // This could be used to generate callbacks to the kotlin code
-        // to indicate that some audio has finished. Currently it does
-        // nothing.
-        //TRACE("EOF tts %lld", id);
+        // to indicate that some audio has finished.
     }
 
 } // soundscape
 
 extern "C"
 JNIEXPORT jlong JNICALL
-Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_create(JNIEnv *env MAYBE_UNUSED, jobject thiz MAYBE_UNUSED) {
-    auto ae = std::make_unique<soundscape::AudioEngine>();
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_create(JNIEnv *env MAYBE_UNUSED,
+                                                                     jobject thiz MAYBE_UNUSED,
+                                                                     jobject asset_manager) {
+    AAssetManager *mgr = AAssetManager_fromJava(env, asset_manager);
+    if (!mgr) {
+        TRACE("Failed to get AAssetManager from Java");
+        return 0;
+    }
+
+    auto ae = std::make_unique<soundscape::AudioEngine>(mgr);
 
     if (not ae) {
         TRACE("Failed to create audio engine");
@@ -827,7 +694,6 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeEarcon(
             earcon.reset(nullptr);
         }
         auto ret = reinterpret_cast<jlong>(earcon.release());
-        //TRACE("Created earcon %lld", ret);
         return ret;
     }
     return 0L;
@@ -868,7 +734,6 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_audioConfigTextToSp
                                                                                      jint channel_count) {
     auto* ae = reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
     if (ae) {
-        // Update the audio source with our audio configuration values
         const char * id = env->GetStringUTFChars(utterance_id, nullptr);
         std::string id_string(id);
         env->ReleaseStringUTFChars(utterance_id, id);

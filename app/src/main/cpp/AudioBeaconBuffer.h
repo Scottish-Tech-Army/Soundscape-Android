@@ -1,61 +1,50 @@
 #pragma once
 
-#include "fmod.hpp"
-#include "fmod.h"
 #include <string>
 #include <atomic>
+#include <vector>
+#include <memory>
+#include <android/asset_manager.h>
 
-#include "AudioEngine.h"
+#include "AudioSourceBase.h"
 #include "BeaconDescriptor.h"
+#include "WavDecoder.h"
+#include "SimpleResampler.h"
 
 namespace soundscape {
 
+    class PositionedAudio;
+    class AudioEngine;
+
     class BeaconBuffer {
     public:
-        BeaconBuffer(FMOD::System *system,
-                     const std::string &filename,
-                     double max_angle);
+        BeaconBuffer(AAssetManager *mgr, const std::string &filename,
+                     double max_angle, int targetSampleRate);
 
-        virtual ~BeaconBuffer();
+        ~BeaconBuffer();
 
-        unsigned int Read(void *data, unsigned int data_length, unsigned long pos, bool pad_with_silence);
+        // Read float32 samples at target sample rate. Returns frames read.
+        unsigned int Read(float *data, unsigned int numFrames, unsigned long pos,
+                          bool pad_with_silence);
 
-        [[nodiscard]] unsigned int GetBufferSize() const { return m_BufferSize; }
+        [[nodiscard]] unsigned int GetNumFrames() const {
+            return m_Decoder ? m_Decoder->numFrames() : 0;
+        }
 
         [[nodiscard]] bool CheckIsActive(double degrees_off_axis) const;
-
-        int m_BufferSampleRate;
-        int m_BufferAudioFormat;
-        int m_BufferChannelCount;
 
     private:
         double m_MaxAngle;
         std::string m_Name;
-
-        unsigned int m_BufferSize = 0;
-        std::unique_ptr<unsigned char[]> m_pBuffer;
+        std::unique_ptr<WavDecoder> m_Decoder;
     };
 
-    class BeaconAudioSource {
+    class BeaconAudioSource : public AudioSourceBase {
     public:
         explicit BeaconAudioSource(PositionedAudio *parent,
-                                   double degrees_off_axis,
-                                   int sampleRate,
-                                   int audioFormat,
-                                   int channelCount) :
-                m_pParent(parent),
-                m_DegreesOffAxis(degrees_off_axis),
-                m_SampleRate(sampleRate),
-                m_AudioFormat(audioFormat),
-                m_ChannelCount(channelCount)
-        {
-        }
+                                   double degrees_off_axis);
 
-        virtual ~BeaconAudioSource() = default;
-
-        virtual void CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode) = 0;
-
-        virtual FMOD_RESULT F_CALL PcmReadCallback(void *data, unsigned int data_length) { return FMOD_ERR_BADCOMMAND; };
+        ~BeaconAudioSource() override = default;
 
         enum SourceMode {
             DIRECTION_MODE,
@@ -63,23 +52,21 @@ namespace soundscape {
             NEAR_MODE,
             TOO_FAR_MODE
         };
+
         virtual void UpdateGeometry(double degrees_off_axis, SourceMode mode);
 
         void UpdateAudioConfig(int sample_rate, int audio_format, int channel_count) {
-            m_SampleRate = sample_rate;
-            m_AudioFormat = audio_format;
-            m_ChannelCount = channel_count;
+            m_SrcSampleRate = sample_rate;
+            m_SrcAudioFormat = audio_format;
+            m_SrcChannelCount = channel_count;
         }
 
     protected:
         PositionedAudio *m_pParent;
 
-        int m_SampleRate;
-        int m_AudioFormat;
-        int m_ChannelCount;
-
-        static FMOD_RESULT F_CALL
-        StaticPcmReadCallback(FMOD_SOUND *sound, void *data, unsigned int data_length);
+        int m_SrcSampleRate = 44100;
+        int m_SrcAudioFormat = 1;   // 0=PCM8, 1=PCM16, 2=PCMFLOAT
+        int m_SrcChannelCount = 1;
 
         std::atomic<double> m_DegreesOffAxis;
         std::atomic<BeaconAudioSource::SourceMode> m_Mode = DIRECTION_MODE;
@@ -87,20 +74,17 @@ namespace soundscape {
 
     class BeaconBufferGroup : public BeaconAudioSource {
     public:
-        BeaconBufferGroup(const AudioEngine *ae,
+        BeaconBufferGroup(AAssetManager *mgr,
                           const BeaconDescriptor *beacon_descriptor,
                           PositionedAudio *parent,
                           double degrees_off_axis,
-                          int sample_rate,
-                          int audio_format,
-                          int channel_count);
+                          int targetSampleRate);
 
         ~BeaconBufferGroup() override;
 
-        void CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode) override;
-        void Stop();
-
-        FMOD_RESULT F_CALL PcmReadCallback(void *data, unsigned int data_length) override;
+        // AudioSourceBase interface
+        int readPcm(float *outMono, int numFrames) override;
+        bool isFinished() const override;
 
     private:
         void UpdateCurrentBufferFromHeadingAndLocation();
@@ -111,14 +95,14 @@ namespace soundscape {
             PLAYING_OUTRO,
             PLAYING_COMPLETE
         };
-        PlayState m_PlayState = PLAYING_BEACON;     // TODO: Switch to allow playing Intro
+        PlayState m_PlayState = PLAYING_BEACON;
 
         const BeaconDescriptor *m_pDescription;
         std::unique_ptr<BeaconBuffer> m_pIntro;
         std::unique_ptr<BeaconBuffer> m_pOutro;
-        std::vector<std::unique_ptr<BeaconBuffer> > m_pBuffers;
+        std::vector<std::unique_ptr<BeaconBuffer>> m_pBuffers;
         BeaconBuffer *m_pCurrentBuffer = nullptr;
-        unsigned long m_BytePos = 0;
+        unsigned long m_FramePos = 0;
     };
 
     class TtsAudioSource : public BeaconAudioSource {
@@ -131,26 +115,36 @@ namespace soundscape {
 
         ~TtsAudioSource() override;
 
-        void CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode) override;
-
-        FMOD_RESULT F_CALL PcmReadCallback(void *data, unsigned int data_length) override;
+        // AudioSourceBase interface
+        int readPcm(float *outMono, int numFrames) override;
+        bool isFinished() const override;
 
     private:
         int m_TtsSocket;
         int m_ReadsWithoutData = 0;
         int m_SourceSocketForDebug;
+        std::atomic<bool> m_Finished{false};
+        SimpleResampler m_Resampler;
+
+        // Intermediate buffer for reading raw socket data
+        std::vector<unsigned char> m_RawBuf;
+        std::vector<float> m_SrcBuf;
     };
 
     class EarconSource : public BeaconAudioSource {
     public:
-        EarconSource(PositionedAudio *parent, std::string &asset);
+        EarconSource(PositionedAudio *parent, std::string &asset,
+                     AAssetManager *mgr, int targetSampleRate);
         ~EarconSource() override = default;
 
-        void CreateSound(FMOD::System *system, FMOD::Sound **sound, const PositioningMode &mode) override;
+        // AudioSourceBase interface
+        int readPcm(float *outMono, int numFrames) override;
+        bool isFinished() const override;
+
         void UpdateGeometry(double degrees_off_axis, SourceMode mode) override;
 
     private:
-        std::string m_Asset;
-        FMOD::Sound* m_pSound = nullptr;
+        std::unique_ptr<WavDecoder> m_Decoder;
+        unsigned long m_FramePos = 0;
     };
 }

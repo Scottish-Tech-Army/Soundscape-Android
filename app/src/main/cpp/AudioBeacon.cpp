@@ -1,6 +1,7 @@
 #include <string>
 #include <utility>
 #include <jni.h>
+#include <cmath>
 
 #include "GeoUtils.h"
 #include "Trace.h"
@@ -17,88 +18,54 @@ PositionedAudio::PositionedAudio(AudioEngine *engine,
                   m_Dimmable(dimmable)
 {
     m_pEngine = engine;
-    m_pSystem = engine->GetFmodSystem();
-    m_UtteranceId =  std::move(utterance_id);
+    m_UtteranceId = std::move(utterance_id);
 }
 
 PositionedAudio::~PositionedAudio() {
-//    TRACE("%s %p", __FUNCTION__, this);
-    m_pEngine->RemoveBeacon(this);
-
-    if(m_pSound) {
-        auto result = m_pSound->release();
-        ERROR_CHECK(result);
+    // Unregister from mixer
+    if (m_pAudioSource) {
+        auto *mixer = m_pEngine->GetMixer();
+        if (mixer) {
+            mixer->removeSource(m_pAudioSource.get());
+        }
     }
-
-//    TRACE("%s %p done", __FUNCTION__, this);
+    m_pEngine->RemoveBeacon(this);
 }
 
-void PositionedAudio::InitFmodSound() {
-    FMOD_RESULT result;
-
-    m_pAudioSource->CreateSound(m_pSystem, &m_pSound, m_Mode);
-    if(!m_pSound)
+void PositionedAudio::RegisterWithMixer() {
+    if (!m_pAudioSource)
         return;
 
-    double heading, current_latitude, current_longitude;
-    m_pEngine->GetListenerPosition(heading, current_latitude, current_longitude);
+    auto *mixer = m_pEngine->GetMixer();
+    if (!mixer)
+        return;
 
-    // Sound is as loud as it gets when 10m away and never gits softer if the
-    // distance goes above 20m
-    result = m_pSound->set3DMinMaxDistance(10.0f,
-                                           20.0f);
-    ERROR_CHECK(result);
+    // Configure source properties based on positioning mode
+    m_pAudioSource->category = m_Dimmable ? AudioCategory::BEACON : AudioCategory::SPEECH;
+    m_pAudioSource->needsSpatialize = (m_Mode.m_AudioType != PositioningMode::STANDARD);
 
-    {
-        // Create paused sound channel using appropriate channel group
-        FMOD::ChannelGroup *channelGroup;
-        if(m_Dimmable)
-            channelGroup = m_pEngine->GetBeaconGroup();
-        else
-            channelGroup = m_pEngine->GetSpeechGroup();
-
-        result = m_pSystem->playSound(m_pSound, channelGroup, true, &m_pChannel);
-        ERROR_CHECK(result);
-
-        switch(m_Mode.m_AudioType) {
-            default:
-            case PositioningMode::STANDARD:
-                break;
-            case PositioningMode::LOCALIZED:
-                if(!isnan(m_Mode.m_Latitude) && !isnan(m_Mode.m_Longitude)) {
-                    // Only set the 3D position if the latitude and longitude are valid
-                    FMOD_VECTOR pos =m_pEngine->TranslateToFmodVector(m_Mode.m_Longitude, m_Mode.m_Latitude);
-                    FMOD_VECTOR vel = {0.0f, 0.0f, 0.0f};
-                    result = m_pChannel->set3DAttributes(&pos, &vel);
-                }
-                ERROR_CHECK(result);
-                break;
-            case PositioningMode::RELATIVE: {
-                // The position is relative, so use the heading
-                auto radians = toRadians(m_Mode.m_Heading);
-                auto pos = FMOD_VECTOR{(float)sin(radians), 0.0f, (float)cos(radians)};
-                FMOD_VECTOR vel = {0.0f, 0.0f, 0.0f};
-                result = m_pChannel->set3DAttributes(&pos, &vel);
-                ERROR_CHECK(result);
-                break;
-            }
-            case PositioningMode::COMPASS: {
-                // Make up a position using the current position and the heading
-                double lat, lon;
-                getDestinationCoordinate(current_latitude, current_longitude, m_Mode.m_Heading, &lat, &lon);
-
-                FMOD_VECTOR pos =m_pEngine->TranslateToFmodVector(lon, lat);
-                FMOD_VECTOR vel = {0.0f, 0.0f, 0.0f};
-                result = m_pChannel->set3DAttributes(&pos, &vel);
-                ERROR_CHECK(result);
-                break;
-            }
+    // Set initial azimuth based on positioning mode
+    if (m_Mode.m_AudioType == PositioningMode::RELATIVE) {
+        auto radians = static_cast<float>(toRadians(m_Mode.m_Heading));
+        m_pAudioSource->azimuth.store(radians);
+    } else if (m_Mode.m_AudioType == PositioningMode::COMPASS) {
+        double heading, current_latitude, current_longitude;
+        m_pEngine->GetListenerPosition(heading, current_latitude, current_longitude);
+        // Convert compass bearing to azimuth relative to listener heading
+        double az = m_Mode.m_Heading - heading;
+        m_pAudioSource->azimuth.store(static_cast<float>(toRadians(az)));
+    } else if (m_Mode.m_AudioType == PositioningMode::LOCALIZED) {
+        double heading, current_latitude, current_longitude;
+        m_pEngine->GetListenerPosition(heading, current_latitude, current_longitude);
+        if (!isnan(heading) && !isnan(m_Mode.m_Latitude) && !isnan(m_Mode.m_Longitude)) {
+            auto bearing = bearingFromTwoPoints(m_Mode.m_Latitude, m_Mode.m_Longitude,
+                                                 current_latitude, current_longitude);
+            double az = bearing - heading;
+            m_pAudioSource->azimuth.store(static_cast<float>(toRadians(az)));
         }
-
-        // Start the channel playing
-        result = m_pChannel->setPaused(false);
-        ERROR_CHECK(result);
     }
+
+    mixer->addSource(m_pAudioSource.get());
 }
 
 void PositionedAudio::Init(double degrees_off_axis,
@@ -113,23 +80,18 @@ void PositionedAudio::Init(double degrees_off_axis,
                                     channelCount,
                                     proximityBeacon);
 
-    //TRACE("%s %p", __FUNCTION__, this);
-
     if(!queued)
-        InitFmodSound();
+        RegisterWithMixer();
 
     m_pEngine->AddBeacon(this, queued);
 }
 
 void PositionedAudio::PlayNow()
 {
-    InitFmodSound();
+    RegisterWithMixer();
 }
 
 double PositionedAudio::GetHeadingOffset(double heading, double latitude, double longitude) const {
-    // Calculate how far off axis the beacon is given this new heading
-
-    // Calculate the beacon heading
     auto beacon_heading = bearingFromTwoPoints(m_Mode.m_Latitude, m_Mode.m_Longitude, latitude, longitude);
     auto degrees_off_axis = beacon_heading - heading;
     if (degrees_off_axis > 180)
@@ -139,17 +101,12 @@ double PositionedAudio::GetHeadingOffset(double heading, double latitude, double
 
     return degrees_off_axis;
 }
+
 void PositionedAudio::UpdateGeometry(double listenerLatitude, double listenerLongitude,
                                      double heading, double latitude, double longitude,
                                      double proximityNear) {
-    // The beacons have two modes:
-    //  1. Directional - when the beacon is further away it sounds from its direction.
-    //  2. Proximity - when the beacon is close by the sound changes to be a sound based on the
-    //     distance to the destination.
     BeaconAudioSource::SourceMode mode = BeaconAudioSource::DIRECTION_MODE;
 
-    // If the beacon signals proximity as well as heading then we need to see how far we are from
-    // the listener.
     if(m_Mode.m_AudioMode == PositioningMode::PROXIMITY) {
         auto d = distance(listenerLatitude, listenerLongitude, m_Mode.m_Latitude,
                           m_Mode.m_Longitude);
@@ -161,22 +118,123 @@ void PositionedAudio::UpdateGeometry(double listenerLatitude, double listenerLon
             mode = BeaconAudioSource::TOO_FAR_MODE;
         }
     }
+
+    double degrees_off_axis;
     if(isnan(heading)) {
-        // If dimmable, the audio is placed behind us if there's no heading
-        m_pAudioSource->UpdateGeometry(m_Dimmable ? 180.0 : 0.0, mode);
+        degrees_off_axis = m_Dimmable ? 180.0 : 0.0;
     } else {
-        auto degrees_off_axis = GetHeadingOffset(heading, latitude, longitude);
-        m_pAudioSource->UpdateGeometry(degrees_off_axis, mode);
+        degrees_off_axis = GetHeadingOffset(heading, latitude, longitude);
     }
-    //TRACE("%f %f -> %f (%f %f), %dm", heading, beacon_heading, degrees_off_axis, lat_delta, long_delta, dist)
+
+    if(m_pAudioSource) {
+        m_pAudioSource->UpdateGeometry(degrees_off_axis, mode);
+
+        // Update HRTF azimuth for spatialization
+        if (m_Mode.m_AudioType != PositioningMode::STANDARD) {
+            auto azRad = static_cast<float>(toRadians(degrees_off_axis));
+            m_pAudioSource->azimuth.store(azRad);
+        }
+    }
 }
 
 void PositionedAudio::Mute(bool mute) {
-    m_pChannel->setMute(mute);
+    if (m_pAudioSource) {
+        m_pAudioSource->muted.store(mute);
+    }
 }
 
 void PositionedAudio::UpdateAudioConfig(int sample_rate, int audio_format, int channel_count)
 {
-    m_pAudioSource->UpdateAudioConfig(sample_rate, audio_format, channel_count);
+    if(m_pAudioSource) {
+        m_pAudioSource->UpdateAudioConfig(sample_rate, audio_format, channel_count);
+    }
     m_AudioConfigured = true;
+}
+
+//
+// Beacon
+//
+Beacon::Beacon(AudioEngine *engine, PositioningMode mode)
+    : PositionedAudio(engine, mode, true)
+{
+    double listener_heading;
+    double listener_latitude;
+    double listener_longitude;
+    engine->GetListenerPosition(listener_heading, listener_latitude, listener_longitude);
+
+    auto degrees_off_axis = GetHeadingOffset(listener_heading, listener_latitude, listener_longitude);
+    Init(degrees_off_axis, mode.m_AudioMode == PositioningMode::PROXIMITY);
+}
+
+bool Beacon::CreateAudioSource(double degrees_off_axis,
+                               int sampleRate,
+                               int audioFormat,
+                               int channelCount,
+                               bool proximityBeacon)
+{
+    auto *mgr = m_pEngine->GetAssetManager();
+    int targetRate = m_pEngine->GetMixer() ? m_pEngine->GetMixer()->getSampleRate() : 48000;
+
+    m_pAudioSource = std::make_unique<BeaconBufferGroup>(mgr,
+                                                          proximityBeacon ?
+                                                              &msc_ProximityDescriptor : m_pEngine->GetBeaconDescriptor(),
+                                                          this,
+                                                          degrees_off_axis,
+                                                          targetRate);
+    // Not queued
+    return false;
+}
+
+//
+// TextToSpeech
+//
+TextToSpeech::TextToSpeech(AudioEngine *engine,
+                           PositioningMode mode,
+                           int tts_socket,
+                           std::string &utterance_id)
+        : m_TtsSocket(tts_socket),
+          PositionedAudio(engine, mode, false, utterance_id)
+{
+    Init(0.0);
+}
+
+bool TextToSpeech::CreateAudioSource(double degrees_off_axis,
+                                      int sampleRate,
+                                      int audioFormat,
+                                      int channelCount,
+                                      bool proximityBeacon)
+{
+    m_pAudioSource = std::make_unique<TtsAudioSource>(this,
+                                                       m_TtsSocket,
+                                                       sampleRate,
+                                                       audioFormat,
+                                                       channelCount);
+    // Text to speech audio are queued to play one after the other
+    return true;
+}
+
+//
+// Earcon
+//
+Earcon::Earcon(AudioEngine *engine,
+               std::string asset,
+               PositioningMode mode)
+        : PositionedAudio(engine, mode),
+          m_Asset(std::move(asset))
+{
+    Init(0.0);
+}
+
+bool Earcon::CreateAudioSource(double degrees_off_axis,
+                                int sampleRate,
+                                int audioFormat,
+                                int channelCount,
+                                bool proximityBeacon)
+{
+    auto *mgr = m_pEngine->GetAssetManager();
+    int targetRate = m_pEngine->GetMixer() ? m_pEngine->GetMixer()->getSampleRate() : 48000;
+
+    m_pAudioSource = std::make_unique<EarconSource>(this, m_Asset, mgr, targetRate);
+    // Earcons are queued along with the TextToSpeech audio
+    return true;
 }
