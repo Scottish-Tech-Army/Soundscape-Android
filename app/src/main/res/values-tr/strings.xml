@@ -1,3 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="general_alert_cancel">İptal</string>
+    <string name="general_alert_done">Kaydet</string>
+    <string name="general_loading_start">Hazır hale getiriliyor…</string>
+    <string name="general_error_location_services_find_location_error">Mevcut konumunu bulmakta sorun yaşıyoruz.</string>
+    <string name="general_error_add_marker_error">Bu yeri işaretlerken sorun yaşıyoruz. Lütfen tekrar deneyin.</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Bu güzergâhta bu konum için zaten bir işaret var. Tekrar eklenemiyor.</string>
+    <string name="settings_screen_title">Ayarlar</string>
+    <string name="settings_explanation" tools:ignore="MissingTranslation">Çeşitli uygulama ayarları gruplar halinde alt kısımda organize edilmiştir. Bir gruba dokunarak seçenekleri görebilirsiniz.</string>
+    <string name="settings_about_app">Soundscape Hakkında</string>
+    <string name="settings_section_units" tools:ignore="MissingTranslation">Ölçü Birimleri</string>
+    <string name="settings_section_units_description" tools:ignore="MissingTranslation">Mesafeyi ölçmek için kullanılacak birimi seçin</string>
+    <string name="settings_units_imperial" tools:ignore="MissingTranslation">İngiliz Ölçü Birimi (Ayak)</string>
+    <string name="settings_units_metric" tools:ignore="MissingTranslation">Metrik (Metre)</string>
+    <string name="settings_section_search" tools:ignore="MissingTranslation">Ara</string>
+    <string name="search_bar_hint" tools:ignore="MissingTranslation">Varış yeri veya adres yazın</string>
+    <string name="settings_section_search_network" tools:ignore="MissingTranslation">Arama Modu</string>
+    <string name="settings_section_search_network_description" tools:ignore="MissingTranslation">Aramanın sadece çevrim dışı veri kullanıp kullanmayacağını kontrol edin</string>
+    <string name="settings_search_online" tools:ignore="MissingTranslation">Çevrim içi</string>
+    <string name="first_launch_permissions_notification">Bildirimler</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Konum hizmeti ön planda çalıştırılıyor</string>
+    <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Aramayı iptal et</string>
+    <string name="menu_manage_audio" tools:ignore="MissingTranslation">Ses</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Dil ve Bölge "</string>
+    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Erişilebilirlik</string>
+    <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Açık veya Koyu Tema</string>
+    <string name="settings_theme_auto" tools:ignore="MissingTranslation">Otomatik</string>
+    <string name="settings_theme_is_light" tools:ignore="MissingTranslation">Açık Temayı Kullan</string>
+    <string name="settings_theme_light" tools:ignore="MissingTranslation">Açık</string>
+    <string name="settings_theme_dark" tools:ignore="MissingTranslation">Koyu</string>
+    <string name="settings_theme_contrast" tools:ignore="MissingTranslation">Tema kontrast</string>
+    <string name="settings_theme_contrast_regular" tools:ignore="MissingTranslation">Düzenli</string>
+    <string name="settings_theme_contrast_medium" tools:ignore="MissingTranslation">Orta</string>
+    <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">Yüksek</string>
+    <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s, %3$s seçenek arasından %2$s</string>
+    <string name="settings_keep_value" tools:ignore="MissingTranslation">Sakla</string>
+    <string name="settings_use_value" tools:ignore="MissingTranslation">Kullan</string>
 </resources>
