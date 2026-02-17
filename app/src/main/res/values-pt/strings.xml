@@ -17,7 +17,7 @@
     <string name="beacon_styles_tactile">"Tátil"</string>
     <string name="beacon_styles_ping">"Ping"</string>
     <string name="beacon_styles_drop">"Queda"</string>
-    <string name="beacon_styles_signal">"Sinal"</string>
+    <string name="beacon_styles_signal">Sinal</string>
     <string name="beacon_styles_signal_slow">"Sinal (Lento)"</string>
     <string name="beacon_styles_signal_very_slow">"Sinal (Muito Lento)"</string>
     <string name="beacon_styles_mallet">"Percussor"</string>
