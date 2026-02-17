@@ -5,9 +5,9 @@
 #include <thread>
 #include <mutex>
 #include <jni.h>
-#include "fmod.hpp"
-#include "fmod.h"
+#include <android/asset_manager.h>
 #include "BeaconDescriptor.h"
+#include "AudioMixer.h"
 
 namespace soundscape {
 
@@ -19,10 +19,6 @@ namespace soundscape {
      *  localized - 3D audio localized to a GPS coordinate e.g. a beacon or a POI
      *  relative - 3D audio relative to the user's heading e.g. to the left, or to the right
      *  compass - 3D audio localized to a compass direction e.g. to the north, or to the west
-     *
-     * The initial implementation of PositionedAudio only supported localized, but it's been
-     * extended to support the other modes which become important when we don't have access to a
-     * heading from the device.
      */
     class PositioningMode {
     public:
@@ -52,28 +48,13 @@ namespace soundscape {
                 m_Longitude(longitude),
                 m_Heading(heading) {
         }
-
-        [[nodiscard]] FMOD_MODE Get3DFlags() const {
-            switch(m_AudioType) {
-                default:
-                // No positioning
-                case STANDARD: return FMOD_2D;
-                // Positioning based on a LatLngAlt
-                case LOCALIZED: return FMOD_3D;
-                // Positioning based on a heading relative to the head
-                case RELATIVE: return FMOD_3D | FMOD_3D_HEADRELATIVE;
-                // Positioning based on a compass direction. For this we make up a position a long
-                // way away which should remain constant enough for the life of the audio.
-                case COMPASS: return FMOD_3D;
-            }
-        }
     };
 
 
     class PositionedAudio;
     class AudioEngine {
     public:
-        AudioEngine() noexcept;
+        explicit AudioEngine(AAssetManager *assetManager) noexcept;
         ~AudioEngine();
 
         void UpdateGeometry(double listenerLatitude,
@@ -81,9 +62,9 @@ namespace soundscape {
                             double listenerHeading,
                             bool focusGained, bool duckingAllowed,
                             double proximityNear);
-        FMOD::System * GetFmodSystem() const { return m_pSystem; };
-        FMOD::ChannelGroup * GetBeaconGroup() const { return m_pBeaconChannelGroup; };
-        FMOD::ChannelGroup * GetSpeechGroup() const { return m_pSpeechChannelGroup; };
+
+        AudioMixer *GetMixer() { return m_pMixer.get(); }
+        AAssetManager *GetAssetManager() const { return m_pAssetManager; }
 
         void SetBeaconType(int beaconType);
         const BeaconDescriptor *GetBeaconDescriptor() const;
@@ -111,24 +92,17 @@ namespace soundscape {
         void ClearQueue();
         unsigned int GetQueueDepth();
 
-        FMOD_VECTOR TranslateToFmodVector(double longitude, double latitude);
-
         void UpdateAudioConfig(std::string &utterance_id,
                                int sample_rate,
                                int audio_format,
                                int channel_count);
 
     private:
-        FMOD::System * m_pSystem;
-        FMOD::ChannelGroup *m_pBeaconChannelGroup = nullptr;
-        FMOD::ChannelGroup *m_pSpeechChannelGroup = nullptr;
+        AAssetManager *m_pAssetManager;
+        std::unique_ptr<AudioMixer> m_pMixer;
 
         double m_LastLatitude = 0.0;
         double m_LastLongitude = 0.0;
-
-        double m_FmodOriginLatitude = 0.0;
-        double m_FmodOriginLongitude = 0.0;
-
         double m_LastHeading = 0.0;
         std::chrono::time_point<std::chrono::system_clock> m_LastTime;
 

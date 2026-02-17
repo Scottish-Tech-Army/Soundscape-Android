@@ -23,6 +23,7 @@ android {
 
     buildFeatures {
         buildConfig = true
+        prefab = true
     }
 
     bundle {
@@ -104,7 +105,6 @@ android {
         buildConfigField("String", "EXTRACT_PROVIDER_URL", "\"${extractProviderUrl}\"")
 
         buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
-        buildConfigField("String", "FMOD_LIB", "\"fmod\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -114,7 +114,10 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags += ""
-                arguments += listOf("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
+                arguments += listOf(
+                    "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON",
+                    "-DANDROID_STL=c++_shared"
+                )
             }
         }
     }
@@ -303,7 +306,7 @@ dependencies {
     implementation(libs.androidx.datastore)
 
     // Audio engine
-    implementation(files("libs/fmod.jar"))
+    implementation("com.google.oboe:oboe:1.9.3")
 
     // Firebase
     implementation(platform(libs.firebase.bom))

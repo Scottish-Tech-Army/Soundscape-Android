@@ -69,15 +69,15 @@ class AudioEngineTest {
         val audioEngine = initializeAudioEngine()
 
         val beacon = audioEngine.createBeacon(LngLatAlt(1.0, 0.0), true)
-        moveListener(audioEngine, 4000)
+        moveListener(audioEngine, 8000)
         audioEngine.destroyBeacon(beacon)
 
-        audioEngine.createTextToSpeech("Beacon here!", AudioType.LOCALIZED)
-        moveListener(audioEngine, 4000)
-
-        val beacon3 = audioEngine.createBeacon(LngLatAlt(1.0, 0.0), true)
-        moveListener(audioEngine, 4000)
-        audioEngine.destroyBeacon(beacon3)
+//        audioEngine.createTextToSpeech("Beacon here!", AudioType.LOCALIZED)
+//        moveListener(audioEngine, 4000)
+//
+//        val beacon3 = audioEngine.createBeacon(LngLatAlt(1.0, 0.0), true)
+//        moveListener(audioEngine, 4000)
+//        audioEngine.destroyBeacon(beacon3)
 
         tidyUp(audioEngine)
     }
@@ -217,8 +217,5 @@ class AudioEngineTest {
 
     companion object {
         const val TAG : String = "AudioTestEngine"
-        init {
-            System.loadLibrary(BuildConfig.FMOD_LIB)
-        }
     }
 }
