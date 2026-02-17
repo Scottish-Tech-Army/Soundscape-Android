@@ -17,7 +17,7 @@
     <string name="beacon_styles_tactile">"タクティル"</string>
     <string name="beacon_styles_ping">"ピング"</string>
     <string name="beacon_styles_drop">"ドロップ"</string>
-    <string name="beacon_styles_signal">"シグナル"</string>
+    <string name="beacon_styles_signal">シグナル</string>
     <string name="beacon_styles_signal_slow">"シグナル (遅い)"</string>
     <string name="beacon_styles_signal_very_slow">"シグナル (非常に遅い)"</string>
     <string name="beacon_styles_mallet">"マレット"</string>
