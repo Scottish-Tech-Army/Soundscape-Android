@@ -1276,4 +1276,5 @@
     <string name="osm_rugby_union" tools:ignore="MissingTranslation"></string>
     <string name="osm_bandy" tools:ignore="MissingTranslation"></string>
     <string name="osm_zoo" tools:ignore="MissingTranslation"></string>
+    <string name="beacon_styles_signal"></string>
 </resources>
