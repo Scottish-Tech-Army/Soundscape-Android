@@ -64,7 +64,7 @@ unsigned int BeaconBuffer::Read(float *data, unsigned int numFrames, unsigned lo
         }
     }
 
-    return toRead;
+    return numFrames;
 }
 
 //
