@@ -246,27 +246,78 @@ class MainActivity : AppCompatActivity() {
         //    test for this is mentioned here:
         //    https://firebase.google.com/docs/test-lab/android/android-studio#modify_instrumented_test_behavior_for
         //
-        val testLabSetting: String? = Settings.System.getString(contentResolver, "firebase.test.lab")
+        val testLabSetting: String? =
+            Settings.System.getString(contentResolver, "firebase.test.lab")
         Analytics.getInstance(
             BuildConfig.DUMMY_ANALYTICS ||
                     !hasPlayServices(this) ||
                     "true" == testLabSetting,
-            context = this)
+            context = this
+        )
 
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val isFirstLaunch = sharedPreferences.getBoolean(FIRST_LAUNCH_KEY, true)
+
+        // The splash sound is quite invasive. As a result, we want to limit how often we play it.
+        // This code means that it will be played the first time any new release is installed.
+        val splashPlayed = (sharedPreferences.getString(LAST_SPLASH_RELEASE_KEY, LAST_SPLASH_RELEASE_DEFAULT)
+                == BuildConfig.VERSION_NAME.substringBeforeLast("."))
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val timeNow = System.currentTimeMillis()
             installSplashScreen()
 
-            // Keep the splash screen visible to allow time to see the attribution acknowledgements,
-            // But not too long as this delay happens coming out of sleep too.
-            val attributionDelay = 2000
+            var splashSoundFinished = false
+            if (splashPlayed) {
+                splashSoundFinished = true
+            } else {
+                // We have a splash sound, so play it and keep the splash screen visible until the
+                // playback has finished
+                val splashPlayer = android.media.MediaPlayer()
+                try {
+                    val afd = assets.openFd("DoubleTap/dt_soundscape.mp3")
+                    splashPlayer.setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
+                    afd.close()
+                    splashPlayer.prepare()
+                    splashPlayer.setVolume(0.7f, 0.7f)
+                    splashPlayer.start()
+                    splashPlayer.setOnCompletionListener {
+                        it.release()
+                        splashSoundFinished = true
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed to play splash sound: $e")
+                    splashPlayer.release()
+                    splashSoundFinished = true
+                }
+                sharedPreferences.edit(commit = true) {
+                    putString(LAST_SPLASH_RELEASE_KEY, BuildConfig.VERSION_NAME.substringBeforeLast("."))
+                }
+            }
+
+            // Keep the splash screen visible until the sound has finished playing,
+            // with a minimum delay for attribution acknowledgements.
+            val attributionDelay = 1500
             val content: View = findViewById(android.R.id.content)
+            val context = this
             content.viewTreeObserver.addOnPreDrawListener(
                 object : ViewTreeObserver.OnPreDrawListener {
                     override fun onPreDraw(): Boolean {
-                        return if((System.currentTimeMillis() - timeNow) > attributionDelay) {
+                        val minDelayPassed =
+                            (System.currentTimeMillis() - timeNow) > attributionDelay
+                        return if (minDelayPassed && splashSoundFinished) {
                             content.viewTreeObserver.removeOnPreDrawListener(this)
+                            if (isFirstLaunch) {
+                                // On the first launch, we want to take the user through the OnboardingActivity so
+                                // switch to it immediately.
+                                val intent = Intent(context, OnboardingActivity::class.java)
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                startActivity(intent)
+                                finish()
+                            }
+                            else
+                                onSplashComplete()
                             true
                         } else {
                             false
@@ -276,6 +327,9 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+        // The remaining code in this function can be run whilst the splash screen is visible.
+        // We delay starting the service until the splash screen is gone so that we don't have a
+        // clash of audio with the splash screen sound.
         super.onCreate(savedInstanceState)
 
         println("${Build.FINGERPRINT}")
@@ -293,11 +347,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Debug - dump preferences
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-
         // We've deprecated "Online" as a mode. The only options are "Auto" and "Offline". Online
         // and Auto worked the same anyway...
-        if(sharedPreferences.getString(GEOCODER_MODE_KEY, GEOCODER_MODE_DEFAULT) == "Online") {
+        if (sharedPreferences.getString(GEOCODER_MODE_KEY, GEOCODER_MODE_DEFAULT) == "Online") {
             sharedPreferences.edit { putString(GEOCODER_MODE_KEY, GEOCODER_MODE_DEFAULT) }
         }
 
@@ -327,22 +379,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(newIntent)
             finish()
         }
+    }
 
-        val isFirstLaunch = sharedPreferences.getBoolean(FIRST_LAUNCH_KEY, true)
-        Log.d(TAG, "isFirstLaunch: $isFirstLaunch")
-
-        if (isFirstLaunch) {
-            // On the first launch, we want to take the user through the OnboardingActivity so
-            // switch to it immediately.
-            val intent = Intent(this, OnboardingActivity::class.java)
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-            finish()
-
-            // No need to carry on with the rest of the initialization as we are switching activities
-            return
-        }
-
+    private fun onSplashComplete() {
         checkAndRequestNotificationPermissions()
         soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
 
@@ -727,6 +766,8 @@ class MainActivity : AppCompatActivity() {
         const val LANGUAGE_SUPPORTED_PROMPTED_KEY = "LanguageSupported"
         const val GEOCODER_MODE_DEFAULT = "Auto"
         const val GEOCODER_MODE_KEY = "GeocoderMode"
+        const val LAST_SPLASH_RELEASE_DEFAULT = ""
+        const val LAST_SPLASH_RELEASE_KEY = "LastNewRelease"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
         const val AUDIO_TOUR_SHOWN_KEY = "AudioTourShown"
