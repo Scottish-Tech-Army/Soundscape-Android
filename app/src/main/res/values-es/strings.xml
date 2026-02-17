@@ -2,9 +2,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="general_alert_cancel">"Cancelar"</string>
     <string name="general_alert_done">Listo</string>
-    <string name="general_loading_start">"Preparando todo…"</string>
-    <string name="general_error_location_services_find_location_error">"Tenemos problemas para encontrar su ubicación actual."</string>
-    <string name="general_error_add_marker_error">"Tenemos problemas para marcar este lugar. Vuelva a intentarlo más tarde."</string>
+    <string name="general_loading_start">Preparando …</string>
+    <string name="general_error_location_services_find_location_error">Estamos teniendo problemas para encontrar su ubicación actual.</string>
+    <string name="general_error_add_marker_error">Estamos teniendo problemas para marcar este lugar. Porfavor, inténtelo más tarde.</string>
     <string name="settings_screen_title">"Ajustes"</string>
     <string name="settings_about_app">"Acerca de Soundscape"</string>
     <string name="voice_settings_speaking_rate">"Velocidad de habla"</string>
@@ -1254,9 +1254,9 @@
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">En %1$s, justo antes de %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">En %1$s, justo después de %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">Cerca de la intersección de %s</string>
-    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Ya hay un marcador en la ruta en esta ubicación. No podemos agregarlo de nuevo.</string>
-    <string name="settings_explanation" tools:ignore="MissingTranslation">Los distintos ajustes de la aplicación están organizados en grupos más abajo. Pulse un grupo para expandirlo y ver las opciones disponibles.</string>
-    <string name="settings_section_units_description" tools:ignore="MissingTranslation">Seleccione las unidades de medida que se utilizarán para la distancia</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Ya existe un marcador en la ruta, en esta ubicación. No se puede agregarlo de nuevo.</string>
+    <string name="settings_explanation" tools:ignore="MissingTranslation">Los ajustes de la aplicación están organizados en grupos más abajo. Haga clic en un grupo para expandirlo y ver las opciones disponibles.</string>
+    <string name="settings_section_units_description" tools:ignore="MissingTranslation">Seleccione la unidad que se utilizará para la distancia</string>
     <string name="settings_section_search_network" tools:ignore="MissingTranslation">Modo de búsqueda</string>
     <string name="settings_section_search_network_description" tools:ignore="MissingTranslation">Controle si la búsqueda utiliza únicamente datos sin conexión</string>
     <string name="beacon_settings_style_description" tools:ignore="MissingTranslation">Seleccione el estilo de señal de audio que desea usar</string>
