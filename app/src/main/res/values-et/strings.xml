@@ -30,4 +30,1251 @@
     <string name="beacon_audio_beacon">Helimajakas</string>
     <string name="beacon_action_mute_beacon">Summuta helimajakas</string>
     <string name="beacon_action_mute_beacon_acc_hint">summuta helimajakas topeltpuudutusega.</string>
+    <string name="osm_sailmaker" tools:ignore="MissingTranslation"></string>
+    <string name="route_detail_edit_description"></string>
+    <string name="search_button_markers_accessibility_hint"></string>
+    <string name="osm_camp_site" tools:ignore="MissingTranslation"></string>
+    <string name="directions_traveling_se"></string>
+    <string name="directions_along_traveling_e"></string>
+    <string name="osm_real_estate_agent" tools:ignore="MissingTranslation"></string>
+    <string name="osm_stone" tools:ignore="MissingTranslation"></string>
+    <string name="osm_houseboat" tools:ignore="MissingTranslation"></string>
+    <string name="osm_water_polo" tools:ignore="MissingTranslation"></string>
+    <string name="osm_checkpoint" tools:ignore="MissingTranslation"></string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation"></string>
+    <string name="osm_kent_carriage_gap" tools:ignore="MissingTranslation"></string>
+    <string name="osm_deli" tools:ignore="MissingTranslation"></string>
+    <string name="osm_contact_line" tools:ignore="MissingTranslation"></string>
+    <string name="osm_electronics" tools:ignore="MissingTranslation"></string>
+    <string name="osm_picnic_site" tools:ignore="MissingTranslation"></string>
+    <string name="osm_studio" tools:ignore="MissingTranslation"></string>
+    <string name="callouts_mobility"></string>
+    <string name="osm_games" tools:ignore="MissingTranslation"></string>
+    <string name="osm_tower" tools:ignore="MissingTranslation"></string>
+    <string name="osm_coworking_space" tools:ignore="MissingTranslation"></string>
+    <string name="filter_all"></string>
+    <string name="osm_place_of_worship" tools:ignore="MissingTranslation"></string>
+    <string name="osm_telecommunication" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bus_stop_named" tools:ignore="MissingTranslation"></string>
+    <string name="tour_ahead" tools:ignore="MissingTranslation"></string>
+    <string name="osm_construction" tools:ignore="MissingTranslation"></string>
+    <string name="osm_public_bookcase" tools:ignore="MissingTranslation"></string>
+    <string name="help_offline_troubleshooting_heading"></string>
+    <string name="osm_kneipp_water_cure" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_automatic_callouts_when_3"></string>
+    <string name="osm_watchmaker" tools:ignore="MissingTranslation"></string>
+    <string name="osm_generic_landmark" tools:ignore="MissingTranslation"></string>
+    <string name="faq_how_to_use_beacon_answer"></string>
+    <string name="settings_help_section_beacons_and_pois"></string>
+    <string name="osm_model_aerodrome" tools:ignore="MissingTranslation"></string>
+    <string name="osm_billiards" tools:ignore="MissingTranslation"></string>
+    <string name="osm_turnstile" tools:ignore="MissingTranslation"></string>
+    <string name="osm_swimming" tools:ignore="MissingTranslation"></string>
+    <string name="osm_caterer" tools:ignore="MissingTranslation"></string>
+    <string name="osm_scaffolder" tools:ignore="MissingTranslation"></string>
+    <string name="osm_wilderness_hut" tools:ignore="MissingTranslation"></string>
+    <string name="osm_town" tools:ignore="MissingTranslation"></string>
+    <string name="osm_video" tools:ignore="MissingTranslation"></string>
+    <string name="callouts_nearby_markers"></string>
+    <string name="osm_cycle_barrier" tools:ignore="MissingTranslation"></string>
+    <string name="osm_paddle_tennis" tools:ignore="MissingTranslation"></string>
+    <string name="osm_nursing_home" tools:ignore="MissingTranslation"></string>
+    <string name="osm_shrine" tools:ignore="MissingTranslation"></string>
+    <string name="help_offline_description"></string>
+    <string name="osm_sty" tools:ignore="MissingTranslation"></string>
+    <string name="ui_action_button_my_location_acc_hint"></string>
+    <string name="osm_detached" tools:ignore="MissingTranslation"></string>
+    <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation"></string>
+    <string name="osm_sailing" tools:ignore="MissingTranslation"></string>
+    <string name="osm_planetarium" tools:ignore="MissingTranslation"></string>
+    <string name="osm_foundation" tools:ignore="MissingTranslation"></string>
+    <string name="osm_hangar" tools:ignore="MissingTranslation"></string>
+    <string name="osm_mast" tools:ignore="MissingTranslation"></string>
+    <string name="osm_toll_booth" tools:ignore="MissingTranslation"></string>
+    <string name="osm_fashion" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_around_me_what"></string>
+    <string name="intersection_approaching_intersection"></string>
+    <string name="all_places_nearby_description" tools:ignore="MissingTranslation"></string>
+    <string name="osm_charging_station" tools:ignore="MissingTranslation"></string>
+    <string name="osm_digester" tools:ignore="MissingTranslation"></string>
+    <string name="osm_dry_cleaning" tools:ignore="MissingTranslation"></string>
+    <string name="osm_subway_entrance" tools:ignore="MissingTranslation"></string>
+    <string name="directions_traveling_n"></string>
+    <string name="help_text_routes_content_when"></string>
+    <string name="osm_silo" tools:ignore="MissingTranslation"></string>
+    <string name="osm_fort" tools:ignore="MissingTranslation"></string>
+    <string name="universal_links_marker_share_message"></string>
+    <string name="osm_craft" tools:ignore="MissingTranslation"></string>
+    <string name="distance_format_km"></string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation"></string>
+    <string name="permissions_button" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_soundscape_language_text"></string>
+    <string name="osm_mobile_phone" tools:ignore="MissingTranslation"></string>
+    <string name="tour_start_beacon" tools:ignore="MissingTranslation"></string>
+    <string name="osm_climbing" tools:ignore="MissingTranslation"></string>
+    <string name="osm_clothes" tools:ignore="MissingTranslation"></string>
+    <string name="osm_tattoo" tools:ignore="MissingTranslation"></string>
+    <string name="osm_soccer" tools:ignore="MissingTranslation"></string>
+    <string name="callouts_audio_beacon"></string>
+    <string name="help_explore_page_title"></string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation"></string>
+    <string name="osm_funeral_directors" tools:ignore="MissingTranslation"></string>
+    <string name="markers_no_markers_hint_2"></string>
+    <string name="osm_bathroom_furnishing" tools:ignore="MissingTranslation"></string>
+    <string name="osm_volleyball" tools:ignore="MissingTranslation"></string>
+    <string name="osm_navigationaid" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_facing_e"></string>
+    <string name="help_text_creating_markers_content_2"></string>
+    <string name="markers_edit_screen_title_edit"></string>
+    <string name="faq_sleep_mode_battery_question"></string>
+    <string name="help_config_voices_content"></string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation"></string>
+    <string name="osm_ferry_terminal" tools:ignore="MissingTranslation"></string>
+    <string name="tour_markers_and_routes" tools:ignore="MissingTranslation"></string>
+    <string name="route_end_completed_accessibility"></string>
+    <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation"></string>
+    <string name="route_waypoint_progress" tools:ignore="MissingTranslation"></string>
+    <string name="osm_tailor" tools:ignore="MissingTranslation"></string>
+    <string name="osm_photographic_laboratory" tools:ignore="MissingTranslation"></string>
+    <string name="osm_multi" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_destination_beacons_when"></string>
+    <string name="markers_generic_name"></string>
+    <string name="osm_bollard" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_markers_content_3"></string>
+    <string name="osm_clockmaker" tools:ignore="MissingTranslation"></string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation"></string>
+    <string name="route_name_description_hint" tools:ignore="MissingTranslation"></string>
+    <string name="accessibility_title" tools:ignore="MissingTranslation"></string>
+    <string name="osm_accountant" tools:ignore="MissingTranslation"></string>
+    <string name="osm_communications_tower" tools:ignore="MissingTranslation"></string>
+    <string name="osm_chain" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bungalow" tools:ignore="MissingTranslation"></string>
+    <string name="ui_action_button_around_me"></string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_welcome_button"></string>
+    <string name="osm_full_height_turnstile" tools:ignore="MissingTranslation"></string>
+    <string name="settings_reset_button" tools:ignore="MissingTranslation"></string>
+    <string name="osm_cowshed" tools:ignore="MissingTranslation"></string>
+    <string name="osm_netball" tools:ignore="MissingTranslation"></string>
+    <string name="osm_hairdresser" tools:ignore="MissingTranslation"></string>
+    <string name="osm_internet_cafe" tools:ignore="MissingTranslation"></string>
+    <string name="osm_social_centre" tools:ignore="MissingTranslation"></string>
+    <string name="settings_show_map" tools:ignore="MissingTranslation"></string>
+    <string name="ui_action_button_ahead_of_me_acc_hint"></string>
+    <string name="home_screen_title" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_customizing_markers_content_2"></string>
+    <string name="osm_works" tools:ignore="MissingTranslation"></string>
+    <string name="beacon_action_unmute_beacon_acc_hint"></string>
+    <string name="osm_church" tools:ignore="MissingTranslation"></string>
+    <string name="osm_lift" tools:ignore="MissingTranslation"></string>
+    <string name="osm_plant" tools:ignore="MissingTranslation"></string>
+    <string name="tour_create_marker_started" tools:ignore="MissingTranslation"></string>
+    <string name="osm_shoe_shop" tools:ignore="MissingTranslation"></string>
+    <string name="settings_theme_is_light" tools:ignore="MissingTranslation"></string>
+    <string name="help_creating_markers_page_title"></string>
+    <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation"></string>
+    <string name="osm_baseball" tools:ignore="MissingTranslation"></string>
+    <string name="osm_surveillance" tools:ignore="MissingTranslation"></string>
+    <string name="osm_beekeeper" tools:ignore="MissingTranslation"></string>
+    <string name="osm_cathedral" tools:ignore="MissingTranslation"></string>
+    <string name="directions_cardinal_south_abb" tools:ignore="MissingTranslation"></string>
+    <string name="osm_metal_construction" tools:ignore="MissingTranslation"></string>
+    <string name="confect_name_via" tools:ignore="MissingTranslation"></string>
+    <string name="terms_of_use_medical_safety_disclaimer"></string>
+    <string name="osm_handball" tools:ignore="MissingTranslation"></string>
+    <string name="osm_pottery" tools:ignore="MissingTranslation"></string>
+    <string name="faq_how_close_to_destination_question"></string>
+    <string name="search_button_nearby_accessibility_hint"></string>
+    <string name="osm_coffee_shop" tools:ignore="MissingTranslation"></string>
+    <string name="osm_stand_builder" tools:ignore="MissingTranslation"></string>
+    <string name="osm_temple" tools:ignore="MissingTranslation"></string>
+    <string name="osm_darts" tools:ignore="MissingTranslation"></string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation"></string>
+    <string name="markers_sort_button_sort_by_distance_voiceover"></string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation"></string>
+    <string name="osm_recycling_bin" tools:ignore="MissingTranslation"></string>
+    <string name="osm_post_office" tools:ignore="MissingTranslation"></string>
+    <string name="osm_elevator" tools:ignore="MissingTranslation"></string>
+    <string name="osm_ngo" tools:ignore="MissingTranslation"></string>
+    <string name="osm_watches" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bird_hide" tools:ignore="MissingTranslation"></string>
+    <string name="osm_public_building" tools:ignore="MissingTranslation"></string>
+    <string name="tour_beacon_demo" tools:ignore="MissingTranslation"></string>
+    <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation"></string>
+    <string name="osm_clock" tools:ignore="MissingTranslation"></string>
+    <string name="osm_prison" tools:ignore="MissingTranslation"></string>
+    <string name="faq_beacon_on_home_question"></string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"></string>
+    <string name="beacon_action_unmute_beacon"></string>
+    <string name="osm_cinema" tools:ignore="MissingTranslation"></string>
+    <string name="osm_general" tools:ignore="MissingTranslation"></string>
+    <string name="osm_chemist" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_headphones_message_2"></string>
+    <string name="osm_dive_centre" tools:ignore="MissingTranslation"></string>
+    <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation"></string>
+    <string name="osm_paint" tools:ignore="MissingTranslation"></string>
+    <string name="osm_ice_hockey" tools:ignore="MissingTranslation"></string>
+    <string name="osm_books" tools:ignore="MissingTranslation"></string>
+    <string name="marker_name_description_hint" tools:ignore="MissingTranslation"></string>
+    <string name="osm_main_entrance" tools:ignore="MissingTranslation"></string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation"></string>
+    <string name="osm_animal_shelter" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_section_title_when"></string>
+    <string name="osm_field_hockey" tools:ignore="MissingTranslation"></string>
+    <string name="osm_post_box" tools:ignore="MissingTranslation"></string>
+    <string name="osm_kitesurfing" tools:ignore="MissingTranslation"></string>
+    <string name="faq_tip_create_marker_at_bus_stop"></string>
+    <string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation"></string>
+    <string name="osm_travel_agency" tools:ignore="MissingTranslation"></string>
+    <string name="osm_ice_skating" tools:ignore="MissingTranslation"></string>
+    <string name="osm_dentist" tools:ignore="MissingTranslation"></string>
+    <string name="osm_insurance" tools:ignore="MissingTranslation"></string>
+    <string name="osm_curtain" tools:ignore="MissingTranslation"></string>
+    <string name="osm_reservoir" tools:ignore="MissingTranslation"></string>
+    <string name="terms_of_use_title"></string>
+    <string name="faq_turn_beacon_back_on_question"></string>
+    <string name="osm_korfball" tools:ignore="MissingTranslation"></string>
+    <string name="osm_parking" tools:ignore="MissingTranslation"></string>
+    <string name="osm_fireplace" tools:ignore="MissingTranslation"></string>
+    <string name="osm_police" tools:ignore="MissingTranslation"></string>
+    <string name="osm_public" tools:ignore="MissingTranslation"></string>
+    <string name="osm_wayside_shrine" tools:ignore="MissingTranslation"></string>
+    <string name="osm_beachvolleyball" tools:ignore="MissingTranslation"></string>
+    <string name="osm_cliff_diving" tools:ignore="MissingTranslation"></string>
+    <string name="osm_parachuting" tools:ignore="MissingTranslation"></string>
+    <string name="osm_waste_disposal" tools:ignore="MissingTranslation"></string>
+    <string name="osm_generic_place" tools:ignore="MissingTranslation"></string>
+    <string name="osm_entrance" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bookmaker" tools:ignore="MissingTranslation"></string>
+    <string name="osm_free_flying" tools:ignore="MissingTranslation"></string>
+    <string name="osm_builder" tools:ignore="MissingTranslation"></string>
+    <string name="osm_walking_path" tools:ignore="MissingTranslation"></string>
+    <string name="osm_shared_space" tools:ignore="MissingTranslation"></string>
+    <string name="osm_government" tools:ignore="MissingTranslation"></string>
+    <string name="osm_motocross" tools:ignore="MissingTranslation"></string>
+    <string name="search_no_results" tools:ignore="MissingTranslation"></string>
+    <string name="osm_office_building" tools:ignore="MissingTranslation"></string>
+    <string name="faq_holding_phone_flat_answer"></string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation"></string>
+    <string name="osm_fire_flapper" tools:ignore="MissingTranslation"></string>
+    <string name="filter_banks"></string>
+    <string name="osm_curling" tools:ignore="MissingTranslation"></string>
+    <string name="osm_language_school" tools:ignore="MissingTranslation"></string>
+    <string name="search_choose_destination"></string>
+    <string name="osm_subway" tools:ignore="MissingTranslation"></string>
+    <string name="osm_handicraft" tools:ignore="MissingTranslation"></string>
+    <string name="osm_cycling" tools:ignore="MissingTranslation"></string>
+    <string name="osm_10pin" tools:ignore="MissingTranslation"></string>
+    <string name="osm_tiler" tools:ignore="MissingTranslation"></string>
+    <string name="osm_hackerspace" tools:ignore="MissingTranslation"></string>
+    <string name="osm_ambulance_station" tools:ignore="MissingTranslation"></string>
+    <string name="settings_section_search_network_description" tools:ignore="MissingTranslation"></string>
+    <string name="osm_computer" tools:ignore="MissingTranslation"></string>
+    <string name="osm_plumber" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_permissions_location"></string>
+    <string name="osm_atm_named" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_my_location_what"></string>
+    <string name="osm_pylon" tools:ignore="MissingTranslation"></string>
+    <string name="osm_chalet" tools:ignore="MissingTranslation"></string>
+    <string name="behavior_experiences_route_nav_title"></string>
+    <string name="osm_glacier" tools:ignore="MissingTranslation"></string>
+    <string name="osm_miniature_golf" tools:ignore="MissingTranslation"></string>
+    <string name="osm_school_building" tools:ignore="MissingTranslation"></string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation"></string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation"></string>
+    <string name="osm_employment_agency" tools:ignore="MissingTranslation"></string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation"></string>
+    <string name="osm_swingerclub" tools:ignore="MissingTranslation"></string>
+    <string name="osm_biergarten" tools:ignore="MissingTranslation"></string>
+    <string name="routes_sort_by_name"></string>
+    <string name="osm_clinic" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bandstand" tools:ignore="MissingTranslation"></string>
+    <string name="osm_kiln" tools:ignore="MissingTranslation"></string>
+    <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation"></string>
+    <string name="osm_car_sharing" tools:ignore="MissingTranslation"></string>
+    <string name="osm_building_entrance" tools:ignore="MissingTranslation"></string>
+    <string name="osm_block" tools:ignore="MissingTranslation"></string>
+    <string name="osm_ridge" tools:ignore="MissingTranslation"></string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation"></string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation"></string>
+    <string name="osm_assembly_point" tools:ignore="MissingTranslation"></string>
+    <string name="osm_car_repair" tools:ignore="MissingTranslation"></string>
+    <string name="route_detail_action_previous_hint"></string>
+    <string name="osm_insulation" tools:ignore="MissingTranslation"></string>
+    <string name="osm_siren" tools:ignore="MissingTranslation"></string>
+    <string name="osm_toy_shop" tools:ignore="MissingTranslation"></string>
+    <string name="osm_leather" tools:ignore="MissingTranslation"></string>
+    <string name="osm_highway" tools:ignore="MissingTranslation"></string>
+    <string name="osm_painter" tools:ignore="MissingTranslation"></string>
+    <string name="osm_garages" tools:ignore="MissingTranslation"></string>
+    <string name="osm_music_school" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bridge" tools:ignore="MissingTranslation"></string>
+    <string name="offline_map_details_download" tools:ignore="MissingTranslation"></string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation"></string>
+    <string name="tour_markers" tools:ignore="MissingTranslation"></string>
+    <string name="new_version_info_text" tools:ignore="MissingTranslation"></string>
+    <string name="osm_rc_car" tools:ignore="MissingTranslation"></string>
+    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation"></string>
+    <string name="ui_action_button_my_location"></string>
+    <string name="osm_water_tower" tools:ignore="MissingTranslation"></string>
+    <string name="ui_menu_hint"></string>
+    <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation"></string>
+    <string name="osm_aircraft" tools:ignore="MissingTranslation"></string>
+    <string name="osm_steps" tools:ignore="MissingTranslation"></string>
+    <string name="osm_tea" tools:ignore="MissingTranslation"></string>
+    <string name="faq_tip_hold_phone_flat"></string>
+    <string name="osm_roller_skating" tools:ignore="MissingTranslation"></string>
+    <string name="osm_blood_donation" tools:ignore="MissingTranslation"></string>
+    <string name="osm_trade" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_routes_content_how_1"></string>
+    <string name="osm_lamps" tools:ignore="MissingTranslation"></string>
+    <string name="osm_storage_tank" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_permissions_required"></string>
+    <string name="osm_interior_decoration" tools:ignore="MissingTranslation"></string>
+    <string name="osm_fabric" tools:ignore="MissingTranslation"></string>
+    <string name="faq_markers_function_question"></string>
+    <string name="osm_fitness_centre" tools:ignore="MissingTranslation"></string>
+    <string name="osm_boutique" tools:ignore="MissingTranslation"></string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation"></string>
+    <string name="osm_swing_gate" tools:ignore="MissingTranslation"></string>
+    <string name="faq_why_not_every_business_question"></string>
+    <string name="osm_attraction" tools:ignore="MissingTranslation"></string>
+    <string name="osm_carpet_layer" tools:ignore="MissingTranslation"></string>
+    <string name="faq_battery_impact_answer"></string>
+    <string name="osm_hvac" tools:ignore="MissingTranslation"></string>
+    <string name="faq_when_to_use_soundscape_answer"></string>
+    <string name="osm_kissing_gate" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_facing_se"></string>
+    <string name="osm_atm_refed" tools:ignore="MissingTranslation"></string>
+    <string name="osm_monastery" tools:ignore="MissingTranslation"></string>
+    <string name="osm_newsagent" tools:ignore="MissingTranslation"></string>
+    <string name="osm_marina" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_facing_nw"></string>
+    <string name="osm_roofer" tools:ignore="MissingTranslation"></string>
+    <string name="osm_park" tools:ignore="MissingTranslation"></string>
+    <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation"></string>
+    <string name="osm_convenience" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_beacon_message_1"></string>
+    <string name="osm_boatbuilder" tools:ignore="MissingTranslation"></string>
+    <string name="osm_boxing" tools:ignore="MissingTranslation"></string>
+    <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation"></string>
+    <string name="osm_lifeguard_tower" tools:ignore="MissingTranslation"></string>
+    <string name="menu_help" tools:ignore="MissingTranslation"></string>
+    <string name="faq_why_does_beacon_disappear_question"></string>
+    <string name="first_launch_beacon_message_3"></string>
+    <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation"></string>
+    <string name="osm_access_point" tools:ignore="MissingTranslation"></string>
+    <string name="directions_my_location"></string>
+    <string name="help_text_section_title_how"></string>
+    <string name="menu_manage_callouts"></string>
+    <string name="route_description_description_hint" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_beacon_message_2"></string>
+    <string name="osm_sun_protection" tools:ignore="MissingTranslation"></string>
+    <string name="osm_manor" tools:ignore="MissingTranslation"></string>
+    <string name="osm_doityourself" tools:ignore="MissingTranslation"></string>
+    <string name="osm_wetland" tools:ignore="MissingTranslation"></string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation"></string>
+    <string name="directions_cardinal_north_west" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_callouts_listen_accessibility_label"></string>
+    <string name="osm_telephone" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_remote_control_what"></string>
+    <string name="osm_croquet" tools:ignore="MissingTranslation"></string>
+    <string name="osm_skiing" tools:ignore="MissingTranslation"></string>
+    <string name="osm_horse_racing" tools:ignore="MissingTranslation"></string>
+    <string name="osm_basket_maker" tools:ignore="MissingTranslation"></string>
+    <string name="settings_theme_light" tools:ignore="MissingTranslation"></string>
+    <string name="osm_surfing" tools:ignore="MissingTranslation"></string>
+    <string name="osm_road" tools:ignore="MissingTranslation"></string>
+    <string name="osm_crane" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_callouts_example_4"></string>
+    <string name="osm_association" tools:ignore="MissingTranslation"></string>
+    <string name="osm_artwork" tools:ignore="MissingTranslation"></string>
+    <string name="osm_sculptor" tools:ignore="MissingTranslation"></string>
+    <string name="osm_crossing" tools:ignore="MissingTranslation"></string>
+    <string name="offline_maps_storage" tools:ignore="MissingTranslation"></string>
+    <string name="tour_welcome" tools:ignore="MissingTranslation"></string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation"></string>
+    <string name="osm_rigger" tools:ignore="MissingTranslation"></string>
+    <string name="street_description_since" tools:ignore="MissingTranslation"></string>
+    <string name="osm_conference_centre" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_my_location_how"></string>
+    <string name="osm_garage" tools:ignore="MissingTranslation"></string>
+    <string name="osm_apartment" tools:ignore="MissingTranslation"></string>
+    <string name="directions_traveling_s"></string>
+    <string name="street_description_between" tools:ignore="MissingTranslation"></string>
+    <string name="osm_water_fountain" tools:ignore="MissingTranslation"></string>
+    <string name="settings_debug_heading" tools:ignore="MissingTranslation"></string>
+    <string name="osm_taxi_waiting_area" tools:ignore="MissingTranslation"></string>
+    <string name="osm_toilets" tools:ignore="MissingTranslation"></string>
+    <string name="osm_estate_agent" tools:ignore="MissingTranslation"></string>
+    <string name="menu_rate"></string>
+    <string name="osm_observatory" tools:ignore="MissingTranslation"></string>
+    <string name="osm_beauty" tools:ignore="MissingTranslation"></string>
+    <string name="osm_garden_furniture" tools:ignore="MissingTranslation"></string>
+    <string name="offline_maps_nearby" tools:ignore="MissingTranslation"></string>
+    <string name="osm_game_feeding" tools:ignore="MissingTranslation"></string>
+    <string name="osm_wood" tools:ignore="MissingTranslation"></string>
+    <string name="directions_cardinal_south" tools:ignore="MissingTranslation"></string>
+    <string name="osm_golf_course" tools:ignore="MissingTranslation"></string>
+    <string name="osm_naval_base" tools:ignore="MissingTranslation"></string>
+    <string name="osm_swimming_pool" tools:ignore="MissingTranslation"></string>
+    <string name="osm_tax_advisor" tools:ignore="MissingTranslation"></string>
+    <string name="confect_name_joins" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_my_location_when"></string>
+    <string name="osm_water_point" tools:ignore="MissingTranslation"></string>
+    <string name="osm_office" tools:ignore="MissingTranslation"></string>
+    <string name="osm_embassy" tools:ignore="MissingTranslation"></string>
+    <string name="callouts_nothing_to_call_out_now"></string>
+    <string name="help_text_destination_beacons_what"></string>
+    <string name="routes_action_deleted"></string>
+    <string name="osm_realtor" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bbq" tools:ignore="MissingTranslation"></string>
+    <string name="osm_archery" tools:ignore="MissingTranslation"></string>
+    <string name="search_bar_hint" tools:ignore="MissingTranslation"></string>
+    <string name="help_offline_troubleshooting_description"></string>
+    <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_markers_content_1"></string>
+    <string name="osm_nuclear_explosion_site" tools:ignore="MissingTranslation"></string>
+    <string name="osm_variety_store" tools:ignore="MissingTranslation"></string>
+    <string name="directions_traveling_nw"></string>
+    <string name="help_offline_limitations_heading"></string>
+    <string name="osm_tram_stop" tools:ignore="MissingTranslation"></string>
+    <string name="osm_stonemason" tools:ignore="MissingTranslation"></string>
+    <string name="osm_debris" tools:ignore="MissingTranslation"></string>
+    <string name="osm_optical_telegraph" tools:ignore="MissingTranslation"></string>
+    <string name="osm_sump_buster" tools:ignore="MissingTranslation"></string>
+    <string name="confect_name_to" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_traveling_ne"></string>
+    <string name="osm_american_football" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_heading_se"></string>
+    <string name="osm_escalator" tools:ignore="MissingTranslation"></string>
+    <string name="osm_paragliding" tools:ignore="MissingTranslation"></string>
+    <string name="osm_waste_basket" tools:ignore="MissingTranslation"></string>
+    <string name="settings_accessible_map" tools:ignore="MissingTranslation"></string>
+    <string name="faq_background_battery_impact_answer"></string>
+    <string name="osm_lock_gate" tools:ignore="MissingTranslation"></string>
+    <string name="osm_nutrition_supplements" tools:ignore="MissingTranslation"></string>
+    <string name="directions_traveling_sw"></string>
+    <string name="first_launch_headphones_message_1"></string>
+    <string name="osm_cave_entrance" tools:ignore="MissingTranslation"></string>
+    <string name="osm_track" tools:ignore="MissingTranslation"></string>
+    <string name="sleep_wake_up_now"></string>
+    <string name="directions_heading_e"></string>
+    <string name="osm_snow_net" tools:ignore="MissingTranslation"></string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation"></string>
+    <string name="route_detail_action_stop_route_hint"></string>
+    <string name="search_nearby_screen_title"></string>
+    <string name="settings_theme_contrast_medium" tools:ignore="MissingTranslation"></string>
+    <string name="osm_safety_training" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_permissions_title"></string>
+    <string name="tour_nearby_markers" tools:ignore="MissingTranslation"></string>
+    <string name="fab_add_route" tools:ignore="MissingTranslation"></string>
+    <string name="osm_climbing_adventure" tools:ignore="MissingTranslation"></string>
+    <string name="osm_city" tools:ignore="MissingTranslation"></string>
+    <string name="osm_residential_street" tools:ignore="MissingTranslation"></string>
+    <string name="osm_research" tools:ignore="MissingTranslation"></string>
+    <string name="osm_fishing" tools:ignore="MissingTranslation"></string>
+    <string name="osm_gardener" tools:ignore="MissingTranslation"></string>
+    <string name="markers_sort_button_sort_by_distance"></string>
+    <string name="user_activity_save_marker_title"></string>
+    <string name="osm_lifeguard_base" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_destination_beacons_how_1"></string>
+    <string name="osm_lift_gate" tools:ignore="MissingTranslation"></string>
+    <string name="osm_pumping_station" tools:ignore="MissingTranslation"></string>
+    <string name="offline_map_storage_title" tools:ignore="MissingTranslation"></string>
+    <string name="faq_what_can_I_set_question"></string>
+    <string name="directions_facing_w"></string>
+    <string name="osm_hunting" tools:ignore="MissingTranslation"></string>
+    <string name="osm_traffic_signals" tools:ignore="MissingTranslation"></string>
+    <string name="osm_drinking_water" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bus_stop" tools:ignore="MissingTranslation"></string>
+    <string name="terms_of_use_service_agreement"></string>
+    <string name="osm_motorcycle_barrier" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_welcome_description"></string>
+    <string name="faq_miss_a_callout_answer"></string>
+    <string name="osm_historic_monument" tools:ignore="MissingTranslation"></string>
+    <string name="osm_unmanaged_crossing" tools:ignore="MissingTranslation"></string>
+    <string name="directions_traveling_ne"></string>
+    <string name="osm_shower" tools:ignore="MissingTranslation"></string>
+    <string name="callouts_mobility_description" tools:ignore="MissingTranslation"></string>
+    <string name="osm_basketball" tools:ignore="MissingTranslation"></string>
+    <string name="settings_keep_value" tools:ignore="MissingTranslation"></string>
+    <string name="osm_australian_football" tools:ignore="MissingTranslation"></string>
+    <string name="osm_ev_charging" tools:ignore="MissingTranslation"></string>
+    <string name="sleep_sleep_acc_hint"></string>
+    <string name="osm_milestone" tools:ignore="MissingTranslation"></string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_automatic_callouts_what"></string>
+    <string name="osm_motorcycle" tools:ignore="MissingTranslation"></string>
+    <string name="osm_beach_resort" tools:ignore="MissingTranslation"></string>
+    <string name="osm_brewing_supplies" tools:ignore="MissingTranslation"></string>
+    <string name="osm_service_road" tools:ignore="MissingTranslation"></string>
+    <string name="osm_defined" tools:ignore="MissingTranslation"></string>
+    <string name="osm_table_soccer" tools:ignore="MissingTranslation"></string>
+    <string name="osm_shopping_mall" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_automatic_callouts_when_1"></string>
+    <string name="first_launch_callouts_listen"></string>
+    <string name="osm_beach" tools:ignore="MissingTranslation"></string>
+    <string name="osm_candles" tools:ignore="MissingTranslation"></string>
+    <string name="offline_maps_loading" tools:ignore="MissingTranslation"></string>
+    <string name="fmod_copyright" translatable="false"></string>
+    <string name="first_launch_permissions_message"></string>
+    <string name="osm_lottery" tools:ignore="MissingTranslation"></string>
+    <string name="filter_transit"></string>
+    <string name="route_detail_action_create_hint"></string>
+    <string name="osm_adult_gaming_centre" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bench" tools:ignore="MissingTranslation"></string>
+    <string name="markers_sort_button_sort_by_name"></string>
+    <string name="osm_traffic_cones" tools:ignore="MissingTranslation"></string>
+    <string name="osm_cricket_nets" tools:ignore="MissingTranslation"></string>
+    <string name="offline_map_details_title" tools:ignore="MissingTranslation"></string>
+    <string name="osm_rugby_league" tools:ignore="MissingTranslation"></string>
+    <string name="osm_boatyard" tools:ignore="MissingTranslation"></string>
+    <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation"></string>
+    <string name="osm_retail" tools:ignore="MissingTranslation"></string>
+    <string name="osm_water_tap" tools:ignore="MissingTranslation"></string>
+    <string name="markers_no_markers_hint_1"></string>
+    <string name="osm_battlefield" tools:ignore="MissingTranslation"></string>
+    <string name="osm_highway_ramp" tools:ignore="MissingTranslation"></string>
+    <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation"></string>
+    <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation"></string>
+    <string name="osm_orienteering" tools:ignore="MissingTranslation"></string>
+    <string name="route_detail_action_stop_route"></string>
+    <string name="osm_chess" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bicycle_repair_station" tools:ignore="MissingTranslation"></string>
+    <string name="faq_headset_battery_impact_question"></string>
+    <string name="osm_obstacle_course" tools:ignore="MissingTranslation"></string>
+    <string name="osm_roundhouse" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bank" tools:ignore="MissingTranslation"></string>
+    <string name="osm_slipway" tools:ignore="MissingTranslation"></string>
+    <string name="settings_theme_auto" tools:ignore="MissingTranslation"></string>
+    <string name="osm_stadium" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_destination_beacons_how_2"></string>
+    <string name="first_launch_callouts_example_3"></string>
+    <string name="osm_barracks" tools:ignore="MissingTranslation"></string>
+    <string name="help_offline_limitations_description"></string>
+    <string name="osm_hotel" tools:ignore="MissingTranslation"></string>
+    <string name="osm_marketplace" tools:ignore="MissingTranslation"></string>
+    <string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation"></string>
+    <string name="route_detail_action_next_hint"></string>
+    <string name="osm_building" tools:ignore="MissingTranslation"></string>
+    <string name="settings_search_offline" tools:ignore="MissingTranslation"></string>
+    <string name="osm_generic_object" tools:ignore="MissingTranslation"></string>
+    <string name="faq_title"></string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation"></string>
+    <string name="osm_construction_site" tools:ignore="MissingTranslation"></string>
+    <string name="osm_clothing_store" tools:ignore="MissingTranslation"></string>
+    <string name="callouts_places_and_landmarks"></string>
+    <string name="directions_cardinal_south_west" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bmx" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_ahead_of_me_when"></string>
+    <string name="osm_sports_field" tools:ignore="MissingTranslation"></string>
+    <string name="osm_dyke" tools:ignore="MissingTranslation"></string>
+    <string name="osm_video_games" tools:ignore="MissingTranslation"></string>
+    <string name="osm_newspaper" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_callouts_title"></string>
+    <string name="osm_table_tennis" tools:ignore="MissingTranslation"></string>
+    <string name="osm_cliff" tools:ignore="MissingTranslation"></string>
+    <string name="directions_facing_s"></string>
+    <string name="osm_ice_stock" tools:ignore="MissingTranslation"></string>
+    <string name="faq_how_close_to_destination_answer"></string>
+    <string name="settings_travel_recording" tools:ignore="MissingTranslation"></string>
+    <string name="osm_open_space" tools:ignore="MissingTranslation"></string>
+    <string name="osm_monitoring_station" tools:ignore="MissingTranslation"></string>
+    <string name="osm_garden" tools:ignore="MissingTranslation"></string>
+    <string name="osm_cheese" tools:ignore="MissingTranslation"></string>
+    <string name="osm_massage" tools:ignore="MissingTranslation"></string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation"></string>
+    <string name="distance_format_miles"></string>
+    <string name="osm_fire_station" tools:ignore="MissingTranslation"></string>
+    <string name="osm_shed" tools:ignore="MissingTranslation"></string>
+    <string name="osm_pastry" tools:ignore="MissingTranslation"></string>
+    <string name="osm_sport" tools:ignore="MissingTranslation"></string>
+    <string name="faq_tip_setting_beacon_on_address"></string>
+    <string name="new_version_info_completed" tools:ignore="MissingTranslation"></string>
+    <string name="offline_map_details_delete" tools:ignore="MissingTranslation"></string>
+    <string name="ui_action_button_around_me_acc_hint"></string>
+    <string name="help_text_remote_control_how"></string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation"></string>
+    <string name="location_detail_action_preview_hint"></string>
+    <string name="osm_parking_lot" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_nearby_markers_what"></string>
+    <string name="osm_pier" tools:ignore="MissingTranslation"></string>
+    <string name="osm_religion" tools:ignore="MissingTranslation"></string>
+    <string name="help_offline_page_title"></string>
+    <string name="osm_saddler" tools:ignore="MissingTranslation"></string>
+    <string name="osm_mud" tools:ignore="MissingTranslation"></string>
+    <string name="osm_window_construction" tools:ignore="MissingTranslation"></string>
+    <string name="settings_section_units_description" tools:ignore="MissingTranslation"></string>
+    <string name="osm_mall" tools:ignore="MissingTranslation"></string>
+    <string name="osm_carpet" tools:ignore="MissingTranslation"></string>
+    <string name="osm_summer_camp" tools:ignore="MissingTranslation"></string>
+    <string name="osm_port" tools:ignore="MissingTranslation"></string>
+    <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bicycle_path" tools:ignore="MissingTranslation"></string>
+    <string name="osm_jersey_barrier" tools:ignore="MissingTranslation"></string>
+    <string name="menu_manage_search" tools:ignore="MissingTranslation"></string>
+    <string name="osm_fuel" tools:ignore="MissingTranslation"></string>
+    <string name="osm_school" tools:ignore="MissingTranslation"></string>
+    <string name="osm_helipad" tools:ignore="MissingTranslation"></string>
+    <string name="faq_how_to_use_beacon_question"></string>
+    <string name="faq_why_not_every_business_answer"></string>
+    <string name="tour_finish" tools:ignore="MissingTranslation"></string>
+    <string name="osm_fast_food" tools:ignore="MissingTranslation"></string>
+    <string name="directions_cardinal_north" tools:ignore="MissingTranslation"></string>
+    <string name="osm_college" tools:ignore="MissingTranslation"></string>
+    <string name="osm_blacksmith" tools:ignore="MissingTranslation"></string>
+    <string name="osm_floorer" tools:ignore="MissingTranslation"></string>
+    <string name="osm_jewelry" tools:ignore="MissingTranslation"></string>
+    <string name="osm_alcohol" tools:ignore="MissingTranslation"></string>
+    <string name="osm_organic" tools:ignore="MissingTranslation"></string>
+    <string name="osm_transformer_tower" tools:ignore="MissingTranslation"></string>
+    <string name="osm_speed_camera" tools:ignore="MissingTranslation"></string>
+    <string name="osm_car_wash" tools:ignore="MissingTranslation"></string>
+    <string name="settings_search_auto" tools:ignore="MissingTranslation"></string>
+    <string name="faq_headset_battery_impact_answer"></string>
+    <string name="osm_watermill" tools:ignore="MissingTranslation"></string>
+    <string name="osm_picnic_area" tools:ignore="MissingTranslation"></string>
+    <string name="osm_roof" tools:ignore="MissingTranslation"></string>
+    <string name="osm_upholsterer" tools:ignore="MissingTranslation"></string>
+    <string name="osm_gift" tools:ignore="MissingTranslation"></string>
+    <string name="osm_chimney_sweeper" tools:ignore="MissingTranslation"></string>
+    <string name="osm_nightclub" tools:ignore="MissingTranslation"></string>
+    <string name="osm_user" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bicycle_parking" tools:ignore="MissingTranslation"></string>
+    <string name="tour_create_marker_done" tools:ignore="MissingTranslation"></string>
+    <string name="directions_facing_sw"></string>
+    <string name="markers_annotation"></string>
+    <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bobsleigh" tools:ignore="MissingTranslation"></string>
+    <string name="confect_name_dead_end" tools:ignore="MissingTranslation"></string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation"></string>
+    <string name="location_detail_action_save_hint"></string>
+    <string name="osm_townhall" tools:ignore="MissingTranslation"></string>
+    <string name="osm_spikes" tools:ignore="MissingTranslation"></string>
+    <string name="confect_name_to_via" tools:ignore="MissingTranslation"></string>
+    <string name="osm_car_parts" tools:ignore="MissingTranslation"></string>
+    <string name="route_detail_action_start_route_hint"></string>
+    <string name="directions_facing_ne"></string>
+    <string name="preview_go_title"></string>
+    <string name="faq_snooze_mode_battery_question"></string>
+    <string name="osm_range" tools:ignore="MissingTranslation"></string>
+    <string name="osm_erotic" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_traveling_nw"></string>
+    <string name="osm_dojo" tools:ignore="MissingTranslation"></string>
+    <string name="osm_baby_hatch" tools:ignore="MissingTranslation"></string>
+    <string name="osm_e_cigarette" tools:ignore="MissingTranslation"></string>
+    <string name="osm_register_office" tools:ignore="MissingTranslation"></string>
+    <string name="osm_anime" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_callouts_message"></string>
+    <string name="osm_hospital" tools:ignore="MissingTranslation"></string>
+    <string name="osm_running" tools:ignore="MissingTranslation"></string>
+    <string name="route_detail_action_share_hint"></string>
+    <string name="distance_format_feet"></string>
+    <string name="osm_rock" tools:ignore="MissingTranslation"></string>
+    <string name="osm_pawnbroker" tools:ignore="MissingTranslation"></string>
+    <string name="faq_road_names_answer"></string>
+    <string name="osm_crematorium" tools:ignore="MissingTranslation"></string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation"></string>
+    <string name="osm_hardware" tools:ignore="MissingTranslation"></string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation"></string>
+    <string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation"></string>
+    <string name="osm_station" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bunker_silo" tools:ignore="MissingTranslation"></string>
+    <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation"></string>
+    <string name="help_configuration_section_title"></string>
+    <string name="osm_cosmetics" tools:ignore="MissingTranslation"></string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_routes_content_how_2"></string>
+    <string name="osm_bowls" tools:ignore="MissingTranslation"></string>
+    <string name="search_use_current_location"></string>
+    <string name="first_launch_change_language" tools:ignore="MissingTranslation"></string>
+    <string name="osm_offshore_platform" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_destination_beacons_how_3"></string>
+    <string name="directions_along_heading_nw"></string>
+    <string name="osm_railway" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_nearby_markers_when"></string>
+    <string name="first_launch_prompt_button"></string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation"></string>
+    <string name="osm_parking_entrance" tools:ignore="MissingTranslation"></string>
+    <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation"></string>
+    <string name="location_detail_action_beacon"></string>
+    <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_heading_n"></string>
+    <string name="osm_life_ring" tools:ignore="MissingTranslation"></string>
+    <string name="osm_electrician" tools:ignore="MissingTranslation"></string>
+    <string name="osm_wastewater_plant" tools:ignore="MissingTranslation"></string>
+    <string name="openmaptiles_copyright" translatable="false"></string>
+    <string name="osm_terrace" tools:ignore="MissingTranslation"></string>
+    <string name="osm_lighthouse" tools:ignore="MissingTranslation"></string>
+    <string name="faq_sleep_mode_battery_answer"></string>
+    <string name="osm_houseware" tools:ignore="MissingTranslation"></string>
+    <string name="tour_my_location" tools:ignore="MissingTranslation"></string>
+    <string name="directions_name_goes_right"></string>
+    <string name="help_text_ahead_of_me_how"></string>
+    <string name="osm_energy" tools:ignore="MissingTranslation"></string>
+    <string name="osm_dairy" tools:ignore="MissingTranslation"></string>
+    <string name="osm_firepit" tools:ignore="MissingTranslation"></string>
+    <string name="fab_add_item" tools:ignore="MissingTranslation"></string>
+    <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation"></string>
+    <string name="faq_controlling_what_you_hear_question"></string>
+    <string name="osm_pet" tools:ignore="MissingTranslation"></string>
+    <string name="osm_viewpoint" tools:ignore="MissingTranslation"></string>
+    <string name="ui_menu_close"></string>
+    <string name="osm_wreck" tools:ignore="MissingTranslation"></string>
+    <string name="osm_radiotechnics" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_headphones_title"></string>
+    <string name="language_mismatch_switch" tools:ignore="MissingTranslation"></string>
+    <string name="osm_hearing_aids" tools:ignore="MissingTranslation"></string>
+    <string name="directions_heading_w"></string>
+    <string name="directions_cardinal_east" tools:ignore="MissingTranslation"></string>
+    <string name="osm_distillery" tools:ignore="MissingTranslation"></string>
+    <string name="osm_national_park" tools:ignore="MissingTranslation"></string>
+    <string name="osm_frame" tools:ignore="MissingTranslation"></string>
+    <string name="offline_maps_title" tools:ignore="MissingTranslation"></string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation"></string>
+    <string name="osm_kitchen" tools:ignore="MissingTranslation"></string>
+    <string name="osm_car_rental" tools:ignore="MissingTranslation"></string>
+    <string name="osm_generic_info" tools:ignore="MissingTranslation"></string>
+    <string name="osm_restaurant" tools:ignore="MissingTranslation"></string>
+    <string name="osm_generic_shop" tools:ignore="MissingTranslation"></string>
+    <string name="osm_ruins" tools:ignore="MissingTranslation"></string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation"></string>
+    <string name="osm_stile" tools:ignore="MissingTranslation"></string>
+    <string name="osm_museum" tools:ignore="MissingTranslation"></string>
+    <string name="osm_fencing" tools:ignore="MissingTranslation"></string>
+    <string name="osm_locksmith" tools:ignore="MissingTranslation"></string>
+    <string name="osm_tobacco" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bed" tools:ignore="MissingTranslation"></string>
+    <string name="faq_snooze_mode_battery_answer"></string>
+    <string name="faq_when_to_use_soundscape_question"></string>
+    <string name="help_text_ahead_of_me_what"></string>
+    <string name="faq_supported_headsets_question"></string>
+    <string name="osm_advertising_agency" tools:ignore="MissingTranslation"></string>
+    <string name="about_soundscape" tools:ignore="MissingTranslation"></string>
+    <string name="osm_ice_cream" tools:ignore="MissingTranslation"></string>
+    <string name="osm_key_cutter" tools:ignore="MissingTranslation"></string>
+    <string name="osm_pyrotechnics" tools:ignore="MissingTranslation"></string>
+    <string name="osm_chocolate" tools:ignore="MissingTranslation"></string>
+    <string name="osm_photo" tools:ignore="MissingTranslation"></string>
+    <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation"></string>
+    <string name="osm_supermarket" tools:ignore="MissingTranslation"></string>
+    <string name="osm_picnic_table" tools:ignore="MissingTranslation"></string>
+    <string name="osm_hut" tools:ignore="MissingTranslation"></string>
+    <string name="osm_musical_instrument" tools:ignore="MissingTranslation"></string>
+    <string name="osm_generic_hazard" tools:ignore="MissingTranslation"></string>
+    <string name="route_detail_action_next"></string>
+    <string name="osm_spending_area" tools:ignore="MissingTranslation"></string>
+    <string name="language_mismatch_keep" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_traveling_n"></string>
+    <string name="first_launch_permissions_motion"></string>
+    <string name="menu_open_source_licenses" tools:ignore="MissingTranslation"></string>
+    <string name="osm_water_utility" tools:ignore="MissingTranslation"></string>
+    <string name="osm_peak" tools:ignore="MissingTranslation"></string>
+    <string name="osm_rescue_station" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_routes_content_what"></string>
+    <string name="osm_mineshaft" tools:ignore="MissingTranslation"></string>
+    <string name="ui_back_button_title"></string>
+    <string name="faq_tip_finding_bus_stops"></string>
+    <string name="faq_use_with_wayfinding_apps_question"></string>
+    <string name="route_detail_action_start_route_disabled_hint"></string>
+    <string name="faq_markers_function_answer"></string>
+    <string name="search_button_current_location_accessibility_hint"></string>
+    <string name="osm_covered_pavilion" tools:ignore="MissingTranslation"></string>
+    <string name="faq_section_what_is_soundscape"></string>
+    <string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation"></string>
+    <string name="osm_help_point" tools:ignore="MissingTranslation"></string>
+    <string name="menu_help_and_tutorials" tools:ignore="MissingTranslation"></string>
+    <string name="settings_theme_light_dark" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_heading_e"></string>
+    <string name="osm_sports_centre" tools:ignore="MissingTranslation"></string>
+    <string name="osm_tennis" tools:ignore="MissingTranslation"></string>
+    <string name="settings_theme_contrast_regular" tools:ignore="MissingTranslation"></string>
+    <string name="osm_architect" tools:ignore="MissingTranslation"></string>
+    <string name="osm_sawmill" tools:ignore="MissingTranslation"></string>
+    <string name="osm_rope" tools:ignore="MissingTranslation"></string>
+    <string name="directions_heading_n"></string>
+    <string name="osm_electrical" tools:ignore="MissingTranslation"></string>
+    <string name="osm_public_park" tools:ignore="MissingTranslation"></string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bag" tools:ignore="MissingTranslation"></string>
+    <string name="settings_use_value" tools:ignore="MissingTranslation"></string>
+    <string name="osm_judo" tools:ignore="MissingTranslation"></string>
+    <string name="waypoint_title"></string>
+    <string name="faq_beacon_on_home_answer"></string>
+    <string name="language_mismatch_title" tools:ignore="MissingTranslation"></string>
+    <string name="osm_sinkhole" tools:ignore="MissingTranslation"></string>
+    <string name="osm_watering_place" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_automatic_callouts_how_2"></string>
+    <string name="osm_road_works" tools:ignore="MissingTranslation"></string>
+    <string name="osm_water_well" tools:ignore="MissingTranslation"></string>
+    <string name="markers_action_delete"></string>
+    <string name="settings_list_item_description" tools:ignore="MissingTranslation"></string>
+    <string name="directions_heading_se"></string>
+    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation"></string>
+    <string name="osm_shelter" tools:ignore="MissingTranslation"></string>
+    <string name="osm_social_facility" tools:ignore="MissingTranslation"></string>
+    <string name="osm_drugstore" tools:ignore="MissingTranslation"></string>
+    <string name="routes_no_routes_hint_2"></string>
+    <string name="osm_hot_water_tank" tools:ignore="MissingTranslation"></string>
+    <string name="osm_veterinary" tools:ignore="MissingTranslation"></string>
+    <string name="settings_search_results_language_description" tools:ignore="MissingTranslation"></string>
+    <string name="osm_vacuum_cleaner" tools:ignore="MissingTranslation"></string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation"></string>
+    <string name="osm_parking_space" tools:ignore="MissingTranslation"></string>
+    <string name="ui_continue"></string>
+    <string name="osm_greengrocer" tools:ignore="MissingTranslation"></string>
+    <string name="osm_boat_sharing" tools:ignore="MissingTranslation"></string>
+    <string name="osm_gallery" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bike_parking" tools:ignore="MissingTranslation"></string>
+    <string name="osm_consumer_electronics_store" tools:ignore="MissingTranslation"></string>
+    <string name="osm_tax" tools:ignore="MissingTranslation"></string>
+    <string name="osm_company" tools:ignore="MissingTranslation"></string>
+    <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation"></string>
+    <string name="faq_section_getting_the_best_experience"></string>
+    <string name="callouts_automatic_callouts"></string>
+    <string name="filter_groceries"></string>
+    <string name="osm_stripclub" tools:ignore="MissingTranslation"></string>
+    <string name="filter_food_drink"></string>
+    <string name="osm_gallows" tools:ignore="MissingTranslation"></string>
+    <string name="osm_sauna" tools:ignore="MissingTranslation"></string>
+    <string name="osm_jeweller" tools:ignore="MissingTranslation"></string>
+    <string name="help_remote_page_title"></string>
+    <string name="osm_village_green" tools:ignore="MissingTranslation"></string>
+    <string name="osm_music" tools:ignore="MissingTranslation"></string>
+    <string name="osm_pub" tools:ignore="MissingTranslation"></string>
+    <string name="osm_castle" tools:ignore="MissingTranslation"></string>
+    <string name="osm_herbalist" tools:ignore="MissingTranslation"></string>
+    <string name="osm_pitch" tools:ignore="MissingTranslation"></string>
+    <string name="osm_static_caravan" tools:ignore="MissingTranslation"></string>
+    <string name="osm_hunting_stand" tools:ignore="MissingTranslation"></string>
+    <string name="faq_difference_from_map_apps_question"></string>
+    <string name="osm_campanile" tools:ignore="MissingTranslation"></string>
+    <string name="directions_cardinal_west" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_facing_s"></string>
+    <string name="offline_map_wifi_only" tools:ignore="MissingTranslation"></string>
+    <string name="faq_what_is_osm_answer"></string>
+    <string name="osm_volcano" tools:ignore="MissingTranslation"></string>
+    <string name="osm_petroleum_well" tools:ignore="MissingTranslation"></string>
+    <string name="osm_casino" tools:ignore="MissingTranslation"></string>
+    <string name="osm_waterfall" tools:ignore="MissingTranslation"></string>
+    <string name="osm_gambling" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bunker" tools:ignore="MissingTranslation"></string>
+    <string name="directions_cardinal_south_east" tools:ignore="MissingTranslation"></string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation"></string>
+    <string name="routes_sort_by_distance"></string>
+    <string name="faq_use_with_wayfinding_apps_answer"></string>
+    <string name="osm_dam" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_traveling_s"></string>
+    <string name="osm_log" tools:ignore="MissingTranslation"></string>
+    <string name="osm_services" tools:ignore="MissingTranslation"></string>
+    <string name="copyright_notices" translatable="false"></string>
+    <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation"></string>
+    <string name="sleep_sleep"></string>
+    <string name="osm_photographer" tools:ignore="MissingTranslation"></string>
+    <string name="osm_horse_stile" tools:ignore="MissingTranslation"></string>
+    <string name="osm_ammunition" tools:ignore="MissingTranslation"></string>
+    <string name="osm_danger_area" tools:ignore="MissingTranslation"></string>
+    <string name="osm_weapons" tools:ignore="MissingTranslation"></string>
+    <string name="osm_pasta" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_creating_markers_content_1"></string>
+    <string name="osm_gas" tools:ignore="MissingTranslation"></string>
+    <string name="menu_manage_audio" tools:ignore="MissingTranslation"></string>
+    <string name="osm_gymnastics" tools:ignore="MissingTranslation"></string>
+    <string name="osm_train_station" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_heading_ne"></string>
+    <string name="osm_boules" tools:ignore="MissingTranslation"></string>
+    <string name="osm_motel" tools:ignore="MissingTranslation"></string>
+    <string name="route_detail_edit_delete"></string>
+    <string name="osm_skating" tools:ignore="MissingTranslation"></string>
+    <string name="osm_library" tools:ignore="MissingTranslation"></string>
+    <string name="faq_tips_title"></string>
+    <string name="ui_action_button_ahead_of_me"></string>
+    <string name="confect_name_pavement" tools:ignore="MissingTranslation"></string>
+    <string name="osm_grave_yard" tools:ignore="MissingTranslation"></string>
+    <string name="faq_beacon_on_address_answer"></string>
+    <string name="osm_water_tank" tools:ignore="MissingTranslation"></string>
+    <string name="location_detail_add_waypoint_existing_hint"></string>
+    <string name="osm_optician" tools:ignore="MissingTranslation"></string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation"></string>
+    <string name="osm_atm" tools:ignore="MissingTranslation"></string>
+    <string name="osm_airfield" tools:ignore="MissingTranslation"></string>
+    <string name="osm_cockfighting" tools:ignore="MissingTranslation"></string>
+    <string name="osm_playground" tools:ignore="MissingTranslation"></string>
+    <string name="osm_motorcycle_parking" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bicycle" tools:ignore="MissingTranslation"></string>
+    <string name="osm_ranger_station" tools:ignore="MissingTranslation"></string>
+    <string name="ui_menu"></string>
+    <string name="osm_recycling" tools:ignore="MissingTranslation"></string>
+    <string name="osm_stairs" tools:ignore="MissingTranslation"></string>
+    <string name="osm_nature_reserve" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_routes_content_how_3"></string>
+    <string name="osm_golf" tools:ignore="MissingTranslation"></string>
+    <string name="osm_highway_named" tools:ignore="MissingTranslation"></string>
+    <string name="sleep_sleeping"></string>
+    <string name="osm_winery" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_around_me_when"></string>
+    <string name="osm_lifeguard_place" tools:ignore="MissingTranslation"></string>
+    <string name="share_title"></string>
+    <string name="settings_section_search_network" tools:ignore="MissingTranslation"></string>
+    <string name="osm_photo_booth" tools:ignore="MissingTranslation"></string>
+    <string name="osm_farm_auxiliary" tools:ignore="MissingTranslation"></string>
+    <string name="osm_dormitory" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_around_me_how"></string>
+    <string name="first_launch_callouts_example_1"></string>
+    <string name="routes_title"></string>
+    <string name="osm_aerodrome" tools:ignore="MissingTranslation"></string>
+    <string name="osm_community_centre" tools:ignore="MissingTranslation"></string>
+    <string name="osm_rune_stone" tools:ignore="MissingTranslation"></string>
+    <string name="osm_gas_station" tools:ignore="MissingTranslation"></string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation"></string>
+    <string name="osm_weightlifting" tools:ignore="MissingTranslation"></string>
+    <string name="location_detail_add_waypoint_new_hint"></string>
+    <string name="menu_contact_support" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_automatic_callouts_how_1"></string>
+    <string name="osm_hockey" tools:ignore="MissingTranslation"></string>
+    <string name="osm_model" tools:ignore="MissingTranslation"></string>
+    <string name="osm_badminton" tools:ignore="MissingTranslation"></string>
+    <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation"></string>
+    <string name="osm_windmill" tools:ignore="MissingTranslation"></string>
+    <string name="osm_hampshire_gate" tools:ignore="MissingTranslation"></string>
+    <string name="route_detail_action_edit"></string>
+    <string name="osm_brewery" tools:ignore="MissingTranslation"></string>
+    <string name="osm_antiques" tools:ignore="MissingTranslation"></string>
+    <string name="osm_kiosk" tools:ignore="MissingTranslation"></string>
+    <string name="osm_carpenter" tools:ignore="MissingTranslation"></string>
+    <string name="osm_tinsmith" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_traveling_sw"></string>
+    <string name="terms_of_use_accept_checkbox_acc_label"></string>
+    <string name="osm_perfumery" tools:ignore="MissingTranslation"></string>
+    <string name="sleep_sleeping_message"></string>
+    <string name="osm_it" tools:ignore="MissingTranslation"></string>
+    <string name="annotation_description_hint" tools:ignore="MissingTranslation"></string>
+    <string name="osm_taxi" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_facing_w"></string>
+    <string name="directions_heading_s"></string>
+    <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation"></string>
+    <string name="directions_facing_nw"></string>
+    <string name="osm_water_ski" tools:ignore="MissingTranslation"></string>
+    <string name="callouts_allow_callouts_description" tools:ignore="MissingTranslation"></string>
+    <string name="osm_farm" tools:ignore="MissingTranslation"></string>
+    <string name="osm_restroom" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_permissions_notification"></string>
+    <string name="route_not_found" tools:ignore="MissingTranslation"></string>
+    <string name="osm_water_park" tools:ignore="MissingTranslation"></string>
+    <string name="directions_traveling_e"></string>
+    <string name="osm_transportation" tools:ignore="MissingTranslation"></string>
+    <string name="osm_vacant" tools:ignore="MissingTranslation"></string>
+    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation"></string>
+    <string name="osm_cross" tools:ignore="MissingTranslation"></string>
+    <string name="osm_synagogue" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_markers_content_2"></string>
+    <string name="osm_dog_racing" tools:ignore="MissingTranslation"></string>
+    <string name="faq_background_battery_impact_question"></string>
+    <string name="osm_political_party" tools:ignore="MissingTranslation"></string>
+    <string name="osm_barn" tools:ignore="MissingTranslation"></string>
+    <string name="osm_garden_centre" tools:ignore="MissingTranslation"></string>
+    <string name="faq_difference_from_map_apps_answer"></string>
+    <string name="osm_wine" tools:ignore="MissingTranslation"></string>
+    <string name="osm_theme_park" tools:ignore="MissingTranslation"></string>
+    <string name="faq_supported_phones_question"></string>
+    <string name="osm_book_store" tools:ignore="MissingTranslation"></string>
+    <string name="settings_theme_dark" tools:ignore="MissingTranslation"></string>
+    <string name="faq_section_how_soundscape_works"></string>
+    <string name="directions_traveling_w"></string>
+    <string name="osm_pharmacy" tools:ignore="MissingTranslation"></string>
+    <string name="markers_marker_created"></string>
+    <string name="help_text_remote_control_when"></string>
+    <string name="location_detail_action_beacon_hint"></string>
+    <string name="no_language_selected"></string>
+    <string name="route_detail_action_create"></string>
+    <string name="osm_airport" tools:ignore="MissingTranslation"></string>
+    <string name="osm_beverages" tools:ignore="MissingTranslation"></string>
+    <string name="osm_generator" tools:ignore="MissingTranslation"></string>
+    <string name="osm_karting" tools:ignore="MissingTranslation"></string>
+    <string name="osm_sleeping_pods" tools:ignore="MissingTranslation"></string>
+    <string name="osm_platform" tools:ignore="MissingTranslation"></string>
+    <string name="osm_hostel" tools:ignore="MissingTranslation"></string>
+    <string name="tour_select_place" tools:ignore="MissingTranslation"></string>
+    <string name="osm_football" tools:ignore="MissingTranslation"></string>
+    <string name="osm_speciality_store" tools:ignore="MissingTranslation"></string>
+    <string name="ui_action_button_nearby_markers"></string>
+    <string name="faq_turn_beacon_back_on_answer"></string>
+    <string name="osm_highway_refed" tools:ignore="MissingTranslation"></string>
+    <string name="osm_industrial" tools:ignore="MissingTranslation"></string>
+    <string name="settings_section_search" tools:ignore="MissingTranslation"></string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation"></string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bakery" tools:ignore="MissingTranslation"></string>
+    <string name="faq_tip_beacon_quiet"></string>
+    <string name="osm_florist" tools:ignore="MissingTranslation"></string>
+    <string name="osm_glaziery" tools:ignore="MissingTranslation"></string>
+    <string name="osm_pedestrian_street" tools:ignore="MissingTranslation"></string>
+    <string name="osm_caravan_site" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_welcome_title"></string>
+    <string name="osm_bar" tools:ignore="MissingTranslation"></string>
+    <string name="osm_sports" tools:ignore="MissingTranslation"></string>
+    <string name="osm_stationery" tools:ignore="MissingTranslation"></string>
+    <string name="route_detail_action_start_route"></string>
+    <string name="tour_around_me" tools:ignore="MissingTranslation"></string>
+    <string name="directions_facing_se"></string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation"></string>
+    <string name="osm_seafood" tools:ignore="MissingTranslation"></string>
+    <string name="route_detail_action_edit_hint"></string>
+    <string name="help_text_nearby_markers_how"></string>
+    <string name="directions_heading_nw"></string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation"></string>
+    <string name="osm_driving_school" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bus_station" tools:ignore="MissingTranslation"></string>
+    <string name="osm_vending_machine" tools:ignore="MissingTranslation"></string>
+    <string name="osm_cafe" tools:ignore="MissingTranslation"></string>
+    <string name="osm_crypt" tools:ignore="MissingTranslation"></string>
+    <string name="osm_boundary_stone" tools:ignore="MissingTranslation"></string>
+    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation"></string>
+    <string name="osm_gaelic_games" tools:ignore="MissingTranslation"></string>
+    <string name="osm_travel_agent" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_heading_sw"></string>
+    <string name="directions_name_goes_left"></string>
+    <string name="osm_amusement_arcade" tools:ignore="MissingTranslation"></string>
+    <string name="location_detail_title_default"></string>
+    <string name="osm_hair_dresser" tools:ignore="MissingTranslation"></string>
+    <string name="osm_hifi" tools:ignore="MissingTranslation"></string>
+    <string name="osm_stable" tools:ignore="MissingTranslation"></string>
+    <string name="osm_department_store" tools:ignore="MissingTranslation"></string>
+    <string name="osm_flagpole" tools:ignore="MissingTranslation"></string>
+    <string name="osm_motor" tools:ignore="MissingTranslation"></string>
+    <string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation"></string>
+    <string name="osm_ship" tools:ignore="MissingTranslation"></string>
+    <string name="osm_tourism_museum" tools:ignore="MissingTranslation"></string>
+    <string name="osm_second_hand" tools:ignore="MissingTranslation"></string>
+    <string name="osm_horseshoes" tools:ignore="MissingTranslation"></string>
+    <string name="osm_spring" tools:ignore="MissingTranslation"></string>
+    <string name="search_view_markers"></string>
+    <string name="callouts_allow_callouts"></string>
+    <string name="directions_direction_ahead"></string>
+    <string name="help_text_customizing_markers_content_1"></string>
+    <string name="osm_monument" tools:ignore="MissingTranslation"></string>
+    <string name="osm_locomotive" tools:ignore="MissingTranslation"></string>
+    <string name="osm_beacon" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_beacon_title"></string>
+    <string name="osm_fire_extinguisher" tools:ignore="MissingTranslation"></string>
+    <string name="osm_telescope" tools:ignore="MissingTranslation"></string>
+    <string name="osm_wrestling" tools:ignore="MissingTranslation"></string>
+    <string name="faq_tip_turning_beacon_off"></string>
+    <string name="osm_civic" tools:ignore="MissingTranslation"></string>
+    <string name="osm_arts_centre" tools:ignore="MissingTranslation"></string>
+    <string name="osm_money_lender" tools:ignore="MissingTranslation"></string>
+    <string name="osm_butcher" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bookbinder" tools:ignore="MissingTranslation"></string>
+    <string name="osm_racquet" tools:ignore="MissingTranslation"></string>
+    <string name="osm_roundabout" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_prompt_message"></string>
+    <string name="distance_format_meters"></string>
+    <string name="osm_intersection" tools:ignore="MissingTranslation"></string>
+    <string name="osm_notary" tools:ignore="MissingTranslation"></string>
+    <string name="first_launch_soundscape_language"></string>
+    <string name="faq_callouts_stopping_in_vehicle_answer"></string>
+    <string name="osm_memorial" tools:ignore="MissingTranslation"></string>
+    <string name="behavior_scavenger_hunt_callout_next_flag"></string>
+    <string name="directions_along_facing_n"></string>
+    <string name="osm_animal_boarding" tools:ignore="MissingTranslation"></string>
+    <string name="osm_pedestrianised_area" tools:ignore="MissingTranslation"></string>
+    <string name="route_detail_action_previous"></string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation"></string>
+    <string name="notification_text" tools:ignore="MissingTranslation"></string>
+    <string name="osm_turntable" tools:ignore="MissingTranslation"></string>
+    <string name="location_detail_action_share_hint"></string>
+    <string name="text_field_clear_text" tools:ignore="MissingTranslation"></string>
+    <string name="osm_rowing" tools:ignore="MissingTranslation"></string>
+    <string name="routes_no_routes_hint_1"></string>
+    <string name="osm_river" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_automatic_callouts_when_2"></string>
+    <string name="osm_mosque" tools:ignore="MissingTranslation"></string>
+    <string name="osm_outdoor" tools:ignore="MissingTranslation"></string>
+    <string name="osm_scuba_diving" tools:ignore="MissingTranslation"></string>
+    <string name="directions_name_continues_ahead"></string>
+    <string name="osm_tyres" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bureau_de_change" tools:ignore="MissingTranslation"></string>
+    <string name="osm_trophy" tools:ignore="MissingTranslation"></string>
+    <string name="ui_action_button_nearby_markers_acc_hint"></string>
+    <string name="osm_car" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bicycle_rental" tools:ignore="MissingTranslation"></string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation"></string>
+    <string name="osm_water_works" tools:ignore="MissingTranslation"></string>
+    <string name="faq_supported_phones_answer"></string>
+    <string name="osm_theatre" tools:ignore="MissingTranslation"></string>
+    <string name="osm_pillory" tools:ignore="MissingTranslation"></string>
+    <string name="osm_terminal" tools:ignore="MissingTranslation"></string>
+    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation"></string>
+    <string name="osm_geyser" tools:ignore="MissingTranslation"></string>
+    <string name="osm_heliport" tools:ignore="MissingTranslation"></string>
+    <string name="osm_archaeological_site" tools:ignore="MissingTranslation"></string>
+    <string name="osm_village" tools:ignore="MissingTranslation"></string>
+    <string name="osm_shooting" tools:ignore="MissingTranslation"></string>
+    <string name="osm_information_point" tools:ignore="MissingTranslation"></string>
+    <string name="osm_lawyer" tools:ignore="MissingTranslation"></string>
+    <string name="osm_commercial" tools:ignore="MissingTranslation"></string>
+    <string name="osm_parquet_layer" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_facing_ne"></string>
+    <string name="osm_shop" tools:ignore="MissingTranslation"></string>
+    <string name="markers_no_markers_title"></string>
+    <string name="osm_gate" tools:ignore="MissingTranslation"></string>
+    <string name="osm_substation" tools:ignore="MissingTranslation"></string>
+    <string name="osm_water" tools:ignore="MissingTranslation"></string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation"></string>
+    <string name="osm_wayside_cross" tools:ignore="MissingTranslation"></string>
+    <string name="osm_university" tools:ignore="MissingTranslation"></string>
+    <string name="osm_doctors" tools:ignore="MissingTranslation"></string>
+    <string name="markers_marker_with_name"></string>
+    <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation"></string>
+    <string name="osm_toboggan" tools:ignore="MissingTranslation"></string>
+    <string name="osm_swimming_area" tools:ignore="MissingTranslation"></string>
+    <string name="osm_toys" tools:ignore="MissingTranslation"></string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation"></string>
+    <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation"></string>
+    <string name="directions_facing_n"></string>
+    <string name="osm_information" tools:ignore="MissingTranslation"></string>
+    <string name="osm_city_gate" tools:ignore="MissingTranslation"></string>
+    <string name="street_preview_exit" tools:ignore="MissingTranslation"></string>
+    <string name="faq_supported_headsets_answer"></string>
+    <string name="callouts_panel_title"></string>
+    <string name="directions_along_heading_w"></string>
+    <string name="osm_tomb" tools:ignore="MissingTranslation"></string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation"></string>
+    <string name="osm_residential" tools:ignore="MissingTranslation"></string>
+    <string name="osm_training_area" tools:ignore="MissingTranslation"></string>
+    <string name="osm_signal" tools:ignore="MissingTranslation"></string>
+    <string name="osm_forestry" tools:ignore="MissingTranslation"></string>
+    <string name="street_description_until" tools:ignore="MissingTranslation"></string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_traveling_w"></string>
+    <string name="faq_why_does_beacon_disappear_answer"></string>
+    <string name="osm_cricket" tools:ignore="MissingTranslation"></string>
+    <string name="osm_train_terminal" tools:ignore="MissingTranslation"></string>
+    <string name="route_update_success_title"></string>
+    <string name="osm_greenhouse" tools:ignore="MissingTranslation"></string>
+    <string name="language_mismatch_message" tools:ignore="MissingTranslation"></string>
+    <string name="faq_road_names_question"></string>
+    <string name="app_name" translatable="false"></string>
+    <string name="directions_along_facing_sw"></string>
+    <string name="faq_what_can_I_set_answer"></string>
+    <string name="osm_defibrillator" tools:ignore="MissingTranslation"></string>
+    <string name="faq_callouts_stopping_in_vehicle_question"></string>
+    <string name="osm_hapkido" tools:ignore="MissingTranslation"></string>
+    <string name="osm_canadian_football" tools:ignore="MissingTranslation"></string>
+    <string name="osm_skateboard" tools:ignore="MissingTranslation"></string>
+    <string name="osm_9pin" tools:ignore="MissingTranslation"></string>
+    <string name="osm_medical_supply" tools:ignore="MissingTranslation"></string>
+    <string name="banks_places_nearby_description" tools:ignore="MissingTranslation"></string>
+    <string name="osm_kindergarten" tools:ignore="MissingTranslation"></string>
+    <string name="osm_weir" tools:ignore="MissingTranslation"></string>
+    <string name="faq_holding_phone_flat_question"></string>
+    <string name="osm_fountain" tools:ignore="MissingTranslation"></string>
+    <string name="osm_copyright" translatable="false"></string>
+    <string name="faq_what_is_osm_question"></string>
+    <string name="osm_taekwondo" tools:ignore="MissingTranslation"></string>
+    <string name="help_orient_page_title"></string>
+    <string name="faq_beacon_on_address_question"></string>
+    <string name="preview_include_unnamed_roads_title"></string>
+    <string name="markers_sort_button_sort_by_name_voiceover"></string>
+    <string name="faq_miss_a_callout_question"></string>
+    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation"></string>
+    <string name="osm_educational_institution" tools:ignore="MissingTranslation"></string>
+    <string name="osm_gym" tools:ignore="MissingTranslation"></string>
+    <string name="settings_theme_contrast" tools:ignore="MissingTranslation"></string>
+    <string name="beacon_settings_style_description" tools:ignore="MissingTranslation"></string>
+    <string name="osm_shoemaker" tools:ignore="MissingTranslation"></string>
+    <string name="faq_tip_turning_off_auto_callouts"></string>
+    <string name="osm_coffee" tools:ignore="MissingTranslation"></string>
+    <string name="terms_of_use_message"></string>
+    <string name="settings_search_results_language" tools:ignore="MissingTranslation"></string>
+    <string name="osm_merging_lane" tools:ignore="MissingTranslation"></string>
+    <string name="tour_stop_beacon" tools:ignore="MissingTranslation"></string>
+    <string name="osm_private_investigator" tools:ignore="MissingTranslation"></string>
+    <string name="route_detail_edit_waypoints_button"></string>
+    <string name="first_launch_prompt_title"></string>
+    <string name="settings_help_section_home_screen_buttons"></string>
+    <string name="osm_base" tools:ignore="MissingTranslation"></string>
+    <string name="osm_dressmaker" tools:ignore="MissingTranslation"></string>
+    <string name="osm_diving" tools:ignore="MissingTranslation"></string>
+    <string name="osm_adoption_agency" tools:ignore="MissingTranslation"></string>
+    <string name="osm_shoes" tools:ignore="MissingTranslation"></string>
+    <string name="osm_baby_goods" tools:ignore="MissingTranslation"></string>
+    <string name="osm_convenience_store" tools:ignore="MissingTranslation"></string>
+    <string name="osm_customer_service" tools:ignore="MissingTranslation"></string>
+    <string name="faq_mobile_data_use_answer"></string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation"></string>
+    <string name="directions_heading_ne"></string>
+    <string name="faq_mobile_data_use_question"></string>
+    <string name="routes_no_routes_title"></string>
+    <string name="universal_links_alert_action_marker"></string>
+    <string name="osm_window_blind" tools:ignore="MissingTranslation"></string>
+    <string name="osm_quango" tools:ignore="MissingTranslation"></string>
+    <string name="faq_battery_impact_question"></string>
+    <string name="directions_heading_sw"></string>
+    <string name="osm_copyshop" tools:ignore="MissingTranslation"></string>
+    <string name="osm_guest_house" tools:ignore="MissingTranslation"></string>
+    <string name="osm_ice_rink" tools:ignore="MissingTranslation"></string>
+    <string name="menu_share_recorded_route" tools:ignore="MissingTranslation"></string>
+    <string name="osm_gasometer" tools:ignore="MissingTranslation"></string>
+    <string name="osm_athletics" tools:ignore="MissingTranslation"></string>
+    <string name="offline_map_storage_description" tools:ignore="MissingTranslation"></string>
+    <string name="osm_dangerous_area" tools:ignore="MissingTranslation"></string>
+    <string name="osm_lifeguard_platform" tools:ignore="MissingTranslation"></string>
+    <string name="osm_sally_port" tools:ignore="MissingTranslation"></string>
+    <string name="osm_hot_spring" tools:ignore="MissingTranslation"></string>
+    <string name="osm_pelota" tools:ignore="MissingTranslation"></string>
+    <string name="search_searching" tools:ignore="MissingTranslation"></string>
+    <string name="osm_survey_point" tools:ignore="MissingTranslation"></string>
+    <string name="osm_canoe" tools:ignore="MissingTranslation"></string>
+    <string name="osm_equestrian" tools:ignore="MissingTranslation"></string>
+    <string name="directions_at_poi"></string>
+    <string name="osm_cannon" tools:ignore="MissingTranslation"></string>
+    <string name="osm_apron" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bay" tools:ignore="MissingTranslation"></string>
+    <string name="help_edit_markers_page_title"></string>
+    <string name="osm_cattle_grid" tools:ignore="MissingTranslation"></string>
+    <string name="settings_search_online" tools:ignore="MissingTranslation"></string>
+    <string name="osm_apartments" tools:ignore="MissingTranslation"></string>
+    <string name="osm_art" tools:ignore="MissingTranslation"></string>
+    <string name="osm_dance" tools:ignore="MissingTranslation"></string>
+    <string name="osm_chapel" tools:ignore="MissingTranslation"></string>
+    <string name="osm_fire_hose" tools:ignore="MissingTranslation"></string>
+    <string name="directions_near_name"></string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation"></string>
+    <string name="settings_explanation" tools:ignore="MissingTranslation"></string>
+    <string name="directions_along_traveling_se"></string>
+    <string name="osm_ses_station" tools:ignore="MissingTranslation"></string>
+    <string name="osm_food_court" tools:ignore="MissingTranslation"></string>
+    <string name="osm_dock" tools:ignore="MissingTranslation"></string>
+    <string name="osm_laundry" tools:ignore="MissingTranslation"></string>
+    <string name="faq_title_abbreviated"></string>
+    <string name="osm_aikido" tools:ignore="MissingTranslation"></string>
+    <string name="osm_plasterer" tools:ignore="MissingTranslation"></string>
+    <string name="osm_house" tools:ignore="MissingTranslation"></string>
+    <string name="osm_alpine_hut" tools:ignore="MissingTranslation"></string>
+    <string name="markers_title"></string>
+    <string name="location_detail_action_edit_hint"></string>
+    <string name="osm_food" tools:ignore="MissingTranslation"></string>
+    <string name="osm_wildlife_hide" tools:ignore="MissingTranslation"></string>
+    <string name="osm_courthouse" tools:ignore="MissingTranslation"></string>
+    <string name="faq_controlling_what_you_hear_answer"></string>
+    <string name="directions_along_heading_s"></string>
+    <string name="osm_ticket" tools:ignore="MissingTranslation"></string>
+    <string name="osm_dog_park" tools:ignore="MissingTranslation"></string>
+    <string name="help_text_section_title_what"></string>
+    <string name="osm_confectionery" tools:ignore="MissingTranslation"></string>
+    <string name="osm_furniture" tools:ignore="MissingTranslation"></string>
+    <string name="preview_title"></string>
+    <string name="osm_brothel" tools:ignore="MissingTranslation"></string>
+    <string name="osm_guide" tools:ignore="MissingTranslation"></string>
+    <string name="osm_cabin" tools:ignore="MissingTranslation"></string>
+    <string name="osm_warehouse" tools:ignore="MissingTranslation"></string>
+    <string name="permissions_required" tools:ignore="MissingTranslation"></string>
+    <string name="directions_facing_e"></string>
+    <string name="osm_charity" tools:ignore="MissingTranslation"></string>
+    <string name="osm_rugby_union" tools:ignore="MissingTranslation"></string>
+    <string name="osm_bandy" tools:ignore="MissingTranslation"></string>
+    <string name="osm_zoo" tools:ignore="MissingTranslation"></string>
 </resources>
