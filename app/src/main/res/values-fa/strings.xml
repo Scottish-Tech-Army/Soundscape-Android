@@ -1743,4 +1743,8 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">تغییر به %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">حفظ زبان فعلی</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">در این جهت حرکت کنید تا به تقاطع بعدی برسید.</string>
+    <string name="fmod_copyright" translatable="false"></string>
+    <string name="openmaptiles_copyright" translatable="false"></string>
+    <string name="copyright_notices" translatable="false"></string>
+    <string name="osm_copyright" translatable="false"></string>
 </resources>
