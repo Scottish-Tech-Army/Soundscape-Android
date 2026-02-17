@@ -17,7 +17,7 @@
     <string name="beacon_styles_tactile">"Tattile"</string>
     <string name="beacon_styles_ping">"Tintinnio"</string>
     <string name="beacon_styles_drop">"Caduta"</string>
-    <string name="beacon_styles_signal">"Segnale"</string>
+    <string name="beacon_styles_signal">Segnale</string>
     <string name="beacon_styles_signal_slow">"Segnale (lento)"</string>
     <string name="beacon_styles_signal_very_slow">"Segnale (molto lento)"</string>
     <string name="beacon_styles_mallet">"Mazzuola"</string>
