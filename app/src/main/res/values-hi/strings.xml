@@ -1272,4 +1272,9 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">%1$s में बदलें</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">वर्तमान भाषा रखें</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">इस दिशा में आगे बढ़कर अगले चौराहे पर जाएँ।</string>
+    <string name="fmod_copyright" translatable="false"></string>
+    <string name="openmaptiles_copyright" translatable="false"></string>
+    <string name="copyright_notices" translatable="false"></string>
+    <string name="app_name" translatable="false"></string>
+    <string name="osm_copyright" translatable="false"></string>
 </resources>
