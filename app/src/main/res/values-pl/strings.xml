@@ -1272,4 +1272,9 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Przełącz na %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Zachowaj bieżący język</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">przejdź w tym kierunku do następnego skrzyżowania</string>
+    <string name="fmod_copyright" translatable="false"></string>
+    <string name="openmaptiles_copyright" translatable="false"></string>
+    <string name="copyright_notices" translatable="false"></string>
+    <string name="app_name" translatable="false"></string>
+    <string name="osm_copyright" translatable="false"></string>
 </resources>
