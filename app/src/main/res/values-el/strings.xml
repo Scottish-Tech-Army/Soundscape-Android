@@ -17,7 +17,7 @@
     <string name="beacon_styles_tactile">"Χτύπημα με το δάκτυλο"</string>
     <string name="beacon_styles_ping">"Καμπανάκι"</string>
     <string name="beacon_styles_drop">"Σταγόνα"</string>
-    <string name="beacon_styles_signal">"Σήμα"</string>
+    <string name="beacon_styles_signal">Σήμα</string>
     <string name="beacon_styles_signal_slow">"Σήμα (Αργό)"</string>
     <string name="beacon_styles_signal_very_slow">"Σήμα (Πολύ αργό)"</string>
     <string name="beacon_styles_mallet">"Μπαγκέτα"</string>
