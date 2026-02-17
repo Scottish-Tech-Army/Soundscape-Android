@@ -17,7 +17,7 @@
     <string name="beacon_styles_tactile">"Taktil"</string>
     <string name="beacon_styles_ping">"Ping"</string>
     <string name="beacon_styles_drop">"Slipp"</string>
-    <string name="beacon_styles_signal">"Signal"</string>
+    <string name="beacon_styles_signal">Signal</string>
     <string name="beacon_styles_signal_slow">"Signal (langsomt)"</string>
     <string name="beacon_styles_signal_very_slow">"Signal (svært langsomt)"</string>
     <string name="beacon_styles_mallet">"Hammer"</string>
