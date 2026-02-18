@@ -128,7 +128,12 @@ namespace soundscape {
 
         float beaconVol = m_BeaconVolume.load();
         float speechVol = m_SpeechVolume.load();
-
+        if(m_Sources.size() > 1) {
+            // We're mixing a beacon with speech. We want to dip the beacon under the speech, and we
+            // want to avoid clipping.
+            beaconVol /= 4;
+            speechVol *= 3.0/4.0;
+        }
         for (auto &ms : m_Sources) {
             auto *src = ms.source;
 
@@ -150,7 +155,6 @@ namespace soundscape {
 
             // Get volume for this source's category
             float vol = (src->category == AudioCategory::BEACON) ? beaconVol : speechVol;
-
             if (src->needsSpatialize && ms.effectId >= 0 && m_Spatializer) {
                 // Spatialize: mono -> stereo HRTF
                 float az = src->azimuth.load();
