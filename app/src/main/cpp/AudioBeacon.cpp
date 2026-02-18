@@ -32,6 +32,21 @@ PositionedAudio::~PositionedAudio() {
     m_pEngine->RemoveBeacon(this);
 }
 
+void PositionedAudio::UpdateAzimuth(double heading, double latitude, double longitude) {
+    if (m_Mode.m_AudioType == PositioningMode::RELATIVE) {
+        m_pAudioSource->azimuth.store(static_cast<float>(toRadians(m_Mode.m_Heading)));
+    } else if (m_Mode.m_AudioType == PositioningMode::COMPASS) {
+        if (!isnan(heading))
+            m_pAudioSource->azimuth.store(static_cast<float>(toRadians(m_Mode.m_Heading - heading)));
+    } else if (m_Mode.m_AudioType == PositioningMode::LOCALIZED) {
+        if (!isnan(heading) && !isnan(m_Mode.m_Latitude) && !isnan(m_Mode.m_Longitude)) {
+            auto bearing = bearingFromTwoPoints(m_Mode.m_Latitude, m_Mode.m_Longitude,
+                                               latitude, longitude);
+            m_pAudioSource->azimuth.store(static_cast<float>(toRadians(bearing - heading)));
+        }
+    }
+}
+
 void PositionedAudio::RegisterWithMixer() {
     if (!m_pAudioSource)
         return;
@@ -40,30 +55,12 @@ void PositionedAudio::RegisterWithMixer() {
     if (!mixer)
         return;
 
-    // Configure source properties based on positioning mode
     m_pAudioSource->category = m_Dimmable ? AudioCategory::BEACON : AudioCategory::SPEECH;
     m_pAudioSource->needsSpatialize = (m_Mode.m_AudioType != PositioningMode::STANDARD);
 
-    // Set initial azimuth based on positioning mode
-    if (m_Mode.m_AudioType == PositioningMode::RELATIVE) {
-        auto radians = static_cast<float>(toRadians(m_Mode.m_Heading));
-        m_pAudioSource->azimuth.store(radians);
-    } else if (m_Mode.m_AudioType == PositioningMode::COMPASS) {
-        double heading, current_latitude, current_longitude;
-        m_pEngine->GetListenerPosition(heading, current_latitude, current_longitude);
-        // Convert compass bearing to azimuth relative to listener heading
-        double az = m_Mode.m_Heading - heading;
-        m_pAudioSource->azimuth.store(static_cast<float>(toRadians(az)));
-    } else if (m_Mode.m_AudioType == PositioningMode::LOCALIZED) {
-        double heading, current_latitude, current_longitude;
-        m_pEngine->GetListenerPosition(heading, current_latitude, current_longitude);
-        if (!isnan(heading) && !isnan(m_Mode.m_Latitude) && !isnan(m_Mode.m_Longitude)) {
-            auto bearing = bearingFromTwoPoints(m_Mode.m_Latitude, m_Mode.m_Longitude,
-                                                 current_latitude, current_longitude);
-            double az = bearing - heading;
-            m_pAudioSource->azimuth.store(static_cast<float>(toRadians(az)));
-        }
-    }
+    double heading, latitude, longitude;
+    m_pEngine->GetListenerPosition(heading, latitude, longitude);
+    UpdateAzimuth(heading, latitude, longitude);
 
     mixer->addSource(m_pAudioSource.get());
 }
@@ -128,12 +125,8 @@ void PositionedAudio::UpdateGeometry(double listenerLatitude, double listenerLon
 
     if(m_pAudioSource) {
         m_pAudioSource->UpdateGeometry(degrees_off_axis, mode);
-
-        // Update HRTF azimuth for spatialization
-        if (m_Mode.m_AudioType != PositioningMode::STANDARD) {
-            auto azRad = static_cast<float>(toRadians(degrees_off_axis));
-            m_pAudioSource->azimuth.store(azRad);
-        }
+        if (m_Mode.m_AudioType != PositioningMode::STANDARD)
+            UpdateAzimuth(heading, latitude, longitude);
     }
 }
 

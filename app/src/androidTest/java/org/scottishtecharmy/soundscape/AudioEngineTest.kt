@@ -31,7 +31,7 @@ class AudioEngineTest {
         Assert.assertEquals( "Mallet Very Slow", beaconTypes[12])
     }
 
-    private fun moveListener(audioEngine: AudioEngine, duration: Int) {
+    private fun moveListener(audioEngine: AudioEngine, duration: Int, noMovement: Boolean = false) {
         val delayMilliseconds: Long = 50
         var orientation = 0.0
         val delta = 360.0 / (duration / delayMilliseconds)
@@ -46,7 +46,8 @@ class AudioEngineTest {
                 proximityNear = 15.0)
             Thread.sleep(delayMilliseconds)
             time += delayMilliseconds
-            orientation += delta
+            if(!noMovement)
+                orientation += delta
         }
         Log.d(TAG, "Time $time, Orientation $orientation")
     }
@@ -214,6 +215,21 @@ class AudioEngineTest {
         tidyUp(audioEngine)
     }
 
+    @Test
+    fun textPosition() {
+        val audioEngine = initializeAudioEngine()
+        audioEngine.createTextToSpeech(
+            "Position text to the left",
+            AudioType.COMPASS,
+            heading = -90.0)
+        moveListener(audioEngine, 4000, noMovement = true)
+        audioEngine.createTextToSpeech(
+            "Position text to the right",
+            AudioType.COMPASS,
+            heading = 90.0)
+        moveListener(audioEngine, 4000, noMovement = true)
+        tidyUp(audioEngine)
+    }
 
     companion object {
         const val TAG : String = "AudioTestEngine"
