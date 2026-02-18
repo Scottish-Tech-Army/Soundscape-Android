@@ -57,6 +57,7 @@ namespace soundscape {
         void RegisterWithMixer();
 
         double GetHeadingOffset(double heading, double latitude, double longitude) const;
+        void UpdateAzimuth(double heading, double latitude, double longitude);
 
         PositioningMode m_Mode;
 
