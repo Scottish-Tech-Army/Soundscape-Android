@@ -152,7 +152,9 @@ int BeaconBufferGroup::readPcm(float *outMono, int numFrames) {
         return 0;
     }
 
-    UpdateCurrentBufferFromHeadingAndLocation();
+    if (m_pCurrentBuffer == nullptr || m_PlayState != PLAYING_BEACON) {
+        UpdateCurrentBufferFromHeadingAndLocation();
+    }
 
     if (m_pCurrentBuffer == nullptr) {
         // Silence (e.g. TOO_FAR_MODE)
@@ -160,18 +162,53 @@ int BeaconBufferGroup::readPcm(float *outMono, int numFrames) {
         return numFrames;
     }
 
-    unsigned int framesRead = m_pCurrentBuffer->Read(outMono, numFrames, m_FramePos,
-                                                      m_PlayState != PLAYING_BEACON);
-    m_FramePos += framesRead;
+    bool padWithSilence = (m_PlayState != PLAYING_BEACON);
 
-    if (m_PlayState == PLAYING_INTRO) {
-        if (m_FramePos >= m_pIntro->GetNumFrames()) {
-            m_PlayState = PLAYING_BEACON;
-            m_FramePos = 0;
+    if (m_PlayState == PLAYING_BEACON) {
+        unsigned int phraseFrames = m_pCurrentBuffer->GetNumFrames();
+        unsigned int framesPerBeat = (m_pDescription->m_BeatsInPhrase > 0 && phraseFrames > 0)
+                ? phraseFrames / m_pDescription->m_BeatsInPhrase
+                : phraseFrames;
+
+        int written = 0;
+        int remaining = numFrames;
+
+        while (remaining > 0) {
+            // How many frames until the next beat boundary?
+            unsigned int posInPhrase = m_FramePos % phraseFrames;
+            unsigned int posInBeat = (framesPerBeat > 0) ? posInPhrase % framesPerBeat : 0;
+            unsigned int framesToBeat = (framesPerBeat > 0) ? framesPerBeat - posInBeat : remaining;
+
+            int toRead = (static_cast<int>(framesToBeat) < remaining) ? static_cast<int>(framesToBeat) : remaining;
+
+            m_pCurrentBuffer->Read(outMono + written, toRead, m_FramePos, false);
+            m_FramePos += toRead;
+            written += toRead;
+            remaining -= toRead;
+
+            // If we've reached a beat boundary and there's more to read, switch buffer
+            if (remaining > 0) {
+                UpdateCurrentBufferFromHeadingAndLocation();
+                if (m_pCurrentBuffer == nullptr) {
+                    memset(outMono + written, 0, remaining * sizeof(float));
+                    break;
+                }
+            }
         }
-    } else if (m_PlayState == PLAYING_OUTRO) {
-        if (m_FramePos >= m_pOutro->GetNumFrames()) {
-            m_PlayState = PLAYING_COMPLETE;
+    } else {
+        unsigned int framesRead = m_pCurrentBuffer->Read(outMono, numFrames, m_FramePos,
+                                                          padWithSilence);
+        m_FramePos += framesRead;
+
+        if (m_PlayState == PLAYING_INTRO) {
+            if (m_FramePos >= m_pIntro->GetNumFrames()) {
+                m_PlayState = PLAYING_BEACON;
+                m_FramePos = 0;
+            }
+        } else if (m_PlayState == PLAYING_OUTRO) {
+            if (m_FramePos >= m_pOutro->GetNumFrames()) {
+                m_PlayState = PLAYING_COMPLETE;
+            }
         }
     }
 
