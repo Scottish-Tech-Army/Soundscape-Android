@@ -51,7 +51,7 @@
     <string name="route_detail_action_stop_route">Зупинити навігацію</string>
     <string name="route_detail_action_edit">Редагувати маршрут</string>
     <string name="route_detail_action_start_route_hint">Розпочати відтворення цього маршруту</string>
-    <string name="route_detail_action_start_route_disabled_hint">Щоб розпочати навігацію, спершу додайте маршрутні точки</string>
+    <string name="route_detail_action_start_route_disabled_hint">Додайте маршрутні точки щоб розпочати навігацію</string>
     <string name="route_detail_action_stop_route_hint">Зупинити відтворення цього маршруту</string>
     <string name="route_detail_action_share_hint">Поділитися цим маршрутом з іншою програмою</string>
     <string name="route_detail_action_edit_hint">Змінити маршрутні точки в маршруті або їхній порядок.</string>
