@@ -469,7 +469,16 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Add/update shortcuts for current routes
+        val seenNames = mutableSetOf<String>()
         for (route in routes) {
+            // You can't have shortcuts without a name
+            if(route.name.isEmpty())
+                continue
+
+            // Skip routes with duplicate names
+            if(!seenNames.add(route.name))
+                continue
+
             val intent = Intent(this, MainActivity::class.java)
             intent.action = Intent.ACTION_VIEW
             intent.data = "soundscape://route/${route.name}".toUri()
