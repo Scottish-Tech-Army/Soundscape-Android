@@ -725,6 +725,18 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_clearBeaconEventsLi
 
 extern "C"
 JNIEXPORT void JNICALL
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_setHrtfEnabled(JNIEnv *env MAYBE_UNUSED,
+                                                                             jobject thiz MAYBE_UNUSED,
+                                                                             jlong engine_handle,
+                                                                             jboolean enabled) {
+    auto* ae = reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
+    if (ae) {
+        ae->SetUseHrtf(enabled);
+    }
+}
+
+extern "C"
+JNIEXPORT void JNICALL
 Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_audioConfigTextToSpeech(JNIEnv *env,
                                                                                      jobject thiz,
                                                                                      jlong engine_handle,

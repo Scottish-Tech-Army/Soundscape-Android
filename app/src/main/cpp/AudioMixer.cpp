@@ -2,6 +2,8 @@
 #include "Trace.h"
 #include <cstring>
 #include <algorithm>
+#include <cmath>
+#include <cstdint>
 
 namespace soundscape {
 
@@ -21,7 +23,7 @@ namespace soundscape {
                 ->setSharingMode(oboe::SharingMode::Exclusive)
                 ->setFormat(oboe::AudioFormat::Float)
                 ->setChannelCount(oboe::ChannelCount::Stereo)
-                ->setFramesPerCallback(FRAME_SIZE)
+                ->setFramesPerDataCallback(FRAME_SIZE)
                 ->setDataCallback(this);
 
         auto result = builder.openStream(m_Stream);
@@ -83,8 +85,6 @@ namespace soundscape {
     }
 
     void AudioMixer::addSource(AudioSourceBase *source) {
-        std::lock_guard<std::mutex> guard(m_SourcesMutex);
-
         source->setDeviceSampleRate(m_SampleRate);
 
         MixerSource ms;
@@ -93,23 +93,28 @@ namespace soundscape {
         if (source->needsSpatialize && m_Spatializer) {
             ms.effectId = m_Spatializer->createSourceEffect();
         }
-
-        m_Sources.push_back(ms);
-        TRACE("AudioMixer: addSource -> %zu sources", m_Sources.size());
+        {
+            std::lock_guard<std::mutex> guard(m_SourcesMutex);
+            m_Sources.push_back(ms);
+        }
     }
 
     void AudioMixer::removeSource(AudioSourceBase *source) {
-        std::lock_guard<std::mutex> guard(m_SourcesMutex);
+        int effectId = -1;
+        {
+            std::lock_guard<std::mutex> guard(m_SourcesMutex);
 
-        for (auto it = m_Sources.begin(); it != m_Sources.end(); ++it) {
-            if (it->source == source) {
-                if (it->effectId >= 0 && m_Spatializer) {
-                    m_Spatializer->removeSourceEffect(it->effectId);
+            for (auto it = m_Sources.begin(); it != m_Sources.end(); ++it) {
+                if (it->source == source) {
+                    if (it->effectId >= 0 && m_Spatializer)
+                        effectId = it->effectId;
+                    m_Sources.erase(it);
+                    break;
                 }
-                m_Sources.erase(it);
-                break;
             }
         }
+        if (effectId != -1)
+            m_Spatializer->removeSourceEffect(effectId);
     }
 
     oboe::DataCallbackResult AudioMixer::onAudioReady(
@@ -120,11 +125,7 @@ namespace soundscape {
         // Clear output
         memset(output, 0, numFrames * 2 * sizeof(float));
 
-        // Try to lock sources - if contention, output silence this frame
-        std::unique_lock<std::mutex> lock(m_SourcesMutex, std::try_to_lock);
-        if (!lock.owns_lock()) {
-            return oboe::DataCallbackResult::Continue;
-        }
+        std::lock_guard<std::mutex> guard(m_SourcesMutex);
 
         float beaconVol = m_BeaconVolume.load();
         float speechVol = m_SpeechVolume.load();
@@ -155,7 +156,7 @@ namespace soundscape {
 
             // Get volume for this source's category
             float vol = (src->category == AudioCategory::BEACON) ? beaconVol : speechVol;
-            if (src->needsSpatialize && ms.effectId >= 0 && m_Spatializer) {
+            if (src->needsSpatialize && ms.effectId >= 0 && m_Spatializer && m_UseHrtf.load()) {
                 // Spatialize: mono -> stereo HRTF
                 float az = src->azimuth.load();
                 float el = src->elevation.load();
@@ -166,6 +167,24 @@ namespace soundscape {
                 // Mix into output with volume
                 for (int i = 0; i < numFrames * 2; i++) {
                     output[i] += m_StereoBuf[i] * vol;
+                }
+            } else if (src->needsSpatialize && !m_UseHrtf.load()) {
+
+                // Stereo pan over full 360°: sin(az) gives a smooth, periodic response with
+                // no jumps. 0=center, +π/2=right, π=center(behind), -π/2=left.
+                float az = src->azimuth.load();
+                float pan = sinf(az);
+                float panAngle = (pan + 1.0f) * (float)M_PI_4;
+
+                // Rear attenuation: raised cosine from 1.0 (ahead) to 0.0 (behind)
+                float rearFactor = 0.5f + (0.5f * 0.5f * (1.0f + cosf(az)));
+
+                float attVol = vol * rearFactor;
+                float leftGain  = cosf(panAngle) * attVol;
+                float rightGain = sinf(panAngle) * attVol;
+                for (int i = 0; i < numFrames; i++) {
+                    output[i * 2]     += m_MonoBuf[i] * leftGain;
+                    output[i * 2 + 1] += m_MonoBuf[i] * rightGain;
                 }
             } else {
                 // Non-spatialized: duplicate mono to stereo

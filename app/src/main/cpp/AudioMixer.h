@@ -28,6 +28,9 @@ namespace soundscape {
         void setBeaconVolume(float vol) { m_BeaconVolume.store(vol); }
         void setSpeechVolume(float vol) { m_SpeechVolume.store(vol); }
 
+        // Spatialization mode (called from game thread)
+        void setUseHrtf(bool use) { m_UseHrtf.store(use); }
+
         SteamAudioSpatializer *getSpatializer() { return m_Spatializer.get(); }
 
         // Oboe callback
@@ -35,7 +38,7 @@ namespace soundscape {
                 oboe::AudioStream *stream, void *audioData, int32_t numFrames) override;
 
     private:
-        static constexpr int FRAME_SIZE = 512;
+        static constexpr int FRAME_SIZE = 1024;
 
         int m_SampleRate = 48000;
         std::shared_ptr<oboe::AudioStream> m_Stream;
@@ -52,6 +55,7 @@ namespace soundscape {
 
         std::atomic<float> m_BeaconVolume{1.0f};
         std::atomic<float> m_SpeechVolume{1.0f};
+        std::atomic<bool>  m_UseHrtf{true};
 
         // Scratch buffers (allocated once, reused per callback)
         std::vector<float> m_MonoBuf;
