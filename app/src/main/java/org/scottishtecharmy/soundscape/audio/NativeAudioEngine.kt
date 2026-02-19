@@ -71,6 +71,7 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     private external fun updateGeometry(engineHandle: Long, latitude: Double, longitude: Double, heading: Double, focusGained: Boolean, duckingAllowed: Boolean, proximityNear: Double)
     private external fun setBeaconType(engineHandle: Long, beaconType: String)
     private external fun getListOfBeacons() : Array<String>
+    private external fun setHrtfEnabled(engineHandle: Long, enabled: Boolean)
 
     private var _ttsRunningStateChange = MutableStateFlow(false)
     val ttsRunningStateChange = _ttsRunningStateChange.asStateFlow()
@@ -396,6 +397,14 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     override fun getListOfBeaconTypes() : Array<String>
     {
         return getListOfBeacons()
+    }
+
+    override fun setHrtfEnabled(enabled: Boolean)
+    {
+        synchronized(engineMutex) {
+            if(engineHandle != 0L)
+                setHrtfEnabled(engineHandle, enabled)
+        }
     }
 
     /**

@@ -92,6 +92,8 @@ namespace soundscape {
         void ClearQueue();
         unsigned int GetQueueDepth();
 
+        void SetUseHrtf(bool use) { if (m_pMixer) m_pMixer->setUseHrtf(use); }
+
         void UpdateAudioConfig(std::string &utterance_id,
                                int sample_rate,
                                int audio_format,
