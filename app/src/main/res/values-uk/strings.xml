@@ -3,8 +3,8 @@
     <string name="general_alert_cancel">Скасувати</string>
     <string name="general_alert_done">Готово</string>
     <string name="general_loading_start">Підготовка…</string>
-    <string name="general_error_location_services_find_location_error">Програма не може визначити ваше поточне місцезнаходження.</string>
-    <string name="general_error_add_marker_error">Не вдалося створити мітку для цього місця. Повторіть спробу пізніше.</string>
+    <string name="general_error_location_services_find_location_error">"У нас виникли труднощі з  Вашим поточним місцезнаходженням."</string>
+    <string name="general_error_add_marker_error">"У нас виникли труднощі зі створенням  мітки для цього місця. Повторіть спробу пізніше."</string>
     <string name="settings_screen_title">Налаштування</string>
     <string name="settings_about_app">Про Soundscape</string>
     <string name="settings_section_units" tools:ignore="MissingTranslation">Одиниці вимірювання</string>
