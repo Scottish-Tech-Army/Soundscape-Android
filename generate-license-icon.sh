@@ -1,0 +1,2 @@
+convert \( -background transparent -fill white -weight Bold -pointsize 60 label:"Soundscape" \) \( -background transparent -fill white -weight 400 -pointsize 24 label:"with map data from" \) \( -background transparent -fill white -weight Bold -pointsize 40 label:"OpenStreetMap" \) -gravity Center -background transparent -append app/src/main/res/drawable/ic_licenses.png
+convert app/src/main/res/drawable/ic_licenses.png -trim +repage  -resize 180x180  -gravity center  -background none -extent 288x288   PNG32:app/src/main/res/drawable/round_licenses.png

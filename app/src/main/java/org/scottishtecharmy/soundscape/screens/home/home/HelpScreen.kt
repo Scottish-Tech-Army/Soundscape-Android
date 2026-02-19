@@ -318,7 +318,6 @@ val helpPages = listOf(
             Section(R.string.copyright_notices, SectionType.Paragraph, skipTalkback = true, markdown = true),
             Section(R.string.osm_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
             Section(R.string.openmaptiles_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.fmod_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
         )
     )
 )
