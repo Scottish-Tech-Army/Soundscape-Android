@@ -8,12 +8,12 @@
     <string name="settings_screen_title">Налаштування</string>
     <string name="settings_about_app">Про Soundscape</string>
     <string name="settings_section_units" tools:ignore="MissingTranslation">Одиниці вимірювання</string>
-    <string name="settings_units_imperial" tools:ignore="MissingTranslation">Британські (Милі, фути)</string>
-    <string name="settings_units_metric" tools:ignore="MissingTranslation">Метричні (Кілометри, метри)</string>
+    <string name="settings_units_imperial" tools:ignore="MissingTranslation">Британські (милі, фути)</string>
+    <string name="settings_units_metric" tools:ignore="MissingTranslation">Метричні (кілометри, метри)</string>
     <string name="voice_settings_speaking_rate">Темп мовлення</string>
     <string name="voice_voices">Голоси</string>
     <string name="beacon_settings_style">Стилі звукового маячка</string>
-    <string name="beacon_styles_current">Сучасний</string>
+    <string name="beacon_styles_current">Поточний</string>
     <string name="beacon_styles_original">Оригінальний</string>
     <string name="beacon_styles_flare">Спалах</string>
     <string name="beacon_styles_shimmer">Мерехтіння</string>
@@ -43,7 +43,7 @@
     <string name="location_detail_action_edit_hint">Змінити назву мітки або додати додаткові примітки</string>
     <string name="location_detail_action_share_hint">Поділитися цим місцем з іншою програмою</string>
     <string name="location_detail_action_preview_hint">Почати попередній перегляд цього місця</string>
-    <string name="location_detail_add_waypoint_existing_hint">Видалити цю мітку з вашого маршруту</string>
+    <string name="location_detail_add_waypoint_existing_hint">Видалити цю мітку з вашого маршруту.</string>
     <string name="location_detail_add_waypoint_new_hint">Додати цю мітку як маршрутну точку до вашого маршруту.</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Розгорнути карту на весь екран</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Вийти з повноекранного режиму карти</string>
@@ -1258,7 +1258,7 @@
     <string name="settings_explanation" tools:ignore="MissingTranslation">Налаштування програми згруповано нижче. Торкніться групи, щоб розгорнути її та переглянути доступні параметри.</string>
     <string name="settings_section_units_description" tools:ignore="MissingTranslation">Виберіть одиниці вимірювання для відстані</string>
     <string name="settings_section_search_network" tools:ignore="MissingTranslation">Режим пошуку</string>
-    <string name="settings_section_search_network_description" tools:ignore="MissingTranslation">Вкажіть, чи має пошук використовувати лише офлайн‑дані</string>
+    <string name="settings_section_search_network_description" tools:ignore="MissingTranslation">Контроль використання лише офлайн-даних під час пошуку</string>
     <string name="beacon_settings_style_description" tools:ignore="MissingTranslation">Оберіть стиль звукового маячка, який бажаєте використовувати</string>
     <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">Включати дороги без назв під час симуляції місцезнаходження</string>
     <string name="callouts_allow_callouts_description" tools:ignore="MissingTranslation">Увімкнути або вимкнути всі оголошення</string>
