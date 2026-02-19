@@ -68,7 +68,7 @@
     <string name="route_update_success_title">Оновлення виконано!</string>
     <string name="waypoint_title">Маршрутна точка</string>
     <string name="universal_links_alert_action_marker">Зберегти як мітку</string>
-    <string name="universal_links_marker_share_message">Перегляньте мою мітку Soundscape! *\"%s\"*</string>
+    <string name="universal_links_marker_share_message">Я поділився Soundscape міткою з Вами! *\"%s\"*</string>
     <string name="user_activity_save_marker_title">Зберегти мітку</string>
     <string name="routes_title">Маршрути</string>
     <string name="routes_action_deleted">Маршрут видалено</string>
