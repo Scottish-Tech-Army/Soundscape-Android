@@ -225,6 +225,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun continueLaunch(isFirstLaunch: Boolean) {
+        if (isFirstLaunch) {
+            // On the first launch, we want to take the user through the OnboardingActivity so
+            // switch to it immediately.
+            val intent = Intent(applicationContext, OnboardingActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            finish()
+        } else
+            onSplashComplete()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
 //      Enable the following code to generate stack traces when tracking down "A resource failed to
@@ -309,16 +321,7 @@ class MainActivity : AppCompatActivity() {
                             (System.currentTimeMillis() - timeNow) > attributionDelay
                         return if (minDelayPassed && splashSoundFinished) {
                             content.viewTreeObserver.removeOnPreDrawListener(this)
-                            if (isFirstLaunch) {
-                                // On the first launch, we want to take the user through the OnboardingActivity so
-                                // switch to it immediately.
-                                val intent = Intent(context, OnboardingActivity::class.java)
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                startActivity(intent)
-                                finish()
-                            }
-                            else
-                                onSplashComplete()
+                            continueLaunch(isFirstLaunch)
                             true
                         } else {
                             false
@@ -380,6 +383,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(newIntent)
             finish()
         }
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S)
+            continueLaunch(isFirstLaunch)
     }
 
     private fun onSplashComplete() {
