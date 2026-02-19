@@ -16,9 +16,6 @@
 #-keepattributes SourceFile,LineNumberTable
 #-dontobfuscate
 
-# Preserve fmod library
--keep class org.fmod.** { *; }
-
 # Preserve protobuf generated classes (for MVT vector_tiles)
 -keep class * extends com.google.protobuf.GeneratedMessageLite { *; }
 
