@@ -52,6 +52,7 @@ import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.LogcatHelper
+import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.utils.findExtracts
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
 import org.scottishtecharmy.soundscape.utils.processMaps
@@ -252,7 +253,7 @@ class MainActivity : AppCompatActivity() {
             BuildConfig.DUMMY_ANALYTICS ||
                     !hasPlayServices(this) ||
                     "true" == testLabSetting,
-            context = this
+            context = applicationContext
         )
 
 
@@ -385,13 +386,18 @@ class MainActivity : AppCompatActivity() {
         checkAndRequestNotificationPermissions()
         soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
 
+        val db = org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase.getMarkersInstance(applicationContext)
+        lifecycleScope.launch {
+            db.routeDao().getAllRoutesFlow().collect { routes ->
+                updateRouteShortcuts(routes)
+            }
+        }
+
         lifecycleScope.launch {
             soundscapeServiceConnection.serviceBoundState.collect {
                 Log.d(TAG, "serviceBoundState $it")
                 if (it) {
                     // The service has started
-
-                    registerRouteShortcuts()
 
                     // Update the app state in the service
                     this@MainActivity.lifecycle.addObserver(AppLifecycleObserver())
@@ -445,17 +451,24 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    private fun registerRouteShortcuts() {
-        val db = org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase.getMarkersInstance(this)
-        val routeDao = db.routeDao()
-        val routes = routeDao.getAllRoutes()
+    private fun updateRouteShortcuts(routes: List<RouteEntity>) {
+        val currentIds = routes.map { "route_${it.routeId}" }.toSet()
 
+        // Remove shortcuts for deleted routes
+        val toRemove = ShortcutManagerCompat.getDynamicShortcuts(applicationContext)
+            .map { it.id }
+            .filter { it.startsWith("route_") && it !in currentIds }
+        if (toRemove.isNotEmpty()) {
+            ShortcutManagerCompat.removeDynamicShortcuts(applicationContext, toRemove)
+        }
+
+        // Add/update shortcuts for current routes
         for (route in routes) {
             val intent = Intent(this, MainActivity::class.java)
             intent.action = Intent.ACTION_VIEW
             intent.data = "soundscape://route/${route.name}".toUri()
 
-            val shortcut = ShortcutInfoCompat.Builder(this, "route_${route.routeId}")
+            val shortcut = ShortcutInfoCompat.Builder(applicationContext, "route_${route.routeId}")
                 .setShortLabel(route.name)
                 .setLongLabel(route.name)
                 .addCapabilityBinding(
@@ -466,7 +479,7 @@ class MainActivity : AppCompatActivity() {
                 .setIntent(intent)
                 .build()
 
-            ShortcutManagerCompat.pushDynamicShortcut(this, shortcut)
+            ShortcutManagerCompat.pushDynamicShortcut(applicationContext, shortcut)
         }
     }
 
