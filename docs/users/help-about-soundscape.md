@@ -14,3 +14,4 @@ Soundscape wouldn't be possible without these fantastic third party libraries an
 [©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
 
 [©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
+
