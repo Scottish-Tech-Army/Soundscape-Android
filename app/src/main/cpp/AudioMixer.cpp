@@ -208,9 +208,14 @@ namespace soundscape {
                 m_Spatializer->spatialize(ms.effectId, m_MonoBuf.data(),
                                           m_StereoBuf.data(), numFrames, az, el);
 
+                // Reduce volume for rear-facing sounds
+                float cosAz = cosf(az);
+                if(cosAz < 0.0) {
+                    float rearFactor = 1.0f + (0.5f * cosAz);
+                    vol *= rearFactor;
+                }
+
                 // Mix into output with volume
-                float rearFactor = 0.5f + (0.5f * 0.5f * (1.0f + cosf(az)));
-                vol *= rearFactor;
                 for (int i = 0; i < numFrames * 2; i++) {
                     output[i] += m_StereoBuf[i] * vol;
                 }
@@ -222,8 +227,12 @@ namespace soundscape {
                 float pan = sinf(az);
                 float panAngle = (pan + 1.0f) * (float)M_PI_4;
 
-                // Rear attenuation: raised cosine from 1.0 (ahead) to 0.0 (behind)
-                float rearFactor = 0.5f + (0.5f * 0.5f * (1.0f + cosf(az)));
+                // Reduce volume for rear-facing sounds
+                float cosAz = cosf(az);
+                float rearFactor = 1.0;
+                if(cosAz < 0.0) {
+                    rearFactor = 1.0f + (0.5f * cosAz);
+                }
 
                 float attVol = vol * rearFactor;
                 float leftGain  = cosf(panAngle) * attVol;
