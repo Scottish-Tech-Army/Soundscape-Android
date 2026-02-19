@@ -11,7 +11,8 @@
 
 namespace soundscape {
 
-    class AudioMixer : public oboe::AudioStreamDataCallback {
+    class AudioMixer : public oboe::AudioStreamDataCallback,
+                       public oboe::AudioStreamErrorCallback {
     public:
         AudioMixer();
         ~AudioMixer();
@@ -33,11 +34,15 @@ namespace soundscape {
 
         SteamAudioSpatializer *getSpatializer() { return m_Spatializer.get(); }
 
-        // Oboe callback
+        // Oboe callbacks
         oboe::DataCallbackResult onAudioReady(
                 oboe::AudioStream *stream, void *audioData, int32_t numFrames) override;
+        void onErrorAfterClose(oboe::AudioStream *stream, oboe::Result result) override;
 
     private:
+        bool openStream();      // open, init spatializer and get ready to playback
+        bool startStream();     // start the stream
+        bool restart();
         static constexpr int FRAME_SIZE = 1024;
 
         int m_SampleRate = 48000;

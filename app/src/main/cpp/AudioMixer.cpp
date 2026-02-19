@@ -16,7 +16,7 @@ namespace soundscape {
         stop();
     }
 
-    bool AudioMixer::start() {
+    bool AudioMixer::openStream() {
         oboe::AudioStreamBuilder builder;
         builder.setDirection(oboe::Direction::Output)
                 ->setPerformanceMode(oboe::PerformanceMode::LowLatency)
@@ -24,7 +24,8 @@ namespace soundscape {
                 ->setFormat(oboe::AudioFormat::Float)
                 ->setChannelCount(oboe::ChannelCount::Stereo)
                 ->setFramesPerDataCallback(FRAME_SIZE)
-                ->setDataCallback(this);
+                ->setDataCallback(this)
+                ->setErrorCallback(this);
 
         auto result = builder.openStream(m_Stream);
         if (result != oboe::Result::OK) {
@@ -37,7 +38,6 @@ namespace soundscape {
               m_SampleRate, m_Stream->getFramesPerCallback(),
               m_Stream->getBufferCapacityInFrames());
 
-        // Create spatializer with actual stream sample rate
         m_Spatializer = std::make_unique<SteamAudioSpatializer>(m_SampleRate, FRAME_SIZE);
         if (!m_Spatializer->isInitialized()) {
             TRACE("AudioMixer: spatializer init failed");
@@ -46,20 +46,29 @@ namespace soundscape {
             return false;
         }
 
-        // Resize scratch buffers to handle any callback size
         m_MonoBuf.resize(m_Stream->getBufferCapacityInFrames());
         m_StereoBuf.resize(m_Stream->getBufferCapacityInFrames() * 2);
 
-        result = m_Stream->requestStart();
+        return true;
+    }
+
+    bool AudioMixer::startStream() {
+        // Start the stream
+        auto result = m_Stream->requestStart();
         if (result != oboe::Result::OK) {
             TRACE("AudioMixer: failed to start stream: %s", oboe::convertToText(result));
             m_Stream->close();
             m_Stream.reset();
             return false;
         }
-
-        TRACE("AudioMixer: stream started");
         return true;
+    }
+
+    bool AudioMixer::start() {
+        if(!openStream())
+            return false;
+
+        return startStream();
     }
 
     void AudioMixer::stop() {
@@ -117,6 +126,41 @@ namespace soundscape {
             m_Spatializer->removeSourceEffect(effectId);
     }
 
+    bool AudioMixer::restart() {
+        TRACE("AudioMixer: restarting after disconnect");
+        // Stream is already closed by Oboe before onErrorAfterClose fires; just drop the handle.
+        m_Stream.reset();
+
+        int prevRate = m_SampleRate;
+        if (!openStream())
+            return false;
+
+        // Re-register all existing sources with the new spatializer.
+        bool rateChanged = (m_SampleRate != prevRate);
+        if (rateChanged)
+            TRACE("AudioMixer: sample rate changed %d -> %d on restart", prevRate, m_SampleRate);
+        {
+            std::lock_guard<std::mutex> guard(m_SourcesMutex);
+            for (auto &ms : m_Sources) {
+                if (rateChanged)
+                    ms.source->setDeviceSampleRate(m_SampleRate);
+                ms.effectId = ms.source->needsSpatialize
+                              ? m_Spatializer->createSourceEffect()
+                              : -1;
+            }
+        }
+
+        // Start the stream
+        return startStream();
+    }
+
+    void AudioMixer::onErrorAfterClose(oboe::AudioStream * /*stream*/, oboe::Result result) {
+        TRACE("AudioMixer: onErrorAfterClose: %s", oboe::convertToText(result));
+        if (result == oboe::Result::ErrorDisconnected) {
+            restart();
+        }
+    }
+
     oboe::DataCallbackResult AudioMixer::onAudioReady(
             oboe::AudioStream *stream, void *audioData, int32_t numFrames) {
 
@@ -165,6 +209,8 @@ namespace soundscape {
                                           m_StereoBuf.data(), numFrames, az, el);
 
                 // Mix into output with volume
+                float rearFactor = 0.5f + (0.5f * 0.5f * (1.0f + cosf(az)));
+                vol *= rearFactor;
                 for (int i = 0; i < numFrames * 2; i++) {
                     output[i] += m_StereoBuf[i] * vol;
                 }
