@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Merki og leiðir eytt</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Upplýsingar um nýja útgáfu</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Loka útgáfuupplýsingum</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nVið erum að nálgast þann áfanga að færa forritið út úr Beta‑útgáfu. Það þýðir einfaldlega að við teljum forritið virka vel fyrir flestar notendur. Nú er góður tími til að láta okkur vita ef upp koma vandamál, hvort sem þau snúa að virkni forritsins eða þýðingum.\n\nVinsamlegast tilkynnið öll vandamál, jafnvel þótt þau séu smávægileg, með því að nota valkostinn *hafa samband, stuðningur* í aðalvalmyndinni.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nVið erum að nálgast þann áfanga að fara úr Beta‑útgáfu. Það þýðir einfaldlega að við teljum forritið virka vel fyrir flesta. Nú er tilvalið að láta okkur vita ef upp koma vandamál, hvort sem þau snúa að virkni forritsins eða þýðingum.\n\nÞessi útgáfa bætir hljóðstaðsetningu og bætir við flýtileiðum til að hefja spilun leiða beint úr ræsinni.\n\nVinsamlegast tilkynnið öll vandamál, hversu smávægileg sem þau kunna að vera, með valkostinum *hafa samband, stuðningur* í aðalvalmyndinni.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Leyfi opins hugbúnaðar</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Ferjuhöfn</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s ferjuhöfn</string>
