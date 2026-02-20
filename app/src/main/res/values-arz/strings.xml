@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">تم حذف العلامات والطرق</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">معلومات الإصدار الجديد</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">إغلاق مربع حوار الإصدار الجديد</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nاحنا على وشك الخروج من النسخة التجريبية (Beta). وده بس معناه إننا شايفين إن التطبيق شغال كويس لمعظم الناس. دلوقتي وقت مناسب إنك تبلغنا لو في أي مشاكل سواء في وظائف التطبيق أو في الترجمات.\n\nمن فضلك بلّغ عن أي مشكلة تواجهك، مهما كانت بسيطة، عن طريق خيار *الاتصال للدعم* في القائمة الرئيسية.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nنحن نقترب من النقطة التي سننتقل فيها من الإصدار التجريبي. معنى ده ببساطة إننا نعتقد أن التطبيق بيعمل بشكل جيد لمعظم الناس. الوقت الحالي مناسب جدًا إنك تبلغنا بأي مشاكل سواء كانت في وظائف التطبيق أو في الترجمات.\n\nيتضمن هذا الإصدار تحسين تموضع الصوت، بالإضافة إلى إضافة اختصارات في التطبيق تتيح بدء تشغيل الطرق مباشرةً من المشغّل.\n\nيرجى الإبلاغ عن أي مشاكل تواجهها، مهما كانت بسيطة، عبر خيار *الاتصال للدعم* في القائمة الرئيسية.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">تراخيص المصادر المفتوحة</string>
     <string name="osm_office" tools:ignore="MissingTranslation">مكتب</string>
     <string name="osm_school" tools:ignore="MissingTranslation">مدرسة</string>
