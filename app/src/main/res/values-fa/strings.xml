@@ -996,7 +996,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">نشانه‌ها و مسیرها حذف شدند</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">اطلاعات نسخه‌ی جدید</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">بستن پنجره‌ی اطلاعات نسخه‌ی جدید</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nما در حال نزدیک شدن به مرحله‌ای هستیم که از وضعیت انتشار بتا خارج می‌شویم. این بدان معناست که ما معتقدیم اپلیکیشن برای اکثر کاربران به‌خوبی کار می‌کند. اکنون زمان مناسبی است تا اگر مشکلی در عملکرد اپ یا در ترجمه‌ها مشاهده می‌کنید، به ما اطلاع دهید.\n\nلطفاً هرگونه مشکلی، هرچقدر هم کوچک باشد، از طریق گزینه‌ی *«تماس با پشتیبانی»* در منوی اصلی برای ما گزارش کنید.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nما در آستانهٔ خروج از نسخهٔ بتا هستیم. این صرفاً به این معنی است که فکر می‌کنیم اپ برای اکثر کاربران به‌خوبی کار می‌کند. اکنون فرصت مناسبی است تا در صورت وجود هرگونه مشکل — چه در عملکرد اپ و چه در ترجمه‌ها — به ما اطلاع دهید.\n\nدر این نسخه، موقعیت‌یابی صوتی بهبود یافته و میانبرهای اپلیکیشن برای شروع پخش مسیرها مستقیماً از لانچر افزوده شده‌اند.\n\nلطفاً هر مشکلی که مشاهده می‌کنید، هرچقدر هم کوچک باشد، از طریق گزینهٔ *«تماس با پشتیبانی»* در منوی اصلی گزارش دهید.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">مجوزهای متن‌باز</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">پایانه کشتی</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s پایانه کشتی</string>
