@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Platsmarkörer och rutter har tagits bort</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Information om ny version</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Stäng dialogrutan om ny version</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nVi närmar oss punkten då vi lämnar betaversionen. Det betyder bara att vi anser att appen fungerar väl för de flesta. Det är ett utmärkt tillfälle att meddela oss om det finns problem, antingen med appens funktioner eller med översättningarna.\n\nVänligen rapportera alla problem du har, hur små de än må vara, via alternativet *Kontakta supporten* i huvudmenyn.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nVi närmar oss den punkt då vi lämnar betaversionen. Det betyder bara att vi bedömer att appen fungerar bra för de flesta. Nu är ett utmärkt tillfälle att meddela oss om det finns problem, antingen i appens funktionalitet eller i översättningarna.\n\nDenna version innehåller förbättrad ljudpositionering samt nya appgenvägar som låter dig starta uppspelning av rutter direkt från startprogrammet.\n\nRapportera gärna eventuella problem, hur små de än må vara, via alternativet *\"Kontakta supporten\"* i huvudmenyn.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licenser för öppen källkod</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Färjeterminal</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Färjeterminal</string>
