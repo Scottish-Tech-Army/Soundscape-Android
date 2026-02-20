@@ -1045,7 +1045,7 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">新版本信息</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">关闭新版本对话框</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">开源许可证</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\n我们即将结束 Beta 测试阶段，进入正式发布。这只是表示我们认为该应用对大多数用户而言运行良好。现在正是向我们反馈问题的好时机，无论是应用功能方面的问题，还是翻译方面的问题。\n\n请通过主菜单中的*联系支持*选项报告您遇到的任何问题，不论问题大小。\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\n我们正接近从测试（Beta）阶段过渡到正式版。这意味着我们认为应用对大多数用户来说运行良好。现在正是告知我们应用功能或翻译是否存在问题的好时机。\n\n本次更新改进了音频定位，并新增了应用快捷方式，可从启动器直接开始播放路线。\n\n无论问题大小，请通过主菜单中的*联系支持*选项向我们反馈。\n</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape 探索使用创新的音频技术，帮助人们更好地感知周围环境，从而更加自信、自主地出行。</string>
     <string name="osm_office_building" tools:ignore="MissingTranslation">办公楼</string>
     <string name="osm_school_building" tools:ignore="MissingTranslation">教学楼</string>
