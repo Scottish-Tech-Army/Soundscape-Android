@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Mærker og ruter er slettet</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Oplysninger om ny udgivelse</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Luk dialog om ny udgivelse</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nVi nærmer os det tidspunkt, hvor vi går ud af betafasen. Det betyder blot, at vi mener, at appen fungerer godt for de fleste. Det er et godt tidspunkt til at fortælle os, hvis der er problemer – enten med appens funktionalitet eller med oversættelserne.\n\nRapportér venligst alle problemer, uanset hvor små de måtte være, via indstillingen *Kontakt support* i hovedmenuen.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nVi nærmer os det punkt, hvor vi går ud af beta-udgivelsen. Det betyder blot, at vi mener, at appen fungerer godt for de fleste. Nu er et godt tidspunkt til at fortælle os, hvis der er problemer med appens funktionalitet eller med oversættelserne.\n\nDenne udgivelse indeholder forbedret lydpositionering samt tilføjelsen af appgenveje, så du kan starte afspilning af ruter direkte fra startskærmen.\n\nRapportér venligst eventuelle problemer, uanset hvor små de måtte være, via valgmuligheden *Kontakt support* i hovedmenuen.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Open source-licenser</string>
     <string name="osm_office" tools:ignore="MissingTranslation">Kontor</string>
     <string name="osm_school" tools:ignore="MissingTranslation">Skole</string>
