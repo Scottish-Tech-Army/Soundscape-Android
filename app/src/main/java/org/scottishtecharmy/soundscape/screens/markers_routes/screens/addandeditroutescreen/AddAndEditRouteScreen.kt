@@ -228,7 +228,8 @@ fun AddAndEditRouteScreen(
                     navController.popBackStack()
                 }
                 ActionType.DELETE -> {
-                    navController.popBackStack(HomeRoutes.MarkersAndRoutes.route, false)
+                    // The route has been deleted, so navigate directly to the routes tab
+                    navController.navigate(HomeRoutes.MarkersAndRoutes.route + "?tab=routes",)
                 }
                 else -> {
                     assert(false)
