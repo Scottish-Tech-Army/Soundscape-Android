@@ -1011,6 +1011,8 @@
 <string name="new_version_info_details" tools:ignore="MissingTranslation">"
 We are approaching the point where we move out of Beta release. That just means that we think the app is working well for most people. Now's a great time to let us know if there are problems either within the app functionality, or within the translations.
 
+This release has improved audio positioning as well as the addition of app shortcuts to start playback of routes directly from the launcher.
+
 Please report any problems that you have, however small they may be via the *Contact Support* option in the main menu.
 "</string>
 <!-- Text for the About Soundscape menu option. It describes what the app does -->
