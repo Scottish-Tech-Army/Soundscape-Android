@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">マーカーおよびルートを削除しました</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">新しいリリース情報</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">新しいリリース情報を閉じる</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nまもなくベータ版を終了して正式リリースに移行する段階に入ります。これは、多くの方にとってアプリが良好に動作していると考えていることを意味します。アプリの機能や翻訳に問題がある場合は、今がそのことをお知らせいただく良い機会です。\n\nどんなに小さな問題でも、メインメニューの *サポートに連絡* オプションからご報告ください。\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nベータ版の提供を終了する時期が近づいています。これは、アプリが多くの方に対して正常に動作していると考えていることを意味します。アプリの機能や翻訳に問題があれば、今が報告する絶好のタイミングです。\n\n今回のリリースでは、オーディオの定位（音の位置表現）が改善され、ランチャーから直接ルートの再生を開始できるアプリのショートカットが追加されました。\n\nどんなに小さなことでも問題があれば、メインメニューの *サポートに連絡* オプションからご報告ください。\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">オープンソースライセンス</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">フェリーターミナル</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s フェリーターミナル</string>
