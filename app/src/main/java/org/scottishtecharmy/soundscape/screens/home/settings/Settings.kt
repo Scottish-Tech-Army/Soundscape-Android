@@ -6,6 +6,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -56,6 +57,7 @@ import org.scottishtecharmy.soundscape.screens.onboarding.language.MockLanguageP
 import org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage.MockStoragePreviewData
 import org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage.StorageDropDownMenu
 import org.scottishtecharmy.soundscape.screens.talkbackHint
+import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -80,7 +82,8 @@ fun ListPreferenceItem(description: String,
     Row(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.surfaceContainer)
-            .smallPadding()
+            .extraSmallPadding()
+            .defaultMinSize(minHeight = spacing.targetSize)
             .clickable(role = Role.RadioButton) {
                 onClick()
             }
@@ -109,7 +112,7 @@ fun ListPreferenceItem(description: String,
         Icon(
             modifier = Modifier
                 .align(Alignment.CenterVertically)
-                .width(spacing.icon),
+                .width(spacing.targetSize),
             imageVector =
                 if(value == currentValue) Icons.Filled.CheckBox
                 else Icons.Filled.CheckBoxOutlineBlank,
@@ -136,7 +139,8 @@ fun ExpandableSectionHeader(
                 role = Role.Button,
                 onClickLabel = if (expanded) "Collapse section" else "Expand section"
             ) { onToggle() }
-            .padding(spacing.extraSmall),
+            .extraSmallPadding()
+            .defaultMinSize(minHeight = spacing.targetSize),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {

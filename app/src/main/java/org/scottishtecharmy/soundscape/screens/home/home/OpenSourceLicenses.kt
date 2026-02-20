@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.screens.home.home
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -10,6 +11,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -29,6 +31,7 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.FlexibleAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.viewmodels.LicenseInfo
 import org.scottishtecharmy.soundscape.viewmodels.OpenSourceLicensesViewModel
 
@@ -75,14 +78,17 @@ fun OpenSourceLicenses(
             LazyColumn(modifier = Modifier.padding(padding)) {
                 itemsIndexed(licenses) { _, license ->
                     HorizontalDivider()
-                    Column(modifier = Modifier
-                        .clickable { onLicenseClick(license) }
-                        .smallPadding()
+                    Column(
+                        modifier = Modifier
+                            .clickable { onLicenseClick(license) }
+                            .defaultMinSize(minHeight = spacing.targetSize)
+                            .smallPadding(),
+                        verticalArrangement = Arrangement.Center
                     ) {
                         if (!license.project.isNullOrEmpty())
                             Text(text = license.project)
 
-                        if (license.isExpanded) {
+                       if (license.isExpanded) {
                             if (license.licenses.isNotEmpty())
                                 Text(
                                     text = buildAnnotatedString {
