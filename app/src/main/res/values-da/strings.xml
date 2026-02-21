@@ -10,16 +10,16 @@
     <string name="voice_settings_speaking_rate">Talehastighed</string>
     <string name="voice_voices">Stemmer</string>
     <string name="beacon_settings_style">Stilarter for lydfyr</string>
-    <string name="beacon_styles_current">Igangværende</string>
-    <string name="beacon_styles_original">Oprindelig</string>
+    <string name="beacon_styles_current">Nuværende</string>
+    <string name="beacon_styles_original">Original</string>
     <string name="beacon_styles_flare">Lysglimt</string>
     <string name="beacon_styles_shimmer">Glitre</string>
     <string name="beacon_styles_tactile">Taktil</string>
     <string name="beacon_styles_ping">Ping</string>
     <string name="beacon_styles_drop">Dråbe</string>
     <string name="beacon_styles_signal">Signal</string>
-    <string name="beacon_styles_signal_slow">Signal (langsomt)</string>
-    <string name="beacon_styles_signal_very_slow">Signal (meget langsomt)</string>
+    <string name="beacon_styles_signal_slow">Signal (langsom)</string>
+    <string name="beacon_styles_signal_very_slow">Signal (meget langsom)</string>
     <string name="beacon_styles_mallet">Hammer</string>
     <string name="beacon_styles_mallet_slow">Hammer (langsom)</string>
     <string name="beacon_styles_mallet_very_slow">Hammer (meget langsom)</string>
@@ -51,14 +51,14 @@
     <string name="route_detail_action_create">Ny Rute</string>
     <string name="route_detail_action_create_hint">Opret en ny rute</string>
     <string name="route_end_completed_accessibility">Rute afsluttet! %s</string>
-    <string name="route_detail_action_previous">Forrige waypoint</string>
+    <string name="route_detail_action_previous">Forrige vejpunkt</string>
     <string name="route_detail_action_previous_hint">Flyt lydfyret til det forrige vejpunkt</string>
-    <string name="route_detail_action_next">Næste waypoint</string>
+    <string name="route_detail_action_next">Næste vejpunkt</string>
     <string name="route_detail_action_next_hint">Flyt lydfyret til det næste vejpunkt</string>
     <string name="route_detail_edit_description">Beskrivelse</string>
     <string name="route_detail_edit_waypoints_button">Tilføj vejpunkter</string>
     <string name="route_detail_edit_delete">Slet rute</string>
-    <string name="route_update_success_title">Opdatering fuldført!</string>
+    <string name="route_update_success_title">Opdatering gennemført!</string>
     <string name="waypoint_title">Vejpunkt</string>
     <string name="universal_links_alert_action_marker">Gem som mærke</string>
     <string name="universal_links_marker_share_message">Jeg har delt et Soundscape-mærke med dig! *\"%s\"*</string>
@@ -67,7 +67,7 @@
     <string name="routes_action_deleted">Rute er slettet</string>
     <string name="routes_no_routes_title">Introduktion til rutevejpunkter</string>
     <string name="routes_no_routes_hint_1">Opret en rute til dig selv eller for en anden ved at organisere et sæt mærker som vejpunkter på en rute.</string>
-    <string name="routes_no_routes_hint_2">Når du er ud på en rute med Soundscape, vil du blive informeret ved ankomsten til hvert vejpunkt, og lydfyret vil automatisk gå videre til næste vejpunkt.</string>
+    <string name="routes_no_routes_hint_2">Når du er ude på din rute med Soundscape, vil du blive informeret ved ankomst til hvert vejpunkt, og lydfyret vil automatisk gå videre til næste vejpunkt.</string>
     <string name="routes_sort_by_name">Sorter efter navn</string>
     <string name="routes_sort_by_distance">Sorter efter afstand</string>
     <string name="markers_title">Mærker</string>
@@ -89,7 +89,7 @@
     <string name="search_nearby_screen_title">Steder i nærheden</string>
     <string name="search_view_markers">Mærker og Ruter</string>
     <string name="search_button_markers_accessibility_hint">Vælg eller rediger mærker, du har gemt</string>
-    <string name="search_button_nearby_accessibility_hint">Udforsk restauranter, stoppesteder for offentlig transport og mere i nærheden</string>
+    <string name="search_button_nearby_accessibility_hint">Udforsk restauranter, stoppesteder og mere i nærheden</string>
     <string name="search_button_current_location_accessibility_hint">Forhåndsvis, marker eller del din aktuelle placering med en ven</string>
     <string name="filter_all">Alle steder</string>
     <string name="filter_transit">Offentlig transport</string>
@@ -109,7 +109,7 @@
     <string name="sleep_sleeping_message">Soundscape er i øjeblikket i dvale. Dette forhindrer Soundscape i at bruge lokalitetstjenester eller hente data. Dette sparer på batteriet, når du ikke bruger Soundscape. Tryk på knappen nedenfor for at aktivere Soundscape.</string>
     <string name="sleep_sleep_acc_hint">Sæt Soundscape i dvale</string>
     <string name="sleep_wake_up_now">Aktivér nu</string>
-    <string name="intersection_approaching_intersection">Nærmer sig kryds</string>
+    <string name="intersection_approaching_intersection">Nærmer sig vejkryds</string>
     <string name="directions_at_poi">Ved %s</string>
     <string name="directions_my_location">Min placering</string>
     <string name="directions_near_name">Nær %s</string>
@@ -442,8 +442,8 @@
     <string name="last_entry_in_list" tools:ignore="MissingTranslation">" og %s"</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Vis kortet i fuld skærm</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Afslut fuldskærmsvisning af kortet</string>
-    <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Deaktiveret, da ruten allerede er i starten</string>
-    <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">Deaktiveret, da ruten allerede er i slutningen</string>
+    <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Deaktiveret, da ruten allerede er ved starten</string>
+    <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">Deaktiveret, da ruten allerede er ved slutningen</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">Nær %1$s og tæt på %2$s</string>
     <string name="menu_contact_support" tools:ignore="MissingTranslation">Kontakt support</string>
     <string name="permissions_required" tools:ignore="MissingTranslation">Appen kræver tilladelse til at bruge lokalitetstjenester for at kunne køre.</string>
@@ -1263,7 +1263,7 @@
     <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">Medtag unavngivne veje under lokalitetssimulering</string>
     <string name="callouts_allow_callouts_description" tools:ignore="MissingTranslation">Slå alle lydbeskeder til eller fra</string>
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Steder i nærheden, såsom butikker og restauranter</string>
-    <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Oplysninger om kryds og transport</string>
+    <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Oplysninger om vejkryds og transport</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Opdateringer om afstanden til lydfyret, når det er indstillet</string>
     <string name="menu_manage_language" tools:ignore="MissingTranslation">"Sprog og region "</string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Online-søgning kan bruge resultatets lokale sprog eller tvinges til at returnere engelsk, fransk eller tysk.</string>
