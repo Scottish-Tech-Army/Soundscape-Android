@@ -441,7 +441,7 @@
     <string name="osm_main_entrance" tools:ignore="MissingTranslation">Haupteingang</string>
     <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s von %3$s</string>
     <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">Wir führen diesen Ortungsdienst im Vordergrund aus</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Der Soundscape-Ortungsdienst läuft auch, wenn das Telefon gesperrt ist.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Suche abbrechen</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Bahnhof</string>
     <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s Bahnhof</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Auf %1$s umstellen</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Aktuelle Sprache beibehalten</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">In diese Richtung zur nächsten Kreuzung gehen.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">Route in der Datenbank nicht gefunden.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">Löschen der Route fehlgeschlagen.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">Speichern der Route fehlgeschlagen.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">Der Soundscape-Ortungsdienst läuft weiterhin.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Download abgeschlossen</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Download abgebrochen</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">Fehler beim Download</string>
 </resources>
