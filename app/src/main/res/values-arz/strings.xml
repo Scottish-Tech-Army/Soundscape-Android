@@ -434,7 +434,7 @@
     <string name="faq_tip_create_marker_at_bus_stop">إذا كان هناك طريق للحافلة تأخذك بانتظام ، فقم بتعيين التوقف والخروج من العلامات. وبهذه الطريقة ، سيتم حفظها حتى تتمكن من العثور عليها مرة أخرى بسهولة ، فقط انتقل إلى * \"إدارة العلامات\" * من القائمة والعثور عليها في القائمة. يمكنك تعيين منارة عليها وستحصل على تحديثات دورية حول مدى قربك من توقفك. ملاحظة: يمكنك إيقاف تشغيل الصوت الإيقاعي وستظل تحصل على تحديثات عن بعد على طول الطريق.</string>
     <string name="no_language_selected">لم يتم اختيار لغة</string>
     <string name="first_launch_permissions_notification">إشعارات</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">نحن ندير خدمة الموقع هذه في المقدمة</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">خدمة موقع Soundscape تعمل حتى عندما يكون الهاتف مقفلاً.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">إلغاء البحث</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">محطة القطار\n\n ،</string>
     <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s\nمحطة قطار</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">التبديل إلى %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">ابقَ على اللغة الحالية</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">تحرّك في هذا الاتجاه نحو التقاطع التالي.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">تعذّر العثور على الطريق في قاعدة البيانات.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">فشل حذف الطريق.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">فشل حفظ الطريق.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">خدمة موقع Soundscape لا تزال قيد التشغيل.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">اكتمل التنزيل</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">تم إلغاء التنزيل</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">خطأ في التنزيل</string>
 </resources>
