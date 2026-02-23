@@ -7,6 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
@@ -105,7 +106,10 @@ class AddAndEditRouteViewModel @Inject constructor(
             } catch (e: Exception) {
                 Log.e("EditRouteViewModel", "Error loading route: ${e.message}")
                 _uiState.value =
-                    _uiState.value.copy(errorMessage = "Failed to load route: ${e.message}")
+                    _uiState.value.copy(
+                        errorMessage = soundscapeServiceConnection.soundscapeService?.localizedContext?.getString(
+                            R.string.error_message_route_not_found) ?: ""
+                    )
             }
         }
     }
@@ -120,7 +124,10 @@ class AddAndEditRouteViewModel @Inject constructor(
             } catch (e: Exception) {
                 Log.e("EditRouteViewModel", "Error loading route: ${e.message}")
                 _uiState.value =
-                    _uiState.value.copy(errorMessage = "Failed to load route: ${e.message}")
+                    _uiState.value.copy(
+                        errorMessage = soundscapeServiceConnection.soundscapeService?.localizedContext?.getString(
+                            R.string.error_message_route_not_found) ?: ""
+                    )
             }
         }
     }
@@ -155,7 +162,11 @@ class AddAndEditRouteViewModel @Inject constructor(
                 )
             } catch (e: Exception) {
                 Log.e("EditRouteViewModel", "Error deleting route: ${e.message}")
-                _uiState.value = _uiState.value.copy(errorMessage = "Error deleting route: ${e.message}")
+                _uiState.value =
+                    _uiState.value.copy(
+                        errorMessage = soundscapeServiceConnection.soundscapeService?.localizedContext?.getString(
+                            R.string.error_message_deleting_route) ?: ""
+                    )
             }
         }
     }
@@ -213,7 +224,11 @@ class AddAndEditRouteViewModel @Inject constructor(
                 )
             } catch (e: Exception) {
                 Log.e("AddRouteViewModel", "Error saving route: ${e.message}")
-                _uiState.value = _uiState.value.copy(errorMessage = "Error saving route: ${e.message}")
+                _uiState.value =
+                    _uiState.value.copy(
+                        errorMessage = soundscapeServiceConnection.soundscapeService?.localizedContext?.getString(
+                            R.string.error_message_saving_route) ?: ""
+                    )
             }
         }
     }

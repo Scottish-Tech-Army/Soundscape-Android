@@ -108,7 +108,7 @@ class MainActivity : AppCompatActivity() {
 
             else -> {
                 // No location access granted, service can't be started as it will crash
-                Toast.makeText(this, "Fine Location permission is required.", Toast.LENGTH_SHORT)
+                Toast.makeText(this, this.getString(R.string.permissions_required), Toast.LENGTH_SHORT)
                     .show()
             }
         }
