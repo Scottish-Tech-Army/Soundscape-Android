@@ -441,7 +441,7 @@
     <string name="osm_main_entrance" tools:ignore="MissingTranslation">pääsisäänkäynti</string>
     <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s osoitteessa %3$s</string>
     <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">Tämä sijaintipalvelu on käynnissä etualalla</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Soundscapen sijaintipalvelu toimii myös, kun puhelin on lukittu.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Peruuta haku</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Rautatieasema</string>
     <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s Rautatieasema</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Vaihda kieleksi %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Pidä nykyinen kieli</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">Mene tässä suunnassa seuraavaan risteykseen.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">Tietokannasta ei löytynyt reittiä.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">Reitin poistaminen epäonnistui.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">Reitin tallentaminen epäonnistui.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">Soundscapen sijaintipalvelu on edelleen käynnissä.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Lataus valmis</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Lataus peruutettu</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">Latausvirhe</string>
 </resources>
