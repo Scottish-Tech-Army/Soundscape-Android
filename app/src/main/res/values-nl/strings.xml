@@ -441,7 +441,7 @@
     <string name="osm_main_entrance" tools:ignore="MissingTranslation">Hoofdingang</string>
     <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s van %3$s</string>
     <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">Deze locatievoorziening wordt op de voorgrond uitgevoerd</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">De Soundscape-locatieservice blijft actief, ook wanneer de telefoon vergrendeld is.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Zoekopdracht annuleren</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Treinstation</string>
     <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s treinstation</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Overschakelen naar %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Huidige taal behouden</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">In deze richting naar het volgende kruispunt bewegen.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">We kunnen de route niet in de database vinden.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">Het verwijderen van de route is mislukt.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">Het opslaan van de route is mislukt.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">De Soundscape-locatieservice is nog actief.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Download voltooid</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Download geannuleerd</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">Fout bij downloaden</string>
 </resources>
