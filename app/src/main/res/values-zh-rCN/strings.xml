@@ -955,7 +955,7 @@
     <string name="faq_tip_create_marker_at_bus_stop">如果有一条您经常乘坐的公交线路，请将您的上车站和下车站设为标记点。这样它们会被保存，方便您再次找到，只需从菜单中进入*\"管理标记点\"*并在列表中找到它们。您可以在上面设置信标，这样会定期收到关于距下车站距离的更新。注意：您可以关闭节奏声，仍然会收到沿途的距离更新。</string>
     <string name="no_language_selected">未选择语言</string>
     <string name="first_launch_permissions_notification">通知</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">我们正在前台运行此定位服务</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">即使手机锁屏，Soundscape 的定位服务仍会运行。</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">取消搜索</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">音频</string>
     <string name="menu_manage_language" tools:ignore="MissingTranslation">"语言和地区 "</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">切换为 %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">保留当前语言</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">向此方向移动至下一个路口。</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">未能在数据库中找到路线</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">删除路线失败</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">保存路线失败</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">Soundscape 的定位服务仍在运行</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">下载完成</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">下载已取消</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">下载错误</string>
 </resources>
