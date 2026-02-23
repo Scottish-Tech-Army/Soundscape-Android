@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.services
 
 import android.content.Context
+import android.content.res.Configuration
 import android.annotation.SuppressLint
 import android.app.ForegroundServiceStartNotAllowedException
 import android.app.Notification
@@ -59,6 +60,7 @@ import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -128,6 +130,7 @@ class SoundscapeService : MediaSessionService() {
 
     // Geo engine
     private var geoEngine = GeoEngine()
+    lateinit var localizedContext: Context
 
     // Flow to return beacon location
     private val _beaconFlow = MutableStateFlow(BeaconState())
@@ -189,7 +192,11 @@ class SoundscapeService : MediaSessionService() {
 
         locationProvider.start(this)
         directionProvider.start(audioEngine, locationProvider)
-        geoEngine.start(application, locationProvider, directionProvider, this)
+        val configLocale = getCurrentLocale()
+        val configuration = Configuration(applicationContext.resources.configuration)
+        configuration.setLocale(configLocale)
+        localizedContext = applicationContext.createConfigurationContext(configuration)
+        geoEngine.start(application, locationProvider, directionProvider, this, localizedContext)
     }
 
     fun tileGridUpdated() {
@@ -219,8 +226,11 @@ class SoundscapeService : MediaSessionService() {
                 Analytics.getInstance().crashLogNotes("Start geo-engine")
                 locationProvider.start(this)
                 directionProvider.start(audioEngine, locationProvider)
-
-                geoEngine.start(application, locationProvider, directionProvider, this)
+                val configLocale = getCurrentLocale()
+                val configuration = Configuration(applicationContext.resources.configuration)
+                configuration.setLocale(configLocale)
+                localizedContext = applicationContext.createConfigurationContext(configuration)
+                geoEngine.start(application, locationProvider, directionProvider, this, localizedContext)
                 started = true
             }
         }
@@ -352,7 +362,7 @@ class SoundscapeService : MediaSessionService() {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(
                             this@SoundscapeService,
-                            "Soundscape Service is still running.",
+                            localizedContext.getString(R.string.service_still_running),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -607,8 +617,8 @@ class SoundscapeService : MediaSessionService() {
     }
 
     fun announceStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {
-        val compassLabel = geoEngine.localizedContext.getString(getCompassLabel(bestChoice.heading.toInt()))
-        val go = geoEngine.localizedContext.getString(R.string.preview_go_title)
+        val compassLabel = localizedContext.getString(getCompassLabel(bestChoice.heading.toInt()))
+        val go = localizedContext.getString(R.string.preview_go_title)
         speakText("$go ${bestChoice.name} $compassLabel", AudioType.STANDARD)
     }
 

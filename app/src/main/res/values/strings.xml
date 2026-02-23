@@ -14,6 +14,14 @@
 <string name="general_error_add_marker_error">"We are having trouble marking this place. Try again later."</string>
 <!-- Error message that Soundscape can't add a marker to a route because it's already in the route.-->
 <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">"There's already a marker in the route at this location, we cannot add it again."</string>
+<!-- Error message that Soundscape couldn't find a route that matched the ID it has. -->
+<string name="error_message_route_not_found" tools:ignore="MissingTranslation">"Failed to find route in database."</string>
+<!-- Error message that Soundscape couldn't delete a route. -->
+<string name="error_message_deleting_route" tools:ignore="MissingTranslation">"Failed to delete route."</string>
+<!-- Error message that Soundscape couldn't save a route. -->
+<string name="error_message_saving_route" tools:ignore="MissingTranslation">"Failed to save route."</string>
+<!-- Notification message displayed so that user knows that the Soundscape service is running as per Android requirements -->
+<string name="service_still_running" tools:ignore="MissingTranslation">"Soundscape location service is still running."</string>
 <!-- Menu button to get to the Settings page -->
 <string name="settings_screen_title">"Settings"</string>
 <!-- Text explaining how the settings screen works -->
@@ -820,7 +828,7 @@
 <!-- Notifications are a type of Android permission required to run the app -->
 <string name="first_launch_permissions_notification">Notifications</string>
 <!-- Message appears as notification when app is running -->
-<string name="notification_text" tools:ignore="MissingTranslation">We are running this location service in the foreground</string>
+<string name="notification_text" tools:ignore="MissingTranslation">The Soundscape location service runs even when the phone is locked.</string>
 <!-- Option to cancel searching for a location -->
 <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Cancel search</string>
 <!-- Title for settings page group of audio settings -->
@@ -894,7 +902,7 @@
 <string name="offline_maps_caching" tools:ignore="MissingTranslation">"Server is preparing %s for download. This can take a few minutes and then the download will start automatically."</string>
 <!-- Offscreen maps free space on storage. %s is replaced by value e.g. 32GB -->
 <string name="offline_maps_free_space" tools:ignore="MissingTranslation">"%s free"</string>
-<!-- Offscreen maps storage storage information. %1$s is the name of the storage e.g. "SD" and %2$s is how much free space it has e.g. "31.3 GB" -->
+<!-- Offscreen maps storage information. %1$s is the name of the storage e.g. "SD" and %2$s is how much free space it has e.g. "31.3 GB" -->
 <string name="offline_maps_storage" tools:ignore="MissingTranslation">"Maps are saved to %1$s which has %2$s free"</string>
 <!-- Offscreen maps title of list of downloaded maps-->
 <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">"Maps already downloaded"</string>
@@ -924,6 +932,12 @@
 <string name="offline_map_storage_description" tools:ignore="MissingTranslation">"So that Soundscape can be used without an Internet connection it is possible to download maps and store them on the phone. The default storage is any external storage on your phone, but you can select an alternative destination here."</string>
 <!-- Offscreen map download option to use WiFi Only and not mobile data -->
 <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">"Use WiFi only for map download"</string>
+<!-- Offscreen map message when download has successfully completed -->
+<string name="offline_map_download_complete" tools:ignore="MissingTranslation">"Download complete"</string>
+<!-- Offscreen map message when download has been cancelled -->
+<string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">"Download cancelled"</string>
+<!-- Offscreen map message when there is an error during download -->
+<string name="offline_map_download_error" tools:ignore="MissingTranslation">"Download error"</string>
 <!-- Accessibility onboarding screen title -->
 <string name="accessibility_title" tools:ignore="MissingTranslation">"Accessibility"</string>
 <!-- If there is a screen reader enabled, then this text is shown to the user during onboarding. -->

@@ -3,7 +3,6 @@ package org.scottishtecharmy.soundscape.geoengine
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.location.Location
 import android.net.Uri
 import android.os.Environment
@@ -58,7 +57,6 @@ import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.phoneHeldFlat
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.SoundscapeService
-import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.io.File
 import java.util.Locale
 import kotlin.math.abs
@@ -116,9 +114,7 @@ class GeoEngine {
     private var mapMatchFilter = MapMatchFilter()
 
     // Resource string locale configuration
-    private lateinit var configLocale: Locale
-    private lateinit var configuration: Configuration
-    lateinit var localizedContext: Context
+    private lateinit var localizedContext: Context
 
     lateinit var geocoder: SoundscapeGeocoder
     lateinit var tileSearch: TileSearch
@@ -255,6 +251,7 @@ class GeoEngine {
         newLocationProvider: LocationProvider,
         newDirectionProvider: DirectionProvider,
         soundscapeService: SoundscapeService,
+        localizedContext: Context,
     ) {
         sharedPreferences =
             PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
@@ -290,10 +287,7 @@ class GeoEngine {
         tileSearch = TileSearch(offlineExtractPath, gridState, settlementGrid)
         networkUtils = NetworkUtils(application)
 
-        configLocale = getCurrentLocale()
-        configuration = Configuration(application.applicationContext.resources.configuration)
-        configuration.setLocale(configLocale)
-        localizedContext = application.applicationContext.createConfigurationContext(configuration)
+        this.localizedContext = localizedContext
         autoCallout = AutoCallout(localizedContext, sharedPreferences)
 
         // The MultiGeocoder dynamically switches between Android, Photon and Local Geocoders
