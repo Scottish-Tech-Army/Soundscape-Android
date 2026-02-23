@@ -426,7 +426,7 @@
     <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">SO</string>
     <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">O</string>
     <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">NO</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">Stiamo eseguendo questo servizio di localizzazione in primo piano</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Il servizio di localizzazione di Soundscape è attivo anche quando il telefono è bloccato.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Annulla ricerca</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Stazione ferroviaria</string>
     <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s Stazione ferroviaria</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Passa a %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Mantieni la lingua corrente</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">Spostarsi in questa direzione fino al prossimo incrocio</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">Impossibile trovare il percorso nel database.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">Impossibile eliminare il percorso.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">Impossibile salvare il percorso.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">Il servizio di localizzazione di Soundscape è ancora in esecuzione.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Download completato</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Download annullato</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">Errore durante il download</string>
 </resources>
