@@ -13,7 +13,7 @@ import com.google.common.util.concurrent.ListenableFuture
 
 @OptIn(UnstableApi::class)
 class SoundscapeDummyMediaPlayer(
-    private val mediaControlTarget: MediaControlTarget
+    private val getTarget: () -> MediaControlTarget
 ) : SimpleBasePlayer(Looper.getMainLooper()) {
 
     override fun getState(): State {
@@ -60,7 +60,7 @@ class SoundscapeDummyMediaPlayer(
     }
 
     override fun handleSetPlayWhenReady(playWhenReady: Boolean): ListenableFuture<*> {
-        mediaControlTarget.onPlayPause()
+        getTarget().onPlayPause()
         return Futures.immediateVoidFuture()
     }
 

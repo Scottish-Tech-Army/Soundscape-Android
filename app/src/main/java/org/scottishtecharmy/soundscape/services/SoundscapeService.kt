@@ -63,11 +63,14 @@ import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenuMediaControls
+import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControlTarget
 import org.scottishtecharmy.soundscape.services.mediacontrol.OriginalMediaControls
 import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeDummyMediaPlayer
 import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeMediaSessionCallback
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommand
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandManager
+import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandMediaControls
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
@@ -101,6 +104,12 @@ class SoundscapeService : MediaSessionService() {
     // Audio engine
     var audioEngine = NativeAudioEngine(this)
     private var audioBeacon: Long = 0
+
+    // Audio menu (navigated via media buttons when no route is active)
+    var audioMenu : AudioMenu? = null
+
+    /** True while the user is actively navigating the audio menu. Suppresses auto callouts. */
+    var menuActive: Boolean = false
 
     // Audio focus
     private lateinit var audioManager: AudioManager
@@ -165,11 +174,8 @@ class SoundscapeService : MediaSessionService() {
     // Media control button code
     private var mediaSession: MediaSession? = null
 
-    // TODO: Pick what the media controls control
-    //private val mediaControlsTarget = VoiceCommandMediaControls(this)
-    private val mediaControlsTarget = OriginalMediaControls(this)
-
-    private val mediaPlayer = SoundscapeDummyMediaPlayer(mediaControlsTarget)
+    private var mediaControlsTarget : MediaControlTarget = OriginalMediaControls(this)
+    private val mediaPlayer = SoundscapeDummyMediaPlayer { mediaControlsTarget }
 
     var running: Boolean = false
     var started: Boolean = false
@@ -275,8 +281,10 @@ class SoundscapeService : MediaSessionService() {
             audioEngine.initialize(applicationContext)
 
             audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
-
+            audioMenu = AudioMenu(this, application)
             routePlayer = RoutePlayer(this, applicationContext)
+
+            updateMediaControls(MediaControlsTarget.AUDIO_MENU)
 
             if(hasPlayServices(this)) {
                 locationProvider = GooglePlayLocationProvider(this)
@@ -297,9 +305,23 @@ class SoundscapeService : MediaSessionService() {
 
             mediaSession = MediaSession.Builder(this, mediaPlayer)
                 .setId("org.scottishtecharmy.soundscape")
-                .setCallback(SoundscapeMediaSessionCallback(mediaControlsTarget))
+                .setCallback(SoundscapeMediaSessionCallback { mediaControlsTarget })
                 .build()
         }
+    }
+
+    enum class MediaControlsTarget {
+        ORIGINAL,
+        VOICE_COMMAND,
+        AUDIO_MENU
+    }
+    fun updateMediaControls(target: MediaControlsTarget) {
+        mediaControlsTarget = when(target) {
+            MediaControlsTarget.ORIGINAL -> OriginalMediaControls(this)
+            MediaControlsTarget.VOICE_COMMAND -> VoiceCommandMediaControls(this)
+            MediaControlsTarget.AUDIO_MENU -> AudioMenuMediaControls(audioMenu)
+        }
+
     }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
@@ -318,6 +340,7 @@ class SoundscapeService : MediaSessionService() {
         super.onDestroy()
 
         Log.d(TAG, "onDestroy")
+        audioMenu?.destroy()
         audioEngine.destroyBeacon(audioBeacon)
         audioBeacon = 0
         audioEngine.destroy()
