@@ -406,7 +406,7 @@
     <string name="first_launch_permissions_notification">Meddelelser</string>
     <string name="no_language_selected">Ingen sprog valgt</string>
     <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s sporvogn stop</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">Vi kører denne placering service i forgrunden</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Soundscape-lokalitetstjenesten kører, selv når telefonen er låst.</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Togstation</string>
     <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s togstation</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Annuller søgning</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Skift til %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Behold nuværende sprog</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">Gå i denne retning til det næste kryds.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">Kunne ikke finde ruten i databasen.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">Kunne ikke slette ruten.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">Kunne ikke gemme ruten.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">Soundscape-lokalitetstjenesten kører stadig.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Download fuldført</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Download annulleret</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">Fejl ved download</string>
 </resources>
