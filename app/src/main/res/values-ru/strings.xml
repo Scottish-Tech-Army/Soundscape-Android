@@ -296,7 +296,7 @@
     <string name="share_title">Посоветовать приложение</string>
     <string name="no_language_selected">Язык не выбран</string>
     <string name="first_launch_permissions_notification">Уведомления</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">Мы используем эту службу определения местоположения на переднем плане</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Служба местоположения Soundscape работает даже когда телефон заблокирован.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Отменить поиск</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Железнодорожная станция</string>
     <string name="osm_train_station_named" tools:ignore="MissingTranslation">Железнодорожная станция %s</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Переключиться на %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Оставить текущий язык</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">Перейти в этом направлении к следующему перекрёстку.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">Не удалось найти маршрут в базе данных.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">Не удалось удалить маршрут.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">Не удалось сохранить маршрут.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">Служба местоположения Soundscape всё ещё работает.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Загрузка завершена</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Загрузка отменена</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">Ошибка загрузки</string>
 </resources>
