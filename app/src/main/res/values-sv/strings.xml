@@ -435,7 +435,7 @@
     <string name="permissions_button" tools:ignore="MissingTranslation">Ändra behörigheterna i appinställningarna</string>
     <string name="first_launch_change_language" tools:ignore="MissingTranslation">Ändra språk</string>
     <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">för att ändra språket som används för appen</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">Vi kör den här platstjänsten i förgrunden</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Soundscapes platstjänst körs även när telefonen är låst.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Avbryt sökning</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Tågstation</string>
     <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s Tågstation</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Byt till %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Behåll nuvarande språk</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">Gå i den här riktningen till nästa vägkorsning.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">Det gick inte att hitta rutten i databasen.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">Det gick inte att ta bort rutten.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">Det gick inte att spara rutten.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">Soundscapes platstjänst körs fortfarande.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Nedladdning slutförd</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Nedladdning avbruten</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">Fel vid nedladdning</string>
 </resources>
