@@ -868,7 +868,7 @@
     <!-- Notifications are a type of Android permission required to run the app -->
 <string name="first_launch_permissions_notification">اعلان‌ها</string>
     <!-- Message appears as notification when app is running -->
-<string name="notification_text" tools:ignore="MissingTranslation">در حال اجرای این سرویس مکان‌یابی در پیش‌زمینه هستیم</string>
+<string name="notification_text" tools:ignore="MissingTranslation">سرویس مکان‌یابی ساند‌اسکیپ حتی زمانی که گوشی قفل است، فعال می‌ماند.</string>
     <!-- Option to cancel searching for a location -->
 <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">لغو جستجو</string>
     <!-- OSM tag for train station -->
@@ -1743,4 +1743,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">تغییر به %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">حفظ زبان فعلی</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">در این جهت حرکت کنید تا به تقاطع بعدی برسید.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">یافتن مسیر در پایگاه داده با شکست مواجه شد.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">حذف مسیر با شکست مواجه شد.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">ذخیره‌ی مسیر با شکست مواجه شد.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">سرویس مکان‌یابی ساند‌اسکیپ همچنان در حال اجراست.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">دانلود کامل شد</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">دانلود لغو شد</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">خطا در دانلود</string>
 </resources>
