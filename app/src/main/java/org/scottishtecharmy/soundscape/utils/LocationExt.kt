@@ -129,8 +129,11 @@ fun LocationDescription.process() {
                 val formatter = AndroidAddressFormatter(false, false, false)
                 var json = jsonObject.toString()
                 json = json.replace("\\/", "/")
-                var fallbackCountryCode = getCurrentLocale().country
-                if (fallbackCountryCode.isEmpty()) fallbackCountryCode = "GB"
+                var fallbackCountryCode : String? = null
+                if(!jsonObject.has("country_code"))
+                    fallbackCountryCode = getCurrentLocale().country
+
+                if (fallbackCountryCode?.isEmpty() == true) fallbackCountryCode = "GB"
                 val formattedAddress = formatter.format(json, fallbackCountryCode)
                 if (nameLocal != null) {
                     // Named locations are as good a street number
@@ -161,7 +164,14 @@ fun Address.toLocationDescription(name: String?): LocationDescription {
     val jsonObject = JSONObject()
     var locationType : LocationType = LocationType.Country
     //if (countryName != null) jsonObject.put("country", countryName)  // Don't include the include country
-    if (countryCode != null) jsonObject.put("country_code", countryCode)
+    var fallbackCountryCode : String? = null
+    if (countryCode != null) {
+        jsonObject.put("country_code", countryCode)
+    }
+    else {
+        // No country code, so set fallback
+        fallbackCountryCode = getCurrentLocale().country
+    }
     if (subThoroughfare != null) {
         jsonObject.put("house_number", subThoroughfare)
         locationType = setIfLower(LocationType.StreetNumber, locationType)
@@ -185,8 +195,7 @@ fun Address.toLocationDescription(name: String?): LocationDescription {
     var json = jsonObject.toString()
     json = json.replace("\\/", "/")
 
-    var fallbackCountryCode = getCurrentLocale().country
-    if(fallbackCountryCode.isEmpty()) fallbackCountryCode = "GB"
+    if (fallbackCountryCode?.isEmpty() == true) fallbackCountryCode = "GB"
     val formattedAddress = formatter.format(json, fallbackCountryCode)
 
     var chosenName = name
