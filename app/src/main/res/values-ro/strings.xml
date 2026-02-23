@@ -408,7 +408,7 @@
     <string name="faq_tip_create_marker_at_bus_stop">Dacă există o rută de autobuz pe care o iei regulat, setează stațiile de urcare și coborâre ca marcaje. În acest fel vor fi salvate și le poți găsi ușor din nou, accesând *\"Gestionează marcajele\"* din meniu și găsindu-le în listă. Poți seta o baliză pe ele și vei primi actualizări periodice despre cât de aproape ești de stația de coborâre. Notă: poți dezactiva sunetul ritmic și vei primi în continuare actualizări de distanță pe parcurs.</string>
     <string name="no_language_selected">Nicio limbă selectată</string>
     <string name="first_launch_permissions_notification">Notificări</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">Rulăm acest serviciu de localizare în prim-plan</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Serviciul de localizare Soundscape rulează chiar și atunci când telefonul este blocat.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Anulează căutarea</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Audio</string>
     <string name="menu_manage_language" tools:ignore="MissingTranslation">"Limbă și regiune "</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Comută la %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Păstrează limba curentă</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">Mergi în această direcție până la următoarea intersecție.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">Nu s-a putut găsi ruta în baza de date.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">Ștergerea rutei a eșuat.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">Salvarea rutei a eșuat.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">Serviciul de localizare Soundscape este încă activ.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Descărcare finalizată</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Descărcare anulată</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">Eroare la descărcare</string>
 </resources>
