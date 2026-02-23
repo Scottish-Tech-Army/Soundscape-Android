@@ -441,7 +441,7 @@
     <string name="osm_main_entrance" tools:ignore="MissingTranslation">Hovedinngang</string>
     <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s fra %3$s</string>
     <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">Vi kjører denne stedstjenesten i forgrunnen</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Soundscape‑stedstjenesten kjører selv når telefonen er låst.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Avbryt søk</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Togstasjon</string>
     <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s-togstasjon</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Bytt til %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Behold gjeldende språk</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">Beveg deg i denne retningen for å komme til neste veikryss.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">Kunne ikke finne ruten i databasen.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">Kunne ikke slette ruten.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">Kunne ikke lagre ruten.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">Soundscape‑stedstjenesten kjører fortsatt.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Nedlasting fullført</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Nedlasting avbrutt</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">Feil ved nedlasting</string>
 </resources>
