@@ -412,7 +412,7 @@
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Ferry terminal</string>
     <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s ferry terminal</string>
     <string name="confect_name_joins" tools:ignore="MissingTranslation">%1$s that joins %2$s and %3$s</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">We are running this location service in the foreground</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">The Soundscape location service runs even when the phone is locked.</string>
     <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s tram stop</string>
     <string name="osm_subway" tools:ignore="MissingTranslation">Underground station</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Accessibility</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Switch to %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Keep Current Language</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">Move in this direction to the next intersection.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">Failed to find route in the database.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">Failed to delete the route.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">Failed to save the route.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">The Soundscape location service is still running.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Download complete</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Download cancelled</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">Download error</string>
 </resources>
