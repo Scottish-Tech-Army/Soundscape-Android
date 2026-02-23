@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.services.mediacontrol
 
+import org.scottishtecharmy.soundscape.services.AudioMenu
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 
 // An interface that encapsulates the various media control buttons
@@ -47,15 +48,18 @@ class VoiceCommandMediaControls(val service: SoundscapeService) : MediaControlTa
 }
 
 // This is how the menu navigation media controls work
-class MenuMediaControls(val service: SoundscapeService) : MediaControlTarget {
+class AudioMenuMediaControls(val audioMenu: AudioMenu?) : MediaControlTarget {
 
     override fun onPlayPause() : Boolean {
+        audioMenu?.select()
         return true
     }
     override fun onNext() : Boolean {
+        audioMenu?.next()
         return true
     }
     override fun onPrevious() : Boolean {
+        audioMenu?.previous()
         return true
     }
 }
