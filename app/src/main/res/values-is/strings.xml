@@ -441,7 +441,7 @@
     <string name="faq_tip_create_marker_at_bus_stop">Ef þú ferð reglulega með ákveðna strætóleið skaltu setja ástigningarsæti og útskipunarstopp sem merki. Þannig verða þau vistuð svo auðvelt sé að finna þau aftur; farðu í *\"Stjórna merkjum\"* úr valmyndinni og finndu þau í listanum. Þú getur sett hljóðvita á þau og fengið reglulegar uppfærslur um hve nálægt þú ert niðurstigningarstöðinni. Ath: þú getur slökkt á taktfast hljóðinu en fengið samt fjarlægjuuppfærslur á leiðinni.</string>
     <string name="no_language_selected">Ekkert tungumál valið</string>
     <string name="first_launch_permissions_notification">Tilkynningar</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">Við erum að keyra þessa staðsetningarþjónustu í forgrunni</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Staðsetningarþjónusta Soundscape keyrir jafnvel þegar síminn er læstur.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">hætta við leit</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">lestastöð</string>
     <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s lestastöð</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Skipta yfir í %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Halda núverandi tungumáli</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">fara þessa leið að næstu gatnamót.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">Mistókst að finna leið í gagnagrunni.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">Mistókst að eyða leiðinni.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">Mistókst að vista leið.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">Staðsetningarþjónusta Soundscape er enn í gangi.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Niðurhal lokið</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Niðurhal aflýst</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">Villa við niðurhal</string>
 </resources>
