@@ -441,7 +441,7 @@
     <string name="osm_main_entrance" tools:ignore="MissingTranslation">Κύρια είσοδος</string>
     <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s από %3$s</string>
     <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">Η υπηρεσία τοποθεσίας εκτελείται στο προσκήνιο</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Η υπηρεσία τοποθεσίας του Soundscape λειτουργεί ακόμα και όταν το τηλέφωνο είναι κλειδωμένο.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Ακύρωση αναζήτησης</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Σιδηροδρομικός σταθμός</string>
     <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s Σιδηροδρομικός σταθμός</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Αλλαγή σε %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Διατήρηση τρέχουσας γλώσσας</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">Προχωρήστε σε αυτή την κατεύθυνση μέχρι την επόμενη διασταύρωση.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">Αποτυχία εύρεσης της διαδρομής στη βάση δεδομένων.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">Αποτυχία διαγραφής της διαδρομής.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">Αποτυχία αποθήκευσης της διαδρομής.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">Η υπηρεσία τοποθεσίας του Soundscape εξακολουθεί να λειτουργεί.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Η λήψη ολοκληρώθηκε</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Η λήψη ακυρώθηκε</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">Σφάλμα κατά τη λήψη</string>
 </resources>
