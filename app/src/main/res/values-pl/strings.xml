@@ -435,7 +435,7 @@
     <string name="faq_tip_create_marker_at_bus_stop">Jeśli regularnie korzystasz z danej linii autobusowej, ustaw swoje przystanki wsiadania i wysiadania jako Znaczniki. Dzięki temu zostaną zapisane i łatwo je odnajdziesz – przejdź do *\"Zarządzaj znacznikami\"* w menu i wyszukaj je na liście. Możesz ustawić na nich dźwięk naprowadzający i otrzymywać okresowe informacje o tym, jak blisko jesteś przystanku wysiadania. Uwaga: możesz wyłączyć rytmiczny dźwięk, a i tak będziesz otrzymywać informacje o odległości w trakcie drogi.</string>
     <string name="no_language_selected">Nie wybrano języka</string>
     <string name="first_launch_permissions_notification">Powiadomienia</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">Usługa lokalizacji działa na pierwszym planie</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Usługa lokalizacji Soundscape działa nawet wtedy, gdy telefon jest zablokowany.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Anuluj wyszukiwanie</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Stacja kolejowa</string>
     <string name="osm_train_station_named" tools:ignore="MissingTranslation">Stacja kolejowa – %s</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Przełącz na %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Zachowaj bieżący język</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">przejdź w tym kierunku do następnego skrzyżowania</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">Nie udało się znaleźć trasy w bazie danych.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">Nie udało się usunąć trasy.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">Nie udało się zapisać trasy.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">Usługa lokalizacji Soundscape nadal działa.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Pobieranie zakończone</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Pobieranie anulowane</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">Błąd pobierania</string>
 </resources>
