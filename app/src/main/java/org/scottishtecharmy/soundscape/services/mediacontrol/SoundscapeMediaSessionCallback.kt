@@ -13,7 +13,7 @@ import androidx.media3.session.MediaSession
  * These are then mapped to specific Soundscape features.
  */
 class SoundscapeMediaSessionCallback(
-    val mediaControlsTarget: MediaControlTarget
+    private val getTarget: () -> MediaControlTarget
 ):
     MediaSession.Callback {
     // Configure commands available to the controller in onConnect()
@@ -49,34 +49,36 @@ class SoundscapeMediaSessionCallback(
         // KEYCODE_MEDIA_NEXT, though that may be specific to my phone. The only event actually
         // handled for now is KEYCODE_MEDIA_NEXT.
 
-        // The behaviour of the media buttons changes when a route is being played back. In that
-        // case the buttons map to next/previous waypoint and muting audio.
+        // TODO:
+        //  The behaviour of the media buttons changes when a route is being played back. In that
+        //  case the buttons map to next/previous waypoint and muting audio. This currently doesn't
+        //  play nicely with the audioMenu, more work is required.
 
         keyEvent?.let { event ->
             val decodedKey = when(event.keyCode) {
                 KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE -> {
                     // ⏯ Play/Pause: Mute any current callouts and if the audio beacon is set, toggle the beacon audio.
-                    mediaControlsTarget.onPlayPause()
+                    getTarget().onPlayPause()
                     "Play/Pause"
                 }
                 KeyEvent.KEYCODE_MEDIA_SKIP_FORWARD -> {
                     // ⏩ Skip Forward
-                    mediaControlsTarget.onNext()
+                    getTarget().onNext()
                     "Skip forward"
                 }
                 KeyEvent.KEYCODE_MEDIA_NEXT -> {
                     // ⏭ Next
-                    mediaControlsTarget.onNext()
+                    getTarget().onNext()
                     "Next"
                 }
 
                 KeyEvent.KEYCODE_MEDIA_PREVIOUS -> {
                     // ⏮ Previous
-                    mediaControlsTarget.onPrevious()
+                    getTarget().onPrevious()
                 }
                 KeyEvent.KEYCODE_MEDIA_SKIP_BACKWARD -> {
                     // ⏪ Skip Backward
-                    mediaControlsTarget.onPrevious()
+                    getTarget().onPrevious()
                     "Skip backward"
                 }
 

@@ -438,7 +438,7 @@ class GeoEngine {
                     // So long as the AudioEngine is not already busy, run any auto callouts that we
                     // need. Auto Callouts use the direction of travel if there is one, otherwise
                     // falling back to use the phone direction.
-                    if((!soundscapeService.isAudioEngineBusy() || streetPreview.running) && !autoCalloutDisabled) {
+                    if((!soundscapeService.isAudioEngineBusy() || streetPreview.running) && !autoCalloutDisabled && !soundscapeService.menuActive) {
                         val callout =
                             autoCallout.updateLocation(
                                 getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
