@@ -441,7 +441,7 @@
     <string name="osm_main_entrance" tools:ignore="MissingTranslation">正面入口</string>
     <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s の %2$s（%3$s から）</string>
     <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s の %2$s</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">位置情報サービスをフォアグラウンドで実行しています</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Soundscape の位置情報サービスは端末がロックされていても動作します。</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">検索をキャンセル</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">駅</string>
     <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s 駅</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">%1$s に切り替える</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">現在の言語を保持する</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">この方向に進んで次の交差点へ移動する</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">データベースでルートが見つかりませんでした。</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">ルートの削除に失敗しました。</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">ルートの保存に失敗しました。</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">Soundscape の位置情報サービスはまだ実行中です。</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">ダウンロードが完了しました</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">ダウンロードがキャンセルされました</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">ダウンロードエラー</string>
 </resources>
