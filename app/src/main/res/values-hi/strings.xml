@@ -408,7 +408,7 @@
     <string name="faq_tip_create_marker_at_bus_stop">यदि कोई बस मार्ग है जो आप नियमित रूप से लेते हैं, तो अपने चढ़ने और उतरने के स्टॉप को मार्कर के रूप में सेट करें। इस तरह वे सहेजे जाएँगे ताकि आप उन्हें आसानी से फिर से ढूँढ सकें, बस मेनू से *\"मार्कर प्रबंधित करें\"* पर जाएँ और उन्हें सूची में खोजें। आप उन पर बीकन सेट कर सकते हैं और आपको समय-समय पर अपडेट मिलेंगे कि आप अपने उतरने के स्टॉप से कितने करीब हैं। नोट: आप लयबद्ध ध्वनि बंद कर सकते हैं और फिर भी रास्ते में दूरी के अपडेट मिलते रहेंगे।</string>
     <string name="no_language_selected">कोई भाषा चयनित नहीं</string>
     <string name="first_launch_permissions_notification">सूचनाएँ</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">हम इस लोकेशन सर्विस को फ़ोरग्राउंड में चला रहे हैं</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Soundscape की स्थान सेवा फोन लॉक होने पर भी चलती रहती है।</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">खोज रद्द करें</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">ऑडियो</string>
     <string name="menu_manage_language" tools:ignore="MissingTranslation">"भाषा और क्षेत्र "</string>
@@ -1272,4 +1272,11 @@
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">%1$s में बदलें</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">वर्तमान भाषा रखें</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">इस दिशा में आगे बढ़कर अगले चौराहे पर जाएँ।</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">डेटाबेस में मार्ग नहीं मिल सका।</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">मार्ग हटाया नहीं जा सका।</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">मार्ग सहेजा नहीं जा सका।</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">Soundscape स्थान सेवा अभी भी चल रही है।</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">डाउनलोड पूरा हुआ</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">डाउनलोड रद्द किया गया</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">डाउनलोड में त्रुटि</string>
 </resources>
