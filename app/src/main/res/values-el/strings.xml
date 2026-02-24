@@ -1279,4 +1279,6 @@
     <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Η λήψη ολοκληρώθηκε</string>
     <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Η λήψη ακυρώθηκε</string>
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Σφάλμα κατά τη λήψη</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Το ηχητικό σήμα ορίζεται σε %1$s, σε απόσταση %2$s</string>
+    <string name="route_beacon_progress" tools:ignore="MissingTranslation">Το ηχητικό σήμα στο %1$s</string>
 </resources>
