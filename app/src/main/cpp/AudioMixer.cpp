@@ -20,7 +20,7 @@ namespace soundscape {
         oboe::AudioStreamBuilder builder;
         builder.setDirection(oboe::Direction::Output)
                 ->setPerformanceMode(oboe::PerformanceMode::LowLatency)
-                ->setSharingMode(oboe::SharingMode::Exclusive)
+                ->setSharingMode(oboe::SharingMode::Shared)
                 ->setFormat(oboe::AudioFormat::Float)
                 ->setChannelCount(oboe::ChannelCount::Stereo)
                 ->setFramesPerDataCallback(FRAME_SIZE)
