@@ -1279,4 +1279,6 @@
     <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Descarga completada</string>
     <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Descarga cancelada</string>
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Error de descarga</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Señal establecida en %1$s, a una distancia de %2$s</string>
+    <string name="route_beacon_progress" tools:ignore="MissingTranslation">Señal en %1$s</string>
 </resources>
