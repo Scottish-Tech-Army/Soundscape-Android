@@ -507,6 +507,8 @@
 <string name="behavior_experiences_route_nav_title">"Route Details"</string>
 <!-- Callout indicating the current waypoint has changed, %1$s is the waypoint name, %2$s is the distance to waypoint, %3$s is the waypoint index, %4$s is the total number of waypoints. "Beacon set on control 1. 450 feet away. 1 of 4." -->
 <string name="behavior_scavenger_hunt_callout_next_flag">"Beacon set on %1$s, %2$s away, %3$s of %4$s"</string>
+<!-- Callout indicating the current waypoint has changed, %1$s is the waypoint name, %2$s is the distance to waypoint -->
+<string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">"Beacon set on %1$s, %2$s away"</string>
 <!-- Help section title, Configuring Soundscape -->
 <string name="help_configuration_section_title">"Configuring Soundscape"</string>
 <!-- Help section title. This section contains help articles on the audio beacon and the automatic callout features. -->
@@ -960,6 +962,8 @@
 <string name="fab_add_route" tools:ignore="MissingTranslation">Add Route</string>
 <!-- Describes current waypoint in route. -->
 <string name="route_waypoint_progress" tools:ignore="MissingTranslation">"Route %1$s at waypoint %2$s of %3$s"</string>
+<!-- Describes beacon destination. -->
+<string name="route_beacon_progress" tools:ignore="MissingTranslation">"Beacon at %1$s"</string>
 <!-- Home screen title -->
 <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape Home</string>
 <!-- Button text to reset settings to defaults -->
