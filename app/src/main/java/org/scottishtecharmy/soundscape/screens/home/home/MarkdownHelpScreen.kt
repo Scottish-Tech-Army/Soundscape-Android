@@ -161,6 +161,7 @@ private fun getMarkdownFileName(context: android.content.Context, topic: String)
             val id = idStr.toIntOrNull()
             if (id != null) {
                 when (id) {
+                    R.string.menu_help_and_tutorials -> "help-and-tutorials.md"
                     R.string.voice_voices -> "help-voices.md"
                     R.string.help_remote_page_title -> "help-using-media-controls.md"
                     R.string.beacon_audio_beacon -> "help-audio-beacon.md"

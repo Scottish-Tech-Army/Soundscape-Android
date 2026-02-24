@@ -27,7 +27,7 @@ fun ComposeTestRule.dumpLayoutTree(): String {
         sb.append(indent)
             .append("- ")
             .append((info.config.getOrNull(SemanticsProperties.TestTag)?.let { "[$it] " }) ?: "[] ")
-            .append(info.config.getOrNull(SemanticsProperties.Text)?.joinToString("") { it.text } ?: "''")
+            .append(info.config.getOrNull(SemanticsProperties.Text)?.joinToString("") { it.text }?.trim() ?: "''")
             .append("  ")
             .append(info.layoutInfo())
             .appendLine()
