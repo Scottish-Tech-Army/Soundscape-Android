@@ -1279,4 +1279,6 @@
     <string name="offline_map_download_complete" tools:ignore="MissingTranslation">ダウンロードが完了しました</string>
     <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">ダウンロードがキャンセルされました</string>
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">ダウンロードエラー</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">ビーコンが %1$s で設定されました。距離は %2$s です。</string>
+    <string name="route_beacon_progress" tools:ignore="MissingTranslation">ビーコン: %1$s</string>
 </resources>
