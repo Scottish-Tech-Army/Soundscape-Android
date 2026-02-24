@@ -1279,4 +1279,6 @@
     <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Download complete</string>
     <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Download cancelled</string>
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Download error</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Beacon set on %1$s, %2$s away</string>
+    <string name="route_beacon_progress" tools:ignore="MissingTranslation">Beacon at %1$s</string>
 </resources>
