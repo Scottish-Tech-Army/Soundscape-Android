@@ -17,6 +17,7 @@ import android.net.Uri
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
+import android.os.PowerManager
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.OptIn
@@ -84,6 +85,9 @@ class SoundscapeService : MediaSessionService() {
 
     // secondary service
     private var timerJob: Job? = null
+
+    // Wake lock — keeps CPU running while screen is off so audio callbacks continue
+    private var wakeLock: PowerManager.WakeLock? = null
 
     // Audio engine
     var audioEngine = NativeAudioEngine(this)
@@ -245,6 +249,12 @@ class SoundscapeService : MediaSessionService() {
 
         if (!running) {
 
+            // Hold a partial wake lock for the service lifetime so the CPU stays awake when the
+            // screen is off and the Oboe audio callback keeps firing.
+            wakeLock = (getSystemService(POWER_SERVICE) as PowerManager)
+                .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Soundscape::AudioWakeLock")
+                .also { it.acquire() }
+
             // Initialize the audio engine
             audioEngine.initialize(applicationContext)
 
@@ -299,6 +309,9 @@ class SoundscapeService : MediaSessionService() {
         geoEngine.stop()
 
         coroutineScope.coroutineContext.cancelChildren()
+
+        wakeLock?.let { if (it.isHeld) it.release() }
+        wakeLock = null
 
         // Clear service reference in binder so that it can be garbage collected
         binder?.reset()
