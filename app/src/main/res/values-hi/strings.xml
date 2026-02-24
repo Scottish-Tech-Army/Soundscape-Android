@@ -1279,4 +1279,6 @@
     <string name="offline_map_download_complete" tools:ignore="MissingTranslation">डाउनलोड पूरा हुआ</string>
     <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">डाउनलोड रद्द किया गया</string>
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">डाउनलोड में त्रुटि</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">बीकन %1$s पर सेट किया गया, %2$s दूर</string>
+    <string name="route_beacon_progress" tools:ignore="MissingTranslation">बीकन %1$s पर</string>
 </resources>
