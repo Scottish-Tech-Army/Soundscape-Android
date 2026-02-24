@@ -253,12 +253,21 @@ fun HomeContent(
                     ) {
                             Row {
                                 Text(
-                                    text = stringResource(
-                                        R.string.route_waypoint_progress).format(
-                                            routePlayerState.routeData.route.name,
-                                            routePlayerState.currentWaypoint + 1,
-                                            routePlayerState.routeData.markers.size
-                                        ),
+                                    text =
+                                        if(routePlayerState.routeData.markers.size > 1) {
+                                            stringResource(
+                                                R.string.route_waypoint_progress
+                                            ).format(
+                                                routePlayerState.routeData.route.name,
+                                                routePlayerState.currentWaypoint + 1,
+                                                routePlayerState.routeData.markers.size
+                                            )
+                                        } else {
+                                            stringResource(
+                                                R.string.route_beacon_progress
+                                            ).format(
+                                                routePlayerState.routeData.route.name)
+                                        },
                                     style = MaterialTheme.typography.labelLarge,
                                     modifier = Modifier.smallPadding()
                                 )
