@@ -1279,4 +1279,6 @@
     <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Загрузка завершена</string>
     <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Загрузка отменена</string>
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Ошибка загрузки</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Маяк установлен на %1$s, %2$s от тебя</string>
+    <string name="route_beacon_progress" tools:ignore="MissingTranslation">Маяк установлен на %1$s</string>
 </resources>
