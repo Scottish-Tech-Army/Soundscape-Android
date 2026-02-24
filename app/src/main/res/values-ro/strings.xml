@@ -1279,4 +1279,6 @@
     <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Descărcare finalizată</string>
     <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Descărcare anulată</string>
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Eroare la descărcare</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Baliză setată pe %1$s, la %2$s distanță</string>
+    <string name="route_beacon_progress" tools:ignore="MissingTranslation">Baliză la %1$s</string>
 </resources>
