@@ -341,29 +341,33 @@ fun HelpScreen(
     structureLog.start("HelpScreen")
     // Find our page
     var sections = Sections(0, emptyList())
-    if (topic.startsWith("page")) {
-        // Parse page title id from route
-        val id = topic.substring(4).toInt()
-        for (page in helpPages) {
-            if(page.titleId == id) {
-                sections = page
+    val helpTopic = HelpTopic.fromRouteParam(topic)
+    when (helpTopic) {
+        is HelpTopic.ResourcePage -> {
+            for (page in helpPages) {
+                if (page.titleId == helpTopic.titleId) {
+                    sections = page
+                }
             }
         }
-    } else if(topic.startsWith("faq")) {
-        // Parse faq ids from route
-        val ids = topic.substring(3).split(".")
-        // We want to display the question and answer
-        sections = Sections(R.string.faq_title_abbreviated,
-            listOf(
-                Section(ids[0].toInt(), SectionType.Title),
-                Section(ids[1].toInt(), SectionType.Paragraph)
+
+        is HelpTopic.ResourceFaq -> {
+            // We want to display the question and answer
+            sections = Sections(
+                R.string.faq_title_abbreviated,
+                listOf(
+                    Section(helpTopic.questionId, SectionType.Title),
+                    Section(helpTopic.answerId, SectionType.Paragraph)
+                )
             )
-        )
-    } else {
-        // Default to home
-        for (page in helpPages) {
-            if(page.titleId == R.string.menu_help_and_tutorials) {
-                sections = page
+        }
+
+        else -> {
+            // Default to home
+            for (page in helpPages) {
+                if (page.titleId == R.string.menu_help_and_tutorials) {
+                    sections = page
+                }
             }
         }
     }
@@ -447,11 +451,12 @@ fun HelpScreen(
                             SectionType.Link, SectionType.Faq -> {
                                 Button(
                                     onClick = {
-                                        if (it.type == SectionType.Faq) {
-                                            navController.navigate("${HomeRoutes.Help.route}/faq${it.textId}.${it.faqAnswer}")
+                                        val routeParam = if (it.type == SectionType.Faq) {
+                                            HelpTopic.ResourceFaq(it.textId, it.faqAnswer).toRouteParam()
                                         } else {
-                                            navController.navigate("${HomeRoutes.Help.route}/page${it.textId}")
+                                            HelpTopic.ResourcePage(it.textId).toRouteParam()
                                         }
+                                        navController.navigate("${HomeRoutes.Help.route}/$routeParam")
                                     },
                                     modifier = Modifier
                                         .fillMaxWidth(),

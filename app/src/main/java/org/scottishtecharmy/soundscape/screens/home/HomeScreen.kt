@@ -31,6 +31,8 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.MarkdownHelpScreen
+import org.scottishtecharmy.soundscape.screens.home.home.HelpTopic
+
 
 import org.scottishtecharmy.soundscape.screens.home.home.Home
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenVM
@@ -282,15 +284,19 @@ fun HomeScreen(
         }
 
         composable(HomeRoutes.Help.route + "/{topic}") { backStackEntry ->
-            val topic = backStackEntry.arguments?.getString("topic") ?: ""
+            val topicParam = backStackEntry.arguments?.getString("topic") ?: ""
+            val helpTopic = HelpTopic.fromRouteParam(topicParam)
             val useMarkdownHelp = preferences.getBoolean(
                 MainActivity.MARKDOWN_HELP_KEY,
                 MainActivity.MARKDOWN_HELP_DEFAULT
             )
-            if (useMarkdownHelp && (topic.startsWith("page${R.string.menu_help_and_tutorials}") || topic.endsWith(".md"))) {
-                MarkdownHelpScreen(
+            val showMarkdown = (helpTopic is HelpTopic.Home && useMarkdownHelp)
+                    || helpTopic is HelpTopic.MarkdownPage
+                    || helpTopic is HelpTopic.MarkdownFaq
 
-                    topic = topic,
+            if (showMarkdown) {
+                MarkdownHelpScreen(
+                    topic = topicParam,
                     navController = navController,
                     modifier = Modifier
                         .windowInsetsPadding(WindowInsets.safeDrawing)
@@ -298,7 +304,7 @@ fun HomeScreen(
                 )
             } else {
                 HelpScreen(
-                    topic = topic,
+                    topic = topicParam,
                     navController = navController,
                     modifier = Modifier
                         .windowInsetsPadding(WindowInsets.safeDrawing)
