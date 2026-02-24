@@ -1279,4 +1279,6 @@
     <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Lataus valmis</string>
     <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Lataus peruutettu</string>
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Latausvirhe</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Majakka asetettu kohteeseen %1$s, %2$s etäisyydellä</string>
+    <string name="route_beacon_progress" tools:ignore="MissingTranslation">Majakka kohteessa %1$s</string>
 </resources>
