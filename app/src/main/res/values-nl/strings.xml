@@ -1279,4 +1279,6 @@
     <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Download voltooid</string>
     <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Download geannuleerd</string>
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Fout bij downloaden</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Baken ingesteld op %1$s, op %2$s afstand</string>
+    <string name="route_beacon_progress" tools:ignore="MissingTranslation">Baken bij %1$s</string>
 </resources>
