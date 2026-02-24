@@ -1279,4 +1279,6 @@
     <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Nedlasting fullført</string>
     <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Nedlasting avbrutt</string>
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Feil ved nedlasting</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Lydsignal angitt på %1$s, %2$s unna</string>
+    <string name="route_beacon_progress" tools:ignore="MissingTranslation">Lydsignal ved %1$s</string>
 </resources>
