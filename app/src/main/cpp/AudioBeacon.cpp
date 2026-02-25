@@ -174,6 +174,8 @@ bool Beacon::CreateAudioSource(double degrees_off_axis,
                                                           this,
                                                           degrees_off_axis,
                                                           targetRate);
+    m_pAudioSource->isProximityBeacon = proximityBeacon;
+    m_pAudioSource->UpdateGeometry(0.0, BeaconAudioSource::TOO_FAR_MODE);
     // Not queued
     return false;
 }

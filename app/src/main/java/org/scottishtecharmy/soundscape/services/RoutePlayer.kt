@@ -26,7 +26,6 @@ data class RoutePlayerState(val routeData: RouteWithMarkers? = null, val current
 class RoutePlayer(val service: SoundscapeService, context: Context) {
     private var currentRouteData: RouteWithMarkers? = null
     private var currentMarker = -1
-    private var standaloneBeacon = true
     private val coroutineScope = CoroutineScope(Job())
     private var localizedContext: Context
     private var locationMonitoringJob: Job? = null
@@ -77,7 +76,6 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             RouteEntity(0, beaconName, ""),
             waypoints
         )
-        standaloneBeacon = beaconOnly
         _currentRouteFlow.update {
             it.copy(
                 routeData = currentRouteData,
@@ -108,7 +106,6 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             val route = routeDao.getRouteWithMarkers(routeId)
             currentMarker = 0
             currentRouteData = route
-            standaloneBeacon = false
             _currentRouteFlow.update {
                 it.copy(
                     routeData = currentRouteData,
@@ -134,39 +131,37 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             service.locationProvider.filteredLocationFlow.collect { value ->
                 if (value != null) {
                     currentRouteData?.let { route ->
-                        if(!standaloneBeacon) {
-                            if(currentMarker < route.markers.size) {
-                                val location = route.markers[currentMarker].getLngLatAlt()
-                                val distanceToWaypoint = distance(
-                                    location.latitude,
-                                    location.longitude,
-                                    value.latitude,
-                                    value.longitude
-                                )
-                                if (distanceToWaypoint < 12.0) {
-                                    if ((currentMarker + 1) < route.markers.size) {
-                                        // We're within 12m of the marker, move on to the next one
-                                        Log.d(TAG, "Moving to next waypoint ${coroutineContext[Job]}")
-                                        moveToNext()
-                                    } else {
-                                        // We've reached the end of the route
-                                        // Announce the end of the route
-                                        Log.d(TAG, "End of route ${coroutineContext[Job]}")
-                                        val endOfRouteText = localizedContext.getString(
-                                            R.string.route_end_completed_accessibility,
-                                            route.route.name
-                                        )
-                                        service.speakText(
-                                            endOfRouteText,
-                                            AudioType.STANDARD
-                                        )
-
-                                        // Stop the beacon
-                                        stopRoute()
-                                    }
+                        if(currentMarker < route.markers.size) {
+                            val location = route.markers[currentMarker].getLngLatAlt()
+                            val distanceToWaypoint = distance(
+                                location.latitude,
+                                location.longitude,
+                                value.latitude,
+                                value.longitude
+                            )
+                            if (distanceToWaypoint < 12.0) {
+                                if ((currentMarker + 1) < route.markers.size) {
+                                    // We're within 12m of the marker, move on to the next one
+                                    Log.d(TAG, "Moving to next waypoint ${coroutineContext[Job]}")
+                                    moveToNext()
                                 } else {
-                                    Log.d(TAG, "Waypoint $distanceToWaypoint away")
+                                    // We've reached the end of the route
+                                    // Announce the end of the route
+                                    Log.d(TAG, "End of route ${coroutineContext[Job]}")
+                                    val endOfRouteText = localizedContext.getString(
+                                        R.string.route_end_completed_accessibility,
+                                        route.route.name
+                                    )
+                                    service.speakText(
+                                        endOfRouteText,
+                                        AudioType.STANDARD
+                                    )
+
+                                    // Stop the beacon
+                                    stopRoute()
                                 }
+                            } else {
+                                Log.d(TAG, "Waypoint $distanceToWaypoint away")
                             }
                         }
                     }
@@ -209,7 +204,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                     )
                 }
 
-                service.createBeacon(location, standaloneBeacon)
+                service.createBeacon(location, false)
             }
         }
     }

@@ -173,12 +173,29 @@ namespace soundscape {
 
         float beaconVol = m_BeaconVolume.load();
         float speechVol = m_SpeechVolume.load();
-        if(m_Sources.size() > 1) {
-            // We're mixing a beacon with speech. We want to dip the beacon under the speech, and we
-            // want to avoid clipping.
-            beaconVol /= 4;
-            speechVol *= 3.0/4.0;
+
+        // Determine which source types are actively producing audio.
+        bool hasSpeech = false;
+        bool hasActiveProximityBeacon = false;
+        for (auto &ms : m_Sources) {
+            auto *src = ms.source;
+            if (!src->isAudible()) continue;
+            if (src->category == AudioCategory::SPEECH)
+                hasSpeech = true;
+            else if (src->isProximityBeacon)
+                hasActiveProximityBeacon = true;
         }
+
+        if (hasSpeech) {
+            // Duck beacons under speech and avoid clipping.
+            beaconVol /= 4;
+            speechVol *= 3.0f / 4.0f;
+        }
+        if (hasActiveProximityBeacon) {
+            // Both beacons play simultaneously. No need to adjust levels as proximity beacon isn't
+            // close to full scale.
+        }
+        // Otherwise (proximity silent, no speech): main beacon at full volume.
         for (auto &ms : m_Sources) {
             auto *src = ms.source;
 
