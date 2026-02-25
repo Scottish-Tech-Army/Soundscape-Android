@@ -978,8 +978,18 @@ class GeoEngine {
                 geocoder.getAddressFromLngLat(UserGeometry(location), localizedContext, false)
             }
         }
-        if(geocode != null) return geocode
-
+        if(geocode != null) {
+            // Don't use the geocoded location if it's too far away
+            if(ruler.distance(geocode.location, location) < 50.0) {
+                // And always use the location that was passed in rather than that of the geocoded point
+                geocode.location = location
+                return geocode
+            }
+        }
+        // TODO: If location is within our grid, then we should be doing a local search for nearby
+        //  POI e.g. "Near style", or "Near post box" just to improve the description. This should
+        //  perhaps be rolled up into the Geocoder along with the distance check above so that the
+        //  geocoder always returns a good description.
         return LocationDescription(
             name = "New location",
             location = location
