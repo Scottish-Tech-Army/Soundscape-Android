@@ -55,6 +55,10 @@ namespace soundscape {
 
         virtual void UpdateGeometry(double degrees_off_axis, SourceMode mode);
 
+        bool isAudible() const override {
+            return !isFinished() && !muted.load() && m_Mode.load() != TOO_FAR_MODE;
+        }
+
         void UpdateAudioConfig(int sample_rate, int audio_format, int channel_count) {
             m_SrcSampleRate = sample_rate;
             m_SrcAudioFormat = audio_format;

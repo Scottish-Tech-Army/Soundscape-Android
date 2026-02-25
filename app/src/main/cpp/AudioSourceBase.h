@@ -31,6 +31,13 @@ namespace soundscape {
         // Category for volume control
         AudioCategory category = AudioCategory::SPEECH;
 
+        // True for the proximity/distance beacon (vs. the main heading beacon)
+        bool isProximityBeacon = false;
+
+        // Returns true if this source will produce audible output this callback.
+        // Base implementation: not finished and not muted.
+        virtual bool isAudible() const { return !isFinished() && !muted.load(); }
+
         void setDeviceSampleRate(int rate) { deviceSampleRate = rate; }
         int getDeviceSampleRate() const { return deviceSampleRate; }
 
