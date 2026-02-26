@@ -18,4 +18,5 @@ data class HomeState(
     var routesTabSelected: Boolean = true,
     var currentRouteData: RoutePlayerState = RoutePlayerState(),
     var permissionsRequired: Boolean = false,
+    var voiceCommandListening: Boolean = false,
 )

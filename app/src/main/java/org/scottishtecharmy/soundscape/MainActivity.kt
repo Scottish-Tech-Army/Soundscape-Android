@@ -96,6 +96,10 @@ class MainActivity : AppCompatActivity() {
             checkAndRequestLocationPermissions()
         }
 
+    // Microphone permission for voice commands — best-effort; if denied, voice commands are silently skipped
+    private val micPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { /* no-op */ }
+
     // we need location permission to be able to start the service
     private val locationPermissionRequest = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -746,6 +750,11 @@ class MainActivity : AppCompatActivity() {
         Log.e(TAG, "startSoundscapeService")
         val serviceIntent = Intent(this, SoundscapeService::class.java)
         startForegroundService(serviceIntent)
+        // Request microphone permission for voice commands (best-effort)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+            != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            micPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+        }
     }
 
     companion object {

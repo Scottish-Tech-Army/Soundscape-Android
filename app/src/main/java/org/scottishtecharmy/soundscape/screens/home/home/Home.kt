@@ -230,7 +230,8 @@ fun Home(
                     goToAppSettings = goToAppSettings,
                     fullscreenMap = fullscreenMap,
                     permissionsRequired = permissionsRequired,
-                    showMap = showMap
+                    showMap = showMap,
+                    voiceCommandListening = state.voiceCommandListening
                 )
             }
         }
