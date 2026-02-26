@@ -286,7 +286,15 @@ class SoundscapeService : MediaSessionService() {
             voiceCommandManager = VoiceCommandManager(
                 context = this,
                 onCommand = ::executeVoiceCommand,
-                onError = { audioEngine.createEarcon(NativeAudioEngine.EARCON_LOW_CONFIDENCE, AudioType.STANDARD) }
+                onError = {
+                    if (requestAudioFocus()) {
+                        audioEngine.createEarcon(
+                            NativeAudioEngine.EARCON_CALLOUTS_OFF,
+                            AudioType.STANDARD
+                        )
+                        audioEngine.createTextToSpeech("I'm sorry I didn't understand", AudioType.STANDARD)
+                    }
+                }
             )
 
             mediaSession = MediaSession.Builder(this, mediaPlayer)
@@ -553,21 +561,25 @@ class SoundscapeService : MediaSessionService() {
     }
 
     fun executeVoiceCommand(command: VoiceCommand) {
+        val ctx = if (::localizedContext.isInitialized) localizedContext else this
         val label = when (command) {
-            VoiceCommand.MY_LOCATION    -> { myLocation();        "My location" }
-            VoiceCommand.AROUND_ME      -> { whatsAroundMe();     "Around me" }
-            VoiceCommand.AHEAD_OF_ME    -> { aheadOfMe();         "Ahead of me" }
-            VoiceCommand.NEARBY_MARKERS -> { nearbyMarkers();     "Nearby markers" }
-            VoiceCommand.SKIP_NEXT      -> { routeSkipNext();     "Skip next" }
-            VoiceCommand.SKIP_PREVIOUS  -> { routeSkipPrevious(); "Skip previous" }
-            VoiceCommand.MUTE           -> { routeMute();         "Mute" }
-            VoiceCommand.STOP_ROUTE     -> { routeStop();         "Stop route" }
+            VoiceCommand.MY_LOCATION    -> { myLocation();        null }
+            VoiceCommand.AROUND_ME      -> { whatsAroundMe();     null }
+            VoiceCommand.AHEAD_OF_ME    -> { aheadOfMe();         null }
+            VoiceCommand.NEARBY_MARKERS -> { nearbyMarkers();     null }
+            VoiceCommand.SKIP_NEXT      -> { routeSkipNext();     null }
+            VoiceCommand.SKIP_PREVIOUS  -> { routeSkipPrevious(); null }
+            VoiceCommand.MUTE           -> { routeMute();         null }
+            VoiceCommand.STOP_ROUTE     -> { routeStop();         null }
+            VoiceCommand.HELP           -> ctx.getString(R.string.voice_cmd_help_response)
             VoiceCommand.UNKNOWN        -> {
-                audioEngine.createEarcon(NativeAudioEngine.EARCON_LOW_CONFIDENCE, AudioType.STANDARD)
-                null
+                audioEngine.createEarcon(NativeAudioEngine.EARCON_CALLOUTS_OFF, AudioType.STANDARD)
+                "I'm sorry I didn't understand"
             }
         }
-        label?.let { audioEngine.createTextToSpeech(it, AudioType.STANDARD, 0.0, 0.0, 0.0) }
+        if (requestAudioFocus()) {
+            label?.let { audioEngine.createTextToSpeech(it, AudioType.STANDARD) }
+        }
     }
 
     suspend fun searchResult(searchString: String): List<LocationDescription>? {
