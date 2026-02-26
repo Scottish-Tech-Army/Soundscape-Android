@@ -20,6 +20,7 @@ import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.services.VoiceCommandState
 import javax.inject.Inject
 
 @HiltViewModel
@@ -104,6 +105,12 @@ class HomeViewModel
             // Observe current route from the service so we can show it on the map
             soundscapeServiceConnection.getCurrentRouteFlow()?.collectLatest { value ->
                 _state.update { it.copy(currentRouteData = value) }
+            }
+        }
+        viewModelScope.launch(job!!) {
+            // Observe voice command listening state
+            soundscapeServiceConnection.getVoiceCommandStateFlow()?.collectLatest { voiceState ->
+                _state.update { it.copy(voiceCommandListening = voiceState is VoiceCommandState.Listening) }
             }
         }
     }

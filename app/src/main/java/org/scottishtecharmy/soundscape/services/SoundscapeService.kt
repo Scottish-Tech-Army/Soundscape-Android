@@ -1,9 +1,11 @@
 package org.scottishtecharmy.soundscape.services
 
+import android.Manifest
 import android.content.Context
 import android.content.res.Configuration
 import android.annotation.SuppressLint
 import android.app.ForegroundServiceStartNotAllowedException
+import android.content.pm.PackageManager
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -23,6 +25,7 @@ import android.widget.Toast
 import androidx.annotation.OptIn
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
+import androidx.core.content.ContextCompat
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
@@ -148,6 +151,11 @@ class SoundscapeService : MediaSessionService() {
     private val _gridStateFlow = MutableStateFlow<GridState?>(null)
     var gridStateFlow: StateFlow<GridState?> = _gridStateFlow
 
+    // Voice command manager
+    private lateinit var voiceCommandManager: VoiceCommandManager
+    val voiceCommandStateFlow: StateFlow<VoiceCommandState>
+        get() = voiceCommandManager.state
+
     // Media control button code
     private var mediaSession: MediaSession? = null
     private val mediaPlayer = SoundscapeDummyMediaPlayer()
@@ -196,10 +204,11 @@ class SoundscapeService : MediaSessionService() {
 
         locationProvider.start(this)
         directionProvider.start(audioEngine, locationProvider)
-        val configLocale = getCurrentLocale()
-        val configuration = Configuration(applicationContext.resources.configuration)
-        configuration.setLocale(configLocale)
-        localizedContext = applicationContext.createConfigurationContext(configuration)
+//        val configLocale = getCurrentLocale()
+//        val configuration = Configuration(applicationContext.resources.configuration)
+//        configuration.setLocale(configLocale)
+//        localizedContext = applicationContext.createConfigurationContext(configuration)
+//        if (::voiceCommandManager.isInitialized) voiceCommandManager.updateContext(localizedContext)
         geoEngine.start(application, locationProvider, directionProvider, this, localizedContext)
     }
 
@@ -234,6 +243,7 @@ class SoundscapeService : MediaSessionService() {
                 val configuration = Configuration(applicationContext.resources.configuration)
                 configuration.setLocale(configLocale)
                 localizedContext = applicationContext.createConfigurationContext(configuration)
+                if (::voiceCommandManager.isInitialized) voiceCommandManager.updateContext(localizedContext)
                 geoEngine.start(application, locationProvider, directionProvider, this, localizedContext)
                 started = true
             }
@@ -272,6 +282,12 @@ class SoundscapeService : MediaSessionService() {
 
             // create new RealmDB or open existing
             startRealms(applicationContext)
+
+            voiceCommandManager = VoiceCommandManager(
+                context = this,
+                onCommand = ::executeVoiceCommand,
+                onError = { audioEngine.createEarcon(NativeAudioEngine.EARCON_LOW_CONFIDENCE, AudioType.STANDARD) }
+            )
 
             mediaSession = MediaSession.Builder(this, mediaPlayer)
                 .setCallback(SoundscapeMediaSessionCallback(this))
@@ -312,6 +328,8 @@ class SoundscapeService : MediaSessionService() {
 
         wakeLock?.let { if (it.isHeld) it.release() }
         wakeLock = null
+
+        if (::voiceCommandManager.isInitialized) voiceCommandManager.destroy()
 
         // Clear service reference in binder so that it can be garbage collected
         binder?.reset()
@@ -503,6 +521,53 @@ class SoundscapeService : MediaSessionService() {
                 speakCallout(results, true)
             }
         }
+    }
+
+    fun triggerVoiceCommand() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+            != PackageManager.PERMISSION_GRANTED) return
+
+        if (!requestAudioFocus()) {
+            Log.w(TAG, "speakText: Could not get audio focus. Aborting callouts.")
+            return
+        }
+
+        val ctx = if (::localizedContext.isInitialized) localizedContext else this
+
+        // Clear the text queue
+        audioEngine.clearTextToSpeechQueue()
+        // Create the earcon and Listening... speech
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_CALLOUTS_ON, AudioType.STANDARD)
+        audioEngine.createTextToSpeech(ctx.getString(R.string.voice_cmd_listening), AudioType.STANDARD)
+
+        // Wait for the TTS to finish before opening the mic
+        coroutineScope.launch {
+            val deadline = System.currentTimeMillis() + 3_000L
+            while (isAudioEngineBusy() && System.currentTimeMillis() < deadline) {
+                delay(50)
+            }
+            withContext(Dispatchers.Main) {
+                voiceCommandManager.startListening()
+            }
+        }
+    }
+
+    fun executeVoiceCommand(command: VoiceCommand) {
+        val label = when (command) {
+            VoiceCommand.MY_LOCATION    -> { myLocation();        "My location" }
+            VoiceCommand.AROUND_ME      -> { whatsAroundMe();     "Around me" }
+            VoiceCommand.AHEAD_OF_ME    -> { aheadOfMe();         "Ahead of me" }
+            VoiceCommand.NEARBY_MARKERS -> { nearbyMarkers();     "Nearby markers" }
+            VoiceCommand.SKIP_NEXT      -> { routeSkipNext();     "Skip next" }
+            VoiceCommand.SKIP_PREVIOUS  -> { routeSkipPrevious(); "Skip previous" }
+            VoiceCommand.MUTE           -> { routeMute();         "Mute" }
+            VoiceCommand.STOP_ROUTE     -> { routeStop();         "Stop route" }
+            VoiceCommand.UNKNOWN        -> {
+                audioEngine.createEarcon(NativeAudioEngine.EARCON_LOW_CONFIDENCE, AudioType.STANDARD)
+                null
+            }
+        }
+        label?.let { audioEngine.createTextToSpeech(it, AudioType.STANDARD, 0.0, 0.0, 0.0) }
     }
 
     suspend fun searchResult(searchString: String): List<LocationDescription>? {

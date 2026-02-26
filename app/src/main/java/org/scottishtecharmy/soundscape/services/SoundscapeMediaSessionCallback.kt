@@ -40,6 +40,9 @@ class SoundscapeMediaSessionCallback(val service : SoundscapeService):
             KeyEvent::class.java
         )
 
+        // Ignore key-up events to prevent double-firing
+        if (keyEvent?.action != KeyEvent.ACTION_DOWN) return false
+
         // So far I've only seen KEYCODE_MEDIA_PLAY_PAUSE, KEYCODE_MEDIA_PREVIOUS and
         // KEYCODE_MEDIA_NEXT, though that may be specific to my phone. The only event actually
         // handled for now is KEYCODE_MEDIA_NEXT.
@@ -49,11 +52,12 @@ class SoundscapeMediaSessionCallback(val service : SoundscapeService):
 
         keyEvent?.let { event ->
             val decodedKey = when(event.keyCode) {
-                KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE -> {
-                    // ⏯ Play/Pause: Mute any current callouts and if the audio beacon is set, toggle the beacon audio.
-                    service.routeMute()
-                    "Play/Pause"
-                }
+                KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE -> { service.triggerVoiceCommand(); "Play/Pause" }
+//                KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE -> {
+//                    // ⏯ Play/Pause: Mute any current callouts and if the audio beacon is set, toggle the beacon audio.
+//                    service.routeMute()
+//                    "Play/Pause"
+//                }
                 KeyEvent.KEYCODE_MEDIA_SKIP_FORWARD -> {
                     // ⏩ Skip Forward
                     if(!service.routeSkipNext()) {
@@ -87,7 +91,6 @@ class SoundscapeMediaSessionCallback(val service : SoundscapeService):
                     "Skip backward"
                 }
 
-                KeyEvent.KEYCODE_MEDIA_PLAY -> "Play"
                 KeyEvent.KEYCODE_MEDIA_FAST_FORWARD -> "Fast forward"
                 KeyEvent.KEYCODE_MEDIA_REWIND -> "Rewind"
                 else -> return false

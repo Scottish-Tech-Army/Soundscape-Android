@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
 import android.content.Context
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -160,14 +162,16 @@ fun HomeContent(
     goToAppSettings: (Context) -> Unit,
     fullscreenMap: MutableState<Boolean>,
     permissionsRequired: Boolean,
-    showMap: Boolean) {
+    showMap: Boolean,
+    voiceCommandListening: Boolean = false) {
     val context = LocalContext.current
     val coroutineScope = rememberCoroutineScope()
     var fetchingLocation by remember { mutableStateOf(false) }
 
+    Box(modifier = modifier.fillMaxSize()) {
     Column(
         verticalArrangement = Arrangement.spacedBy(spacing.small),
-        modifier = modifier
+        modifier = Modifier.fillMaxSize()
     ) {
         if (streetPreviewState.enabled != StreetPreviewEnabled.OFF) {
             StreetPreview(streetPreviewState, streetPreviewFunctions)
@@ -390,6 +394,25 @@ fun HomeContent(
             }
         }
     }
+    if (voiceCommandListening) {
+        Box(
+            contentAlignment = Alignment.BottomCenter,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Text(
+                text = stringResource(R.string.voice_cmd_listening),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.85f))
+                    .padding(vertical = spacing.small)
+                    .semantics { liveRegion = LiveRegionMode.Assertive },
+                textAlign = TextAlign.Center
+            )
+        }
+    }
+    } // end Box
 }
 
 @Preview
