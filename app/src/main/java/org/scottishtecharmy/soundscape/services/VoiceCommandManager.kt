@@ -20,7 +20,7 @@ sealed class VoiceCommandState {
 
 enum class VoiceCommand {
     MY_LOCATION, AROUND_ME, AHEAD_OF_ME, NEARBY_MARKERS,
-    SKIP_NEXT, SKIP_PREVIOUS, MUTE, STOP_ROUTE, UNKNOWN
+    SKIP_NEXT, SKIP_PREVIOUS, MUTE, STOP_ROUTE, HELP, UNKNOWN
 }
 
 class VoiceCommandManager(
@@ -109,6 +109,7 @@ class VoiceCommandManager(
             matches(R.string.voice_cmd_skip_next)                -> VoiceCommand.SKIP_NEXT
             matches(R.string.voice_cmd_mute)                                     -> VoiceCommand.MUTE
             matches(R.string.voice_cmd_stop_route)                                  -> VoiceCommand.STOP_ROUTE
+            matches(R.string.voice_cmd_help)                     -> VoiceCommand.HELP
             else                                                        -> VoiceCommand.UNKNOWN
         }
     }

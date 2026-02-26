@@ -2580,13 +2580,16 @@ Please report any problems that you have, however small they may be via the *Con
 <!-- Voice command keywords (comma-separated phrases to recognise).
      Translators: replace each item with natural phrases a user would say in your language. -->
 <string name="voice_cmd_my_location" tools:ignore="MissingTranslation">my location,where am i</string>
-<string name="voice_cmd_around_me" tools:ignore="MissingTranslation">around me,what\'s around,around</string>
-<string name="voice_cmd_ahead_of_me" tools:ignore="MissingTranslation">ahead of me,what\'s ahead,ahead</string>
+<string name="voice_cmd_around_me" tools:ignore="MissingTranslation">"around me,what's around,around"</string>
+<string name="voice_cmd_ahead_of_me" tools:ignore="MissingTranslation">"ahead of me,what's ahead,ahead"</string>
 <string name="voice_cmd_nearby_markers" tools:ignore="MissingTranslation">nearby markers,markers,nearby</string>
 <string name="voice_cmd_skip_next" tools:ignore="MissingTranslation">skip next,next waypoint,next,skip</string>
 <string name="voice_cmd_skip_previous" tools:ignore="MissingTranslation">skip previous,previous waypoint,previous,go back</string>
 <string name="voice_cmd_mute" tools:ignore="MissingTranslation">mute,silence</string>
 <string name="voice_cmd_stop_route" tools:ignore="MissingTranslation">stop route,stop</string>
+<string name="voice_cmd_help" tools:ignore="MissingTranslation">help,what can I say,commands,what commands</string>
+<!-- Spoken response listing all available commands -->
+<string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Available commands: </string>
 <!-- Text shown on screen while the microphone is open -->
 <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Listening…</string>
 </resources>
