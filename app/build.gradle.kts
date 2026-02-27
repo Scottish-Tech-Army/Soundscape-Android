@@ -367,3 +367,11 @@ dependencies {
 
     testImplementation(libs.json)
 }
+
+dokka {
+    dokkaSourceSets.configureEach {
+        if (name == "main") {
+            suppress.set(true)
+        }
+    }
+}
