@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.services
+package org.scottishtecharmy.soundscape.services.mediacontrol
 
 import android.content.Context
 import android.content.Intent
@@ -44,14 +44,22 @@ class VoiceCommandManager(
     // Must be called on the main thread (satisfied: service is on main thread)
     fun startListening() {
         if (_state.value is VoiceCommandState.Listening) return
-        if (!SpeechRecognizer.isRecognitionAvailable(context)) { onError(); return }
-        destroyRecognizer()
-        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(context)
-        speechRecognizer?.setRecognitionListener(listener)
+        if (!SpeechRecognizer.isRecognitionAvailable(context)) {
+            println("Recognition is unavailable")
+            onError()
+            return
+        }
+        if(speechRecognizer == null) {
+            speechRecognizer = SpeechRecognizer.createSpeechRecognizer(context)
+            speechRecognizer?.setRecognitionListener(listener)
+        }
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
             putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
             putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, true)
             putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3)
+            // TODO: We need to query the API to find out which Locales are supported and use one of
+            //  those. For example, we might want to use es_ES even if we're in another country.
+            //  https://medium.com/@andraz.pajtler/android-speech-to-text-the-missing-guide-part-1-824e2636c45a
             // Match recognizer language to the app's configured locale
             putExtra(RecognizerIntent.EXTRA_LANGUAGE, getCurrentLocale().toLanguageTag())
         }
@@ -80,6 +88,8 @@ class VoiceCommandManager(
         }
 
         override fun onError(error: Int) {
+            println("onError $error")
+            destroyRecognizer()
             _state.value = VoiceCommandState.Error
             onError()
         }

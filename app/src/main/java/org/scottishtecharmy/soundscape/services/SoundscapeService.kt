@@ -63,6 +63,12 @@ import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.services.mediacontrol.OriginalMediaControls
+import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeDummyMediaPlayer
+import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeMediaSessionCallback
+import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommand
+import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandManager
+import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import kotlin.time.Duration
@@ -158,7 +164,12 @@ class SoundscapeService : MediaSessionService() {
 
     // Media control button code
     private var mediaSession: MediaSession? = null
-    private val mediaPlayer = SoundscapeDummyMediaPlayer()
+
+    // TODO: Pick what the media controls control
+    //private val mediaControlsTarget = VoiceCommandMediaControls(this)
+    private val mediaControlsTarget = OriginalMediaControls(this)
+
+    private val mediaPlayer = SoundscapeDummyMediaPlayer(mediaControlsTarget)
 
     var running: Boolean = false
     var started: Boolean = false
@@ -204,11 +215,6 @@ class SoundscapeService : MediaSessionService() {
 
         locationProvider.start(this)
         directionProvider.start(audioEngine, locationProvider)
-//        val configLocale = getCurrentLocale()
-//        val configuration = Configuration(applicationContext.resources.configuration)
-//        configuration.setLocale(configLocale)
-//        localizedContext = applicationContext.createConfigurationContext(configuration)
-//        if (::voiceCommandManager.isInitialized) voiceCommandManager.updateContext(localizedContext)
         geoEngine.start(application, locationProvider, directionProvider, this, localizedContext)
     }
 
@@ -286,19 +292,12 @@ class SoundscapeService : MediaSessionService() {
             voiceCommandManager = VoiceCommandManager(
                 context = this,
                 onCommand = ::executeVoiceCommand,
-                onError = {
-                    if (requestAudioFocus()) {
-                        audioEngine.createEarcon(
-                            NativeAudioEngine.EARCON_CALLOUTS_OFF,
-                            AudioType.STANDARD
-                        )
-                        audioEngine.createTextToSpeech("I'm sorry I didn't understand", AudioType.STANDARD)
-                    }
-                }
+                onError = { }
             )
 
             mediaSession = MediaSession.Builder(this, mediaPlayer)
-                .setCallback(SoundscapeMediaSessionCallback(this))
+                .setId("org.scottishtecharmy.soundscape")
+                .setCallback(SoundscapeMediaSessionCallback(mediaControlsTarget))
                 .build()
         }
     }
