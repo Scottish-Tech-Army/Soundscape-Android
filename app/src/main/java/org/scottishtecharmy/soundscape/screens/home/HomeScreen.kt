@@ -25,7 +25,6 @@ import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.MainActivity
-import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription

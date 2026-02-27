@@ -42,7 +42,6 @@ import org.commonmark.node.Paragraph
 import org.commonmark.node.SoftLineBreak
 import org.commonmark.node.StrongEmphasis
 import org.commonmark.node.Text
-import org.commonmark.parser.Parser
 import org.commonmark.renderer.html.HtmlRenderer
 import org.commonmark.renderer.text.TextContentRenderer
 import org.scottishtecharmy.soundscape.R
@@ -51,15 +50,6 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomA
 import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
-import java.io.IOException
-
-class MarkdownPage(val content: String, topic: String) {
-    val root: Node by lazy {
-        val parser: Parser = Parser.builder().build()
-        // TODO 2025-12-12 Hugh Greene: proper error handling here (log, and better UI output?)
-        parser.parse(content) ?: org.commonmark.node.Text("Failed to parse '${topic}'")
-    }
-}
 
 private fun Node.toLogText(): String {
     val sb = StringBuilder()
@@ -133,96 +123,6 @@ private fun List<Node>.toLogText(): String {
     return joinToString("") { it.toLogText() + "\n" }.trim()
 }
 
-private fun String.processMarkdownContent(): String {
-    // Strip YAML front matter
-    val content = if (this.startsWith("---")) {
-        val endOfFrontMatter = this.indexOf("---", 3)
-        if (endOfFrontMatter != -1) {
-            this.substring(endOfFrontMatter + 3).trimStart()
-        } else {
-            this
-        }
-    } else {
-        this
-    }
-
-    // Resolve {% link ... %} tags
-    // Replace {% link path/to/file.md %}, {% link file.md %}, etc. with just the filename file.md
-    return content.replace(Regex("""\{% link (?:[^/]+/)*([^ ]+\.md) %\}"""), "$1")
-}
-
-private fun getMarkdownFileName(helpTopic: HelpTopic): String? {
-    return when (helpTopic) {
-        is HelpTopic.Home -> "help-and-tutorials.md"
-        is HelpTopic.ResourcePage -> {
-            when (helpTopic.titleId) {
-                R.string.menu_help_and_tutorials -> "help-and-tutorials.md"
-                R.string.voice_voices -> "help-voices.md"
-                R.string.help_remote_page_title -> "help-using-media-controls.md"
-                R.string.beacon_audio_beacon -> "help-audio-beacon.md"
-                R.string.callouts_automatic_callouts -> "help-automatic-callouts.md"
-                R.string.directions_my_location -> "help-my-location.md"
-                R.string.help_orient_page_title -> "help-around-me.md"
-                R.string.help_explore_page_title -> "help-ahead-of-me.md"
-                R.string.callouts_nearby_markers -> "help-nearby-markers.md"
-                R.string.markers_title -> "help-markers.md"
-                R.string.routes_title -> "help-routes.md"
-                R.string.help_creating_markers_page_title -> "help-creating-markers.md"
-                R.string.help_edit_markers_page_title -> "help-customizing-markers.md"
-                R.string.faq_title -> "help-frequently-asked-questions.md"
-                R.string.faq_tips_title -> "help-tips.md"
-                R.string.help_offline_page_title -> "help-why-is-soundscape-working-offline-.md"
-                R.string.settings_about_app -> "help-about-soundscape.md"
-                else -> "${helpTopic.titleId}.md"
-            }
-        }
-
-        is HelpTopic.MarkdownPage -> {
-            if (helpTopic.fileName.endsWith(".md")) helpTopic.fileName else "${helpTopic.fileName}.md"
-        }
-
-        is HelpTopic.MarkdownFaq -> {
-            if (helpTopic.fileName.endsWith(".md")) helpTopic.fileName else "${helpTopic.fileName}.md"
-        }
-
-        else -> null
-    }
-}
-
-private fun loadMarkdownAsset(context: android.content.Context, helpTopic: HelpTopic): String? {
-    if (helpTopic is HelpTopic.ResourceFaq) {
-        try {
-            val question = context.getString(helpTopic.questionId).trim()
-            val answer = context.getString(helpTopic.answerId).trim()
-            return "## $question\n\n$answer"
-        } catch (_: Exception) {
-            // Fall through
-        }
-    }
-
-    val fileName = getMarkdownFileName(helpTopic) ?: return null
-
-    val locale = java.util.Locale.getDefault()
-    val localeTag = locale.toLanguageTag() // e.g., en-GB
-    val lang = locale.language // e.g., en
-
-    val candidatePaths = listOf(
-        "help/$localeTag/$fileName",
-        "help/$lang/$fileName",
-        "help/$fileName"
-    ).distinct() // in case $localTag and $lang are the same
-
-    for (path in candidatePaths) {
-        try {
-            return context.assets.open(path).bufferedReader().use { it.readText() }.processMarkdownContent()
-        } catch (_: IOException) {
-            // Try next path
-        }
-    }
-
-    return null
-}
-
 private fun Node.collectChildren(): List<Node> {
     val children = mutableListOf<Node>()
     var node: Node? = this.firstChild
@@ -262,15 +162,12 @@ fun MarkdownHelpScreen(
     val textContentRenderer = remember { TextContentRenderer.builder().build() }
     val htmlRenderer = remember { HtmlRenderer.builder().build() }
 
-    val helpTopic = HelpTopic.fromRouteParam(topic)
+    val helpTopic = HelpTopic.fromRouteParam(topic) as? HelpTopic.MarkdownHelpTopic
+        ?: return
     val isFaqSubPage = helpTopic is HelpTopic.MarkdownFaq
 
-    val markdownContent = loadMarkdownAsset(context, helpTopic)
-        ?: "# Error\n\nFailed to load help content for '$topic'"
-
-    val page = MarkdownPage(markdownContent, topic)
-    val rootNodes = page.root.collectChildren()
-    val displayTitle = getDisplayTitle(page, textContentRenderer) ?: getDisplayTitle(helpTopic)
+    val rootNodes = helpTopic.root.collectChildren()
+    val displayTitle = helpTopic.getDisplayTitle(textContentRenderer)
 
     val isFaqListPage = !isFaqSubPage && rootNodes.any { it is Heading && it.level == 3 }
     val nodesToRender = if (isFaqSubPage) {
@@ -324,10 +221,10 @@ fun MarkdownHelpScreen(
 
                             if (isFaqListPage && firstNode.level == 3) {
                                 val questionText = textContentRenderer.render(firstNode).trim()
-                                val fileName = getMarkdownFileName(helpTopic) ?: ""
+                                val fileName = helpTopic.getMarkdownFileName() ?: ""
                                 LinkButton(
                                     text = questionText,
-                                    route = "${HomeRoutes.Help.route}/${HelpTopic.MarkdownFaq(fileName, questionText).toRouteParam()}",
+                                    route = "${HomeRoutes.Help.route}/${HelpTopic.MarkdownFaq(context, fileName, questionText).toRouteParam()}",
                                     navController = navController,
                                     structureLog = structureLog,
                                     logText = firstNode.toLogText()
@@ -386,31 +283,6 @@ fun MarkdownHelpScreen(
         }
     )
     structureLog.end("HelpScreen")
-}
-
-@Composable
-private fun getDisplayTitle(
-    helpTopic: HelpTopic,
-): String {
-    return when (helpTopic) {
-        is HelpTopic.Home -> stringResource(R.string.menu_help_and_tutorials)
-        is HelpTopic.ResourcePage -> stringResource(helpTopic.titleId)
-        is HelpTopic.ResourceFaq -> stringResource(R.string.faq_title_abbreviated)
-        is HelpTopic.MarkdownPage -> helpTopic.fileName.removeSuffix(".md")
-        is HelpTopic.MarkdownFaq -> stringResource(R.string.faq_title_abbreviated)
-    }
-}
-
-private fun getDisplayTitle(
-    page: MarkdownPage,
-    textContentRenderer: TextContentRenderer
-): String? {
-    val firstNode: Node? = page.root.firstChild
-    return if (firstNode is Heading && firstNode.level == 1) {
-        textContentRenderer.render(firstNode).trim()
-    } else {
-        null
-    }
 }
 
 @Composable

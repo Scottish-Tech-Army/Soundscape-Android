@@ -18,6 +18,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.invisibleToUser
@@ -339,6 +340,8 @@ fun HelpScreen(
     structureLog: StructureLog = StructureLog {}
 ) {
     structureLog.start("HelpScreen")
+    val context = LocalContext.current
+
     // Find our page
     var sections = Sections(0, emptyList())
     val helpTopic = HelpTopic.fromRouteParam(topic)
@@ -452,9 +455,9 @@ fun HelpScreen(
                                 Button(
                                     onClick = {
                                         val routeParam = if (it.type == SectionType.Faq) {
-                                            HelpTopic.ResourceFaq(it.textId, it.faqAnswer).toRouteParam()
+                                            HelpTopic.ResourceFaq(context, it.textId, it.faqAnswer).toRouteParam()
                                         } else {
-                                            HelpTopic.ResourcePage(it.textId).toRouteParam()
+                                            HelpTopic.ResourcePage(context, it.textId).toRouteParam()
                                         }
                                         navController.navigate("${HomeRoutes.Help.route}/$routeParam")
                                     },

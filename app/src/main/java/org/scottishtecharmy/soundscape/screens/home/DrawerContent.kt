@@ -32,6 +32,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.BuildConfig
+import org.scottishtecharmy.soundscape.MainActivity.Companion.MARKDOWN_HELP_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.MARKDOWN_HELP_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_KEY
 import org.scottishtecharmy.soundscape.R
@@ -49,6 +51,7 @@ fun DrawerContent(
 ) {
     val scope = rememberCoroutineScope()
     val recordingEnabled = preferences?.getBoolean(RECORD_TRAVEL_KEY, RECORD_TRAVEL_DEFAULT) == true
+    val useMarkdownHelp = preferences?.getBoolean(MARKDOWN_HELP_KEY, MARKDOWN_HELP_DEFAULT) == true
 
     ModalDrawerSheet(
         drawerContainerColor = MaterialTheme.colorScheme.background,
@@ -113,7 +116,12 @@ fun DrawerContent(
                     modifier = Modifier.testTag("menuSettings")
                 )
                 DrawerMenuItem(
-                    onClick = { onNavigate(HomeRoutes.Help.route + "/page${R.string.menu_help_and_tutorials}") },
+                    onClick = {
+                        val route =
+                            if (useMarkdownHelp) "pagehelp-and-tutorials.md"
+                            else "page${R.string.menu_help_and_tutorials}"
+                        onNavigate(HomeRoutes.Help.route + "/$route")
+                    },
                     label = stringResource(R.string.menu_help_and_tutorials),
                     Icons.AutoMirrored.Rounded.HelpOutline,
                     modifier = Modifier.testTag("menuHelpAndTutorials")
@@ -147,7 +155,12 @@ fun DrawerContent(
 //                )
 
                 DrawerMenuItem(
-                    onClick = { onNavigate(HomeRoutes.Help.route + "/page${R.string.settings_about_app}") },
+                    onClick = {
+                        val route =
+                            if (useMarkdownHelp) "pagehelp-about-soundscape.md"
+                            else "page${R.string.settings_about_app}"
+                        onNavigate(HomeRoutes.Help.route + "/$route")
+                    },
                     label = stringResource(R.string.settings_about_app),
                     Icons.AutoMirrored.Rounded.HelpOutline,
                     modifier = Modifier.testTag("menuAboutSoundscape")
