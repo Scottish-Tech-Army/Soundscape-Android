@@ -854,6 +854,18 @@
 <string name="menu_manage_language" tools:ignore="MissingTranslation">"Language and Region "</string>
 <!-- Title for settings page group of accessibility settings -->
 <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">"Accessibility"</string>
+<!-- Title for settings page group of settings for the media controls -->
+<string name="menu_media_controls" tools:ignore="MissingTranslation">"Media Controls"</string>
+<!--  -->
+<string name="settings_section_media_controls" tools:ignore="MissingTranslation">"Media controls mode"</string>
+<!--  -->
+<string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">"The media control buttons on your headphones, or remote can be configured to work in different ways depending on this option."</string>
+<!--  -->
+<string name="settings_media_controls_original" tools:ignore="MissingTranslation">"Original mode"</string>
+<!--  -->
+<string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">"Voice command"</string>
+<!--  -->
+<string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">"Audio menu"</string>
 <!-- App theme light/dark description -->
 <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">"Light or Dark Theme"</string>
 <!-- App theme setting for automatic light/dark based on system -->

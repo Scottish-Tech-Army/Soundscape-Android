@@ -284,8 +284,6 @@ class SoundscapeService : MediaSessionService() {
             audioMenu = AudioMenu(this, application)
             routePlayer = RoutePlayer(this, applicationContext)
 
-            updateMediaControls(MediaControlsTarget.AUDIO_MENU)
-
             if(hasPlayServices(this)) {
                 locationProvider = GooglePlayLocationProvider(this)
                 directionProvider = GooglePlayDirectionProvider(this)
@@ -315,11 +313,12 @@ class SoundscapeService : MediaSessionService() {
         VOICE_COMMAND,
         AUDIO_MENU
     }
-    fun updateMediaControls(target: MediaControlsTarget) {
+    fun updateMediaControls(target: String) {
         mediaControlsTarget = when(target) {
-            MediaControlsTarget.ORIGINAL -> OriginalMediaControls(this)
-            MediaControlsTarget.VOICE_COMMAND -> VoiceCommandMediaControls(this)
-            MediaControlsTarget.AUDIO_MENU -> AudioMenuMediaControls(audioMenu)
+            "Original" -> OriginalMediaControls(this)
+            "VoiceControl" -> VoiceCommandMediaControls(this)
+            "AudioMenu" -> AudioMenuMediaControls(audioMenu)
+            else -> OriginalMediaControls(this)
         }
 
     }

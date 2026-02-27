@@ -258,6 +258,17 @@ fun Settings(
         "Offline"
     )
 
+    val mediaControlsDescriptions = listOf(
+        stringResource(R.string.settings_media_controls_original),
+        stringResource(R.string.settings_media_controls_voice_command),
+        stringResource(R.string.settings_media_controls_audio_menu),
+    )
+    val mediaControlsValues = listOf(
+        "Original",
+        "VoiceControl",
+        "AudioMenu",
+    )
+
     if (showConfirmationDialog.value) {
         AlertDialog(
             onDismissRequest = { showConfirmationDialog.value = false },
@@ -683,6 +694,42 @@ fun Settings(
                 }
             }
 
+            // Media control section
+            item(key = "header_media_control") {
+                ExpandableSectionHeader(
+                    title = stringResource(R.string.menu_media_controls),
+                    expanded = expandedSection.value == "media_controls",
+                    onToggle = { expandedSection.value = if (expandedSection.value == "media_controls") null else "media_controls" },
+                    textColor = textColor
+                )
+            }
+            if (expandedSection.value == "media_controls") {
+                listPreference(
+                    key = MainActivity.MEDIA_CONTROLS_MODE_KEY,
+                    defaultValue = MainActivity.MEDIA_CONTROLS_MODE_DEFAULT,
+                    values = mediaControlsValues,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.settings_section_media_controls,
+                            R.string.settings_section_media_controls_description,
+                            textColor
+                        )
+                    },
+                    item = { value, currentValue, onClick ->
+                        ListPreferenceItem(mediaControlsDescriptions[mediaControlsValues.indexOf(value)], value, currentValue, onClick, mediaControlsValues.indexOf(value), mediaControlsValues.size)
+                    },
+                    summary = {
+                        Text(
+                            text = mediaControlsDescriptions[mediaControlsValues.indexOf(it)],
+                            color = textColor,
+                            style = MaterialTheme.typography.bodyLarge
+                        )
+                    },
+                )
+            }
+
+
             // Debug Section
             item(key = "header_debug") {
                 ExpandableSectionHeader(
@@ -797,6 +844,11 @@ fun SettingsPreviewAudio() {
 @Composable
 fun SettingsPreviewLanguage() {
     SettingsPreview("language")
+}
+@Preview
+@Composable
+fun SettingsPreviewMediaControls() {
+    SettingsPreview("media_controls")
 }
 @Preview
 @Composable
