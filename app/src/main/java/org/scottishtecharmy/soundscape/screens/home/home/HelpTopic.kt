@@ -128,6 +128,9 @@ sealed class HelpTopic(protected val context: Context) {
     }
 
     companion object {
+        const val HELP_AND_TUTORIALS_FILENAME = "help-and-tutorials.md"
+        const val ABOUT_SOUNDSCAPE_FILENAME = "help-about-soundscape.md"
+
         @Composable
         fun fromRouteParam(param: String): HelpTopic {
             val context = LocalContext.current
@@ -136,7 +139,7 @@ sealed class HelpTopic(protected val context: Context) {
 
             fun getHome(): HelpTopic {
                 return if (useMarkdownHelp) {
-                    MarkdownPage(context, "help-and-tutorials.md")
+                    MarkdownPage(context, HELP_AND_TUTORIALS_FILENAME)
                 } else {
                     Home(context)
                 }

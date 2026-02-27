@@ -38,6 +38,7 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_DEFA
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
+import org.scottishtecharmy.soundscape.screens.home.home.HelpTopic
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -118,7 +119,7 @@ fun DrawerContent(
                 DrawerMenuItem(
                     onClick = {
                         val route =
-                            if (useMarkdownHelp) "pagehelp-and-tutorials.md"
+                            if (useMarkdownHelp) "page${HelpTopic.HELP_AND_TUTORIALS_FILENAME}"
                             else "page${R.string.menu_help_and_tutorials}"
                         onNavigate(HomeRoutes.Help.route + "/$route")
                     },
@@ -157,7 +158,7 @@ fun DrawerContent(
                 DrawerMenuItem(
                     onClick = {
                         val route =
-                            if (useMarkdownHelp) "pagehelp-about-soundscape.md"
+                            if (useMarkdownHelp) "page${HelpTopic.ABOUT_SOUNDSCAPE_FILENAME}"
                             else "page${R.string.settings_about_app}"
                         onNavigate(HomeRoutes.Help.route + "/$route")
                     },
