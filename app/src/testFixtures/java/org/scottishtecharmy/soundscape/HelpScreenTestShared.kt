@@ -1,10 +1,11 @@
 package org.scottishtecharmy.soundscape
 
+import android.net.Uri
 import androidx.annotation.OptIn
 import androidx.media3.common.util.UnstableApi
-import androidx.media3.common.util.Util.unescapeFileName
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.fail
+import org.scottishtecharmy.soundscape.screens.home.home.HelpTopic
 import org.scottishtecharmy.soundscape.screens.home.home.Section
 import org.scottishtecharmy.soundscape.screens.home.home.SectionType
 import org.scottishtecharmy.soundscape.screens.home.home.Sections
@@ -16,11 +17,35 @@ object HelpScreenTestShared {
         helpPages.associateBy { getDefaultString(it.titleId) }
     }
 
-    private val faqPagesByTitleString: Map<String, Section> by lazy {
-        val faqPage = helpPages.find { it.titleId == R.string.faq_title }!!
-        val individualFaqTopics = faqPage.sections.filter { it.type == SectionType.Faq }
-        individualFaqTopics.associateBy { getDefaultString(it.textId) }
-    }
+//    private val faqPagesByTitleString: Map<String, Section> by lazy {
+//        val faqPage = helpPages.find { it.titleId == R.string.faq_title }!!
+//        val individualFaqTopics = faqPage.sections.filter { it.type == SectionType.Faq }
+//        individualFaqTopics.associateBy { getDefaultString(it.textId) }
+//    }
+
+    /**
+     * Maps resource titleId to markdown filenames for help pages.
+     * This is used by tests to generate markdown-style route fragments.
+     */
+    private val titleIdToMarkdownFilename: Map<Int, String> = mapOf(
+        R.string.voice_voices to "help-voices.md",
+        R.string.help_remote_page_title to "help-using-media-controls.md",
+        R.string.beacon_audio_beacon to "help-audio-beacon.md",
+        R.string.callouts_automatic_callouts to "help-automatic-callouts.md",
+        R.string.directions_my_location to "help-my-location.md",
+        R.string.help_orient_page_title to "help-around-me.md",
+        R.string.help_explore_page_title to "help-ahead-of-me.md",
+        R.string.callouts_nearby_markers to "help-nearby-markers.md",
+        R.string.markers_title to "help-markers.md",
+        R.string.routes_title to "help-routes.md",
+        R.string.help_creating_markers_page_title to "help-creating-markers.md",
+        R.string.help_edit_markers_page_title to "help-customizing-markers.md",
+        R.string.faq_title to "help-frequently-asked-questions.md",
+        R.string.faq_tips_title to "help-tips.md",
+        R.string.help_offline_page_title to "help-why-is-soundscape-working-offline-.md",
+        R.string.menu_help_and_tutorials to HelpTopic.HELP_AND_TUTORIALS_FILENAME,
+        R.string.settings_about_app to HelpTopic.ABOUT_SOUNDSCAPE_FILENAME,
+    )
 
     /**
      * Retrieves a string resource for the default locale (e.g., from `values/strings.xml`).
@@ -44,18 +69,29 @@ object HelpScreenTestShared {
 
         return when {
             testTopic.startsWith("page_") -> {
-                val title = unescapeFileName(testTopic.substring(5))
+                val title = Uri.decode(testTopic.substring(5))
                 val helpPage = helpPagesByTitleString[title]
                     ?: _fail("Failed to find page with title '${title}'")
-                "page${helpPage.titleId}"
+                val fileName = titleIdToMarkdownFilename[helpPage.titleId]
+                    ?: _fail("Failed to find markdown filename for titleId ${helpPage.titleId}")
+                "page:${Uri.encode(fileName)}"
             }
             testTopic.startsWith("faq_") -> {
-                val title = unescapeFileName(testTopic.substring(4))
-                val section = faqPagesByTitleString[title]
-                    ?: _fail("Failed to find FAQ entry with title '${title}'")
-                "faq${section.textId}.${section.faqAnswer}"
+                val title = Uri.decode(testTopic.substring(4))
+//                val section = faqPagesByTitleString[title]
+//                    ?: _fail("Failed to find FAQ entry with title '${title}'")
+                val faqFileName = titleIdToMarkdownFilename[R.string.faq_title]
+                    ?: _fail("Failed to find markdown filename for FAQ page")
+                "page:faq:${Uri.encode(faqFileName)}:${Uri.encode(title)}"
             }
-            else -> testTopic
+            else -> {
+                // Handle the main "Help and Tutorials" page
+                if (testTopic == "Help and Tutorials") {
+                    "page:${Uri.encode(HelpTopic.HELP_AND_TUTORIALS_FILENAME)}"
+                } else {
+                    testTopic
+                }
+            }
         }
     }
 

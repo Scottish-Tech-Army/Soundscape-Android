@@ -11,7 +11,9 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.navigation.NavHostController
+import androidx.preference.PreferenceManager
 import androidx.test.platform.app.InstrumentationRegistry
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.scottishtecharmy.soundscape.screens.home.home.MarkdownHelpScreen
@@ -27,6 +29,15 @@ abstract class HelpScreenRegressionTestBase(protected val testTopic: String) {
      * the Windows filesystem, even though it works okay under an Android emulator.
      */
     protected val filenameSafeTestTopic = testTopic.replace("’", "'")
+
+    @Before
+    fun setUp() {
+        val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
+        PreferenceManager.getDefaultSharedPreferences(targetContext)
+            .edit()
+            .putBoolean(MainActivity.MARKDOWN_HELP_KEY, true)
+            .commit()
+    }
 
     @Test
     fun help_screen_regression() {

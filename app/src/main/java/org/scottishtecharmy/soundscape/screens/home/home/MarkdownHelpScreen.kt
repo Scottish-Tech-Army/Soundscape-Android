@@ -337,10 +337,15 @@ private fun filterNodesForFaq(
 ): List<Node> {
     val result = mutableListOf<Node>()
     var found = false
+    
+    // Normalize the question title for matching (trim, remove trailing punctuation)
+    val normalizedQuestionTitle = questionTitle.trim().removeSuffix("?").removeSuffix(":")
+    
     for (node in nodes) {
         if (node is Heading && node.level == 3) {
             val title = textContentRenderer.render(node).trim()
-            if (title == questionTitle) {
+            val normalizedTitle = title.removeSuffix("?").removeSuffix(":")
+            if (normalizedTitle == normalizedQuestionTitle) {
                 found = true
             } else if (found) {
                 // Next H3 heading, stop
