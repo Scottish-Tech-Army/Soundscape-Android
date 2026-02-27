@@ -18,7 +18,7 @@ import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.services.SoundscapeBinder
 import org.scottishtecharmy.soundscape.services.SoundscapeService
-import org.scottishtecharmy.soundscape.services.VoiceCommandState
+import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
 import javax.inject.Inject
 
 @ActivityRetainedScoped
