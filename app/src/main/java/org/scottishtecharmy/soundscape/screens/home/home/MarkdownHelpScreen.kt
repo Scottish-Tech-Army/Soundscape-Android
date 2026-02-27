@@ -53,11 +53,11 @@ import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import java.io.IOException
 
-class MarkdownPage(val title: String, val content: String) {
+class MarkdownPage(val content: String, topic: String) {
     val root: Node by lazy {
         val parser: Parser = Parser.builder().build()
         // TODO 2025-12-12 Hugh Greene: proper error handling here (log, and better UI output?)
-        parser.parse(content) ?: org.commonmark.node.Text("Failed to parse '${title}'")
+        parser.parse(content) ?: org.commonmark.node.Text("Failed to parse '${topic}'")
     }
 }
 
@@ -242,7 +242,7 @@ private fun Node.tryGetOnlyChild(): Node? {
 }
 
 fun List<Node>.withoutAnyRootHeading(): List<Node> {
-    val firstNode = this[0]
+    val firstNode = this.getOrNull(0) ?: return this
     if (firstNode is Heading && firstNode.level == 1) {
         return this.drop(1)
     }
@@ -265,12 +265,13 @@ fun MarkdownHelpScreen(
     val helpTopic = HelpTopic.fromRouteParam(topic)
     val isFaqSubPage = helpTopic is HelpTopic.MarkdownFaq
 
-    val displayTitle = getDisplayTitle(helpTopic)
-    val rawContent = loadMarkdownAsset(context, helpTopic)
+    val markdownContent = loadMarkdownAsset(context, helpTopic)
         ?: "# Error\n\nFailed to load help content for '$topic'"
 
-    val page = MarkdownPage(displayTitle, rawContent)
+    val page = MarkdownPage(markdownContent, topic)
     val rootNodes = page.root.collectChildren()
+    val displayTitle = getDisplayTitle(page, textContentRenderer) ?: getDisplayTitle(helpTopic)
+
     val isFaqListPage = !isFaqSubPage && rootNodes.any { it is Heading && it.level == 3 }
     val nodesToRender = if (isFaqSubPage) {
         filterNodesForFaq(rootNodes, helpTopic.question, textContentRenderer)
@@ -286,7 +287,7 @@ fun MarkdownHelpScreen(
         topBar = {
             structureLog.start("Scaffold topBar")
             CustomAppBar(
-                title = page.title,
+                title = displayTitle,
                 navigationButtonTitle = stringResource(R.string.ui_back_button_title),
                 onNavigateUp = { navController.popBackStack() },
             )
@@ -397,6 +398,18 @@ private fun getDisplayTitle(
         is HelpTopic.ResourceFaq -> stringResource(R.string.faq_title_abbreviated)
         is HelpTopic.MarkdownPage -> helpTopic.fileName.removeSuffix(".md")
         is HelpTopic.MarkdownFaq -> stringResource(R.string.faq_title_abbreviated)
+    }
+}
+
+private fun getDisplayTitle(
+    page: MarkdownPage,
+    textContentRenderer: TextContentRenderer
+): String? {
+    val firstNode: Node? = page.root.firstChild
+    return if (firstNode is Heading && firstNode.level == 1) {
+        textContentRenderer.render(firstNode).trim()
+    } else {
+        null
     }
 }
 

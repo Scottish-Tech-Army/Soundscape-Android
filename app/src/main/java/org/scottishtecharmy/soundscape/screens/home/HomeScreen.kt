@@ -290,7 +290,7 @@ fun HomeScreen(
                 MainActivity.MARKDOWN_HELP_KEY,
                 MainActivity.MARKDOWN_HELP_DEFAULT
             )
-            val showMarkdown = (helpTopic is HelpTopic.Home && useMarkdownHelp)
+            val showMarkdown = useMarkdownHelp
                     || helpTopic is HelpTopic.MarkdownPage
                     || helpTopic is HelpTopic.MarkdownFaq
 
