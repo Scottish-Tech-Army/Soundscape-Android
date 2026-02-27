@@ -168,6 +168,12 @@ class MainActivity : AppCompatActivity() {
                     hintsEnabled = preferences.getBoolean(HINTS_KEY, HINTS_DEFAULT)
                 )
             }
+
+            MEDIA_CONTROLS_MODE_KEY -> {
+                val mode = preferences.getString(MEDIA_CONTROLS_MODE_KEY, MEDIA_CONTROLS_MODE_DEFAULT)!!
+                Log.e(TAG, "mediaControlsMode $mode")
+                soundscapeServiceConnection.soundscapeService?.updateMediaControls(mode)
+            }
         }
     }
 
@@ -805,6 +811,8 @@ class MainActivity : AppCompatActivity() {
         const val GEOCODER_MODE_KEY = "GeocoderMode"
         const val LAST_SPLASH_RELEASE_DEFAULT = ""
         const val LAST_SPLASH_RELEASE_KEY = "LastNewRelease"
+        const val MEDIA_CONTROLS_MODE_DEFAULT = "Original"
+        const val MEDIA_CONTROLS_MODE_KEY = "MediaControlsMode"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
         const val AUDIO_TOUR_SHOWN_KEY = "AudioTourShown"
