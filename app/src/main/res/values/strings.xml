@@ -2616,7 +2616,7 @@ Please report any problems that you have, however small they may be via the *Con
 <string name="voice_cmd_stop_route" tools:ignore="MissingTranslation">stop route,stop</string>
 <string name="voice_cmd_help" tools:ignore="MissingTranslation">help,what can I say,commands,what commands</string>
 <!-- Spoken response listing all available commands -->
-<string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Available commands: </string>
+<string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Available voice commands: </string>
 <!-- Text shown on screen while the microphone is open -->
 <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Listening…</string>
 </resources>
