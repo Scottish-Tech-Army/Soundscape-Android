@@ -104,8 +104,7 @@ open class GridState(
     open fun start(applicationContext: Context? = null,
                    offlineExtractPath: String = "") {}
     open fun stop() {
-        // Clean up tile cache and feature trees
-        clearTileCache()
+        // Clean up the feature trees
         for(tree in featureTrees) {
             tree.tree = null
         }
@@ -117,40 +116,6 @@ open class GridState(
 
     fun isLocationWithinGrid(location: LngLatAlt): Boolean {
         return pointIsWithinBoundingBox(location, totalBoundingBox)
-    }
-
-    /** clearTileConnectionsFromGrid removes all joining ways from the grid.
-     *
-     */
-    fun clearTileConnectionsFromGrid() {
-        // Find all ways with type WayType.JOINER, remove them from their intersections at either
-        // end and remove their intersection references. The result should be that they have no
-        // remaining references and can be garbage collected.
-        for(intersection in gridIntersections.values) {
-            val iterator = intersection.members.listIterator()
-            while(iterator.hasNext()) {
-                val way = iterator.next()
-                if(way.wayType == WayType.JOINER) {
-
-                    // Remove far end too
-                    val otherEnd = way.getOtherIntersection(intersection)
-                    if(otherEnd != null) {
-                        val members = otherEnd.members.listIterator()
-                        while(members.hasNext()) {
-                            val member = members.next()
-                            if(member == way) {
-                                members.remove()
-                                break
-                            }
-                        }
-                    }
-
-                    way.intersections[WayEnd.START.id] = null
-                    way.intersections[WayEnd.END.id] = null
-                    iterator.remove()
-                }
-            }
-        }
     }
 
     /**
@@ -306,8 +271,7 @@ open class GridState(
 
                         val duration = measureTime {
                             ruler = CheapRuler(location.latitude)
-                            clearTileConnectionsFromGrid()
-
+                            gridIntersections.clear()
                             processGridState(
                                 featureCollections,
                                 enabledCategories,
@@ -320,61 +284,17 @@ open class GridState(
                             for(collection in newGridStreetNumberMap)
                                 gridStreetNumberTreeMap[collection.key] = FeatureTree(collection.value)
                         }
-
                         println("Time to process grid: $duration")
                     }
                 }
                 return true
             } else {
-                // Updating the tile grid failed, due to a lack of cached tile and then
-                // a lack of network/server issue. There's nothing that we can do, so
-                // simply retry on the next location update.
+                // Updating the tile grid failed, due to a lack of network/server issue. There's
+                // nothing that we can do, so simply retry on the next location update.
                 return false
             }
         }
         return false
-    }
-
-    // We keep a small cache of the FeatureCollections for the most recently used tiles. The main
-    // aim of this is to re-use tiles which are shared between the old and new 2x2 grid. There is
-    // almost always at least 1 tile shared, and often 2.
-    val maxCachedTiles = 10
-    data class CachedTile(
-        var tileCollections: Array<FeatureCollection>,
-        var intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf(),
-        var streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf(),
-        var lastUsed: Long)
-    val cachedTiles: HashMap<Pair<Int,Int>, CachedTile> = HashMap()
-
-    fun clearTileCache() {
-        for(tile in cachedTiles) {
-            clearTile(tile.value)
-        }
-        cachedTiles.clear()
-    }
-    fun clearCachedTile(key: Pair<Int, Int>) {
-        val data = cachedTiles.remove(key)!!
-        clearTile(data)
-    }
-
-    fun clearTile(tile: CachedTile) {
-        for(fc in tile.tileCollections) {
-            fc.features.clear()
-        }
-        tile.tileCollections = emptyArray()
-
-        // Remove intersection refs in every Way that makes up the
-        // intersection (up to two)
-        for(intersection in tile.intersectionMap.values) {
-            // Remove all Way end references
-            for(member in intersection.members) {
-                member.intersections[WayEnd.START.id] = null
-                member.intersections[WayEnd.END.id] = null
-            }
-            // Remove all Ways from this intersection
-            intersection.members.clear()
-        }
-        tile.intersectionMap.clear()
     }
 
     data class TileUpdateResult(
@@ -395,45 +315,32 @@ open class GridState(
         // Check for an updated list of offline maps
         checkOfflineMaps()
 
-        // Mark cachedTiles before launching workers to update tiles
-        var workerIndex = 0
-        for(tile in tileGrid.tiles) {
-            val key = Pair(tile.tileX, tile.tileY)
-            tile.cached = cachedTiles.contains(key)
-            if(!tile.cached) {
-                // If the tile isn't cached, allocate it a worker to use
-                tile.workerIndex = workerIndex
-                ++workerIndex
-            }
+        for((workerIndex, tile) in tileGrid.tiles.withIndex()) {
+            tile.workerIndex = workerIndex
         }
 
         val deferredUpdates = tileGrid.tiles.map { tile ->
             async {
-                if (!tile.cached) {
-                    var ret = false
-                    val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
-                    val streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
-                    val tileCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
-                    Analytics.getInstance().logCostlyEvent("updateTile", null)
-                    for (retry in 1..5) {
-                        ret = updateTile(
-                            tile.tileX,
-                            tile.tileY,
-                            tile.workerIndex,
-                            tileCollections,
-                            intersectionMap,
-                            streetNumberMap)
-                        if(ret)
-                            break
-                    }
-                    if (ret) {
-                        TileUpdateResult(true, tile, tileCollections, intersectionMap, streetNumberMap)
-                    } else {
-                        TileUpdateResult(false, tile, null, null, null)
-                    }
+                var ret = false
+                val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+                val streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
+                val tileCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
+                Analytics.getInstance().logCostlyEvent("updateTile", null)
+                for (retry in 1..5) {
+                    ret = updateTile(
+                        tile.tileX,
+                        tile.tileY,
+                        tile.workerIndex,
+                        tileCollections,
+                        intersectionMap,
+                        streetNumberMap)
+                    if(ret)
+                        break
+                }
+                if (ret) {
+                    TileUpdateResult(true, tile, tileCollections, intersectionMap, streetNumberMap)
                 } else {
-                    // Mark cached results as successful
-                    TileUpdateResult(true, tile, null, null, null)
+                    TileUpdateResult(false, tile, null, null, null)
                 }
             }
         }
@@ -441,50 +348,6 @@ open class GridState(
         val results = deferredUpdates.awaitAll()
         if (results.any { !it.success }) {
             return@withContext false // If any tile failed, abort the whole grid update
-        }
-
-        // Get any tiles that were already cached out of the cache. Do these before caching our new
-        // data to avoid the tiles we want being expunged from the cache before we get to them.
-        for(result in results) {
-            if (result.tile.cached) {
-                // Fill in result from cache
-                val key = Pair(result.tile.tileX, result.tile.tileY)
-                val cachedTile = cachedTiles[key]!!
-                result.collections = cachedTile.tileCollections
-                result.intersections = cachedTile.intersectionMap
-                result.streetNumberMap = cachedTile.streetNumberMap
-                cachedTile.lastUsed = System.currentTimeMillis()
-            }
-        }
-
-        // Now loop around and cache our new tiles
-        for(result in results) {
-            if (!result.tile.cached) {
-                val key = Pair(result.tile.tileX, result.tile.tileY)
-                // Add new tile data to the cache
-                cachedTiles[key] = CachedTile(
-                    result.collections!!,
-                    result.intersections!!,
-                    result.streetNumberMap!!,
-                    System.currentTimeMillis()
-                )
-
-                if (cachedTiles.size > maxCachedTiles) {
-                    // Remove the least recently used tile
-                    var leastRecentlyUsed = Long.MAX_VALUE
-                    var leastRecentlyUsedKey = Pair(0, 0)
-                    for (cachedTile in cachedTiles) {
-                        if (cachedTile.value.lastUsed < leastRecentlyUsed) {
-                            leastRecentlyUsed = cachedTile.value.lastUsed
-                            leastRecentlyUsedKey = cachedTile.key
-                        }
-                    }
-                    if (leastRecentlyUsedKey != Pair(0, 0)) {
-                        clearCachedTile(leastRecentlyUsedKey)
-                    }
-                    assert(cachedTiles.size <= maxCachedTiles)
-                }
-            }
         }
 
         // All tiles were processed successfully, now aggregate the results
