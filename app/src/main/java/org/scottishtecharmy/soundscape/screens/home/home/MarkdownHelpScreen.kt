@@ -257,15 +257,16 @@ fun MarkdownHelpScreen(
                             )
                         } else {
                             val htmlContent = nodes.joinToString("") { htmlRenderer.render(it) }.trim()
-                            val text = AnnotatedString.fromHtml(
-                                htmlString = htmlContent,
-                                linkStyles = TextLinkStyles(
-                                    style = SpanStyle(
-                                        textDecoration = TextDecoration.Underline,
-                                    )
-                                )
-                                // TODO 2025-11-17 Hugh Greene: Add linkInteractionListener
-                            )
+                             val text = AnnotatedString.fromHtml(
+                                 htmlString = htmlContent,
+                                 linkStyles = TextLinkStyles(
+                                     style = SpanStyle(
+                                         color = MaterialTheme.colorScheme.primary,
+                                         textDecoration = TextDecoration.Underline,
+                                     )
+                                 )
+                                 // TODO 2025-11-17 Hugh Greene: Add linkInteractionListener
+                             )
                             structureLog.unstructured("Text for HTML section: '${nodes.toLogText()}'")
                             Text(
                                 text = text,

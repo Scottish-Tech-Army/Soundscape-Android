@@ -430,14 +430,16 @@ fun HelpScreen(
                                     val renderer = HtmlRenderer.builder().build()
                                     htmlText = renderer.render(document)
                                 }
-                                val text = AnnotatedString.fromHtml(
-                                    htmlString = htmlText,
-                                    linkStyles = TextLinkStyles(
-                                        style = SpanStyle(
-                                            textDecoration = TextDecoration.Underline,
-                                        )
-                                    )
-                                )
+                                 val text = AnnotatedString.fromHtml(
+                                     htmlString = htmlText,
+                                     linkStyles = TextLinkStyles(
+                                         style = SpanStyle(
+                                             color = MaterialTheme.colorScheme.primary,
+                                             textDecoration = TextDecoration.Underline,
+                                         )
+                                     )
+                                 )
+
                                 structureLog.unstructured("Text for HTML section: '${text}'")
                                 Text(
                                     text = text,
