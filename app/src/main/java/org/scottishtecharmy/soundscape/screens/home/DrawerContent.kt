@@ -119,7 +119,7 @@ fun DrawerContent(
                 DrawerMenuItem(
                     onClick = {
                         val route =
-                            if (useMarkdownHelp) "page${HelpTopic.HELP_AND_TUTORIALS_FILENAME}"
+                            if (useMarkdownHelp) "page:${HelpTopic.HELP_AND_TUTORIALS_FILENAME}"
                             else "page${R.string.menu_help_and_tutorials}"
                         onNavigate(HomeRoutes.Help.route + "/$route")
                     },
@@ -158,7 +158,7 @@ fun DrawerContent(
                 DrawerMenuItem(
                     onClick = {
                         val route =
-                            if (useMarkdownHelp) "page${HelpTopic.ABOUT_SOUNDSCAPE_FILENAME}"
+                            if (useMarkdownHelp) "page:${HelpTopic.ABOUT_SOUNDSCAPE_FILENAME}"
                             else "page${R.string.settings_about_app}"
                         onNavigate(HomeRoutes.Help.route + "/$route")
                     },

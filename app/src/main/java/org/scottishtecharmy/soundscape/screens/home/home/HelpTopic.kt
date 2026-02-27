@@ -113,7 +113,7 @@ sealed class HelpTopic(protected val context: Context) {
     class MarkdownPage(context: Context, fileName: String) : MarkdownHelpTopic(context, fileName) {
         override fun toRouteParam(): String {
             val name = if (fileName.endsWith(".md")) fileName else "$fileName.md"
-            return "page${Uri.encode(name)}"
+            return "page:${Uri.encode(name)}"
         }
 
         override fun getDisplayTitle(): String = fileName.removeSuffix(".md")
@@ -122,7 +122,7 @@ sealed class HelpTopic(protected val context: Context) {
     class MarkdownFaq(context: Context, fileName: String, val question: String)
         : MarkdownHelpTopic(context, fileName)
     {
-        override fun toRouteParam(): String = "faq:${Uri.encode(fileName)}:${Uri.encode(question)}"
+        override fun toRouteParam(): String = "page:faq:${Uri.encode(fileName)}:${Uri.encode(question)}"
 
         override fun getDisplayTitle(): String = context.getString(R.string.faq_title_abbreviated)
     }
@@ -145,17 +145,22 @@ sealed class HelpTopic(protected val context: Context) {
                 }
             }
 
-            if (param == "page${R.string.menu_help_and_tutorials}" || param.isEmpty()) {
+            if (param == "page:${HELP_AND_TUTORIALS_FILENAME}" || param == "page${R.string.menu_help_and_tutorials}" || param.isEmpty()) {
                 return getHome()
             }
 
             return when {
-                param.startsWith("faq:") -> {
-                    val parts = param.substring(4).split(":", limit = 2)
-                    if (parts.size == 2) {
-                        MarkdownFaq(context, Uri.decode(parts[0]), Uri.decode(parts[1]))
+                param.startsWith("page:") -> {
+                    val rest = Uri.decode(param.substring(5))
+                    if (rest.startsWith("faq:")) {
+                        val parts = rest.substring(4).split(":", limit = 2)
+                        if (parts.size == 2) {
+                            MarkdownFaq(context, Uri.decode(parts[0]), Uri.decode(parts[1]))
+                        } else {
+                            Home(context)
+                        }
                     } else {
-                        Home(context)
+                        MarkdownPage(context, rest)
                     }
                 }
                 param.startsWith("faq") -> {
