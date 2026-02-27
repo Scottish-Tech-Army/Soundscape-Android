@@ -592,7 +592,19 @@ class SoundscapeService : MediaSessionService() {
             VoiceCommand.SKIP_PREVIOUS  -> { routeSkipPrevious(); null }
             VoiceCommand.MUTE           -> { routeMute();         null }
             VoiceCommand.STOP_ROUTE     -> { routeStop();         null }
-            VoiceCommand.HELP           -> ctx.getString(R.string.voice_cmd_help_response)
+            VoiceCommand.HELP           -> {
+                val commandNames = listOf(
+                    R.string.voice_cmd_my_location,
+                    R.string.voice_cmd_around_me,
+                    R.string.voice_cmd_ahead_of_me,
+                    R.string.voice_cmd_nearby_markers,
+                    R.string.voice_cmd_skip_previous,
+                    R.string.voice_cmd_skip_next,
+                    R.string.voice_cmd_mute,
+                    R.string.voice_cmd_stop_route
+                ).map { ctx.getString(it).substringBefore(',') }
+                ctx.getString(R.string.voice_cmd_help_response) + commandNames.joinToString(", ")
+            }
             VoiceCommand.UNKNOWN        -> {
                 audioEngine.createEarcon(NativeAudioEngine.EARCON_CALLOUTS_OFF, AudioType.STANDARD)
                 "I'm sorry I didn't understand"
