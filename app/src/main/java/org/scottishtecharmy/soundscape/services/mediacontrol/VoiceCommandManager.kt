@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.services.mediacontrol
 
 import android.content.Context
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
@@ -30,10 +31,16 @@ class VoiceCommandManager(
     private var speechRecognizer: SpeechRecognizer? = null
     private val _state = MutableStateFlow<VoiceCommandState>(VoiceCommandState.Idle)
     val state: StateFlow<VoiceCommandState> = _state.asStateFlow()
+    @Volatile private var extraBiasingStrings: List<String> = emptyList()
 
     /** Call this whenever SoundscapeService updates its localizedContext. */
     fun updateContext(newContext: Context) {
         context = newContext
+    }
+
+    /** Call this with current marker/route names whenever they are updated. */
+    fun updateBiasingStrings(strings: List<String>) {
+        extraBiasingStrings = strings
     }
 
     // Must be called on the main thread (satisfied: service is on main thread)
@@ -60,6 +67,12 @@ class VoiceCommandManager(
             //  https://medium.com/@andraz.pajtler/android-speech-to-text-the-missing-guide-part-1-824e2636c45a
             // Match recognizer language to the app's configured locale
             putExtra(RecognizerIntent.EXTRA_LANGUAGE, getCurrentLocale().toLanguageTag())
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                val biasingStrings = ArrayList<String>()
+                commands.forEach { biasingStrings.add(context.getString(it.stringId)) }
+                biasingStrings.addAll(extraBiasingStrings)
+                putStringArrayListExtra(RecognizerIntent.EXTRA_BIASING_STRINGS, biasingStrings)
+            }
         }
         speechRecognizer?.startListening(intent)
     }
@@ -105,26 +118,26 @@ class VoiceCommandManager(
 
     val commands = arrayOf(
         VoiceCommand(R.string.directions_my_location) { service.myLocation() },
-        VoiceCommand(R.string.help_orient_page_title)             { service.whatsAroundMe() },
-        VoiceCommand(R.string.help_explore_page_title)            { service.aheadOfMe() },
-        VoiceCommand(R.string.callouts_nearby_markers)            { service.nearbyMarkers() },
+        VoiceCommand(R.string.help_orient_page_title)               { service.whatsAroundMe() },
+        VoiceCommand(R.string.help_explore_page_title)             { service.aheadOfMe() },
+        VoiceCommand(R.string.callouts_nearby_markers)          { service.nearbyMarkers() },
         VoiceCommand(R.string.route_detail_action_next)           { service.routeSkipNext() },
         VoiceCommand(R.string.route_detail_action_previous)       { service.routeSkipPrevious() },
-        VoiceCommand(R.string.beacon_action_mute_beacon)          { service.routeMute() },
-        VoiceCommand(R.string.route_detail_action_stop_route)     { service.routeStop() },
-        VoiceCommand(R.string.voice_cmd_list_routes)              { service.routeListRoutes() },
-        VoiceCommand(R.string.route_detail_action_start_route)    {
+        VoiceCommand(R.string.beacon_action_mute_beacon)             { service.routeMute() },
+        VoiceCommand(R.string.route_detail_action_stop_route)              { service.routeStop() },
+        VoiceCommand(R.string.voice_cmd_list_routes)             { service.routeListRoutes() },
+        VoiceCommand(R.string.route_detail_action_start_route)             {
             // TODO: We need a "fuzzy remove" here
             val routeName = it.removePrefix(context.getString(R.string.route_detail_action_start_route).lowercase()).trim()
             service.routeStartByName(routeName)
         },
-        VoiceCommand(R.string.voice_cmd_list_markers)              { service.routeListMarkers() },
+        VoiceCommand(R.string.voice_cmd_list_markers)            { service.routeListMarkers() },
         VoiceCommand(R.string.voice_cmd_start_beacon_at_marker)    {
             // TODO: We need a "fuzzy remove" here
-            val markerName = it.removePrefix(context.getString(R.string.location_detail_action_beacon).lowercase()).trim()
+            val markerName = it.removePrefix(context.getString(R.string.voice_cmd_start_beacon_at_marker).lowercase()).trim()
             service.markerStartByName(markerName)
         },
-        VoiceCommand(R.string.menu_help)                          { voiceHelp() },
+        VoiceCommand(R.string.menu_help)                    { voiceHelp() },
     )
 
     private fun handleSpeech(speech: ArrayList<String>) {
@@ -160,7 +173,7 @@ class VoiceCommandManager(
     private fun voiceHelp() {
         val commandNames = commands.map { context.getString(it.stringId) }
         val text =
-            context.getString(R.string.voice_cmd_help_response) + commandNames.joinToString(", ")
+            context.getString(R.string.voice_cmd_help_response) + commandNames.joinToString(". ")
         service.speak2dText(text)
     }
 }
