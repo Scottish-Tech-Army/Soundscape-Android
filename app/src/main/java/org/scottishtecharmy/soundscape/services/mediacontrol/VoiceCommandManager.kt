@@ -10,6 +10,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.audio.AudioType
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.services.SoundscapeService
+import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 
 sealed class VoiceCommandState {
@@ -18,20 +22,12 @@ sealed class VoiceCommandState {
     object Error : VoiceCommandState()
 }
 
-enum class VoiceCommand {
-    MY_LOCATION, AROUND_ME, AHEAD_OF_ME, NEARBY_MARKERS,
-    SKIP_NEXT, SKIP_PREVIOUS, MUTE, STOP_ROUTE, HELP, UNKNOWN
-}
-
 class VoiceCommandManager(
-    // Mutable so SoundscapeService can push localizedContext once it's created.
-    // The service context is used for SpeechRecognizer binding;
-    // the localized context is used for string-resource keyword lookups.
-    private var context: Context,
-    private val onCommand: (VoiceCommand) -> Unit,
+    private val service: SoundscapeService,
     private val onError: () -> Unit
 ) {
 
+    private var context: Context = service
     private var speechRecognizer: SpeechRecognizer? = null
     private val _state = MutableStateFlow<VoiceCommandState>(VoiceCommandState.Idle)
     val state: StateFlow<VoiceCommandState> = _state.asStateFlow()
@@ -49,12 +45,15 @@ class VoiceCommandManager(
             onError()
             return
         }
-        if(speechRecognizer == null) {
+        if (speechRecognizer == null) {
             speechRecognizer = SpeechRecognizer.createSpeechRecognizer(context)
             speechRecognizer?.setRecognitionListener(listener)
         }
         val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
-            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
             putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, true)
             putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3)
             // TODO: We need to query the API to find out which Locales are supported and use one of
@@ -84,7 +83,8 @@ class VoiceCommandManager(
             _state.value = VoiceCommandState.Idle
             val matches = results?.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
             matches?.forEach { println("speech: $it") }
-            onCommand(parseCommand(matches?.firstOrNull() ?: ""))
+            if (matches != null)
+                handleSpeech(matches)
         }
 
         override fun onError(error: Int) {
@@ -102,25 +102,73 @@ class VoiceCommandManager(
         override fun onEvent(eventType: Int, params: Bundle?) {}
     }
 
-    private fun parseCommand(text: String): VoiceCommand {
-        val t = text.lowercase()
+    data class VoiceCommand(val stringId: Int, val action: (arg: String) -> Unit)
 
-        // Match against localized keyword lists stored in string resources.
-        // Each resource is a comma-separated list of phrases a user might say.
-        fun matches(resId: Int) =
-            context.getString(resId).split(",").any { t.contains(it.trim()) }
+    val commands = arrayOf(
+        VoiceCommand(R.string.directions_my_location) { service.myLocation() },
+        VoiceCommand(R.string.help_orient_page_title)             { service.whatsAroundMe() },
+        VoiceCommand(R.string.help_explore_page_title)            { service.aheadOfMe() },
+        VoiceCommand(R.string.callouts_nearby_markers)            { service.nearbyMarkers() },
+        VoiceCommand(R.string.route_detail_action_next)           { service.routeSkipNext() },
+        VoiceCommand(R.string.route_detail_action_previous)       { service.routeSkipPrevious() },
+        VoiceCommand(R.string.beacon_action_mute_beacon)          { service.routeMute() },
+        VoiceCommand(R.string.route_detail_action_stop_route)     { service.routeStop() },
+        VoiceCommand(R.string.voice_cmd_list_routes)              { service.routeListRoutes() },
+        VoiceCommand(R.string.route_detail_action_start_route)    {
+            // TODO: We need a "fuzzy remove" here
+            val routeName = it.removePrefix(context.getString(R.string.route_detail_action_start_route).lowercase()).trim()
+            service.routeStartByName(routeName)
+        },
+        VoiceCommand(R.string.voice_cmd_list_markers)              { service.routeListMarkers() },
+        VoiceCommand(R.string.voice_cmd_start_beacon_at_marker)    {
+            // TODO: We need a "fuzzy remove" here
+            val markerName = it.removePrefix(context.getString(R.string.location_detail_action_beacon).lowercase()).trim()
+            service.markerStartByName(markerName)
+        },
+        VoiceCommand(R.string.menu_help)                          { voiceHelp() },
+    )
 
-        return when {
-            matches(R.string.voice_cmd_my_location)              -> VoiceCommand.MY_LOCATION
-            matches(R.string.voice_cmd_around_me)                   -> VoiceCommand.AROUND_ME
-            matches(R.string.voice_cmd_ahead_of_me)                   -> VoiceCommand.AHEAD_OF_ME
-            matches(R.string.voice_cmd_nearby_markers)                    -> VoiceCommand.NEARBY_MARKERS
-            matches(R.string.voice_cmd_skip_previous) -> VoiceCommand.SKIP_PREVIOUS
-            matches(R.string.voice_cmd_skip_next)                -> VoiceCommand.SKIP_NEXT
-            matches(R.string.voice_cmd_mute)                                     -> VoiceCommand.MUTE
-            matches(R.string.voice_cmd_stop_route)                                  -> VoiceCommand.STOP_ROUTE
-            matches(R.string.voice_cmd_help)                     -> VoiceCommand.HELP
-            else                                                        -> VoiceCommand.UNKNOWN
+    private fun handleSpeech(speech: ArrayList<String>) {
+
+        // TODO: Start by only looking at the very first string for a match. We should check the
+        //  other strings too.
+
+        // Find the best match to the speech.
+        val t = speech.first().lowercase()
+
+        var minMatch = Double.MAX_VALUE
+        var bestMatch: VoiceCommand? = null
+        for (command in commands) {
+            val commandString = context.getString(command.stringId).lowercase()
+            val match = commandString.fuzzyCompare(t, true)
+            if ((match < 0.3) && (match < minMatch)) {
+                minMatch = match
+                bestMatch = command
+            }
+        }
+        if (bestMatch != null) {
+            println("Found command: ${context.getString(bestMatch.stringId)}")
+            bestMatch.action(t)
+        } else {
+            if (service.requestAudioFocus()) {
+                service.audioEngine.createEarcon(
+                    NativeAudioEngine.EARCON_CALLOUTS_OFF,
+                    AudioType.STANDARD
+                )
+                service.audioEngine.createTextToSpeech(
+                    context.getString(R.string.voice_cmd_not_recognized).format(t),
+                    AudioType.STANDARD
+                )
+            }
+        }
+    }
+
+    private fun voiceHelp() {
+        val commandNames = commands.map { context.getString(it.stringId) }
+        val text =
+            context.getString(R.string.voice_cmd_help_response) + commandNames.joinToString(", ")
+        if (service.requestAudioFocus()) {
+            service.audioEngine.createTextToSpeech(text, AudioType.STANDARD)
         }
     }
 }

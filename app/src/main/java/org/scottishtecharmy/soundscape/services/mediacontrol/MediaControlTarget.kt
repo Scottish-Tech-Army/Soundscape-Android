@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.services.mediacontrol
 
-import org.scottishtecharmy.soundscape.services.AudioMenu
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 
 // An interface that encapsulates the various media control buttons

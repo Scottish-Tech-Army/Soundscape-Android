@@ -29,6 +29,7 @@ import androidx.core.content.ContextCompat
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
+import androidx.preference.PreferenceManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +43,8 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MODE_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MODE_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
@@ -63,16 +66,17 @@ import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenu
 import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenuMediaControls
 import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControlTarget
 import org.scottishtecharmy.soundscape.services.mediacontrol.OriginalMediaControls
 import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeDummyMediaPlayer
 import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeMediaSessionCallback
-import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommand
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandManager
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandMediaControls
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
 import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -295,9 +299,13 @@ class SoundscapeService : MediaSessionService() {
             // create new RealmDB or open existing
             startRealms(applicationContext)
 
+            // Update the media controls mode
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+            val mode = sharedPreferences.getString(MEDIA_CONTROLS_MODE_KEY, MEDIA_CONTROLS_MODE_DEFAULT)!!
+            updateMediaControls(mode)
+
             voiceCommandManager = VoiceCommandManager(
-                context = this,
-                onCommand = ::executeVoiceCommand,
+                service = this,
                 onError = { }
             )
 
@@ -308,11 +316,6 @@ class SoundscapeService : MediaSessionService() {
         }
     }
 
-    enum class MediaControlsTarget {
-        ORIGINAL,
-        VOICE_COMMAND,
-        AUDIO_MENU
-    }
     fun updateMediaControls(target: String) {
         mediaControlsTarget = when(target) {
             "Original" -> OriginalMediaControls(this)
@@ -586,40 +589,6 @@ class SoundscapeService : MediaSessionService() {
         }
     }
 
-    fun executeVoiceCommand(command: VoiceCommand) {
-        val ctx = if (::localizedContext.isInitialized) localizedContext else this
-        val label = when (command) {
-            VoiceCommand.MY_LOCATION    -> { myLocation();        null }
-            VoiceCommand.AROUND_ME      -> { whatsAroundMe();     null }
-            VoiceCommand.AHEAD_OF_ME    -> { aheadOfMe();         null }
-            VoiceCommand.NEARBY_MARKERS -> { nearbyMarkers();     null }
-            VoiceCommand.SKIP_NEXT      -> { routeSkipNext();     null }
-            VoiceCommand.SKIP_PREVIOUS  -> { routeSkipPrevious(); null }
-            VoiceCommand.MUTE           -> { routeMute();         null }
-            VoiceCommand.STOP_ROUTE     -> { routeStop();         null }
-            VoiceCommand.HELP           -> {
-                val commandNames = listOf(
-                    R.string.voice_cmd_my_location,
-                    R.string.voice_cmd_around_me,
-                    R.string.voice_cmd_ahead_of_me,
-                    R.string.voice_cmd_nearby_markers,
-                    R.string.voice_cmd_skip_previous,
-                    R.string.voice_cmd_skip_next,
-                    R.string.voice_cmd_mute,
-                    R.string.voice_cmd_stop_route
-                ).map { ctx.getString(it).substringBefore(',') }
-                ctx.getString(R.string.voice_cmd_help_response) + commandNames.joinToString(", ")
-            }
-            VoiceCommand.UNKNOWN        -> {
-                audioEngine.createEarcon(NativeAudioEngine.EARCON_CALLOUTS_OFF, AudioType.STANDARD)
-                "I'm sorry I didn't understand"
-            }
-        }
-        if (requestAudioFocus()) {
-            label?.let { audioEngine.createTextToSpeech(it, AudioType.STANDARD) }
-        }
-    }
-
     suspend fun searchResult(searchString: String): List<LocationDescription>? {
         return geoEngine.searchResult(searchString)
     }
@@ -657,6 +626,119 @@ class SoundscapeService : MediaSessionService() {
         }
         return false
     }
+    fun routeListRoutes() {
+        coroutineScope.launch {
+            val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
+            val routes = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao().getAllRoutes()
+            if (requestAudioFocus()) {
+                if (routes.isEmpty()) {
+                    audioEngine.createTextToSpeech(ctx.getString(R.string.voice_cmd_no_routes), AudioType.STANDARD)
+                } else {
+                    val names = routes.joinToString(", ") { it.name }
+                    audioEngine.createTextToSpeech(
+                        ctx.getString(R.string.voice_cmd_routes_list) + names,
+                        AudioType.STANDARD
+                    )
+                }
+            }
+        }
+    }
+
+    fun routeStartByName(name: String) {
+        if (name.isEmpty()) {
+            routeListRoutes()
+            return
+        }
+        coroutineScope.launch {
+            val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
+            val routes = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao().getAllRoutes()
+            val nameLower = name.lowercase()
+            var bestId = -1L
+            var bestScore = Double.MAX_VALUE
+            for (route in routes) {
+                val score = nameLower.fuzzyCompare(route.name.lowercase(), true)
+                if (score < 0.4 && score < bestScore) {
+                    bestScore = score
+                    bestId = route.routeId
+                }
+            }
+            if (bestId != -1L) {
+                val routeName = routes.first { it.routeId == bestId }.name
+                if (requestAudioFocus()) {
+                    audioEngine.createTextToSpeech(
+                        ctx.getString(R.string.voice_cmd_starting_route).format(routeName),
+                        AudioType.STANDARD
+                    )
+                }
+                routeStart(bestId)
+            } else {
+                if (requestAudioFocus()) {
+                    audioEngine.createTextToSpeech(
+                        ctx.getString(R.string.voice_cmd_route_not_found).format(name),
+                        AudioType.STANDARD
+                    )
+                }
+            }
+        }
+    }
+
+    fun routeListMarkers() {
+        coroutineScope.launch {
+            val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
+            val markers = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao().getAllMarkers()
+            if (requestAudioFocus()) {
+                if (markers.isEmpty()) {
+                    audioEngine.createTextToSpeech(ctx.getString(R.string.voice_cmd_no_markers), AudioType.STANDARD)
+                } else {
+                    val names = markers.joinToString(", ") { it.name }
+                    audioEngine.createTextToSpeech(
+                        ctx.getString(R.string.voice_cmd_markers_list) + names,
+                        AudioType.STANDARD
+                    )
+                }
+            }
+        }
+    }
+
+    fun markerStartByName(name: String) {
+        if (name.isEmpty()) {
+            routeListMarkers()
+            return
+        }
+        coroutineScope.launch {
+            val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
+            val markers = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao().getAllMarkers()
+            val nameLower = name.lowercase()
+            var bestId = -1L
+            var bestScore = Double.MAX_VALUE
+            for (marker in markers) {
+                val score = nameLower.fuzzyCompare(marker.name.lowercase(), true)
+                if (score < 0.4 && score < bestScore) {
+                    bestScore = score
+                    bestId = marker.markerId
+                }
+            }
+            if (bestId != -1L) {
+                val marker = markers.first { it.markerId == bestId }
+                if (requestAudioFocus()) {
+                    audioEngine.createTextToSpeech(
+                        ctx.getString(R.string.voice_cmd_starting_beacon_at_marker).format(marker.name),
+                        AudioType.STANDARD
+                    )
+                }
+                val location = LngLatAlt(marker.longitude, marker.latitude)
+                startBeacon(location, marker.name)
+            } else {
+                if (requestAudioFocus()) {
+                    audioEngine.createTextToSpeech(
+                        ctx.getString(R.string.voice_cmd_marker_not_found).format(name),
+                        AudioType.STANDARD
+                    )
+                }
+            }
+        }
+    }
+
     /**
      * isAudioEngineBusy returns true if there is more than one entry in the
      * audio engine queue. The queue consists of earcons and text-to-speech.
