@@ -5,9 +5,7 @@ import android.content.res.Configuration
 import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.R
@@ -65,9 +63,6 @@ class AudioMenu(
 
     private val scope = CoroutineScope(Dispatchers.Default)
 
-    /** Cancels pending re-enable of auto callouts and restarts the 10-second countdown. */
-    private var suppressionJob: Job? = null
-
     val localizedContext: Context
     init {
         val configLocale = getCurrentLocale()
@@ -80,7 +75,7 @@ class AudioMenu(
     // ── Public navigation API ─────────────────────────────────────────────────
 
     fun next() {
-        onMenuInteraction()
+        service.callbackHoldOff()
         val label = synchronized(this) {
             val level = menuStack.last()
             level.currentIndex = (level.currentIndex + 1) % level.items.size
@@ -90,7 +85,7 @@ class AudioMenu(
     }
 
     fun previous() {
-        onMenuInteraction()
+        service.callbackHoldOff()
         val label = synchronized(this) {
             val level = menuStack.last()
             level.currentIndex =
@@ -104,7 +99,7 @@ class AudioMenu(
     }
 
     fun select() {
-        onMenuInteraction()
+        service.callbackHoldOff()
         val item = synchronized(this) { menuStack.last().let { it.items[it.currentIndex] } }
         when (item) {
             is MenuItem.Action -> {
@@ -123,21 +118,6 @@ class AudioMenu(
                 speakWithEnterEarcon(firstLabel)
             }
             is MenuItem.DynamicSubmenu -> loadAndEnter(item)
-        }
-    }
-
-    // ── Auto-callout suppression ──────────────────────────────────────────────
-
-    /**
-     * Called on every menu interaction. Marks the menu as active (suppressing auto callouts)
-     * and resets the 10-second countdown after which auto callouts are re-enabled.
-     */
-    private fun onMenuInteraction() {
-        service.menuActive = true
-        suppressionJob?.cancel()
-        suppressionJob = scope.launch {
-            delay(CALLOUT_SUPPRESS_TIMEOUT_MS)
-            service.menuActive = false
         }
     }
 
@@ -296,13 +276,11 @@ class AudioMenu(
     // ── Lifecycle ─────────────────────────────────────────────────────────────
 
     fun destroy() {
-        suppressionJob?.cancel()
         service.menuActive = false
         scope.cancel()
     }
 
     companion object {
         private const val TAG = "AudioMenu"
-        private const val CALLOUT_SUPPRESS_TIMEOUT_MS = 8_000L
     }
 }
