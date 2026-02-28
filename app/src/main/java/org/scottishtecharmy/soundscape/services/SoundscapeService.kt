@@ -39,6 +39,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -312,6 +313,16 @@ class SoundscapeService : MediaSessionService() {
                 onError = { }
             )
 
+            // Keep biasing strings up to date whenever markers or routes change
+            val dao = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao()
+            coroutineScope.launch {
+                combine(dao.getAllMarkersFlow(), dao.getAllRoutesFlow()) { markers, routes ->
+                    markers.map { it.name } + routes.map { it.name }
+                }.collect { names ->
+                    voiceCommandManager.updateBiasingStrings(names)
+                }
+            }
+
             mediaSession = MediaSession.Builder(this, mediaPlayer)
                 .setId("org.scottishtecharmy.soundscape")
                 .setCallback(SoundscapeMediaSessionCallback { mediaControlsTarget })
@@ -574,14 +585,15 @@ class SoundscapeService : MediaSessionService() {
 
         val ctx = if (::localizedContext.isInitialized) localizedContext else this
 
-        // Inform the user that we're listening
-        speak2dText(ctx.getString(R.string.voice_cmd_listening), true, EARCON_CALLOUTS_ON)
+        // Play earcon as feedback to indicate that we're starting to listen.
+        speak2dText("", true, EARCON_CALLOUTS_ON)
 
-        // Wait for the TTS to finish before opening the mic
+        // Wait for the TTS to finish before opening the mic, otherwise we lose audio focus before
+        // the icon completes.
         coroutineScope.launch {
-            val deadline = System.currentTimeMillis() + 3_000L
+            val deadline = System.currentTimeMillis() + 1000L
             while (isAudioEngineBusy() && System.currentTimeMillis() < deadline) {
-                delay(50)
+                delay(20)
             }
             withContext(Dispatchers.Main) {
                 voiceCommandManager.startListening()
@@ -633,7 +645,7 @@ class SoundscapeService : MediaSessionService() {
             if (routes.isEmpty())
                 speak2dText(ctx.getString(R.string.voice_cmd_no_routes))
             else {
-               val names = routes.joinToString(", ") { it.name }
+               val names = routes.joinToString(". ") { it.name }
                 speak2dText(ctx.getString(R.string.voice_cmd_routes_list) + names)
             }
         }
@@ -674,7 +686,7 @@ class SoundscapeService : MediaSessionService() {
             if (markers.isEmpty()) {
                 speak2dText(ctx.getString(R.string.voice_cmd_no_markers))
             } else {
-                val names = markers.joinToString(", ") { it.name }
+                val names = markers.joinToString(". ") { it.name }
                 speak2dText(ctx.getString(R.string.voice_cmd_markers_list) + names)
             }
         }
@@ -744,7 +756,8 @@ class SoundscapeService : MediaSessionService() {
         if(earcon != null) {
             audioEngine.createEarcon(earcon, AudioType.STANDARD)
         }
-        audioEngine.createTextToSpeech(text, AudioType.STANDARD)
+        if(text.isNotEmpty())
+            audioEngine.createTextToSpeech(text, AudioType.STANDARD)
     }
 
     fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean) {
