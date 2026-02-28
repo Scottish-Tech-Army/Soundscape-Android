@@ -2618,7 +2618,7 @@ Please report any problems that you have, however small they may be via the *Con
 <!-- Spoken when a route is being started. %s = the route name -->
 <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Starting route %s</string>
 <!-- Spoken when an audio beacon is being started. %s = the marker name -->
-<string name="voice_cmd_start_beacon_at_marker" tools:ignore="MissingTranslation">Start audio beacon at %s</string>
+<string name="voice_cmd_start_beacon_at_marker" tools:ignore="MissingTranslation">Start audio beacon at</string>
 <!-- Spoken when an audio beacon is being started. %s = the marker name -->
 <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Starting audio beacon at %s</string>
 <!-- Spoken when a named marker could not be found. %s = the name spoken by the user -->
