@@ -1,4 +1,4 @@
-package org.scottishtecharmy.soundscape.services
+package org.scottishtecharmy.soundscape.services.mediacontrol
 
 import android.content.Context
 import android.content.res.Configuration
@@ -12,6 +12,8 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 
 /**
@@ -218,18 +220,6 @@ class AudioMenu(
         ),
 
         MenuItem.Submenu(
-            label = localizedContext.getString(R.string.menu_audio_profile),
-            children = listOf(
-                audioProfileAction(R.string.menu_profile_eating, "eating"),
-                audioProfileAction(R.string.menu_profile_shopping, "shopping"),
-                audioProfileAction(R.string.menu_profile_navigating, "navigating"),
-                audioProfileAction(R.string.menu_profile_roads_only, "roads_only"),
-                audioProfileAction(R.string.menu_profile_all, "all"),
-                mainMenuAction(),
-            )
-        ),
-
-        MenuItem.Submenu(
             label = localizedContext.getString(R.string.menu_route),
             children = listOf(
                 MenuItem.Action(localizedContext.getString(R.string.menu_route_next_waypoint)) {
@@ -238,7 +228,10 @@ class AudioMenu(
                 MenuItem.Action(localizedContext.getString(R.string.menu_route_previous_waypoint)) {
                     service.routeSkipPrevious()
                 },
-                MenuItem.Action(localizedContext.getString(R.string.menu_route_stop)) {
+                MenuItem.Action(localizedContext.getString(R.string.beacon_action_mute_beacon)) {
+                    service.routeMute()
+                },
+                MenuItem.Action(localizedContext.getString(R.string.route_detail_action_stop_route)) {
                     service.routeStop()
                 },
                 mainMenuAction(),
@@ -246,8 +239,13 @@ class AudioMenu(
         ),
 
         MenuItem.DynamicSubmenu(
-            label = localizedContext.getString(R.string.menu_start_route),
+            label = localizedContext.getString(R.string.route_detail_action_start_route),
             childrenProvider = { loadRouteMenuItems() }
+        ),
+
+        MenuItem.DynamicSubmenu(
+            label = localizedContext.getString(R.string.location_detail_action_beacon),
+            childrenProvider = { loadMarkerMenuItems() }
         ),
     )
 
@@ -258,6 +256,17 @@ class AudioMenu(
             val db = MarkersAndRoutesDatabase.getMarkersInstance(service)
             db.routeDao().getAllRoutes().map { route ->
                 MenuItem.Action(route.name) { service.routeStart(route.routeId) }
+            } + mainMenuAction()
+        }
+
+    private suspend fun loadMarkerMenuItems(): List<MenuItem> =
+        withContext(Dispatchers.IO) {
+            val db = MarkersAndRoutesDatabase.getMarkersInstance(service)
+            db.routeDao().getAllMarkers().map { marker ->
+                MenuItem.Action(marker.name) {
+                    val location = LngLatAlt(marker.longitude, marker.latitude)
+                    service.startBeacon(location, marker.name)
+                }
             } + mainMenuAction()
         }
 

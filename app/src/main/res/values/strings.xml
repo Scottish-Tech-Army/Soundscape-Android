@@ -2603,20 +2603,32 @@ Please report any problems that you have, however small they may be via the *Con
 <string name="tour_continue_button" tools:ignore="MissingTranslation">Continue</string>
 <!-- Tutorial dialog continue button hint. This is always preceded by "Double tap to " -->
 <string name="tour_continue_hint" tools:ignore="MissingTranslation">Close the popup and continue with the tutorial</string>
-
-<!-- Voice command keywords (comma-separated phrases to recognise).
-     Translators: replace each item with natural phrases a user would say in your language. -->
-<string name="voice_cmd_my_location" tools:ignore="MissingTranslation">my location,where am i</string>
-<string name="voice_cmd_around_me" tools:ignore="MissingTranslation">"around me,what's around,around"</string>
-<string name="voice_cmd_ahead_of_me" tools:ignore="MissingTranslation">"ahead of me,what's ahead,ahead"</string>
-<string name="voice_cmd_nearby_markers" tools:ignore="MissingTranslation">nearby markers,markers,nearby</string>
-<string name="voice_cmd_skip_next" tools:ignore="MissingTranslation">skip next,next waypoint,next,skip</string>
-<string name="voice_cmd_skip_previous" tools:ignore="MissingTranslation">skip previous,previous waypoint,previous,go back</string>
-<string name="voice_cmd_mute" tools:ignore="MissingTranslation">mute,silence</string>
-<string name="voice_cmd_stop_route" tools:ignore="MissingTranslation">stop route,stop</string>
-<string name="voice_cmd_help" tools:ignore="MissingTranslation">help,what can I say,commands,what commands</string>
 <!-- Spoken response listing all available commands -->
 <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Available voice commands: </string>
-<!-- Text shown on screen while the microphone is open -->
+<!-- Text shown on screen and spoken when the microphone is turned on -->
 <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Listening…</string>
+<!-- Spoken response when the user's speech wasn't understood -->
+<string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">"I'm sorry, I can't find the command %s"</string>
+<!-- Voice command to list saved routes -->
+<string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">List routes</string>
+<!-- Text read out before list of saved routes -->
+<string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Available routes are,</string>
+<!-- Voice command to list saved markers -->
+<string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">List markers</string>
+<!-- Text read out before list of saved markers -->
+<string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Available markers are,</string>
+<!-- Spoken when there are no saved routes -->
+<string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">No routes have been saved</string>
+<!-- Spoken when there are no saved markers -->
+<string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">No markers have been saved</string>
+<!-- Spoken when a named route could not be found. %s = the name spoken by the user -->
+<string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Route not found: %s</string>
+<!-- Spoken when a route is being started. %s = the route name -->
+<string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Starting route %s</string>
+<!-- Spoken when an audio beacon is being started. %s = the marker name -->
+<string name="voice_cmd_start_beacon_at_marker" tools:ignore="MissingTranslation">Start audio beacon at %s</string>
+<!-- Spoken when an audio beacon is being started. %s = the marker name -->
+<string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Starting audio beacon at %s</string>
+<!-- Spoken when a named marker could not be found. %s = the name spoken by the user -->
+<string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Marker not found: %s</string>
 </resources>
