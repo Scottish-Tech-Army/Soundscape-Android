@@ -479,17 +479,9 @@
 <!-- Accessibility Notification, ...hear about places in front of you. This is always preceded by "Double tap to " -->
 <string name="ui_action_button_ahead_of_me_acc_hint">"Hear about places in front of you"</string>
 <!-- Audio menu (media-button driven hierarchical menu) -->
-<string name="menu_audio_profile" tools:ignore="MissingTranslation">"Select audio profile"</string>
-<string name="menu_profile_eating" tools:ignore="MissingTranslation">"Eating"</string>
-<string name="menu_profile_shopping" tools:ignore="MissingTranslation">"Shopping"</string>
-<string name="menu_profile_navigating" tools:ignore="MissingTranslation">"Navigating"</string>
-<string name="menu_profile_roads_only" tools:ignore="MissingTranslation">"Roads only"</string>
-<string name="menu_profile_all" tools:ignore="MissingTranslation">"No filtering"</string>
 <string name="menu_route" tools:ignore="MissingTranslation">"Route control"</string>
 <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">"Next waypoint"</string>
 <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">"Previous waypoint"</string>
-<string name="menu_route_stop" tools:ignore="MissingTranslation">"Stop"</string>
-<string name="menu_start_route" tools:ignore="MissingTranslation">"Choose route to start"</string>
 <string name="menu_no_routes" tools:ignore="MissingTranslation">"No routes saved"</string>
 <string name="menu_main_menu" tools:ignore="MissingTranslation">"Top menu"</string>
 
