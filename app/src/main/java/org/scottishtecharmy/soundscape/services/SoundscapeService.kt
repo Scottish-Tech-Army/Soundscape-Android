@@ -327,6 +327,8 @@ class SoundscapeService : MediaSessionService() {
         Log.d(TAG, "onTaskRemoved for service - ignoring, as we want to keep running")
     }
     override fun onDestroy() {
+        suppressionJob?.cancel()
+
         // If _mediaSession is not null, run the following block
         mediaSession?.run {
             // Release the player
@@ -560,6 +562,9 @@ class SoundscapeService : MediaSessionService() {
             Log.w(TAG, "speakText: Could not get audio focus. Aborting callouts.")
             return
         }
+
+        // Stop callbacks whilst we handle voice commands
+        callbackHoldOff()
 
         val ctx = if (::localizedContext.isInitialized) localizedContext else this
 
@@ -811,11 +816,29 @@ class SoundscapeService : MediaSessionService() {
         audioFocusGained = false
     }
 
+    /**
+     * Called on every menu interaction. Marks the menu as active (suppressing auto callouts)
+     * and resets the 10-second countdown after which auto callouts are re-enabled.
+     */
+    /** Cancels pending re-enable of auto callouts and restarts the 10-second countdown. */
+    private var suppressionJob: Job? = null
+    private val scope = CoroutineScope(Dispatchers.Default)
+    fun callbackHoldOff() {
+        menuActive = true
+        suppressionJob?.cancel()
+        suppressionJob = scope.launch {
+            delay(CALLOUT_SUPPRESS_TIMEOUT_MS)
+            menuActive = false
+        }
+    }
+
     companion object {
         private const val TAG = "SoundscapeService"
 
         // Secondary "service" every n seconds
         private val TICKER_PERIOD_SECONDS = 3600.seconds
+
+        private const val CALLOUT_SUPPRESS_TIMEOUT_MS = 8_000L
 
         private const val CHANNEL_ID = "SoundscapeService_channel_01"
         private const val NOTIFICATION_CHANNEL_NAME = "Soundscape_SoundscapeService"
