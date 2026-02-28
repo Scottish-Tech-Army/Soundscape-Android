@@ -10,8 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.audio.AudioType
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_CALLOUTS_OFF
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
@@ -150,16 +149,11 @@ class VoiceCommandManager(
             println("Found command: ${context.getString(bestMatch.stringId)}")
             bestMatch.action(t)
         } else {
-            if (service.requestAudioFocus()) {
-                service.audioEngine.createEarcon(
-                    NativeAudioEngine.EARCON_CALLOUTS_OFF,
-                    AudioType.STANDARD
-                )
-                service.audioEngine.createTextToSpeech(
-                    context.getString(R.string.voice_cmd_not_recognized).format(t),
-                    AudioType.STANDARD
-                )
-            }
+            service.speak2dText(
+                context.getString(R.string.voice_cmd_not_recognized).format(t),
+                false,
+                EARCON_CALLOUTS_OFF
+            )
         }
     }
 
@@ -167,8 +161,6 @@ class VoiceCommandManager(
         val commandNames = commands.map { context.getString(it.stringId) }
         val text =
             context.getString(R.string.voice_cmd_help_response) + commandNames.joinToString(", ")
-        if (service.requestAudioFocus()) {
-            service.audioEngine.createTextToSpeech(text, AudioType.STANDARD)
-        }
+        service.speak2dText(text)
     }
 }

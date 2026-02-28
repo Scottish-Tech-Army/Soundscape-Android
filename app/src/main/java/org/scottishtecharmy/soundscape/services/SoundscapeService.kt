@@ -48,6 +48,9 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MOD
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_CALLOUTS_ON
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_ENTER
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_EXIT
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GridState
@@ -571,11 +574,8 @@ class SoundscapeService : MediaSessionService() {
 
         val ctx = if (::localizedContext.isInitialized) localizedContext else this
 
-        // Clear the text queue
-        audioEngine.clearTextToSpeechQueue()
-        // Create the earcon and Listening... speech
-        audioEngine.createEarcon(NativeAudioEngine.EARCON_CALLOUTS_ON, AudioType.STANDARD)
-        audioEngine.createTextToSpeech(ctx.getString(R.string.voice_cmd_listening), AudioType.STANDARD)
+        // Inform the user that we're listening
+        speak2dText(ctx.getString(R.string.voice_cmd_listening), true, EARCON_CALLOUTS_ON)
 
         // Wait for the TTS to finish before opening the mic
         coroutineScope.launch {
@@ -630,16 +630,11 @@ class SoundscapeService : MediaSessionService() {
         coroutineScope.launch {
             val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
             val routes = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao().getAllRoutes()
-            if (requestAudioFocus()) {
-                if (routes.isEmpty()) {
-                    audioEngine.createTextToSpeech(ctx.getString(R.string.voice_cmd_no_routes), AudioType.STANDARD)
-                } else {
-                    val names = routes.joinToString(", ") { it.name }
-                    audioEngine.createTextToSpeech(
-                        ctx.getString(R.string.voice_cmd_routes_list) + names,
-                        AudioType.STANDARD
-                    )
-                }
+            if (routes.isEmpty())
+                speak2dText(ctx.getString(R.string.voice_cmd_no_routes))
+            else {
+               val names = routes.joinToString(", ") { it.name }
+                speak2dText(ctx.getString(R.string.voice_cmd_routes_list) + names)
             }
         }
     }
@@ -664,20 +659,10 @@ class SoundscapeService : MediaSessionService() {
             }
             if (bestId != -1L) {
                 val routeName = routes.first { it.routeId == bestId }.name
-                if (requestAudioFocus()) {
-                    audioEngine.createTextToSpeech(
-                        ctx.getString(R.string.voice_cmd_starting_route).format(routeName),
-                        AudioType.STANDARD
-                    )
-                }
+                speak2dText(ctx.getString(R.string.voice_cmd_starting_route).format(routeName))
                 routeStart(bestId)
             } else {
-                if (requestAudioFocus()) {
-                    audioEngine.createTextToSpeech(
-                        ctx.getString(R.string.voice_cmd_route_not_found).format(name),
-                        AudioType.STANDARD
-                    )
-                }
+                speak2dText(ctx.getString(R.string.voice_cmd_route_not_found).format(name))
             }
         }
     }
@@ -686,16 +671,11 @@ class SoundscapeService : MediaSessionService() {
         coroutineScope.launch {
             val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
             val markers = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao().getAllMarkers()
-            if (requestAudioFocus()) {
-                if (markers.isEmpty()) {
-                    audioEngine.createTextToSpeech(ctx.getString(R.string.voice_cmd_no_markers), AudioType.STANDARD)
-                } else {
-                    val names = markers.joinToString(", ") { it.name }
-                    audioEngine.createTextToSpeech(
-                        ctx.getString(R.string.voice_cmd_markers_list) + names,
-                        AudioType.STANDARD
-                    )
-                }
+            if (markers.isEmpty()) {
+                speak2dText(ctx.getString(R.string.voice_cmd_no_markers))
+            } else {
+                val names = markers.joinToString(", ") { it.name }
+                speak2dText(ctx.getString(R.string.voice_cmd_markers_list) + names)
             }
         }
     }
@@ -720,21 +700,12 @@ class SoundscapeService : MediaSessionService() {
             }
             if (bestId != -1L) {
                 val marker = markers.first { it.markerId == bestId }
-                if (requestAudioFocus()) {
-                    audioEngine.createTextToSpeech(
-                        ctx.getString(R.string.voice_cmd_starting_beacon_at_marker).format(marker.name),
-                        AudioType.STANDARD
-                    )
-                }
+                speak2dText(ctx.getString(R.string.voice_cmd_starting_beacon_at_marker).format(marker.name))
+
                 val location = LngLatAlt(marker.longitude, marker.latitude)
                 startBeacon(location, marker.name)
             } else {
-                if (requestAudioFocus()) {
-                    audioEngine.createTextToSpeech(
-                        ctx.getString(R.string.voice_cmd_marker_not_found).format(name),
-                        AudioType.STANDARD
-                    )
-                }
+                speak2dText(ctx.getString(R.string.voice_cmd_marker_not_found).format(name))
             }
         }
     }
@@ -756,24 +727,36 @@ class SoundscapeService : MediaSessionService() {
                   heading: Double = Double.NaN) {
 
         if (!requestAudioFocus()) {
-            Log.w(TAG, "speakText: Could not get audio focus. Aborting callouts.")
+            Log.w(TAG, "speakText: Could not get audio focus.")
             return
         }
         Log.d(TAG, "speakText $text")
         audioEngine.createTextToSpeech(text, type, latitude, longitude, heading)
     }
 
+    fun speak2dText(text: String, clearQueue: Boolean = false, earcon: String? = null) {
+        if (!requestAudioFocus()) {
+            Log.w(TAG, "speak2dText: Could not get audio focus.")
+            return
+        }
+        if(clearQueue)
+            audioEngine.clearTextToSpeechQueue()
+        if(earcon != null) {
+            audioEngine.createEarcon(earcon, AudioType.STANDARD)
+        }
+        audioEngine.createTextToSpeech(text, AudioType.STANDARD)
+    }
 
     fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean) {
 
         if(callout == null) return
 
         if (!requestAudioFocus()) {
-            Log.w(TAG, "SpeakCallout: Could not get audio focus. Aborting callouts.")
+            Log.w(TAG, "SpeakCallout: Could not get audio focus.")
             return
         }
 
-        if(addModeEarcon) audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_ENTER, AudioType.STANDARD)
+        if(addModeEarcon) audioEngine.createEarcon(EARCON_MODE_ENTER, AudioType.STANDARD)
         for(result in callout.positionedStrings) {
             if(result.location == null) {
                 var type = result.type
@@ -801,7 +784,7 @@ class SoundscapeService : MediaSessionService() {
                 )
             }
         }
-        if(addModeEarcon) audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_EXIT, AudioType.STANDARD)
+        if(addModeEarcon) audioEngine.createEarcon(EARCON_MODE_EXIT, AudioType.STANDARD)
 
         callout.calloutHistory?.add(callout)
         callout.locationFilter?.update(callout.userGeometry)

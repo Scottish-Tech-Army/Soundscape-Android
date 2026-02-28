@@ -10,7 +10,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_ENTER
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_EXIT
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.services.SoundscapeService
@@ -57,7 +58,6 @@ class AudioMenu(
     }
 
     // ── Navigation state ──────────────────────────────────────────────────────
-
     private data class MenuLevel(val items: List<MenuItem>, var currentIndex: Int)
 
     /** Stack of levels; the root is at index 0, deeper sub-menus higher up. */
@@ -83,7 +83,7 @@ class AudioMenu(
             level.currentIndex = (level.currentIndex + 1) % level.items.size
             level.items[level.currentIndex].label
         }
-        speak(label)
+        service.speak2dText(label, true)
     }
 
     fun previous() {
@@ -97,7 +97,7 @@ class AudioMenu(
                     level.currentIndex - 1
             level.items[level.currentIndex].label
         }
-        speak(label)
+        service.speak2dText(label, true)
     }
 
     fun select() {
@@ -105,11 +105,6 @@ class AudioMenu(
         val item = synchronized(this) { menuStack.last().let { it.items[it.currentIndex] } }
         when (item) {
             is MenuItem.Action -> {
-                if (!service.requestAudioFocus()) {
-                    Log.w(TAG, "select: could not get audio focus")
-                    return
-                }
-                service.audioEngine.clearTextToSpeechQueue()
                 item.action()
             }
             is MenuItem.Submenu -> {
@@ -117,7 +112,7 @@ class AudioMenu(
                     menuStack.addLast(MenuLevel(item.children, 0))
                     item.children[0].label
                 }
-                speakWithEnterEarcon(firstLabel)
+                service.speak2dText(firstLabel, true, EARCON_MODE_ENTER)
             }
             is MenuItem.DynamicSubmenu -> loadAndEnter(item)
         }
@@ -145,34 +140,10 @@ class AudioMenu(
             Log.w(TAG, "resetToRoot: could not get audio focus")
             return
         }
-        service.audioEngine.clearTextToSpeechQueue()
-        service.audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_EXIT, AudioType.STANDARD)
-        service.audioEngine.createTextToSpeech(firstRootLabel, AudioType.STANDARD)
+        service.speak2dText(firstRootLabel, true, EARCON_MODE_EXIT)
     }
 
     // ── Audio helpers ─────────────────────────────────────────────────────────
-
-    /** Announce a label with no earcon — used for plain navigation. */
-    private fun speak(label: String) {
-        if (!service.requestAudioFocus()) {
-            Log.w(TAG, "speak: could not get audio focus")
-            return
-        }
-        service.audioEngine.clearTextToSpeechQueue()
-        service.audioEngine.createTextToSpeech(label, AudioType.STANDARD)
-    }
-
-    /** Announce a label preceded by the mode-enter earcon — used when descending into a sub-menu. */
-    private fun speakWithEnterEarcon(label: String) {
-        if (!service.requestAudioFocus()) {
-            Log.w(TAG, "speakWithEnterEarcon: could not get audio focus")
-            return
-        }
-        service.audioEngine.clearTextToSpeechQueue()
-        service.audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_ENTER, AudioType.STANDARD)
-        service.audioEngine.createTextToSpeech(label, AudioType.STANDARD)
-    }
-
     private fun loadAndEnter(item: MenuItem.DynamicSubmenu) {
         scope.launch {
             val children = item.childrenProvider()
@@ -183,7 +154,7 @@ class AudioMenu(
                     menuStack.addLast(MenuLevel(children, 0))
                     children[0].label
                 }
-                speakWithEnterEarcon(firstLabel)
+                service.speak2dText(firstLabel, true, EARCON_MODE_ENTER)
             }
         }
     }
@@ -192,7 +163,7 @@ class AudioMenu(
         val label = localizedContext.getString(id)
         return MenuItem.Action(label) {
             applyAudioProfile(profile)
-            service.speakText(label, AudioType.STANDARD)
+            service.speak2dText(label)
         }
     }
 
