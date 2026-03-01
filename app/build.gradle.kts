@@ -76,6 +76,7 @@ android {
             "ro",
             "ru",
             "sv",
+            "tr",
             "uk"
         ))
 
