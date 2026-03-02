@@ -19,6 +19,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.LocationOn
+import androidx.compose.material.icons.rounded.Mic
 import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -51,12 +52,14 @@ fun NavigatingScreen(
             arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_BACKGROUND_LOCATION,
-                Manifest.permission.POST_NOTIFICATIONS
+                Manifest.permission.POST_NOTIFICATIONS,
+                Manifest.permission.RECORD_AUDIO
             )
         } else {
             arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_BACKGROUND_LOCATION
+                Manifest.permission.ACCESS_BACKGROUND_LOCATION,
+                Manifest.permission.RECORD_AUDIO
             )
         }
     val multiplePermissionResultLauncher = rememberLauncherForActivityResult(
@@ -135,7 +138,7 @@ fun Navigating(
                         contentDescription = null,
                         tint = MaterialTheme.colorScheme.onSurface
                     )
-                    Spacer(modifier = Modifier.width(spacing.medium))
+                    Spacer(modifier = Modifier.width(spacing.extraSmall))
                     Column(
                         modifier = Modifier.semantics(mergeDescendants = true) {},
                     ) {
@@ -182,7 +185,33 @@ fun Navigating(
                             )
                         }
                     }
-
+                }
+                Row(
+                    modifier = Modifier
+                        .mediumPadding()
+                        .fillMaxWidth(),
+                )
+                {
+                    Icon(
+                        Icons.Rounded.Mic,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onSurface
+                    )
+                    Spacer(modifier = Modifier.width(spacing.extraSmall))
+                    Column(
+                        modifier = Modifier.semantics(mergeDescendants = true) {},
+                    ) {
+                        Text(
+                            text = stringResource(R.string.first_launch_permissions_record_audio),
+                            style = MaterialTheme.typography.titleMedium,
+                            color = MaterialTheme.colorScheme.onSurface,
+                        )
+                        Text(
+                            text = stringResource(R.string.first_launch_permissions_required_for_voice_control),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurface,
+                        )
+                    }
                 }
             }
 
