@@ -12,6 +12,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_CALLOUTS_OFF
+import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
@@ -31,16 +33,19 @@ class VoiceCommandManager(
     private var speechRecognizer: SpeechRecognizer? = null
     private val _state = MutableStateFlow<VoiceCommandState>(VoiceCommandState.Idle)
     val state: StateFlow<VoiceCommandState> = _state.asStateFlow()
-    @Volatile private var extraBiasingStrings: List<String> = emptyList()
+    @Volatile private var listOfRoutes: List<RouteEntity> = emptyList()
+    @Volatile private var listOfMarkers: List<MarkerEntity> = emptyList()
 
     /** Call this whenever SoundscapeService updates its localizedContext. */
     fun updateContext(newContext: Context) {
         context = newContext
     }
 
-    /** Call this with current marker/route names whenever they are updated. */
-    fun updateBiasingStrings(strings: List<String>) {
-        extraBiasingStrings = strings
+    fun updateRoutes(routes: List<RouteEntity>) {
+        listOfRoutes = routes
+    }
+    fun updateMarkers(markers: List<MarkerEntity>) {
+        listOfMarkers = markers
     }
 
     // Must be called on the main thread (satisfied: service is on main thread)
@@ -69,8 +74,14 @@ class VoiceCommandManager(
             putExtra(RecognizerIntent.EXTRA_LANGUAGE, getCurrentLocale().toLanguageTag())
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 val biasingStrings = ArrayList<String>()
-                commands.forEach { biasingStrings.add(context.getString(it.stringId)) }
-                biasingStrings.addAll(extraBiasingStrings)
+                simpleCommands.forEach { biasingStrings.add(context.getString(it.stringId)) }
+                val markers = listOfMarkers
+                val routes = listOfRoutes
+                for(marker in markers)
+                    biasingStrings.add(context.getString(R.string.voice_cmd_start_beacon_at_marker_with_name).format(marker.name))
+                for(route in routes)
+                    biasingStrings.add(context.getString(R.string.voice_cmd_start_route).format(route.name))
+
                 putStringArrayListExtra(RecognizerIntent.EXTRA_BIASING_STRINGS, biasingStrings)
             }
         }
@@ -114,9 +125,13 @@ class VoiceCommandManager(
         override fun onEvent(eventType: Int, params: Bundle?) {}
     }
 
-    data class VoiceCommand(val stringId: Int, val action: (arg: String) -> Unit)
+    data class VoiceCommand(val stringId: Int, val action: (arg: ArrayList<String>) -> Unit)
 
-    val commands = arrayOf(
+    private fun getArgument(speech: ArrayList<String>, commandString: String) : String {
+        return ""
+    }
+
+    val simpleCommands = arrayOf(
         VoiceCommand(R.string.directions_my_location) { service.myLocation() },
         VoiceCommand(R.string.help_orient_page_title)               { service.whatsAroundMe() },
         VoiceCommand(R.string.help_explore_page_title)             { service.aheadOfMe() },
@@ -126,44 +141,85 @@ class VoiceCommandManager(
         VoiceCommand(R.string.beacon_action_mute_beacon)             { service.routeMute() },
         VoiceCommand(R.string.route_detail_action_stop_route)              { service.routeStop() },
         VoiceCommand(R.string.voice_cmd_list_routes)             { service.routeListRoutes() },
-        VoiceCommand(R.string.route_detail_action_start_route)             {
-            // TODO: We need a "fuzzy remove" here
-            val routeName = it.removePrefix(context.getString(R.string.route_detail_action_start_route).lowercase()).trim()
-            service.routeStartByName(routeName)
-        },
         VoiceCommand(R.string.voice_cmd_list_markers)            { service.routeListMarkers() },
-        VoiceCommand(R.string.voice_cmd_start_beacon_at_marker)    {
-            // TODO: We need a "fuzzy remove" here
-            val markerName = it.removePrefix(context.getString(R.string.voice_cmd_start_beacon_at_marker).lowercase()).trim()
-            service.markerStartByName(markerName)
-        },
         VoiceCommand(R.string.menu_help)                    { voiceHelp() },
     )
 
-    private fun handleSpeech(speech: ArrayList<String>) {
-
-        // TODO: Start by only looking at the very first string for a match. We should check the
-        //  other strings too.
-
-        // Find the best match to the speech.
-        val t = speech.first().lowercase()
+    fun matchDynamicMarkers(speech: String): Boolean{
+        val markers = listOfMarkers
+        val routes = listOfRoutes
 
         var minMatch = Double.MAX_VALUE
-        var bestMatch: VoiceCommand? = null
-        for (command in commands) {
-            val commandString = context.getString(command.stringId).lowercase()
-            val match = commandString.fuzzyCompare(t, true)
-            if ((match < 0.3) && (match < minMatch)) {
+
+        // Markers
+        var bestMarker : MarkerEntity? = null
+        for(marker in markers) {
+            val commandString = context.getString(R.string.voice_cmd_start_beacon_at_marker_with_name).format(marker.name).lowercase()
+            println("Marker compare \"$commandString\" with \"$speech\"")
+            val match = commandString.fuzzyCompare(speech, false)
+            if ((match < 0.2) && (match < minMatch)) {
                 minMatch = match
-                bestMatch = command
+                bestMarker = marker
             }
+        }
+        if(bestMarker != null) {
+            service.markerStart(bestMarker)
+            return true
+        }
+
+        // Routes
+        var bestRoute : RouteEntity? = null
+        for(route in routes) {
+            val commandString = context.getString(R.string.voice_cmd_start_route).format(route.name).lowercase()
+            println("Route compare \"$commandString\" with \"$speech\"")
+            val match = commandString.fuzzyCompare(speech, false)
+            if ((match < 0.2) && (match < minMatch)) {
+                minMatch = match
+                bestRoute = route
+            }
+        }
+        if(bestRoute != null) {
+            service.routeStart(bestRoute)
+            return true
+        }
+
+        return false
+    }
+
+    private fun handleSpeech(speech: ArrayList<String>) {
+        var bestMatch: VoiceCommand? = null
+        for(text in speech) {
+
+            // Find the best match to the speech.
+            val t = text.lowercase()
+
+            var minMatch = Double.MAX_VALUE
+            // Start with simpleCommands which don't contain any dynamic arguments
+            for (command in simpleCommands) {
+                val commandString = context.getString(command.stringId).lowercase()
+                val match = commandString.fuzzyCompare(t, false)
+                if ((match < 0.3) && (match < minMatch)) {
+                    minMatch = match
+                    bestMatch = command
+                }
+            }
+            if(bestMatch != null)
+                break
+            println("No simple command match found")
+
+            // Check if we match any of our dynamic markers
+            if(matchDynamicMarkers(t))
+                return
         }
         if (bestMatch != null) {
             println("Found command: ${context.getString(bestMatch.stringId)}")
-            bestMatch.action(t)
+
+            // Pass in all the speech strings, it may be that the argument is clearer in ones other
+            // than our best match.
+            bestMatch.action(speech)
         } else {
             service.speak2dText(
-                context.getString(R.string.voice_cmd_not_recognized).format(t),
+                context.getString(R.string.voice_cmd_not_recognized).format(speech.first()),
                 false,
                 EARCON_CALLOUTS_OFF
             )
@@ -171,9 +227,22 @@ class VoiceCommandManager(
     }
 
     private fun voiceHelp() {
-        val commandNames = commands.map { context.getString(it.stringId) }
-        val text =
-            context.getString(R.string.voice_cmd_help_response) + commandNames.joinToString(". ")
-        service.speak2dText(text)
+
+        val firstRoute = listOfRoutes.firstOrNull()?.name
+        val firstMarker = listOfMarkers.firstOrNull()?.name
+
+        val commandNames = simpleCommands.map { context.getString(it.stringId) }
+        val builder = StringBuilder()
+        builder.append(context.getString(R.string.voice_cmd_help_response))
+        commandNames.forEach { builder.append(it).append(". ") }
+
+        if((firstRoute != null) || (firstMarker != null))
+            builder.append(context.getString(R.string.voice_cmd_explain_dynamic_markers))
+        if(firstRoute != null)
+            builder.append(context.getString(R.string.voice_cmd_start_route).format(firstRoute)).append(". ")
+        if(firstMarker != null)
+            builder.append(context.getString(R.string.voice_cmd_start_beacon_at_marker_with_name).format(firstMarker)).append(". ")
+
+        service.speak2dText(builder.toString())
     }
 }

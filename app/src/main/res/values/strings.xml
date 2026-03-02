@@ -2621,10 +2621,16 @@ Please report any problems that you have, however small they may be via the *Con
 <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Route not found: %s</string>
 <!-- Spoken when a route is being started. %s = the route name -->
 <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Starting route %s</string>
-<!-- Spoken when an audio beacon is being started. %s = the marker name -->
-<string name="voice_cmd_start_beacon_at_marker" tools:ignore="MissingTranslation">Start audio beacon at</string>
+<!-- Command to start a route. %s = the route name -->
+<string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Start route %s</string>
+<!-- Example route name for help -->
+<string name="voice_cmd_example_route_name" tools:ignore="MissingTranslation"></string>
+<!-- Command to start an audio beacon at a marker. %s = the marker name -->
+<string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Start audio beacon at %s</string>
 <!-- Spoken when an audio beacon is being started. %s = the marker name -->
 <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Starting audio beacon at %s</string>
 <!-- Spoken when a named marker could not be found. %s = the name spoken by the user -->
 <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Marker not found: %s</string>
+<!-- Spoken text to explain dynamic routes and markers -->
+<string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">You can also start routes and markers by name, for example.</string>
 </resources>
