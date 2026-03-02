@@ -5,8 +5,11 @@ import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.speech.RecognitionListener
+import android.speech.RecognitionSupport
+import android.speech.RecognitionSupportCallback
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
+import androidx.core.content.ContextCompat
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,6 +20,7 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
+import java.util.Locale
 
 sealed class VoiceCommandState {
     object Idle : VoiceCommandState()
@@ -35,6 +39,8 @@ class VoiceCommandManager(
     val state: StateFlow<VoiceCommandState> = _state.asStateFlow()
     @Volatile private var listOfRoutes: List<RouteEntity> = emptyList()
     @Volatile private var listOfMarkers: List<MarkerEntity> = emptyList()
+    // Language tag validated against the recognizer's supported list; set by initialize().
+    private var cachedLanguage: String? = null
 
     /** Call this whenever SoundscapeService updates its localizedContext. */
     fun updateContext(newContext: Context) {
@@ -48,30 +54,71 @@ class VoiceCommandManager(
         listOfMarkers = markers
     }
 
-    // Must be called on the main thread (satisfied: service is on main thread)
-    fun startListening() {
-        if (_state.value is VoiceCommandState.Listening) return
+    // Must be called on the main thread when switching to VoiceControl mode.
+    // Creates the SpeechRecognizer and pre-fetches the supported language list so that
+    // startListening() can start immediately without an extra round-trip.
+    fun initialize() {
+        destroyRecognizer()
+        cachedLanguage = null
+
         if (!SpeechRecognizer.isRecognitionAvailable(context)) {
             println("Recognition is unavailable")
             onError()
             return
         }
-        if (speechRecognizer == null) {
-            speechRecognizer = SpeechRecognizer.createSpeechRecognizer(context)
-            speechRecognizer?.setRecognitionListener(listener)
-        }
-        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
-            putExtra(
-                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(context)
+        speechRecognizer?.setRecognitionListener(listener)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val probeIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+                putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            }
+            speechRecognizer?.checkRecognitionSupport(
+                probeIntent,
+                ContextCompat.getMainExecutor(context),
+                object : RecognitionSupportCallback {
+                    override fun onSupportResult(recognitionSupport: RecognitionSupport) {
+                        val supported = recognitionSupport.installedOnDeviceLanguages +
+                                recognitionSupport.onlineLanguages
+                        supported.forEach { println("Supported language: $it") }
+                        cachedLanguage = pickBestLanguage(getCurrentLocale(), supported)
+                        println("cachedLanguage $cachedLanguage")
+                    }
+
+                    override fun onError(error: Int) {
+                        // Support query failed — cachedLanguage stays null (no EXTRA_LANGUAGE).
+                    }
+                }
             )
+        }
+    }
+
+    // Must be called on the main thread (satisfied: service is on main thread)
+    fun startListening() {
+        if (_state.value is VoiceCommandState.Listening) return
+        speechRecognizer?.startListening(buildRecognitionIntent(cachedLanguage))
+    }
+
+    /**
+     * Choose the best BCP-47 language tag from [supportedTags] for the given [locale].
+     * Prefers an exact match (language + country); falls back to any tag with the same language
+     * code; returns null if nothing matches.
+     */
+    private fun pickBestLanguage(locale: Locale, supportedTags: List<String>): String? {
+
+        val tag = locale.toLanguageTag()
+        println("pickBestLanguage for $tag")
+        if (tag in supportedTags) return tag
+        val langCode = locale.language
+        return supportedTags.firstOrNull { Locale.forLanguageTag(it).language == langCode }
+    }
+
+    private fun buildRecognitionIntent(language: String?): Intent =
+        Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
             putExtra(RecognizerIntent.EXTRA_PREFER_OFFLINE, true)
             putExtra(RecognizerIntent.EXTRA_MAX_RESULTS, 3)
-            // TODO: We need to query the API to find out which Locales are supported and use one of
-            //  those. For example, we might want to use es_ES even if we're in another country.
-            //  https://medium.com/@andraz.pajtler/android-speech-to-text-the-missing-guide-part-1-824e2636c45a
-            // Match recognizer language to the app's configured locale
-            putExtra(RecognizerIntent.EXTRA_LANGUAGE, getCurrentLocale().toLanguageTag())
+            if (language != null) putExtra(RecognizerIntent.EXTRA_LANGUAGE, language)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 val biasingStrings = ArrayList<String>()
                 simpleCommands.forEach { biasingStrings.add(context.getString(it.stringId)) }
@@ -85,8 +132,6 @@ class VoiceCommandManager(
                 putStringArrayListExtra(RecognizerIntent.EXTRA_BIASING_STRINGS, biasingStrings)
             }
         }
-        speechRecognizer?.startListening(intent)
-    }
 
     fun destroy() {
         destroyRecognizer()
@@ -126,10 +171,6 @@ class VoiceCommandManager(
     }
 
     data class VoiceCommand(val stringId: Int, val action: (arg: ArrayList<String>) -> Unit)
-
-    private fun getArgument(speech: ArrayList<String>, commandString: String) : String {
-        return ""
-    }
 
     val simpleCommands = arrayOf(
         VoiceCommand(R.string.directions_my_location) { service.myLocation() },
