@@ -341,7 +341,10 @@ class SoundscapeService : MediaSessionService() {
         val hasRecordAudio = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) ==
             PackageManager.PERMISSION_GRANTED
         mediaControlsTarget = when (target) {
-            "VoiceControl" if hasRecordAudio -> VoiceCommandMediaControls(this)
+            "VoiceControl" if hasRecordAudio -> {
+                voiceCommandManager?.initialize()
+                VoiceCommandMediaControls(this)
+            }
             "VoiceControl" -> AudioMenuMediaControls(audioMenu)
             "AudioMenu" -> AudioMenuMediaControls(audioMenu)
             "Original" -> OriginalMediaControls(this)
