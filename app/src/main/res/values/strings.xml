@@ -836,6 +836,10 @@
 <string name="no_language_selected">No language selected</string>
 <!-- Notifications are a type of Android permission required to run the app -->
 <string name="first_launch_permissions_notification">Notifications</string>
+<!-- For voice commands to work we need permission to access the microphone and record audio -->
+<string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Record audio</string>
+<!-- The app will run without record audio permissions, but voice control won't be available -->
+<string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">This permission is optional, but is required if you want to use voice commands to control the app.</string>
 <!-- Message appears as notification when app is running -->
 <string name="notification_text" tools:ignore="MissingTranslation">The Soundscape location service runs even when the phone is locked.</string>
 <!-- Option to cancel searching for a location -->
