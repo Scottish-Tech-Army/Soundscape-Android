@@ -174,10 +174,10 @@ class SoundscapeService : MediaSessionService() {
     private val _gridStateFlow = MutableStateFlow<GridState?>(null)
     var gridStateFlow: StateFlow<GridState?> = _gridStateFlow
 
-    // Voice command manager
-    private lateinit var voiceCommandManager: VoiceCommandManager
+    // Voice command manager — only initialized when RECORD_AUDIO permission is granted
+    private var voiceCommandManager: VoiceCommandManager? = null
     val voiceCommandStateFlow: StateFlow<VoiceCommandState>
-        get() = voiceCommandManager.state
+        get() = voiceCommandManager?.state ?: MutableStateFlow(VoiceCommandState.Idle)
 
     // Media control button code
     private var mediaSession: MediaSession? = null
@@ -263,7 +263,7 @@ class SoundscapeService : MediaSessionService() {
                 val configuration = Configuration(applicationContext.resources.configuration)
                 configuration.setLocale(configLocale)
                 localizedContext = applicationContext.createConfigurationContext(configuration)
-                if (::voiceCommandManager.isInitialized) voiceCommandManager.updateContext(localizedContext)
+                voiceCommandManager?.updateContext(localizedContext)
                 geoEngine.start(application, locationProvider, directionProvider, this, localizedContext)
                 started = true
             }
@@ -303,15 +303,18 @@ class SoundscapeService : MediaSessionService() {
             // create new RealmDB or open existing
             startRealms(applicationContext)
 
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+                == PackageManager.PERMISSION_GRANTED) {
+                voiceCommandManager = VoiceCommandManager(
+                    service = this,
+                    onError = { }
+                )
+            }
+
             // Update the media controls mode
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
             val mode = sharedPreferences.getString(MEDIA_CONTROLS_MODE_KEY, MEDIA_CONTROLS_MODE_DEFAULT)!!
             updateMediaControls(mode)
-
-            voiceCommandManager = VoiceCommandManager(
-                service = this,
-                onError = { }
-            )
 
             // Keep biasing strings up to date whenever markers or routes change
             val dao = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao()
@@ -319,7 +322,7 @@ class SoundscapeService : MediaSessionService() {
                 combine(dao.getAllMarkersFlow(), dao.getAllRoutesFlow()) { markers, routes ->
                     markers.map { it.name } + routes.map { it.name }
                 }.collect { names ->
-                    voiceCommandManager.updateBiasingStrings(names)
+                    voiceCommandManager?.updateBiasingStrings(names)
                 }
             }
 
@@ -331,13 +334,15 @@ class SoundscapeService : MediaSessionService() {
     }
 
     fun updateMediaControls(target: String) {
-        mediaControlsTarget = when(target) {
-            "Original" -> OriginalMediaControls(this)
-            "VoiceControl" -> VoiceCommandMediaControls(this)
+        val hasRecordAudio = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) ==
+            PackageManager.PERMISSION_GRANTED
+        mediaControlsTarget = when (target) {
+            "VoiceControl" if hasRecordAudio -> VoiceCommandMediaControls(this)
+            "VoiceControl" -> AudioMenuMediaControls(audioMenu)
             "AudioMenu" -> AudioMenuMediaControls(audioMenu)
+            "Original" -> OriginalMediaControls(this)
             else -> OriginalMediaControls(this)
         }
-
     }
 
     override fun onTaskRemoved(rootIntent: Intent?) {
@@ -377,7 +382,7 @@ class SoundscapeService : MediaSessionService() {
         wakeLock?.let { if (it.isHeld) it.release() }
         wakeLock = null
 
-        if (::voiceCommandManager.isInitialized) voiceCommandManager.destroy()
+        voiceCommandManager?.destroy()
 
         // Clear service reference in binder so that it can be garbage collected
         binder?.reset()
@@ -596,7 +601,7 @@ class SoundscapeService : MediaSessionService() {
                 delay(20)
             }
             withContext(Dispatchers.Main) {
-                voiceCommandManager.startListening()
+                voiceCommandManager?.startListening()
             }
         }
     }
