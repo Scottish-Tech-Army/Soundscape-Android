@@ -59,7 +59,7 @@ class SoundscapeServiceConnection @Inject constructor() {
     }
 
     fun routeStart(routeId: Long) {
-        soundscapeService?.routeStart(routeId)
+        soundscapeService?.routeStartById(routeId)
     }
 
     fun startBeacon(location: LngLatAlt, name: String) {

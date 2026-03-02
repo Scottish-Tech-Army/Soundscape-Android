@@ -53,6 +53,8 @@ import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_ENTER
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_EXIT
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
+import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
@@ -80,7 +82,6 @@ import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandManager
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandMediaControls
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
 import org.scottishtecharmy.soundscape.utils.Analytics
-import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -319,10 +320,13 @@ class SoundscapeService : MediaSessionService() {
             // Keep biasing strings up to date whenever markers or routes change
             val dao = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao()
             coroutineScope.launch {
-                combine(dao.getAllMarkersFlow(), dao.getAllRoutesFlow()) { markers, routes ->
-                    markers.map { it.name } + routes.map { it.name }
-                }.collect { names ->
-                    voiceCommandManager?.updateBiasingStrings(names)
+                dao.getAllMarkersFlow().collect { markers ->
+                    voiceCommandManager?.updateMarkers(markers)
+                }
+            }
+            coroutineScope.launch {
+                dao.getAllRoutesFlow().collect { routes ->
+                    voiceCommandManager?.updateRoutes(routes)
                 }
             }
 
@@ -617,7 +621,7 @@ class SoundscapeService : MediaSessionService() {
     fun startBeacon(location: LngLatAlt, name: String) {
         routePlayer.startBeacon(location, name)
     }
-    fun routeStart(routeId: Long) {
+    fun routeStartById(routeId: Long) {
         routePlayer.startRoute(routeId)
     }
     fun routeStop() {
@@ -656,32 +660,10 @@ class SoundscapeService : MediaSessionService() {
         }
     }
 
-    fun routeStartByName(name: String) {
-        if (name.isEmpty()) {
-            routeListRoutes()
-            return
-        }
-        coroutineScope.launch {
-            val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
-            val routes = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao().getAllRoutes()
-            val nameLower = name.lowercase()
-            var bestId = -1L
-            var bestScore = Double.MAX_VALUE
-            for (route in routes) {
-                val score = nameLower.fuzzyCompare(route.name.lowercase(), true)
-                if (score < 0.4 && score < bestScore) {
-                    bestScore = score
-                    bestId = route.routeId
-                }
-            }
-            if (bestId != -1L) {
-                val routeName = routes.first { it.routeId == bestId }.name
-                speak2dText(ctx.getString(R.string.voice_cmd_starting_route).format(routeName))
-                routeStart(bestId)
-            } else {
-                speak2dText(ctx.getString(R.string.voice_cmd_route_not_found).format(name))
-            }
-        }
+    fun routeStart(route: RouteEntity) {
+        val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
+        speak2dText(ctx.getString(R.string.voice_cmd_starting_route).format(route.name))
+        routeStartById(route.routeId)
     }
 
     fun routeListMarkers() {
@@ -697,34 +679,12 @@ class SoundscapeService : MediaSessionService() {
         }
     }
 
-    fun markerStartByName(name: String) {
-        if (name.isEmpty()) {
-            routeListMarkers()
-            return
-        }
-        coroutineScope.launch {
-            val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
-            val markers = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao().getAllMarkers()
-            val nameLower = name.lowercase()
-            var bestId = -1L
-            var bestScore = Double.MAX_VALUE
-            for (marker in markers) {
-                val score = nameLower.fuzzyCompare(marker.name.lowercase(), true)
-                if (score < 0.4 && score < bestScore) {
-                    bestScore = score
-                    bestId = marker.markerId
-                }
-            }
-            if (bestId != -1L) {
-                val marker = markers.first { it.markerId == bestId }
-                speak2dText(ctx.getString(R.string.voice_cmd_starting_beacon_at_marker).format(marker.name))
+    fun markerStart(marker: MarkerEntity) {
+        val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
+        speak2dText(ctx.getString(R.string.voice_cmd_starting_beacon_at_marker).format(marker.name))
 
-                val location = LngLatAlt(marker.longitude, marker.latitude)
-                startBeacon(location, marker.name)
-            } else {
-                speak2dText(ctx.getString(R.string.voice_cmd_marker_not_found).format(name))
-            }
-        }
+        val location = LngLatAlt(marker.longitude, marker.latitude)
+        startBeacon(location, marker.name)
     }
 
     /**
