@@ -269,7 +269,7 @@ class MvtTileTest {
                 TreeId.SETTLEMENT_VILLAGE,
                 TreeId.SETTLEMENT_HAMLET,
                 TreeId.TRANSIT ->
-                    {}
+                {}
 
                 else -> {
                     for (feature in collection) {
@@ -591,7 +591,7 @@ class MvtTileTest {
                     val w1 = 300.0
                     val w2 = 100.0
                     val fitness = (w1 * (10 / (10 + sensedRoadInfo.distance))) +
-                                  (w2 * (30 / (30 + headingOffSensedRoad)))
+                            (w2 * (30 / (30 + headingOffSensedRoad)))
                     if(fitness > bestFitness) {
                         bestFitness = fitness
                         bestIndex = index
@@ -968,18 +968,23 @@ class MvtTileTest {
                         LngLatAlt(location.longitude, location.latitude),
                         emptySet()
                     )
+                    if(false) {
+                        // This code is useful for comparing before and after changes of grid parsing
+                        val adapter = GeoJsonObjectMoshiAdapter()
+                        val tileOutput = FileOutputStream("cache-test2/output-$x-$y.geojson")
+
+                        // Output the GeoJson and check that there's no data left from other tiles.
+                        val collection = FeatureCollection()
+                        for (id in TreeId.entries) {
+                            if (id < TreeId.MAX_COLLECTION_ID)
+                                collection += gridState.getFeatureCollection(id)
+                        }
+                        tileOutput.write(adapter.toJson(collection).toByteArray())
+                        tileOutput.close()
+                    }
                 }
             }
         }
-//        val adapter = GeoJsonObjectMoshiAdapter()
-//        val mapMatchingOutput = FileOutputStream("total-output.geojson")
-//
-//        // Output the GeoJson and check that there's no data left from other tiles.
-//        val collection = gridState.getFeatureCollection(TreeId.WAYS_SELECTION)
-//        collection += gridState.getFeatureCollection(TreeId.INTERSECTIONS)
-//        collection += gridState.getFeatureCollection(TreeId.POIS)
-//        mapMatchingOutput.write(adapter.toJson(collection).toByteArray())
-//        mapMatchingOutput.close()
     }
 
     @Test
