@@ -226,7 +226,7 @@ class AudioMenu(
         withContext(Dispatchers.IO) {
             val db = MarkersAndRoutesDatabase.getMarkersInstance(service)
             db.routeDao().getAllRoutes().map { route ->
-                MenuItem.Action(route.name) { service.routeStart(route.routeId) }
+                MenuItem.Action(route.name) { service.routeStartById(route.routeId) }
             } + mainMenuAction()
         }
 
