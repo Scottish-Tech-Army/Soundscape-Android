@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.services.SoundscapeService
+import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.util.Locale
@@ -129,6 +130,7 @@ class VoiceCommandManager(
 
                 putStringArrayListExtra(RecognizerIntent.EXTRA_BIASING_STRINGS, biasingStrings)
             }
+            Analytics.getInstance().logEvent("trigger_voice_command", null)
         }
 
     fun destroy() {
@@ -276,8 +278,10 @@ class VoiceCommandManager(
             println("No simple command match found")
 
             // Check if we match any of our dynamic markers
-            if(matchDynamicMarkers(t))
+            if(matchDynamicMarkers(t)) {
+                Analytics.getInstance().logEvent("voice_command_recognized", null)
                 return
+            }
         }
         if (bestMatch != null) {
             println("Found command: ${context.getString(bestMatch.stringId)}")
@@ -285,12 +289,14 @@ class VoiceCommandManager(
             // Pass in all the speech strings, it may be that the argument is clearer in ones other
             // than our best match.
             bestMatch.action(speech)
+            Analytics.getInstance().logEvent("voice_command_recognized", null)
         } else {
             service.speak2dText(
                 context.getString(R.string.voice_cmd_not_recognized).format(speech.first()),
                 false,
                 EARCON_CALLOUTS_OFF
             )
+            Analytics.getInstance().logEvent("voice_command_not_recognized", null)
         }
     }
 

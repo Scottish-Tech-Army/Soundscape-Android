@@ -18,6 +18,7 @@ import android.media.AudioManager
 import android.net.Uri
 import android.os.Binder
 import android.os.Build
+import android.os.Bundle
 import android.os.IBinder
 import android.os.PowerManager
 import android.util.Log
@@ -593,8 +594,6 @@ class SoundscapeService : MediaSessionService() {
 
         // Stop callbacks whilst we handle voice commands
         callbackHoldOff()
-
-        val ctx = if (::localizedContext.isInitialized) localizedContext else this
 
         // Play earcon as feedback to indicate that we're starting to listen.
         speak2dText("", true, EARCON_CALLOUTS_ON)
