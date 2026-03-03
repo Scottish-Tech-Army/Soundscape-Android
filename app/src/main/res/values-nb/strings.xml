@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markører og ruter er slettet</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informasjon om ny versjon</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Lukk dialog for ny versjon</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nVi nærmer oss punktet hvor vi går ut av beta‑utgivelsen. Det betyr bare at vi mener appen fungerer godt for de fleste. Nå er et utmerket tidspunkt til å gi oss beskjed dersom det er problemer, enten med appens funksjonalitet eller med oversettelsene.\n\nDenne utgivelsen har forbedret lydposisjoneringen, i tillegg er det lagt til snarveier i appen som lar deg starte avspilling av ruter direkte fra startprogrammet.\n\nVennligst rapporter eventuelle problemer du har, uansett hvor små, via menyvalget *Kontakt brukerstøtte* i hovedmenyen.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDet er to nye funksjoner i denne utgivelsen som gjør det mulig å fjernstyre appen, selv når telefonen er låst. Det betyr at den kan ligge i lommen mens du fortsatt styrer appens viktigste funksjoner.\n\nBegge fjernkontrollmetodene bruker Bluetooth-mediekontrollknapper, enten de som sitter på hodetelefonene dine, eller små fjernkontroller du kan ha i hånden eller i lommen. Fjernkontrollmodus velges i Innstillinger/Mediekontroller, og du kan velge Talekommando slik at du kan snakke til appen, eller Lydmeny hvor menyer leses opp for deg med valg du kan velge. Originalmodus betyr at Bluetooth-knappene fungerer på samme måte som i tidligere utgaver.\n\nI talekommandomodus starter et trykk på Spill av / stans midlertidig-knappen på hodetelefonene appens lytting etter tale, og du vil høre en kort lyd som indikerer dette. Hvis du sier Hjelp, listes de tilgjengelige kommandoene opp. Deretter kan du trykke på knappen igjen og prøve de andre kommandoene. Dessverre støtter ikke Androids talegjenkjenning alle språk.\n\nLydmeny-modusen fungerer på alle språk. Neste-/forrige-knappene går fremover og bakover gjennom valgene i menyen. Spill av / stans midlertidig-knappen velger det gjeldende valget. Det finnes en toppnivåmeny, og deretter ett nivå med undermenyer som grupperer lignende kommandoer.\n\nDisse funksjonene er helt nye, og vi ønsker gjerne tilbakemelding på om de fungerer bra og hvilke andre kommandoer du kunne tenke deg.\n\nRapporter gjerne eventuelle problemer, uansett hvor små de måtte være, via alternativet *Kontakt brukerstøtte* i hovedmenyen.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Åpne kildekodelisenser</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Fergeterminal</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s fergeterminal</string>
@@ -1281,4 +1281,49 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Feil ved nedlasting</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Lydsignal angitt på %1$s, %2$s unna</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">Lydsignal ved %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">Rutekontroll</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">Neste veipunkt</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">Forrige veipunkt</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">Ingen ruter lagret</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">Toppmeny</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Spille inn lyd</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">Denne tillatelsen er valgfri, men kreves hvis du vil bruke talekommandoer for å styre appen.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">Mediekontroller</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">Modus for mediekontroller</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">Mediekontrollknappene på hodetelefonene eller fjernkontrollen kan konfigureres til å fungere på forskjellige måter avhengig av dette valget.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">Originalmodus</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">Talekommando</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">Lydmeny</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Tilgjengelige talekommandoer:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Lytter…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">Beklager, jeg finner ikke kommandoen %s</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">Vis ruter</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Tilgjengelige ruter er,</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">Vis markører</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Tilgjengelige markører er,</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Ingen ruter er lagret</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Ingen markører er lagret</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Ruten ble ikke funnet: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Starter rute %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Start rute %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Start lydsignal på %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Starter lydsignal på %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Markør ikke funnet: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Du kan også starte ruter og markører ved navn, for eksempel.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Talegjenkjenning: nettverkstidsavbrudd.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Talegjenkjenning: nettverksfeil.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">Talegjenkjenning: feil ved opptak av lyd.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">Talegjenkjenning: serverfeil.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">Talegjenkjenning: klientfeil.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">Tiden for å lytte etter tale er utløpt, så lyttingen er stoppet. Prøv igjen.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">Ingen tale ble registrert, så lyttingen er stoppet. Prøv igjen.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">Talegjenkjenning: tjenesten er opptatt.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">Det var ikke tilstrekkelige tillatelser til å kjøre talegjenkjenning.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">Talegjenkjenning: for mange forespørsler.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">Talegjenkjenning: serveren ble koblet fra.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">Det gjeldende språket støttes ikke av Android for talegjenkjenning.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">Språket støttes, men er ikke lastet ned på denne telefonen.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Feil ved sjekk av støtte for talegjenkjenning.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Feil ved lytting etter nedlastingshendelser for talegjenkjenning.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Talegjenkjenning: ukjent feil.</string>
 </resources>
