@@ -1326,4 +1326,5 @@
     <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Virhe puheentunnistuksen tuen tarkistuksessa.</string>
     <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Virhe puheentunnistuksen lataustapahtumien kuuntelussa.</string>
     <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Tuntematon virhe puheentunnistuksessa.</string>
+    <string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">Tässä puhelimessa ei tueta puheentunnistusta.</string>
 </resources>
