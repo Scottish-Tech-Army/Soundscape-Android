@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Мітки та маршрути видалено</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Інформація про нове оновлення</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Закрити вікно про нове оновлення</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nМи наближаємося до моменту, коли вийдемо з бета‑версії. Це просто означає, що ми вважаємо програму працездатною для більшості користувачів. Зараз чудовий час повідомити нам про будь‑які проблеми — у функціональності програми або в перекладах.\n\nУ цьому випуску покращено локалізацію звуку, а також додано ярлики додатка для запуску відтворення маршрутів безпосередньо з екрана запуску.\n\nБудь ласка, повідомляйте про будь‑які проблеми, навіть якщо вони здаються незначними, через опцію *Звернутися до служби підтримки* у головному меню.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nУ цьому випуску додано дві нові функції, які дозволяють дистанційно керувати застосунком навіть коли телефон заблоковано. Це означає, що телефон можна тримати в кишені й водночас управляти основними функціями програми.\n\nОбидва методи дистанційного керування використовують Bluetooth‑кнопки керування медіа — або ті, що на ваших навушниках, або невеликі пульти дистанційного керування, які можна тримати в руці чи в кишені. Режим дистанційного керування обирається в Налаштуваннях у розділі \"Керування медіа\"; можна вибрати \"Голосові команди\", щоб говорити з додатком, або \"Аудіо‑меню\", в якому вам зачитують меню з опціями для вибору. \"Оригінальний режим\" означає, що кнопки Bluetooth працюють так само, як у попередніх випусках.\n\nУ режимі голосових команд натискання кнопки відтворення/паузи на навушниках запускає прослуховування мікрофона, про що ви почуєте короткий звуковий сигнал. Якщо ви скажете \"Допомога\", буде перераховано доступні команди, якими можна користуватися. Потім ви можете знову натиснути кнопку й спробувати інші команди. На жаль, розпізнавання мови Android не підтримує всі мови.\n\nРежим \"Аудіо‑меню\" працюватиме в усіх мовах. Кнопки \"Наступний/Попередній\" переміщують вас вперед і назад по опціях меню, а кнопка відтворення/паузи вибирає поточну опцію. Є головне меню та один рівень підменю, які групують подібні команди.\n\nЦі функції ще дуже нові, і нам дуже цікаво отримати ваш відгук про їхню роботу та про те, які ще команди ви б хотіли бачити.\n\nБудь ласка, повідомляйте про будь‑які проблеми (навіть незначні) через опцію *Звернутися до служби підтримки* у головному меню.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Ліцензії з відкритим кодом</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Поромний термінал</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s поромний термінал</string>
@@ -1281,4 +1281,49 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Помилка завантаження</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Маячок встановлено на %1$s, %2$s від вас</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">Маячок встановлено на %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">Керування маршрутом</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">Наступна маршрутна точка</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">Попередня маршрутна точка</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">Немає збережених маршрутів</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">Головне меню</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Запис аудіо</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">Цей дозвіл необов\'язковий, але потрібен, якщо ви хочете використовувати голосові команди для керування додатком.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">Керування медіа</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">Режим керування медіа</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">Кнопки керування медіа на ваших навушниках або пульті можна налаштувати так, щоб вони працювали по‑різному залежно від цього параметра.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">Оригінальний режим</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">Голосові команди</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">Аудіо‑меню</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Доступні голосові команди:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Слухаю…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">Вибачте, команду %s не знайдено.</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">Показати маршрути</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Доступні маршрути:</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">Показати мітки</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Доступні мітки:</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Немає збережених маршрутів</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Немає збережених міток</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Маршрут не знайдено: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Розпочато маршрут %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Розпочати маршрут %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Запустити звуковий маячок на %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Запускається звуковий маячок на %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Мітку не знайдено: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Ви також можете запускати маршрути та мітки за назвою, наприклад.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Помилка мережі розпізнавання мовлення: перевищено час очікування.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Помилка мережі розпізнавання мовлення.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">Помилка розпізнавання мовлення під час запису аудіо.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">Помилка сервера розпізнавання мовлення.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">Помилка клієнта розпізнавання мовлення.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">Час очікування мовлення вичерпано, прослуховування припинено. Спробуйте ще раз.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">Не виявлено мовлення, прослуховування припинено. Спробуйте ще раз.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">Сервіс розпізнавання мовлення зайнятий.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">Не вистачає дозволів для запуску розпізнавання мовлення.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">Помилка розпізнавання мовлення: надто багато запитів.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">Помилка: сервер розпізнавання мовлення відключився.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">Android не підтримує поточну мову для розпізнавання мовлення.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">Поточна мова підтримується, але не завантажена на цьому телефоні.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Помилка перевірки підтримки розпізнавання мовлення.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Помилка під час відстеження подій завантаження для розпізнавання мовлення.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Невідома помилка розпізнавання мовлення.</string>
 </resources>
