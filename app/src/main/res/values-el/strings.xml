@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Οι δείκτες και οι διαδρομές διαγράφηκαν</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Πληροφορίες νέας έκδοσης</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Κλείσιμο διαλόγου νέας έκδοσης</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nΠλησιάζουμε το σημείο όπου θα βγούμε από την έκδοση Beta. Αυτό σημαίνει απλώς ότι πιστεύουμε πως η εφαρμογή λειτουργεί καλά για τους περισσότερους χρήστες. Είναι μια εξαιρετική στιγμή να μας ενημερώσετε αν υπάρχουν προβλήματα είτε στη λειτουργία της εφαρμογής είτε στις μεταφράσεις.\n\nΑυτή η έκδοση περιλαμβάνει βελτιωμένη χωρική τοποθέτηση του ήχου καθώς και την προσθήκη συντομεύσεων εφαρμογής για να ξεκινά η αναπαραγωγή διαδρομών απευθείας από το πρόγραμμα εκκίνησης.\n\nΠαρακαλούμε αναφέρετε τυχόν προβλήματα που αντιμετωπίζετε, όσο μικρά κι αν είναι, μέσω της επιλογής *Επικοινωνία με την υποστήριξη* στο κύριο μενού.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nΥπάρχουν δύο νέες δυνατότητες σε αυτήν την έκδοση που επιτρέπουν τον απομακρυσμένο έλεγχο της εφαρμογής, ακόμη και όταν το τηλέφωνο είναι κλειδωμένο. Αυτό σημαίνει ότι μπορείτε να το έχετε στην τσέπη σας και ταυτόχρονα να ελέγχετε τις κύριες λειτουργίες της εφαρμογής.\n\nΚαι οι δύο μέθοδοι απομακρυσμένου ελέγχου χρησιμοποιούν τα κουμπιά ελέγχου πολυμέσων Bluetooth — είτε αυτά στα ακουστικά σας είτε σε μικρά τηλεχειριστήρια που μπορείτε να αγοράσετε και να κρατάτε στο χέρι ή στην τσέπη. Η λειτουργία απομακρυσμένου ελέγχου επιλέγεται από Ρυθμίσεις/Στοιχεία ελέγχου πολυμέσων και μπορείτε να επιλέξετε Φωνητικές εντολές για να μιλήσετε στην εφαρμογή, ή Ηχητικό μενού όπου σας διαβάζονται μενού με επιλογές για να επιλέξετε. Η Αρχική λειτουργία σημαίνει ότι τα κουμπιά Bluetooth λειτουργούν με τον ίδιο τρόπο όπως σε προηγούμενες εκδόσεις.\n\nΣε λειτουργία φωνητικών εντολών, το πάτημα του κουμπιού αναπαραγωγής/παύσης στα ακουστικά σας ενεργοποιεί την ακρόαση της εφαρμογής και θα ακούσετε έναν σύντομο ήχο που το υποδεικνύει. Εάν πείτε «Βοήθεια», η εφαρμογή θα απαριθμήσει τις διαθέσιμες εντολές που μπορείτε να χρησιμοποιήσετε. Στη συνέχεια μπορείτε να πατήσετε ξανά το κουμπί και να δοκιμάσετε τις υπόλοιπες εντολές. Δυστυχώς, η αναγνώριση ομιλίας του Android δεν υποστηρίζει όλες τις γλώσσες.\n\nΗ λειτουργία Ηχητικού μενού θα λειτουργεί σε όλες τις γλώσσες. Τα κουμπιά Επόμενο/Προηγούμενο μετακινούνται εμπρός και πίσω μέσα στις επιλογές του μενού. Το κουμπί Αναπαραγωγής/Παύσης επιλέγει την τρέχουσα επιλογή. Υπάρχει ένα μενού πρώτου επιπέδου και μία επιπλέον στρώση υπομενού που ομαδοποιούν παρόμοιες εντολές.\n\nΑυτές οι λειτουργίες είναι πολύ καινούργιες και θα θέλαμε πολύ να λάβουμε σχόλια για το αν λειτουργούν καλά και ποιες άλλες εντολές θα θέλατε να δείτε.\n\nΠαρακαλώ αναφέρετε όποιο πρόβλημα αντιμετωπίσετε, όσο μικρό κι αν είναι, μέσω της επιλογής *Επικοινωνία με την υποστήριξη* στο κύριο μενού.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Άδειες ανοιχτού κώδικα</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Τερματικός Σταθμός Φεριμπότ</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Τερματικός Σταθμός Φεριμπότ</string>
@@ -1281,4 +1281,49 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Σφάλμα κατά τη λήψη</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Το ηχητικό σήμα ορίζεται σε %1$s, σε απόσταση %2$s</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">Το ηχητικό σήμα στο %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">Έλεγχος διαδρομής</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">Επόμενο σημείο πορείας</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">Προηγούμενο σημείο πορείας</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">Δεν υπάρχουν αποθηκευμένες διαδρομές</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">Κύριο μενού</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Καταγραφή ήχου</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">Αυτή η άδεια είναι προαιρετική, αλλά απαιτείται εάν θέλετε να χρησιμοποιήσετε φωνητικές εντολές για να ελέγξετε την εφαρμογή.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">Στοιχεία ελέγχου πολυμέσων</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">Λειτουργία ελέγχου πολυμέσων</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">Τα κουμπιά ελέγχου πολυμέσων στα ακουστικά ή στο τηλεχειριστήριο μπορούν να ρυθμιστούν να λειτουργούν με διαφορετικούς τρόπους ανάλογα με αυτήν την επιλογή.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">Αρχική λειτουργία</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">Φωνητικές εντολές</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">Ηχητικό μενού</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Διαθέσιμες φωνητικές εντολές:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Ακρόαση…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">Συγγνώμη, δεν βρήκα την εντολή %s</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">Λίστα διαδρομών</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Οι διαθέσιμες διαδρομές είναι:</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">Λίστα δεικτών</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Οι διαθέσιμοι δείκτες είναι:</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Δεν έχουν αποθηκευτεί διαδρομές</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Δεν έχουν αποθηκευτεί δείκτες</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Η διαδρομή δεν βρέθηκε: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Έναρξη διαδρομής %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Έναρξη διαδρομής %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Έναρξη ηχητικού σήματος σε %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Εκκίνηση ηχητικού σήματος σε %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Ο δείκτης δεν βρέθηκε: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Μπορείτε επίσης να ξεκινήσετε διαδρομές και να ενεργοποιήσετε δείκτες με το όνομά τους, για παράδειγμα.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Σφάλμα υπέρβασης χρόνου δικτύου στην αναγνώριση ομιλίας.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Σφάλμα δικτύου στην αναγνώριση ομιλίας.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">Σφάλμα εγγραφής ήχου για την αναγνώριση ομιλίας.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">Σφάλμα διακομιστή αναγνώρισης ομιλίας.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">Σφάλμα πελάτη στην αναγνώριση ομιλίας.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">Η ακρόαση για ομιλία έληξε λόγω χρόνου αναμονής και η ακρόαση σταμάτησε. Παρακαλώ δοκιμάστε ξανά.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">Δεν ανιχνεύτηκε ομιλία και η ακρόαση σταμάτησε. Παρακαλώ δοκιμάστε ξανά.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">Σφάλμα: η αναγνώριση ομιλίας είναι απασχολημένη.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">Δεν υπάρχουν επαρκείς άδειες για την εκτέλεση της αναγνώρισης ομιλίας.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">Σφάλμα: υπερβολικά πολλά αιτήματα στην αναγνώριση ομιλίας.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">Σφάλμα: ο διακομιστής αναγνώρισης ομιλίας αποσυνδέθηκε.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">Η τρέχουσα γλώσσα δεν υποστηρίζεται από το Android για αναγνώριση ομιλίας.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">Η γλώσσα υποστηρίζεται, αλλά δεν έχει ληφθεί (εγκατασταθεί) σε αυτό το τηλέφωνο.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Σφάλμα κατά τον έλεγχο υποστήριξης της αναγνώρισης ομιλίας.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Σφάλμα ακρόασης γεγονότων λήψης για την αναγνώριση ομιλίας.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Άγνωστο σφάλμα αναγνώρισης ομιλίας.</string>
 </resources>
