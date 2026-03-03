@@ -1045,7 +1045,7 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">新版本信息</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">关闭新版本对话框</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">开源许可证</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\n我们正接近从测试（Beta）阶段过渡到正式版。这意味着我们认为应用对大多数用户来说运行良好。现在正是告知我们应用功能或翻译是否存在问题的好时机。\n\n本次更新改进了音频定位，并新增了应用快捷方式，可从启动器直接开始播放路线。\n\n无论问题大小，请通过主菜单中的*联系支持*选项向我们反馈。\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\n本次发布包含两项新功能，允许您远程控制应用，即使手机锁屏时也能使用。这意味着您可以将手机放入口袋，同时仍能控制应用的主要功能。\n\n两种远程控制方式都使用蓝牙媒体控制按钮，既可以使用耳机上的按钮，也可以购买小型遥控器放在手中或口袋中。远程控制模式可在“设置/媒体控制”中选择，您可以选择“语音命令”（Voice command），通过说话来控制应用；也可以选择“音频菜单”（Audio menu），该模式会朗读菜单并提供可选项供您选择。选择“经典模式”（Original mode）则表示蓝牙按钮的行为与之前版本相同。\n\n在语音命令模式下，按下耳机上的播放/暂停按钮会使应用开始监听语音，并会播放一段短音提示您正在聆听。如果您说“Help”（帮助），应用会列出可用命令。随后您可以再次按下按钮并尝试其他命令。遗憾的是，Android 的语音识别并不支持所有语言。\n\n音频菜单模式适用于所有语言。上一曲/下一曲按钮在菜单项之间向前或向后移动，播放/暂停按钮用于选择当前项。菜单包含顶层菜单，以及一层子菜单，用来将相似命令分组。\n\n这些功能都非常新，我们非常希望您能反馈它们是否工作良好，以及您希望添加哪些其它命令。\n\n如遇任何问题（即便很小），请通过主菜单中的 *联系支持* 选项反馈给我们。\n</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape 探索使用创新的音频技术，帮助人们更好地感知周围环境，从而更加自信、自主地出行。</string>
     <string name="osm_office_building" tools:ignore="MissingTranslation">办公楼</string>
     <string name="osm_school_building" tools:ignore="MissingTranslation">教学楼</string>
@@ -1281,4 +1281,49 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">下载错误</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">音频信标已设在%1$s，距离%2$s</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">音频信标在%1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">路线控制</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">下一个航点</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">上一个航点</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">尚未保存任何路线</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">顶层菜单</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">录制音频</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">此权限为可选，但如果您想使用语音命令来控制应用，则需要授予此权限。</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">媒体控制</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">媒体控制模式</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">耳机或遥控器上的媒体控制按钮可以根据此选项以不同方式配置。</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">经典模式</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">语音命令</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">音频菜单</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">可用语音命令：</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">正在聆听…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">抱歉，我无法识别命令 %s</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">列出路线</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">可用路线有：</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">列出标记点</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">可用标记点有：</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">尚未保存任何路线</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">尚未保存任何标记点</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">未找到路线：%s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">开始路线 %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">开始路线 %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">在%s处启动音频信标</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">正在于%s处启动音频信标</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">未找到标记点：%s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">例如，您也可以通过名称启动路线或标记点。</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">语音识别网络超时错误。</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">语音识别网络错误。</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">语音识别录音错误。</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">语音识别服务器错误。</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">语音识别客户端错误。</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">监听语音超时，已停止监听。请重试。</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">未检测到语音，已停止监听。请重试。</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">语音识别繁忙。</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">缺少运行语音识别所需的权限。</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">语音识别请求过多。</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">语音识别服务器已断开连接。</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">当前语言不被 Android 支持进行语音识别。</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">当前语言已被支持，但尚未下载到此手机。</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">语音识别支持检查错误。</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">语音识别下载监听错误。</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">语音识别未知错误。</string>
 </resources>
