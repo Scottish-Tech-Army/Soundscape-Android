@@ -1050,9 +1050,15 @@
 <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">"Open source licenses"</string>
 <!-- Text for dialog which explains what is new in the current release. This is in markdown format. -->
 <string name="new_version_info_details" tools:ignore="MissingTranslation">"
-We are approaching the point where we move out of Beta release. That just means that we think the app is working well for most people. Now's a great time to let us know if there are problems either within the app functionality, or within the translations.
+There are two new features in this release which allow remote control of the app, even when the phone is locked. This means that it can be kept in your pocket whilst still controlling the main features of the app.
 
-This release has improved audio positioning as well as the addition of app shortcuts to start playback of routes directly from the launcher.
+Both remote control methods use Bluetooth media control buttons, either those on your headphones, or you can also buy small remote controls to keep in your hand or pocket. The remote control mode is selected from the Settings/Media controls section and you can pick "Voice command" so that you can talk to the app, or "Audio menu" where there are menus read out to you with options to select. "Original mode" means that the Bluetooth buttons work in the same way as in previous releases.
+
+In voice command mode, clicking the play/pause button on your headphones starts the app listening for speech and you will hear a short sound to indicate this. If you say "Help" it will list the available commands that you can use. Then you can click the button again and try the other commands. Unfortunately, Android speech recognition doesn't support all languages.
+
+Audio menu mode will work in all languages. The next/previous buttons move forwards and backwards through the options within the menu. The play/pause button then selects the current option. There is a top level menu, and then one layer of sub menus which group together similar commands.
+
+These features are very new, and we'd really like feedback on whether they work well and what other commands you might like.
 
 Please report any problems that you have, however small they may be via the *Contact Support* option in the main menu.
 "</string>
