@@ -1326,4 +1326,5 @@
     <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Σφάλμα κατά τον έλεγχο υποστήριξης της αναγνώρισης ομιλίας.</string>
     <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Σφάλμα ακρόασης γεγονότων λήψης για την αναγνώριση ομιλίας.</string>
     <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Άγνωστο σφάλμα αναγνώρισης ομιλίας.</string>
+    <string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">Η αναγνώριση ομιλίας δεν υποστηρίζεται σε αυτό το τηλέφωνο.</string>
 </resources>
