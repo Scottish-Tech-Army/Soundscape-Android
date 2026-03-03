@@ -1326,4 +1326,5 @@
     <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">वाणी पहचान समर्थन जाँच त्रुटि।</string>
     <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">वाणी पहचान डाउनलोड इवेंट सुनने में त्रुटि।</string>
     <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">वाणी पहचान अज्ञात त्रुटि।</string>
+    <string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">इस फ़ोन पर वाणी पहचान समर्थित नहीं है।</string>
 </resources>
