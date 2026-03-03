@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Merki og leiðir eytt</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Upplýsingar um nýja útgáfu</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Loka útgáfuupplýsingum</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nVið erum að nálgast þann áfanga að fara úr Beta‑útgáfu. Það þýðir einfaldlega að við teljum forritið virka vel fyrir flesta. Nú er tilvalið að láta okkur vita ef upp koma vandamál, hvort sem þau snúa að virkni forritsins eða þýðingum.\n\nÞessi útgáfa bætir hljóðstaðsetningu og bætir við flýtileiðum til að hefja spilun leiða beint úr ræsinni.\n\nVinsamlegast tilkynnið öll vandamál, hversu smávægileg sem þau kunna að vera, með valkostinum *hafa samband, stuðningur* í aðalvalmyndinni.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nÍ þessari útgáfu eru tvær nýjar aðgerðir sem gera fjarstýringu á forritinu mögulega, jafnvel þegar síminn er læstur. Þetta þýðir að þú getur haft símann í vasanum og samt stjórnað helstu aðgerðum forritsins.\n\nBáðar aðferðir nota Bluetooth fjölmiðlastýringahnappana, annaðhvort þá sem eru á heyrnartólunum þínum, eða sérstakar litlar fjarstýringar sem hægt er að hafa í hendi eða vasa. Hamur fjarstýringarinnar er valinn í Stillingar → Fjölmiðlastýringar, og þú getur valið „Raddskipanir\" til að tala við forritið, eða „Hljóðvalmynd\" þar sem valmyndir eru lesnar upp með valkostum sem þú velur. „Upprunalegur hamur\" þýðir að Bluetooth‑hnapparnir virka eins og í eldri útgáfum.\n\nÍ raddskipanaham (Voice command) byrjar forritið að hlusta þegar þú ýtir á spila/hlé hnappinn á heyrnartólunum og þú heyrir stutt hljóð sem gefur til kynna að hlustun hafi hafist. Ef þú segir „Help\" telur það upp þær skipanir sem í boði eru. Þú getur síðan ýtt á hnappinn aftur og prófað aðra skipanir. Því miður styður talgreining Android ekki öll tungumál.\n\nHljóðvalmyndarhamurinn (Audio menu) virkar á öllum tungumálum. Hnapparnir Næsta/Fyrra færa valmyndina áfram og aftur í valkostunum, og spila/hlé hnappurinn velur þann valkost sem er á skjánum. Það er efst aðalvalmynd og svo eitt undirlagslag (one layer of sub menus) sem sameinar svipaðar skipanir.\n\nÞessar aðgerðir eru mjög nýjar og við myndum gjarnan vilja fá endurgjöf um hvort þær virka vel og hvaða aðrar skipanir þig langar að sjá.\n\nVinsamlegast tilkynnið öll vandamál, jafnvel smávægileg, í gegn um valkostinn *Contact Support* í aðalvalmyndinni.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Leyfi opins hugbúnaðar</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Ferjuhöfn</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s ferjuhöfn</string>
@@ -1281,4 +1281,49 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Villa við niðurhal</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">hljóðviti settur á %1$s, %2$s í burtu</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">hljóðviti á %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">Stjórnun leiða</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">Næsti leiðarpunktur</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">Fyrri leiðarpunktur</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">Engar vistaðar leiðir</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">Aðalvalmynd</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Upptaka hljóðs</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">Þetta leyfi er valfrjálst, en nauðsynlegt ef þú vilt nota raddskipanir til að stýra forritinu.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">Fjölmiðlastýringar</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">Ham fjölmiðlastýringa</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">Hnappana á heyrnartólunum þínum eða fjarstýringunni má stilla til að virka á mismunandi hátt eftir þessari stillingu.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">Upprunalegur hamur</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">Raddskipanir</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">Hljóðvalmynd</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Tiltækar raddskipanir:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Hlusta…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">Fyrirgefðu, ég finn ekki skipunina %s</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">Telja upp leiðir</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Tiltækar leiðir eru,</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">Telja upp merki</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Tiltæk merki eru,</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Engar leiðir hafa verið vistaðar</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Engin merki hafa verið vistuð</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Leið fannst ekki: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Hef spilun leiðarinnar %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Hefja leið %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Kveikja á hljóðvita á %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Hljóðviti settur á %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Merki fannst ekki: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Þú getur einnig sett af stað leiðir og merki með nafni, til dæmis.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Tímaútrunnin nettengingarvilla við talgreiningu.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Nettengingarvilla við talgreiningu.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">Villa við upptöku hljóðs fyrir talgreiningu.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">Þjónsvilla í talgreiningu.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">Villa í viðmóti talgreiningar.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">Bið eftir tali rann út og hlustun var hætt. Reyndu aftur.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">Ekkert tal heyrðist og hlustun var hætt. Reyndu aftur.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">Talgreining upptekin - villa.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">Ekki lágu fyrir næg leyfi til að keyra talgreiningu.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">Talgreining: of margar beiðnir.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">Talgreiningarþjónn aftengdur - villa.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">Núverandi tungumál er ekki stutt af Android fyrir talgreiningu.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">Núverandi tungumál er stutt en hefur ekki verið hlaðið niður á þessum síma.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Villa við athugun á stuðningi talgreiningar.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Villa við hlustun á niðurhali talgreiningar.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Óþekkt villa í talgreiningu.</string>
 </resources>
