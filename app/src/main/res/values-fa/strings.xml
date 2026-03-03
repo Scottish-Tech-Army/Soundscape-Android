@@ -996,7 +996,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">نشانه‌ها و مسیرها حذف شدند</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">اطلاعات نسخه‌ی جدید</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">بستن پنجره‌ی اطلاعات نسخه‌ی جدید</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nما در آستانهٔ خروج از نسخهٔ بتا هستیم. این صرفاً به این معنی است که فکر می‌کنیم اپ برای اکثر کاربران به‌خوبی کار می‌کند. اکنون فرصت مناسبی است تا در صورت وجود هرگونه مشکل — چه در عملکرد اپ و چه در ترجمه‌ها — به ما اطلاع دهید.\n\nدر این نسخه، موقعیت‌یابی صوتی بهبود یافته و میانبرهای اپلیکیشن برای شروع پخش مسیرها مستقیماً از لانچر افزوده شده‌اند.\n\nلطفاً هر مشکلی که مشاهده می‌کنید، هرچقدر هم کوچک باشد، از طریق گزینهٔ *«تماس با پشتیبانی»* در منوی اصلی گزارش دهید.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nدو قابلیت جدید در این نسخه اضافه شده‌اند که امکان کنترل از راه دور اپ را فراهم می‌کنند، حتی زمانی که گوشی قفل است. این یعنی می‌توانید گوشی را در جیب خود نگه دارید و هم‌زمان کنترل امکانات اصلی اپ را در دست داشته باشید.\n\nهر دو روش کنترل از راه دور از دکمه‌های کنترل رسانه‌ای بلوتوث استفاده می‌کنند؛ یا دکمه‌هایی که روی هدفون شما قرار دارند، یا کنترل‌های کوچک جداگانه‌ای که می‌توانید در دست یا جیب نگه دارید و خریداری کنید. حالت کنترل از راه دور از مسیر تنظیمات / کنترل‌های رسانه‌ای انتخاب می‌شود و می‌توانید «فرمان صوتی» را انتخاب کنید تا بتوانید با اپ صحبت کنید، یا «منوی صوتی» را انتخاب کنید که در آن منوها برایتان خوانده می‌شوند و می‌توانید گزینه‌ای را انتخاب کنید. «حالت اصلی» به این معناست که دکمه‌های بلوتوث مانند نسخه‌های قبلی کار خواهند کرد.\n\nدر حالت فرمان صوتی، فشردن دکمهٔ پخش/توقف روی هدفون باعث می‌شود اپ به‌صورت فعال به گفتار گوش دهد و یک صدای کوتاه برای اطلاع‌رسانی پخش می‌شود. اگر بگویید «Help» فهرستی از فرمان‌های قابل استفاده را برایتان می‌خواند. سپس می‌توانید دوباره دکمه را فشار دهید و فرمان‌های دیگر را امتحان کنید. متأسفانه، تشخیص گفتار اندروید از همهٔ زبان‌ها پشتیبانی نمی‌کند.\n\nحالت منوی صوتی در همهٔ زبان‌ها کار خواهد کرد. دکمه‌های بعدی/قبلی بین گزینه‌های منو به جلو و عقب می‌روند. دکمهٔ پخش/توقف سپس گزینهٔ جاری را انتخاب می‌کند. یک منوی سطح بالا وجود دارد و پس از آن یک لایه زیرمنو که فرمان‌های مشابه را گروه‌بندی می‌کند.\n\nاین قابلیت‌ها بسیار جدیدند و ما واقعاً مشتاق دریافت بازخورد هستیم تا بدانیم آیا به‌خوبی کار می‌کنند و چه فرمان‌های دیگری مایلید اضافه شوند.\n\nلطفاً هر مشکلی، هرچند کوچک، را از طریق گزینهٔ *«تماس با پشتیبانی»* در منوی اصلی گزارش دهید.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">مجوزهای متن‌باز</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">پایانه کشتی</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s پایانه کشتی</string>
@@ -1752,4 +1752,49 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">خطا در دانلود</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">جهت‌نمای صوتی روی %1$s تنظیم شد، %2$s فاصله</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">جهت‌نمای صوتی در %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">کنترل مسیر</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">نقطه‌ی بین‌راهی بعدی</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">نقطه‌ی بین‌راهی قبلی</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">هیچ مسیری ذخیره نشده است</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">منوی اصلی</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">ضبط صدا</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">این مجوز اختیاری است، اما در صورتی که مایل باشید از فرمان‌های صوتی برای کنترل اپلیکیشن استفاده کنید، لازم است.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">کنترل‌های رسانه‌ای</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">حالت کنترل‌های رسانه‌ای</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">دکمه‌های کنترل رسانه‌ای روی هدفون یا کنترل از راه دور شما می‌توانند بر پایهٔ این گزینه به روش‌های مختلفی پیکربندی شوند.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">حالت اصلی</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">فرمان صوتی</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">منوی صوتی</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">دستورات صوتی موجود:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">در حال گوش دادن…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">متأسفم، فرمان «%s» را نشناختم</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">فهرست مسیرها</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">مسیرهای موجود عبارتند از:</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">فهرست نشانه‌ها</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">نشانه‌های موجود عبارتند از:</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">هیچ مسیری ذخیره نشده است</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">هیچ نشانه‌ای ذخیره نشده است</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">مسیر یافت نشد: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">در حال شروع مسیر %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">شروع مسیر %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">فعال‌سازی جهت‌نمای صوتی روی %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">در حال فعال‌سازی جهت‌نمای صوتی روی %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">نشانه پیدا نشد: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">همچنین می‌توانید مسیرها و نشانه‌ها را با نام‌شان نیز شروع کنید، برای مثال.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">خطای تایم‌اوت شبکه در تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">خطای شبکه در تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">خطا در ضبط صدا برای تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">خطای سرور تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">خطای کلاینت تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">زمان انتظار برای شنیدن گفتار به پایان رسید و گوش دادن متوقف شد. لطفاً دوباره تلاش کنید.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">هیچ گفتاری شنیده نشد و گوش دادن متوقف شد. لطفاً دوباره تلاش کنید.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">سرویس تشخیص گفتار در حال حاضر مشغول است.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">مجوزهای کافی برای اجرای تشخیص گفتار وجود نداشت.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">خطای ارسال درخواست‌های زیاد به سرویس تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">خطای قطع اتصال سرور تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">زبان فعلی توسط اندروید برای تشخیص گفتار پشتیبانی نمی‌شود.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">زبان فعلی پشتیبانی می‌شود، اما هنوز روی این گوشی دانلود نشده است.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">خطا در بررسی پشتیبانی تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">خطا در گوش دادن به رویدادهای دانلود تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">خطای ناشناخته در تشخیص گفتار.</string>
 </resources>
