@@ -512,7 +512,7 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Yeni sürüm bilgileri</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Yeni sürüm iletişim kutusunu kapat</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Açık kaynak lisansları</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nBeta sürümünden çıkma noktasına yaklaşıyoruz. Bu, uygulamanın çoğu kullanıcı için iyi çalıştığını düşündüğümüz anlamına geliyor. Uygulama işlevselliği veya çevirilerde sorun varsa bize bildirmek için şimdi harika bir zaman.\n\nBu sürümde ses konumlandırması iyileştirildi ve başlatıcıdan doğrudan rota oynatmayı başlatmak için uygulama kısayolları eklendi.\n\nAna menüdeki *Destek ile İletişim* seçeneği üzerinden, ne kadar küçük olursa olsun karşılaştığınız sorunları lütfen bildirin.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nBu sürümde, telefon kilitli olsa bile uygulamayı uzaktan kontrol etmeyi sağlayan iki yeni özellik bulunmaktadır. Bu sayede telefon cepteyken bile uygulamanın ana özelliklerini kontrol edebilirsiniz.\n\nHer iki uzaktan kontrol yöntemi de Bluetooth medya kontrol düğmelerini kullanır; bunlar kulaklığınızdaki düğmeler olabilir veya elinizde/cebinizde taşımak için küçük uzaktan kumandalar satın alabilirsiniz. Uzaktan kontrol modu, Ayarlar/Medya Kontrolleri bölümünden seçilir; uygulamaya konuşmanızı sağlayan \"Sesli Komut\" seçeneğini veya size seçenekleri okuyan menülerin olduğu \"Sesli Menü\" seçeneğini tercih edebilirsiniz. \"Orijinal Mod\" ise Bluetooth düğmelerinin önceki sürümlerdeki gibi çalışacağı anlamına gelir.\n\nSesli komut modunda, kulaklığınızdaki Oynat/Duraklat düğmesine basmak uygulamayı konuşma dinlemeye başlatır ve bunun işareti olarak kısa bir ses duyarsınız. \"Yardım\" derseniz kullanabileceğiniz komutların bir listesini verir. Ardından düğmeye tekrar basıp diğer komutları deneyebilirsiniz. Ne yazık ki Android konuşma tanıma tüm dilleri desteklememektedir.\n\nSesli Menü modu tüm dillerde çalışır. İleri/geri düğmeleri menü içindeki seçenekler arasında ileri ve geri hareket ettirir. Oynat/Duraklat düğmesi ise geçerli seçeneği onaylar. Bir üst düzey menü vardır ve bunun altında benzer komutları gruplayan tek katmanlı alt menüler bulunur.\n\nBu özellikler çok yenidir; iyi çalışıp çalışmadıkları ve hangi başka komutları görmek istediğinizle ilgili geri bildirimlerinize çok değer veriyoruz.\n\nLütfen ana menüdeki *Destek ile iletişime geç* seçeneği aracılığıyla karşılaştığınız sorunları (ne kadar küçük olursa olsun) bildirin.\n</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape, insanların çevrelerini daha zengin biçimde kavramalarını sağlamak ve böylece dolaşma konusunda daha özgüvenli ve güçlü hissettirmek için yenilikçi ses tabanlı teknolojinin kullanımını araştırmaktadır.</string>
     <string name="osm_office_building" tools:ignore="MissingTranslation">Ofis Binası</string>
     <string name="osm_school_building" tools:ignore="MissingTranslation">Okul Binası</string>
@@ -1281,4 +1281,49 @@
     <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Eğitimi İptal Et</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Devam Et</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">Açılır pencereyi kapatın ve eğitime devam edin</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">Rota kontrolü</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">Sonraki Ara Nokta</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">Önceki Ara Nokta</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">Kayıtlı rota yok</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">Üst Menü</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Ses kaydı</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">Bu izin isteğe bağlıdır, ancak uygulamayı sesli komutlarla kontrol etmek istiyorsanız gereklidir.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">Medya Kontrolleri</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">Medya Kontrolleri Modu</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">Kulaklığınızdaki veya uzaktan kumandanızdaki medya kontrol düğmeleri, bu seçeneğe bağlı olarak farklı şekillerde çalışacak şekilde yapılandırılabilir.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">Orijinal Mod</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">Sesli Komut</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">Sesli Menü</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Kullanılabilir sesli komutlar:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Dinleniyor…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">Üzgünüm, %s komutunu anlayamadım</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">Rotaları Listele</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Mevcut rotalar şunlardır,</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">Kayıtlı Noktaları Listele</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Mevcut kayıtlı noktalar şunlardır,</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Herhangi bir rota kaydedilmemiş</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Herhangi bir kayıtlı nokta yok</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Rota bulunamadı: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Rota başlatılıyor: %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">%s rotasını başlat</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">%s üzerinde sesli işareti başlat</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">%s üzerinde sesli işaret başlatılıyor</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Kayıtlı nokta bulunamadı: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Örneğin, rotaları ve kayıtlı noktaları isimleriyle başlatabilirsiniz.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Konuşma tanıma ağ zaman aşımı hatası.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Konuşma tanıma ağ hatası.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">Konuşma tanıma sırasında ses kaydı hatası.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">Konuşma tanıma sunucu hatası.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">Konuşma tanıma istemci hatası.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">Konuşma için dinleme zaman aşımına uğradı ve dinleme durdu. Lütfen tekrar deneyin.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">Hiç konuşma algılanmadı ve dinleme durdu. Lütfen tekrar deneyin.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">Konuşma tanıma meşgul hatası.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">Konuşma tanımayı çalıştırmak için yeterli izin yoktu.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">Konuşma tanıma çok fazla istek hatası.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">Konuşma tanıma sunucusu bağlantısı kesildi hatası.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">Geçerli dil Android tarafından konuşma tanıma için desteklenmiyor.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">Geçerli dil destekleniyor, ancak bu telefona indirilmemiş.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Konuşma tanıma destek kontrolü hatası.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Konuşma tanıma indirme dinleme hatası.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Konuşma tanıma bilinmeyen hata.</string>
 </resources>
