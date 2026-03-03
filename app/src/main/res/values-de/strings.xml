@@ -1326,4 +1326,5 @@
     <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Fehler beim Prüfen der Unterstützung für die Spracherkennung.</string>
     <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Fehler beim Überwachen von Spracherkennungs‑Downloads.</string>
     <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Unbekannter Fehler bei der Spracherkennung.</string>
+    <string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">Dieses Telefon unterstützt keine Spracherkennung.</string>
 </resources>
