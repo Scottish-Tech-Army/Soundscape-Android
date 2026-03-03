@@ -1326,4 +1326,5 @@
     <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">خطأ في التحقق من دعم خدمة التعرف على الكلام.</string>
     <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">خطأ أثناء الاستماع لأحداث تنزيل التعرف على الكلام.</string>
     <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">خطأ غير معروف في خدمة التعرف على الكلام.</string>
+    <string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">ميزة التعرف على الكلام غير مدعومة على هذا الهاتف.</string>
 </resources>
