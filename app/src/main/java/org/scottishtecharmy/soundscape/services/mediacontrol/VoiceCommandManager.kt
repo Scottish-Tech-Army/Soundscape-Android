@@ -29,8 +29,7 @@ sealed class VoiceCommandState {
 }
 
 class VoiceCommandManager(
-    private val service: SoundscapeService,
-    private val onError: () -> Unit
+    private val service: SoundscapeService
 ) {
 
     private var context: Context = service
@@ -63,7 +62,6 @@ class VoiceCommandManager(
 
         if (!SpeechRecognizer.isRecognitionAvailable(context)) {
             println("Recognition is unavailable")
-            onError()
             return
         }
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(context)
@@ -142,6 +140,24 @@ class VoiceCommandManager(
         speechRecognizer = null
     }
 
+    val errorMap = mapOf(
+        Pair(SpeechRecognizer.ERROR_NETWORK_TIMEOUT, R.string.voice_cmd_speech_recognition_error_network_timeout),
+        Pair(SpeechRecognizer.ERROR_NETWORK, R.string.voice_cmd_speech_recognition_error_network),
+        Pair(SpeechRecognizer.ERROR_AUDIO, R.string.voice_cmd_speech_recognition_error_audio),
+        Pair(SpeechRecognizer.ERROR_SERVER, R.string.voice_cmd_speech_recognition_error_server),
+        Pair(SpeechRecognizer.ERROR_CLIENT, R.string.voice_cmd_speech_recognition_error_client),
+        Pair(SpeechRecognizer.ERROR_SPEECH_TIMEOUT, R.string.voice_cmd_speech_recognition_error_speech_timeout),
+        Pair(SpeechRecognizer.ERROR_NO_MATCH, R.string.voice_cmd_speech_recognition_not_match),
+        Pair(SpeechRecognizer.ERROR_RECOGNIZER_BUSY, R.string.voice_cmd_speech_recognition_busy),
+        Pair(SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS, R.string.voice_cmd_speech_recognition_error_permissions),
+        Pair(SpeechRecognizer.ERROR_TOO_MANY_REQUESTS, R.string.voice_cmd_speech_recognition_error_too_many_requests),
+        Pair(SpeechRecognizer.ERROR_SERVER_DISCONNECTED, R.string.voice_cmd_speech_recognition_error_server_disconnected),
+        Pair(SpeechRecognizer.ERROR_LANGUAGE_NOT_SUPPORTED, R.string.voice_cmd_speech_recognition_error_language_not_supported),
+        Pair(SpeechRecognizer.ERROR_LANGUAGE_UNAVAILABLE, R.string.voice_cmd_speech_recognition_error_language_unavailable),
+        Pair(SpeechRecognizer.ERROR_CANNOT_CHECK_SUPPORT, R.string.voice_cmd_speech_recognition_error_cannot_check_support),
+        Pair(SpeechRecognizer.ERROR_CANNOT_LISTEN_TO_DOWNLOAD_EVENTS, R.string.voice_cmd_speech_recognition_error_cannot_listen_to_download_events),
+    )
+
     private val listener = object : RecognitionListener {
         override fun onReadyForSpeech(params: Bundle?) {
             _state.value = VoiceCommandState.Listening
@@ -157,9 +173,20 @@ class VoiceCommandManager(
 
         override fun onError(error: Int) {
             println("onError $error")
-            destroyRecognizer()
+
+            // Provide feedback to the user
+            val errorResource = errorMap[error]
+            val errorText =
+                if(errorResource != null)
+                    context.getString(errorResource)
+                else
+                    context.getString(R.string.voice_cmd_speech_recognition_error_unknown)
+            service.speak2dText(
+                errorText,
+                false,
+                EARCON_CALLOUTS_OFF
+            )
             _state.value = VoiceCommandState.Error
-            onError()
         }
 
         override fun onEndOfSpeech() {}
