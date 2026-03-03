@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">マーカーおよびルートを削除しました</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">新しいリリース情報</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">新しいリリース情報を閉じる</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nベータ版の提供を終了する時期が近づいています。これは、アプリが多くの方に対して正常に動作していると考えていることを意味します。アプリの機能や翻訳に問題があれば、今が報告する絶好のタイミングです。\n\n今回のリリースでは、オーディオの定位（音の位置表現）が改善され、ランチャーから直接ルートの再生を開始できるアプリのショートカットが追加されました。\n\nどんなに小さなことでも問題があれば、メインメニューの *サポートに連絡* オプションからご報告ください。\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nこのリリースでは、端末がロックされている状態でもアプリをリモート操作できる新機能を 2 つ追加しました。これにより、端末をポケットに入れたままでも主要な機能を操作できます。 \n\nどちらのリモート操作方式も Bluetooth のメディアコントロールボタンを使用します。ヘッドホンのボタンのほか、手やポケットに入れておける小さなリモコンを別途購入して使うこともできます。リモート操作のモードは「設定 &gt; メディアコントロール」から選択します。音声で操作する「音声コマンド（Voice command）」、読み上げられるメニューから選ぶ「音声メニュー（Audio menu）」、および従来どおりの動作を行う「オリジナルモード（Original mode）」のいずれかを選べます。\n\n音声コマンドモードでは、ヘッドホンの再生/一時停止ボタンを押すとアプリが音声入力を受け付け始め、受け付け開始を示す短い音が鳴ります。「Help」と言うと使用可能なコマンドの一覧が読み上げられます。その後、ボタンをもう一度押して別のコマンドを試すことができます。残念ながら、Android の音声認識はすべての言語に対応しているわけではありません。\n\n音声メニューモードはすべての言語で動作します。次へ/前へボタンでメニュー内の選択肢を順送り／逆送りでき、再生/一時停止ボタンで現在の選択肢を決定します。トップレベルのメニューがあり、その下に類似のコマンドをまとめた 1 層のサブメニューがあります。\n\nこれらの機能はまだ非常に新しいため、動作の良し悪しや追加してほしいコマンドなど、ぜひフィードバックをお寄せください。\n\n問題が発生した場合は、どんなに小さなことでもメインメニューの *サポートに連絡* オプションからご報告ください。\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">オープンソースライセンス</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">フェリーターミナル</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s フェリーターミナル</string>
@@ -1281,4 +1281,49 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">ダウンロードエラー</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">ビーコンが %1$s で設定されました。距離は %2$s です。</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">ビーコン: %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">ルートの操作</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">次のウェイポイント</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">以前のウェイポイント</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">保存されたルートはありません</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">トップメニュー</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">音声を録音</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">この許可は任意ですが、音声コマンドでアプリを操作したい場合は必要です。</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">メディアコントロール</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">メディアコントロールのモード</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">ヘッドホンやリモコンのメディアコントロールボタンは、この設定に応じて異なる動作に設定できます。</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">オリジナルモード</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">音声コマンド</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">音声メニュー</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">利用可能な音声コマンド:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">聞き取り中…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">申し訳ありません。コマンド「%s」が見つかりません。</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">ルート一覧</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">利用可能なルートは次のとおりです:</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">マーカー一覧</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">利用可能なマーカーは次のとおりです:</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">保存されたルートはありません</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">保存されたマーカーはありません</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">ルート「%s」が見つかりません</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">ルート「%s」を開始します</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">ルート %s を開始する</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">音声ビーコンを %s で開始する</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">音声ビーコンを %s で開始します</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">マーカーが見つかりません: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">名前でルートやマーカーを開始することもできます。例えば、</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">音声認識でネットワークのタイムアウトが発生しました。</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">音声認識のネットワークエラーが発生しました。</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">音声の録音中に音声認識エラーが発生しました。</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">音声認識サーバーでエラーが発生しました。</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">音声認識クライアントでエラーが発生しました。</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">音声入力の待機がタイムアウトしたため、リスニングを停止しました。もう一度お試しください。</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">音声が検出されなかったため、リスニングを停止しました。もう一度お試しください。</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">音声認識がビジー状態です。</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">音声認識を実行するための権限が不足しています。</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">音声認識へのリクエストが多すぎます。</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">音声認識サーバーの切断が発生しました。</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">この言語は Android の音声認識でサポートされていません。</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">この言語はサポートされていますが、この端末にはダウンロードされていません。</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">音声認識のサポート確認中にエラーが発生しました。</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">音声認識のダウンロード監視中にエラーが発生しました。</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">音声認識で不明なエラーが発生しました。</string>
 </resources>
