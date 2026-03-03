@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">تم حذف العلامات والطرق</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">معلومات الإصدار الجديد</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">إغلاق مربع حوار الإصدار الجديد</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nنحن نقترب من النقطة التي سننتقل فيها من الإصدار التجريبي. معنى ده ببساطة إننا نعتقد أن التطبيق بيعمل بشكل جيد لمعظم الناس. الوقت الحالي مناسب جدًا إنك تبلغنا بأي مشاكل سواء كانت في وظائف التطبيق أو في الترجمات.\n\nيتضمن هذا الإصدار تحسين تموضع الصوت، بالإضافة إلى إضافة اختصارات في التطبيق تتيح بدء تشغيل الطرق مباشرةً من المشغّل.\n\nيرجى الإبلاغ عن أي مشاكل تواجهها، مهما كانت بسيطة، عبر خيار *الاتصال للدعم* في القائمة الرئيسية.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nهناك ميزتان جديدتان في هذا الإصدار تتيحان التحكم عن بُعد في التطبيق حتى عندما يكون الهاتف مقفلاً. هذا يعني أنه يمكنك إبقاء الهاتف في جيبك مع الاستمرار في التحكم في الميزات الرئيسية للتطبيق.\n\nتعمل طريقتا التحكم عن بُعد عبر أزرار التحكم بالوسائط عبر البلوتوث، سواء كانت هذه الأزرار على سماعات الرأس الخاصة بك، أو من خلال أجهزة تحكم عن بُعد صغيرة يمكنك شراؤها وحملها في يدك أو جيبك. يمكن اختيار وضع التحكم عن بُعد من الإعدادات &gt; عناصر تحكم الوسائط، ويمكنك اختيار *الأوامر الصوتية* لتتحدث إلى التطبيق، أو *القائمة الصوتية* حيث تُقرأ لك قوائم مع خيارات للاختيار منها. *الوضع الأصلي* يعني أن أزرار البلوتوث تعمل بنفس الطريقة كما في الإصدارات السابقة.\n\nفي وضع الأوامر الصوتية، عند الضغط على زر التشغيل/الإيقاف المؤقت في سماعات الرأس يبدأ التطبيق بالاستماع للصوت، وسَتَسمع صوتًا قصيرًا للإشارة إلى ذلك. إذا قلت \"Help\" فسيعرض التطبيق قائمة بالأوامر المتاحة التي يمكنك استخدامها. بعد ذلك يمكنك الضغط على الزر مرة أخرى وتجربة أوامر أخرى. للأسف، ميزة التعرف على الكلام في أندرويد لا تدعم كل اللغات.\n\nوضع القائمة الصوتية يعمل مع كل اللغات. تنقل أزرار التالي/السابق للأمام وللخلف ضمن الخيارات داخل القائمة. ثم يختار زر التشغيل/الإيقاف المؤقت الخيار الحالي. هناك قائمة على مستوى عالٍ (Top level) ثم طبقة واحدة من القوائم الفرعية التي تجمع الأوامر المماثلة معًا.\n\nهذه الميزات جديدة جدًا، ونود جدًا الحصول على ملاحظاتكم حول مدى كفاءتها وما هي الأوامر الإضافية التي تودون وجودها.\n\nيرجى الإبلاغ عن أي مشاكل تواجهك، مهما كانت بسيطة، عبر خيار *الاتصال للدعم* في القائمة الرئيسية.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">تراخيص المصادر المفتوحة</string>
     <string name="osm_office" tools:ignore="MissingTranslation">مكتب</string>
     <string name="osm_school" tools:ignore="MissingTranslation">مدرسة</string>
@@ -1281,4 +1281,49 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">خطأ في التنزيل</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">تم تعيين منارة على %1$s، على بعد %2$s</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">المنارة عند %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">التحكم في المسار</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">نقطة الطريق التالية</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">نقطة الطريق السابقة</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">لا توجد مسارات محفوظة</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">القائمة العلوية</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">تسجيل الصوت</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">هذا الإذن اختياري، لكنه مطلوب إذا أردت استخدام الأوامر الصوتية للتحكم في التطبيق.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">عناصر تحكم الوسائط</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">وضع عناصر تحكم الوسائط</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">يمكن تكوين أزرار التحكم في الوسائط على سماعات الرأس أو جهاز التحكم عن بُعد لتعمل بطرق مختلفة اعتمادًا على هذا الخيار.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">الوضع الأصلي</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">الأوامر الصوتية</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">القائمة الصوتية</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">الأوامر الصوتية المتاحة:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">جاري الاستماع…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">عذرًا، لم أتعرف على الأمر %s</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">اعرض المسارات</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">المسارات المتاحة هي:</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">اعرض العلامات</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">العلامات المتاحة هي:</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">لم يتم حفظ أي مسارات</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">لم يتم حفظ أي علامات</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">المسار غير موجود: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">بدء المسار %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">ابدأ الطريق %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">ابدأ منارة الصوت عند %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">جاري تشغيل منارة الصوت عند %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">لم يتم العثور على العلامة: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">يمكنك أيضًا بدء الطرق والعلامات بالاسم، على سبيل المثال.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">خطأ نفاد مهلة شبكة التعرف على الكلام.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">خطأ في شبكة التعرف على الكلام.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">خطأ في تسجيل الصوت لخدمة التعرف على الكلام.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">خطأ في خادم التعرف على الكلام.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">خطأ في عميل التعرف على الكلام.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">انتهت مهلة الاستماع للكلام، لذا تم إيقاف الاستماع. الرجاء المحاولة مرة أخرى.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">لم يسمع أي كلام، لذا توقف الاستماع. الرجاء المحاولة مرة أخرى.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">خطأ: خدمة التعرف على الكلام مشغولة.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">لا توجد أذونات كافية لتشغيل خدمة التعرف على الكلام.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">خطأ: كثرة الطلبات في خدمة التعرف على الكلام.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">خطأ: تم قطع اتصال خادم التعرف على الكلام.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">اللغة الحالية غير مدعومة من قِبل Android لخدمة التعرف على الكلام.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">اللغة الحالية مدعومة لكن لم يتم تنزيلها على هذا الهاتف.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">خطأ في التحقق من دعم خدمة التعرف على الكلام.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">خطأ أثناء الاستماع لأحداث تنزيل التعرف على الكلام.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">خطأ غير معروف في خدمة التعرف على الكلام.</string>
 </resources>
