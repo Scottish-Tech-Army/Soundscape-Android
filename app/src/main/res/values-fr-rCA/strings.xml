@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Marqueurs et itinéraires supprimés</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informations sur la nouvelle version</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Fermer les informations sur la nouvelle version</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nNous approchons du moment où nous allons quitter la version bêta. Cela signifie simplement que nous estimons que l’application fonctionne bien pour la plupart des gens. C’est le moment idéal pour nous informer de tout problème, qu’il concerne le fonctionnement de l’application ou les traductions.\n\nCette version améliore le positionnement audio et ajoute des raccourcis d’application permettant de démarrer la lecture d’itinéraires directement depuis le lanceur.\n\nVeuillez signaler tout problème que vous rencontrez, même s’il est mineur, via l’option *Contacter le support* du menu principal.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDeux nouvelles fonctionnalités présentes dans cette version permettent désormais de contrôler l’application à distance, même lorsque le téléphone est verrouillé. Vous pouvez donc garder le téléphone dans votre poche tout en contrôlant les principales fonctions de l’application.\n\nLes deux méthodes de contrôle à distance utilisent les boutons de commande multimédia Bluetooth, soit ceux de votre casque, soit des petites télécommandes que vous pouvez acheter et garder en main ou dans votre poche. Le mode de contrôle à distance se sélectionne dans Réglages / Commandes multimédias : vous pouvez choisir « Commande vocale » pour parler à l’application, ou « Menu audio » où des menus vous sont lus et proposent des options à sélectionner. Le « Mode original » signifie que les boutons Bluetooth fonctionnent de la même manière que dans les versions précédentes.\n\nEn mode Commande vocale, appuyer sur le bouton Lecture/Pause de votre casque met l’application en écoute et vous entendrez un court son pour l’indiquer. Si vous dites « Aide », l’application énumérera les commandes vocales disponibles. Vous pouvez ensuite appuyer de nouveau sur le bouton et essayer les autres commandes. Malheureusement, la reconnaissance vocale d’Android ne prend pas en charge toutes les langues.\n\nLe mode Menu audio fonctionne dans toutes les langues. Les boutons Suivant/Précédent parcourent les options du menu en avant et en arrière. Le bouton Lecture/Pause sélectionne ensuite l’option courante. Il y a un menu de niveau supérieur, puis une couche de sous‑menus qui regroupe des commandes similaires.\n\nCes fonctionnalités sont très récentes ; nous serions ravis de recevoir vos retours sur leur fonctionnement et sur d’autres commandes que vous aimeriez voir.\n\nVeuillez signaler tout problème, même mineur, via l’option *Contacter le support* du menu principal.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licences open source</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal de traversier</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Terminal de traversier</string>
@@ -1281,4 +1281,49 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Erreur de téléchargement</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Balise définie sur %1$s, à %2$s</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">Balise définie sur %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">Contrôle de l’itinéraire</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">Prochain point de repère</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">Point de repère précédent</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">Aucun itinéraire enregistré</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">Menu principal</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Enregistrer l’audio</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">Cette autorisation est optionnelle, mais requise si vous souhaitez utiliser des commandes vocales pour contrôler l’application.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">Commandes multimédias</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">Mode des commandes multimédias</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">Les boutons de commande multimédia de votre casque ou de votre télécommande peuvent être configurés pour fonctionner différemment selon cette option.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">Mode original</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">Commande vocale</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">Menu audio</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Commandes vocales disponibles :</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Écoute…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">Désolé, je ne trouve pas la commande %s</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">Lister les itinéraires</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Les itinéraires disponibles sont :</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">Lister les marqueurs</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Les marqueurs disponibles sont :</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Aucun itinéraire n’a été enregistré</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Aucun marqueur n’a été enregistré</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Itinéraire introuvable : %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Démarrage de l’itinéraire %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Démarrer l’itinéraire %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Démarrer la balise sonore sur %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Démarrage de la balise sonore sur %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Marqueur introuvable : %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Vous pouvez également démarrer des itinéraires et des marqueurs en utilisant leur nom, par exemple.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Erreur : délai d’attente réseau pour la reconnaissance vocale.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Erreur réseau de la reconnaissance vocale.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">Erreur de la reconnaissance vocale lors de l’enregistrement audio.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">Erreur du serveur de reconnaissance vocale.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">Erreur client de la reconnaissance vocale.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">Le délai d’attente pour la détection de la parole a expiré, l’écoute a été interrompue. Veuillez réessayer.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">Aucune parole détectée, l’écoute s’est arrêtée. Veuillez réessayer.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">Erreur : la reconnaissance vocale est occupée.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">Permissions insuffisantes pour exécuter la reconnaissance vocale.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">Erreur : trop de requêtes pour la reconnaissance vocale.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">Erreur : serveur de reconnaissance vocale déconnecté.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">La langue actuelle n’est pas prise en charge par Android pour la reconnaissance vocale.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">La prise en charge de la langue actuelle est disponible, mais n’a pas été téléchargée sur ce téléphone.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Erreur lors de la vérification de la prise en charge de la reconnaissance vocale.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Erreur lors de l’écoute des événements de téléchargement de la reconnaissance vocale.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Erreur inconnue de la reconnaissance vocale.</string>
 </resources>
