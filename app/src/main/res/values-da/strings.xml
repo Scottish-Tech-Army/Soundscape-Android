@@ -1326,4 +1326,5 @@
     <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Fejl ved kontrol af støtte til talegenkendelse.</string>
     <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Fejl ved aflytning af downloadhændelser for talegenkendelse.</string>
     <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Ukendt fejl ved talegenkendelse.</string>
+    <string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">Talegenkendelse understøttes ikke på denne telefon.</string>
 </resources>
