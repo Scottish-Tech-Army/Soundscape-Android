@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Znaczniki i trasy usunięte</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informacje o nowej wersji</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Zamknij okno informacji o nowej wersji</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nZbliżamy się do momentu, w którym wyjdziemy z wersji beta. Oznacza to jedynie, że uważamy, iż aplikacja działa dobrze dla większości użytkowników. To doskonały moment, aby poinformować nas o wszelkich problemach — zarówno związanych z funkcjonalnością aplikacji, jak i z tłumaczeniami.\n\nW tej wersji ulepszyliśmy pozycjonowanie dźwięku oraz dodaliśmy skróty aplikacji umożliwiające rozpoczęcie odtwarzania tras bezpośrednio z launchera.\n\nZgłaszaj prosimy wszystkie napotkane problemy, nawet jeśli wydają się drobne, korzystając z opcji *„Kontakt z pomocą techniczną”* w menu głównym.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nW tej wersji dodaliśmy dwie nowe funkcje umożliwiające zdalne sterowanie aplikacją, nawet gdy telefon jest zablokowany. Oznacza to, że możesz trzymać telefon w kieszeni, a mimo to kontrolować główne funkcje aplikacji.\n\nObie metody zdalnego sterowania używają przycisków sterowania mediami przez Bluetooth — albo tych w Twoich słuchawkach, albo małych pilotów, które można mieć w dłoni lub w kieszeni. Tryb zdalnego sterowania wybiera się w sekcji Ustawienia/Sterowanie przyciskami multimedialnymi. Możesz wybrać Polecenia głosowe, aby rozmawiać z aplikacją, lub Menu audio, gdzie menu są odczytywane na głos i możesz wybierać spośród opcji. Tryb oryginalny oznacza, że przyciski Bluetooth działają tak jak we wcześniejszych wydaniach.\n\nW trybie poleceń głosowych kliknięcie przycisku odtwarzania/pauzy w słuchawkach uruchamia nasłuchiwanie mowy i usłyszysz krótki dźwięk jako sygnał. Jeśli powiesz „Help”, aplikacja wymieni dostępne polecenia, których możesz użyć. Następnie możesz ponownie kliknąć przycisk i wypróbować inne polecenia. Niestety rozpoznawanie mowy w Androidzie nie obsługuje wszystkich języków.\n\nTryb Menu audio działa we wszystkich językach. Przyciski Dalej i Wstecz przechodzą kolejno do następnej i poprzedniej opcji w menu. Przycisk odtwarzania/pauzy wybiera bieżącą opcję. Jest menu najwyższego poziomu, a następnie jedna warstwa podmenu grupujących podobne polecenia.\n\nTe funkcje są bardzo nowe i bardzo zależy nam na opinii — czy działają dobrze i jakie dodatkowe polecenia chciałbyś widzieć.\n\nZgłaszaj proszę wszelkie problemy, nawet jeśli wydają się drobne, za pomocą opcji *Kontakt z pomocą techniczną* w menu głównym.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licencje open source</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal promowy</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Terminal promowy</string>
@@ -1281,4 +1281,49 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Błąd pobierania</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Ustawiono naprowadzanie na %1$s, w odległości %2$s</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">Naprowadzanie na %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">Sterowanie trasą</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">Następny punkt trasy</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">Poprzedni punkt trasy</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">Brak zapisanych tras</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">Menu główne</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Nagrywanie dźwięku</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">To uprawnienie jest opcjonalne, ale jest wymagane, jeśli chcesz używać poleceń głosowych do sterowania aplikacją.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">Sterowanie przyciskami multimedialnymi</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">Tryb sterowania przyciskami multimedialnymi</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">Przyciski sterowania mediami w słuchawkach lub pilocie można skonfigurować tak, aby działały w różny sposób w zależności od wybranego trybu.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">Tryb oryginalny</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">Polecenia głosowe</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">Menu audio</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Dostępne polecenia głosowe:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Słucham…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">Przepraszam, nie rozpoznaję polecenia %s</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">Wyświetl trasy</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Dostępne trasy to:</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">Wyświetl znaczniki</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Dostępne znaczniki to:</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Nie zapisano żadnych tras</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Nie zapisano żadnych znaczników (pinezek)</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Nie znaleziono trasy: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Rozpoczynam trasę %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Rozpocznij trasę %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Uruchom dźwięk naprowadzający na %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Uruchamianie dźwięku naprowadzającego na %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Nie znaleziono znacznika: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Możesz także uruchamiać trasy i znaczniki po nazwie, na przykład.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Błąd: rozpoznawanie mowy — przekroczono limit czasu sieci.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Błąd sieci podczas rozpoznawania mowy.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">Błąd podczas nagrywania dźwięku do rozpoznawania mowy.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">Błąd serwera rozpoznawania mowy.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">Błąd klienta rozpoznawania mowy.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">Upłynął czas oczekiwania na mowę, nasłuchiwanie zostało zatrzymane. Spróbuj ponownie.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">Nie wykryto mowy, nasłuchiwanie zostało zatrzymane. Spróbuj ponownie.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">Usługa rozpoznawania mowy jest zajęta.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">Brak wystarczających uprawnień do uruchomienia rozpoznawania mowy.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">Błąd rozpoznawania mowy: zbyt wiele żądań.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">Serwer rozpoznawania mowy został rozłączony.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">Obecny język nie jest obsługiwany przez Androida do rozpoznawania mowy.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">Obsługa bieżącego języka jest dostępna, ale nie została pobrana na tym telefonie.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Błąd sprawdzania obsługi rozpoznawania mowy.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Błąd: nie można nasłuchiwać zdarzeń pobierania rozpoznawania mowy.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Nieznany błąd rozpoznawania mowy.</string>
 </resources>
