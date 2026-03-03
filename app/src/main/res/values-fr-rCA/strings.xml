@@ -1326,4 +1326,5 @@
     <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Erreur lors de la vérification de la prise en charge de la reconnaissance vocale.</string>
     <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Erreur lors de l’écoute des événements de téléchargement de la reconnaissance vocale.</string>
     <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Erreur inconnue de la reconnaissance vocale.</string>
+    <string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">La reconnaissance vocale n’est pas prise en charge sur ce téléphone.</string>
 </resources>
