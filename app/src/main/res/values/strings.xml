@@ -2633,4 +2633,21 @@ Please report any problems that you have, however small they may be via the *Con
 <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Marker not found: %s</string>
 <!-- Spoken text to explain dynamic routes and markers -->
 <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">You can also start routes and markers by name, for example.</string>
+<!-- Spoken responses when there are errors in the speech recognition  -->
+<string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">"Speech recognition network timeout error."</string>
+<string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">""Speech recognition network error."</string>
+<string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">""Speech recognition error recording the audio."</string>
+<string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">""Speech recognition server error."</string>
+<string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">""Speech recognition client error."</string>
+<string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">"Listening for speech timed out, and so listening has stopped. Please try again."</string>
+<string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">"No speech was heard, and so listening has stopped. Please try again."</string>
+<string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">"Speech recognition busy error."</string>
+<string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">"There were not enough permissions to run the speech recognition."</string>
+<string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">"Speech recognition too many requests error."</string>
+<string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">"Speech recognition server disconnected error."</string>
+<string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">"The current language is not supported by Android for speech recognition."</string>
+<string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">"The current language support is supported, but has not been downloaded on this phone."</string>
+<string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">"Speech recognition support check error."</string>
+<string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">"Speech recognition download listen error."</string>
+<string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">"Speech recognition unknown error."</string>
 </resources>

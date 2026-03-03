@@ -307,8 +307,7 @@ class SoundscapeService : MediaSessionService() {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
                 == PackageManager.PERMISSION_GRANTED) {
                 voiceCommandManager = VoiceCommandManager(
-                    service = this,
-                    onError = { }
+                    service = this
                 )
             }
 
