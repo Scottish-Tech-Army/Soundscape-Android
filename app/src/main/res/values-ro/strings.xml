@@ -498,7 +498,7 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informații despre noua versiune</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Închide dialogul noii versiuni</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licențe open source</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nNe apropiem de momentul în care vom ieși din versiunea Beta. Aceasta înseamnă doar că considerăm că aplicația funcționează bine pentru majoritatea utilizatorilor. Acum este un moment potrivit să ne anunți dacă apar probleme, fie în funcționalitatea aplicației, fie în traduceri.\n\nAceastă versiune îmbunătățește poziționarea audio și adaugă scurtături ale aplicației pentru a porni redarea rutelor direct din lansator.\n\nTe rugăm să ne raportezi orice problemă, oricât de mică ar fi, prin opțiunea *Contactează asistența* din meniul principal.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nExistă două funcții noi în această versiune care permit controlul la distanță al aplicației, chiar și atunci când telefonul este blocat. Asta înseamnă că îl poți păstra în buzunar și în același timp să controlezi funcțiile principale ale aplicației.\n\nAmbele metode de control la distanță folosesc butoanele media Bluetooth — fie cele de pe căști, fie mici telecomenzi pe care le poți purta în mână sau în buzunar. Modul de control la distanță se selectează din Setări/Controale media și poți alege Comandă vocală pentru a vorbi cu aplicația, sau Meniu audio, unde ți se citesc meniuri cu opțiuni pe care le poți selecta. Modul original înseamnă că butoanele Bluetooth funcționează în același mod ca în versiunile anterioare.\n\nÎn modul Comandă vocală, apăsarea butonului Redare/Pauză de pe căști pornește ascultarea aplicației pentru vorbire și vei auzi un sunet scurt care indică acest lucru. Dacă spui Ajutor, va lista comenzile disponibile pe care le poți folosi. Apoi poți apăsa din nou butonul și să încerci celelalte comenzi. Din păcate, recunoașterea vocală Android nu acceptă toate limbile.\n\nModul Meniu audio va funcționa în toate limbile. Butoanele Următor/Anterior navighează înainte și înapoi prin opțiunile din meniu. Butonul Redare/Pauză selectează opțiunea curentă. Există un meniu principal și apoi un singur nivel de submeniuri care grupează comenzile similare.\n\nAceste funcții sunt foarte noi și am aprecia foarte mult feedback despre cât de bine funcționează și ce alte comenzi ți-ar plăcea.\n\nTe rugăm să raportezi orice problemă pe care o întâmpini, oricât de mică ar fi, prin opțiunea *Contactează asistența* din meniul principal.\n</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explorează utilizarea tehnologiei audio inovatoare pentru a permite oamenilor să își dezvolte o conștientizare mai bogată a împrejurimilor, devenind astfel mai încrezători și mai autonomi în deplasări.</string>
     <string name="osm_office_building" tools:ignore="MissingTranslation">Clădire de birouri</string>
     <string name="osm_school_building" tools:ignore="MissingTranslation">Clădire de școală</string>
@@ -1281,4 +1281,49 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Eroare la descărcare</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Baliză setată pe %1$s, la %2$s distanță</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">Baliză la %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">Control rută</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">Punctul de traseu următor</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">Punctul de traseu anterior</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">Nu există rute salvate</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">Meniu principal</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Înregistrare audio</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">Această permisiune este opțională, dar este necesară dacă dorești să folosești comenzi vocale pentru a controla aplicația.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">Controale media</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">Modul controalelor media</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">Butoanele de control media de pe căști sau de pe telecomandă pot fi configurate să funcționeze în moduri diferite, în funcție de această opțiune.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">Mod original</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">Comandă vocală</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">Meniu audio</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Comenzi vocale disponibile:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Ascult…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">Îmi pare rău, nu pot găsi comanda %s</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">Listează rutele</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Rutele disponibile sunt,</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">Listează marcajele</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Marcajele disponibile sunt,</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Nu au fost salvate rute</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Nu au fost salvate marcaje</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Ruta nu a fost găsită: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Pornește ruta %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Pornește ruta %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Pornește baliza audio la %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Pornește baliza audio la %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Marcajul nu a fost găsit: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">De asemenea, poți porni rute și marcaje după nume, de exemplu.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Eroare: timpul de așteptare al rețelei pentru recunoașterea vocală a expirat.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Eroare de rețea la recunoașterea vocală.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">Eroare la înregistrarea audio pentru recunoașterea vocală.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">Eroare de server la recunoașterea vocală.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">Eroare de client la recunoașterea vocală.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">Așteptarea vorbirii a expirat, astfel ascultarea s-a oprit. Încearcă din nou.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">Nu s-a detectat vorbire, astfel ascultarea s-a oprit. Încearcă din nou.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">Eroare: recunoașterea vocală este ocupată.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">Nu sunt suficiente permisiuni pentru a rula recunoașterea vocală.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">Eroare: prea multe cereri pentru recunoașterea vocală.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">Eroare: serverul de recunoaștere vocală s-a deconectat.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">Limba curentă nu este acceptată de Android pentru recunoaștere vocală.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">Limba curentă este acceptată, dar nu a fost descărcată pe acest telefon.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Eroare la verificarea suportului pentru recunoașterea vocală.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Eroare la ascultarea evenimentelor de descărcare pentru recunoașterea vocală.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Eroare necunoscută la recunoașterea vocală.</string>
 </resources>
