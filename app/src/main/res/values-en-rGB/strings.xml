@@ -523,7 +523,7 @@
     <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Delete all markers and routes</string>
     <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Deleting all of the markers and routes cannot be undone, do you want to continue?</string>
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markers and routes deleted</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nWe\'re approaching the point where the app will leave Beta. That simply means we believe the app is working well for most people. Now\'s a great time to tell us about any problems you\'ve found, whether with the app\'s functionality or with the translations.\n\nThis release improves audio positioning and adds app shortcuts so you can start route playback directly from the launcher.\n\nPlease report any problems, however small, via the *Contact support* option in the main menu.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nThere are two new features in this release which allow remote control of the app, even when the phone is locked. This means it can be kept in your pocket while still controlling the main features of the app.\n\nBoth remote control methods use Bluetooth media control buttons — either those on your headphones, or small remote controls you can buy to keep in your hand or pocket. The remote control mode is selected from Settings &gt; Media Controls and you can pick Voice command so that you can talk to the app, or Audio menu where menus are read out to you with options to select. Original mode means the Bluetooth buttons work in the same way as in previous releases.\n\nIn Voice command mode, clicking the play/pause button on your headphones starts the app listening for speech and you will hear a short sound to indicate this. If you say Help it will list the available commands you can use. Then you can click the button again and try the other commands. Unfortunately, Android speech recognition does not support all languages.\n\nAudio menu mode will work in all languages. The next/previous buttons move forwards and backwards through the options within the menu. The play/pause button selects the current option. There is a top‑level menu and one layer of sub‑menus which group together similar commands.\n\nThese features are very new, and we’d really like feedback on whether they work well and what other commands you might like.\n\nPlease report any problems, however small, via the *Contact support* option in the main menu.\n</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Release Notes</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Close Release Notes</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Open-source Licences</string>
@@ -1281,4 +1281,50 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Download error</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Beacon set on %1$s, %2$s away</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">Beacon at %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">Route control</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">Next waypoint</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">Previous waypoint</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">No routes saved</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">Top menu</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Record audio</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">This permission is optional, but required if you want to use voice commands to control the app.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">Media Controls</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">Media controls mode</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">The media control buttons on your headphones or remote can be configured to work in different ways depending on this option.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">Original mode</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">Voice command</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">Audio menu</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Available voice commands:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Listening…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">I\'m sorry — I can\'t find the command %s</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">List routes</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Available routes are,</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">List markers</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Available markers are,</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">No routes have been saved</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">No markers have been saved</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Route not found: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Starting route %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Start route %s</string>
+    <string name="voice_cmd_example_route_name" tools:ignore="MissingTranslation">Home to Work</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Start audio beacon at %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Starting audio beacon at %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Marker not found: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">You can also start routes and markers by name, for example.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Speech recognition network timed out.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Speech recognition network error.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">Speech recognition error recording audio.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">Speech recognition server error.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">Speech recognition client error.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">Listening for speech timed out, so listening has stopped. Please try again.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">No speech was heard, so listening has stopped. Please try again.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">Speech recognition is busy.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">There are not sufficient permissions to run speech recognition.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">Speech recognition: too many requests.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">Speech recognition server disconnected.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">The current language is not supported by Android for speech recognition.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">The current language is supported, but has not been downloaded to this phone.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Error checking speech recognition support.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Error listening for speech recognition download events.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Unknown speech recognition error.</string>
 </resources>
