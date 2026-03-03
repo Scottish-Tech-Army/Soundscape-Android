@@ -1326,4 +1326,5 @@
     <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Error checking speech recognition support.</string>
     <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Error listening for speech recognition download events.</string>
     <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Unknown speech recognition error.</string>
+    <string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">Speech recognition is not supported on this phone.</string>
 </resources>
