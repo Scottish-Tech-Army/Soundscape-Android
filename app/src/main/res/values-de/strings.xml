@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markierungen und Routen gelöscht</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informationen zur neuen Version</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Dialog zur neuen Version schließen</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nWir nähern uns dem Zeitpunkt, an dem wir die Beta‑Phase verlassen. Das bedeutet, dass wir glauben, die App funktioniert für die meisten Nutzer gut. Jetzt ist ein guter Zeitpunkt, uns mitzuteilen, falls es Probleme mit der App‑Funktionalität oder den Übersetzungen gibt.\n\nDieses Release verbessert die Audiopositionierung und fügt App‑Shortcuts hinzu, mit denen Sie die Wiedergabe von Routen direkt vom Launcher starten können.\n\nBitte melden Sie uns alle Probleme, egal wie klein sie erscheinen, über die Option *Support kontaktieren* im Hauptmenü.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nIn dieser Version gibt es zwei neue Funktionen, die eine Fernsteuerung der App ermöglichen – sogar dann, wenn das Telefon gesperrt ist. Dadurch kann das Telefon in der Tasche bleiben, während Sie weiterhin die wichtigsten Funktionen der App steuern können.\n\nBeide Fernsteuerungsarten nutzen die Mediensteuertasten per Bluetooth, entweder die Tasten an Ihren Kopfhörern oder externe kleine Fernbedienungen, die Sie in der Hand oder in der Tasche mitführen können. Den Modus für die Fernsteuerung wählen Sie in Einstellungen &gt; Mediensteuerungen. Dort können Sie „Sprachsteuerung“ wählen, sodass Sie mit der App sprechen können, oder „Audio‑Menü“, bei dem Menüs vorgelesen werden und Sie Optionen auswählen können. „Originalmodus“ bedeutet, dass die Bluetooth‑Tasten wie in früheren Versionen funktionieren.\n\nIm Sprachsteuerungsmodus startet ein Klick auf die Wiedergabe/Pause‑Taste Ihrer Kopfhörer das Zuhören der App; Sie hören ein kurzes Signal, das dies anzeigt. Wenn Sie „Hilfe“ sagen, listet die App die verfügbaren Befehle auf. Anschließend können Sie die Taste erneut drücken und andere Befehle ausprobieren. Leider unterstützt die Android‑Spracherkennung nicht alle Sprachen.\n\nDer Audio‑Menü‑Modus funktioniert in allen Sprachen. Die Vorwärts-/Rückwärts‑Tasten bewegen die Auswahl innerhalb des Menüs vorwärts bzw. rückwärts. Die Wiedergabe/Pause‑Taste wählt die aktuelle Option aus. Es gibt ein Hauptmenü und eine Ebene von Untermenüs, die ähnliche Befehle gruppieren.\n\nDiese Funktionen sind ganz neu, und wir würden uns sehr über Ihr Feedback freuen – ob sie gut funktionieren und welche zusätzlichen Befehle Sie sich wünschen.\n\nBitte melden Sie uns auftretende Probleme, egal wie klein sie auch sein mögen, über die Option *Support kontaktieren* im Hauptmenü.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Open-Source-Lizenzen</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Fährterminal</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Fährterminal</string>
@@ -1281,4 +1281,49 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Fehler beim Download</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Beacon auf %1$s platziert, %2$s entfernt</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">Beacon auf %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">Routensteuerung</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">Nächster Wegpunkt</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">Vorheriger Wegpunkt</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">Keine Routen gespeichert</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">Hauptmenü</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Audio aufnehmen</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">Diese Berechtigung ist optional, wird jedoch benötigt, wenn Sie Sprachbefehle zur Steuerung der App verwenden möchten.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">Mediensteuerungen</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">Modus der Mediensteuerung</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">Die Mediensteuertasten an Ihren Kopfhörern oder an einer Fernbedienung können je nach dieser Einstellung unterschiedlich konfiguriert werden.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">Originalmodus</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">Sprachsteuerung</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">Audio‑Menü</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Verfügbare Sprachbefehle:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Ich höre…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">Entschuldigung, ich finde den Befehl %s nicht</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">Routen auflisten</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Verfügbare Routen sind:</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">Markierungen auflisten</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Verfügbare Markierungen sind:</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Es wurden keine Routen gespeichert</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Es wurden keine Markierungen gespeichert</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Route nicht gefunden: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Route %s wird gestartet</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Route %s starten</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Audiobeacon an %s starten</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Audiobeacon wird an %s gestartet.</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Markierung nicht gefunden: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Sie können Routen und Markierungen auch über ihren Namen starten, zum Beispiel.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Netzwerk‑Timeout bei der Spracherkennung.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Netzwerkfehler bei der Spracherkennung.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">Fehler bei der Audioaufzeichnung für die Spracherkennung.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">Serverfehler der Spracherkennung.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">Clientfehler der Spracherkennung.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">Die Spracherkennung hat wegen Zeitüberschreitung aufgehört zuzuhören. Bitte versuchen Sie es erneut.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">Keine Sprache erkannt; das Zuhören wurde beendet. Bitte versuchen Sie es erneut.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">Fehler: Spracherkennung ist beschäftigt.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">Es fehlen Berechtigungen, um die Spracherkennung auszuführen.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">Fehler: Zu viele Anfragen an die Spracherkennung.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">Fehler: Verbindung zum Spracherkennungsserver getrennt.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">Die aktuelle Sprache wird von Android für die Spracherkennung nicht unterstützt.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">Die aktuelle Sprache wird zwar unterstützt, ist auf diesem Telefon jedoch nicht heruntergeladen.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Fehler beim Prüfen der Unterstützung für die Spracherkennung.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Fehler beim Überwachen von Spracherkennungs‑Downloads.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Unbekannter Fehler bei der Spracherkennung.</string>
 </resources>
