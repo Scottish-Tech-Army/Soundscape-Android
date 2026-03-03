@@ -1306,7 +1306,6 @@
     <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Route not found: %s</string>
     <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Starting route %s</string>
     <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Start route %s</string>
-    <string name="voice_cmd_example_route_name" tools:ignore="MissingTranslation">Home to Work</string>
     <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Start audio beacon at %s</string>
     <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Starting audio beacon at %s</string>
     <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Marker not found: %s</string>
