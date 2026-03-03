@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Favoritos e rotas excluídos</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informações da nova versão</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Fechar diálogo da nova versão</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nEstamos nos aproximando do momento em que sairemos da versão Beta. Isso significa apenas que acreditamos que o aplicativo está funcionando bem para a maioria das pessoas. Agora é um ótimo momento para nos informar se houver problemas, seja na funcionalidade do aplicativo ou nas traduções.\n\nEsta versão inclui melhorias no posicionamento do áudio, além da adição de atalhos do aplicativo para iniciar a reprodução de rotas diretamente do iniciador.\n\nInforme‑nos sobre quaisquer problemas que encontrar, por menores que sejam, por meio da opção *Contatar o suporte* no menu principal.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nExistem dois novos recursos nesta versão que permitem o controle remoto do aplicativo, mesmo quando o telefone está bloqueado. Isso significa que ele pode ficar no seu bolso enquanto você ainda controla as funcionalidades principais do app.\n\nAmbos os métodos de controle remoto usam os botões de controle de mídia Bluetooth, seja os dos seus fones de ouvido, ou pequenos controles remotos que você pode comprar para manter na mão ou no bolso. O modo de controle remoto é selecionado em Ajustes/Controles de Mídia e você pode escolher *Comando de Voz* para falar com o app, ou *Menu de Áudio*, onde menus são lidos para você com opções para selecionar. *Modo Original* significa que os botões Bluetooth funcionam da mesma forma que em versões anteriores.\n\nNo modo de comando de voz, pressionar o botão reproduzir/pausar dos seus fones de ouvido faz o app começar a ouvir sua fala e você ouvirá um som curto indicando isso. Se você disser *Ajuda*, ele listará os comandos disponíveis que você pode usar. Em seguida, você pode pressionar o botão novamente e tentar os outros comandos. Infelizmente, o reconhecimento de fala do Android não suporta todos os idiomas.\n\nO modo Menu de Áudio funcionará em todos os idiomas. Os botões próximo/anterior avançam e retrocedem pelas opções dentro do menu. O botão reproduzir/pausar seleciona a opção atual. Há um menu de nível superior e, em seguida, uma camada de submenus que agrupam comandos semelhantes.\n\nEsses recursos são muito novos e gostaríamos muito de receber feedback sobre se funcionam bem e que outros comandos você gostaria de ter.\n\nPor favor, reporte quaisquer problemas que você tiver, por menores que sejam, através da opção *Contatar o suporte* no menu principal.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licenças de código aberto</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal de Balsa</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Terminal de Balsa</string>
@@ -1281,4 +1281,49 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Erro no download</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Sinalizador definido em %1$s, %2$s de distância</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">Sinalizador definido em %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">Controle de Rota</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">Próximo Localizador</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">Localizador Anterior</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">Nenhuma rota salva</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">Menu principal</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Gravar áudio</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">Esta permissão é opcional, mas é necessária se você quiser usar comandos de voz para controlar o aplicativo.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">Controles de Mídia</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">Modo dos controles de mídia</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">Os botões de controle de mídia dos seus fones de ouvido ou do controle remoto podem ser configurados para funcionar de maneiras diferentes dependendo desta opção.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">Modo Original</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">Comando de Voz</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">Menu de Áudio</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Comandos de voz disponíveis:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Ouvindo…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">Desculpe, não reconheço o comando %s</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">Listar rotas</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">As rotas disponíveis são,</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">Listar favoritos</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Os favoritos disponíveis são,</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Nenhuma rota foi salva</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Nenhum favorito foi salvo</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Rota não encontrada: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Iniciando a rota %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Iniciar rota %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Iniciar sinalizador sonoro em %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Iniciando o sinalizador sonoro em %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Favorito não encontrado: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Você também pode iniciar rotas e favoritos pelo nome, por exemplo.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Erro de tempo limite na rede do reconhecimento de fala.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Erro de rede no reconhecimento de fala.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">Erro ao gravar o áudio para reconhecimento de fala.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">Erro no servidor de reconhecimento de fala.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">Erro no cliente de reconhecimento de fala.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">A escuta por fala atingiu o tempo limite e foi interrompida. Por favor, tente novamente.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">Nenhuma fala foi detectada e a escuta foi interrompida. Por favor, tente novamente.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">Erro: serviço de reconhecimento de fala ocupado.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">Permissões insuficientes para executar o reconhecimento de fala.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">Erro: muitas solicitações ao serviço de reconhecimento de fala.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">Erro: servidor de reconhecimento de fala desconectado.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">O idioma atual não é suportado pelo Android para reconhecimento de fala.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">O idioma atual é compatível, mas não foi baixado neste telefone.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Erro ao verificar suporte ao reconhecimento de fala.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Erro ao escutar eventos de download do reconhecimento de fala.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Erro desconhecido no reconhecimento de fala.</string>
 </resources>
