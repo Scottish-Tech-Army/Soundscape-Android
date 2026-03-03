@@ -498,7 +498,7 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">नई रिलीज़ की जानकारी</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">नई रिलीज़ डायलॉग बंद करें</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">ओपन सोर्स लाइसेंस</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nहम अब उस बिंदु के करीब पहुँच रहे हैं जहाँ हम बीटा रिलीज़ से बाहर निकलेंगे। इसका सरल अर्थ है कि हमें लगता है ऐप अधिकांश लोगों के लिए अच्छी तरह काम कर रहा है। यदि ऐप की कार्यक्षमता या अनुवादों में कोई समस्या है तो हमें बताने का यह एक अच्छा समय है।\n\nइस रिलीज़ में ऑडियो पोजिशनिंग में सुधार किए गए हैं और लॉन्चर से सीधे मार्गों के प्लेबैक शुरू करने के लिए ऐप शॉर्टकट जोड़े गए हैं।\n\nकृपया किसी भी समस्या की रिपोर्ट करें, चाहे वह कितनी भी छोटी हो, मुख्य मेनू में *सहायता से संपर्क करें* विकल्प के माध्यम से।\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nइस रिलीज़ में दो नई विशेषताएँ जोड़ी गई हैं जो ऐप को दूरस्थ रूप से नियंत्रित करने की अनुमति देती हैं, भले ही फ़ोन लॉक ही क्यों न हो। इसका मतलब है कि आप फ़ोन को अपनी जेब में रखे हुए भी ऐप की मुख्य विशेषताओं को नियंत्रित कर सकते हैं।\n\nदोनों दूरस्थ नियंत्रण विधियाँ ब्लूटूथ मीडिया नियंत्रण बटनों का उपयोग करती हैं — या तो आपके हेडफ़ोन पर मौजूद बटन, या आप हाथ या जेब में रखने के लिए छोटे रिमोट कंट्रोल भी खरीद सकते हैं। दूरस्थ नियंत्रण मोड को सेटिंग्स/मीडिया नियंत्रण अनुभाग से चुना जाता है और आप *वॉइस कमांड* चुन सकते हैं जिससे आप ऐप से बातचीत कर सकें, या *ऑडियो मेनू* चुन सकते हैं जहाँ मेनू को पढ़कर विकल्प बताए जाते हैं जिन्हें आप चुन सकते हैं। *मूल मोड* का मतलब है कि ब्लूटूथ बटन पिछले रिलीज़ की तरह ही काम करेंगे।\n\nवॉइस कमांड मोड में, अपने हेडफ़ोन पर प्ले/पॉज़ बटन दबाने से ऐप आपकी आवाज़ सुनना शुरू कर देता है और इसे संकेत करने के लिए आप एक छोटा सा ध्वनि संकेत सुनेंगे। यदि आप \"Help\" बोलते हैं तो यह उपलब्ध कमांड्स की सूची बताएगा जिनका आप उपयोग कर सकते हैं। उसके बाद आप फिर से बटन दबाकर अन्य कमांड आज़मा सकते हैं। दुर्भाग्यवश, Android की भाषण पहचान सभी भाषाओं का समर्थन नहीं करती।\n\nऑडियो मेनू मोड सभी भाषाओं में काम करेगा। अगले/पिछले बटन मेनू के भीतर विकल्पों के माध्यम से आगे और पीछे जाते हैं। फिर प्ले/पॉज़ बटन वर्तमान विकल्प को चुनता है। एक शीर्ष‑स्तरीय मेनू होता है, और उसके नीचे एक परत उप‑मेनू की होती है जो समान कमांड्स को समूहबद्ध करती है।\n\nयह विशेषताएँ अभी बहुत नई हैं, और हम जानना चाहेंगे कि ये कितनी अच्छी तरह काम करती हैं और आप कौन से अन्य कमांड पसंद करेंगे।\n\nकृपया यदि आपको कोई समस्या हो, चाहे वह कितनी ही छोटी क्यों न हो, तो मुख्य मेनू में उपलब्ध *सहायता से संपर्क करें* विकल्प के माध्यम से हमें रिपोर्ट करें।\n</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape नवीन ऑडियो-आधारित तकनीक के उपयोग की खोज करता है ताकि लोगों को अपने आसपास की बेहतर जागरूकता बनाने में सक्षम बनाया जा सके, जिससे वे अधिक आत्मविश्वासी और सशक्त होकर घूम-फिर सकें।</string>
     <string name="osm_office_building" tools:ignore="MissingTranslation">कार्यालय भवन</string>
     <string name="osm_school_building" tools:ignore="MissingTranslation">विद्यालय भवन</string>
@@ -1281,4 +1281,49 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">डाउनलोड में त्रुटि</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">बीकन %1$s पर सेट किया गया, %2$s दूर</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">बीकन %1$s पर</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">मार्ग नियंत्रण</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">अगला मार्ग बिंदु</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">पिछला मार्ग बिंदु</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">कोई मार्ग सहेजा नहीं गया</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">शीर्ष मेनू</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">ऑडियो रिकॉर्ड करें</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">यह अनुमति वैकल्पिक है, लेकिन यदि आप ऐप को वॉइस कमांड से नियंत्रित करना चाहते हैं तो इसकी आवश्यकता होगी।</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">मीडिया नियंत्रण</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">मीडिया नियंत्रण मोड</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">आपके हेडफ़ोन या रिमोट के मीडिया नियंत्रण बटनों को इस विकल्प के आधार पर अलग‑अलग तरीकों से कॉन्फ़िगर किया जा सकता है।</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">मूल मोड</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">वॉइस कमांड</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">ऑडियो मेनू</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">उपलब्ध वॉइस कमांड:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">सुन रहा/रही हूँ…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">क्षमा करें, कमांड %s नहीं मिल सकी</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">मार्ग सूची दिखाएँ</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">उपलब्ध मार्ग हैं,</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">मार्कर सूची दिखाएँ</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">उपलब्ध मार्कर हैं,</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">कोई मार्ग सहेजा नहीं गया है</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">कोई मार्कर सहेजा नहीं गया है</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">मार्ग नहीं मिला: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">मार्ग %s शुरू किया जा रहा है</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">मार्ग %s शुरू करें</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">%s पर ऑडियो बीकन शुरू करें</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">ऑडियो बीकन %s पर शुरू किया जा रहा है</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">मार्कर नहीं मिला: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">उदाहरण के लिए, आप नाम से मार्ग और मार्कर भी शुरू कर सकते हैं।</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">वाणी पहचान नेटवर्क टाइमआउट त्रुटि।</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">वाणी पहचान नेटवर्क त्रुटि।</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">वाणी पहचान: ऑडियो रिकॉर्ड करने में त्रुटि।</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">वाणी पहचान सर्वर त्रुटि।</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">वाणी पहचान क्लाइंट त्रुटि।</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">वाणी सुनने का समय समाप्त हो गया है, इसलिए सुनना बंद कर दिया गया है। कृपया पुनः प्रयास करें।</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">कोई वाणी सुनी नहीं गई, इसलिए सुनना बंद कर दिया गया है। कृपया पुनः प्रयास करें।</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">वाणी पहचान व्यस्त त्रुटि।</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">वाणी पहचान चलाने के लिए पर्याप्त अनुमतियाँ उपलब्ध नहीं हैं।</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">वाणी पहचान: अनुरोधों की संख्या अधिक होने की त्रुटि।</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">वाणी पहचान सर्वर डिस्कनेक्ट त्रुटि।</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">वर्तमान भाषा Android द्वारा वाणी पहचान के लिए समर्थित नहीं है।</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">वर्तमान भाषा समर्थित है, लेकिन यह फोन पर डाउनलोड नहीं की गई है।</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">वाणी पहचान समर्थन जाँच त्रुटि।</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">वाणी पहचान डाउनलोड इवेंट सुनने में त्रुटि।</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">वाणी पहचान अज्ञात त्रुटि।</string>
 </resources>
