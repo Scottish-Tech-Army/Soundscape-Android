@@ -1326,4 +1326,5 @@
     <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">语音识别支持检查错误。</string>
     <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">语音识别下载监听错误。</string>
     <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">语音识别未知错误。</string>
+    <string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">此手机不支持语音识别。</string>
 </resources>
