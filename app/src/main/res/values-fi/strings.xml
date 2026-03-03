@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Merkinnät ja reitit poistettu</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Uuden julkaisun tiedot</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Sulje uuden julkaisun valintaikkuna</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nOlemme lähestymässä vaihetta, jossa siirrymme beetajulkaisusta pois. Tämä tarkoittaa vain sitä, että uskomme sovelluksen toimivan hyvin useimmille käyttäjille. Nyt on erinomainen hetki kertoa meille mahdollisista ongelmista joko sovelluksen toiminnallisuudessa tai käännöksissä.\n\nTässä julkaisussa on parannettu äänen paikannusta sekä lisätty sovelluksen pikavalintoja, joiden avulla voit käynnistää reittien toiston suoraan aloitusnäytöltä.\n\nIlmoita meille kaikista havaitsemistasi ongelmista, vaikka ne olisivat pieniä, valitsemalla päävalikosta *Ota yhteyttä tukeen*.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nTässä julkaisussa on kaksi uutta ominaisuutta, jotka mahdollistavat sovelluksen kauko‑ohjauksen myös silloin, kun puhelin on lukittu. Tämä tarkoittaa, että voit pitää puhelinta taskussasi ja silti ohjata sovelluksen keskeisiä toimintoja.\n\nMolemmat kauko‑ohjaustavat käyttävät Bluetoothin mediasäätöpainikkeita — joko kuulokkeidesi painikkeita tai erillisiä pieniä kauko‑ohjaimia, joita voi pitää kädessä tai taskussa. Etäohjaustila valitaan Asetukset &gt; Mediasäätimet -osiosta. Voit valita Puhekomennon, jolloin voit puhua sovellukselle, tai Äänivalikon, jossa sinulle luetaan valikoita ja voit valita haluamasi vaihtoehdon. Alkuperäinen tila tarkoittaa, että Bluetooth‑painikkeet toimivat samalla tavalla kuin aiemmissa julkaisuissa.\n\nPuhekomento‑tilassa Toista/Pysäytä‑painikkeen painallus käynnistää sovelluksen puheen kuuntelun ja kuulet lyhyen merkkiäänen siitä. Jos sanot \"Help\", sovellus luettelee käytettävissä olevat komennot, joita voit käyttää. Tämän jälkeen voit painaa painiketta uudelleen ja kokeilla muita komentoja. Valitettavasti Androidin puhetunnistus ei tue kaikkia kieliä.\n\nÄänivalikko toimii kaikilla kielillä. Seuraava/Edellinen‑painikkeet siirtävät valikon vaihtoehtoja eteen‑ ja taaksepäin. Toista/Pysäytä‑painike valitsee nykyisen vaihtoehdon. Valikossa on päävalikko ja yhden tason alavalikot, jotka ryhmittelevät samankaltaiset komennot.\n\nNämä ominaisuudet ovat hyvin uusia, ja otamme mielellämme vastaan palautetta siitä, kuinka hyvin ne toimivat ja mitä muita komentoja haluaisit nähdä.\n\nIlmoita mahdollisista ongelmista — vaikka pienistä — valitsemalla *Ota yhteyttä tukeen* päävalikosta.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Avoimen lähdekoodin lisenssit</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Lauttaterminaali</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s lauttaterminaali</string>
@@ -1281,4 +1281,49 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Latausvirhe</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Majakka asetettu kohteeseen %1$s, %2$s etäisyydellä</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">Majakka kohteessa %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">Reitin hallinta</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">Seuraava reittipiste</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">Edellinen reittipiste</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">Ei tallennettuja reittejä</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">Päävalikko</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Äänen tallennus</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">Tämä käyttöoikeus on valinnainen, mutta se tarvitaan, jos haluat käyttää puhekomentoja sovelluksen ohjaamiseen.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">Mediasäätimet</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">Mediasäätimien tila</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">Kuulokkeidesi tai kauko‑ohjaimen mediasäätöpainikkeet voidaan konfiguroida toimimaan eri tavoin tämän asetuksen perusteella.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">Alkuperäinen tila</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">Puhekomento</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">Äänivalikko</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Saatavilla olevat puhekomennot:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Kuuntelen…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">Valitettavasti en tunnista komentoa %s</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">Listaa reitit</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Saatavilla olevat reitit ovat:</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">Listaa merkinnät</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Saatavilla olevat merkinnät ovat:</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Reittejä ei ole tallennettu</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Merkintöjä ei ole tallennettu</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Reittiä ei löytynyt: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Aloitetaan reitti %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Aloita reitti %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Käynnistä äänimajakka kohteeseen %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Käynnistetään äänimajakka kohteeseen %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Merkintää ei löytynyt: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Voit myös käynnistää reittejä ja merkintöjä nimen perusteella, esimerkiksi.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Puheentunnistuksen verkkoyhteyden aikakatkaisu.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Puheentunnistuksen verkkovirhe.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">Puheentunnistuksen virhe: äänen tallennus epäonnistui.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">Puheentunnistuksen palvelinvirhe.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">Puheentunnistuksen asiakasohjelmavirhe.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">Puheen kuuntelun aikakatkaisu; kuuntelu lopetettiin. Yritä uudelleen.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">Puhetta ei havaittu, joten kuuntelu lopetettiin. Yritä uudelleen.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">Puheentunnistus on varattu.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">Puheentunnistuksen suorittamiseen ei ollut riittäviä käyttöoikeuksia.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">Puheentunnistuksen virhe: liian monta pyyntöä.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">Puheentunnistuksen palvelinyhteys katkaistiin.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">Android ei tue nykyistä kieltä puheentunnistuksessa.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">Nykyisen kielen tuki on saatavilla, mutta sitä ei ole ladattu tähän puhelimeen.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Virhe puheentunnistuksen tuen tarkistuksessa.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Virhe puheentunnistuksen lataustapahtumien kuuntelussa.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Tuntematon virhe puheentunnistuksessa.</string>
 </resources>
