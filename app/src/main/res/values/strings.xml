@@ -1054,9 +1054,9 @@ There are two new features in this release which allow remote control of the app
 
 Both remote control methods use Bluetooth media control buttons, either those on your headphones, or you can also buy small remote controls to keep in your hand or pocket. The remote control mode is selected from the Settings/Media controls section and you can pick "Voice command" so that you can talk to the app, or "Audio menu" where there are menus read out to you with options to select. "Original mode" means that the Bluetooth buttons work in the same way as in previous releases.
 
-In voice command mode, clicking the play/pause button on your headphones starts the app listening for speech and you will hear a short sound to indicate this. If you say "Help" it will list the available commands that you can use. Then you can click the button again and try the other commands. Unfortunately, Android speech recognition doesn't support all languages.
+In voice command mode, clicking the play/pause button on your headphones starts the app listening for speech and you will hear a short sound to indicate this. If you say "Help" it will list the available commands that you can use. Then you can click the button again and try the other commands. Unfortunately, Android speech recognition doesn't support all languages, and it's not available on all phones.
 
-Audio menu mode will work in all languages. The next/previous buttons move forwards and backwards through the options within the menu. The play/pause button then selects the current option. There is a top level menu, and then one layer of sub menus which group together similar commands.
+Audio menu mode will work in all languages and on all phones. The next/previous buttons move forwards and backwards through the options within the menu. The play/pause button then selects the current option. There is a top level menu, and then one layer of sub menus which group together similar commands.
 
 These features are very new, and we'd really like feedback on whether they work well and what other commands you might like.
 
@@ -2656,4 +2656,5 @@ Please report any problems that you have, however small they may be via the *Con
 <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">"Speech recognition support check error."</string>
 <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">"Speech recognition download listen error."</string>
 <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">"Speech recognition unknown error."</string>
+<string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">"Speech recognition is not supported on this phone."</string>
 </resources>

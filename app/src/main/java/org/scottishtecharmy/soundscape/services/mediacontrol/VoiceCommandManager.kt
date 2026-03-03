@@ -62,7 +62,11 @@ class VoiceCommandManager(
         cachedLanguage = null
 
         if (!SpeechRecognizer.isRecognitionAvailable(context)) {
-            println("Recognition is unavailable")
+            service.speak2dText(
+                context.getString(R.string.voice_cmd_speech_recognition_error_unsupported),
+                false,
+                EARCON_CALLOUTS_OFF
+            )
             return
         }
         speechRecognizer = SpeechRecognizer.createSpeechRecognizer(context)
