@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markeringen en routes verwijderd</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informatie over de nieuwe release</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Nieuwe releasedialoog sluiten</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nWe naderen het punt waarop we de bètafase verlaten. Dat betekent gewoon dat we denken dat de app voor de meeste mensen goed werkt. Het is nu een goed moment om ons te laten weten of er problemen zijn, zowel met de functionaliteit van de app als met de vertalingen.\n\nDeze release bevat verbeterde positionering van audio en voegt app-snelkoppelingen toe waarmee u het afspelen van routes rechtstreeks vanaf het startscherm kunt starten.\n\nMeld eventuele problemen, hoe klein ook, via de optie *Contact opnemen met ondersteuning* in het hoofdmenu.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nIn deze release zitten twee nieuwe functies waarmee u de app op afstand kunt bedienen, zelfs wanneer de telefoon is vergrendeld. Dit betekent dat u de telefoon in uw zak kunt laten zitten terwijl u toch de belangrijkste functies van de app bedient.\n\nBeide methodes voor afstandsbediening gebruiken Bluetooth-mediaknoppen, hetzij die op uw koptelefoon, hetzij een klein afstandsbedieninkje dat u in uw hand of zak kunt houden. De modus voor afstandsbediening kiest u in Instellingen / Mediaregelaars. U kunt daar kiezen voor Spraakbediening zodat u tegen de app kunt praten, of voor Audiomenu waarbij menu’s aan u worden voorgelezen met opties die u kunt selecteren. Originele modus betekent dat de Bluetooth-knoppen werken zoals in eerdere versies.\n\nIn de spraakbedieningsmodus begint de app te luisteren naar spraak zodra u op de afspelen/pauzeren-knop op uw koptelefoon klikt; u hoort dan een kort geluidje om dit aan te geven. Als u \"Help\" zegt, leest de app de beschikbare commando’s op die u kunt gebruiken. Daarna kunt u de knop opnieuw indrukken en de andere commando’s proberen. Helaas ondersteunt de spraakherkenning van Android niet alle talen.\n\nHet audiomenu werkt in alle talen. Met de knop Volgende/Vorige bladert u vooruit en achteruit door de opties in het menu. De afspelen/pauzeren-knop selecteert vervolgens de huidige optie. Er is een hoofdmenu en één laag submenus die vergelijkbare commando’s groeperen.\n\nDeze functies zijn nog heel nieuw en we horen graag uw feedback of ze goed werken en welke extra commando’s u zou willen.\n\nMeld eventuele problemen, hoe klein ook, via de optie *Contact opnemen met ondersteuning* in het hoofdmenu.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Open-sourcelicenties</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Veerterminal</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Veerterminal</string>
@@ -1281,4 +1281,49 @@
     <string name="offline_map_download_error" tools:ignore="MissingTranslation">Fout bij downloaden</string>
     <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Baken ingesteld op %1$s, op %2$s afstand</string>
     <string name="route_beacon_progress" tools:ignore="MissingTranslation">Baken bij %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">Routebesturing</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">Volgende routepunt</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">Vorige routepunt</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">Geen routes opgeslagen</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">Hoofdmenu</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Audio opnemen</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">Deze toestemming is optioneel, maar is vereist als u spraakopdrachten wilt gebruiken om de app te bedienen.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">Mediaregelaars</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">Modus voor mediaregelaars</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">De mediaknoppen op uw koptelefoon of afstandsbediening kunnen worden ingesteld om op verschillende manieren te werken, afhankelijk van deze optie.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">Originele modus</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">Spraakbediening</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">Audiomenu</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Beschikbare spraakopdrachten:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Luisteren…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">Het spijt me, ik kan de opdracht %s niet vinden</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">Routes weergeven</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Beschikbare routes zijn,</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">Markeringen weergeven</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Beschikbare markeringen zijn,</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Er zijn geen routes opgeslagen</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Er zijn geen markeringen opgeslagen</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Route niet gevonden: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Route %s wordt gestart</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Route %s starten</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Audiobaken starten op %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Audiobaken wordt gestart op %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Markering niet gevonden: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">U kunt routes en markeringen ook op naam starten, bijvoorbeeld.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Netwerktimeout bij spraakherkenning.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Netwerkfout bij spraakherkenning.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">Fout bij het opnemen van audio voor spraakherkenning.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">Serverfout bij spraakherkenning.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">Clientfout bij spraakherkenning.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">Het luisteren naar spraak is verlopen; het luisteren is gestopt. Probeer het opnieuw.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">Er is geen spraak gehoord; het luisteren is gestopt. Probeer het opnieuw.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">Spraakherkenning is momenteel bezet.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">Onvoldoende machtigingen om spraakherkenning uit te voeren.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">Te veel aanvragen voor spraakherkenning.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">De verbinding met de spraakherkenningsserver is verbroken.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">De huidige taal wordt door Android niet ondersteund voor spraakherkenning.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">De huidige taal wordt wel ondersteund, maar is niet op deze telefoon gedownload.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Fout bij het controleren van spraakherkenningsondersteuning.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Fout bij het luisteren naar downloadgebeurtenissen voor spraakherkenning.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Onbekende fout bij spraakherkenning.</string>
 </resources>
