@@ -595,16 +595,11 @@ class SoundscapeService : MediaSessionService() {
         // Stop callbacks whilst we handle voice commands
         callbackHoldOff()
 
-        // Play earcon as feedback to indicate that we're starting to listen.
-        speak2dText("", true, EARCON_CALLOUTS_ON)
+        // Clear the speech queue
+        audioEngine.clearTextToSpeechQueue()
 
-        // Wait for the TTS to finish before opening the mic, otherwise we lose audio focus before
-        // the icon completes.
+        // And start listening for voice commands
         coroutineScope.launch {
-            val deadline = System.currentTimeMillis() + 1000L
-            while (isAudioEngineBusy() && System.currentTimeMillis() < deadline) {
-                delay(20)
-            }
             withContext(Dispatchers.Main) {
                 voiceCommandManager?.startListening()
             }
