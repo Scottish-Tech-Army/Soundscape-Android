@@ -150,6 +150,10 @@ namespace soundscape {
             }
         }
 
+        // Allow the audio sink (e.g. Bluetooth A2DP) to stabilise before
+        // mixing real audio. ~400 ms of silence at the device sample rate.
+        m_WarmupFrames.store(m_SampleRate * 4 / 10);
+
         // Start the stream
         return startStream();
     }
@@ -157,6 +161,20 @@ namespace soundscape {
     void AudioMixer::onErrorAfterClose(oboe::AudioStream * /*stream*/, oboe::Result result) {
         TRACE("AudioMixer: onErrorAfterClose: %s", oboe::convertToText(result));
         if (result == oboe::Result::ErrorDisconnected) {
+            if (m_SuppressRestart.load()) {
+                TRACE("AudioMixer: restart suppressed (SCO active), deferring");
+                m_RestartPending.store(true);
+            } else {
+                restart();
+            }
+        }
+    }
+
+    void AudioMixer::setSuppressRestart(bool suppress) {
+        TRACE("AudioMixer: setSuppressRestart(%s)", suppress ? "true" : "false");
+        m_SuppressRestart.store(suppress);
+        if (!suppress && m_RestartPending.exchange(false)) {
+            TRACE("AudioMixer: executing deferred restart");
             restart();
         }
     }
@@ -168,6 +186,13 @@ namespace soundscape {
 
         // Clear output
         memset(output, 0, numFrames * 2 * sizeof(float));
+
+        // After a restart, output silence to let the audio sink stabilise.
+        int warmup = m_WarmupFrames.load();
+        if (warmup > 0) {
+            m_WarmupFrames.store(std::max(0, warmup - numFrames));
+            return oboe::DataCallbackResult::Continue;
+        }
 
         std::lock_guard<std::mutex> guard(m_SourcesMutex);
 

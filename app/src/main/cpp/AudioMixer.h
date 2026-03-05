@@ -32,6 +32,9 @@ namespace soundscape {
         // Spatialization mode (called from game thread)
         void setUseHrtf(bool use) { m_UseHrtf.store(use); }
 
+        // Suppress restart during SCO transitions
+        void setSuppressRestart(bool suppress);
+
         SteamAudioSpatializer *getSpatializer() { return m_Spatializer.get(); }
 
         // Oboe callbacks
@@ -61,6 +64,9 @@ namespace soundscape {
         std::atomic<float> m_BeaconVolume{1.0f};
         std::atomic<float> m_SpeechVolume{1.0f};
         std::atomic<bool>  m_UseHrtf{true};
+        std::atomic<bool>  m_SuppressRestart{false};
+        std::atomic<bool>  m_RestartPending{false};
+        std::atomic<int>   m_WarmupFrames{0};
 
         // Scratch buffers (allocated once, reused per callback)
         std::vector<float> m_MonoBuf;
