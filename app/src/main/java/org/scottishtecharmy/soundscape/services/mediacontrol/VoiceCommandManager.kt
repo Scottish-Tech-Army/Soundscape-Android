@@ -91,6 +91,8 @@ class VoiceCommandManager(
                             println("CommunicationDevice cleared: ${device?.type}")
                             if (device?.type != AudioDeviceInfo.TYPE_BLUETOOTH_SCO) {
                                 audioManager.removeOnCommunicationDeviceChangedListener(this)
+                                // Allow audio stream to restart on A2DP
+                                service.audioEngine.setSuppressRestart(false)
                                 onStopped()
                             }
                         }
@@ -104,7 +106,11 @@ class VoiceCommandManager(
             @Suppress("DEPRECATION")
             if (audioManager.isBluetoothScoOn) {
                 // stopBluetoothSco is async; wait for DISCONNECTED before calling onStopped.
-                scoDisconnectedCallback = onStopped
+                scoDisconnectedCallback = {
+                    // Allow audio stream to restart on A2DP
+                    service.audioEngine.setSuppressRestart(false)
+                    onStopped()
+                }
                 val filter = IntentFilter(AudioManager.ACTION_SCO_AUDIO_STATE_UPDATED)
                 context.registerReceiver(scoReceiver, filter)
                 @Suppress("DEPRECATION")
@@ -388,6 +394,8 @@ class VoiceCommandManager(
             val bluetoothSco = audioManager.availableCommunicationDevices
                 .firstOrNull { it.type == AudioDeviceInfo.TYPE_BLUETOOTH_SCO }
             if (bluetoothSco != null) {
+                // Suppress audio stream restart while SCO is active
+                service.audioEngine.setSuppressRestart(true)
                 // setCommunicationDevice is async; wait for confirmation before starting.
                 audioManager.addOnCommunicationDeviceChangedListener(
                     ContextCompat.getMainExecutor(context),
@@ -412,6 +420,8 @@ class VoiceCommandManager(
                 startListeningInternal()
                 return
             }
+            // Suppress audio stream restart while SCO is active
+            service.audioEngine.setSuppressRestart(true)
             @Suppress("DEPRECATION")
             audioManager.mode = AudioManager.MODE_IN_COMMUNICATION
             @Suppress("DEPRECATION")
@@ -428,11 +438,11 @@ class VoiceCommandManager(
     // Must be called on the main thread (satisfied: service is on main thread).
     private fun startListeningInternal() {
         if (_state.value is VoiceCommandState.Listening) return
-        service.speak2dText(context.getString(R.string.voice_cmd_listening), false, EARCON_CALLOUTS_ON)
-        val deadline = System.currentTimeMillis() + 1000L
-        while (service.isAudioEngineBusy() && System.currentTimeMillis() < deadline) {
-            sleep(20)
-        }
+//        service.speak2dText(context.getString(R.string.voice_cmd_listening), false, EARCON_CALLOUTS_ON)
+//        val deadline = System.currentTimeMillis() + 1000L
+//        while (service.isAudioEngineBusy() && System.currentTimeMillis() < deadline) {
+//            sleep(20)
+//        }
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) {
             // API < 31: recreate the recognizer each time so the binding has current
             // foreground credentials (avoids ERROR_INSUFFICIENT_PERMISSIONS when screen locked).
