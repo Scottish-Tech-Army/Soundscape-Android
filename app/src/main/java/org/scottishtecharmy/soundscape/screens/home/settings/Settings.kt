@@ -17,6 +17,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckBox
 import androidx.compose.material.icons.filled.CheckBoxOutlineBlank
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
@@ -165,16 +166,37 @@ fun SettingDetails(title: Int, description: Int, textColor: Color) {
         Text(
             text = stringResource(title),
             color = textColor,
-            style = MaterialTheme.typography.headlineSmall
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier.padding(spacing.extraSmall)
         )
         Text(
             text = stringResource(description),
             color = textColor,
-            style = MaterialTheme.typography.bodyMedium
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.padding(spacing.extraSmall)
         )
     }
 }
-
+@Composable
+fun ClickableOption(text: String, textColor: Color) {
+    Row(modifier = Modifier
+        .fillMaxSize()
+        .background(MaterialTheme.colorScheme.surface)
+        .padding(spacing.small)
+    ) {
+        Text(
+            text = text,
+            color = textColor,
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.weight(1f)
+        )
+        Icon(
+            Icons.Default.Edit,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurface
+        )
+    }
+}
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -268,6 +290,9 @@ fun Settings(
         "VoiceControl",
         "AudioMenu",
     )
+
+    val microphoneDescriptions = uiState.microphoneDescriptions
+    val microphoneValues = uiState.microphoneValues
 
     if (showConfirmationDialog.value) {
         AlertDialog(
@@ -437,12 +462,8 @@ fun Settings(
                         ListPreferenceItem(geocoderDescriptions[geocoderValues.indexOf(value)], value, currentValue, onClick, geocoderValues.indexOf(value), geocoderValues.size)
                     },
                     summary = {
-                        Text(
-                            text = geocoderDescriptions[geocoderValues.indexOf(it)],
-                            color = textColor,
-                            style = MaterialTheme.typography.bodyLarge
-                        )
-                    },
+                        ClickableOption(geocoderDescriptions[geocoderValues.indexOf(it)], textColor)
+                    }
                 )
 
                 listPreference(
@@ -461,11 +482,7 @@ fun Settings(
                         ListPreferenceItem(searchLanguageDescriptions[searchLanguageValues.indexOf(value)], value, currentValue, onClick, searchLanguageValues.indexOf(value), searchLanguageValues.size)
                     },
                     summary = {
-                        Text(
-                            text = searchLanguageDescriptions[searchLanguageValues.indexOf(it)],
-                            color = textColor,
-                            style = MaterialTheme.typography.bodyLarge
-                        )
+                        ClickableOption(searchLanguageDescriptions[searchLanguageValues.indexOf(it)], textColor)
                     },
                 )
             }
@@ -494,7 +511,9 @@ fun Settings(
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(themeLightnessDescriptions[themeLightnessValues.indexOf(value)], value, currentValue, onClick, themeLightnessValues.indexOf(value), themeLightnessValues.size)
                     },
-                    summary = { Text(text = themeLightnessDescriptions[themeLightnessValues.indexOf(it)], color = textColor) },
+                    summary = {
+                        ClickableOption(themeLightnessDescriptions[themeLightnessValues.indexOf(it)], textColor)
+                    },
                 )
 
                 listPreference(
@@ -511,7 +530,7 @@ fun Settings(
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(themeContrastDescriptions[themeContrastValues.indexOf(value)], value, currentValue, onClick, themeContrastValues.indexOf(value), themeContrastValues.size)
                     },
-                    summary = { Text(text = themeContrastDescriptions[themeContrastValues.indexOf(it)], color = textColor) },
+                    summary = { ClickableOption(themeContrastDescriptions[themeContrastValues.indexOf(it)], textColor) },
                 )
 
                 switchPreference(
@@ -551,7 +570,8 @@ fun Settings(
                             storages = storages,
                             onStorageSelected = onStorageSelected,
                             selectedStorageIndex = selectedStorageIndex,
-                            modifier = Modifier.smallPadding()
+                            modifier = Modifier.smallPadding(),
+                            backgroundColor = MaterialTheme.colorScheme.surface
                         )
                     }
                 }
@@ -582,7 +602,7 @@ fun Settings(
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(beaconDescriptions[beaconValues.indexOf(value)], value, currentValue, onClick, beaconValues.indexOf(value), beaconValues.size)
                     },
-                    summary = { Text(text = it, color = textColor) },
+                    summary = { ClickableOption(it, textColor) },
                 )
 
                 listPreference(
@@ -605,7 +625,7 @@ fun Settings(
                             uiState.engineTypes.indexOf(value),
                             uiState.engineTypes.size)
                     },
-                    summary = { Text(text = it.substringBefore(":::"), color = textColor) },
+                    summary = { ClickableOption(it.substringBefore(":::"), textColor) },
                 )
 
                 listPreference(
@@ -622,7 +642,7 @@ fun Settings(
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(value, value, currentValue, onClick, uiState.voiceTypes.indexOf(value), uiState.voiceTypes.size)
                     },
-                    summary = { Text(text = it, color = textColor) },
+                    summary = { ClickableOption(it, textColor) },
                 )
 
                 sliderPreference(
@@ -667,10 +687,9 @@ fun Settings(
                         ListPreferenceItem(unitsDescriptions[unitsValues.indexOf(value)], value, currentValue, onClick, unitsValues.indexOf(value), unitsValues.size)
                     },
                     summary = {
-                        Text(
-                            text = unitsDescriptions[unitsValues.indexOf(it)],
-                            color = textColor,
-                            style = MaterialTheme.typography.bodyLarge
+                        ClickableOption(
+                            unitsDescriptions[unitsValues.indexOf(it)],
+                            textColor,
                         )
                     },
                 )
@@ -688,7 +707,8 @@ fun Settings(
                             allLanguages = supportedLanguages,
                             onLanguageSelected = onLanguageSelected,
                             selectedLanguageIndex = selectedLanguageIndex,
-                            modifier = Modifier.smallPadding()
+                            modifier = Modifier.smallPadding(),
+                            backgroundColor = MaterialTheme.colorScheme.surface
                         )
                     }
                 }
@@ -720,11 +740,46 @@ fun Settings(
                         ListPreferenceItem(mediaControlsDescriptions[mediaControlsValues.indexOf(value)], value, currentValue, onClick, mediaControlsValues.indexOf(value), mediaControlsValues.size)
                     },
                     summary = {
-                        Text(
-                            text = mediaControlsDescriptions[mediaControlsValues.indexOf(it)],
-                            color = textColor,
-                            style = MaterialTheme.typography.bodyLarge
+                        ClickableOption(
+                            mediaControlsDescriptions[mediaControlsValues.indexOf(it)],
+                            textColor
                         )
+                    },
+                )
+
+                switchPreference(
+                    key = MainActivity.VOICE_COMMAND_LISTENING_PROMPT_KEY,
+                    defaultValue = MainActivity.VOICE_COMMAND_LISTENING_PROMPT_DEFAULT,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.settings_voice_command_listening_prompt,
+                            R.string.settings_voice_command_listening_prompt_description,
+                            textColor
+                        )
+                    },
+                )
+
+                listPreference(
+                    key = MainActivity.VOICE_COMMAND_MICROPHONE_KEY,
+                    defaultValue = MainActivity.VOICE_COMMAND_MICROPHONE_DEFAULT,
+                    values = microphoneValues,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.settings_voice_command_microphone,
+                            R.string.settings_voice_command_microphone_description,
+                            textColor
+                        )
+                    },
+                    item = { value, currentValue, onClick ->
+                        val idx = microphoneValues.indexOf(value).coerceAtLeast(0)
+                        ListPreferenceItem(microphoneDescriptions[idx], value, currentValue, onClick, idx, microphoneValues.size)
+                    },
+                    summary = {
+                        val idx = microphoneValues.indexOf(it)
+                        val label = if (idx >= 0) microphoneDescriptions[idx] else it
+                        ClickableOption(label, textColor)
                     },
                 )
             }
@@ -770,6 +825,7 @@ fun Settings(
                             onClick = { navController.navigate(HomeRoutes.AdvancedMarkersAndRoutesSettings.route) },
                             modifier = Modifier
                                 .fillMaxWidth()
+                                .background(MaterialTheme.colorScheme.surface)
                                 .mediumPadding(),
                             shape = RoundedCornerShape(spacing.extraSmall),
                             text = stringResource(R.string.menu_advanced_markers_and_routes),

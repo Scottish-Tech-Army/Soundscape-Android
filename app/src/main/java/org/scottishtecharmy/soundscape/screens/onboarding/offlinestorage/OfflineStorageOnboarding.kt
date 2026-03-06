@@ -91,7 +91,8 @@ fun OfflineStorageOnboardingScreen(
                 storages = uiState.storages,
                 onStorageSelected = onStorageSelected,
                 selectedStorageIndex = uiState.selectedStorageIndex,
-                modifier = Modifier.smallPadding()
+                modifier = Modifier.smallPadding(),
+                backgroundColor = MaterialTheme.colorScheme.surfaceContainer
             )
 
             Spacer(modifier = Modifier.height(spacing.large))

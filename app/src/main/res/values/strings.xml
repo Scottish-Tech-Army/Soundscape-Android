@@ -862,6 +862,14 @@
 <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">"Voice command"</string>
 <!--  -->
 <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">"Audio menu"</string>
+<!--  -->
+<string name="settings_voice_command_listening_prompt" tools:ignore="MissingTranslation">"Announce listening"</string>
+<!--  -->
+<string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">"Speak a listening prompt before voice recognition starts."</string>
+<!--  -->
+<string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">"Microphone"</string>
+<!--  -->
+<string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">"Choose which microphone to use for voice commands."</string>
 <!-- App theme light/dark description -->
 <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">"Light or Dark Theme"</string>
 <!-- App theme setting for automatic light/dark based on system -->
@@ -2609,8 +2617,8 @@ Please report any problems that you have, however small they may be via the *Con
 <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Available voice commands: </string>
 <!-- Text shown on screen and spoken when the microphone is turned on -->
 <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Listening…</string>
-<!-- Spoken response when the user's speech wasn't understood -->
-<string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">"I'm sorry, I can't find the command %s"</string>
+<!-- Spoken response when the user's speech wasn't understood. -->
+<string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">"I'm sorry, I can't find the command %1$s. The voice command, %2$s, will list available commands."</string>
 <!-- Voice command to list saved routes -->
 <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">List routes</string>
 <!-- Text read out before list of saved routes -->
