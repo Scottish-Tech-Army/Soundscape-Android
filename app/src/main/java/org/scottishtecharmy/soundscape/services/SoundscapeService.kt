@@ -18,7 +18,6 @@ import android.media.AudioManager
 import android.net.Uri
 import android.os.Binder
 import android.os.Build
-import android.os.Bundle
 import android.os.IBinder
 import android.os.PowerManager
 import android.util.Log
@@ -40,7 +39,6 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -50,7 +48,6 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MOD
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_CALLOUTS_ON
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_ENTER
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_EXIT
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
@@ -86,8 +83,6 @@ import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
-
-
 
 /**
  * Foreground service that provides location updates, device orientation updates, requests tiles,

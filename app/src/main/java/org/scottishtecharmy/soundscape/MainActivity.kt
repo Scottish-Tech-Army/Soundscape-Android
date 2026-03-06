@@ -813,6 +813,10 @@ class MainActivity : AppCompatActivity() {
         const val LAST_SPLASH_RELEASE_KEY = "LastNewRelease"
         const val MEDIA_CONTROLS_MODE_DEFAULT = "Original"
         const val MEDIA_CONTROLS_MODE_KEY = "MediaControlsMode"
+        const val VOICE_COMMAND_LISTENING_PROMPT_DEFAULT = true
+        const val VOICE_COMMAND_LISTENING_PROMPT_KEY = "VoiceCommandListeningPrompt"
+        const val VOICE_COMMAND_MICROPHONE_DEFAULT = "Auto"
+        const val VOICE_COMMAND_MICROPHONE_KEY = "VoiceCommandMicrophone"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
         const val AUDIO_TOUR_SHOWN_KEY = "AudioTourShown"

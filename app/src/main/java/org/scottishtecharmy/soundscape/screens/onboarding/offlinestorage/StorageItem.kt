@@ -88,7 +88,8 @@ fun StorageDropDownMenu(
     storages: List<StorageUtils.StorageSpace>,
     onStorageSelected : (String) -> Unit,
     selectedStorageIndex: Int,
-    modifier : Modifier = Modifier
+    modifier : Modifier = Modifier,
+    backgroundColor: Color
 ){
     var expanded by rememberSaveable { mutableStateOf(false) }
     val storageSelected by remember(selectedStorageIndex) {
@@ -103,7 +104,7 @@ fun StorageDropDownMenu(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(
-                    color = MaterialTheme.colorScheme.surfaceContainer,
+                    color = backgroundColor,
                     shape = RoundedCornerShape(spacing.extraSmall)
                 ),
             verticalAlignment = Alignment.CenterVertically,
@@ -217,7 +218,8 @@ fun StorageDropDownMenuPreview(){
     StorageDropDownMenu(
         storages = MockStoragePreviewData.storages,
         onStorageSelected = {},
-        selectedStorageIndex = 1
+        selectedStorageIndex = 1,
+        backgroundColor = MaterialTheme.colorScheme.surfaceContainer
     )
 }
 
