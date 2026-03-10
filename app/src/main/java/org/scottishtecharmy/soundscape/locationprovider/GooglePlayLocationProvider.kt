@@ -80,9 +80,9 @@ class GooglePlayLocationProvider(context : Context) :
                 Priority.PRIORITY_HIGH_ACCURACY,
                 LOCATION_UPDATES_INTERVAL_MS
             ).apply {
-                setMinUpdateDistanceMeters(1f)
+                setMinUpdateDistanceMeters(0f)
                 setGranularity(Granularity.GRANULARITY_PERMISSION_LEVEL)
-                setWaitForAccurateLocation(true)
+                setWaitForAccurateLocation(false)
             }.build(),
             locationCallback,
             Looper.getMainLooper(),
