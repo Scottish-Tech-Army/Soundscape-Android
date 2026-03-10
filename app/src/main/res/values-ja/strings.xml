@@ -262,7 +262,7 @@
     <string name="help_text_ahead_of_me_how">ホーム画面の下部の 4 つのボタンはどれも同じですが、スマートフォンの画面を上 (空) に向けて水平に持ち、スマートフォンの画面上部を自分が向いている方向に合わせてから、[*前方*] ボタンを押します。これにより、コンパスを合わせるように、自分が向いている方向をアプリに伝えることができます。[*前方*] ボタンをタップすると、自分の前方にあるいくつかの特定地点の情報が聞こえます。</string>
     <string name="help_text_remote_control_what">ヘッドホンのメディアコントロール ボタンを使用して、Soundscape の特定の機能にアクセスできます。この機能は、再生、一時停止、次へ、前へなどのメディアコントロール ボタンのある有線または Bluetooth のヘッドホンで使用できます。ヘッドホンによって使用できるボタンが異なる場合があるため、使用できる機能については、以下の動作の一覧を参照してください。なお、この機能は、Apple のメディアコントロール (再生や一時停止など) に対応しているヘッドホンでのみ使用できます。</string>
     <string name="help_text_remote_control_when">ヘッドホンのメディアコントロールは、Soundscape の実行中に使用できます。これには、Soundscape を使用しているときや Soundscape をバックグラウンドで実行しているときも含まれ、デバイスがロックされていても同じです。ただし、他のアプリで音楽やポッドキャスト、動画を再生している場合は、Soundscape でヘッドホンのメディアコントロール ボタンを使用することはできません。</string>
-    <string name="help_text_remote_control_how">ヘッドホンのメディアコントロール ボタンで、Soundscape の次の機能を使用できます。\n\n⏯ 再生/一時停止: 現在のコールアウトをミュートし、音声ビーコンが設定されている場合はその音声のオン/オフを切り替えます。\n\n⏭ 次へ: [*現在地*] をコールアウトします。\n\n⏮ 前へ: 直前のコールアウトを繰り返します。\n\n⏩ 前方スキップ: コールアウトのオン/オフを切り替えます。\n\n⏪ 後方スキップ: [*周辺*] をコールアウトします。</string>
+    <string name="help_text_remote_control_how">メディアコントロールには 3 つの動作モードがあります。モードは *「設定」* の *「メディアコントロール」* セクションで選択できます。モードは次のとおりです：\n\nオリジナルモード。\n\n⏯ 再生/一時停止: ビーコンの音声をオン／オフに切り替えます。\n\n⏭ 次へ: ルートが再生中の場合は、音声ビーコンをルート内の次のウェイポイントに移動します。ルートが再生されていない場合は *「現在地」* をコールアウトします。\n\n⏮ 前へ: ルートが再生中の場合は、音声ビーコンをルート内の前のウェイポイントに移動します。ルートが再生されていない場合は *「周辺」* をコールアウトします。\n\n\n\n音声コマンドモード。\n\n⏯ 再生/一時停止: アプリが音声コマンドの聞き取りを開始します。\n\n\n\n音声メニューモード。\n\n⏭ 次へ と ⏮ 前へ は、アプリがテキスト読み上げで案内する一連のメニュー項目を前後に移動します。⏯ 再生/一時停止 を押すと、読み上げられている項目が実行されます。最上位にメニューが一つあり、その下にサブメニューが並び、各サブメニューには類似した操作がグループ化されています。</string>
     <string name="help_text_markers_content_1">Soundscape を使えば、地図のピンのように、自分にとって大切な場所や気になる場所にマーカーを付けられます。</string>
     <string name="help_text_markers_content_2">自宅やオフィス、よく行くコンビニやスーパーなど、個人的に重要な場所にマーカーを付けることができます。マーカーは任意の場所や住所に付けることができますが、たとえば、ビルや公園の入口、横断歩道の押しボタン、横断歩道や歩道橋、バス停、飼っているイヌのお気に入りの木など、これまでは地図上になかったような場所にもマーカーを付けることができ、歩くときの目印として使用できます。</string>
     <string name="help_text_markers_content_3">マーカーを付けた場所は、その場所に近付くと Soundscape で自動的にコールアウトされます。また、Soundscape ホーム画面の下部にある [近くのマーカー] ボタンを使用すると、周辺にあるマーカーを付けた場所の立体音響のコールアウトが聞こえます。さらに、マーカーを付けた場所に音声ビーコンを設定することができます。設定すると、Soundscape の通常の音声ビーコンと同じように音が聞こえ、操作できます。</string>
@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">マーカーおよびルートを削除しました</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">新しいリリース情報</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">新しいリリース情報を閉じる</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nこのリリースには、端末がロックされているときでもアプリをリモート操作できる新機能が2つ追加されています。これにより、ポケットに入れたままでもアプリの主要な機能を操作できるようになります。\n\n両方のリモート操作方式は、ヘッドホンなどにある Bluetooth のメディアコントロールボタンを利用します。あるいは手やポケットに入れておける小型のリモコンを購入して使うこともできます。リモート操作モードは「設定」＞「メディアコントロール」セクションで選択でき、音声で操作する「音声コマンド（Voice command）」、または呼び出されるメニューから選択する「音声メニュー（Audio menu）」を選べます。「オリジナルモード（Original mode）」は、Bluetooth ボタンの動作がこれまでのリリースと同じであることを意味します。\n\n音声コマンドモードでは、ヘッドホンの再生/一時停止ボタンを押すとアプリが音声認識を開始し、その合図として短い音が鳴ります。「Help」と発声すると利用可能なコマンドが一覧で読み上げられます。その後もう一度ボタンを押して、他のコマンドを試すことができます。残念ながら、Android の音声認識はすべての言語をサポートしているわけではなく、すべての端末で利用できるわけではありません。\n\n音声メニューモードは、すべての言語と端末で動作します。次へ／前へボタンでメニュー内の項目を順に進めたり戻したりでき、再生/一時停止ボタンで現在の項目を選択します。トップレベルのメニューがあり、その下に同類のコマンドをまとめた1層のサブメニューがあります。\n\nこれらの機能はまだ導入されたばかりです。動作状況や追加してほしいコマンドなどについてのフィードバックをぜひお寄せください。\n\n問題が発生した場合は、どんなに小さなことでも、メインメニューの *サポートに連絡* オプションからご報告ください。\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nこのリリースでは、端末がロックされているときでもアプリをリモート操作できる新機能が 2 つ追加されました。これにより、端末をポケットに入れたままでもアプリの主要機能を操作できます。\n\nどちらのリモート操作方法も、ヘッドホンにある Bluetooth のメディアコントロールボタン、あるいは手に持ったりポケットに入れて使える小型のリモコンのボタンを使用します。リモートコントロールのモードは「設定」→「メディアコントロール」セクションで選択できます。話しかけて操作する「音声コマンド」モード、メニューが読み上げられて選択できる「音声メニュー」モード、または従来と同じ動作にする「オリジナルモード」を選べます。\n\n音声コマンドモードでは、ヘッドホンの再生/一時停止ボタンを押すとアプリが音声の聞き取りを開始し、その合図として短い音が鳴ります。「Help（ヘルプ）」と言うと利用可能なコマンド一覧が読み上げられます。その後もう一度ボタンを押して、他のコマンドを試すことができます。残念ながら、Android の音声認識はすべての言語をサポートしているわけではなく、すべての端末で利用できるわけではありません。\n\n音声コマンドモードの主な難点は、ヘッドホンによってマイクが有効になるまでの時間に差がある点です。再生/一時停止を押してから話せるようになるまで最大で数秒（5 秒程度）待つ必要がある場合があります。どのくらい待てばよいかを知るには、再生/一時停止をタップしてから 1 から 10 まで数えてみるのが最もよい方法です。端末は認識した音声（例えば数えた数字）を読み上げ、最初に認識された数字が話し始めるまでの目安になります。マイクがオンになったときに明確な音を出すヘッドホンもあり、その場合は扱いやすいですが、まったく音がしない機種もあります。残念ながら、慣れが必要な場合があります。\n\nもう一方の新しいリモートモードである「音声メニュー」モードは、すべての言語とすべての端末で動作します。次へ/前へ のメディアコントロールボタンでメニュー内の項目を前後に移動し、再生/一時停止ボタンで現在の項目を選択します。最上位のメニューが一つあり、その下に同種の操作をまとめた一層のサブメニューがあります。\n\nこれらの機能は非常に新しいため、うまく動作するかどうか、またどのような追加コマンドが欲しいかについてのフィードバックをぜひお寄せください。\n\nどんなに小さな問題でも、メインメニューの *「サポートに連絡」* からご報告ください。\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">オープンソースライセンス</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">フェリーターミナル</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s フェリーターミナル</string>
@@ -1296,7 +1296,7 @@
     <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">音声メニュー</string>
     <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">利用可能な音声コマンド:</string>
     <string name="voice_cmd_listening" tools:ignore="MissingTranslation">聞き取り中…</string>
-    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">申し訳ありません。コマンド「%s」が見つかりません。</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">申し訳ありません。コマンド「%1$s」が見つかりません。利用可能なコマンドを一覧表示するには、音声コマンド「%2$s」を実行してください。</string>
     <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">ルート一覧</string>
     <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">利用可能なルートは次のとおりです:</string>
     <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">マーカー一覧</string>
@@ -1327,4 +1327,8 @@
     <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">音声認識のダウンロード監視中にエラーが発生しました。</string>
     <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">音声認識で不明なエラーが発生しました。</string>
     <string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">この端末では音声認識はサポートされていません。</string>
+    <string name="settings_voice_command_listening_prompt" tools:ignore="MissingTranslation">聞き取り開始を通知</string>
+    <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">音声認識が開始される前に、聞き取り開始を知らせるプロンプト（合図）を再生します。</string>
+    <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">マイク</string>
+    <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">音声コマンドに使用するマイクを選択します。</string>
 </resources>
