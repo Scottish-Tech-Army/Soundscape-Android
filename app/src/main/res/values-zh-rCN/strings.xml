@@ -874,7 +874,7 @@
     <string name="help_text_ahead_of_me_how">与主屏幕底部的所有四个按钮一样，在按下*\"前方\"*按钮之前，请将手机屏幕朝上平放（面向天空），手机顶部指向您面朝的方向。这就像指南针一样告诉应用您面朝的方向。只需点击*\"前方\"*按钮，您就会听到大致在您前方的多个兴趣点。</string>
     <string name="help_text_remote_control_what">您可以借助耳机上的媒体控制按钮使用Soundscape的某些功能。此功能适用于任何带有媒体控制按钮（如播放、暂停、下一曲、上一曲等）的有线或蓝牙耳机。不同的耳机可能包含不同的按钮，请参考以下操作列表来确定哪些功能可供您使用。</string>
     <string name="help_text_remote_control_when">在Soundscape运行时可以使用耳机媒体控制。无论您当前正在使用Soundscape还是Soundscape在后台运行，甚至设备已锁定，都可以使用。但请注意，如果您正在使用其他应用播放音乐、播客或视频等音频内容，耳机媒体控制按钮将无法与Soundscape配合使用。</string>
-    <string name="help_text_remote_control_how">您可以使用耳机上的媒体控制按钮在Soundscape中使用以下功能：\n\n⏯ 播放/暂停：将当前播报静音，如果已设置音频信标，则切换信标音频。\n\n⏭ 下一曲：播报*\"我的位置\"*。\n\n⏮ 上一曲：重复上一条播报。\n\n⏩ 快进：切换播报的开启和关闭。\n\n⏪ 快退：播报*\"周围\"*。</string>
+    <string name="help_text_remote_control_how">媒体控制有 3 种操作模式。可以在*\"设置\"*的*\"媒体控制\"*部分选择模式。模式如下：\n\n经典模式。\n\n⏯ 播放/暂停：切换音频信标的开/关。\n\n⏭ 下一曲：如果正在播放路线，则将音频信标移到路线中的下一个航点；如果没有播放路线，则播报*\"我的位置\"*。\n\n⏮ 上一曲：如果正在播放路线，则将音频信标移到路线中的上一个航点；如果没有播放路线，则播报*\"周围\"*。\n\n\n\n语音命令。\n\n⏯ 播放/暂停：触发应用开始监听语音命令。\n\n\n\n音频菜单。\n\n⏭ 下一曲 和 ⏮ 上一曲 在应用通过文字转语音朗读的菜单选项中向前或向后移动。⏯ 播放/暂停 则触发应用执行当前所述的选项。菜单为单一顶层菜单，顶层菜单仅包含子菜单作为选项。每个子菜单将一组相似的可执行操作归为一类。</string>
     <string name="help_text_markers_content_1">使用Soundscape，您可以标记您的世界和您关心的任何事物，就像在地图上插图钉一样。</string>
     <string name="help_text_markers_content_2">您可以标记与您个人相关的事物，如您的家、办公室和常去的杂货店。您可以标记任何地点或地址，也可以标记传统地图上可能没有的事物，例如建筑物或公园的入口、行人过街按钮、人行横道或桥梁、公交站，甚至您家狗最喜欢的树，并将这些作为步行途中的参考点。</string>
     <string name="help_text_markers_content_3">为了让您体验标记的地点，Soundscape会在您经过或接近已标记的地点时自动播报。您也可以使用Soundscape主屏幕底部的附近标记点按钮，听取周围标记地点的空间播报。此外，您还可以在任何已标记的地点上设置音频信标。设置后，您熟悉的Soundscape音频信标将会响起，您可以像往常一样操作它。</string>
@@ -1045,7 +1045,7 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">新版本信息</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">关闭新版本对话框</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">开源许可证</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\n本次发布包含两项新功能，允许您远程控制应用，即使手机锁屏时也能使用。这意味着您可以将手机放入口袋，同时仍能控制应用的主要功能。\n\n两种远程控制方式都使用蓝牙媒体控制按钮，既可以使用耳机上的按钮，也可以购买小型遥控器放在手中或口袋中。远程控制模式可在“设置/媒体控制”中选择，您可以选择“语音命令”（Voice command），通过说话来控制应用；也可以选择“音频菜单”（Audio menu），该模式会朗读菜单并提供可选项供您选择。选择“经典模式”（Original mode）则表示蓝牙按钮的行为与之前版本相同。\n\n在语音命令模式下，按下耳机上的播放/暂停按钮会使应用开始监听语音，并会播放一段短音提示您正在聆听。如果您说“Help”（帮助），应用会列出可用命令。随后您可以再次按下按钮并尝试其他命令。遗憾的是，Android 的语音识别并不支持所有语言。\n\n音频菜单模式适用于所有语言。上一曲/下一曲按钮在菜单项之间向前或向后移动，播放/暂停按钮用于选择当前项。菜单包含顶层菜单，以及一层子菜单，用来将相似命令分组。\n\n这些功能都非常新，我们非常希望您能反馈它们是否工作良好，以及您希望添加哪些其它命令。\n\n如遇任何问题（即便很小），请通过主菜单中的 *联系支持* 选项反馈给我们。\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\n本次版本新增了两项远程控制功能，可在手机锁屏时远程操作应用。这样您可以把手机放在口袋里，同时控制应用的主要功能。\n\n两种远程控制方式都使用蓝牙媒体控制按钮：可以是耳机上的按钮，也可以购买小型遥控器放在手中或口袋中控制。远程控制模式可在“设置/媒体控制”中选择，您可以选择*\"语音命令\"*以对应用讲话，或选择*\"音频菜单\"*，此模式会朗读可选的菜单供您选择。*\"经典模式\"*表示蓝牙按钮的行为与以前的版本相同。\n\n在语音命令模式下，按下耳机上的播放/暂停按钮会使应用开始监听语音，并播放一段短音作为提示。如果您说出*\"Help\"*，应用会列出可用命令供您使用。之后您可以再次按按钮并尝试其他命令。不幸的是，Android 的语音识别并不支持所有语言，并且并非所有手机都提供该功能。\n\n语音命令模式的主要难点在于，不同耳机将麦克风切换到可用状态所需时间不同。这意味着在按下播放/暂停按钮后，您可能需要等待最长约 5 秒钟才能开始说话。要掌握需要等待的时间，最佳方法是按一次播放/暂停，然后从 1 数到 10。手机会告诉您识别到的语音片段，识别到的第一个数字就是最早被识别的，这样可以帮助您判断在按下按钮后要等待多久。一些耳机会在麦克风开启时发出明显声响，使用起来更容易；但也有些耳机完全没有提示音。不幸的是，这可能需要练习。\n\n另一种新的远程模式是音频菜单模式，该模式可在所有语言和所有手机上工作。下一曲/上一曲媒体控制按钮在菜单选项中向前或向后移动，播放/暂停按钮则选择当前选项。菜单结构为顶层菜单，顶层下有一层子菜单，用于将相似命令分组。\n\n这些功能都很新，我们非常希望收到关于它们是否好用以及您希望加入哪些其他命令的反馈。\n\n如遇任何问题（无论大小），请通过主菜单中的*\"联系支持\"*选项向我们报告。\n</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape 探索使用创新的音频技术，帮助人们更好地感知周围环境，从而更加自信、自主地出行。</string>
     <string name="osm_office_building" tools:ignore="MissingTranslation">办公楼</string>
     <string name="osm_school_building" tools:ignore="MissingTranslation">教学楼</string>
@@ -1296,7 +1296,7 @@
     <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">音频菜单</string>
     <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">可用语音命令：</string>
     <string name="voice_cmd_listening" tools:ignore="MissingTranslation">正在聆听…</string>
-    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">抱歉，我无法识别命令 %s</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">抱歉，我无法找到命令 %1$s。语音命令 %2$s 会列出可用命令。</string>
     <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">列出路线</string>
     <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">可用路线有：</string>
     <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">列出标记点</string>
@@ -1327,4 +1327,8 @@
     <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">语音识别下载监听错误。</string>
     <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">语音识别未知错误。</string>
     <string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">此手机不支持语音识别。</string>
+    <string name="settings_voice_command_listening_prompt" tools:ignore="MissingTranslation">播报正在聆听</string>
+    <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">在语音识别开始之前播报一条“正在聆听”的提示。</string>
+    <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">麦克风</string>
+    <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">选择用于语音命令的麦克风。</string>
 </resources>
