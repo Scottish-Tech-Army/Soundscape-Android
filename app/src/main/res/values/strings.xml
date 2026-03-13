@@ -149,7 +149,11 @@
 <!-- Text for the action to start editing a route -->
 <string name="route_detail_action_edit">"Edit Route"</string>
 <!-- Talkback hint for the action to start the route. This is always preceded by "Double tap to " -->
-<string name="route_detail_action_start_route_hint">"Start playback of this route"</string>
+<string name="route_detail_action_start_route_hint">"Start this route"</string>
+<!-- Title for the action to start playing the route in reverse order -->
+<string name="route_detail_action_start_route_reverse">"Start Route in Reverse"</string>
+<!-- Talkback hint for the action to start the route in reverse. This is always preceded by "Double tap to " -->
+<string name="route_detail_action_start_route_reverse_hint">"Start this route in reverse order"</string>
 <!-- Talkback hint for the action to start the route when the action is disabled. This action is only disabled when no waypoints have been added to a route yet. This is always preceded by "Double tap to " -->
 <string name="route_detail_action_start_route_disabled_hint">"Add waypoints before starting the route"</string>
 <!-- Talkback hint for the action to stop the route. This is always preceded by "Double tap to " -->

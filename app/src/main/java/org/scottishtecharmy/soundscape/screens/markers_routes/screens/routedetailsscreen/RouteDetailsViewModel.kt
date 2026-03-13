@@ -52,6 +52,10 @@ class RouteDetailsViewModel @Inject constructor(
         soundscapeServiceConnection.routeStart(routeId)
     }
 
+    fun startRouteInReverse(routeId: Long) {
+        soundscapeServiceConnection.routeStartReverse(routeId)
+    }
+
     fun stopRoute() {
         soundscapeServiceConnection.routeStop()
     }
