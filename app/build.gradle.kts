@@ -179,6 +179,9 @@ android {
             version = "3.22.1"
         }
     }
+    lint {
+        warning += "MissingTranslation"
+    }
 }
 
 composeCompiler {
