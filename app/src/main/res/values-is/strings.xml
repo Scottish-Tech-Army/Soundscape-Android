@@ -13,7 +13,7 @@
     <string name="voice_settings_speaking_rate">Talhraði</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">Talgerfilsvél</string>
     <string name="voice_voices">Raddir</string>
-    <string name="beacon_settings_style">Hljóðstíll</string>
+    <string name="beacon_settings_style">Stílar hljóðvita</string>
     <string name="beacon_styles_current">´nýjasti Stíll</string>
     <string name="beacon_styles_original">upprunalegur viti</string>
     <string name="beacon_styles_flare">Blossi</string>
@@ -39,23 +39,23 @@
     <string name="preview_include_unnamed_roads_title">nafnlaus vegur</string>
     <string name="location_detail_title_default">upplýsingar um staðsetningu</string>
     <string name="location_detail_action_beacon">hljóð viti</string>
-    <string name="location_detail_action_beacon_hint">setja hljóðvita á þennan stað.</string>
-    <string name="location_detail_action_save_hint">vista þessa staðsetningu sem merki.</string>
-    <string name="location_detail_action_edit_hint">uppfæra merki.</string>
-    <string name="location_detail_action_share_hint">deila þessari staðsetningu.</string>
+    <string name="location_detail_action_beacon_hint">leiða þig að þessum stað með hljóði.</string>
+    <string name="location_detail_action_save_hint">vista þessa staðsetningu til að nota síðar.</string>
+    <string name="location_detail_action_edit_hint">breyta nafni merkisins eða bæta við frekari athugasemdum.</string>
+    <string name="location_detail_action_share_hint">deila þessari staðsetningu með öðru forriti.</string>
     <string name="location_detail_action_preview_hint">byrja að herma staðsetningu á þessum stað.</string>
     <string name="location_detail_add_waypoint_existing_hint">fjarlægja þetta merki úr leiðinni þinni.</string>
-    <string name="location_detail_add_waypoint_new_hint">bæta þessu merki við leiðina þína.</string>
+    <string name="location_detail_add_waypoint_new_hint">bæta þessu merki sem leiðarpunkt við leiðina þína.</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">stækka kort til að fylla skjá</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">fara úr fullum skjá</string>
     <string name="route_detail_action_start_route">upphaf leiðar</string>
     <string name="route_detail_action_stop_route">ljúka leið</string>
     <string name="route_detail_action_edit">Uppfæra Leið</string>
-    <string name="route_detail_action_start_route_hint">byrja þessa leið.</string>
+    <string name="route_detail_action_start_route_hint">hefja spilun þessarar leiðar.</string>
     <string name="route_detail_action_start_route_disabled_hint">bæta við punktum áður en leið er hafin</string>
-    <string name="route_detail_action_stop_route_hint">ljúka þessari leið.</string>
-    <string name="route_detail_action_share_hint">deila þessari leið.</string>
-    <string name="route_detail_action_edit_hint">uppfæra þessa leið.</string>
+    <string name="route_detail_action_stop_route_hint">stöðva spilun þessarar leiðar.</string>
+    <string name="route_detail_action_share_hint">deila þessari leið með öðru forriti.</string>
+    <string name="route_detail_action_edit_hint">breyta leiðarpunktum á leiðinni eða endurraða þeim.</string>
     <string name="route_detail_action_create">ný leið</string>
     <string name="route_detail_action_create_hint">búa til nýja leið.</string>
     <string name="route_end_completed_accessibility">leið lokiðleið lokið %s</string>
@@ -206,7 +206,7 @@
     <string name="ui_menu_hint">opna valmyndina.</string>
     <string name="ui_menu_close">loka</string>
     <string name="ui_continue">áfram</string>
-    <string name="menu_manage_callouts">stilla tilkynningar</string>
+    <string name="menu_manage_callouts">Stjórna tilkynningum</string>
     <string name="menu_rate">mæla</string>
     <string name="menu_help_and_tutorials">hjálp og kennsluefni</string>
     <string name="menu_contact_support" tools:ignore="MissingTranslation">hafa samband, stuðningur</string>
@@ -389,7 +389,7 @@
     <string name="faq_use_with_wayfinding_apps_question">hvernig nota ég Soundscape með öðrum forritum sem búa til leiðir?</string>
     <string name="faq_use_with_wayfinding_apps_answer">Soundscape er hugsað til að gefa upplýsingar sem bæta við notkun a forritum sem gefa skref fyrir skref leiðsögn. Heppilegt er að hefja leiðsögn og setja svo hljoðvita á sama punkt í gegnum Soundscape Þannig gefur forritið upplýsingar umpukta, merki og gatnmót semstyðja við leiðbeiningar frá öðrum forritum.</string>
     <string name="faq_controlling_what_you_hear_question">hvernig stýri ég upplýsingagjöf frá Soundscape?</string>
-    <string name="faq_controlling_what_you_hear_answer">Soundscape býður upp á nokkrar leiðir til að stjórna því hvað þú heyrir og hvenær:\n\n1. Stöðva allt hljóð strax: Ýttu tvisvar á skjáinn með tveimur fingrum til að slökkva strax á öllu hljóði, þar á meðal öllum uppköllum sem eru í gangi og vísirinn ef hann er kveiktur. Uppköll halda sjálfkrafa áfram þegar þú nálgast næstu gatnamót eða áhugaverðan stað, en hljóðvísirinn gerir það ekki. Veldu *\"kveikja á hljóðnema vísirsins\"* á aðalskjánum til að halda áfram að heyra í vísirnum.\n\n2. Stöðva sjálfvirk uppköll: Þegar þú ert ekki á ferðinni eða hefur náð áfangastað þarftu líklega ekki að Soundscape haldi áfram að láta þig vita af hlutum í kringum þig. Í stað þess að hætta í appinu geturðu sett Soundscape í blundham og það vaknar aftur þegar þú ferð, eða þú getur sett Soundscape í svefnham og það verður slökkt þar til þú velur að kveikja aftur á því. Einnig er hægt að velja *\"Stillingar\"* úr valmyndinni og velja að slökkva á öllum uppköllum í *\"Stjórna uppköllum\"* hlutanum.\n\n3. Stöðva vísinn: Það eru nokkrar aðstæður þar sem þú gætir stillt áfangastað en ekki þurft að kveikja á hljóðvísinum. Til dæmis gætirðu vitað nákvæmlega hvernig á að komast á áfangastaðinn en vilt fá sjálfvirkar uppfærslur um hversu langt þú ert frá honum. Eða þú gætir vitað nokkurn veginn hvernig á að komast á áfangastaðinn og þarft aðeins hljóðvísinn þegar þú nálgast áfangastaðinn. Hvað sem því líður geturðu valið hvenær þú vilt heyra vísinn með því að ýta á hnappinn *\"þagga vísinn\"*/*\"kveikja á hljóðvísinum\"* á aðalskjánum.</string>
+    <string name="faq_controlling_what_you_hear_answer">Soundscape býður upp á nokkra möguleika til að stjórna því hvað þú heyrir og hvenær:\n\n1. Hætta öllum hljóðum strax: Tvíbankaðu skjánum með tveimur fingrum til að slökkva strax á öllu hljóði, þar með talið öllum tilkynningum sem í gangi eru og hljóðvita ef hann er virkur. Tilkynningar halda áfram sjálfkrafa þegar þú nálgast næstu gatnamót eða áhugaverðan stað, en hljóðviti mun ekki byrja að hljóma aftur sjálfkrafa. Veldu *\"hnappinn til að virkja hljóðvita\"* á aðalskjánum til að virkja hljóðvitann aftur.\n\n2. Hætta sjálfvirkum tilkynningum: Þegar þú ert ekki á ferð eða hefur náð áfangastað þarft þú líklega ekki að fá frekari sjálfvirkar tilkynningar. Í stað þess að loka forritinu geturðu sett Soundscape í Lúra-ham (Snooze) sem vekur forritið þegar þú yfirgefur staðinn, eða í Dvala-ham (Sleep) sem heldur forritinu óvirku þar til þú vilt aftur virkja það. Einnig geturðu valið *\"Stillingar\"* úr valmyndinni og slökkt á öllum tilkynningum í kaflanum *\"Tilkynningar\"*.\n\n3. Slökkva á hljóðvita: Það eru aðstæður þar sem þú gætir sett áfangastað en ekki viljað hlusta á hljóðvitað allan tímann. Til dæmis gætirðu vitað nákvæmlega hvernig á að komast á tiltekinn stað en vilt samt fá reglulegar uppfærslur um fjarlægð að áfangastað; eða þú gætir viljað nota hljóðvitann aðeins þegar þú nærð nærri áfangastað. Hvort sem ástæðan er sú að þú vilt hlusta minna eða meir, geturðu stjórnað hvenær þú heyrir hljóðvitann með því að slökkva eða kveikja á hnappnum *\"slökkva á hljóðvita\"*/*\"virkja hljóðvita\"* á aðalskjánum.</string>
     <string name="faq_holding_phone_flat_question">Þarf ég að halda á símanum?</string>
     <string name="faq_holding_phone_flat_answer">Þegar þú gengur getur þú sett símann í vasann. Soundscape reiknar út stefnu útfrá gögnum semforritið safnar. Þegar þú stoppar lækkar hljóðstyrkur í hljóðvita en þá má beina símanum til að átta sig á staðsettningu hljóðvita.</string>
     <string name="faq_what_is_osm_question">hvað er open streetmap og hversvega er það notað af Soundscape?</string>
@@ -410,16 +410,16 @@
     <string name="help_text_destination_beacons_how_1">**Til að setja hljóðvita:**\n\nFyrst skoðaðu upplýsingar um stað með því að nota leitargluggann eða ýta á einn af hnöppunum *\"Nálægir staðir\"*, *\"Vistað merki\"* eða *\"Staðsetning\"* og velja stað. Á upplýsingasíðu staðarins geturðu valið hnappinn *\"hljóð viti\"*. Þegar þú ýtir á hann skilar hann þér á heimaskjáinn og kveikir hljóðvita sem kemur úr þeirri átt sem þú valdir. Nafn staðarins ásamt fjarlægð og heimilisfangi, ef tiltækt, verður nú sýnt á aðalskjánum.</string>
     <string name="help_text_destination_beacons_how_2">**Til að fjarlægja núverandi hljóðvita:**\n\nÝttu einfaldlega á hnappinn *\"Slökkva á hljóðvita\"* á heimaskjánum.</string>
     <string name="help_text_destination_beacons_how_3">**Til að bæla hljóðvitann:**\n\nÝttu á hnappinn *\"slökkva á hljóðmerki vita\"* við hliðina á hnappnum *\"Slökkva á hljóðvita\"* á heimaskjánum.</string>
-    <string name="help_text_automatic_callouts_what">Soundscape getur sagt þér frá hlutum í kringum þig þegar þú nálgast þá með því að kalla upp nafn þeirra úr þeirri átt sem þau eru. Forritið gerir þetta sjálfkrafa fyrir ýmsa hluti eins og fyrirtæki, strætóstopp og jafnvel gatnamót. Þú getur stillt hvað forritið kallar sjálfkrafa í hlutanum *\"Stilla tilkynningar\"* í *\"Stillingar\"*-skjánum, og þú getur slökkt á öllum tilkynningum þegar þú vilt hafa forritið hljótt.</string>
+    <string name="help_text_automatic_callouts_what">Soundscape getur sagt þér frá hlutum í kringum þig þegar þú nálgast þá með því að lesa upp nafn þeirra úr þeirri átt sem þau eru staðsett. Forritið gerir þetta sjálfkrafa fyrir margvíslega hluti, t.d. fyrirtæki, strætóstopp og jafnvel gatnamót. Þú getur stillt hvaða atriði forritið les sjálfkrafa upp í kaflanum *\"Tilkynningar\"* á síðunni *\"Stillingar\"*, og þú getur slökkt á öllum tilkynningum ef þú vilt að forritið sé hljótt.</string>
     <string name="help_text_automatic_callouts_when_1">**Þegar verið er að kanna nýtt svæði:**\n\nKveiktu á sjálfvirkum tilkynningum og gengðu um til að heyra um mismunandi verslanir, veitingastaði og fleira þegar þú ferð framhjá þeim.</string>
     <string name="help_text_automatic_callouts_when_2">**Að ganga að ákveðnum stað:**\n\nÞegar þú ert á leið að tilteknum stað geta sjálfvirkar tilkynningar um gatnamót verið sérstaklega gagnlegar. Gatnamóta-tilkynningar segja þér um uppbyggingu gatnamóta þegar þú nálgast þau og staðfesta veginn sem þú ert á þegar þú yfirgefur þau.</string>
     <string name="help_text_automatic_callouts_when_3">**Þegar þú þarft þögn:**\n\nÞegar þú ætlar að fara yfir veg eða þarft einfaldlega að forritið sé hljótt, geturðu slökkt á tilkynningum. Þegar tilkynningar eru slökkt mun forritið aðeins gefa þér upplýsingar ef þú ýtir sjálfur á einn af hnöppunum *\"mín staðsettning\"*, *\"nálæg merki\"*, *\"í kringum mig\"* eða *\"fyrir framan mig\"*.</string>
-    <string name="help_text_automatic_callouts_how_1">**Að kveikja á eða slökkva á tilkynningum:**\n\nAð slökkva á tilkynningum gerir forritið hljótt. Þú getur kveikt á eða slökkt á tilkynningum í hlutanum *\"Stilla tilkynningar\"* á *\"Stillingar\"*-skjánum þar sem þú getur ýtt á rofann *\"Heimila tilkynningar\"* til að kveikja eða slökkva á þeim. Þú getur einnig kveikt á eða slökkt á tilkynningum með því að nota \"stökkva áfram\" skipunina (tvísmelltu og haltu niðri) ef heyrnartólin þín hafa stjórnhnappa. Einnig getur þú notað hnappinn *\"fara í dvala\"* efst í hægra horninu á heimaskjánum til að stöðva Soundscape frá að gefa tilkynningar þar til þú velur að vekja það aftur.</string>
-    <string name="help_text_automatic_callouts_how_2">**Að stjórna hvaða tilkynningar þú heyrir:**\n\nTil að velja hvaða tegundir atriða Soundscape mun kalla sjálfkrafa, farðu í *\"Stillingar\"*-skjáinn úr valmyndinni á *\"Heimaskjá\"*. Hluti *\"Stilla tilkynningar\"* í *\"Stillingar\"*-skjánum inniheldur lista yfir tegundir atriða sem forritið getur kallað upp. Hver liður hefur rofa sem þú getur kveikt eða slökkt á. Ef þú vilt slökkva á öllum tilkynningum skaltu ýta á rofann *\"Heimila tilkynningar\"* efst á listanum.</string>
+    <string name="help_text_automatic_callouts_how_1">**Kveikja eða slökkva á tilkynningum :**\n\n Að slökkva á tilkynningum þegir forritið. Þú getur kveikt eða slökkt á tilkynningum í kaflanum *\"Tilkynningar\"* á skjánum *\"Stillingar\"* með því að ýta á rofann *\"Leyfa tilkynningar\"*. Ef heyrnartólin þín hafa fjölmiðlahnappa geturðu einnig kveikt/slökkt á tilkynningum með *\"sleppa áfram\"* skipuninni (tvíbankaðu og haltu). Einnig er hægt að nota hnappinn *\"Fara í dvala\"* efst til hægri á heimaskjánum til að stöðva tilkynningar þar til þú velur að vekja Soundscape aftur.</string>
+    <string name="help_text_automatic_callouts_how_2">**Stjórna hvaða tilkynningar þú heyrir :**\n\n Til að velja hvaða tegundir atriða Soundscape les upp sjálfkrafa, farðu í skjáinn *\"Stillingar\"* úr valmyndinni á heimaskjánum. Í kaflanum *\"Tilkynningar\"* í *\"Stillingar\"* er listi yfir þær tegundir atriða sem forritið getur lesið upp. Hvern liður má kveikja á eða slökkva með rofa. Ef þú vilt slökkva á öllum tilkynningum skaltu ýta á rofann *\"Leyfa tilkynningar\"* efst í listanum.</string>
     <string name="help_text_ahead_of_me_how">Eins og með alla fjóra hnappana neðst á heimaskjánum skaltu halda símanum flötum (skjárinn snýr upp að himni) og toppinn á símanum í þá átt sem þú snýrð áður en þú ýtir á *\"fyrir framan mig\"* hnappinn. Þetta virkar eins og áttaviti og segir forritinu hvaða átt þú snýrð. Ýttu einfaldlega á *\"fyrir framan mig\"* hnappinn og þú munt heyra nokkur áhugaverð staði sem eru um það bil fyrir framan þig.</string>
     <string name="help_text_remote_control_what">Þú getur nálgast ákveðna eiginleika í Soundscape með hjálp fjölmiðlastýringahnappa á heyrnartólunum þínum. Þetta virkar með bæði snúru- og Bluetooth-heyrnartólum sem hafa hnappa eins og Spila, Hlé, Næsta, Fyrra o.s.frv. Mismunandi heyrnartól geta haft mismunandi hnappa, svo skoðaðu listann yfir aðgerðir hér að neðan til að sjá hvaða hnöppum þú hefur aðgang að.</string>
     <string name="help_text_remote_control_when">Fjölmiðlastýringar á heyrnartólum er hægt að nota á meðan Soundscape er í gangi. Þetta gildir hvort sem þú ert í Soundscape, forritið keyrir í bakgrunni eða tækið er læst. Athugaðu samt að fjölmiðlahnappar á heyrnartólum virka ekki fyrir Soundscape ef annað forrit er að spila hljóð, til dæmis tónlist, hlaðvörp eða myndbönd.</string>
-    <string name="help_text_remote_control_how">Þú getur notað eftirfarandi aðgerðir í Soundscape með fjölmiðlastýringahnöppum heyrnartóla þinna:\n\n⏯ Spila/Hlé: Þegja núverandi tilkynningar og ef hljóðviti er settur, kveikja eða slökkva á hljóðvitanum.\n\n⏭ Næsta: Lesa upp *\"mín staðsettning\"*.\n\n⏮ Fyrra: Endurtaka síðustu tilkynningu.\n\n⏩ Sleppa áfram: Kveikja/slökkva á sjálfvirkum tilkynningum.\n\n⏪ Sleppa aftur á bak: Lesa upp *\"í kringum mig\"*.</string>
+    <string name="help_text_remote_control_how">Það eru 3 rekstrarhamir fyrir fjölmiðlastýringa. Hamurinn er valinn í kaflanum *\"Stillingar\"* » *\"Fjölmiðlastýringar\"*. Hamirnir eru:\n\nUpprunalegur hamur.\n\n⏯ Spila/Hlé: Kveikir og slekkur á hljóði hljóðvita.\n\n⏭ Næsta: Ef leið er í spilun færist hljóðviti á næsta leiðarpunkt í leiðinni. Ef engin leið er í spilun segir forritið *\"Mín staðsettning\"*.\n\n⏮ Fyrri: Ef leið er í spilun færist hljóðviti á fyrri leiðarpunkt í leiðinni. Ef engin leið er í spilun segir forritið *\"Í kringum mig\"*.\n\n\n\nRaddskipanir.\n\n⏯ Spila/Hlé: Þetta vekur forritið til að byrja að hlusta eftir raddskipunum.\n\n\n\nHljóðvalmynd.\n\n⏭ Næsta og ⏮ Fyrri færast í gegnum röð valkosta í valmynd sem forritið lýsir með talgervli. ⏯ Spila/Hlé framkvæmir síðan þann valkost sem lýst var. Það er ein yfirlitsvalmynd (top level) sem inniheldur aðeins undirmatseðla sem valkosti. Hver undirmatseðill inniheldur hóp af svipuðum aðgerðum.</string>
     <string name="help_text_markers_content_1">Með Soundscape geturðu merkt heiminn þinn og það sem þér þykir mikilvægt, eins og nál á korti.</string>
     <string name="help_text_markers_content_2">Þú getur merkt hluti sem eru persónulegir og þér mikilvægir, eins og heimilið þitt, vinnustaðinn eða uppáhalds matvöruverslunina þína. Þú getur merkt hvaða stað eða heimilisfang sem er en einnig hluti sem venjulega eru ekki á kortum, til dæmis innganga að byggingum eða görðum, hnappa fyrir gangbrautarljós, gangbrautir eða brýr, strætóstopp eða jafnvel uppáhaldstré hundsins þíns, og nota þessi atriði sem viðmiðun við gönguferðir.</string>
     <string name="help_text_markers_content_3">Til að heyra um vistuð merki mun Soundscape sjálfkrafa tilkynna þau þegar þú gengur framhjá eða nálgast þau, eða þú getur notað hnappinn *\"nálæg merki\"* neðst á heimaskjánum til að heyra tilkynningar um vistuð merki sem heyrist frá þeim áttum þar sem þau eru. In addition, þú getur sett hljóðvita á hvaða vistað merki sem er. Þá heyrist hljóðviti Soundscape sem þú þekkir og þú getur notað hann eins og venjulega.</string>
@@ -436,12 +436,12 @@
     <string name="faq_tip_setting_beacon_on_address">Þú getur sett hljóðvita á hvaða heimilisfang sem er. Frá aðalskjá Soundscape skaltu leita að heimilisfanginu. Eftir að þú velur heimilisfangið úr leitarniðurstöðunum opnast skjárinn *\"upplýsingar um staðsetningu\"* sem hefur valkostinn *\"hljóð viti\"* á því heimilisfangi. Á þennan hátt geturðu stillt hljóðvita á fyrirtæki, staði, áhugaverða staði og íbúðarhúsnæði sem eru ekki í Open Street Map.</string>
     <string name="faq_tip_finding_bus_stops">Þú getur fundið nærliggjandi strætóstopp með því að velja síuna *\"almenningssamgöngur\"* í listanum *\"nálægir staðir\"*.</string>
     <string name="faq_tip_turning_beacon_off">Þú getur kveikt og slökkt á taktfast hljóði hljóðvita með þögunarhnappnum á heimaskjánum. Ef hljóðvitinn er þaggaður færð þú samt reglulega uppfærslur um fjarlægðina að áfangastaðnum, um það bil á 50 metra fresti.</string>
-    <string name="faq_tip_turning_off_auto_callouts">Ef þú vilt enn eiga samskipti við Soundscape en vilt ekki heyra sjálfvirkar tilkynningar geturðu slökkt á tilkynningum undir *\"Stilla tilkynningar\"* í *\"Stillingar\"* úr valmyndinni. Ef þú ætlar ekki að nota Soundscape geturðu sett það í annað hvort dvalarham eða lúra (Snooze) með hnappnum *\"fara í dvala\"* á heimaskjánum.</string>
+    <string name="faq_tip_turning_off_auto_callouts">Ef þú vilt enn nota Soundscape en ekki heyra sjálfvirkar tilkynningar geturðu slökkt á þeim í kaflanum *\"Tilkynningar\"* á skjánum *\"Stillingar\"* úr valmyndinni. Ef þú ætlar ekki að nota Soundscape um stund skaltu setja það í Dvala- eða Lúra-ham með hnappnum *\"Fara í dvala\"* á heimaskjánum.</string>
     <string name="faq_tip_hold_phone_flat">Soundscape virkar best þegar þú heldur símanum flötum með skjáinn snúinn upp að himni og topp síma snúinn frá þér.</string>
     <string name="faq_tip_create_marker_at_bus_stop">Ef þú ferð reglulega með ákveðna strætóleið skaltu setja ástigningarsæti og útskipunarstopp sem merki. Þannig verða þau vistuð svo auðvelt sé að finna þau aftur; farðu í *\"Stjórna merkjum\"* úr valmyndinni og finndu þau í listanum. Þú getur sett hljóðvita á þau og fengið reglulegar uppfærslur um hve nálægt þú ert niðurstigningarstöðinni. Ath: þú getur slökkt á taktfast hljóðinu en fengið samt fjarlægjuuppfærslur á leiðinni.</string>
     <string name="no_language_selected">Ekkert tungumál valið</string>
     <string name="first_launch_permissions_notification">Tilkynningar</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">Við erum að keyra þessa staðsetningarþjónustu í forgrunni</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">Staðsetningarþjónusta Soundscape keyrir jafnvel þegar síminn er læstur.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">hætta við leit</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">lestastöð</string>
     <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s lestastöð</string>
@@ -452,7 +452,7 @@
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">ferjuhöfn</string>
     <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s ferjuhöfn</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Hljóðstillingar</string>
-    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Aðgengisstillingar</string>
+    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Aðgengi</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Ljóst eða dökkt þema</string>
     <string name="settings_theme_auto" tools:ignore="MissingTranslation">Sjálfvirkt</string>
     <string name="settings_theme_is_light" tools:ignore="MissingTranslation">Nota ljóst þema</string>
@@ -469,7 +469,7 @@
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Virkja skráningu ferða</string>
     <string name="settings_accessible_map" tools:ignore="MissingTranslation">Virkja aðgengilegan kortastíl</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">Sýna kort á skjánum</string>
-    <string name="settings_debug_heading" tools:ignore="MissingTranslation">Stillingar fyrir villuleit</string>
+    <string name="settings_debug_heading" tools:ignore="MissingTranslation">Villuleitarmöguleikar</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">Leitartungumál</string>
     <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">Deila ferðaupptöku</string>
     <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s til %2$s um %3$s</string>
@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Merki og leiðir eytt</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Upplýsingar um nýja útgáfu</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Loka útgáfuupplýsingum</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nHelstu breytingarnar í þessari útgáfu snúa að *Leit* og því að lýsa núverandi heimilisfangi. Þegar nettenging er til staðar mun *Leit* nota Android-leitina auk okkar eigin Photon-þjóns til að finna staði. Helstu framfarirnar eru annars vegar að leit eftir húsnúmeri ætti að virka mun betur í mörgum heimshlutum. Hins vegar höfum við einnig bætt við ónettengdri leit sem notar öll niðurhöld kort til að leita að heimilisföngum og áhugaverðum stöðum. Ónettengd leit virkar í um það bil 5 mílna radíus frá notandanum.\n\nRáð við leit:\n\nLeitarviðmótið hefur breyst örlítið frá síðustu útgáfu þar sem það studdi ekki rétt vinnslu með TalkBack. Nú þarf notandann að ýta á Enter/Leita til að hefja leitina eftir að leitartextinn hefur verið sleginn inn.\n\nÓnettengd leit krefst þess að ónettengd kort séu niðurhlaðin. Hlaðið þeim niður í Stillingar / Ónettengd kort skjánum.\n\nÍ stillingum er hægt að velja að neyða leit til að vera eingöngu ónettengd. Sjálfgefin stilling „Sjálfvirkt“ notar netleit þegar tenging er til staðar og ónettengda leit þegar engin tenging er til.\n\nVið leit að götulegu/heimilisfangi skiptir bæjarnafnið mestu máli fyrir netleit, þó megi yfirleitt sleppa því í ónettengdri leit.\n\nKortlagning húseininga í OpenStreetMap-gögnum sem við notum er mismunandi eftir staðsetningu. Ónettengd leit mun nota húsnúmer þegar þau eru til, en til þess þarf ónettengt kort sem hefur verið niðurhlaðið í forritið þann 19. janúar 2026 eða síðar.\n\nEins og alltaf, vinsamlegast tilkynnið öll vandamál, jafnvel þótt þau virðist smávægileg, með því að nota valkostinn *hafa samband, stuðningur* í aðalvalmyndinni.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nÍ þessari útgáfu eru tvær nýjar aðgerðir sem gera fjarstýringu forritsins kleift, jafnvel þegar síminn er læstur. Það þýðir að síminn má vera í vasanum meðan þú stjórnar helstu eiginleikum forritsins.\n\nBáðar fjarstýringaraðferðirnar nota Bluetooth fjölmiðlahnappa, annað hvort á heyrnartólunum þínum eða með sér litlum fjarstýringum sem þú getur haft í hendinni eða vasanum. Hamur fjarstýringarinnar er valinn í stillingunum undir Stillingar / Fjölmiðlastýringar og þú getur valið „Raddskipanir\" svo þú getir talað við forritið, eða „Hljóðvalmynd\" þar sem valmyndir eru lesnar upp fyrir þig með valkostum til að velja. „Upprunalegur hamur\" þýðir að Bluetooth hnapparnir virka á sama hátt og í eldri útgáfum.\n\nÍ raddskipana-ham, þegar þú ýtir á spila/hlé hnappinn á heyrnartólunum byrjar forritið að hlusta eftir tali og þú heyrir stutt hljóð sem gefur til kynna að hlustun hafi hafist. Ef þú segir „Hjálp\" mun það telja upp þær skipanir sem í boði eru. Þú getur þá ýtt á hnappinn aftur og reynt aðra skipanir. Því miður styður Android talgreining ekki öll tungumál og hún er ekki tiltæk á öllum símum.\n\nHelsta erfiðleikinn með raddskipanahaminn er að sum heyrnartól taka lengri tíma að virkja hljóðnemann en önnur. Það þýðir að eftir að þú hefur ýtt á spila/hlé gætirðu þurft að bíða allt að 5 sekúndur áður en þú getur talað. Til að læra hversu langan tíma það tekur er best að ýta á spila/hlé og telja frá 1 upp í 10. Síminn ætti að segja upp hvað hann skynjaði og talan sem hann byrjar á var sú fyrsta sem hann skynjaði. Þessi aðferð hjálpar þér að giska á hvenær best er að hefja talið. Sum heyrnartól gefa frá sér greinilegt hljóð þegar hljóðneminn er virkur sem einfaldar þetta, en önnur gera ekkert hljóð. Því miður krefst þetta stundum æfingar.\n\nHinn nýi fjarstýringahamurinn, Hljóðvalmynd, virkar á öllum tungumálum og á öllum símum. Næsta/fyrri fjölmiðlahnapparnir færa áfram og aftur um valkosti í valmyndinni. Spila/hlé hnappurinn velur svo þann valkost sem er valinn. Það er yfirlitsvalmynd og síðan eitt lag af undirmatseðlum sem flokka svipaðar skipanir saman.\n\nÞessar aðgerðir eru mjög nýjar og við myndum gjarnan vilja fá endurgjöf um hvort þær virka vel og hvaða aðrar skipanir þið mynduð vilja.\n\nVinsamlega tilkynnið öll vandamál, jafnvel smávægileg, með valkostinum *Hafa samband, stuðningur* í aðalvalmyndinni.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Leyfi opins hugbúnaðar</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Ferjuhöfn</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s ferjuhöfn</string>
@@ -1192,8 +1192,8 @@
     <string name="settings_search_offline" tools:ignore="MissingTranslation">Ónettengd</string>
     <string name="settings_search_auto" tools:ignore="MissingTranslation">Sjálfvirkt</string>
     <string name="search_no_results" tools:ignore="MissingTranslation">Engar leitarniðurstöður fundust</string>
-    <string name="search_searching" tools:ignore="MissingTranslation">Leita…</string>
-    <string name="menu_manage_search" tools:ignore="MissingTranslation">Stjórna leit</string>
+    <string name="search_searching" tools:ignore="MissingTranslation">Leitar…</string>
+    <string name="menu_manage_search" tools:ignore="MissingTranslation">Leit</string>
     <string name="route_not_found" tools:ignore="MissingTranslation">Leið fannst ekki</string>
     <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Flytja út</string>
     <string name="location_item_selected" tools:ignore="MissingTranslation">Valið</string>
@@ -1248,4 +1248,87 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Vegna þess að þú ert ekki með skjálesara virkan gerum við ráð fyrir að þú viljir að myndrænu kortin í notendaviðmótinu séu sýnd. Þú getur breytt þessari stillingu hér, eða bara haldið áfram.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">áfram</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">loka sprettiglugga og halda áfram með hljóðleiðsögn</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">kveikja á hljóðvita á þessu merki</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">gera kortið fullskjá og breyta staðsetningu merkisins.</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">hætta að breyta staðsetningu merkisins.</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">Á %1$s rétt áður en %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">Á %1$s rétt eftir %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Nálægt gatnamótum %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Þetta merki er þegar í leiðinni á þessari staðsetningu. Við getum ekki bætt því við aftur.</string>
+    <string name="settings_explanation" tools:ignore="MissingTranslation">Stillingar forritsins eru flokkaðar í hópa hér neðar. Ýttu á flokk til að opna hann og sjá hvaða valkostir eru í boði.</string>
+    <string name="settings_section_units_description" tools:ignore="MissingTranslation">Veldu mælieiningar sem á að nota fyrir fjarlægðir</string>
+    <string name="settings_section_search_network" tools:ignore="MissingTranslation">Leitarmáti</string>
+    <string name="settings_section_search_network_description" tools:ignore="MissingTranslation">Stjórnaðu hvort leit notar aðeins ónettengd gögn</string>
+    <string name="beacon_settings_style_description" tools:ignore="MissingTranslation">Veldu stíl hljóðvita sem þú vilt nota</string>
+    <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">Inniheldur nafnlausar götur við staðsetningarhermun</string>
+    <string name="callouts_allow_callouts_description" tools:ignore="MissingTranslation">Kveikja eða slökkva á öllum tilkynningum</string>
+    <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Nálægir staðir, til dæmis verslanir og veitingastaðir</string>
+    <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Upplýsingar um gatnamót og samgöngur</string>
+    <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Uppfærslur um fjarlægð að hljóðvita þegar hann er settur</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Tungumál og svæði "</string>
+    <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Netleit getur notað staðbundið tungumál niðurstaðna, eða verið stillt til að skila niðurstöðum á ensku, frönsku eða þýsku.</string>
+    <string name="language_mismatch_title" tools:ignore="MissingTranslation">Nýtt tungumál í boði</string>
+    <string name="language_mismatch_message" tools:ignore="MissingTranslation">Síminn þinn er stilltur á %1$s og það tungumál er nú í boði í Soundscape. Viltu að Soundscape noti %1$s?</string>
+    <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Skipta yfir í %1$s</string>
+    <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Halda núverandi tungumáli</string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation">fara þessa leið að næstu gatnamót.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">Mistókst að finna leið í gagnagrunni.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">Mistókst að eyða leiðinni.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">Mistókst að vista leið.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">Staðsetningarþjónusta Soundscape er enn í gangi.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Niðurhal lokið</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Niðurhal aflýst</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">Villa við niðurhal</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">hljóðviti settur á %1$s, %2$s í burtu</string>
+    <string name="route_beacon_progress" tools:ignore="MissingTranslation">hljóðviti á %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">Stjórnun leiða</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">Næsti leiðarpunktur</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">Fyrri leiðarpunktur</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">Engar vistaðar leiðir</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">Aðalvalmynd</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Upptaka hljóðs</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">Þetta leyfi er valfrjálst, en nauðsynlegt ef þú vilt nota raddskipanir til að stýra forritinu.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">Fjölmiðlastýringar</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">Ham fjölmiðlastýringa</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">Hnappana á heyrnartólunum þínum eða fjarstýringunni má stilla til að virka á mismunandi hátt eftir þessari stillingu.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">Upprunalegur hamur</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">Raddskipanir</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">Hljóðvalmynd</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Tiltækar raddskipanir:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Hlusta…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">Því miður, ég finn ekki skipunina %1$s. Raddskipunin „%2$s\" mun telja upp tiltækar skipanir.</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">Telja upp leiðir</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Tiltækar leiðir eru,</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">Telja upp merki</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Tiltæk merki eru,</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Engar leiðir hafa verið vistaðar</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Engin merki hafa verið vistuð</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Leið fannst ekki: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Hef spilun leiðarinnar %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Hefja leið %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Kveikja á hljóðvita á %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Hljóðviti settur á %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Merki fannst ekki: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Þú getur einnig sett af stað leiðir og merki með nafni, til dæmis.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Tímaútrunnin nettengingarvilla við talgreiningu.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Nettengingarvilla við talgreiningu.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">Villa við upptöku hljóðs fyrir talgreiningu.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">Þjónsvilla í talgreiningu.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">Villa í viðmóti talgreiningar.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">Bið eftir tali rann út og hlustun var hætt. Reyndu aftur.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">Ekkert tal heyrðist og hlustun var hætt. Reyndu aftur.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">Talgreining upptekin - villa.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">Ekki lágu fyrir næg leyfi til að keyra talgreiningu.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">Talgreining: of margar beiðnir.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">Talgreiningarþjónn aftengdur - villa.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">Núverandi tungumál er ekki stutt af Android fyrir talgreiningu.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">Núverandi tungumál er stutt en hefur ekki verið hlaðið niður á þessum síma.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Villa við athugun á stuðningi talgreiningar.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Villa við hlustun á niðurhali talgreiningar.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Óþekkt villa í talgreiningu.</string>
+    <string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">Talgreining er ekki stutt á þessum síma.</string>
+    <string name="settings_voice_command_listening_prompt" tools:ignore="MissingTranslation">Tilkynna hlustun</string>
+    <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Spila tilkynningu um hlustun áður en talgreining hefst.</string>
+    <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Hljóðnemi</string>
+    <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Veldu hvaða hljóðnemi á að nota fyrir raddskipanir.</string>
 </resources>

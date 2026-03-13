@@ -1,6 +1,8 @@
 package org.scottishtecharmy.soundscape.viewmodels
 
 import android.content.Context
+import android.media.AudioDeviceInfo
+import android.media.AudioManager
 import android.util.Log
 import androidx.core.content.edit
 import androidx.lifecycle.ViewModel
@@ -38,7 +40,9 @@ class SettingsViewModel @Inject constructor(
         var voiceTypes : List<String> = emptyList(),
         var storages : List<StorageUtils.StorageSpace> = emptyList(),
         var currentStoragePath: String = "",
-        var selectedStorageIndex: Int = -1
+        var selectedStorageIndex: Int = -1,
+        var microphoneDescriptions : List<String> = listOf("Auto"),
+        var microphoneValues : List<String> = listOf(MainActivity.VOICE_COMMAND_MICROPHONE_DEFAULT),
     )
 
     private val _restartAppEvent = MutableSharedFlow<Unit>()
@@ -77,6 +81,7 @@ class SettingsViewModel @Inject constructor(
                 currentStoragePath = currentPath,
                 selectedStorageIndex = currentIndex
             )
+            refreshMicrophones()
             soundscapeServiceConnection.serviceBoundState.collect {
                 Log.d(TAG, "serviceBoundState $it")
                 if (it) {
@@ -143,6 +148,40 @@ class SettingsViewModel @Inject constructor(
             }
         }
     }
+    fun refreshMicrophones() {
+        val am = appContext.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        val inputs = am.getDevices(AudioManager.GET_DEVICES_INPUTS)
+        val descriptions = mutableListOf("Auto")
+        val values = mutableListOf(MainActivity.VOICE_COMMAND_MICROPHONE_DEFAULT)
+        for (device in inputs) {
+            val name = device.productName.toString().ifBlank { "Unknown" }
+            val typeName = microphoneTypeName(device.type)
+            val description = "$name ($typeName)"
+            // Use address as stable identifier for BT, fall back to type|productName
+            val value = if (device.address.isNotBlank())
+                "${device.type}|${device.address}"
+            else
+                "${device.type}|${device.productName}"
+            descriptions.add(description)
+            values.add(value)
+        }
+        _state.value = _state.value.copy(
+            microphoneDescriptions = descriptions,
+            microphoneValues = values
+        )
+    }
+
+    private fun microphoneTypeName(type: Int): String = when (type) {
+        AudioDeviceInfo.TYPE_BUILTIN_MIC -> "Built-in"
+        AudioDeviceInfo.TYPE_BLUETOOTH_SCO -> "Bluetooth SCO"
+        AudioDeviceInfo.TYPE_BLE_HEADSET -> "BLE Headset"
+        AudioDeviceInfo.TYPE_WIRED_HEADSET -> "Wired Headset"
+        AudioDeviceInfo.TYPE_USB_DEVICE -> "USB"
+        AudioDeviceInfo.TYPE_USB_HEADSET -> "USB Headset"
+        AudioDeviceInfo.TYPE_TELEPHONY -> "Telephony"
+        else -> "Type $type"
+    }
+
     fun updateLanguage(localContext: MainActivity) {
         coroutineScope.launch {
             localContext.setServiceState(false)

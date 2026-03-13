@@ -24,4 +24,5 @@ interface AudioEngine {
     fun updateBeaconType(sharedPreferences: SharedPreferences): Boolean
     fun onAllBeaconsCleared()
     fun textToSpeechAudioConfigCallback(id : String, sampleRateInHz: Int, format: Int, channelCount: Int)
+    fun setHrtfEnabled(enabled: Boolean)
 }

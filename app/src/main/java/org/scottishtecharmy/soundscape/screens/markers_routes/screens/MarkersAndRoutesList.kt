@@ -24,7 +24,7 @@ fun MarkersAndRoutesList(
     onStartPlayback: (LocationDescription) -> Unit = {},
     onStartBeacon: (LocationDescription) -> Unit = {}
 ) {
-    val startBeaconHint = stringResource(R.string.location_detail_action_beacon_hint)
+    val startBeaconHint = stringResource(R.string.location_detail_action_beacon_from_markers)
     val startRouteHint = stringResource(R.string.route_detail_action_start_route_hint)
 
     LazyColumn(

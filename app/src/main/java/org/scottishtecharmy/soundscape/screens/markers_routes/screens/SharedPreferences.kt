@@ -1,20 +1,19 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.screens
 
 import android.content.Context
+import androidx.core.content.edit
 
 // SharedPreferences Helper Functions
 fun saveSortOrderPreference(context: Context, isSortAscending: Boolean) {
     val sharedPreferences = context.getSharedPreferences("SORT_ORDER_PREFS", Context.MODE_PRIVATE)
-    with(sharedPreferences.edit()) {
+    sharedPreferences.edit {
         putBoolean("SORT_ORDER_KEY", isSortAscending)
-        apply()
     }
 }
 fun saveSortFieldPreference(context: Context, isSortByName: Boolean) {
     val sharedPreferences = context.getSharedPreferences("SORT_FIELD_PREFS", Context.MODE_PRIVATE)
-    with(sharedPreferences.edit()) {
+    sharedPreferences.edit {
         putBoolean("SORT_FIELD_KEY", isSortByName)
-        apply()
     }
 }
 

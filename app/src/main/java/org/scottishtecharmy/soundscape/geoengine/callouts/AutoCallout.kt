@@ -21,7 +21,6 @@ import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
-import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SoundscapeGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -185,6 +184,9 @@ class AutoCallout(
             val name = getTextForFeature(localizedContext, feature as MvtFeature)
             val nearestPoint = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
 
+            if(name.text.isEmpty())
+                return@filter true
+
             val callout = TrackedCallout(
                 userGeometry,
                 name.text,
@@ -272,8 +274,7 @@ class AutoCallout(
     fun updateLocation(
         userGeometry: UserGeometry,
         gridState: GridState,
-        settlementGrid: GridState,
-        geocoder: SoundscapeGeocoder
+        settlementGrid: GridState
     ) : TrackedCallout? {
 
         // Run the code within the treeContext to protect it from changes to the trees whilst it's

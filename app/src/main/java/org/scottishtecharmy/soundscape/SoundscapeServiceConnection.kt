@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.services.SoundscapeBinder
 import org.scottishtecharmy.soundscape.services.SoundscapeService
+import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
 import javax.inject.Inject
 
 @ActivityRetainedScoped
@@ -48,13 +49,17 @@ class SoundscapeServiceConnection @Inject constructor() {
         return soundscapeService?.gridStateFlow
     }
 
+    fun getVoiceCommandStateFlow(): StateFlow<VoiceCommandState>? {
+        return soundscapeService?.voiceCommandStateFlow
+    }
+
     fun setStreetPreviewMode(on : Boolean, location: LngLatAlt? = null) {
         Log.d(TAG, "setStreetPreviewMode $on")
         soundscapeService?.setStreetPreviewMode(on, location)
     }
 
     fun routeStart(routeId: Long) {
-        soundscapeService?.routeStart(routeId)
+        soundscapeService?.routeStartById(routeId)
     }
 
     fun routeStartReverse(routeId: Long) {

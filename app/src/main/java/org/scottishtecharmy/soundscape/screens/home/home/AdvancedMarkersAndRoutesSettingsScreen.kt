@@ -77,7 +77,7 @@ fun AdvancedMarkersAndRoutesSettingsScreenVM(
     AdvancedMarkersAndRoutesSettingsScreen(
         navController,
         { viewModel.exportMarkersAndRoutes(context, chooserText) },
-        { viewModel.triggerImport(context) },
+        { viewModel.triggerImport() },
         { viewModel.deleteAllMarkersAndRoutes(context, clearAllSuccessString) },
         userFeedback.value,
         viewModel::userFeedbackShown,

@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.navigation
 
-import androidx.compose.ui.res.stringResource
 import org.scottishtecharmy.soundscape.R
 
 sealed class ScreensForMarkersAndRoutes(

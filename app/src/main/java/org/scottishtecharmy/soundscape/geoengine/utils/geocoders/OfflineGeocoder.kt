@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
 import android.content.Context
-import androidx.compose.ui.res.stringResource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.R
@@ -136,10 +135,16 @@ class OfflineGeocoder(
                     (result.ahead.distance < 10.0) &&
                     ((result.ahead.distance < result.behind.distance) || result.behind.name.isEmpty()))
                 {
-                    text = result.ahead.name
+                    // If this is a street address, then it already includes the street name. Otherwise
+                    // we want to add that in.
+                    val formatString = (localizedContext?.getString(R.string.street_description_relative_before) ?:
+                    "On %s just before %s")
+                    text = formatString.format(nearbyName, result.ahead.name)
                 }
                 else if (result.behind.distance < 10.0) {
-                    text = result.behind.name
+                    val formatString = (localizedContext?.getString(R.string.street_description_relative_after) ?:
+                    "On %s just after %s")
+                    text = formatString.format(nearbyName, result.behind.name)
                 }
                 else if(result.ahead.name.isNotEmpty() && result.behind.name.isNotEmpty()) {
                     val formatString = (localizedContext?.getString(R.string.street_description_between) ?:

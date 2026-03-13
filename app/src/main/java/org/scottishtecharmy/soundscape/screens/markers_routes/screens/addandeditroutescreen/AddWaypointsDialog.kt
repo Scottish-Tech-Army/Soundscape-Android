@@ -20,7 +20,6 @@ import org.scottishtecharmy.soundscape.screens.home.locationDetails.SaveAndEditM
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.TextOnlyAppBar
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
-import kotlin.collections.mutableListOf
 
 @Composable
 fun AddWaypointsDialog(
@@ -31,7 +30,8 @@ fun AddWaypointsDialog(
     onClickFolder: (String, String) -> Unit,
     onClickBack: () -> Unit,
     onSelectLocation: (LocationDescription) -> Unit,
-    createAndAddMarker: (LocationDescription, String, String) -> Unit,
+    onToggleMember: (LocationDescription) -> Unit,
+    createAndAddMarker: (LocationDescription, String, String, String) -> Unit,
     userLocation: LngLatAlt?,
     getCurrentLocationDescription: () -> LocationDescription,
     heading: Float,
@@ -50,8 +50,8 @@ fun AddWaypointsDialog(
                 locationDescription = placesNearbyUiState.markerDescription!!,
                 location = placesNearbyUiState.userLocation,
                 heading = heading,
-                saveMarker = { description, success, failure ->
-                    createAndAddMarker(description, success, failure)
+                saveMarker = { description, success, failure, duplicate ->
+                    createAndAddMarker(description, success, failure, duplicate)
                 },
                 deleteMarker = {},
                 dialogState = saveMarkerDialog
@@ -81,6 +81,7 @@ fun AddWaypointsDialog(
                     saveMarkerDialog.value = true
                     onSelectLocation(location)
                 },
+                onToggleMember = onToggleMember,
                 userLocation = userLocation,
                 getCurrentLocationDescription = getCurrentLocationDescription
             )
@@ -112,7 +113,7 @@ fun AddWaypointsScreenPopulatedPreview() {
                     LocationDescription(name = "Waypoint 8", location = LngLatAlt(), databaseId = 8L),
                 ),
                 toggledMembers =
-                mutableListOf(
+                listOf(
                     LocationDescription(name = "Waypoint 3", location = LngLatAlt(), databaseId = 3L),
                     LocationDescription(name = "Waypoint 7", location = LngLatAlt(), databaseId = 7L),
                 )
@@ -123,7 +124,8 @@ fun AddWaypointsScreenPopulatedPreview() {
         onClickFolder = {_,_ -> },
         onClickBack = {},
         onSelectLocation = {_ -> },
-        createAndAddMarker = {_,_,_ -> },
+        onToggleMember = {_ -> },
+        createAndAddMarker = {_,_,_,_-> },
         userLocation = LngLatAlt(),
         heading = 45.0F,
         getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
@@ -141,7 +143,8 @@ fun AddWaypointsScreenPreview() {
         onClickFolder = {_,_ -> },
         onClickBack = {},
         onSelectLocation = {_ -> },
-        createAndAddMarker = {_,_,_ -> },
+        onToggleMember = {_ -> },
+        createAndAddMarker = {_,_,_,_ -> },
         userLocation = null,
         heading = 45.0F,
         getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },

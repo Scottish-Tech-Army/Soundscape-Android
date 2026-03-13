@@ -78,21 +78,6 @@ class CalloutHistory(expiryPeriodMilliseconds : Long = 60000) {
         return false
     }
 
-    /**
-     * checkAndAdd checks the history to see if a callout already exists. If it does it returns
-     * false, otherwise it adds it and returns true.
-     * @return Returns true if the callout can go ahead, false if it should be skipped.
-     */
-    fun checkAndAdd(callout: TrackedCallout) : Boolean {
-        if (find(callout)) {
-            println("Discard ${callout.trackedText} as in history")
-            return false
-        } else {
-            add(callout)
-        }
-        return true
-
-    }
     fun size() : Int {
         return history.size
     }

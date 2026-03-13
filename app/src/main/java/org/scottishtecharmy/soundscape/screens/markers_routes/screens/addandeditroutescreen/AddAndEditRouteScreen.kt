@@ -147,7 +147,7 @@ fun AddAndEditRouteScreenVM(
         onNameChange = { viewModel.onNameChange(it) },
         onDescriptionChange = { viewModel.onDescriptionChange(it) },
         onDeleteRoute = { viewModel.deleteRoute(it) },
-        onEditComplete = { viewModel.editComplete() },
+        onEditComplete = { viewModel.editComplete(it) },
         onClickFolder = { folder, title ->
             viewModel.onClickFolder(folder, title)
         },
@@ -155,8 +155,13 @@ fun AddAndEditRouteScreenVM(
         userLocation = userLocation,
         heading = heading,
         onSelectLocation = { location -> viewModel.onSelectLocation(location) },
-        createAndAddMarker = { location, successMessage, failureMessage ->
-            viewModel.createAndAddMarker(location, successMessage, failureMessage)
+        onToggleMember = { location -> viewModel.toggleMember(location) },
+        createAndAddMarker = { location, successMessage, failureMessage, duplicateMessage ->
+            viewModel.createAndAddMarker(
+                location,
+                successMessage,
+                failureMessage,
+                duplicateMessage)
         },
         getCurrentLocationDescription = getCurrentLocationDescription
     )
@@ -177,11 +182,12 @@ fun AddAndEditRouteScreen(
     onNameChange: (newText: String) -> Unit,
     onDescriptionChange: (newText: String) -> Unit,
     onDeleteRoute: (objectId: Long) -> Unit,
-    onEditComplete: () -> Unit,
+    onEditComplete: (List<LocationDescription>) -> Unit,
     onClickFolder: (String, String) -> Unit,
     onClickBack: () -> Unit,
     onSelectLocation: (LocationDescription) -> Unit,
-    createAndAddMarker: (LocationDescription, String, String) -> Unit,
+    onToggleMember: (LocationDescription) -> Unit,
+    createAndAddMarker: (LocationDescription, String, String, String) -> Unit,
     getCurrentLocationDescription: () -> LocationDescription,
     heading: Float,
 ) {
@@ -222,7 +228,13 @@ fun AddAndEditRouteScreen(
                     navController.popBackStack()
                 }
                 ActionType.DELETE -> {
-                    navController.popBackStack(HomeRoutes.MarkersAndRoutes.route, false)
+                    // The route has been deleted, so navigate directly to the routes tab.
+                    // Use popUpTo(home) so AddAndEditRouteScreen (and anything above MarkersAndRoutes)
+                    // is removed from the back stack before navigating, preventing back-swipe
+                    // from landing on AddAndEditRouteScreen.
+                    navController.navigate(HomeRoutes.MarkersAndRoutes.route + "?tab=routes") {
+                        popUpTo(HomeRoutes.Home.route) { inclusive = false }
+                    }
                 }
                 else -> {
                     assert(false)
@@ -244,32 +256,48 @@ fun AddAndEditRouteScreen(
             placesNearbyUiState = placesNearbyUiState,
             onAddWaypointComplete = {
                 // Create the final list of markers within the route
-                val members = uiState.routeMembers
-                    .filter{ marker ->
-                        !uiState.toggledMembers.contains(marker)
-                    }
+
+                // Determine which ids to keep (from uiState, not toggled out)
+                val keepIds = uiState.routeMembers
+                    .filter { marker -> !uiState.toggledMembers.any { it.databaseId == marker.databaseId } }
+                    .map { it.databaseId }
+                    .toSet()
+
+                // Filter routeMembers (preserving user's reordering) to keep only those ids in order
+                val routeMemberIds = routeMembers.map { it.databaseId }.toSet()
+                val members = routeMembers
+                    .filter { it.databaseId in keepIds }
                     .toMutableList()
+
+                // Add entries that are in keepIds but weren't in routeMembers (added while dialog open)
+                val missingFromReorder = uiState.routeMembers
+                    .filter { it.databaseId in keepIds && it.databaseId !in routeMemberIds }
+                members.addAll(missingFromReorder)
+
+                // Add toggled members that weren't already in the route
                 for(marker in uiState.toggledMembers) {
-                    if(!uiState.routeMembers.contains(marker))
+                    if(!uiState.routeMembers.any { it.databaseId == marker.databaseId }) {
                         members.add(marker)
+                    }
                 }
-                val nonMutableMembers = members.toList()
-                for((index, marker) in nonMutableMembers.withIndex()) {
+                // Reset orderId values
+                for((index, marker) in members.withIndex()) {
                     marker.orderId = index.toLong()
                 }
-                routeMembers = nonMutableMembers
+
+                routeMembers = members
                 addWaypointDialog = false
             },
             onClickFolder = onClickFolder,
             onClickBack = {
                 if(placesNearbyUiState.level == 0) {
                     addWaypointDialog = false
-                    uiState.toggledMembers.clear()
                 }
                 else
                     onClickBack()
             },
             onSelectLocation = onSelectLocation,
+            onToggleMember = onToggleMember,
             createAndAddMarker = createAndAddMarker,
             modifier = modifier,
             userLocation = location,
@@ -290,8 +318,7 @@ fun AddAndEditRouteScreen(
                     navigationButtonTitle = stringResource(R.string.general_alert_cancel),
                     onRightButton = {
                         // Update the route
-                        uiState.routeMembers = routeMembers
-                        onEditComplete()
+                        onEditComplete(routeMembers)
                     },
                     rightButtonTitle = stringResource(R.string.general_alert_done)
                 )
@@ -463,11 +490,12 @@ fun NewRouteScreenPreview() {
         onNameChange = {},
         onDescriptionChange = {},
         onDeleteRoute = {},
-        onEditComplete = {},
+        onEditComplete = {_ -> },
         onClickFolder = {_,_ ->},
         onClickBack = {},
         onSelectLocation = {_ ->},
-        createAndAddMarker = {_,_,_ ->},
+        onToggleMember = {_ ->},
+        createAndAddMarker = {_,_,_,_ ->},
         getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
     )
 }
@@ -491,11 +519,12 @@ fun EditRouteScreenPreview() {
         onNameChange = {},
         onDescriptionChange = {},
         onDeleteRoute = {},
-        onEditComplete = {},
+        onEditComplete = {_ -> },
         onClickFolder = {_,_ ->},
         onClickBack = {},
         onSelectLocation = {_ ->},
-        createAndAddMarker = {_,_,_ ->},
+        onToggleMember = {_ ->},
+        createAndAddMarker = {_,_,_,_ ->},
         getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
     )
 }

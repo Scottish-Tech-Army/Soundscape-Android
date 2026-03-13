@@ -173,6 +173,17 @@ fun areCoordinatesClockwise(
     return area < 0
 }
 
+private fun addToStreetNumberMap(mvt: MvtFeature, streetNumberMap: HashMap<String, FeatureCollection>) {
+    if (mvt.housenumber != null) {
+        val street = mvt.properties?.get("street")
+        val streetString = street.toString()
+        if (!streetNumberMap.containsKey(streetString)) {
+            streetNumberMap[streetString] = FeatureCollection()
+        }
+        streetNumberMap[streetString]?.addFeature(mvt)
+    }
+}
+
 /**
  * vectorTileToGeoJson generates a GeoJSON FeatureCollection from a Mapbox Vector Tile.
  * @param tileX is the x coordinate of the tile
@@ -320,18 +331,6 @@ fun areCoordinatesClockwise(
  *  every segment between intersections. Now we generate the intersections and add the Ways directly
  *  to them. Let's do this in a separate class for now so that we can test it.
  */
-
-private fun addToStreetNumberMap(mvt: MvtFeature, streetNumberMap: HashMap<String, FeatureCollection>) {
-    if (mvt.housenumber != null) {
-        val street = mvt.properties?.get("street")
-        val streetString = street.toString()
-        if (!streetNumberMap.containsKey(streetString)) {
-            streetNumberMap[streetString] = FeatureCollection()
-        }
-        streetNumberMap[streetString]?.addFeature(mvt)
-    }
-}
-
 fun vectorTileToGeoJson(tileX: Int,
                         tileY: Int,
                         mvt: VectorTile.Tile,

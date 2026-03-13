@@ -582,12 +582,11 @@ fun checkWhetherIntersectionIsOfInterest(
             //  classifying.
         }
         else {
-            val name = roadName.toString()
-            if(setOfNames.contains(name)) {
+            if(setOfNames.contains(roadName)) {
                 // Don't increment the priority if the name is here for the second time
             } else {
                 needsFurtherChecking++
-                setOfNames.add(name)
+                setOfNames.add(roadName)
             }
         }
     }

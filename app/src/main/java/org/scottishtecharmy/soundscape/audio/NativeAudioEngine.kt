@@ -48,7 +48,7 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
 
     lateinit var ttsEngine : TtsEngine
 
-    private external fun create() : Long
+    private external fun create(assetManager: android.content.res.AssetManager) : Long
     private external fun destroy(engineHandle: Long)
     private external fun createNativeBeacon(engineHandle: Long, audioType: Int, headingOnly: Boolean, latitude: Double, longitude: Double, heading: Double) :  Long
     private external fun destroyNativeBeacon(beaconHandle: Long)
@@ -71,6 +71,8 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     private external fun updateGeometry(engineHandle: Long, latitude: Double, longitude: Double, heading: Double, focusGained: Boolean, duckingAllowed: Boolean, proximityNear: Double)
     private external fun setBeaconType(engineHandle: Long, beaconType: String)
     private external fun getListOfBeacons() : Array<String>
+    private external fun setHrtfEnabled(engineHandle: Long, enabled: Boolean)
+    private external fun setSuppressRestart(engineHandle: Long, suppress: Boolean)
 
     private var _ttsRunningStateChange = MutableStateFlow(false)
     val ttsRunningStateChange = _ttsRunningStateChange.asStateFlow()
@@ -86,7 +88,11 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         if(service == null) {
             geometryUpdateJob = engineCoroutineScope.launch {
                 while (isActive) { // Loop while the coroutine is active
-                    updateGeometry(0.0, 0.0, 0.0, true, true, 15.0)
+                    updateGeometry(0.0, 0.0, 0.0,
+                        focusGained = true,
+                        duckingAllowed = true,
+                        proximityNear = 15.0
+                    )
                     delay(100L) // Wait for 100 milliseconds
                 }
             }
@@ -111,7 +117,6 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
 
             Log.d(TAG, "Destroy TTS engine from NativeAudioEngine destroy")
             ttsEngine.destroy()
-            org.fmod.FMOD.close()
         }
     }
 
@@ -196,8 +201,7 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
             if (engineHandle != 0L) {
                 return
             }
-            org.fmod.FMOD.init(context)
-            engineHandle = this.create()
+            engineHandle = this.create(context.assets)
             Log.d(TAG, "Create TTS engine from NativeAudioEngine initialize")
             ttsEngine = TtsEngine(
                 this,
@@ -394,6 +398,22 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     override fun getListOfBeaconTypes() : Array<String>
     {
         return getListOfBeacons()
+    }
+
+    override fun setHrtfEnabled(enabled: Boolean)
+    {
+        synchronized(engineMutex) {
+            if(engineHandle != 0L)
+                setHrtfEnabled(engineHandle, enabled)
+        }
+    }
+
+    fun setSuppressRestart(suppress: Boolean)
+    {
+        synchronized(engineMutex) {
+            if(engineHandle != 0L)
+                setSuppressRestart(engineHandle, suppress)
+        }
     }
 
     /**

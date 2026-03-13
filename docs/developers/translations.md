@@ -9,6 +9,8 @@ has_toc: false
 
 We aim to support as many languages as possible and we're using [Weblate](https://hosted.weblate.org/projects/soundscape-android/) to help with the localization of the app. What that gives us is a place where native speakers can add new translations or just suggest improvements for some of the current strings in the app. We started off supporting the same languages as supported in iOS, but we have since added Ukrainian, Egyptian Arabic, Farsi, Polish, Russian and Icelandic.
 
+A guide to key Soundscape terminology can be found [here]({% link developers/translation-terminology.md %}).
+
 ## The translation loop
 Weblate follows the Soundscape git repository and generates it's own branch which contains translation edits made from within Weblate. It's a fairly long round trip to do the translations, but it's fairly quick to do. Here's the process:
 
@@ -63,4 +65,4 @@ Flags can be reset across multiple translations at once using bulk edit. This is
 Weblate compares the translation with the original string and checks that they match in various ways e.g. number of newlines, ending punctuation. It also checks for duplicated words in a translation e.g. "them them" and other things that may be incorrect. It's very important to go through these for each translation as there should be no failures. Any check failure which is an incorrect failure can be dismissed within the UI once it has been double checked by the user.
 
 ### Screenshots
-Screenshots can be added and associated with 
+Screenshots can be added and associated with strings.

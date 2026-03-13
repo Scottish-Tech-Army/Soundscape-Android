@@ -15,5 +15,3 @@ Soundscape wouldn't be possible without these fantastic third party libraries an
 
 [©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
 
-[Audio Engine: FMOD Studio by Firelight Technologies Pty Ltd.](https://www.fmod.com/legal) takes care of the audio playback.
-

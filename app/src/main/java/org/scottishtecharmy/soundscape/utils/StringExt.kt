@@ -1,8 +1,5 @@
 package org.scottishtecharmy.soundscape.utils
 
-fun String.blankOrEmpty() = this.isBlank() || this.isEmpty()
-fun String.nullIfEmpty(): String? = ifEmpty { null }
-
 fun String.containsNumber() : Boolean {
     val words = split(" ")
     for(word in words) {

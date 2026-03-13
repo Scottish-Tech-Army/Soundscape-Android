@@ -23,7 +23,7 @@ import com.squareup.moshi.Json
  */
 open class GeometryCollection : GeoJsonObject(), Iterable<GeoJsonObject> {
     @field:Json(name = "geometries")
-    var geometries: ArrayList<GeoJsonObject> = arrayListOf<GeoJsonObject>()
+    var geometries: ArrayList<GeoJsonObject> = arrayListOf()
 
     init {
         type = "GeometryCollection"

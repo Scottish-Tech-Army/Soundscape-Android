@@ -178,7 +178,7 @@ fun calculateSlope(aConst: Double, a1: Double, a2: Double) : Double? {
         return null
     }
     val t = (aConst - a1) / (a2 - a1)
-    if (t < 0.0 || t > 1.0) {
+    if (t !in 0.0..1.0) {
         // Intersection point is outside the segment
         return null
     }

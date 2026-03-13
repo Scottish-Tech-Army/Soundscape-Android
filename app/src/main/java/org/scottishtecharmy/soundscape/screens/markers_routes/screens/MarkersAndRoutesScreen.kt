@@ -11,11 +11,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
@@ -34,9 +37,17 @@ fun MarkersAndRoutesScreen(
     viewModel : HomeViewModel,
     modifier: Modifier
 ) {
-    val state by viewModel.state.collectAsStateWithLifecycle()
-    LaunchedEffect(state.routesTabSelected) {
-        if(state.routesTabSelected)
+    // Collect only the fields we need so that heading/beacon/other state changes
+    // (which update frequently) don't cause this screen to recompose.
+    val routesTabSelected by remember {
+        viewModel.state.map { it.routesTabSelected }.distinctUntilChanged()
+    }.collectAsStateWithLifecycle(initialValue = true)
+    val location by remember {
+        viewModel.state.map { it.location }.distinctUntilChanged()
+    }.collectAsStateWithLifecycle(initialValue = null)
+
+    LaunchedEffect(routesTabSelected) {
+        if(routesTabSelected)
             viewModel.audioTour.onMarkerAndRoutes()
         else
             viewModel.audioTour.onMarkers()
@@ -56,7 +67,7 @@ fun MarkersAndRoutesScreen(
                         }
                     },
                     rightSide = {
-                        if (state.routesTabSelected) {
+                        if (routesTabSelected) {
                             IconWithTextButton(
                                 text = "",
                                 icon = Icons.Default.Add,
@@ -74,10 +85,10 @@ fun MarkersAndRoutesScreen(
             }},
     ) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
-            if(state.routesTabSelected) {
-                RoutesScreenVM(navController, userLocation = state.location)
+            if(routesTabSelected) {
+                RoutesScreenVM(navController, userLocation = location)
             } else {
-                MarkersScreenVM(navController, userLocation = state.location)
+                MarkersScreenVM(navController, userLocation = location)
             }
         }
     }

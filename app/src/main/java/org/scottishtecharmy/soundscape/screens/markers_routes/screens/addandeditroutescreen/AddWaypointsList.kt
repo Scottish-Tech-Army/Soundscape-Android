@@ -1,23 +1,40 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.LocationSearching
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.LiveRegionMode
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.liveRegion
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
@@ -40,9 +57,9 @@ fun AddWaypointsList(
     onClickFolder: (String, String) -> Unit,
     userLocation: LngLatAlt?,
     onSelectLocation: (LocationDescription) -> Unit,
+    onToggleMember: (LocationDescription) -> Unit,
     getCurrentLocationDescription: () -> LocationDescription
 ) {
-    val update = remember { mutableStateOf(true) }
     // Create our list of locations, with those already in the route first
     val locations = remember(uiState.routeMembers, uiState.markers) {
         mutableStateListOf<LocationDescription>()
@@ -56,17 +73,21 @@ fun AddWaypointsList(
             )
         }
     }
-    // Set the switches for those in the route to true
-    val routeMember = remember(update.value, uiState.routeMembers, uiState.markers) {
-        mutableStateMapOf<LocationDescription, Boolean>()
-            .apply {
-                uiState.markers.associateWith { uiState.toggledMembers.contains(it) }.also { putAll(it) }
-                uiState.routeMembers.associateWith { !uiState.toggledMembers.contains(it) }.also { putAll(it) }
+    // Set the switches for those in the route to true, keyed by databaseId
+    val routeMemberState = remember(uiState.routeMembers, uiState.markers, uiState.toggledMembers) {
+        mutableStateMapOf<Long?, Boolean>().apply {
+            // Markers not in route: true if toggled in
+            uiState.markers.forEach { marker ->
+                put(marker.databaseId, uiState.toggledMembers.any { it.databaseId == marker.databaseId })
             }
+            // Route members: true unless toggled out
+            uiState.routeMembers.forEach { member ->
+                put(member.databaseId, !uiState.toggledMembers.any { it.databaseId == member.databaseId })
+            }
+        }
     }
-    update.value = false
-
-    println("TOGGLED MEMBERS size ${uiState.toggledMembers.size}")
+    val enabledCount = routeMemberState.count { it.value }
+    println("${uiState.routeMembers.size} ${uiState.markers.size} ${uiState.toggledMembers.size} -> $enabledCount")
 
     // Add PlacesNearby entries
     val levelZeroFolders = listOf(
@@ -77,6 +98,8 @@ fun AddWaypointsList(
     val nearbyLocations = remember(placesNearbyUiState) {
         filterLocations(placesNearbyUiState, context)
     }
+    val coroutineScope = rememberCoroutineScope()
+    var fetchingLocation by remember { mutableStateOf(false) }
 
     LazyColumn(
         modifier = Modifier.fillMaxWidth(),
@@ -134,29 +157,58 @@ fun AddWaypointsList(
         if (placesNearbyUiState.level == 0) {
             userLocation?.let { currentLocation ->
                 items(1) {
-                    val summaryDescription = LocationDescription(
-                        "Current location",
-                        location = currentLocation
-                    )
-                    val fullerDescription = getCurrentLocationDescription()
-                    LocationItem(
-                        item = summaryDescription,
-                        decoration = LocationItemDecoration(
-                            location = true,
-                            editRoute = EnabledFunction(false),
-                            details = EnabledFunction(
-                                true,
-                                {
-                                    onSelectLocation(fullerDescription)
-                                }
+                    if (fetchingLocation) {
+                        var announceLoading by remember { mutableStateOf(false) }
+                        LaunchedEffect(Unit) {
+                            kotlinx.coroutines.delay(1500)
+                            announceLoading = true
+                        }
+                        Box(
+                            contentAlignment = Alignment.Center,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .defaultMinSize(minHeight = 48.dp)
+                                .then(
+                                    if (announceLoading) Modifier.semantics {
+                                        contentDescription = context.getString(R.string.general_loading_start)
+                                        liveRegion = LiveRegionMode.Polite
+                                    } else Modifier
+                                )
+                                .testTag("addWaypointsCurrentLocationLoading"),
+                        ) {
+                            CircularProgressIndicator()
+                        }
+                    } else {
+                        val summaryDescription = LocationDescription(
+                            stringResource(R.string.search_use_current_location),
+                            location = currentLocation
+                        )
+                        LocationItem(
+                            item = summaryDescription,
+                            decoration = LocationItemDecoration(
+                                location = true,
+                                editRoute = EnabledFunction(false),
+                                details = EnabledFunction(
+                                    true,
+                                    {
+                                        fetchingLocation = true
+                                        coroutineScope.launch {
+                                            val ld = withContext(Dispatchers.IO) {
+                                                getCurrentLocationDescription()
+                                            }
+                                            fetchingLocation = false
+                                            onSelectLocation(ld)
+                                        }
+                                    }
+                                ),
                             ),
-                        ),
-                        userLocation = currentLocation
-                    )
+                            userLocation = currentLocation
+                        )
+                    }
                 }
             }
             items(locations) { locationDescription ->
-                val currentState = routeMember[locationDescription] == true
+                val currentState = routeMemberState[locationDescription.databaseId] == true
                 LocationItem(
                     item = locationDescription,
                     decoration = LocationItemDecoration(
@@ -164,11 +216,7 @@ fun AddWaypointsList(
                         editRoute = EnabledFunction(
                             enabled = true,
                             functionBoolean = {
-                                if (uiState.toggledMembers.contains(locationDescription))
-                                    uiState.toggledMembers.remove(locationDescription)
-                                else
-                                    uiState.toggledMembers.add(locationDescription)
-                                update.value = true
+                                onToggleMember(locationDescription)
                             },
                             value = currentState,
                             hintWhenOn = stringResource(R.string.location_detail_add_waypoint_existing_hint),
@@ -206,7 +254,7 @@ fun AddWaypointsListPreview() {
                         LocationDescription(name = "Waypoint 8", location = LngLatAlt(), databaseId = 8L),
                     ),
                 toggledMembers =
-                    mutableListOf(
+                    listOf(
                         LocationDescription(name = "Waypoint 2", location = LngLatAlt(), databaseId = 2L),
                         LocationDescription(name = "Waypoint 5", location = LngLatAlt(), databaseId = 5L),
                     )
@@ -214,6 +262,7 @@ fun AddWaypointsListPreview() {
         placesNearbyUiState = PlacesNearbyUiState(),
         onClickFolder = {_,_ -> },
         onSelectLocation = {_ -> },
+        onToggleMember = {_ -> },
         userLocation = LngLatAlt(),
         getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
     )

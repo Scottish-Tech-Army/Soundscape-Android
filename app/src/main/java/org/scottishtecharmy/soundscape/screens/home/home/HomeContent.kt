@@ -1,11 +1,15 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
 import android.content.Context
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,21 +26,33 @@ import androidx.compose.material.icons.rounded.Fullscreen
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -146,15 +162,19 @@ fun HomeContent(
     goToAppSettings: (Context) -> Unit,
     fullscreenMap: MutableState<Boolean>,
     permissionsRequired: Boolean,
-    showMap: Boolean) {
+    showMap: Boolean,
+    voiceCommandListening: Boolean = false) {
     val context = LocalContext.current
+    val coroutineScope = rememberCoroutineScope()
+    var fetchingLocation by remember { mutableStateOf(false) }
 
+    Box(modifier = modifier.fillMaxSize()) {
     Column(
         verticalArrangement = Arrangement.spacedBy(spacing.small),
-        modifier = modifier
+        modifier = Modifier.fillMaxSize()
     ) {
         if (streetPreviewState.enabled != StreetPreviewEnabled.OFF) {
-            StreetPreview(streetPreviewState, heading, streetPreviewFunctions)
+            StreetPreview(streetPreviewState, streetPreviewFunctions)
         }
         else {
             searchBar()
@@ -188,19 +208,48 @@ fun HomeContent(
                     .testTag("homeMarkersAndRoutes")
             )
             // Current location
-            NavigationButton(
-                onClick = {
-                    if (location != null) {
-                        val ld = getCurrentLocationDescription()
-                        onNavigate(generateLocationDetailsRoute(ld))
-                    }
-                },
-                text = stringResource(R.string.search_use_current_location),
-                horizontalPadding = spacing.small,
-                modifier = Modifier
-                    .talkbackHint(stringResource(R.string.search_button_current_location_accessibility_hint))
-                    .testTag("homeCurrentLocation")
-            )
+            if (fetchingLocation) {
+                var announceLoading by remember { mutableStateOf(false) }
+                LaunchedEffect(Unit) {
+                    kotlinx.coroutines.delay(1500)
+                    announceLoading = true
+                }
+                Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .defaultMinSize(minHeight = 48.dp)
+                        .then(
+                            if (announceLoading) Modifier.semantics {
+                                contentDescription = context.getString(R.string.general_loading_start)
+                                liveRegion = LiveRegionMode.Polite
+                            } else Modifier
+                        )
+                        .testTag("homeCurrentLocationLoading"),
+                ) {
+                    CircularProgressIndicator()
+                }
+            } else {
+                NavigationButton(
+                    onClick = {
+                        if (location != null) {
+                            fetchingLocation = true
+                            coroutineScope.launch {
+                                val ld = withContext(Dispatchers.IO) {
+                                    getCurrentLocationDescription()
+                                }
+                                fetchingLocation = false
+                                onNavigate(generateLocationDetailsRoute(ld))
+                            }
+                        }
+                    },
+                    text = stringResource(R.string.search_use_current_location),
+                    horizontalPadding = spacing.small,
+                    modifier = Modifier
+                        .talkbackHint(stringResource(R.string.search_button_current_location_accessibility_hint))
+                        .testTag("homeCurrentLocation")
+                )
+            }
             if (location != null) {
                 if (routePlayerState.routeData != null) {
                     Card(modifier = Modifier
@@ -208,16 +257,26 @@ fun HomeContent(
                     ) {
                             Row {
                                 Text(
-                                    text = stringResource(
-                                        R.string.route_waypoint_progress).format(
-                                            routePlayerState.routeData.route.name,
-                                            if (routePlayerState.reversePlayback) {
-                                                routePlayerState.routeData.markers.size - routePlayerState.currentWaypoint
-                                            } else {
-                                                routePlayerState.currentWaypoint + 1
-                                            },
-                                            routePlayerState.routeData.markers.size
-                                        ),
+                                    text =
+                                        if(routePlayerState.routeData.markers.size > 1) {
+                                            stringResource(
+                                                R.string.route_waypoint_progress
+                                            ).format(
+                                                routePlayerState.routeData.route.name,
+                                                if (routePlayerState.reversePlayback) {
+                                                    routePlayerState.routeData.markers.size - routePlayerState.currentWaypoint
+                                                } else {
+                                                    routePlayerState.currentWaypoint + 1
+                                                },
+                                                routePlayerState.routeData.markers.size
+                                            )
+                                        } else {
+                                            stringResource(
+                                                R.string.route_beacon_progress
+                                            ).format(
+                                                routePlayerState.routeData.route.name
+                                            )
+                                        },
                                     style = MaterialTheme.typography.labelLarge,
                                     modifier = Modifier.smallPadding()
                                 )
@@ -243,7 +302,7 @@ fun HomeContent(
                                     .height(spacing.targetSize)
                                     .padding(bottom = spacing.extraSmall),
                                 horizontalArrangement = Arrangement.SpaceEvenly,
-                                verticalAlignment = androidx.compose.ui.Alignment.Bottom
+                                verticalAlignment = Alignment.Bottom
                             ) {
                                 if(!routePlayerState.beaconOnly) {
                                     val canGoPreviousInPlayback = if (routePlayerState.reversePlayback) {
@@ -351,6 +410,25 @@ fun HomeContent(
             }
         }
     }
+    if (voiceCommandListening) {
+        Box(
+            contentAlignment = Alignment.BottomCenter,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Text(
+                text = stringResource(R.string.voice_cmd_listening),
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.85f))
+                    .padding(vertical = spacing.small)
+                    .semantics { liveRegion = LiveRegionMode.Assertive },
+                textAlign = TextAlign.Center
+            )
+        }
+    }
+    } // end Box
 }
 
 @Preview

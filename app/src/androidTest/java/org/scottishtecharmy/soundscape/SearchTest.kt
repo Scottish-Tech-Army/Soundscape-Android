@@ -27,7 +27,7 @@ import kotlin.time.measureTime
 
 class SearchTest {
 
-    val stringCache = Collections.synchronizedMap(mutableMapOf<Long, List<String>>())
+    val stringCache: MutableMap<Long, List<String>> = Collections.synchronizedMap(mutableMapOf<Long, List<String>>())
 
     private val apostrophes = setOf('\'', '’', '‘', '‛', 'ʻ', 'ʼ', 'ʹ', 'ꞌ', '＇')
 
@@ -226,8 +226,6 @@ class SearchTest {
     fun streetDescription(location: LngLatAlt,
                           streetName: String,
                           describeLocation: LngLatAlt? = null) {
-
-        Analytics.getInstance(true)
 
         val gridState = ProtomapsGridState()
         val context = InstrumentationRegistry.getInstrumentation().targetContext

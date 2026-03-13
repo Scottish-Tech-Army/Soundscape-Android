@@ -13,7 +13,6 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStreamReader
-import java.lang.Thread.sleep
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date

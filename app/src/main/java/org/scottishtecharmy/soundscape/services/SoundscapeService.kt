@@ -1,8 +1,11 @@
 package org.scottishtecharmy.soundscape.services
 
+import android.Manifest
 import android.content.Context
+import android.content.res.Configuration
 import android.annotation.SuppressLint
 import android.app.ForegroundServiceStartNotAllowedException
+import android.content.pm.PackageManager
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -16,18 +19,17 @@ import android.net.Uri
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
+import android.os.PowerManager
 import android.util.Log
 import android.widget.Toast
 import androidx.annotation.OptIn
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
+import androidx.core.content.ContextCompat
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
-import com.google.firebase.Firebase
-import com.google.firebase.analytics.analytics
-import com.google.firebase.crashlytics.FirebaseCrashlytics
-import com.google.firebase.crashlytics.crashlytics
+import androidx.preference.PreferenceManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -41,14 +43,22 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MODE_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MODE_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_ENTER
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_EXIT
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
+import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
+import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GridState
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
+import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.hasPlayServices
@@ -60,10 +70,19 @@ import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenu
+import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenuMediaControls
+import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControlTarget
+import org.scottishtecharmy.soundscape.services.mediacontrol.OriginalMediaControls
+import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeDummyMediaPlayer
+import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeMediaSessionCallback
+import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandManager
+import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandMediaControls
+import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
+import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
-
-
 
 /**
  * Foreground service that provides location updates, device orientation updates, requests tiles,
@@ -84,9 +103,18 @@ class SoundscapeService : MediaSessionService() {
     // secondary service
     private var timerJob: Job? = null
 
+    // Wake lock — keeps CPU running while screen is off so audio callbacks continue
+    private var wakeLock: PowerManager.WakeLock? = null
+
     // Audio engine
     var audioEngine = NativeAudioEngine(this)
     private var audioBeacon: Long = 0
+
+    // Audio menu (navigated via media buttons when no route is active)
+    var audioMenu : AudioMenu? = null
+
+    /** True while the user is actively navigating the audio menu. Suppresses auto callouts. */
+    var menuActive: Boolean = false
 
     // Audio focus
     private lateinit var audioManager: AudioManager
@@ -129,6 +157,7 @@ class SoundscapeService : MediaSessionService() {
 
     // Geo engine
     private var geoEngine = GeoEngine()
+    lateinit var localizedContext: Context
 
     // Flow to return beacon location
     private val _beaconFlow = MutableStateFlow(BeaconState())
@@ -142,9 +171,16 @@ class SoundscapeService : MediaSessionService() {
     private val _gridStateFlow = MutableStateFlow<GridState?>(null)
     var gridStateFlow: StateFlow<GridState?> = _gridStateFlow
 
+    // Voice command manager — only initialized when RECORD_AUDIO permission is granted
+    private var voiceCommandManager: VoiceCommandManager? = null
+    val voiceCommandStateFlow: StateFlow<VoiceCommandState>
+        get() = voiceCommandManager?.state ?: MutableStateFlow(VoiceCommandState.Idle)
+
     // Media control button code
     private var mediaSession: MediaSession? = null
-    private val mediaPlayer = SoundscapeDummyMediaPlayer()
+
+    private var mediaControlsTarget : MediaControlTarget = OriginalMediaControls(this)
+    private val mediaPlayer = SoundscapeDummyMediaPlayer { mediaControlsTarget }
 
     var running: Boolean = false
     var started: Boolean = false
@@ -190,15 +226,17 @@ class SoundscapeService : MediaSessionService() {
 
         locationProvider.start(this)
         directionProvider.start(audioEngine, locationProvider)
-        geoEngine.start(application, locationProvider, directionProvider, this)
+        geoEngine.start(application, locationProvider, directionProvider, this, localizedContext)
     }
 
     fun tileGridUpdated() {
         if(_streetPreviewFlow.value.enabled == StreetPreviewEnabled.INITIALIZING) {
+            val choices = geoEngine.streetPreviewGo()
             _streetPreviewFlow.value = StreetPreviewState(
                 StreetPreviewEnabled.ON,
-                geoEngine.streetPreviewGo()
+                choices
             )
+            geoEngine.recomputeStreetPreviewBestChoice(this)
         }
         _gridStateFlow.value = geoEngine.gridState
     }
@@ -215,11 +253,15 @@ class SoundscapeService : MediaSessionService() {
             }
 
             if(!started) {
-                Firebase.crashlytics.log("Start geo-engine")
+                Analytics.getInstance().crashLogNotes("Start geo-engine")
                 locationProvider.start(this)
                 directionProvider.start(audioEngine, locationProvider)
-
-                geoEngine.start(application, locationProvider, directionProvider, this)
+                val configLocale = getCurrentLocale()
+                val configuration = Configuration(applicationContext.resources.configuration)
+                configuration.setLocale(configLocale)
+                localizedContext = applicationContext.createConfigurationContext(configuration)
+                voiceCommandManager?.updateContext(localizedContext)
+                geoEngine.start(application, locationProvider, directionProvider, this, localizedContext)
                 started = true
             }
         }
@@ -234,11 +276,17 @@ class SoundscapeService : MediaSessionService() {
 
         if (!running) {
 
+            // Hold a partial wake lock for the service lifetime so the CPU stays awake when the
+            // screen is off and the Oboe audio callback keeps firing.
+            wakeLock = (getSystemService(POWER_SERVICE) as PowerManager)
+                .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "Soundscape::AudioWakeLock")
+                .also { it.acquire() }
+
             // Initialize the audio engine
             audioEngine.initialize(applicationContext)
 
             audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
-
+            audioMenu = AudioMenu(this, application)
             routePlayer = RoutePlayer(this, applicationContext)
 
             if(hasPlayServices(this)) {
@@ -252,9 +300,50 @@ class SoundscapeService : MediaSessionService() {
             // create new RealmDB or open existing
             startRealms(applicationContext)
 
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+                == PackageManager.PERMISSION_GRANTED) {
+                voiceCommandManager = VoiceCommandManager(
+                    service = this
+                )
+            }
+
+            // Update the media controls mode
+            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+            val mode = sharedPreferences.getString(MEDIA_CONTROLS_MODE_KEY, MEDIA_CONTROLS_MODE_DEFAULT)!!
+            updateMediaControls(mode)
+
+            // Keep biasing strings up to date whenever markers or routes change
+            val dao = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao()
+            coroutineScope.launch {
+                dao.getAllMarkersFlow().collect { markers ->
+                    voiceCommandManager?.updateMarkers(markers)
+                }
+            }
+            coroutineScope.launch {
+                dao.getAllRoutesFlow().collect { routes ->
+                    voiceCommandManager?.updateRoutes(routes)
+                }
+            }
+
             mediaSession = MediaSession.Builder(this, mediaPlayer)
-                .setCallback(SoundscapeMediaSessionCallback(this))
+                .setId("org.scottishtecharmy.soundscape")
+                .setCallback(SoundscapeMediaSessionCallback { mediaControlsTarget })
                 .build()
+        }
+    }
+
+    fun updateMediaControls(target: String) {
+        val hasRecordAudio = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) ==
+            PackageManager.PERMISSION_GRANTED
+        mediaControlsTarget = when (target) {
+            "VoiceControl" if hasRecordAudio -> {
+                voiceCommandManager?.initialize()
+                VoiceCommandMediaControls(this)
+            }
+            "VoiceControl" -> AudioMenuMediaControls(audioMenu)
+            "AudioMenu" -> AudioMenuMediaControls(audioMenu)
+            "Original" -> OriginalMediaControls(this)
+            else -> OriginalMediaControls(this)
         }
     }
 
@@ -262,6 +351,8 @@ class SoundscapeService : MediaSessionService() {
         Log.d(TAG, "onTaskRemoved for service - ignoring, as we want to keep running")
     }
     override fun onDestroy() {
+        suppressionJob?.cancel()
+
         // If _mediaSession is not null, run the following block
         mediaSession?.run {
             // Release the player
@@ -274,6 +365,7 @@ class SoundscapeService : MediaSessionService() {
         super.onDestroy()
 
         Log.d(TAG, "onDestroy")
+        audioMenu?.destroy()
         audioEngine.destroyBeacon(audioBeacon)
         audioBeacon = 0
         audioEngine.destroy()
@@ -289,6 +381,11 @@ class SoundscapeService : MediaSessionService() {
 
         coroutineScope.coroutineContext.cancelChildren()
 
+        wakeLock?.let { if (it.isHeld) it.release() }
+        wakeLock = null
+
+        voiceCommandManager?.destroy()
+
         // Clear service reference in binder so that it can be garbage collected
         binder?.reset()
     }
@@ -300,6 +397,7 @@ class SoundscapeService : MediaSessionService() {
      */
     private fun startAsForegroundService() : Boolean {
 
+        val analytics = Analytics.getInstance()
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 // Code to simulate startForeground failing
@@ -319,13 +417,13 @@ class SoundscapeService : MediaSessionService() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
                 && e is ForegroundServiceStartNotAllowedException
             ) {
-                Firebase.crashlytics.log("ForegroundServiceStartNotAllowedException caught")
-                Firebase.analytics.logEvent("startAsForegroundServiceError", null)
-                FirebaseCrashlytics.getInstance().setCustomKey("Service start success", "false")
+                analytics.crashLogNotes("ForegroundServiceStartNotAllowedException caught")
+                analytics.logEvent("startAsForegroundServiceError", null)
+                Analytics.getInstance().crashSetCustomKey("Service start success", "false")
                 return false
             }
         }
-        FirebaseCrashlytics.getInstance().setCustomKey("Service start success", "true")
+        analytics.crashSetCustomKey("Service start success", "true")
         return true
     }
 
@@ -350,7 +448,7 @@ class SoundscapeService : MediaSessionService() {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(
                             this@SoundscapeService,
-                            "Soundscape Service is still running.",
+                            localizedContext.getString(R.string.service_still_running),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -453,7 +551,7 @@ class SoundscapeService : MediaSessionService() {
     fun whatsAroundMe() {
         coroutineScope.launch {
             val results = geoEngine.whatsAroundMe()
-            if(results != null) {
+            if(results.positionedStrings.isNotEmpty()) {
                 audioEngine.clearTextToSpeechQueue()
                 speakCallout(results, true)
             }
@@ -480,18 +578,41 @@ class SoundscapeService : MediaSessionService() {
         }
     }
 
+    fun triggerVoiceCommand() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+            != PackageManager.PERMISSION_GRANTED) return
+
+        if (!requestAudioFocus()) {
+            Log.w(TAG, "speakText: Could not get audio focus. Aborting callouts.")
+            return
+        }
+
+        // Stop callbacks whilst we handle voice commands
+        callbackHoldOff()
+
+        // Clear the speech queue
+        audioEngine.clearTextToSpeechQueue()
+
+        // And start listening for voice commands
+        coroutineScope.launch {
+            withContext(Dispatchers.Main) {
+                voiceCommandManager?.startListening()
+            }
+        }
+    }
+
     suspend fun searchResult(searchString: String): List<LocationDescription>? {
         return geoEngine.searchResult(searchString)
     }
 
-    fun getLocationDescription(location: LngLatAlt) : LocationDescription? {
+    fun getLocationDescription(location: LngLatAlt) : LocationDescription {
         return geoEngine.getLocationDescription(location)
     }
 
     fun startBeacon(location: LngLatAlt, name: String) {
         routePlayer.startBeacon(location, name)
     }
-    fun routeStart(routeId: Long) {
+    fun routeStartById(routeId: Long) {
         routePlayer.startRoute(routeId)
     }
 
@@ -521,6 +642,46 @@ class SoundscapeService : MediaSessionService() {
         }
         return false
     }
+    fun routeListRoutes() {
+        coroutineScope.launch {
+            val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
+            val routes = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao().getAllRoutes()
+            if (routes.isEmpty())
+                speak2dText(ctx.getString(R.string.voice_cmd_no_routes))
+            else {
+               val names = routes.joinToString(". ") { it.name }
+                speak2dText(ctx.getString(R.string.voice_cmd_routes_list) + names)
+            }
+        }
+    }
+
+    fun routeStart(route: RouteEntity) {
+        val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
+        speak2dText(ctx.getString(R.string.voice_cmd_starting_route).format(route.name))
+        routeStartById(route.routeId)
+    }
+
+    fun routeListMarkers() {
+        coroutineScope.launch {
+            val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
+            val markers = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao().getAllMarkers()
+            if (markers.isEmpty()) {
+                speak2dText(ctx.getString(R.string.voice_cmd_no_markers))
+            } else {
+                val names = markers.joinToString(". ") { it.name }
+                speak2dText(ctx.getString(R.string.voice_cmd_markers_list) + names)
+            }
+        }
+    }
+
+    fun markerStart(marker: MarkerEntity) {
+        val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
+        speak2dText(ctx.getString(R.string.voice_cmd_starting_beacon_at_marker).format(marker.name))
+
+        val location = LngLatAlt(marker.longitude, marker.latitude)
+        startBeacon(location, marker.name)
+    }
+
     /**
      * isAudioEngineBusy returns true if there is more than one entry in the
      * audio engine queue. The queue consists of earcons and text-to-speech.
@@ -538,24 +699,37 @@ class SoundscapeService : MediaSessionService() {
                   heading: Double = Double.NaN) {
 
         if (!requestAudioFocus()) {
-            Log.w(TAG, "speakText: Could not get audio focus. Aborting callouts.")
+            Log.w(TAG, "speakText: Could not get audio focus.")
             return
         }
         Log.d(TAG, "speakText $text")
         audioEngine.createTextToSpeech(text, type, latitude, longitude, heading)
     }
 
+    fun speak2dText(text: String, clearQueue: Boolean = false, earcon: String? = null) {
+        if (!requestAudioFocus()) {
+            Log.w(TAG, "speak2dText: Could not get audio focus.")
+            return
+        }
+        if(clearQueue)
+            audioEngine.clearTextToSpeechQueue()
+        if(earcon != null) {
+            audioEngine.createEarcon(earcon, AudioType.STANDARD)
+        }
+        if(text.isNotEmpty())
+            audioEngine.createTextToSpeech(text, AudioType.STANDARD)
+    }
 
     fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean) {
 
         if(callout == null) return
 
         if (!requestAudioFocus()) {
-            Log.w(TAG, "SpeakCallout: Could not get audio focus. Aborting callouts.")
+            Log.w(TAG, "SpeakCallout: Could not get audio focus.")
             return
         }
 
-        if(addModeEarcon) audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_ENTER, AudioType.STANDARD)
+        if(addModeEarcon) audioEngine.createEarcon(EARCON_MODE_ENTER, AudioType.STANDARD)
         for(result in callout.positionedStrings) {
             if(result.location == null) {
                 var type = result.type
@@ -583,7 +757,7 @@ class SoundscapeService : MediaSessionService() {
                 )
             }
         }
-        if(addModeEarcon) audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_EXIT, AudioType.STANDARD)
+        if(addModeEarcon) audioEngine.createEarcon(EARCON_MODE_EXIT, AudioType.STANDARD)
 
         callout.calloutHistory?.add(callout)
         callout.locationFilter?.update(callout.userGeometry)
@@ -597,8 +771,21 @@ class SoundscapeService : MediaSessionService() {
      * streetPreviewGo is called when the 'GO' button is pressed when in StreetPreview mode.
      * It indicates that the user has selected the direction of travel in which they which to move.
      */
+
     fun streetPreviewGo() {
-        _streetPreviewFlow.value = _streetPreviewFlow.value.copy(choices = geoEngine.streetPreviewGo())
+        val choices = geoEngine.streetPreviewGo()
+        _streetPreviewFlow.value = _streetPreviewFlow.value.copy(choices = choices, bestChoice = null)
+        geoEngine.recomputeStreetPreviewBestChoice(this)
+    }
+
+    fun updateStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {
+        _streetPreviewFlow.value = _streetPreviewFlow.value.copy(bestChoice = bestChoice)
+    }
+
+    fun announceStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {
+        val compassLabel = localizedContext.getString(getCompassLabel(bestChoice.heading.toInt()))
+        val go = localizedContext.getString(R.string.preview_go_title)
+        speakText("$go ${bestChoice.name} $compassLabel", AudioType.STANDARD)
     }
 
     fun appInForeground(foreground: Boolean) {
@@ -667,11 +854,29 @@ class SoundscapeService : MediaSessionService() {
         audioFocusGained = false
     }
 
+    /**
+     * Called on every menu interaction. Marks the menu as active (suppressing auto callouts)
+     * and resets the 10-second countdown after which auto callouts are re-enabled.
+     */
+    /** Cancels pending re-enable of auto callouts and restarts the 10-second countdown. */
+    private var suppressionJob: Job? = null
+    private val scope = CoroutineScope(Dispatchers.Default)
+    fun callbackHoldOff() {
+        menuActive = true
+        suppressionJob?.cancel()
+        suppressionJob = scope.launch {
+            delay(CALLOUT_SUPPRESS_TIMEOUT_MS)
+            menuActive = false
+        }
+    }
+
     companion object {
         private const val TAG = "SoundscapeService"
 
         // Secondary "service" every n seconds
         private val TICKER_PERIOD_SECONDS = 3600.seconds
+
+        private const val CALLOUT_SUPPRESS_TIMEOUT_MS = 8_000L
 
         private const val CHANNEL_ID = "SoundscapeService_channel_01"
         private const val NOTIFICATION_CHANNEL_NAME = "Soundscape_SoundscapeService"

@@ -1,0 +1,304 @@
+#include "AudioMixer.h"
+#include "Trace.h"
+#include <cstring>
+#include <algorithm>
+#include <cmath>
+#include <cstdint>
+
+namespace soundscape {
+
+    AudioMixer::AudioMixer() {
+        m_MonoBuf.resize(FRAME_SIZE);
+        m_StereoBuf.resize(FRAME_SIZE * 2);
+    }
+
+    AudioMixer::~AudioMixer() {
+        stop();
+    }
+
+    bool AudioMixer::openStream() {
+        oboe::AudioStreamBuilder builder;
+        builder.setDirection(oboe::Direction::Output)
+                ->setPerformanceMode(oboe::PerformanceMode::LowLatency)
+                ->setSharingMode(oboe::SharingMode::Shared)
+                ->setFormat(oboe::AudioFormat::Float)
+                ->setChannelCount(oboe::ChannelCount::Stereo)
+                ->setFramesPerDataCallback(FRAME_SIZE)
+                ->setDataCallback(this)
+                ->setErrorCallback(this);
+
+        auto result = builder.openStream(m_Stream);
+        if (result != oboe::Result::OK) {
+            TRACE("AudioMixer: failed to open stream: %s", oboe::convertToText(result));
+            return false;
+        }
+
+        m_SampleRate = m_Stream->getSampleRate();
+        TRACE("AudioMixer: stream opened (rate=%d, framesPerCallback=%d, bufferCapacity=%d)",
+              m_SampleRate, m_Stream->getFramesPerCallback(),
+              m_Stream->getBufferCapacityInFrames());
+
+        m_Spatializer = std::make_unique<SteamAudioSpatializer>(m_SampleRate, FRAME_SIZE);
+        if (!m_Spatializer->isInitialized()) {
+            TRACE("AudioMixer: spatializer init failed");
+            m_Stream->close();
+            m_Stream.reset();
+            return false;
+        }
+
+        m_MonoBuf.resize(m_Stream->getBufferCapacityInFrames());
+        m_StereoBuf.resize(m_Stream->getBufferCapacityInFrames() * 2);
+
+        return true;
+    }
+
+    bool AudioMixer::startStream() {
+        // Start the stream
+        auto result = m_Stream->requestStart();
+        if (result != oboe::Result::OK) {
+            TRACE("AudioMixer: failed to start stream: %s", oboe::convertToText(result));
+            m_Stream->close();
+            m_Stream.reset();
+            return false;
+        }
+        return true;
+    }
+
+    bool AudioMixer::start() {
+        if(!openStream())
+            return false;
+
+        return startStream();
+    }
+
+    void AudioMixer::stop() {
+        if (m_Stream) {
+            m_Stream->requestStop();
+            m_Stream->close();
+            m_Stream.reset();
+        }
+
+        // Clean up spatializer effects
+        {
+            std::lock_guard<std::mutex> guard(m_SourcesMutex);
+            for (auto &ms : m_Sources) {
+                if (ms.effectId >= 0 && m_Spatializer) {
+                    m_Spatializer->removeSourceEffect(ms.effectId);
+                }
+            }
+            m_Sources.clear();
+        }
+
+        m_Spatializer.reset();
+        TRACE("AudioMixer: stopped");
+    }
+
+    void AudioMixer::addSource(AudioSourceBase *source) {
+        source->setDeviceSampleRate(m_SampleRate);
+
+        MixerSource ms;
+        ms.source = source;
+
+        if (source->needsSpatialize && m_Spatializer) {
+            ms.effectId = m_Spatializer->createSourceEffect();
+        }
+        {
+            std::lock_guard<std::mutex> guard(m_SourcesMutex);
+            m_Sources.push_back(ms);
+        }
+    }
+
+    void AudioMixer::removeSource(AudioSourceBase *source) {
+        int effectId = -1;
+        {
+            std::lock_guard<std::mutex> guard(m_SourcesMutex);
+
+            for (auto it = m_Sources.begin(); it != m_Sources.end(); ++it) {
+                if (it->source == source) {
+                    if (it->effectId >= 0 && m_Spatializer)
+                        effectId = it->effectId;
+                    m_Sources.erase(it);
+                    break;
+                }
+            }
+        }
+        if (effectId != -1)
+            m_Spatializer->removeSourceEffect(effectId);
+    }
+
+    bool AudioMixer::restart() {
+        TRACE("AudioMixer: restarting after disconnect");
+        // Stream is already closed by Oboe before onErrorAfterClose fires; just drop the handle.
+        m_Stream.reset();
+
+        int prevRate = m_SampleRate;
+        if (!openStream())
+            return false;
+
+        // Re-register all existing sources with the new spatializer.
+        bool rateChanged = (m_SampleRate != prevRate);
+        if (rateChanged)
+            TRACE("AudioMixer: sample rate changed %d -> %d on restart", prevRate, m_SampleRate);
+        {
+            std::lock_guard<std::mutex> guard(m_SourcesMutex);
+            for (auto &ms : m_Sources) {
+                if (rateChanged)
+                    ms.source->setDeviceSampleRate(m_SampleRate);
+                ms.effectId = ms.source->needsSpatialize
+                              ? m_Spatializer->createSourceEffect()
+                              : -1;
+            }
+        }
+
+        // Allow the audio sink (e.g. Bluetooth A2DP) to stabilise before
+        // mixing real audio. ~400 ms of silence at the device sample rate.
+        m_WarmupFrames.store(m_SampleRate * 4 / 10);
+
+        // Start the stream
+        return startStream();
+    }
+
+    void AudioMixer::onErrorAfterClose(oboe::AudioStream * /*stream*/, oboe::Result result) {
+        TRACE("AudioMixer: onErrorAfterClose: %s", oboe::convertToText(result));
+        if (result == oboe::Result::ErrorDisconnected) {
+            if (m_SuppressRestart.load()) {
+                TRACE("AudioMixer: restart suppressed (SCO active), deferring");
+                m_RestartPending.store(true);
+            } else {
+                restart();
+            }
+        }
+    }
+
+    void AudioMixer::setSuppressRestart(bool suppress) {
+        TRACE("AudioMixer: setSuppressRestart(%s)", suppress ? "true" : "false");
+        m_SuppressRestart.store(suppress);
+        if (!suppress && m_RestartPending.exchange(false)) {
+            TRACE("AudioMixer: executing deferred restart");
+            restart();
+        }
+    }
+
+    oboe::DataCallbackResult AudioMixer::onAudioReady(
+            oboe::AudioStream *stream, void *audioData, int32_t numFrames) {
+
+        auto *output = static_cast<float *>(audioData);
+
+        // Clear output
+        memset(output, 0, numFrames * 2 * sizeof(float));
+
+        // After a restart, output silence to let the audio sink stabilise.
+        int warmup = m_WarmupFrames.load();
+        if (warmup > 0) {
+            m_WarmupFrames.store(std::max(0, warmup - numFrames));
+            return oboe::DataCallbackResult::Continue;
+        }
+
+        std::lock_guard<std::mutex> guard(m_SourcesMutex);
+
+        float beaconVol = m_BeaconVolume.load();
+        float speechVol = m_SpeechVolume.load();
+
+        // Determine which source types are actively producing audio.
+        bool hasSpeech = false;
+        bool hasActiveProximityBeacon = false;
+        for (auto &ms : m_Sources) {
+            auto *src = ms.source;
+            if (!src->isAudible()) continue;
+            if (src->category == AudioCategory::SPEECH)
+                hasSpeech = true;
+            else if (src->isProximityBeacon)
+                hasActiveProximityBeacon = true;
+        }
+
+        if (hasSpeech) {
+            // Duck beacons under speech and avoid clipping.
+            beaconVol /= 4;
+            speechVol *= 3.0f / 4.0f;
+        }
+        if (hasActiveProximityBeacon) {
+            // Both beacons play simultaneously. No need to adjust levels as proximity beacon isn't
+            // close to full scale.
+        }
+        // Otherwise (proximity silent, no speech): main beacon at full volume.
+        for (auto &ms : m_Sources) {
+            auto *src = ms.source;
+
+            if (src->isFinished() || src->muted.load()) {
+                continue;
+            }
+
+            // Read mono audio from source
+            int framesRead = src->readPcm(m_MonoBuf.data(), numFrames);
+            if (framesRead <= 0) {
+                continue;
+            }
+
+            // Pad with silence if needed
+            if (framesRead < numFrames) {
+                memset(m_MonoBuf.data() + framesRead, 0,
+                       (numFrames - framesRead) * sizeof(float));
+            }
+
+            // Get volume for this source's category
+            float vol = (src->category == AudioCategory::BEACON) ? beaconVol : speechVol;
+            if (src->needsSpatialize && ms.effectId >= 0 && m_Spatializer && m_UseHrtf.load()) {
+                // Spatialize: mono -> stereo HRTF
+                float az = src->azimuth.load();
+                float el = src->elevation.load();
+
+                m_Spatializer->spatialize(ms.effectId, m_MonoBuf.data(),
+                                          m_StereoBuf.data(), numFrames, az, el);
+
+                // Reduce volume for rear-facing sounds
+                float cosAz = cosf(az);
+                if(cosAz < 0.0) {
+                    float rearFactor = 1.0f + (0.5f * cosAz);
+                    vol *= rearFactor;
+                }
+
+                // Mix into output with volume
+                for (int i = 0; i < numFrames * 2; i++) {
+                    output[i] += m_StereoBuf[i] * vol;
+                }
+            } else if (src->needsSpatialize && !m_UseHrtf.load()) {
+
+                // Stereo pan over full 360°: sin(az) gives a smooth, periodic response with
+                // no jumps. 0=center, +π/2=right, π=center(behind), -π/2=left.
+                float az = src->azimuth.load();
+                float pan = sinf(az);
+                float panAngle = (pan + 1.0f) * (float)M_PI_4;
+
+                // Reduce volume for rear-facing sounds
+                float cosAz = cosf(az);
+                float rearFactor = 1.0;
+                if(cosAz < 0.0) {
+                    rearFactor = 1.0f + (0.5f * cosAz);
+                }
+
+                float attVol = vol * rearFactor;
+                float leftGain  = cosf(panAngle) * attVol;
+                float rightGain = sinf(panAngle) * attVol;
+                for (int i = 0; i < numFrames; i++) {
+                    output[i * 2]     += m_MonoBuf[i] * leftGain;
+                    output[i * 2 + 1] += m_MonoBuf[i] * rightGain;
+                }
+            } else {
+                // Non-spatialized: duplicate mono to stereo
+                for (int i = 0; i < numFrames; i++) {
+                    float s = m_MonoBuf[i] * vol;
+                    output[i * 2] += s;
+                    output[i * 2 + 1] += s;
+                }
+            }
+        }
+
+        // Clamp output to [-1, 1]
+        for (int i = 0; i < numFrames * 2; i++) {
+            output[i] = std::clamp(output[i], -1.0f, 1.0f);
+        }
+
+        return oboe::DataCallbackResult::Continue;
+    }
+
+} // soundscape

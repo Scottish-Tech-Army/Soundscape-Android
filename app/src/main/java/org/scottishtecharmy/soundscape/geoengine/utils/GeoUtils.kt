@@ -117,10 +117,10 @@ fun getCentroidOfPolygon(polygon: Polygon): LngLatAlt? {
     return LngLatAlt(finalCentroidX, finalCentroidY)
 }
 fun getCentralPointForFeature(feature: Feature) : LngLatAlt? {
-    when(feature.geometry.type) {
-        "Point" -> return (feature.geometry as Point).coordinates
-        "Polygon" -> return getCentroidOfPolygon(feature.geometry as Polygon)
-        else -> return null
+    return when(feature.geometry.type) {
+        "Point" -> (feature.geometry as Point).coordinates
+        "Polygon" -> getCentroidOfPolygon(feature.geometry as Polygon)
+        else -> null
     }
 }
 
@@ -435,8 +435,8 @@ fun bearingFromTwoPoints(
  * Determine if a coordinate is contained within a polygon.
  * @param lngLatAlt
  * Coordinates to test as LngLatAlt.
- * @param polygon
- * The Polygon to test.
+ * @param regionCoordinates
+ * An ArrayList of the points of the polygon to test.
  * @return If coordinate is in polygon.
  */
 fun regionContainsCoordinates(lngLatAlt: LngLatAlt, regionCoordinates: ArrayList<LngLatAlt>): Boolean {
@@ -746,28 +746,21 @@ fun circleToPolygon(segments: Int, centerLat: Double, centerLon: Double, radius:
     return polygonObject
 }
 
-fun lineStringIsCircular(path: LineString): Boolean {
-    if (path.coordinates.size <= 2) return false
-    val first = path.coordinates.first()
-    val last = path.coordinates.last()
-    return first == last
-}
-
 /**
  * Distance to a Polygon from current location.
  * @param pointCoordinates
  * LngLatAlt of current location
- * @param polygon
- * Polygon that we are working out the distance from
+ * @param outerRing
+ * The outerRing of the Polygon that we are working out the distance from
  * @return The closest distance of the point to the Polygon
  */
 fun distanceToRegion(
     pointCoordinates: LngLatAlt,
-    lineString: LineString,
+    outerRing: LineString,
     ruler: Ruler,
     nearestPoint: LngLatAlt? = null) : Double
 {
-    val pdh = ruler.distanceToLineString(pointCoordinates, lineString)
+    val pdh = ruler.distanceToLineString(pointCoordinates, outerRing)
     if(nearestPoint != null) {
         nearestPoint.latitude = pdh.point.latitude
         nearestPoint.longitude = pdh.point.longitude

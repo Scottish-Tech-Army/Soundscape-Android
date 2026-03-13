@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.ExitToApp
+import androidx.compose.material.icons.automirrored.rounded.ExitToApp
 import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material.icons.rounded.Snooze
 import androidx.compose.material3.DrawerState
@@ -21,6 +21,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -39,6 +40,8 @@ import kotlinx.coroutines.launch
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.MainActivity.Companion.LANGUAGE_SUPPORTED_PROMPTED_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.LANGUAGE_SUPPORTED_PROMPTED_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.LAST_NEW_RELEASE_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.LAST_NEW_RELEASE_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
@@ -64,6 +67,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.Flexibl
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
+import org.scottishtecharmy.soundscape.utils.getLanguageMismatch
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 
 @Composable
@@ -92,7 +96,7 @@ fun Home(
     permissionsRequired: Boolean
 ) {
     val context = LocalContext.current
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val sharedPreferences = remember { PreferenceManager.getDefaultSharedPreferences(context) }
     val showMap = sharedPreferences.getBoolean(SHOW_MAP_KEY, SHOW_MAP_DEFAULT)
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -101,9 +105,29 @@ fun Home(
     val routePlaying = (state.currentRouteData.routeData != null)
     val newReleaseDialog = remember {
         mutableStateOf(
-            sharedPreferences.getString(LAST_NEW_RELEASE_KEY, LAST_NEW_RELEASE_DEFAULT)
-                    != BuildConfig.VERSION_NAME.substringBeforeLast(".")
+            (sharedPreferences.getString(LAST_NEW_RELEASE_KEY, LAST_NEW_RELEASE_DEFAULT)
+                    != BuildConfig.VERSION_NAME.substringBeforeLast(".")) &&
+                    BuildConfig.DUMMY_ANALYTICS != true
         )
+    }
+    val phoneLanguage = remember { getLanguageMismatch(context) }
+    val languageMismatchDialog = remember {
+        mutableStateOf(
+            (phoneLanguage != null &&
+            !sharedPreferences.getBoolean(LANGUAGE_SUPPORTED_PROMPTED_KEY, LANGUAGE_SUPPORTED_PROMPTED_DEFAULT))  &&
+            BuildConfig.DUMMY_ANALYTICS != true
+        )
+    }
+
+    // Memoize drawer callbacks to avoid recreating on every recomposition
+    val shareRecording = remember { { (context as MainActivity).shareRecording() } }
+    // Use rememberUpdatedState so the lambda is stable but always uses current location
+    val currentLocation by rememberUpdatedState(state.location)
+    val offlineMaps = remember(onNavigate) {
+        {
+            val ld = LocationDescription("", currentLocation ?: LngLatAlt())
+            onNavigate(generateOfflineMapScreenRoute(ld))
+        }
     }
 
     ModalNavigationDrawer(
@@ -115,13 +139,8 @@ fun Home(
                 drawerState = drawerState,
                 rateSoundscape = rateSoundscape,
                 contactSupport = contactSupport,
-                shareRecording = { (context as MainActivity).shareRecording() },
-                offlineMaps = {
-                    // Generate a LocationDescription for our current location and
-                    // pass it in to the OfflineMapScreen
-                    val ld = LocationDescription("", state.location ?: LngLatAlt())
-                    onNavigate(generateOfflineMapScreenRoute(ld))
-                },
+                shareRecording = shareRecording,
+                offlineMaps = offlineMaps,
                 toggleTutorial = toggleTutorial,
                 tutorialRunning = tutorialRunning,
                 preferences = preferences,
@@ -159,7 +178,11 @@ fun Home(
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
         ) { innerPadding ->
 
-            if(newReleaseDialog.value) {
+            // Prioritise the new language dialog over new release so that users can get
+            // the translated version of the new release dialog!
+            if(languageMismatchDialog.value && phoneLanguage != null) {
+                LanguageMismatchDialog(innerPadding, sharedPreferences, languageMismatchDialog, phoneLanguage)
+            } else if(newReleaseDialog.value) {
                 NewReleaseDialog(innerPadding, sharedPreferences, newReleaseDialog, toggleTutorial)
             }
 
@@ -197,7 +220,6 @@ fun Home(
                             },
                             hint = stringResource(R.string.search_bar_hint),
                             userLocation = state.location,
-                            beaconLocation = state.beaconState?.location,
                             isSearching = state.searchInProgress
                         )
                     },
@@ -208,7 +230,8 @@ fun Home(
                     goToAppSettings = goToAppSettings,
                     fullscreenMap = fullscreenMap,
                     permissionsRequired = permissionsRequired,
-                    showMap = showMap
+                    showMap = showMap,
+                    voiceCommandListening = state.voiceCommandListening
                 )
             }
         }
@@ -257,7 +280,7 @@ fun HomeTopAppBar(
                         .talkbackHint(stringResource(R.string.street_preview_exit))
                 ) {
                     Icon(
-                        Icons.Rounded.ExitToApp,
+                        Icons.AutoMirrored.Rounded.ExitToApp,
                         contentDescription = stringResource(R.string.street_preview_exit),
                         tint = MaterialTheme.colorScheme.onSurface,
                     )
@@ -292,6 +315,7 @@ fun HomeTopAppBar(
 @Preview(showBackground = true, locale = "pl")
 @Composable
 fun HomePreview() {
+    val currentLocationText = stringResource(R.string.search_use_current_location)
     SoundscapeTheme {
         Home(
             state = HomeState(),
@@ -301,7 +325,7 @@ fun HomePreview() {
             bottomButtonFunctions = BottomButtonFunctions(null),
             getCurrentLocationDescription = {
                 LocationDescription(
-                    "Current Location",
+                    currentLocationText,
                     LngLatAlt()
                 )
             },
@@ -322,6 +346,7 @@ fun HomePreview() {
 @Preview(showBackground = true)
 @Composable
 fun HomeSearchPreview() {
+    val currentLocationText = stringResource(R.string.search_use_current_location)
     SoundscapeTheme {
         Home(
             state = HomeState(),
@@ -331,7 +356,7 @@ fun HomeSearchPreview() {
             bottomButtonFunctions = BottomButtonFunctions(null),
             getCurrentLocationDescription = {
                 LocationDescription(
-                    "Current Location",
+                    currentLocationText,
                     LngLatAlt()
                 )
             },
@@ -352,6 +377,7 @@ fun HomeSearchPreview() {
 @Preview(showBackground = true)
 @Composable
 fun HomeRoutePreview() {
+    val currentLocationText = stringResource(R.string.search_use_current_location)
     val routePlayerState = RoutePlayerState(
         routeData = RouteWithMarkers(
             RouteEntity(
@@ -375,7 +401,7 @@ fun HomeRoutePreview() {
             bottomButtonFunctions = BottomButtonFunctions(null),
             getCurrentLocationDescription = {
                 LocationDescription(
-                    "Current Location",
+                    currentLocationText,
                     LngLatAlt()
                 )
             },
@@ -395,6 +421,7 @@ fun HomeRoutePreview() {
 @Preview(showBackground = true)
 @Composable
 fun StreetPreview() {
+    val currentLocationText = stringResource(R.string.search_use_current_location)
     SoundscapeTheme {
         Home(
             state = HomeState(
@@ -402,7 +429,8 @@ fun StreetPreview() {
                     StreetPreviewEnabled.ON,
                     listOf(
                         StreetPreviewChoice(45.0, "Main Street", Way())
-                    )
+                    ),
+                    bestChoice = StreetPreviewChoice(45.0, "Main Street", Way())
                 ),
                 heading = 90f,
                 location = LngLatAlt(10.0, 10.0)
@@ -413,7 +441,7 @@ fun StreetPreview() {
             bottomButtonFunctions = BottomButtonFunctions(null),
             getCurrentLocationDescription = {
                 LocationDescription(
-                    "Current Location",
+                    currentLocationText,
                     LngLatAlt()
                 )
             },

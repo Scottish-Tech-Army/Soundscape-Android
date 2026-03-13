@@ -61,6 +61,19 @@ jobs:
           echo searchProviderApiKey="$SEARCH_PROVIDER_API_KEY" >> local.properties
           echo extractProviderUrl="$EXTRACT_PROVIDER_URL" >> local.properties
 
+      - name: Generate test screenshots
+        run: |
+          ./gradlew updateDebugScreenshotTest
+          ./categorise.sh app/src/screenshotTestDebug/reference/org/scottishtecharmy/soundscape/ThemeTestClass/
+          cd app/src/screenshotTestDebug/reference/org/scottishtecharmy/soundscape/ThemeTestClass/
+          zip -r screenshots.zip .
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-screenshots
+          path: app/src/screenshotTestDebug/reference/org/scottishtecharmy/soundscape/ThemeTestClass/screenshots.zip
+
       - name: Run lint over the repo
         run: ./gradlew lint
 

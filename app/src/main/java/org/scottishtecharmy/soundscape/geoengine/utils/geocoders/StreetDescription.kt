@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
 import android.content.Context
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
@@ -525,7 +526,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
     }
 
     fun getInterpolateLocation(needle: Int, sortedNumbers: SortedMap<Double, MvtFeature>) : Pair<LngLatAlt, String>? {
-        var lastKey : Double = 0.0
+        var lastKey = 0.0
         var lastParsed : Int = Int.MAX_VALUE
         var lastPoint : LngLatAlt? = null
         for (number in sortedNumbers) {
@@ -677,7 +678,10 @@ class StreetDescription(val name: String, val gridState: GridState) {
                     }
                 }
             }
-            return "Intersection of ${intersection.members[0]} with ${intersection.members[1]}"
+
+            val formatString = (localizedContext?.getString(R.string.street_description_intersection) ?:
+            "Near intersection of %s")
+            return formatString.format(intersection.name)
         }
         return null
     }

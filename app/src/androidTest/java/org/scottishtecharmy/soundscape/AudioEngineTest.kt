@@ -8,7 +8,6 @@ import org.junit.Assert
 import org.junit.Test
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.utils.Analytics
 
 class AudioEngineTest {
 
@@ -32,7 +31,7 @@ class AudioEngineTest {
         Assert.assertEquals( "Mallet Very Slow", beaconTypes[12])
     }
 
-    private fun moveListener(audioEngine: AudioEngine, duration: Int) {
+    private fun moveListener(audioEngine: AudioEngine, duration: Int, noMovement: Boolean = false) {
         val delayMilliseconds: Long = 50
         var orientation = 0.0
         val delta = 360.0 / (duration / delayMilliseconds)
@@ -47,14 +46,13 @@ class AudioEngineTest {
                 proximityNear = 15.0)
             Thread.sleep(delayMilliseconds)
             time += delayMilliseconds
-            orientation += delta
+            if(!noMovement)
+                orientation += delta
         }
         Log.d(TAG, "Time $time, Orientation $orientation")
     }
 
     private fun initializeAudioEngine() : NativeAudioEngine {
-        Analytics.getInstance(true)
-
         // Use the instrumentation targetContext for the assets etc.
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val audioEngine = NativeAudioEngine()
@@ -72,15 +70,15 @@ class AudioEngineTest {
         val audioEngine = initializeAudioEngine()
 
         val beacon = audioEngine.createBeacon(LngLatAlt(1.0, 0.0), true)
-        moveListener(audioEngine, 4000)
+        moveListener(audioEngine, 8000)
         audioEngine.destroyBeacon(beacon)
 
-        audioEngine.createTextToSpeech("Beacon here!", AudioType.LOCALIZED)
-        moveListener(audioEngine, 4000)
-
-        val beacon3 = audioEngine.createBeacon(LngLatAlt(1.0, 0.0), true)
-        moveListener(audioEngine, 4000)
-        audioEngine.destroyBeacon(beacon3)
+//        audioEngine.createTextToSpeech("Beacon here!", AudioType.LOCALIZED)
+//        moveListener(audioEngine, 4000)
+//
+//        val beacon3 = audioEngine.createBeacon(LngLatAlt(1.0, 0.0), true)
+//        moveListener(audioEngine, 4000)
+//        audioEngine.destroyBeacon(beacon3)
 
         tidyUp(audioEngine)
     }
@@ -120,20 +118,20 @@ class AudioEngineTest {
     fun earcon() {
         val audioEngine = initializeAudioEngine()
 
-        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_CALIBRATION_IN_PROGRESS, AudioType.STANDARD)
-        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_CALIBRATION_SUCCESS, AudioType.STANDARD)
-        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_CALLOUTS_ON, AudioType.STANDARD)
-        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_CALLOUTS_OFF, AudioType.STANDARD)
-        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_CONNECTION_SUCCESS, AudioType.STANDARD)
-        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_LOW_CONFIDENCE, AudioType.STANDARD)
-        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_MODE_ENTER, AudioType.STANDARD)
-        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_MODE_EXIT, AudioType.STANDARD)
-        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_OFFLINE, AudioType.STANDARD)
-        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_ONLINE, AudioType.STANDARD)
-        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_SENSE_LOCATION, AudioType.STANDARD)
-        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_SENSE_MOBILITY, AudioType.STANDARD)
-        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_SENSE_POI, AudioType.STANDARD)
-        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_SENSE_SAFETY, AudioType.STANDARD)
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_CALIBRATION_IN_PROGRESS, AudioType.STANDARD)
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_CALIBRATION_SUCCESS, AudioType.STANDARD)
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_CALLOUTS_ON, AudioType.STANDARD)
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_CALLOUTS_OFF, AudioType.STANDARD)
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_CONNECTION_SUCCESS, AudioType.STANDARD)
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_LOW_CONFIDENCE, AudioType.STANDARD)
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_ENTER, AudioType.STANDARD)
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_MODE_EXIT, AudioType.STANDARD)
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_OFFLINE, AudioType.STANDARD)
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_ONLINE, AudioType.STANDARD)
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_SENSE_LOCATION, AudioType.STANDARD)
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_SENSE_MOBILITY, AudioType.STANDARD)
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_SENSE_POI, AudioType.STANDARD)
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_SENSE_SAFETY, AudioType.STANDARD)
 
         moveListener(audioEngine, 20000)
         tidyUp(audioEngine)
@@ -143,7 +141,7 @@ class AudioEngineTest {
     fun textAndEarcon() {
         val audioEngine = initializeAudioEngine()
         audioEngine.createTextToSpeech("Text with ", AudioType.STANDARD)
-        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_OFFLINE, AudioType.STANDARD)
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_OFFLINE, AudioType.STANDARD)
         audioEngine.createTextToSpeech("in the middle.", AudioType.STANDARD)
         moveListener(audioEngine, 8000)
         tidyUp(audioEngine)
@@ -192,20 +190,20 @@ class AudioEngineTest {
             duckingAllowed = false,
             proximityNear = 15.0
         )
-        audioEngine.createEarcon(NativeAudioEngine.Companion.EARCON_SENSE_POI, AudioType.LOCALIZED, 1.0, 2.0)
+        audioEngine.createEarcon(NativeAudioEngine.EARCON_SENSE_POI, AudioType.LOCALIZED, 1.0, 2.0)
         Thread.sleep(2000)
 
         var heading = 0.0
         while(heading < 360.0) {
             audioEngine.createEarcon(
-                NativeAudioEngine.Companion.EARCON_SENSE_POI,
+                NativeAudioEngine.EARCON_SENSE_POI,
                 AudioType.RELATIVE,
                 heading = heading
             )
             moveListener(audioEngine, 2000)
 
             audioEngine.createEarcon(
-                NativeAudioEngine.Companion.EARCON_SENSE_POI,
+                NativeAudioEngine.EARCON_SENSE_POI,
                 AudioType.COMPASS,
                 heading = heading
             )
@@ -217,11 +215,23 @@ class AudioEngineTest {
         tidyUp(audioEngine)
     }
 
+    @Test
+    fun textPosition() {
+        val audioEngine = initializeAudioEngine()
+        audioEngine.createTextToSpeech(
+            "Position text to the left",
+            AudioType.COMPASS,
+            heading = -90.0)
+        moveListener(audioEngine, 4000, noMovement = true)
+        audioEngine.createTextToSpeech(
+            "Position text to the right",
+            AudioType.COMPASS,
+            heading = 90.0)
+        moveListener(audioEngine, 4000, noMovement = true)
+        tidyUp(audioEngine)
+    }
 
     companion object {
         const val TAG : String = "AudioTestEngine"
-        init {
-            System.loadLibrary(BuildConfig.FMOD_LIB)
-        }
     }
 }

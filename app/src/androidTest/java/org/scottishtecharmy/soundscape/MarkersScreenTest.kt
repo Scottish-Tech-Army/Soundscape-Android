@@ -261,10 +261,10 @@ class MarkersScreenTest {
         )
 
         // Verify the action label contains expected text (start beacon hint)
-        val startBeaconHint = context.resources.getString(R.string.location_detail_action_beacon_hint)
+        val startBeaconHint = context.resources.getString(R.string.location_detail_action_beacon_from_markers)
         val hasStartBeaconAction = customActions?.any { it.label == startBeaconHint } ?: false
         assertTrue(
-            "Marker item should have 'Start audio beacon' accessibility action",
+            "Marker item should have 'Start audio beacon at this marker' accessibility action",
             hasStartBeaconAction
         )
     }

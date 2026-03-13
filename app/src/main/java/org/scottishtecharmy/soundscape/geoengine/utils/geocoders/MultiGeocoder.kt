@@ -40,7 +40,7 @@ class MultiGeocoder(applicationContext: Context,
 
     override suspend fun getAddressFromLocationName(locationName: String,
                                                     nearbyLocation: LngLatAlt,
-                                                    localizedContext: Context?) : List<LocationDescription>? {
+                                                    localizedContext: Context?) : List<LocationDescription> {
 
         val results: MutableList<LocationDescription> = mutableListOf()
 

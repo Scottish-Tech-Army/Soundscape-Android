@@ -13,11 +13,13 @@ import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.generateRouteDetailsRoute
 import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.parseGpxFile
 import java.io.BufferedReader
 import java.io.IOException
@@ -89,8 +91,8 @@ class SoundscapeIntents
         url: String,
         context: Context?,
     ) : String {
-        var urlTmp: URL? = null
-        var connection: HttpURLConnection? = null
+        var urlTmp: URL?
+        var connection: HttpURLConnection?
 
         try {
             Log.d(TAG, "Open URL $url")
@@ -196,6 +198,48 @@ class SoundscapeIntents
                 else -> {
                     val uriData: String =
                         URLDecoder.decode(intent.data.toString(), Charsets.UTF_8.name())
+
+                    // Check for soundscape://feature/{name} intent to open a feature screen
+                    val featureRegex = Regex("soundscape://feature/(routes|markers)")
+                    val featureMatch = featureRegex.find(uriData)
+                    if (featureMatch != null) {
+                        val feature = featureMatch.groupValues[1]
+                        Log.d(TAG, "Opening feature from intent: $feature")
+                        Analytics.getInstance().logEvent("intentOpenFeature", null)
+                        navigator.navigate("${HomeRoutes.MarkersAndRoutes.route}?tab=$feature")
+                        return
+                    }
+
+                    // Check for soundscape://route/stop intent to stop route playback
+                    if (uriData == "soundscape://route/stop") {
+                        Log.d(TAG, "Stopping route from intent")
+                        Analytics.getInstance().logEvent("intentStopRoute", null)
+                        mainActivity.soundscapeServiceConnection.routeStop()
+                        return
+                    }
+
+                    // Check for soundscape://route/{name} intent to start a saved route
+                    val routeRegex = Regex("soundscape://route/(.+)")
+                    val routeMatch = routeRegex.find(uriData)
+                    if (routeMatch != null) {
+                        val routeName = routeMatch.groupValues[1]
+                        Log.d(TAG, "Starting route from intent: name=$routeName")
+                        val db = org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
+                            .getMarkersInstance(mainActivity)
+                        val route = db.routeDao().getAllRoutes()
+                            .map { it to routeName.fuzzyCompare(it.name, true) }
+                            .filter { it.second < 0.3 }
+                            .minByOrNull { it.second }
+                            ?.first
+                        if (route != null) {
+                            Log.d(TAG, "Matched route: ${route.name} (id=${route.routeId})")
+                            Analytics.getInstance().logEvent("intentStartRoute", null)
+                            mainActivity.soundscapeServiceConnection.routeStart(route.routeId)
+                        } else {
+                            Log.w(TAG, "No route found matching name: $routeName")
+                        }
+                        return
+                    }
 
                     // Check for geo or soundscape intent which is simply a latitude and longitude
                     val regex =

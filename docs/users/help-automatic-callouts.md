@@ -9,7 +9,7 @@ has_toc: false
 
 ## What is it?
 
-Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *"Manage Callouts"* section of the *"Settings"* screen, and you can turn all callouts off when you want the app to be silent.
+Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *"Callouts"* section of the *"Settings"* screen, and you can turn all callouts off when you want the app to be silent.
 
 ## When would I use it?
 
@@ -29,9 +29,9 @@ Soundscape can tell you about things around you as you approach them by calling 
 
 **Turning callouts on or off :**
 
- Turning callouts off will silence the app. Callouts can be turned on or off in the *"Manage Callouts"* section of the *"Settings"* screen where you can tap the *"Allow Callouts"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *"skip forward"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *"Sleep"* button in the upper right hand corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
+ Turning callouts off will silence the app. Callouts can be turned on or off in the *"Callouts"* section of the *"Settings"* screen where you can tap the *"Allow Callouts"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *"skip forward"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *"Sleep"* button in the upper right hand corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
 
 **Managing which callouts you hear :**
 
- To choose the types of things Soundscape will automatically callout, go to the *"Settings"* screen using the menu on the *"Home"* screen. The *"Manage Callouts"* section of the *"Settings"* screen contains a list of types of things the app can callout. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *"Allow Callouts"* toggle at the top of the list.
+ To choose the types of things Soundscape will automatically callout, go to the *"Settings"* screen using the menu on the *"Home"* screen. The *"Callouts"* section of the *"Settings"* screen contains a list of types of things the app can callout. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *"Allow Callouts"* toggle at the top of the list.
 

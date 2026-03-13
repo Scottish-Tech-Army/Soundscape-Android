@@ -9,7 +9,7 @@
     <string name="settings_about_app">About Soundscape</string>
     <string name="voice_settings_speaking_rate">Speaking Rate</string>
     <string name="voice_voices">Voices</string>
-    <string name="beacon_settings_style">Audio Styles</string>
+    <string name="beacon_settings_style">Audio Beacon Styles</string>
     <string name="beacon_styles_current">Current</string>
     <string name="beacon_styles_original">Original</string>
     <string name="beacon_styles_flare">Flare</string>
@@ -33,21 +33,21 @@
     <string name="preview_include_unnamed_roads_title">Unnamed Roads</string>
     <string name="location_detail_title_default">Location Details</string>
     <string name="location_detail_action_beacon">Start Audio Beacon</string>
-    <string name="location_detail_action_beacon_hint">Set an audio beacon at this location</string>
-    <string name="location_detail_action_save_hint">Save this location as a marker</string>
-    <string name="location_detail_action_edit_hint">Edit marker</string>
-    <string name="location_detail_action_share_hint">Share this location</string>
+    <string name="location_detail_action_beacon_hint">Guide you towards this location with sound.</string>
+    <string name="location_detail_action_save_hint">Save this location to use later</string>
+    <string name="location_detail_action_edit_hint">Change the marker name or add additional notes</string>
+    <string name="location_detail_action_share_hint">Share this location with another app</string>
     <string name="location_detail_action_preview_hint">Start previewing at this location</string>
     <string name="location_detail_add_waypoint_existing_hint">Remove this marker from your route.</string>
-    <string name="location_detail_add_waypoint_new_hint">Add this marker to your route.</string>
+    <string name="location_detail_add_waypoint_new_hint">Add this marker as a waypoint on your route.</string>
     <string name="route_detail_action_start_route">Start Route</string>
     <string name="route_detail_action_stop_route">Stop Route</string>
     <string name="route_detail_action_edit">Edit Route</string>
-    <string name="route_detail_action_start_route_hint">Start this route</string>
+    <string name="route_detail_action_start_route_hint">Start playback of this route</string>
     <string name="route_detail_action_start_route_disabled_hint">Add waypoints before starting the route</string>
-    <string name="route_detail_action_stop_route_hint">Stop this route</string>
-    <string name="route_detail_action_share_hint">Share this route</string>
-    <string name="route_detail_action_edit_hint">Edit this route</string>
+    <string name="route_detail_action_stop_route_hint">Stop playback of this route</string>
+    <string name="route_detail_action_share_hint">Share this route with another app</string>
+    <string name="route_detail_action_edit_hint">Change the waypoints in the route, or reorder them.</string>
     <string name="route_detail_action_create">New Route</string>
     <string name="route_detail_action_create_hint">Create a new route</string>
     <string name="route_end_completed_accessibility">Route Completed! %s</string>
@@ -241,12 +241,12 @@
     <string name="help_text_destination_beacons_how_1">**To set a beacon**:\n\n First, view the details for a location by either using the search bar to search for a place, or tapping one of the \"Places Nearby\", \"Saved Markers\", or \"Current Location\" buttons and selecting a location. From the location details screen you can select the \"Start Audio Beacon\" button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.</string>
     <string name="help_text_destination_beacons_how_2">**To remove the current beacon**:\n\n Simply press the \"Stop Beacon\" button on the home screen.</string>
     <string name="help_text_destination_beacons_how_3">**To mute the audible beacon**:\n\n Tap the \"Mute Beacon\" button next to the \"Stop Beacon\" button on the home screen.</string>
-    <string name="help_text_automatic_callouts_what">Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.</string>
+    <string name="help_text_automatic_callouts_what">Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things, such as businesses, bus stops and even intersections. You can configure what the app automatically calls out in the *\"Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.</string>
     <string name="help_text_automatic_callouts_when_1">**Exploring a new area**:\n\n Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.</string>
     <string name="help_text_automatic_callouts_when_2">**Walking to a specific location**:\n\n When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.</string>
     <string name="help_text_automatic_callouts_when_3">**When you need silence**:\n\n When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *\"My Location\"*, *\"Nearby Markers\"*, *\"Around Me\"*, or *\"Ahead of Me\"* buttons.</string>
-    <string name="help_text_automatic_callouts_how_1">**Turning callouts on or off**:\n\n Turning callouts off will silence the app. Callouts can be turned on or off in the \"Manage Callouts\" section of the \"Settings\" screen where you can tap the \"Allow Callouts\" toggle to turn callouts on or off. You can also turn callouts on or off by using the \"skip forward\" command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the \"Sleep\" button in the upper right hand corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.</string>
-    <string name="help_text_automatic_callouts_how_2">**Managing which callouts you hear**:\n\n To choose the types of things Soundscape will automatically callout, go to the \"Settings\" screen using the menu on the \"Home\" screen. The \"Manage Callouts\" section of the \"Settings\" screen contains a list of types of things the app can callout. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the \"Allow Callouts\" toggle at the top of the list.</string>
+    <string name="help_text_automatic_callouts_how_1">**Turning callouts on or off:**\n\nTurning callouts off will silence the app. Callouts can be turned on or off in the *\"Callouts\"* section of the *\"Settings\"* screen, where you can tap the *\"Allow Callouts\"* toggle. You can also toggle callouts using the \"skip forward\" command (double‑tap and hold) if your headphones have media control buttons. Alternatively, use the *\"Sleep\"* button in the top‑right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.</string>
+    <string name="help_text_automatic_callouts_how_2">**Managing which callouts you hear:**\n\nTo choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen from the menu on the *\"Home\"* screen. The *\"Callouts\"* section contains a list of categories the app can call out. Each item has a toggle that you can switch on or off. To turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.</string>
     <string name="help_text_my_location_what">The *\"My Location\"* button quickly gives you information that helps you figure out where you currently are. *\"My Location\"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.</string>
     <string name="help_text_my_location_when">*\"My Location\"* is useful when you need to figure out where you are or what cardinal direction you are facing.</string>
     <string name="help_text_my_location_how">As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *\"My Location\"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *\"My Location\"* button and listen.</string>
@@ -261,7 +261,7 @@
     <string name="help_text_ahead_of_me_how">As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *\"Ahead of Me\"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *\"Ahead of Me\"* button and you will hear several points of interest all roughly ahead of you.</string>
     <string name="help_text_remote_control_what">You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.</string>
     <string name="help_text_remote_control_when">Headphone media controls can be used while Soundscape is running. This is true whether you are currently in Soundscape or while Soundscape is in the background and even while your device is locked. Note however that headphone media control buttons will not work with Soundscape if you are playing audio like music, podcasts or videos with another app.</string>
-    <string name="help_text_remote_control_how">You can access the following features in Soundscape using your the media control buttons on your headphones:\n\n⏯ Play/Pause: Mute any current callouts and if the audio beacon is set, toggle the beacon audio. \n\n⏭ Next: Callout *\"My Location\"*.\n\n⏮ Previous: Repeat last callout.\n\n⏩ Skip Forward: Toggle callouts On and Off.\n\n⏪ Skip Backward: Callout *\"Around Me\"*.</string>
+    <string name="help_text_remote_control_how">There are 3 modes of operation for the media controls. The mode can be selected in the *\"Settings\"* *\"Media Controls\"* section. The modes are:\n\nOriginal mode.\n\n⏯ Play/Pause: Toggles the beacon audio on and off.\n\n⏭ Next: If a route is playing back, move the audio beacon to the next Waypoint in the route. If no route is being played back, callout *\"My Location\"*.\n\n⏮ Previous: If a route is playing back, move the audio beacon to the previous Waypoint in the route. If no route is being played back, callout *\"Around Me\"*.\n\n\nVoice command.\n\n⏯ Play/Pause: This triggers the app to listen for voice commands.\n\n\nAudio menu.\n\n⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text‑to‑speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top‑level menu which only has sub‑menus as options. Each sub‑menu contains a group of similar possible actions.</string>
     <string name="help_text_markers_content_1">With Soundscape, you can mark your world and anything you care about, like pins in a map.</string>
     <string name="help_text_markers_content_2">You can mark things that are personal and relevant to you like your home, your office and your preferred grocery store. You can mark any place or address, but you can also mark things that might traditionally not be available in maps, for example, entrances to buildings or parks, push-to-walk buttons, pedestrian crossings or bridges, bus stops or even your dog’s favourite tree and use these as references along your walk.</string>
     <string name="help_text_markers_content_3">To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the Nearby markers button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.</string>
@@ -390,7 +390,7 @@
     <string name="faq_use_with_wayfinding_apps_question">How do I use Soundscape with a wayfinding app?</string>
     <string name="faq_use_with_wayfinding_apps_answer">Soundscape is designed as an awareness app to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.</string>
     <string name="faq_controlling_what_you_hear_question">How do I control what I hear and when I hear it in Soundscape?</string>
-    <string name="faq_controlling_what_you_hear_answer">Soundscape provides several ways to control what you hear and when:\n\n1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the \"unmute beacon button\" on the main screen to resume hearing the beacon.\n\n2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape in to Snooze mode and it will wake up again when you leave, or you can put Soundscape into Sleep mode and it will stay off until you choose to turn it back on. Alternatively, you can select \"Settings\" from the menu and choose to turn all callouts off in the \"Manage Callouts\" section.\n\n3. Stop the beacon: There are several scenarios for which you might set a destination, but not need the audible beacon on. For example, you may know exactly how to get to your destination but want to get automatic updates about how far away you are from your destination. Or, you may know roughly how to get to your destination, and only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the \"mute beacon\"/\"unmute beacon\" button on the main screen.</string>
+    <string name="faq_controlling_what_you_hear_answer">Soundscape provides several ways to control what you hear and when:\n\n1. Immediately stop all audio: double‑tap the screen with two fingers to instantly silence all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *\"unmute beacon button\"* on the main screen to resume hearing the beacon.\n\n2. Stop automatic callouts: when you are not travelling or have reached your destination, you probably don’t need Soundscape to continue notifying you about nearby things. Instead of exiting the app, put Soundscape into Snooze mode and it will wake up when you leave, or use Sleep mode and it will stay off until you choose to turn it back on. Alternatively, open *\"Settings\"* from the menu and turn all callouts off in the *\"Callouts\"* section.\n\n3. Stop the beacon: there are times when you might set a destination but not want the audible beacon on — for example, if you know exactly how to get there but still want distance updates, or if you only need the beacon as you near your destination. Toggle the *\"mute beacon\"*/*\"unmute beacon\"* button on the main screen to choose when to hear the beacon.</string>
     <string name="faq_holding_phone_flat_question">Do I need to hold the phone in my hand all the time?</string>
     <string name="faq_holding_phone_flat_answer">No! While walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the screen at any time but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *\"flat\"* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.</string>
     <string name="faq_what_is_osm_question">What is Open Street Map and why do we use it for Soundscape?</string>
@@ -399,7 +399,7 @@
     <string name="faq_tip_setting_beacon_on_address">You can set a beacon on any address. From the main Soundscape screen, search for the address. After selecting the address in the search results, a *\"Location Details\"* screen will be shown and it has an option to *\"Start Audio Beacon\"* on the address. In this way, you can set a beacon on businesses, places, points of interest, and residences that are not in Open Street Maps.</string>
     <string name="faq_tip_finding_bus_stops">You can find nearby bus stops by selecting the *\"Public Transport\"* filter in the Nearby Places list.</string>
     <string name="faq_tip_turning_beacon_off">You can turn on and off the rhythmic sound of the beacon using the mute button on the home screen. If the beacon is muted you will still get updates about your distance to your destination every 50 metres or so.</string>
-    <string name="faq_tip_turning_off_auto_callouts">If you still want to interact with Soundscape but don’t want to hear automatic callouts you can turn callouts off by going to the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. Or, if you aren’t going to be using Soundscape you can put it in either Sleep or Snooze mode using the *\"Sleep\"* button on the home screen.</string>
+    <string name="faq_tip_turning_off_auto_callouts">If you still want to interact with Soundscape but don’t want automatic callouts, turn callouts off in the *\"Callouts\"* section of *\"Settings\"* (accessed from the menu). Or, if you won’t be using Soundscape, put it into Sleep or Snooze mode using the *\"Sleep\"* button on the home screen.</string>
     <string name="faq_tip_hold_phone_flat">Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.</string>
     <string name="faq_tip_create_marker_at_bus_stop">If there is a bus route you take regularly, set your pick-up and exit stops as Markers. This way they will be saved so you can find them again easily, just go to *\"Manage Markers\"* from the menu and find them in the list. You can set a beacon on them and you will get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and you will still get distance updates along the way.</string>
     <string name="no_language_selected">No language selected</string>
@@ -412,10 +412,10 @@
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Ferry terminal</string>
     <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s ferry terminal</string>
     <string name="confect_name_joins" tools:ignore="MissingTranslation">%1$s that joins %2$s and %3$s</string>
-    <string name="notification_text" tools:ignore="MissingTranslation">We are running this location service in the foreground</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">The Soundscape location service runs even when the phone is locked.</string>
     <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s tram stop</string>
     <string name="osm_subway" tools:ignore="MissingTranslation">Underground station</string>
-    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Manage Accessibility</string>
+    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Accessibility</string>
     <string name="settings_theme_is_light" tools:ignore="MissingTranslation">Use light theme</string>
     <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s to %2$s via %3$s</string>
     <string name="confect_name_to" tools:ignore="MissingTranslation">%1$s to %2$s</string>
@@ -423,7 +423,7 @@
     <string name="confect_name_pavement" tools:ignore="MissingTranslation">Pavement</string>
     <string name="confect_name_dead_end" tools:ignore="MissingTranslation">dead end</string>
     <string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation">Pavement next to %1$s</string>
-    <string name="menu_manage_audio" tools:ignore="MissingTranslation">Manage Audio</string>
+    <string name="menu_manage_audio" tools:ignore="MissingTranslation">Audio</string>
     <string name="street_preview_exit" tools:ignore="MissingTranslation">Exit location simulation</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explores the use of innovative audio-based technology to enable people to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around.</string>
     <string name="settings_theme_contrast_regular" tools:ignore="MissingTranslation">Regular</string>
@@ -432,7 +432,7 @@
     <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">Share recording of travel</string>
     <string name="settings_theme_contrast" tools:ignore="MissingTranslation">Theme contrast</string>
     <string name="settings_keep_value" tools:ignore="MissingTranslation">keep</string>
-    <string name="settings_debug_heading" tools:ignore="MissingTranslation">Debug settings</string>
+    <string name="settings_debug_heading" tools:ignore="MissingTranslation">Debug options</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Cancel search</string>
     <string name="settings_theme_contrast_medium" tools:ignore="MissingTranslation">Medium</string>
     <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">High</string>
@@ -523,7 +523,7 @@
     <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Delete all markers and routes</string>
     <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Deleting all of the markers and routes cannot be undone, do you want to continue?</string>
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markers and routes deleted</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nThe main changes in this release are to *Search* and to how the current address is described. When a network connection is available, *Search* will use Android in addition to our Photon server to find places. The key improvements are that searching by street number should work much better in many parts of the world, and that we have added offline search which uses any downloaded maps to find addresses and points of interest. Offline search covers roughly a 5-mile radius around the user.\n\nTips for searching:\n\nThe search UI has changed slightly since the last release because it did not correctly support talkback editing. You now need to press Enter/Search to start the search after entering the text.\n\nOffline search requires offline maps to be downloaded. Download them from Settings → Offline maps.\n\nYou can force searches to be offline only in Settings. The default Auto setting uses online search when a network is available and offline search when it is not.\n\nWhen searching for a street address, including the town name is important for online search, although it can often be omitted for offline searches.\n\nThe mapping of street numbers in the OpenStreetMap data we use varies by location. Offline search will use street numbers when they are present, but requires an offline map downloaded in the app after January 19th 2026.\n\nAs always, please report any problems, however small, via the *Contact Support* option in the main menu.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nThere are two new features in this release that allow remote control of the app even when the phone is locked. This means you can keep the phone in your pocket while still controlling the app’s main features.\n\nBoth remote control methods use Bluetooth media control buttons — either those on your headphones, or small remote controls that you can keep in your hand or pocket. The remote control mode is selected from Settings / Media controls and you can pick *\"Voice command\"* so you can talk to the app, or *\"Audio menu\"* where menus are read out to you with options to select. *\"Original mode\"* means the Bluetooth buttons work the same way as in previous releases.\n\nIn voice command mode, pressing the play/pause button on your headphones starts the app listening for speech and you will hear a short sound to indicate this. If you say *\"Help\"* it will list the available commands you can use. You can then press the button again and try the other commands. Unfortunately, Android speech recognition does not support all languages and it is not available on all phones.\n\nThe main difficulty with voice command mode is that some headphones take longer to switch their microphone on than others. This means that after tapping the play/pause button you may have to wait up to 5 seconds before you can speak. To learn how long it takes, tap play/pause and count from 1 to 10. The phone should tell you what speech it recognised and the number it starts at will be the first to be recognised. This helps you learn how long to wait before speaking. Some headphones make a clear noise when the microphone is on, which makes this easier; others make no noise at all. Unfortunately, this can take practise.\n\nThe other remote mode, Audio menu mode, will work in all languages and on all phones. The next/previous media control buttons move forwards and backwards through the options within the menu. The play/pause button then selects the current option. There is a top‑level menu and one layer of sub‑menus which group similar commands together.\n\nThese features are very new and we’d really welcome feedback on whether they work well and what other commands you might like.\n\nPlease report any problems, however small, via the *Contact support* option in the main menu.\n</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Release Notes</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Close Release Notes</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Open-source Licences</string>
@@ -1192,8 +1192,8 @@
     <string name="settings_search_offline" tools:ignore="MissingTranslation">Offline</string>
     <string name="settings_search_auto" tools:ignore="MissingTranslation">Auto</string>
     <string name="search_no_results" tools:ignore="MissingTranslation">No search results found</string>
-    <string name="search_searching" tools:ignore="MissingTranslation">Searching...</string>
-    <string name="menu_manage_search" tools:ignore="MissingTranslation">Manage search</string>
+    <string name="search_searching" tools:ignore="MissingTranslation">Searching…</string>
+    <string name="menu_manage_search" tools:ignore="MissingTranslation">Search</string>
     <string name="route_not_found" tools:ignore="MissingTranslation">Route not found</string>
     <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Export</string>
     <string name="location_item_selected" tools:ignore="MissingTranslation">Selected</string>
@@ -1248,4 +1248,87 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Because you do not have a screen reader enabled, we assume that you want the graphical maps in the user interface to be displayed. You can change that setting here, or just continue on.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Continue</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">Close the pop-up and continue with the tutorial</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Start audio beacon at this marker</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Make the map full screen and edit the marker location</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Exit marker location editing mode</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">On %1$s, just before %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">On %1$s, just after %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Near the intersection of %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">There is already a marker in the route at this location. We cannot add it again.</string>
+    <string name="settings_explanation" tools:ignore="MissingTranslation">The various app settings are organised into groups below. Tap a group to expand it and see the available options.</string>
+    <string name="settings_section_units_description" tools:ignore="MissingTranslation">Select the units of measurement to use for distance</string>
+    <string name="settings_section_search_network" tools:ignore="MissingTranslation">Search mode</string>
+    <string name="settings_section_search_network_description" tools:ignore="MissingTranslation">Control whether search uses only offline data</string>
+    <string name="beacon_settings_style_description" tools:ignore="MissingTranslation">Choose the style of audio beacon you wish to use</string>
+    <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">Include unnamed roads during location simulation</string>
+    <string name="callouts_allow_callouts_description" tools:ignore="MissingTranslation">Turn all callouts on or off</string>
+    <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Nearby places like shops and restaurants</string>
+    <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Intersection and transport information</string>
+    <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Updates about distance to the audio beacon when it’s set</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Language and Region "</string>
+    <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Online search can use the local language of the result, or be forced to return English, French or German.</string>
+    <string name="language_mismatch_title" tools:ignore="MissingTranslation">New Language Available</string>
+    <string name="language_mismatch_message" tools:ignore="MissingTranslation">Your phone is set to %1$s and that language is now available in Soundscape. Would you like Soundscape to switch to %1$s?</string>
+    <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Switch to %1$s</string>
+    <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Keep Current Language</string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation">Move in this direction to the next intersection.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">Failed to find route in the database.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">Failed to delete the route.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">Failed to save the route.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">The Soundscape location service is still running.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Download complete</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Download cancelled</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">Download error</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Beacon set on %1$s, %2$s away</string>
+    <string name="route_beacon_progress" tools:ignore="MissingTranslation">Beacon at %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">Route control</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">Next waypoint</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">Previous waypoint</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">No routes saved</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">Top menu</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Record audio</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">This permission is optional, but required if you want to use voice commands to control the app.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">Media Controls</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">Media controls mode</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">The media control buttons on your headphones or remote can be configured to work in different ways depending on this option.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">Original mode</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">Voice command</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">Audio menu</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Available voice commands:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Listening…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">I\'m sorry, I can\'t find the command %1$s. The voice command %2$s will list available commands.</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">List routes</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Available routes are,</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">List markers</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Available markers are,</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">No routes have been saved</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">No markers have been saved</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Route not found: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Starting route %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Start route %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Start audio beacon at %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Starting audio beacon at %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Marker not found: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">You can also start routes and markers by name, for example.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Speech recognition network timed out.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Speech recognition network error.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">Speech recognition error recording audio.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">Speech recognition server error.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">Speech recognition client error.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">Listening for speech timed out, so listening has stopped. Please try again.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">No speech was heard, so listening has stopped. Please try again.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">Speech recognition is busy.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">There are not sufficient permissions to run speech recognition.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">Speech recognition: too many requests.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">Speech recognition server disconnected.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">The current language is not supported by Android for speech recognition.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">The current language is supported, but has not been downloaded to this phone.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Error checking speech recognition support.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Error listening for speech recognition download events.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Unknown speech recognition error.</string>
+    <string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">Speech recognition is not supported on this phone.</string>
+    <string name="settings_voice_command_listening_prompt" tools:ignore="MissingTranslation">Announce listening</string>
+    <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Speak a listening prompt before voice recognition starts.</string>
+    <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Microphone</string>
+    <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Choose which microphone to use for voice commands.</string>
 </resources>

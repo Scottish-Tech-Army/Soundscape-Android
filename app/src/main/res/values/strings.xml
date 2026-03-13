@@ -12,12 +12,26 @@
 <string name="general_error_location_services_find_location_error">"We are having trouble finding your current location."</string>
 <!-- Error message that Soundscape is having trouble adding a marker to this location.-->
 <string name="general_error_add_marker_error">"We are having trouble marking this place. Try again later."</string>
+<!-- Error message that Soundscape can't add a marker to a route because it's already in the route.-->
+<string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">"There's already a marker in the route at this location, we cannot add it again."</string>
+<!-- Error message that Soundscape couldn't find a route that matched the ID it has. -->
+<string name="error_message_route_not_found" tools:ignore="MissingTranslation">"Failed to find route in database."</string>
+<!-- Error message that Soundscape couldn't delete a route. -->
+<string name="error_message_deleting_route" tools:ignore="MissingTranslation">"Failed to delete route."</string>
+<!-- Error message that Soundscape couldn't save a route. -->
+<string name="error_message_saving_route" tools:ignore="MissingTranslation">"Failed to save route."</string>
+<!-- Notification message displayed so that user knows that the Soundscape service is running as per Android requirements -->
+<string name="service_still_running" tools:ignore="MissingTranslation">"Soundscape location service is still running."</string>
 <!-- Menu button to get to the Settings page -->
 <string name="settings_screen_title">"Settings"</string>
+<!-- Text explaining how the settings screen works -->
+<string name="settings_explanation" tools:ignore="MissingTranslation">"The various app settings are organized in groups below. Tap on a group to expand it and see the available options."</string>
 <!-- Menu button to information about the Soundscape app -->
 <string name="settings_about_app">"About Soundscape"</string>
 <!-- In the Settings page the title of the section for the units of measurement e.g. metric or imperial -->
 <string name="settings_section_units" tools:ignore="MissingTranslation">"Units of Measure"</string>
+<!-- In the Settings page this is the description of the option to control which units are used -->
+<string name="settings_section_units_description" tools:ignore="MissingTranslation">"Select the units of measurement to use for distance"</string>
 <!-- The option for setting the units of measurement to miles and feet -->
 <string name="settings_units_imperial" tools:ignore="MissingTranslation">"Imperial (Feet)"</string>
 <!-- The option for setting the units of measurement to kilometers and meters -->
@@ -26,6 +40,10 @@
 <string name="settings_section_search" tools:ignore="MissingTranslation">"Search"</string>
 <!-- A hint for the search bar explaining what it's for -->
 <string name="search_bar_hint" tools:ignore="MissingTranslation">"Type a destination name or address"</string>
+<!-- This is the setting to control whether the Search uses offline data or can use an online server -->
+<string name="settings_section_search_network" tools:ignore="MissingTranslation">"Search mode"</string>
+<!-- This is the description for the search mode -->
+<string name="settings_section_search_network_description" tools:ignore="MissingTranslation">"Control whether search uses only offline data"</string>
 <!-- The option for setting the search to use the online search engines -->
 <string name="settings_search_online" tools:ignore="MissingTranslation">"Online"</string>
 <!-- The option for setting the search to use the offline search engine -->
@@ -35,7 +53,7 @@
 <!-- Text shown when no search results were found -->
 <string name="search_no_results" tools:ignore="MissingTranslation">"No search results found"</string>
 <!-- Text shown when no search in progress -->
-<string name="search_searching" tools:ignore="MissingTranslation">"Searching..."</string>
+<string name="search_searching" tools:ignore="MissingTranslation">"Searching…"</string>
 <!-- Title for option to set the speed of the text-to-speech voice. -->
 <string name="voice_settings_speaking_rate">"Speaking Rate"</string>
 <!-- Title for option to select the text-to-speech engine to use. -->
@@ -43,7 +61,9 @@
 <!-- Title for option to select the text-to-speech voice to use. -->
 <string name="voice_voices">"Voices"</string>
 <!-- Title of a section in the beacon settings page where the user can select which style of beacon that they want. -->
-<string name="beacon_settings_style">"Audio Styles"</string>
+<string name="beacon_settings_style">"Audio beacon styles"</string>
+<!-- Description of the choice of beacon settings. -->
+<string name="beacon_settings_style_description" tools:ignore="MissingTranslation">"Choose the style of audio beacon you wish to use"</string>
 <!-- Name of a beacon style. This is the name of the most recent version of the beacon audio we had in Soundscape as of the v4.1 release, so we refer to it as the "current" beacon. -->
 <string name="beacon_styles_current">"Current"</string>
 <!-- Name of a beacon style. This is the name of the first style of beacon audio we had in Soundscape, so we refer to it as "Original" -->
@@ -84,34 +104,44 @@
 <string name="preview_title">"Simulate Location"</string>
 <!-- Text for button to go to the next intersection -->
 <string name="preview_go_title">"Go"</string>
+<!-- Hint for button that in street preview goes to the next intersection. This is always preceded by "Double tap to  -->
+<string name="preview_go_hint" tools:ignore="MissingTranslation">"Move in this direction to the next intersection."</string>
 <!-- Initial location simulation state for Go button which is indicating that pressing the button will take the user to the nearest intersection -->
 <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">"Go to nearest intersection"</string>
 <!-- Notification, %s is the last entry in a comma delimited list e.g. roads within an intersection. e.g. " and Moor Road" -->
 <string name="last_entry_in_list" tools:ignore="MissingTranslation">" and %s"</string>
 <!-- Title for a setting to include unnamed roads -->
 <string name="preview_include_unnamed_roads_title">"Unnamed Roads"</string>
+<!-- A description for the setting that includes unnamed roads during location simulation-->
+<string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">"Include unnamed roads during location simulation"</string>
 <!-- Location Details page title. This page shows information about the location including the address and a map. -->
 <string name="location_detail_title_default">"Location Details"</string>
 <!-- Title for the action to start playing an audio beacon -->
 <string name="location_detail_action_beacon">"Start Audio Beacon"</string>
+<!-- Title for the action to start playing an audio beacon from the markers list -->
+<string name="location_detail_action_beacon_from_markers"  tools:ignore="MissingTranslation">"Start audio beacon at this marker"</string>
 <!-- Talkback hint for the action to set an audio beacon at this location. This is always preceded by "Double tap to " -->
-<string name="location_detail_action_beacon_hint">"Set an audio beacon at this location"</string>
+<string name="location_detail_action_beacon_hint">"Guide you towards this location with sound."</string>
 <!-- Talkback hint for the action to save marker. This is always preceded by "Double tap to " -->
-<string name="location_detail_action_save_hint">"Save this location as a marker"</string>
+<string name="location_detail_action_save_hint">"Save this location to use later"</string>
 <!-- Talkback hint for the action to edit marker. This is always preceded by "Double tap to " -->
-<string name="location_detail_action_edit_hint">"Edit marker"</string>
+<string name="location_detail_action_edit_hint">"Change the marker name or add additional notes"</string>
 <!-- Talkback hint for the action to share. This is always preceded by "Double tap to " -->
-<string name="location_detail_action_share_hint">"Share this location"</string>
+<string name="location_detail_action_share_hint">"Share this location with another app"</string>
 <!-- Talkback hint for the action to preview. This is always preceded by "Double tap to " -->
 <string name="location_detail_action_preview_hint">"Start previewing at this location"</string>
 <!-- Accessibility hint for markers in a list which could be removed from the list. This is always preceded by "Double tap to " -->
 <string name="location_detail_add_waypoint_existing_hint">"Remove this marker from your route."</string>
 <!-- Accessibility hint for markers in a list that can be added to a list. This is always preceded by "Double tap to " -->
-<string name="location_detail_add_waypoint_new_hint">"Add this marker to your route."</string>
+<string name="location_detail_add_waypoint_new_hint">"Add this marker as a waypoint on your route."</string>
 <!-- Talkback hint for button that makes map full screen -->
 <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">"Make the map full screen"</string>
 <!-- Talkback hint for button that stops map being full screen -->
 <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">"Exit full screen map"</string>
+<!-- Talkback hint for button that makes map full screen to enable editing of the location -->
+<string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">"Make the map full screen and edit the marker location"</string>
+<!-- Talkback hint for button that stops map editing mode -->
+<string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">"Exit marker location editing mode"</string>
 <!-- Title for the action to start playing the audio for a route -->
 <string name="route_detail_action_start_route">"Start Route"</string>
 <!-- Title for the action to stop playing the audio for a route -->
@@ -127,11 +157,11 @@
 <!-- Talkback hint for the action to start the route when the action is disabled. This action is only disabled when no waypoints have been added to a route yet. This is always preceded by "Double tap to " -->
 <string name="route_detail_action_start_route_disabled_hint">"Add waypoints before starting the route"</string>
 <!-- Talkback hint for the action to stop the route. This is always preceded by "Double tap to " -->
-<string name="route_detail_action_stop_route_hint">"Stop this route"</string>
+<string name="route_detail_action_stop_route_hint">"Stop playback of this route"</string>
 <!-- Talkback hint for the action to share. This is always preceded by "Double tap to " -->
-<string name="route_detail_action_share_hint">"Share this route"</string>
+<string name="route_detail_action_share_hint">"Share this route with another app"</string>
 <!-- Accessibility hint for the edit button on the Route Detail screen . This is always preceded by "Double tap to " -->
-<string name="route_detail_action_edit_hint">"Edit this route"</string>
+<string name="route_detail_action_edit_hint">"Change the waypoints in the route, or reorder them."</string>
 <!-- Add button on the Route list screen -->
 <string name="route_detail_action_create">"New Route"</string>
 <!-- Talkback hint for the add button on the Route list screen. This is always preceded by "Double tap to " -->
@@ -252,12 +282,20 @@
 <string name="callouts_panel_title">"Hear My Surroundings"</string>
 <!-- Settings option to allow audio callouts - callouts are the descriptions of the nearby roads. -->
 <string name="callouts_allow_callouts">"Allow Callouts"</string>
+<!-- A description for the audio callouts setting. -->
+<string name="callouts_allow_callouts_description" tools:ignore="MissingTranslation">"Turn all callouts on or off"</string>
 <!-- Settings option to allow finer control of which places are called out - in this case places and landmarks -->
 <string name="callouts_places_and_landmarks">"Places and Landmarks"</string>
+<!-- A description for the places and landmarks callout setting. -->
+<string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">"Nearby places like shops and restaurants"</string>
 <!-- Settings option to allow finer control of which places are called out - in this case mobility relates places -->
 <string name="callouts_mobility">"Mobility"</string>
+<!-- A description for the mobility callouts setting. -->
+<string name="callouts_mobility_description" tools:ignore="MissingTranslation">"Intersection and transportation info"</string>
 <!-- Title for a setting under the Manage Callouts settings section. This toggle enables or disables periodic callouts that inform the user about their distance from the location of the audio beacon. -->
 <string name="callouts_audio_beacon">"Distance to the Audio Beacon"</string>
+<!-- A description for the distance to audio beacon setting. -->
+<string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">"Updates about distance to the audio beacon when it's set"</string>
 <!-- Help title for automatic callouts -->
 <string name="callouts_automatic_callouts">"Automatic Callouts"</string>
 <!-- Speech callout indicating that there's no useful information available -->
@@ -444,6 +482,13 @@
 <string name="ui_action_button_ahead_of_me">"Ahead\nof Me"</string>
 <!-- Accessibility Notification, ...hear about places in front of you. This is always preceded by "Double tap to " -->
 <string name="ui_action_button_ahead_of_me_acc_hint">"Hear about places in front of you"</string>
+<!-- Audio menu (media-button driven hierarchical menu) -->
+<string name="menu_route" tools:ignore="MissingTranslation">"Route control"</string>
+<string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">"Next waypoint"</string>
+<string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">"Previous waypoint"</string>
+<string name="menu_no_routes" tools:ignore="MissingTranslation">"No routes saved"</string>
+<string name="menu_main_menu" tools:ignore="MissingTranslation">"Top menu"</string>
+
 <!-- Title for menu -->
 <string name="ui_menu">"Menu"</string>
 <!-- Talkback hint for the menu button. This is always preceded by "Double tap to " -->
@@ -452,10 +497,10 @@
 <string name="ui_menu_close">"Close Menu"</string>
 <!-- Button, Continue to progress to the next stage-->
 <string name="ui_continue">"Continue"</string>
-<!-- Title in settings to Manage Callouts preferences-->
-<string name="menu_manage_callouts">"Manage Callouts"</string>
-<!-- Title in settings to Manage Callouts preferences-->
-<string name="menu_manage_search" tools:ignore="MissingTranslation">"Manage search"</string>
+<!-- Title in settings for callouts preferences-->
+<string name="menu_manage_callouts">"Manage callouts"</string>
+<!-- Title in settings to search preferences-->
+<string name="menu_manage_search" tools:ignore="MissingTranslation">"Search"</string>
 <!-- Title for Help and Tutorials screen-->
 <string name="menu_help_and_tutorials" tools:ignore="MissingTranslation">"Help and Tutorials"</string>
 <string name="menu_help" tools:ignore="MissingTranslation">"Help"</string>
@@ -473,6 +518,8 @@
 <string name="behavior_experiences_route_nav_title">"Route Details"</string>
 <!-- Callout indicating the current waypoint has changed, %1$s is the waypoint name, %2$s is the distance to waypoint, %3$s is the waypoint index, %4$s is the total number of waypoints. "Beacon set on control 1. 450 feet away. 1 of 4." -->
 <string name="behavior_scavenger_hunt_callout_next_flag">"Beacon set on %1$s, %2$s away, %3$s of %4$s"</string>
+<!-- Callout indicating the current waypoint has changed, %1$s is the waypoint name, %2$s is the distance to waypoint -->
+<string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">"Beacon set on %1$s, %2$s away"</string>
 <!-- Help section title, Configuring Soundscape -->
 <string name="help_configuration_section_title">"Configuring Soundscape"</string>
 <!-- Help section title. This section contains help articles on the audio beacon and the automatic callout features. -->
@@ -592,17 +639,17 @@
 <!-- Notification, Information how to set a beacon continued. Ensure that "Mute Beacon" is translated the same as `beacon.action.mute_beacon` and "Remove Beacon" is translated the same as `beacon.action.remove_beacon`. Quotes written as \" -->
 <string name="help_text_destination_beacons_how_3">"**To mute the audible beacon :**\n\n Tap the *\"Mute Beacon\"* button next to the *\"Stop Beacon\"* button on the home screen."</string>
 <!-- Notification, Information about what a callout is. Ensure that "Manage Callouts" is translated the same as `menu.manage_callouts`. Quotes written as \" -->
-<string name="help_text_automatic_callouts_what">"Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent."</string>
+<string name="help_text_automatic_callouts_what">"Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent."</string>
 <!-- Notification, Information on when you will hear callouts. -->
 <string name="help_text_automatic_callouts_when_1">"**Exploring a new area :**\n\n Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them."</string>
 <!-- Notification, Information on when you will hear callouts continued. -->
 <string name="help_text_automatic_callouts_when_2">"**Walking to a specific location :**\n\n When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them."</string>
 <!-- Notification, Information on when you will hear callouts continued. Ensure that "My Location" is translated the same as `directions.my_location` and "Nearby Markers" is translated the same as `callouts.nearby_markers` and "Around Me" is translated the same as `help.orient.page_title` and "Ahead of Me" is translated the same as `help.explore.page_title`. Quotes written as \" -->
 <string name="help_text_automatic_callouts_when_3">"**When you need silence :**\n\n When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *\"My Location\"*, *\"Nearby Markers\"*, *\"Around Me\"*, or *\"Ahead of Me\"* buttons."</string>
-<!-- Notification, Information how to turn on callouts. Ensure that "Manage Callouts" is translated the same as `menu.manage_callouts` and "Callouts Off" is translated the same as `callouts.callouts_off` and "Allow callouts" is translated the same as `callouts.allow_callouts`. Quotes written as \" -->
-<string name="help_text_automatic_callouts_how_1">"**Turning callouts on or off :**\n\n Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the upper right hand corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again."</string>
-<!-- Notification, Information how to turn on callouts continued. Ensure that "Manage Callouts" is translated the same as `menu.manage_callouts` and "Allow callouts" is translated the same as `callouts.allow_callouts`. Quotes written as \" -->
-<string name="help_text_automatic_callouts_how_2">"**Managing which callouts you hear :**\n\n To choose the types of things Soundscape will automatically callout, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can callout. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list."</string>
+<!-- Notification, Information how to turn on callouts. Ensure that "Callouts" is translated the same as `menu.manage_callouts` and "Callouts Off" is translated the same as `callouts.callouts_off` and "Allow callouts" is translated the same as `callouts.allow_callouts`. Quotes written as \" -->
+<string name="help_text_automatic_callouts_how_1">"**Turning callouts on or off :**\n\n Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the upper right hand corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again."</string>
+<!-- Notification, Information how to turn on callouts continued. Ensure that "Callouts" is translated the same as `menu.manage_callouts` and "Allow callouts" is translated the same as `callouts.allow_callouts`. Quotes written as \" -->
+<string name="help_text_automatic_callouts_how_2">"**Managing which callouts you hear :**\n\n To choose the types of things Soundscape will automatically callout, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can callout. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list."</string>
 <!-- Notification, Information about what My Location does. Ensure that "My Location" is translated the same as `directions.my_location`. Quotes written as \" -->
 <string name="help_text_my_location_what">"The *\"My Location\"* button quickly gives you information that helps you figure out where you currently are. *\"My Location\"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are."</string>
 <!-- Notification, Information on when you would need to use My Location. Ensure that "My Location" is translated the same as `directions.my_location`. Quotes written as \" -->
@@ -632,7 +679,7 @@
 <!-- Notification, Information about when to use media controls on headphones. -->
 <string name="help_text_remote_control_when">"Headphone media controls can be used while Soundscape is running. This is true whether you are currently in Soundscape or while Soundscape is in the background and even while your device is locked. Note however that headphone media control buttons will not work with Soundscape if you are playing audio like music, podcasts or videos with another app."</string>
 <!-- Notification, Information about how to use media controls on headphones. Ensure that "My Location" is translated the same as `directions.my_location` and "Around Me" is translated the same as `help.orient.page_title`. Quotes written as \" -->
-<string name="help_text_remote_control_how">"You can access the following features in Soundscape using your the media control buttons on your headphones:\n\n⏯ Play/Pause: Mute any current callouts and if the audio beacon is set, toggle the beacon audio. \n\n⏭ Next: Callout *\"My Location\"*.\n\n⏮ Previous: Repeat last callout.\n\n⏩ Skip Forward: Toggle callouts On and Off.\n\n⏪ Skip Backward: Callout *\"Around Me\"*."</string>
+<string name="help_text_remote_control_how">"There are 3 modes of operation for the media controls. The mode can be selected in the *\"Settings\"* *\"Media Controls\"* section. The modes are:\n\n Original mode. \n\n⏯ Play/Pause: Toggles the beacon audio on and off. \n\n⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *\"My Location\"*.\n\n⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *\"What's Around Me\"*.\n\n\n\n Voice command. \n\n\n\n⏯ Play/Pause: This triggers the app to listen for voice commands.\n\n\n\nAudio menu. \n\n\n\n⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions."</string>
 <!-- Notification, Markers content -->
 <string name="help_text_markers_content_1">"With Soundscape, you can mark your world and anything you care about, like pins in a map."</string>
 <!-- Notification, Markers content continued -->
@@ -766,7 +813,7 @@
 <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_controlling_what_you_hear_question">"How do I control what I hear and when I hear it in Soundscape?"</string>
 <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. A 'beacon' or 'audio beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Intersection - A junction where two or more roads meet or cross. Point of interest - A specific location that someone may find useful or interesting. Snooze - To put the app in an idle state that is interrupted by user movement. Sleep - To put the app in an idle state for a period of time. Quotes written as \" -->
-<string name="faq_controlling_what_you_hear_answer">"Soundscape provides several ways to control what you hear and when:\n\n1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *\"unmute beacon button\"* on the main screen to resume hearing the beacon.\n\n2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape in to Snooze mode and it will wake up again when you leave, or you can put Soundscape into Sleep mode and it will stay off until you choose to turn it back on. Alternatively, you can select *\"Settings\"* from the menu and choose to turn all callouts off in the *\"Manage Callouts\"* section.\n\n3. Stop the beacon: There are several scenarios for which you might set a destination, but not need the audible beacon on. For example, you may know exactly how to get to your destination but want to get automatic updates about how far away you are from your destination. Or, you may know roughly how to get to your destination, and only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *\"mute beacon\"*/*\"unmute beacon\"* button on the main screen."</string>
+<string name="faq_controlling_what_you_hear_answer">"Soundscape provides several ways to control what you hear and when:\n\n1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *\"unmute beacon button\"* on the main screen to resume hearing the beacon.\n\n2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape in to Snooze mode and it will wake up again when you leave, or you can put Soundscape into Sleep mode and it will stay off until you choose to turn it back on. Alternatively, you can select *\"Settings\"* from the menu and choose to turn all callouts off in the *\"Callouts\"* section.\n\n3. Stop the beacon: There are several scenarios for which you might set a destination, but not need the audible beacon on. For example, you may know exactly how to get to your destination but want to get automatic updates about how far away you are from your destination. Or, you may know roughly how to get to your destination, and only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *\"mute beacon\"*/*\"unmute beacon\"* button on the main screen."</string>
 <!-- A frequently asked question about how the user should hold their phone -->
 <string name="faq_holding_phone_flat_question">"Do I need to hold the phone in my hand all the time?"</string>
 <!-- Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Quotes written as \" -->
@@ -783,8 +830,8 @@
 <string name="faq_tip_finding_bus_stops">"You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the Nearby Places list."</string>
 <!-- Preserve meters unit - Do not convert. The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
 <string name="faq_tip_turning_beacon_off">"You can turn on and off the rhythmic sound of the beacon using the mute button on the home screen. If the beacon is muted you will still get updates about your distance to your destination every 50 meters or so."</string>
-<!-- 'Manage Callouts' is the name of one of the sections on the Soundscape Settings screen. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Snooze - To put the app in an idle state that is interrupted by user movement. Sleep - To put the app in an idle state for a period of time. Quotes written as \" -->
-<string name="faq_tip_turning_off_auto_callouts">"If you still want to interact with Soundscape but don’t want to hear automatic callouts you can turn callouts off by going to the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. Or, if you aren’t going to be using Soundscape you can put it in either Sleep or Snooze mode using the *\"Sleep\"* button on the home screen."</string>
+<!-- 'Callouts' is the name of one of the sections on the Soundscape Settings screen. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Snooze - To put the app in an idle state that is interrupted by user movement. Sleep - To put the app in an idle state for a period of time. Quotes written as \" -->
+<string name="faq_tip_turning_off_auto_callouts">"If you still want to interact with Soundscape but don’t want to hear automatic callouts you can turn callouts off by going to the *\"Callouts\"* section of the *\"Settings\"* screen from the menu. Or, if you aren’t going to be using Soundscape you can put it in either Sleep or Snooze mode using the *\"Sleep\"* button on the home screen."</string>
 <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_tip_hold_phone_flat">"Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you."</string>
 <!-- Marker - A location that has been marked as important by the user or application. This can be an address, a business or a custom place such as an entrance, a bus stop or a bench. The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. 'Manage Markers' is the name of one of the options in the Soundscape menu. Quotes written as \" -->
@@ -793,14 +840,40 @@
 <string name="no_language_selected">No language selected</string>
 <!-- Notifications are a type of Android permission required to run the app -->
 <string name="first_launch_permissions_notification">Notifications</string>
+<!-- For voice commands to work we need permission to access the microphone and record audio -->
+<string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Record audio</string>
+<!-- The app will run without record audio permissions, but voice control won't be available -->
+<string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">This permission is optional, but is required if you want to use voice commands to control the app.</string>
 <!-- Message appears as notification when app is running -->
-<string name="notification_text" tools:ignore="MissingTranslation">We are running this location service in the foreground</string>
+<string name="notification_text" tools:ignore="MissingTranslation">The Soundscape location service runs even when the phone is locked.</string>
 <!-- Option to cancel searching for a location -->
 <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Cancel search</string>
 <!-- Title for settings page group of audio settings -->
-<string name="menu_manage_audio" tools:ignore="MissingTranslation">"Manage Audio"</string>
-<!-- Title for settings page group of audio settings -->
-<string name="menu_manage_accessibility" tools:ignore="MissingTranslation">"Manage Accessibility"</string>
+<string name="menu_manage_audio" tools:ignore="MissingTranslation">"Audio"</string>
+<!-- Title for settings page group of language settings -->
+<string name="menu_manage_language" tools:ignore="MissingTranslation">"Language and Region "</string>
+<!-- Title for settings page group of accessibility settings -->
+<string name="menu_manage_accessibility" tools:ignore="MissingTranslation">"Accessibility"</string>
+<!-- Title for settings page group of settings for the media controls -->
+<string name="menu_media_controls" tools:ignore="MissingTranslation">"Media Controls"</string>
+<!--  -->
+<string name="settings_section_media_controls" tools:ignore="MissingTranslation">"Media controls mode"</string>
+<!--  -->
+<string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">"The media control buttons on your headphones, or remote can be configured to work in different ways depending on this option."</string>
+<!--  -->
+<string name="settings_media_controls_original" tools:ignore="MissingTranslation">"Original mode"</string>
+<!--  -->
+<string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">"Voice command"</string>
+<!--  -->
+<string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">"Audio menu"</string>
+<!--  -->
+<string name="settings_voice_command_listening_prompt" tools:ignore="MissingTranslation">"Announce listening"</string>
+<!--  -->
+<string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">"Speak a listening prompt before voice recognition starts."</string>
+<!--  -->
+<string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">"Microphone"</string>
+<!--  -->
+<string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">"Choose which microphone to use for voice commands."</string>
 <!-- App theme light/dark description -->
 <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">"Light or Dark Theme"</string>
 <!-- App theme setting for automatic light/dark based on system -->
@@ -833,9 +906,11 @@
 <!-- Settings option for showing or hiding the map on the screen -->
 <string name="settings_show_map" tools:ignore="MissingTranslation">"Show maps on screen"</string>
 <!-- Settings title for various debugging options to aid developers -->
-<string name="settings_debug_heading" tools:ignore="MissingTranslation">"Debug settings"</string>
+<string name="settings_debug_heading" tools:ignore="MissingTranslation">"Debug options"</string>
 <!-- Settings title for choosing the languages returned by search -->
 <string name="settings_search_results_language" tools:ignore="MissingTranslation">"Search language"</string>
+<!-- Description of what the search language option does -->
+<string name="settings_search_results_language_description" tools:ignore="MissingTranslation">"Online search can use the local language of the result, or be forced to return English, French or German."</string>
 <!-- Menu option for sharing the recorded travel route via another app -->
 <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">"Share recording of travel"</string>
 <!-- Description of path to another road that passes steps/tunnel/bridge e.g. "Path to Moor Road via steps" -->
@@ -864,7 +939,7 @@
 <string name="offline_maps_caching" tools:ignore="MissingTranslation">"Server is preparing %s for download. This can take a few minutes and then the download will start automatically."</string>
 <!-- Offscreen maps free space on storage. %s is replaced by value e.g. 32GB -->
 <string name="offline_maps_free_space" tools:ignore="MissingTranslation">"%s free"</string>
-<!-- Offscreen maps storage storage information. %1$s is the name of the storage e.g. "SD" and %2$s is how much free space it has e.g. "31.3 GB" -->
+<!-- Offscreen maps storage information. %1$s is the name of the storage e.g. "SD" and %2$s is how much free space it has e.g. "31.3 GB" -->
 <string name="offline_maps_storage" tools:ignore="MissingTranslation">"Maps are saved to %1$s which has %2$s free"</string>
 <!-- Offscreen maps title of list of downloaded maps-->
 <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">"Maps already downloaded"</string>
@@ -894,6 +969,12 @@
 <string name="offline_map_storage_description" tools:ignore="MissingTranslation">"So that Soundscape can be used without an Internet connection it is possible to download maps and store them on the phone. The default storage is any external storage on your phone, but you can select an alternative destination here."</string>
 <!-- Offscreen map download option to use WiFi Only and not mobile data -->
 <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">"Use WiFi only for map download"</string>
+<!-- Offscreen map message when download has successfully completed -->
+<string name="offline_map_download_complete" tools:ignore="MissingTranslation">"Download complete"</string>
+<!-- Offscreen map message when download has been cancelled -->
+<string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">"Download cancelled"</string>
+<!-- Offscreen map message when there is an error during download -->
+<string name="offline_map_download_error" tools:ignore="MissingTranslation">"Download error"</string>
 <!-- Accessibility onboarding screen title -->
 <string name="accessibility_title" tools:ignore="MissingTranslation">"Accessibility"</string>
 <!-- If there is a screen reader enabled, then this text is shown to the user during onboarding. -->
@@ -916,6 +997,8 @@
 <string name="fab_add_route" tools:ignore="MissingTranslation">Add Route</string>
 <!-- Describes current waypoint in route. -->
 <string name="route_waypoint_progress" tools:ignore="MissingTranslation">"Route %1$s at waypoint %2$s of %3$s"</string>
+<!-- Describes beacon destination. -->
+<string name="route_beacon_progress" tools:ignore="MissingTranslation">"Beacon at %1$s"</string>
 <!-- Home screen title -->
 <string name="home_screen_title" tools:ignore="MissingTranslation">Soundscape Home</string>
 <!-- Button text to reset settings to defaults -->
@@ -956,6 +1039,21 @@
 <string name="street_description_until" tools:ignore="MissingTranslation">"On %1$s, %2$s until %3$s"</string>
 <!-- Callout text when on a street (1) having come from a point (3) and having travelled a distance (2) e.g. On Royal Road, 125m since 32nd Street -->
 <string name="street_description_since" tools:ignore="MissingTranslation">"On %1$s, %2$s since %3$s"</string>
+<!-- Callout text when on a street (1) and just before a cross street or point of interest (2) -->
+<string name="street_description_relative_before" tools:ignore="MissingTranslation">"On %1$s just before %2$s"</string>
+<!-- Callout text when on a street (1) and just after a cross street or point of interest (2) -->
+<string name="street_description_relative_after" tools:ignore="MissingTranslation">"On %1$s just after %2$s"</string>
+<!-- Callout text when at an intersection where we don't know which road we're on -->
+<string name="street_description_intersection" tools:ignore="MissingTranslation">"Near intersection of %s"</string>
+<!-- Title for language mismatch dialog -->
+<string name="language_mismatch_title" tools:ignore="MissingTranslation">"New language available"</string>
+<!-- Message for language mismatch dialog. %1$s is the phone language name -->
+<string name="language_mismatch_message" tools:ignore="MissingTranslation">"Your phone is set to %1$s and that language is now available in Soundscape. Would you like to switch Soundscape to use %1$s?"</string>
+<!-- Button to switch app language in the language mismatch dialog. %1$s is the language name -->
+<string name="language_mismatch_switch" tools:ignore="MissingTranslation">"Switch to %1$s"</string>
+<!-- Button to keep the current app language in the language mismatch dialog -->
+<string name="language_mismatch_keep" tools:ignore="MissingTranslation">"Keep current language"</string>
+
 <!-- Title for dialog which explains what is new in the current release -->
 <string name="new_version_info_text" tools:ignore="MissingTranslation">"New release information"</string>
 <!-- Button at end of new release dialog so that the user can continue on and use the app -->
@@ -964,21 +1062,19 @@
 <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">"Open source licenses"</string>
 <!-- Text for dialog which explains what is new in the current release. This is in markdown format. -->
 <string name="new_version_info_details" tools:ignore="MissingTranslation">"
-The main changes in this release are for *Search* and describing the current address. When there is network available, *Search* will use Android as well as our own Photon server to find places. The main improvements here are firstly that searching by street number should work much better in many parts of the world. Secondly, we have also added offline search which uses any downloaded maps to search for addresses and points of interest. Offline search works up to around 5 miles around the user.
+There are two new features in this release which allow remote control of the app, even when the phone is locked. This means that it can be kept in your pocket whilst still controlling the main features of the app.
 
-Tips for searching:
+Both remote control methods use Bluetooth media control buttons, either those on your headphones, or you can also buy small remote controls to keep in your hand or pocket. The remote control mode is selected from the Settings/Media controls section and you can pick \"Voice command\" so that you can talk to the app, or \"Audio menu\" where there are menus read out to you with options to select. \"Original mode\" means that the Bluetooth buttons work in the same way as in previous releases.
 
-The search UI has changed slightly since the last release as it didn't correctly support talkback editing. It also requires the user to hit enter/search to start the search after entering the search text.
+In voice command mode, clicking the play/pause button on your headphones starts the app listening for speech and you will hear a short sound to indicate this. If you say \"Help\" it will list the available commands that you can use. Then you can click the button again and try the other commands. Unfortunately, Android speech recognition doesn't support all languages, and it's not available on all phones.
 
-Offline search requires offline maps to be downloaded. Download them from the Settings/Offline maps screen.
+The main difficulty with voice command mode is that some headphones take longer to switch their microphone on than others. This means that after tapping the play/pause button you may have to wait up to 5 seconds before you can speak. To learn how long it takes, the best approach is to tap play/pause and then count up from 1 to 10. The phone should tell you what speech it recognized and the number it starts at was the first to be recognized. This can be used to help learn how long to wait before speaking. Some headphones make a clear noise when the microphone is on which makes this easier, but others make no noise at all. Unfortunately, this may take practise.
 
-Searching can be forced to be offline only in the settings. The default Auto setting means that it uses online search when there's network available and offline search when there's none.
+The other new remote mode is Audio menu mode will work in all languages and on all phones. The next/previous media control buttons move forwards and backwards through the options within the menu. The play/pause button then selects the current option. There is a top level menu, and then one layer of sub menus which group together similar commands.
 
-When searching for a street address, including the town name is important for online search, though it can be omitted in offline search.
+These features are very new, and we'd really like feedback on whether they work well and what other commands you might like.
 
-Mapping of street numbers in the OpenStreetMap data that we use varies depending on location. Offline search will use street numbers when they are available, though an offline map downloaded in the app after January 19th 2026 is required.
-
-As always please report any problems, however small they may be via the *Contact Support* option in the main menu.
+Please report any problems that you have, however small they may be via the *Contact Support* option in the main menu.
 "</string>
 <!-- Text for the About Soundscape menu option. It describes what the app does -->
 <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explores the use of innovative audio-based technology to enable people to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around.</string>
@@ -986,7 +1082,6 @@ As always please report any problems, however small they may be via the *Contact
 <string name="copyright_notices" translatable="false">Soundscape wouldn\'t be possible without these fantastic third party libraries and data. Click on the links to see their licenses:</string>
 <string name="osm_copyright" translatable="false">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.</string>
 <string name="openmaptiles_copyright" translatable="false">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.</string>
-<string name="fmod_copyright" translatable="false">[Audio Engine: FMOD Studio by Firelight Technologies Pty Ltd.](https://www.fmod.com/legal) takes care of the audio playback.</string>
 
 <!-- Open Street Map term. Used to describe a block or building typically housing companies, but offices may be also used by any other kind of organization like charities, government, any NGO etc.. -->
 <string name="osm_office_building" tools:ignore="MissingTranslation">"Office Building"</string>
@@ -2475,7 +2570,7 @@ As always please report any problems, however small they may be via the *Contact
 <!-- Open Street Map term for a wood or forest. -->
 <string name="osm_wood" tools:ignore="MissingTranslation">Wood</string>
 <!-- Open Street Map term for a sports pavillion. -->
-<string name="osm_pavillion" tools:ignore="MissingTranslation">Pavillion</string>
+<string name="osm_pavillion" tools:ignore="MissingTranslation">Pavilion</string>
 <!-- Open Street Map term for a sports venue where we don't know the sport. -->
 <string name="osm_sport" tools:ignore="MissingTranslation">Sport</string>
 <!-- Open Street Map term for a health food shop. -->
@@ -2524,4 +2619,54 @@ As always please report any problems, however small they may be via the *Contact
 <string name="tour_continue_button" tools:ignore="MissingTranslation">Continue</string>
 <!-- Tutorial dialog continue button hint. This is always preceded by "Double tap to " -->
 <string name="tour_continue_hint" tools:ignore="MissingTranslation">Close the popup and continue with the tutorial</string>
+<!-- Spoken response listing all available commands -->
+<string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Available voice commands: </string>
+<!-- Text shown on screen and spoken when the microphone is turned on -->
+<string name="voice_cmd_listening" tools:ignore="MissingTranslation">Listening…</string>
+<!-- Spoken response when the user's speech wasn't understood. -->
+<string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">"I'm sorry, I can't find the command %1$s. The voice command, %2$s, will list available commands."</string>
+<!-- Voice command to list saved routes -->
+<string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">List routes</string>
+<!-- Text read out before list of saved routes -->
+<string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Available routes are,</string>
+<!-- Voice command to list saved markers -->
+<string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">List markers</string>
+<!-- Text read out before list of saved markers -->
+<string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Available markers are,</string>
+<!-- Spoken when there are no saved routes -->
+<string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">No routes have been saved</string>
+<!-- Spoken when there are no saved markers -->
+<string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">No markers have been saved</string>
+<!-- Spoken when a named route could not be found. %s = the name spoken by the user -->
+<string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Route not found: %s</string>
+<!-- Spoken when a route is being started. %s = the route name -->
+<string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Starting route %s</string>
+<!-- Command to start a route. %s = the route name -->
+<string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Start route %s</string>
+<!-- Command to start an audio beacon at a marker. %s = the marker name -->
+<string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Start audio beacon at %s</string>
+<!-- Spoken when an audio beacon is being started. %s = the marker name -->
+<string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Starting audio beacon at %s</string>
+<!-- Spoken when a named marker could not be found. %s = the name spoken by the user -->
+<string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Marker not found: %s</string>
+<!-- Spoken text to explain dynamic routes and markers -->
+<string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">You can also start routes and markers by name, for example.</string>
+<!-- Spoken responses when there are errors in the speech recognition  -->
+<string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">"Speech recognition network timeout error."</string>
+<string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">""Speech recognition network error."</string>
+<string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">""Speech recognition error recording the audio."</string>
+<string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">""Speech recognition server error."</string>
+<string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">""Speech recognition client error."</string>
+<string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">"Listening for speech timed out, and so listening has stopped. Please try again."</string>
+<string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">"No speech was heard, and so listening has stopped. Please try again."</string>
+<string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">"Speech recognition busy error."</string>
+<string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">"There were not enough permissions to run the speech recognition."</string>
+<string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">"Speech recognition too many requests error."</string>
+<string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">"Speech recognition server disconnected error."</string>
+<string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">"The current language is not supported by Android for speech recognition."</string>
+<string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">"The current language support is supported, but has not been downloaded on this phone."</string>
+<string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">"Speech recognition support check error."</string>
+<string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">"Speech recognition download listen error."</string>
+<string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">"Speech recognition unknown error."</string>
+<string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">"Speech recognition is not supported on this phone."</string>
 </resources>

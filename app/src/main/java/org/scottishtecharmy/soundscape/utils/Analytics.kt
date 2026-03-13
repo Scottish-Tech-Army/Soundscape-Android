@@ -1,22 +1,23 @@
 package org.scottishtecharmy.soundscape.utils
+import android.content.Context
 import android.os.Bundle
 
 interface Analytics {
     fun logEvent(name: String, params: Bundle? = null)
+    fun logCostlyEvent(name: String, params: Bundle? = null)
+
+    fun crashSetCustomKey(key: String, value: String)
+    fun crashLogNotes(name: String)
 
     companion object {
         @Volatile
         private var INSTANCE: Analytics? = null
-        fun getInstance(dummy: Boolean? = null) : Analytics {
+        fun getInstance(dummy: Boolean? = null, context: Context? = null) : Analytics {
             synchronized(this) {
                 var instance = INSTANCE
-
-                // Check that we've initialized the instance
-                if(dummy == null) assert(instance != null)
-
                 if (instance == null) {
                     instance = if(dummy == false)
-                        FirebaseAnalyticsImpl()
+                        createPlatformAnalytics(context!!)
                     else
                         NoOpAnalytics()
                     INSTANCE = instance

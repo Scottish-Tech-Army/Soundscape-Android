@@ -12,7 +12,11 @@
     <uses-permission android:name="android.permission.BROADCAST_CLOSE_SYSTEM_DIALOGS" tools:ignore="ProtectedPermissions"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
     <uses-permission android:name="android.permission.READ_LOGS" />
-
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
     <application
         android:name=".SoundscapeApplication"
         android:allowBackup="true"
@@ -82,6 +86,10 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
 
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
+
             <!--
             Once we have share.soundscape.services (or similar) server set up, then we can uncomment
             this and test deep linking. This is so that iOS shared markers such as:
@@ -103,7 +111,7 @@
             android:stopWithTask="true"
             android:enabled="true"
             android:exported="true"
-            android:foregroundServiceType="location|mediaPlayback"
+            android:foregroundServiceType="location|mediaPlayback|microphone"
             android:permission="android.permission.FOREGROUND_SERVICE_LOCATION">
             <intent-filter>
                 <action android:name="androidx.media3.session.MediaSessionService"/>
@@ -126,11 +134,23 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
+        <!-- Disable screen_view events in Firebase -->
+        <meta-data android:name="google_analytics_automatic_screen_reporting_enabled" android:value="false" />
+
+        <!-- Disable Firebase auto-initialization at app startup -->
+        <provider
+            android:name="com.google.firebase.provider.FirebaseInitProvider"
+            android:authorities="${applicationId}.firebaseinitprovider"
+            tools:node="remove" />
     </application>
 
     <queries>
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
         </intent>
     </queries>
 

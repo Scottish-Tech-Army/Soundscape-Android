@@ -11,11 +11,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import java.io.File
 import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
@@ -37,7 +40,8 @@ class RouteDetailsViewModel @Inject constructor(
                 )
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
-                    errorMessage = e.message ?: "An error occurred",
+                    errorMessage = soundscapeServiceConnection.soundscapeService?.localizedContext?.getString(
+                        R.string.error_message_route_not_found) ?: "",
                     isLoading = false
                 )
             }
@@ -132,13 +136,23 @@ class RouteDetailsViewModel @Inject constructor(
 
     private fun writeRouteAndReturnUri(context: Context, route: RouteWithMarkers?) : Uri? {
 
+        if(route == null) return null
+
         // Write the route to a file and share it
         val path = "${context.filesDir}/route/"
         val routeStorageDir = File(path)
         if (!routeStorageDir.exists()) {
             routeStorageDir.mkdirs()
         }
-        val outputFile = File(routeStorageDir, "route.json")
+
+        // Include a timestamp in the file name
+        val timeStampFormatter = SimpleDateFormat("yyyyMMdd_HHmm")
+        val dateString = timeStampFormatter.format(Date())
+        // Sanitize route name for use in filename - remove characters invalid in filenames
+        val routeName = route.route.name
+            .replace(Regex("[/\\\\:*?\"<>|\\x00]"), "_")
+            .take(100) // Limit length to avoid overly long filenames
+        val outputFile = File(routeStorageDir, "soundscape-route-$routeName-$dateString.json")
         generateRouteJson(route, outputFile)
 
         return getUriForFile(context, "${context.packageName}.provider", outputFile)

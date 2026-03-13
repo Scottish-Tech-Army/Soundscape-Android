@@ -8,7 +8,9 @@ import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
 import android.os.StrictMode
+import android.provider.Settings
 import android.text.Html
 import android.util.Log
 import android.view.View
@@ -24,6 +26,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.content.edit
+import androidx.core.content.pm.ShortcutInfoCompat
+import androidx.core.content.pm.ShortcutManagerCompat
+import androidx.core.net.toUri
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -31,18 +37,14 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import androidx.preference.PreferenceManager
-import com.google.android.play.core.review.ReviewException
 import com.google.android.play.core.review.ReviewManagerFactory
-import com.google.android.play.core.review.model.ReviewErrorCode
-import com.google.firebase.Firebase
-import com.google.firebase.crashlytics.crashlytics
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
-import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
@@ -50,12 +52,13 @@ import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.LogcatHelper
+import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
+import org.scottishtecharmy.soundscape.utils.findExtracts
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
 import org.scottishtecharmy.soundscape.utils.processMaps
 import java.io.File
 import java.util.Locale
 import javax.inject.Inject
-import androidx.core.net.toUri
 
 data class ThemeState(
     val hintsEnabled: Boolean = false,
@@ -84,11 +87,6 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var audioTour : AudioTour
 
-    init {
-        // Use dummy analytics if we don't have play services
-        Analytics.getInstance(!hasPlayServices(this))
-    }
-
     // we need notification permission to be able to display a notification for the foreground service
     private val notificationPermissionLauncher =
         registerForActivityResult(
@@ -97,6 +95,10 @@ class MainActivity : AppCompatActivity() {
             // Next, get the location permissions
             checkAndRequestLocationPermissions()
         }
+
+    // Microphone permission for voice commands — best-effort; if denied, voice commands are silently skipped
+    private val micPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { /* no-op */ }
 
     // we need location permission to be able to start the service
     private val locationPermissionRequest = registerForActivityResult(
@@ -110,7 +112,7 @@ class MainActivity : AppCompatActivity() {
 
             else -> {
                 // No location access granted, service can't be started as it will crash
-                Toast.makeText(this, "Fine Location permission is required.", Toast.LENGTH_SHORT)
+                Toast.makeText(this, this.getString(R.string.permissions_required), Toast.LENGTH_SHORT)
                     .show()
             }
         }
@@ -165,6 +167,12 @@ class MainActivity : AppCompatActivity() {
                 _themeStateFlow.value = themeStateFlow.value.copy(
                     hintsEnabled = preferences.getBoolean(HINTS_KEY, HINTS_DEFAULT)
                 )
+            }
+
+            MEDIA_CONTROLS_MODE_KEY -> {
+                val mode = preferences.getString(MEDIA_CONTROLS_MODE_KEY, MEDIA_CONTROLS_MODE_DEFAULT)!!
+                Log.e(TAG, "mediaControlsMode $mode")
+                soundscapeServiceConnection.soundscapeService?.updateMediaControls(mode)
             }
         }
     }
@@ -221,10 +229,22 @@ class MainActivity : AppCompatActivity() {
             if(soundscapeServiceConnection.soundscapeService?.running == false) {
                 // This can happen if the service failed to move to the foreground.
                 // Simply start the service now
-                Firebase.crashlytics.log("Attempt to start non-running service from onResume")
+                Analytics.getInstance().crashLogNotes("Attempt to start non-running service from onResume")
                 setServiceState(true)
             }
         }
+    }
+
+    private fun continueLaunch(isFirstLaunch: Boolean) {
+        if (isFirstLaunch) {
+            // On the first launch, we want to take the user through the OnboardingActivity so
+            // switch to it immediately.
+            val intent = Intent(applicationContext, OnboardingActivity::class.java)
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            finish()
+        } else
+            onSplashComplete()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -241,19 +261,77 @@ class MainActivity : AppCompatActivity() {
 //                     .build()
 //        )
 
+        // Use dummy analytics if any of the following is true:
+        //
+        //  1. DUMMY_ANALYTICS is set meaning that we're not a release build
+        //  2. We don't have Google Play Services
+        //  3. We're running in Test Lab which is what happens when Google tests app releases. The
+        //    test for this is mentioned here:
+        //    https://firebase.google.com/docs/test-lab/android/android-studio#modify_instrumented_test_behavior_for
+        //
+        val testLabSetting: String? =
+            Settings.System.getString(contentResolver, "firebase.test.lab")
+        Analytics.getInstance(
+            BuildConfig.DUMMY_ANALYTICS ||
+                    !hasPlayServices(this) ||
+                    "true" == testLabSetting,
+            context = applicationContext
+        )
+
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val isFirstLaunch = sharedPreferences.getBoolean(FIRST_LAUNCH_KEY, true)
+
+        // The splash sound is quite invasive. As a result, we want to limit how often we play it.
+        // This code means that it will be played the first time any new release is installed.
+        val splashPlayed = (sharedPreferences.getString(LAST_SPLASH_RELEASE_KEY, LAST_SPLASH_RELEASE_DEFAULT)
+                == BuildConfig.VERSION_NAME.substringBeforeLast("."))
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val timeNow = System.currentTimeMillis()
             installSplashScreen()
 
-            // Keep the splash screen visible to allow time to see the attribution acknowledgements,
-            // But not too long as this delay happens coming out of sleep too.
-            val attributionDelay = 2000
+            var splashSoundFinished = false
+            if (splashPlayed) {
+                splashSoundFinished = true
+            } else {
+                // We have a splash sound, so play it and keep the splash screen visible until the
+                // playback has finished
+                val splashPlayer = android.media.MediaPlayer()
+                try {
+                    val afd = assets.openFd("DoubleTap/dt_soundscape.mp3")
+                    splashPlayer.setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
+                    afd.close()
+                    splashPlayer.prepare()
+                    splashPlayer.setVolume(0.7f, 0.7f)
+                    splashPlayer.start()
+                    splashPlayer.setOnCompletionListener {
+                        it.release()
+                        splashSoundFinished = true
+                    }
+                } catch (e: Exception) {
+                    Log.e(TAG, "Failed to play splash sound: $e")
+                    splashPlayer.release()
+                    splashSoundFinished = true
+                }
+                sharedPreferences.edit(commit = true) {
+                    putString(LAST_SPLASH_RELEASE_KEY, BuildConfig.VERSION_NAME.substringBeforeLast("."))
+                }
+            }
+
+            // Keep the splash screen visible until the sound has finished playing,
+            // with a minimum delay for attribution acknowledgements.
+            val attributionDelay = 1500
             val content: View = findViewById(android.R.id.content)
+            val context = this
             content.viewTreeObserver.addOnPreDrawListener(
                 object : ViewTreeObserver.OnPreDrawListener {
                     override fun onPreDraw(): Boolean {
-                        return if((System.currentTimeMillis() - timeNow) > attributionDelay) {
+                        val minDelayPassed =
+                            (System.currentTimeMillis() - timeNow) > attributionDelay
+                        return if (minDelayPassed && splashSoundFinished) {
                             content.viewTreeObserver.removeOnPreDrawListener(this)
+                            continueLaunch(isFirstLaunch)
                             true
                         } else {
                             false
@@ -263,6 +341,9 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
+        // The remaining code in this function can be run whilst the splash screen is visible.
+        // We delay starting the service until the splash screen is gone so that we don't have a
+        // clash of audio with the splash screen sound.
         super.onCreate(savedInstanceState)
 
         println("${Build.FINGERPRINT}")
@@ -280,7 +361,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         // Debug - dump preferences
-        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+        // We've deprecated "Online" as a mode. The only options are "Auto" and "Offline". Online
+        // and Auto worked the same anyway...
+        if (sharedPreferences.getString(GEOCODER_MODE_KEY, GEOCODER_MODE_DEFAULT) == "Online") {
+            sharedPreferences.edit { putString(GEOCODER_MODE_KEY, GEOCODER_MODE_DEFAULT) }
+        }
+
         for (pref in sharedPreferences.all) {
             Log.d(TAG, "Preference: " + pref.key + " = " + pref.value)
         }
@@ -308,23 +394,20 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-        val isFirstLaunch = sharedPreferences.getBoolean(FIRST_LAUNCH_KEY, true)
-        Log.d(TAG, "isFirstLaunch: $isFirstLaunch")
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S)
+            continueLaunch(isFirstLaunch)
+    }
 
-        if (isFirstLaunch) {
-            // On the first launch, we want to take the user through the OnboardingActivity so
-            // switch to it immediately.
-            val intent = Intent(this, OnboardingActivity::class.java)
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            startActivity(intent)
-            finish()
-
-            // No need to carry on with the rest of the initialization as we are switching activities
-            return
-        }
-
+    private fun onSplashComplete() {
         checkAndRequestNotificationPermissions()
         soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
+
+        val db = org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase.getMarkersInstance(applicationContext)
+        lifecycleScope.launch {
+            db.routeDao().getAllRoutesFlow().collect { routes ->
+                updateRouteShortcuts(routes)
+            }
+        }
 
         lifecycleScope.launch {
             soundscapeServiceConnection.serviceBoundState.collect {
@@ -384,6 +467,47 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
+    private fun updateRouteShortcuts(routes: List<RouteEntity>) {
+        val currentIds = routes.map { "route_${it.routeId}" }.toSet()
+
+        // Remove shortcuts for deleted routes
+        val toRemove = ShortcutManagerCompat.getDynamicShortcuts(applicationContext)
+            .map { it.id }
+            .filter { it.startsWith("route_") && it !in currentIds }
+        if (toRemove.isNotEmpty()) {
+            ShortcutManagerCompat.removeDynamicShortcuts(applicationContext, toRemove)
+        }
+
+        // Add/update shortcuts for current routes
+        val seenNames = mutableSetOf<String>()
+        for (route in routes) {
+            // You can't have shortcuts without a name
+            if(route.name.isEmpty())
+                continue
+
+            // Skip routes with duplicate names
+            if(!seenNames.add(route.name))
+                continue
+
+            val intent = Intent(this, MainActivity::class.java)
+            intent.action = Intent.ACTION_VIEW
+            intent.data = "soundscape://route/${route.name}".toUri()
+
+            val shortcut = ShortcutInfoCompat.Builder(applicationContext, "route_${route.routeId}")
+                .setShortLabel(route.name)
+                .setLongLabel(route.name)
+                .addCapabilityBinding(
+                    "actions.intent.START_EXERCISE",
+                    "exercise.name",
+                    listOf(route.name)
+                )
+                .setIntent(intent)
+                .build()
+
+            ShortcutManagerCompat.pushDynamicShortcut(applicationContext, shortcut)
+        }
+    }
+
     private fun rateSoundscape() {
         if (!hasPlayServices(this)) {
             // No Play Services - open Play Store directly as fallback
@@ -405,10 +529,6 @@ class MainActivity : AppCompatActivity() {
                         // reviewed or not, or even whether the review dialog was shown. Thus, no
                         // matter the result, we continue our app flow.
                     }
-                } else {
-                    // There was some problem, log or handle the error code.
-                    @ReviewErrorCode val reviewErrorCode = (task.exception as ReviewException).errorCode
-                    Log.e(TAG, "Error requesting review: $reviewErrorCode")
                 }
             }
         } catch (e: Exception) {
@@ -463,13 +583,25 @@ class MainActivity : AppCompatActivity() {
         val bodyText = StringBuilder()
 
         bodyText.append("-----------------------------<br/>")
+        bodyText.append(tableRow("Summary", subjectText))
         bodyText.append(tableRow("Product", product))
         bodyText.append(tableRow("Manufacturer", manufacturer))
         talkBackDescription(bodyText, applicationContext)
 
-
         bodyText.append(tableRow("AndroidGeocoder", AndroidGeocoder.enabled.toString()))
 
+        val extractPath = sharedPreferences.getString(SELECTED_STORAGE_KEY, SELECTED_STORAGE_DEFAULT)!!
+        val extractCollection = findExtracts(File(extractPath, Environment.DIRECTORY_DOWNLOADS).path)
+        if(extractCollection != null) {
+            for (extract in extractCollection.features) {
+                bodyText.append(tableRow
+                    (
+                    "Offline extract",
+                    "${extract.properties?.get("name")}, ${extract.properties?.get("filename")}"
+                    )
+                )
+            }
+        }
         preferences.forEach { pref -> bodyText.append(tableRow(pref.key, pref.value.toString())) }
         bodyText.append("-----------------------------<br/><br/>")
 
@@ -624,6 +756,11 @@ class MainActivity : AppCompatActivity() {
         Log.e(TAG, "startSoundscapeService")
         val serviceIntent = Intent(this, SoundscapeService::class.java)
         startForegroundService(serviceIntent)
+        // Request microphone permission for voice commands (best-effort)
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
+            != android.content.pm.PackageManager.PERMISSION_GRANTED) {
+            micPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
+        }
     }
 
     companion object {
@@ -668,8 +805,18 @@ class MainActivity : AppCompatActivity() {
         const val SELECTED_STORAGE_KEY = "SelectedStorage"
         const val LAST_NEW_RELEASE_DEFAULT = ""
         const val LAST_NEW_RELEASE_KEY = "LastNewRelease"
+        const val LANGUAGE_SUPPORTED_PROMPTED_DEFAULT = false
+        const val LANGUAGE_SUPPORTED_PROMPTED_KEY = "LanguageSupported"
         const val GEOCODER_MODE_DEFAULT = "Auto"
         const val GEOCODER_MODE_KEY = "GeocoderMode"
+        const val LAST_SPLASH_RELEASE_DEFAULT = ""
+        const val LAST_SPLASH_RELEASE_KEY = "LastNewRelease"
+        const val MEDIA_CONTROLS_MODE_DEFAULT = "Original"
+        const val MEDIA_CONTROLS_MODE_KEY = "MediaControlsMode"
+        const val VOICE_COMMAND_LISTENING_PROMPT_DEFAULT = true
+        const val VOICE_COMMAND_LISTENING_PROMPT_KEY = "VoiceCommandListeningPrompt"
+        const val VOICE_COMMAND_MICROPHONE_DEFAULT = "Auto"
+        const val VOICE_COMMAND_MICROPHONE_KEY = "VoiceCommandMicrophone"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
         const val AUDIO_TOUR_SHOWN_KEY = "AudioTourShown"

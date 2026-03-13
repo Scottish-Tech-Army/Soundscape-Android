@@ -38,8 +38,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
 import org.scottishtecharmy.soundscape.geoengine.utils.superCategoryMap
-import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
-import java.io.FileOutputStream
 
 class TileUtilsTest {
     private val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
@@ -503,11 +501,11 @@ class TileUtilsTest {
         // This should pick up four road segments in the FoV
         Assert.assertEquals(4, fovRoadsFeatureCollection.features.size)
         val nearestRoad = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
-            .getNearestFeature(userGeometry.location, userGeometry.ruler) as MvtFeature
+            .getNearestFeature(userGeometry.location, userGeometry.ruler) as MvtFeature?
         // Should only be the nearest road in this Feature Collection
         assert(nearestRoad != null)
         // The nearest road to the current location should be Weston Road
-        Assert.assertEquals("Weston Road", nearestRoad.name)
+        Assert.assertEquals("Weston Road", nearestRoad?.name)
     }
 
     @Test

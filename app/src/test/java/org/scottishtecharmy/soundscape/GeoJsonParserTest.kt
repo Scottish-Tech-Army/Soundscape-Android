@@ -1,11 +1,9 @@
 package org.scottishtecharmy.soundscape
 
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.*
-import org.scottishtecharmy.soundscape.geojsonparser.moshi.*
 import com.squareup.moshi.Moshi
 import org.junit.Assert
 import org.junit.Test
-import kotlin.collections.get
 
 class GeoJsonParserTest {
     private val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()

@@ -13,6 +13,7 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeoutOrNull
 import okhttp3.internal.platform.PlatformRegistry.applicationContext
+import org.json.JSONObject
 
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -35,9 +36,10 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import org.scottishtecharmy.soundscape.utils.Analytics
-import org.scottishtecharmy.soundscape.utils.process
+import org.scottishtecharmy.soundscape.screens.home.data.LocationType
+import org.scottishtecharmy.soundscape.utils.supportedLanguages
 import org.scottishtecharmy.soundscape.utils.toLocationDescription
+import org.woheller69.AndroidAddressFormatter.AndroidAddressFormatter
 
 @RunWith(AndroidJUnit4::class)
 class GeocoderTest {
@@ -114,7 +116,6 @@ class GeocoderTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun reverseGeocodeTest() {
-        Analytics.getInstance(true)
         runBlocking {
             // Context of the app under test.
             val appContext = InstrumentationRegistry.getInstrumentation().targetContext
@@ -290,7 +291,6 @@ class GeocoderTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun geocodeTest() {
-        Analytics.getInstance(true)
         runBlocking {
             // Context of the app under test.
             val appContext = InstrumentationRegistry.getInstrumentation().targetContext
@@ -359,10 +359,25 @@ class GeocoderTest {
 
     }
 
+    @Test
+    fun fallbackCountryTest() {
+        for(language in supportedLanguages) {
+            val formatter = AndroidAddressFormatter(false, true, false)
+            val jsonObject = JSONObject()
+            jsonObject.put("house_number", "10")
+            jsonObject.put("road", "Main Street")
+            jsonObject.put("city", "Springfield")
+
+            var json = jsonObject.toString()
+            json = json.replace("\\/", "/")
+
+            formatter.format(json, language.region)
+        }
+    }
+
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun fusedGeocodeTest() {
-        Analytics.getInstance(true)
         runBlocking {
             // Context of the app under test.
             val appContext = InstrumentationRegistry.getInstrumentation().targetContext
@@ -393,7 +408,6 @@ class GeocoderTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun osmNameAddition() {
-        Analytics.getInstance(true)
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val gridState = ProtomapsGridState()
         gridState.validateContext = false

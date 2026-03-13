@@ -59,6 +59,19 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
 
         Analytics.getInstance().logEvent("startBeacon", null)
 
+        // If the beacon start point is more than 30m away, then we can have it as a destination
+        val currentLocation = service.locationProvider.filteredLocationFlow.value
+        var beaconOnly = true
+        if(currentLocation != null) {
+            val distance =
+                beaconLocation.createCheapRuler().distance(
+                    LngLatAlt(currentLocation.longitude, currentLocation.latitude),
+                    beaconLocation
+                )
+            if(distance > 30.0)
+                beaconOnly = false
+        }
+
         val marker = MarkerEntity(
             name = beaconName,
             longitude = beaconLocation.longitude,
@@ -70,7 +83,6 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             RouteEntity(0, beaconName, ""),
             waypoints
         )
-        standaloneBeacon = true
         _currentRouteFlow.update {
             it.copy(
                 routeData = currentRouteData,
@@ -80,6 +92,11 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         }
         play()
         Log.d(TAG, toString())
+
+        if(!beaconOnly) {
+            // We want to describe how far we are and a route completion
+            startMonitoringLocation()
+        }
     }
 
     /** startRoute starts playback of a route from the database.
@@ -102,7 +119,6 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                 0
             }
             currentRouteData = route
-            standaloneBeacon = false
             _currentRouteFlow.update {
                 it.copy(
                     routeData = currentRouteData,
@@ -192,13 +208,21 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                             LngLatAlt(currentLocation.longitude, currentLocation.latitude),
                             location
                         )
-                    val beaconSetText = localizedContext.getString(
-                        R.string.behavior_scavenger_hunt_callout_next_flag,
-                        route.markers[index].name,
-                        formatDistanceAndDirection(distance, null, localizedContext),
-                        positionInPlayback.toString(),
-                        (route.markers.size).toString()
-                    )
+                    val beaconSetText =
+                        if(route.markers.size > 1) {
+                            localizedContext.getString(
+                                R.string.behavior_scavenger_hunt_callout_next_flag,
+                                route.markers[index].name,
+                                formatDistanceAndDirection(distance, null, localizedContext),
+                                positionInPlayback.toString(),
+                                (route.markers.size).toString()
+                            )
+                        } else {
+                            localizedContext.getString(
+                                R.string.behavior_scavenger_hunt_callout_next_flag_short_route,
+                                route.markers[index].name,
+                                formatDistanceAndDirection(distance, null, localizedContext))
+                        }
 
                     service.speakText(
                         beaconSetText,
@@ -206,7 +230,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                     )
                 }
 
-                service.createBeacon(location, standaloneBeacon)
+                service.createBeacon(location, false)
             }
         }
     }

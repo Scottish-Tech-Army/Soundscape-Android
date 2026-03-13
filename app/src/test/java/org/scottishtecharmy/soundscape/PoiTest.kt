@@ -6,6 +6,7 @@ import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
@@ -16,6 +17,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import java.io.FileOutputStream
+import kotlin.test.assertNotEquals
 
 fun diffFeatureCollections(collection1 : FeatureCollection, collection2: FeatureCollection) {
     val uniqueTo1 = FeatureCollection()
@@ -60,23 +62,25 @@ fun diffFeatureCollections(collection1 : FeatureCollection, collection2: Feature
 
 class PoiTest {
 
-    private fun getNameForFeature(feature: MvtFeature) : String {
+    private fun getNameForFeature(feature: MvtFeature): String {
         return feature.name ?: feature.featureClass!!
     }
 
     @Test
     fun testNearestFeature() {
 
-        val userGeometry = UserGeometry(LngLatAlt(-4.317229, 55.941891),
+        val userGeometry = UserGeometry(
+            LngLatAlt(-4.317229, 55.941891),
             0.0,
-            50.0)
+            50.0
+        )
         val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, GRID_SIZE)
         val poi = gridState.getFeatureTree(TreeId.POIS)
 
         val polygons = getRelativeDirectionsPolygons(userGeometry, RelativeDirections.INDIVIDUAL)
 
         val featuresToDraw = FeatureCollection()
-        for((index, polygon) in polygons.features.withIndex()) {
+        for ((index, polygon) in polygons.features.withIndex()) {
 
             val nearestFeature = poi.getNearestFeatureWithinTriangle(
                 getTriangleForDirection(polygons, index),
@@ -85,7 +89,7 @@ class PoiTest {
 
             val name = getNameForFeature(nearestFeature as MvtFeature)
             println("Nearest feature: $name")
-            when(index) {
+            when (index) {
                 0 -> assertEquals("bridge", name)
                 1 -> assertEquals("Creature Comforts", name)
                 2 -> assertEquals("The Scottish Gantry", name)
@@ -105,16 +109,18 @@ class PoiTest {
     @Test
     fun testNearestFeatures() {
 
-        val userGeometry = UserGeometry(LngLatAlt(-4.317229, 55.941891),
+        val userGeometry = UserGeometry(
+            LngLatAlt(-4.317229, 55.941891),
             0.0,
-            50.0)
+            50.0
+        )
         val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, GRID_SIZE)
         val poi = gridState.getFeatureTree(TreeId.POIS)
 
         val polygons = getRelativeDirectionsPolygons(userGeometry, RelativeDirections.INDIVIDUAL)
 
         val featuresToDraw = FeatureCollection()
-        for((index, polygon) in polygons.features.withIndex()) {
+        for ((index, polygon) in polygons.features.withIndex()) {
 
             val poiFeatures = poi.getNearestCollectionWithinTriangle(
                 getTriangleForDirection(polygons, index),
@@ -124,7 +130,7 @@ class PoiTest {
             // Check that the first returned name is the nearest
             val nearestName = getNameForFeature(poiFeatures.features[0] as MvtFeature)
             println("Nearest name : $nearestName")
-            when(index) {
+            when (index) {
                 0 -> assertEquals("bridge", nearestName)
                 1 -> assertEquals("Creature Comforts", nearestName)
                 2 -> assertEquals("The Scottish Gantry", nearestName)
@@ -133,7 +139,7 @@ class PoiTest {
 
             val furthestName = getNameForFeature(poiFeatures.features.last() as MvtFeature)
             println("Furthest name : $furthestName")
-            when(index) {
+            when (index) {
                 0 -> assertEquals("Woodburn Way Car Park", furthestName)
                 1 -> assertEquals("No. 1 Boutique", furthestName)
                 2 -> assertEquals("Vivienne Nails & Spa", furthestName)
@@ -224,5 +230,21 @@ class PoiTest {
         // rail bridge
         // Amazon Hub jonty
         // outdoor_seating
+    }
+
+    @Test
+    fun testBuildingCallout() {
+        val userGeometry = UserGeometry(
+            LngLatAlt(-4.2468642, 55.8597374),
+            0.0,
+            50.0
+        )
+        val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, GRID_SIZE)
+        val poiTree = gridState.getFeatureTree(TreeId.POIS)
+        val pois = poiTree.getNearbyCollection(userGeometry.location, 50.0, gridState.ruler)
+        for(poi in pois) {
+            println("Poi: ${(poi as MvtFeature).name} ${getTextForFeature(null, poi)}")
+            assertNotEquals("Unknown", getTextForFeature(null, poi).text)
+        }
     }
 }

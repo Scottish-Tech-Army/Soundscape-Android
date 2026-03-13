@@ -10,7 +10,6 @@ import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.geoengine.MANIFEST_NAME
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
-import org.scottishtecharmy.soundscape.utils.NetworkUtils
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
@@ -23,7 +22,6 @@ interface IManifestDAO {
 
 class ManifestClient(val applicationContext: Context) {
 
-    val networkUtils = NetworkUtils(applicationContext)
     private var retrofit : Retrofit? = null
 
     private val okHttpClient = OkHttpClient.Builder()

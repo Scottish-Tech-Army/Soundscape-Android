@@ -39,7 +39,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
-import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import java.io.File
 import java.io.FileOutputStream
@@ -71,7 +70,6 @@ private fun vectorTileToGeoJsonFromFile(
     streetNumberMap: HashMap<String, FeatureCollection>
 ): Array<FeatureCollection> {
 
-    Analytics.getInstance(true)
     val gridState = FileGridState()
     val result: Array<FeatureCollection> = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
 
@@ -152,7 +150,6 @@ fun getGridStateForLocation(
     gridSize: Int
 ): GridState {
 
-    Analytics.getInstance(true)
     val gridState = FileGridState(zoomLevel, gridSize)
     gridState.start(
         null,
@@ -188,8 +185,6 @@ class MvtTileTest {
 
     @Test
     fun testVectorToGeoJsonGreggs() {
-        Analytics.getInstance(true)
-
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
         val streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
         val geojson = vectorTileToGeoJsonFromFile(7995, 5108, intersectionMap, streetNumberMap)
@@ -206,8 +201,6 @@ class MvtTileTest {
 
     @Test
     fun testVectorToGeoJsonMilngavie() {
-        Analytics.getInstance(true)
-
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
         val streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
         val geojson = vectorTileToGeoJsonFromFile(15991/2, 10214/2, intersectionMap, streetNumberMap)
@@ -276,7 +269,7 @@ class MvtTileTest {
                 TreeId.SETTLEMENT_VILLAGE,
                 TreeId.SETTLEMENT_HAMLET,
                 TreeId.TRANSIT ->
-                    {}
+                {}
 
                 else -> {
                     for (feature in collection) {
@@ -443,8 +436,6 @@ class MvtTileTest {
 
     @Test
     fun testRtree() {
-        Analytics.getInstance(true)
-
         // Make a large grid to aid analysis
         val featureCollection = FeatureCollection()
         for (x in 7995..7995) {
@@ -502,8 +493,6 @@ class MvtTileTest {
 
     @Test
     fun testObjects() {
-        Analytics.getInstance(true)
-
         // This test is to show how Kotlin doesn't copy objects by default. featureCopy isn't a copy
         // as it might be in C++, but a reference to the same object. There's no copy() defined
         // for Feature. This means that in all the machinations with FeatureCollections, the Features
@@ -530,7 +519,7 @@ class MvtTileTest {
 
         // Copy
         val copyFeatureCollection = FeatureCollection()
-        copyFeatureCollection.features = newFeatureCollection.features.clone() as ArrayList<Feature>
+        copyFeatureCollection.features = ArrayList(newFeatureCollection.features)
         println(copyFeatureCollection.features[0].id)
 
         // newFeatureCollection is new, but the features that it contains are not
@@ -602,7 +591,7 @@ class MvtTileTest {
                     val w1 = 300.0
                     val w2 = 100.0
                     val fitness = (w1 * (10 / (10 + sensedRoadInfo.distance))) +
-                                  (w2 * (30 / (30 + headingOffSensedRoad)))
+                            (w2 * (30 / (30 + headingOffSensedRoad)))
                     if(fitness > bestFitness) {
                         bestFitness = fitness
                         bestIndex = index
@@ -750,12 +739,10 @@ class MvtTileTest {
                 )
                 time += 1000L
 
-                val geocoder = OfflineGeocoder(gridState, settlementGrid)
                 val callout = autoCallout.updateLocation(
                     userGeometry,
                     gridState,
-                    settlementGrid,
-                    geocoder
+                    settlementGrid
                 )
                 if(callout != null) {
                     // We've got a new callout, so add it to our geoJSON as a triangle for the
@@ -788,8 +775,6 @@ class MvtTileTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun testCallouts() {
-        Analytics.getInstance(true)
-
         val directoryPath = Path("src/test/res/org/scottishtecharmy/soundscape/gpxFiles/")
 
         val resultsStoragePath =  "gpxFiles/"
@@ -875,7 +860,7 @@ class MvtTileTest {
                 }
 
                 // Update the nearest road filter with our new location
-                val mapMatchedResult = mapMatchFilter.filter(
+                mapMatchFilter.filter(
                     LngLatAlt(location.longitude, location.latitude),
                     gridState,
                     collection,
@@ -895,8 +880,15 @@ class MvtTileTest {
                 val wayName = userGeometry.mapMatchedWay?.properties?.get("pavement") as String? ?: userGeometry.mapMatchedWay?.name
                 if(wayName != null) {
                     val lg = OfflineGeocoder(gridState, settlementGrid)
-                    val calloutText = lg.getAddressFromLngLat(userGeometry, null, false)
-                    position.properties?.set("callout", calloutText?.name)
+                    val calloutDescriptionWithoutHouse = lg.getAddressFromLngLat(userGeometry, null, true)
+                    if(calloutDescriptionWithoutHouse?.name != null)
+                        callOutText.write("${calloutDescriptionWithoutHouse.name}\n".toByteArray())
+                    position.properties?.set("callout-without-house", calloutDescriptionWithoutHouse?.name)
+
+                    val calloutDescriptionWithHouse = lg.getAddressFromLngLat(userGeometry, null, false)
+                    if(calloutDescriptionWithHouse?.name != null)
+                        callOutText.write("${calloutDescriptionWithHouse.name}\n".toByteArray())
+                    position.properties?.set("callout-with-house", calloutDescriptionWithHouse?.name)
 
                     val description = StreetDescription(wayName, gridState)
                     description.createDescription(userGeometry.mapMatchedWay!!, null)
@@ -937,8 +929,6 @@ class MvtTileTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun replayStreetNumbers() {
-        Analytics.getInstance(true)
-
         val directoryPath = Path("src/test/res/org/scottishtecharmy/soundscape/gpxFiles/")
 
         val resultsStoragePath =  "gpxFiles/"
@@ -978,18 +968,23 @@ class MvtTileTest {
                         LngLatAlt(location.longitude, location.latitude),
                         emptySet()
                     )
+                    if(false) {
+                        // This code is useful for comparing before and after changes of grid parsing
+                        val adapter = GeoJsonObjectMoshiAdapter()
+                        val tileOutput = FileOutputStream("cache-test2/output-$x-$y.geojson")
+
+                        // Output the GeoJson and check that there's no data left from other tiles.
+                        val collection = FeatureCollection()
+                        for (id in TreeId.entries) {
+                            if (id < TreeId.MAX_COLLECTION_ID)
+                                collection += gridState.getFeatureCollection(id)
+                        }
+                        tileOutput.write(adapter.toJson(collection).toByteArray())
+                        tileOutput.close()
+                    }
                 }
             }
         }
-//        val adapter = GeoJsonObjectMoshiAdapter()
-//        val mapMatchingOutput = FileOutputStream("total-output.geojson")
-//
-//        // Output the GeoJson and check that there's no data left from other tiles.
-//        val collection = gridState.getFeatureCollection(TreeId.WAYS_SELECTION)
-//        collection += gridState.getFeatureCollection(TreeId.INTERSECTIONS)
-//        collection += gridState.getFeatureCollection(TreeId.POIS)
-//        mapMatchingOutput.write(adapter.toJson(collection).toByteArray())
-//        mapMatchingOutput.close()
     }
 
     @Test
@@ -1180,7 +1175,7 @@ class MvtTileTest {
                 true,
                 52992372
             )
-            val namedStationEntranceDetails = EntranceDetails(
+            EntranceDetails(
                 "St Enoch",
                 "subway_entrance",
                 null,
@@ -1254,8 +1249,6 @@ class MvtTileTest {
 
     @Test
     fun extractSwitchingTest() {
-        Analytics.getInstance(true)
-
         // This test ensures that the GridState code can successfully switch between offline
         // extracts
         val gridState = FileGridState(MAX_ZOOM_LEVEL, GRID_SIZE)

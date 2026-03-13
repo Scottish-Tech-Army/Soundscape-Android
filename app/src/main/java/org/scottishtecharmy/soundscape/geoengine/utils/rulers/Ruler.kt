@@ -3,7 +3,6 @@ package org.scottishtecharmy.soundscape.geoengine.utils.rulers
 import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import kotlin.math.sqrt
 
 abstract class Ruler() {
 

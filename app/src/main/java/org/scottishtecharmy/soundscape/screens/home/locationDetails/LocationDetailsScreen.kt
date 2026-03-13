@@ -82,18 +82,37 @@ fun LocationDetailsScreen(
 ) {
     val context = LocalContext.current
 
+    // Check if this location already exists as a marker in the database
+    val finalLocationDescription = remember(locationDescription) {
+        if (locationDescription.databaseId == 0L) {
+            val existingMarker = viewModel.getMarkerAtLocation(locationDescription.location)
+            if (existingMarker != null) {
+                locationDescription.copy(
+                    databaseId = existingMarker.markerId,
+                    name = existingMarker.name,
+                    description = existingMarker.fullAddress
+                )
+            } else {
+                locationDescription
+            }
+        } else {
+            locationDescription
+        }
+    }
+
     LocationDetails(
         navController = navController,
-        locationDescription = locationDescription,
+        locationDescription = finalLocationDescription,
         createBeacon = { loc ->
-            viewModel.startBeacon(loc, locationDescription.name)
+            viewModel.startBeacon(loc, finalLocationDescription.name)
             navController.popBackStack(HomeRoutes.Home.route, false)
         },
-        saveMarker = { description, successMessage, failureMessage ->
+        saveMarker = { description, successMessage, failureMessage, duplicateMessage ->
             viewModel.createMarker(
                 description,
                 successMessage,
-                failureMessage)
+                failureMessage,
+                duplicateMessage)
             navController.popBackStack(HomeRoutes.Home.route, false)
         },
         deleteMarker = { id ->
@@ -137,7 +156,8 @@ fun LocationDetails(
     saveMarker: (
         description: LocationDescription,
         successMessage: String,
-        failureMessage: String) -> Unit,
+        failureMessage: String,
+        duplicateMessage: String) -> Unit,
     deleteMarker: (objectId: Long) -> Unit,
     enableStreetPreview: (location: LngLatAlt) -> Unit,
     shareLocation: (message: String, description : LocationDescription) -> Unit,
@@ -274,20 +294,25 @@ private fun LocationDescriptionButtonsSection(
     dialogState: MutableState<Boolean>,
     showDialog: () -> Unit
 ) {
-    val parser: Parser = Parser.builder().build()
-    val document: Node? = parser.parse(stringResource(R.string.universal_links_marker_share_message))
-    val renderer = HtmlRenderer.builder().build()
-    val shareMessage = AnnotatedString.fromHtml(
-        htmlString = renderer.render(document),
-        linkStyles = TextLinkStyles(
-            style = SpanStyle(
-                textDecoration = TextDecoration.Underline,
+    // Parse markdown only once, not on every recomposition
+    val shareMessageResource = stringResource(R.string.universal_links_marker_share_message)
+    val shareMessage = remember(shareMessageResource) {
+        val parser: Parser = Parser.builder().build()
+        val document: Node? = parser.parse(shareMessageResource)
+        val renderer = HtmlRenderer.builder().build()
+        AnnotatedString.fromHtml(
+            htmlString = renderer.render(document),
+            linkStyles = TextLinkStyles(
+                style = SpanStyle(
+                    textDecoration = TextDecoration.Underline,
+                )
             )
-        )
-    ).text
+        ).text
+    }
 
     Column(
         verticalArrangement = Arrangement.spacedBy(spacing.none),
+        modifier = Modifier.fillMaxWidth()
     ) {
         IconWithTextButton(
             icon = Icons.Filled.LocationOn,
@@ -296,6 +321,7 @@ private fun LocationDescriptionButtonsSection(
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .defaultMinSize(minHeight = spacing.targetSize)
+                .fillMaxWidth()
                 .testTag("locationDetailsStartBeacon")
         ) {
             createBeacon(locationDescription.location)
@@ -309,6 +335,7 @@ private fun LocationDescriptionButtonsSection(
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .defaultMinSize(minHeight = spacing.targetSize)
+                    .fillMaxWidth()
                     .testTag("locationDetailsEditMarker")
             ) {
                 dialogState.value = true
@@ -321,6 +348,7 @@ private fun LocationDescriptionButtonsSection(
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .defaultMinSize(minHeight = spacing.targetSize)
+                    .fillMaxWidth()
                     .testTag("locationDetailsSaveAsMarker")
             ) {
                 showDialog()
@@ -335,6 +363,7 @@ private fun LocationDescriptionButtonsSection(
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .defaultMinSize(minHeight = spacing.targetSize)
+                .fillMaxWidth()
                 .testTag("locationDetailsStreetPreview")
         ) {
             enableStreetPreview(locationDescription.location)
@@ -347,6 +376,7 @@ private fun LocationDescriptionButtonsSection(
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .defaultMinSize(minHeight = spacing.targetSize)
+                .fillMaxWidth()
                 .testTag("locationDetailsShare")
         ) {
             shareLocation(shareMessage, locationDescription)
@@ -358,6 +388,7 @@ private fun LocationDescriptionButtonsSection(
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .defaultMinSize(minHeight = spacing.targetSize)
+                .fillMaxWidth()
                 .testTag("locationDetailsOfflineMaps")
         ) {
             offlineMaps(locationDescription)
@@ -388,6 +419,7 @@ private fun LocationDescriptionTextsSection(
             text = locationDescription.name,
             style = MaterialTheme.typography.titleLarge,
             color = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier.fillMaxWidth()
         )
 
         locationDescription.typeDescription?.let {
@@ -395,6 +427,7 @@ private fun LocationDescriptionTextsSection(
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(spacing.small),
+                    modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
                         text = it.additionalText,
@@ -408,6 +441,7 @@ private fun LocationDescriptionTextsSection(
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(spacing.small),
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Icon(
                     imageVector = Icons.Filled.Map,
@@ -418,6 +452,7 @@ private fun LocationDescriptionTextsSection(
                     text = distanceString,
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
         }
@@ -425,6 +460,7 @@ private fun LocationDescriptionTextsSection(
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(spacing.small),
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Icon(
                     imageVector = Icons.Filled.LocationOn,
@@ -434,7 +470,8 @@ private fun LocationDescriptionTextsSection(
                 Text(
                     text = it,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
         }
@@ -461,7 +498,7 @@ fun LocationDetailsPreview() {
         navController = NavHostController(LocalContext.current),
         location = null,
         heading = 45.0F,
-        saveMarker = {_,_,_ ->},
+        saveMarker = {_,_,_,_ ->},
         deleteMarker = {},
         shareLocation = {_,_ ->},
         offlineMaps = {_ ->},

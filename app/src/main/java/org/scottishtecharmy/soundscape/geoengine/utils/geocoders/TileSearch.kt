@@ -9,6 +9,7 @@ import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertGeometry
@@ -539,7 +540,11 @@ class TileSearch(val offlineExtractPath: String,
 
         val streetResults = whittledResults.map { result ->
             val mvt = MvtFeature()
+
+            // Copy in the MVT properties
             mvt.name = result.properties.get("name") as? String?
+            mvt.featureClass = result.properties.get("class") as? String?
+            mvt.featureSubClass = result.properties.get("subclass") as? String?
             mvt.properties = result.properties
             mvt.geometry = Point(result.location)
             translateProperties(mvt)
@@ -639,10 +644,9 @@ class TileSearch(val offlineExtractPath: String,
                 accumulator
             }
         return streetResults.map { (mvt, result) ->
-            val ld = mvt.toLocationDescription(LocationSource.OfflineGeocoder)
-            ld ?: LocationDescription(
-                name = result.string,
-                location = result.location
+            mvt.toLocationDescription(
+                LocationSource.OfflineGeocoder,
+                featureName = getTextForFeature(localizedContext, mvt)
             )
         }
     }

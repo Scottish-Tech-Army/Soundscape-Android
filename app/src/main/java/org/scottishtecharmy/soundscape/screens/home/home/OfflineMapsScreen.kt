@@ -127,12 +127,12 @@ fun OfflineMapsScreenVM(
                     println("Success!")
                     downloading.value = false
                     caching.value = false
-                    userMessage.value = "Download complete"
+                    userMessage.value = context.getString(R.string.offline_map_download_complete)
                     viewModel.refreshExtracts()
                 }
                 is DownloadState.Error -> {
                     println("Error!")
-                    userMessage.value = state.message
+                    userMessage.value = context.getString(R.string.offline_map_download_error)
                     downloading.value = false
                     caching.value = false
                 }
@@ -140,7 +140,7 @@ fun OfflineMapsScreenVM(
                     println("Cancelled!")
                     downloading.value = false
                     caching.value = false
-                    userMessage.value = "Download cancelled"
+                    userMessage.value = context.getString(R.string.offline_map_download_cancelled)
                 }
             }
         }

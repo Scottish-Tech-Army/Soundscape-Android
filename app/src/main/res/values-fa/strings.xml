@@ -29,7 +29,7 @@
     <!-- Title for option to select the text-to-speech voice to use. -->
 <string name="voice_voices">صدای موتور صوتی</string>
     <!-- Title of a section in the beacon settings page where the user can select which style of beacon that they want. -->
-<string name="beacon_settings_style">صدای جهت‌نمای صوتی</string>
+<string name="beacon_settings_style">سبک‌های جهت‌نمای صوتی</string>
     <!-- Name of a beacon style. This is the name of the most recent version of the beacon audio we had in Soundscape as of the v4.1 release, so we refer to it as the "current" beacon. -->
 <string name="beacon_styles_current">جدید</string>
     <!-- Name of a beacon style. This is the name of the first style of beacon audio we had in Soundscape, so we refer to it as "Original" -->
@@ -81,19 +81,19 @@
     <!-- Title for the action to start playing an audio beacon -->
 <string name="location_detail_action_beacon">فعال‌سازی جهت‌نمای صوتی</string>
     <!-- Talkback hint for the action to set an audio beacon at this location -->
-<string name="location_detail_action_beacon_hint">جهت‌نمای صوتی را روی این مکان تنظیم کنید</string>
+<string name="location_detail_action_beacon_hint">شما را با صدا به این مکان هدایت کنید.</string>
     <!-- Talkback hint for the action to save marker -->
-<string name="location_detail_action_save_hint">این مکان را به‌عنوان نشانه ذخیره کنید</string>
+<string name="location_detail_action_save_hint">این مکان را برای استفادهٔ بعدی ذخیره کنید</string>
     <!-- Talkback hint for the action to edit marker -->
-<string name="location_detail_action_edit_hint">نشانه را ویرایش کنید</string>
+<string name="location_detail_action_edit_hint">نام نشانه را تغییر دهید یا یادداشت‌های اضافی اضافه کنید</string>
     <!-- Talkback hint for the action to share -->
-<string name="location_detail_action_share_hint">این مکان را به اشتراک بگذارید</string>
+<string name="location_detail_action_share_hint">این مکان را با یک اپلیکیشن دیگر به اشتراک بگذارید</string>
     <!-- Talkback hint for the action to preview -->
 <string name="location_detail_action_preview_hint">پیش‌نمایش را از این مکان آغاز کنید</string>
     <!-- Accessibility hint for markers in a list which could be removed from the list -->
 <string name="location_detail_add_waypoint_existing_hint">این نشانه را از مسیر خود حذف کنید.</string>
     <!-- Accessibility hint for markers in a list that can be added to a list -->
-<string name="location_detail_add_waypoint_new_hint">این نشانه را به مسیر خود اضافه کنید.</string>
+<string name="location_detail_add_waypoint_new_hint">این نشانه را به‌عنوان یک نقطه‌ی بین‌راهی به مسیر خود اضافه کنید.</string>
     <!-- Talkback hint for button that makes map full screen -->
 <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">نقشه را در حالت تمام‌صفحه قرار دهید</string>
     <!-- Talkback hint for button that stops map being full screen -->
@@ -105,15 +105,15 @@
     <!-- Text for the action to start editing a route -->
 <string name="route_detail_action_edit">ویرایش مسیر</string>
     <!-- Talkback hint for the action to start the route -->
-<string name="route_detail_action_start_route_hint">این مسیر را شروع کنید</string>
+<string name="route_detail_action_start_route_hint">پخش این مسیر را آغاز کنید</string>
     <!-- Talkback hint for the action to start the route when the action is disabled. This action is only disabled when no waypoints have been added to a route yet. -->
 <string name="route_detail_action_start_route_disabled_hint">پیش از شروع مسیر نقاط بین‌راهی را اضافه کنید</string>
     <!-- Talkback hint for the action to stop the route -->
-<string name="route_detail_action_stop_route_hint">این مسیر را متوقف کنید</string>
+<string name="route_detail_action_stop_route_hint">پخش این مسیر را متوقف کنید</string>
     <!-- Talkback hint for the action to share -->
-<string name="route_detail_action_share_hint">این مسیر را به اشتراک بگذارید</string>
+<string name="route_detail_action_share_hint">این مسیر را با یک اپلیکیشن دیگر به اشتراک بگذارید</string>
     <!-- Accessibility hint for the edit button on the Route Detail screen -->
-<string name="route_detail_action_edit_hint">این مسیر را ویرایش کنید</string>
+<string name="route_detail_action_edit_hint">نقاط بین‌راهی مسیر را تغییر دهید یا ترتیب آنها را عوض کنید.</string>
     <!-- Add button on the Route list screen -->
 <string name="route_detail_action_create">مسیر جدید</string>
     <!-- Talkback hint for the add button on the Route list screen -->
@@ -542,7 +542,7 @@
     <!-- Notification, Information how to set a beacon continued. Ensure that "Mute Beacon" is translated the same as `beacon.action.mute_beacon` and "Remove Beacon" is translated the same as `beacon.action.remove_beacon`. Quotes written as \" -->
 <string name="help_text_destination_beacons_how_3">**برای بستن صدای جهت‌نمای صوتی:**\n\nروی دکمه‌ی *«بستن صدای جهت‌نما»* کنار دکمه‌ی *«توقف جهت‌نما»* در صفحه‌ی اصلی ضربه بزنید.</string>
     <!-- Notification, Information about what a callout is. Ensure that "Manage Callouts" is translated the same as `menu.manage_callouts`. Quotes written as \" -->
-<string name="help_text_automatic_callouts_what">ساند‌اسکیپ می‌تواند هنگامی که شما به مکان‌های مختلف در محیط اطرافتان نزدیک می‌شوید، نام آنها را در قالب یک اعلان از همان جهتی که این مکان‌ها در آن واقع شده‌اند به شما اطلاع دهد تا به این ترتیب شما از آنچه در پیرامونتان قرار دارد آگاهی داشته باشید. این اپلیکیشن این کار را به‌طور خودکار برای انواع مکان‌ها از قبیل کسب‌وکار‌ها، ایستگاه‌های اتوبوس و حتی تقاطع‌ها انجام می‌دهد. شما می‌توانید در قسمت *«مدیریت اعلان‌ها»* در صفحه‌ی *«تنظیمات»* مشخص کنید که چه اعلان‌هایی به‌طور خودکار در اختیارتان قرار گیرد. همچنین هر زمان بخواهید اپلیکیشن کاملاً ساکت شود، می‌توانید همه‌ی اعلان‌ها را خاموش کنید.</string>
+<string name="help_text_automatic_callouts_what">ساند‌اسکیپ می‌تواند هنگام نزدیک شدن شما به مکان‌ها یا چیزها، با اعلام نام آنها از جهتی که واقع شده‌اند دربارهٔ اطراف شما اطلاع دهد. اپ این کار را به‌صورت خودکار برای انواع مختلفی از مکان‌ها انجام می‌دهد؛ مانند کسب‌وکارها، ایستگاه‌های اتوبوس و حتی تقاطع‌ها. شما می‌توانید تعیین کنید اپ به‌طور خودکار چه مواردی را اعلام کند از طریق بخش *«اعلان‌ها»* در صفحهٔ *«تنظیمات»*، و همچنین می‌توانید وقتی می‌خواهید اپ ساکت باشد، همهٔ اعلان‌ها را خاموش کنید.</string>
     <!-- Notification, Information on when you will hear callouts. -->
 <string name="help_text_automatic_callouts_when_1">**آشنایی با یک محل جدید:**\n\nاعلان‌های خودکار را فعال کرده و شروع به حرکت نمایید تا از فروشگاه‌ها، رستوران‌ها و موارد مشابه که از کنارشان عبور می‌کنید مطلع شوید.</string>
     <!-- Notification, Information on when you will hear callouts continued. -->
@@ -550,9 +550,9 @@
     <!-- Notification, Information on when you will hear callouts continued. Ensure that "My Location" is translated the same as `directions.my_location` and "Nearby Markers" is translated the same as `callouts.nearby_markers` and "Around Me" is translated the same as `help.orient.page_title` and "Ahead of Me" is translated the same as `help.explore.page_title`. Quotes written as \" -->
 <string name="help_text_automatic_callouts_when_3">**وقتی به سکوت نیاز دارید:**\n\nهنگامی که قصد دارید از خیابان عبور کنید یا به هر دلیلی می‌خواهید اپلیکیشن ساکت شود، می‌توانید اعلان‌ها را خاموش نمایید. وقتی اعلان‌ها خاموش باشد، اپلیکیشن تنها زمانی به شما اطلاعات می‌دهد که خودتان روی یکی از دکمه‌های *«موقعیت مکانی من»*، *«نشانه‌های نزدیک»*، *«اطراف من»* یا *«مقابل من»* ضربه بزنید.</string>
     <!-- Notification, Information how to turn on callouts. Ensure that "Manage Callouts" is translated the same as `menu.manage_callouts` and "Callouts Off" is translated the same as `callouts.callouts_off` and "Allow callouts" is translated the same as `callouts.allow_callouts`. Quotes written as \" -->
-<string name="help_text_automatic_callouts_how_1">**روشن یا خاموش کردن اعلان‌ها:**\n\nبا خاموش کردن اعلان‌ها، اپلیکیشن ساکت خواهد شد. اعلان‌ها را می‌توان با ضربه زدن روی دکمه‌ی *«اجازه به اعلان‌ها»* در قسمت *«مدیریت اعلان‌ها»* در صفحه‌ی *«تنظیمات»* روشن یا خاموش کرد. شما همچنین می‌توانید اعلان‌ها را با استفاده از دکمه‌های روی هندزفری خود روشن یا خاموش نمایید. برای این کار، دکمه‌ی *«پرش به جلو»* را روی هندزفری خود دو بار فشار داده و نگه دارید. یک روش دیگر برای خاموش کردن اعلان‌ها استفاده از گزینه‌ی *«حالت خواب»* در صفحه‌ی اصلی اپلیکیشن می‌باشد.</string>
+<string name="help_text_automatic_callouts_how_1">**روشن یا خاموش کردن اعلان‌ها :**\n\nخاموش کردن اعلان‌ها اپ را ساکت می‌کند. اعلان‌ها را می‌توان در بخش *«اعلان‌ها»* از صفحهٔ *«تنظیمات»* با ضربه زدن روی کلید متغیر *«اجازه به اعلان‌ها»* روشن یا خاموش کرد. همچنین اگر هندزفری شما دکمه‌های کنترل رسانه دارد، می‌توانید با فرمان *«پرش به جلو»* (دوبار ضربه و نگه‌داشتن) اعلان‌ها را روشن یا خاموش کنید. به‌علاوه، می‌توانید با استفاده از دکمهٔ *«حالت خواب»* در گوشهٔ سمت راست بالای صفحهٔ اصلی، ساند‌اسکیپ را تا زمانی که خودتان بیدارش کنید از پخش اعلان‌ها بازدارید.</string>
     <!-- Notification, Information how to turn on callouts continued. Ensure that "Manage Callouts" is translated the same as `menu.manage_callouts` and "Allow callouts" is translated the same as `callouts.allow_callouts`. Quotes written as \" -->
-<string name="help_text_automatic_callouts_how_2">**مدیریت نوع اعلان‌ها:**\n\nاگر می‌خواهید برای ساند‌اسکیپ مشخص کنید که چه نوع مکان‌هایی را در قالب اعلان‌های خودکار به شما اطلاع دهد، از طریق گزینه‌ی منو در صفحه‌ی اصلی وارد صفحه‌ی *«تنظیمات»* شوید. بخش *«مدیریت اعلان‌ها»* در صفحه‌ی *«تنظیمات»* حاوی فهرستی از انواع مکان‌های مختلف می‌باشد که ساند‌اسکیپ می‌تواند آنها را به شما اعلام کند. برای هر مورد دکمه‌ای تعبیه شده که شما می‌توانید آن را روشن یا خاموش نمایید. در صورتی که تمایل دارید همه‌ی اعلان‌ها را خاموش کنید، روی دکمه‌ی *«اجازه به اعلان‌ها»* در بالای فهرست ضربه بزنید.</string>
+<string name="help_text_automatic_callouts_how_2">**مدیریت اعلان‌هایی که می‌شنوید :**\n\nبرای انتخاب نوع مواردی که ساند‌اسکیپ به‌صورت خودکار اعلام می‌کند، از منوی *«صفحهٔ اصلی»* وارد صفحهٔ *«تنظیمات»* شوید. بخش *«اعلان‌ها»* در صفحهٔ *«تنظیمات»* فهرستی از انواع مواردی را که اپ می‌تواند اعلام کند در اختیار دارد. هر مورد یک کلید متغیر دارد که می‌توانید آن را روشن یا خاموش کنید. اگر می‌خواهید همهٔ اعلان‌ها را خاموش کنید، کلید متغیر *«اجازه به اعلان‌ها»* را در بالای فهرست لمس کنید.</string>
     <!-- Notification, Information about what My Location does. Ensure that "My Location" is translated the same as `directions.my_location`. Quotes written as \" -->
 <string name="help_text_my_location_what">دکمه‌ی *«موقعیت مکانی من»* به‌سرعت اطلاعاتی را در اختیار شما قرار می‌دهد که می‌توانید به‌کمک آن متوجه شوید در حال حاضر در چه نقطه‌ای قرار دارید. شما می‌توانید با استفاده از این قابلیت به اطلاعاتی از قبیل جهتی که رو به آن ایستاده‌اید، خیابان‌ها و تقاطع‌هایی که در نزدیکی شما واقع شده‌اند و نقاط شاخصی که در اطرافتان قرار دارد دست پیدا کنید.</string>
     <!-- Notification, Information on when you would need to use My Location. Ensure that "My Location" is translated the same as `directions.my_location`. Quotes written as \" -->
@@ -582,7 +582,7 @@
     <!-- Notification, Information about when to use media controls on headphones. -->
 <string name="help_text_remote_control_when">می‌توان از دکمه‌های کنترل پخش صوت و تصویر روی هندزفری زمانی که ساند‌اسکیپ در حال اجراست استفاده کرد. این امر چه موقعی که شما داخل ساند‌اسکیپ باشید و چه موقعی که ساند‌اسکیپ در پس‌زمینه در حال اجرا باشد و حتی هنگامی که گوشی شما قفل است میسر می‌باشد. اما توجه داشته باشید زمانی که شما مشغول کار با یک اپلیکیشن دیگر برای پخش صدا یا ویدئو هستید، امکان استفاده از دکمه‌های کنترل پخش صوت و تصویر برای فعال کردن قابلیت‌های ساند‌اسکیپ وجود ندارد.</string>
     <!-- Notification, Information about how to use media controls on headphones. Ensure that "My Location" is translated the same as `directions.my_location` and "Around Me" is translated the same as `help.orient.page_title`. Quotes written as \" -->
-<string name="help_text_remote_control_how">شما می‌توانید به‌کمک دکمه‌های کنترل پخش صوت و تصویر روی هندزفری خود از قابلیت‌های زیر در ساند‌اسکیپ استفاده نمایید:\n\n⏯ پلی/پاز: قطع صدای اعلانی که در حال پخش است یا قطع و وصل صدای جهت‌نمای صوتی.\n\n⏭ ترک بعد: اعلام *«موقعیت مکانی من»*.\n\n⏮ ترک قبل: تکرار آخرین اعلان.\n\n⏩ پرش به جلو: روشن و خاموش کردن اعلان‌ها.\n\n⏪ پرش به عقب: اعلام *«اطراف من»*.</string>
+<string name="help_text_remote_control_how">سه حالت عملکردی برای دکمه‌های کنترل رسانه وجود دارد. حالت مورد نظر را می‌توانید از بخش *«تنظیمات»* &gt; *«کنترل‌های رسانه‌ای»* انتخاب کنید. حالت‌ها عبارت‌اند از:\n\nحالت اصلی.\n\n⏯ پخش/مکث: صدای جهت‌نمای صوتی را روشن یا خاموش می‌کند.\n\n⏭ بعدی: اگر مسیری در حال پخش باشد، جهت‌نمای صوتی را به نقطه‌ی بین‌راهی بعدی در مسیر منتقل می‌کند. اگر هیچ مسیری در حال پخش نباشد، گزینه‌ی *«موقعیت مکانی من»* را اعلام می‌کند.\n\n⏮ قبلی: اگر مسیری در حال پخش باشد، جهت‌نمای صوتی را به نقطه‌ی بین‌راهی قبلی در مسیر منتقل می‌کند. اگر هیچ مسیری در حال پخش نباشد، گزینه‌ی *«اطراف من»* را اعلام می‌کند.\n\n\nحالت فرمان صوتی.\n\n⏯ پخش/مکث: باعث می‌شود اپ برای دریافت فرمان‌های صوتی گوش دهد.\n\n\nمنوی صوتی.\n\n⏭ بعدی و ⏮ قبلی از میان گزینه‌های منو که اپ از طریق تبدیل متن به گفتار برایتان می‌خواند جلو و عقب می‌روند. سپس با فشردن ⏯ پخش/مکث، اپ گزینه‌ی فعلی را اجرا می‌کند. یک منوی سطح بالا وجود دارد که فقط زیرمنوها را به‌عنوان گزینه دربردارد و هر زیرمنو گروهی از اقدامات مشابه را شامل می‌شود.</string>
     <!-- Notification, Markers content -->
 <string name="help_text_markers_content_1">با ساند‌اسکیپ می‌توانید دنیای خود و هر آنچه که برایتان اهمیت دارد را نشانه‌گذاری کنید، همچون علامت‌های روی نقشه.</string>
     <!-- Notification, Markers content continued -->
@@ -840,7 +840,7 @@
     <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_controlling_what_you_hear_question">چگونه محتوا و زمان پیام‌های ساند‌اسکیپ را مدیریت کنم؟</string>
     <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. A 'beacon' or 'audio beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Intersection - A junction where two or more roads meet or cross. Point of interest - A specific location that someone may find useful or interesting. Snooze - To put the app in an idle state that is interrupted by user movement. Sleep - To put the app in an idle state for a period of time. Quotes written as \" -->
-<string name="faq_controlling_what_you_hear_answer">ساند‌اسکیپ چند راه را برای مدیریت محتوا و زمان اعلان‌های مسیریابی در اختیار شما قرار می‌دهد:\n\n۱- توقف فوری تمامی اعلان‌ها و علائم صوتی: شما می‌توانید با دو بار ضربه زدن روی صفحه‌ی گوشی با دو انگشت، کلیه‌ی اعلان‌ها و صدای جهت‌نمای صوتی را فوراً متوقف نمایید. هنگامی که به نقطه‌ی شاخص یا تقاطع بعدی نزدیک شوید، اعلان‌ها به‌طور خودکار مجدداً فعال می‌شوند اما جهت‌نمای صوتی همچنان در حالت بی‌صدا باقی می‌ماند. برای خروج از این حالت، روی دکمه‌ی *«باز کردن صدای جهت‌نما»* در صفحه‌ی اصلی ضربه بزنید.\n\n۲- توقف اعلان‌های خودکار: هنگامی که شما در حال پیمایش مسیر نیستید یا اینکه به مقصدتان رسیده‌اید، احتمالاً دیگر نیازی به شنیدن اعلان‌های مسیریابی ساند‌اسکیپ ندارید. در این صورت، می‌توانید به جای خروج از اپلیکیشن، آن را در یکی از دو حالت خواب یا چرت قرار دهید. اگر از حالت خواب استفاده کنید، اعلان‌های ساند‌اسکیپ تا زمانی که شما خودتان مجدداً آنها را روشن نکنید، غیرفعال باقی می‌مانند. اما اگر حالت چرت را انتخاب کنید، اعلان‌های ساند‌اسکیپ هنگامی که شما موقعیت مکانی فعلی خود را ترک نمایید، به‌طور خودکار دوباره فعال خواهند شد. یک راه دیگر برای متوقف کردن اعلان‌ها این است که آنها را در قسمت *«مدیریت اعلان‌ها»* از منوی *«تنظیمات»* خاموش کنید.\n\n۳- توقف جهت‌نمای صوتی: موقعیت‌های مختلفی را می‌توان تصور کرد که در آن شما ممکن است بخواهید مقصدی را مشخص کنید اما نیازی به استفاده از جهت‌نمای صوتی نداشته باشید. برای مثال، ممکن است شما بدانید که دقیقاً چگونه باید خود را به مقصدتان برسانید ولی بخواهید به‌طور مستمر در ارتباط با فاصله‌ی خود تا مقصدتان از ساند‌اسکیپ به‌روزرسانی دریافت نمایید. یا فرض کنید که به‌طور تقریبی با مسیر منتهی به مقصدتان آشنایی دارید و می‌خواهید تنها زمانی که به مقصد نزدیک می‌شوید از جهت‌نمای صوتی استفاده کنید. در هر صورت، شما می‌توانید با استفاده از دکمه‌ی مربوط به باز و بسته کردن صدای جهت‌نمای صوتی در صفحه‌ی اصلی، آن را روشن یا خاموش نمایید.</string>
+<string name="faq_controlling_what_you_hear_answer">ساند‌اسکیپ چند راه برای کنترل اینکه چه چیزی و چه زمانی می‌شنوید فراهم می‌کند:\n\n۱. قطع فوری همهٔ صداها: با دوبار ضربه زدن روی صفحه با دو انگشت می‌توانید فوراً همهٔ صداها را قطع کنید؛ از جمله هر اعلان در حال پخش و جهت‌نمای صوتی (در صورت فعال بودن). اعلان‌ها به‌طور خودکار زمانی که به تقاطع یا نقطهٔ شاخص بعدی نزدیک شوید از سر گرفته می‌شوند، اما جهت‌نمای صوتی به‌صورت خودکار بازپخش نخواهد شد. برای شنیدن دوبارهٔ جهت‌نما، دکمهٔ *«باز کردن صدای جهت‌نما»* را در صفحهٔ اصلی انتخاب کنید.\n\n۲. متوقف کردن اعلان‌های خودکار: وقتی در حال سفر نیستید یا به مقصد رسیده‌اید، احتمالاً نیازی نیست ساند‌اسکیپ همچنان دربارهٔ اطرافتان اطلاع‌رسانی کند. به‌جای خروج از اپ، می‌توانید ساند‌اسکیپ را در حالت چرت (Snooze) قرار دهید تا هنگام ترک محل فعلی دوباره فعال شود، یا آن را در حالت خواب (Sleep) قرار دهید تا تا زمانی که خودتان آن را روشن نکنید خاموش بماند. همچنین می‌توانید از منو گزینهٔ *«تنظیمات»* را انتخاب کرده و در بخش *«اعلان‌ها»* همهٔ اعلان‌ها را خاموش کنید.\n\n۳. متوقف کردن جهت‌نما: ممکن است در شرایطی مقصدی را تنظیم کنید اما نیازی به فعال‌بودن جهت‌نمای صوتی نداشته باشید. برای مثال، ممکن است دقیقاً بدانید چگونه به مقصد برسید اما بخواهید به‌روزرسانی‌های خودکار دربارهٔ فاصله‌تان تا مقصد را دریافت کنید، یا اینکه تقریباً مسیر را می‌دانید و تنها هنگام نزدیک شدن به مقصد به جهت‌نما نیاز دارید. در هر صورت می‌توانید زمان شنیدن جهت‌نما را با تغییر وضعیت دکمهٔ *«بستن صدای جهت‌نما»* / *«باز کردن صدای جهت‌نما»* در صفحهٔ اصلی انتخاب کنید.</string>
     <!-- A frequently asked question about how the user should hold their phone -->
 <string name="faq_holding_phone_flat_question">آیا باید همیشه گوشی را در دست بگیرم؟</string>
     <!-- Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Quotes written as \" -->
@@ -858,7 +858,7 @@
     <!-- Preserve meters unit - Do not convert. The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
 <string name="faq_tip_turning_beacon_off">شما می‌توانید صدای ریتمیک جهت‌نمای صوتی را با استفاده از دکمه‌ی بستن صدای جهت‌نما در صفحه‌ی اصلی خاموش و روشن کنید. حتی اگر صدای جهت‌نما بسته باشد، شما همچنان در ارتباط با فاصله‌تان تا مقصد حدوداً هر ۵۰ متر یک بار به‌روزرسانی دریافت خواهید کرد.</string>
     <!-- 'Manage Callouts' is the name of one of the sections on the Soundscape Settings screen. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Snooze - To put the app in an idle state that is interrupted by user movement. Sleep - To put the app in an idle state for a period of time. Quotes written as \" -->
-<string name="faq_tip_turning_off_auto_callouts">اگر می‌خواهید همچنان از ساند‌اسکیپ استفاده نمایید اما نیازی به شنیدن اعلان‌های خودکار ندارید، می‌توانید آنها را در قسمت *«مدیریت اعلان‌ها»* از منوی *«تنظیمات»* خاموش کنید. همچنین، در صورت عدم نیاز به استفاده از ساند‌اسکیپ، می‌توانید آن را با ضربه زدن روی دکمه‌ی *«حالت خواب»* در صفحه‌ی اصلی، در یکی از دو وضعیت خواب یا چرت قرار دهید.</string>
+<string name="faq_tip_turning_off_auto_callouts">اگر همچنان می‌خواهید با ساند‌اسکیپ تعامل داشته باشید اما نمی‌خواهید اعلان‌های خودکار را بشنوید، می‌توانید از منو به بخش *«اعلان‌ها»* در صفحهٔ *«تنظیمات»* رفته و اعلان‌ها را خاموش کنید. یا اگر قصد ندارید از ساند‌اسکیپ استفاده کنید، می‌توانید با دکمهٔ *«حالت خواب»* در صفحهٔ اصلی آن را در حالت خواب یا حالت چرت قرار دهید.</string>
     <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_tip_hold_phone_flat">برای داشتن تجربه‌ی بهتر هنگام استفاده از ساند‌اسکیپ، گوشی خود را به حالت افقی نگه دارید؛ به‌گونه‌ای که صفحه‌ی نمایش گوشی رو به آسمان و جلوی آن در امتداد جهتی باشد که شما رو به آن ایستاده‌اید.</string>
     <!-- Marker - A location that has been marked as important by the user or application. This can be an address, a business or a custom place such as an entrance, a bus stop or a bench. The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. 'Manage Markers' is the name of one of the options in the Soundscape menu. Quotes written as \" -->
@@ -868,7 +868,7 @@
     <!-- Notifications are a type of Android permission required to run the app -->
 <string name="first_launch_permissions_notification">اعلان‌ها</string>
     <!-- Message appears as notification when app is running -->
-<string name="notification_text" tools:ignore="MissingTranslation">در حال اجرای این سرویس مکان‌یابی در پیش‌زمینه هستیم</string>
+<string name="notification_text" tools:ignore="MissingTranslation">سرویس مکان‌یابی ساند‌اسکیپ حتی زمانی که گوشی قفل است، فعال می‌ماند.</string>
     <!-- Option to cancel searching for a location -->
 <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">لغو جستجو</string>
     <!-- OSM tag for train station -->
@@ -888,9 +888,9 @@
     <!-- OSM tag for named ferry terminal e.g. "Oban Ferry Terminal" -->
 <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">اسکله‌ی %s</string>
     <!-- Title for settings page group of audio settings -->
-<string name="menu_manage_audio" tools:ignore="MissingTranslation">مدیریت صدا</string>
+<string name="menu_manage_audio" tools:ignore="MissingTranslation">صدا</string>
     <!-- Title for settings page group of audio settings -->
-<string name="menu_manage_accessibility" tools:ignore="MissingTranslation">مدیریت دسترسی‌پذیری</string>
+<string name="menu_manage_accessibility" tools:ignore="MissingTranslation">دسترسی‌پذیری</string>
     <!-- App theme light/dark description -->
 <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">پوسته‌ی روشن یا تیره</string>
     <!-- App theme setting for automatic light/dark based on system -->
@@ -921,7 +921,7 @@
     <!-- Settings option for enabling a map styling which has improved accessibility -->
 <string name="settings_accessible_map" tools:ignore="MissingTranslation">نمایش نقشه‌ی دسترسی‌پذیر</string>
     <!-- Settings title for various debugging options to aid developers -->
-<string name="settings_debug_heading" tools:ignore="MissingTranslation">تنظیمات رفع اشکال</string>
+<string name="settings_debug_heading" tools:ignore="MissingTranslation">گزینه‌های اشکال‌زدایی</string>
     <!-- Menu option for sharing the recorded travel route via another app -->
 <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">اشتراک‌گذاری سفر ضبط‌شده</string>
     <!-- Description of path to another road that passes steps/tunnel/bridge e.g. "Path to Moor Road via steps" -->
@@ -996,7 +996,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">نشانه‌ها و مسیرها حذف شدند</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">اطلاعات نسخه‌ی جدید</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">بستن پنجره‌ی اطلاعات نسخه‌ی جدید</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nاصلی‌ترین تغییرات این نسخه مربوط به *جستجو* و توضیح آدرس فعلی است. هنگامی که شبکه در دسترس باشد، *جستجو* از سرویس‌های اندروید و همچنین سرور Photon اختصاصی ما برای یافتن مکان‌ها استفاده خواهد کرد. بهبودهای مهم این بخش عبارتند از: اولاً جستجو بر اساس شماره‌ی خیابان در بسیاری از نقاط جهان به‌مراتب بهتر عمل خواهد کرد؛ ثانیاً ما قابلیت جستجوی آفلاین را نیز اضافه کرده‌ایم که از هر نقشه‌ای که دانلود شده باشد برای جستجوی آدرس‌ها و نقاط مورد توجه استفاده می‌کند. جستجوی آفلاین در محدوده‌ای در حدود ۵ مایل اطراف کاربر کار می‌کند.\n\nنکاتی برای جستجو:\n\nرابط کاربری جستجو نسبت به نسخه‌ی قبل کمی تغییر کرده است زیرا در نسخه‌ی قبلی پشتیبانی درست از ویرایش با TalkBack وجود نداشت. اکنون پس از وارد کردن متن جستجو لازم است کاربر کلید Enter/دکمه‌ی جستجو را بزند تا جستجو آغاز شود.\n\nبرای استفاده از جستجوی آفلاین، باید نقشه‌های آفلاین را دانلود کنید. آنها را از صفحه‌ی تنظیمات / نقشه‌های آفلاین دانلود نمایید.\n\nمی‌توانید جستجو را در تنظیمات به‌گونه‌ای پیکربندی کنید که فقط در حالت آفلاین اجرا شود. حالت پیش‌فرض «خودکار» به این معنی است که در صورت وجود شبکه، از جستجوی آنلاین استفاده می‌کند و در صورت عدم دسترسی به شبکه، از جستجوی آفلاین بهره می‌برد.\n\nوقتی به دنبال آدرس خیابان هستید، وارد کردن نام شهر برای جستجوی آنلاین مهم است، هرچند در جستجوی آفلاین می‌توان آن را حذف کرد.\n\nنحوه‌ی نگاشت شماره‌های خیابان در داده‌های OpenStreetMap که ما استفاده می‌کنیم بسته به موقعیت جغرافیایی متفاوت است. جستجوی آفلاین از شماره‌های خیابان استفاده خواهد کرد اگر این شماره‌ها در نقشه موجود باشند؛ با این حال نیاز است نقشه‌ی آفلاینی که پس از ۱۹ ژانویهٔ ۲۰۲۶ در اپ دانلود شده باشد را داشته باشید.\n\nهمانند همیشه، لطفاً هرگونه مشکل را، حتی اگر کوچک باشد، از طریق گزینه‌ی *تماس با پشتیبانی* در منوی اصلی گزارش دهید.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nدر این نسخه دو قابلیت جدید اضافه شده که کنترل از راه دور اپ را حتی زمانی که گوشی قفل است ممکن می‌سازد. این بدان معناست که می‌توانید گوشی را در جیبتان قرار دهید و در عین حال امکانات اصلی اپ را کنترل کنید.\n\nهر دو روش کنترل از راه دور از دکمه‌های کنترل رسانه‌ای بلوتوث استفاده می‌کنند؛ این دکمه‌ها می‌توانند روی هدفون شما قرار داشته باشند یا می‌توانید ریموت‌های کوچک خریداری کنید و در دست یا جیب نگه دارید. حالت کنترل از راه دور از بخش تنظیمات / کنترل‌های رسانه‌ای انتخاب می‌شود و می‌توانید «فرمان صوتی» را انتخاب کنید تا با اپ صحبت کنید، یا «منوی صوتی» را انتخاب کنید که در آن منوها برای شما خوانده می‌شوند و می‌توانید گزینه‌ای را انتخاب نمایید. «حالت اصلی» یعنی دکمه‌های بلوتوث همان‌طور که در نسخه‌های قبلی عمل می‌کردند رفتار می‌کنند.\n\nدر حالت فرمان صوتی، فشردن دکمه‌ی پخش/مکث روی هدفون باعث می‌شود اپ برای دریافت گفتار گوش دهد و شما صدای کوتاهی می‌شنوید که این وضعیت را نشان می‌دهد. اگر بگویید «کمک» فهرستی از فرمان‌های قابل استفاده را خواهید شنید. سپس می‌توانید دوباره دکمه را فشار داده و سایر دستورات را امتحان کنید. متأسفانه، تشخیص گفتار اندروید از همهٔ زبان‌ها پشتیبانی نمی‌کند و روی همهٔ گوشی‌ها در دسترس نیست.\n\nچالش اصلی در حالت فرمان صوتی این است که بعضی هدفون‌ها نسبت به بقیه زمان بیشتری برای فعال کردن میکروفون نیاز دارند. بنابراین ممکن است پس از زدن دکمه‌ی پخش/مکث تا ۵ ثانیه باید صبر کنید تا بتوانید صحبت کنید. برای فهمیدن این مدت، بهترین روش این است که دکمه‌ی پخش/مکث را فشار داده و از ۱ تا ۱۰ بشمارید. گوشی باید بگوید چه گفتاری را تشخیص داده و عددی که ابتدا تشخیص داده شده نشان می‌دهد از چه زمانی می‌توان صحبت کرد. این روش به شما کمک می‌کند زمان مناسب برای انتظار پیش از صحبت را بیاموزید. برخی هدفون‌ها هنگام روشن شدن میکروفون صدای مشخصی تولید می‌کنند که کار را آسان‌تر می‌سازد، اما برخی اصلاً صدایی ندارند. متأسفانه ممکن است نیاز به تمرین داشته باشد.\n\nحالت راه‌انداز کنترل از راه دور دیگر، حالت «منوی صوتی» است که در همهٔ زبان‌ها و روی همهٔ گوشی‌ها کار می‌کند. دکمه‌های بعدی/قبلی کنترل رسانه‌ای درون منو میان گزینه‌ها جلو و عقب می‌روند و دکمه‌ی پخش/مکث گزینهٔ فعلی را انتخاب می‌کند. یک منوی سطح بالا وجود دارد و سپس یک لایه زیرمنو که دستورات مشابه را گروه‌بندی می‌کند.\n\nاین قابلیت‌ها بسیار جدید هستند و ما بسیار مایل به دریافت بازخورد دربارهٔ عملکرد آن‌ها و اینکه چه دستورات دیگری ممکن است مفید باشد، هستیم.\n\nلطفاً هر مشکلی، هرچقدر هم جزئی باشد، از طریق گزینهٔ *«تماس با پشتیبانی»* در منوی اصلی گزارش دهید.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">مجوزهای متن‌باز</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">پایانه کشتی</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s پایانه کشتی</string>
@@ -1664,7 +1664,7 @@
     <string name="settings_search_auto" tools:ignore="MissingTranslation">خودکار</string>
     <string name="search_no_results" tools:ignore="MissingTranslation">هیچ نتیجه‌ای برای جستجو یافت نشد</string>
     <string name="search_searching" tools:ignore="MissingTranslation">در حال جستجو…</string>
-    <string name="menu_manage_search" tools:ignore="MissingTranslation">مدیریت جستجو</string>
+    <string name="menu_manage_search" tools:ignore="MissingTranslation">جستجو</string>
     <string name="route_not_found" tools:ignore="MissingTranslation">مسیر یافت نشد</string>
     <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">خروجی‌گیری</string>
     <string name="location_item_selected" tools:ignore="MissingTranslation">انتخاب شده</string>
@@ -1683,7 +1683,7 @@
     <string name="osm_river" tools:ignore="MissingTranslation">رودخانه</string>
     <string name="osm_railway" tools:ignore="MissingTranslation">راه‌آهن</string>
     <string name="osm_wood" tools:ignore="MissingTranslation">جنگل</string>
-    <string name="osm_pavillion" tools:ignore="MissingTranslation">سالن ورزشی</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">پاویلیون</string>
     <string name="osm_sport" tools:ignore="MissingTranslation">ورزش</string>
     <string name="osm_health_food" tools:ignore="MissingTranslation">فروشگاه غذاهای سالم</string>
     <string name="osm_events_venue" tools:ignore="MissingTranslation">محل برگزاری رویداد</string>
@@ -1719,4 +1719,87 @@
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">از آنجا که خوانندهٔ صفحه فعال ندارید، فرض می‌کنیم می‌خواهید نقشه‌های گرافیکی در رابط کاربری نمایش داده شوند. می‌توانید این تنظیم را در اینجا تغییر دهید یا به‌سادگی ادامه دهید.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">ادامه</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">پنجره‌ی پاپ‌آپ را ببندید و به آموزش ادامه دهید</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">فعال‌سازی جهت‌نمای صوتی روی این نشانه</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">نقشه را در حالت تمام‌صفحه قرار دهید و مکان نشانه را ویرایش کنید</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">از حالت ویرایش مکان نشانه خارج شوید</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">در %1$s درست قبل از %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">در %1$s درست بعد از %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">نزدیک تقاطع %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">در این مکان در مسیر از پیش نشانه‌ای وجود دارد؛ نمی‌توان آن را دوباره اضافه کرد.</string>
+    <string name="settings_explanation" tools:ignore="MissingTranslation">تنظیمات مختلف اپ در گروه‌هایی در پایین سازماندهی شده‌اند. برای باز شدن یک گروه و دیدن گزینه‌های در دسترس روی آن ضربه بزنید.</string>
+    <string name="settings_section_units_description" tools:ignore="MissingTranslation">واحد اندازه‌گیری مورد استفاده برای نمایش فواصل را انتخاب کنید</string>
+    <string name="settings_section_search_network" tools:ignore="MissingTranslation">حالت جستجو</string>
+    <string name="settings_section_search_network_description" tools:ignore="MissingTranslation">تعیین کنید آیا جستجو تنها از داده‌های آفلاین استفاده کند</string>
+    <string name="beacon_settings_style_description" tools:ignore="MissingTranslation">سبک جهت‌نمای صوتی مورد نظر خود را انتخاب کنید</string>
+    <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">در شبیه‌سازی موقعیت مکانی، خیابان‌های بدون نام را شامل کنید</string>
+    <string name="callouts_allow_callouts_description" tools:ignore="MissingTranslation">همهٔ اعلان‌ها را روشن یا خاموش کنید</string>
+    <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">مکان‌های نزدیک مانند فروشگاه‌ها و رستوران‌ها</string>
+    <string name="callouts_mobility_description" tools:ignore="MissingTranslation">اطلاعات مربوط به تقاطع‌ها و حمل‌و‌نقل</string>
+    <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">به‌روزرسانی‌هایی دربارهٔ فاصله تا جهت‌نمای صوتی هنگام فعال‌بودن آن</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">"زبان و منطقه "</string>
+    <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">جستجوی آنلاین می‌تواند نتایج را به زبان محلی نمایش دهد، یا می‌توان آن را طوری تنظیم کرد که نتایج فقط به انگلیسی، فرانسوی یا آلمانی بازگردانده شوند.</string>
+    <string name="language_mismatch_title" tools:ignore="MissingTranslation">زبان جدید در دسترس است</string>
+    <string name="language_mismatch_message" tools:ignore="MissingTranslation">گوشی شما به زبان %1$s تنظیم شده و این زبان اکنون در ساند‌اسکیپ موجود است. آیا مایلید ساند‌اسکیپ از زبان %1$s استفاده کند؟</string>
+    <string name="language_mismatch_switch" tools:ignore="MissingTranslation">تغییر به %1$s</string>
+    <string name="language_mismatch_keep" tools:ignore="MissingTranslation">حفظ زبان فعلی</string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation">در این جهت حرکت کنید تا به تقاطع بعدی برسید.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">یافتن مسیر در پایگاه داده با شکست مواجه شد.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">حذف مسیر با شکست مواجه شد.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">ذخیره‌ی مسیر با شکست مواجه شد.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">سرویس مکان‌یابی ساند‌اسکیپ همچنان در حال اجراست.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">دانلود کامل شد</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">دانلود لغو شد</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">خطا در دانلود</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">جهت‌نمای صوتی روی %1$s تنظیم شد، %2$s فاصله</string>
+    <string name="route_beacon_progress" tools:ignore="MissingTranslation">جهت‌نمای صوتی در %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">کنترل مسیر</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">نقطه‌ی بین‌راهی بعدی</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">نقطه‌ی بین‌راهی قبلی</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">هیچ مسیری ذخیره نشده است</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">منوی اصلی</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">ضبط صدا</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">این مجوز اختیاری است، اما در صورتی که مایل باشید از فرمان‌های صوتی برای کنترل اپلیکیشن استفاده کنید، لازم است.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">کنترل‌های رسانه‌ای</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">حالت کنترل‌های رسانه‌ای</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">دکمه‌های کنترل رسانه‌ای روی هدفون یا کنترل از راه دور شما می‌توانند بر پایهٔ این گزینه به روش‌های مختلفی پیکربندی شوند.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">حالت اصلی</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">فرمان صوتی</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">منوی صوتی</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">دستورات صوتی موجود:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">در حال گوش دادن…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">متأسفم، نمی‌توانم فرمان «%1$s» را پیدا کنم. فرمان صوتی «%2$s» فهرست دستورات موجود را اعلام می‌کند.</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">فهرست مسیرها</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">مسیرهای موجود عبارتند از:</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">فهرست نشانه‌ها</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">نشانه‌های موجود عبارتند از:</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">هیچ مسیری ذخیره نشده است</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">هیچ نشانه‌ای ذخیره نشده است</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">مسیر یافت نشد: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">در حال شروع مسیر %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">شروع مسیر %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">فعال‌سازی جهت‌نمای صوتی روی %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">در حال فعال‌سازی جهت‌نمای صوتی روی %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">نشانه پیدا نشد: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">همچنین می‌توانید مسیرها و نشانه‌ها را با نام‌شان نیز شروع کنید، برای مثال.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">خطای تایم‌اوت شبکه در تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">خطای شبکه در تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">خطا در ضبط صدا برای تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">خطای سرور تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">خطای کلاینت تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">زمان انتظار برای شنیدن گفتار به پایان رسید و گوش دادن متوقف شد. لطفاً دوباره تلاش کنید.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">هیچ گفتاری شنیده نشد و گوش دادن متوقف شد. لطفاً دوباره تلاش کنید.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">سرویس تشخیص گفتار در حال حاضر مشغول است.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">مجوزهای کافی برای اجرای تشخیص گفتار وجود نداشت.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">خطای ارسال درخواست‌های زیاد به سرویس تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">خطای قطع اتصال سرور تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">زبان فعلی توسط اندروید برای تشخیص گفتار پشتیبانی نمی‌شود.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">زبان فعلی پشتیبانی می‌شود، اما هنوز روی این گوشی دانلود نشده است.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">خطا در بررسی پشتیبانی تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">خطا در گوش دادن به رویدادهای دانلود تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">خطای ناشناخته در تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">تشخیص گفتار روی این گوشی پشتیبانی نمی‌شود.</string>
+    <string name="settings_voice_command_listening_prompt" tools:ignore="MissingTranslation">اعلام شروع گوش دادن</string>
+    <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">قبل از شروع تشخیص گفتار، یک پیام شنیداری پخش کنید تا اعلام شود که اپ در حالت گوش دادن قرار دارد.</string>
+    <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">میکروفون</string>
+    <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">میکروفونی را که برای فرمان‌های صوتی استفاده می‌شود انتخاب کنید.</string>
 </resources>

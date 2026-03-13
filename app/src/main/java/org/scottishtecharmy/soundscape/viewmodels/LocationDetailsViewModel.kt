@@ -44,7 +44,8 @@ class LocationDetailsViewModel @Inject constructor(
     fun createMarker(
         locationDescription: LocationDescription,
         successMessage: String,
-        failureMessage: String
+        failureMessage: String,
+        duplicateMessage: String
     ) {
         createMarker(
             locationDescription = locationDescription,
@@ -123,6 +124,10 @@ class LocationDetailsViewModel @Inject constructor(
 
     fun getLocationDescription(location: LngLatAlt) : LocationDescription? {
         return soundscapeServiceConnection.soundscapeService?.getLocationDescription(location)
+    }
+
+    fun getMarkerAtLocation(location: LngLatAlt): MarkerEntity? {
+        return routeDao.getMarkerByLocation(location.longitude, location.latitude)
     }
 
     fun showDialog() {

@@ -11,7 +11,6 @@ import android.speech.tts.UtteranceProgressListener
 import android.speech.tts.Voice
 import android.util.Log
 import androidx.preference.PreferenceManager
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
@@ -32,6 +31,7 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
     private var textToSpeechRate = 0.1f
 
     private var sharedPreferences : SharedPreferences? = null
+    private var context: Context? = null
 
     fun getCurrentLabelAndName() : String? { return engineLabelAndName }
     fun getCurrentVoice() : String { return textToSpeechVoiceType }
@@ -47,6 +47,7 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
 
     fun initialize(context : Context)
     {
+        this.context = context
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
         audioEngine.ttsRunningStateChanged(false)
@@ -55,14 +56,15 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
         textToSpeech = if (engineLabelAndName.isNullOrEmpty())
             TextToSpeech(context, this)
         else {
+            val analytics = Analytics.getInstance()
             val bundle = Bundle().apply {
                 putString("engine", engineLabelAndName)
                 putString("voice", textToSpeechVoiceType)
             }
             // Log an event so that we can get statistics
-            Analytics.getInstance().logEvent("TTSEngine", bundle)
+            analytics.logEvent("TTSEngine", bundle)
             // And set a custom key so that any crashes we get we know which TTS engine is in use
-            FirebaseCrashlytics.getInstance().setCustomKey("TTSEngine", "$engineLabelAndName - $textToSpeechVoiceType")
+            analytics.crashSetCustomKey("TTSEngine", "$engineLabelAndName - $textToSpeechVoiceType")
             TextToSpeech(context, this, engineLabelAndName.substringAfter(":::"))
         }
         Log.d(TAG, "initialize returning")
@@ -142,6 +144,66 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
         return true
     }
 
+    private fun searchForFallbackEngine(languageCode: String) {
+        val ctx = context ?: return
+        val defaultEngine = textToSpeech.defaultEngine
+        val engines = textToSpeech.engines.filter { it.name != defaultEngine }
+
+        if (engines.isEmpty()) {
+            Log.w(TAG, "No alternative TTS engines available for fallback")
+            return
+        }
+
+        Log.d(TAG, "Default engine '$defaultEngine' doesn't support '$languageCode', searching ${engines.size} alternative engine(s)")
+        tryNextEngine(ctx, languageCode, engines, 0)
+    }
+
+    private fun tryNextEngine(
+        context: Context,
+        languageCode: String,
+        engines: List<TextToSpeech.EngineInfo>,
+        index: Int
+    ) {
+        if (index >= engines.size) {
+            Log.w(TAG, "No installed TTS engine supports language '$languageCode'")
+            return
+        }
+
+        val engineInfo = engines[index]
+        Log.d(TAG, "Trying engine '${engineInfo.label}' (${engineInfo.name}) for '$languageCode'")
+
+        @Suppress("DEPRECATION")
+        val locale = Locale(languageCode)
+        var tempTts: TextToSpeech? = null
+        tempTts = TextToSpeech(context, { status ->
+            if (status == TextToSpeech.SUCCESS) {
+                val result = try {
+                    tempTts?.isLanguageAvailable(locale) ?: TextToSpeech.LANG_NOT_SUPPORTED
+                } catch (_: Exception) {
+                    TextToSpeech.LANG_NOT_SUPPORTED
+                }
+
+                if (result >= TextToSpeech.LANG_AVAILABLE) {
+                    val labelAndName = "${engineInfo.label}:::${engineInfo.name}"
+                    Log.d(TAG, "Fallback engine found: $labelAndName supports '$languageCode'")
+                    tempTts?.shutdown()
+                    sharedPreferences?.edit()?.apply {
+                        putString(MainActivity.SPEECH_ENGINE_KEY, labelAndName)
+                        apply()
+                    }
+                } else {
+                    Log.d(TAG, "Engine '${engineInfo.label}' does not support '$languageCode', trying next")
+                    tempTts?.shutdown()
+                    tryNextEngine(context, languageCode, engines, index + 1)
+                }
+            } else {
+                Log.d(TAG, "Engine '${engineInfo.label}' failed to initialize, trying next")
+                tempTts?.shutdown()
+                tryNextEngine(context, languageCode, engines, index + 1)
+            }
+        }, engineInfo.name)
+    }
+
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
 
@@ -149,7 +211,13 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
 
             // Get the current locale and initialize the text to speech engine with it
             val languageCode = getCurrentLocale().toLanguageTag()
-            setSpeechLanguage(languageCode)
+            val languageSupported = setSpeechLanguage(languageCode)
+
+            // If the language isn't supported, and we're using the default engine,
+            // search for an alternative engine that supports this language
+            if (!languageSupported && engineLabelAndName.isNullOrEmpty()) {
+                searchForFallbackEngine(languageCode)
+            }
 
             sharedPreferences?.let {
                 updateSpeech(it)

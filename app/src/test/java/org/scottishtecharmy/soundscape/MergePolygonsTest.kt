@@ -8,7 +8,6 @@ import org.locationtech.jts.geom.GeometryFactory
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.isDuplicateByOsmId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -242,7 +241,7 @@ class MergePolygonsTest {
                 intersectionMap,
                 streetNumberMap
             )
-            for(collection in geojson!!) {
+            for(collection in geojson) {
                 for (feature in collection) {
                     featureCollection.addFeature(feature)
                 }
@@ -260,8 +259,7 @@ class MergePolygonsTest {
         tileX: Int,
         tileY: Int,
         intersectionMap:  HashMap<LngLatAlt, Intersection>,
-        streetNumberMap:  HashMap<String, FeatureCollection>,
-        cropPoints: Boolean = true
+        streetNumberMap:  HashMap<String, FeatureCollection>
     ): Array<FeatureCollection> {
 
         val gridState = FileGridState()

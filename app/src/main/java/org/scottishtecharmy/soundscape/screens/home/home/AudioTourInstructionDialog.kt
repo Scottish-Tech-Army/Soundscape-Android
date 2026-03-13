@@ -11,8 +11,6 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioTourInstruction
-import org.scottishtecharmy.soundscape.screens.talkbackDescription
-import org.scottishtecharmy.soundscape.screens.talkbackHidden
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 
 @Composable

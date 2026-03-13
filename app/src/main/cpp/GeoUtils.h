@@ -72,36 +72,3 @@ inline double distance(double lat1, double long1, double lat2, double long2)
 
     return (EARTH_RADIUS_METERS * c);
 }
-
-/**
- * The initial audio engine code made the assumption that the latitude and longitude could be used
- * directly as coordinates in the FMOD audio engine. These coordinates are used for positioning the
- * audio which affects where the audio sounds like it's coming from when it's played. However, FMOD
- * rightly assumes that 1 unit on the x-axis is the same distance as 1 unit on the y-axis, and this
- * isn't true for longitude and latitude and becomes less true further from the equator. This
- * function simply maps longitude and latitude so that x and y are the same.
- * Note that the change in beacon sound is done based on actual longitude and latitude and is
- * already calculated correctly. Prior to this function this meant there was a discrepancy between
- * the beacon tone changing and where it was positioned in the FMOD engine.
- *
- * @param latitude Location for the audio to sound from
- * @param longitude
- * @param fmod_x Location mapped to within the FMOD coordinate system
- * @param fmod_y
- */
-inline void translateLocationForFmod(double latitude, double longitude,
-                                     double origin_latitude, double origin_longitude,
-                                     double &fmod_x, double &fmod_y)
-{
-    auto latRad = toRadians(latitude);
-    auto lonRad = toRadians(longitude);
-    auto originLatRad = toRadians(origin_latitude);
-    auto originLonRad = toRadians(origin_longitude);
-
-    // Calculate the difference in longitude
-    double deltaLng = lonRad - originLonRad;
-
-    // Calculate x and y coordinates using the Equirectangular projection
-    fmod_x = EARTH_RADIUS_METERS * deltaLng * cos(originLatRad);
-    fmod_y = EARTH_RADIUS_METERS * (latRad - originLatRad);
-}

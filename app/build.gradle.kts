@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.protobuf)
+    alias(libs.plugins.screenshot)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.google.services)
@@ -18,10 +19,11 @@ plugins {
 
 android {
     namespace = "org.scottishtecharmy.soundscape"
-    compileSdk = 35
+    compileSdk = 36
 
     buildFeatures {
         buildConfig = true
+        prefab = true
     }
 
     bundle {
@@ -29,6 +31,8 @@ android {
             enableSplit = false
         }
     }
+
+    experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
     signingConfigs {
         create("release") {
@@ -43,12 +47,13 @@ android {
         applicationId = "org.scottishtecharmy.soundscape"
         minSdk = 30
         targetSdk = 35
-        versionCode = 149
-        versionName = "0.2.6"
+        versionCode = 177
+        versionName = "0.4.3"
 
         // Maintaining this list means that we can exclude translations that aren't complete yet
         resourceConfigurations.addAll(listOf(
             "arz",
+            "zh-rCN",
             "da",
             "de",
             "el",
@@ -59,6 +64,7 @@ android {
             "fi",
             "fr",
             "fr-rCA",
+            "hi",
             "is",
             "it",
             "ja",
@@ -67,8 +73,10 @@ android {
             "pl",
             "pt",
             "pt-rBR",
+            "ro",
             "ru",
             "sv",
+            "tr",
             "uk"
         ))
 
@@ -98,7 +106,6 @@ android {
         buildConfigField("String", "EXTRACT_PROVIDER_URL", "\"${extractProviderUrl}\"")
 
         buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
-        buildConfigField("String", "FMOD_LIB", "\"fmod\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -108,7 +115,10 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags += ""
-                arguments += listOf("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
+                arguments += listOf(
+                    "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON",
+                    "-DANDROID_STL=c++_shared"
+                )
             }
         }
     }
@@ -125,6 +135,10 @@ android {
 //            )
 //        }
 
+        debug {
+            buildConfigField("Boolean", "DUMMY_ANALYTICS", "true")
+        }
+
         release {
             isMinifyEnabled = true
             isShrinkResources = true
@@ -133,6 +147,12 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("Boolean", "DUMMY_ANALYTICS", "false")
+        }
+
+        create("releaseTest") {
+            initWith(getByName("release"))
+            buildConfigField("Boolean", "DUMMY_ANALYTICS", "true")
         }
     }
     compileOptions {
@@ -230,7 +250,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.compose.android)
     implementation(libs.androidx.media3.session)
     implementation(libs.androidx.lifecycle.process)
-
+    implementation(libs.screenshot.validation.api)
+    implementation(libs.core.google.shortcuts)
 
     testImplementation(libs.junit)
     testImplementation(libs.androidx.core.testing)
@@ -286,7 +307,7 @@ dependencies {
     implementation(libs.androidx.datastore)
 
     // Audio engine
-    implementation(files("libs/fmod.jar"))
+    implementation("com.google.oboe:oboe:1.9.3")
 
     // Firebase
     implementation(platform(libs.firebase.bom))
@@ -345,4 +366,12 @@ dependencies {
     implementation(libs.androidaddressformatter)
 
     testImplementation(libs.json)
+}
+
+dokka {
+    dokkaSourceSets.configureEach {
+        if (name == "main") {
+            suppress.set(true)
+        }
+    }
 }

@@ -122,8 +122,8 @@ open class GeoJsonObjectMoshiAdapter() : JsonAdapter<GeoJsonObject>() {
 
             -1 -> {
                 if (reader.peek() == JsonReader.Token.NAME) {
-                    val name = reader.nextName()
-                    val value = reader.readJsonValue()
+                    reader.nextName()
+                    reader.readJsonValue()
                 } else {
                     reader.skipValue()
                 }
@@ -142,7 +142,7 @@ open class GeoJsonObjectMoshiAdapter() : JsonAdapter<GeoJsonObject>() {
         if (inObj.properties != null) {
             writer.name("properties")
             writer.beginObject()
-            inObj.properties?.forEach { k, v ->
+            inObj.properties?.forEach { (k, v) ->
                 writer.name(k)
                 writeUnknown(v, writer)
             }
@@ -172,7 +172,7 @@ open class GeoJsonObjectMoshiAdapter() : JsonAdapter<GeoJsonObject>() {
 
     fun writeMap(map: Map<*, *>, writer: JsonWriter) {
         writer.beginObject()
-        map.forEach { k, v ->
+        map.forEach { (k, v) ->
             writer.name(k as String)
             writeUnknown(v, writer)
         }

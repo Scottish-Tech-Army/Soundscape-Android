@@ -58,7 +58,6 @@ import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.maplibre.android.style.layers.Property
 import org.maplibre.android.style.sources.GeoJsonSource
 import org.maplibre.android.style.sources.VectorSource
-import org.maplibre.android.tile.TileOperation
 import org.maplibre.geojson.FeatureCollection
 import org.maplibre.geojson.MultiPolygon
 import org.maplibre.geojson.Polygon
@@ -126,7 +125,11 @@ fun createLocationMarkerDrawable(context: Context, number: Int): Drawable {
 }
 
 @Composable
-fun FullScreenMapFab(fullscreenMap: MutableState<Boolean>, modifier: Modifier = Modifier) {
+fun FullScreenMapFab(
+    fullscreenMap: MutableState<Boolean>,
+    modifier: Modifier = Modifier,
+    openMapHint: Int = R.string.location_detail_full_screen_hint,
+    closeMapHint: Int = R.string.location_detail_exit_full_screen_hint) {
     FloatingActionButton(
         onClick = { fullscreenMap.value = !fullscreenMap.value },
         containerColor = MaterialTheme.colorScheme.surfaceContainer,
@@ -137,9 +140,9 @@ fun FullScreenMapFab(fullscreenMap: MutableState<Boolean>, modifier: Modifier = 
             imageVector = if(fullscreenMap.value) Icons.Rounded.FullscreenExit else Icons.Rounded.Fullscreen,
             tint = MaterialTheme.colorScheme.onSurface,
             contentDescription = if(fullscreenMap.value)
-                stringResource(R.string.location_detail_exit_full_screen_hint)
+                stringResource(closeMapHint)
             else
-                stringResource(R.string.location_detail_full_screen_hint)
+                stringResource(openMapHint)
         )
     }
 }
@@ -302,7 +305,7 @@ fun MapContainerLibre(
             val beaconLocationMarker = remember { mutableStateOf<Symbol?>(null) }
             val symbol = remember { mutableStateOf<Symbol?>(null) }
             val symbolManager = remember { mutableStateOf<SymbolManager?>(null) }
-            val filesDir = context.filesDir.toString()
+            val filesDir = remember { context.filesDir.toString() }
 
             val res = context.resources
             val userPositionDrawable = remember {
@@ -646,7 +649,7 @@ fun MapContainerLibre(
 
             // Check if the route has been updated or reverse playback toggled
             if (routeData != currentRouteData.value || routeReversePlayback != currentRouteReversePlayback.value) {
-                symbolManager.value?.let() { sm ->
+                symbolManager.value?.let { sm ->
                     // And add new ones
                     val annotationList = mutableListOf<Symbol>()
                     updateRouteMarkers(sm, annotationList, routeData, routeMarkers, routeReversePlayback)
