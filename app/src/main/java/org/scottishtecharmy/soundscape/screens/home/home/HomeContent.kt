@@ -406,8 +406,7 @@ fun HomeContent(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.85f))
-                    .padding(vertical = spacing.small)
-                    .semantics { liveRegion = LiveRegionMode.Assertive },
+                    .padding(vertical = spacing.small),
                 textAlign = TextAlign.Center
             )
         }
