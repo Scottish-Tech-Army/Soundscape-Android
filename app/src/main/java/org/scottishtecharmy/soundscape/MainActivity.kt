@@ -3,6 +3,8 @@ package org.scottishtecharmy.soundscape
 import android.Manifest
 import android.accessibilityservice.AccessibilityServiceInfo
 import android.content.Context
+import android.media.AudioDeviceInfo
+import android.media.AudioManager
 import android.content.Intent
 import android.content.SharedPreferences
 import android.net.Uri
@@ -567,6 +569,41 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("NewApi") // Inlined int constants, safe on all API levels
+    fun audioDeviceDescription(builder: StringBuilder, context: Context) {
+        val audioManager = context.getSystemService(AUDIO_SERVICE) as AudioManager
+        val typeNames = mapOf(
+            AudioDeviceInfo.TYPE_BUILTIN_EARPIECE to "Built-in Earpiece",
+            AudioDeviceInfo.TYPE_BUILTIN_SPEAKER to "Built-in Speaker",
+            AudioDeviceInfo.TYPE_WIRED_HEADSET to "Wired Headset",
+            AudioDeviceInfo.TYPE_WIRED_HEADPHONES to "Wired Headphones",
+            AudioDeviceInfo.TYPE_BLUETOOTH_SCO to "Bluetooth SCO",
+            AudioDeviceInfo.TYPE_BLUETOOTH_A2DP to "Bluetooth A2DP",
+            AudioDeviceInfo.TYPE_USB_DEVICE to "USB Device",
+            AudioDeviceInfo.TYPE_USB_ACCESSORY to "USB Accessory",
+            AudioDeviceInfo.TYPE_USB_HEADSET to "USB Headset",
+            AudioDeviceInfo.TYPE_HEARING_AID to "Hearing Aid",
+            AudioDeviceInfo.TYPE_BLE_HEADSET to "BLE Headset",
+            AudioDeviceInfo.TYPE_BLE_SPEAKER to "BLE Speaker",
+            AudioDeviceInfo.TYPE_BLE_BROADCAST to "BLE Broadcast",
+        )
+        fun deviceTypeName(type: Int) = typeNames[type] ?: "Unknown($type)"
+
+        val outputs = audioManager.getDevices(AudioManager.GET_DEVICES_OUTPUTS)
+        for (device in outputs) {
+            val name = device.productName
+            val type = deviceTypeName(device.type)
+            builder.append(tableRow("Audio Output", "$name ($type)"))
+        }
+
+        val inputs = audioManager.getDevices(AudioManager.GET_DEVICES_INPUTS)
+        for (device in inputs) {
+            val name = device.productName
+            val type = deviceTypeName(device.type)
+            builder.append(tableRow("Audio Input", "$name ($type)"))
+        }
+    }
+
     suspend fun contactSupport() {
         // Get information from the phone that we'd like to pass on to support
         val appVersion = BuildConfig.VERSION_NAME
@@ -587,6 +624,7 @@ class MainActivity : AppCompatActivity() {
         bodyText.append(tableRow("Product", product))
         bodyText.append(tableRow("Manufacturer", manufacturer))
         talkBackDescription(bodyText, applicationContext)
+        audioDeviceDescription(bodyText, applicationContext)
 
         bodyText.append(tableRow("AndroidGeocoder", AndroidGeocoder.enabled.toString()))
 
