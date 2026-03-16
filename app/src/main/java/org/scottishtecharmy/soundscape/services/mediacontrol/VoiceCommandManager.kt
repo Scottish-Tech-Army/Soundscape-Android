@@ -555,10 +555,11 @@ class VoiceCommandManager(
         }
     }
 
-    @Suppress("NewApi") // Inlined int constant, safe on all API levels
+    @Suppress("NewApi") // Inlined int constants, safe on all API levels
     private fun isBluetooth(device: AudioDeviceInfo?): Boolean =
         device?.type == AudioDeviceInfo.TYPE_BLUETOOTH_SCO ||
-        device?.type == AudioDeviceInfo.TYPE_BLE_HEADSET
+        device?.type == AudioDeviceInfo.TYPE_BLE_HEADSET ||
+        device?.type == AudioDeviceInfo.TYPE_HEARING_AID
 
     fun startListening() {
         val prefs = PreferenceManager.getDefaultSharedPreferences(context)
@@ -597,7 +598,8 @@ class VoiceCommandManager(
             } else {
                 audioManager.availableCommunicationDevices.firstOrNull {
                     it.type == AudioDeviceInfo.TYPE_BLUETOOTH_SCO ||
-                    it.type == AudioDeviceInfo.TYPE_BLE_HEADSET
+                    it.type == AudioDeviceInfo.TYPE_BLE_HEADSET ||
+                    it.type == AudioDeviceInfo.TYPE_HEARING_AID
                 }
             }
             if (bluetoothHeadset != null) {

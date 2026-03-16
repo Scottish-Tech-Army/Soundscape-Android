@@ -586,6 +586,9 @@ class MainActivity : AppCompatActivity() {
             AudioDeviceInfo.TYPE_BLE_HEADSET to "BLE Headset",
             AudioDeviceInfo.TYPE_BLE_SPEAKER to "BLE Speaker",
             AudioDeviceInfo.TYPE_BLE_BROADCAST to "BLE Broadcast",
+            AudioDeviceInfo.TYPE_TELEPHONY to "Telephony",
+            AudioDeviceInfo.TYPE_BUILTIN_MIC to "Built-in Mic",
+            AudioDeviceInfo.TYPE_BUILTIN_EARPIECE to "Built-in Earpiece",
         )
         fun deviceTypeName(type: Int) = typeNames[type] ?: "Unknown($type)"
 
