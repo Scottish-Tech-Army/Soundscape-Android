@@ -19,11 +19,13 @@ namespace soundscape {
     bool AudioMixer::openStream() {
         oboe::AudioStreamBuilder builder;
         builder.setDirection(oboe::Direction::Output)
-                ->setPerformanceMode(oboe::PerformanceMode::LowLatency)
+                ->setPerformanceMode(oboe::PerformanceMode::None)
                 ->setSharingMode(oboe::SharingMode::Shared)
                 ->setFormat(oboe::AudioFormat::Float)
                 ->setChannelCount(oboe::ChannelCount::Stereo)
                 ->setFramesPerDataCallback(FRAME_SIZE)
+                ->setUsage(oboe::Usage::AssistanceNavigationGuidance)
+                ->setContentType(oboe::ContentType::Music)
                 ->setDataCallback(this)
                 ->setErrorCallback(this);
 
