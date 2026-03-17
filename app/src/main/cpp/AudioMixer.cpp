@@ -24,7 +24,7 @@ namespace soundscape {
                 ->setFormat(oboe::AudioFormat::Float)
                 ->setChannelCount(oboe::ChannelCount::Stereo)
                 ->setFramesPerDataCallback(FRAME_SIZE)
-                ->setUsage(oboe::Usage::AssistanceNavigationGuidance)
+                ->setUsage(oboe::Usage::Media)
                 ->setContentType(oboe::ContentType::Music)
                 ->setDataCallback(this)
                 ->setErrorCallback(this);
