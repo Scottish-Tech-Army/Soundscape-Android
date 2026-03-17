@@ -37,6 +37,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.data.LocationType
+import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
 import org.scottishtecharmy.soundscape.utils.supportedLanguages
 import org.scottishtecharmy.soundscape.utils.toLocationDescription
 import org.woheller69.AndroidAddressFormatter.AndroidAddressFormatter
@@ -371,7 +372,35 @@ class GeocoderTest {
             var json = jsonObject.toString()
             json = json.replace("\\/", "/")
 
-            formatter.format(json, language.region)
+            val formattedAddress = try {
+                formatter.format(json, language.region)
+            } catch (e: Throwable) {
+                jsonObject.remove("country_code")
+                val retryJson = jsonObject.toString().replace("\\/", "/")
+                formatter.format(retryJson, "GB")
+            }
+
+        }
+        val brokenLanguages = listOf(
+            Language("中国人", "zh", "CNA"),
+        )
+        for(language in brokenLanguages) {
+            val formatter = AndroidAddressFormatter(false, true, false)
+            val jsonObject = JSONObject()
+            jsonObject.put("house_number", "10")
+            jsonObject.put("road", "Main Street")
+            jsonObject.put("city", "Springfield")
+
+            var json = jsonObject.toString()
+            json = json.replace("\\/", "/")
+
+            val formattedAddress = try {
+                formatter.format(json, language.region)
+            } catch (e: Throwable) {
+                jsonObject.remove("country_code")
+                val retryJson = jsonObject.toString().replace("\\/", "/")
+                formatter.format(retryJson, "GB")
+            }
         }
     }
 

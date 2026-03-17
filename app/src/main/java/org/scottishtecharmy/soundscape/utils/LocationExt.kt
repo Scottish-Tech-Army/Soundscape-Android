@@ -57,6 +57,12 @@ fun Feature.toLocationDescription(source: LocationSource,
     return ld
 }
 
+fun addExtraCrashInfo(fallbackCountry: String?, countryCode: String?) {
+    val analytics = Analytics.getInstance()
+    analytics.crashSetCustomKey("fallbackCountry", fallbackCountry.toString())
+    analytics.crashSetCustomKey("countryCode", countryCode.toString())
+}
+
 /**
   *  Although the formatting of the address is not hugely time consuming, it adds up and so
  *  in Places Nearby the processing is deferred to the point at which the location information
@@ -134,7 +140,14 @@ fun LocationDescription.process() {
                     fallbackCountryCode = getCurrentLocale().country
 
                 if (fallbackCountryCode?.isEmpty() == true) fallbackCountryCode = "GB"
-                val formattedAddress = formatter.format(json, fallbackCountryCode)
+                addExtraCrashInfo(fallbackCountryCode, jsonObject.optString("country_code"))
+                val formattedAddress = try {
+                    formatter.format(json, fallbackCountryCode)
+                } catch (e: Throwable) {
+                    jsonObject.remove("country_code")
+                    val retryJson = jsonObject.toString().replace("\\/", "/")
+                    formatter.format(retryJson, "GB")
+                }
                 if (nameLocal != null) {
                     // Named locations are as good a street number
                     locationTypeProperty = setIfLower(LocationType.StreetNumber, locationTypeProperty)
@@ -196,7 +209,14 @@ fun Address.toLocationDescription(name: String?): LocationDescription {
     json = json.replace("\\/", "/")
 
     if (fallbackCountryCode?.isEmpty() == true) fallbackCountryCode = "GB"
-    val formattedAddress = formatter.format(json, fallbackCountryCode)
+    addExtraCrashInfo(fallbackCountryCode, countryCode)
+    val formattedAddress = try {
+        formatter.format(json, fallbackCountryCode)
+    } catch (e: Throwable) {
+        jsonObject.remove("country_code")
+        val retryJson = jsonObject.toString().replace("\\/", "/")
+        formatter.format(retryJson, "GB")
+    }
 
     var chosenName = name
     if ((chosenName == null) || (locationType != LocationType.StreetNumber)) {
