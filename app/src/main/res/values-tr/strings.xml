@@ -1331,4 +1331,6 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Konuşma tanıma başlamadan önce bir dinleme bildirimi çalın.</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Mikrofon</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Sesli komutlar için kullanılacak mikrofonu seçin.</string>
+    <string name="battery_optimization_title">Arka Planda Pil Kullanımı</string>
+    <string name="battery_optimization_message">Soundscape, telefonunuz kilitliyken sesli navigasyonu sağlamaya devam edebilmek için kısıtlamasız pil kullanımına ihtiyaç duyar. Lütfen bunu bir sonraki iletişim kutusunda onaylayın. Soundscape\'i kapatırsanız tüm hizmetler durur ve uygulama artık pil kullanmaz.</string>
 </resources>
