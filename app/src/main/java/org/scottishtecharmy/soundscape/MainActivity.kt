@@ -48,6 +48,7 @@ import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.scottishtecharmy.soundscape.screens.onboarding.battery.requestBatteryOptimizationExemption
 import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.services.SoundscapeService
@@ -802,6 +803,9 @@ class MainActivity : AppCompatActivity() {
             != android.content.pm.PackageManager.PERMISSION_GRANTED) {
             micPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
         }
+        // Prompt for battery optimization exemption if not already granted.
+        // This catches upgrading users who didn't go through the updated onboarding.
+        requestBatteryOptimizationExemption(this)
     }
 
     companion object {

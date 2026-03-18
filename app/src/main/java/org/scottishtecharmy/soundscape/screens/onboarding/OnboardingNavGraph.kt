@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.screens.onboarding.finish.FinishScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.hearing.HearingScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.listening.ListeningScreen
+import org.scottishtecharmy.soundscape.screens.onboarding.battery.BatteryOptimizationScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.navigating.NavigatingScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage.OfflineStorageOnboardingScreenVM
 import org.scottishtecharmy.soundscape.screens.onboarding.terms.TermsScreen
@@ -70,6 +71,14 @@ fun SetUpOnboardingNavGraph(
         }
         composable(OnboardingScreens.Navigating.route) {
             NavigatingScreen(
+                onNavigate = { navController.navigate(OnboardingScreens.BatteryOptimization.route) },
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
+            )
+        }
+        composable(OnboardingScreens.BatteryOptimization.route) {
+            BatteryOptimizationScreen(
                 onNavigate = { navController.navigate(OnboardingScreens.Listening.route) },
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
