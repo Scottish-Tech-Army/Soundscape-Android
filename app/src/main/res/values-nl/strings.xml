@@ -1331,4 +1331,6 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Spreek een luistermelding uit voordat de spraakherkenning begint.</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Microfoon</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Kies welke microfoon gebruikt moet worden voor spraakopdrachten.</string>
+    <string name="battery_optimization_title">Batterijgebruik op de achtergrond</string>
+    <string name="battery_optimization_message">Soundscape heeft onbeperkt batterijgebruik nodig om audio‑navigatie te blijven bieden wanneer uw telefoon vergrendeld is. Sta dit toe in het volgende dialoogvenster. Als u Soundscape sluit, stoppen alle services en gebruikt de app geen batterij meer.</string>
 </resources>
