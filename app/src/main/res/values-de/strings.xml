@@ -1331,4 +1331,6 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Einen Hinweis ansagen, bevor die Spracherkennung startet.</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Mikrofon</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Wählen Sie, welches Mikrofon für Sprachbefehle verwendet werden soll.</string>
+    <string name="battery_optimization_title">Akkuverbrauch im Hintergrund</string>
+    <string name="battery_optimization_message">Soundscape benötigt uneingeschränkten Akkuverbrauch, damit die Audio‑Navigation auch bei gesperrtem Telefon weiter funktioniert. Bitte erlauben Sie dies im nächsten Dialog. Wenn Sie Soundscape schließen, werden alle Dienste beendet und die App verbraucht keinen Akku mehr.</string>
 </resources>
