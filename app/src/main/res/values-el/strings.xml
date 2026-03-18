@@ -1331,4 +1331,6 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Αναπαραγωγή ειδοποίησης ακρόασης πριν ξεκινήσει η αναγνώριση ομιλίας.</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Μικρόφωνο</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Επιλέξτε ποιο μικρόφωνο θα χρησιμοποιείται για τις φωνητικές εντολές.</string>
+    <string name="battery_optimization_title">Χρήση μπαταρίας στο παρασκήνιο</string>
+    <string name="battery_optimization_message">Το Soundscape απαιτεί απεριόριστη χρήση μπαταρίας για να συνεχίσει να παρέχει ηχητική πλοήγηση όταν το τηλέφωνό σας είναι κλειδωμένο. Παρακαλώ επιτρέψτε το στο επόμενο παράθυρο διαλόγου. Εάν κλείσετε το Soundscape, όλες οι υπηρεσίες θα σταματήσουν και δεν θα καταναλώνει πλέον μπαταρία..</string>
 </resources>
