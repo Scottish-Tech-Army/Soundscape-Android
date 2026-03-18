@@ -1331,4 +1331,6 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Spela upp ett meddelande innan röstigenkänning startar för att signalera att appen lyssnar.</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Mikrofon</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Välj vilken mikrofon som ska användas för röstkommandon.</string>
+    <string name="battery_optimization_title">Batterianvändning i bakgrunden</string>
+    <string name="battery_optimization_message">Soundscape kräver obegränsad batterianvändning för att kunna fortsätta erbjuda ljudnavigering när telefonen är låst. Tillåt detta i dialogrutan som visas härnäst. Om du stänger Soundscape stoppas alla tjänster och appen kommer inte längre att använda batteri.</string>
 </resources>
