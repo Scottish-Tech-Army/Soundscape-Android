@@ -1331,4 +1331,6 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Prononcer une invite d’écoute avant le démarrage de la reconnaissance vocale.</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Microphone</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Sélectionnez le microphone à utiliser pour les commandes vocales.</string>
+    <string name="battery_optimization_title">Utilisation de la batterie en arrière‑plan</string>
+    <string name="battery_optimization_message">Soundscape nécessite une utilisation illimitée de la batterie pour continuer à fournir la navigation audio lorsque votre téléphone est verrouillé. Veuillez l’autoriser dans la boîte de dialogue suivante. Si vous fermez Soundscape, tous les services seront arrêtés et l’application n’utilisera plus la batterie.</string>
 </resources>
