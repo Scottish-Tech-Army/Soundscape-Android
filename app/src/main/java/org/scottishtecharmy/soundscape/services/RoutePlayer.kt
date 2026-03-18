@@ -21,11 +21,18 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 
-data class RoutePlayerState(val routeData: RouteWithMarkers? = null, val currentWaypoint: Int = 0, val beaconOnly: Boolean = false)
+data class RoutePlayerState(
+    val routeData: RouteWithMarkers? = null,
+    val currentWaypoint: Int = 0,
+    val beaconOnly: Boolean = false,
+    val reversePlayback: Boolean = false
+)
 
 class RoutePlayer(val service: SoundscapeService, context: Context) {
     private var currentRouteData: RouteWithMarkers? = null
     private var currentMarker = -1
+    private var standaloneBeacon = true
+    private var reversePlayback = false
     private val coroutineScope = CoroutineScope(Job())
     private var localizedContext: Context
     private var locationMonitoringJob: Job? = null
@@ -94,23 +101,30 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
 
     /** startRoute starts playback of a route from the database.
      * @param routeId The id of the route to play
+     * @param reverse If true, play the route in reverse order (from last waypoint to first)
      */
-    fun startRoute(routeId: Long) {
+    fun startRoute(routeId: Long, reverse: Boolean = false) {
         val realm = MarkersAndRoutesDatabase.getMarkersInstance(localizedContext)
         val routeDao = realm.routeDao()
 
-        Analytics.getInstance().logEvent("startRoute", null)
+        Analytics.getInstance().logEvent(if (reverse) "startRouteReverse" else "startRoute", null)
 
-        Log.e(TAG, "startRoute")
+        Log.e(TAG, "startRoute reverse=$reverse")
         coroutineScope.launch {
-            val route = routeDao.getRouteWithMarkers(routeId)
-            currentMarker = 0
+            val route = routeDao.getRouteWithMarkers(routeId) ?: return@launch
+            reversePlayback = reverse
+            currentMarker = if (reverse && route.markers.isNotEmpty()) {
+                route.markers.size - 1
+            } else {
+                0
+            }
             currentRouteData = route
             _currentRouteFlow.update {
                 it.copy(
                     routeData = currentRouteData,
                     currentWaypoint = currentMarker,
-                    beaconOnly = false
+                    beaconOnly = false,
+                    reversePlayback = reversePlayback
                 )
             }
             play()
@@ -131,37 +145,44 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             service.locationProvider.filteredLocationFlow.collect { value ->
                 if (value != null) {
                     currentRouteData?.let { route ->
-                        if(currentMarker < route.markers.size) {
-                            val location = route.markers[currentMarker].getLngLatAlt()
-                            val distanceToWaypoint = distance(
-                                location.latitude,
-                                location.longitude,
-                                value.latitude,
-                                value.longitude
-                            )
-                            if (distanceToWaypoint < 12.0) {
-                                if ((currentMarker + 1) < route.markers.size) {
-                                    // We're within 12m of the marker, move on to the next one
-                                    Log.d(TAG, "Moving to next waypoint ${coroutineContext[Job]}")
-                                    moveToNext()
-                                } else {
-                                    // We've reached the end of the route
-                                    // Announce the end of the route
-                                    Log.d(TAG, "End of route ${coroutineContext[Job]}")
-                                    val endOfRouteText = localizedContext.getString(
-                                        R.string.route_end_completed_accessibility,
-                                        route.route.name
-                                    )
-                                    service.speakText(
-                                        endOfRouteText,
-                                        AudioType.STANDARD
-                                    )
+                        if(!standaloneBeacon) {
+                            if(currentMarker in route.markers.indices) {
+                                val location = route.markers[currentMarker].getLngLatAlt()
+                                val distanceToWaypoint = distance(
+                                    location.latitude,
+                                    location.longitude,
+                                    value.latitude,
+                                    value.longitude
+                                )
+                                if (distanceToWaypoint < 12.0) {
+                                    val hasNextWaypoint = if (reversePlayback) {
+                                        currentMarker > 0
+                                    } else {
+                                        (currentMarker + 1) < route.markers.size
+                                    }
+                                    if (hasNextWaypoint) {
+                                        // We're within 12m of the marker, move on to the next one
+                                        Log.d(TAG, "Moving to next waypoint ${coroutineContext[Job]}")
+                                        advanceInPlaybackDirection()
+                                    } else {
+                                        // We've reached the end of the route
+                                        // Announce the end of the route
+                                        Log.d(TAG, "End of route ${coroutineContext[Job]}")
+                                        val endOfRouteText = localizedContext.getString(
+                                            R.string.route_end_completed_accessibility,
+                                            route.route.name
+                                        )
+                                        service.speakText(
+                                            endOfRouteText,
+                                            AudioType.STANDARD
+                                        )
 
-                                    // Stop the beacon
-                                    stopRoute()
+                                        // Stop the beacon
+                                        stopRoute()
+                                    }
+                                } else {
+                                    Log.d(TAG, "Waypoint $distanceToWaypoint away")
                                 }
-                            } else {
-                                Log.d(TAG, "Waypoint $distanceToWaypoint away")
                             }
                         }
                     }
@@ -174,6 +195,11 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         currentRouteData?.let { route ->
             if (index < route.markers.size) {
                 val location = route.markers[index].getLngLatAlt()
+                val positionInPlayback = if (reversePlayback) {
+                    route.markers.size - index
+                } else {
+                    index + 1
+                }
 
                 val currentLocation = service.locationProvider.filteredLocationFlow.value
                 if(currentLocation != null) {
@@ -188,7 +214,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                                 R.string.behavior_scavenger_hunt_callout_next_flag,
                                 route.markers[index].name,
                                 formatDistanceAndDirection(distance, null, localizedContext),
-                                (index + 1).toString(),
+                                positionInPlayback.toString(),
                                 (route.markers.size).toString()
                             )
                         } else {
@@ -211,9 +237,11 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
 
     fun stopRoute() {
         service.destroyBeacon()
+        reversePlayback = false
         _currentRouteFlow.update { it.copy(
             routeData = null,
-            currentWaypoint = 0
+            currentWaypoint = 0,
+            reversePlayback = false
         )}
         currentRouteData = null
         stopMonitoringLocation()
@@ -224,15 +252,56 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         Log.d(TAG, toString())
     }
 
-    fun moveToNext() : Boolean {
+    /**
+     * Advances to the next waypoint in the current playback direction.
+     * In forward mode: moves to higher index. In reverse mode: moves to lower index.
+     */
+    private fun advanceInPlaybackDirection(): Boolean {
         currentRouteData?.let { route ->
-            if(route.markers.size > 1) {
+            if (reversePlayback) {
+                if (currentMarker > 0) {
+                    currentMarker--
+                    _currentRouteFlow.update {
+                        it.copy(currentWaypoint = currentMarker, reversePlayback = reversePlayback)
+                    }
+                    createBeaconAtWaypoint(currentMarker)
+                    return true
+                }
+            } else {
                 if ((currentMarker + 1) < route.markers.size) {
                     currentMarker++
                     _currentRouteFlow.update { it.copy(currentWaypoint = currentMarker) }
-
                     createBeaconAtWaypoint(currentMarker)
+                    return true
                 }
+            }
+        }
+        Log.d(TAG, toString())
+        return false
+    }
+
+    fun moveToNext(): Boolean {
+        return if (reversePlayback) {
+            moveToPreviousIndex()
+        } else {
+            moveToNextIndex()
+        }
+    }
+
+    fun moveToPrevious(): Boolean {
+        return if (reversePlayback) {
+            moveToNextIndex()
+        } else {
+            moveToPreviousIndex()
+        }
+    }
+
+    private fun moveToNextIndex(): Boolean {
+        currentRouteData?.let { route ->
+            if (route.markers.size > 1 && (currentMarker + 1) < route.markers.size) {
+                currentMarker++
+                _currentRouteFlow.update { it.copy(currentWaypoint = currentMarker) }
+                createBeaconAtWaypoint(currentMarker)
                 return true
             }
         }
@@ -240,15 +309,13 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         return false
     }
 
-    fun moveToPrevious() : Boolean{
+    private fun moveToPreviousIndex(): Boolean {
         currentRouteData?.let { route ->
-            if(route.markers.size > 1) {
-                if (currentMarker > 0) {
-                    currentMarker--
-                    _currentRouteFlow.update { it.copy(currentWaypoint = currentMarker) }
-                    createBeaconAtWaypoint(currentMarker)
-                    return true
-                }
+            if (route.markers.size > 1 && currentMarker > 0) {
+                currentMarker--
+                _currentRouteFlow.update { it.copy(currentWaypoint = currentMarker) }
+                createBeaconAtWaypoint(currentMarker)
+                return true
             }
         }
         Log.d(TAG, toString())
