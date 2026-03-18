@@ -1331,4 +1331,6 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Spila tilkynningu um hlustun áður en talgreining hefst.</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Hljóðnemi</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Veldu hvaða hljóðnemi á að nota fyrir raddskipanir.</string>
+    <string name="battery_optimization_title">Notkun rafhlöðu í bakgrunni</string>
+    <string name="battery_optimization_message">Soundscape þarf óheftan aðgang að rafhlöðu til að halda áfram að veita hljóðleiðsögn þegar síminn er læstur. Vinsamlegast leyfðu þetta í næsta glugga. Ef þú lokar Soundscape stöðvast allar þjónustur og forritið mun ekki lengur nota rafhlöðu.</string>
 </resources>
