@@ -1331,4 +1331,6 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Redă un prompt de ascultare înainte ca recunoașterea vocală să înceapă.</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Microfon</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Alege ce microfon să fie folosit pentru comenzile vocale.</string>
+    <string name="battery_optimization_title">Utilizare baterie în fundal</string>
+    <string name="battery_optimization_message">Soundscape necesită utilizarea neîngrădită a bateriei pentru a continua să ofere navigare audio chiar și când telefonul este blocat. Te rugăm să permiți acest lucru în dialogul următor. Dacă închizi Soundscape, toate serviciile se vor opri și aplicația nu va mai consuma baterie.</string>
 </resources>
