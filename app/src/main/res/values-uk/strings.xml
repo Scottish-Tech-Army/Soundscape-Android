@@ -1331,4 +1331,6 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Програвати підказку прослуховування перед початком розпізнавання мовлення.</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Мікрофон</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Виберіть, який мікрофон використовувати для голосових команд.</string>
+    <string name="battery_optimization_title">Фонове використання акумулятора</string>
+    <string name="battery_optimization_message">Soundscape потребує необмеженого використання акумулятора, щоб продовжувати забезпечувати аудіо‑навігацію, коли ваш телефон заблоковано. Будь ласка, надайте цей дозвіл у наступному діалоговому вікні. Якщо ви закриєте Soundscape, усі служби зупиняться і програма більше не використовуватиме акумулятор.</string>
 </resources>
