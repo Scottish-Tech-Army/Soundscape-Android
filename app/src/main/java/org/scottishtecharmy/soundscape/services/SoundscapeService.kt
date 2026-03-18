@@ -615,6 +615,10 @@ class SoundscapeService : MediaSessionService() {
     fun routeStartById(routeId: Long) {
         routePlayer.startRoute(routeId)
     }
+
+    fun routeStartReverse(routeId: Long) {
+        routePlayer.startRoute(routeId, reverse = true)
+    }
     fun routeStop() {
         routePlayer.stopRoute()
     }

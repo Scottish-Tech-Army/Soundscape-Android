@@ -263,14 +263,19 @@ fun HomeContent(
                                                 R.string.route_waypoint_progress
                                             ).format(
                                                 routePlayerState.routeData.route.name,
-                                                routePlayerState.currentWaypoint + 1,
+                                                if (routePlayerState.reversePlayback) {
+                                                    routePlayerState.routeData.markers.size - routePlayerState.currentWaypoint
+                                                } else {
+                                                    routePlayerState.currentWaypoint + 1
+                                                },
                                                 routePlayerState.routeData.markers.size
                                             )
                                         } else {
                                             stringResource(
                                                 R.string.route_beacon_progress
                                             ).format(
-                                                routePlayerState.routeData.route.name)
+                                                routePlayerState.routeData.route.name
+                                            )
                                         },
                                     style = MaterialTheme.typography.labelLarge,
                                     modifier = Modifier.smallPadding()
@@ -281,6 +286,7 @@ fun HomeContent(
                                     MapContainerLibre(
                                         beaconLocation = beaconState?.location,
                                         routeData = routePlayerState.routeData,
+                                        routeReversePlayback = routePlayerState.reversePlayback,
                                         mapCenter = location,
                                         allowScrolling = false,
                                         userLocation = location,
@@ -299,10 +305,20 @@ fun HomeContent(
                                 verticalAlignment = Alignment.Bottom
                             ) {
                                 if(!routePlayerState.beaconOnly) {
+                                    val canGoPreviousInPlayback = if (routePlayerState.reversePlayback) {
+                                        routePlayerState.currentWaypoint < routePlayerState.routeData.markers.size - 1
+                                    } else {
+                                        routePlayerState.currentWaypoint != 0
+                                    }
+                                    val canGoNextInPlayback = if (routePlayerState.reversePlayback) {
+                                        routePlayerState.currentWaypoint > 0
+                                    } else {
+                                        routePlayerState.currentWaypoint < routePlayerState.routeData.markers.size - 1
+                                    }
                                     CardButton(
                                         onClick = { routeFunctions.skipPrevious() },
                                         imageVector = Icons.Filled.SkipPrevious,
-                                        active = (routePlayerState.currentWaypoint != 0),
+                                        active = canGoPreviousInPlayback,
                                         contentDescriptionId = R.string.route_detail_action_previous,
                                         hintActive = R.string.route_detail_action_previous_hint,
                                         hintInactive = R.string.route_detail_action_previous_disabled_hint,
@@ -311,7 +327,7 @@ fun HomeContent(
                                     CardButton(
                                         onClick = { routeFunctions.skipNext() },
                                         imageVector = Icons.Filled.SkipNext,
-                                        active = (routePlayerState.currentWaypoint < routePlayerState.routeData.markers.size - 1),
+                                        active = canGoNextInPlayback,
                                         contentDescriptionId = R.string.route_detail_action_next,
                                         hintActive = R.string.route_detail_action_next_hint,
                                         hintInactive = R.string.route_detail_action_next_disabled_hint,

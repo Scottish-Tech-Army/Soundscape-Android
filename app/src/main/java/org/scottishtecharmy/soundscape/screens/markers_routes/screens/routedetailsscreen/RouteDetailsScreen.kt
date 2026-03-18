@@ -19,6 +19,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.SwapVert
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material3.CircularProgressIndicator
@@ -80,6 +81,7 @@ fun RouteDetailsScreenVM(
         routePlayerState,
         getRouteById = { viewModel.getRouteById(routeId) },
         startRoute = { viewModel.startRoute(routeId) },
+        startRouteInReverse = { viewModel.startRouteInReverse(routeId) },
         stopRoute = { viewModel.stopRoute() },
         shareRoute = { viewModel.shareRoute(context, routeId) },
         clearErrorMessage = { viewModel.clearErrorMessage() },
@@ -97,6 +99,7 @@ fun RouteDetailsScreen(
     routePlayerState: RoutePlayerState,
     getRouteById: () -> Unit,
     startRoute: () -> Unit,
+    startRouteInReverse: () -> Unit,
     stopRoute: () -> Unit,
     shareRoute:(routeId: Long) -> Unit,
     clearErrorMessage: () -> Unit,
@@ -231,6 +234,22 @@ fun RouteDetailsScreen(
                                             launchSingleTop = true
                                         }
                                     }
+                                    IconWithTextButton(
+                                        modifier = Modifier.fillMaxWidth(),
+                                        icon = Icons.Default.SwapVert,
+                                        textModifier = Modifier.padding(horizontal = spacing.extraSmall),
+                                        talkbackHint = stringResource(R.string.route_detail_action_start_route_reverse_hint),
+                                        text = stringResource(R.string.route_detail_action_start_route_reverse),
+                                        color = MaterialTheme.colorScheme.onSurface
+                                    ) {
+                                        startRouteInReverse()
+                                        navController.navigate(HomeRoutes.Home.route) {
+                                            popUpTo(navController.graph.findStartDestination().id) {
+                                                inclusive = true
+                                            }
+                                            launchSingleTop = true
+                                        }
+                                    }
                                 }
                                 IconWithTextButton(
                                     modifier = Modifier.fillMaxWidth()
@@ -334,6 +353,7 @@ fun RoutesDetailsPopulatedPreview() {
         ),
         getRouteById = {},
         startRoute = {},
+        startRouteInReverse = {},
         stopRoute = {},
         shareRoute = {},
         clearErrorMessage = {},
@@ -353,6 +373,7 @@ fun RoutesDetailsLoadingPreview() {
         modifier = Modifier,
         getRouteById = {},
         startRoute = {},
+        startRouteInReverse = {},
         stopRoute = {},
         shareRoute = {},
         clearErrorMessage = {},
@@ -372,6 +393,7 @@ fun RoutesDetailsEmptyPreview() {
         uiState = RouteDetailsUiState(),
         getRouteById = {},
         startRoute = {},
+        startRouteInReverse = {},
         stopRoute = {},
         shareRoute = {},
         clearErrorMessage = {},
