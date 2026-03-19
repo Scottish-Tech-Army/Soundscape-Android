@@ -1333,4 +1333,7 @@
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">选择用于语音命令的麦克风。</string>
     <string name="battery_optimization_title">后台电量使用</string>
     <string name="battery_optimization_message">Soundscape 需要不受限制的后台电量使用权限，以便在手机锁屏时继续提供音频导航。请在接下来的对话框中允许该权限。如果您关闭 Soundscape，所有服务将停止，应用将不再消耗电量。</string>
+    <string name="route_detail_action_start_route_reverse">反向开始路线</string>
+    <string name="route_detail_action_start_route_reverse_hint">以相反顺序开始播放此路线</string>
+    <string name="route_reverse_name">%s（反向）</string>
 </resources>
