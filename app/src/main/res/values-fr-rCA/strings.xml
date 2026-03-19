@@ -1333,4 +1333,7 @@
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Sélectionnez le microphone à utiliser pour les commandes vocales.</string>
     <string name="battery_optimization_title">Utilisation de la batterie en arrière‑plan</string>
     <string name="battery_optimization_message">Soundscape nécessite une utilisation illimitée de la batterie pour continuer à fournir la navigation audio lorsque votre téléphone est verrouillé. Veuillez l’autoriser dans la boîte de dialogue suivante. Si vous fermez Soundscape, tous les services seront arrêtés et l’application n’utilisera plus la batterie.</string>
+    <string name="route_detail_action_start_route_reverse">Démarrer l’itinéraire en sens inverse</string>
+    <string name="route_detail_action_start_route_reverse_hint">Démarrer la lecture de cet itinéraire en sens inverse</string>
+    <string name="route_reverse_name">%s (en sens inverse)</string>
 </resources>
