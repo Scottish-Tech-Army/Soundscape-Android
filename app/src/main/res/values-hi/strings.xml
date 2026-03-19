@@ -1333,4 +1333,7 @@
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">वॉइस कमांड के लिए किस माइक्रोफ़ोन का उपयोग करना है, चुनें।</string>
     <string name="battery_optimization_title">पृष्ठभूमि बैटरी उपयोग</string>
     <string name="battery_optimization_message">जब आपका फ़ोन लॉक हो तब भी ऑडियो नेविगेशन प्रदान करते रहने के लिए Soundscape को बिना प्रतिबंध के बैटरी उपयोग की आवश्यकता है। कृपया अगले डायलॉग में इसकी अनुमति दें। यदि आप Soundscape को बंद कर देते हैं, तो सभी सेवाएँ बंद हो जाएँगी और यह अब बैटरी का उपयोग नहीं करेगा।</string>
+    <string name="route_detail_action_start_route_reverse">मार्ग उल्टे क्रम में शुरू करें</string>
+    <string name="route_detail_action_start_route_reverse_hint">इस मार्ग का प्लेबैक उल्टे क्रम में शुरू करें</string>
+    <string name="route_reverse_name">%s उल्टे क्रम में</string>
 </resources>
