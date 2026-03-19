@@ -1333,4 +1333,7 @@
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">اختر الميكروفون الذي سيُستخدم للأوامر الصوتية.</string>
     <string name="battery_optimization_title">استخدام البطارية في الخلفية</string>
     <string name="battery_optimization_message">يحتاج تطبيق Soundscape إلى السماح باستخدام البطارية دون قيود حتى يستمر في توفير الإرشاد الصوتي عندما يكون هاتفك مقفلاً. الرجاء الموافقة على ذلك في مربع الحوار التالي. إذا قمت بإغلاق Soundscape، ستتوقف كل الخدمات ولن يستهلك التطبيق البطارية بعد ذلك.</string>
+    <string name="route_detail_action_start_route_reverse">ابدأ الطريق بالعكس</string>
+    <string name="route_detail_action_start_route_reverse_hint">ابدأ تشغيل هذا الطريق بالعكس</string>
+    <string name="route_reverse_name">%s بالعكس</string>
 </resources>
