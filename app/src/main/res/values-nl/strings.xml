@@ -1333,4 +1333,7 @@
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Kies welke microfoon gebruikt moet worden voor spraakopdrachten.</string>
     <string name="battery_optimization_title">Batterijgebruik op de achtergrond</string>
     <string name="battery_optimization_message">Soundscape heeft onbeperkt batterijgebruik nodig om audio‑navigatie te blijven bieden wanneer uw telefoon vergrendeld is. Sta dit toe in het volgende dialoogvenster. Als u Soundscape sluit, stoppen alle services en gebruikt de app geen batterij meer.</string>
+    <string name="route_detail_action_start_route_reverse">Route in omgekeerde volgorde starten</string>
+    <string name="route_detail_action_start_route_reverse_hint">Het afspelen van deze route in omgekeerde volgorde starten</string>
+    <string name="route_reverse_name">%s in omgekeerde volgorde</string>
 </resources>
