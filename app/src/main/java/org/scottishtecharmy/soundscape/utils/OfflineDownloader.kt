@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
+import org.scottishtecharmy.soundscape.network.UserAgentInterceptor
 import okhttp3.ResponseBody
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.network.IDownloadService
@@ -82,6 +83,7 @@ class OfflineDownloader {
     init {
         // We want a long timeout here to allow for network caching to happen behind the scenes
         val okHttpClient = OkHttpClient.Builder()
+            .addInterceptor(UserAgentInterceptor())
             .connectTimeout(3, TimeUnit.MINUTES)
             .readTimeout(3, TimeUnit.MINUTES)
             .build()

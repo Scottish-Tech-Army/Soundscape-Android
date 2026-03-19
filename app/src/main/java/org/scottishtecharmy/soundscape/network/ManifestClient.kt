@@ -25,6 +25,7 @@ class ManifestClient(val applicationContext: Context) {
     private var retrofit : Retrofit? = null
 
     private val okHttpClient = OkHttpClient.Builder()
+        .addInterceptor(UserAgentInterceptor())
         .addInterceptor { chain ->
             val response = chain.proceed(chain.request())
 
