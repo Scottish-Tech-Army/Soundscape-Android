@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.home.placesnearby
 
 import android.content.Context
+import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -42,7 +43,7 @@ class PlacesNearbySharedLogic(
         // Location and GridState flows
         viewModelScope.launch {
             soundscapeServiceConnection.serviceBoundState.collect { serviceBoundState ->
-                if(serviceBoundState) {
+                if (serviceBoundState) {
                     startMonitoringFlows()
                 } else {
                     stopMonitoringFlows()
@@ -50,6 +51,7 @@ class PlacesNearbySharedLogic(
             }
         }
     }
+
     private var monitorJob: Job? = null
     private fun stopMonitoringFlows() {
         monitorJob?.cancel()
@@ -57,6 +59,7 @@ class PlacesNearbySharedLogic(
     }
 
     data class LocationAndGridState(val location: LngLatAlt?, val gridState: GridState?)
+
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun startMonitoringFlows() {
         monitorJob = Job()
@@ -65,10 +68,13 @@ class PlacesNearbySharedLogic(
             val gridFlow = soundscapeServiceConnection.getGridStateFlow()!!
             val locationFlow = soundscapeServiceConnection.getLocationFlow()!!
             combine(gridFlow, locationFlow) { gridState, location ->
-                if(location != null)
-                    LocationAndGridState( LngLatAlt(location.longitude, location.latitude), gridState)
+                if (location != null)
+                    LocationAndGridState(
+                        LngLatAlt(location.longitude, location.latitude),
+                        gridState
+                    )
                 else
-                    LocationAndGridState( null, gridState)
+                    LocationAndGridState(null, gridState)
 
             }.collect { locationAndGrid ->
                 if (locationAndGrid.location != null) {
@@ -109,11 +115,18 @@ class PlacesNearbySharedLogic(
     }
 }
 
-fun filterLocations(uiState: PlacesNearbyUiState, context: Context): List<LocationDescription> {
-    val location = uiState.userLocation ?: LngLatAlt()
+fun filterLocations(
+    userLocation: LngLatAlt?,
+    filter: String,
+    nearbyIntersections: FeatureCollection,
+    nearbyPlaces: FeatureCollection,
+    context: Context
+): List<LocationDescription> {
+    Log.d("SA-301", "Filter locations - PlacesNearbySharedLogic")
+    val location = userLocation ?: LngLatAlt()
     val ruler = CheapRuler(location.latitude)
-    return if (uiState.filter == "intersections") {
-        uiState.nearbyIntersections.features.filter { feature ->
+    return if (filter == "intersections") {
+        nearbyIntersections.features.filter { feature ->
             // Filter out un-named intersections
             (feature as MvtFeature).name.toString().isNotEmpty()
         }.map { feature ->
@@ -122,15 +135,15 @@ fun filterLocations(uiState: PlacesNearbyUiState, context: Context): List<Locati
                 location = getDistanceToFeature(location, feature, ruler).point
             )
         }.sortedBy {
-            uiState.userLocation?.let { location ->
+            userLocation?.let { location ->
                 ruler.distance(location, it.location)
             } ?: 0.0
         }
     } else {
-        uiState.nearbyPlaces.features.filter { feature ->
+        nearbyPlaces.features.filter { feature ->
             // Filter based on any folder selected and filter out POIs with entrances
             !featureHasEntrances(feature) &&
-            featureIsInFilterGroup(feature, uiState.filter) &&
+                    featureIsInFilterGroup(feature, filter) &&
                     getTextForFeature(context, feature as MvtFeature).text.isNotEmpty()
         }.map { feature ->
             feature.deferredToLocationDescription(
@@ -139,7 +152,7 @@ fun filterLocations(uiState: PlacesNearbyUiState, context: Context): List<Locati
                 getTextForFeature(context, feature as MvtFeature)
             )
         }.sortedBy {
-            uiState.userLocation?.let { location ->
+            userLocation?.let { location ->
                 ruler.distance(location, it.location)
             } ?: 0.0
         }

@@ -1,9 +1,11 @@
 package org.scottishtecharmy.soundscape.screens.home.placesnearby
 
+import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AttachMoney
 import androidx.compose.material.icons.rounded.ControlCamera
@@ -40,12 +42,42 @@ data class Folder(
 )
 
 val placesNearbyFolders = listOf(
-    Folder(R.string.filter_all, Icons.Rounded.ControlCamera, "", R.string.all_places_nearby_description),
-    Folder(R.string.filter_transit, Icons.Rounded.DirectionsBus, "transit", R.string.public_transit_places_nearby_description),
-    Folder(R.string.filter_food_drink, Icons.Rounded.Fastfood, "food_and_drink", R.string.food_drink_places_nearby_description),
-    Folder(R.string.filter_groceries, Icons.Rounded.LocalGroceryStore, "groceries", R.string.groceries_places_nearby_description),
-    Folder(R.string.filter_banks, Icons.Rounded.AttachMoney, "banks", R.string.banks_places_nearby_description),
-    Folder(R.string.osm_intersection, Icons.Rounded.ForkLeft, "intersections", R.string.intersections_places_nearby_description),
+    Folder(
+        R.string.filter_all,
+        Icons.Rounded.ControlCamera,
+        "",
+        R.string.all_places_nearby_description
+    ),
+    Folder(
+        R.string.filter_transit,
+        Icons.Rounded.DirectionsBus,
+        "transit",
+        R.string.public_transit_places_nearby_description
+    ),
+    Folder(
+        R.string.filter_food_drink,
+        Icons.Rounded.Fastfood,
+        "food_and_drink",
+        R.string.food_drink_places_nearby_description
+    ),
+    Folder(
+        R.string.filter_groceries,
+        Icons.Rounded.LocalGroceryStore,
+        "groceries",
+        R.string.groceries_places_nearby_description
+    ),
+    Folder(
+        R.string.filter_banks,
+        Icons.Rounded.AttachMoney,
+        "banks",
+        R.string.banks_places_nearby_description
+    ),
+    Folder(
+        R.string.osm_intersection,
+        Icons.Rounded.ForkLeft,
+        "intersections",
+        R.string.intersections_places_nearby_description
+    ),
 )
 
 @Composable
@@ -57,17 +89,25 @@ fun PlacesNearbyList(
     modifier: Modifier,
 ) {
     val context = LocalContext.current
-    val locations = remember(uiState) {
-        filterLocations(uiState, context)
+    val locations = remember(1) {
+        Log.d("SA-301", "Locations recalculated PlacesNearbyList")
+        filterLocations(
+            userLocation = uiState.userLocation,
+            nearbyIntersections = uiState.nearbyIntersections,
+            nearbyPlaces = uiState.nearbyPlaces,
+            filter = uiState.filter,
+            context = context
+        )
     }
 
     LazyColumn(
-        modifier = modifier.fillMaxWidth(),
+        state = rememberLazyListState(),
         verticalArrangement = Arrangement.spacedBy(spacing.tiny),
+        modifier = modifier.fillMaxWidth(),
     ) {
-        if(uiState.level  == 0) {
+        if (uiState.level == 0) {
             itemsIndexed(placesNearbyFolders) { index, folderItem ->
-                if(index == 0) {
+                if (index == 0) {
                     HorizontalDivider(
                         thickness = spacing.tiny,
                         color = MaterialTheme.colorScheme.outlineVariant
@@ -87,7 +127,7 @@ fun PlacesNearbyList(
             }
         } else {
             itemsIndexed(locations) { index, locationDescription ->
-                if(index == 0) {
+                if (index == 0) {
                     HorizontalDivider(
                         thickness = spacing.tiny,
                         color = MaterialTheme.colorScheme.outlineVariant
