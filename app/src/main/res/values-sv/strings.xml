@@ -1333,4 +1333,7 @@
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Välj vilken mikrofon som ska användas för röstkommandon.</string>
     <string name="battery_optimization_title">Batterianvändning i bakgrunden</string>
     <string name="battery_optimization_message">Soundscape kräver obegränsad batterianvändning för att kunna fortsätta erbjuda ljudnavigering när telefonen är låst. Tillåt detta i dialogrutan som visas härnäst. Om du stänger Soundscape stoppas alla tjänster och appen kommer inte längre att använda batteri.</string>
+    <string name="route_detail_action_start_route_reverse">Starta rutt i omvänd ordning</string>
+    <string name="route_detail_action_start_route_reverse_hint">Starta uppspelning av den här rutten i omvänd ordning</string>
+    <string name="route_reverse_name">%s i omvänd ordning</string>
 </resources>
