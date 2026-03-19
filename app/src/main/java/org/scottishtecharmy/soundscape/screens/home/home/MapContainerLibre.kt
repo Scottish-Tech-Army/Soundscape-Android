@@ -157,8 +157,7 @@ fun updateRouteMarkers(
     sm: SymbolManager,
     annotationList: MutableList<Symbol>,
     routeData: RouteWithMarkers?,
-    routeMarkers: MutableState<List<Symbol>?>,
-    routeReversePlayback: Boolean = false
+    routeMarkers: MutableState<List<Symbol>?>
 ) {
     // Remove any previous markers
     routeMarkers.value?.let { markers ->
@@ -170,9 +169,7 @@ fun updateRouteMarkers(
 
     if (routeData != null) {
         val markersList = mutableListOf<Symbol>()
-        val size = routeData.markers.size
         for ((index, waypoint) in routeData.markers.withIndex()) {
-            val displayIconIndex = if (routeReversePlayback) size - 1 - index else index
             val markerOptions = SymbolOptions()
                 .withLatLng(
                     LatLng(
@@ -180,7 +177,7 @@ fun updateRouteMarkers(
                         waypoint.longitude
                     )
                 )
-                .withIconImage(LOCATION_MARKER_NAME.format(displayIconIndex))
+                .withIconImage(LOCATION_MARKER_NAME.format(index))
                 .withIconAnchor("bottom")
                 .withIconSize(1.5f)
             val marker = sm.create(markerOptions)
@@ -258,8 +255,7 @@ fun MapContainerLibre(
     editBeaconLocation: Boolean = false,
     onMapLongClick: OnMapLongClickListener,
     showMap: Boolean,
-    overlayGeoJson: String = "",
-    routeReversePlayback: Boolean = false
+    overlayGeoJson: String = ""
 ) {
     if(showMap) {
         val context = LocalContext.current
@@ -299,8 +295,7 @@ fun MapContainerLibre(
                     .withIconSize(1.5f)
             }
 
-            val currentRouteData = remember { mutableStateOf<RouteWithMarkers?>(routeData) }
-            val currentRouteReversePlayback = remember { mutableStateOf(routeReversePlayback) }
+            val currentRouteData = remember { mutableStateOf(routeData) }
             val routeMarkers = remember { mutableStateOf<List<Symbol>?>(null) }
             val beaconLocationMarker = remember { mutableStateOf<Symbol?>(null) }
             val symbol = remember { mutableStateOf<Symbol?>(null) }
@@ -527,7 +522,7 @@ fun MapContainerLibre(
                             annotationList.add(beacon)
                         }
 
-                        updateRouteMarkers(sm, annotationList, routeData, routeMarkers, routeReversePlayback)
+                        updateRouteMarkers(sm, annotationList, routeData, routeMarkers)
 
                         // Update our remembered state with the symbol manager and symbol
                         sm.update(annotationList)
@@ -647,15 +642,14 @@ fun MapContainerLibre(
                 }
             }
 
-            // Check if the route has been updated or reverse playback toggled
-            if (routeData != currentRouteData.value || routeReversePlayback != currentRouteReversePlayback.value) {
+            // Check if the route has been updated
+            if (routeData != currentRouteData.value) {
                 symbolManager.value?.let { sm ->
                     // And add new ones
                     val annotationList = mutableListOf<Symbol>()
-                    updateRouteMarkers(sm, annotationList, routeData, routeMarkers, routeReversePlayback)
+                    updateRouteMarkers(sm, annotationList, routeData, routeMarkers)
                     sm.update(annotationList)
                     currentRouteData.value = routeData
-                    currentRouteReversePlayback.value = routeReversePlayback
                 }
             }
 
