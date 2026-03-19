@@ -155,7 +155,7 @@
 <!-- Talkback hint for the action to start the route in reverse. This is always preceded by "Double tap to " -->
 <string name="route_detail_action_start_route_reverse_hint">"Start playback of this route in reverse"</string>
 <!-- This is the name of the route when it's being played in reverse. %s is the name of the route when played forwards. -->
-<string name="route_reverse_name">"%s in reverse. "</string>
+<string name="route_reverse_name">"%s in reverse"</string>
 <!-- Talkback hint for the action to start the route when the action is disabled. This action is only disabled when no waypoints have been added to a route yet. This is always preceded by "Double tap to " -->
 <string name="route_detail_action_start_route_disabled_hint">"Add waypoints before starting the route"</string>
 <!-- Talkback hint for the action to stop the route. This is always preceded by "Double tap to " -->
