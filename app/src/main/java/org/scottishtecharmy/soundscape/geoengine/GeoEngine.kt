@@ -848,8 +848,16 @@ class GeoEngine {
         val gridFinishTime = timeSource.markNow()
         Log.e(GridState.TAG, "Time to calculate NearbyMarkers: ${gridFinishTime - gridStartTime}")
 
-        if(results.isEmpty())
-            return null
+        if(results.isEmpty()) {
+            results.add(
+                PositionedString(
+                    text = localizedContext.getString(R.string.callouts_no_nearby_markers),
+                    type = AudioType.STANDARD,
+                    earcon = NativeAudioEngine.EARCON_MODE_EXIT
+                )
+            )
+        }
+
 
         return TrackedCallout(
             userGeometry = userGeometry,
