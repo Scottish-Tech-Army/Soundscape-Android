@@ -540,10 +540,19 @@ class SoundscapeService : MediaSessionService() {
 
     fun myLocation() {
         coroutineScope.launch {
-            val results = geoEngine.myLocation()
-            if(results != null) {
+            if (requestAudioFocus()) {
+                // The call to myLocation can take a second or so as it might be doing network
+                // based reverse geocoding. Ensure that the user has feedback that the action is
+                // taking place by immediately playing the earcon.
                 audioEngine.clearTextToSpeechQueue()
-                speakCallout(results, true)
+                audioEngine.createEarcon(EARCON_MODE_ENTER, AudioType.STANDARD)
+                val results = geoEngine.myLocation()
+                if (results != null) {
+                    speakCallout(results, false)
+                }
+                audioEngine.createEarcon(EARCON_MODE_EXIT, AudioType.STANDARD)
+            } else {
+                Log.w(TAG, "myLocation: Could not get audio focus.")
             }
         }
     }
