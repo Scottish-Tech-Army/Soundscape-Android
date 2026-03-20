@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">Έναρξη διαδρομής (αντίστροφα)</string>
     <string name="route_detail_action_start_route_reverse_hint">Ξεκινήστε την αναπαραγωγή αυτής της διαδρομής σε αντίστροφη σειρά</string>
     <string name="route_reverse_name">%s σε αντίστροφη σειρά</string>
+    <string name="callouts_no_nearby_markers">Δεν υπάρχουν κοντινοί δείκτες</string>
 </resources>
