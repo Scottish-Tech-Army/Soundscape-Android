@@ -68,6 +68,7 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     private external fun createNativeEarcon(engineHandle: Long, asset:String, mode: Int, latitude: Double, longitude: Double, heading: Double) :  Long
     private external fun clearNativeTextToSpeechQueue(engineHandle: Long)
     private external fun getQueueDepth(engineHandle: Long) : Long
+    private external fun isHandleActive(engineHandle: Long, handle: Long) : Boolean
     private external fun updateGeometry(engineHandle: Long, latitude: Double, longitude: Double, heading: Double, focusGained: Boolean, duckingAllowed: Boolean, proximityNear: Double)
     private external fun setBeaconType(engineHandle: Long, beaconType: String)
     private external fun getListOfBeacons() : Array<String>
@@ -336,6 +337,15 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
             }
         }
         return 0
+    }
+
+    override fun isHandleActive(handle: Long) : Boolean {
+        synchronized(engineMutex) {
+            if (engineHandle != 0L) {
+                return isHandleActive(engineHandle, handle)
+            }
+        }
+        return false
     }
 
     override fun getAvailableSpeechEngines() : List<TextToSpeech.EngineInfo> {

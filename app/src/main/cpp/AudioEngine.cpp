@@ -386,6 +386,17 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         return m_QueuedBeacons.size();
     }
 
+    bool AudioEngine::IsHandleActive(uint64_t handle) {
+        std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
+        for (const auto &queued : m_QueuedBeacons) {
+            if (queued->m_Handle == handle) return true;
+        }
+        for (const auto &beacon : m_Beacons) {
+            if (beacon->m_Handle == handle) return true;
+        }
+        return false;
+    }
+
     void AudioEngine::UpdateAudioConfig(std::string &utterance_id,
                                         int sample_rate,
                                         int audio_format,
@@ -399,7 +410,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
         }
     }
 
-    void AudioEngine::AddBeacon(PositionedAudio *beacon, bool queued)
+    uint64_t AudioEngine::AddBeacon(PositionedAudio *beacon, bool queued)
     {
         std::lock_guard<std::recursive_mutex> guard(m_BeaconsMutex);
         if(queued)
@@ -418,6 +429,7 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
             m_Beacons.insert(beacon);
             TRACE("AddBeacon -> %zu beacons", m_Beacons.size());
         }
+        return beacon->m_Handle;
     }
 
     void AudioEngine::RemoveBeacon(PositionedAudio *beacon)
@@ -586,6 +598,20 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_getQueueDepth(JNIEn
     }
     return 0L;
 }
+
+extern "C"
+JNIEXPORT jboolean JNICALL
+Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_isHandleActive(JNIEnv *env MAYBE_UNUSED,
+                                                                            jobject thiz MAYBE_UNUSED,
+                                                                            jlong engine_handle,
+                                                                            jlong handle) {
+    auto* ae = reinterpret_cast<soundscape::AudioEngine*>(engine_handle);
+    if(ae) {
+        return ae->IsHandleActive(static_cast<uint64_t>(handle)) ? JNI_TRUE : JNI_FALSE;
+    }
+    return JNI_FALSE;
+}
+
 extern "C"
 JNIEXPORT void JNICALL
 Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_destroyNativeBeacon(JNIEnv *env MAYBE_UNUSED,
@@ -643,9 +669,11 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeTextToS
         if (not tts) {
             TRACE("Failed to create text to speech");
             tts.reset(nullptr);
+            return 0L;
         }
-        auto ret = reinterpret_cast<jlong>(tts.release());
-        return ret;
+        auto handle = tts->m_Handle;
+        tts.release();
+        return static_cast<jlong>(handle);
     }
     return 0L;
 }
@@ -692,9 +720,11 @@ Java_org_scottishtecharmy_soundscape_audio_NativeAudioEngine_createNativeEarcon(
         if (not earcon) {
             TRACE("Failed to create Earcon");
             earcon.reset(nullptr);
+            return 0L;
         }
-        auto ret = reinterpret_cast<jlong>(earcon.release());
-        return ret;
+        auto handle = earcon->m_Handle;
+        earcon.release();
+        return static_cast<jlong>(handle);
     }
     return 0L;
 }

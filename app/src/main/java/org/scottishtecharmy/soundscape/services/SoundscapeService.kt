@@ -36,6 +36,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
@@ -102,6 +103,9 @@ class SoundscapeService : MediaSessionService() {
 
     // secondary service
     private var timerJob: Job? = null
+
+    // Guard to prevent duplicate user-triggered callouts
+    private var calloutJob: Job? = null
 
     // Wake lock — keeps CPU running while screen is off so audio callbacks continue
     private var wakeLock: PowerManager.WakeLock? = null
@@ -538,19 +542,37 @@ class SoundscapeService : MediaSessionService() {
         geoEngine.updateBeaconLocation(null)
     }
 
+    private suspend fun awaitHandle(handle: Long) {
+        while (handle != 0L && audioEngine.isHandleActive(handle)) {
+            delay(100)
+        }
+    }
+
+    private fun cancelCallout(): Boolean {
+        val wasActive = calloutJob?.isActive == true
+        if (wasActive) {
+            calloutJob?.cancel()
+            audioEngine.clearTextToSpeechQueue()
+        }
+        return wasActive
+    }
+
     fun myLocation() {
-        coroutineScope.launch {
+        if (cancelCallout()) return
+        calloutJob = coroutineScope.launch {
             if (requestAudioFocus()) {
                 // The call to myLocation can take a second or so as it might be doing network
                 // based reverse geocoding. Ensure that the user has feedback that the action is
                 // taking place by immediately playing the earcon.
-                audioEngine.clearTextToSpeechQueue()
                 audioEngine.createEarcon(EARCON_MODE_ENTER, AudioType.STANDARD)
                 val results = geoEngine.myLocation()
+                ensureActive()
+                var lastHandle = 0L
                 if (results != null) {
-                    speakCallout(results, false)
+                    lastHandle = speakCallout(results, false)
                 }
                 audioEngine.createEarcon(EARCON_MODE_EXIT, AudioType.STANDARD)
+                awaitHandle(lastHandle)
             } else {
                 Log.w(TAG, "myLocation: Could not get audio focus.")
             }
@@ -558,32 +580,41 @@ class SoundscapeService : MediaSessionService() {
     }
 
     fun whatsAroundMe() {
-        coroutineScope.launch {
+        if (cancelCallout()) return
+        calloutJob = coroutineScope.launch {
             val results = geoEngine.whatsAroundMe()
+            ensureActive()
+            var lastHandle = 0L
             if(results.positionedStrings.isNotEmpty()) {
-                audioEngine.clearTextToSpeechQueue()
-                speakCallout(results, true)
+                lastHandle = speakCallout(results, true)
             }
+            awaitHandle(lastHandle)
         }
     }
 
     fun aheadOfMe() {
-        coroutineScope.launch {
+        if (cancelCallout()) return
+        calloutJob = coroutineScope.launch {
             val results = geoEngine.aheadOfMe()
+            ensureActive()
+            var lastHandle = 0L
             if(results != null) {
-                audioEngine.clearTextToSpeechQueue()
-                speakCallout(results, true)
+                lastHandle = speakCallout(results, true)
             }
+            awaitHandle(lastHandle)
         }
     }
 
     fun nearbyMarkers() {
-        coroutineScope.launch {
+        if (cancelCallout()) return
+        calloutJob = coroutineScope.launch {
             val results = geoEngine.nearbyMarkers()
+            ensureActive()
+            var lastHandle = 0L
             if(results != null) {
-                audioEngine.clearTextToSpeechQueue()
-                speakCallout(results, true)
+                lastHandle = speakCallout(results, true)
             }
+            awaitHandle(lastHandle)
         }
     }
 
@@ -729,24 +760,25 @@ class SoundscapeService : MediaSessionService() {
             audioEngine.createTextToSpeech(text, AudioType.STANDARD)
     }
 
-    fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean) {
+    fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean) : Long {
 
-        if(callout == null) return
+        if(callout == null) return 0L
 
         if (!requestAudioFocus()) {
             Log.w(TAG, "SpeakCallout: Could not get audio focus.")
-            return
+            return 0L
         }
 
-        if(addModeEarcon) audioEngine.createEarcon(EARCON_MODE_ENTER, AudioType.STANDARD)
+        var lastHandle = 0L
+        if(addModeEarcon) lastHandle = audioEngine.createEarcon(EARCON_MODE_ENTER, AudioType.STANDARD)
         for(result in callout.positionedStrings) {
             if(result.location == null) {
                 var type = result.type
                 if(type == AudioType.LOCALIZED) type = AudioType.STANDARD
-                if(result.earcon != null) {
+                if(result.earcon != null)
                     audioEngine.createEarcon(result.earcon, type, 0.0, 0.0, result.heading?:0.0)
-                }
-                audioEngine.createTextToSpeech(result.text, type, 0.0, 0.0, result.heading?:0.0)
+
+                lastHandle = audioEngine.createTextToSpeech(result.text, type, 0.0, 0.0, result.heading?:0.0)
             }
             else {
                 if(result.earcon != null) {
@@ -757,7 +789,7 @@ class SoundscapeService : MediaSessionService() {
                         result.location.longitude,
                         result.heading?:0.0)
                 }
-                audioEngine.createTextToSpeech(
+                lastHandle = audioEngine.createTextToSpeech(
                     result.text,
                     result.type,
                     result.location.latitude,
@@ -766,10 +798,13 @@ class SoundscapeService : MediaSessionService() {
                 )
             }
         }
+        // Don't set lastHandle on the earcon, we don't really care if this has finished or not,
+        // we just want to wait on the TTS.
         if(addModeEarcon) audioEngine.createEarcon(EARCON_MODE_EXIT, AudioType.STANDARD)
 
         callout.calloutHistory?.add(callout)
         callout.locationFilter?.update(callout.userGeometry)
+        return lastHandle
     }
 
     fun toggleAutoCallouts() {
