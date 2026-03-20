@@ -1807,4 +1807,5 @@
     <string name="route_detail_action_start_route_reverse">شروع مسیر به‌صورت معکوس</string>
     <string name="route_detail_action_start_route_reverse_hint">پخش این مسیر را به‌صورت معکوس آغاز کنید</string>
     <string name="route_reverse_name">%s به‌صورت معکوس</string>
+    <string name="callouts_no_nearby_markers">در نزدیکی شما هیچ نشانه‌ای وجود ندارد</string>
 </resources>
