@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">Rotayı Tersine Başlat</string>
     <string name="route_detail_action_start_route_reverse_hint">Bu rotanın ters sırada oynatılmasını başlatın</string>
     <string name="route_reverse_name">%s tersine</string>
+    <string name="callouts_no_nearby_markers">Yakınınızda kayıtlı nokta yok</string>
 </resources>
