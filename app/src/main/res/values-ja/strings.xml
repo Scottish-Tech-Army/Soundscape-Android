@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">ルートを逆順で開始する</string>
     <string name="route_detail_action_start_route_reverse_hint">このルートの再生を逆順で開始する</string>
     <string name="route_reverse_name">%s（逆順）</string>
+    <string name="callouts_no_nearby_markers">近くにマーカーはありません</string>
 </resources>
