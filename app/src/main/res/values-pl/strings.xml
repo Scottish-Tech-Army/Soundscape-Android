@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">Rozpocznij trasę w odwrotnej kolejności</string>
     <string name="route_detail_action_start_route_reverse_hint">rozpocznij odtwarzanie tej trasy w odwrotnej kolejności</string>
     <string name="route_reverse_name">%s w odwrotnej kolejności</string>
+    <string name="callouts_no_nearby_markers">W pobliżu nie ma żadnych znaczników (pinezek)</string>
 </resources>
