@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">upphaf leiðar í öfugri röð</string>
     <string name="route_detail_action_start_route_reverse_hint">hefja spilun þessarar leiðar í öfugri röð</string>
     <string name="route_reverse_name">%s í öfugri röð</string>
+    <string name="callouts_no_nearby_markers">Engin nálæg merki</string>
 </resources>
