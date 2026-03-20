@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">Iniciar Rota em Ordem Inversa</string>
     <string name="route_detail_action_start_route_reverse_hint">Iniciar a reprodução desta rota em ordem inversa</string>
     <string name="route_reverse_name">%s em ordem inversa</string>
+    <string name="callouts_no_nearby_markers">Não há favoritos nas proximidades</string>
 </resources>
