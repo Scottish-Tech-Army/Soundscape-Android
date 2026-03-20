@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">Démarrer l’itinéraire en sens inverse</string>
     <string name="route_detail_action_start_route_reverse_hint">Démarrer la lecture de cet itinéraire en sens inverse</string>
     <string name="route_reverse_name">%s (en sens inverse)</string>
+    <string name="callouts_no_nearby_markers">Aucun marqueur à proximité</string>
 </resources>
