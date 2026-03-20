@@ -663,10 +663,10 @@ class SoundscapeService : MediaSessionService() {
         routePlayer.stopRoute()
     }
     fun routeSkipPrevious(): Boolean {
-        return routePlayer.moveToPrevious()
+        return routePlayer.moveToPrevious(true)
     }
     fun routeSkipNext(): Boolean {
-        return routePlayer.moveToNext()
+        return routePlayer.moveToNext(true)
     }
     fun routeMute(): Boolean {
         if(routePlayer.isPlaying()) {
