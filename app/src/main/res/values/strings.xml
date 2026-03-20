@@ -304,6 +304,8 @@
 <string name="callouts_nothing_to_call_out_now">"There is nothing to call out right now"</string>
 <!-- Button text for the hear my surroundings button which calls out nearby markers -->
 <string name="callouts_nearby_markers">"Nearby Markers"</string>
+<!-- Text read out when there are no markers nearby to report -->
+<string name="callouts_no_nearby_markers">"There are no nearby markers"</string>
 <!-- Sleep Title, Sleep. Putting the app in an idle state for a period of time. -->
 <string name="sleep_sleep">"Sleep"</string>
 <!-- App is currently Sleeping. Putting the app in an idle state for a period of time. -->
