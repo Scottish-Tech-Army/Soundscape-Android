@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">Розпочати навігацію у зворотному порядку</string>
     <string name="route_detail_action_start_route_reverse_hint">Розпочати відтворення цього маршруту у зворотному порядку</string>
     <string name="route_reverse_name">%s у зворотному порядку</string>
+    <string name="callouts_no_nearby_markers">Поблизу немає міток</string>
 </resources>
