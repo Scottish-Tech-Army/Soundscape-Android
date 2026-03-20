@@ -550,10 +550,11 @@ class SoundscapeService : MediaSessionService() {
 
     private fun cancelCallout(): Boolean {
         val wasActive = calloutJob?.isActive == true
-        if (wasActive) {
+        if (wasActive)
             calloutJob?.cancel()
-            audioEngine.clearTextToSpeechQueue()
-        }
+
+        // Always clear the TTS queue as there's been a user action that requires a response
+        audioEngine.clearTextToSpeechQueue()
         return wasActive
     }
 
