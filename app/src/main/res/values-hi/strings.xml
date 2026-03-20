@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">मार्ग उल्टे क्रम में शुरू करें</string>
     <string name="route_detail_action_start_route_reverse_hint">इस मार्ग का प्लेबैक उल्टे क्रम में शुरू करें</string>
     <string name="route_reverse_name">%s उल्टे क्रम में</string>
+    <string name="callouts_no_nearby_markers">पास के मार्कर नहीं हैं</string>
 </resources>
