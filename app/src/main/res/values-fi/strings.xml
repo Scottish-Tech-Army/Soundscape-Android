@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">Aloita reitti takaperin</string>
     <string name="route_detail_action_start_route_reverse_hint">Aloita tämän reitin toisto takaperin</string>
     <string name="route_reverse_name">%s takaperin</string>
+    <string name="callouts_no_nearby_markers">Lähellä ei ole merkintöjä</string>
 </resources>
