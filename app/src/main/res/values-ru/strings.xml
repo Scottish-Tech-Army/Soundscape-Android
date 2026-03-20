@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">Начать маршрут в обратном порядке</string>
     <string name="route_detail_action_start_route_reverse_hint">Начать воспроизведение этого маршрута в обратном порядке</string>
     <string name="route_reverse_name">%s в обратном порядке</string>
+    <string name="callouts_no_nearby_markers">Рядом нет отметок</string>
 </resources>
