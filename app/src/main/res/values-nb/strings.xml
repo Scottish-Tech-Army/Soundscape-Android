@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">Start rute i revers</string>
     <string name="route_detail_action_start_route_reverse_hint">Start avspilling av denne ruten i omvendt rekkefølge</string>
     <string name="route_reverse_name">%s i omvendt rekkefølge</string>
+    <string name="callouts_no_nearby_markers">Det er ingen markører i nærheten</string>
 </resources>
