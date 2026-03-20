@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">Iniciar Rota em Sentido Inverso</string>
     <string name="route_detail_action_start_route_reverse_hint">iniciar a reprodução desta rota em sentido inverso</string>
     <string name="route_reverse_name">%s em sentido inverso</string>
+    <string name="callouts_no_nearby_markers">Não existem marcos nas proximidades</string>
 </resources>
