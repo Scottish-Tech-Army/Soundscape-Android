@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">ابدأ الطريق بالعكس</string>
     <string name="route_detail_action_start_route_reverse_hint">ابدأ تشغيل هذا الطريق بالعكس</string>
     <string name="route_reverse_name">%s بالعكس</string>
+    <string name="callouts_no_nearby_markers">لا توجد علامات قريبة</string>
 </resources>
