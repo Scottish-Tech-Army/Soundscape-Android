@@ -49,6 +49,7 @@ import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -166,6 +167,8 @@ fun AddAndEditRouteScreenVM(
         },
         getCurrentLocationDescription = getCurrentLocationDescription,
         level = placesNearbyUiState.level,
+        nearbyIntersections = placesNearbyUiState.nearbyIntersections,
+        nearbyPlaces = placesNearbyUiState.nearbyPlaces,
     )
 }
 
@@ -192,6 +195,8 @@ fun AddAndEditRouteScreen(
     getCurrentLocationDescription: () -> LocationDescription,
     heading: Float,
     level: Int,
+    nearbyIntersections: FeatureCollection,
+    nearbyPlaces: FeatureCollection,
 ) {
     val context = LocalContext.current
     var addWaypointDialog by remember { mutableStateOf(false) }
@@ -307,6 +312,8 @@ fun AddAndEditRouteScreen(
             getCurrentLocationDescription = getCurrentLocationDescription,
             level = level,
             markerDescription = LocationDescription("", LngLatAlt()),
+            nearbyIntersections = nearbyIntersections,
+            nearbyPlaces = nearbyPlaces,
         )
     } else {
         Scaffold(
@@ -508,6 +515,8 @@ fun NewRouteScreenPreview() {
         createAndAddMarker = { _, _, _, _ -> },
         getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
         level = 0,
+        nearbyIntersections = FeatureCollection(),
+        nearbyPlaces = FeatureCollection(),
     )
 }
 
@@ -537,5 +546,7 @@ fun EditRouteScreenPreview() {
         createAndAddMarker = { _, _, _, _ -> },
         getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
         level = 0,
+        nearbyIntersections = FeatureCollection(),
+        nearbyPlaces = FeatureCollection(),
     )
 }

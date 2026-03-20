@@ -18,7 +18,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SaveAndEditMarkerDialog
-import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.TextOnlyAppBar
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 
@@ -37,6 +36,8 @@ fun AddWaypointsDialog(
     heading: Float,
     level: Int,
     markerDescription: LocationDescription?,
+    nearbyIntersections: FeatureCollection,
+    nearbyPlaces: FeatureCollection,
 ) {
     val saveMarkerDialog = remember { mutableStateOf(false) }
     val level = level
@@ -88,8 +89,8 @@ fun AddWaypointsDialog(
                 getCurrentLocationDescription = getCurrentLocationDescription,
                 level = level,
                 filter = "",
-                nearbyIntersections = FeatureCollection(),
-                nearbyPlaces = FeatureCollection(),
+                nearbyIntersections = nearbyIntersections,
+                nearbyPlaces = nearbyPlaces,
             )
         }
     }
@@ -187,7 +188,9 @@ fun AddWaypointsScreenPopulatedPreview() {
         heading = 45.0F,
         getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
         level = 0,
-        markerDescription = LocationDescription("Location", LngLatAlt())
+        markerDescription = LocationDescription("Location", LngLatAlt()),
+        nearbyIntersections = FeatureCollection(),
+        nearbyPlaces = FeatureCollection(),
     )
 }
 
@@ -207,6 +210,8 @@ fun AddWaypointsScreenPreview() {
         heading = 45.0F,
         getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
         level = 0,
-        markerDescription = LocationDescription("Location", LngLatAlt())
+        markerDescription = LocationDescription("Location", LngLatAlt()),
+        nearbyIntersections = FeatureCollection(),
+        nearbyPlaces = FeatureCollection(),
     )
 }

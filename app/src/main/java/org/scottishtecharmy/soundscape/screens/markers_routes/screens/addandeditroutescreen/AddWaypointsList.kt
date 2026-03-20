@@ -66,10 +66,6 @@ fun AddWaypointsList(
     nearbyIntersections: FeatureCollection,
     nearbyPlaces: FeatureCollection,
 ) {
-    /**
-     * Decompose PlacesNearbyUiState
-     */
-
     // Create our list of locations, with those already in the route first
     val locations = remember(uiState.routeMembers, uiState.markers) {
         mutableStateListOf<LocationDescription>()
