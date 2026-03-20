@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">Route in omgekeerde volgorde starten</string>
     <string name="route_detail_action_start_route_reverse_hint">Het afspelen van deze route in omgekeerde volgorde starten</string>
     <string name="route_reverse_name">%s in omgekeerde volgorde</string>
+    <string name="callouts_no_nearby_markers">Er zijn geen markeringen in de buurt</string>
 </resources>
