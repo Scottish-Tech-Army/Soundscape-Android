@@ -852,8 +852,7 @@ class GeoEngine {
             results.add(
                 PositionedString(
                     text = localizedContext.getString(R.string.callouts_no_nearby_markers),
-                    type = AudioType.STANDARD,
-                    earcon = NativeAudioEngine.EARCON_MODE_EXIT
+                    type = AudioType.STANDARD
                 )
             )
         }
