@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">Starta rutt i omvänd ordning</string>
     <string name="route_detail_action_start_route_reverse_hint">Starta uppspelning av den här rutten i omvänd ordning</string>
     <string name="route_reverse_name">%s i omvänd ordning</string>
+    <string name="callouts_no_nearby_markers">Det finns inga platsmarkörer i närheten</string>
 </resources>
