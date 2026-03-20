@@ -1336,4 +1336,5 @@
     <string name="route_detail_action_start_route_reverse">Route rückwärts starten</string>
     <string name="route_detail_action_start_route_reverse_hint">Wiedergabe dieser Route rückwärts starten.</string>
     <string name="route_reverse_name">%s (umgekehrt)</string>
+    <string name="callouts_no_nearby_markers">Derzeit gibt es keine Markierungen in der Nähe</string>
 </resources>
