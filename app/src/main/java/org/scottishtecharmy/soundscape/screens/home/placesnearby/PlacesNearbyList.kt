@@ -22,15 +22,20 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.FolderItem
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.talkbackHint
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.process
 
@@ -82,20 +87,24 @@ val placesNearbyFolders = listOf(
 
 @Composable
 fun PlacesNearbyList(
-    uiState: PlacesNearbyUiState,
     navController: NavController,
     onClickFolder: (String, String) -> Unit,
     onStartBeacon: (LocationDescription) -> Unit,
-    modifier: Modifier,
+    userLocation: LngLatAlt?,
+    nearbyIntersections: FeatureCollection,
+    nearbyPlaces: FeatureCollection,
+    filter: String,
+    level: Int,
+    modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
     val locations = remember(1) {
         Log.d("SA-301", "Locations recalculated PlacesNearbyList")
         filterLocations(
-            userLocation = uiState.userLocation,
-            nearbyIntersections = uiState.nearbyIntersections,
-            nearbyPlaces = uiState.nearbyPlaces,
-            filter = uiState.filter,
+            userLocation = userLocation,
+            nearbyIntersections = nearbyIntersections,
+            nearbyPlaces = nearbyPlaces,
+            filter = filter,
             context = context
         )
     }
@@ -105,7 +114,7 @@ fun PlacesNearbyList(
         verticalArrangement = Arrangement.spacedBy(spacing.tiny),
         modifier = modifier.fillMaxWidth(),
     ) {
-        if (uiState.level == 0) {
+        if (level == 0) {
             itemsIndexed(placesNearbyFolders) { index, folderItem ->
                 if (index == 0) {
                     HorizontalDivider(
@@ -152,10 +161,27 @@ fun PlacesNearbyList(
                             hint = stringResource(R.string.location_detail_action_beacon_hint)
                         ),
                     ),
-                    userLocation = uiState.userLocation,
+                    userLocation = userLocation,
                     modifier = Modifier.testTag("placesNearby-$index")
                 )
             }
         }
+    }
+}
+
+@Preview
+@Composable
+private fun PlacesNearbyListPreview() {
+    SoundscapeTheme {
+        PlacesNearbyList(
+            navController = rememberNavController(),
+            onClickFolder = { string: String, string1: String -> },
+            onStartBeacon = {},
+            userLocation = LngLatAlt(),
+            nearbyIntersections = FeatureCollection(),
+            nearbyPlaces = FeatureCollection(),
+            filter = "",
+            level = 0,
+        )
     }
 }
