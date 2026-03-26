@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.placesnearby
 
 import android.content.Context
-import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -147,7 +146,6 @@ fun filterLocations(
     nearbyPlaces: FeatureCollection,
     context: Context
 ): List<LocationDescription> {
-    Log.d("SA-301", "Filter locations - PlacesNearbySharedLogic")
     val location = userLocation ?: LngLatAlt()
     val ruler = CheapRuler(location.latitude)
     return if (filter == "intersections") {

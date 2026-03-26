@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.defaultMinSize
@@ -111,7 +110,6 @@ fun AddWaypointsList(
     val levelOneFolders = placesNearbyFolders
     val context = LocalContext.current
     val nearbyLocations = remember(1) {
-        Log.d("SA-301", "Locations recalculated AddWaypointsList")
         filterLocations(
             userLocation = userLocation,
             filter = filter,
