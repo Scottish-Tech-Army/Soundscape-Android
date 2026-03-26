@@ -1331,4 +1331,10 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Reproduzir um aviso sonoro antes de iniciar o reconhecimento de voz.</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Microfone</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Escolha qual microfone utilizar para os comandos de voz.</string>
+    <string name="battery_optimization_title">Uso de Bateria em Segundo Plano</string>
+    <string name="battery_optimization_message">O Soundscape exige utilização irrestrita da bateria para continuar a fornecer navegação por áudio enquanto o telemóvel estiver bloqueado. Por favor, permita isto no próximo diálogo. Se fechar o Soundscape, todos os serviços serão interrompidos e deixará de consumir bateria.</string>
+    <string name="route_detail_action_start_route_reverse">Iniciar Rota em Sentido Inverso</string>
+    <string name="route_detail_action_start_route_reverse_hint">iniciar a reprodução desta rota em sentido inverso</string>
+    <string name="route_reverse_name">%s em sentido inverso</string>
+    <string name="callouts_no_nearby_markers">Não existem marcos nas proximidades</string>
 </resources>

@@ -1802,4 +1802,10 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">قبل از شروع تشخیص گفتار، یک پیام شنیداری پخش کنید تا اعلام شود که اپ در حالت گوش دادن قرار دارد.</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">میکروفون</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">میکروفونی را که برای فرمان‌های صوتی استفاده می‌شود انتخاب کنید.</string>
+    <string name="battery_optimization_title">مصرف باتری در پس‌زمینه</string>
+    <string name="battery_optimization_message">ساند‌اسکیپ برای ادامهٔ ارائهٔ مسیریابی صوتی زمانی که گوشی شما قفل است، به دسترسی نامحدود به مصرف باتری نیاز دارد. لطفاً در پنجرهٔ بعدی این اجازه را بدهید. اگر ساند‌اسکیپ را ببندید، همهٔ سرویس‌ها متوقف می‌شوند و دیگر باتری مصرف نخواهد کرد.</string>
+    <string name="route_detail_action_start_route_reverse">شروع مسیر به‌صورت معکوس</string>
+    <string name="route_detail_action_start_route_reverse_hint">پخش این مسیر را به‌صورت معکوس آغاز کنید</string>
+    <string name="route_reverse_name">%s به‌صورت معکوس</string>
+    <string name="callouts_no_nearby_markers">در نزدیکی شما هیچ نشانه‌ای وجود ندارد</string>
 </resources>

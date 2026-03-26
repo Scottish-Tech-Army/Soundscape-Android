@@ -1331,4 +1331,10 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Произносить подсказку перед началом распознавания речи.</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Микрофон</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Выберите, какой микрофон использовать для голосовых команд.</string>
+    <string name="battery_optimization_title">Фоновое использование батареи</string>
+    <string name="battery_optimization_message">Soundscape требует разрешения на неограниченное использование батареи, чтобы продолжать обеспечивать аудионавигацию при заблокированном телефоне. Пожалуйста, подтвердите это в следующем диалоговом окне. Если вы закроете Soundscape, все сервисы остановятся, и приложение перестанет расходовать заряд батареи.</string>
+    <string name="route_detail_action_start_route_reverse">Начать маршрут в обратном порядке</string>
+    <string name="route_detail_action_start_route_reverse_hint">Начать воспроизведение этого маршрута в обратном порядке</string>
+    <string name="route_reverse_name">%s в обратном порядке</string>
+    <string name="callouts_no_nearby_markers">Рядом нет отметок</string>
 </resources>

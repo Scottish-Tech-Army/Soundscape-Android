@@ -64,6 +64,23 @@ class SoundscapeDummyMediaPlayer(
         return Futures.immediateVoidFuture()
     }
 
+    override fun handleSeek(
+        mediaItemIndex: Int,
+        positionMs: Long,
+        seekCommand: @Player.Command Int
+    ): ListenableFuture<*> {
+        when (seekCommand) {
+            COMMAND_SEEK_TO_NEXT,
+            COMMAND_SEEK_FORWARD,
+            COMMAND_SEEK_TO_NEXT_MEDIA_ITEM -> getTarget().onNext()
+
+            COMMAND_SEEK_TO_PREVIOUS,
+            COMMAND_SEEK_BACK,
+            COMMAND_SEEK_TO_PREVIOUS_MEDIA_ITEM -> getTarget().onPrevious()
+        }
+        return Futures.immediateVoidFuture()
+    }
+
     override fun handleStop(): ListenableFuture<*> =
         Futures.immediateVoidFuture()
 }

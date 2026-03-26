@@ -23,6 +23,7 @@ abstract class TileClient(val applicationContext: Context) {
 
     protected val okHttpClient = OkHttpClient.Builder()
         .cache(myCache)
+        .addInterceptor(UserAgentInterceptor())
         .addInterceptor { chain ->
 
         // Get the request from the chain.

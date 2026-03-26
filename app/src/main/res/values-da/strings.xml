@@ -1331,4 +1331,10 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Afsend en lytte‑prompt, før talegenkendelsen starter.</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Mikrofon</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Vælg, hvilken mikrofon der skal bruges til stemmekommandoer.</string>
+    <string name="battery_optimization_title">Batteriforbrug i baggrunden</string>
+    <string name="battery_optimization_message">Soundscape kræver ubegrænset batteribrug for at kunne fortsætte med at levere lydnavigering, når din telefon er låst. Tillad venligst dette i den næste dialog. Hvis du lukker Soundscape, stopper alle tjenester, og appen vil ikke længere bruge batteri.</string>
+    <string name="route_detail_action_start_route_reverse">Start rute i omvendt rækkefølge</string>
+    <string name="route_detail_action_start_route_reverse_hint">Start afspilning af denne rute i omvendt rækkefølge</string>
+    <string name="route_reverse_name">%s i omvendt rækkefølge</string>
+    <string name="callouts_no_nearby_markers">Der er ingen mærker i nærheden</string>
 </resources>

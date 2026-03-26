@@ -17,6 +17,8 @@ PositionedAudio::PositionedAudio(AudioEngine *engine,
                   m_Eof(false),
                   m_Dimmable(dimmable)
 {
+    static std::atomic<uint64_t> s_nextHandle{1};
+    m_Handle = s_nextHandle.fetch_add(1);
     m_pEngine = engine;
     m_UtteranceId = std::move(utterance_id);
 }

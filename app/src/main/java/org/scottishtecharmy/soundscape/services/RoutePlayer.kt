@@ -94,18 +94,27 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
 
     /** startRoute starts playback of a route from the database.
      * @param routeId The id of the route to play
+     * @param reverse If true, play the route in reverse order (from last waypoint to first)
      */
-    fun startRoute(routeId: Long) {
+    fun startRoute(routeId: Long, reverse: Boolean = false) {
         val realm = MarkersAndRoutesDatabase.getMarkersInstance(localizedContext)
         val routeDao = realm.routeDao()
 
-        Analytics.getInstance().logEvent("startRoute", null)
+        Analytics.getInstance().logEvent(if (reverse) "startRouteReverse" else "startRoute", null)
 
-        Log.e(TAG, "startRoute")
+        Log.e(TAG, "startRoute reverse=$reverse")
         coroutineScope.launch {
-            val route = routeDao.getRouteWithMarkers(routeId)
+            val route = routeDao.getRouteWithMarkers(routeId) ?: return@launch
             currentMarker = 0
-            currentRouteData = route
+            currentRouteData = if (reverse) {
+                val reverseName = localizedContext.getString(R.string.route_reverse_name, route.route.name)
+                RouteWithMarkers(
+                    RouteEntity(route.route.routeId, reverseName, route.route.description),
+                    route.markers.reversed()
+                )
+            } else {
+                route
+            }
             _currentRouteFlow.update {
                 it.copy(
                     routeData = currentRouteData,
@@ -143,7 +152,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                                 if ((currentMarker + 1) < route.markers.size) {
                                     // We're within 12m of the marker, move on to the next one
                                     Log.d(TAG, "Moving to next waypoint ${coroutineContext[Job]}")
-                                    moveToNext()
+                                    moveToNext(false)
                                 } else {
                                     // We've reached the end of the route
                                     // Announce the end of the route
@@ -170,7 +179,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         }
     }
 
-    private fun createBeaconAtWaypoint(index: Int) {
+    private fun createBeaconAtWaypoint(index: Int, userInitiated: Boolean) {
         currentRouteData?.let { route ->
             if (index < route.markers.size) {
                 val location = route.markers[index].getLngLatAlt()
@@ -197,7 +206,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                                 route.markers[index].name,
                                 formatDistanceAndDirection(distance, null, localizedContext))
                         }
-
+                    if(userInitiated) service.audioEngine.clearTextToSpeechQueue()
                     service.speakText(
                         beaconSetText,
                         AudioType.LOCALIZED, location.latitude, location.longitude, 0.0
@@ -220,18 +229,18 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
     }
 
     fun play() {
-        createBeaconAtWaypoint(currentMarker)
+        createBeaconAtWaypoint(currentMarker, true)
         Log.d(TAG, toString())
     }
 
-    fun moveToNext() : Boolean {
+    fun moveToNext(userInitiated: Boolean) : Boolean {
         currentRouteData?.let { route ->
             if(route.markers.size > 1) {
                 if ((currentMarker + 1) < route.markers.size) {
                     currentMarker++
                     _currentRouteFlow.update { it.copy(currentWaypoint = currentMarker) }
 
-                    createBeaconAtWaypoint(currentMarker)
+                    createBeaconAtWaypoint(currentMarker, userInitiated)
                 }
                 return true
             }
@@ -240,13 +249,13 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         return false
     }
 
-    fun moveToPrevious() : Boolean{
+    fun moveToPrevious(userInitiated: Boolean) : Boolean{
         currentRouteData?.let { route ->
             if(route.markers.size > 1) {
                 if (currentMarker > 0) {
                     currentMarker--
                     _currentRouteFlow.update { it.copy(currentWaypoint = currentMarker) }
-                    createBeaconAtWaypoint(currentMarker)
+                    createBeaconAtWaypoint(currentMarker, userInitiated)
                     return true
                 }
             }

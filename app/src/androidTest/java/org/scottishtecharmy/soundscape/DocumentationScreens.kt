@@ -223,6 +223,7 @@ class DocumentationScreens {
                 ),
                 getRouteById = { },
                 startRoute = { },
+                startRouteInReverse = { },
                 stopRoute = { },
                 shareRoute = { },
                 clearErrorMessage = { },

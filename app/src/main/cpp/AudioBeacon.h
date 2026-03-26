@@ -1,4 +1,5 @@
 #pragma once
+#include <atomic>
 #include <utility>
 
 #include "AudioBeaconBuffer.h"
@@ -47,6 +48,7 @@ namespace soundscape {
 
         AudioEngine *m_pEngine;
         std::string m_UtteranceId;
+        uint64_t m_Handle;
 
     protected:
         void Init(double degrees_off_axis,

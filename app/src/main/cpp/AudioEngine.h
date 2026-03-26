@@ -69,7 +69,7 @@ namespace soundscape {
         void SetBeaconType(int beaconType);
         const BeaconDescriptor *GetBeaconDescriptor() const;
 
-        void AddBeacon(PositionedAudio *beacon, bool queued = false);
+        uint64_t AddBeacon(PositionedAudio *beacon, bool queued = false);
         void RemoveBeacon(PositionedAudio *beacon);
         bool ToggleBeaconMute();
 
@@ -91,6 +91,7 @@ namespace soundscape {
 
         void ClearQueue();
         unsigned int GetQueueDepth();
+        bool IsHandleActive(uint64_t handle);
 
         void SetUseHrtf(bool use) { if (m_pMixer) m_pMixer->setUseHrtf(use); }
         void SetSuppressRestart(bool suppress) { if (m_pMixer) m_pMixer->setSuppressRestart(suppress); }

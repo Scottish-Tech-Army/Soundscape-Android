@@ -1331,4 +1331,10 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Speak a listening prompt before voice recognition starts.</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Microphone</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Choose which microphone to use for voice commands.</string>
+    <string name="battery_optimization_title">Background Battery Usage</string>
+    <string name="battery_optimization_message">Soundscape requires unrestricted battery use to continue providing audio navigation while your phone is locked. Please allow this in the next dialog. If you close Soundscape, all services will stop and the app will no longer use battery.</string>
+    <string name="route_detail_action_start_route_reverse">Start Route in Reverse</string>
+    <string name="route_detail_action_start_route_reverse_hint">Start playback of this route in reverse</string>
+    <string name="route_reverse_name">%s in reverse</string>
+    <string name="callouts_no_nearby_markers">There are no nearby markers</string>
 </resources>

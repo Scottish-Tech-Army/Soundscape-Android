@@ -1331,4 +1331,10 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Lausu kuuntelukehotus ennen puheentunnistuksen alkamista.</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Mikrofoni</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Valitse, mitä mikrofonia käytetään puhekomentoja varten.</string>
+    <string name="battery_optimization_title">Akun käyttö taustalla</string>
+    <string name="battery_optimization_message">Soundscape tarvitsee rajoittamattoman akkukäytön pystyäkseen tarjoamaan ääniohjauksen myös silloin, kun puhelimesi on lukittu. Salli tämä seuraavassa valintaikkunassa. Jos suljet Soundscapen, kaikki palvelut lopetetaan eikä se enää kuluta akkua.</string>
+    <string name="route_detail_action_start_route_reverse">Aloita reitti takaperin</string>
+    <string name="route_detail_action_start_route_reverse_hint">Aloita tämän reitin toisto takaperin</string>
+    <string name="route_reverse_name">%s takaperin</string>
+    <string name="callouts_no_nearby_markers">Lähellä ei ole merkintöjä</string>
 </resources>

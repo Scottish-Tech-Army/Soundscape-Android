@@ -1331,4 +1331,10 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">音声認識が開始される前に、聞き取り開始を知らせるプロンプト（合図）を再生します。</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">マイク</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">音声コマンドに使用するマイクを選択します。</string>
+    <string name="battery_optimization_title">バックグラウンドでのバッテリー使用</string>
+    <string name="battery_optimization_message">端末がロックされている間も音声ナビゲーションを提供し続けるため、Soundscape ではバッテリー使用の制限を解除する必要があります。次のダイアログでこれを許可してください。Soundscape を閉じると、すべてのサービスが停止し、バッテリーの消費はなくなります。</string>
+    <string name="route_detail_action_start_route_reverse">ルートを逆順で開始する</string>
+    <string name="route_detail_action_start_route_reverse_hint">このルートの再生を逆順で開始する</string>
+    <string name="route_reverse_name">%s（逆順）</string>
+    <string name="callouts_no_nearby_markers">近くにマーカーはありません</string>
 </resources>

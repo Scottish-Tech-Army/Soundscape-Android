@@ -112,8 +112,8 @@ class MvtPerformanceTest {
 
         // Test the capital of Cameroon because it's dense
         println("Test Yaoundé")
-        for(x in 17430 until 17437) {
-            for(y in 16029 until 16034) {
+        for(x in 17430/2 until 17437/2) {
+            for(y in 16029/2 until 16034/2) {
                 downloadAndParseTile(x, y, gridState)
             }
         }

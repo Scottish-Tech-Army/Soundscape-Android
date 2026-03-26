@@ -1331,4 +1331,10 @@
     <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Emitir un aviso antes de que comience el reconocimiento de voz.</string>
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Micrófono</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Seleccione qué micrófono usar para los comandos de voz.</string>
+    <string name="battery_optimization_title">Uso de batería en segundo plano</string>
+    <string name="battery_optimization_message">Soundscape requiere un uso de batería sin restricciones para seguir proporcionando navegación por audio cuando su teléfono esté bloqueado. Permita esto en el siguiente cuadro de diálogo. Si cierra Soundscape, todos los servicios se detendrán y la aplicación dejará de consumir batería.</string>
+    <string name="route_detail_action_start_route_reverse">Iniciar ruta en sentido inverso</string>
+    <string name="route_detail_action_start_route_reverse_hint">Iniciar la reproducción de esta ruta en sentido inverso</string>
+    <string name="route_reverse_name">%s en sentido inverso</string>
+    <string name="callouts_no_nearby_markers">No hay marcadores cercanos</string>
 </resources>
