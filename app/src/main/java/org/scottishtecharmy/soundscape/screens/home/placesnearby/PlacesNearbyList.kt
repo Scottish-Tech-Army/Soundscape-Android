@@ -170,7 +170,7 @@ private fun PlacesNearbyListPreview() {
     SoundscapeTheme {
         PlacesNearbyList(
             navController = rememberNavController(),
-            onClickFolder = { string: String, string1: String -> },
+            onClickFolder = { _: String, _: String -> },
             onStartBeacon = {},
             userLocation = LngLatAlt(),
             nearbyIntersections = FeatureCollection(),
