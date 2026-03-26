@@ -31,7 +31,7 @@ class PlacesNearbySharedLogic(
     private val soundscapeServiceConnection: SoundscapeServiceConnection,
     private val viewModelScope: CoroutineScope
 ) {
-    internal val internalUiState = MutableStateFlow(PlacesNearbyUiState())
+    private val internalUiState = MutableStateFlow(PlacesNearbyUiState())
     val uiState: StateFlow<PlacesNearbyUiState> = internalUiState
 
     fun startBeacon(location: LngLatAlt, name: String) {
@@ -100,18 +100,43 @@ class PlacesNearbySharedLogic(
                         }
                     }
 
-                    internalUiState.value = uiState.value.copy(
+                    internalUiState.value = internalUiState.value.copy(
                         nearbyPlaces = nearbyPlaces,
                         nearbyIntersections = nearbyIntersections
                     )
                 } else {
-                    internalUiState.value = uiState.value.copy(
+                    internalUiState.value = internalUiState.value.copy(
                         nearbyPlaces = FeatureCollection(),
                         nearbyIntersections = FeatureCollection()
                     )
                 }
             }
         }
+    }
+
+    fun navigateToLevel(level: Int) {
+        internalUiState.value = internalUiState.value.copy(level = level)
+    }
+
+    fun resetLevel() {
+        internalUiState.value = internalUiState.value.copy(level = 0)
+    }
+
+    fun applyFilter(level: Int, filter: String, title: String) {
+        internalUiState.value =
+            internalUiState.value.copy(level = level, filter = filter, title = title)
+    }
+
+    fun locationSelected(markerDescription: LocationDescription) {
+        internalUiState.value = internalUiState.value.copy(
+            markerDescription = markerDescription
+        )
+    }
+
+    fun resetMarkerDescription() {
+        internalUiState.value = internalUiState.value.copy(
+            markerDescription = null
+        )
     }
 }
 
