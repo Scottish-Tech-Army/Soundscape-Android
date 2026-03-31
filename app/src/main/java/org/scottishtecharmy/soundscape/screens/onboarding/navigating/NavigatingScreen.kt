@@ -5,6 +5,7 @@ import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,9 +26,15 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.FocusRequester.Companion.FocusRequesterFactory.component1
+import androidx.compose.ui.focus.FocusRequester.Companion.FocusRequesterFactory.component2
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
@@ -47,7 +54,7 @@ fun NavigatingScreen(
     modifier: Modifier = Modifier,
     viewModel: PermissionsViewModel = viewModel()
 ) {
-    val permissionsToRequest : Array<String> =
+    val permissionsToRequest: Array<String> =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             arrayOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
@@ -64,8 +71,7 @@ fun NavigatingScreen(
         }
     val multiplePermissionResultLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions(),
-        onResult = {
-                perms ->
+        onResult = { perms ->
             permissionsToRequest.forEach { permission ->
                 viewModel.onPermissionResult(
                     permission = permission,
@@ -88,6 +94,8 @@ fun Navigating(
     onContinue: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val focusRequester = remember { FocusRequester() }
+
     BoxWithGradientBackground(
         modifier = modifier,
         color = MaterialTheme.colorScheme.surface
@@ -109,14 +117,17 @@ fun Navigating(
                 textAlign = TextAlign.Center,
                 modifier = Modifier.semantics {
                     heading()
-                },
+                }.focusRequester(focusRequester) // Attach the requester
+                    .focusable() // Make the text focusable,
             )
+
             Spacer(modifier = Modifier.height(spacing.large))
             Text(
                 text = stringResource(id = R.string.first_launch_permissions_message),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                modifier = Modifier.focusable(),
             )
             Spacer(modifier = Modifier.height(spacing.large))
 
@@ -146,16 +157,18 @@ fun Navigating(
                             text = stringResource(R.string.first_launch_permissions_location),
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onSurface,
+                            modifier = Modifier.focusable(),
                         )
                         Text(
                             text = stringResource(R.string.first_launch_permissions_required),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurface,
+                            modifier = Modifier.focusable(),
                         )
                     }
                 }
                 // check Android version here to show row or not
-                if (Build.VERSION.SDK_INT >= 33){
+                if (Build.VERSION.SDK_INT >= 33) {
                     Row(
                         modifier = Modifier
                             .mediumPadding()
@@ -177,11 +190,13 @@ fun Navigating(
                                 text = stringResource(R.string.first_launch_permissions_notification),
                                 style = MaterialTheme.typography.titleMedium,
                                 color = MaterialTheme.colorScheme.onSurface,
+                                modifier = Modifier.focusable(),
                             )
                             Text(
                                 text = stringResource(R.string.first_launch_permissions_required),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurface,
+                                modifier = Modifier.focusable(),
                             )
                         }
                     }
@@ -205,11 +220,13 @@ fun Navigating(
                             text = stringResource(R.string.first_launch_permissions_record_audio),
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onSurface,
+                            modifier = Modifier.focusable(),
                         )
                         Text(
                             text = stringResource(R.string.first_launch_permissions_required_for_voice_control),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurface,
+                            modifier = Modifier.focusable(),
                         )
                     }
                 }
@@ -227,6 +244,10 @@ fun Navigating(
                         .fillMaxWidth()
                         .testTag("navigatingScreenContinueButton"),
                 )
+            }
+
+            LaunchedEffect(Unit) {
+                focusRequester.requestFocus()
             }
         }
     }
