@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.terms
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,11 +19,14 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -42,6 +46,8 @@ fun TermsScreen(
     modifier: Modifier = Modifier,
 ) {
     val checkedState = remember { mutableStateOf(false) }
+    val focusRequester = remember { FocusRequester() }
+
     BoxWithGradientBackground(
         modifier = modifier,
         color = MaterialTheme.colorScheme.surface
@@ -63,6 +69,8 @@ fun TermsScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = spacing.medium)
+                    .focusRequester(focusRequester)
+                    .focusable()
                     .semantics {
                         heading()
                     },
@@ -73,6 +81,7 @@ fun TermsScreen(
                     .clip(RoundedCornerShape(spacing.extraSmall))
                     .fillMaxWidth()
                     .background(MaterialTheme.colorScheme.surfaceContainer)
+                    .focusable()
             ) {
                 TermsItem(stringResource(R.string.terms_of_use_message).format(stringResource(R.string.terms_of_use_service_agreement)))
                 TermsItem(stringResource(R.string.terms_of_use_medical_safety_disclaimer))
@@ -82,10 +91,11 @@ fun TermsScreen(
                 modifier = Modifier
                     .padding(top = spacing.large)
                     .fillMaxWidth()
-                    .toggleable( // This give the toggleable behaviour to the entire row, providing a better UX with alpha() Screen reader
+                    .toggleable(
+                        // This give the toggleable behaviour to the entire row, providing a better UX with alpha() Screen reader
                         value = checkedState.value,
                         role = Role.Checkbox,
-                    ){
+                    ) {
                         checkedState.value = !checkedState.value
                     },
                 horizontalArrangement = Arrangement.Start,
@@ -117,14 +127,17 @@ fun TermsScreen(
                     },
                     modifier = Modifier
                         .fillMaxWidth()
+                        .focusable()
                         .testTag("termsScreenContinueButton"),
                     enabled = checkedState.value
                 )
             }
-
         }
     }
 
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+    }
 }
 
 @Composable
@@ -139,7 +152,8 @@ fun TermsItem(text: String) {
         Text(
             text = text,
             style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurface)
+            color = MaterialTheme.colorScheme.onSurface
+        )
     }
 
     HorizontalDivider(
