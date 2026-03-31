@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage
 
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,9 +13,13 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
@@ -53,6 +58,8 @@ fun OfflineStorageOnboardingScreen(
     onStorageSelected: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val focusRequester = remember { FocusRequester() }
+
     BoxWithGradientBackground(
         modifier = modifier,
         color = MaterialTheme.colorScheme.surface
@@ -72,9 +79,12 @@ fun OfflineStorageOnboardingScreen(
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.semantics {
-                    heading()
-                }
+                modifier = Modifier
+                    .semantics {
+                        heading()
+                    }
+                    .focusRequester(focusRequester)
+                    .focusable()
             )
             Spacer(modifier = Modifier.height(spacing.large))
 
@@ -82,7 +92,9 @@ fun OfflineStorageOnboardingScreen(
                 text = stringResource(R.string.offline_map_storage_description),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.smallPadding()
+                modifier = Modifier
+                    .smallPadding()
+                    .focusable()
             )
 
             Spacer(modifier = Modifier.height(spacing.large))
@@ -91,7 +103,9 @@ fun OfflineStorageOnboardingScreen(
                 storages = uiState.storages,
                 onStorageSelected = onStorageSelected,
                 selectedStorageIndex = uiState.selectedStorageIndex,
-                modifier = Modifier.smallPadding(),
+                modifier = Modifier
+                    .smallPadding()
+                    .focusable(),
                 backgroundColor = MaterialTheme.colorScheme.surfaceContainer
             )
 
@@ -103,10 +117,15 @@ fun OfflineStorageOnboardingScreen(
                     onClick = { onNavigate() },
                     modifier = Modifier
                         .fillMaxWidth()
+                        .focusable()
                         .testTag("offlineStorageOnboardingScreenContinueButton"),
                 )
             }
         }
+    }
+
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
     }
 }
 
