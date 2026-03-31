@@ -4,6 +4,7 @@ import android.Manifest
 import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
@@ -32,9 +33,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.FocusRequester.Companion.FocusRequesterFactory.component1
-import androidx.compose.ui.focus.FocusRequester.Companion.FocusRequesterFactory.component2
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
@@ -45,6 +45,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -115,9 +116,11 @@ fun Navigating(
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.semantics {
-                    heading()
-                }.focusRequester(focusRequester) // Attach the requester
+                modifier = Modifier
+                    .semantics {
+                        heading()
+                    }
+                    .focusRequester(focusRequester) // Attach the requester
                     .focusable() // Make the text focusable,
             )
 
@@ -138,103 +141,29 @@ fun Navigating(
                     .background(MaterialTheme.colorScheme.surfaceContainer)
             )
             {
-                Row(
-                    modifier = Modifier
-                        .mediumPadding()
-                        .fillMaxWidth(),
+                PermissionRationale(
+                    Icons.Rounded.LocationOn,
+                    R.string.first_launch_permissions_location,
+                    R.string.first_launch_permissions_required,
                 )
-                {
-                    Icon(
-                        Icons.Rounded.LocationOn,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface
-                    )
-                    Spacer(modifier = Modifier.width(spacing.extraSmall))
-                    Column(
-                        modifier = Modifier.semantics(mergeDescendants = true) {},
-                    ) {
-                        Text(
-                            text = stringResource(R.string.first_launch_permissions_location),
-                            style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onSurface,
-                            modifier = Modifier.focusable(),
-                        )
-                        Text(
-                            text = stringResource(R.string.first_launch_permissions_required),
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurface,
-                            modifier = Modifier.focusable(),
-                        )
-                    }
-                }
                 // check Android version here to show row or not
                 if (Build.VERSION.SDK_INT >= 33) {
-                    Row(
-                        modifier = Modifier
-                            .mediumPadding()
-                            .fillMaxWidth(),
+                    PermissionRationale(
+                        Icons.Rounded.Notifications,
+                        R.string.first_launch_permissions_notification,
+                        R.string.first_launch_permissions_required,
                     )
-                    {
-                        Icon(
-                            Icons.Rounded.Notifications,
-                            contentDescription = null,
-                            tint = MaterialTheme.colorScheme.onSurface
-                        )
-                        Spacer(modifier = Modifier.width(spacing.extraSmall))
-                        Column(
-                            modifier = Modifier.semantics(mergeDescendants = true) {},
-                        ) {
-                            Text(
-                                // Notification permission doesn't have translations as
-                                // original iOS Soundscape didn't have this
-                                text = stringResource(R.string.first_launch_permissions_notification),
-                                style = MaterialTheme.typography.titleMedium,
-                                color = MaterialTheme.colorScheme.onSurface,
-                                modifier = Modifier.focusable(),
-                            )
-                            Text(
-                                text = stringResource(R.string.first_launch_permissions_required),
-                                style = MaterialTheme.typography.bodySmall,
-                                color = MaterialTheme.colorScheme.onSurface,
-                                modifier = Modifier.focusable(),
-                            )
-                        }
-                    }
                 }
-                Row(
-                    modifier = Modifier
-                        .mediumPadding()
-                        .fillMaxWidth(),
+                PermissionRationale(
+                    Icons.Rounded.Mic,
+                    R.string.first_launch_permissions_record_audio,
+                    R.string.first_launch_permissions_required_for_voice_control,
                 )
-                {
-                    Icon(
-                        Icons.Rounded.Mic,
-                        contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface
-                    )
-                    Spacer(modifier = Modifier.width(spacing.extraSmall))
-                    Column(
-                        modifier = Modifier.semantics(mergeDescendants = true) {},
-                    ) {
-                        Text(
-                            text = stringResource(R.string.first_launch_permissions_record_audio),
-                            style = MaterialTheme.typography.titleMedium,
-                            color = MaterialTheme.colorScheme.onSurface,
-                            modifier = Modifier.focusable(),
-                        )
-                        Text(
-                            text = stringResource(R.string.first_launch_permissions_required_for_voice_control),
-                            style = MaterialTheme.typography.bodySmall,
-                            color = MaterialTheme.colorScheme.onSurface,
-                            modifier = Modifier.focusable(),
-                        )
-                    }
-                }
             }
 
             Spacer(modifier = Modifier.height(spacing.large))
 
-            Column(modifier = Modifier.padding(horizontal = spacing.medium)) {
+            Column(modifier = Modifier.padding(horizontal = spacing.medium).focusable(false)) {
                 OnboardButton(
                     text = stringResource(R.string.ui_continue),
                     // just bodging this at the moment as having problems with rationales
@@ -253,10 +182,59 @@ fun Navigating(
     }
 }
 
+@Composable
+fun PermissionRationale(
+    icon: ImageVector,
+    @StringRes mainText: Int,
+    @StringRes subtitleText: Int,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier = modifier
+            .mediumPadding()
+            .fillMaxWidth(),
+    )
+    {
+        Icon(
+            icon,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurface
+        )
+        Spacer(modifier = Modifier.width(spacing.extraSmall))
+        Column(
+            modifier = Modifier.semantics(mergeDescendants = true) {},
+        ) {
+            Text(
+                text = stringResource(mainText),
+                style = MaterialTheme.typography.titleMedium,
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.focusable(),
+            )
+            Text(
+                text = stringResource(subtitleText),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier.focusable(),
+            )
+        }
+    }
+}
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
 @Preview
 @Composable
 fun NavigatingPreview() {
     Navigating(onContinue = {})
+}
+
+@Preview(device = "spec:parent=pixel_5,orientation=landscape")
+@Composable
+fun PermissionRationalePreview() {
+    SoundscapeTheme {
+        PermissionRationale(
+            Icons.Rounded.LocationOn,
+            R.string.first_launch_permissions_location,
+            R.string.first_launch_permissions_required,
+        )
+    }
 }
