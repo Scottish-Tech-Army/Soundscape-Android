@@ -98,7 +98,7 @@ fun LanguageComposable(
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.focusable(),
+                modifier = Modifier.focusable()
             )
 
             Spacer(modifier = Modifier.height(spacing.large))
@@ -107,7 +107,6 @@ fun LanguageComposable(
                 allLanguages = supportedLanguages,
                 onLanguageSelected = onLanguageSelected,
                 selectedLanguageIndex = selectedLanguageIndex,
-                modifier = Modifier.focusable(),
             )
 
             Spacer(modifier = Modifier.height(spacing.large))
