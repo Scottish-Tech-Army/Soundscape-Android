@@ -242,16 +242,15 @@ fun Navigating(
                     onClick = { onContinue() },
                     modifier = Modifier
                         .fillMaxWidth()
+                        .focusable()
                         .testTag("navigatingScreenContinueButton"),
                 )
             }
-
-            LaunchedEffect(Unit) {
-                focusRequester.requestFocus()
-            }
         }
     }
-
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+    }
 }
 
 
