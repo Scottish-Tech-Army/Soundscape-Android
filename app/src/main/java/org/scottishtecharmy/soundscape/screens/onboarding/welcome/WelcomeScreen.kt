@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.screens.onboarding.welcome
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,9 +17,12 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
@@ -35,6 +39,8 @@ fun Welcome(
     onNavigate: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val focusRequester = remember { FocusRequester() }
+
     BoxWithGradientBackground(
         color = MaterialTheme.colorScheme.surface
     ) {
@@ -74,14 +80,16 @@ fun Welcome(
                         text = stringResource(R.string.first_launch_welcome_title),
                         style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.onSurface,
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.focusRequester(focusRequester).focusable(),
                     )
                     Spacer(modifier = Modifier.height(spacing.small))
                     Text(
                         text = stringResource(R.string.first_launch_welcome_description),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface,
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.focusable(),
                     )
 
                     Spacer(modifier = Modifier.height(spacing.large))
@@ -92,6 +100,7 @@ fun Welcome(
                             onClick = { onNavigate() },
                             modifier = Modifier
                                 .fillMaxWidth()
+                                .focusable()
                                 .testTag("welcomeScreenContinueButton")
                         )
                     }
