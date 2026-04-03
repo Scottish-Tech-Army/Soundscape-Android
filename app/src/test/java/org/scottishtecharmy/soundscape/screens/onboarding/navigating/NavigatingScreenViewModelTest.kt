@@ -40,4 +40,34 @@ class NavigatingScreenViewModelTest {
         assert(currentState.permissionsStatus[Manifest.permission.ACCESS_FINE_LOCATION] == false)
         assert(currentState.permissionsStatus[Manifest.permission.POST_NOTIFICATIONS] == false)
     }
+
+    @Test
+    fun navigatingScreenViewModel_PermissionGranted_StateUpdatedWithGrantedPermission() {
+        var currentState = viewModel.state.value
+
+        assert(currentState.permissionsStatus.isEmpty())
+
+        viewModel.permissionsRequired(listOf(Manifest.permission.ACCESS_FINE_LOCATION))
+
+        viewModel.onPermissionResult(Manifest.permission.ACCESS_FINE_LOCATION, true)
+
+        currentState = viewModel.state.value
+
+        assert(currentState.permissionsStatus[Manifest.permission.ACCESS_FINE_LOCATION] == true)
+    }
+
+    @Test
+    fun navigatingScreenViewModel_PermissionDenied_StateUpdatedWithDeniedPermission() {
+        var currentState = viewModel.state.value
+
+        assert(currentState.permissionsStatus.isEmpty())
+
+        viewModel.permissionsRequired(listOf(Manifest.permission.ACCESS_FINE_LOCATION))
+
+        viewModel.onPermissionResult(Manifest.permission.ACCESS_FINE_LOCATION, false)
+
+        currentState = viewModel.state.value
+
+        assert(currentState.permissionsStatus[Manifest.permission.ACCESS_FINE_LOCATION] == false)
+    }
 }

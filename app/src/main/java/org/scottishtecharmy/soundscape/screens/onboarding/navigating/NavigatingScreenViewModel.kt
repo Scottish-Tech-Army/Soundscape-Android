@@ -23,9 +23,7 @@ class NavigatingScreenViewModel : ViewModel() {
         val permMap = permSnapshot.toMutableMap()
 
         permissions.forEach {
-            if (!permMap.containsKey(it)) {
-                permMap[it] = false
-            }
+            permMap.putIfAbsent(it, false)
         }
 
         _state.value = _state.value.copy(
