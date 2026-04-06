@@ -88,7 +88,11 @@ class PhotonGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
             val mvt = MvtFeature()
             mvt.properties = feature.properties
             mvt.name = feature.properties?.get("name").toString()
+            mvt.featureType = feature.properties?.get("osm_key").toString()
             mvt.featureClass = feature.properties?.get("osm_value").toString()
+            // Many values of osm_value are unique, but some depend on the contents of osm_key
+            if((mvt.featureType == "highway") && (mvt.featureClass == "residential"))
+                mvt.featureClass = "residential_street"
             feature.toLocationDescription(
                 LocationSource.PhotonGeocoder,
                 featureName = getTextForFeature(localizedContext, mvt)
