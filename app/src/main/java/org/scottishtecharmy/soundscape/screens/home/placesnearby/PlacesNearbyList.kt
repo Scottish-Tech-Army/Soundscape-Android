@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AttachMoney
 import androidx.compose.material.icons.rounded.ControlCamera
@@ -14,21 +15,25 @@ import androidx.compose.material.icons.rounded.LocalGroceryStore
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.FolderItem
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.talkbackHint
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.process
 
@@ -40,34 +45,73 @@ data class Folder(
 )
 
 val placesNearbyFolders = listOf(
-    Folder(R.string.filter_all, Icons.Rounded.ControlCamera, "", R.string.all_places_nearby_description),
-    Folder(R.string.filter_transit, Icons.Rounded.DirectionsBus, "transit", R.string.public_transit_places_nearby_description),
-    Folder(R.string.filter_food_drink, Icons.Rounded.Fastfood, "food_and_drink", R.string.food_drink_places_nearby_description),
-    Folder(R.string.filter_groceries, Icons.Rounded.LocalGroceryStore, "groceries", R.string.groceries_places_nearby_description),
-    Folder(R.string.filter_banks, Icons.Rounded.AttachMoney, "banks", R.string.banks_places_nearby_description),
-    Folder(R.string.osm_intersection, Icons.Rounded.ForkLeft, "intersections", R.string.intersections_places_nearby_description),
+    Folder(
+        R.string.filter_all,
+        Icons.Rounded.ControlCamera,
+        "",
+        R.string.all_places_nearby_description
+    ),
+    Folder(
+        R.string.filter_transit,
+        Icons.Rounded.DirectionsBus,
+        "transit",
+        R.string.public_transit_places_nearby_description
+    ),
+    Folder(
+        R.string.filter_food_drink,
+        Icons.Rounded.Fastfood,
+        "food_and_drink",
+        R.string.food_drink_places_nearby_description
+    ),
+    Folder(
+        R.string.filter_groceries,
+        Icons.Rounded.LocalGroceryStore,
+        "groceries",
+        R.string.groceries_places_nearby_description
+    ),
+    Folder(
+        R.string.filter_banks,
+        Icons.Rounded.AttachMoney,
+        "banks",
+        R.string.banks_places_nearby_description
+    ),
+    Folder(
+        R.string.osm_intersection,
+        Icons.Rounded.ForkLeft,
+        "intersections",
+        R.string.intersections_places_nearby_description
+    ),
 )
 
 @Composable
 fun PlacesNearbyList(
-    uiState: PlacesNearbyUiState,
     navController: NavController,
     onClickFolder: (String, String) -> Unit,
     onStartBeacon: (LocationDescription) -> Unit,
-    modifier: Modifier,
+    userLocation: LngLatAlt?,
+    nearbyIntersections: FeatureCollection,
+    nearbyPlaces: FeatureCollection,
+    filter: String,
+    level: Int,
+    modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
-    val locations = remember(uiState) {
-        filterLocations(uiState, context)
-    }
+    val locations = filterLocations(
+        userLocation = userLocation,
+        nearbyIntersections = nearbyIntersections,
+        nearbyPlaces = nearbyPlaces,
+        filter = filter,
+        context = context
+    )
 
     LazyColumn(
-        modifier = modifier.fillMaxWidth(),
+        state = rememberLazyListState(),
         verticalArrangement = Arrangement.spacedBy(spacing.tiny),
+        modifier = modifier.fillMaxWidth(),
     ) {
-        if(uiState.level  == 0) {
+        if (level == 0) {
             itemsIndexed(placesNearbyFolders) { index, folderItem ->
-                if(index == 0) {
+                if (index == 0) {
                     HorizontalDivider(
                         thickness = spacing.tiny,
                         color = MaterialTheme.colorScheme.outlineVariant
@@ -87,7 +131,7 @@ fun PlacesNearbyList(
             }
         } else {
             itemsIndexed(locations) { index, locationDescription ->
-                if(index == 0) {
+                if (index == 0) {
                     HorizontalDivider(
                         thickness = spacing.tiny,
                         color = MaterialTheme.colorScheme.outlineVariant
@@ -112,10 +156,27 @@ fun PlacesNearbyList(
                             hint = stringResource(R.string.location_detail_action_beacon_hint)
                         ),
                     ),
-                    userLocation = uiState.userLocation,
+                    userLocation = userLocation,
                     modifier = Modifier.testTag("placesNearby-$index")
                 )
             }
         }
+    }
+}
+
+@Preview
+@Composable
+private fun PlacesNearbyListPreview() {
+    SoundscapeTheme {
+        PlacesNearbyList(
+            navController = rememberNavController(),
+            onClickFolder = { _: String, _: String -> },
+            onStartBeacon = {},
+            userLocation = LngLatAlt(),
+            nearbyIntersections = FeatureCollection(),
+            nearbyPlaces = FeatureCollection(),
+            filter = "",
+            level = 0,
+        )
     }
 }

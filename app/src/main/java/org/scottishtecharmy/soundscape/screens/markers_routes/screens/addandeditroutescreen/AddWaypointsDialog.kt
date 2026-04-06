@@ -14,17 +14,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SaveAndEditMarkerDialog
-import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.TextOnlyAppBar
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 
 @Composable
 fun AddWaypointsDialog(
     uiState: AddAndEditRouteUiState,
-    placesNearbyUiState: PlacesNearbyUiState,
     modifier: Modifier,
     onAddWaypointComplete: () -> Unit,
     onClickFolder: (String, String) -> Unit,
@@ -35,8 +34,13 @@ fun AddWaypointsDialog(
     userLocation: LngLatAlt?,
     getCurrentLocationDescription: () -> LocationDescription,
     heading: Float,
+    level: Int,
+    markerDescription: LocationDescription?,
+    nearbyIntersections: FeatureCollection,
+    nearbyPlaces: FeatureCollection,
 ) {
     val saveMarkerDialog = remember { mutableStateOf(false) }
+    val level = level
 
     Column(
         modifier = modifier
@@ -47,8 +51,8 @@ fun AddWaypointsDialog(
     ) {
         if (saveMarkerDialog.value) {
             SaveAndEditMarkerDialog(
-                locationDescription = placesNearbyUiState.markerDescription!!,
-                location = placesNearbyUiState.userLocation,
+                locationDescription = markerDescription!!,
+                location = userLocation,
                 heading = heading,
                 saveMarker = { description, success, failure, duplicate ->
                     createAndAddMarker(description, success, failure, duplicate)
@@ -75,7 +79,6 @@ fun AddWaypointsDialog(
             // Display the list of routes
             AddWaypointsList(
                 uiState = uiState,
-                placesNearbyUiState = placesNearbyUiState,
                 onClickFolder = onClickFolder,
                 onSelectLocation = { location ->
                     saveMarkerDialog.value = true
@@ -83,7 +86,11 @@ fun AddWaypointsDialog(
                 },
                 onToggleMember = onToggleMember,
                 userLocation = userLocation,
-                getCurrentLocationDescription = getCurrentLocationDescription
+                getCurrentLocationDescription = getCurrentLocationDescription,
+                level = level,
+                filter = "",
+                nearbyIntersections = nearbyIntersections,
+                nearbyPlaces = nearbyPlaces,
             )
         }
     }
@@ -96,39 +103,94 @@ fun AddWaypointsScreenPopulatedPreview() {
         uiState =
             AddAndEditRouteUiState(
                 routeMembers =
-                mutableListOf(
-                    LocationDescription(name = "Waypoint 1", location = LngLatAlt(), databaseId = 1L),
-                    LocationDescription(name = "Waypoint 3", location = LngLatAlt(), databaseId = 3L),
-                    LocationDescription(name = "Waypoint 4", location = LngLatAlt(), databaseId = 4L),
-                ),
+                    mutableListOf(
+                        LocationDescription(
+                            name = "Waypoint 1",
+                            location = LngLatAlt(),
+                            databaseId = 1L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 3",
+                            location = LngLatAlt(),
+                            databaseId = 3L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 4",
+                            location = LngLatAlt(),
+                            databaseId = 4L
+                        ),
+                    ),
                 markers =
-                mutableListOf(
-                    LocationDescription(name = "Waypoint 1", location = LngLatAlt(), databaseId = 1L),
-                    LocationDescription(name = "Waypoint 2", location = LngLatAlt(), databaseId = 2L),
-                    LocationDescription(name = "Waypoint 3", location = LngLatAlt(), databaseId = 3L),
-                    LocationDescription(name = "Waypoint 4", location = LngLatAlt(), databaseId = 4L),
-                    LocationDescription(name = "Waypoint 5", location = LngLatAlt(), databaseId = 5L),
-                    LocationDescription(name = "Waypoint 6", location = LngLatAlt(), databaseId = 6L),
-                    LocationDescription(name = "Waypoint 7", location = LngLatAlt(), databaseId = 7L),
-                    LocationDescription(name = "Waypoint 8", location = LngLatAlt(), databaseId = 8L),
-                ),
+                    mutableListOf(
+                        LocationDescription(
+                            name = "Waypoint 1",
+                            location = LngLatAlt(),
+                            databaseId = 1L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 2",
+                            location = LngLatAlt(),
+                            databaseId = 2L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 3",
+                            location = LngLatAlt(),
+                            databaseId = 3L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 4",
+                            location = LngLatAlt(),
+                            databaseId = 4L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 5",
+                            location = LngLatAlt(),
+                            databaseId = 5L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 6",
+                            location = LngLatAlt(),
+                            databaseId = 6L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 7",
+                            location = LngLatAlt(),
+                            databaseId = 7L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 8",
+                            location = LngLatAlt(),
+                            databaseId = 8L
+                        ),
+                    ),
                 toggledMembers =
-                listOf(
-                    LocationDescription(name = "Waypoint 3", location = LngLatAlt(), databaseId = 3L),
-                    LocationDescription(name = "Waypoint 7", location = LngLatAlt(), databaseId = 7L),
-                )
+                    listOf(
+                        LocationDescription(
+                            name = "Waypoint 3",
+                            location = LngLatAlt(),
+                            databaseId = 3L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 7",
+                            location = LngLatAlt(),
+                            databaseId = 7L
+                        ),
+                    )
             ),
-        placesNearbyUiState = PlacesNearbyUiState(),
         modifier = Modifier,
         onAddWaypointComplete = { },
-        onClickFolder = {_,_ -> },
+        onClickFolder = { _, _ -> },
         onClickBack = {},
-        onSelectLocation = {_ -> },
-        onToggleMember = {_ -> },
-        createAndAddMarker = {_,_,_,_-> },
+        onSelectLocation = { _ -> },
+        onToggleMember = { _ -> },
+        createAndAddMarker = { _, _, _, _ -> },
         userLocation = LngLatAlt(),
         heading = 45.0F,
         getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
+        level = 0,
+        markerDescription = LocationDescription("Location", LngLatAlt()),
+        nearbyIntersections = FeatureCollection(),
+        nearbyPlaces = FeatureCollection(),
     )
 }
 
@@ -137,16 +199,19 @@ fun AddWaypointsScreenPopulatedPreview() {
 fun AddWaypointsScreenPreview() {
     AddWaypointsDialog(
         uiState = AddAndEditRouteUiState(),
-        placesNearbyUiState = PlacesNearbyUiState(),
         modifier = Modifier,
         onAddWaypointComplete = {},
-        onClickFolder = {_,_ -> },
+        onClickFolder = { _, _ -> },
         onClickBack = {},
-        onSelectLocation = {_ -> },
-        onToggleMember = {_ -> },
-        createAndAddMarker = {_,_,_,_ -> },
+        onSelectLocation = { _ -> },
+        onToggleMember = { _ -> },
+        createAndAddMarker = { _, _, _, _ -> },
         userLocation = null,
         heading = 45.0F,
         getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
+        level = 0,
+        markerDescription = LocationDescription("Location", LngLatAlt()),
+        nearbyIntersections = FeatureCollection(),
+        nearbyPlaces = FeatureCollection(),
     )
 }

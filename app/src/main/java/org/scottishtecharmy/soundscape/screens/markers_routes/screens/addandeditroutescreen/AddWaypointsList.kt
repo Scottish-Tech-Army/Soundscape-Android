@@ -25,40 +25,45 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.EnabledFunction
+import org.scottishtecharmy.soundscape.components.FolderItem
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import org.scottishtecharmy.soundscape.ui.theme.spacing
-import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.components.FolderItem
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.Folder
-import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.filterLocations
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.placesNearbyFolders
 import org.scottishtecharmy.soundscape.screens.talkbackHint
+import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.process
 
 @Composable
 fun AddWaypointsList(
     uiState: AddAndEditRouteUiState,
-    placesNearbyUiState: PlacesNearbyUiState,
     onClickFolder: (String, String) -> Unit,
     userLocation: LngLatAlt?,
     onSelectLocation: (LocationDescription) -> Unit,
     onToggleMember: (LocationDescription) -> Unit,
-    getCurrentLocationDescription: () -> LocationDescription
+    getCurrentLocationDescription: () -> LocationDescription,
+    modifier: Modifier = Modifier,
+    level: Int = 0,
+    filter: String,
+    nearbyIntersections: FeatureCollection,
+    nearbyPlaces: FeatureCollection,
 ) {
     // Create our list of locations, with those already in the route first
     val locations = remember(uiState.routeMembers, uiState.markers) {
@@ -70,19 +75,23 @@ fun AddWaypointsList(
                         routeMember.databaseId == marker.databaseId
                     }
                 }
-            )
-        }
+                )
+            }
     }
     // Set the switches for those in the route to true, keyed by databaseId
     val routeMemberState = remember(uiState.routeMembers, uiState.markers, uiState.toggledMembers) {
         mutableStateMapOf<Long?, Boolean>().apply {
             // Markers not in route: true if toggled in
             uiState.markers.forEach { marker ->
-                put(marker.databaseId, uiState.toggledMembers.any { it.databaseId == marker.databaseId })
+                put(
+                    marker.databaseId,
+                    uiState.toggledMembers.any { it.databaseId == marker.databaseId })
             }
             // Route members: true unless toggled out
             uiState.routeMembers.forEach { member ->
-                put(member.databaseId, !uiState.toggledMembers.any { it.databaseId == member.databaseId })
+                put(
+                    member.databaseId,
+                    !uiState.toggledMembers.any { it.databaseId == member.databaseId })
             }
         }
     }
@@ -91,12 +100,23 @@ fun AddWaypointsList(
 
     // Add PlacesNearby entries
     val levelZeroFolders = listOf(
-        Folder(R.string.search_nearby_screen_title, Icons.Rounded.LocationSearching, "", R.string.places_nearby_selection_description),
+        Folder(
+            R.string.search_nearby_screen_title,
+            Icons.Rounded.LocationSearching,
+            "",
+            R.string.places_nearby_selection_description
+        ),
     )
     val levelOneFolders = placesNearbyFolders
     val context = LocalContext.current
-    val nearbyLocations = remember(placesNearbyUiState) {
-        filterLocations(placesNearbyUiState, context)
+    val nearbyLocations = remember(1) {
+        filterLocations(
+            userLocation = userLocation,
+            filter = filter,
+            nearbyIntersections = nearbyIntersections,
+            nearbyPlaces = nearbyPlaces,
+            context = context
+        )
     }
     val coroutineScope = rememberCoroutineScope()
     var fetchingLocation by remember { mutableStateOf(false) }
@@ -105,12 +125,12 @@ fun AddWaypointsList(
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(spacing.tiny),
     ) {
-        val folders = when (placesNearbyUiState.level) {
+        val folders = when (level) {
             0 -> levelZeroFolders
             1 -> levelOneFolders
             else -> emptyList()
         }
-        if (placesNearbyUiState.level <= 1) {
+        if (level <= 1) {
             itemsIndexed(folders) { index, folderItem ->
                 if (index == 0) {
                     HorizontalDivider(
@@ -149,18 +169,18 @@ fun AddWaypointsList(
                             }
                         )
                     ),
-                    userLocation = placesNearbyUiState.userLocation
+                    userLocation = userLocation
                 )
             }
         }
 
-        if (placesNearbyUiState.level == 0) {
+        if (level == 0) {
             userLocation?.let { currentLocation ->
                 items(1) {
                     if (fetchingLocation) {
                         var announceLoading by remember { mutableStateOf(false) }
                         LaunchedEffect(Unit) {
-                            kotlinx.coroutines.delay(1500)
+                            delay(1500)
                             announceLoading = true
                         }
                         Box(
@@ -170,7 +190,8 @@ fun AddWaypointsList(
                                 .defaultMinSize(minHeight = 48.dp)
                                 .then(
                                     if (announceLoading) Modifier.semantics {
-                                        contentDescription = context.getString(R.string.general_loading_start)
+                                        contentDescription =
+                                            context.getString(R.string.general_loading_start)
                                         liveRegion = LiveRegionMode.Polite
                                     } else Modifier
                                 )
@@ -238,32 +259,87 @@ fun AddWaypointsListPreview() {
             AddAndEditRouteUiState(
                 routeMembers =
                     mutableListOf(
-                        LocationDescription(name = "Waypoint 1", location = LngLatAlt(), databaseId = 1L),
-                        LocationDescription(name = "Waypoint 2", location = LngLatAlt(), databaseId = 2L),
-                        LocationDescription(name = "Waypoint 3", location = LngLatAlt(), databaseId = 3L),
+                        LocationDescription(
+                            name = "Waypoint 1",
+                            location = LngLatAlt(),
+                            databaseId = 1L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 2",
+                            location = LngLatAlt(),
+                            databaseId = 2L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 3",
+                            location = LngLatAlt(),
+                            databaseId = 3L
+                        ),
                     ),
                 markers =
                     mutableListOf(
-                        LocationDescription(name = "Waypoint 1", location = LngLatAlt(), databaseId = 1L),
-                        LocationDescription(name = "Waypoint 2", location = LngLatAlt(), databaseId = 2L),
-                        LocationDescription(name = "Waypoint 3", location = LngLatAlt(), databaseId = 3L),
-                        LocationDescription(name = "Waypoint 4", location = LngLatAlt(), databaseId = 4L),
-                        LocationDescription(name = "Waypoint 5", location = LngLatAlt(), databaseId = 5L),
-                        LocationDescription(name = "Waypoint 6", location = LngLatAlt(), databaseId = 6L),
-                        LocationDescription(name = "Waypoint 7", location = LngLatAlt(), databaseId = 7L),
-                        LocationDescription(name = "Waypoint 8", location = LngLatAlt(), databaseId = 8L),
+                        LocationDescription(
+                            name = "Waypoint 1",
+                            location = LngLatAlt(),
+                            databaseId = 1L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 2",
+                            location = LngLatAlt(),
+                            databaseId = 2L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 3",
+                            location = LngLatAlt(),
+                            databaseId = 3L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 4",
+                            location = LngLatAlt(),
+                            databaseId = 4L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 5",
+                            location = LngLatAlt(),
+                            databaseId = 5L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 6",
+                            location = LngLatAlt(),
+                            databaseId = 6L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 7",
+                            location = LngLatAlt(),
+                            databaseId = 7L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 8",
+                            location = LngLatAlt(),
+                            databaseId = 8L
+                        ),
                     ),
                 toggledMembers =
                     listOf(
-                        LocationDescription(name = "Waypoint 2", location = LngLatAlt(), databaseId = 2L),
-                        LocationDescription(name = "Waypoint 5", location = LngLatAlt(), databaseId = 5L),
+                        LocationDescription(
+                            name = "Waypoint 2",
+                            location = LngLatAlt(),
+                            databaseId = 2L
+                        ),
+                        LocationDescription(
+                            name = "Waypoint 5",
+                            location = LngLatAlt(),
+                            databaseId = 5L
+                        ),
                     )
             ),
-        placesNearbyUiState = PlacesNearbyUiState(),
-        onClickFolder = {_,_ -> },
-        onSelectLocation = {_ -> },
-        onToggleMember = {_ -> },
+        onClickFolder = { _, _ -> },
+        onSelectLocation = { _ -> },
+        onToggleMember = { _ -> },
         userLocation = LngLatAlt(),
         getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
+        level = 0,
+        filter = "",
+        nearbyIntersections = FeatureCollection(),
+        nearbyPlaces = FeatureCollection(),
     )
 }

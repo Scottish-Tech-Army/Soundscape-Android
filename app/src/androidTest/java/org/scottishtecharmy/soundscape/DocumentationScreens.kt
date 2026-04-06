@@ -11,13 +11,13 @@ import androidx.navigation.NavController
 import androidx.preference.PreferenceManager
 import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.flow.MutableStateFlow
-import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.junit.Rule
 import org.junit.Test
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ACCESSIBLE_MAP_KEY
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.BottomButtonFunctions
 import org.scottishtecharmy.soundscape.screens.home.RouteFunctions
@@ -27,12 +27,12 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.Home
 import org.scottishtecharmy.soundscape.screens.home.home.SectionType
 import org.scottishtecharmy.soundscape.screens.home.home.helpPages
-import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RouteDetailsScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RouteDetailsUiState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
+import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.utils.processMaps
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 import java.io.File
@@ -96,7 +96,8 @@ class DocumentationScreens {
 
     private fun runScreenTest(
         screenshotFileName: String,
-        testCode: @Composable () -> Unit) {
+        testCode: @Composable () -> Unit
+    ) {
 
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
 
@@ -121,7 +122,7 @@ class DocumentationScreens {
     }
 
     @Test
-    fun homeScreen(){
+    fun homeScreen() {
 
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
 
@@ -138,7 +139,7 @@ class DocumentationScreens {
                     ),
                 onNavigate = {},
                 preferences = sharedPreferences,
-                onMapLongClick = { false},
+                onMapLongClick = { false },
                 bottomButtonFunctions = BottomButtonFunctions(null),
                 getCurrentLocationDescription = {
                     LocationDescription(
@@ -161,7 +162,7 @@ class DocumentationScreens {
     }
 
     @Test
-    fun homeScreenWithRoute(){
+    fun homeScreenWithRoute() {
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
 
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(targetContext)
@@ -182,7 +183,7 @@ class DocumentationScreens {
                 ),
                 onNavigate = {},
                 preferences = sharedPreferences,
-                onMapLongClick = { false},
+                onMapLongClick = { false },
                 bottomButtonFunctions = BottomButtonFunctions(null),
                 getCurrentLocationDescription = {
                     LocationDescription(
@@ -205,7 +206,7 @@ class DocumentationScreens {
     }
 
     @Test
-    fun routeDetailsScreen(){
+    fun routeDetailsScreen() {
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
 
         runScreenTest("routeDetails") {
@@ -231,6 +232,7 @@ class DocumentationScreens {
             )
         }
     }
+
     @Test
     fun editScreen() {
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
@@ -259,7 +261,6 @@ class DocumentationScreens {
                 navController = NavController(targetContext),
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
                 uiState = uiState,
-                placesNearbyUiState = PlacesNearbyUiState(),
                 editRoute = true,
                 userLocation = location,
                 heading = 45.0f,
@@ -280,6 +281,9 @@ class DocumentationScreens {
                     )
                 },
                 onToggleMember = {},
+                level = 0,
+                nearbyIntersections = FeatureCollection(),
+                nearbyPlaces = FeatureCollection(),
             )
         }
     }
@@ -299,7 +303,7 @@ class DocumentationScreens {
 
         for (page in helpPages) {
 
-            if(page.titleId == R.string.menu_help)
+            if (page.titleId == R.string.menu_help)
                 continue
             val pageTitle = targetContext.getString(page.titleId)
 
@@ -314,7 +318,7 @@ class DocumentationScreens {
             markdownOutput.append("# ")
             markdownOutput.append(pageTitle)
             markdownOutput.append("\n")
-            for(section in page.sections) {
+            for (section in page.sections) {
                 when (section.type) {
                     SectionType.Faq -> {
                         markdownOutput.append("\n")
@@ -323,11 +327,13 @@ class DocumentationScreens {
                         markdownOutput.append("\n")
                         markdownOutput.append(targetContext.getString(section.faqAnswer))
                     }
+
                     SectionType.Title -> {
                         markdownOutput.append("\n")
                         markdownOutput.append("## ")
                         markdownOutput.append(targetContext.getString(section.textId))
                     }
+
                     else -> {
                         markdownOutput.append("\n")
                         markdownOutput.append(targetContext.getString(section.textId))
