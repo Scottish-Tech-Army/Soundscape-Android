@@ -27,6 +27,7 @@ class ResourceMapper {
                 put("road", R.string.osm_road)
                 put("primary", R.string.osm_road)
                 put("secondary", R.string.osm_road)
+                put("tertiary", R.string.osm_road)
                 put("highway", R.string.osm_highway)
                 put("highway_named", R.string.osm_highway_named)
                 put("highway_refed", R.string.osm_highway_refed)
