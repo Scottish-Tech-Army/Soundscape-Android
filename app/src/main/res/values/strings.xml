@@ -462,6 +462,8 @@
 <string name="directions_cardinal_west_abb">"W"</string>
 <!-- Direction, Abbreviation for North West -->
 <string name="directions_cardinal_north_west_abb">"NW"</string>
+<!-- Standing still with no direction. %s is a road name -->
+<string name="stationary_on_way">"Stationary on %s"</string>
 <!-- Preserve meters unit - Do not convert but can translate. Distance string, plural. %s is a plural number, "15 meters" -->
 <string name="distance_format_meters">"%s meters"</string>
 <!-- Preserve km unit - Do not convert but can translate abbreviation of kilometer. Distance string. %s is a number, "15 km" -->

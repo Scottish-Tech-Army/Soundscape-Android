@@ -74,6 +74,18 @@ class MultiGeocoder(applicationContext: Context,
     override suspend fun getAddressFromLngLat(userGeometry: UserGeometry,
                                               localizedContext: Context?,
                                               ignoreHouseNumbers: Boolean) : LocationDescription? {
-        return pickGeocoder()?.getAddressFromLngLat(userGeometry, localizedContext, ignoreHouseNumbers)
+        val firstGeocoder = pickGeocoder()
+        var results = firstGeocoder?.getAddressFromLngLat(userGeometry, localizedContext, ignoreHouseNumbers)
+        if(results == null) {
+            // Fallback to using local geocoder if that's not what we just used
+            if(firstGeocoder != localGeocoder) {
+                results = localGeocoder.getAddressFromLngLat(
+                    userGeometry,
+                    localizedContext,
+                    ignoreHouseNumbers
+                )
+            }
+        }
+        return results
     }
 }
