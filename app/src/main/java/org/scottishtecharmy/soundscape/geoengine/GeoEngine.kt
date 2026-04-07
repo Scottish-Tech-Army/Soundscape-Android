@@ -527,21 +527,21 @@ class GeoEngine {
         } else {
             // Check if we have a valid heading
             val orientation = userGeometry.heading()
-            orientation?.let { heading ->
-                // Run the code within the treeContext to protect it from changes to the trees whilst it's
-                // running.
-                results = runBlocking {
-                    withContext(gridState.treeContext) {
+            // Run the code within the treeContext to protect it from changes to the trees whilst it's
+            // running.
+            results = runBlocking {
+                withContext(gridState.treeContext) {
 
-                        val list: MutableList<PositionedString> = mutableListOf()
+                    val list: MutableList<PositionedString> = mutableListOf()
 
-                        val ld = geocoder.getAddressFromLngLat(userGeometry, localizedContext, false)
-                        if (ld != null) {
-                            // We've got an address to call out
+                    val ld = geocoder.getAddressFromLngLat(userGeometry, localizedContext, false)
+                    if (ld != null) {
+                        // We've got an address to call out - this should almost always be the case.
+                        if(orientation != null) {
                             val facingDirection =
                                 getCompassLabelFacingDirection(
                                     localizedContext,
-                                    heading.toInt(),
+                                    orientation.toInt(),
                                     userGeometry.inMotion(),
                                     userGeometry.inVehicle()
                                 )
@@ -551,22 +551,24 @@ class GeoEngine {
                                     type = AudioType.STANDARD
                                 )
                             )
-                            list.add(
-                                PositionedString(
-                                    text = ld.name,
-                                    type = AudioType.STANDARD
-                                )
+                        }
+                        list.add(
+                            PositionedString(
+                                text = ld.name,
+                                type = AudioType.STANDARD
                             )
-                            list
-                        } else {
-                            val nearestRoad = userGeometry.mapMatchedWay
-                            if (nearestRoad != null) {
-                                val roadName =
-                                    nearestRoad.getName(null, gridState, localizedContext)
+                        )
+                        list
+                    } else {
+                        val nearestRoad = userGeometry.mapMatchedWay
+                        val roadName =
+                            nearestRoad?.getName(null, gridState, localizedContext)
+                        if(orientation != null) {
+                            if (roadName != null) {
                                 val facingDirectionAlongRoad =
                                     getCompassLabelFacingDirectionAlong(
                                         localizedContext,
-                                        heading.toInt(),
+                                        orientation.toInt(),
                                         roadName,
                                         userGeometry.inMotion(),
                                         userGeometry.inVehicle()
@@ -581,7 +583,7 @@ class GeoEngine {
                                 val facingDirection =
                                     getCompassLabelFacingDirection(
                                         localizedContext,
-                                        heading.toInt(),
+                                        orientation.toInt(),
                                         userGeometry.inMotion(),
                                         userGeometry.inVehicle()
                                     )
@@ -592,8 +594,24 @@ class GeoEngine {
                                     )
                                 )
                             }
-                            list
+                        } else {
+                            if (roadName != null) {
+                                list.add(
+                                    PositionedString(
+                                        text = localizedContext.getString(R.string.stationary_on_way, roadName),
+                                        type = AudioType.STANDARD
+                                    )
+                                )
+                            } else {
+                                list.add(
+                                    PositionedString(
+                                        text = localizedContext.getString(R.string.general_error_location_services_find_location_error),
+                                        type = AudioType.STANDARD
+                                    )
+                                )
+                            }
                         }
+                        list
                     }
                 }
             }
