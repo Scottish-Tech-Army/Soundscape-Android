@@ -6,6 +6,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -41,6 +42,7 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
@@ -53,8 +55,11 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 fun NavigatingScreen(
     onNavigate: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: PermissionsViewModel = viewModel()
+    viewModel: PermissionsViewModel = viewModel(),
+    vm: NavigatingScreenViewModel = viewModel(),
 ) {
+    val uiState = vm.state.collectAsStateWithLifecycle()
+
     val permissionsToRequest: Array<String> =
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             arrayOf(
@@ -70,6 +75,9 @@ fun NavigatingScreen(
                 Manifest.permission.RECORD_AUDIO
             )
         }
+
+    vm.permissionsRequired(permissionsToRequest.asList())
+
     val multiplePermissionResultLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions(),
         onResult = { perms ->
@@ -86,13 +94,59 @@ fun NavigatingScreen(
             multiplePermissionResultLauncher.launch(permissionsToRequest)
             onNavigate()
         },
+        uiState.value.permissionsStatus,
         modifier = modifier,
     )
+}
+
+data class PermissionRationaleUi(
+    val icon: ImageVector,
+    @StringRes val mainText: Int,
+    @StringRes val subtitleText: Int,
+)
+
+fun manifestPermissionToPermissionRationaleUi(perm: String): PermissionRationaleUi {
+    return when (perm) {
+        Manifest.permission.ACCESS_FINE_LOCATION -> {
+            PermissionRationaleUi(
+                Icons.Rounded.LocationOn,
+                R.string.first_launch_permissions_location,
+                R.string.first_launch_permissions_required,
+            )
+        }
+
+        Manifest.permission.ACCESS_BACKGROUND_LOCATION -> {
+            PermissionRationaleUi(
+                Icons.Rounded.LocationOn,
+                R.string.first_launch_permissions_location,
+                R.string.first_launch_permissions_required,
+            )
+        }
+
+        Manifest.permission.POST_NOTIFICATIONS -> {
+            PermissionRationaleUi(
+                Icons.Rounded.Notifications,
+                R.string.first_launch_permissions_notification,
+                R.string.first_launch_permissions_required,
+            )
+        }
+
+        Manifest.permission.RECORD_AUDIO -> {
+            PermissionRationaleUi(
+                Icons.Rounded.Mic,
+                R.string.first_launch_permissions_record_audio,
+                R.string.first_launch_permissions_required_for_voice_control,
+            )
+        }
+
+        else -> throw UnsupportedOperationException("Unknown permission: $perm")
+    }
 }
 
 @Composable
 fun Navigating(
     onContinue: () -> Unit,
+    permissionsStatus: Map<String, Boolean>,
     modifier: Modifier = Modifier
 ) {
     val focusRequester = remember { FocusRequester() }
@@ -141,29 +195,27 @@ fun Navigating(
                     .background(MaterialTheme.colorScheme.surfaceContainer)
             )
             {
-                PermissionRationale(
-                    Icons.Rounded.LocationOn,
-                    R.string.first_launch_permissions_location,
-                    R.string.first_launch_permissions_required,
-                )
-                // check Android version here to show row or not
-                if (Build.VERSION.SDK_INT >= 33) {
+                permissionsStatus.map {
+                    manifestPermissionToPermissionRationaleUi(it.key)
+                }.forEach {
                     PermissionRationale(
-                        Icons.Rounded.Notifications,
-                        R.string.first_launch_permissions_notification,
-                        R.string.first_launch_permissions_required,
+                        it.icon,
+                        it.mainText,
+                        it.subtitleText,
+                        {
+                            // TODO - Request permission
+                        }
                     )
                 }
-                PermissionRationale(
-                    Icons.Rounded.Mic,
-                    R.string.first_launch_permissions_record_audio,
-                    R.string.first_launch_permissions_required_for_voice_control,
-                )
             }
 
             Spacer(modifier = Modifier.height(spacing.large))
 
-            Column(modifier = Modifier.padding(horizontal = spacing.medium).focusable(false)) {
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = spacing.medium)
+                    .focusable(false)
+            ) {
                 OnboardButton(
                     text = stringResource(R.string.ui_continue),
                     // just bodging this at the moment as having problems with rationales
@@ -187,6 +239,7 @@ fun PermissionRationale(
     icon: ImageVector,
     @StringRes mainText: Int,
     @StringRes subtitleText: Int,
+    onCLick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -202,7 +255,9 @@ fun PermissionRationale(
         )
         Spacer(modifier = Modifier.width(spacing.extraSmall))
         Column(
-            modifier = Modifier.semantics(mergeDescendants = true) {},
+            modifier = Modifier
+                .semantics(mergeDescendants = true) {}
+                .clickable(onClick = onCLick),
         ) {
             Text(
                 text = stringResource(mainText),
@@ -224,7 +279,7 @@ fun PermissionRationale(
 @Preview
 @Composable
 fun NavigatingPreview() {
-    Navigating(onContinue = {})
+    Navigating(onContinue = {}, permissionsStatus = emptyMap())
 }
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
@@ -235,6 +290,7 @@ fun PermissionRationalePreview() {
             Icons.Rounded.LocationOn,
             R.string.first_launch_permissions_location,
             R.string.first_launch_permissions_required,
+            {}
         )
     }
 }
