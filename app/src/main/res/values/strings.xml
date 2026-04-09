@@ -197,7 +197,7 @@
 <!-- Alert action to save as marker -->
 <string name="universal_links_alert_action_marker">"Save as Marker"</string>
 <!-- Message to display alongside a URL that can be used to import a marker. Quotes written as \" -->
-<string name="universal_links_marker_share_message">"I've shared a Soundscape marker with you! *\"%s\"*"</string>
+<string name="universal_links_marker_share_message">"I\'ve shared a Soundscape marker with you: \"%1$s\".\n\nTo open in Soundscape use %2$s.\n\n To open in Google Maps use %3$s."</string>
 <!-- Title for button to save the location from the location details page as a marker. -->
 <string name="user_activity_save_marker_title">"Save Marker"</string>
 <!-- Title of the option for displaying a the user's list of saved routes -->

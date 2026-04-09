@@ -102,11 +102,21 @@ class LocationDetailsViewModel @Inject constructor(
             Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TITLE, locationDescription.name)
-                val latitude = location.latitude
-                val longitude = location.longitude
-                val uriData: String =
-                    URLEncoder.encode("$latitude,$longitude", Charsets.UTF_8.name())
-                putExtra(Intent.EXTRA_TEXT, "${message.format(locationDescription.name)}:\n geo://$uriData")
+                val latitude = "%.5f".format(location.latitude)
+                val longitude = "%.5f".format(location.longitude)
+
+                val soundscapeUrl =
+                    "https://links.soundscape.scottishtecharmy.org/v1/sharemarker?" +
+                    "lat=$latitude&lon=$longitude&name=${URLEncoder.encode(locationDescription.name, Charsets.UTF_8.name())}"
+                val googleMapsUrl =
+                    "https://www.google.com/maps/?q=$latitude,$longitude"
+                putExtra(Intent.EXTRA_TEXT,
+                    message.format(
+                        locationDescription.name,
+                        soundscapeUrl,
+                        googleMapsUrl
+                    )
+                )
                 type = "text/plain"
             }
 

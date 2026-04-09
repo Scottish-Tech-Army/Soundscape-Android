@@ -9,7 +9,9 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> <!-- For Android 9 (API level 28) and earlier -->
-    <uses-permission android:name="android.permission.BROADCAST_CLOSE_SYSTEM_DIALOGS" tools:ignore="ProtectedPermissions"/>
+    <uses-permission
+        android:name="android.permission.BROADCAST_CLOSE_SYSTEM_DIALOGS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -18,6 +20,7 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+
     <application
         android:name=".SoundscapeApplication"
         android:allowBackup="true"
@@ -48,63 +51,62 @@
 
             <intent-filter>
                 <!-- Handle sharing of Google Maps URLs for beacons -->
-                <action android:name="android.intent.action.SEND"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="text/*" />
             </intent-filter>
 
             <intent-filter>
                 <!-- intents to load route from GPX file -->
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="content"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="content" />
                 <data android:mimeType="application/octet-stream" />
             </intent-filter>
 
             <intent-filter>
                 <!-- intents to load route from JSON file -->
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="content"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="content" />
                 <data android:mimeType="application/json" />
             </intent-filter>
 
             <intent-filter>
                 <!-- geo intents to set a beacon -->
                 <data android:scheme="geo" />
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
 
             <intent-filter>
                 <!-- soundscape intents to set a street preview location -->
                 <data android:scheme="soundscape" />
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.app.shortcuts"
                 android:resource="@xml/shortcuts" />
-
-            <!--
-            Once we have share.soundscape.services (or similar) server set up, then we can uncomment
-            this and test deep linking. This is so that iOS shared markers such as:
-                https://share.soundscape.services/v1/sharemarker?nickname=Anderson%20Strathearn&name=&lat=55.9478065&lon=-3.2086401
-            can be supported. It will need some additional parsing in SoundscapeIntents.
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https"
-                    android:host="share.soundscape.services"
+                    android:host="links.soundscape.scottishtecharmy.org"
                     android:pathPrefix="/v1/sharemarker" />
             </intent-filter>
-            -->
         </activity>
 
         <service
@@ -115,7 +117,7 @@
             android:foregroundServiceType="location|mediaPlayback|microphone"
             android:permission="android.permission.FOREGROUND_SERVICE_LOCATION">
             <intent-filter>
-                <action android:name="androidx.media3.session.MediaSessionService"/>
+                <action android:name="androidx.media3.session.MediaSessionService" />
             </intent-filter>
         </service>
         <service
@@ -126,6 +128,7 @@
                 android:name="autoStoreLocales"
                 android:value="true" />
         </service>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="org.scottishtecharmy.soundscape.provider"
@@ -137,7 +140,9 @@
         </provider>
 
         <!-- Disable screen_view events in Firebase -->
-        <meta-data android:name="google_analytics_automatic_screen_reporting_enabled" android:value="false" />
+        <meta-data
+            android:name="google_analytics_automatic_screen_reporting_enabled"
+            android:value="false" />
 
         <!-- Disable Firebase auto-initialization at app startup -->
         <provider
