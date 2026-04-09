@@ -28,7 +28,6 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLDecoder
-import java.net.URLEncoder
 import javax.inject.Inject
 
 
@@ -157,9 +156,9 @@ class SoundscapeIntents
          geo: These come from clicking on a location in another app e.g. Google Calendar. It
          contains a latitude and longitude and an optional text description.
 
-         soundscape: This is our own format and we can do what we want with it. Initially it was
-         the same format as geo but put the app into 'Street Preview' mode with the user
-         positioned at the location provided.
+         soundscape: This is our own format, and we can do what we want with it. It can be in the
+         same format as geo: but forces opening with Soundscape rather than the app associated with
+         the geo: URL.
 
          shared plain/text : If a user selects 'share' in Google Maps and Soundscape as the
          destination app, then we receive a Google Maps URL via this type of intent. To use it
@@ -196,22 +195,23 @@ class SoundscapeIntents
                 }
 
                 else -> {
-                    val uriData: String =
-                        URLDecoder.decode(intent.data.toString(), Charsets.UTF_8.name())
+                    val uri = intent.data ?: return
+                    val scheme = uri.scheme
+                    val path = uri.path
 
                     // Check for soundscape://feature/{name} intent to open a feature screen
-                    val featureRegex = Regex("soundscape://feature/(routes|markers)")
-                    val featureMatch = featureRegex.find(uriData)
-                    if (featureMatch != null) {
-                        val feature = featureMatch.groupValues[1]
-                        Log.d(TAG, "Opening feature from intent: $feature")
-                        Analytics.getInstance().logEvent("intentOpenFeature", null)
-                        navigator.navigate("${HomeRoutes.MarkersAndRoutes.route}?tab=$feature")
+                    if (scheme == "soundscape" && uri.host == "feature") {
+                        val feature = path?.removePrefix("/")
+                        if (feature == "routes" || feature == "markers") {
+                            Log.d(TAG, "Opening feature from intent: $feature")
+                            Analytics.getInstance().logEvent("intentOpenFeature", null)
+                            navigator.navigate("${HomeRoutes.MarkersAndRoutes.route}?tab=$feature")
+                        }
                         return
                     }
 
                     // Check for soundscape://route/stop intent to stop route playback
-                    if (uriData == "soundscape://route/stop") {
+                    if (scheme == "soundscape" && uri.host == "route" && path == "/stop") {
                         Log.d(TAG, "Stopping route from intent")
                         Analytics.getInstance().logEvent("intentStopRoute", null)
                         mainActivity.soundscapeServiceConnection.routeStop()
@@ -219,59 +219,78 @@ class SoundscapeIntents
                     }
 
                     // Check for soundscape://route/{name} intent to start a saved route
-                    val routeRegex = Regex("soundscape://route/(.+)")
-                    val routeMatch = routeRegex.find(uriData)
-                    if (routeMatch != null) {
-                        val routeName = routeMatch.groupValues[1]
-                        Log.d(TAG, "Starting route from intent: name=$routeName")
-                        val db = org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
-                            .getMarkersInstance(mainActivity)
-                        val route = db.routeDao().getAllRoutes()
-                            .map { it to routeName.fuzzyCompare(it.name, true) }
-                            .filter { it.second < 0.3 }
-                            .minByOrNull { it.second }
-                            ?.first
-                        if (route != null) {
-                            Log.d(TAG, "Matched route: ${route.name} (id=${route.routeId})")
-                            Analytics.getInstance().logEvent("intentStartRoute", null)
-                            mainActivity.soundscapeServiceConnection.routeStart(route.routeId)
-                        } else {
-                            Log.w(TAG, "No route found matching name: $routeName")
+                    if (scheme == "soundscape" && uri.host == "route") {
+                        val routeName = path?.removePrefix("/")
+                        if (!routeName.isNullOrBlank()) {
+                            Log.d(TAG, "Starting route from intent: name=$routeName")
+                            val db = org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
+                                .getMarkersInstance(mainActivity)
+                            val route = db.routeDao().getAllRoutes()
+                                .map { it to routeName.fuzzyCompare(it.name, true) }
+                                .filter { it.second < 0.3 }
+                                .minByOrNull { it.second }
+                                ?.first
+                            if (route != null) {
+                                Log.d(TAG, "Matched route: ${route.name} (id=${route.routeId})")
+                                Analytics.getInstance().logEvent("intentStartRoute", null)
+                                mainActivity.soundscapeServiceConnection.routeStart(route.routeId)
+                            } else {
+                                Log.w(TAG, "No route found matching name: $routeName")
+                            }
                         }
                         return
                     }
 
-                    // Check for geo or soundscape intent which is simply a latitude and longitude
-                    val regex =
-                        Regex("(geo|soundscape):/*([-+]?[0-9]*\\.[0-9]+|[0-9]+),([-+]?[0-9]*\\.[0-9]+|[0-9]+).*")
-
-                    val matchResult = regex.find(uriData)
-                    if (matchResult != null) {
-                        // We have a match on the link
-                        val latitude = matchResult.groupValues[2]
-                        val longitude = matchResult.groupValues[3]
-
-                        if (matchResult.groupValues[1] == "soundscape") {
-                            // Switch to Street Preview mode
-                            Analytics.getInstance().logEvent("intentSoundscapeSchemaUrl", null)
-                            mainActivity.soundscapeServiceConnection.setStreetPreviewMode(
-                                true,
-                                LngLatAlt(longitude.toDouble(), latitude.toDouble())
-                            )
-                        } else {
+                    // Check for geo or soundscape intent with latitude,longitude
+                    if (scheme == "geo" || scheme == "soundscape") {
+                        val ssp = uri.schemeSpecificPart ?: return
+                        val coordinateRegex =
+                            Regex("/*(-?[0-9]+\\.?[0-9]*),(-?[0-9]+\\.?[0-9]*)")
+                        val matchResult = coordinateRegex.find(ssp)
+                        if (matchResult != null) {
+                            val latitude = matchResult.groupValues[1]
+                            val longitude = matchResult.groupValues[2]
                             try {
                                 Analytics.getInstance().logEvent("intentGeoSchemaUrl", null)
                                 check(Geocoder.isPresent())
                                 useGeocoderToGetAddress("$latitude,$longitude", mainActivity)
                             } catch (e: Exception) {
-                                // No Geocoder available, so just report the uriData
                                 val ld =
                                     LocationDescription(
-                                        name = URLEncoder.encode(uriData, "utf-8"),
+                                        name = "$latitude,$longitude",
                                         location = LngLatAlt(longitude.toDouble(), latitude.toDouble())
                                     )
                                 mainActivity.navigator.navigate(generateLocationDetailsRoute(ld))
                             }
+                            return
+                        }
+                    }
+
+                    // Use intent.data (android.net.Uri) for safe per-parameter decoding
+                    // rather than decoding the whole URI string which can corrupt structure
+                    val shareMarkerUri = intent.data
+                    if (shareMarkerUri != null &&
+                        shareMarkerUri.path == "/v1/sharemarker") {
+                        val lat = shareMarkerUri.getQueryParameter("lat")?.toDoubleOrNull()
+                        val lon = shareMarkerUri.getQueryParameter("lon")?.toDoubleOrNull()
+                        if (lat != null && lon != null) {
+                            // Prefer "nickname" over "name" as the display name
+                            val nickname = shareMarkerUri.getQueryParameter("nickname")
+                            val name = shareMarkerUri.getQueryParameter("name")
+                            val displayName = when {
+                                !nickname.isNullOrBlank() -> nickname
+                                !name.isNullOrBlank() -> name
+                                else -> "$lat,$lon"
+                            }
+                            Log.d(TAG, "Share marker: name=$displayName lat=$lat lon=$lon")
+                            Analytics.getInstance().logEvent("intentShareMarker", null)
+                            val ld = LocationDescription(
+                                name = displayName,
+                                location = LngLatAlt(lon, lat)
+                            )
+                            navigator.navigate(generateLocationDetailsRoute(ld))
+                        } else {
+                            Log.w(TAG, "Share marker missing valid lat/lon: $shareMarkerUri")
                         }
                     } else {
                         if (Intent.ACTION_VIEW == intent.action || Intent.ACTION_MAIN == intent.action) {
