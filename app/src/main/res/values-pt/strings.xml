@@ -61,7 +61,7 @@
     <string name="route_update_success_title">Atualização Concluída!</string>
     <string name="waypoint_title">Ponto de Passagem</string>
     <string name="universal_links_alert_action_marker">Guardar como Marco</string>
-    <string name="universal_links_marker_share_message">Partilhei um marco do Soundscape consigo! *\"%s\"*</string>
+    <string name="universal_links_marker_share_message">Partilhei um Marco do Soundscape consigo: \"%1$s\".\n\nPara abrir no Soundscape, use %2$s.\n\n Para abrir no Google Maps, use %3$s.</string>
     <string name="user_activity_save_marker_title">Guardar Marco</string>
     <string name="routes_title">Rotas</string>
     <string name="routes_action_deleted">Rota eliminada</string>
@@ -1337,4 +1337,5 @@
     <string name="route_detail_action_start_route_reverse_hint">iniciar a reprodução desta rota em sentido inverso</string>
     <string name="route_reverse_name">%s em sentido inverso</string>
     <string name="callouts_no_nearby_markers">Não existem marcos nas proximidades</string>
+    <string name="stationary_on_way">Parado em %s</string>
 </resources>
