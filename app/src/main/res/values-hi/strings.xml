@@ -89,7 +89,7 @@
     <string name="waypoint_title">मार्ग बिंदु</string>
     <string name="route_not_found" tools:ignore="MissingTranslation">मार्ग नहीं मिला</string>
     <string name="universal_links_alert_action_marker">मार्कर के रूप में सहेजें</string>
-    <string name="universal_links_marker_share_message">मैंने आपके साथ एक Soundscape मार्कर साझा किया है! *\"%s\"*</string>
+    <string name="universal_links_marker_share_message">मैंने आपके साथ एक Soundscape मार्कर साझा किया है: \"%1$s\"।\n\nSoundscape में खोलने के लिए %2$s का उपयोग करें।\n\n Google Maps में खोलने के लिए %3$s का उपयोग करें।</string>
     <string name="user_activity_save_marker_title">मार्कर सहेजें</string>
     <string name="routes_title">मार्ग</string>
     <string name="routes_action_deleted">मार्ग हटाया गया</string>
@@ -1337,4 +1337,5 @@
     <string name="route_detail_action_start_route_reverse_hint">इस मार्ग का प्लेबैक उल्टे क्रम में शुरू करें</string>
     <string name="route_reverse_name">%s उल्टे क्रम में</string>
     <string name="callouts_no_nearby_markers">पास के मार्कर नहीं हैं</string>
+    <string name="stationary_on_way">%s पर स्थिर</string>
 </resources>
