@@ -61,7 +61,7 @@
     <string name="route_update_success_title">Update voltooid!</string>
     <string name="waypoint_title">Routepunt</string>
     <string name="universal_links_alert_action_marker">Opslaan als markering</string>
-    <string name="universal_links_marker_share_message">Ik heb een Soundscape-markering met u gedeeld. *\"%s\"*</string>
+    <string name="universal_links_marker_share_message">Ik heb een Soundscape-markering met u gedeeld: \"%1$s\".\n\nOm in Soundscape te openen, gebruikt u %2$s.\n\nOm in Google Maps te openen, gebruikt u %3$s.</string>
     <string name="user_activity_save_marker_title">Markering opslaan</string>
     <string name="routes_title">Routes</string>
     <string name="routes_action_deleted">Route verwijderd</string>
@@ -1337,4 +1337,5 @@
     <string name="route_detail_action_start_route_reverse_hint">Het afspelen van deze route in omgekeerde volgorde starten</string>
     <string name="route_reverse_name">%s in omgekeerde volgorde</string>
     <string name="callouts_no_nearby_markers">Er zijn geen markeringen in de buurt</string>
+    <string name="stationary_on_way">U staat stil op %s</string>
 </resources>
