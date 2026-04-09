@@ -67,7 +67,7 @@
     <string name="route_update_success_title">Обновление завершено!</string>
     <string name="waypoint_title">Путевая точка</string>
     <string name="universal_links_alert_action_marker">Сохранить как отметку</string>
-    <string name="universal_links_marker_share_message">Я поделился с вами отметкой в Soundscape! *\"%s\"*</string>
+    <string name="universal_links_marker_share_message">Я отправил вам отметку Soundscape: \"%1$s\".\n\nЧтобы открыть её в Soundscape, используйте %2$s.\n\nЧтобы открыть в Google Maps, используйте %3$s.</string>
     <string name="user_activity_save_marker_title">Сохранить отметку</string>
     <string name="routes_title">Пути</string>
     <string name="routes_action_deleted">Путь удалён</string>
@@ -1337,4 +1337,5 @@
     <string name="route_detail_action_start_route_reverse_hint">Начать воспроизведение этого маршрута в обратном порядке</string>
     <string name="route_reverse_name">%s в обратном порядке</string>
     <string name="callouts_no_nearby_markers">Рядом нет отметок</string>
+    <string name="stationary_on_way">Стоите на %s</string>
 </resources>
