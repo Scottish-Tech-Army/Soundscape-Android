@@ -69,7 +69,7 @@
     <string name="route_update_success_title">اكتمل التحديث!</string>
     <string name="waypoint_title">نقطة الطريق</string>
     <string name="universal_links_alert_action_marker">‬حفظ كعلامة</string>
-    <string name="universal_links_marker_share_message">لقد شاركت معك علامة شريط الصوت معك! *\"%s\"*</string>
+    <string name="universal_links_marker_share_message">لقد شاركت معك علامة في Soundscape: \"%1$s\".\n\nلفتحها في Soundscape استخدم %2$s.\n\n لفتحها في خرائط Google استخدم %3$s.</string>
     <string name="user_activity_save_marker_title">حفظ العلامة</string>
     <string name="routes_title">الطرق</string>
     <string name="routes_action_deleted">تم حذف الطريق</string>
@@ -1337,4 +1337,5 @@
     <string name="route_detail_action_start_route_reverse_hint">ابدأ تشغيل هذا الطريق بالعكس</string>
     <string name="route_reverse_name">%s بالعكس</string>
     <string name="callouts_no_nearby_markers">لا توجد علامات قريبة</string>
+    <string name="stationary_on_way">متوقف في %s</string>
 </resources>
