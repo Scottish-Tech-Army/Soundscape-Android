@@ -61,7 +61,7 @@
     <string name="route_update_success_title">Aggiornamento completato!</string>
     <string name="waypoint_title">Waypoint</string>
     <string name="universal_links_alert_action_marker">Salva come indicatore</string>
-    <string name="universal_links_marker_share_message">Ho condiviso con te un indicatore Soundscape! *\"%s\"*</string>
+    <string name="universal_links_marker_share_message">Ti ho condiviso un indicatore di Soundscape: \"%1$s\".\n\nPer aprirlo in Soundscape usa %2$s.\n\n Per aprirlo in Google Maps usa %3$s.</string>
     <string name="user_activity_save_marker_title">Salva indicatore</string>
     <string name="routes_title">Percorsi</string>
     <string name="routes_action_deleted">Percorso eliminato</string>
@@ -1337,4 +1337,5 @@
     <string name="route_detail_action_start_route_reverse_hint">Avviare la riproduzione di questo percorso in senso inverso</string>
     <string name="route_reverse_name">%s in senso inverso</string>
     <string name="callouts_no_nearby_markers">Non ci sono indicatori nelle vicinanze</string>
+    <string name="stationary_on_way">Fermo su %s</string>
 </resources>
