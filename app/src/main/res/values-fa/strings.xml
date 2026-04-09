@@ -141,7 +141,7 @@
     <!-- Alert action to save as marker -->
 <string name="universal_links_alert_action_marker">نشانه‌گذاری و ذخیره</string>
     <!-- Message to display alongside a URL that can be used to import a marker. Quotes written as \" -->
-<string name="universal_links_marker_share_message">یک نشانه‌ی ساند‌اسکیپ را با شما به اشتراک گذاشته‌ام! *\"%s\"*</string>
+<string name="universal_links_marker_share_message">یک نشانهٔ ساند‌اسکیپ را با شما به اشتراک گذاشتم: «%1$s».\n\nبرای باز کردن در ساند‌اسکیپ از %2$s استفاده کنید.\n\nبرای باز کردن در Google Maps از %3$s استفاده کنید.</string>
     <!-- Title for button to save the location from the location details page as a marker. -->
 <string name="user_activity_save_marker_title">ذخیره‌ی نشانه</string>
     <!-- Title of the option for displaying a the user's list of saved routes -->
@@ -1808,4 +1808,5 @@
     <string name="route_detail_action_start_route_reverse_hint">پخش این مسیر را به‌صورت معکوس آغاز کنید</string>
     <string name="route_reverse_name">%s به‌صورت معکوس</string>
     <string name="callouts_no_nearby_markers">در نزدیکی شما هیچ نشانه‌ای وجود ندارد</string>
+    <string name="stationary_on_way">در %s ایستاده‌اید</string>
 </resources>
