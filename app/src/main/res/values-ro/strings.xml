@@ -89,7 +89,7 @@
     <string name="waypoint_title">Punct de traseu</string>
     <string name="route_not_found" tools:ignore="MissingTranslation">Ruta nu a fost găsită</string>
     <string name="universal_links_alert_action_marker">Salvează ca marcaj</string>
-    <string name="universal_links_marker_share_message">Ți-am partajat un marcaj Soundscape! *\"%s\"*</string>
+    <string name="universal_links_marker_share_message">Ți-am partajat un marcaj Soundscape: \"%1$s\".\n\nPentru a deschide în Soundscape folosește %2$s.\n\n Pentru a deschide în Google Maps folosește %3$s.</string>
     <string name="user_activity_save_marker_title">Salvează marcaj</string>
     <string name="routes_title">Rute</string>
     <string name="routes_action_deleted">Rută ștearsă</string>
@@ -1337,4 +1337,5 @@
     <string name="route_detail_action_start_route_reverse_hint">Pornește redarea acestei rute în sens invers</string>
     <string name="route_reverse_name">%s în sens invers</string>
     <string name="callouts_no_nearby_markers">Nu există marcaje în apropiere</string>
+    <string name="stationary_on_way">Staționar pe %s</string>
 </resources>
