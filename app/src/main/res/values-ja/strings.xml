@@ -61,7 +61,7 @@
     <string name="route_update_success_title">アップデートが完了しました!</string>
     <string name="waypoint_title">ウェイポイント</string>
     <string name="universal_links_alert_action_marker">マーカーを保存</string>
-    <string name="universal_links_marker_share_message">Soundscape のマーカーを共有しました！ *\"%s\"*</string>
+    <string name="universal_links_marker_share_message">Soundscape のマーカーを共有しました:「%1$s」。\n\nSoundscape で開くには %2$s を使用してください。\n\nGoogle マップで開くには %3$s を使用してください。</string>
     <string name="user_activity_save_marker_title">マーカーを保存</string>
     <string name="routes_title">ルート</string>
     <string name="routes_action_deleted">ルート削除済み</string>
@@ -1337,4 +1337,5 @@
     <string name="route_detail_action_start_route_reverse_hint">このルートの再生を逆順で開始する</string>
     <string name="route_reverse_name">%s（逆順）</string>
     <string name="callouts_no_nearby_markers">近くにマーカーはありません</string>
+    <string name="stationary_on_way">%s 上で静止しています</string>
 </resources>
