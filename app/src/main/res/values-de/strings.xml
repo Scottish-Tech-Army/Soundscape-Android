@@ -61,7 +61,7 @@
     <string name="route_update_success_title">Update abgeschlossen!</string>
     <string name="waypoint_title">Wegpunkt</string>
     <string name="universal_links_alert_action_marker">Als Markierung speichern</string>
-    <string name="universal_links_marker_share_message">Ich habe eine Soundscape-Markierung mit Ihnen geteilt! *\"%s\"*</string>
+    <string name="universal_links_marker_share_message">Ich habe eine Soundscape‑Markierung mit Ihnen geteilt: \"%1$s\".\n\nUm sie in Soundscape zu öffnen, verwenden Sie %2$s.\n\nUm sie in Google Maps zu öffnen, verwenden Sie %3$s.</string>
     <string name="user_activity_save_marker_title">Markierung speichern</string>
     <string name="routes_title">Routen</string>
     <string name="routes_action_deleted">Route gelöscht</string>
@@ -1337,4 +1337,5 @@
     <string name="route_detail_action_start_route_reverse_hint">Wiedergabe dieser Route rückwärts starten.</string>
     <string name="route_reverse_name">%s (umgekehrt)</string>
     <string name="callouts_no_nearby_markers">Derzeit gibt es keine Markierungen in der Nähe</string>
+    <string name="stationary_on_way">Auf %s stehend</string>
 </resources>
