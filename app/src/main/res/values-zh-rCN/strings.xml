@@ -89,7 +89,7 @@
     <string name="waypoint_title">航点</string>
     <string name="route_not_found" tools:ignore="MissingTranslation">未找到路线</string>
     <string name="universal_links_alert_action_marker">保存为标记点</string>
-    <string name="universal_links_marker_share_message">我与您分享了一个 Soundscape 标记点！*\"%s\"*</string>
+    <string name="universal_links_marker_share_message">我已通过 Soundscape 与您分享一个标记点：\"%1$s\"。\n\n要在 Soundscape 中打开，请使用 %2$s。\n\n要在 Google 地图中打开，请使用 %3$s。</string>
     <string name="user_activity_save_marker_title">保存标记点</string>
     <string name="routes_title">路线</string>
     <string name="routes_action_deleted">路线已删除</string>
@@ -1337,4 +1337,5 @@
     <string name="route_detail_action_start_route_reverse_hint">以相反顺序开始播放此路线</string>
     <string name="route_reverse_name">%s（反向）</string>
     <string name="callouts_no_nearby_markers">附近没有标记点</string>
+    <string name="stationary_on_way">在%s处静止</string>
 </resources>
