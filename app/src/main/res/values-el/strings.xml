@@ -61,7 +61,7 @@
     <string name="route_update_success_title">Η ενημέρωση ολοκληρώθηκε!</string>
     <string name="waypoint_title">Σημείο πορείας</string>
     <string name="universal_links_alert_action_marker">Αποθήκευση ως δείκτη</string>
-    <string name="universal_links_marker_share_message">Μοιράστηκα μαζί σας έναν δείκτη Soundscape! *\"%s\"*</string>
+    <string name="universal_links_marker_share_message">Έχω μοιραστεί μαζί σας έναν δείκτη του Soundscape: \"%1$s\".\n\nΓια να τον ανοίξετε στο Soundscape, χρησιμοποιήστε %2$s.\n\nΓια να τον ανοίξετε στο Google Maps, χρησιμοποιήστε %3$s.</string>
     <string name="user_activity_save_marker_title">Αποθήκευση δείκτη</string>
     <string name="routes_title">Διαδρομές</string>
     <string name="routes_action_deleted">Η διαδρομή διαγράφηκε</string>
@@ -1337,4 +1337,5 @@
     <string name="route_detail_action_start_route_reverse_hint">Ξεκινήστε την αναπαραγωγή αυτής της διαδρομής σε αντίστροφη σειρά</string>
     <string name="route_reverse_name">%s σε αντίστροφη σειρά</string>
     <string name="callouts_no_nearby_markers">Δεν υπάρχουν κοντινοί δείκτες</string>
+    <string name="stationary_on_way">Ακίνητος στην %s</string>
 </resources>
