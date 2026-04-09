@@ -61,7 +61,7 @@
     <string name="route_update_success_title">Uppdateringen är klar!</string>
     <string name="waypoint_title">Brytpunkt</string>
     <string name="universal_links_alert_action_marker">Spara som platsmarkör</string>
-    <string name="universal_links_marker_share_message">Jag har delat en Soundscape-platsmarkör med dig! *\"%s\"*</string>
+    <string name="universal_links_marker_share_message">Jag har delat en Soundscape-platsmarkör med dig: \"%1$s\".\n\nFör att öppna i Soundscape, använd %2$s.\n\nFör att öppna i Google Maps, använd %3$s.</string>
     <string name="user_activity_save_marker_title">Spara platsmarkör</string>
     <string name="routes_title">Rutter</string>
     <string name="routes_action_deleted">Rutten har tagits bort</string>
@@ -1337,4 +1337,5 @@
     <string name="route_detail_action_start_route_reverse_hint">Starta uppspelning av den här rutten i omvänd ordning</string>
     <string name="route_reverse_name">%s i omvänd ordning</string>
     <string name="callouts_no_nearby_markers">Det finns inga platsmarkörer i närheten</string>
+    <string name="stationary_on_way">Står stilla på %s</string>
 </resources>
