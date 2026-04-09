@@ -1,6 +1,6 @@
 [versions]
 agp = "9.0.1"
-androidaddressformatter = "-SNAPSHOT"
+androidaddressformatter = "8f279fecd4"
 commonmark = "0.25.1"
 json = "20240303"
 kotlin = "2.2.10"
