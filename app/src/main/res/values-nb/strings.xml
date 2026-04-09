@@ -61,7 +61,7 @@
     <string name="route_update_success_title">Oppdateringen er fullført!</string>
     <string name="waypoint_title">Veipunkt</string>
     <string name="universal_links_alert_action_marker">Lagre som markør</string>
-    <string name="universal_links_marker_share_message">Jeg har delt en Soundscape-markør med deg! *\"%s\"*</string>
+    <string name="universal_links_marker_share_message">Jeg har delt en Soundscape-markør med deg: \"%1$s\".\n\nFor å åpne i Soundscape, bruk %2$s.\n\nFor å åpne i Google Maps, bruk %3$s.</string>
     <string name="user_activity_save_marker_title">Lagre markør</string>
     <string name="routes_title">Ruter</string>
     <string name="routes_action_deleted">Ruten er slettet</string>
@@ -1337,4 +1337,5 @@
     <string name="route_detail_action_start_route_reverse_hint">Start avspilling av denne ruten i omvendt rekkefølge</string>
     <string name="route_reverse_name">%s i omvendt rekkefølge</string>
     <string name="callouts_no_nearby_markers">Det er ingen markører i nærheten</string>
+    <string name="stationary_on_way">Står stille på %s</string>
 </resources>
