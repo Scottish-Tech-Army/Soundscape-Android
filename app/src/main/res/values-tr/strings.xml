@@ -112,7 +112,7 @@
     <string name="waypoint_title">Ara Nokta</string>
     <string name="route_not_found" tools:ignore="MissingTranslation">Rota bulunamadı</string>
     <string name="universal_links_alert_action_marker">Kayıtlı Nokta Olarak Kaydet</string>
-    <string name="universal_links_marker_share_message">Sizinle bir Soundscape kayıtlı noktası paylaştım! *\"%s\"*</string>
+    <string name="universal_links_marker_share_message">Size bir Soundscape kayıtlı noktası paylaştım: \"%1$s\".\n\nSoundscape\'te açmak için %2$s kullanın.\n\nGoogle Haritalar\'da açmak için %3$s kullanın.</string>
     <string name="user_activity_save_marker_title">Kayıtlı Nokta Olarak Kaydet</string>
     <string name="routes_title">Rotalar</string>
     <string name="routes_action_deleted">Rota silindi</string>
@@ -1337,4 +1337,5 @@
     <string name="route_detail_action_start_route_reverse_hint">Bu rotanın ters sırada oynatılmasını başlatın</string>
     <string name="route_reverse_name">%s tersine</string>
     <string name="callouts_no_nearby_markers">Yakınınızda kayıtlı nokta yok</string>
+    <string name="stationary_on_way">%s üzerinde hareketsiz</string>
 </resources>
