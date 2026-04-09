@@ -69,7 +69,7 @@
     <string name="route_detail_edit_description">Lýsing</string>
     <string name="waypoint_title">punktur</string>
     <string name="universal_links_alert_action_marker">vista sem merki</string>
-    <string name="universal_links_marker_share_message">hef deilt Soundscape punkti með þér *\"%s\"*</string>
+    <string name="universal_links_marker_share_message">Ég hef deilt merki frá Soundscape með þér: \"%1$s\".\n\nTil að opna í Soundscape notaðu %2$s.\n\nTil að opna í Google Maps notaðu %3$s.</string>
     <string name="user_activity_save_marker_title">vista merki</string>
     <string name="routes_title">leiðir</string>
     <string name="routes_action_deleted">leið eytt</string>
@@ -1337,4 +1337,5 @@
     <string name="route_detail_action_start_route_reverse_hint">hefja spilun þessarar leiðar í öfugri röð</string>
     <string name="route_reverse_name">%s í öfugri röð</string>
     <string name="callouts_no_nearby_markers">Engin nálæg merki</string>
+    <string name="stationary_on_way">staddur á %s</string>
 </resources>
