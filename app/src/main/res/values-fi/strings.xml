@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s takaperin</string>
     <string name="callouts_no_nearby_markers">Lähellä ei ole merkintöjä</string>
     <string name="stationary_on_way">Paikallaan tiellä %s</string>
+    <string name="settings_relative_directions_text">Suhteellisten suuntien tila</string>
+    <string name="settings_relative_directions_description">Muuta, miten suhteelliset suunnat kuvataan.</string>
+    <string name="settings_relative_directions_clockface">Kellotaulu</string>
+    <string name="settings_relative_directions_degrees">Asteet</string>
+    <string name="settings_relative_directions_left_right">Vasen / Oikea</string>
+    <string name="callout_settings_position_text">Sisällytä etäisyys ja suunta kiinnostavien kohteiden ilmoituksiin</string>
+    <string name="callout_settings_position_description">Oletusarvoisesti paikkojen ilmoituksiin ei sisälly etäisyyttä tai suuntaa. Tämä asetus lisää ne ilmoituksiin.</string>
+    <string name="relative_clock_direction">kello %s</string>
+    <string name="relative_degrees_direction">%s asteen kulmassa</string>
+    <string name="relative_left_right_direction_ahead">Edessä</string>
+    <string name="relative_left_right_direction_ahead_left">Edessä vasemmalla</string>
+    <string name="relative_left_right_direction_ahead_right">Edessä oikealla</string>
+    <string name="relative_left_right_direction_left">Vasemmalla</string>
+    <string name="relative_left_right_direction_right">Oikealla</string>
+    <string name="relative_left_right_direction_behind_left">Takana vasemmalla</string>
+    <string name="relative_left_right_direction_behind_right">Takana oikealla</string>
+    <string name="relative_left_right_direction_behind">Takana</string>
 </resources>
