@@ -862,6 +862,10 @@ class MainActivity : AppCompatActivity() {
         const val VOICE_COMMAND_LISTENING_PROMPT_KEY = "VoiceCommandListeningPrompt"
         const val VOICE_COMMAND_MICROPHONE_DEFAULT = "Auto"
         const val VOICE_COMMAND_MICROPHONE_KEY = "VoiceCommandMicrophone"
+        const val POSITION_INCLUDES_HEADING_AND_DISTANCE_DEFAULT = false
+        const val POSITION_INCLUDES_HEADING_AND_DISTANCE_KEY = "PositionTextDescription"
+        const val RELATIVE_DIRECTION_DEFAULT = "ClockFace"
+        const val RELATIVE_DIRECTION_KEY = "RelativeDirectionMode"
 
         const val FIRST_LAUNCH_KEY = "FirstLaunch"
         const val AUDIO_TOUR_SHOWN_KEY = "AudioTourShown"

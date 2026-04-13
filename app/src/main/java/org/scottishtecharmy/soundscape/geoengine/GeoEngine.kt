@@ -46,8 +46,11 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDire
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
+import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeClockTime
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
+import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeLeftRightLabel
 import org.scottishtecharmy.soundscape.geoengine.utils.getTriangleForDirection
+import org.scottishtecharmy.soundscape.geoengine.utils.normalizeHeading
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -66,6 +69,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.NetworkUtils
 import java.lang.String.format
+import kotlin.math.roundToInt
 
 
 data class PositionedString(
@@ -73,7 +77,8 @@ data class PositionedString(
     val location : LngLatAlt? = null,
     val earcon : String? = null,
     val type: AudioType = AudioType.STANDARD,
-    val heading: Double? = null
+    val heading: Double? = null,
+    val addDistanceAndHeading: Boolean = false
 )
 
 fun getPhotonLanguage(sharedPreferences: SharedPreferences?) : String? {
@@ -367,22 +372,6 @@ class GeoEngine {
         return enabledCategories
     }
 
-    private fun updateAudioEngineGeometry(
-        soundscapeService: SoundscapeService,
-        userGeometry: UserGeometry
-    ) {
-        // Send the update to the audio engine. This affects the direction and sound
-        // of the audio beacon.
-        soundscapeService.audioEngine.updateGeometry(
-            userGeometry.location.latitude,
-            userGeometry.location.longitude,
-            userGeometry.presentationHeading(),
-            soundscapeService.audioFocusGained,
-            soundscapeService.duckingAllowed,
-            15.0
-        )
-    }
-
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun startMonitoringLocation(soundscapeService: SoundscapeService) {
         Log.e(TAG, "startTileGridService")
@@ -478,7 +467,7 @@ class GeoEngine {
 
                     }.collect { geometry ->
                         lastGeometry = geometry
-                        updateAudioEngineGeometry(soundscapeService, geometry)
+                        soundscapeService.updateAudioEngineGeometry(geometry)
                         checkStreetPreviewBestChoice(
                             soundscapeService,
                             soundscapeService.streetPreviewFlow.value.choices,
@@ -496,7 +485,7 @@ class GeoEngine {
                         else
                             last.phoneHeading = null
 
-                        updateAudioEngineGeometry(soundscapeService, last)
+                        soundscapeService.updateAudioEngineGeometry(last)
                         checkStreetPreviewBestChoice(
                             soundscapeService,
                             soundscapeService.streetPreviewFlow.value.choices,
@@ -1182,7 +1171,13 @@ fun updateMeasurementUnits(sharedPreferences: SharedPreferences) {
         metric = (unitsString == "Metric")
 }
 
-fun formatDistanceAndDirection(distance: Double, heading: Double?, localizedContext: Context?) : String {
+fun formatDistanceAndDirection(
+    distance: Double,
+    heading: Double?,
+    localizedContext: Context?,
+    userHeading: Double? = null,
+    relativeTimeMode: String = "ClockFace"
+) : String {
     var units = distance
     var bigUnitDivisor = 100
     if(!metric) {
@@ -1210,8 +1205,47 @@ fun formatDistanceAndDirection(distance: Double, heading: Double?, localizedCont
     }
 
     var headingText = ""
-    if(heading != null && localizedContext != null) {
-        headingText = ", " + localizedContext.getString(getCompassLabel(heading.toInt()))
+    if(heading != null) {
+        if(userHeading == null) {
+            if(localizedContext != null)
+                headingText = ", " + localizedContext.getString(getCompassLabel(heading.toInt()))
+        } else {
+            // We have a user heading, so we want to describe with a relative direction
+            when(relativeTimeMode) {
+                "ClockFace" -> {
+                    val timeHeading = getRelativeClockTime(heading.toInt(), userHeading.toInt())
+                    headingText =
+                        ", " + (localizedContext?.getString(R.string.relative_clock_direction) ?: "at %s o'clock")
+                        .format(timeHeading)
+                }
+                "Degrees" -> {
+                    val heading = (heading - userHeading)
+                    val degrees = normalizeHeading(((heading / 5.0).roundToInt() * 5))
+                    headingText =
+                        ", " + (localizedContext?.getString(R.string.relative_degrees_direction) ?: "at %s degrees")
+                            .format(degrees)
+                }
+                "LeftRight" -> {
+                    val labelId = getRelativeLeftRightLabel((heading - userHeading).toInt())
+                    if(localizedContext != null) {
+                        headingText = ", " + localizedContext.getString(labelId)
+                    } else {
+                        headingText = ", " +
+                            when (labelId) {
+                                R.string.relative_left_right_direction_ahead -> "Ahead"
+                                R.string.relative_left_right_direction_ahead_right -> "Ahead right"
+                                R.string.relative_left_right_direction_right -> "Right"
+                                R.string.relative_left_right_direction_behind_right -> "Behind right"
+                                R.string.relative_left_right_direction_behind -> "Behind"
+                                R.string.relative_left_right_direction_behind_left -> "Behind left"
+                                R.string.relative_left_right_direction_left -> "Left"
+                                R.string.relative_left_right_direction_ahead_left -> "Ahead left"
+                                else -> "Unknown"
+                            }
+                    }
+                }
+            }
+        }
     }
     return format("$distanceText$headingText")
 }

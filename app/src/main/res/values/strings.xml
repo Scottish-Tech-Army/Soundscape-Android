@@ -50,6 +50,16 @@
 <string name="settings_search_offline">"Offline"</string>
 <!-- The option for setting the search to automatically pick the best engine based on network and device capabilities -->
 <string name="settings_search_auto">"Auto"</string>
+<!-- The option for setting how relative directions are described -->
+<string name="settings_relative_directions_text">"Relative directions mode"</string>
+<!-- The longer description for setting how relative directions -->
+<string name="settings_relative_directions_description">"Change how relative directions are described."</string>
+<!-- Clock face relative direction mode e.g. at 2 o'clock -->
+<string name="settings_relative_directions_clockface">"Clock face"</string>
+<!-- Degrees relative direction mode e.g. at 45 degrees -->
+<string name="settings_relative_directions_degrees">"Degrees"</string>
+<!-- Left/Right relative direction mode e.g. Left, or Right or Behind -->
+<string name="settings_relative_directions_left_right">"Left/Right"</string>
 <!-- Text shown when no search results were found -->
 <string name="search_no_results">"No search results found"</string>
 <!-- Text shown when no search in progress -->
@@ -306,6 +316,10 @@
 <string name="callouts_nearby_markers">"Nearby Markers"</string>
 <!-- Text read out when there are no markers nearby to report -->
 <string name="callouts_no_nearby_markers">"There are no nearby markers"</string>
+<!-- Settings menu text for position  -->
+<string name="callout_settings_position_text">"Include the distance and direction when calling out points of interest"</string>
+<!-- Settings menu description text for whether to include the distand and direction in POI callouts  -->
+<string name="callout_settings_position_description">"By default when places are called out they don't include a distance or direction. This setting adds those to the callouts."</string>
 <!-- Sleep Title, Sleep. Putting the app in an idle state for a period of time. -->
 <string name="sleep_sleep">"Sleep"</string>
 <!-- App is currently Sleeping. Putting the app in an idle state for a period of time. -->
@@ -2678,4 +2692,17 @@ Please report any problems that you have, however small they may be via the *Con
 <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events">"Speech recognition download listen error."</string>
 <string name="voice_cmd_speech_recognition_error_unknown">"Speech recognition unknown error."</string>
 <string name="voice_cmd_speech_recognition_error_unsupported">"Speech recognition is not supported on this phone."</string>
+<!-- Relative directions using clock face notation, %s is time in hours e.g. at 3 o'clock -->
+<string name="relative_clock_direction">"at %s o'clock"</string>
+<!-- Relative directions using degrees, %s is angle e.g. at 45 degrees -->
+<string name="relative_degrees_direction">"at %s degrees"</string>
+<!-- Relative directions using left/right -->
+<string name="relative_left_right_direction_ahead">"Ahead"</string>
+<string name="relative_left_right_direction_ahead_left">"Ahead left"</string>
+<string name="relative_left_right_direction_ahead_right">"Ahead right"</string>
+<string name="relative_left_right_direction_left">"Left"</string>
+<string name="relative_left_right_direction_right">"Right"</string>
+<string name="relative_left_right_direction_behind_left">"Behind left"</string>
+<string name="relative_left_right_direction_behind_right">"Behind right"</string>
+<string name="relative_left_right_direction_behind">"Behind"</string>
 </resources>
