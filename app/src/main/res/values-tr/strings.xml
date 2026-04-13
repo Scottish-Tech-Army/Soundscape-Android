@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s tersine</string>
     <string name="callouts_no_nearby_markers">Yakınınızda kayıtlı nokta yok</string>
     <string name="stationary_on_way">%s üzerinde hareketsiz</string>
+    <string name="settings_relative_directions_text">Göreli Yön Modu</string>
+    <string name="settings_relative_directions_description">Göreli yönlerin nasıl anlatıldığını değiştirin.</string>
+    <string name="settings_relative_directions_clockface">Saat Kadranı</string>
+    <string name="settings_relative_directions_degrees">Derece</string>
+    <string name="settings_relative_directions_left_right">Sol/Sağ</string>
+    <string name="callout_settings_position_text">İlgi noktalarını anons ederken mesafe ve yön bilgisini dahil et</string>
+    <string name="callout_settings_position_description">Varsayılan olarak yerlere yapılan anonslarda mesafe veya yön bilgisi yer almaz. Bu ayar bunları anonslara ekler.</string>
+    <string name="relative_clock_direction">saat %s\'te</string>
+    <string name="relative_degrees_direction">%s derecede</string>
+    <string name="relative_left_right_direction_ahead">Ön</string>
+    <string name="relative_left_right_direction_ahead_left">Ön-sol</string>
+    <string name="relative_left_right_direction_ahead_right">Ön-sağ</string>
+    <string name="relative_left_right_direction_left">Sol</string>
+    <string name="relative_left_right_direction_right">Sağ</string>
+    <string name="relative_left_right_direction_behind_left">Arka-sol</string>
+    <string name="relative_left_right_direction_behind_right">Arka-sağ</string>
+    <string name="relative_left_right_direction_behind">Arka</string>
 </resources>
