@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s w odwrotnej kolejności</string>
     <string name="callouts_no_nearby_markers">W pobliżu nie ma żadnych znaczników (pinezek)</string>
     <string name="stationary_on_way">Stoisz nieruchomo na %s</string>
+    <string name="settings_relative_directions_text">Tryb kierunków względnych</string>
+    <string name="settings_relative_directions_description">Zmień sposób opisywania kierunków względnych.</string>
+    <string name="settings_relative_directions_clockface">Tarcza zegara</string>
+    <string name="settings_relative_directions_degrees">Stopnie</string>
+    <string name="settings_relative_directions_left_right">Lewo/Prawo</string>
+    <string name="callout_settings_position_text">Uwzględniaj odległość i kierunek przy ogłaszaniu punktów zainteresowania</string>
+    <string name="callout_settings_position_description">Domyślnie przy ogłaszaniu miejsc nie podaje się odległości ani kierunku. To ustawienie dodaje te informacje do komunikatów.</string>
+    <string name="relative_clock_direction">na godzinie %s</string>
+    <string name="relative_degrees_direction">pod kątem %s stopni</string>
+    <string name="relative_left_right_direction_ahead">Przed tobą</string>
+    <string name="relative_left_right_direction_ahead_left">Przed tobą po lewej</string>
+    <string name="relative_left_right_direction_ahead_right">Przed tobą po prawej</string>
+    <string name="relative_left_right_direction_left">Po lewej</string>
+    <string name="relative_left_right_direction_right">Po prawej</string>
+    <string name="relative_left_right_direction_behind_left">Za tobą po lewej</string>
+    <string name="relative_left_right_direction_behind_right">Za tobą po prawej</string>
+    <string name="relative_left_right_direction_behind">Za tobą</string>
 </resources>
