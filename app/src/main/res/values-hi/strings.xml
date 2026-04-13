@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s उल्टे क्रम में</string>
     <string name="callouts_no_nearby_markers">पास के मार्कर नहीं हैं</string>
     <string name="stationary_on_way">%s पर स्थिर</string>
+    <string name="settings_relative_directions_text">सापेक्ष दिशा मोड</string>
+    <string name="settings_relative_directions_description">सापेक्ष दिशाओं के वर्णन के तरीके को बदलें।</string>
+    <string name="settings_relative_directions_clockface">घड़ी की दिशा</string>
+    <string name="settings_relative_directions_degrees">डिग्री</string>
+    <string name="settings_relative_directions_left_right">बाएँ/दाएँ</string>
+    <string name="callout_settings_position_text">रुचि के स्थानों की कॉलआउट में दूरी और दिशा शामिल करें</string>
+    <string name="callout_settings_position_description">डिफ़ॉल्ट रूप से जब स्थानों की घोषणा की जाती है तो उनमें दूरी या दिशा शामिल नहीं होती। यह सेटिंग उन जानकारीयों को कॉलआउट में जोड़ती है।</string>
+    <string name="relative_clock_direction">%s बजे की दिशा</string>
+    <string name="relative_degrees_direction">%s डिग्री पर</string>
+    <string name="relative_left_right_direction_ahead">आगे</string>
+    <string name="relative_left_right_direction_ahead_left">आगे बाएँ</string>
+    <string name="relative_left_right_direction_ahead_right">आगे दाएँ</string>
+    <string name="relative_left_right_direction_left">बाएँ</string>
+    <string name="relative_left_right_direction_right">दाएँ</string>
+    <string name="relative_left_right_direction_behind_left">पीछे बाएँ</string>
+    <string name="relative_left_right_direction_behind_right">पीछे दाएँ</string>
+    <string name="relative_left_right_direction_behind">पीछे</string>
 </resources>
