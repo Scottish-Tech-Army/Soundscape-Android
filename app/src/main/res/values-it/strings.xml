@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s in senso inverso</string>
     <string name="callouts_no_nearby_markers">Non ci sono indicatori nelle vicinanze</string>
     <string name="stationary_on_way">Fermo su %s</string>
+    <string name="settings_relative_directions_text">Modalità direzioni relative</string>
+    <string name="settings_relative_directions_description">Modifica il modo in cui vengono descritte le direzioni relative.</string>
+    <string name="settings_relative_directions_clockface">Quadrante dell\'orologio</string>
+    <string name="settings_relative_directions_degrees">Gradi</string>
+    <string name="settings_relative_directions_left_right">Sinistra/Destra</string>
+    <string name="callout_settings_position_text">Includi la distanza e la direzione quando vengono annunciati i punti di interesse</string>
+    <string name="callout_settings_position_description">Per impostazione predefinita, quando i luoghi vengono annunciati non viene indicata la distanza o la direzione. Questa impostazione aggiunge tali informazioni alle notifiche.</string>
+    <string name="relative_clock_direction">alle ore %s</string>
+    <string name="relative_degrees_direction">a %s gradi</string>
+    <string name="relative_left_right_direction_ahead">avanti</string>
+    <string name="relative_left_right_direction_ahead_left">avanti a sinistra</string>
+    <string name="relative_left_right_direction_ahead_right">avanti a destra</string>
+    <string name="relative_left_right_direction_left">sinistra</string>
+    <string name="relative_left_right_direction_right">destra</string>
+    <string name="relative_left_right_direction_behind_left">dietro a sinistra</string>
+    <string name="relative_left_right_direction_behind_right">dietro a destra</string>
+    <string name="relative_left_right_direction_behind">dietro</string>
 </resources>
