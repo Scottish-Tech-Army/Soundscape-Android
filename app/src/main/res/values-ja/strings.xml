@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s（逆順）</string>
     <string name="callouts_no_nearby_markers">近くにマーカーはありません</string>
     <string name="stationary_on_way">%s 上で静止しています</string>
+    <string name="settings_relative_directions_text">相対方向モード</string>
+    <string name="settings_relative_directions_description">相対方向の表現方法を変更します。</string>
+    <string name="settings_relative_directions_clockface">時計式</string>
+    <string name="settings_relative_directions_degrees">度</string>
+    <string name="settings_relative_directions_left_right">左右</string>
+    <string name="callout_settings_position_text">コールアウトで特定地点の距離と方向を含める</string>
+    <string name="callout_settings_position_description">デフォルトでは、場所のコールアウトには距離や方向が含まれません。この設定を有効にすると、コールアウトにそれらが追加されます。</string>
+    <string name="relative_clock_direction">%s時の方向</string>
+    <string name="relative_degrees_direction">%s度の方向</string>
+    <string name="relative_left_right_direction_ahead">前方</string>
+    <string name="relative_left_right_direction_ahead_left">左前方</string>
+    <string name="relative_left_right_direction_ahead_right">右前方</string>
+    <string name="relative_left_right_direction_left">左</string>
+    <string name="relative_left_right_direction_right">右</string>
+    <string name="relative_left_right_direction_behind_left">左後方</string>
+    <string name="relative_left_right_direction_behind_right">右後方</string>
+    <string name="relative_left_right_direction_behind">後方</string>
 </resources>
