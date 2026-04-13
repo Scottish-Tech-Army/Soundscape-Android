@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s σε αντίστροφη σειρά</string>
     <string name="callouts_no_nearby_markers">Δεν υπάρχουν κοντινοί δείκτες</string>
     <string name="stationary_on_way">Ακίνητος στην %s</string>
+    <string name="settings_relative_directions_text">Λειτουργία σχετικών κατευθύνσεων</string>
+    <string name="settings_relative_directions_description">Αλλάξτε τον τρόπο περιγραφής των σχετικών κατευθύνσεων.</string>
+    <string name="settings_relative_directions_clockface">Όψη ρολογιού</string>
+    <string name="settings_relative_directions_degrees">Μοίρες</string>
+    <string name="settings_relative_directions_left_right">Αριστερά/Δεξιά</string>
+    <string name="callout_settings_position_text">Συμπεριλάβετε την απόσταση και την κατεύθυνση όταν ανακοινώνονται σημεία ενδιαφέροντος</string>
+    <string name="callout_settings_position_description">Κατά προεπιλογή, όταν ανακοινώνονται τοποθεσίες, οι επεξηγήσεις δεν περιλαμβάνουν την απόσταση ή την κατεύθυνση. Αυτή η ρύθμιση τα προσθέτει στις επεξηγήσεις.</string>
+    <string name="relative_clock_direction">στις %s η ώρα</string>
+    <string name="relative_degrees_direction">στους %s βαθμούς</string>
+    <string name="relative_left_right_direction_ahead">Μπροστά</string>
+    <string name="relative_left_right_direction_ahead_left">Μπροστά αριστερά</string>
+    <string name="relative_left_right_direction_ahead_right">Μπροστά δεξιά</string>
+    <string name="relative_left_right_direction_left">Αριστερά</string>
+    <string name="relative_left_right_direction_right">Δεξιά</string>
+    <string name="relative_left_right_direction_behind_left">Πίσω αριστερά</string>
+    <string name="relative_left_right_direction_behind_right">Πίσω δεξιά</string>
+    <string name="relative_left_right_direction_behind">Πίσω</string>
 </resources>
