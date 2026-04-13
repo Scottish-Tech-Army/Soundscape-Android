@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s у зворотному порядку</string>
     <string name="callouts_no_nearby_markers">Поблизу немає міток</string>
     <string name="stationary_on_way">Ви стоїте на %s</string>
+    <string name="settings_relative_directions_text">Режим відносних напрямків</string>
+    <string name="settings_relative_directions_description">Змініть спосіб опису відносних напрямків.</string>
+    <string name="settings_relative_directions_clockface">Циферблат</string>
+    <string name="settings_relative_directions_degrees">Градуси</string>
+    <string name="settings_relative_directions_left_right">Ліворуч/Праворуч</string>
+    <string name="callout_settings_position_text">Включати відстань і напрям під час оголошення точок інтересу</string>
+    <string name="callout_settings_position_description">За замовчуванням під час оголошень про місця не вказуються відстань або напрям. Цей параметр додає їх до оголошень.</string>
+    <string name="relative_clock_direction">о %s годині</string>
+    <string name="relative_degrees_direction">під кутом %s градусів</string>
+    <string name="relative_left_right_direction_ahead">Попереду</string>
+    <string name="relative_left_right_direction_ahead_left">Попереду ліворуч</string>
+    <string name="relative_left_right_direction_ahead_right">Попереду праворуч</string>
+    <string name="relative_left_right_direction_left">Ліворуч</string>
+    <string name="relative_left_right_direction_right">Праворуч</string>
+    <string name="relative_left_right_direction_behind_left">Позаду ліворуч</string>
+    <string name="relative_left_right_direction_behind_right">Позаду праворуч</string>
+    <string name="relative_left_right_direction_behind">Позаду</string>
 </resources>
