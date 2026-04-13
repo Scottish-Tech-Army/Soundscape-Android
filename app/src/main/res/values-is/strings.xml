@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s í öfugri röð</string>
     <string name="callouts_no_nearby_markers">Engin nálæg merki</string>
     <string name="stationary_on_way">staddur á %s</string>
+    <string name="settings_relative_directions_text">Afstæðar áttir</string>
+    <string name="settings_relative_directions_description">Breyta hvernig afstæðar áttir eru lýstar.</string>
+    <string name="settings_relative_directions_clockface">Klukkuás</string>
+    <string name="settings_relative_directions_degrees">Gráður</string>
+    <string name="settings_relative_directions_left_right">Vinstri / Hægri</string>
+    <string name="callout_settings_position_text">Innihalda fjarlægð og átt þegar tilkynnt er um áhugaverða staði</string>
+    <string name="callout_settings_position_description">Sjálfgefið innihalda tilkynningar um staði ekki fjarlægð né átt. Þessi stilling bætir þeim við tilkynningarnar.</string>
+    <string name="relative_clock_direction">klukkan %s</string>
+    <string name="relative_degrees_direction">á %s gráðum</string>
+    <string name="relative_left_right_direction_ahead">Áfram</string>
+    <string name="relative_left_right_direction_ahead_left">Áfram til vinstri</string>
+    <string name="relative_left_right_direction_ahead_right">Áfram til hægri</string>
+    <string name="relative_left_right_direction_left">Til vinstri</string>
+    <string name="relative_left_right_direction_right">Til hægri</string>
+    <string name="relative_left_right_direction_behind_left">Aftan til vinstri</string>
+    <string name="relative_left_right_direction_behind_right">Aftan til hægri</string>
+    <string name="relative_left_right_direction_behind">Aftan</string>
 </resources>
