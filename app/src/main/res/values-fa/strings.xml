@@ -1809,4 +1809,21 @@
     <string name="route_reverse_name">%s به‌صورت معکوس</string>
     <string name="callouts_no_nearby_markers">در نزدیکی شما هیچ نشانه‌ای وجود ندارد</string>
     <string name="stationary_on_way">در %s ایستاده‌اید</string>
+    <string name="settings_relative_directions_text">حالت جهت‌های نسبی</string>
+    <string name="settings_relative_directions_description">نحوهٔ توصیف جهت‌های نسبی را تغییر دهید.</string>
+    <string name="settings_relative_directions_clockface">نمای ساعت</string>
+    <string name="settings_relative_directions_degrees">درجه</string>
+    <string name="settings_relative_directions_left_right">چپ/راست</string>
+    <string name="callout_settings_position_text">هنگام اعلام نقاط شاخص، فاصله و جهت آنها را نیز اعلام کنید</string>
+    <string name="callout_settings_position_description">به‌صورت پیش‌فرض هنگام اعلام مکان‌ها، فاصله و جهت ذکر نمی‌شود. با فعال کردن این گزینه، این اطلاعات به اعلان‌ها اضافه می‌شوند.</string>
+    <string name="relative_clock_direction">در ساعت %s</string>
+    <string name="relative_degrees_direction">در %s درجه</string>
+    <string name="relative_left_right_direction_ahead">جلو</string>
+    <string name="relative_left_right_direction_ahead_left">جلو-چپ</string>
+    <string name="relative_left_right_direction_ahead_right">جلو-راست</string>
+    <string name="relative_left_right_direction_left">چپ</string>
+    <string name="relative_left_right_direction_right">راست</string>
+    <string name="relative_left_right_direction_behind_left">پشت-چپ</string>
+    <string name="relative_left_right_direction_behind_right">پشت-راست</string>
+    <string name="relative_left_right_direction_behind">پشت</string>
 </resources>
