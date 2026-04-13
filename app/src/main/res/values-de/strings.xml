@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s (umgekehrt)</string>
     <string name="callouts_no_nearby_markers">Derzeit gibt es keine Markierungen in der Nähe</string>
     <string name="stationary_on_way">Auf %s stehend</string>
+    <string name="settings_relative_directions_text">Modus für relative Richtungsangaben</string>
+    <string name="settings_relative_directions_description">Ändern Sie, wie relative Richtungsangaben beschrieben werden.</string>
+    <string name="settings_relative_directions_clockface">Uhr‑Zifferblatt</string>
+    <string name="settings_relative_directions_degrees">Grad</string>
+    <string name="settings_relative_directions_left_right">Links/Rechts</string>
+    <string name="callout_settings_position_text">Entfernung und Richtung in Ansagen zu Orten und Orientierungspunkten einbeziehen</string>
+    <string name="callout_settings_position_description">Standardmäßig enthalten Hinweise zu Orten keine Entfernung oder Richtung. Diese Einstellung fügt diese Informationen den Hinweisen hinzu.</string>
+    <string name="relative_clock_direction">bei %s Uhr</string>
+    <string name="relative_degrees_direction">bei %s Grad</string>
+    <string name="relative_left_right_direction_ahead">voraus</string>
+    <string name="relative_left_right_direction_ahead_left">voraus links</string>
+    <string name="relative_left_right_direction_ahead_right">voraus rechts</string>
+    <string name="relative_left_right_direction_left">links</string>
+    <string name="relative_left_right_direction_right">rechts</string>
+    <string name="relative_left_right_direction_behind_left">hinten links</string>
+    <string name="relative_left_right_direction_behind_right">hinten rechts</string>
+    <string name="relative_left_right_direction_behind">hinten</string>
 </resources>
