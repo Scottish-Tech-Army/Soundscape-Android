@@ -1,7 +1,9 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.navigating
 
 import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Build
+import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.StringRes
@@ -21,6 +23,8 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Cancel
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material.icons.rounded.Mic
 import androidx.compose.material.icons.rounded.Notifications
@@ -29,6 +33,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,6 +41,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
@@ -55,91 +61,114 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 fun NavigatingScreen(
     onNavigate: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: PermissionsViewModel = viewModel(),
     vm: NavigatingScreenViewModel = viewModel(),
 ) {
     val uiState = vm.state.collectAsStateWithLifecycle()
 
-    val permissionsToRequest: Array<String> =
+    val permissionsToRequest = remember {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            arrayOf(
+            listOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_BACKGROUND_LOCATION,
                 Manifest.permission.POST_NOTIFICATIONS,
                 Manifest.permission.RECORD_AUDIO
             )
         } else {
-            arrayOf(
+            listOf(
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_BACKGROUND_LOCATION,
                 Manifest.permission.RECORD_AUDIO
             )
         }
+    }
 
-    vm.permissionsRequired(permissionsToRequest.asList())
-
-    val multiplePermissionResultLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestMultiplePermissions(),
-        onResult = { perms ->
-            permissionsToRequest.forEach { permission ->
-                viewModel.onPermissionResult(
-                    permission = permission,
-                    isGranted = perms[permission] == true
-                )
-            }
+    val permissionsStatus = permissionsToRequest.associateWith {
+        when (LocalContext.current.checkSelfPermission(it)) {
+            PackageManager.PERMISSION_GRANTED -> true
+            else -> false
         }
-    )
+    }
+
+    LaunchedEffect(permissionsStatus) {
+        vm.permissionsRequired(permissionsStatus)
+    }
+
+    val onPermissionResult = remember(vm) {
+        { permission: String, granted: Boolean ->
+            vm.onPermissionResult(permission, granted)
+        }
+    }
+
     Navigating(
-        onContinue = {
-            multiplePermissionResultLauncher.launch(permissionsToRequest)
-            onNavigate()
-        },
-        uiState.value.permissionsStatus,
+        onContinue = onNavigate,
+        permissionsStatus = uiState.value.permissionsStatus,
+        onPermissionResult = onPermissionResult,
         modifier = modifier,
     )
 }
 
 data class PermissionRationaleUi(
+    val permission: String,
     val icon: ImageVector,
     @StringRes val mainText: Int,
     @StringRes val subtitleText: Int,
-)
+    val onPermissionResult: (permission: String, granted: Boolean) -> Unit
+) {
 
-fun manifestPermissionToPermissionRationaleUi(perm: String): PermissionRationaleUi {
-    return when (perm) {
+    @Composable
+    fun permissionRequest(): ManagedActivityResultLauncher<String, Boolean> =
+        singlePermissionResultLauncher(
+            permissionToRequest = permission,
+            onPermissionResult = onPermissionResult,
+        )
+}
+
+fun manifestPermissionToPermissionRationaleUi(
+    permission: String,
+    onPermissionResult: (permission: String, granted: Boolean) -> Unit
+): PermissionRationaleUi {
+    return when (permission) {
         Manifest.permission.ACCESS_FINE_LOCATION -> {
             PermissionRationaleUi(
+                permission,
                 Icons.Rounded.LocationOn,
                 R.string.first_launch_permissions_location,
                 R.string.first_launch_permissions_required,
+                onPermissionResult,
             )
         }
 
         Manifest.permission.ACCESS_BACKGROUND_LOCATION -> {
             PermissionRationaleUi(
+                permission,
                 Icons.Rounded.LocationOn,
                 R.string.first_launch_permissions_location,
                 R.string.first_launch_permissions_required,
+                onPermissionResult,
             )
         }
 
         Manifest.permission.POST_NOTIFICATIONS -> {
             PermissionRationaleUi(
+                permission,
                 Icons.Rounded.Notifications,
                 R.string.first_launch_permissions_notification,
                 R.string.first_launch_permissions_required,
+                onPermissionResult,
             )
         }
 
         Manifest.permission.RECORD_AUDIO -> {
             PermissionRationaleUi(
+                permission,
                 Icons.Rounded.Mic,
                 R.string.first_launch_permissions_record_audio,
                 R.string.first_launch_permissions_required_for_voice_control,
+                onPermissionResult,
             )
         }
 
-        else -> throw UnsupportedOperationException("Unknown permission: $perm")
+        else -> throw UnsupportedOperationException("Unknown permission: $permission")
     }
 }
 
@@ -147,6 +176,7 @@ fun manifestPermissionToPermissionRationaleUi(perm: String): PermissionRationale
 fun Navigating(
     onContinue: () -> Unit,
     permissionsStatus: Map<String, Boolean>,
+    onPermissionResult: (permission: String, granted: Boolean) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val focusRequester = remember { FocusRequester() }
@@ -195,17 +225,23 @@ fun Navigating(
                     .background(MaterialTheme.colorScheme.surfaceContainer)
             )
             {
-                permissionsStatus.map {
-                    manifestPermissionToPermissionRationaleUi(it.key)
-                }.forEach {
-                    PermissionRationale(
-                        it.icon,
-                        it.mainText,
-                        it.subtitleText,
-                        {
-                            // TODO - Request permission
-                        }
-                    )
+                permissionsStatus.forEach { (permission, granted) ->
+                    key(permission) {
+                        val rationale = manifestPermissionToPermissionRationaleUi(
+                            permission,
+                            onPermissionResult
+                        )
+                        val launcher = rationale.permissionRequest()
+                        PermissionRationale(
+                            rationale.icon,
+                            rationale.mainText,
+                            rationale.subtitleText,
+                            granted,
+                            onClick = {
+                                launcher.launch(permission)
+                            }
+                        )
+                    }
                 }
             }
 
@@ -235,11 +271,23 @@ fun Navigating(
 }
 
 @Composable
+fun singlePermissionResultLauncher(
+    permissionToRequest: String,
+    onPermissionResult: (permission: String, granted: Boolean) -> Unit,
+) = rememberLauncherForActivityResult(
+    contract = ActivityResultContracts.RequestPermission(),
+    onResult = { granted ->
+        onPermissionResult(permissionToRequest, granted)
+    }
+)
+
+@Composable
 fun PermissionRationale(
     icon: ImageVector,
     @StringRes mainText: Int,
     @StringRes subtitleText: Int,
-    onCLick: () -> Unit,
+    granted: Boolean,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -256,8 +304,11 @@ fun PermissionRationale(
         Spacer(modifier = Modifier.width(spacing.extraSmall))
         Column(
             modifier = Modifier
+                .weight(1f)
                 .semantics(mergeDescendants = true) {}
-                .clickable(onClick = onCLick),
+                .clickable {
+                    onClick()
+                }
         ) {
             Text(
                 text = stringResource(mainText),
@@ -272,6 +323,22 @@ fun PermissionRationale(
                 modifier = Modifier.focusable(),
             )
         }
+        Spacer(modifier = Modifier.weight(0.05f))
+        if (granted) {
+            Icon(
+                Icons.Default.Check,
+                contentDescription = null,
+                modifier = Modifier.align(Alignment.CenterVertically),
+                tint = MaterialTheme.colorScheme.onSurface
+            )
+        } else {
+            Icon(
+                Icons.Default.Cancel,
+                contentDescription = null,
+                modifier = Modifier.align(Alignment.CenterVertically),
+                tint = MaterialTheme.colorScheme.onSurface
+            )
+        }
     }
 }
 
@@ -279,10 +346,10 @@ fun PermissionRationale(
 @Preview
 @Composable
 fun NavigatingPreview() {
-    Navigating(onContinue = {}, permissionsStatus = emptyMap())
+    Navigating(onContinue = {}, permissionsStatus = emptyMap(), onPermissionResult = { _, _ -> })
 }
 
-@Preview(device = "spec:parent=pixel_5,orientation=landscape")
+@Preview(device = "spec:parent=pixel_5,orientation=portrait")
 @Composable
 fun PermissionRationalePreview() {
     SoundscapeTheme {
@@ -290,6 +357,21 @@ fun PermissionRationalePreview() {
             Icons.Rounded.LocationOn,
             R.string.first_launch_permissions_location,
             R.string.first_launch_permissions_required,
+            true,
+            {}
+        )
+    }
+}
+
+@Preview(device = "spec:parent=pixel_5,orientation=portrait")
+@Composable
+fun PermissionRationaleNotGrantedPreview() {
+    SoundscapeTheme {
+        PermissionRationale(
+            Icons.Rounded.LocationOn,
+            R.string.first_launch_permissions_location,
+            R.string.first_launch_permissions_required,
+            false,
             {}
         )
     }
