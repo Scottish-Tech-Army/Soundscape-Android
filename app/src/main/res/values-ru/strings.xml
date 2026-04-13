@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s в обратном порядке</string>
     <string name="callouts_no_nearby_markers">Рядом нет отметок</string>
     <string name="stationary_on_way">Стоите на %s</string>
+    <string name="settings_relative_directions_text">Режим относительных направлений</string>
+    <string name="settings_relative_directions_description">Измените способ описания относительных направлений.</string>
+    <string name="settings_relative_directions_clockface">По циферблату</string>
+    <string name="settings_relative_directions_degrees">Градусы</string>
+    <string name="settings_relative_directions_left_right">Налево/Направо</string>
+    <string name="callout_settings_position_text">Включать расстояние и направление при озвучивании объектов интереса</string>
+    <string name="callout_settings_position_description">По умолчанию при озвучивании мест в уточнениях не указываются расстояние и направление. Эта настройка добавляет их в уточнения.</string>
+    <string name="relative_clock_direction">в %s часов</string>
+    <string name="relative_degrees_direction">под углом %s°</string>
+    <string name="relative_left_right_direction_ahead">Впереди</string>
+    <string name="relative_left_right_direction_ahead_left">Впереди слева</string>
+    <string name="relative_left_right_direction_ahead_right">Впереди справа</string>
+    <string name="relative_left_right_direction_left">Налево</string>
+    <string name="relative_left_right_direction_right">Направо</string>
+    <string name="relative_left_right_direction_behind_left">Позади слева</string>
+    <string name="relative_left_right_direction_behind_right">Позади справа</string>
+    <string name="relative_left_right_direction_behind">Позади</string>
 </resources>
