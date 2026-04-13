@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s in omgekeerde volgorde</string>
     <string name="callouts_no_nearby_markers">Er zijn geen markeringen in de buurt</string>
     <string name="stationary_on_way">U staat stil op %s</string>
+    <string name="settings_relative_directions_text">Modus voor relatieve richtingen</string>
+    <string name="settings_relative_directions_description">Wijzig hoe relatieve richtingen worden weergegeven.</string>
+    <string name="settings_relative_directions_clockface">Kloknotatie</string>
+    <string name="settings_relative_directions_degrees">Graden</string>
+    <string name="settings_relative_directions_left_right">Links/Rechts</string>
+    <string name="callout_settings_position_text">Afstand en richting opnemen bij het aankondigen van referentiepunten</string>
+    <string name="callout_settings_position_description">Standaard bevatten waarschuwingen over plaatsen geen afstand of richting. Met deze instelling worden die toegevoegd aan de waarschuwingen.</string>
+    <string name="relative_clock_direction">om %s uur</string>
+    <string name="relative_degrees_direction">op %s graden</string>
+    <string name="relative_left_right_direction_ahead">Vóór</string>
+    <string name="relative_left_right_direction_ahead_left">Vóór links</string>
+    <string name="relative_left_right_direction_ahead_right">Vóór rechts</string>
+    <string name="relative_left_right_direction_left">Links</string>
+    <string name="relative_left_right_direction_right">Rechts</string>
+    <string name="relative_left_right_direction_behind_left">Achter links</string>
+    <string name="relative_left_right_direction_behind_right">Achter rechts</string>
+    <string name="relative_left_right_direction_behind">Achter</string>
 </resources>
