@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s بالعكس</string>
     <string name="callouts_no_nearby_markers">لا توجد علامات قريبة</string>
     <string name="stationary_on_way">متوقف في %s</string>
+    <string name="settings_relative_directions_text">وضع الاتجاهات النسبية</string>
+    <string name="settings_relative_directions_description">غيّر كيف يتم وصف الاتجاهات النسبية.</string>
+    <string name="settings_relative_directions_clockface">نظام الساعة</string>
+    <string name="settings_relative_directions_degrees">درجات</string>
+    <string name="settings_relative_directions_left_right">يسار/يمين</string>
+    <string name="callout_settings_position_text">تضم المسافة والاتجاه عند استدعاء نقاط الاهتمام</string>
+    <string name="callout_settings_position_description">بشكل افتراضي، عند استدعاء الأماكن لا تتضمن وسائل الارشاد المسافة أو الاتجاه. يضيف هذا الإعداد هذه المعلومات إلى وسائل الارشاد.</string>
+    <string name="relative_clock_direction">في الساعة %s</string>
+    <string name="relative_degrees_direction">عند %s درجة</string>
+    <string name="relative_left_right_direction_ahead">إلى الأمام</string>
+    <string name="relative_left_right_direction_ahead_left">أمام وإلى اليسار</string>
+    <string name="relative_left_right_direction_ahead_right">أمام وإلى اليمين</string>
+    <string name="relative_left_right_direction_left">إلى اليسار</string>
+    <string name="relative_left_right_direction_right">إلى اليمين</string>
+    <string name="relative_left_right_direction_behind_left">خلف وإلى اليسار</string>
+    <string name="relative_left_right_direction_behind_right">خلف وإلى اليمين</string>
+    <string name="relative_left_right_direction_behind">في الخلف</string>
 </resources>
