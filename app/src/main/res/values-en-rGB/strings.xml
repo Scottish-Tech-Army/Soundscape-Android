@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s in reverse</string>
     <string name="callouts_no_nearby_markers">There are no nearby markers</string>
     <string name="stationary_on_way">Stationary on %s</string>
+    <string name="settings_relative_directions_text">Relative directions mode</string>
+    <string name="settings_relative_directions_description">Change how relative directions are described.</string>
+    <string name="settings_relative_directions_clockface">Clock face</string>
+    <string name="settings_relative_directions_degrees">Degrees</string>
+    <string name="settings_relative_directions_left_right">Left/Right</string>
+    <string name="callout_settings_position_text">Include the distance and direction when calling out points of interest</string>
+    <string name="callout_settings_position_description">By default, when places are called out they do not include a distance or direction. This setting adds those to the callouts.</string>
+    <string name="relative_clock_direction">at %s o\'clock</string>
+    <string name="relative_degrees_direction">at %s degrees</string>
+    <string name="relative_left_right_direction_ahead">Ahead</string>
+    <string name="relative_left_right_direction_ahead_left">Ahead left</string>
+    <string name="relative_left_right_direction_ahead_right">Ahead right</string>
+    <string name="relative_left_right_direction_left">Left</string>
+    <string name="relative_left_right_direction_right">Right</string>
+    <string name="relative_left_right_direction_behind_left">Behind left</string>
+    <string name="relative_left_right_direction_behind_right">Behind right</string>
+    <string name="relative_left_right_direction_behind">Behind</string>
 </resources>
