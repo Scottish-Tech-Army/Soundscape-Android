@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s em ordem inversa</string>
     <string name="callouts_no_nearby_markers">Não há favoritos nas proximidades</string>
     <string name="stationary_on_way">Parado em %s</string>
+    <string name="settings_relative_directions_text">Modo de direções relativas</string>
+    <string name="settings_relative_directions_description">Altere como as direções relativas são descritas.</string>
+    <string name="settings_relative_directions_clockface">Mostrador do relógio</string>
+    <string name="settings_relative_directions_degrees">Graus</string>
+    <string name="settings_relative_directions_left_right">Esquerda/Direita</string>
+    <string name="callout_settings_position_text">Incluir a distância e a direção ao anunciar pontos de interesse</string>
+    <string name="callout_settings_position_description">Por padrão, quando locais são anunciados, eles não incluem distância nem direção. Esta configuração adiciona essas informações às notificações.</string>
+    <string name="relative_clock_direction">às %s horas</string>
+    <string name="relative_degrees_direction">a %s graus</string>
+    <string name="relative_left_right_direction_ahead">À frente</string>
+    <string name="relative_left_right_direction_ahead_left">À frente, à esquerda</string>
+    <string name="relative_left_right_direction_ahead_right">À frente, à direita</string>
+    <string name="relative_left_right_direction_left">Esquerda</string>
+    <string name="relative_left_right_direction_right">Direita</string>
+    <string name="relative_left_right_direction_behind_left">Atrás, à esquerda</string>
+    <string name="relative_left_right_direction_behind_right">Atrás, à direita</string>
+    <string name="relative_left_right_direction_behind">Atrás</string>
 </resources>
