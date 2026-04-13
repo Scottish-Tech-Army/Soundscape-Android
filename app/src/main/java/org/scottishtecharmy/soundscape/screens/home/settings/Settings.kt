@@ -291,6 +291,17 @@ fun Settings(
         "AudioMenu",
     )
 
+    val relativeDirectionDescriptions = listOf(
+        stringResource(R.string.settings_relative_directions_clockface),
+        stringResource(R.string.settings_relative_directions_degrees),
+        stringResource(R.string.settings_relative_directions_left_right),
+    )
+    val relativeDirectionValues = listOf(
+        "ClockFace",
+        "Degrees",
+        "LeftRight",
+    )
+
     val microphoneDescriptions = uiState.microphoneDescriptions
     val microphoneValues = uiState.microphoneValues
 
@@ -422,6 +433,42 @@ fun Settings(
                     },
                     enabled = { allowCallouts.value },
                 )
+                switchPreference(
+                    key = MainActivity.POSITION_INCLUDES_HEADING_AND_DISTANCE_KEY,
+                    defaultValue = MainActivity.POSITION_INCLUDES_HEADING_AND_DISTANCE_DEFAULT,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.callout_settings_position_text,
+                            R.string.callout_settings_position_description,
+                            textColor
+                        )
+                    },
+                    enabled = { allowCallouts.value },
+                )
+                listPreference(
+                    key = MainActivity.RELATIVE_DIRECTION_KEY,
+                    defaultValue = MainActivity.RELATIVE_DIRECTION_DEFAULT,
+                    values = relativeDirectionValues,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.settings_relative_directions_text,
+                            R.string.settings_relative_directions_description,
+                            textColor
+                        )
+                    },
+                    item = { value, currentValue, onClick ->
+                        ListPreferenceItem(relativeDirectionDescriptions[relativeDirectionValues.indexOf(value)], value, currentValue, onClick, relativeDirectionValues.indexOf(value), relativeDirectionValues.size)
+                    },
+                    summary = {
+                        ClickableOption(
+                            relativeDirectionDescriptions[relativeDirectionValues.indexOf(it)],
+                            textColor
+                        )
+                    },
+                )
+
 //                switchPreference(
 //                    key = MainActivity.UNNAMED_ROADS_KEY,
 //                    defaultValue = MainActivity.UNNAMED_ROADS_DEFAULT,

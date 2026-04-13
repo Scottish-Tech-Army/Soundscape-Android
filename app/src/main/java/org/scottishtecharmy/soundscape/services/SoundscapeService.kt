@@ -11,6 +11,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.ServiceInfo
 import android.media.AudioAttributes
 import android.media.AudioFocusRequest
@@ -46,6 +47,8 @@ import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MODE_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MODE_KEY
+import org.scottishtecharmy.soundscape.MainActivity.Companion.RELATIVE_DIRECTION_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.RELATIVE_DIRECTION_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
@@ -59,8 +62,11 @@ import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
+import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.hasPlayServices
 import org.scottishtecharmy.soundscape.locationprovider.AndroidDirectionProvider
@@ -273,6 +279,8 @@ class SoundscapeService : MediaSessionService() {
         return super.onStartCommand(intent, flags, startId)
     }
 
+    lateinit var sharedPreferences : SharedPreferences
+
     @OptIn(UnstableApi::class)
     override fun onCreate() {
         super.onCreate()
@@ -312,7 +320,7 @@ class SoundscapeService : MediaSessionService() {
             }
 
             // Update the media controls mode
-            val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+            sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
             val mode = sharedPreferences.getString(MEDIA_CONTROLS_MODE_KEY, MEDIA_CONTROLS_MODE_DEFAULT)!!
             updateMediaControls(mode)
 
@@ -761,6 +769,24 @@ class SoundscapeService : MediaSessionService() {
             audioEngine.createTextToSpeech(text, AudioType.STANDARD)
     }
 
+    private var lastGeometry : UserGeometry? = null
+    private var ruler = CheapRuler(0.0)
+    fun updateAudioEngineGeometry(
+        userGeometry: UserGeometry
+    ) {
+        // Send the update to the audio engine. This affects the direction and sound
+        // of the audio beacon.
+        lastGeometry = userGeometry
+        audioEngine.updateGeometry(
+            userGeometry.location.latitude,
+            userGeometry.location.longitude,
+            userGeometry.presentationHeading(),
+            audioFocusGained,
+            duckingAllowed,
+            15.0
+        )
+    }
+
     fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean) : Long {
 
         if(callout == null) return 0L
@@ -790,8 +816,28 @@ class SoundscapeService : MediaSessionService() {
                         result.location.longitude,
                         result.heading?:0.0)
                 }
+                val text =
+                    if(result.addDistanceAndHeading) {
+                        lastGeometry?.location?.let { location ->
+                            if (ruler.needsReplacing(location.latitude))
+                                ruler = CheapRuler(location.latitude)
+
+                            val distance =
+                                ruler.distance(location, result.location)
+                            val heading = ruler.bearing(location, result.location)
+                            result.text + ", " + formatDistanceAndDirection(
+                                distance,
+                                heading,
+                                localizedContext,
+                                lastGeometry?.heading(),
+                                sharedPreferences.getString(RELATIVE_DIRECTION_KEY, RELATIVE_DIRECTION_DEFAULT)!!
+                            )
+                        } ?: result.text
+                    }
+                    else
+                        result.text
                 lastHandle = audioEngine.createTextToSpeech(
-                    result.text,
+                    text,
                     result.type,
                     result.location.latitude,
                     result.location.longitude,

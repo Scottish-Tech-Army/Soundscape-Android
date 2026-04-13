@@ -6,6 +6,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ALLOW_CALLOUTS_KEY
+import org.scottishtecharmy.soundscape.MainActivity.Companion.POSITION_INCLUDES_HEADING_AND_DISTANCE_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
@@ -246,7 +247,8 @@ class AutoCallout(
                                         text = name.text,
                                         location = nearestPoint.point,
                                         earcon = earcon,
-                                        type = AudioType.LOCALIZED
+                                        type = AudioType.LOCALIZED,
+                                        addDistanceAndHeading = sharedPreferences?.getBoolean(POSITION_INCLUDES_HEADING_AND_DISTANCE_KEY, false) ?: false
                                     )
                                 }
                             }
