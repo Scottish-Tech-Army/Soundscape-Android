@@ -15,24 +15,16 @@ class NavigatingScreenViewModel : ViewModel() {
     )
     val state: StateFlow<NavigatingScreenState> = _state
 
-    fun permissionsRequired(permissions: List<String>) {
-        //Log.d("NavScreen", "Permissions Requested: ${permissions.joinToString(", ")}")
-
-        val snapshot = _state.value
-        val permSnapshot = snapshot.permissionsStatus
-        val permMap = permSnapshot.toMutableMap()
-
-        permissions.forEach {
-            permMap.putIfAbsent(it, false)
-        }
+    fun permissionsRequired(permissions: Map<String, Boolean>) {
+        // Log.d("NavScreen", "Permissions Required: $permissions")
 
         _state.value = _state.value.copy(
-            permissionsStatus = permMap
+            permissionsStatus = permissions
         )
     }
 
     fun onPermissionResult(permission: String, isGranted: Boolean) {
-        //Log.d("NavScreen", "Permission Result: $permission: $isGranted")
+        // Log.d("NavScreen", "Permission Result: $permission: $isGranted")
         val snapshot = _state.value
         val permSnapshot = snapshot.permissionsStatus
         val permMap = permSnapshot.toMutableMap()

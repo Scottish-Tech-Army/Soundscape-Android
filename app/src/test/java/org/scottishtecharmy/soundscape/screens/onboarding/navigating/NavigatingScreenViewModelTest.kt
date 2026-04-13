@@ -12,7 +12,7 @@ class NavigatingScreenViewModelTest {
 
         assert(currentState.permissionsStatus.isEmpty())
 
-        viewModel.permissionsRequired(listOf(Manifest.permission.ACCESS_FINE_LOCATION))
+        viewModel.permissionsRequired(mapOf(Manifest.permission.ACCESS_FINE_LOCATION to false))
 
         currentState = viewModel.state.value
 
@@ -27,9 +27,9 @@ class NavigatingScreenViewModelTest {
         assert(currentState.permissionsStatus.isEmpty())
 
         viewModel.permissionsRequired(
-            listOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.POST_NOTIFICATIONS
+            mapOf(
+                Manifest.permission.ACCESS_FINE_LOCATION to false,
+                Manifest.permission.POST_NOTIFICATIONS to false,
             )
         )
 
@@ -47,7 +47,7 @@ class NavigatingScreenViewModelTest {
 
         assert(currentState.permissionsStatus.isEmpty())
 
-        viewModel.permissionsRequired(listOf(Manifest.permission.ACCESS_FINE_LOCATION))
+        viewModel.permissionsRequired(mapOf(Manifest.permission.ACCESS_FINE_LOCATION to false))
 
         viewModel.onPermissionResult(Manifest.permission.ACCESS_FINE_LOCATION, true)
 
@@ -62,7 +62,7 @@ class NavigatingScreenViewModelTest {
 
         assert(currentState.permissionsStatus.isEmpty())
 
-        viewModel.permissionsRequired(listOf(Manifest.permission.ACCESS_FINE_LOCATION))
+        viewModel.permissionsRequired(mapOf(Manifest.permission.ACCESS_FINE_LOCATION to false))
 
         viewModel.onPermissionResult(Manifest.permission.ACCESS_FINE_LOCATION, false)
 
