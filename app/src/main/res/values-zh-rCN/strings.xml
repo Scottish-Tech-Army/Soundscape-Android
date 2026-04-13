@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s（反向）</string>
     <string name="callouts_no_nearby_markers">附近没有标记点</string>
     <string name="stationary_on_way">在%s处静止</string>
+    <string name="settings_relative_directions_text">相对方向模式</string>
+    <string name="settings_relative_directions_description">更改相对方向的描述方式。</string>
+    <string name="settings_relative_directions_clockface">点钟方向</string>
+    <string name="settings_relative_directions_degrees">角度</string>
+    <string name="settings_relative_directions_left_right">左/右</string>
+    <string name="callout_settings_position_text">在播报兴趣点时包含距离和方向</string>
+    <string name="callout_settings_position_description">默认情况下，播报地点时不包含距离或方向。启用此设置将在播报中添加这些信息。</string>
+    <string name="relative_clock_direction">在%s点钟方向</string>
+    <string name="relative_degrees_direction">在%s度方向</string>
+    <string name="relative_left_right_direction_ahead">前方</string>
+    <string name="relative_left_right_direction_ahead_left">前方偏左</string>
+    <string name="relative_left_right_direction_ahead_right">前方偏右</string>
+    <string name="relative_left_right_direction_left">左侧</string>
+    <string name="relative_left_right_direction_right">右侧</string>
+    <string name="relative_left_right_direction_behind_left">后方偏左</string>
+    <string name="relative_left_right_direction_behind_right">后方偏右</string>
+    <string name="relative_left_right_direction_behind">后方</string>
 </resources>
