@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s în sens invers</string>
     <string name="callouts_no_nearby_markers">Nu există marcaje în apropiere</string>
     <string name="stationary_on_way">Staționar pe %s</string>
+    <string name="settings_relative_directions_text">Mod direcții relative</string>
+    <string name="settings_relative_directions_description">Schimbă modul în care sunt descrise direcțiile relative.</string>
+    <string name="settings_relative_directions_clockface">Fața ceasului</string>
+    <string name="settings_relative_directions_degrees">Grade</string>
+    <string name="settings_relative_directions_left_right">Stânga/Dreapta</string>
+    <string name="callout_settings_position_text">Include distanța și direcția atunci când se anunță punctele de interes</string>
+    <string name="callout_settings_position_description">Implicit, când locurile sunt anunțate nu este inclusă distanța sau direcția. Această setare adaugă aceste informații în anunțuri.</string>
+    <string name="relative_clock_direction">la ora %s</string>
+    <string name="relative_degrees_direction">la %s grade</string>
+    <string name="relative_left_right_direction_ahead">Înainte</string>
+    <string name="relative_left_right_direction_ahead_left">În față la stânga</string>
+    <string name="relative_left_right_direction_ahead_right">În față la dreapta</string>
+    <string name="relative_left_right_direction_left">Stânga</string>
+    <string name="relative_left_right_direction_right">Dreapta</string>
+    <string name="relative_left_right_direction_behind_left">În spate la stânga</string>
+    <string name="relative_left_right_direction_behind_right">În spate la dreapta</string>
+    <string name="relative_left_right_direction_behind">În spate</string>
 </resources>
