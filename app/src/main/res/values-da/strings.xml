@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s i omvendt rækkefølge</string>
     <string name="callouts_no_nearby_markers">Der er ingen mærker i nærheden</string>
     <string name="stationary_on_way">Står stille på %s</string>
+    <string name="settings_relative_directions_text">Tilstand for relative retninger</string>
+    <string name="settings_relative_directions_description">Ændr, hvordan relative retninger beskrives.</string>
+    <string name="settings_relative_directions_clockface">Urskive</string>
+    <string name="settings_relative_directions_degrees">Grader</string>
+    <string name="settings_relative_directions_left_right">Venstre/Højre</string>
+    <string name="callout_settings_position_text">Medtag afstand og retning i lydbeskeder om interessepunkter</string>
+    <string name="callout_settings_position_description">Som standard indeholder lydbeskeder om steder ikke afstand eller retning. Denne indstilling tilføjer disse oplysninger til lydbeskederne.</string>
+    <string name="relative_clock_direction">kl. %s</string>
+    <string name="relative_degrees_direction">ved %s grader</string>
+    <string name="relative_left_right_direction_ahead">forude</string>
+    <string name="relative_left_right_direction_ahead_left">forude til venstre</string>
+    <string name="relative_left_right_direction_ahead_right">forude til højre</string>
+    <string name="relative_left_right_direction_left">til venstre</string>
+    <string name="relative_left_right_direction_right">til højre</string>
+    <string name="relative_left_right_direction_behind_left">bagved til venstre</string>
+    <string name="relative_left_right_direction_behind_right">bagved til højre</string>
+    <string name="relative_left_right_direction_behind">bagved</string>
 </resources>
