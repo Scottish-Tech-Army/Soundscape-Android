@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s i omvänd ordning</string>
     <string name="callouts_no_nearby_markers">Det finns inga platsmarkörer i närheten</string>
     <string name="stationary_on_way">Står stilla på %s</string>
+    <string name="settings_relative_directions_text">Läge för relativa riktningar</string>
+    <string name="settings_relative_directions_description">Ändra hur relativa riktningar beskrivs.</string>
+    <string name="settings_relative_directions_clockface">Klockslag</string>
+    <string name="settings_relative_directions_degrees">Grader</string>
+    <string name="settings_relative_directions_left_right">Vänster/Höger</string>
+    <string name="callout_settings_position_text">Inkludera avstånd och riktning när intressepunkter läses upp</string>
+    <string name="callout_settings_position_description">Som standard innehåller inte uppläsningar av platser avstånd eller riktning. Den här inställningen lägger till dessa i informationsljuden.</string>
+    <string name="relative_clock_direction">klockan %s</string>
+    <string name="relative_degrees_direction">vid %s grader</string>
+    <string name="relative_left_right_direction_ahead">rakt fram</string>
+    <string name="relative_left_right_direction_ahead_left">framåt till vänster</string>
+    <string name="relative_left_right_direction_ahead_right">framåt till höger</string>
+    <string name="relative_left_right_direction_left">vänster</string>
+    <string name="relative_left_right_direction_right">höger</string>
+    <string name="relative_left_right_direction_behind_left">bakom till vänster</string>
+    <string name="relative_left_right_direction_behind_right">bakom till höger</string>
+    <string name="relative_left_right_direction_behind">bakom</string>
 </resources>
