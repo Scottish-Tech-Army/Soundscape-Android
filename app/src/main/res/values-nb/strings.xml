@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s i omvendt rekkefølge</string>
     <string name="callouts_no_nearby_markers">Det er ingen markører i nærheten</string>
     <string name="stationary_on_way">Står stille på %s</string>
+    <string name="settings_relative_directions_text">Modus for relative retninger</string>
+    <string name="settings_relative_directions_description">Endre hvordan relative retninger beskrives.</string>
+    <string name="settings_relative_directions_clockface">Klokke (f.eks. kl. 2)</string>
+    <string name="settings_relative_directions_degrees">Grader</string>
+    <string name="settings_relative_directions_left_right">Venstre/Høyre</string>
+    <string name="callout_settings_position_text">Inkluder avstand og retning når interessepunkter leses opp</string>
+    <string name="callout_settings_position_description">Som standard inneholder ikke meldinger om steder avstand eller retning. Denne innstillingen legger dem til i meldingene.</string>
+    <string name="relative_clock_direction">kl. %s</string>
+    <string name="relative_degrees_direction">ved %s grader</string>
+    <string name="relative_left_right_direction_ahead">Foran</string>
+    <string name="relative_left_right_direction_ahead_left">Foran til venstre</string>
+    <string name="relative_left_right_direction_ahead_right">Foran til høyre</string>
+    <string name="relative_left_right_direction_left">Venstre</string>
+    <string name="relative_left_right_direction_right">Høyre</string>
+    <string name="relative_left_right_direction_behind_left">Bak til venstre</string>
+    <string name="relative_left_right_direction_behind_right">Bak til høyre</string>
+    <string name="relative_left_right_direction_behind">Bak</string>
 </resources>
