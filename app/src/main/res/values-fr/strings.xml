@@ -1338,4 +1338,21 @@
     <string name="route_reverse_name">%s (en sens inverse)</string>
     <string name="callouts_no_nearby_markers">Aucun marqueur à proximité</string>
     <string name="stationary_on_way">À l’arrêt sur %s</string>
+    <string name="settings_relative_directions_text">Mode des directions relatives</string>
+    <string name="settings_relative_directions_description">Modifier la façon dont les directions relatives sont décrites.</string>
+    <string name="settings_relative_directions_clockface">Cadran (heures)</string>
+    <string name="settings_relative_directions_degrees">Degrés</string>
+    <string name="settings_relative_directions_left_right">Gauche/Droite</string>
+    <string name="callout_settings_position_text">Inclure la distance et la direction lors de l\'annonce des points d’intérêt</string>
+    <string name="callout_settings_position_description">Par défaut, lorsque les lieux sont annoncés, ils n’incluent pas la distance ni la direction. Ce réglage ajoute ces informations aux annonces.</string>
+    <string name="relative_clock_direction">à %s heures</string>
+    <string name="relative_degrees_direction">à %s degrés</string>
+    <string name="relative_left_right_direction_ahead">Devant</string>
+    <string name="relative_left_right_direction_ahead_left">Devant à gauche</string>
+    <string name="relative_left_right_direction_ahead_right">Devant à droite</string>
+    <string name="relative_left_right_direction_left">Gauche</string>
+    <string name="relative_left_right_direction_right">Droite</string>
+    <string name="relative_left_right_direction_behind_left">Derrière à gauche</string>
+    <string name="relative_left_right_direction_behind_right">Derrière à droite</string>
+    <string name="relative_left_right_direction_behind">Derrière</string>
 </resources>
