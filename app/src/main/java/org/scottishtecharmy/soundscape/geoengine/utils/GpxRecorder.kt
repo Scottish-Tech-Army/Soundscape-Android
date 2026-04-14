@@ -9,6 +9,10 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import java.io.File
 import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.TimeZone
 
 
 class GpxRecorder() {
@@ -35,16 +39,19 @@ class GpxRecorder() {
     private suspend fun generateGpxFile(outputFile: File) {
         val outputStream = FileOutputStream(outputFile, false)
         writeGpxHeader(outputStream)
+        val timeFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US).apply {
+            timeZone = TimeZone.getTimeZone("UTC")
+        }
         bufferMutex.withLock {
             for (location in buffer) {
                 val xmlString =
                     "<trkpt lat=\"${location.latitude}\" lon=\"${location.longitude}\">\n" +
-                            "<ele>${location.altitude}></ele>\n" +
+                            "<ele>${location.altitude}</ele>\n" +
                             "<accuracy>${location.accuracy}</accuracy>\n" +
                             "<speed>${location.speed}</speed>\n" +
                             "<bearing>${location.bearing}</bearing>\n" +
                             "<bearingAccuracyDegrees>${location.bearingAccuracyDegrees}</bearingAccuracyDegrees>\n" +
-                            "<time>${location.time}</time>\n" +
+                            "<time>${timeFormat.format(Date(location.time))}</time>\n" +
                             "</trkpt>\n"
                 outputStream.write(xmlString.toByteArray())
             }
