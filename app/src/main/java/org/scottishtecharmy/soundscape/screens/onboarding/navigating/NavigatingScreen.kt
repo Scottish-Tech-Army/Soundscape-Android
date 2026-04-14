@@ -157,19 +157,6 @@ data class PermissionRationaleUi(
         )
 }
 
-fun manifestPermissionToPermissionRationaleUi(
-    permission: Permission,
-    onPermissionResult: (permission: Permission, granted: Boolean) -> Unit
-): PermissionRationaleUi {
-    return PermissionRationaleUi(
-        permission = permission,
-        icon = permission.icon,
-        mainText = permission.mainText,
-        subtitleText = permission.subtitleText,
-        onPermissionResult = onPermissionResult
-    )
-}
-
 @Composable
 fun Navigating(
     onContinue: () -> Unit,
@@ -225,9 +212,12 @@ fun Navigating(
             {
                 permissionsStatus.forEach { (permission, granted) ->
                     key(permission) {
-                        val rationale = manifestPermissionToPermissionRationaleUi(
-                            permission,
-                            onPermissionResult
+                        val rationale = PermissionRationaleUi(
+                            permission = permission,
+                            icon = permission.icon,
+                            mainText = permission.mainText,
+                            subtitleText = permission.subtitleText,
+                            onPermissionResult = onPermissionResult
                         )
                         val launcher = rationale.permissionRequest()
                         PermissionRationale(
