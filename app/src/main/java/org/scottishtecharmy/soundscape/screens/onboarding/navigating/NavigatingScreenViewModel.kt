@@ -5,8 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 data class NavigatingScreenState(
-    // A map of <String, Boolean> representing the permissions required and their granted status
-    val permissionsStatus: Map<String, Boolean>
+    val permissionsStatus: Map<Permission, Boolean>
 )
 
 class NavigatingScreenViewModel : ViewModel() {
@@ -15,7 +14,7 @@ class NavigatingScreenViewModel : ViewModel() {
     )
     val state: StateFlow<NavigatingScreenState> = _state
 
-    fun permissionsRequired(permissions: Map<String, Boolean>) {
+    fun permissionsRequired(permissions: Map<Permission, Boolean>) {
         // Log.d("NavScreen", "Permissions Required: $permissions")
 
         _state.value = _state.value.copy(
@@ -23,7 +22,7 @@ class NavigatingScreenViewModel : ViewModel() {
         )
     }
 
-    fun onPermissionResult(permission: String, isGranted: Boolean) {
+    fun onPermissionResult(permission: Permission, isGranted: Boolean) {
         // Log.d("NavScreen", "Permission Result: $permission: $isGranted")
         val snapshot = _state.value
         val permSnapshot = snapshot.permissionsStatus

@@ -12,12 +12,12 @@ class NavigatingScreenViewModelTest {
 
         assert(currentState.permissionsStatus.isEmpty())
 
-        viewModel.permissionsRequired(mapOf(Manifest.permission.ACCESS_FINE_LOCATION to false))
+        viewModel.permissionsRequired(mapOf(Permission.ACCESS_FINE_LOCATION to false))
 
         currentState = viewModel.state.value
 
-        assert(currentState.permissionsStatus.containsKey(Manifest.permission.ACCESS_FINE_LOCATION))
-        assert(currentState.permissionsStatus[Manifest.permission.ACCESS_FINE_LOCATION] == false)
+        assert(currentState.permissionsStatus.containsKey(Permission.ACCESS_FINE_LOCATION))
+        assert(currentState.permissionsStatus[Permission.ACCESS_FINE_LOCATION] == false)
     }
 
     @Test
@@ -28,17 +28,17 @@ class NavigatingScreenViewModelTest {
 
         viewModel.permissionsRequired(
             mapOf(
-                Manifest.permission.ACCESS_FINE_LOCATION to false,
-                Manifest.permission.POST_NOTIFICATIONS to false,
+                Permission.ACCESS_FINE_LOCATION to false,
+                Permission.POST_NOTIFICATIONS to false,
             )
         )
 
         currentState = viewModel.state.value
 
-        assert(currentState.permissionsStatus.containsKey(Manifest.permission.ACCESS_FINE_LOCATION))
-        assert(currentState.permissionsStatus.containsKey(Manifest.permission.POST_NOTIFICATIONS))
-        assert(currentState.permissionsStatus[Manifest.permission.ACCESS_FINE_LOCATION] == false)
-        assert(currentState.permissionsStatus[Manifest.permission.POST_NOTIFICATIONS] == false)
+        assert(currentState.permissionsStatus.containsKey(Permission.ACCESS_FINE_LOCATION))
+        assert(currentState.permissionsStatus.containsKey(Permission.POST_NOTIFICATIONS))
+        assert(currentState.permissionsStatus[Permission.ACCESS_FINE_LOCATION] == false)
+        assert(currentState.permissionsStatus[Permission.POST_NOTIFICATIONS] == false)
     }
 
     @Test
@@ -47,13 +47,13 @@ class NavigatingScreenViewModelTest {
 
         assert(currentState.permissionsStatus.isEmpty())
 
-        viewModel.permissionsRequired(mapOf(Manifest.permission.ACCESS_FINE_LOCATION to false))
+        viewModel.permissionsRequired(mapOf(Permission.ACCESS_FINE_LOCATION to false))
 
-        viewModel.onPermissionResult(Manifest.permission.ACCESS_FINE_LOCATION, true)
+        viewModel.onPermissionResult(Permission.ACCESS_FINE_LOCATION, true)
 
         currentState = viewModel.state.value
 
-        assert(currentState.permissionsStatus[Manifest.permission.ACCESS_FINE_LOCATION] == true)
+        assert(currentState.permissionsStatus[Permission.ACCESS_FINE_LOCATION] == true)
     }
 
     @Test
@@ -62,12 +62,12 @@ class NavigatingScreenViewModelTest {
 
         assert(currentState.permissionsStatus.isEmpty())
 
-        viewModel.permissionsRequired(mapOf(Manifest.permission.ACCESS_FINE_LOCATION to false))
+        viewModel.permissionsRequired(mapOf(Permission.ACCESS_FINE_LOCATION to false))
 
-        viewModel.onPermissionResult(Manifest.permission.ACCESS_FINE_LOCATION, false)
+        viewModel.onPermissionResult(Permission.ACCESS_FINE_LOCATION, false)
 
         currentState = viewModel.state.value
 
-        assert(currentState.permissionsStatus[Manifest.permission.ACCESS_FINE_LOCATION] == false)
+        assert(currentState.permissionsStatus[Permission.ACCESS_FINE_LOCATION] == false)
     }
 }
