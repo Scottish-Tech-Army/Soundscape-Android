@@ -19,7 +19,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
@@ -45,7 +48,6 @@ fun BatteryOptimizationScreen(
     val context = LocalContext.current
     BatteryOptimization(
         onContinue = {
-            requestBatteryOptimizationExemption(context)
             onNavigate()
         },
         modifier = modifier,
@@ -73,7 +75,9 @@ fun BatteryOptimization(
     onContinue: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
     val focusRequester = remember { FocusRequester() }
+    var canContinue by remember { mutableStateOf(false) }
 
     BoxWithGradientBackground(
         modifier = modifier,
@@ -93,9 +97,12 @@ fun BatteryOptimization(
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.semantics {
-                    heading()
-                }.focusRequester(focusRequester).focusable(),
+                modifier = Modifier
+                    .semantics {
+                        heading()
+                    }
+                    .focusRequester(focusRequester)
+                    .focusable(),
             )
             Spacer(modifier = Modifier.height(spacing.large))
             Text(
@@ -109,8 +116,20 @@ fun BatteryOptimization(
 
             Column(modifier = Modifier.padding(horizontal = spacing.medium)) {
                 OnboardButton(
+                    text = stringResource(R.string.ui_grant_permission),
+                    onClick = {
+                        requestBatteryOptimizationExemption(context)
+                        canContinue = true
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .focusable()
+                        .testTag("batteryOptimizationGrantPermissionButton"),
+                )
+                OnboardButton(
                     text = stringResource(R.string.ui_continue),
                     onClick = { onContinue() },
+                    enabled = canContinue,
                     modifier = Modifier
                         .fillMaxWidth()
                         .focusable()
