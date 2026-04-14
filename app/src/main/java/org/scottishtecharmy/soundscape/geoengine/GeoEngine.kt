@@ -257,6 +257,7 @@ class GeoEngine {
         newDirectionProvider: DirectionProvider,
         soundscapeService: SoundscapeService,
         localizedContext: Context,
+        streetPreviewEnabled: Boolean
     ) {
         sharedPreferences =
             PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
@@ -309,7 +310,8 @@ class GeoEngine {
 
         startMonitoringLocation(soundscapeService)
 
-        streetPreview.start()
+        if(streetPreviewEnabled)
+            streetPreview.start()
 
         // Monitor markers in the database so we can create a tree to search
         markerMonitoringJob?.cancel()

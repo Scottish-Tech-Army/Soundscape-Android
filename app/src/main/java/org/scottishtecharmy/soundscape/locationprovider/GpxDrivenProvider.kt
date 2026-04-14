@@ -29,11 +29,11 @@ class GpxDrivenProvider  {
     private var latStep = 0.0
     private var lngStep = 0.0
 
-    private val msWait = 100.0
-    private val walkingSpeed = 10.0
+    private val msWait = 1000.0
+    private val walkingSpeed = 1.0
 
     fun start(context : Context) {
-        val input = context.assets.open("gpx/rideWithGps.gpx")
+        val input = context.assets.open("gpx/milngavie-centre.gpx")
         parseGpx(input)
 
         coroutineScope.launch {

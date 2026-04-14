@@ -74,6 +74,7 @@ import org.scottishtecharmy.soundscape.locationprovider.AndroidLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.GooglePlayDirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.GooglePlayLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
+import org.scottishtecharmy.soundscape.locationprovider.GpxDrivenProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -236,7 +237,7 @@ class SoundscapeService : MediaSessionService() {
 
         locationProvider.start(this)
         directionProvider.start(audioEngine, locationProvider)
-        geoEngine.start(application, locationProvider, directionProvider, this, localizedContext)
+        geoEngine.start(application, locationProvider, directionProvider, this, localizedContext, on)
     }
 
     fun tileGridUpdated() {
@@ -271,7 +272,7 @@ class SoundscapeService : MediaSessionService() {
                 configuration.setLocale(configLocale)
                 localizedContext = applicationContext.createConfigurationContext(configuration)
                 voiceCommandManager?.updateContext(localizedContext)
-                geoEngine.start(application, locationProvider, directionProvider, this, localizedContext)
+                geoEngine.start(application, locationProvider, directionProvider, this, localizedContext, false)
                 started = true
             }
         }
@@ -301,14 +302,23 @@ class SoundscapeService : MediaSessionService() {
             audioMenu = AudioMenu(this, application)
             routePlayer = RoutePlayer(this, applicationContext)
 
-            if(hasPlayServices(this)) {
-                locationProvider = GooglePlayLocationProvider(this)
-                directionProvider = GooglePlayDirectionProvider(this)
+            if(true) {
+                // Normal app behaviour using the phone location and direction providers
+                if (hasPlayServices(this)) {
+                    locationProvider = GooglePlayLocationProvider(this)
+                    directionProvider = GooglePlayDirectionProvider(this)
+                } else {
+                    locationProvider = AndroidLocationProvider(this)
+                    directionProvider = AndroidDirectionProvider(this)
+                }
             } else {
-                locationProvider = AndroidLocationProvider(this)
-                directionProvider = AndroidDirectionProvider(this)
+                // This is used to replay a recorded GPX file to see how the complete app behaves.
+                // Enabled by developers only and currently hard coded to a specific asset.
+                val gpxProvider = GpxDrivenProvider()
+                gpxProvider.start(this)
+                locationProvider = gpxProvider.locationProvider
+                directionProvider = gpxProvider.directionProvider
             }
-
             // create new RealmDB or open existing
             startRealms(applicationContext)
 
