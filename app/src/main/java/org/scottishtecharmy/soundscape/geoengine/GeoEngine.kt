@@ -21,6 +21,7 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
+import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SEARCH_LANGUAGE_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SEARCH_LANGUAGE_KEY
@@ -553,7 +554,7 @@ class GeoEngine {
                     } else {
                         val nearestRoad = userGeometry.mapMatchedWay
                         val roadName =
-                            nearestRoad?.getName(null, gridState, localizedContext)
+                            nearestRoad?.getName(null, gridState, localizedContext?.let { AndroidLocalizedStrings(it) })
                         if(orientation != null) {
                             if (roadName != null) {
                                 val facingDirectionAlongRoad =
@@ -1315,7 +1316,7 @@ fun travellingReverseGeocode(location: LngLatAlt,
     val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, gridState.ruler, location, 100.0) as Way?
     if(nearestRoad != null) {
         // We only want 'interesting' non-generic names i.e. no "Path" or "Service"
-        val roadName = nearestRoad.getName(null, gridState, localizedContext, true)
+        val roadName = nearestRoad.getName(null, gridState, localizedContext?.let { AndroidLocalizedStrings(it) }, true)
         if(roadName.isNotEmpty()) {
             return if(nearestSettlementName != null) {
                 LocationDescription(

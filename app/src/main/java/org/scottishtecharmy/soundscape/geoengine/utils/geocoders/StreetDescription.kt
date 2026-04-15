@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
 import android.content.Context
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
@@ -322,7 +323,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
             val segmentName = member.getName(
                 direction,
                 gridState,
-                localizedContext,
+                localizedContext?.let { AndroidLocalizedStrings(it) },
                 nonGenericOnly = true,
                 noGenericDeadEnds = true
             )
@@ -331,7 +332,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
             val segmentNameReverse = member.getName(
                 !direction,
                 gridState,
-                localizedContext,
+                localizedContext?.let { AndroidLocalizedStrings(it) },
                 nonGenericOnly = true,
                 noGenericDeadEnds = true
             )
@@ -670,7 +671,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
                         val crossStreetName = crossStreet.getName(
                             crossStreet.intersections[WayEnd.START.id] == intersection,
                             gridState,
-                            localizedContext,
+                            localizedContext?.let { AndroidLocalizedStrings(it) },
                             nonGenericOnly = true
                         )
                         if(crossStreetName.isNotEmpty())

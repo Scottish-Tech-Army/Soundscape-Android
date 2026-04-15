@@ -2,9 +2,9 @@ package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
 
-import android.content.Context
-import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geoengine.GridState
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
@@ -16,7 +16,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import java.util.Locale
 import kotlin.collections.mutableListOf
 import kotlin.collections.set
 import kotlin.collections.toTypedArray
@@ -62,11 +61,11 @@ class Intersection : MvtFeature() {
     }
 
     fun updateName(gridState: GridState? = null,
-                   localizedContext: Context? = null) {
+                   strings: LocalizedStrings? = null) {
         val updatedName = StringBuilder()
         val namesUsed = mutableSetOf<String>()
         for (way in members) {
-            val segmentName = way.getName(way.intersections[WayEnd.START.id] == this, gridState, localizedContext, nonGenericOnly = false)
+            val segmentName = way.getName(way.intersections[WayEnd.START.id] == this, gridState, strings, nonGenericOnly = false)
             if (!namesUsed.contains(segmentName)) {
                 if (updatedName.isNotEmpty()) {
                     updatedName.append("/")
@@ -103,7 +102,7 @@ class Way : MvtFeature() {
 
     fun getName(direction: Boolean? = null,
                 gridState: GridState? = null,
-                localizedContext: Context? = null,
+                strings: LocalizedStrings? = null,
                 nonGenericOnly: Boolean = false,
                 noGenericDeadEnds: Boolean = false) : String {
 
@@ -116,12 +115,9 @@ class Way : MvtFeature() {
         if(result == null) {
             // Un-named way, so use "class" property
             result = featureClass.toString()
-            var locale = Locale.getDefault()
-            if(localizedContext != null)
-                locale = localizedContext.resources.configuration.getLocales().get(0)
             result = result.replaceFirstChar {
                 if (it.isLowerCase())
-                    it.titlecase(locale)
+                    it.titlecase()
                 else
                     it.toString()
             }
@@ -155,11 +151,11 @@ class Way : MvtFeature() {
                         return ""
 
                     return if(passesString.isNotEmpty()) {
-                        localizedContext?.getString(R.string.confect_name_to_via)
-                            ?.format(result,destinationModifier, passesString) ?: "$result to $destinationModifier via $passesString"
+                        strings?.getOrNull(StringKey.ConfectNameToVia, result, destinationModifier, passesString)
+                            ?: "$result to $destinationModifier via $passesString"
                     } else {
-                        localizedContext?.getString(R.string.confect_name_to)
-                            ?.format(result,destinationModifier) ?: "$result to $destinationModifier"
+                        strings?.getOrNull(StringKey.ConfectNameTo, result, destinationModifier)
+                            ?: "$result to $destinationModifier"
                     }
                 }
             } else {
@@ -167,8 +163,8 @@ class Way : MvtFeature() {
                 val end = properties?.get("destination:forward")
 
                 if ((end != null) and (start != null)) {
-                    return localizedContext?.getString(R.string.confect_name_joins)
-                        ?.format(result, start, end) ?: "$result that joins $start and $end"
+                    return strings?.getOrNull(StringKey.ConfectNameJoins, result, start, end)
+                        ?: "$result that joins $start and $end"
                 }
             }
         }
@@ -180,20 +176,20 @@ class Way : MvtFeature() {
         }
         if (destinationModifier != null) {
             if(destinationModifier == "dead-end") {
-                destinationModifier = localizedContext?.getString(R.string.confect_name_dead_end) ?: "dead end"
+                destinationModifier = strings?.getOrNull(StringKey.ConfectNameDeadEnd) ?: "dead end"
             }
             return if(passesString.isNotEmpty()) {
-                localizedContext?.getString(R.string.confect_name_to_via)
-                    ?.format(result,destinationModifier, passesString) ?: "$result to $destinationModifier via $passesString"
+                strings?.getOrNull(StringKey.ConfectNameToVia, result, destinationModifier, passesString)
+                    ?: "$result to $destinationModifier via $passesString"
             } else {
-                localizedContext?.getString(R.string.confect_name_to)
-                    ?.format(result,destinationModifier) ?: "$result to $destinationModifier"
+                strings?.getOrNull(StringKey.ConfectNameTo, result, destinationModifier)
+                    ?: "$result to $destinationModifier"
             }
         }
         else {
             return if (passesString.isNotEmpty()) {
-                localizedContext?.getString(R.string.confect_name_via)
-                    ?.format(result, passesString) ?: "$result via $passesString"
+                strings?.getOrNull(StringKey.ConfectNameVia, result, passesString)
+                    ?: "$result via $passesString"
             } else {
                 // This is a path/service/track with no other qualifiers, so just return the name
                 // unless we're looking for a non-generic name.

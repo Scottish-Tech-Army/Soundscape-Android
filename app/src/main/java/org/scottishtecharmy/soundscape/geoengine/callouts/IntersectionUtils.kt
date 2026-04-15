@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.geoengine.callouts
 
 import android.content.Context
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geoengine.TreeId
@@ -302,14 +303,15 @@ fun addIntersectionCalloutFromDescription(
                 }
             }
             if (direction != null) {
+                val strings = localizedContext?.let { AndroidLocalizedStrings(it) }
                 val calloutText = if (localizedContext == null)
-                    "Ahead ${(nearestRoad).getName(direction, gridState, localizedContext)}"
+                    "Ahead ${(nearestRoad).getName(direction, gridState, strings)}"
                 else
                     "${localizedContext.getString(R.string.directions_direction_ahead)} ${
                         (nearestRoad).getName(
                             direction,
                             gridState,
-                            localizedContext
+                            strings
                         )
                     }}"
 
@@ -432,7 +434,7 @@ fun addIntersectionCalloutFromDescription(
                 else -> 0.0
             }
 
-            val destinationText = way.getName(way.intersections[WayEnd.START.id] == description.intersection, gridState, localizedContext)
+            val destinationText = way.getName(way.intersections[WayEnd.START.id] == description.intersection, gridState, localizedContext?.let { AndroidLocalizedStrings(it) })
             val intersectionCallout =
                 localizedContext?.getString(roadDirectionId, destinationText) ?: "\t$destinationText $unlocalizedDirection"
             intersectionResults.add(
