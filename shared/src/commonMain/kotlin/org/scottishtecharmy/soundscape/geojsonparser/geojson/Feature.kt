@@ -1,7 +1,5 @@
 package org.scottishtecharmy.soundscape.geojsonparser.geojson
 
-import com.squareup.moshi.Json
-
 /**
  * A Feature object represents a spatially bounded thing.  Every Feature
  * object is a GeoJSON object no matter where it occurs in a GeoJSON
@@ -22,10 +20,8 @@ import com.squareup.moshi.Json
  *     https://datatracker.ietf.org/doc/html/rfc7946#section-3.2
  */
 open class Feature() : GeoJsonObject() {
-    @field:Json(name = "geometry")
     var geometry: GeoJsonObject = GeoJsonObject()
 
-    @field:Json(name = "id")
     var id: String? = null
 
     init {
@@ -43,4 +39,3 @@ fun cloneHashMap(source: HashMap<String, Any?>?) : HashMap<String, Any?>? {
     }
     return result
 }
-

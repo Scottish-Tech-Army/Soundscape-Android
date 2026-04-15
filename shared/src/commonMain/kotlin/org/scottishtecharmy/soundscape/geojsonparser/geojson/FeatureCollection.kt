@@ -1,17 +1,6 @@
 package org.scottishtecharmy.soundscape.geojsonparser.geojson
 
-import com.squareup.moshi.Json
-
-/**
- * A FeatureCollection object has a member
- * with the name "features".  The value of "features" is a JSON array.
- * Each element of the array is a Feature object.  It
- * is possible for this array to be empty.
- *     https://datatracker.ietf.org/doc/html/rfc7946#section-3.3
- */
-
 open class FeatureCollection : GeoJsonObject(), Iterable<Feature> {
-    @field:Json(name = "features")
     var features: ArrayList<Feature> = arrayListOf()
 
     init {

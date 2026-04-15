@@ -1,5 +1,11 @@
 package org.scottishtecharmy.soundscape.screens.home.locationDetails
 
+import org.scottishtecharmy.soundscape.utils.fromLatLng
+
+import org.scottishtecharmy.soundscape.utils.toLatLng
+
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -52,7 +58,6 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geoengine.TextForFeature
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.fromLatLng
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.FullScreenMapFab

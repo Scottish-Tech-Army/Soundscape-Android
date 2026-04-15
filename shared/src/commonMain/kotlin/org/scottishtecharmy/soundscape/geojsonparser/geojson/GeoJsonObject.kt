@@ -1,9 +1,5 @@
 package org.scottishtecharmy.soundscape.geojsonparser.geojson
 
-import com.squareup.moshi.Json
-import java.io.Serializable
-import java.util.HashMap
-
 /**
  * A GeoJSON object represents a Geometry, Feature, or collection of
  *    Features.
@@ -17,13 +13,8 @@ import java.util.HashMap
  *       be a bounding box array
  *     https://datatracker.ietf.org/doc/html/rfc7946#section-3
  */
-open class GeoJsonObject : Serializable {
-    @field:Json(name = "type")
+open class GeoJsonObject {
     var type: String = "GeoJson"
-
-    @field:Json(name = "bbox")
     var bbox: List<Double>? = null
-
-    @field:Json(name = "properties")
     var properties: HashMap<String, Any?>? = null
 }
