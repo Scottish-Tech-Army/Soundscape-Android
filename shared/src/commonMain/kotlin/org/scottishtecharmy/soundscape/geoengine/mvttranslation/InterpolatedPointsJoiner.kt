@@ -4,6 +4,14 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
+fun pointIsOffTile(x: Int, y: Int) : Boolean {
+    return (x < 0 || y < 0 || x >= 4096 || y >= 4096)
+}
+
+fun sampleToFractionOfTile(sample: Int) : Double {
+    return (sample.toDouble() + 0.5) / 4096.0
+}
+
 /**
  * convertGeometryAndClipLineToTile takes a line and converts it into a List of LineStrings. In the
  * simplest case, the points are all within the tile and so there will just be a single LineString
