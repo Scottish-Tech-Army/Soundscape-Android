@@ -339,8 +339,9 @@ dependencies {
     implementation(libs.composepreferencelibrary)
     implementation(libs.androidx.preference.ktx)
 
-    // Rtree spatial search library
-    implementation(libs.rtree2)
+    // rtree2 kept only for parity tests against our :shared rtree port
+    testImplementation(libs.rtree2)
+    androidTestImplementation(libs.rtree2)
 
     // JTS for manipulating 2D geometry
     implementation(libs.jts.core)

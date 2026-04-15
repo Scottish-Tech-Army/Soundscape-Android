@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape
 
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
-import com.github.davidmoten.rtree2.Iterables
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
@@ -67,11 +66,11 @@ class MvtPerformanceTest {
         var end = System.currentTimeMillis()
 
         // We have all the points in an rtree
-        println("Tree size: ${tree.tree!!.size()} - ${end-start}ms")
+        println("Tree size: ${tree.tree!!.size} - ${end-start}ms")
 
         start = System.currentTimeMillis()
         val ruler = CheapRuler(55.941861)
-        val distanceResults = Iterables.toList(tree.getNearbyCollection(LngLatAlt(-4.316914, 55.941861), 10.0, ruler))
+        val distanceResults = tree.getNearbyCollection(LngLatAlt(-4.316914, 55.941861), 10.0, ruler).features.toList()
         end = System.currentTimeMillis()
         println("Search result in ${end-start}ms")
         for(dResult in distanceResults) {

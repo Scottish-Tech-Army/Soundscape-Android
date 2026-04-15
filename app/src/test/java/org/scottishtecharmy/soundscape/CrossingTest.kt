@@ -24,7 +24,7 @@ class CrossingTest {
 
         val roadsTree = gridState.getFeatureTree(TreeId.ROADS)
         val crossingsTree = gridState.getFeatureTree(TreeId.CROSSINGS)
-        Assert.assertEquals(2, crossingsTree.tree!!.size())
+        Assert.assertEquals(2, crossingsTree.tree!!.size)
 
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
         val crossingString = moshi.adapter(FeatureCollection::class.java).toJson(crossingsTree.getAllCollection())

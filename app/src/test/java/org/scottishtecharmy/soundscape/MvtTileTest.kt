@@ -466,7 +466,7 @@ class MvtTileTest {
         }
 
         // We have all the points in an rtree
-        println("Tree size: ${tree.tree!!.size()}, depth ${tree.tree!!.calculateDepth()} - ${end-start}ms")
+        println("Tree size: ${tree.tree!!.size} - ${end-start}ms")
         //tree.tree!!.visualize(4096,4096).save("tree.png");
 
         start = System.currentTimeMillis()
