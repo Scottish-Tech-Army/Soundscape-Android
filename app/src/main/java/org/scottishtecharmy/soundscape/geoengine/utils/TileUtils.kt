@@ -1,17 +1,10 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
-import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
-
 import android.content.Context
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiLineString
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
@@ -25,17 +18,8 @@ import vector_tile.VectorTile
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
-import java.lang.Math.toDegrees
 import java.util.zip.GZIPInputStream
-import kotlin.collections.iterator
-import kotlin.collections.toTypedArray
-import kotlin.math.PI
 import kotlin.math.abs
-import kotlin.math.asinh
-import kotlin.math.atan
-import kotlin.math.floor
-import kotlin.math.sinh
-import kotlin.math.tan
 fun getFovTriangle(userGeometry: UserGeometry, forceLocation: Boolean = false) : Triangle {
     val heading = userGeometry.snappedHeading() ?: 0.0
     val quadrant = Quadrant(heading)

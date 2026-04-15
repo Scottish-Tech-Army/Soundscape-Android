@@ -257,6 +257,9 @@ dependencies {
     implementation(libs.screenshot.validation.api)
     implementation(libs.core.google.shortcuts)
 
+    // JTS kept only for a test helper that calls union() directly
+    testImplementation(libs.jts.core)
+
     testImplementation(libs.junit)
     testImplementation(libs.androidx.core.testing)
     testImplementation(libs.kotlinx.coroutines.test)
@@ -342,9 +345,6 @@ dependencies {
     // rtree2 kept only for parity tests against our :shared rtree port
     testImplementation(libs.rtree2)
     androidTestImplementation(libs.rtree2)
-
-    // JTS for manipulating 2D geometry
-    implementation(libs.jts.core)
 
     // Dokka plugin
     dokkaPlugin(libs.html.mermaid.dokka.plugin)
