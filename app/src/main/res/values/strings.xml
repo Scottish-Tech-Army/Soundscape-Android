@@ -1085,7 +1085,7 @@
 <string name="menu_open_source_licenses">"Open source licenses"</string>
 <!-- Text for dialog which explains what is new in the current release. This is in markdown format. -->
 <string name="new_version_info_details">"
-This is the first production release of Soundscape.
+This is the first production release of Soundscape. If you are new to the app, then you can find out more about it from the *Help* screens or by taking the *Tutorial*. These are both options in the main menu.
 
 We\'re still working hard on improving the app, so please report any problems that you have, however small they may be via the *Contact Support* option in the main menu.
 "</string>
