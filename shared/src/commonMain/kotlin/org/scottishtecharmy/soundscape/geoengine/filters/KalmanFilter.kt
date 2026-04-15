@@ -30,7 +30,7 @@ open class KalmanFilter(filterSigma : Double = 9.0, private val dimensions : Int
                 newTimestamp: Long,
                 newAccuracy: Double) : DoubleArray {
 
-        assert(newVector.size == dimensions)
+        require(newVector.size == dimensions)
 
         // Ensure `accuracy >= minimumAccuracy`
         val accuracy = maxOf(newAccuracy, minimumAccuracy)
