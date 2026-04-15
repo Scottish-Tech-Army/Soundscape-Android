@@ -94,7 +94,7 @@ class FeatureTree(featureCollection: FeatureCollection?) {
                 }
 
                 else -> {
-                    assert(false)
+                    // unsupported geometry; skip
                 }
             }
         }
@@ -103,7 +103,7 @@ class FeatureTree(featureCollection: FeatureCollection?) {
 
     private fun createBoundingSquare(center: LngLatAlt, radius: Double): Rectangle {
         val latOffset = (radius) / EARTH_RADIUS_METERS * (180 / PI)
-        val lngOffset = (radius) / (EARTH_RADIUS_METERS * cos(Math.toRadians(center.latitude))) * (180 / PI)
+        val lngOffset = (radius) / (EARTH_RADIUS_METERS * cos(toRadians(center.latitude))) * (180 / PI)
         return Rectangle(
             center.longitude - lngOffset,
             center.latitude - latOffset,
@@ -153,7 +153,7 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         distance: Double,
         ruler: Ruler
     ): Sequence<Entry<Feature, Geometry>> {
-        assert(tree != null)
+        check(tree != null)
         val bounds: Rectangle = createBoundingSquare(from, distance)
         return tree!!.search(bounds).filter { entry ->
             entryWithinDistance(entry, distance, from, ruler)
@@ -166,7 +166,7 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         maxCount: Int,
         ruler: Ruler
     ): List<Entry<Feature, Geometry>> {
-        assert(tree != null)
+        check(tree != null)
         val k = if (maxCount < 1) Int.MAX_VALUE else maxCount
         return tree!!.nearest(from.longitude, from.latitude, distance, k).filter { entry ->
             entryWithinDistance(entry, distance, from, ruler)
@@ -240,7 +240,7 @@ class FeatureTree(featureCollection: FeatureCollection?) {
     }
 
     private fun searchWithinTriangle(triangle: Triangle): Sequence<Entry<Feature, Geometry>> {
-        assert(tree != null)
+        check(tree != null)
         val bounds: Rectangle = createBoundingSquareContainingTriangle(triangle)
         return tree!!.search(bounds).filter { entry -> entryWithinTriangle(entry, triangle) }
     }
@@ -446,7 +446,7 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         distance: Double
     ): Rectangle {
         val latOffset = (distance) / EARTH_RADIUS_METERS * (180 / PI)
-        val lngOffset = (distance) / (EARTH_RADIUS_METERS * cos(Math.toRadians(p1.latitude))) * (180 / PI)
+        val lngOffset = (distance) / (EARTH_RADIUS_METERS * cos(toRadians(p1.latitude))) * (180 / PI)
 
         val minLat = minOf(p1.latitude, p2.latitude)
         val maxLat = maxOf(p1.latitude, p2.latitude)
@@ -468,7 +468,7 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         deduplicationSet: MutableSet<Feature>,
         ruler: Ruler
     ): Sequence<Entry<Feature, Geometry>> {
-        assert(tree != null)
+        check(tree != null)
         val bounds: Rectangle = createBoundingSquareContainingLine(p1, p2, distance)
         return tree!!.search(bounds).filter { entry ->
             if (!deduplicationSet.contains(entry.value))
