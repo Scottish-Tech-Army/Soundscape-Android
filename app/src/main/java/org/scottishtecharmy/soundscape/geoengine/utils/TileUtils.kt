@@ -40,55 +40,6 @@ import kotlin.math.atan
 import kotlin.math.floor
 import kotlin.math.sinh
 import kotlin.math.tan
-
-
-/**
- * Gets Slippy Map Tile Name from GPS coordinates and Zoom (fixed at 16 for Soundscape).
- * @param location
- * Location in LngLatAlt
- * @param zoom
- * The zoom level.
- * @return a Pair(xTile, yTile).
- */
-fun getXYTile(
-    location: LngLatAlt,
-    zoom: Int
-): Pair<Int, Int> {
-    val latRad = toRadians(location.latitude)
-    var xTile = floor((location.longitude + 180) / 360 * (1 shl zoom)).toInt()
-    var yTile = floor((1.0 - asinh(tan(latRad)) / PI) / 2 * (1 shl zoom)).toInt()
-
-    if (xTile < 0) {
-        xTile = 0
-    }
-    if (xTile >= (1 shl zoom)) {
-        xTile = (1 shl zoom) - 1
-    }
-    if (yTile < 0) {
-        yTile = 0
-    }
-    if (yTile >= (1 shl zoom)) {
-        yTile = (1 shl zoom) - 1
-    }
-    return Pair(xTile, yTile)
-}
-
-fun getLatLonTileWithOffset(
-    xTile : Int,
-    yTile : Int,
-    zoom: Int,
-    xOffset : Double,
-    yOffset : Double,
-): LngLatAlt {
-
-    val x : Double = xTile.toDouble() + xOffset
-    val y : Double = yTile.toDouble() + yOffset
-    val lon : Double = ((x / (1 shl zoom)) * 360.0) - 180.0
-    val latRad = atan(sinh(Math.PI * (1 - 2 * y / (1 shl zoom))))
-
-    return LngLatAlt(lon, toDegrees(latRad))
-}
-
 /**
  * Parses out the super category Features contained in the Points of Interest (POI) Feature Collection.
  * @param superCategory
@@ -205,16 +156,6 @@ fun getFovTriangle(userGeometry: UserGeometry, forceLocation: Boolean = false) :
     )
 }
 
-data class PointAndDistanceAndHeading(var point: LngLatAlt = LngLatAlt(),
-                                      var distance: Double = Double.MAX_VALUE,
-                                      var heading: Double = 0.0,
-                                      var index: Int = -1,
-                                      var positionAlongLine: Double = Double.NaN)
-
-
-fun PointAndDistanceAndHeading.clone(): PointAndDistanceAndHeading {
-    return PointAndDistanceAndHeading(point.clone(), distance, heading, index, positionAlongLine)
-}
 
 /**
  * Given a Feature and a location this will calculate the nearest distance to it

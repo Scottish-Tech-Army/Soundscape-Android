@@ -212,7 +212,7 @@ class TileGrid(newTiles : MutableList<Tile>,
                 2 -> return get2x2TileGrid(currentLocation, zoomLevel)
                 3 -> return get3x3TileGrid(currentLocation, zoomLevel)
             }
-            assert(false)
+            require(false)
             return TileGrid(mutableListOf(), BoundingBox(), BoundingBox())
         }
     }

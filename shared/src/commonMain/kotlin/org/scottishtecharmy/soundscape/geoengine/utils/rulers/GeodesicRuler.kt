@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.geoengine.utils.rulers
 
 import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
+import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -9,7 +10,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 class GeodesicRuler() : Ruler() {
 
     override fun distance(a: LngLatAlt, b: LngLatAlt) : Double {
-        return org.scottishtecharmy.soundscape.geoengine.utils.distance(a.latitude, a.longitude, b.latitude, b.longitude)
+        return distance(a.latitude, a.longitude, b.latitude, b.longitude)
     }
 
     override fun bearing(a: LngLatAlt, b: LngLatAlt) : Double {
@@ -95,7 +96,7 @@ class GeodesicRuler() : Ruler() {
      */
     override fun along(line: LineString, dist: Double) : LngLatAlt {
         // TODO: implement
-        assert(false)
+        require(false)
         return LngLatAlt()
     }
 
@@ -113,7 +114,7 @@ class GeodesicRuler() : Ruler() {
      */
     override fun pointToSegmentDistance(p: LngLatAlt, a: LngLatAlt, b: LngLatAlt) : Double {
         // TODO: implement
-        assert(false)
+        require(false)
         return 0.0
     }
 
@@ -131,7 +132,7 @@ class GeodesicRuler() : Ruler() {
      */
     override fun distanceToLineString(p: LngLatAlt, line: LineString) : PointAndDistanceAndHeading {
         // TODO: implement
-        assert(false)
+        require(false)
         return PointAndDistanceAndHeading()
     }
 

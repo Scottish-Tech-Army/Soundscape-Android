@@ -24,7 +24,6 @@ import kotlin.math.cos
  * spatial searching. The APIs all return either FeatureCollections or Features.
  */
 
-data class Triangle(val origin: LngLatAlt, val left: LngLatAlt, val right: LngLatAlt)
 
 class FeatureTree(featureCollection: FeatureCollection?) {
 

@@ -12,7 +12,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
-import java.util.ArrayList
 import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.asin
@@ -29,14 +28,6 @@ import kotlin.math.sin
 import kotlin.math.sinh
 import kotlin.math.sqrt
 
-const val DEGREES_TO_RADIANS = 2.0 * PI / 360.0
-const val RADIANS_TO_DEGREES = 1.0 / DEGREES_TO_RADIANS
-const val EARTH_RADIUS_METERS =
-    6378137.0 //  Original Soundscape uses 6378137.0 not 6371000.0
-const val MIN_LATITUDE = -85.05112878
-const val MAX_LATITUDE = 85.05112878
-const val MIN_LONGITUDE: Double = -180.0002
-const val MAX_LONGITUDE: Double = 180.0002
 
 
 /**
@@ -51,23 +42,6 @@ const val MAX_LONGITUDE: Double = 180.0002
  * the finish longitude in decimal degrees.
  * @return The distance in meters.
  */
-fun distance(lat1: Double, long1: Double, lat2: Double, long2: Double): Double {
-
-    val deltaLat = toRadians(lat2 - lat1)
-    val deltaLon = toRadians(long2 - long1)
-
-    val a =
-        sin(deltaLat / 2) * sin(deltaLat / 2) + cos(toRadians(lat1)) * cos(toRadians(lat2)) * sin(
-            deltaLon / 2
-        ) * sin(
-            deltaLon / 2
-        )
-
-    val c = 2 * asin(sqrt(a))
-
-    return (EARTH_RADIUS_METERS * c)//.round(2)
-}
-
 /**
  * Calculates the centroid of a polygon.
  *
@@ -217,7 +191,7 @@ fun pixelXYToLatLon(pixelX: Double, pixelY: Double, zoom: Int): Pair<Double, Dou
     val mapSize = mapSize(zoom)
     val x = (clip(pixelX, 0.0, mapSize.toDouble() - 1) / mapSize) - 0.5
     val y = 0.5 - (clip(pixelY, 0.0, mapSize.toDouble() - 1) / mapSize)
-    val latitude = 90 - 360 * atan(exp(-y * 2 * Math.PI)) / Math.PI
+    val latitude = 90 - 360 * atan(exp(-y * 2 * PI)) / PI
     val longitude = 360 * x
 
     return Pair(latitude, longitude)
@@ -419,18 +393,6 @@ fun getPolygonOfBoundingBox(boundingBox: BoundingBox): Polygon{
  * @param loc2
  * @return The heading in degrees clockwise from north.
  */
-fun bearingFromTwoPoints(
-    loc1: LngLatAlt,
-    loc2: LngLatAlt,
-): Double {
-    val latitude1 = toRadians(loc1.latitude)
-    val latitude2 = toRadians(loc2.latitude)
-    val longDiff = toRadians(loc2.longitude - loc1.longitude)
-    val y = sin(longDiff) * cos(latitude2)
-    val x = cos(latitude1) * sin(latitude2) - sin(latitude1) * cos(latitude2) * cos(longDiff)
-    return ((fromRadians(atan2(y, x)) + 360) % 360).round(1)
-}
-
 /**
  * Determine if a coordinate is contained within a polygon.
  * @param lngLatAlt
@@ -505,26 +467,6 @@ fun multiPolygonContainsCoordinates(lngLatAlt: LngLatAlt, multiPolygon: MultiPol
  * Distance to the destination point in meters.
  * @return The destination coordinate as LngLatAlt object.
  */
-fun getDestinationCoordinate(start: LngLatAlt, bearing: Double, distance: Double): LngLatAlt {
-    val lat1 = toRadians(start.latitude)
-    val lon1 = toRadians(start.longitude)
-
-    val d = distance / EARTH_RADIUS_METERS // Distance in radians
-
-    val bearingRadians = toRadians(bearing)
-
-    val lat2 = asin(
-        sin(lat1) * cos(d) +
-                cos(lat1) * sin(d) * cos(bearingRadians)
-    )
-    val lon2 = lon1 + atan2(
-        sin(bearingRadians) * sin(d) * cos(lat1),
-        cos(d) - sin(lat1) * sin(lat2)
-    )
-
-    return LngLatAlt(fromRadians(lon2), fromRadians(lat2))
-}
-
 /**
  * Calculates a coordinate on a LineString at a target distance from the first coordinate of the LineString.
  * - note: If the target distance is greater than the LineString distance, the last LineString coordinate is returned.
@@ -640,8 +582,8 @@ fun tileToBoundingBox(x: Int, y: Int, zoom: Int): BoundingBox {
  * @return a latitude coordinate.
  */
 fun tileToLat(x: Int, zoom: Int): Double {
-    val n: Double = Math.PI - (2.0 * Math.PI * x) / 2.0.pow(zoom)
-    return Math.toDegrees(atan(sinh(n)))
+    val n: Double = PI - (2.0 * PI * x) / 2.0.pow(zoom)
+    return fromRadians(atan(sinh(n)))
 }
 
 /**
@@ -893,19 +835,6 @@ fun onSegment(x: Double, y: Double, x1: Double, y1: Double, x2: Double, y2: Doub
     val maxy = max(y1, y2)
 
     return x in minX..maxX && y >= miny && y <= maxy
-}
-
-fun toRadians(degrees: Double): Double {
-    return degrees * DEGREES_TO_RADIANS
-}
-
-fun fromRadians(degrees: Double): Double {
-    return degrees * RADIANS_TO_DEGREES
-}
-
-fun Double.round(digitLength: Int): Double {
-    val pow = 10.0.pow(digitLength)
-    return (this * pow).roundToLong() / pow
 }
 
 /**
