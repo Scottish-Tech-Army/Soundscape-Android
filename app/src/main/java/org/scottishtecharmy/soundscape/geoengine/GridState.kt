@@ -34,7 +34,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.network.TileClient
+import org.scottishtecharmy.soundscape.network.VectorTileClient
 import org.scottishtecharmy.soundscape.utils.Analytics
 import kotlin.time.measureTime
 
@@ -84,7 +84,7 @@ open class GridState(
 ) {
 
     // HTTP connection to tile server
-    internal var tileClient: TileClient? = null
+    internal var tileClient: VectorTileClient? = null
 
     private var centralBoundingBox = BoundingBox()
     private var totalBoundingBox = BoundingBox()

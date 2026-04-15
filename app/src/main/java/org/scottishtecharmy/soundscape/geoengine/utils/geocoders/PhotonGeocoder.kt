@@ -43,8 +43,7 @@ class PhotonGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                         latitude = nearbyLocation.latitude,
                         longitude = nearbyLocation.longitude,
                         language = getPhotonLanguage(sharedPreferences)
-                    ).execute()
-                    .body()
+                    )
             } catch (e: Exception) {
                 Log.e(TAG, "Error getting geocode result:", e)
                 null
@@ -113,8 +112,7 @@ class PhotonGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                         latitude = location.latitude,
                         longitude = location.longitude,
                         language = getPhotonLanguage(sharedPreferences)
-                    ).execute()
-                    .body()
+                    )
             } catch (e: Exception) {
                 Log.e(TAG, "Error getting reverse geocode result:", e)
                 return@withContext null

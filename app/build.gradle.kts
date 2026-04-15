@@ -276,20 +276,6 @@ dependencies {
     // Viewmodel
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
-    // Retrofit
-    implementation(libs.retrofit)
-    implementation(libs.okhttp)
-    implementation(libs.kotlinx.serialization.json)
-    // logging interceptor
-    implementation (libs.logging.interceptor)
-
-    // Retrofit with Scalar Converter
-    implementation(libs.converter.scalars)
-    implementation(libs.converter.moshi)
-    implementation(libs.converter.protobuf) {
-        exclude("com.google.protobuf")
-    }
-
     // Location permissions
     implementation(libs.accompanist.permissions)
 

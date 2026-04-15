@@ -6,19 +6,18 @@ import kotlinx.coroutines.CloseableCoroutineDispatcher
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.async
 import kotlinx.coroutines.withContext
+import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.network.ITileDAO
-import org.scottishtecharmy.soundscape.network.ProtomapsTileClient
+import org.scottishtecharmy.soundscape.network.createAndroidVectorTileClient
 import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.NetworkUtils
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
-import retrofit2.awaitResponse
 import vector_tile.VectorTile
 import java.io.File
 import kotlin.coroutines.cancellation.CancellationException
@@ -38,8 +37,19 @@ open class ProtomapsGridState(
 
     override fun start(applicationContext: Context?,
                        offlineExtractPath: String) {
-        if((tileClient == null) && (applicationContext != null))
-            tileClient = ProtomapsTileClient(applicationContext)
+        if((tileClient == null) && (applicationContext != null)) {
+            val networkUtils = NetworkUtils(applicationContext)
+            val userAgent = buildString {
+                append("Soundscape/${BuildConfig.VERSION_NAME}")
+                if (BuildConfig.BUILD_TYPE == "releaseTest") append(" (unit tests)")
+            }
+            tileClient = createAndroidVectorTileClient(
+                baseUrl = BuildConfig.TILE_PROVIDER_URL,
+                cacheDir = applicationContext.cacheDir,
+                userAgent = userAgent,
+                hasNetwork = { networkUtils.hasNetwork() },
+            )
+        }
 
         extractPath = offlineExtractPath
         currentExtracts = mutableListOf()
@@ -120,14 +130,8 @@ open class ProtomapsGridState(
 
                 // Fallback to network
                 if(result == null) {
-                    //println("Network tile request for worker $workerIndex")
-                    val service =
-                        tileClient?.retrofitInstance?.create(ITileDAO::class.java)
-                    val tileReq =
-                        async {
-                            service?.getVectorTileWithCache(x, y, zoomLevel)
-                        }
-                    result = tileReq.await()?.awaitResponse()?.body()
+                    val bytes = tileClient?.getTile(x, y, zoomLevel)
+                    if (bytes != null) result = VectorTile.Tile.parseFrom(bytes)
                 }
 
                 if (result != null) {

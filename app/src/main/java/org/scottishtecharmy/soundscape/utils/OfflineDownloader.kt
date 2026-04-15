@@ -13,41 +13,34 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import okhttp3.OkHttpClient
+import com.squareup.moshi.Moshi
+import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.network.UserAgentInterceptor
-import okhttp3.ResponseBody
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.network.IDownloadService
-import org.scottishtecharmy.soundscape.network.IManifestDAO
-import org.scottishtecharmy.soundscape.network.ManifestClient
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
+import org.scottishtecharmy.soundscape.network.DownloadResult
+import org.scottishtecharmy.soundscape.network.FileDownloader
+import org.scottishtecharmy.soundscape.network.createAndroidFileDownloader
+import org.scottishtecharmy.soundscape.network.createAndroidManifestClient
 import org.scottishtecharmy.soundscape.utils.OfflineDownloader.Companion.TAG
-import retrofit2.Retrofit
-import retrofit2.awaitResponse
 import java.io.File
-import java.io.FileOutputStream
-import java.io.InputStream
 import java.lang.Thread.sleep
-import java.util.concurrent.TimeUnit
 
 suspend fun downloadAndParseManifest(applicationContext: Context) : FeatureCollection? {
+
+    val manifestClient = createAndroidManifestClient(
+        baseUrl = BuildConfig.EXTRACT_PROVIDER_URL,
+        userAgent = UserAgentInterceptor.USER_AGENT,
+    )
+    val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
+    val adapter = moshi.adapter(FeatureCollection::class.java)
 
     for (retry in 1..4) {
         try {
             return withContext(Dispatchers.IO) {
-                val manifestClient = ManifestClient(applicationContext)
-
-                val service =
-                    manifestClient.retrofitInstance?.create(IManifestDAO::class.java)
-                val manifestReq =
-                    async {
-                        service?.getManifest()
-                    }
-
-                val result = manifestReq.await()?.awaitResponse()?.body()
+                val json = manifestClient.getManifestJson()
                     ?: throw Exception("Manifest response null")
-
-                result
-
+                adapter.fromJson(json) ?: throw Exception("Manifest parse failed")
             }
         } catch (e: Exception) {
             Log.e(TAG, "Error downloading manifest $retry", e)
@@ -78,23 +71,9 @@ class OfflineDownloader {
     private val _downloadState = MutableStateFlow<DownloadState>(DownloadState.Idle)
     val downloadState: StateFlow<DownloadState> = _downloadState.asStateFlow()
 
-    private val downloadService: IDownloadService
-
-    init {
-        // We want a long timeout here to allow for network caching to happen behind the scenes
-        val okHttpClient = OkHttpClient.Builder()
-            .addInterceptor(UserAgentInterceptor())
-            .connectTimeout(3, TimeUnit.MINUTES)
-            .readTimeout(3, TimeUnit.MINUTES)
-            .build()
-
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://placeholder.com/") // Base URL is required but will be overridden by @Url
-            .client(okHttpClient)
-            .build()
-
-        downloadService = retrofit.create(IDownloadService::class.java)
-    }
+    private val fileDownloader: FileDownloader = createAndroidFileDownloader(
+        userAgent = UserAgentInterceptor.USER_AGENT,
+    )
 
     fun startDownload(
         fileUrl: String,
@@ -121,12 +100,15 @@ class OfflineDownloader {
                 while (retries > 0) {
                     Log.d(TAG, "Download attempt $retries")
                     _downloadState.value = DownloadState.Caching
-                    val response = downloadService.downloadFile(fileUrl)
-                    if (response.isSuccessful) {
-                        response.body()?.let { body ->
-                            saveFile(this, body, tempFile.path) { progress ->
-                                _downloadState.value = DownloadState.Downloading(progress)
-                            }
+                    val result = fileDownloader.download(
+                        url = fileUrl,
+                        destFile = tempFile,
+                        scope = this,
+                    ) { progress ->
+                        _downloadState.value = DownloadState.Downloading(progress)
+                    }
+                    when (result) {
+                        is DownloadResult.Success -> {
                             retries = 0
                             // Delete any file that already exists
                             finalFile.delete()
@@ -137,29 +119,28 @@ class OfflineDownloader {
                             } else {
                                 throw Exception("Failed to rename file from ${tempFile.name} to ${finalFile.name}")
                             }
-                        } ?: throw Exception("Response body was null.")
-                    } else {
-                        if(response.code() == 503) {
-                            // The server is likely copying the extract into it's cache and is
-                            // asking that we try again a little later. We're going to guess that
-                            // the caching runs at around 10MB/sec and as we know the size of the
-                            // extract, we can back off appropriately.
-                            var cachingDuration = 15
-                            if(retries == maxRetries) {
-                                if(extractSize != null) {
+                        }
+                        is DownloadResult.HttpError -> {
+                            if (result.code == 503) {
+                                // The server is likely copying the extract into it's cache and is
+                                // asking that we try again a little later. We're going to guess that
+                                // the caching runs at around 10MB/sec and as we know the size of the
+                                // extract, we can back off appropriately.
+                                var cachingDuration = 15
+                                if (retries == maxRetries && extractSize != null) {
                                     cachingDuration = (extractSize / 10000000.0).toInt()
                                 }
+                                Log.d(TAG, "Wait for $cachingDuration seconds before retrying.")
+                                _downloadState.value = DownloadState.Caching
+                                while (cachingDuration > 0) {
+                                    ensureActive()
+                                    sleep(1000)
+                                    --cachingDuration
+                                }
+                                --retries
+                            } else {
+                                throw Exception("Download failed with code: ${result.code} and message: ${result.message}")
                             }
-                            Log.d(TAG, "Wait for $cachingDuration seconds before retrying.")
-                            _downloadState.value = DownloadState.Caching
-                            while(cachingDuration > 0) {
-                                ensureActive()
-                                sleep(1000)
-                                --cachingDuration
-                            }
-                            --retries
-                        } else {
-                            throw Exception("Download failed with code: ${response.code()} and message: ${response.message()}")
                         }
                     }
                 }
@@ -175,43 +156,6 @@ class OfflineDownloader {
                 tempFile.delete() // Clean up partial file
                 Log.e(TAG, "Download failed", e)
             }
-        }
-    }
-
-    private fun saveFile(scope: CoroutineScope,
-                         body: ResponseBody,
-                         filePath: String,
-                         onProgress: (Int) -> Unit) {
-        var inputStream: InputStream? = null
-        var outputStream: FileOutputStream? = null
-
-        try {
-            val fileReader = ByteArray(4096)
-            val fileSize = body.contentLength()
-            var fileSizeDownloaded: Long = 0
-
-            inputStream = body.byteStream()
-            outputStream = FileOutputStream(filePath)
-
-            while (true) {
-                // Check if the coroutine has been cancelled
-                scope.ensureActive()
-
-                val read = inputStream.read(fileReader)
-                if (read == -1) {
-                    break
-                }
-                outputStream.write(fileReader, 0, read)
-                fileSizeDownloaded += read
-
-                // Calculate and emit progress as a value out of 1000
-                val progress = ((fileSizeDownloaded * 1000) / fileSize).toInt()
-                onProgress(progress)
-            }
-            outputStream.flush()
-        } finally {
-            inputStream?.close()
-            outputStream?.close()
         }
     }
 

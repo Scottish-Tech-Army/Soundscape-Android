@@ -25,11 +25,10 @@ class PhotonSearchTest {
 
                try {
                    val apiInterface = PhotonSearchProvider.getInstance()
-                   val call = apiInterface.getSearchResults("Tarland")
-                   val response = call.execute()
-                   if (call.isExecuted) {
+                   val result = apiInterface.getSearchResults("Tarland")
+                   if (result != null) {
                        Log.d("PhotonSearchTest", "Successfully got results:")
-                       response.body()?.let { result ->
+                       result.let { result ->
                            for (feature in result.features) {
                                feature.properties?.let { properties ->
                                    if ((properties["name"] != null) &&
