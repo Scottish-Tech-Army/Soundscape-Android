@@ -1085,26 +1085,18 @@
 <string name="menu_open_source_licenses">"Open source licenses"</string>
 <!-- Text for dialog which explains what is new in the current release. This is in markdown format. -->
 <string name="new_version_info_details">"
-There are two new features in this release which allow remote control of the app, even when the phone is locked. This means that it can be kept in your pocket whilst still controlling the main features of the app.
+This is the first production release of Soundscape.
 
-Both remote control methods use Bluetooth media control buttons, either those on your headphones, or you can also buy small remote controls to keep in your hand or pocket. The remote control mode is selected from the Settings/Media controls section and you can pick \"Voice command\" so that you can talk to the app, or \"Audio menu\" where there are menus read out to you with options to select. \"Original mode\" means that the Bluetooth buttons work in the same way as in previous releases.
-
-In voice command mode, clicking the play/pause button on your headphones starts the app listening for speech and you will hear a short sound to indicate this. If you say \"Help\" it will list the available commands that you can use. Then you can click the button again and try the other commands. Unfortunately, Android speech recognition doesn't support all languages, and it's not available on all phones.
-
-The main difficulty with voice command mode is that some headphones take longer to switch their microphone on than others. This means that after tapping the play/pause button you may have to wait up to 5 seconds before you can speak. To learn how long it takes, the best approach is to tap play/pause and then count up from 1 to 10. The phone should tell you what speech it recognized and the number it starts at was the first to be recognized. This can be used to help learn how long to wait before speaking. Some headphones make a clear noise when the microphone is on which makes this easier, but others make no noise at all. Unfortunately, this may take practise.
-
-The other new remote mode is Audio menu mode will work in all languages and on all phones. The next/previous media control buttons move forwards and backwards through the options within the menu. The play/pause button then selects the current option. There is a top level menu, and then one layer of sub menus which group together similar commands.
-
-These features are very new, and we'd really like feedback on whether they work well and what other commands you might like.
-
-Please report any problems that you have, however small they may be via the *Contact Support* option in the main menu.
+We\'re still working hard on improving the app, so please report any problems that you have, however small they may be via the *Contact Support* option in the main menu.
 "</string>
 <!-- Text for the About Soundscape menu option. It describes what the app does -->
 <string name="about_soundscape">Soundscape explores the use of innovative audio-based technology to enable people to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around.</string>
 <!-- Licensing strings -->
-<string name="copyright_notices" translatable="false">Soundscape wouldn\'t be possible without these fantastic third party libraries and data. Click on the links to see their licenses:</string>
-<string name="osm_copyright" translatable="false">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.</string>
-<string name="openmaptiles_copyright" translatable="false">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.</string>
+<string name="copyright_notices">"Soundscape wouldn\'t be possible without these fantastic third party libraries and data. Click on the links to see their licenses:"</string>
+<string name="osm_copyright">"[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape."</string>
+<string name="openmaptiles_copyright">"[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use."</string>
+<string name="steam_copyright">"[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md)."</string>
+<string name="trademark_disclaimer">"All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders."</string>
 
 <!-- Open Street Map term. Used to describe a block or building typically housing companies, but offices may be also used by any other kind of organization like charities, government, any NGO etc.. -->
 <string name="osm_office_building">"Office Building"</string>
