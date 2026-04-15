@@ -104,7 +104,7 @@ fun Welcome(
 @Composable
 private fun LocalImage() {
     Image(
-        painter = painterResource(R.drawable.soundscape_alpha_1024),
+        painter = painterResource(R.drawable.soundscape_1024),
         contentDescription = null,
         modifier = Modifier
             .clip(RoundedCornerShape(spacing.extraLarge))
