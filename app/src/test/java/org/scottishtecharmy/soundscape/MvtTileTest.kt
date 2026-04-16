@@ -889,12 +889,13 @@ class MvtTileTest {
                     position.properties?.set("callout-with-house", calloutDescriptionWithHouse?.name)
 
                     val description = StreetDescription(wayName, gridState)
-                    description.createDescription(userGeometry.mapMatchedWay!!, null)
+                    val matchedWay = userGeometry.mapMatchedWay!!
+                    description.createDescription(matchedWay, null)
                     description.describeStreet()
-                    val houseNumber = description.getStreetNumber(userGeometry.mapMatchedWay, location)
+                    val houseNumber = description.getStreetNumber(matchedWay, location)
                     val addressText = "${if (houseNumber.second) "Opposite" else ""} ${houseNumber.first} $wayName"
 
-                    val locationDescription = description.describeLocation(userGeometry.location, userGeometry.heading(), userGeometry.mapMatchedWay, null)
+                    val locationDescription = description.describeLocation(userGeometry.location, userGeometry.heading(), matchedWay, null)
                     callOutText.write("$addressText\n".toByteArray())
                     position.properties?.set("index", index + startIndex)
                     position.properties?.set("address", addressText)

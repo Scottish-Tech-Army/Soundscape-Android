@@ -99,9 +99,10 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
         for(road in fovRoads.features) {
             val way = road as Way
             if(nearestRoad.properties?.get("pavement") == way.name) {
-                if(userGeometry.mapMatchedLocation?.point != null) {
+                val matched = userGeometry.mapMatchedLocation
+                if(matched?.point != null) {
                     val roadDistance =
-                        userGeometry.ruler.distanceToLineString(userGeometry.mapMatchedLocation.point, road.geometry as LineString)
+                        userGeometry.ruler.distanceToLineString(matched.point, road.geometry as LineString)
                     val snappedHeading = userGeometry.snappedHeading()
                     if (snappedHeading != null) {
                         val innerAngle = calculateSmallestAngleBetweenLines(roadDistance.heading, snappedHeading)
@@ -170,7 +171,8 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
         val intersectionLocation = (intersection.geometry as Point).coordinates
         val graphIntersection = gridState.gridIntersections[intersectionLocation]
         if(graphIntersection != null) {
-            if((userGeometry.mapMatchedLocation != null) && (nearestRoad != null)) {
+            val matched = userGeometry.mapMatchedLocation
+            if((matched != null) && (nearestRoad != null)) {
                 // If our current matched way ends at this intersection, then we don't need to use
                 // more elaborate (Dijkstra) pathfinding to check the connection.
                 if(!nearestRoad.intersections.contains(graphIntersection)) {
@@ -179,7 +181,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
                     // short distance. If we can, check that we don't go through any other valid
                     // intersections first.
                     val shortestDistanceResults = findShortestDistance(
-                        userGeometry.mapMatchedLocation.point,
+                        matched.point,
                         nearestRoad,
                         intersectionLocation,
                         (intersection as Intersection).members.first(),
@@ -286,12 +288,13 @@ fun addIntersectionCalloutFromDescription(
 
             // Figure out which direction we're travelling along the way
             var direction: Boolean? = null
-            if (description.userGeometry.mapMatchedLocation != null) {
+            val matched = description.userGeometry.mapMatchedLocation
+            if (matched != null) {
                 direction = when (description.userGeometry.snappedHeading()) {
-                    description.userGeometry.mapMatchedLocation.heading ->
+                    matched.heading ->
                         true
 
-                    (description.userGeometry.mapMatchedLocation.heading + 180.0) % 360.0 ->
+                    (matched.heading + 180.0) % 360.0 ->
                         false
 
                     else ->

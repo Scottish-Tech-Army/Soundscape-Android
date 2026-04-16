@@ -41,15 +41,14 @@ class AutoCallout(
     private fun buildCalloutForDestination(userGeometry: UserGeometry): TrackedCallout? {
 
         // Check that we have a destination
-        if(userGeometry.currentBeacon == null)
-            return null
+        val beacon = userGeometry.currentBeacon ?: return null
 
         // Check that our location/time has changed enough to generate this callout
         if (!destinationFilter.shouldUpdate(userGeometry)) {
             return null
         }
 
-        val distance = userGeometry.ruler.distance(userGeometry.location, userGeometry.currentBeacon)
+        val distance = userGeometry.ruler.distance(userGeometry.location, beacon)
         val distanceString = formatDistanceAndDirection(distance, null, localizedContext)
         var text = localizedContext?.getString(R.string.callouts_audio_beacon) ?: "Distance to the audio beacon"
         text += " $distanceString"
@@ -57,14 +56,14 @@ class AutoCallout(
         return TrackedCallout(
             userGeometry = userGeometry,
             trackedText = "",
-            location = userGeometry.currentBeacon,
+            location = beacon,
             isPoint = true,
             isGeneric = true,
             filter = false,
             positionedStrings = List(1) {
                 PositionedString(
                     text = text,
-                    location = userGeometry.currentBeacon,
+                    location = beacon,
                     type = AudioType.LOCALIZED
                 )
             }
@@ -196,9 +195,10 @@ class AutoCallout(
                 feature.geometry.type == "Point",
                 name.generic
             )
-            if(userGeometry.currentBeacon != null) {
+            val currentBeacon = userGeometry.currentBeacon
+            if(currentBeacon != null) {
                 // If the feature is within 1m of the current beacon, don't call it out
-                if(getDistanceToFeature(userGeometry.currentBeacon, feature, userGeometry.ruler).distance < 1.0) {
+                if(getDistanceToFeature(currentBeacon, feature, userGeometry.ruler).distance < 1.0) {
                     // We do want to add it to the POI history though so that when it's no longer
                     // the currentBeacon it doesn't immediately get called out.
                     if (!poiCalloutHistory.find(callout))
