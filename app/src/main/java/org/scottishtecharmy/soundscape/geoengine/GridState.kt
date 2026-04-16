@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.geoengine
 
-import android.content.Context
 import kotlinx.coroutines.CloseableCoroutineDispatcher
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -10,8 +9,6 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
-import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.dto.Tile
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
@@ -35,7 +32,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.network.VectorTileClient
-import org.scottishtecharmy.soundscape.utils.Analytics
 import kotlin.time.measureTime
 
 enum class TreeId(
@@ -83,8 +79,11 @@ open class GridState(
     passedInTreeContext: CloseableCoroutineDispatcher? = null
 ) {
 
-    // HTTP connection to tile server
-    internal var tileClient: VectorTileClient? = null
+    // HTTP connection to tile server; set by the platform layer before start().
+    var tileClient: VectorTileClient? = null
+
+    // Hook for platform-specific analytics; defaults to no-op
+    var analytics: GridStateAnalytics = GridStateAnalytics.NoOp
 
     private var centralBoundingBox = BoundingBox()
     private var totalBoundingBox = BoundingBox()
@@ -101,8 +100,7 @@ open class GridState(
     // a tree of Markers from the database.
     internal var markerTree : FeatureTree? = null
 
-    open fun start(applicationContext: Context? = null,
-                   offlineExtractPath: String = "") {}
+    open fun start(offlineExtractPath: String = "") {}
     open fun stop() {
         // Clean up the feature trees
         for(tree in featureTrees) {
@@ -325,7 +323,7 @@ open class GridState(
                 val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
                 val streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
                 val tileCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
-                Analytics.getInstance().logCostlyEvent("updateTile", null)
+                analytics.logCostlyEvent("updateTile")
                 for (retry in 1..5) {
                     ret = updateTile(
                         tile.tileX,

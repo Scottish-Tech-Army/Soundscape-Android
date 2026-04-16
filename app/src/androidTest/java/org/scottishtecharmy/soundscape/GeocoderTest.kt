@@ -12,7 +12,6 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeoutOrNull
-import okhttp3.internal.platform.PlatformRegistry.applicationContext
 import org.json.JSONObject
 
 import org.junit.Test
@@ -135,9 +134,9 @@ class GeocoderTest {
             val extractsPath = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)!!
             val offlineExtractPath = extractsPath + "/" + Environment.DIRECTORY_DOWNLOADS
             gridState.validateContext = false
-            gridState.start(ApplicationProvider.getApplicationContext(), offlineExtractPath)
+            gridState.startWithContext(ApplicationProvider.getApplicationContext(), offlineExtractPath)
             settlementGrid.validateContext = false
-            settlementGrid.start(ApplicationProvider.getApplicationContext(), offlineExtractPath)
+            settlementGrid.startWithContext(ApplicationProvider.getApplicationContext(), offlineExtractPath)
 
             val briarwellLaneLocation = LngLatAlt( 	-4.3067678, 55.9414919)
             var results = reverseGeocodeLocation(
@@ -249,8 +248,9 @@ class GeocoderTest {
     ) {
         val cheapRuler = CheapRuler(nearbyLocation.latitude)
 
+        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         suspend fun findPlace(geocoder: SoundscapeGeocoder, searchString: String, nearbyLocation: LngLatAlt): List<LocationDescription>? {
-            val description = geocoder.getAddressFromLocationName(searchString, nearbyLocation, applicationContext)
+            val description = geocoder.getAddressFromLocationName(searchString, nearbyLocation, appContext)
             println("findPlace complete")
             return description
         }
@@ -306,9 +306,9 @@ class GeocoderTest {
             )
 
             gridState.validateContext = false
-            gridState.start(ApplicationProvider.getApplicationContext())
+            gridState.startWithContext(ApplicationProvider.getApplicationContext())
             settlementGrid.validateContext = false
-            settlementGrid.start(ApplicationProvider.getApplicationContext())
+            settlementGrid.startWithContext(ApplicationProvider.getApplicationContext())
 
             val milngavie = LngLatAlt(-4.317166334292434, 55.941822016283)
             geocodeLocation(geocoderList, milngavie, "Greggs Milngavi", gridState, settlementGrid)
@@ -415,7 +415,7 @@ class GeocoderTest {
             val geocoder = FusedGeocoder(appContext, gridState)
 
             gridState.validateContext = false
-            gridState.start(ApplicationProvider.getApplicationContext())
+            gridState.startWithContext(ApplicationProvider.getApplicationContext())
 
             val wellKnownLocation = LngLatAlt(-4.3215166, 55.9404307)
             val halfordsResults = geocoder.getAddressFromLocationName("halfords crow road", wellKnownLocation, appContext)
@@ -440,7 +440,7 @@ class GeocoderTest {
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
         val gridState = ProtomapsGridState()
         gridState.validateContext = false
-        gridState.start(ApplicationProvider.getApplicationContext())
+        gridState.startWithContext(ApplicationProvider.getApplicationContext())
 
         val milngavie = LngLatAlt(-4.317166334292434, 55.941822016283)
         runBlocking {

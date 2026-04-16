@@ -73,7 +73,7 @@ private fun vectorTileToGeoJsonFromFile(
     val gridState = FileGridState()
     val result: Array<FeatureCollection> = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
 
-    gridState.start(null, offlineExtractPath)
+    gridState.start(offlineExtractPath)
     gridState.checkOfflineMaps()
 
     runBlocking {
@@ -151,9 +151,7 @@ fun getGridStateForLocation(
 ): GridState {
 
     val gridState = FileGridState(zoomLevel, gridSize)
-    gridState.start(
-        null,
-        offlineExtractPath)
+    gridState.start(offlineExtractPath)
     runBlocking {
 
         val enabledCategories = mutableSetOf<String>()
@@ -649,9 +647,9 @@ class MvtTileTest {
     fun testMovingGrid(gpxFilename: String, calloutFilename: String, geojsonFilename: String) {
 
         val gridState = FileGridState()
-        gridState.start(null, offlineExtractPath)
+        gridState.start(offlineExtractPath)
         val settlementGrid = FileGridState(12, 3)
-        settlementGrid.start(null, offlineExtractPath)
+        settlementGrid.start(offlineExtractPath)
         val mapMatchFilter = MapMatchFilter()
         val gps = parseGpxFromFile(gpxFilename)
         val collection = FeatureCollection()
@@ -816,9 +814,9 @@ class MvtTileTest {
     fun testStreetNumbers(gpxFilename: String, calloutFilename: String, geojsonFilename: String) {
 
         val gridState = FileGridState()
-        gridState.start(null, offlineExtractPath)
+        gridState.start(offlineExtractPath)
         val settlementGrid = FileGridState(12, 3)
-        settlementGrid.start(null, offlineExtractPath)
+        settlementGrid.start(offlineExtractPath)
         val mapMatchFilter = MapMatchFilter()
         val gps = parseGpxFromFile(gpxFilename)
         val collection = FeatureCollection()
@@ -951,7 +949,7 @@ class MvtTileTest {
         // caching behaves.
 
         val gridState = FileGridState()
-        gridState.start(null, offlineExtractPath)
+        gridState.start(offlineExtractPath)
 
         // The center of each grid
         for(x in 7990 until 8010) {
@@ -1040,7 +1038,7 @@ class MvtTileTest {
     fun testParsing() {
 
         val gridState = FileGridState()
-        gridState.start(null, offlineExtractPath)
+        gridState.start(offlineExtractPath)
 
         data class Region(val name: String, val minX: Int, val minY: Int, val maxX: Int, val maxY: Int)
         val regions = listOf (
@@ -1231,7 +1229,7 @@ class MvtTileTest {
     @Test
     fun entranceMatcherTest() {
         val gridState = DummyEntranceGridState()
-        gridState.start(null, offlineExtractPath)
+        gridState.start(offlineExtractPath)
 
         runBlocking {
             val featureCollections =
@@ -1252,10 +1250,7 @@ class MvtTileTest {
         // This test ensures that the GridState code can successfully switch between offline
         // extracts
         val gridState = FileGridState(MAX_ZOOM_LEVEL, GRID_SIZE)
-        gridState.start(
-            null,
-            offlineExtractPath
-        )
+        gridState.start(offlineExtractPath)
         val enabledCategories = emptySet<String>().toMutableSet()
         enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
         enabledCategories.add(MOBILITY_KEY)

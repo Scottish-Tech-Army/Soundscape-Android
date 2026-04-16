@@ -815,9 +815,9 @@ class MainActivity : AppCompatActivity() {
         const val ALLOW_CALLOUTS_DEFAULT = true
         const val ALLOW_CALLOUTS_KEY = "AllowCallouts"
         const val PLACES_AND_LANDMARKS_DEFAULT = true
-        const val PLACES_AND_LANDMARKS_KEY = "PlaceAndLandmarks"
+        const val PLACES_AND_LANDMARKS_KEY = org.scottishtecharmy.soundscape.geoengine.PLACES_AND_LANDMARKS_KEY
         const val MOBILITY_DEFAULT = true
-        const val MOBILITY_KEY = "Mobility"
+        const val MOBILITY_KEY = org.scottishtecharmy.soundscape.geoengine.MOBILITY_KEY
         const val DISTANCE_TO_BEACON_DEFAULT = true
         const val DISTANCE_TO_BEACON_KEY = "DistanceToBeacon"
         const val UNNAMED_ROADS_DEFAULT = false

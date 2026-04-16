@@ -99,7 +99,7 @@ class MvtPerformanceTest {
             return
 
         val gridState = ProtomapsGridState()
-        gridState.start(ApplicationProvider.getApplicationContext())
+        gridState.startWithContext(ApplicationProvider.getApplicationContext())
 
         // Test Edinburgh, because that's where many of our testers are!
         println("Test Edinburgh")
@@ -130,7 +130,7 @@ class MvtPerformanceTest {
         val directory = InstrumentationRegistry.getInstrumentation().targetContext.getExternalFilesDir(null)
         println(directory)
         gridState.validateContext = false
-        gridState.start(ApplicationProvider.getApplicationContext())
+        gridState.startWithContext(ApplicationProvider.getApplicationContext())
         val location = LngLatAlt(-4.317357, 55.942527)
         runBlocking {
             gridState.locationUpdate(
@@ -187,7 +187,7 @@ class MvtPerformanceTest {
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val path = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)
         val offlineExtractPath =  path + "/" + Environment.DIRECTORY_DOWNLOADS
-        gridState.start(
+        gridState.startWithContext(
             ApplicationProvider.getApplicationContext(),
             offlineExtractPath
         )
@@ -238,7 +238,7 @@ class MvtPerformanceTest {
 
         val gridState = ProtomapsGridState()
         gridState.validateContext = false
-        gridState.start(ApplicationProvider.getApplicationContext())
+        gridState.startWithContext(ApplicationProvider.getApplicationContext())
 
 //        Debug.startMethodTracing("Memory")
 

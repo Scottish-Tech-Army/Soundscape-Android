@@ -1,22 +1,17 @@
 package org.scottishtecharmy.soundscape.geoengine
 
-import android.content.Context
 import ch.poole.geo.pmtiles.Reader
 import kotlinx.coroutines.CloseableCoroutineDispatcher
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.withContext
-import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.network.createAndroidVectorTileClient
-import org.scottishtecharmy.soundscape.utils.Analytics
-import org.scottishtecharmy.soundscape.utils.NetworkUtils
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import vector_tile.VectorTile
 import java.io.File
@@ -35,22 +30,7 @@ open class ProtomapsGridState(
     var currentExtracts: MutableList<String> = mutableListOf()
     var extractPath: String = ""
 
-    override fun start(applicationContext: Context?,
-                       offlineExtractPath: String) {
-        if((tileClient == null) && (applicationContext != null)) {
-            val networkUtils = NetworkUtils(applicationContext)
-            val userAgent = buildString {
-                append("Soundscape/${BuildConfig.VERSION_NAME}")
-                if (BuildConfig.BUILD_TYPE == "releaseTest") append(" (unit tests)")
-            }
-            tileClient = createAndroidVectorTileClient(
-                baseUrl = BuildConfig.TILE_PROVIDER_URL,
-                cacheDir = applicationContext.cacheDir,
-                userAgent = userAgent,
-                hasNetwork = { networkUtils.hasNetwork() },
-            )
-        }
-
+    override fun start(offlineExtractPath: String) {
         extractPath = offlineExtractPath
         currentExtracts = mutableListOf()
     }
@@ -70,9 +50,9 @@ open class ProtomapsGridState(
             currentExtracts = extracts
             // These events don't really tell us very much, so mark them as costly
             if (currentExtracts.isEmpty())
-                Analytics.getInstance().logCostlyEvent("GridNoOfflineMap", null)
+                analytics.logCostlyEvent("GridNoOfflineMap")
             else
-                Analytics.getInstance().logCostlyEvent("GridWithOfflineMap", null)
+                analytics.logCostlyEvent("GridWithOfflineMap")
 
             // Close old file readers
             for (reader in fileTileReaders)

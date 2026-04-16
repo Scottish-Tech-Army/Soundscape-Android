@@ -233,7 +233,7 @@ class SearchTest {
         val path = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)
         val offlineExtractPath =  path + "/" + Environment.DIRECTORY_DOWNLOADS
         gridState.validateContext = false
-        gridState.start(ApplicationProvider.getApplicationContext(), offlineExtractPath)
+        gridState.startWithContext(ApplicationProvider.getApplicationContext(), offlineExtractPath)
         runBlocking {
             gridState.locationUpdate(location,emptySet())
         }

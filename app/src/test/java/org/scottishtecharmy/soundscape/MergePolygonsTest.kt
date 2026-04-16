@@ -265,7 +265,7 @@ class MergePolygonsTest {
         val gridState = FileGridState()
         val result: Array<FeatureCollection> = emptyArray()
 
-        gridState.start(null, offlineExtractPath)
+        gridState.start(offlineExtractPath)
 
         runBlocking {
             gridState.updateTile(tileX, tileY, 0, result, intersectionMap, streetNumberMap)

@@ -8,7 +8,10 @@ import android.net.Uri
 import android.os.Environment
 import android.util.Log
 import androidx.preference.PreferenceManager
+import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
+import org.scottishtecharmy.soundscape.network.UserAgentInterceptor
+import org.scottishtecharmy.soundscape.network.createAndroidVectorTileClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -289,10 +292,24 @@ class GeoEngine {
         val extractsPath = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)!!
         val offlineExtractPath = extractsPath + "/" + Environment.DIRECTORY_DOWNLOADS
 
-        gridState.start(application, offlineExtractPath)
-        settlementGrid.start(application, offlineExtractPath)
-        tileSearch = TileSearch(offlineExtractPath, gridState, settlementGrid)
         networkUtils = NetworkUtils(application)
+
+        val analyticsAdapter = GridStateAnalytics { name ->
+            Analytics.getInstance().logCostlyEvent(name, null)
+        }
+        val tileClient = createAndroidVectorTileClient(
+            baseUrl = BuildConfig.TILE_PROVIDER_URL,
+            cacheDir = application.cacheDir,
+            userAgent = UserAgentInterceptor.USER_AGENT,
+            hasNetwork = { networkUtils.hasNetwork() },
+        )
+        gridState.tileClient = tileClient
+        settlementGrid.tileClient = tileClient
+        gridState.analytics = analyticsAdapter
+        settlementGrid.analytics = analyticsAdapter
+        gridState.start(offlineExtractPath)
+        settlementGrid.start(offlineExtractPath)
+        tileSearch = TileSearch(offlineExtractPath, gridState, settlementGrid)
 
         this.localizedContext = localizedContext
         autoCallout = AutoCallout(localizedContext, sharedPreferences)
