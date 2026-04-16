@@ -64,6 +64,7 @@ import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
+import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
@@ -809,21 +810,23 @@ class SoundscapeService : MediaSessionService() {
         var lastHandle = 0L
         if(addModeEarcon) lastHandle = audioEngine.createEarcon(EARCON_MODE_ENTER, AudioType.STANDARD)
         for(result in callout.positionedStrings) {
-            if(result.location == null) {
+            val resultLocation = result.location
+            val resultEarcon = result.earcon
+            if(resultLocation == null) {
                 var type = result.type
                 if(type == AudioType.LOCALIZED) type = AudioType.STANDARD
-                if(result.earcon != null)
-                    audioEngine.createEarcon(result.earcon, type, 0.0, 0.0, result.heading?:0.0)
+                if(resultEarcon != null)
+                    audioEngine.createEarcon(resultEarcon, type, 0.0, 0.0, result.heading?:0.0)
 
                 lastHandle = audioEngine.createTextToSpeech(result.text, type, 0.0, 0.0, result.heading?:0.0)
             }
             else {
-                if(result.earcon != null) {
+                if(resultEarcon != null) {
                     audioEngine.createEarcon(
-                        result.earcon,
+                        resultEarcon,
                         result.type,
-                        result.location.latitude,
-                        result.location.longitude,
+                        resultLocation.latitude,
+                        resultLocation.longitude,
                         result.heading?:0.0)
                 }
                 val text =
@@ -833,12 +836,12 @@ class SoundscapeService : MediaSessionService() {
                                 ruler = CheapRuler(location.latitude)
 
                             val distance =
-                                ruler.distance(location, result.location)
-                            val heading = ruler.bearing(location, result.location)
+                                ruler.distance(location, resultLocation)
+                            val heading = ruler.bearing(location, resultLocation)
                             result.text + ", " + formatDistanceAndDirection(
                                 distance,
                                 heading,
-                                localizedContext,
+                                AndroidLocalizedStrings(localizedContext),
                                 lastGeometry?.heading(),
                                 sharedPreferences.getString(RELATIVE_DIRECTION_KEY, RELATIVE_DIRECTION_DEFAULT)!!
                             )
@@ -849,8 +852,8 @@ class SoundscapeService : MediaSessionService() {
                 lastHandle = audioEngine.createTextToSpeech(
                     text,
                     result.type,
-                    result.location.latitude,
-                    result.location.longitude,
+                    resultLocation.latitude,
+                    resultLocation.longitude,
                     result.heading?:0.0
                 )
             }
@@ -884,7 +887,7 @@ class SoundscapeService : MediaSessionService() {
     }
 
     fun announceStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {
-        val compassLabel = localizedContext.getString(getCompassLabel(bestChoice.heading.toInt()))
+        val compassLabel = AndroidLocalizedStrings(localizedContext).get(getCompassLabel(bestChoice.heading.toInt()))
         val go = localizedContext.getString(R.string.preview_go_title)
         speakText("$go ${bestChoice.name} $compassLabel", AudioType.STANDARD)
     }

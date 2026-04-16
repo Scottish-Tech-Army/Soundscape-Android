@@ -57,6 +57,7 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geoengine.TextForFeature
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
+import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -414,7 +415,7 @@ private fun LocationDescriptionTextsSection(
         return@remember formatDistanceAndDirection(
             ruler.distance(userLocation, locationDescription.location),
             ruler.bearing(userLocation, locationDescription.location),
-            context)
+            AndroidLocalizedStrings(context))
     }
 
     Column(
@@ -428,14 +429,15 @@ private fun LocationDescriptionTextsSection(
         )
 
         locationDescription.typeDescription?.let {
-            if(it.additionalText?.isNotEmpty() == true) {
+            val additional = it.additionalText
+            if(!additional.isNullOrEmpty()) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(spacing.small),
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
-                        text = it.additionalText,
+                        text = additional,
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface
                     )

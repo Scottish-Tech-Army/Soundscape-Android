@@ -36,25 +36,19 @@ import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
-import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.MultiGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SoundscapeGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.TileSearch
-import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
-import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeClockTime
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
-import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeLeftRightLabel
 import org.scottishtecharmy.soundscape.geoengine.utils.getTriangleForDirection
-import org.scottishtecharmy.soundscape.geoengine.utils.normalizeHeading
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -72,18 +66,7 @@ import kotlin.time.measureTime
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.NetworkUtils
-import java.lang.String.format
-import kotlin.math.roundToInt
 
-
-data class PositionedString(
-    val text : String,
-    val location : LngLatAlt? = null,
-    val earcon : String? = null,
-    val type: AudioType = AudioType.STANDARD,
-    val heading: Double? = null,
-    val addDistanceAndHeading: Boolean = false
-)
 
 fun getPhotonLanguage(sharedPreferences: SharedPreferences?) : String? {
 
@@ -124,6 +107,7 @@ class GeoEngine {
 
     // Resource string locale configuration
     private lateinit var localizedContext: Context
+    private lateinit var localizedStrings: AndroidLocalizedStrings
 
     lateinit var geocoder: SoundscapeGeocoder
     lateinit var tileSearch: TileSearch
@@ -312,6 +296,7 @@ class GeoEngine {
         tileSearch = TileSearch(offlineExtractPath, gridState, settlementGrid)
 
         this.localizedContext = localizedContext
+        this.localizedStrings = AndroidLocalizedStrings(localizedContext)
         autoCallout = AutoCallout(localizedContext, sharedPreferences)
 
         // The MultiGeocoder dynamically switches between Android, Photon and Local Geocoders
@@ -701,10 +686,10 @@ class GeoEngine {
                                 // we are not already calling out in another direction.
                                 for(feature in featureCollection) {
                                     var duplicate = false
-                                    val featureName = getTextForFeature(localizedContext, feature as MvtFeature).text
+                                    val featureName = getTextForFeature(localizedStrings, feature as MvtFeature).text
                                     for (otherFeature in featuresByDirection) {
                                         if (otherFeature == null) continue
-                                        val otherName = getTextForFeature(localizedContext, otherFeature as MvtFeature).text
+                                        val otherName = getTextForFeature(localizedStrings, otherFeature as MvtFeature).text
                                         if (featureName == otherName) duplicate = true
                                     }
                                     if (!duplicate) {
@@ -728,8 +713,8 @@ class GeoEngine {
 
                         if(feature == null) continue
                         val poiLocation = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
-                        val name = getTextForFeature(localizedContext, feature as MvtFeature)
-                        val text = "${name.text}. ${formatDistanceAndDirection(poiLocation.distance, poiLocation.heading, localizedContext)}"
+                        val name = getTextForFeature(localizedStrings, feature as MvtFeature)
+                        val text = "${name.text}. ${formatDistanceAndDirection(poiLocation.distance, poiLocation.heading, localizedStrings)}"
                         list.add(
                             PositionedString(
                                 text,
@@ -781,8 +766,8 @@ class GeoEngine {
                     for (feature in featuresAhead) {
 
                         val poiLocation = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
-                        val name = getTextForFeature(localizedContext, feature as MvtFeature)
-                        val text = "${name.text}. ${formatDistanceAndDirection(poiLocation.distance, poiLocation.heading, localizedContext)}"
+                        val name = getTextForFeature(localizedStrings, feature as MvtFeature)
+                        val text = "${name.text}. ${formatDistanceAndDirection(poiLocation.distance, poiLocation.heading, localizedStrings)}"
                         list.add(
                             PositionedString(
                                 text,
@@ -849,13 +834,13 @@ class GeoEngine {
                     val list: MutableList<PositionedString> = mutableListOf()
                     if(nearestMarkers != null) {
                         for (feature in nearestMarkers.features) {
-                            val featureText = getTextForFeature(localizedContext, feature as MvtFeature)
+                            val featureText = getTextForFeature(localizedStrings, feature as MvtFeature)
                             val markerLocation = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
                             val text = "${featureText.text}. ${
                                 formatDistanceAndDirection(
                                     markerLocation.distance,
                                     markerLocation.heading,
-                                    localizedContext
+                                    localizedStrings
                                 )
                             }"
                             list.add(
@@ -1035,149 +1020,6 @@ class GeoEngine {
     }
 }
 
-data class TextForFeature(
-    val text: String = "",
-    val generic: Boolean= false,
-    val additionalText: String? = null)
-
-/**
- * getNameForFeature returns text describing the feature for callouts. Usually it returns a name
- * or if it doesn't have one then a localized description of the type of feature it is e.g. bike
- * parking, or style. Some types of Feature have more info e.g. bus stops and railway stations
- * @param feature to evaluate
- * @return a NameForFeature object containing the name and a flag indicating if it is a generic
- * name from the OSM tag rather than an actual name.
- */
-fun getTextForFeature(localizedContext: Context?, feature: MvtFeature) : TextForFeature {
-    var generic = false
-    val name = feature.name
-    val entranceType = feature.properties?.get("entrance") as String?
-    val featureValue = feature.featureValue
-    val isMarker = feature.superCategory == SuperCategoryId.MARKER
-
-    if(feature.superCategory == SuperCategoryId.HOUSENUMBER) {
-        return TextForFeature(name ?: feature.housenumber ?: "", false)
-    }
-
-    if(isMarker) {
-        // If the feature is a Marker, return the unadulterated name along with prefix indicating
-        // that it's a Marker and any extra description (annotation).
-        val description = feature.properties?.get("description")
-        var text = name
-        if(description != null) {
-            if(text != null)
-                text += ", $description"
-            else
-                text = description as String
-        }
-        return if(text != null)
-                TextForFeature(
-                    localizedContext?.getString(R.string.markers_marker_with_name, text)
-                        ?: "Marker. $text", false)
-            else
-                TextForFeature(localizedContext?.getString(R.string.markers_generic_name) ?: "Marker", false)
-    }
-
-    var text = name
-
-    val namedTransit = when (featureValue) {
-        "bus_stop" -> Pair(R.string.osm_bus_stop_named, R.string.osm_bus_stop)
-        "station" -> Pair(R.string.osm_train_station_named, R.string.osm_train_station)
-        "tram_stop" -> Pair(R.string.osm_tram_stop_named, R.string.osm_tram_stop)
-        "subway" -> Pair(R.string.osm_subway_named, R.string.osm_subway)
-        "ferry_terminal" -> Pair(R.string.osm_ferry_terminal_named, R.string.osm_ferry_terminal)
-        else -> null
-    }
-    if(namedTransit != null) {
-        text = if (name != null)
-            localizedContext?.getString(namedTransit.first, name) ?: "$name Transit Stop"
-        else
-            localizedContext?.getString(namedTransit.second) ?: "Transit"
-    }
-
-    if(entranceType != null) {
-        // Features which are an entrance can have the following properties:
-        //  An entrance name e.g. "Main Street"
-        //  A name for the POI/building that they are an entrance for e.g. Charing Cross
-        //  A name for the type of POI that they are an entrance for e.g. Subway
-        //
-        // Possible name combinations could be:
-        //      "Main Street" entrance to "Charing Cross" "Subway"
-        //      "Main Street" entrance to "Charing Cross"
-        //      "Main Street" entrance to "Subway"
-        //      Entrance to "Charing Cross" "Subway"
-        //      Entrance to "Subway"
-        //      Entrance to "Charing Cross"
-
-        val entranceName = feature.properties?.get("entrance_name") as String?
-        val destinationName = text      // The transit naming has already been done above
-
-        val entranceText =
-            if(entranceType == "main")
-                localizedContext?.getString(R.string.osm_main_entrance) ?: "Main entrance"
-            else
-                localizedContext?.getString(R.string.osm_entrance)  ?: "Entrance"
-
-
-        text = if(entranceName != null) {
-            localizedContext?.getString(
-                R.string.osm_entrance_named_with_destination,
-                destinationName,
-                entranceText,
-                entranceName,
-            ) ?: "$destinationName $entranceText to $entranceName"
-        }
-        else
-            localizedContext?.getString(R.string.osm_entrance_with_destination, destinationName, entranceText)
-                ?: "$destinationName $entranceText"
-    }
-
-    if((feature.featureClass == null) && (feature.featureSubClass == null)) {
-        // Some Feature do not have a featureClass e.g. Buildings. Those can have names and so we
-        // should return those
-        return if(text == null)
-            TextForFeature("", true)
-        else
-            TextForFeature(text, false)
-    }
-
-    val id = ResourceMapper.getResourceId(feature.featureClass) ?:
-             ResourceMapper.getResourceId(feature.featureSubClass)
-    val osmText = if (id == null) {
-        null
-    } else {
-        localizedContext?.getString(id) ?: "OSM Feature"
-    }
-    var additionalText :String? = null
-    if (text == null) {
-        text = osmText
-        generic = true
-    } else {
-        additionalText = osmText
-    }
-    val capitalizedText = text?.replaceFirstChar {
-        if (it.isLowerCase() && (localizedContext != null))
-            it.titlecase(localizedContext.resources.configuration.getLocales().get(0))
-        else
-            it.toString()
-    }
-    if(capitalizedText == null)
-        return TextForFeature("", generic, additionalText)
-
-    return TextForFeature(capitalizedText, generic, additionalText)
-}
-
-/**
- * We're going to round metric as documented for iOS:
- *  For metric units, we round all distances less than 1000 meters to the nearest 5 meters and all
- *  distances over 1000 meters to the nearest 50 meters.
- *
- * The iOS imperial docs are wrong, and in fact distances are all in feet and we can round in the
- * same way as metric.
- *
- */
-
-var metric = true
 fun updateMeasurementUnits(sharedPreferences: SharedPreferences) {
     val unitsString = sharedPreferences.getString(
         MainActivity.MEASUREMENT_UNITS_KEY,
@@ -1189,199 +1031,4 @@ fun updateMeasurementUnits(sharedPreferences: SharedPreferences) {
         metric = !imperialCountries.contains(country.uppercase(Locale.ROOT))
     } else
         metric = (unitsString == "Metric")
-}
-
-fun formatDistanceAndDirection(
-    distance: Double,
-    heading: Double?,
-    localizedContext: Context?,
-    userHeading: Double? = null,
-    relativeTimeMode: String = "ClockFace"
-) : String {
-    var units = distance
-    var bigUnitDivisor = 100
-    if(!metric) {
-        // Imperial units used are feet
-        units = (distance * 1.09361 * 3)
-        bigUnitDivisor = (176*3)
-    }
-
-    val roundToNearest = if (units < 1000) 5.0 else 50.0
-    val roundedDistance =
-        ((units + (roundToNearest / 2)) / roundToNearest).toInt() * roundToNearest
-
-    var distanceText: String
-    if (roundedDistance < 1000) {
-        distanceText = localizedContext?.getString(
-            if(metric) R.string.distance_format_meters else R.string.distance_format_feet,
-            roundedDistance.toInt().toString()
-        ) ?: format("%d metres", roundedDistance.toInt())
-    } else {
-        val bigUnits = (roundedDistance.toInt() / 10).toFloat() / bigUnitDivisor
-        distanceText = localizedContext?.getString(
-            if(metric) R.string.distance_format_km else R.string.distance_format_miles,
-            "%.2f".format(bigUnits)
-        )  ?: format("%.2f km", bigUnits)
-    }
-
-    var headingText = ""
-    if(heading != null) {
-        if(userHeading == null) {
-            if(localizedContext != null)
-                headingText = ", " + localizedContext.getString(getCompassLabel(heading.toInt()))
-        } else {
-            // We have a user heading, so we want to describe with a relative direction
-            when(relativeTimeMode) {
-                "ClockFace" -> {
-                    val timeHeading = getRelativeClockTime(heading.toInt(), userHeading.toInt())
-                    headingText =
-                        ", " + (localizedContext?.getString(R.string.relative_clock_direction) ?: "at %s o'clock")
-                        .format(timeHeading)
-                }
-                "Degrees" -> {
-                    val heading = (heading - userHeading)
-                    val degrees = normalizeHeading(((heading / 5.0).roundToInt() * 5))
-                    headingText =
-                        ", " + (localizedContext?.getString(R.string.relative_degrees_direction) ?: "at %s degrees")
-                            .format(degrees)
-                }
-                "LeftRight" -> {
-                    val labelId = getRelativeLeftRightLabel((heading - userHeading).toInt())
-                    if(localizedContext != null) {
-                        headingText = ", " + localizedContext.getString(labelId)
-                    } else {
-                        headingText = ", " +
-                            when (labelId) {
-                                R.string.relative_left_right_direction_ahead -> "Ahead"
-                                R.string.relative_left_right_direction_ahead_right -> "Ahead right"
-                                R.string.relative_left_right_direction_right -> "Right"
-                                R.string.relative_left_right_direction_behind_right -> "Behind right"
-                                R.string.relative_left_right_direction_behind -> "Behind"
-                                R.string.relative_left_right_direction_behind_left -> "Behind left"
-                                R.string.relative_left_right_direction_left -> "Left"
-                                R.string.relative_left_right_direction_ahead_left -> "Ahead left"
-                                else -> "Unknown"
-                            }
-                    }
-                }
-            }
-        }
-    }
-    return format("$distanceText$headingText")
-}
-
-fun travellingReverseGeocode(location: LngLatAlt,
-                             gridState: GridState,
-                             settlementGrid: GridState,
-                             localizedContext: Context?): LocationDescription? {
-
-    if(!gridState.isLocationWithinGrid(location)) return null
-
-    // Check if we're near a bus/tram/train stop. This is useful when travelling on public transport
-    val busStopTree = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
-    val nearestBusStop = busStopTree.getNearestFeature(location, gridState.ruler, 20.0)
-    if(nearestBusStop != null) {
-        val busStopText = getTextForFeature(localizedContext, nearestBusStop as MvtFeature)
-        if(!busStopText.generic) {
-            return LocationDescription(
-                name = localizedContext?.getString(R.string.directions_near_name)
-                    ?.format(busStopText.text) ?: "Near ${busStopText.text}",
-                location = location,
-            )
-        }
-    }
-
-    // Check if we're inside a POI
-    val gridPoiTree = gridState.getFeatureTree(TreeId.POIS)
-    val insidePois = gridPoiTree.getContainingPolygons(location)
-    for(poi in insidePois) {
-        val mvtPoi = poi as MvtFeature
-        if(mvtPoi.name != null) {
-            return LocationDescription(
-                name = localizedContext?.getString(R.string.directions_at_poi)?.format(mvtPoi.name) ?: "At ${mvtPoi.name}",
-                location = location,
-            )
-        }
-    }
-
-    // Get the nearest settlements. Nominatim uses the following proximities, so we do the same:
-    //
-    // cities, municipalities, islands | 15 km
-    // towns, boroughs                 | 4 km
-    // villages, suburbs               | 2 km
-    // hamlets, farms, neighbourhoods  |  1 km
-    //
-    var nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_HAMLET)
-        .getNearestFeature(location, settlementGrid.ruler, 1000.0) as MvtFeature?
-    var nearestSettlementName = nearestSettlement?.name
-    if(nearestSettlementName == null) {
-        nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_VILLAGE).getNearestFeature(location, settlementGrid.ruler, 2000.0) as MvtFeature?
-        nearestSettlementName = nearestSettlement?.name
-        if(nearestSettlementName == null) {
-            nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_TOWN)
-                .getNearestFeature(location, settlementGrid.ruler, 4000.0) as MvtFeature?
-            nearestSettlementName = nearestSettlement?.name
-            if (nearestSettlementName == null) {
-                nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_CITY)
-                    .getNearestFeature(location, settlementGrid.ruler, 15000.0) as MvtFeature?
-                nearestSettlementName = nearestSettlement?.name
-            }
-        }
-    }
-
-    // Check if the location is alongside a road/path
-    val nearestRoad = gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, gridState.ruler, location, 100.0) as Way?
-    if(nearestRoad != null) {
-        // We only want 'interesting' non-generic names i.e. no "Path" or "Service"
-        val roadName = nearestRoad.getName(null, gridState, localizedContext?.let { AndroidLocalizedStrings(it) }, true)
-        if(roadName.isNotEmpty()) {
-            return if(nearestSettlementName != null) {
-                LocationDescription(
-                    name = localizedContext?.getString(R.string.directions_near_road_and_settlement)
-                        ?.format(roadName, nearestSettlementName) ?: "Near $roadName and close to $nearestSettlementName",
-                    location = location,
-                )
-            } else {
-                LocationDescription(
-                    name = localizedContext?.getString(R.string.directions_near_name)
-                        ?.format(roadName) ?: "Near $roadName",
-                    location = location,
-                )
-            }
-        }
-    }
-
-    if(nearestSettlementName != null) {
-        //val distanceToSettlement = settlementGrid.ruler.distance(location, (nearestSettlement?.geometry as Point).coordinates)
-        return LocationDescription(
-            name = localizedContext?.getString(R.string.directions_near_name)
-                ?.format(nearestSettlementName) ?: "Near $nearestSettlementName",
-            location = location,
-        )
-    }
-
-
-    return null
-}
-
-/** Reverse geocodes a location into 1 of 4 possible states
- * - within a POI
- * - alongside a road
- * - general location
- * - unknown location.
- */
-fun describeReverseGeocode(userGeometry: UserGeometry,
-                           gridState: GridState,
-                           settlementGrid: GridState,
-                           localizedContext: Context?): PositionedString? {
-
-    val location = travellingReverseGeocode(userGeometry.location, gridState, settlementGrid, localizedContext)
-    location?.let { l ->
-        return PositionedString(
-            text = l.name,
-            location = userGeometry.location,
-            type = AudioType.LOCALIZED)
-    }
-    // We don't want to call out "Unknown place", so return null and skip this callout
-    return null
 }

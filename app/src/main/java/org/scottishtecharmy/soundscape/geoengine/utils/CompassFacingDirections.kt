@@ -4,15 +4,6 @@ package org.scottishtecharmy.soundscape.geoengine.utils
 import android.content.Context
 import org.scottishtecharmy.soundscape.R
 
-fun normalizeHeading(deg: Int) : Int {
-    var tmp = deg
-    while (tmp < 0) tmp += 360
-    while (tmp > 360) tmp -= 360
-
-    return tmp
-}
-
-
 fun getCompassLabelFacingDirection(localizedContext: Context,
                                    degrees: Int,
                                    inMotion: Boolean,
@@ -173,41 +164,5 @@ fun getCompassLabelFacingDirectionAlong(localizedContext: Context,
             )
             else -> ""
         }
-    }
-}
-
-fun getCompassLabel(degrees: Int):Int {
-    val normalizedDegrees = normalizeHeading(degrees)
-    return when (normalizedDegrees) {
-        in 338..360, in 0..22 -> R.string.directions_cardinal_north
-        in 23..67 -> R.string.directions_cardinal_north_east
-        in 68..112 -> R.string.directions_cardinal_east
-        in 113..157 -> R.string.directions_cardinal_south_east
-        in 158..202 -> R.string.directions_cardinal_south
-        in 203..247 -> R.string.directions_cardinal_south_west
-        in 248..292 -> R.string.directions_cardinal_west
-        in 293..337 -> R.string.directions_cardinal_north_west
-        else -> R.string.directions_cardinal_north
-    }
-}
-
-fun getRelativeClockTime(degrees: Int, userDegrees: Int): Int {
-    val relative = normalizeHeading(degrees - userDegrees)
-    val hour = ((relative + 15) / 30) % 12
-    return if (hour == 0) 12 else hour
-}
-
-fun getRelativeLeftRightLabel(relativeAngle: Int):Int {
-    val normalizedAngle = normalizeHeading(relativeAngle)
-    return when (normalizedAngle) {
-        in 338..360, in 0..22 -> R.string.relative_left_right_direction_ahead
-        in 23..67 -> R.string.relative_left_right_direction_ahead_right
-        in 68..112 -> R.string.relative_left_right_direction_right
-        in 113..157 -> R.string.relative_left_right_direction_behind_right
-        in 158..202 -> R.string.relative_left_right_direction_behind
-        in 203..247 -> R.string.relative_left_right_direction_behind_left
-        in 248..292 -> R.string.relative_left_right_direction_left
-        in 293..337 -> R.string.relative_left_right_direction_ahead_left
-        else -> R.string.relative_left_right_direction_ahead
     }
 }

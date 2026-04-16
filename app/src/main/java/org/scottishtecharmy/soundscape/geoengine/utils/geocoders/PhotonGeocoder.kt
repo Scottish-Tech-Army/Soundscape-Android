@@ -10,6 +10,7 @@ import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.getPhotonLanguage
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
+import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -94,7 +95,7 @@ class PhotonGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                 mvt.featureClass = "residential_street"
             feature.toLocationDescription(
                 LocationSource.PhotonGeocoder,
-                featureName = getTextForFeature(localizedContext, mvt)
+                featureName = getTextForFeature(localizedContext?.let { AndroidLocalizedStrings(it) }, mvt)
             )
         }
     }

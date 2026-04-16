@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
+import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.utils.Analytics
@@ -198,7 +199,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                             localizedContext.getString(
                                 R.string.behavior_scavenger_hunt_callout_next_flag,
                                 route.markers[index].name,
-                                formatDistanceAndDirection(distance, null, localizedContext),
+                                formatDistanceAndDirection(distance, null, AndroidLocalizedStrings(localizedContext)),
                                 (index + 1).toString(),
                                 (route.markers.size).toString()
                             )
@@ -206,7 +207,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                             localizedContext.getString(
                                 R.string.behavior_scavenger_hunt_callout_next_flag_short_route,
                                 route.markers[index].name,
-                                formatDistanceAndDirection(distance, null, localizedContext))
+                                formatDistanceAndDirection(distance, null, AndroidLocalizedStrings(localizedContext)))
                         }
                     if(userInitiated) service.audioEngine.clearTextToSpeechQueue()
                     service.speakText(

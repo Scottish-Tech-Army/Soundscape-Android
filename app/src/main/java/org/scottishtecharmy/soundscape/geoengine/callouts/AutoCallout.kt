@@ -25,11 +25,13 @@ import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
 
 class AutoCallout(
     private val localizedContext: Context?,
     private val sharedPreferences: SharedPreferences?
 ) {
+    private val localizedStrings = localizedContext?.let { AndroidLocalizedStrings(it) }
     private val destinationFilter = LocationUpdateFilter(60000, 10.0)
     private val locationFilter = LocationUpdateFilter(10000, 50.0)
     private val poiFilter = LocationUpdateFilter(5000, 5.0)
@@ -49,7 +51,7 @@ class AutoCallout(
         }
 
         val distance = userGeometry.ruler.distance(userGeometry.location, beacon)
-        val distanceString = formatDistanceAndDirection(distance, null, localizedContext)
+        val distanceString = formatDistanceAndDirection(distance, null, localizedStrings)
         var text = localizedContext?.getString(R.string.callouts_audio_beacon) ?: "Distance to the audio beacon"
         text += " $distanceString"
 
@@ -92,7 +94,7 @@ class AutoCallout(
         locationFilter.update(userGeometry)
 
         // Reverse geocode the current location (this is the iOS name for the function)
-        val result = describeReverseGeocode(userGeometry, gridState, settlementState, localizedContext)
+        val result = describeReverseGeocode(userGeometry, gridState, settlementState, localizedStrings)
         if(result != null) {
             val callout = TrackedCallout(
                 userGeometry,
@@ -181,7 +183,7 @@ class AutoCallout(
         val uniquelyNamedPOIs = mutableMapOf<String, Feature>()
         pois.features.filter { feature ->
 
-            val name = getTextForFeature(localizedContext, feature as MvtFeature)
+            val name = getTextForFeature(localizedStrings, feature as MvtFeature)
             val nearestPoint = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
 
             if(name.text.isEmpty())

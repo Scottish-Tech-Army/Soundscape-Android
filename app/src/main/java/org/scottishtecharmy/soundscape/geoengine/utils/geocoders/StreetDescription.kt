@@ -712,7 +712,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
                     aheadValue as? Intersection?,
                     nearestWay,
                     localizedContext
-                ) ?: getTextForFeature(localizedContext, aheadValue).text
+                ) ?: getTextForFeature(localizedContext?.let { AndroidLocalizedStrings(it) }, aheadValue).text
 
                 tmpAhead = StreetPosition(text, ahead - distance)
             }
@@ -725,7 +725,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
                     behindValue as? Intersection?,
                     nearestWay,
                     localizedContext
-                ) ?: getTextForFeature(localizedContext, behindValue).text
+                ) ?: getTextForFeature(localizedContext?.let { AndroidLocalizedStrings(it) }, behindValue).text
                 tmpBehind = StreetPosition(
                     text,
                     distance - behind

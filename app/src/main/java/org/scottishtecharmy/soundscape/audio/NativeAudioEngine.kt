@@ -32,13 +32,6 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.VOICE_TYPE_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SPEECH_ENGINE_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SPEECH_ENGINE_DEFAULT
 
-enum class AudioType(val type: Int) {
-    STANDARD(0),
-    LOCALIZED(1),
-    RELATIVE(2),
-    COMPASS(3)
-}
-
 @Singleton
 class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = null): AudioEngine {
 

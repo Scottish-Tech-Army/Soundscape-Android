@@ -22,6 +22,7 @@ import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
+import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
@@ -453,7 +454,7 @@ class GeocoderTest {
                     val ld = feature.toLocationDescription(
                         LocationSource.OfflineGeocoder,
                         getDistanceToFeature(milngavie, feature, gridState.ruler).point,
-                        getTextForFeature(appContext, mvt)
+                        getTextForFeature(AndroidLocalizedStrings(appContext), mvt)
                     )
                 }
             }

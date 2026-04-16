@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.geoengine.filters
 
-import android.os.Build
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
@@ -12,7 +11,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeadin
 import org.scottishtecharmy.soundscape.geoengine.utils.addSidewalk
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateSmallestAngleBetweenLines
-import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.clone
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.fromRadians
@@ -23,8 +21,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import kotlin.math.asin
 import kotlin.math.cos
 import kotlin.math.min
@@ -205,15 +201,6 @@ class RoadFollower(val parent: MapMatchFilter,
         ils.updateFromRoute(route)
     }
 
-    fun dump() {
-        val adapter = GeoJsonObjectMoshiAdapter()
-        val collection = FeatureCollection()
-        for (way in route) {
-            collection.addFeature(way)
-        }
-        println(adapter.toJson(collection))
-    }
-
     fun validateRoute() {
         val hashMap = HashMap<Intersection, Int>()
         for(way in route) {
@@ -230,7 +217,6 @@ class RoadFollower(val parent: MapMatchFilter,
         for(count in hashMap) {
             if(count.value > 2) {
                 println("Too many intersections")
-                dump()
                 // We can get here 'legally' if we add a way which loops back and joins the current
                 // way e.g. https://www.openstreetmap.org/way/945577262
 //                assert(false)
@@ -498,18 +484,6 @@ class RoadFollower(val parent: MapMatchFilter,
                     return RoadFollowerStatus(Double.MAX_VALUE, RoadFollowerState.DISTANT)
                 }
 
-                if(Build.VERSION.SDK_INT == 10000) {
-                    val circle = Feature()
-                    circle.geometry =
-                        circleToPolygon(32, lastCenter.latitude, lastCenter.longitude, radius)
-                    circle.properties = HashMap<String,Any?>().apply {
-                        set("fill-opacity", 0.0)
-                        set("stroke", color)
-                        set("radius", radius)
-                    }
-                    collection.addFeature(circle)
-                }
-
                 val directionToNearestPoint = bearingFromTwoPoints(lastCenter, matchedPoint.point)
                 val chordLength = sqrt(
                     (radius * radius) - (matchedPoint.distance * matchedPoint.distance)
@@ -721,13 +695,11 @@ class MapMatchFilter {
 
         var lowestFrechet = Double.MAX_VALUE
         var lowestFollower: RoadFollower? = null
-        val freshetList = mutableListOf<Pair<RoadFollowerStatus, String>>()
         val followerIterator = followerList.listIterator()
         while(followerIterator.hasNext()) {
             val follower = followerIterator.next()
             val frechetStatus = follower.update(location, collection, gridState.ruler)
 
-            freshetList.add(Pair(frechetStatus, follower.color))
             if(frechetStatus.state == RoadFollowerState.DISTANT) {
                 followerIterator.remove()
                 continue
@@ -806,24 +778,6 @@ class MapMatchFilter {
         if (lowestFollower != null) {
             matchedLocation = lowestFollower.chosen()
             matchedFollower = lowestFollower
-            if (Build.VERSION.SDK_INT == 10000) {
-                if (matchedWay != matchedFollower!!.currentNearestRoad) {
-                    val choiceFeature = Feature()
-                    choiceFeature.geometry =
-                        Point(
-                            matchedLocation!!.point.longitude,
-                            matchedLocation!!.point.latitude
-                        )
-                    choiceFeature.properties = HashMap<String,Any?>().apply {
-                        set("marker-size", "large")
-                        set("marker-color", "#000000")
-                        for (choices in freshetList) {
-                            set(choices.second, choices.first.toString())
-                        }
-                    }
-                    collection.addFeature(choiceFeature)
-                }
-            }
             matchedWay = matchedFollower!!.currentNearestRoad
             val color = matchedFollower!!.color
             matchedLocation?.let { matchedLocation ->
@@ -835,12 +789,5 @@ class MapMatchFilter {
         matchedWay = null
 
         return Triple(null, null, "")
-    }
-
-    fun dump() {
-        println("Dump followers")
-        for(follower in followerList) {
-            follower.dump()
-        }
     }
 }

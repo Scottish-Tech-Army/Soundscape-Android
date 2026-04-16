@@ -10,6 +10,7 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
+import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
@@ -129,8 +130,8 @@ class OfflineGeocoder(
                     localizedContext
                 )
                 var text = ""
-                val formattedBehindDistance = formatDistanceAndDirection(result.behind.distance, null, localizedContext)
-                val formattedAheadDistance = formatDistanceAndDirection(result.ahead.distance, null, localizedContext)
+                val formattedBehindDistance = formatDistanceAndDirection(result.behind.distance, null, localizedContext?.let { AndroidLocalizedStrings(it) })
+                val formattedAheadDistance = formatDistanceAndDirection(result.ahead.distance, null, localizedContext?.let { AndroidLocalizedStrings(it) })
                 if (
                     (result.ahead.distance < 10.0) &&
                     ((result.ahead.distance < result.behind.distance) || result.behind.name.isEmpty()))
