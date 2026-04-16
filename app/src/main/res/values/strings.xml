@@ -60,6 +60,14 @@
 <string name="settings_relative_directions_degrees">"Degrees"</string>
 <!-- Left/Right relative direction mode e.g. Left, or Right or Behind -->
 <string name="settings_relative_directions_left_right">"Left/Right"</string>
+<!-- Hint for Settings sections to indicate what tapping on the section will do when it is expanded -->
+<string name="settings_collapse_section">"Collapse section"</string>
+<!-- Hint for Settings sections to indicate what tapping on the section will do when it is collapsed -->
+<string name="settings_expand_section">"Expand section"</string>
+<!-- Button description for Settings sections to indicate current state is collapsed -->
+<string name="settings_collapsed">"Collapsed"</string>
+<!-- Button description for Settings sections to indicate current state is expanded -->
+<string name="settings_expanded">"Expanded"</string>
 <!-- Text shown when no search results were found -->
 <string name="search_no_results">"No search results found"</string>
 <!-- Text shown when no search in progress -->
