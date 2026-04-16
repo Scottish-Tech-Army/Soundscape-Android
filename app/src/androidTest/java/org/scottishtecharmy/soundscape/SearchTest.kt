@@ -15,6 +15,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.StreetDescription
 import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
+import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
@@ -260,7 +261,7 @@ class SearchTest {
                 location,
                 null,
                 matchedWay,
-                context
+                AndroidLocalizedStrings(context)
             )
             if (describeLocation != null) {
                 val nearestWay = description.nearestWayOnStreet(describeLocation)

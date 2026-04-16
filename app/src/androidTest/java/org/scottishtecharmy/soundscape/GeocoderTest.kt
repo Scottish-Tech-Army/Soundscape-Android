@@ -50,7 +50,7 @@ class GeocoderTest {
         userGeometry: UserGeometry,
         localizedContext: Context
     ): LocationDescription? {
-        val description = geocoder.getAddressFromLngLat(userGeometry, localizedContext, false   )
+        val description = geocoder.getAddressFromLngLat(userGeometry, AndroidLocalizedStrings(localizedContext), false   )
         return description
     }
 
@@ -250,8 +250,9 @@ class GeocoderTest {
         val cheapRuler = CheapRuler(nearbyLocation.latitude)
 
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+        val appStrings = AndroidLocalizedStrings(appContext)
         suspend fun findPlace(geocoder: SoundscapeGeocoder, searchString: String, nearbyLocation: LngLatAlt): List<LocationDescription>? {
-            val description = geocoder.getAddressFromLocationName(searchString, nearbyLocation, appContext)
+            val description = geocoder.getAddressFromLocationName(searchString, nearbyLocation, appStrings)
             println("findPlace complete")
             return description
         }
@@ -414,24 +415,25 @@ class GeocoderTest {
 
             val gridState = ProtomapsGridState()
             val geocoder = FusedGeocoder(appContext, gridState)
+            val appStrings = AndroidLocalizedStrings(appContext)
 
             gridState.validateContext = false
             gridState.startWithContext(ApplicationProvider.getApplicationContext())
 
             val wellKnownLocation = LngLatAlt(-4.3215166, 55.9404307)
-            val halfordsResults = geocoder.getAddressFromLocationName("halfords crow road", wellKnownLocation, appContext)
+            val halfordsResults = geocoder.getAddressFromLocationName("halfords crow road", wellKnownLocation, appStrings)
 
-            val wellKnownResults = geocoder.getAddressFromLocationName("20 braeside avenue milngavie", wellKnownLocation, appContext)
+            val wellKnownResults = geocoder.getAddressFromLocationName("20 braeside avenue milngavie", wellKnownLocation, appStrings)
 
             val milngavie = LngLatAlt(-4.317166334292434, 55.941822016283)
-            val milngavieResults = geocoder.getAddressFromLocationName("Honeybee Bakery, Milngavie", milngavie, appContext)
-            val greggsResults = geocoder.getAddressFromLocationName("Greggs Milngavi", milngavie, appContext)
+            val milngavieResults = geocoder.getAddressFromLocationName("Honeybee Bakery, Milngavie", milngavie, appStrings)
+            val greggsResults = geocoder.getAddressFromLocationName("Greggs Milngavi", milngavie, appStrings)
 
             val lisbon = LngLatAlt(-9.145010116796168, 38.707989573367804)
-            val lisbonResults = geocoder.getAddressFromLocationName("Taberna Tosca, Lisbon", lisbon, appContext)
+            val lisbonResults = geocoder.getAddressFromLocationName("Taberna Tosca, Lisbon", lisbon, appStrings)
 
             val tarland = LngLatAlt(-2.8581118922791124, 57.1274095150638)
-            val tarlandResults = geocoder.getAddressFromLocationName("Commercial Hotel, Tarland", tarland, appContext)
+            val tarlandResults = geocoder.getAddressFromLocationName("Commercial Hotel, Tarland", tarland, appStrings)
         }
     }
 

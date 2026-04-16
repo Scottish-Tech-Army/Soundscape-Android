@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
@@ -30,7 +31,7 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
      */
     override suspend fun getAddressFromLocationName(locationName: String,
                                                     nearbyLocation: LngLatAlt,
-                                                    localizedContext: Context?) : List<LocationDescription>? {
+                                                    localizedStrings: LocalizedStrings?) : List<LocationDescription>? {
         if(!enabled)
             return null
 
@@ -100,7 +101,7 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
     }
 
     override suspend fun getAddressFromLngLat(userGeometry: UserGeometry,
-                                              localizedContext: Context?,
+                                              localizedStrings: LocalizedStrings?,
                                               ignoreHouseNumbers: Boolean) : LocationDescription? {
         if(!enabled)
             return null

@@ -54,12 +54,6 @@ data class EnabledFunction(
     var hintWhenOff: String = "",
     var hint: String = ""
 )
-enum class LocationSource {
-    AndroidGeocoder,
-    PhotonGeocoder,
-    OfflineGeocoder,
-    UnknownSource
-}
 
 data class LocationItemDecoration(
     val location: Boolean = false,

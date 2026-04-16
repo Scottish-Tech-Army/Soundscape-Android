@@ -10,6 +10,7 @@ import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.NetworkUtils
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
@@ -40,7 +41,7 @@ class MultiGeocoder(applicationContext: Context,
 
     override suspend fun getAddressFromLocationName(locationName: String,
                                                     nearbyLocation: LngLatAlt,
-                                                    localizedContext: Context?) : List<LocationDescription> {
+                                                    localizedStrings: LocalizedStrings?) : List<LocationDescription> {
 
         val results: MutableList<LocationDescription> = mutableListOf()
 
@@ -61,7 +62,7 @@ class MultiGeocoder(applicationContext: Context,
             }
         }
 
-        val geocoderResults = pickGeocoder()?.getAddressFromLocationName(locationName, nearbyLocation, localizedContext)
+        val geocoderResults = pickGeocoder()?.getAddressFromLocationName(locationName, nearbyLocation, localizedStrings)
         if(geocoderResults != null) {
             for (result in geocoderResults) {
                 results.add(result)
@@ -72,16 +73,16 @@ class MultiGeocoder(applicationContext: Context,
     }
 
     override suspend fun getAddressFromLngLat(userGeometry: UserGeometry,
-                                              localizedContext: Context?,
+                                              localizedStrings: LocalizedStrings?,
                                               ignoreHouseNumbers: Boolean) : LocationDescription? {
         val firstGeocoder = pickGeocoder()
-        var results = firstGeocoder?.getAddressFromLngLat(userGeometry, localizedContext, ignoreHouseNumbers)
+        var results = firstGeocoder?.getAddressFromLngLat(userGeometry, localizedStrings, ignoreHouseNumbers)
         if(results == null) {
             // Fallback to using local geocoder if that's not what we just used
             if(firstGeocoder != localGeocoder) {
                 results = localGeocoder.getAddressFromLngLat(
                     userGeometry,
-                    localizedContext,
+                    localizedStrings,
                     ignoreHouseNumbers
                 )
             }

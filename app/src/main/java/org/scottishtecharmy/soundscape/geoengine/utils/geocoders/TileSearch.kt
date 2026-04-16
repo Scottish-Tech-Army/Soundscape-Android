@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
-import android.content.Context
 import ch.poole.geo.pmtiles.Reader
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -10,7 +9,7 @@ import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
-import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertGeometry
@@ -170,7 +169,7 @@ class TileSearch(val offlineExtractPath: String,
     fun search(
         location: LngLatAlt,
         searchString: String,
-        localizedContext: Context?,
+        localizedStrings: LocalizedStrings?,
         settlementNames: Set<String>
     ) : List<LocationDescription> {
         val tileLocation = getXYTile(location, MAX_ZOOM_LEVEL)
@@ -564,7 +563,7 @@ class TileSearch(val offlineExtractPath: String,
                             }
                             if (result.layer == "transportation") {
                                 val sd = StreetDescription(result.string, gridState)
-                                sd.createDescription(nearestWay, localizedContext)
+                                sd.createDescription(nearestWay, localizedStrings)
                                 val numberResult = sd.getLocationFromStreetNumber(housenumber)
                                 if(numberResult != null) {
                                     mvt.properties?.set("housenumber", numberResult.second)
@@ -647,7 +646,7 @@ class TileSearch(val offlineExtractPath: String,
         return streetResults.map { (mvt, result) ->
             mvt.toLocationDescription(
                 LocationSource.OfflineGeocoder,
-                featureName = getTextForFeature(localizedContext?.let { AndroidLocalizedStrings(it) }, mvt)
+                featureName = getTextForFeature(localizedStrings, mvt)
             )
         }
     }

@@ -1,8 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
-import android.content.Context
-import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
@@ -306,7 +305,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
         return newMap.toSortedMap()
     }
 
-    private fun descriptiveIntersection(intersection: Intersection, localizedContext: Context?) : Boolean {
+    private fun descriptiveIntersection(intersection: Intersection, localizedStrings: LocalizedStrings?) : Boolean {
         // Return true if this intersection is useful for describing the street. If it's just an
         // un-named path with no confection then we return false.
         var count = 0
@@ -323,7 +322,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
             val segmentName = member.getName(
                 direction,
                 gridState,
-                localizedContext?.let { AndroidLocalizedStrings(it) },
+                localizedStrings,
                 nonGenericOnly = true,
                 noGenericDeadEnds = true
             )
@@ -332,7 +331,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
             val segmentNameReverse = member.getName(
                 !direction,
                 gridState,
-                localizedContext?.let { AndroidLocalizedStrings(it) },
+                localizedStrings,
                 nonGenericOnly = true,
                 noGenericDeadEnds = true
             )
@@ -347,7 +346,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
     /**
      * createDescription creates the street description
      */
-    fun createDescription(matchedWay: Way, localizedContext: Context?) {
+    fun createDescription(matchedWay: Way, localizedStrings: LocalizedStrings?) {
         val descriptivePoints: MutableMap<Double, MvtFeature> = mutableMapOf()
         val houseNumberPoints: MutableMap<Double, MvtFeature> = mutableMapOf()
 
@@ -422,7 +421,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
 
             if (beginIntersection != null) {
                 if(beginIntersection.intersectionType != IntersectionType.TILE_EDGE) {
-                    if(descriptiveIntersection(beginIntersection, localizedContext))
+                    if(descriptiveIntersection(beginIntersection, localizedStrings))
                         descriptivePoints[totalDistance] = beginIntersection
                 }
             }
@@ -435,7 +434,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
                         way.first.intersections[WayEnd.START.id]
 
                 if (lastIntersection != null) {
-                    if(descriptiveIntersection(lastIntersection, localizedContext))
+                    if(descriptiveIntersection(lastIntersection, localizedStrings))
                         descriptivePoints[totalDistance + way.first.length] = lastIntersection
                 }
             }
@@ -662,7 +661,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
         var ahead: StreetPosition = StreetPosition()
     )
 
-    fun getIntersectionText(intersection: Intersection?, way: Way?, localizedContext: Context?) : String? {
+    fun getIntersectionText(intersection: Intersection?, way: Way?, localizedStrings: LocalizedStrings?) : String? {
         if(intersection != null) {
             if(way != null) {
                 // Describe the intersection from the perspective of Way
@@ -671,7 +670,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
                         val crossStreetName = crossStreet.getName(
                             crossStreet.intersections[WayEnd.START.id] == intersection,
                             gridState,
-                            localizedContext?.let { AndroidLocalizedStrings(it) },
+                            localizedStrings,
                             nonGenericOnly = true
                         )
                         if(crossStreetName.isNotEmpty())
@@ -680,14 +679,13 @@ class StreetDescription(val name: String, val gridState: GridState) {
                 }
             }
 
-            val formatString = (localizedContext?.getString(R.string.street_description_intersection) ?:
-            "Near intersection of %s")
-            return formatString.format(intersection.name)
+            return localizedStrings?.get(StringKey.StreetDescriptionIntersection, intersection.name)
+                ?: "Near intersection of %s".format(intersection.name)
         }
         return null
     }
 
-    fun describeLocation(location: LngLatAlt, heading: Double?, nearestWay: Way?, localizedContext: Context?) : StreetLocationDescription {
+    fun describeLocation(location: LngLatAlt, heading: Double?, nearestWay: Way?, localizedStrings: LocalizedStrings?) : StreetLocationDescription {
         if(nearestWay == null) return StreetLocationDescription()
 
         // Get the distance along our lines of points
@@ -711,8 +709,8 @@ class StreetDescription(val name: String, val gridState: GridState) {
                 val text = getIntersectionText(
                     aheadValue as? Intersection?,
                     nearestWay,
-                    localizedContext
-                ) ?: getTextForFeature(localizedContext?.let { AndroidLocalizedStrings(it) }, aheadValue).text
+                    localizedStrings
+                ) ?: getTextForFeature(localizedStrings, aheadValue).text
 
                 tmpAhead = StreetPosition(text, ahead - distance)
             }
@@ -724,8 +722,8 @@ class StreetDescription(val name: String, val gridState: GridState) {
                 val text = getIntersectionText(
                     behindValue as? Intersection?,
                     nearestWay,
-                    localizedContext
-                ) ?: getTextForFeature(localizedContext?.let { AndroidLocalizedStrings(it) }, behindValue).text
+                    localizedStrings
+                ) ?: getTextForFeature(localizedStrings, behindValue).text
                 tmpBehind = StreetPosition(
                     text,
                     distance - behind

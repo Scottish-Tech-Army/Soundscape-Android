@@ -1,16 +1,15 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
-import android.content.Context
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.withContext
-import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
-import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
@@ -57,13 +56,13 @@ class OfflineGeocoder(
     override suspend fun getAddressFromLocationName(
         locationName: String,
         nearbyLocation: LngLatAlt,
-        localizedContext: Context?    ) : List<LocationDescription>? {
+        localizedStrings: LocalizedStrings?    ) : List<LocationDescription>? {
         Analytics.getInstance().logEvent("offlineGeocode", null)
 
         val settlementNames = withContext(gridState.treeContext) {
             getSettlementNames()
         }
-        return tileSearch?.search(nearbyLocation, locationName, localizedContext, settlementNames)
+        return tileSearch?.search(nearbyLocation, locationName, localizedStrings, settlementNames)
     }
 
     private fun getNearestPointOnFeature(feature: Feature,
@@ -72,7 +71,7 @@ class OfflineGeocoder(
     }
 
     override suspend fun getAddressFromLngLat(userGeometry: UserGeometry,
-                                              localizedContext: Context?,
+                                              localizedStrings: LocalizedStrings?,
                                               ignoreHouseNumbers: Boolean) : LocationDescription? {
 
         val location = userGeometry.location
@@ -103,7 +102,7 @@ class OfflineGeocoder(
             val nearbyName = nearbyWay.properties?.get("pavement") as String? ?: nearbyWay.name
             if(nearbyName != null) {
                 val description = StreetDescription(nearbyName, gridState)
-                description.createDescription(nearbyWay, localizedContext)
+                description.createDescription(nearbyWay, localizedStrings)
                 val nearestWay = description.nearestWayOnStreet(userGeometry.location)
                 if ((nearestWay != null) && !ignoreHouseNumbers) {
                     val houseNumber =
@@ -127,40 +126,40 @@ class OfflineGeocoder(
                     userGeometry.location,
                     heading,
                     nearestWay?.first,
-                    localizedContext
+                    localizedStrings
                 )
                 var text = ""
-                val formattedBehindDistance = formatDistanceAndDirection(result.behind.distance, null, localizedContext?.let { AndroidLocalizedStrings(it) })
-                val formattedAheadDistance = formatDistanceAndDirection(result.ahead.distance, null, localizedContext?.let { AndroidLocalizedStrings(it) })
+                val formattedBehindDistance = formatDistanceAndDirection(result.behind.distance, null, localizedStrings)
+                val formattedAheadDistance = formatDistanceAndDirection(result.ahead.distance, null, localizedStrings)
                 if (
                     (result.ahead.distance < 10.0) &&
                     ((result.ahead.distance < result.behind.distance) || result.behind.name.isEmpty()))
                 {
                     // If this is a street address, then it already includes the street name. Otherwise
                     // we want to add that in.
-                    val formatString = (localizedContext?.getString(R.string.street_description_relative_before) ?:
-                    "On %s just before %s")
-                    text = formatString.format(nearbyName, result.ahead.name)
+                    text = localizedStrings?.get(
+                        StringKey.StreetDescriptionRelativeBefore, nearbyName, result.ahead.name
+                    ) ?: "On %s just before %s".format(nearbyName, result.ahead.name)
                 }
                 else if (result.behind.distance < 10.0) {
-                    val formatString = (localizedContext?.getString(R.string.street_description_relative_after) ?:
-                    "On %s just after %s")
-                    text = formatString.format(nearbyName, result.behind.name)
+                    text = localizedStrings?.get(
+                        StringKey.StreetDescriptionRelativeAfter, nearbyName, result.behind.name
+                    ) ?: "On %s just after %s".format(nearbyName, result.behind.name)
                 }
                 else if(result.ahead.name.isNotEmpty() && result.behind.name.isNotEmpty()) {
-                    val formatString = (localizedContext?.getString(R.string.street_description_between) ?:
-                                        "On %s between %s and %s")
-                    text = formatString.format(nearbyName, result.behind.name, result.ahead.name)
+                    text = localizedStrings?.get(
+                        StringKey.StreetDescriptionBetween, nearbyName, result.behind.name, result.ahead.name
+                    ) ?: "On %s between %s and %s".format(nearbyName, result.behind.name, result.ahead.name)
                 } else {
                     if(result.ahead.name.isNotEmpty()) {
-                        val formatString = (localizedContext?.getString(R.string.street_description_until) ?:
-                        "On %s, %s until %s")
-                        text = formatString.format(nearbyName, formattedAheadDistance, result.ahead.name)
+                        text = localizedStrings?.get(
+                            StringKey.StreetDescriptionUntil, nearbyName, formattedAheadDistance, result.ahead.name
+                        ) ?: "On %s, %s until %s".format(nearbyName, formattedAheadDistance, result.ahead.name)
                     }
                     else if(result.behind.name.isNotEmpty()) {
-                        val formatString = (localizedContext?.getString(R.string.street_description_since) ?:
-                        "On %s, %s since %s")
-                        text = formatString.format(nearbyName, formattedBehindDistance, result.behind.name)
+                        text = localizedStrings?.get(
+                            StringKey.StreetDescriptionSince, nearbyName, formattedBehindDistance, result.behind.name
+                        ) ?: "On %s, %s since %s".format(nearbyName, formattedBehindDistance, result.behind.name)
                     }
                 }
                 if(text.isNotEmpty()) {

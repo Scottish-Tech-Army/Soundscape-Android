@@ -10,7 +10,7 @@ import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.getPhotonLanguage
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
-import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -33,7 +33,7 @@ class PhotonGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
     override suspend fun getAddressFromLocationName(
         locationName: String,
         nearbyLocation: LngLatAlt,
-        localizedContext: Context?
+        localizedStrings: LocalizedStrings?
     ) : List<LocationDescription>?{
         val searchResult = withContext(Dispatchers.IO) {
             try {
@@ -95,13 +95,13 @@ class PhotonGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                 mvt.featureClass = "residential_street"
             feature.toLocationDescription(
                 LocationSource.PhotonGeocoder,
-                featureName = getTextForFeature(localizedContext?.let { AndroidLocalizedStrings(it) }, mvt)
+                featureName = getTextForFeature(localizedStrings, mvt)
             )
         }
     }
 
     override suspend fun getAddressFromLngLat(userGeometry: UserGeometry,
-                                              localizedContext: Context?,
+                                              localizedStrings: LocalizedStrings?,
                                               ignoreHouseNumbers: Boolean) : LocationDescription? {
 
         val location = userGeometry.mapMatchedLocation?.point ?: userGeometry.location

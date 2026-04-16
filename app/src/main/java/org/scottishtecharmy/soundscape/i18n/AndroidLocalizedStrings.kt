@@ -69,5 +69,11 @@ class AndroidLocalizedStrings(private val context: Context) : LocalizedStrings {
         StringKey.OsmEntranceWithDestination      -> R.string.osm_entrance_with_destination
         StringKey.DirectionsNearName               -> R.string.directions_near_name
         StringKey.DirectionsNearRoadAndSettlement  -> R.string.directions_near_road_and_settlement
+        StringKey.StreetDescriptionIntersection    -> R.string.street_description_intersection
+        StringKey.StreetDescriptionRelativeBefore  -> R.string.street_description_relative_before
+        StringKey.StreetDescriptionRelativeAfter   -> R.string.street_description_relative_after
+        StringKey.StreetDescriptionBetween         -> R.string.street_description_between
+        StringKey.StreetDescriptionUntil           -> R.string.street_description_until
+        StringKey.StreetDescriptionSince           -> R.string.street_description_since
     }
 }

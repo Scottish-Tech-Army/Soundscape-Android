@@ -7,6 +7,7 @@ import kotlinx.coroutines.coroutineScope
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.data.LocationType
 import org.scottishtecharmy.soundscape.utils.containsNumber
@@ -34,12 +35,12 @@ class FusedGeocoder(applicationContext: Context,
 
     override suspend fun getAddressFromLocationName(locationName: String,
                                                     nearbyLocation: LngLatAlt,
-                                                    localizedContext: Context?) : List<LocationDescription> {
+                                                    localizedStrings: LocalizedStrings?) : List<LocationDescription> {
 
         val deferredResults = geocoderList.map { geocoder ->
             coroutineScope {
                 async {
-                    geocoder.getAddressFromLocationName(locationName, nearbyLocation, localizedContext)
+                    geocoder.getAddressFromLocationName(locationName, nearbyLocation, localizedStrings)
                 }
             }
         }
@@ -93,12 +94,12 @@ class FusedGeocoder(applicationContext: Context,
     }
 
     override suspend fun getAddressFromLngLat(userGeometry: UserGeometry,
-                                              localizedContext: Context?,
+                                              localizedStrings: LocalizedStrings?,
                                               ignoreHouseNumbers: Boolean) : LocationDescription? {
         val deferredResults = geocoderList.map { geocoder ->
             coroutineScope {
                 async {
-                    geocoder.getAddressFromLngLat(userGeometry, localizedContext, ignoreHouseNumbers)
+                    geocoder.getAddressFromLngLat(userGeometry, localizedStrings, ignoreHouseNumbers)
                 }
             }
         }
