@@ -11,4 +11,6 @@ enum class StringKey {
     ConfectNameVia,
     ConfectNameJoins,
     ConfectNameDeadEnd,
+    ConfectNamePavementNextTo,
+    ConfectNamePavement,
 }

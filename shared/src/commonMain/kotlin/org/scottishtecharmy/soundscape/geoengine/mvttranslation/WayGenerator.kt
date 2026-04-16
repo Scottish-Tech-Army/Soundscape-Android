@@ -16,15 +16,11 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import kotlin.collections.mutableListOf
-import kotlin.collections.set
-import kotlin.collections.toTypedArray
 import kotlin.math.PI
 import kotlin.math.abs
 import kotlin.math.asinh
 import kotlin.math.tan
 import kotlin.math.truncate
-import kotlin.text.replaceFirstChar
 
 enum class IntersectionType(
     val id: Int,

@@ -87,10 +87,10 @@ open class GridState(
 
     private var centralBoundingBox = BoundingBox()
     private var totalBoundingBox = BoundingBox()
-    internal var ruler = CheapRuler(0.0)
-    internal var featureTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
-    internal var gridIntersections = hashMapOf<LngLatAlt, Intersection>()
-    internal var gridStreetNumberTreeMap = hashMapOf<String, FeatureTree>()
+    var ruler = CheapRuler(0.0)
+    var featureTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
+    var gridIntersections = hashMapOf<LngLatAlt, Intersection>()
+    var gridStreetNumberTreeMap = hashMapOf<String, FeatureTree>()
 
     val treeContext = passedInTreeContext ?: newSingleThreadContext("TreeContext")
 
@@ -98,7 +98,7 @@ open class GridState(
 
     // This doesn't naturally belong in GridState, but it's where all the other geo info is. It's
     // a tree of Markers from the database.
-    internal var markerTree : FeatureTree? = null
+    var markerTree : FeatureTree? = null
 
     open fun start(offlineExtractPath: String = "") {}
     open fun stop() {
@@ -373,7 +373,7 @@ open class GridState(
         return@withContext true
     }
 
-    internal open suspend fun updateTile(x: Int,
+    open suspend fun updateTile(x: Int,
                                          y: Int,
                                          workerIndex: Int,
                                          featureCollections: Array<FeatureCollection>,
@@ -383,7 +383,7 @@ open class GridState(
         return false
     }
 
-    internal fun classifyPois(featureCollections: Array<FeatureCollection>,
+    fun classifyPois(featureCollections: Array<FeatureCollection>,
                              enabledCategories: Set<String> = emptySet()) {
         // The FeatureCollection for POIS has been created, but we need to create sub-collections
         // for each of the super-categories along with one for the currently selected super-
@@ -456,7 +456,7 @@ open class GridState(
         //  name matches. This should spot any calls using featureTrees which aren't running in
         //  the treeContext.
         if(validateContext) {
-            assert(Thread.currentThread().name.startsWith("TreeContext"))
+            assertRunningInTreeContext()
         }
     }
 
@@ -466,7 +466,7 @@ open class GridState(
         return featureTrees[treeIdToIndex(id).id]
     }
 
-    internal fun getFeatureCollection(id: TreeId,
+    fun getFeatureCollection(id: TreeId,
                                       location: LngLatAlt = LngLatAlt(),
                                       distance : Double = Double.POSITIVE_INFINITY,
                                       maxCount : Int = 0): FeatureCollection {
@@ -485,7 +485,7 @@ open class GridState(
         return result
     }
 
-    internal fun getNearestFeature(id: TreeId,
+    fun getNearestFeature(id: TreeId,
                                    ruler: Ruler,
                                    location: LngLatAlt = LngLatAlt(),
                                    distance : Double = Double.POSITIVE_INFINITY
@@ -495,7 +495,7 @@ open class GridState(
     }
 
     companion object {
-        internal const val TAG = "GridState"
+        const val TAG = "GridState"
     }
 }
 
@@ -618,4 +618,3 @@ fun processTileFeatureCollection(initialFeatureCollections : Array<FeatureCollec
     initialFeatureCollections[TreeId.POIS.id].plusAssignDeduplicate(initialFeatureCollections[TreeId.TRANSIT_STOPS.id])
     initialFeatureCollections[TreeId.POIS.id] += initialFeatureCollections[TreeId.CROSSINGS.id]
 }
-

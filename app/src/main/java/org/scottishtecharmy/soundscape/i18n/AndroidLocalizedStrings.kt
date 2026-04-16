@@ -11,10 +11,12 @@ class AndroidLocalizedStrings(private val context: Context) : LocalizedStrings {
         runCatching { get(key, *args) }.getOrNull()
 
     private fun resId(key: StringKey): Int = when (key) {
-        StringKey.ConfectNameTo      -> R.string.confect_name_to
-        StringKey.ConfectNameToVia   -> R.string.confect_name_to_via
-        StringKey.ConfectNameVia     -> R.string.confect_name_via
-        StringKey.ConfectNameJoins   -> R.string.confect_name_joins
-        StringKey.ConfectNameDeadEnd -> R.string.confect_name_dead_end
+        StringKey.ConfectNameTo             -> R.string.confect_name_to
+        StringKey.ConfectNameToVia          -> R.string.confect_name_to_via
+        StringKey.ConfectNameVia            -> R.string.confect_name_via
+        StringKey.ConfectNameJoins          -> R.string.confect_name_joins
+        StringKey.ConfectNameDeadEnd        -> R.string.confect_name_dead_end
+        StringKey.ConfectNamePavementNextTo -> R.string.confect_name_pavement_next_to
+        StringKey.ConfectNamePavement       -> R.string.confect_name_pavement
     }
 }
