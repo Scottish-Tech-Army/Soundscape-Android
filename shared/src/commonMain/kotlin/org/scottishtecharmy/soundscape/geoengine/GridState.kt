@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.geoengine
 
 import kotlinx.coroutines.CloseableCoroutineDispatcher
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -18,6 +17,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
+import org.scottishtecharmy.soundscape.platform.ioDispatcher
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
@@ -157,8 +157,6 @@ open class GridState(
 
             // Make list of intersections to join
             if (grid.tiles.size > 1) {
-                assert(grid.tiles.size == 4)
-
                 // Center of grid is bottom right of first tile
                 val gridCenter = getLatLonTileWithOffset(
                     grid.tiles[0].tileX,
@@ -308,7 +306,7 @@ open class GridState(
         featureCollections: Array<FeatureCollection>,
         gridIntersections: MutableList<HashMap<LngLatAlt, Intersection>>,
         gridStreetNumberMap: HashMap<String, FeatureCollection>
-    ): Boolean = withContext(Dispatchers.IO) {
+    ): Boolean = withContext(ioDispatcher) {
 
         // Check for an updated list of offline maps
         checkOfflineMaps()
@@ -379,7 +377,6 @@ open class GridState(
                                          featureCollections: Array<FeatureCollection>,
                                          intersectionMap: HashMap<LngLatAlt, Intersection>,
                                          streetNumberMap: HashMap<String, FeatureCollection>): Boolean {
-        assert(false)
         return false
     }
 

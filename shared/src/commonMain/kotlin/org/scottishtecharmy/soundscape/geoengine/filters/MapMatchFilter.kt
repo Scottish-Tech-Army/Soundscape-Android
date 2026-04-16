@@ -341,13 +341,8 @@ class RoadFollower(val parent: MapMatchFilter,
                 newRoute.addAll(route)
                 newRoute.add(newWay)
             }
-        } else {
-            assert(false)
         }
         if(newRoute.isNotEmpty()) {
-            if (newRoute[0].doesIntersect(newRoute[1]).first == null) {
-                assert(false)
-            }
 
             route = newRoute
             validateRoute()
