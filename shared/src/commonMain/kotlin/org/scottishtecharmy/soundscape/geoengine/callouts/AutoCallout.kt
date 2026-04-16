@@ -1,15 +1,10 @@
 package org.scottishtecharmy.soundscape.geoengine.callouts
 
-import android.content.Context
-import android.content.SharedPreferences
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
-import org.scottishtecharmy.soundscape.MainActivity.Companion.ALLOW_CALLOUTS_KEY
-import org.scottishtecharmy.soundscape.MainActivity.Companion.POSITION_INCLUDES_HEADING_AND_DISTANCE_KEY
-import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.audio.Earcons
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
@@ -25,13 +20,15 @@ import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
-import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.StringKey
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 
 class AutoCallout(
-    private val localizedContext: Context?,
-    private val sharedPreferences: SharedPreferences?
+    private val localized: LocalizedStrings?,
+    private val preferences: PreferencesProvider?
 ) {
-    private val localizedStrings = localizedContext?.let { AndroidLocalizedStrings(it) }
     private val destinationFilter = LocationUpdateFilter(60000, 10.0)
     private val locationFilter = LocationUpdateFilter(10000, 50.0)
     private val poiFilter = LocationUpdateFilter(5000, 5.0)
@@ -51,8 +48,8 @@ class AutoCallout(
         }
 
         val distance = userGeometry.ruler.distance(userGeometry.location, beacon)
-        val distanceString = formatDistanceAndDirection(distance, null, localizedStrings)
-        var text = localizedContext?.getString(R.string.callouts_audio_beacon) ?: "Distance to the audio beacon"
+        val distanceString = formatDistanceAndDirection(distance, null, localized)
+        var text = localized?.get(StringKey.CalloutsAudioBeacon) ?: "Distance to the audio beacon"
         text += " $distanceString"
 
         return TrackedCallout(
@@ -74,8 +71,7 @@ class AutoCallout(
 
     private fun buildCalloutForRoadSense(userGeometry: UserGeometry,
                                          gridState: GridState,
-                                         settlementState: GridState,
-                                         localizedContext: Context?): TrackedCallout? {
+                                         settlementState: GridState): TrackedCallout? {
 
         // Check that our location/time has changed enough to generate this callout
         if (!locationFilter.shouldUpdate(userGeometry)) {
@@ -94,7 +90,7 @@ class AutoCallout(
         locationFilter.update(userGeometry)
 
         // Reverse geocode the current location (this is the iOS name for the function)
-        val result = describeReverseGeocode(userGeometry, gridState, settlementState, localizedStrings)
+        val result = describeReverseGeocode(userGeometry, gridState, settlementState, localized)
         if(result != null) {
             val callout = TrackedCallout(
                 userGeometry,
@@ -148,7 +144,7 @@ class AutoCallout(
         // Don't describe the road we're on if there's an intersection
         return addIntersectionCalloutFromDescription(
             roadsDescription,
-            localizedContext,
+            localized,
             intersectionCalloutHistory,
             gridState
         )
@@ -183,7 +179,7 @@ class AutoCallout(
         val uniquelyNamedPOIs = mutableMapOf<String, Feature>()
         pois.features.filter { feature ->
 
-            val name = getTextForFeature(localizedStrings, feature as MvtFeature)
+            val name = getTextForFeature(localized, feature as MvtFeature)
             val nearestPoint = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
 
             if(name.text.isEmpty())
@@ -227,18 +223,16 @@ class AutoCallout(
                             // Don't filter out
                             uniquelyNamedPOIs[name.text] = feature
                             val earcon = when(feature.superCategory) {
-                                SuperCategoryId.INFORMATION -> NativeAudioEngine.EARCON_INFORMATION_ALERT
-                                SuperCategoryId.SAFETY -> NativeAudioEngine.EARCON_SENSE_SAFETY
-                                SuperCategoryId.MOBILITY -> NativeAudioEngine.EARCON_SENSE_MOBILITY
-                                else -> NativeAudioEngine.EARCON_SENSE_POI
+                                SuperCategoryId.INFORMATION -> Earcons.INFORMATION_ALERT
+                                SuperCategoryId.SAFETY -> Earcons.SENSE_SAFETY
+                                SuperCategoryId.MOBILITY -> Earcons.SENSE_MOBILITY
+                                else -> Earcons.SENSE_POI
                             }
                             if(nearestPoint.distance == 0.0) {
                                 callout.positionedStrings = List(1) {
                                     PositionedString(
-                                        text = localizedContext?.getString(
-                                            R.string.directions_at_poi,
-                                            name.text
-                                        ) ?: "At ${name.text}",
+                                        text = localized?.get(StringKey.DirectionsAtPoi, name.text)
+                                            ?: "At ${name.text}",
                                         earcon = earcon,
                                         type = AudioType.STANDARD
                                     )
@@ -250,7 +244,10 @@ class AutoCallout(
                                         location = nearestPoint.point,
                                         earcon = earcon,
                                         type = AudioType.LOCALIZED,
-                                        addDistanceAndHeading = sharedPreferences?.getBoolean(POSITION_INCLUDES_HEADING_AND_DISTANCE_KEY, false) ?: false
+                                        addDistanceAndHeading = preferences?.getBoolean(
+                                            PreferenceKeys.POSITION_INCLUDES_HEADING_AND_DISTANCE,
+                                            false
+                                        ) ?: false
                                     )
                                 }
                             }
@@ -292,11 +289,11 @@ class AutoCallout(
                     // Update the destination filter if we're outputting it
                     destinationCallout.locationFilter = destinationFilter
                     trackedCallout = destinationCallout
-                } else if (sharedPreferences?.getBoolean(ALLOW_CALLOUTS_KEY, true) != false) {
+                } else if (preferences?.getBoolean(PreferenceKeys.ALLOW_CALLOUTS, true) != false) {
                     // buildCalloutForRoadSense builds a callout for travel that's faster than
                     // walking
                     val roadSenseCallout =
-                        buildCalloutForRoadSense(userGeometry, gridState, settlementGrid, localizedContext)
+                        buildCalloutForRoadSense(userGeometry, gridState, settlementGrid)
                     if (roadSenseCallout != null) {
                         trackedCallout = roadSenseCallout
                     } else {

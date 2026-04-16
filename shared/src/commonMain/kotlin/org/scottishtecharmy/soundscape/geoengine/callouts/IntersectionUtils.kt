@@ -1,10 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine.callouts
 
-import android.content.Context
-import org.scottishtecharmy.soundscape.R
-import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
 import org.scottishtecharmy.soundscape.audio.AudioType
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.audio.Earcons
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
@@ -27,6 +24,8 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.StringKey
 import kotlin.math.abs
 
 data class IntersectionDescription(var nearestRoad: Way? = null,
@@ -112,7 +111,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
                         }
                     }
                     if (roadDistance.distance < bestRoadDistance) {
-                        bestRoad = road as Way
+                        bestRoad = road
                         bestRoadDistance = roadDistance.distance
                     }
                 }
@@ -269,7 +268,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
  * distance or not.
  *
  * @param description The description of the intersection to callout
- * @param localizedContext A context for obtaining localized strings
+ * @param localized A LocalizedStrings for obtaining localized strings
  * @param calloutHistory An optional CalloutHistory to use so as to filter out recently played out
  * @param gridState The current gridState
  *
@@ -277,7 +276,7 @@ fun getRoadsDescriptionFromFov(gridState: GridState,
  */
 fun addIntersectionCalloutFromDescription(
     description: IntersectionDescription,
-    localizedContext: Context?,
+    localized: LocalizedStrings?,
     calloutHistory: CalloutHistory? = null,
     gridState: GridState
 ) : TrackedCallout? {
@@ -306,17 +305,11 @@ fun addIntersectionCalloutFromDescription(
                 }
             }
             if (direction != null) {
-                val strings = localizedContext?.let { AndroidLocalizedStrings(it) }
-                val calloutText = if (localizedContext == null)
-                    "Ahead ${(nearestRoad).getName(direction, gridState, strings)}"
+                val roadName = nearestRoad.getName(direction, gridState, localized)
+                val calloutText = if (localized == null)
+                    "Ahead $roadName"
                 else
-                    "${localizedContext.getString(R.string.directions_direction_ahead)} ${
-                        (nearestRoad).getName(
-                            direction,
-                            gridState,
-                            strings
-                        )
-                    }}"
+                    localized.get(StringKey.DirectionsDirectionAhead) + " " + roadName
 
                 val trackedCallout = TrackedCallout(
                     description.userGeometry,
@@ -377,9 +370,9 @@ fun addIntersectionCalloutFromDescription(
         intersectionLocation,
         positionedStrings = List(1) {
             PositionedString(
-                text = localizedContext?.getString(R.string.intersection_approaching_intersection) ?: "Approaching intersection",
+                text = localized?.get(StringKey.IntersectionApproachingIntersection) ?: "Approaching intersection",
                 heading = -10000.0,
-                earcon = NativeAudioEngine.EARCON_SENSE_POI,
+                earcon = Earcons.SENSE_POI,
                 type = AudioType.STANDARD
             )
         },
@@ -410,16 +403,16 @@ fun addIntersectionCalloutFromDescription(
 
         // Don't call out the road we are on (0) as part of the intersection
         if (direction != Direction.BEHIND.value) {
-            val roadDirectionId = when(direction) {
+            val directionKey = when(direction) {
                 Direction.BEHIND_LEFT.value,Direction.LEFT.value,Direction.AHEAD_LEFT.value ->
-                    R.string.directions_name_goes_left
+                    StringKey.DirectionsNameGoesLeft
                 Direction.BEHIND_RIGHT.value,Direction.RIGHT.value,Direction.AHEAD_RIGHT.value ->
-                    R.string.directions_name_goes_right
+                    StringKey.DirectionsNameGoesRight
                 else ->
-                    R.string.directions_name_continues_ahead
+                    StringKey.DirectionsNameContinuesAhead
             }
             var unlocalizedDirection = ""
-            if(localizedContext == null) {
+            if(localized == null) {
                 unlocalizedDirection = when(direction) {
                     Direction.BEHIND_LEFT.value,Direction.LEFT.value,Direction.AHEAD_LEFT.value ->
                         "goes left"
@@ -437,9 +430,9 @@ fun addIntersectionCalloutFromDescription(
                 else -> 0.0
             }
 
-            val destinationText = way.getName(way.intersections[WayEnd.START.id] == description.intersection, gridState, localizedContext?.let { AndroidLocalizedStrings(it) })
+            val destinationText = way.getName(way.intersections[WayEnd.START.id] == description.intersection, gridState, localized)
             val intersectionCallout =
-                localizedContext?.getString(roadDirectionId, destinationText) ?: "\t$destinationText $unlocalizedDirection"
+                localized?.get(directionKey, destinationText) ?: "\t$destinationText $unlocalizedDirection"
             intersectionResults.add(
                 PositionedString(
                     text = intersectionCallout,

@@ -9,7 +9,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import java.util.PriorityQueue
+import org.scottishtecharmy.soundscape.utils.PriorityQueue
 
 var dijkstraRunCount = 0
 
@@ -118,7 +118,7 @@ fun findShortestDistance(
 
     val shortestDistance = dijkstraOnWaysWithLoops(
         newStartIntersection,
-        newEndIntersection,
+        newEndIntersection!!,
         ruler,
         maxDistance
     )

@@ -25,6 +25,7 @@ import kotlinx.coroutines.withTimeoutOrNull
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
+import org.scottishtecharmy.soundscape.preferences.AndroidPreferencesProvider
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SEARCH_LANGUAGE_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SEARCH_LANGUAGE_KEY
@@ -297,7 +298,10 @@ class GeoEngine {
 
         this.localizedContext = localizedContext
         this.localizedStrings = AndroidLocalizedStrings(localizedContext)
-        autoCallout = AutoCallout(localizedContext, sharedPreferences)
+        autoCallout = AutoCallout(
+            localizedStrings,
+            AndroidPreferencesProvider(sharedPreferences)
+        )
 
         // The MultiGeocoder dynamically switches between Android, Photon and Local Geocoders
         // depending on the user settings and network availability
