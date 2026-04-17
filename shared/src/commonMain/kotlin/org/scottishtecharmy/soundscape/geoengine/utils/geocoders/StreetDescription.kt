@@ -21,7 +21,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import java.util.SortedMap
 import kotlin.collections.iterator
 import kotlin.collections.set
 import kotlin.math.round
@@ -36,10 +35,10 @@ class StreetDescription(val name: String, val gridState: GridState) {
     //
 
     val ways: MutableList<Pair<Way, Boolean>> = mutableListOf()
-    var sortedDescriptivePoints: SortedMap<Double, MvtFeature> = sortedMapOf()
-    var leftSortedNumbers: SortedMap<Double, MvtFeature> = sortedMapOf()
+    var sortedDescriptivePoints: Map<Double, MvtFeature> = emptyMap()
+    var leftSortedNumbers: Map<Double, MvtFeature> = emptyMap()
     var leftMode: HouseNumberMode = HouseNumberMode.MIXED
-    var rightSortedNumbers: SortedMap<Double, MvtFeature> = sortedMapOf()
+    var rightSortedNumbers: Map<Double, MvtFeature> = emptyMap()
     var rightMode: HouseNumberMode = HouseNumberMode.MIXED
 
     fun whichSide(way: Way,
@@ -235,7 +234,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
         }
     }
 
-    fun checkSortedNumberConsistency(sortedNumbers: SortedMap<Double, MvtFeature>) : SortedMap<Double, MvtFeature> {
+    fun checkSortedNumberConsistency(sortedNumbers: Map<Double, MvtFeature>) : Map<Double, MvtFeature> {
 
         var firstConfidentHouse = Double.MIN_VALUE
         var lastConfidentHouse = Double.MIN_VALUE
@@ -248,7 +247,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
         }
         if(lastConfidentHouse == Double.MIN_VALUE) {
             // There are no houses on this side that we are confident about the number of
-            return sortedMapOf()
+            return emptyMap()
         }
 
         var lastDelta = 0
@@ -302,7 +301,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
                 newMap[house.key] = house.value
             }
         }
-        return newMap.toSortedMap()
+        return newMap.toList().sortedBy { it.first }.toMap()
     }
 
     private fun descriptiveIntersection(intersection: Intersection, localizedStrings: LocalizedStrings?) : Boolean {
@@ -488,7 +487,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
             }
         }
 
-        sortedDescriptivePoints = descriptivePoints.toSortedMap()
+        sortedDescriptivePoints = descriptivePoints.toList().sortedBy { it.first }.toMap()
 
         // Analyse the house numbers on each side of the road
         val odd = arrayOf(0,0)
@@ -513,9 +512,9 @@ class StreetDescription(val name: String, val gridState: GridState) {
                 }
             }
             if(sides[side]) {
-                leftSortedNumbers = numberPoints.toSortedMap()
+                leftSortedNumbers = numberPoints.toList().sortedBy { it.first }.toMap()
             } else {
-                rightSortedNumbers = numberPoints.toSortedMap()
+                rightSortedNumbers = numberPoints.toList().sortedBy { it.first }.toMap()
             }
         }
 
@@ -525,7 +524,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
         assignHouseNumberModes(odd, even)
     }
 
-    fun getInterpolateLocation(needle: Int, sortedNumbers: SortedMap<Double, MvtFeature>) : Pair<LngLatAlt, String>? {
+    fun getInterpolateLocation(needle: Int, sortedNumbers: Map<Double, MvtFeature>) : Pair<LngLatAlt, String>? {
         var lastKey = 0.0
         var lastParsed : Int = Int.MAX_VALUE
         var lastPoint : LngLatAlt? = null
@@ -680,7 +679,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
             }
 
             return localizedStrings?.get(StringKey.StreetDescriptionIntersection, intersection.name)
-                ?: "Near intersection of %s".format(intersection.name)
+                ?: "Near intersection of ${intersection.name}"
         }
         return null
     }

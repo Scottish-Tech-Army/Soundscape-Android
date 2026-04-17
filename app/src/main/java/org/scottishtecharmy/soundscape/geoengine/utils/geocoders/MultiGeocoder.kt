@@ -24,12 +24,14 @@ import org.scottishtecharmy.soundscape.network.PhotonSearch
 class MultiGeocoder(applicationContext: Context,
                     val gridState: GridState,
                     settlementState: GridState,
-                    tileSearch: TileSearch,
+                    tileSearch: TileSearcher,
                     val networkUtils: NetworkUtils,
-                    photonGeocoder: PhotonGeocoder) : SoundscapeGeocoder() {
+                    photonGeocoder: PhotonGeocoder,
+                    analyticsLogger: (String) -> Unit = {},
+                    processor: (LocationDescription) -> Unit = {}) : SoundscapeGeocoder() {
 
     private val fusedGeocoder = FusedGeocoder(applicationContext, gridState, photonGeocoder)
-    private val localGeocoder = OfflineGeocoder(gridState, settlementState, tileSearch)
+    private val localGeocoder = OfflineGeocoder(gridState, settlementState, tileSearch, analyticsLogger, processor)
 
     val sharedPreferences: SharedPreferences? = PreferenceManager.getDefaultSharedPreferences(applicationContext)
 

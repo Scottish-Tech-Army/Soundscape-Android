@@ -314,13 +314,17 @@ class GeoEngine {
                 analyticsLogger = { name -> Analytics.getInstance().logEvent(name, null) },
                 processor = { it.process() }
             )
+        val offlineAnalyticsLogger = { name: String -> Analytics.getInstance().logEvent(name, null) }
+        val offlineProcessor: (LocationDescription) -> Unit = { it.process() }
         geocoder = MultiGeocoder(
                 application,
                 gridState,
                 settlementGrid,
                 tileSearch,
                 networkUtils,
-                photonGeocoder
+                photonGeocoder,
+                offlineAnalyticsLogger,
+                offlineProcessor
             )
         locationProvider = newLocationProvider
         directionProvider = newDirectionProvider

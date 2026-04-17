@@ -17,8 +17,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import org.scottishtecharmy.soundscape.utils.Analytics
-import org.scottishtecharmy.soundscape.utils.toLocationDescription
+import org.scottishtecharmy.soundscape.utils.deferredToLocationDescription
 
 /**
  * The OfflineGeocoder class abstracts away the use of map tile data on the phone for geocoding and
@@ -28,7 +27,9 @@ import org.scottishtecharmy.soundscape.utils.toLocationDescription
 class OfflineGeocoder(
     val gridState: GridState,
     val settlementGrid: GridState,
-    val tileSearch: TileSearch? = null
+    val tileSearch: TileSearcher? = null,
+    private val analyticsLogger: (String) -> Unit = {},
+    private val processor: (LocationDescription) -> Unit = {},
 ) : SoundscapeGeocoder() {
 
     fun addNamesFromGrid(treeId: TreeId, names: MutableSet<String>) {
@@ -57,7 +58,7 @@ class OfflineGeocoder(
         locationName: String,
         nearbyLocation: LngLatAlt,
         localizedStrings: LocalizedStrings?    ) : List<LocationDescription>? {
-        Analytics.getInstance().logEvent("offlineGeocode", null)
+        analyticsLogger("offlineGeocode")
 
         val settlementNames = withContext(gridState.treeContext) {
             getSettlementNames()
@@ -79,7 +80,7 @@ class OfflineGeocoder(
         if(!gridState.isLocationWithinGrid(location))
             return null
 
-        Analytics.getInstance().logEvent("offlineReverseGeocode", null)
+        analyticsLogger("offlineReverseGeocode")
 
         var nearbyWay = userGeometry.mapMatchedWay
         if(nearbyWay == null) {
@@ -117,7 +118,7 @@ class OfflineGeocoder(
                             props["opposite"] = houseNumber.second
                         }
                         houseFeature.geometry = Point(userGeometry.location)
-                        return houseFeature.toLocationDescription(LocationSource.OfflineGeocoder)
+                        return houseFeature.deferredToLocationDescription(LocationSource.OfflineGeocoder).also(processor)
                     }
                 }
                 // We couldn't get a street address, so try a descriptive address instead
@@ -139,27 +140,27 @@ class OfflineGeocoder(
                     // we want to add that in.
                     text = localizedStrings?.get(
                         StringKey.StreetDescriptionRelativeBefore, nearbyName, result.ahead.name
-                    ) ?: "On %s just before %s".format(nearbyName, result.ahead.name)
+                    ) ?: "On $nearbyName just before ${result.ahead.name}"
                 }
                 else if (result.behind.distance < 10.0) {
                     text = localizedStrings?.get(
                         StringKey.StreetDescriptionRelativeAfter, nearbyName, result.behind.name
-                    ) ?: "On %s just after %s".format(nearbyName, result.behind.name)
+                    ) ?: "On $nearbyName just after ${result.behind.name}"
                 }
                 else if(result.ahead.name.isNotEmpty() && result.behind.name.isNotEmpty()) {
                     text = localizedStrings?.get(
                         StringKey.StreetDescriptionBetween, nearbyName, result.behind.name, result.ahead.name
-                    ) ?: "On %s between %s and %s".format(nearbyName, result.behind.name, result.ahead.name)
+                    ) ?: "On $nearbyName between ${result.behind.name} and ${result.ahead.name}"
                 } else {
                     if(result.ahead.name.isNotEmpty()) {
                         text = localizedStrings?.get(
                             StringKey.StreetDescriptionUntil, nearbyName, formattedAheadDistance, result.ahead.name
-                        ) ?: "On %s, %s until %s".format(nearbyName, formattedAheadDistance, result.ahead.name)
+                        ) ?: "On $nearbyName, $formattedAheadDistance until ${result.ahead.name}"
                     }
                     else if(result.behind.name.isNotEmpty()) {
                         text = localizedStrings?.get(
                             StringKey.StreetDescriptionSince, nearbyName, formattedBehindDistance, result.behind.name
-                        ) ?: "On %s, %s since %s".format(nearbyName, formattedBehindDistance, result.behind.name)
+                        ) ?: "On $nearbyName, $formattedBehindDistance since ${result.behind.name}"
                     }
                 }
                 if(text.isNotEmpty()) {
@@ -194,7 +195,7 @@ class OfflineGeocoder(
         }
 
         // See if there are any nearby named POI
-        val nearbyPois = gridPoiTree.getNearestCollection(location, 300.0, 10, gridState.ruler, null)
+        val nearbyPois = gridPoiTree.getNearestCollection(location, 300.0, 10, gridState.ruler)
         nearbyPois.forEach { poi ->
             val mvt = poi as MvtFeature
             if(!mvt.name.isNullOrEmpty()) {
