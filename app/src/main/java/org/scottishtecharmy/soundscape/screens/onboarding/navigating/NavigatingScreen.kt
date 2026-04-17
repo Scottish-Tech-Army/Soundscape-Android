@@ -69,19 +69,12 @@ enum class Permission(
         R.string.first_launch_permissions_location,
         R.string.first_launch_permissions_required,
     ),
-    ACCESS_BACKGROUND_LOCATION(
-        Manifest.permission.ACCESS_BACKGROUND_LOCATION,
-        Icons.Rounded.LocationOn,
-        R.string.first_launch_permissions_location,
-        R.string.first_launch_permissions_required,
-    ),
     RECORD_AUDIO(
         Manifest.permission.RECORD_AUDIO,
         Icons.Rounded.Mic,
         R.string.first_launch_permissions_record_audio,
         R.string.first_launch_permissions_required_for_voice_control,
     ),
-
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     POST_NOTIFICATIONS(
         Manifest.permission.POST_NOTIFICATIONS,
@@ -103,14 +96,12 @@ fun NavigatingScreen(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             listOf(
                 Permission.ACCESS_FINE_LOCATION,
-                Permission.ACCESS_BACKGROUND_LOCATION,
                 Permission.POST_NOTIFICATIONS,
                 Permission.RECORD_AUDIO,
             )
         } else {
             listOf(
                 Permission.ACCESS_FINE_LOCATION,
-                Permission.ACCESS_BACKGROUND_LOCATION,
                 Permission.RECORD_AUDIO,
             )
         }
