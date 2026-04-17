@@ -161,8 +161,6 @@ fun Navigating(
 ) {
     val focusRequester = remember { FocusRequester() }
 
-    Log.d("Navigating", "Continue Enabled: $continueEnabled")
-
     BoxWithGradientBackground(
         modifier = modifier,
         color = MaterialTheme.colorScheme.surface

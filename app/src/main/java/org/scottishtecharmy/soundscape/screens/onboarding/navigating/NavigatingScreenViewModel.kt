@@ -15,9 +15,7 @@ data class NavigatingScreenState(
             } else {
                 it == Permission.ACCESS_FINE_LOCATION
             }
-        }.onEach {
-            Log.d("NavigatingScreenState", "Permission: ${it.key}, Granted: ${it.value}")
-        }.all { it.value }
+        }.none { !it.value }
 }
 
 class NavigatingScreenViewModel : ViewModel() {
