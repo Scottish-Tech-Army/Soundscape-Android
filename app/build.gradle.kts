@@ -288,7 +288,6 @@ dependencies {
     implementation(libs.firebase.analytics)
 
     // GPX parser
-    implementation (libs.android.gpx.parser)
 
     // MapLibre library
     implementation (libs.maplibre)

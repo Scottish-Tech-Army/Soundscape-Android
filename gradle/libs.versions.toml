@@ -11,7 +11,6 @@ google-services = "4.4.3"
 jetbrains-dokka = "2.2.0-Beta"
 firebase-crashlytics = "3.0.6"
 accompanistPermissions = "0.37.3"
-androidGpxParser = "2.3.1"
 composePreferenceLibrary = "1.1.1"
 converterMoshi = "3.0.0"
 converterProtobuf = "3.0.0"
@@ -74,7 +73,6 @@ composeBom = "2025.04.00"
 
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
-android-gpx-parser = { module = "com.github.ticofab:android-gpx-parser", version.ref = "androidGpxParser" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }

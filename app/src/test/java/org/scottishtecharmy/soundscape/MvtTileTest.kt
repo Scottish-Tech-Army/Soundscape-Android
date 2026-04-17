@@ -39,6 +39,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
+import org.scottishtecharmy.soundscape.geoengine.utils.gpx.parseGpx
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.process
 import java.io.File
@@ -86,58 +87,20 @@ private fun vectorTileToGeoJsonFromFile(
 
 private fun parseGpxFromFile(filename: String): FeatureCollection {
     val fc = FeatureCollection()
+    val gpx = parseGpx(File(filename).readText())
 
-    var currentFeature = Feature()
-    File(filename).useLines { lines ->
-        lines.forEach { line ->
-
-            // Get the location
-            val regex = Regex("/*<trkpt.*lat=\"(.*)\" lon=\"(.*)\".*")
-            val matchResult = regex.find(line)
-            if (matchResult != null) {
-                // We have a match on the link
-                val latitudeString = matchResult.groupValues[1]
-                val longitudeString = matchResult.groupValues[2]
-
-                val latitude = latitudeString.toDouble()
-                val longitude = longitudeString.toDouble()
-
-                if(currentFeature.properties != null) {
-                    fc.addFeature(currentFeature)
-                }
-
-                currentFeature = Feature()
-                currentFeature.geometry = Point(longitude, latitude)
-                currentFeature.properties = HashMap<String, Any?>().apply {
+    for (track in gpx.tracks) {
+        for (segment in track.trackSegments) {
+            for (tp in segment.trackPoints) {
+                val feature = Feature()
+                feature.geometry = Point(tp.longitude, tp.latitude)
+                feature.properties = HashMap<String, Any?>().apply {
                     set("marker-size", "small")
                     set("marker-color", "#004000")
+                    tp.bearing?.let { set("heading", it.toDouble()) }
+                    tp.speed?.let { set("speed", it.toDouble()) }
                 }
-            } else {
-                val regex2 = Regex("/*<bearing>(.*)</bearing>.*")
-                val matchResult2 = regex2.find(line)
-                if (matchResult2 != null) {
-                    currentFeature.properties?.set("heading", matchResult2.groupValues[1].toDouble())
-                }
-                else {
-                    val regex3 = Regex("/*<speed>(.*)</speed>.*")
-                    val matchResult3 = regex3.find(line)
-                    if (matchResult3 != null) {
-                        currentFeature.properties?.set(
-                            "speed",
-                            matchResult3.groupValues[1].toDouble()
-                        )
-                    }
-                    else {
-                        val regex4 = Regex("/*<time>(.*)</time>.*")
-                        val matchResult4 = regex4.find(line)
-                        if (matchResult4 != null) {
-                            currentFeature.properties?.set(
-                                "time",
-                                matchResult4.groupValues[1].toDouble()
-                            )
-                        }
-                    }
-                }
+                fc.addFeature(feature)
             }
         }
     }

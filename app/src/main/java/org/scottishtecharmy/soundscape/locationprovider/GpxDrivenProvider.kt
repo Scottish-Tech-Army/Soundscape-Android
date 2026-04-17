@@ -2,17 +2,15 @@ package org.scottishtecharmy.soundscape.locationprovider
 
 import android.content.Context
 import android.util.Log
-import io.ticofab.androidgpxparser.parser.GPXParser
-import io.ticofab.androidgpxparser.parser.domain.Gpx
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
+import org.scottishtecharmy.soundscape.geoengine.utils.gpx.GpxData
+import org.scottishtecharmy.soundscape.geoengine.utils.gpx.parseGpx
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.GeodesicRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.xmlpull.v1.XmlPullParserException
-import java.io.IOException
 import java.io.InputStream
 
 class GpxDrivenProvider  {
@@ -20,7 +18,7 @@ class GpxDrivenProvider  {
     var locationProvider = StaticLocationProvider(LngLatAlt())
     var directionProvider = DirectionProvider()
 
-    private var parsedGpx: Gpx? = null
+    private var parsedGpx: GpxData? = null
     private val coroutineScope = CoroutineScope(Job())
     private var trackPointIndex = 0
 
@@ -34,19 +32,19 @@ class GpxDrivenProvider  {
 
     fun start(context : Context) {
         val input = context.assets.open("gpx/milngavie-centre.gpx")
-        parseGpx(input)
+        parseGpxStream(input)
 
         coroutineScope.launch {
             val ruler = GeodesicRuler()
             while (true) {
-                val point = parsedGpx?.tracks?.get(0)?.trackSegments?.get(0)?.trackPoints?.get(trackPointIndex)
+                val point = parsedGpx?.tracks?.getOrNull(0)?.trackSegments?.getOrNull(0)?.trackPoints?.getOrNull(trackPointIndex)
 
                 var heading = 0.0
                 point?.let {
                     if(stepsInPoint == 0) {
                         val pointLngLatAlt = LngLatAlt(it.longitude, it.latitude)
                         val nextPoint =
-                            parsedGpx?.tracks?.get(0)?.trackSegments?.get(0)?.trackPoints?.get(
+                            parsedGpx?.tracks?.getOrNull(0)?.trackSegments?.getOrNull(0)?.trackPoints?.getOrNull(
                                 trackPointIndex + 1
                             )
                         nextPoint?.let { itNext ->
@@ -96,7 +94,7 @@ class GpxDrivenProvider  {
                     currentStep++
                     if (currentStep == stepsInPoint) {
                         trackPointIndex++
-                        if (trackPointIndex >= (parsedGpx?.tracks?.get(0)?.trackSegments?.get(0)?.trackPoints?.size
+                        if (trackPointIndex >= (parsedGpx?.tracks?.getOrNull(0)?.trackSegments?.getOrNull(0)?.trackPoints?.size
                                 ?: 0)
                         ) {
                             trackPointIndex = 0
@@ -109,12 +107,11 @@ class GpxDrivenProvider  {
         }
     }
 
-    fun parseGpx(input : InputStream) {
+    fun parseGpxStream(input : InputStream) {
         Log.d(TAG, "Parsing GPX file")
 
-        val parser = GPXParser()
         try {
-            parsedGpx = parser.parse(input)
+            parsedGpx = parseGpx(input.bufferedReader().readText())
             parsedGpx?.let { gpx ->
                 gpx.tracks.forEach { track ->
                     track.trackSegments.forEach { segment ->
@@ -126,11 +123,8 @@ class GpxDrivenProvider  {
             } ?: {
                 Log.e(TAG, "Error parsing GPX file")
             }
-        } catch (e: IOException) {
-            Log.e(TAG, "IOException whilst parsing GPX file")
-            e.printStackTrace()
-        } catch (e: XmlPullParserException) {
-            Log.e(TAG,  "XmlPullParserException whilst parsing GPX file")
+        } catch (e: Exception) {
+            Log.e(TAG, "Exception whilst parsing GPX file: ${e.message}")
             e.printStackTrace()
         }
     }
