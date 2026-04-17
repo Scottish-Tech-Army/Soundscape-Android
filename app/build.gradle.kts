@@ -327,9 +327,6 @@ dependencies {
     // Markdown to HTML converter for Help screens
     implementation(libs.commonmark)
 
-    // PMTiles reading libraries
-    implementation(libs.pmtilesreader)
-
     // Address formatting library
     implementation(libs.androidaddressformatter)
 

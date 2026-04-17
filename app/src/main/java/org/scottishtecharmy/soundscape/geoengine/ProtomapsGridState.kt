@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.geoengine
 
-import ch.poole.geo.pmtiles.Reader
 import kotlinx.coroutines.CloseableCoroutineDispatcher
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
@@ -12,9 +11,10 @@ import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geoengine.utils.pmtiles.PmTilesReader
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import vector_tile.Tile
-import java.io.File
+import okio.Path.Companion.toPath
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.system.measureTimeMillis
 
@@ -26,7 +26,7 @@ open class ProtomapsGridState(
 ) : GridState(zoomLevel, gridSize, passedInTreeContext) {
 
     // We need an array of pmtile readers, one for each tile in the grid.
-    var fileTileReaders = arrayOfNulls<Reader?>(gridSize * gridSize)
+    var fileTileReaders = arrayOfNulls<PmTilesReader?>(gridSize * gridSize)
     var currentExtracts: MutableList<String> = mutableListOf()
     var extractPath: String = ""
 
@@ -39,7 +39,7 @@ open class ProtomapsGridState(
         super.stop()
         for(reader in fileTileReaders)
             reader?.close()
-        fileTileReaders = arrayOfNulls<Reader?>(gridSize * gridSize)
+        fileTileReaders = arrayOfNulls<PmTilesReader?>(gridSize * gridSize)
     }
 
     override fun checkOfflineMaps() {
@@ -57,7 +57,7 @@ open class ProtomapsGridState(
             // Close old file readers
             for (reader in fileTileReaders)
                 reader?.close()
-            fileTileReaders = arrayOfNulls<Reader?>(gridSize * gridSize)
+            fileTileReaders = arrayOfNulls<PmTilesReader?>(gridSize * gridSize)
         }
     }
 
@@ -93,7 +93,7 @@ open class ProtomapsGridState(
                     fileTileReaders[workerIndex] = null
                     for(extract in currentExtracts) {
                         println("Try $extract for worker $workerIndex")
-                        reader = Reader(File(extract))
+                        reader = PmTilesReader(extract.toPath())
                         fileTile = reader.getTile(zoomLevel, x, y)
                         if(fileTile != null) {
                             // We've found an extract that works, so use that

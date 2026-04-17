@@ -4,7 +4,8 @@ import android.os.Environment
 import androidx.preference.PreferenceManager
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
-import ch.poole.geo.pmtiles.Reader
+import org.scottishtecharmy.soundscape.geoengine.utils.pmtiles.PmTilesReader
+import okio.Path.Companion.toPath
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
@@ -20,7 +21,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
-import java.io.File
 import java.text.Normalizer
 import java.util.Collections
 import java.util.Locale
@@ -82,9 +82,9 @@ class SearchTest {
         val offlineExtractPath =  path + "/" + Environment.DIRECTORY_DOWNLOADS
         val extracts = findExtractPaths(offlineExtractPath).toMutableList()
 
-        var reader : Reader? = null
+        var reader : PmTilesReader? = null
         for(extract in extracts) {
-            reader = Reader(File(extract))
+            reader = PmTilesReader(extract.toPath())
             println("Try extract $extract")
             if(reader.getTile(MAX_ZOOM_LEVEL, tileLocation.first, tileLocation.second) != null)
                 break
@@ -121,11 +121,12 @@ class SearchTest {
                     val tile = decompressTile(reader.tileCompression, tileData)
                     if(tile != null) {
                         cache = mutableListOf()
-                        for(layer in tile.layersList) {
+                        for(layer in tile.layers) {
                             if((layer.name == "transportation") || (layer.name == "poi") || (layer.name == "building")) {
-                                for (value in layer.valuesList) {
-                                    if (value.hasStringValue()) {
-                                        cache.add(normalizeForSearch(value.stringValue))
+                                for (value in layer.values) {
+                                    val sv = value.string_value
+                                    if (sv != null) {
+                                        cache.add(normalizeForSearch(sv))
                                     }
                                 }
                             }

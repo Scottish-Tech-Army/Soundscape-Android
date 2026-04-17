@@ -56,7 +56,8 @@ import java.io.File
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toDrawable
 import androidx.preference.PreferenceManager
-import ch.poole.geo.pmtiles.Reader
+import org.scottishtecharmy.soundscape.geoengine.utils.pmtiles.PmTilesReader
+import okio.Path.Companion.toPath
 import org.maplibre.android.geometry.LatLngBounds
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.maplibre.android.style.layers.Property
@@ -212,7 +213,7 @@ private fun getSourceUri(appContext: Context, location: LngLatAlt?, forceNetwork
                 val tileXY = getXYTile(location, MAX_ZOOM_LEVEL)
                 var largestSize = 0L
                 for(extract in offlineExtractPaths) {
-                    val reader = Reader(File(extract))
+                    val reader = PmTilesReader(extract.toPath())
                     val fileTile = reader.getTile(MAX_ZOOM_LEVEL, tileXY.first, tileXY.second)
                     reader.close()
                     if(fileTile != null) {
