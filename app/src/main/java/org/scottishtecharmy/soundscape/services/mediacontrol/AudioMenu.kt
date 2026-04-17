@@ -15,7 +15,7 @@ import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.services.SoundscapeService
-import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 
 /**
@@ -104,7 +104,7 @@ class AudioMenu(
     fun select() {
         service.callbackHoldOff()
         val item = synchronized(this) { menuStack.last().let { it.items[it.currentIndex] } }
-        Analytics.getInstance().logEvent("audio_menu_action", null)
+        AnalyticsProvider.getInstance().logEvent("audio_menu_action", null)
         when (item) {
             is MenuItem.Action -> {
                 item.action()

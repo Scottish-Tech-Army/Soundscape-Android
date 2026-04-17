@@ -47,7 +47,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandedit
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RouteDetailsScreenVM
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageViewModel
-import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
@@ -140,7 +140,7 @@ fun HomeScreen(
             val ld = viewModel.getLocationDescription(location) ?: LocationDescription("", location)
             navController.navigate(generateLocationDetailsRoute(ld))
 
-            Analytics.getInstance().logEvent("longPressOnMap", null)
+            AnalyticsProvider.getInstance().logEvent("longPressOnMap", null)
             true
         }
     }

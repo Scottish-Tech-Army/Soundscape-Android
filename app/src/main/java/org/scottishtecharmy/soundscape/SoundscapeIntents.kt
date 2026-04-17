@@ -18,7 +18,7 @@ import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.generateRouteDetailsRoute
-import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.parseGpxFile
 import java.io.BufferedReader
@@ -183,7 +183,7 @@ class SoundscapeIntents
                         intent.getStringExtra(Intent.EXTRA_TEXT)?.let { plainText ->
                             Log.d(TAG, "Intent text: $plainText")
                             if (plainText.contains("maps.app.goo.gl")) {
-                                Analytics.getInstance().logEvent("intentGoogleMapShare", null)
+                                AnalyticsProvider.getInstance().logEvent("intentGoogleMapShare", null)
                                 try {
                                     getRedirectUrl(plainText, mainActivity)
                                 } catch (e: Exception) {
@@ -204,7 +204,7 @@ class SoundscapeIntents
                         val feature = path?.removePrefix("/")
                         if (feature == "routes" || feature == "markers") {
                             Log.d(TAG, "Opening feature from intent: $feature")
-                            Analytics.getInstance().logEvent("intentOpenFeature", null)
+                            AnalyticsProvider.getInstance().logEvent("intentOpenFeature", null)
                             navigator.navigate("${HomeRoutes.MarkersAndRoutes.route}?tab=$feature")
                         }
                         return
@@ -213,7 +213,7 @@ class SoundscapeIntents
                     // Check for soundscape://route/stop intent to stop route playback
                     if (scheme == "soundscape" && uri.host == "route" && path == "/stop") {
                         Log.d(TAG, "Stopping route from intent")
-                        Analytics.getInstance().logEvent("intentStopRoute", null)
+                        AnalyticsProvider.getInstance().logEvent("intentStopRoute", null)
                         mainActivity.soundscapeServiceConnection.routeStop()
                         return
                     }
@@ -232,7 +232,7 @@ class SoundscapeIntents
                                 ?.first
                             if (route != null) {
                                 Log.d(TAG, "Matched route: ${route.name} (id=${route.routeId})")
-                                Analytics.getInstance().logEvent("intentStartRoute", null)
+                                AnalyticsProvider.getInstance().logEvent("intentStartRoute", null)
                                 mainActivity.soundscapeServiceConnection.routeStart(route.routeId)
                             } else {
                                 Log.w(TAG, "No route found matching name: $routeName")
@@ -251,7 +251,7 @@ class SoundscapeIntents
                             val latitude = matchResult.groupValues[1]
                             val longitude = matchResult.groupValues[2]
                             try {
-                                Analytics.getInstance().logEvent("intentGeoSchemaUrl", null)
+                                AnalyticsProvider.getInstance().logEvent("intentGeoSchemaUrl", null)
                                 check(Geocoder.isPresent())
                                 useGeocoderToGetAddress("$latitude,$longitude", mainActivity)
                             } catch (e: Exception) {
@@ -283,7 +283,7 @@ class SoundscapeIntents
                                 else -> "$lat,$lon"
                             }
                             Log.d(TAG, "Share marker: name=$displayName lat=$lat lon=$lon")
-                            Analytics.getInstance().logEvent("intentShareMarker", null)
+                            AnalyticsProvider.getInstance().logEvent("intentShareMarker", null)
                             val ld = LocationDescription(
                                 name = displayName,
                                 location = LngLatAlt(lon, lat)
@@ -349,7 +349,7 @@ class SoundscapeIntents
                                                             )
                                                         }
                                                     }
-                                                    Analytics.getInstance().logEvent("intentJsonImport", null)
+                                                    AnalyticsProvider.getInstance().logEvent("intentJsonImport", null)
                                                     routeData = RouteWithMarkers(
                                                         RouteEntity(
                                                             0,

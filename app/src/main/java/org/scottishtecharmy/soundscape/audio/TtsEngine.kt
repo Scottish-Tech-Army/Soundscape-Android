@@ -12,7 +12,7 @@ import android.speech.tts.Voice
 import android.util.Log
 import androidx.preference.PreferenceManager
 import org.scottishtecharmy.soundscape.MainActivity
-import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.util.Collections
 import java.util.Locale
@@ -56,13 +56,12 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
         textToSpeech = if (engineLabelAndName.isNullOrEmpty())
             TextToSpeech(context, this)
         else {
-            val analytics = Analytics.getInstance()
-            val bundle = Bundle().apply {
-                putString("engine", engineLabelAndName)
-                putString("voice", textToSpeechVoiceType)
-            }
-            // Log an event so that we can get statistics
-            analytics.logEvent("TTSEngine", bundle)
+            val analytics = AnalyticsProvider.getInstance()
+            val params = mapOf(
+                "engine" to engineLabelAndName,
+                "voice" to textToSpeechVoiceType
+            )
+            analytics.logEvent("TTSEngine", params)
             // And set a custom key so that any crashes we get we know which TTS engine is in use
             analytics.crashSetCustomKey("TTSEngine", "$engineLabelAndName - $textToSpeechVoiceType")
             TextToSpeech(context, this, engineLabelAndName.substringAfter(":::"))
@@ -291,12 +290,12 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
         }
         else {
             Log.w(TAG, "onInit failed with status $status, $engineLabelAndName, $textToSpeechVoiceType")
-            val bundle = Bundle().apply {
-                putInt("onInit status", status)
-                putString("engine", engineLabelAndName)
-                putString("voice", textToSpeechVoiceType)
-            }
-            Analytics.getInstance().logEvent("TTSonInit_error", bundle)
+            val params = mapOf(
+                "onInit status" to status,
+                "engine" to engineLabelAndName,
+                "voice" to textToSpeechVoiceType
+            )
+            AnalyticsProvider.getInstance().logEvent("TTSonInit_error", params)
         }
     }
 
@@ -305,7 +304,7 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
             if (textToSpeechInitialized)
                 return textToSpeech.engines
         } catch (e: Exception) {
-            Analytics.getInstance().logEvent("getAvailableEngines_error", null)
+            AnalyticsProvider.getInstance().logEvent("getAvailableEngines_error", null)
             Log.e(TAG, "getAvailableEngines: $e")
         }
         return emptyList()
@@ -316,7 +315,7 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
             if (textToSpeechInitialized)
                 return textToSpeech.availableLanguages
         } catch (e: Exception) {
-            Analytics.getInstance().logEvent("getAvailableSpeechLanguages_error", null)
+            AnalyticsProvider.getInstance().logEvent("getAvailableSpeechLanguages_error", null)
             Log.e(TAG, "getAvailableSpeechVoices: $e")
         }
         return emptySet()
@@ -327,7 +326,7 @@ class TtsEngine(val audioEngine: NativeAudioEngine,
             if (textToSpeechInitialized)
                 return textToSpeech.voices
         } catch (e: Exception) {
-            Analytics.getInstance().logEvent("getAvailableSpeechVoices_error", null)
+            AnalyticsProvider.getInstance().logEvent("getAvailableSpeechVoices_error", null)
             Log.e(TAG, "getAvailableSpeechVoices: $e")
         }
         return emptySet()

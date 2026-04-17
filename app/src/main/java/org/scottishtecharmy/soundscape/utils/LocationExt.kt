@@ -38,7 +38,7 @@ fun Feature.toLocationDescription(source: LocationSource,
 }
 
 fun addExtraCrashInfo(fallbackCountry: String?, countryCode: String?) {
-    val analytics = Analytics.getInstance()
+    val analytics = AnalyticsProvider.getInstance()
     analytics.crashSetCustomKey("fallbackCountry", fallbackCountry.toString())
     analytics.crashSetCustomKey("countryCode", countryCode.toString())
 }

@@ -65,7 +65,7 @@ import kotlin.math.abs
 import kotlin.time.TimeSource
 import kotlin.time.measureTime
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
-import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.NetworkUtils
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.PhotonGeocoder
@@ -284,7 +284,7 @@ class GeoEngine {
         networkUtils = NetworkUtils(application)
 
         val analyticsAdapter = GridStateAnalytics { name ->
-            Analytics.getInstance().logCostlyEvent(name, null)
+            AnalyticsProvider.getInstance().logCostlyEvent(name, null)
         }
         val tileClient = createAndroidVectorTileClient(
             baseUrl = BuildConfig.TILE_PROVIDER_URL,
@@ -312,10 +312,10 @@ class GeoEngine {
         val photonGeocoder = PhotonGeocoder(
                 photonSearch = PhotonSearchProvider,
                 languageProvider = { getPhotonLanguage(sharedPreferences) },
-                analyticsLogger = { name -> Analytics.getInstance().logEvent(name, null) },
+                analyticsLogger = { name -> AnalyticsProvider.getInstance().logEvent(name, null) },
                 processor = { it.process() }
             )
-        val analyticsLoggerFn = { name: String -> Analytics.getInstance().logEvent(name, null) }
+        val analyticsLoggerFn = { name: String -> AnalyticsProvider.getInstance().logEvent(name, null) }
         val processorFn: (LocationDescription) -> Unit = { it.process() }
         val platformGeocoder = if (AndroidGeocoder.enabled) AndroidGeocoder(application) else null
         geocoder = MultiGeocoder(
@@ -410,7 +410,7 @@ class GeoEngine {
                 newLocation?.let { location ->
 
                     // Add location to crash dumps
-                    val analytics = Analytics.getInstance()
+                    val analytics = AnalyticsProvider.getInstance()
                     analytics.crashSetCustomKey("latitude", newLocation.latitude.toString())
                     analytics.crashSetCustomKey("longitude", newLocation.longitude.toString())
 
@@ -445,7 +445,7 @@ class GeoEngine {
                     }
 
                     if(updated) {
-                        Analytics.getInstance().logCostlyEvent("gridUpdated", null)
+                        AnalyticsProvider.getInstance().logCostlyEvent("gridUpdated", null)
 
                         // The grid updated, if we're in StreetPreview and were initializing, the
                         // service needs to update the state to ON.
@@ -528,7 +528,7 @@ class GeoEngine {
     @OptIn(ExperimentalCoroutinesApi::class)
     fun myLocation() : TrackedCallout? {
 
-        Analytics.getInstance().logEvent("myLocation", null)
+        AnalyticsProvider.getInstance().logEvent("myLocation", null)
 
         // getCurrentDirection() from the direction provider has a default of 0.0
         // even if we don't have a valid current direction.
@@ -663,7 +663,7 @@ class GeoEngine {
         val gridStartTime = timeSource.markNow()
         val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
 
-        Analytics.getInstance().logEvent("whatsAroundMe", null)
+        AnalyticsProvider.getInstance().logEvent("whatsAroundMe", null)
 
         if (!locationProvider.hasValidLocation()) {
             val noLocationString =
@@ -766,7 +766,7 @@ class GeoEngine {
         var results : MutableList<PositionedString> = mutableListOf()
         val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.HeadAuto)
 
-        Analytics.getInstance().logEvent("aheadOfMe", null)
+        AnalyticsProvider.getInstance().logEvent("aheadOfMe", null)
 
         if (!locationProvider.hasValidLocation()) {
             val noLocationString =
@@ -825,7 +825,7 @@ class GeoEngine {
     @OptIn(ExperimentalCoroutinesApi::class)
     fun nearbyMarkers() : TrackedCallout? {
 
-        Analytics.getInstance().logEvent("nearbyMarkers", null)
+        AnalyticsProvider.getInstance().logEvent("nearbyMarkers", null)
 
         // Search database for nearby markers and call them out
         var results : MutableList<PositionedString> = mutableListOf()

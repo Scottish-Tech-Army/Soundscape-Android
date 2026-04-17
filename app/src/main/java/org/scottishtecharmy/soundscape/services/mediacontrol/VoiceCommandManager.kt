@@ -37,7 +37,7 @@ import org.scottishtecharmy.soundscape.services.SoundscapeService
 import androidx.preference.PreferenceManager
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_CALLOUTS_ON
-import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.lang.Thread.sleep
@@ -329,7 +329,7 @@ class VoiceCommandManager(
 
             // Check if we match any of our dynamic markers
             if (matchDynamicMarkers(t)) {
-                Analytics.getInstance().logEvent("voice_command_recognized", null)
+                AnalyticsProvider.getInstance().logEvent("voice_command_recognized", null)
                 return
             }
         }
@@ -339,7 +339,7 @@ class VoiceCommandManager(
             // Pass in all the speech strings, it may be that the argument is clearer in ones
             // other than our best match.
             bestMatch.action(speech)
-            Analytics.getInstance().logEvent("voice_command_recognized", null)
+            AnalyticsProvider.getInstance().logEvent("voice_command_recognized", null)
         } else {
             service.speak2dText(
                 context.getString(
@@ -349,7 +349,7 @@ class VoiceCommandManager(
                 false,
                 EARCON_CALLOUTS_OFF
             )
-            Analytics.getInstance().logEvent("voice_command_not_recognized", null)
+            AnalyticsProvider.getInstance().logEvent("voice_command_not_recognized", null)
         }
     }
 
@@ -461,7 +461,7 @@ class VoiceCommandManager(
                 //putExtra(EXTRA_AUDIO_SOURCE_ENCODING, )
                 putExtra(EXTRA_AUDIO_SOURCE_SAMPLING_RATE, 16000)
             } ?: putExtra(EXTRA_PARTIAL_RESULTS, false)
-            Analytics.getInstance().logEvent("trigger_voice_command", null)
+            AnalyticsProvider.getInstance().logEvent("trigger_voice_command", null)
         }
 
     /**

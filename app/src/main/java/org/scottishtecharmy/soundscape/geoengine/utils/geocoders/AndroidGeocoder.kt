@@ -4,13 +4,12 @@ import android.content.Context
 import android.location.Address
 import android.location.Geocoder
 import android.os.Build
-import android.os.Bundle
 import android.util.Log
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.toLocationDescription
 import kotlin.coroutines.resume
@@ -35,7 +34,7 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
         if(!enabled)
             return null
 
-        Analytics.getInstance().logEvent("androidGeocode", null)
+        AnalyticsProvider.getInstance().logEvent("androidGeocode", null)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             return suspendCoroutine { continuation ->
                 try {
@@ -67,8 +66,7 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                         geocodeListener
                     )
                 } catch (e: Exception) {
-                    val bundle = Bundle().apply { putString("exception", e.toString()) }
-                    Analytics.getInstance().logEvent("androidGeocoderError", bundle)
+                    AnalyticsProvider.getInstance().logEvent("androidGeocoderError", mapOf("exception" to e.toString()))
                     Log.d(TAG, "AndroidGeocoder error: $e")
                     continuation.resume(null)
                 }
@@ -92,8 +90,7 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                     }
                 }
             } catch (e: Exception) {
-                val bundle = Bundle().apply { putString("exception", e.toString()) }
-                Analytics.getInstance().logEvent("androidGeocoderError", bundle)
+                AnalyticsProvider.getInstance().logEvent("androidGeocoderError", mapOf("exception" to e.toString()))
                 Log.d(TAG, "AndroidGeocoder error: $e")
             }
         }
@@ -106,7 +103,7 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
         if(!enabled)
             return null
 
-        Analytics.getInstance().logEvent("androidReverseGeocode", null)
+        AnalyticsProvider.getInstance().logEvent("androidReverseGeocode", null)
 
         val location = userGeometry.location
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -140,8 +137,7 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                         }
                     )
                 } catch (e: Exception) {
-                    val bundle = Bundle().apply { putString("exception", e.toString()) }
-                    Analytics.getInstance().logEvent("androidGeocoderError", bundle)
+                    AnalyticsProvider.getInstance().logEvent("androidGeocoderError", mapOf("exception" to e.toString()))
                     Log.d(TAG, "AndroidGeocoder error: $e")
                     continuation.resume(null)
                 }
@@ -152,8 +148,7 @@ class AndroidGeocoder(val applicationContext: Context) : SoundscapeGeocoder() {
                 val addresses = geocoder.getFromLocation(location.latitude, location.longitude, 5)
                 return addresses?.firstOrNull()?.toLocationDescription(null)
             } catch (e: Exception) {
-                val bundle = Bundle().apply { putString("exception", e.toString()) }
-                Analytics.getInstance().logEvent("androidGeocoderError", bundle)
+                AnalyticsProvider.getInstance().logEvent("androidGeocoderError", mapOf("exception" to e.toString()))
                 Log.d(TAG, "AndroidGeocoder error: $e")
             }
             return null

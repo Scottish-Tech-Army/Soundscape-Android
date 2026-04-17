@@ -21,7 +21,7 @@ import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 
 data class RoutePlayerState(val routeData: RouteWithMarkers? = null, val currentWaypoint: Int = 0, val beaconOnly: Boolean = false)
@@ -53,7 +53,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         Log.e(TAG, "startBeacon")
         currentMarker = 0
 
-        Analytics.getInstance().logEvent("startBeacon", null)
+        AnalyticsProvider.getInstance().logEvent("startBeacon", null)
 
         // If the beacon start point is more than 30m away, then we can have it as a destination
         val currentLocation = service.locationProvider.filteredLocationFlow.value
@@ -103,7 +103,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         val realm = MarkersAndRoutesDatabase.getMarkersInstance(localizedContext)
         val routeDao = realm.routeDao()
 
-        Analytics.getInstance().logEvent(if (reverse) "startRouteReverse" else "startRoute", null)
+        AnalyticsProvider.getInstance().logEvent(if (reverse) "startRouteReverse" else "startRoute", null)
 
         Log.e(TAG, "startRoute reverse=$reverse")
         coroutineScope.launch {

@@ -8,7 +8,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 
 data class StreetPreviewChoice(
     val heading: Double,
@@ -50,7 +50,7 @@ class StreetPreview {
 
     fun go(userGeometry: UserGeometry, engine: GeoEngine) : LngLatAlt? {
 
-        Analytics.getInstance().logEvent("streetPreviewGo", null)
+        AnalyticsProvider.getInstance().logEvent("streetPreviewGo", null)
         when (previewState) {
 
             PreviewState.INITIAL -> {

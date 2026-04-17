@@ -88,7 +88,7 @@ import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeMediaSess
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandManager
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandMediaControls
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
-import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -265,7 +265,7 @@ class SoundscapeService : MediaSessionService() {
             }
 
             if(!started) {
-                Analytics.getInstance().crashLogNotes("Start geo-engine")
+                AnalyticsProvider.getInstance().crashLogNotes("Start geo-engine")
                 locationProvider.start(this)
                 directionProvider.start(audioEngine, locationProvider)
                 val configLocale = getCurrentLocale()
@@ -420,7 +420,7 @@ class SoundscapeService : MediaSessionService() {
      */
     private fun startAsForegroundService() : Boolean {
 
-        val analytics = Analytics.getInstance()
+        val analytics = AnalyticsProvider.getInstance()
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 // Code to simulate startForeground failing
@@ -442,7 +442,7 @@ class SoundscapeService : MediaSessionService() {
             ) {
                 analytics.crashLogNotes("ForegroundServiceStartNotAllowedException caught")
                 analytics.logEvent("startAsForegroundServiceError", null)
-                Analytics.getInstance().crashSetCustomKey("Service start success", "false")
+                AnalyticsProvider.getInstance().crashSetCustomKey("Service start success", "false")
                 return false
             }
         }

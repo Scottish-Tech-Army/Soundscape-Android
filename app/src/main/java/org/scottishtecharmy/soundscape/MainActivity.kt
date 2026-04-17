@@ -53,7 +53,7 @@ import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
-import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.LogcatHelper
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.utils.findExtracts
@@ -232,7 +232,7 @@ class MainActivity : AppCompatActivity() {
             if(soundscapeServiceConnection.soundscapeService?.running == false) {
                 // This can happen if the service failed to move to the foreground.
                 // Simply start the service now
-                Analytics.getInstance().crashLogNotes("Attempt to start non-running service from onResume")
+                AnalyticsProvider.getInstance().crashLogNotes("Attempt to start non-running service from onResume")
                 setServiceState(true)
             }
         }
@@ -274,7 +274,7 @@ class MainActivity : AppCompatActivity() {
         //
         val testLabSetting: String? =
             Settings.System.getString(contentResolver, "firebase.test.lab")
-        Analytics.getInstance(
+        AnalyticsProvider.getInstance(
             BuildConfig.DUMMY_ANALYTICS ||
                     !hasPlayServices(this) ||
                     "true" == testLabSetting,
