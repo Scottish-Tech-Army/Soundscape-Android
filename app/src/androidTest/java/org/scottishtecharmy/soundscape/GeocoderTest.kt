@@ -129,7 +129,7 @@ class GeocoderTest {
             val geocoderList = listOf(
                 AndroidGeocoder(appContext),
                 PhotonGeocoder(PhotonSearchProvider, processor = { it.process() }),
-                OfflineGeocoder(gridState, settlementGrid)
+                OfflineGeocoder(gridState, settlementGrid, processor = { it.process() })
             )
             val local = 2
 
@@ -306,7 +306,7 @@ class GeocoderTest {
             val geocoderList = listOf(
                 AndroidGeocoder(appContext),
                 PhotonGeocoder(PhotonSearchProvider, processor = { it.process() }),
-                OfflineGeocoder(gridState, settlementGrid)
+                OfflineGeocoder(gridState, settlementGrid, processor = { it.process() })
             )
 
             gridState.validateContext = false

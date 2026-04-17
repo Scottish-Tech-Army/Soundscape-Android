@@ -40,6 +40,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
+import org.scottishtecharmy.soundscape.utils.process
 import java.io.File
 import java.io.FileOutputStream
 import kotlin.io.path.Path
@@ -877,7 +878,7 @@ class MvtTileTest {
 
                 val wayName = userGeometry.mapMatchedWay?.properties?.get("pavement") as String? ?: userGeometry.mapMatchedWay?.name
                 if(wayName != null) {
-                    val lg = OfflineGeocoder(gridState, settlementGrid)
+                    val lg = OfflineGeocoder(gridState, settlementGrid, processor = { it.process() })
                     val calloutDescriptionWithoutHouse = lg.getAddressFromLngLat(userGeometry, null, true)
                     if(calloutDescriptionWithoutHouse?.name != null)
                         callOutText.write("${calloutDescriptionWithoutHouse.name}\n".toByteArray())

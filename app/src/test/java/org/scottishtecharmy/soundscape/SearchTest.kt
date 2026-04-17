@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import org.scottishtecharmy.soundscape.utils.process
 import kotlin.test.assertEquals
 
 class SearchTest {
@@ -29,7 +30,19 @@ class SearchTest {
             val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
             val settlementState = getGridStateForLocation(currentLocation, 12, 3)
             val tileSearch = TileSearch(offlineExtractPath, gridState, settlementState)
-            val offlineGeocoder = OfflineGeocoder(gridState, settlementState, tileSearch)
+            val offlineGeocoder = OfflineGeocoder(
+                gridState,
+                settlementState,
+                tileSearch,
+                processor = { it.process() })
+
+            // Check that the street address also works
+            val result4 = offlineGeocoder.getAddressFromLngLat(
+                UserGeometry(LngLatAlt(-4.3069511, 55.9400774), 90.0),
+                null,
+                ignoreHouseNumbers = false
+            )
+            assertEquals("21 Dougalston Avenue", result4!!.name)
 
             val result8 = offlineGeocoder.getAddressFromLngLat(
                 UserGeometry(LngLatAlt( -4.3118, 55.9400), 90.0),
@@ -80,14 +93,6 @@ class SearchTest {
                 ignoreHouseNumbers = true
             )
             assertEquals("On Dougalston Avenue between Briarwell Road and Connell Crescent to dead end", result3!!.name)
-
-            // Check that the street address also works
-            val result4 = offlineGeocoder.getAddressFromLngLat(
-                UserGeometry(LngLatAlt(-4.3069511, 55.9400774), 90.0),
-                null,
-                ignoreHouseNumbers = false
-            )
-            assertEquals("21 Dougalston Avenue", result4!!.name)
         }
     }
 
@@ -99,7 +104,11 @@ class SearchTest {
             val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
             val settlementState = getGridStateForLocation(currentLocation, 12, 3)
             val tileSearch = TileSearch(offlineExtractPath, gridState, settlementState)
-            val offlineGeocoder = OfflineGeocoder(gridState, settlementState, tileSearch)
+            val offlineGeocoder = OfflineGeocoder(
+                gridState,
+                settlementState,
+                tileSearch,
+                processor = { it.process() })
 
             var results = offlineGeocoder.getAddressFromLocationName( "Greggs", currentLocation, null)!!
             assertEquals("Greggs", results[0].name)
