@@ -1,6 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
-import vector_tile.VectorTile
+import vector_tile.Tile
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
@@ -43,18 +43,18 @@ fun decompressGzip(compressedData: ByteArray): ByteArray? {
     }
 }
 
-fun decompressTile(compressionType: Byte?, rawTileData: ByteArray) : VectorTile.Tile? {
+fun decompressTile(compressionType: Byte?, rawTileData: ByteArray) : Tile? {
     //println("File reader got a tile for worker $workerIndex")
     when (compressionType) {
         1.toByte() -> {
             // No compression
-            return VectorTile.Tile.parseFrom(rawTileData)
+            return Tile.ADAPTER.decode(rawTileData)
         }
 
         2.toByte() -> {
             // Gzip compression
             val decompressedTile = decompressGzip(rawTileData)
-            return VectorTile.Tile.parseFrom(decompressedTile)
+            return decompressedTile?.let { Tile.ADAPTER.decode(it) }
         }
 
         else -> assert(false)

@@ -28,7 +28,7 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.toLocationDescription
-import vector_tile.VectorTile
+import vector_tile.Tile
 import java.io.File
 import kotlin.collections.isNotEmpty
 import kotlin.text.iterator
@@ -234,11 +234,12 @@ class TileSearch(val offlineExtractPath: String,
                 if (tileData != null) {
                     val tile = decompressTile(reader.tileCompression, tileData)
                     if (tile != null) {
-                        for (layer in tile.layersList) {
+                        for (layer in tile.layers) {
                             if ((layer.name == "transportation") || (layer.name == "poi")) {
-                                for (value in layer.valuesList) {
-                                    if (value.hasStringValue()) {
-                                        cache.add(normalizeForSearch(value.stringValue))
+                                for (value in layer.values) {
+                                    val sv = value.string_value
+                                    if (sv != null) {
+                                        cache.add(normalizeForSearch(sv))
                                     }
                                 }
                             }
@@ -313,11 +314,11 @@ class TileSearch(val offlineExtractPath: String,
                 val tile = decompressTile(reader.tileCompression, tileData)
                 if(tile != null) {
                     var stringValue = ""
-                    for(layer in tile.layersList) {
+                    for(layer in tile.layers) {
                         // Was the string found in transportation or POI? TODO: Or both?
                         if((layer.name == "transportation") || (layer.name == "poi")){
                             var nameTag = -1
-                            for ((index, value) in layer.keysList.withIndex()) {
+                            for ((index, value) in layer.keys.withIndex()) {
                                 if (value == "name") {
                                     nameTag = index
                                     break
@@ -325,22 +326,23 @@ class TileSearch(val offlineExtractPath: String,
                             }
 
                             var stringKey = -1
-                            for ((index, value) in layer.valuesList.withIndex()) {
-                                if (value.hasStringValue()) {
-                                    if(normalizeForSearch(value.stringValue) == result.string) {
+                            for ((index, value) in layer.values.withIndex()) {
+                                val sv = value.string_value
+                                if (sv != null) {
+                                    if(normalizeForSearch(sv) == result.string) {
                                         stringKey = index
-                                        stringValue = value.stringValue
+                                        stringValue = sv
                                         break
                                     } else {
-                                        if(value.stringValue.length <= result.string.length)
+                                        if(sv.length <= result.string.length)
                                             continue
                                         if(
                                             generateEndOfString(
-                                                value.stringValue, result.string.length
+                                                sv, result.string.length
                                             ) == result.string
                                         ) {
                                             stringKey = index
-                                            stringValue = value.stringValue
+                                            stringValue = sv
                                             break
                                         }
                                     }
@@ -348,17 +350,17 @@ class TileSearch(val offlineExtractPath: String,
                             }
                             if(stringKey != -1) {
                                 // We need to look for the feature
-                                for (feature in layer.featuresList) {
+                                for (feature in layer.features) {
                                     var firstInPair = true
                                     var skip = false
                                     var found = false
-                                    for (tag in feature.tagsList) {
+                                    for (tag in feature.tags) {
                                         if (firstInPair) {
                                             skip = (tag != nameTag)
                                         } else {
                                             if(!skip) {
-                                                val raw = layer.getValues(tag)
-                                                if (raw.hasStringValue() && (tag == stringKey)) {
+                                                val raw = layer.values[tag]
+                                                if (raw.string_value != null && (tag == stringKey)) {
                                                     found = true
                                                     break
                                                 }
@@ -372,25 +374,25 @@ class TileSearch(val offlineExtractPath: String,
                                         var key = ""
                                         var value: Any? = null
                                         val properties = hashMapOf<String, Any?>()
-                                        for (tag in feature.tagsList) {
+                                        for (tag in feature.tags) {
                                             if (firstInPair)
-                                                key = layer.getKeys(tag)
+                                                key = layer.keys[tag]
                                             else {
-                                                val raw = layer.getValues(tag)
-                                                if (raw.hasBoolValue())
-                                                    value = layer.getValues(tag).boolValue
-                                                else if (raw.hasIntValue())
-                                                    value = layer.getValues(tag).intValue
-                                                else if (raw.hasSintValue())
-                                                    value = layer.getValues(tag).sintValue
-                                                else if (raw.hasFloatValue())
-                                                    value = layer.getValues(tag).doubleValue
-                                                else if (raw.hasDoubleValue())
-                                                    value = layer.getValues(tag).floatValue
-                                                else if (raw.hasStringValue())
-                                                    value = layer.getValues(tag).stringValue
-                                                else if (raw.hasUintValue())
-                                                    value = layer.getValues(tag).uintValue
+                                                val raw = layer.values[tag]
+                                                if (raw.bool_value != null)
+                                                    value = raw.bool_value
+                                                else if (raw.int_value != null)
+                                                    value = raw.int_value
+                                                else if (raw.sint_value != null)
+                                                    value = raw.sint_value
+                                                else if (raw.float_value != null)
+                                                    value = raw.double_value
+                                                else if (raw.double_value != null)
+                                                    value = raw.float_value
+                                                else if (raw.string_value != null)
+                                                    value = raw.string_value
+                                                else if (raw.uint_value != null)
+                                                    value = raw.uint_value
                                             }
 
                                             if (!firstInPair) {
@@ -400,8 +402,8 @@ class TileSearch(val offlineExtractPath: String,
                                                 firstInPair = false
                                         }
 
-                                        if (feature.type == VectorTile.Tile.GeomType.POINT) {
-                                            val points = parseGeometry(true, feature.geometryList)
+                                        if (feature.type == Tile.GeomType.POINT) {
+                                            val points = parseGeometry(true, feature.geometry)
                                             for (point in points) {
                                                 if (point.isNotEmpty()) {
                                                     val coordinates = convertGeometry(
@@ -424,10 +426,10 @@ class TileSearch(val offlineExtractPath: String,
                                                 }
                                             }
                                             break
-                                        } else if (feature.type == VectorTile.Tile.GeomType.LINESTRING) {
+                                        } else if (feature.type == Tile.GeomType.LINESTRING) {
                                             val lines = parseGeometry(
                                                 false,
-                                                feature.geometryList
+                                                feature.geometry
                                             )
                                             for (line in lines) {
                                                 val interpolatedNodes : MutableList<LngLatAlt> = mutableListOf()
@@ -458,10 +460,10 @@ class TileSearch(val offlineExtractPath: String,
                                             }
                                             break
                                         }
-                                        else if(feature.type == VectorTile.Tile.GeomType.POLYGON) {
+                                        else if(feature.type == Tile.GeomType.POLYGON) {
                                             val polygons = parseGeometry(
                                                 false,
-                                                feature.geometryList
+                                                feature.geometry
                                             )
 
                                             // If all of the polygon points are outside the tile, then we can immediately

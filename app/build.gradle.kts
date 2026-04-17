@@ -1,4 +1,3 @@
-import com.google.protobuf.gradle.id
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.FileInputStream
 import java.util.Properties
@@ -7,7 +6,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.google.protobuf)
+
     alias(libs.plugins.screenshot)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.devtools.ksp)
@@ -189,25 +188,6 @@ composeCompiler {
     //stabilityConfigurationFile = rootProject.layout.projectDirectory.file("stability_config.conf")
 }
 
-protobuf {
-    protoc {
-        artifact = "com.google.protobuf:protoc:4.29.3"
-    }
-
-    generateProtoTasks {
-        all().forEach {
-            it.builtins {
-                id("kotlin") {
-                    option("lite")
-                }
-                id("java") {
-                    option("lite")
-                }
-            }
-        }
-    }
-}
-
 licenseReport {
     // Generate reports
     generateCsvReport = false
@@ -316,9 +296,6 @@ dependencies {
 //    implementation (libs.maplibre.compose.material3)
 
     androidTestImplementation(libs.androidx.uiautomator)
-
-    // Protobuf
-    implementation(libs.protobuf.kotlin.lite)
 
     // In app review
     implementation(libs.review)

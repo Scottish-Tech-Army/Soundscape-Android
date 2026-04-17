@@ -5,7 +5,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 fun parseGeometry(
     cropToTile: Boolean,
-    geometry: MutableList<Int>
+    geometry: List<Int>
 ): List<ArrayList<Pair<Int, Int>>> {
 
     var x = 0

@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
+    alias(libs.plugins.squareup.wire)
 }
 
 kotlin {
@@ -50,5 +51,13 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+}
+
+wire {
+    kotlin {
+    }
+    sourcePath {
+        srcDir("src/commonMain/proto")
     }
 }

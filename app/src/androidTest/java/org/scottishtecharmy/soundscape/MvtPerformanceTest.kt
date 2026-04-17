@@ -11,7 +11,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJ
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import vector_tile.VectorTile
+import vector_tile.Tile
 import kotlin.time.measureTime
 import android.os.Debug
 import android.os.Environment
@@ -39,7 +39,7 @@ class MvtPerformanceTest {
 
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val remoteTile = context.assets.open(filename)
-        val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
+        val tile: Tile = Tile.ADAPTER.decode(remoteTile.readBytes())
         val intersectionMap:  HashMap<LngLatAlt, Intersection> = hashMapOf()
         val streetNumberMap:  HashMap<String, FeatureCollection> = hashMapOf()
 

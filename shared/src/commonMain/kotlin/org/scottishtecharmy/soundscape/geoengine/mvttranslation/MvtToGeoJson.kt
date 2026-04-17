@@ -14,7 +14,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.superCategoryMap
-import vector_tile.VectorTile
+import vector_tile.Tile
 import kotlin.collections.get
 
 
@@ -178,7 +178,7 @@ private fun addToStreetNumberMap(mvt: MvtFeature, streetNumberMap: HashMap<Strin
  */
 fun vectorTileToGeoJson(tileX: Int,
                         tileY: Int,
-                        mvt: VectorTile.Tile,
+                        mvt: Tile,
                         intersectionMap:  HashMap<LngLatAlt, Intersection>,
                         streetNumberMap: HashMap<String, FeatureCollection>,
                         cropPoints: Boolean = true,
@@ -204,17 +204,17 @@ fun vectorTileToGeoJson(tileX: Int,
     val mapBuildingFeatures : HashMap<Long, Feature> = hashMapOf()
     val mapPointFeatures : HashMap<Long, Feature> = hashMapOf()
 
-    for(layer in mvt.layersList) {
+    for(layer in mvt.layers) {
         if(!layerIds.contains(layer.name)) {
             continue
         }
         //println("Process layer: " + layer.name)
 
         val mapInterpolatedNodes : HashMap<Long, Feature> = hashMapOf()
-        for (feature in layer.featuresList) {
+        for (feature in layer.features) {
 
             var entrance = false
-            val id = feature.id
+            val id = feature.id ?: 0L
             var name : String? = null
             var featureClass : String? = null
             var featureSubClass : String? = null
@@ -231,26 +231,26 @@ fun vectorTileToGeoJson(tileX: Int,
             var firstInPair = true
             var key = ""
             var value: Any? = null
-            var properties: java.util.HashMap<String, Any?>? = null
-            for (tag in feature.tagsList) {
+            var properties: HashMap<String, Any?>? = null
+            for (tag in feature.tags) {
                 if (firstInPair)
-                    key = layer.getKeys(tag)
+                    key = layer.keys[tag]
                 else {
-                    val raw = layer.getValues(tag)
-                    if (raw.hasBoolValue())
-                        value = layer.getValues(tag).boolValue
-                    else if (raw.hasIntValue())
-                        value = layer.getValues(tag).intValue
-                    else if (raw.hasSintValue())
-                        value = layer.getValues(tag).sintValue
-                    else if (raw.hasFloatValue())
-                        value = layer.getValues(tag).doubleValue
-                    else if (raw.hasDoubleValue())
-                        value = layer.getValues(tag).floatValue
-                    else if (raw.hasStringValue())
-                        value = layer.getValues(tag).stringValue
-                    else if (raw.hasUintValue())
-                        value = layer.getValues(tag).uintValue
+                    val raw = layer.values[tag]
+                    if (raw.bool_value != null)
+                        value = raw.bool_value
+                    else if (raw.int_value != null)
+                        value = raw.int_value
+                    else if (raw.sint_value != null)
+                        value = raw.sint_value
+                    else if (raw.float_value != null)
+                        value = raw.double_value
+                    else if (raw.double_value != null)
+                        value = raw.float_value
+                    else if (raw.string_value != null)
+                        value = raw.string_value
+                    else if (raw.uint_value != null)
+                        value = raw.uint_value
                 }
 
                 if (!firstInPair) {
@@ -280,10 +280,10 @@ fun vectorTileToGeoJson(tileX: Int,
 
             // Parse geometries
             when (feature.type) {
-                VectorTile.Tile.GeomType.POLYGON -> {
+                Tile.GeomType.POLYGON -> {
                     val polygons = parseGeometry(
                         false,
-                        feature.geometryList
+                        feature.geometry
                     )
 
                     // If all of the polygon points are outside the tile, then we can immediately
@@ -356,9 +356,9 @@ fun vectorTileToGeoJson(tileX: Int,
                     }
                 }
 
-                VectorTile.Tile.GeomType.POINT -> {
+                Tile.GeomType.POINT -> {
                     val points =
-                        parseGeometry(cropPoints, feature.geometryList)
+                        parseGeometry(cropPoints, feature.geometry)
                     for (point in points) {
                         if (point.isNotEmpty()) {
                             val coordinates = convertGeometry(tileX, tileY, tileZoom, point)
@@ -389,10 +389,10 @@ fun vectorTileToGeoJson(tileX: Int,
                     }
                 }
 
-                VectorTile.Tile.GeomType.LINESTRING -> {
+                Tile.GeomType.LINESTRING -> {
                     val lines = parseGeometry(
                         false,
-                        feature.geometryList
+                        feature.geometry
                     )
 
                     if(layer.name == "transportation")
@@ -444,7 +444,7 @@ fun vectorTileToGeoJson(tileX: Int,
 
                 // Assert on all other geometry enum values
                 null,
-                VectorTile.Tile.GeomType.UNKNOWN -> {
+                Tile.GeomType.UNKNOWN -> {
                     assert(false)
                 }
             }
@@ -493,7 +493,7 @@ fun vectorTileToGeoJson(tileX: Int,
                                 if (name == null)
                                     continue
                             }
-                            if (feature.type == VectorTile.Tile.GeomType.POLYGON) {
+                            if (feature.type == Tile.GeomType.POLYGON) {
                                 if (!mapPolygonFeatures.contains(id)) {
                                     mapPolygonFeatures[id] = MutableList(1) { geoFeature }
                                 } else {

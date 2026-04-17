@@ -13,7 +13,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
-import vector_tile.VectorTile
+import vector_tile.Tile
 import java.io.File
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.system.measureTimeMillis
@@ -79,7 +79,7 @@ open class ProtomapsGridState(
             try {
                 val startTime = System.currentTimeMillis()
 
-                var result : VectorTile.Tile? = null
+                var result : Tile? = null
 
                 // Try the reader that we are currently using first
                 var reader = fileTileReaders[workerIndex]
@@ -111,12 +111,12 @@ open class ProtomapsGridState(
                 // Fallback to network
                 if(result == null) {
                     val bytes = tileClient?.getTile(x, y, zoomLevel)
-                    if (bytes != null) result = VectorTile.Tile.parseFrom(bytes)
+                    if (bytes != null) result = Tile.ADAPTER.decode(bytes)
                 }
 
                 if (result != null) {
                     val requestTime = System.currentTimeMillis() - startTime
-                    println("Tile size ${result.serializedSize}")
+                    println("Tile size ${Tile.ADAPTER.encodedSize(result)}")
                     var collections: Array<FeatureCollection>?
                     val mvtParseTime = measureTimeMillis {
                         collections = vectorTileToGeoJson(
