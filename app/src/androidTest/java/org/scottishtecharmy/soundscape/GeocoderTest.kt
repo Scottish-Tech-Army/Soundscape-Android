@@ -40,6 +40,8 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationType
 import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
 import org.scottishtecharmy.soundscape.utils.supportedLanguages
 import org.scottishtecharmy.soundscape.utils.toLocationDescription
+import org.scottishtecharmy.soundscape.utils.process
+import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
 import org.woheller69.AndroidAddressFormatter.AndroidAddressFormatter
 
 @RunWith(AndroidJUnit4::class)
@@ -126,7 +128,7 @@ class GeocoderTest {
 
             val geocoderList = listOf(
                 AndroidGeocoder(appContext),
-                PhotonGeocoder(appContext),
+                PhotonGeocoder(PhotonSearchProvider, processor = { it.process() }),
                 OfflineGeocoder(gridState, settlementGrid)
             )
             val local = 2
@@ -303,7 +305,7 @@ class GeocoderTest {
 
             val geocoderList = listOf(
                 AndroidGeocoder(appContext),
-                PhotonGeocoder(appContext),
+                PhotonGeocoder(PhotonSearchProvider, processor = { it.process() }),
                 OfflineGeocoder(gridState, settlementGrid)
             )
 
@@ -414,7 +416,8 @@ class GeocoderTest {
             val appContext = InstrumentationRegistry.getInstrumentation().targetContext
 
             val gridState = ProtomapsGridState()
-            val geocoder = FusedGeocoder(appContext, gridState)
+            val photonGeocoder = PhotonGeocoder(PhotonSearchProvider, processor = { it.process() })
+            val geocoder = FusedGeocoder(appContext, gridState, photonGeocoder)
             val appStrings = AndroidLocalizedStrings(appContext)
 
             gridState.validateContext = false

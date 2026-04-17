@@ -16,26 +16,6 @@ private fun setIfLower(newType: LocationType, oldType: LocationType) : LocationT
     return if(newType < oldType) newType else oldType
 }
 
-fun Feature.deferredToLocationDescription(source: LocationSource,
-                                          alternateLocation: LngLatAlt = LngLatAlt(),
-                                          featureName: TextForFeature? = null): LocationDescription {
-    val location =
-        when (geometry.type) {
-            "Point" -> (geometry as Point).coordinates
-            else -> alternateLocation
-        }
-
-    val ld = LocationDescription(
-        source = source,
-        location = location,
-        feature = this,
-        alternateLocation = alternateLocation,
-        featureName = featureName
-    )
-
-    return ld
-}
-
 fun Feature.toLocationDescription(source: LocationSource,
                                   alternateLocation: LngLatAlt = LngLatAlt(),
                                   featureName: TextForFeature? = null): LocationDescription {

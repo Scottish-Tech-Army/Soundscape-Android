@@ -18,10 +18,10 @@ import org.scottishtecharmy.soundscape.utils.containsNumber
  * else photon is better.
  */
 class FusedGeocoder(applicationContext: Context,
-                    val gridState: GridState) : SoundscapeGeocoder() {
+                    val gridState: GridState,
+                    photonGeocoder: PhotonGeocoder) : SoundscapeGeocoder() {
 
     private lateinit var androidGeocoder: AndroidGeocoder
-    private val photonGeocoder = PhotonGeocoder(applicationContext)
     private val geocoderList: List<SoundscapeGeocoder>
 
     init {

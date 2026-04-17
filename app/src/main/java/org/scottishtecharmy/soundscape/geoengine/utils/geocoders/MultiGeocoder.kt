@@ -15,6 +15,7 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.NetworkUtils
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.toLocationDescription
+import org.scottishtecharmy.soundscape.network.PhotonSearch
 
 /**
  * The MultiGeocoder dynamically switches between Android, Photon and Local geocoders depending on
@@ -24,9 +25,10 @@ class MultiGeocoder(applicationContext: Context,
                     val gridState: GridState,
                     settlementState: GridState,
                     tileSearch: TileSearch,
-                    val networkUtils: NetworkUtils) : SoundscapeGeocoder() {
+                    val networkUtils: NetworkUtils,
+                    photonGeocoder: PhotonGeocoder) : SoundscapeGeocoder() {
 
-    private val fusedGeocoder = FusedGeocoder(applicationContext, gridState)
+    private val fusedGeocoder = FusedGeocoder(applicationContext, gridState, photonGeocoder)
     private val localGeocoder = OfflineGeocoder(gridState, settlementState, tileSearch)
 
     val sharedPreferences: SharedPreferences? = PreferenceManager.getDefaultSharedPreferences(applicationContext)

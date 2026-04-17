@@ -67,6 +67,9 @@ import kotlin.time.measureTime
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.NetworkUtils
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.PhotonGeocoder
+import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
+import org.scottishtecharmy.soundscape.utils.process
 
 
 fun getPhotonLanguage(sharedPreferences: SharedPreferences?) : String? {
@@ -305,12 +308,19 @@ class GeoEngine {
 
         // The MultiGeocoder dynamically switches between Android, Photon and Local Geocoders
         // depending on the user settings and network availability
+        val photonGeocoder = PhotonGeocoder(
+                photonSearch = PhotonSearchProvider,
+                languageProvider = { getPhotonLanguage(sharedPreferences) },
+                analyticsLogger = { name -> Analytics.getInstance().logEvent(name, null) },
+                processor = { it.process() }
+            )
         geocoder = MultiGeocoder(
                 application,
                 gridState,
                 settlementGrid,
                 tileSearch,
-                networkUtils
+                networkUtils,
+                photonGeocoder
             )
         locationProvider = newLocationProvider
         directionProvider = newDirectionProvider

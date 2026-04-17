@@ -10,7 +10,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoMoshi
  * geocoding. Thin Android-side wrapper around the shared [PhotonSearchClient] that parses the
  * JSON response into a [FeatureCollection] via GeoMoshi.
  */
-object PhotonSearchProvider {
+object PhotonSearchProvider : PhotonSearch {
 
     private val adapter by lazy {
         GeoMoshi.registerAdapters(Moshi.Builder()).build()
@@ -26,13 +26,13 @@ object PhotonSearchProvider {
 
     fun getInstance(): PhotonSearchProvider = this
 
-    suspend fun getSearchResults(
+    override suspend fun getSearchResults(
         searchString: String,
-        latitude: Double? = null,
-        longitude: Double? = null,
-        language: String? = null,
-        limit: UInt = 5U,
-        bias: Float = 0.2f,
+        latitude: Double?,
+        longitude: Double?,
+        language: String?,
+        limit: UInt,
+        bias: Float,
     ): FeatureCollection? {
         val json = client.searchJson(
             query = searchString,
@@ -45,10 +45,10 @@ object PhotonSearchProvider {
         return adapter.fromJson(json)
     }
 
-    suspend fun reverseGeocodeLocation(
-        latitude: Double? = null,
-        longitude: Double? = null,
-        language: String? = null,
+    override suspend fun reverseGeocodeLocation(
+        latitude: Double?,
+        longitude: Double?,
+        language: String?,
     ): FeatureCollection? {
         val json = client.reverseGeocodeJson(
             latitude = latitude,
