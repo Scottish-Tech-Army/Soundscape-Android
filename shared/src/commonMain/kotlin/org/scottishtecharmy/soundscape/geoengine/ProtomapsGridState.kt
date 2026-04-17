@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.geoengine
 
 import kotlinx.coroutines.CloseableCoroutineDispatcher
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
@@ -12,11 +11,13 @@ import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.utils.pmtiles.PmTilesReader
+import org.scottishtecharmy.soundscape.platform.ioDispatcher
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import vector_tile.Tile
 import okio.Path.Companion.toPath
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.system.measureTimeMillis
+import kotlin.time.TimeSource
 
 @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
 open class ProtomapsGridState(
@@ -75,9 +76,9 @@ open class ProtomapsGridState(
     ): Boolean {
         var ret = false
 
-        withContext(Dispatchers.IO) {
+        withContext(ioDispatcher) {
             try {
-                val startTime = System.currentTimeMillis()
+                val startMark = TimeSource.Monotonic.markNow()
 
                 var result : Tile? = null
 
@@ -115,7 +116,7 @@ open class ProtomapsGridState(
                 }
 
                 if (result != null) {
-                    val requestTime = System.currentTimeMillis() - startTime
+                    val requestTime = startMark.elapsedNow()
                     println("Tile size ${Tile.ADAPTER.encodedSize(result)}")
                     var collections: Array<FeatureCollection>?
                     val mvtParseTime = measureTimeMillis {
