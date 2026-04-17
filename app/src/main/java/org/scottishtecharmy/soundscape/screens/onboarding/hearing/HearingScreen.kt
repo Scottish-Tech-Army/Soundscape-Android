@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.screens.onboarding.hearing
 import android.content.res.Configuration
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -23,8 +24,12 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
@@ -78,7 +83,7 @@ fun Hearing(
     modifier: Modifier = Modifier,
 ) {
 
-
+    val focusRequester = remember { FocusRequester() }
 
     val landscape = (LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE)
     val alignment = if(landscape)
@@ -126,7 +131,7 @@ fun Hearing(
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth().semantics {
                             heading()
-                        },
+                        }.focusRequester(focusRequester).focusable(),
                     )
                     Spacer(modifier = Modifier.height(spacing.extraLarge))
                     Text(
@@ -135,13 +140,15 @@ fun Hearing(
                         color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center,
                         modifier = Modifier.fillMaxWidth()
+                            .focusable()
                     )
                     Spacer(modifier = Modifier.height(spacing.large))
                     Text(
                         text = stringResource(R.string.first_launch_callouts_listen),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface,
-                        textAlign = TextAlign.Center
+                        textAlign = TextAlign.Center,
+                        modifier = Modifier.focusable()
                     )
                     Spacer(modifier = Modifier.height(spacing.small))
 
@@ -159,7 +166,8 @@ fun Hearing(
                             onPlaySpeech()
                         },
                         modifier = Modifier
-                            .fillMaxWidth(),
+                            .fillMaxWidth()
+                            .focusable(),
                         shape = RoundedCornerShape(spacing.tiny),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.surfaceContainer,
@@ -181,6 +189,7 @@ fun Hearing(
                             Text(
                                 text = stringResource(R.string.first_launch_callouts_listen_accessibility_label),
                                 color = MaterialTheme.colorScheme.onSurface,
+                                modifier = Modifier.focusable()
                                 )
                         }
                     }
@@ -193,11 +202,16 @@ fun Hearing(
                         },
                         modifier = Modifier
                             .fillMaxWidth()
+                            .focusable()
                             .testTag("hearingScreenContinueButton")
                     )
                 }
             }
         }
+    }
+
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
     }
 }
 
