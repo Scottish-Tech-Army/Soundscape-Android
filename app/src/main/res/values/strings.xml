@@ -604,9 +604,9 @@
 <!-- Example callout for a generic street name. In the US, a generic street name is "Main Street" but this might vary by locale -->
 <string name="first_launch_callouts_example_4">"Main Street goes right"</string>
 <!-- Title text for screen that asks for location permissions -->
-<string name="first_launch_permissions_title">"Navigating with Soundscape"</string>
+<string name="first_launch_permissions_title">"App Permissions"</string>
 <!-- Message text for screen that asks for location permissions -->
-<string name="first_launch_permissions_message">"When navigating with Soundscape you will be guided by an audio beacon. To do that, Soundscape needs you to enable the following permissions:"</string>
+<string name="first_launch_permissions_message">"In order for Soundscape to run it needs certain permissions granted to it. These allow it to be updated with the phone location, even when locked. Please tap on each of the following permissions and enable them when prompted:"</string>
 <!-- Title text for permission to use iOS Location Services -->
 <string name="first_launch_permissions_location">"Location Services with Precise Location"</string>
 <!-- Title text for permission to use iOS Motion and Fitness data -->
