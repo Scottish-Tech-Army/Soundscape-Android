@@ -417,7 +417,8 @@ class GeocoderTest {
 
             val gridState = ProtomapsGridState()
             val photonGeocoder = PhotonGeocoder(PhotonSearchProvider, processor = { it.process() })
-            val geocoder = FusedGeocoder(appContext, gridState, photonGeocoder)
+            val platformGeocoder = if (AndroidGeocoder.enabled) AndroidGeocoder(appContext) else null
+            val geocoder = FusedGeocoder(gridState, photonGeocoder, platformGeocoder)
             val appStrings = AndroidLocalizedStrings(appContext)
 
             gridState.validateContext = false

@@ -1,10 +1,5 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
-import android.content.Context
-import android.content.SharedPreferences
-import androidx.preference.PreferenceManager
-import org.scottishtecharmy.soundscape.MainActivity.Companion.GEOCODER_MODE_DEFAULT
-import org.scottishtecharmy.soundscape.MainActivity.Companion.GEOCODER_MODE_KEY
 import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
@@ -12,32 +7,31 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import org.scottishtecharmy.soundscape.utils.NetworkUtils
+import org.scottishtecharmy.soundscape.utils.deferredToLocationDescription
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
-import org.scottishtecharmy.soundscape.utils.toLocationDescription
-import org.scottishtecharmy.soundscape.network.PhotonSearch
 
 /**
- * The MultiGeocoder dynamically switches between Android, Photon and Local geocoders depending on
+ * The MultiGeocoder dynamically switches between platform, Photon and Local geocoders depending on
  * the user settings and network availability.
  */
-class MultiGeocoder(applicationContext: Context,
-                    val gridState: GridState,
-                    settlementState: GridState,
-                    tileSearch: TileSearcher,
-                    val networkUtils: NetworkUtils,
-                    photonGeocoder: PhotonGeocoder,
-                    analyticsLogger: (String) -> Unit = {},
-                    processor: (LocationDescription) -> Unit = {}) : SoundscapeGeocoder() {
+class MultiGeocoder(
+    val gridState: GridState,
+    settlementState: GridState,
+    tileSearch: TileSearcher?,
+    photonGeocoder: PhotonGeocoder,
+    platformGeocoder: SoundscapeGeocoder? = null,
+    analyticsLogger: (String) -> Unit = {},
+    private val processor: (LocationDescription) -> Unit = {},
+    private val hasNetwork: () -> Boolean = { false },
+    private val geocoderMode: () -> String? = { null },
+) : SoundscapeGeocoder() {
 
-    private val fusedGeocoder = FusedGeocoder(applicationContext, gridState, photonGeocoder)
+    private val fusedGeocoder = FusedGeocoder(gridState, photonGeocoder, platformGeocoder)
     private val localGeocoder = OfflineGeocoder(gridState, settlementState, tileSearch, analyticsLogger, processor)
 
-    val sharedPreferences: SharedPreferences? = PreferenceManager.getDefaultSharedPreferences(applicationContext)
-
     private fun pickGeocoder() : SoundscapeGeocoder? {
-        val settingsChoice = sharedPreferences?.getString(GEOCODER_MODE_KEY, GEOCODER_MODE_DEFAULT)
-        return if(networkUtils.hasNetwork() && (settingsChoice != "Offline"))
+        val settingsChoice = geocoderMode()
+        return if(hasNetwork() && (settingsChoice != "Offline"))
             fusedGeocoder
         else
             localGeocoder
@@ -49,7 +43,6 @@ class MultiGeocoder(applicationContext: Context,
 
         val results: MutableList<LocationDescription> = mutableListOf()
 
-        // Always search markers
         val markers = gridState.markerTree?.getAllCollection()
         if(markers != null) {
             val needle = normalizeForSearch(locationName)
@@ -59,7 +52,8 @@ class MultiGeocoder(applicationContext: Context,
                     val haystack = normalizeForSearch(mvt.name!!)
                     val score = haystack.fuzzyCompare(needle, true)
                     if(score < 0.25) {
-                        val ld = mvt.toLocationDescription(LocationSource.OfflineGeocoder)
+                        val ld = mvt.deferredToLocationDescription(LocationSource.OfflineGeocoder)
+                            .also(processor)
                         results.add(ld)
                     }
                 }
@@ -82,7 +76,6 @@ class MultiGeocoder(applicationContext: Context,
         val firstGeocoder = pickGeocoder()
         var results = firstGeocoder?.getAddressFromLngLat(userGeometry, localizedStrings, ignoreHouseNumbers)
         if(results == null) {
-            // Fallback to using local geocoder if that's not what we just used
             if(firstGeocoder != localGeocoder) {
                 results = localGeocoder.getAddressFromLngLat(
                     userGeometry,

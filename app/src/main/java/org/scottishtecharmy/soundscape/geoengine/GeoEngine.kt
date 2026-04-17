@@ -67,6 +67,7 @@ import kotlin.time.measureTime
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.NetworkUtils
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.PhotonGeocoder
 import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
 import org.scottishtecharmy.soundscape.utils.process
@@ -314,17 +315,21 @@ class GeoEngine {
                 analyticsLogger = { name -> Analytics.getInstance().logEvent(name, null) },
                 processor = { it.process() }
             )
-        val offlineAnalyticsLogger = { name: String -> Analytics.getInstance().logEvent(name, null) }
-        val offlineProcessor: (LocationDescription) -> Unit = { it.process() }
+        val analyticsLoggerFn = { name: String -> Analytics.getInstance().logEvent(name, null) }
+        val processorFn: (LocationDescription) -> Unit = { it.process() }
+        val platformGeocoder = if (AndroidGeocoder.enabled) AndroidGeocoder(application) else null
         geocoder = MultiGeocoder(
-                application,
-                gridState,
-                settlementGrid,
-                tileSearch,
-                networkUtils,
-                photonGeocoder,
-                offlineAnalyticsLogger,
-                offlineProcessor
+                gridState = gridState,
+                settlementState = settlementGrid,
+                tileSearch = tileSearch,
+                photonGeocoder = photonGeocoder,
+                platformGeocoder = platformGeocoder,
+                analyticsLogger = analyticsLoggerFn,
+                processor = processorFn,
+                hasNetwork = { networkUtils.hasNetwork() },
+                geocoderMode = { sharedPreferences?.getString(
+                    MainActivity.GEOCODER_MODE_KEY, MainActivity.GEOCODER_MODE_DEFAULT
+                ) }
             )
         locationProvider = newLocationProvider
         directionProvider = newDirectionProvider

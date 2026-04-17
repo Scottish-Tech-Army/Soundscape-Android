@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
-import android.content.Context
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.coroutineScope
@@ -13,25 +12,21 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationType
 import org.scottishtecharmy.soundscape.utils.containsNumber
 
 /**
- * The FusedGeocoder uses Photon and Android geocoders together and picks the best results. The
- * Android geocoder works best for street addresses and individual businesses, but for everything
+ * The FusedGeocoder uses Photon and platform geocoders together and picks the best results. The
+ * platform geocoder works best for street addresses and individual businesses, but for everything
  * else photon is better.
  */
-class FusedGeocoder(applicationContext: Context,
-                    val gridState: GridState,
-                    photonGeocoder: PhotonGeocoder) : SoundscapeGeocoder() {
+class FusedGeocoder(
+    val gridState: GridState,
+    photonGeocoder: PhotonGeocoder,
+    platformGeocoder: SoundscapeGeocoder? = null,
+) : SoundscapeGeocoder() {
 
-    private lateinit var androidGeocoder: AndroidGeocoder
-    private val geocoderList: List<SoundscapeGeocoder>
-
-    init {
-        if(AndroidGeocoder.enabled) {
-            androidGeocoder = AndroidGeocoder(applicationContext)
-            geocoderList = listOf(androidGeocoder, photonGeocoder)
-        }
+    private val geocoderList: List<SoundscapeGeocoder> =
+        if (platformGeocoder != null)
+            listOf(platformGeocoder, photonGeocoder)
         else
-            geocoderList = listOf(photonGeocoder)
-    }
+            listOf(photonGeocoder)
 
     override suspend fun getAddressFromLocationName(locationName: String,
                                                     nearbyLocation: LngLatAlt,
@@ -48,20 +43,16 @@ class FusedGeocoder(applicationContext: Context,
         val geocoderResults = deferredResults.awaitAll()
 
         val results: MutableList<LocationDescription> = mutableListOf()
-        // If we have any results from the Android geocoder that include the street number, then
-        // that's a direct hit and we should use that.
-        val androidResults = if(geocoderList.size > 1) geocoderResults[0] else null
+        val platformResults = if(geocoderList.size > 1) geocoderResults[0] else null
         var streetResult: LocationDescription? = null
-        if(androidResults != null) {
-            for (androidResult in androidResults) {
-                if(androidResult.locationType == LocationType.StreetNumber) {
-                    streetResult = androidResult
-                    // If the search string contained a number then we assume that it was a street
-                    // number and so copy over the street name as the name of the location
+        if(platformResults != null) {
+            for (platformResult in platformResults) {
+                if(platformResult.locationType == LocationType.StreetNumber) {
+                    streetResult = platformResult
                     if(locationName.containsNumber())
                         streetResult.name = streetResult.description?.substringBefore(", ") ?: streetResult.name
 
-                    results.add(androidResult)
+                    results.add(platformResult)
                     break
                 }
             }
@@ -70,15 +61,12 @@ class FusedGeocoder(applicationContext: Context,
         if(photonResults != null) {
             for (photonResult in photonResults) {
                 if(streetResult != null) {
-                    // Check to see if Photon has returned the same place
                     if(photonResult.locationType == LocationType.StreetNumber) {
                         if (gridState.ruler.distance(
                                 streetResult.location,
                                 photonResult.location
                             ) < 100.0
                         ) {
-                            // Copy over the photon result name - if we searched for a POI that
-                            // Photon knows about then this will fill it in correctly
                             streetResult.name = photonResult.name
                             streetResult.location = photonResult.location
                             streetResult.typeDescription = photonResult.typeDescription
@@ -106,12 +94,10 @@ class FusedGeocoder(applicationContext: Context,
 
         val geocoderResults = deferredResults.awaitAll()
 
-        // If we have any results from the Android geocoder that include the street number, then
-        // that's a direct hit and we should use that.
-        val androidResult = if(geocoderList.size > 1) geocoderResults[0] else null
-        if (androidResult != null) {
-            if (androidResult.locationType == LocationType.StreetNumber) {
-                return androidResult
+        val platformResult = if(geocoderList.size > 1) geocoderResults[0] else null
+        if (platformResult != null) {
+            if (platformResult.locationType == LocationType.StreetNumber) {
+                return platformResult
             }
         }
 
