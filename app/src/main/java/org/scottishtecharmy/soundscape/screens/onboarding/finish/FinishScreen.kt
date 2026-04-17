@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.screens.onboarding.finish
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,9 +16,13 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
@@ -39,10 +44,12 @@ fun FinishScreen(
 ) {
 
     val landscape = (LocalConfiguration.current.orientation == Configuration.ORIENTATION_LANDSCAPE)
-    val alignment = if(landscape)
+    val alignment = if (landscape)
         Alignment.CenterVertically
     else
         Alignment.Top
+
+    val focusRequester = remember { FocusRequester() }
 
     BoxWithGradientBackground(
         modifier = modifier,
@@ -80,9 +87,13 @@ fun FinishScreen(
                         style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier.fillMaxWidth().semantics {
-                            heading()
-                        }
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .semantics {
+                                heading()
+                            }
+                            .focusRequester(focusRequester)
+                            .focusable()
                     )
 
                     Spacer(modifier = Modifier.height(spacing.large))
@@ -92,7 +103,9 @@ fun FinishScreen(
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center,
-                        modifier = Modifier.fillMaxWidth()
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .focusable()
                     )
 
                     Spacer(modifier = Modifier.height(spacing.extraLarge))
@@ -105,18 +118,23 @@ fun FinishScreen(
                         },
                         modifier = Modifier
                             .fillMaxWidth()
+                            .focusable()
                             .testTag("finishScreenContinueButton")
                     )
                 }
             }
         }
     }
+
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+    }
 }
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")
 @Preview
 @Composable
-fun PreviewFinishScreen(){
+fun PreviewFinishScreen() {
     FinishScreen(
         onFinish = {}
     )

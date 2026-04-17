@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.PowerManager
 import android.provider.Settings
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -17,8 +18,15 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
@@ -40,7 +48,6 @@ fun BatteryOptimizationScreen(
     val context = LocalContext.current
     BatteryOptimization(
         onContinue = {
-            requestBatteryOptimizationExemption(context)
             onNavigate()
         },
         modifier = modifier,
@@ -68,6 +75,10 @@ fun BatteryOptimization(
     onContinue: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
+    val focusRequester = remember { FocusRequester() }
+    var canContinue by remember { mutableStateOf(false) }
+
     BoxWithGradientBackground(
         modifier = modifier,
         color = MaterialTheme.colorScheme.surface
@@ -86,29 +97,49 @@ fun BatteryOptimization(
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
-                modifier = Modifier.semantics {
-                    heading()
-                },
+                modifier = Modifier
+                    .semantics {
+                        heading()
+                    }
+                    .focusRequester(focusRequester)
+                    .focusable(),
             )
             Spacer(modifier = Modifier.height(spacing.large))
             Text(
                 text = stringResource(R.string.battery_optimization_message),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                modifier = Modifier.focusable()
             )
             Spacer(modifier = Modifier.height(spacing.extraLarge))
 
             Column(modifier = Modifier.padding(horizontal = spacing.medium)) {
                 OnboardButton(
-                    text = stringResource(R.string.ui_continue),
-                    onClick = { onContinue() },
+                    text = stringResource(R.string.ui_grant_permission),
+                    onClick = {
+                        requestBatteryOptimizationExemption(context)
+                        canContinue = true
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
+                        .focusable()
+                        .testTag("batteryOptimizationGrantPermissionButton"),
+                )
+                OnboardButton(
+                    text = stringResource(R.string.ui_continue),
+                    onClick = { onContinue() },
+                    enabled = canContinue,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .focusable()
                         .testTag("batteryOptimizationContinueButton"),
                 )
             }
         }
+    }
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
     }
 }
 

@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.language
 
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,11 +13,14 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
@@ -60,6 +64,7 @@ fun LanguageComposable(
     selectedLanguageIndex: Int,
     modifier : Modifier = Modifier
 ){
+    val focusRequester = remember { FocusRequester() }
 
     /*TODO move to the test if(mockData != null) {
         supportedLanguages = MockLanguagePreviewData.languages
@@ -85,14 +90,15 @@ fun LanguageComposable(
                 textAlign = TextAlign.Center,
                 modifier = Modifier.semantics {
                     heading()
-                },
+                }.focusRequester(focusRequester).focusable(),
             )
             Spacer(modifier = Modifier.height(spacing.small))
             Text(
                 text = stringResource(R.string.first_launch_soundscape_language_text),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                modifier = Modifier.focusable()
             )
 
             Spacer(modifier = Modifier.height(spacing.large))
@@ -100,7 +106,7 @@ fun LanguageComposable(
             LanguageDropDownMenu(
                 allLanguages = supportedLanguages,
                 onLanguageSelected = onLanguageSelected,
-                selectedLanguageIndex = selectedLanguageIndex
+                selectedLanguageIndex = selectedLanguageIndex,
             )
 
             Spacer(modifier = Modifier.height(spacing.large))
@@ -122,12 +128,17 @@ fun LanguageComposable(
                     },
                     modifier = Modifier
                         .fillMaxWidth()
+                        .focusable()
                         .testTag("languageScreenContinueButton"),
                     enabled = isContinueEnabled
                 )
             }
 
         }
+    }
+
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
     }
 }
 
