@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.screens.onboarding.navigating
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
+import android.util.Log
 import androidx.activity.compose.ManagedActivityResultLauncher
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -75,6 +76,7 @@ enum class Permission(
         R.string.first_launch_permissions_record_audio,
         R.string.first_launch_permissions_required_for_voice_control,
     ),
+
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     POST_NOTIFICATIONS(
         Manifest.permission.POST_NOTIFICATIONS,
@@ -128,6 +130,7 @@ fun NavigatingScreen(
         onContinue = onNavigate,
         permissionsStatus = uiState.value.permissionsStatus,
         onPermissionResult = onPermissionResult,
+        continueEnabled = uiState.value.continueEnabled,
         modifier = modifier,
     )
 }
@@ -153,9 +156,12 @@ fun Navigating(
     onContinue: () -> Unit,
     permissionsStatus: Map<Permission, Boolean>,
     onPermissionResult: (permission: Permission, granted: Boolean) -> Unit,
-    modifier: Modifier = Modifier
+    continueEnabled: Boolean,
+    modifier: Modifier = Modifier,
 ) {
     val focusRequester = remember { FocusRequester() }
+
+    Log.d("Navigating", "Continue Enabled: $continueEnabled")
 
     BoxWithGradientBackground(
         modifier = modifier,
@@ -233,9 +239,8 @@ fun Navigating(
             ) {
                 OnboardButton(
                     text = stringResource(R.string.ui_continue),
-                    // just bodging this at the moment as having problems with rationales
-                    // and handling denied permissions
                     onClick = { onContinue() },
+                    enabled = continueEnabled,
                     modifier = Modifier
                         .fillMaxWidth()
                         .focusable()
@@ -324,7 +329,24 @@ fun PermissionRationale(
 @Preview
 @Composable
 fun NavigatingPreview() {
-    Navigating(onContinue = {}, permissionsStatus = emptyMap(), onPermissionResult = { _, _ -> })
+    Navigating(
+        onContinue = {},
+        permissionsStatus = emptyMap(),
+        onPermissionResult = { _, _ -> },
+        continueEnabled = true
+    )
+}
+
+@Preview(device = "spec:parent=pixel_5,orientation=landscape")
+@Preview
+@Composable
+fun NavigatingPreviewContinueDisabled() {
+    Navigating(
+        onContinue = {},
+        permissionsStatus = emptyMap(),
+        onPermissionResult = { _, _ -> },
+        continueEnabled = false
+    )
 }
 
 @Preview(device = "spec:parent=pixel_5,orientation=portrait")
