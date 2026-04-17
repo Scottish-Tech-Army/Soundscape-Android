@@ -8,6 +8,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 
 data class StreetPreviewChoice(
@@ -76,7 +77,12 @@ class StreetPreview {
                     // We've got a location, so jump to it
                     var heading = userGeometry.phoneHeading
                     if(heading == null) heading = 0.0
-                    engine.locationProvider.updateLocation(nearestIntersection.location, heading.toFloat(), 0.0F)
+                    engine.locationProvider.updateLocation(SoundscapeLocation(
+                        latitude = nearestIntersection.location.latitude,
+                        longitude = nearestIntersection.location.longitude,
+                        bearing = heading.toFloat(),
+                        hasAccuracy = true,
+                    ))
                     previewState = PreviewState.AT_NODE
                     return nearestIntersection.location
                 }
@@ -146,11 +152,13 @@ class StreetPreview {
                                 // We've found the next intersection. Set the heading to be the
                                 // angle of the way arriving at the intersection and move to it.
                                 lastHeading = (road.way.heading(nextIntersection) + 180.0) % 360.0
-                                engine.locationProvider.updateLocation(
-                                    nextIntersection.location,
-                                    lastHeading.toFloat(),
-                                    1.0F
-                                )
+                                engine.locationProvider.updateLocation(SoundscapeLocation(
+                                    latitude = nextIntersection.location.latitude,
+                                    longitude = nextIntersection.location.longitude,
+                                    bearing = lastHeading.toFloat(),
+                                    speed = 1.0F,
+                                    hasAccuracy = true,
+                                ))
                                 return nextIntersection.location
                             }
                         }

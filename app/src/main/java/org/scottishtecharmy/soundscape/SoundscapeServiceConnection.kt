@@ -8,6 +8,7 @@ import android.os.IBinder
 import android.util.Log
 import dagger.hilt.android.scopes.ActivityRetainedScoped
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
+import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -29,7 +30,7 @@ class SoundscapeServiceConnection @Inject constructor() {
     val serviceBoundState = _serviceBoundState.asStateFlow()
 
     // Simplify access of flows
-    fun getLocationFlow() : StateFlow<android.location.Location?>? {
+    fun getLocationFlow() : StateFlow<SoundscapeLocation?>? {
         return soundscapeService?.locationProvider?.locationFlow
     }
     fun getOrientationFlow() : StateFlow<DeviceDirection?>? {

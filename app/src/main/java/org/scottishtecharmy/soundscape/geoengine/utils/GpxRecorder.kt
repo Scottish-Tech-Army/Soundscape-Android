@@ -1,12 +1,12 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
 import android.content.Context
-import android.location.Location
 import android.net.Uri
 import androidx.core.content.FileProvider.getUriForFile
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
@@ -19,7 +19,7 @@ class GpxRecorder() {
 
     val bufferMutex = Mutex()
     val maxBufferSize = 3600        // 1 location per second for an hour
-    private val buffer: MutableList<Location> = mutableListOf()
+    private val buffer: MutableList<SoundscapeLocation> = mutableListOf()
 
     fun getShareUri(context: Context) : Uri? {
 
@@ -46,12 +46,12 @@ class GpxRecorder() {
             for (location in buffer) {
                 val xmlString =
                     "<trkpt lat=\"${location.latitude}\" lon=\"${location.longitude}\">\n" +
-                            "<ele>${location.altitude}</ele>\n" +
+                            "<ele>0.0</ele>\n" +
                             "<accuracy>${location.accuracy}</accuracy>\n" +
                             "<speed>${location.speed}</speed>\n" +
                             "<bearing>${location.bearing}</bearing>\n" +
                             "<bearingAccuracyDegrees>${location.bearingAccuracyDegrees}</bearingAccuracyDegrees>\n" +
-                            "<time>${timeFormat.format(Date(location.time))}</time>\n" +
+                            "<time>${timeFormat.format(Date())}</time>\n" +
                             "</trkpt>\n"
                 outputStream.write(xmlString.toByteArray())
             }
@@ -60,7 +60,6 @@ class GpxRecorder() {
     }
 
     private fun writeGpxHeader(outputStream: FileOutputStream) {
-        // Write header, erasing previous content by setting append to false
         outputStream.write(
             ("<?xml version='1.0' encoding='utf-8'?>\n" +
             "<gpx xmlns=\"http://www.topografix.com/GPX/1/0\" version=\"1.0\" creator=\"Soundscape\">\n" +
@@ -79,8 +78,7 @@ class GpxRecorder() {
         )
     }
 
-    suspend fun storeLocation(location: Location) {
-        // Save the location to our buffer
+    suspend fun storeLocation(location: SoundscapeLocation) {
         bufferMutex.withLock {
             buffer.add(location)
             if (buffer.size > maxBufferSize)

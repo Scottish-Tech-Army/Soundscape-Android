@@ -10,6 +10,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.gpx.GpxData
 import org.scottishtecharmy.soundscape.geoengine.utils.gpx.parseGpx
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.GeodesicRuler
+import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.io.InputStream
 
@@ -17,6 +18,7 @@ class GpxDrivenProvider  {
 
     var locationProvider = StaticLocationProvider(LngLatAlt())
     var directionProvider = DirectionProvider()
+    var audioEngine: NativeAudioEngine? = null
 
     private var parsedGpx: GpxData? = null
     private val coroutineScope = CoroutineScope(Job())
@@ -75,14 +77,16 @@ class GpxDrivenProvider  {
                         point.latitude + (latStep * currentStep)
                     )
                     locationProvider.updateLocation(
-                        LngLatAlt(
-                            interpolatedPoint.longitude,
-                            interpolatedPoint.latitude
-                        ),
-                        heading.toFloat(),
-                        walkingSpeed.toFloat()
+                        SoundscapeLocation(
+                            latitude = interpolatedPoint.latitude,
+                            longitude = interpolatedPoint.longitude,
+                            bearing = heading.toFloat(),
+                            speed = walkingSpeed.toFloat(),
+                            hasAccuracy = true,
+                            accuracy = 0.0f,
+                        )
                     )
-                    directionProvider.audioEngine?.updateGeometry(
+                    audioEngine?.updateGeometry(
                         interpolatedPoint.latitude,
                         interpolatedPoint.longitude,
                         heading,

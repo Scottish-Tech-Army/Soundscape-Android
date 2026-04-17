@@ -1,23 +1,13 @@
 package org.scottishtecharmy.soundscape.locationprovider
 
-/**
- * Custom DeviceOrientation class to replace Google Play Services DeviceOrientation.
- * This allows the app to run on devices without Google Play Services.
- *
- * @property attitude Quaternion representing device orientation [x, y, z, w]
- * @property headingDegrees Heading in degrees (0-360, where 0 is north)
- * @property headingAccuracyDegrees Estimated heading accuracy in degrees
- * @property elapsedRealtimeNanos Timestamp in nanoseconds
- */
+import kotlin.math.acos
+
 data class DeviceDirection(
     val attitude: FloatArray,
     val headingDegrees: Float,
     val headingAccuracyDegrees: Float,
     val elapsedRealtimeNanos: Long
 ) {
-    /**
-     * Builder class to match the Google Play Services DeviceOrientation.Builder pattern
-     */
     class Builder(
         private val attitude: FloatArray,
         private val headingDegrees: Float,
@@ -36,9 +26,7 @@ data class DeviceDirection(
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as DeviceDirection
+        if (other == null || other !is DeviceDirection) return false
 
         if (!attitude.contentEquals(other.attitude)) return false
         if (headingDegrees != other.headingDegrees) return false
@@ -55,4 +43,19 @@ data class DeviceDirection(
         result = 31 * result + elapsedRealtimeNanos.hashCode()
         return result
     }
+}
+
+private fun Float.toDegrees(): Float {
+    return (this * 180 / kotlin.math.PI).toFloat()
+}
+
+fun phoneHeldFlat(deviceOrientation: DeviceDirection?) : Boolean {
+    if(deviceOrientation == null) return false
+
+    val attitude = deviceOrientation.attitude
+
+    val gravityZ = 1 - 2 * (attitude[0] * attitude[0] + attitude[1] * attitude[1])
+    val angleToZ = acos(gravityZ).toDegrees()
+
+    return (angleToZ < 20)
 }

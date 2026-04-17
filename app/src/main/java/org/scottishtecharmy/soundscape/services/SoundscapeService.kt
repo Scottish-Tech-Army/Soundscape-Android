@@ -236,9 +236,20 @@ class SoundscapeService : MediaSessionService() {
         // race in the tileGridUpdated callback.
         _streetPreviewFlow.value = StreetPreviewState(if(on) StreetPreviewEnabled.INITIALIZING else StreetPreviewEnabled.OFF)
 
-        locationProvider.start(this)
-        directionProvider.start(audioEngine, locationProvider)
+        startProviders()
         geoEngine.start(application, locationProvider, directionProvider, this, localizedContext, on)
+    }
+
+    private fun startProviders() {
+        when (val lp = locationProvider) {
+            is GooglePlayLocationProvider -> lp.start(this)
+            is AndroidLocationProvider -> lp.start(this)
+            is StaticLocationProvider -> lp.start()
+        }
+        when (val dp = directionProvider) {
+            is GooglePlayDirectionProvider -> dp.start()
+            is AndroidDirectionProvider -> dp.start()
+        }
     }
 
     fun tileGridUpdated() {
@@ -266,8 +277,7 @@ class SoundscapeService : MediaSessionService() {
 
             if(!started) {
                 AnalyticsProvider.getInstance().crashLogNotes("Start geo-engine")
-                locationProvider.start(this)
-                directionProvider.start(audioEngine, locationProvider)
+                startProviders()
                 val configLocale = getCurrentLocale()
                 val configuration = Configuration(applicationContext.resources.configuration)
                 configuration.setLocale(configLocale)

@@ -28,7 +28,6 @@ class GooglePlayLocationProvider(context : Context) :
     private val filter = KalmanLocationFilter()
 
     fun filterLocation(location: Location) : Location {
-        // Filter the location through the Kalman filter
         val filteredLocation = filter.process(
             LngLatAlt(location.longitude, location.latitude),
             System.currentTimeMillis(),
@@ -46,13 +45,11 @@ class GooglePlayLocationProvider(context : Context) :
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            // Faster startup for obtaining initial location
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
-                    // Handle the retrieved location here
                     if (location != null) {
-                        mutableLocationFlow.value = location
-                        mutableFilteredLocationFlow.value = filterLocation(location)
+                        mutableLocationFlow.value = location.toSoundscapeLocation()
+                        mutableFilteredLocationFlow.value = filterLocation(location).toSoundscapeLocation()
                     }
                 }
                 .addOnFailureListener { _: Exception ->
@@ -61,8 +58,8 @@ class GooglePlayLocationProvider(context : Context) :
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 for (location in locationResult.locations) {
-                    mutableLocationFlow.value = location
-                    mutableFilteredLocationFlow.value = filterLocation(location)
+                    mutableLocationFlow.value = location.toSoundscapeLocation()
+                    mutableFilteredLocationFlow.value = filterLocation(location).toSoundscapeLocation()
                 }
             }
         }
@@ -73,7 +70,7 @@ class GooglePlayLocationProvider(context : Context) :
     }
 
     @SuppressLint("MissingPermission")
-    override fun start(context : Context){
+    fun start(context : Context){
 
         fusedLocationClient.requestLocationUpdates(
             LocationRequest.Builder(
@@ -90,7 +87,6 @@ class GooglePlayLocationProvider(context : Context) :
     }
 
     companion object {
-        // Check for GPS every n seconds
         private val LOCATION_UPDATES_INTERVAL_MS = 1.seconds.inWholeMilliseconds
     }
 }
