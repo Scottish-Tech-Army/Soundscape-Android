@@ -327,9 +327,6 @@ dependencies {
     // Markdown to HTML converter for Help screens
     implementation(libs.commonmark)
 
-    // Address formatting library
-    implementation(libs.androidaddressformatter)
-
     testImplementation(libs.json)
 }
 

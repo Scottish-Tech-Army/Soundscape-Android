@@ -42,7 +42,7 @@ import org.scottishtecharmy.soundscape.utils.supportedLanguages
 import org.scottishtecharmy.soundscape.utils.toLocationDescription
 import org.scottishtecharmy.soundscape.utils.process
 import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
-import org.woheller69.AndroidAddressFormatter.AndroidAddressFormatter
+import org.scottishtecharmy.soundscape.geoengine.utils.address.AddressFormatter
 
 @RunWith(AndroidJUnit4::class)
 class GeocoderTest {
@@ -367,7 +367,7 @@ class GeocoderTest {
     @Test
     fun fallbackCountryTest() {
         for(language in supportedLanguages) {
-            val formatter = AndroidAddressFormatter(false, true, false)
+            val formatter = AddressFormatter(abbreviate = false, appendCountry = true, appendUnknown = false)
             val jsonObject = JSONObject()
             jsonObject.put("house_number", "10")
             jsonObject.put("road", "Main Street")
@@ -389,7 +389,7 @@ class GeocoderTest {
             Language("中国人", "zh", "CNA"),
         )
         for(language in brokenLanguages) {
-            val formatter = AndroidAddressFormatter(false, true, false)
+            val formatter = AddressFormatter(abbreviate = false, appendCountry = true, appendUnknown = false)
             val jsonObject = JSONObject()
             jsonObject.put("house_number", "10")
             jsonObject.put("road", "Main Street")

@@ -1,6 +1,5 @@
 [versions]
 agp = "9.0.1"
-androidaddressformatter = "8f279fecd4"
 commonmark = "0.25.1"
 json = "20240303"
 kotlin = "2.2.10"
@@ -76,7 +75,6 @@ composeBom = "2025.04.00"
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 android-gpx-parser = { module = "com.github.ticofab:android-gpx-parser", version.ref = "androidGpxParser" }
-androidaddressformatter = { module = "com.github.woheller69:AndroidAddressFormatter", version.ref = "androidaddressformatter" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
