@@ -284,6 +284,7 @@ fun PermissionRationale(
         Column(
             modifier = Modifier
                 .weight(1f)
+                .focusable()
                 .semantics(mergeDescendants = true) {}
                 .clickable {
                     onClick()
@@ -293,13 +294,11 @@ fun PermissionRationale(
                 text = stringResource(mainText),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.focusable(),
             )
             Text(
                 text = stringResource(subtitleText),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.focusable(),
             )
         }
         Spacer(modifier = Modifier.weight(0.05f))
