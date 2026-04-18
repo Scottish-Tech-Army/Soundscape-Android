@@ -75,5 +75,64 @@ class AndroidLocalizedStrings(private val context: Context) : LocalizedStrings {
         StringKey.StreetDescriptionBetween         -> R.string.street_description_between
         StringKey.StreetDescriptionUntil           -> R.string.street_description_until
         StringKey.StreetDescriptionSince           -> R.string.street_description_since
+
+        StringKey.DirectionsFacingN        -> R.string.directions_facing_n
+        StringKey.DirectionsFacingNE       -> R.string.directions_facing_ne
+        StringKey.DirectionsFacingE        -> R.string.directions_facing_e
+        StringKey.DirectionsFacingSE       -> R.string.directions_facing_se
+        StringKey.DirectionsFacingS        -> R.string.directions_facing_s
+        StringKey.DirectionsFacingSW       -> R.string.directions_facing_sw
+        StringKey.DirectionsFacingW        -> R.string.directions_facing_w
+        StringKey.DirectionsFacingNW       -> R.string.directions_facing_nw
+
+        StringKey.DirectionsHeadingN       -> R.string.directions_heading_n
+        StringKey.DirectionsHeadingNE      -> R.string.directions_heading_ne
+        StringKey.DirectionsHeadingE       -> R.string.directions_heading_e
+        StringKey.DirectionsHeadingSE      -> R.string.directions_heading_se
+        StringKey.DirectionsHeadingS       -> R.string.directions_heading_s
+        StringKey.DirectionsHeadingSW      -> R.string.directions_heading_sw
+        StringKey.DirectionsHeadingW       -> R.string.directions_heading_w
+        StringKey.DirectionsHeadingNW      -> R.string.directions_heading_nw
+
+        StringKey.DirectionsTravelingN     -> R.string.directions_traveling_n
+        StringKey.DirectionsTravelingNE    -> R.string.directions_traveling_ne
+        StringKey.DirectionsTravelingE     -> R.string.directions_traveling_e
+        StringKey.DirectionsTravelingSE    -> R.string.directions_traveling_se
+        StringKey.DirectionsTravelingS     -> R.string.directions_traveling_s
+        StringKey.DirectionsTravelingSW    -> R.string.directions_traveling_sw
+        StringKey.DirectionsTravelingW     -> R.string.directions_traveling_w
+        StringKey.DirectionsTravelingNW    -> R.string.directions_traveling_nw
+
+        StringKey.DirectionsAlongFacingN   -> R.string.directions_along_facing_n
+        StringKey.DirectionsAlongFacingNE  -> R.string.directions_along_facing_ne
+        StringKey.DirectionsAlongFacingE   -> R.string.directions_along_facing_e
+        StringKey.DirectionsAlongFacingSE  -> R.string.directions_along_facing_se
+        StringKey.DirectionsAlongFacingS   -> R.string.directions_along_facing_s
+        StringKey.DirectionsAlongFacingSW  -> R.string.directions_along_facing_sw
+        StringKey.DirectionsAlongFacingW   -> R.string.directions_along_facing_w
+        StringKey.DirectionsAlongFacingNW  -> R.string.directions_along_facing_nw
+
+        StringKey.DirectionsAlongHeadingN  -> R.string.directions_along_heading_n
+        StringKey.DirectionsAlongHeadingNE -> R.string.directions_along_heading_ne
+        StringKey.DirectionsAlongHeadingE  -> R.string.directions_along_heading_e
+        StringKey.DirectionsAlongHeadingSE -> R.string.directions_along_heading_se
+        StringKey.DirectionsAlongHeadingS  -> R.string.directions_along_heading_s
+        StringKey.DirectionsAlongHeadingSW -> R.string.directions_along_heading_sw
+        StringKey.DirectionsAlongHeadingW  -> R.string.directions_along_heading_w
+        StringKey.DirectionsAlongHeadingNW -> R.string.directions_along_heading_nw
+
+        StringKey.DirectionsAlongTravelingN  -> R.string.directions_along_traveling_n
+        StringKey.DirectionsAlongTravelingNE -> R.string.directions_along_traveling_ne
+        StringKey.DirectionsAlongTravelingE  -> R.string.directions_along_traveling_e
+        StringKey.DirectionsAlongTravelingSE -> R.string.directions_along_traveling_se
+        StringKey.DirectionsAlongTravelingS  -> R.string.directions_along_traveling_s
+        StringKey.DirectionsAlongTravelingSW -> R.string.directions_along_traveling_sw
+        StringKey.DirectionsAlongTravelingW  -> R.string.directions_along_traveling_w
+        StringKey.DirectionsAlongTravelingNW -> R.string.directions_along_traveling_nw
+
+        StringKey.GeneralErrorFindLocationError -> R.string.general_error_location_services_find_location_error
+        StringKey.StationaryOnWay                -> R.string.stationary_on_way
+        StringKey.CalloutsNothingToCallOutNow    -> R.string.callouts_nothing_to_call_out_now
+        StringKey.CalloutsNoNearbyMarkers        -> R.string.callouts_no_nearby_markers
     }
 }

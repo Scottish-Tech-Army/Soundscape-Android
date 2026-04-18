@@ -25,13 +25,13 @@ import kotlinx.coroutines.withTimeoutOrNull
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.preferences.AndroidPreferencesProvider
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SEARCH_LANGUAGE_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SEARCH_LANGUAGE_KEY
-import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.audio.Earcons
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
@@ -534,7 +534,7 @@ class GeoEngine {
         var results : MutableList<PositionedString> = mutableListOf()
         if (!locationProvider.hasValidLocation()) {
             val noLocationString =
-                localizedContext.getString(R.string.general_error_location_services_find_location_error)
+                localizedStrings.get(StringKey.GeneralErrorFindLocationError)
             results.add(PositionedString(
                 text = noLocationString,
                 type = AudioType.STANDARD)
@@ -555,7 +555,7 @@ class GeoEngine {
                         if(orientation != null) {
                             val facingDirection =
                                 getCompassLabelFacingDirection(
-                                    localizedContext,
+                                    localizedStrings,
                                     orientation.toInt(),
                                     userGeometry.inMotion(),
                                     userGeometry.inVehicle()
@@ -577,12 +577,12 @@ class GeoEngine {
                     } else {
                         val nearestRoad = userGeometry.mapMatchedWay
                         val roadName =
-                            nearestRoad?.getName(null, gridState, localizedContext?.let { AndroidLocalizedStrings(it) })
+                            nearestRoad?.getName(null, gridState, localizedStrings)
                         if(orientation != null) {
                             if (roadName != null) {
                                 val facingDirectionAlongRoad =
                                     getCompassLabelFacingDirectionAlong(
-                                        localizedContext,
+                                        localizedStrings,
                                         orientation.toInt(),
                                         roadName,
                                         userGeometry.inMotion(),
@@ -597,7 +597,7 @@ class GeoEngine {
                             } else {
                                 val facingDirection =
                                     getCompassLabelFacingDirection(
-                                        localizedContext,
+                                        localizedStrings,
                                         orientation.toInt(),
                                         userGeometry.inMotion(),
                                         userGeometry.inVehicle()
@@ -613,14 +613,14 @@ class GeoEngine {
                             if (roadName != null) {
                                 list.add(
                                     PositionedString(
-                                        text = localizedContext.getString(R.string.stationary_on_way, roadName),
+                                        text = localizedStrings.get(StringKey.StationaryOnWay, roadName),
                                         type = AudioType.STANDARD
                                     )
                                 )
                             } else {
                                 list.add(
                                     PositionedString(
-                                        text = localizedContext.getString(R.string.general_error_location_services_find_location_error),
+                                        text = localizedStrings.get(StringKey.GeneralErrorFindLocationError),
                                         type = AudioType.STANDARD
                                     )
                                 )
@@ -665,7 +665,7 @@ class GeoEngine {
 
         if (!locationProvider.hasValidLocation()) {
             val noLocationString =
-                localizedContext.getString(R.string.general_error_location_services_find_location_error)
+                localizedStrings.get(StringKey.GeneralErrorFindLocationError)
             results.add(PositionedString(
                 text = noLocationString,
                 type = AudioType.STANDARD)
@@ -740,7 +740,7 @@ class GeoEngine {
                             PositionedString(
                                 text,
                                 poiLocation.point,
-                                NativeAudioEngine.EARCON_SENSE_POI,
+                                Earcons.SENSE_POI,
                                 AudioType.LOCALIZED,
                             )
                         )
@@ -768,7 +768,7 @@ class GeoEngine {
 
         if (!locationProvider.hasValidLocation()) {
             val noLocationString =
-                localizedContext.getString(R.string.general_error_location_services_find_location_error)
+                localizedStrings.get(StringKey.GeneralErrorFindLocationError)
             results.add(PositionedString(
                 text = noLocationString,
                 type = AudioType.STANDARD)
@@ -793,7 +793,7 @@ class GeoEngine {
                             PositionedString(
                                 text,
                                 poiLocation.point,
-                                NativeAudioEngine.EARCON_SENSE_POI,
+                                Earcons.SENSE_POI,
                                 AudioType.LOCALIZED,
                             )
                         )
@@ -801,7 +801,7 @@ class GeoEngine {
                     if(list.isEmpty()) {
                         list.add(
                             PositionedString(
-                                text = localizedContext.getString(R.string.callouts_nothing_to_call_out_now),
+                                text = localizedStrings.get(StringKey.CalloutsNothingToCallOutNow),
                                 type = AudioType.STANDARD
                             )
                         )
@@ -833,7 +833,7 @@ class GeoEngine {
 
         if (!locationProvider.hasValidLocation()) {
             val noLocationString =
-                localizedContext.getString(R.string.general_error_location_services_find_location_error)
+                localizedStrings.get(StringKey.GeneralErrorFindLocationError)
             results.add(PositionedString(
                 text = noLocationString,
                 type = AudioType.STANDARD)
@@ -868,7 +868,7 @@ class GeoEngine {
                                 PositionedString(
                                     text,
                                     markerLocation.point,
-                                    NativeAudioEngine.EARCON_SENSE_POI,
+                                    Earcons.SENSE_POI,
                                     AudioType.LOCALIZED,
                                 )
                             )
@@ -884,7 +884,7 @@ class GeoEngine {
         if(results.isEmpty()) {
             results.add(
                 PositionedString(
-                    text = localizedContext.getString(R.string.callouts_no_nearby_markers),
+                    text = localizedStrings.get(StringKey.CalloutsNoNearbyMarkers),
                     type = AudioType.STANDARD
                 )
             )

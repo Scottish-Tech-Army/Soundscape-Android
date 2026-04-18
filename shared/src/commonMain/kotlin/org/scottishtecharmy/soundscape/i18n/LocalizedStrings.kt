@@ -67,4 +67,70 @@ enum class StringKey {
     StreetDescriptionBetween,
     StreetDescriptionUntil,
     StreetDescriptionSince,
+
+    // Compass facing directions (stationary)
+    DirectionsFacingN,
+    DirectionsFacingNE,
+    DirectionsFacingE,
+    DirectionsFacingSE,
+    DirectionsFacingS,
+    DirectionsFacingSW,
+    DirectionsFacingW,
+    DirectionsFacingNW,
+
+    // Compass heading directions (walking)
+    DirectionsHeadingN,
+    DirectionsHeadingNE,
+    DirectionsHeadingE,
+    DirectionsHeadingSE,
+    DirectionsHeadingS,
+    DirectionsHeadingSW,
+    DirectionsHeadingW,
+    DirectionsHeadingNW,
+
+    // Compass traveling directions (vehicle)
+    DirectionsTravelingN,
+    DirectionsTravelingNE,
+    DirectionsTravelingE,
+    DirectionsTravelingSE,
+    DirectionsTravelingS,
+    DirectionsTravelingSW,
+    DirectionsTravelingW,
+    DirectionsTravelingNW,
+
+    // Compass facing along road (stationary)
+    DirectionsAlongFacingN,
+    DirectionsAlongFacingNE,
+    DirectionsAlongFacingE,
+    DirectionsAlongFacingSE,
+    DirectionsAlongFacingS,
+    DirectionsAlongFacingSW,
+    DirectionsAlongFacingW,
+    DirectionsAlongFacingNW,
+
+    // Compass heading along road (walking)
+    DirectionsAlongHeadingN,
+    DirectionsAlongHeadingNE,
+    DirectionsAlongHeadingE,
+    DirectionsAlongHeadingSE,
+    DirectionsAlongHeadingS,
+    DirectionsAlongHeadingSW,
+    DirectionsAlongHeadingW,
+    DirectionsAlongHeadingNW,
+
+    // Compass traveling along road (vehicle)
+    DirectionsAlongTravelingN,
+    DirectionsAlongTravelingNE,
+    DirectionsAlongTravelingE,
+    DirectionsAlongTravelingSE,
+    DirectionsAlongTravelingS,
+    DirectionsAlongTravelingSW,
+    DirectionsAlongTravelingW,
+    DirectionsAlongTravelingNW,
+
+    // Callout UI strings
+    GeneralErrorFindLocationError,
+    StationaryOnWay,
+    CalloutsNothingToCallOutNow,
+    CalloutsNoNearbyMarkers,
 }
