@@ -317,11 +317,6 @@ dependencies {
 
     implementation(libs.reorderable)
 
-    // Database
-    implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
-    ksp(libs.androidx.room.compiler)
-
     implementation(libs.symbol.processing.api)
 
     // Markdown to HTML converter for Help screens

@@ -56,6 +56,7 @@ reviewKtx = "2.0.2"
 media3Session = "1.8.0"
 roomCompiler = "2.7.2"
 roomRuntime = "2.7.2"
+sqliteBundled = "2.5.2"
 rtree2 = "0.9.3"
 screenshot = "0.0.1-alpha14"
 screenshotValidationApi = "0.0.1-alpha14"
@@ -87,6 +88,7 @@ androidx-preference-ktx = { module = "androidx.preference:preference-ktx", versi
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+androidx-sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqliteBundled" }
 androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
 androidx-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiautomator" }
 commonmark = { module = "org.commonmark:commonmark", version.ref = "commonmark" }
@@ -160,4 +162,5 @@ devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "devtools-ksp" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics"}
 jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "jetbrains-dokka" }
+androidx-room = { id = "androidx.room", version.ref = "roomRuntime" }
 jaredsburrows-license = { id = "com.jaredsburrows.license", version.ref = "jaredsburrows-license" }

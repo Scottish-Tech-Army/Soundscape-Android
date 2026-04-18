@@ -8,7 +8,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
+import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.utils.parseGpxFile
 
@@ -54,7 +54,7 @@ class GpxTest {
         }
 
         // The parsing has succeeded, write the result to the database
-        val roomDb = MarkersAndRoutesDatabase.getMarkersInstance(context)
+        val roomDb = MarkersAndRoutesDatabaseProvider.getInstance(context)
         Log.d("gpxTest", "Successfully opened an in-memory realm")
 
         val routesDao = roomDb.routeDao()
@@ -81,7 +81,7 @@ class GpxTest {
     ) {
         // Open the database
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        val roomDb = MarkersAndRoutesDatabase.getMarkersInstance(context)
+        val roomDb = MarkersAndRoutesDatabaseProvider.getInstance(context)
 
         val routesDao = roomDb.routeDao()
         runBlocking {
@@ -246,7 +246,7 @@ class GpxTest {
     fun soundscapeDuplicateAttempt() {
         val expectedValues = expectedSoundscapeValues()
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        val roomDb = MarkersAndRoutesDatabase.getMarkersInstance(context)
+        val roomDb = MarkersAndRoutesDatabaseProvider.getInstance(context)
         roomDb.clearAllTables()
 
         val id1 = testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description")
@@ -258,7 +258,7 @@ class GpxTest {
     fun soundscapeDuplicateDatabase() {
         val expectedValues = expectedSoundscapeValues()
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        val roomDb = MarkersAndRoutesDatabase.getMarkersInstance(context)
+        val roomDb = MarkersAndRoutesDatabaseProvider.getInstance(context)
         roomDb.clearAllTables()
 
         val id1 = testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description")

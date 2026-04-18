@@ -6,7 +6,6 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import kotlin.jvm.javaClass
 
 @Entity(
     tableName = "markers",
@@ -28,10 +27,8 @@ class MarkerEntity(
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-        other as MarkerEntity
-        val distance = distance(latitude, longitude, other.latitude, other.longitude)
-        return (name == other.name) && (fullAddress == other.fullAddress) && (distance < 1.0)
+        if (other !is MarkerEntity) return false
+        val dist = distance(latitude, longitude, other.latitude, other.longitude)
+        return (name == other.name) && (fullAddress == other.fullAddress) && (dist < 1.0)
     }
 }
-

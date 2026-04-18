@@ -9,8 +9,7 @@ import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.SoundscapeIntents
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
-import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
-import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
+import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.screens.home.Navigator
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyViewModel
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteViewModel
@@ -39,9 +38,9 @@ val appModule = module {
 
     single { Navigator() }
 
-    single { MarkersAndRoutesDatabase.getMarkersInstance(androidContext()) }
+    single { MarkersAndRoutesDatabaseProvider.getInstance(androidContext()) }
 
-    single { get<MarkersAndRoutesDatabase>().routeDao() }
+    single { get<org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase>().routeDao() }
 
     single { SoundscapeServiceConnection() }
 

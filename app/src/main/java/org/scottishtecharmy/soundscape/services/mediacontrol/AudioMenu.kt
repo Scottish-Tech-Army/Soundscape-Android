@@ -12,7 +12,7 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_ENTER
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_EXIT
-import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
+import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
@@ -226,7 +226,7 @@ class AudioMenu(
 
     private suspend fun loadRouteMenuItems(): List<MenuItem> =
         withContext(Dispatchers.IO) {
-            val db = MarkersAndRoutesDatabase.getMarkersInstance(service)
+            val db = MarkersAndRoutesDatabaseProvider.getInstance(service)
             db.routeDao().getAllRoutes().map { route ->
                 MenuItem.Action(route.name) { service.routeStartById(route.routeId) }
             } + mainMenuAction()
@@ -234,7 +234,7 @@ class AudioMenu(
 
     private suspend fun loadMarkerMenuItems(): List<MenuItem> =
         withContext(Dispatchers.IO) {
-            val db = MarkersAndRoutesDatabase.getMarkersInstance(service)
+            val db = MarkersAndRoutesDatabaseProvider.getInstance(service)
             db.routeDao().getAllMarkers().map { marker ->
                 MenuItem.Action(marker.name) {
                     val location = LngLatAlt(marker.longitude, marker.latitude)

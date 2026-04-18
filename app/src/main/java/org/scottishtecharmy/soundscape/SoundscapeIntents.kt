@@ -218,8 +218,8 @@ class SoundscapeIntents(
                         val routeName = path?.removePrefix("/")
                         if (!routeName.isNullOrBlank()) {
                             Log.d(TAG, "Starting route from intent: name=$routeName")
-                            val db = org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
-                                .getMarkersInstance(mainActivity)
+                            val db = org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
+                                .getInstance(mainActivity)
                             val route = db.routeDao().getAllRoutes()
                                 .map { it to routeName.fuzzyCompare(it.name, true) }
                                 .filter { it.second < 0.3 }

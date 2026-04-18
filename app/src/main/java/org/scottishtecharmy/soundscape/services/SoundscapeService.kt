@@ -53,7 +53,7 @@ import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_ENTER
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_EXIT
-import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
+import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
@@ -342,7 +342,7 @@ class SoundscapeService : MediaSessionService() {
             updateMediaControls(mode)
 
             // Keep biasing strings up to date whenever markers or routes change
-            val dao = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao()
+            val dao = MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao()
             coroutineScope.launch {
                 dao.getAllMarkersFlow().collect { markers ->
                     voiceCommandManager?.updateMarkers(markers)
@@ -533,7 +533,7 @@ class SoundscapeService : MediaSessionService() {
     }
 
     private fun startRealms(context: Context) {
-        MarkersAndRoutesDatabase.getMarkersInstance(context)
+        MarkersAndRoutesDatabaseProvider.getInstance(context)
     }
 
     /*    fun deleteRealm(){
@@ -708,7 +708,7 @@ class SoundscapeService : MediaSessionService() {
     fun routeListRoutes() {
         coroutineScope.launch {
             val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
-            val routes = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao().getAllRoutes()
+            val routes = MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao().getAllRoutes()
             if (routes.isEmpty())
                 speak2dText(ctx.getString(R.string.voice_cmd_no_routes))
             else {
@@ -727,7 +727,7 @@ class SoundscapeService : MediaSessionService() {
     fun routeListMarkers() {
         coroutineScope.launch {
             val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
-            val markers = MarkersAndRoutesDatabase.getMarkersInstance(applicationContext).routeDao().getAllMarkers()
+            val markers = MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao().getAllMarkers()
             if (markers.isEmpty()) {
                 speak2dText(ctx.getString(R.string.voice_cmd_no_markers))
             } else {

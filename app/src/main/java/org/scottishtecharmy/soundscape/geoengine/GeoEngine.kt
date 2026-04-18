@@ -29,7 +29,7 @@ import org.scottishtecharmy.soundscape.preferences.AndroidPreferencesProvider
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SEARCH_LANGUAGE_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SEARCH_LANGUAGE_KEY
-import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
+import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildAheadOfMeCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildMyLocationCallout
@@ -333,7 +333,7 @@ class GeoEngine {
         markerMonitoringJob?.cancel()
         markerMonitoringJob = coroutineScope.launch {
 
-            val realm = MarkersAndRoutesDatabase.getMarkersInstance(application.applicationContext)
+            val realm = MarkersAndRoutesDatabaseProvider.getInstance(application.applicationContext)
             val routeDao = realm.routeDao()
             routeDao.getAllMarkersFlow().collect { markers ->
 

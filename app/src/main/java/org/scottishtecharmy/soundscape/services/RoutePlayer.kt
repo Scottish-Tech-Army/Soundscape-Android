@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
-import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
+import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
@@ -100,7 +100,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
      * @param reverse If true, play the route in reverse order (from last waypoint to first)
      */
     fun startRoute(routeId: Long, reverse: Boolean = false) {
-        val realm = MarkersAndRoutesDatabase.getMarkersInstance(localizedContext)
+        val realm = MarkersAndRoutesDatabaseProvider.getInstance(localizedContext)
         val routeDao = realm.routeDao()
 
         AnalyticsProvider.getInstance().logEvent(if (reverse) "startRouteReverse" else "startRoute", null)

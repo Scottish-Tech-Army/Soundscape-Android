@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
     alias(libs.plugins.squareup.wire)
+    alias(libs.plugins.devtools.ksp)
+    alias(libs.plugins.androidx.room)
 }
 
 kotlin {
@@ -31,6 +33,8 @@ kotlin {
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
             implementation(libs.ktor.serialization.kotlinx.json)
+            api(libs.androidx.room.runtime)
+            implementation(libs.androidx.sqlite.bundled)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
@@ -60,4 +64,12 @@ wire {
     sourcePath {
         srcDir("src/commonMain/proto")
     }
+}
+
+dependencies {
+    add("kspAndroid", libs.androidx.room.compiler)
+}
+
+room {
+    schemaDirectory("$projectDir/schemas")
 }

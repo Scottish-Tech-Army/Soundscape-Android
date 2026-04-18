@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
-import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
+import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
@@ -42,7 +42,7 @@ class AdvancedMarkersAndRoutesSettingsViewModel(
 
     fun deleteAllMarkersAndRoutes(context: Context, successString: String) {
         viewModelScope.launch {
-            val roomDb = MarkersAndRoutesDatabase.getMarkersInstance(context)
+            val roomDb = MarkersAndRoutesDatabaseProvider.getInstance(context)
             roomDb.clearAllTables()
             _userFeedback.emit(successString)
         }

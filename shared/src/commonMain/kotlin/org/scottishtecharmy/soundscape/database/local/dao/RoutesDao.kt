@@ -19,7 +19,7 @@ interface RouteDao {
 
     // --- Marker Operations ---
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMarker(marker: MarkerEntity): Long // Returns the new markerId
+    suspend fun insertMarker(marker: MarkerEntity): Long
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateMarker(marker: MarkerEntity)
@@ -38,10 +38,10 @@ interface RouteDao {
 
     // --- Route Operations ---
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertRoute(route: RouteEntity): Long // Returns the new routeId
+    suspend fun insertRoute(route: RouteEntity): Long
 
     // --- RouteMarkerCrossRef Operations ---
-    @Insert(onConflict = OnConflictStrategy.REPLACE) // Ignore if the marker is already in the route
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addMarkerToRoute(crossRef: RouteMarkerCrossRef)
 
     @Query("DELETE FROM route_marker_cross_ref WHERE route_id = :routeId AND marker_id = :markerId")
@@ -107,10 +107,6 @@ interface RouteDao {
     @Query("DELETE FROM markers WHERE marker_id = :markerId")
     suspend fun removeMarker(markerId: Long)
 
-    /**
-     * insertRouteWithExistingMarkers is used from the app to create a route using markers which
-     * are already in the database.
-     */
     @Transaction
     suspend fun insertRouteWithExistingMarkers(route: RouteEntity, markers: List<MarkerEntity>) : Long {
         val routeId = insertRoute(route)
@@ -120,10 +116,6 @@ interface RouteDao {
         return routeId
     }
 
-    /**
-     * insertRouteWithNewMarkers is used from test code and creates a route AND all of the markers
-     * within it.
-     */
     @Transaction
     suspend fun insertRouteWithNewMarkers(route: RouteEntity, markers: List<MarkerEntity>) : Long {
 
@@ -140,7 +132,6 @@ interface RouteDao {
         if(duplicateId == 0L) {
             val routeId = insertRoute(route)
             markers.forEachIndexed { index, marker ->
-                // Check if the marker already exists
                 val existingMarker = getMarkerByLocation(marker.longitude, marker.latitude)
                 val markerId = existingMarker?.markerId ?: insertMarker(marker)
                 addMarkerToRoute(RouteMarkerCrossRef(routeId, markerId, index))

@@ -399,7 +399,7 @@ class MainActivity : AppCompatActivity() {
         checkAndRequestNotificationPermissions()
         soundscapeServiceConnection.tryToBindToServiceIfRunning(applicationContext)
 
-        val db = org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase.getMarkersInstance(applicationContext)
+        val db = org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider.getInstance(applicationContext)
         lifecycleScope.launch {
             db.routeDao().getAllRoutesFlow().collect { routes ->
                 updateRouteShortcuts(routes)

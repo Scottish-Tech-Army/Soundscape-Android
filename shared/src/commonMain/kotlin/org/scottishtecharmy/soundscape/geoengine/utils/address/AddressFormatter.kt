@@ -406,6 +406,15 @@ class AddressFormatter(
                             continue
                         }
                     }
+                    // Double brace: {{field}}
+                    val end = template.indexOf("}}", i + 2)
+                    if (end != -1) {
+                        val field = template.substring(i + 2, end).trim()
+                        val value = data[field]
+                        if (value != null) sb.append(value)
+                        i = end + 2
+                        continue
+                    }
                 }
                 sb.append(template[i])
                 i++
