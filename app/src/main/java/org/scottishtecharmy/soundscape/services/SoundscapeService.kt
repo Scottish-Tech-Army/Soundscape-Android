@@ -640,10 +640,7 @@ class SoundscapeService : MediaSessionService() {
         calloutJob = coroutineScope.launch {
             val results = geoEngine.nearbyMarkers()
             ensureActive()
-            var lastHandle = 0L
-            if(results != null) {
-                lastHandle = speakCallout(results, true)
-            }
+            val lastHandle = speakCallout(results, true)
             awaitHandle(lastHandle)
         }
     }

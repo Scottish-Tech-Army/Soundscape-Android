@@ -25,32 +25,25 @@ import kotlinx.coroutines.withTimeoutOrNull
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
-import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.preferences.AndroidPreferencesProvider
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SEARCH_LANGUAGE_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SEARCH_LANGUAGE_KEY
-import org.scottishtecharmy.soundscape.audio.AudioType
-import org.scottishtecharmy.soundscape.audio.Earcons
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.buildAheadOfMeCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.buildMyLocationCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.buildNearbyMarkersCallout
+import org.scottishtecharmy.soundscape.geoengine.callouts.buildWhatsAroundMeCallout
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
-import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.MultiGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SoundscapeGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.TileSearch
-import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirection
-import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
-import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
-import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
-import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
-import org.scottishtecharmy.soundscape.geoengine.utils.getTriangleForDirection
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
@@ -62,7 +55,6 @@ import org.scottishtecharmy.soundscape.services.SoundscapeService
 import java.io.File
 import java.util.Locale
 import kotlin.math.abs
-import kotlin.time.TimeSource
 import kotlin.time.measureTime
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
@@ -523,121 +515,14 @@ class GeoEngine {
         }
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     fun myLocation() : TrackedCallout? {
-
         AnalyticsProvider.getInstance().logEvent("myLocation", null)
-
-        // getCurrentDirection() from the direction provider has a default of 0.0
-        // even if we don't have a valid current direction.
-        val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
-        var results : MutableList<PositionedString> = mutableListOf()
-        if (!locationProvider.hasValidLocation()) {
-            val noLocationString =
-                localizedStrings.get(StringKey.GeneralErrorFindLocationError)
-            results.add(PositionedString(
-                text = noLocationString,
-                type = AudioType.STANDARD)
-            )
-        } else {
-            // Check if we have a valid heading
-            val orientation = userGeometry.heading()
-            // Run the code within the treeContext to protect it from changes to the trees whilst it's
-            // running.
-            results = runBlocking {
-                withContext(gridState.treeContext) {
-
-                    val list: MutableList<PositionedString> = mutableListOf()
-
-                    val ld = geocoder.getAddressFromLngLat(userGeometry, localizedStrings, false)
-                    if (ld != null) {
-                        // We've got an address to call out - this should almost always be the case.
-                        if(orientation != null) {
-                            val facingDirection =
-                                getCompassLabelFacingDirection(
-                                    localizedStrings,
-                                    orientation.toInt(),
-                                    userGeometry.inMotion(),
-                                    userGeometry.inVehicle()
-                                )
-                            list.add(
-                                PositionedString(
-                                    text = facingDirection,
-                                    type = AudioType.STANDARD
-                                )
-                            )
-                        }
-                        list.add(
-                            PositionedString(
-                                text = ld.name,
-                                type = AudioType.STANDARD
-                            )
-                        )
-                        list
-                    } else {
-                        val nearestRoad = userGeometry.mapMatchedWay
-                        val roadName =
-                            nearestRoad?.getName(null, gridState, localizedStrings)
-                        if(orientation != null) {
-                            if (roadName != null) {
-                                val facingDirectionAlongRoad =
-                                    getCompassLabelFacingDirectionAlong(
-                                        localizedStrings,
-                                        orientation.toInt(),
-                                        roadName,
-                                        userGeometry.inMotion(),
-                                        userGeometry.inVehicle()
-                                    )
-                                list.add(
-                                    PositionedString(
-                                        text = facingDirectionAlongRoad,
-                                        type = AudioType.STANDARD
-                                    )
-                                )
-                            } else {
-                                val facingDirection =
-                                    getCompassLabelFacingDirection(
-                                        localizedStrings,
-                                        orientation.toInt(),
-                                        userGeometry.inMotion(),
-                                        userGeometry.inVehicle()
-                                    )
-                                list.add(
-                                    PositionedString(
-                                        text = facingDirection,
-                                        type = AudioType.STANDARD
-                                    )
-                                )
-                            }
-                        } else {
-                            if (roadName != null) {
-                                list.add(
-                                    PositionedString(
-                                        text = localizedStrings.get(StringKey.StationaryOnWay, roadName),
-                                        type = AudioType.STANDARD
-                                    )
-                                )
-                            } else {
-                                list.add(
-                                    PositionedString(
-                                        text = localizedStrings.get(StringKey.GeneralErrorFindLocationError),
-                                        type = AudioType.STANDARD
-                                    )
-                                )
-                            }
-                        }
-                        list
-                    }
-                }
-            }
-        }
-        if(results.isEmpty())
-            return null
-
-        return TrackedCallout(
-            userGeometry = userGeometry,
-            filter = false,
-            positionedStrings = results
+        return buildMyLocationCallout(
+            userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
+            hasValidLocation = locationProvider.hasValidLocation(),
+            geocoder = geocoder,
+            localizedStrings = localizedStrings,
+            gridState = gridState,
         )
     }
 
@@ -650,251 +535,33 @@ class GeoEngine {
         }
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     fun whatsAroundMe() : TrackedCallout {
-        // Duplicate original Soundscape behaviour:
-        //   In findCalloutsFor it tries to get a POI in each quadrant. It starts off searching
-        //   within 200m and keeps increasing by 200m until it hits the maximum of 1000m. It only
-        //   plays out a single POI per quadrant.
-        var results : MutableList<PositionedString> = mutableListOf()
-        val timeSource = TimeSource.Monotonic
-        val gridStartTime = timeSource.markNow()
-        val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
-
         AnalyticsProvider.getInstance().logEvent("whatsAroundMe", null)
-
-        if (!locationProvider.hasValidLocation()) {
-            val noLocationString =
-                localizedStrings.get(StringKey.GeneralErrorFindLocationError)
-            results.add(PositionedString(
-                text = noLocationString,
-                type = AudioType.STANDARD)
-            )
-        } else {
-            // Run the code within the treeContext to protect it from changes to the trees whilst it's
-            // running.
-            results = runBlocking {
-                withContext(gridState.treeContext) {
-
-                    // Direction order is: behind(0) left(1) ahead(2) right(3)
-                    val featuresByDirection: Array<Feature?> = arrayOfNulls(4)
-                    val directionsNeeded = setOf(0, 1, 2, 3).toMutableSet()
-
-                    // We want to use places and landmarks only
-                    // We already have a FeatureTree containing the POI that we wish to search on
-                    val featureTree = gridState.getFeatureTree(TreeId.PLACES_AND_LANDMARKS)
-                    for (distance in 200..1000 step 200) {
-
-                        // Get Polygons for this FOV distance
-                        val individualRelativePolygons = getRelativeDirectionsPolygons(
-                            UserGeometry(
-                                userGeometry.location,
-                                userGeometry.heading(),
-                                distance.toDouble()
-                            ), RelativeDirections.INDIVIDUAL
-                        )
-
-                        val direction = directionsNeeded.iterator()
-                        while (direction.hasNext()) {
-
-                            val dir = direction.next()
-                            val triangle = getTriangleForDirection(individualRelativePolygons, dir)
-                            // Get the 4 nearest features in this direction. This allows us to de-duplicate
-                            // across the other directions.
-                            val featureCollection = featureTree.getNearestCollectionWithinTriangle(triangle, 4, userGeometry.ruler)
-                            if (featureCollection.features.isNotEmpty()) {
-                                // We found features in this direction, find the nearest one which
-                                // we are not already calling out in another direction.
-                                for(feature in featureCollection) {
-                                    var duplicate = false
-                                    val featureName = getTextForFeature(localizedStrings, feature as MvtFeature).text
-                                    for (otherFeature in featuresByDirection) {
-                                        if (otherFeature == null) continue
-                                        val otherName = getTextForFeature(localizedStrings, otherFeature as MvtFeature).text
-                                        if (featureName == otherName) duplicate = true
-                                    }
-                                    if (!duplicate) {
-                                        // We've found a new feature, remember it and remove it from
-                                        // the set of directions to search
-                                        featuresByDirection[dir] = feature
-                                        direction.remove()
-                                        break
-                                    }
-                                }
-                            }
-                        }
-                        // We've found all the directions, so no need to look any further afield
-                        if (directionsNeeded.isEmpty()) break
-                    }
-
-                    // We've tried to get a POI in all directions, now return the ones we have into
-                    // callouts
-                    val list: MutableList<PositionedString> = mutableListOf()
-                    for (feature in featuresByDirection) {
-
-                        if(feature == null) continue
-                        val poiLocation = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
-                        val name = getTextForFeature(localizedStrings, feature as MvtFeature)
-                        val text = "${name.text}. ${formatDistanceAndDirection(poiLocation.distance, poiLocation.heading, localizedStrings)}"
-                        list.add(
-                            PositionedString(
-                                text,
-                                poiLocation.point,
-                                Earcons.SENSE_POI,
-                                AudioType.LOCALIZED,
-                            )
-                        )
-                    }
-                    list
-                }
-            }
-        }
-        val gridFinishTime = timeSource.markNow()
-        Log.e(GridState.TAG, "Time to calculate AroundMe: ${gridFinishTime - gridStartTime}")
-
-        return TrackedCallout(
-            userGeometry = userGeometry,
-            filter = false,
-            positionedStrings = results
+        return buildWhatsAroundMeCallout(
+            userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
+            hasValidLocation = locationProvider.hasValidLocation(),
+            localizedStrings = localizedStrings,
+            gridState = gridState,
         )
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     fun aheadOfMe() : TrackedCallout? {
-        var results : MutableList<PositionedString> = mutableListOf()
-        val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.HeadAuto)
-
         AnalyticsProvider.getInstance().logEvent("aheadOfMe", null)
-
-        if (!locationProvider.hasValidLocation()) {
-            val noLocationString =
-                localizedStrings.get(StringKey.GeneralErrorFindLocationError)
-            results.add(PositionedString(
-                text = noLocationString,
-                type = AudioType.STANDARD)
-            )
-        } else {
-            results = runBlocking {
-                withContext(gridState.treeContext) {
-
-                    // Return the nearest 5 POI within 1000m in the direction that we are heading
-                    userGeometry.fovDistance = 1000.0
-                    val triangle = getFovTriangle(userGeometry)
-                    val featureTree = gridState.getFeatureTree(TreeId.PLACES_AND_LANDMARKS)
-
-                    val featuresAhead = featureTree.getNearestCollectionWithinTriangle(triangle, 5, userGeometry.ruler)
-                    val list: MutableList<PositionedString> = mutableListOf()
-                    for (feature in featuresAhead) {
-
-                        val poiLocation = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
-                        val name = getTextForFeature(localizedStrings, feature as MvtFeature)
-                        val text = "${name.text}. ${formatDistanceAndDirection(poiLocation.distance, poiLocation.heading, localizedStrings)}"
-                        list.add(
-                            PositionedString(
-                                text,
-                                poiLocation.point,
-                                Earcons.SENSE_POI,
-                                AudioType.LOCALIZED,
-                            )
-                        )
-                    }
-                    if(list.isEmpty()) {
-                        list.add(
-                            PositionedString(
-                                text = localizedStrings.get(StringKey.CalloutsNothingToCallOutNow),
-                                type = AudioType.STANDARD
-                            )
-                        )
-                    }
-                    list
-                }
-            }
-        }
-        if(results.isEmpty())
-            return null
-
-        return TrackedCallout(
-            userGeometry = userGeometry,
-            filter = false,
-            positionedStrings = results
+        return buildAheadOfMeCallout(
+            userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.HeadAuto),
+            hasValidLocation = locationProvider.hasValidLocation(),
+            localizedStrings = localizedStrings,
+            gridState = gridState,
         )
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    fun nearbyMarkers() : TrackedCallout? {
-
+    fun nearbyMarkers() : TrackedCallout {
         AnalyticsProvider.getInstance().logEvent("nearbyMarkers", null)
-
-        // Search database for nearby markers and call them out
-        var results : MutableList<PositionedString> = mutableListOf()
-        val timeSource = TimeSource.Monotonic
-        val gridStartTime = timeSource.markNow()
-        val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto)
-
-        if (!locationProvider.hasValidLocation()) {
-            val noLocationString =
-                localizedStrings.get(StringKey.GeneralErrorFindLocationError)
-            results.add(PositionedString(
-                text = noLocationString,
-                type = AudioType.STANDARD)
-            )
-        } else {
-            // Run the code within the treeContext to protect it from changes to the trees whilst it's
-            // running.
-            results = runBlocking {
-                withContext(gridState.treeContext) {
-
-                    // Simply get 4 nearest markers
-                    val nearestMarkers = gridState.markerTree?.getNearestCollection(
-                        userGeometry.location,
-                        2000.0,
-                        4,
-                        userGeometry.ruler
-                    )
-
-                    val list: MutableList<PositionedString> = mutableListOf()
-                    if(nearestMarkers != null) {
-                        for (feature in nearestMarkers.features) {
-                            val featureText = getTextForFeature(localizedStrings, feature as MvtFeature)
-                            val markerLocation = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
-                            val text = "${featureText.text}. ${
-                                formatDistanceAndDirection(
-                                    markerLocation.distance,
-                                    markerLocation.heading,
-                                    localizedStrings
-                                )
-                            }"
-                            list.add(
-                                PositionedString(
-                                    text,
-                                    markerLocation.point,
-                                    Earcons.SENSE_POI,
-                                    AudioType.LOCALIZED,
-                                )
-                            )
-                        }
-                    }
-                    list
-                }
-            }
-        }
-        val gridFinishTime = timeSource.markNow()
-        Log.e(GridState.TAG, "Time to calculate NearbyMarkers: ${gridFinishTime - gridStartTime}")
-
-        if(results.isEmpty()) {
-            results.add(
-                PositionedString(
-                    text = localizedStrings.get(StringKey.CalloutsNoNearbyMarkers),
-                    type = AudioType.STANDARD
-                )
-            )
-        }
-
-
-        return TrackedCallout(
-            userGeometry = userGeometry,
-            filter = false,
-            positionedStrings = results
+        return buildNearbyMarkersCallout(
+            userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
+            hasValidLocation = locationProvider.hasValidLocation(),
+            localizedStrings = localizedStrings,
+            gridState = gridState,
         )
     }
 
