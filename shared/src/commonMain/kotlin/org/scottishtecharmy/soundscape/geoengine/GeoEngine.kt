@@ -1,20 +1,9 @@
 package org.scottishtecharmy.soundscape.geoengine
 
-import android.app.Application
-import android.content.Context
-import android.content.SharedPreferences
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
-import android.net.Uri
-import android.os.Environment
-import android.util.Log
-import androidx.preference.PreferenceManager
-import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
-import org.scottishtecharmy.soundscape.network.UserAgentInterceptor
-import org.scottishtecharmy.soundscape.network.createAndroidVectorTileClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.combine
@@ -22,14 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
-import org.scottishtecharmy.soundscape.MainActivity
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
-import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
-import org.scottishtecharmy.soundscape.preferences.AndroidPreferencesProvider
-import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
-import org.scottishtecharmy.soundscape.MainActivity.Companion.SEARCH_LANGUAGE_DEFAULT
-import org.scottishtecharmy.soundscape.MainActivity.Companion.SEARCH_LANGUAGE_KEY
-import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
+import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildAheadOfMeCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildMyLocationCallout
@@ -39,7 +21,6 @@ import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
-import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.MultiGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SoundscapeGeocoder
@@ -51,34 +32,38 @@ import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.phoneHeldFlat
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import org.scottishtecharmy.soundscape.services.SoundscapeService
-import java.io.File
-import java.util.Locale
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.network.PhotonSearch
+import org.scottishtecharmy.soundscape.network.VectorTileClient
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.PhotonGeocoder
+import org.scottishtecharmy.soundscape.platform.currentTimeMillis
+import org.scottishtecharmy.soundscape.platform.getDefaultLanguage
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesListener
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
+import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.platform.getDefaultCountryCode
+import org.scottishtecharmy.soundscape.utils.process
 import kotlin.math.abs
 import kotlin.time.measureTime
-import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
-import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
-import org.scottishtecharmy.soundscape.utils.NetworkUtils
-import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
-import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.PhotonGeocoder
-import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
-import org.scottishtecharmy.soundscape.utils.process
 
 
-fun getPhotonLanguage(sharedPreferences: SharedPreferences?) : String? {
+fun getPhotonLanguage(preferencesProvider: PreferencesProvider?) : String? {
 
-    var lang : String? = Locale.getDefault().language
-    if(sharedPreferences != null) {
-        val languageMode = sharedPreferences.getString(SEARCH_LANGUAGE_KEY, SEARCH_LANGUAGE_DEFAULT)
+    var lang: String? = getDefaultLanguage()
+    if (preferencesProvider != null) {
+        val languageMode = preferencesProvider.getString(
+            PreferenceKeys.SEARCH_LANGUAGE,
+            PreferenceDefaults.SEARCH_LANGUAGE
+        )
         when (languageMode) {
             "auto" -> {}
             else -> lang = languageMode
         }
     }
 
-    // The photon server is built with only English, French, German and local strings.
-    // Passing any other language returns an error, so don't pass a language in those cases.
-    // The results then will be in the local language.
     when (lang) {
         "en", "fr", "de" -> {}
         else -> lang = null
@@ -90,7 +75,6 @@ fun getPhotonLanguage(sharedPreferences: SharedPreferences?) : String? {
 class GeoEngine {
     private val coroutineScope = CoroutineScope(Job())
 
-    // Location update job
     private var locationMonitoringJob: Job? = null
     private var audioEngineUpdateJob: Job? = null
     private var markerMonitoringJob: Job? = null
@@ -102,24 +86,18 @@ class GeoEngine {
     private lateinit var directionProvider : DirectionProvider
     private var mapMatchFilter = MapMatchFilter()
 
-    // Resource string locale configuration
-    private lateinit var localizedContext: Context
-    private lateinit var localizedStrings: AndroidLocalizedStrings
+    private lateinit var localizedStrings: LocalizedStrings
+    private lateinit var preferencesProvider: PreferencesProvider
 
     lateinit var geocoder: SoundscapeGeocoder
     lateinit var tileSearch: TileSearch
-    lateinit var networkUtils: NetworkUtils
 
-    private lateinit var sharedPreferences: SharedPreferences
-    private lateinit var sharedPreferencesListener : SharedPreferences.OnSharedPreferenceChangeListener
-
-    // Flag to indicate that the app is running on screen
     var appInForeground = false
 
     private lateinit var autoCallout: AutoCallout
     private var autoCalloutDisabled = false
     fun toggleAutoCallouts() {
-        autoCalloutDisabled.xor(true)
+        autoCalloutDisabled = autoCalloutDisabled.xor(true)
     }
     private val streetPreview = StreetPreview()
 
@@ -133,11 +111,10 @@ class GeoEngine {
 
     var ruler = CheapRuler(0.0)
 
-    /**
-     * Create a UserGeometry data object using the passed in location and orientation values
-     * @param location The Android location to use
-     * @param orientation The Android DeviceOrientation to use
-     */
+    private lateinit var analytics: Analytics
+    private lateinit var listener: GeoEngineListener
+    private var hasNetwork: () -> Boolean = { false }
+
     private fun createUserGeometry(
         location: SoundscapeLocation?,
         orientation: DeviceDirection?,
@@ -164,11 +141,6 @@ class GeoEngine {
             else
                 null
 
-        // TODO: The travelHeading and speed calculations are important when trying
-        //  to work out if the phone is moving or not. With these changes, there are
-        //  still times when the phone is deemed to be moving, purely due to GPS
-        //  jumps causing a "speed" and a "heading". It may be possible to Kalman
-        // filter these, a better method is required.
         var travelHeading: Double? = null
         if(location?.hasBearing == true) {
             if(location.hasBearingAccuracy) {
@@ -205,7 +177,7 @@ class GeoEngine {
             mapMatchedLocation = mapMatchFilter?.matchedLocation,
             currentBeacon = beaconLocation,
             inStreetPreview = streetPreview.running,
-            timestampMilliseconds = System.currentTimeMillis()
+            timestampMilliseconds = currentTimeMillis()
         )
     }
 
@@ -220,68 +192,59 @@ class GeoEngine {
         )
     }
 
+    private var recordTravel = false
+    var locationRecorder: LocationRecorder? = null
+
     fun updateRecordingState(recordState: Boolean) {
-        gpxRecorder = if(recordState) {
-            GpxRecorder()
-        } else {
-            null
-        }
+        recordTravel = recordState
     }
 
-    fun getRecordingShareUri(context: Context) : Uri? {
-        val ret = gpxRecorder?.getShareUri(context)
-        return ret
-    }
+    private lateinit var preferencesListener: PreferencesListener
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun start(
-        application: Application,
         newLocationProvider: LocationProvider,
         newDirectionProvider: DirectionProvider,
-        soundscapeService: SoundscapeService,
-        localizedContext: Context,
-        streetPreviewEnabled: Boolean
+        listener: GeoEngineListener,
+        localizedStrings: LocalizedStrings,
+        preferencesProvider: PreferencesProvider,
+        analytics: Analytics,
+        tileClient: VectorTileClient,
+        routeDao: RouteDao,
+        offlineExtractPath: String,
+        hasNetwork: () -> Boolean,
+        photonSearch: PhotonSearch,
+        platformGeocoder: SoundscapeGeocoder?,
+        streetPreviewEnabled: Boolean,
     ) {
-        sharedPreferences =
-            PreferenceManager.getDefaultSharedPreferences(application.applicationContext)
-        recordTravel = sharedPreferences.getBoolean(MainActivity.RECORD_TRAVEL_KEY, false)
-        updateRecordingState(recordTravel)
-        updateMeasurementUnits(sharedPreferences)
+        this.listener = listener
+        this.localizedStrings = localizedStrings
+        this.preferencesProvider = preferencesProvider
+        this.analytics = analytics
+        this.hasNetwork = hasNetwork
 
-        sharedPreferencesListener =
-            SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
-                if (sharedPreferences == preferences) {
-                    if(key == MainActivity.RECORD_TRAVEL_KEY) {
-                        Log.e(TAG, "RECORD_TRAVEL_KEY changed")
-                        recordTravel = sharedPreferences.getBoolean(MainActivity.RECORD_TRAVEL_KEY, MainActivity.RECORD_TRAVEL_DEFAULT)
-                        updateRecordingState(recordTravel)
-                    }
-                    else if(key == MainActivity.MEASUREMENT_UNITS_KEY) {
-                        updateMeasurementUnits(sharedPreferences)
-                    }
-                }
+        recordTravel = preferencesProvider.getBoolean(
+            PreferenceKeys.RECORD_TRAVEL,
+            PreferenceDefaults.RECORD_TRAVEL
+        )
+        updateMeasurementUnits(preferencesProvider)
+
+        preferencesListener = PreferencesListener { key ->
+            if (key == PreferenceKeys.RECORD_TRAVEL) {
+                println("GeoEngine: RECORD_TRAVEL changed")
+                recordTravel = preferencesProvider.getBoolean(
+                    PreferenceKeys.RECORD_TRAVEL,
+                    PreferenceDefaults.RECORD_TRAVEL
+                )
+            } else if (key == PreferenceKeys.MEASUREMENT_UNITS) {
+                updateMeasurementUnits(preferencesProvider)
             }
-        sharedPreferences.registerOnSharedPreferenceChangeListener(sharedPreferencesListener)
-        val recordingsStoragePath = application.applicationContext.filesDir.toString() + "/recordings/"
-        val recordingsStorageDir = File(recordingsStoragePath)
-        if (!recordingsStorageDir.exists()) {
-            recordingsStorageDir.mkdirs()
         }
-
-        val extractsPath = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)!!
-        val offlineExtractPath = extractsPath + "/" + Environment.DIRECTORY_DOWNLOADS
-
-        networkUtils = NetworkUtils(application)
+        preferencesProvider.addListener(preferencesListener)
 
         val analyticsAdapter = GridStateAnalytics { name ->
-            AnalyticsProvider.getInstance().logCostlyEvent(name, null)
+            analytics.logCostlyEvent(name, null)
         }
-        val tileClient = createAndroidVectorTileClient(
-            baseUrl = BuildConfig.TILE_PROVIDER_URL,
-            cacheDir = application.cacheDir,
-            userAgent = UserAgentInterceptor.USER_AGENT,
-            hasNetwork = { networkUtils.hasNetwork() },
-        )
         gridState.tileClient = tileClient
         settlementGrid.tileClient = tileClient
         gridState.analytics = analyticsAdapter
@@ -290,53 +253,43 @@ class GeoEngine {
         settlementGrid.start(offlineExtractPath)
         tileSearch = TileSearch(offlineExtractPath, gridState, settlementGrid)
 
-        this.localizedContext = localizedContext
-        this.localizedStrings = AndroidLocalizedStrings(localizedContext)
-        autoCallout = AutoCallout(
-            localizedStrings,
-            AndroidPreferencesProvider(sharedPreferences)
-        )
+        autoCallout = AutoCallout(localizedStrings, preferencesProvider)
 
-        // The MultiGeocoder dynamically switches between Android, Photon and Local Geocoders
-        // depending on the user settings and network availability
         val photonGeocoder = PhotonGeocoder(
-                photonSearch = PhotonSearchProvider,
-                languageProvider = { getPhotonLanguage(sharedPreferences) },
-                analyticsLogger = { name -> AnalyticsProvider.getInstance().logEvent(name, null) },
-                processor = { it.process() }
-            )
-        val analyticsLoggerFn = { name: String -> AnalyticsProvider.getInstance().logEvent(name, null) }
+            photonSearch = photonSearch,
+            languageProvider = { getPhotonLanguage(preferencesProvider) },
+            analyticsLogger = { name -> analytics.logEvent(name, null) },
+            processor = { it.process() }
+        )
+        val analyticsLoggerFn = { name: String -> analytics.logEvent(name, null) }
         val processorFn: (LocationDescription) -> Unit = { it.process() }
-        val platformGeocoder = if (AndroidGeocoder.enabled) AndroidGeocoder(application) else null
         geocoder = MultiGeocoder(
-                gridState = gridState,
-                settlementState = settlementGrid,
-                tileSearch = tileSearch,
-                photonGeocoder = photonGeocoder,
-                platformGeocoder = platformGeocoder,
-                analyticsLogger = analyticsLoggerFn,
-                processor = processorFn,
-                hasNetwork = { networkUtils.hasNetwork() },
-                geocoderMode = { sharedPreferences?.getString(
-                    MainActivity.GEOCODER_MODE_KEY, MainActivity.GEOCODER_MODE_DEFAULT
-                ) }
-            )
+            gridState = gridState,
+            settlementState = settlementGrid,
+            tileSearch = tileSearch,
+            photonGeocoder = photonGeocoder,
+            platformGeocoder = platformGeocoder,
+            analyticsLogger = analyticsLoggerFn,
+            processor = processorFn,
+            hasNetwork = hasNetwork,
+            geocoderMode = {
+                preferencesProvider.getString(
+                    PreferenceKeys.GEOCODER_MODE,
+                    PreferenceDefaults.GEOCODER_MODE
+                )
+            }
+        )
         locationProvider = newLocationProvider
         directionProvider = newDirectionProvider
 
-        startMonitoringLocation(soundscapeService)
+        startMonitoringLocation()
 
         if(streetPreviewEnabled)
             streetPreview.start()
 
-        // Monitor markers in the database so we can create a tree to search
         markerMonitoringJob?.cancel()
         markerMonitoringJob = coroutineScope.launch {
-
-            val realm = MarkersAndRoutesDatabaseProvider.getInstance(application.applicationContext)
-            val routeDao = realm.routeDao()
             routeDao.getAllMarkersFlow().collect { markers ->
-
                 val featureCollection = FeatureCollection()
                 for (marker in markers) {
                     val geoFeature = MvtFeature()
@@ -352,7 +305,7 @@ class GeoEngine {
                 runBlocking {
                     withContext(gridState.treeContext) {
                         gridState.markerTree = FeatureTree(featureCollection)
-                        Log.e(TAG, "Marker tree size ${featureCollection.features.size}")
+                        println("GeoEngine: Marker tree size ${featureCollection.features.size}")
                     }
                 }
             }
@@ -370,46 +323,36 @@ class GeoEngine {
         gridState.stop()
         locationProvider.destroy()
         directionProvider.destroy()
-        sharedPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferencesListener)
+        preferencesProvider.removeListener(preferencesListener)
    }
-    private var recordTravel = false
-    private var gpxRecorder: GpxRecorder? = null
 
-    /**
-     * The gridState is called each time the location changes. It checks if the location
-     * has moved away from the center of the current tile grid and if it has calculates a new grid.
-     */
     fun createSuperCategoriesSet() : Set<String> {
         val enabledCategories = mutableSetOf<String>()
-        if (sharedPreferences.getBoolean(PLACES_AND_LANDMARKS_KEY, true))
+        if (preferencesProvider.getBoolean(PLACES_AND_LANDMARKS_KEY, true))
             enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
 
-        if (sharedPreferences.getBoolean(MOBILITY_KEY, true))
+        if (preferencesProvider.getBoolean(MOBILITY_KEY, true))
             enabledCategories.add(MOBILITY_KEY)
 
         return enabledCategories
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
-    private fun startMonitoringLocation(soundscapeService: SoundscapeService) {
-        Log.e(TAG, "startTileGridService")
+    private fun startMonitoringLocation() {
+        println("GeoEngine: startTileGridService")
         locationMonitoringJob?.cancel()
         locationMonitoringJob = coroutineScope.launch {
             locationProvider.filteredLocationFlow.collect { newLocation ->
 
                 newLocation?.let { location ->
 
-                    // Add location to crash dumps
-                    val analytics = AnalyticsProvider.getInstance()
                     analytics.crashSetCustomKey("latitude", newLocation.latitude.toString())
                     analytics.crashSetCustomKey("longitude", newLocation.longitude.toString())
 
-                    // Update the main grid state
                     val updated = gridState.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
                         createSuperCategoriesSet()
                     )
-                    // and update the settlement grid state
                     settlementGrid.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
                         createSuperCategoriesSet()
@@ -417,8 +360,6 @@ class GeoEngine {
 
                     runBlocking {
                         withContext(gridState.treeContext) {
-                            // Update the nearest road filter with our new location. For the map
-                            // matching we use the unfiltered location
                             locationProvider.locationFlow.value?.let { unfilteredLocation ->
                                 val mapMatchTime = measureTime {
                                     mapMatchFilter.filter(
@@ -435,37 +376,28 @@ class GeoEngine {
                     }
 
                     if(updated) {
-                        AnalyticsProvider.getInstance().logCostlyEvent("gridUpdated", null)
-
-                        // The grid updated, if we're in StreetPreview and were initializing, the
-                        // service needs to update the state to ON.
-                        soundscapeService.tileGridUpdated()
+                        analytics.logCostlyEvent("gridUpdated", null)
+                        listener.tileGridUpdated()
                     }
 
-                    // So long as the AudioEngine is not already busy, run any auto callouts that we
-                    // need. Auto Callouts use the direction of travel if there is one, otherwise
-                    // falling back to use the phone direction.
-                    if((!soundscapeService.isAudioEngineBusy() || streetPreview.running) && !autoCalloutDisabled && !soundscapeService.menuActive) {
+                    if((!listener.isAudioEngineBusy() || streetPreview.running) && !autoCalloutDisabled && !listener.menuActive) {
                         val callout =
                             autoCallout.updateLocation(
                                 getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
                                 gridState,
                                 settlementGrid)
                         if (callout != null) {
-                            // Tell the service that we've got some callouts to tell the user about
-                            soundscapeService.speakCallout(callout, false)
+                            listener.speakCallout(callout, false)
                         }
 
-                        // Save the location data to a file if enabled
-                        gpxRecorder?.storeLocation(location)
+                        if (recordTravel) {
+                            locationRecorder?.storeLocation(location)
+                        }
                     }
                 }
             }
         }
 
-        // This job collects the incoming orientation and location flows, combines them into a
-        // UserGeometry and uses it to update the audio engine. If no flow change arrives within
-        // 100ms, then it updates the audio engine with the last values received.
         audioEngineUpdateJob?.cancel()
         audioEngineUpdateJob = coroutineScope.launch {
             var lastGeometry : UserGeometry? = null
@@ -485,28 +417,23 @@ class GeoEngine {
 
                     }.collect { geometry ->
                         lastGeometry = geometry
-                        soundscapeService.updateAudioEngineGeometry(geometry)
+                        listener.updateAudioEngineGeometry(geometry)
                         checkStreetPreviewBestChoice(
-                            soundscapeService,
-                            soundscapeService.streetPreviewFlow.value.choices,
+                            listener.getStreetPreviewChoices(),
                             geometry.phoneHeading
                         )
                     }
                 }
                 if(geometry == null) {
-                    // Timeout
                     lastGeometry?.let { last ->
-                        // We may need to overwrite the phone heading if the phone has been locked
-                        // or unlocked but with no heading update.
                         if (appInForeground or phoneHeldFlat)
                             last.phoneHeading = lastPhoneHeading
                         else
                             last.phoneHeading = null
 
-                        soundscapeService.updateAudioEngineGeometry(last)
+                        listener.updateAudioEngineGeometry(last)
                         checkStreetPreviewBestChoice(
-                            soundscapeService,
-                            soundscapeService.streetPreviewFlow.value.choices,
+                            listener.getStreetPreviewChoices(),
                             last.phoneHeading
                         )
                     }
@@ -516,7 +443,7 @@ class GeoEngine {
     }
 
     fun myLocation() : TrackedCallout? {
-        AnalyticsProvider.getInstance().logEvent("myLocation", null)
+        analytics.logEvent("myLocation", null)
         return buildMyLocationCallout(
             userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
             hasValidLocation = locationProvider.hasValidLocation(),
@@ -527,7 +454,7 @@ class GeoEngine {
     }
 
     suspend fun searchResult(searchString: String) : List<LocationDescription>? {
-        return withContext(Dispatchers.IO) {
+        return withContext(org.scottishtecharmy.soundscape.platform.ioDispatcher) {
             return@withContext geocoder.getAddressFromLocationName(
                 searchString,
                 getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto).location,
@@ -536,7 +463,7 @@ class GeoEngine {
     }
 
     fun whatsAroundMe() : TrackedCallout {
-        AnalyticsProvider.getInstance().logEvent("whatsAroundMe", null)
+        analytics.logEvent("whatsAroundMe", null)
         return buildWhatsAroundMeCallout(
             userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
             hasValidLocation = locationProvider.hasValidLocation(),
@@ -546,7 +473,7 @@ class GeoEngine {
     }
 
     fun aheadOfMe() : TrackedCallout? {
-        AnalyticsProvider.getInstance().logEvent("aheadOfMe", null)
+        analytics.logEvent("aheadOfMe", null)
         return buildAheadOfMeCallout(
             userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.HeadAuto),
             hasValidLocation = locationProvider.hasValidLocation(),
@@ -556,7 +483,7 @@ class GeoEngine {
     }
 
     fun nearbyMarkers() : TrackedCallout {
-        AnalyticsProvider.getInstance().logEvent("nearbyMarkers", null)
+        analytics.logEvent("nearbyMarkers", null)
         return buildNearbyMarkersCallout(
             userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.CourseAuto),
             hasValidLocation = locationProvider.hasValidLocation(),
@@ -569,36 +496,34 @@ class GeoEngine {
     private var bestChoiceAnnouncementPending = false
 
     private fun checkStreetPreviewBestChoice(
-        soundscapeService: SoundscapeService,
         choices: List<StreetPreviewChoice>,
         phoneHeading: Double?
     ) {
         if (streetPreview.running && choices.isNotEmpty() && phoneHeading != null) {
-            val now = System.currentTimeMillis()
+            val now = currentTimeMillis()
             if (now - lastGoTime > 2000) {
                 val newBest = streetPreview.updateBestChoice(choices, phoneHeading)
                 if(newBest != null) {
-                    soundscapeService.updateStreetPreviewBestChoice(newBest)
+                    listener.updateStreetPreviewBestChoice(newBest)
                     bestChoiceAnnouncementPending = true
                 }
             }
 
-            if (bestChoiceAnnouncementPending && !soundscapeService.isAudioEngineBusy()) {
-                val currentBest = soundscapeService.streetPreviewFlow.value.bestChoice
+            if (bestChoiceAnnouncementPending && !listener.isAudioEngineBusy()) {
+                val currentBest = listener.getStreetPreviewBestChoice()
                 if (currentBest != null) {
-                    soundscapeService.announceStreetPreviewBestChoice(currentBest)
+                    listener.announceStreetPreviewBestChoice(currentBest)
                     bestChoiceAnnouncementPending = false
                 }
             }
         }
     }
 
-    fun recomputeStreetPreviewBestChoice(soundscapeService: SoundscapeService) {
+    fun recomputeStreetPreviewBestChoice() {
         streetPreview.resetBestChoice()
         bestChoiceAnnouncementPending = false
-        lastGoTime = System.currentTimeMillis()
-        val state = soundscapeService.streetPreviewFlow.value
-        checkStreetPreviewBestChoice(soundscapeService, state.choices, lastPhoneHeading)
+        lastGoTime = currentTimeMillis()
+        checkStreetPreviewBestChoice(listener.getStreetPreviewChoices(), lastPhoneHeading)
     }
 
     fun streetPreviewGo() : List<StreetPreviewChoice> {
@@ -608,29 +533,18 @@ class GeoEngine {
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun streetPreviewGoWander() {
 
-        // Run the code within the treeContext to protect it from changes to the trees whilst it's
-        // running.
         CoroutineScope(Job()).launch(gridState.treeContext) {
-            // Get our current location and figure out what GO means
             val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Phone)
             val choices = streetPreview.getDirectionChoices(gridState, userGeometry.location)
             var heading = 0.0
             if(choices.isNotEmpty()) {
-                // We want to choose a direction roughly in the forward direction if possible. We
-                // need to know which road we're coming in on.
                 val lastHeading = streetPreview.getLastHeading()
-                // Default to a random road
                 heading = choices.random().heading
                 if(!lastHeading.isNaN()) {
-                    // If we came in on a road, then try and keep going in that direction
                     val trimmedChoices = mutableListOf<StreetPreviewChoice>()
                     for (choice in choices) {
                         if ((choice.heading != lastHeading) && (!choice.heading.isNaN())) {
-                            // Don't add the road we just came in on, or any with a NaN heading.
                             trimmedChoices.add(choice)
-                            // We want to skew results in favour of continuing onwards so add multiple
-                            // times if the choice is in a direction that's fairly opposite to the road
-                            // we're currently on.
                             if(abs(choice.heading - lastHeading) > 140.0) {
                                 trimmedChoices.add(choice)
                                 trimmedChoices.add(choice)
@@ -643,7 +557,6 @@ class GeoEngine {
                     }
                 }
             }
-            // Update the heading with the random one that was chosen
             userGeometry.phoneHeading = heading
             streetPreview.go(userGeometry, gridState, locationProvider)
         }
@@ -651,11 +564,8 @@ class GeoEngine {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun streetPreviewGoInternal() : List<StreetPreviewChoice> {
-        // Run the code within the treeContext to protect it from changes to the trees whilst it's
-        // running.  We want to return the new set of choices so that these can be sent up to the UI.
         val results = runBlocking {
             withContext(gridState.treeContext) {
-                // Get our current location and figure out what GO means
                 val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Phone)
                 val newLocation = streetPreview.go(userGeometry, gridState, locationProvider)
                 if(newLocation != null) {
@@ -668,13 +578,6 @@ class GeoEngine {
         return results
     }
 
-    /**
-     * getLocationDescription returns a LocationDescription object for the current location. This
-     * is basically a reverse geocode. It initially tries to generate it from local tile data, but
-     * falls back to geocoding via the Photon server if network is available.
-     * @param location to reverse geocode
-     * @return a LocationDescription object containing an address of the location
-     */
     @OptIn(ExperimentalCoroutinesApi::class)
     fun getLocationDescription(location: LngLatAlt) : LocationDescription {
 
@@ -684,17 +587,11 @@ class GeoEngine {
             }
         }
         if(geocode != null) {
-            // Don't use the geocoded location if it's too far away
             if(ruler.distance(geocode.location, location) < 50.0) {
-                // And always use the location that was passed in rather than that of the geocoded point
                 geocode.location = location
                 return geocode
             }
         }
-        // TODO: If location is within our grid, then we should be doing a local search for nearby
-        //  POI e.g. "Near style", or "Near post box" just to improve the description. This should
-        //  perhaps be rolled up into the Geocoder along with the distance check above so that the
-        //  geocoder always returns a good description.
         return LocationDescription(
             name = "New location",
             location = location
@@ -706,15 +603,15 @@ class GeoEngine {
     }
 }
 
-fun updateMeasurementUnits(sharedPreferences: SharedPreferences) {
-    val unitsString = sharedPreferences.getString(
-        MainActivity.MEASUREMENT_UNITS_KEY,
-        MainActivity.MEASUREMENT_UNITS_DEFAULT
+fun updateMeasurementUnits(preferencesProvider: PreferencesProvider) {
+    val unitsString = preferencesProvider.getString(
+        PreferenceKeys.MEASUREMENT_UNITS,
+        PreferenceDefaults.MEASUREMENT_UNITS
     )
     if (unitsString == "Auto") {
-        val country = Locale.getDefault().country
-        val imperialCountries = listOf("US", "LR", "MM") // USA, Liberia, Myanmar
-        metric = !imperialCountries.contains(country.uppercase(Locale.ROOT))
+        val country = getDefaultCountryCode()
+        val imperialCountries = listOf("US", "LR", "MM")
+        metric = !imperialCountries.contains(country.uppercase())
     } else
         metric = (unitsString == "Metric")
 }

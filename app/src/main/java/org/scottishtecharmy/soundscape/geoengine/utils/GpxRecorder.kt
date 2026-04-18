@@ -6,6 +6,7 @@ import androidx.core.content.FileProvider.getUriForFile
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
+import org.scottishtecharmy.soundscape.geoengine.LocationRecorder
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import java.io.File
 import java.io.FileOutputStream
@@ -15,7 +16,7 @@ import java.util.Locale
 import java.util.TimeZone
 
 
-class GpxRecorder() {
+class GpxRecorder() : LocationRecorder {
 
     val bufferMutex = Mutex()
     val maxBufferSize = 3600        // 1 location per second for an hour
@@ -78,7 +79,7 @@ class GpxRecorder() {
         )
     }
 
-    suspend fun storeLocation(location: SoundscapeLocation) {
+    override suspend fun storeLocation(location: SoundscapeLocation) {
         bufferMutex.withLock {
             buffer.add(location)
             if (buffer.size > maxBufferSize)

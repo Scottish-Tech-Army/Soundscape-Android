@@ -43,6 +43,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MODE_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MODE_KEY
@@ -57,6 +58,7 @@ import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabasePr
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
+import org.scottishtecharmy.soundscape.geoengine.GeoEngineListener
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
@@ -87,8 +89,15 @@ import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeMediaSess
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandManager
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandMediaControls
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
+import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
+import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
+import org.scottishtecharmy.soundscape.network.UserAgentInterceptor
+import org.scottishtecharmy.soundscape.network.createAndroidVectorTileClient
+import org.scottishtecharmy.soundscape.preferences.AndroidPreferencesProvider
 import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
+import org.scottishtecharmy.soundscape.utils.NetworkUtils
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -97,7 +106,7 @@ import kotlin.time.Duration.Companion.seconds
  * data persistence with realmDB. It inherits from MediaSessionService so that we can receive
  * Media Transport button presses to act as a remote control whilst the phone is locked.
  */
-class SoundscapeService : MediaSessionService() {
+class SoundscapeService : MediaSessionService(), GeoEngineListener {
 
     private val coroutineScope = CoroutineScope(Job())
 
@@ -122,7 +131,13 @@ class SoundscapeService : MediaSessionService() {
     var audioMenu : AudioMenu? = null
 
     /** True while the user is actively navigating the audio menu. Suppresses auto callouts. */
-    var menuActive: Boolean = false
+    override var menuActive: Boolean = false
+
+    override fun getStreetPreviewChoices(): List<StreetPreviewChoice> =
+        streetPreviewFlow.value.choices
+
+    override fun getStreetPreviewBestChoice(): StreetPreviewChoice? =
+        streetPreviewFlow.value.bestChoice
 
     // Audio focus
     private lateinit var audioManager: AudioManager
@@ -166,6 +181,49 @@ class SoundscapeService : MediaSessionService() {
     // Geo engine
     private var geoEngine = GeoEngine()
     lateinit var localizedContext: Context
+    private var gpxRecorder: GpxRecorder? = null
+    private lateinit var networkUtils: NetworkUtils
+
+    private fun startGeoEngine(streetPreviewEnabled: Boolean) {
+        val preferencesProvider = AndroidPreferencesProvider(sharedPreferences)
+
+        val extractPath = sharedPreferences.getString(
+            MainActivity.SELECTED_STORAGE_KEY,
+            MainActivity.SELECTED_STORAGE_DEFAULT
+        )!!
+        val offlineExtractPath = extractPath + "/" + android.os.Environment.DIRECTORY_DOWNLOADS
+
+        networkUtils = NetworkUtils(application)
+
+        val tileClient = createAndroidVectorTileClient(
+            baseUrl = BuildConfig.TILE_PROVIDER_URL,
+            cacheDir = application.cacheDir,
+            userAgent = UserAgentInterceptor.USER_AGENT,
+            hasNetwork = { networkUtils.hasNetwork() },
+        )
+
+        val platformGeocoder = if (AndroidGeocoder.enabled) AndroidGeocoder(application) else null
+        val routeDao = MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao()
+
+        gpxRecorder = GpxRecorder()
+        geoEngine.locationRecorder = gpxRecorder
+
+        geoEngine.start(
+            newLocationProvider = locationProvider,
+            newDirectionProvider = directionProvider,
+            listener = this,
+            localizedStrings = AndroidLocalizedStrings(localizedContext),
+            preferencesProvider = preferencesProvider,
+            analytics = AnalyticsProvider.getInstance(),
+            tileClient = tileClient,
+            routeDao = routeDao,
+            offlineExtractPath = offlineExtractPath,
+            hasNetwork = { networkUtils.hasNetwork() },
+            photonSearch = PhotonSearchProvider,
+            platformGeocoder = platformGeocoder,
+            streetPreviewEnabled = streetPreviewEnabled,
+        )
+    }
 
     // Flow to return beacon location
     private val _beaconFlow = MutableStateFlow(BeaconState())
@@ -233,7 +291,7 @@ class SoundscapeService : MediaSessionService() {
         _streetPreviewFlow.value = StreetPreviewState(if(on) StreetPreviewEnabled.INITIALIZING else StreetPreviewEnabled.OFF)
 
         startProviders()
-        geoEngine.start(application, locationProvider, directionProvider, this, localizedContext, on)
+        startGeoEngine(on)
     }
 
     private fun startProviders() {
@@ -248,14 +306,14 @@ class SoundscapeService : MediaSessionService() {
         }
     }
 
-    fun tileGridUpdated() {
+    override fun tileGridUpdated() {
         if(_streetPreviewFlow.value.enabled == StreetPreviewEnabled.INITIALIZING) {
             val choices = geoEngine.streetPreviewGo()
             _streetPreviewFlow.value = StreetPreviewState(
                 StreetPreviewEnabled.ON,
                 choices
             )
-            geoEngine.recomputeStreetPreviewBestChoice(this)
+            geoEngine.recomputeStreetPreviewBestChoice()
         }
         _gridStateFlow.value = geoEngine.gridState
     }
@@ -279,7 +337,7 @@ class SoundscapeService : MediaSessionService() {
                 configuration.setLocale(configLocale)
                 localizedContext = applicationContext.createConfigurationContext(configuration)
                 voiceCommandManager?.updateContext(localizedContext)
-                geoEngine.start(application, locationProvider, directionProvider, this, localizedContext, false)
+                startGeoEngine(false)
                 started = true
             }
         }
@@ -749,7 +807,7 @@ class SoundscapeService : MediaSessionService() {
      * isAudioEngineBusy returns true if there is more than one entry in the
      * audio engine queue. The queue consists of earcons and text-to-speech.
      */
-    fun isAudioEngineBusy() : Boolean {
+    override fun isAudioEngineBusy() : Boolean {
         val depth = audioEngine.getQueueDepth()
         //Log.d(TAG, "Queue depth: $depth")
         return (depth > 0)
@@ -785,7 +843,7 @@ class SoundscapeService : MediaSessionService() {
 
     private var lastGeometry : UserGeometry? = null
     private var ruler = CheapRuler(0.0)
-    fun updateAudioEngineGeometry(
+    override fun updateAudioEngineGeometry(
         userGeometry: UserGeometry
     ) {
         // Send the update to the audio engine. This affects the direction and sound
@@ -801,7 +859,7 @@ class SoundscapeService : MediaSessionService() {
         )
     }
 
-    fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean) : Long {
+    override fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean) : Long {
 
         if(callout == null) return 0L
 
@@ -882,14 +940,14 @@ class SoundscapeService : MediaSessionService() {
     fun streetPreviewGo() {
         val choices = geoEngine.streetPreviewGo()
         _streetPreviewFlow.value = _streetPreviewFlow.value.copy(choices = choices, bestChoice = null)
-        geoEngine.recomputeStreetPreviewBestChoice(this)
+        geoEngine.recomputeStreetPreviewBestChoice()
     }
 
-    fun updateStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {
+    override fun updateStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {
         _streetPreviewFlow.value = _streetPreviewFlow.value.copy(bestChoice = bestChoice)
     }
 
-    fun announceStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {
+    override fun announceStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {
         val compassLabel = AndroidLocalizedStrings(localizedContext).get(getCompassLabel(bestChoice.heading.toInt()))
         val go = localizedContext.getString(R.string.preview_go_title)
         speakText("$go ${bestChoice.name} $compassLabel", AudioType.STANDARD)
@@ -912,7 +970,7 @@ class SoundscapeService : MediaSessionService() {
     }
 
     fun getRecordingShareUri(context: Context): Uri? {
-        return geoEngine.getRecordingShareUri(context)
+        return gpxRecorder?.getShareUri(context)
     }
 
     fun requestAudioFocus(): Boolean {
