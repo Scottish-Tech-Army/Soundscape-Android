@@ -3,8 +3,6 @@ package org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscr
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -18,12 +16,9 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAnd
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.sortMarkers
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.toggleSortByName
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.toggleSortOrder
-import javax.inject.Inject
-
-@HiltViewModel
-class RoutesViewModel @Inject constructor(
+class RoutesViewModel(
     private val routeDao: RouteDao,
-    @param:ApplicationContext private val context: Context,
+    private val context: Context,
     private val soundscapeServiceConnection: SoundscapeServiceConnection
 ) : ViewModel() {
 

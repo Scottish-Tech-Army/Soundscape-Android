@@ -3,16 +3,12 @@ package org.scottishtecharmy.soundscape.screens.onboarding.language
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.utils.supportedLanguages
 import java.util.Locale
-import javax.inject.Inject
-
-@HiltViewModel
-class LanguageViewModel @Inject constructor(): ViewModel() {
+class LanguageViewModel: ViewModel() {
 
     private val _state : MutableStateFlow<LanguageUiState> = MutableStateFlow(LanguageUiState())
     val state: StateFlow<LanguageUiState> = _state.asStateFlow()

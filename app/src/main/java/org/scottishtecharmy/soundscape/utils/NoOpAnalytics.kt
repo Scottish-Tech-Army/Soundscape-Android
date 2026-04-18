@@ -1,8 +1,6 @@
 package org.scottishtecharmy.soundscape.utils
 
-import javax.inject.Inject
-
-class NoOpAnalytics @Inject constructor() : Analytics {
+class NoOpAnalytics : Analytics {
     override fun logEvent(name: String, params: Map<String, Any?>?) {
     }
     override fun logCostlyEvent(name: String, params: Map<String, Any?>?) {

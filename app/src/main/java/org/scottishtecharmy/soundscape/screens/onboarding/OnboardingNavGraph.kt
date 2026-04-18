@@ -8,7 +8,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -30,7 +30,7 @@ fun SetUpOnboardingNavGraph(
     navController: NavHostController,
     onFinish: () -> Unit,
 ) {
-    val audioViewModel: AudioOnboardingViewModel = hiltViewModel()
+    val audioViewModel: AudioOnboardingViewModel = koinViewModel()
     NavHost(
         navController = navController,
         startDestination = OnboardingScreens.Welcome.route

@@ -8,7 +8,6 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 
     alias(libs.plugins.screenshot)
-    alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.devtools.ksp)
     alias(libs.plugins.google.services)
     alias(libs.plugins.firebase.crashlytics)
@@ -263,10 +262,12 @@ dependencies {
     implementation(libs.moshi)
     ksp(libs.moshi.kotlin.codegen)
 
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
+
     // Dependency injection
-    implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
 
 
     // LiveData

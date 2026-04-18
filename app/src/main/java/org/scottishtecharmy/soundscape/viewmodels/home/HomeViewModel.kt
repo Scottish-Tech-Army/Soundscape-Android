@@ -7,7 +7,6 @@ import android.provider.Settings
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,16 +20,11 @@ import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
-import javax.inject.Inject
-
-@HiltViewModel
 @OptIn(FlowPreview::class)
-class HomeViewModel
-    @Inject
-    constructor(
-        private val soundscapeServiceConnection: SoundscapeServiceConnection,
-        val audioTour: AudioTour
-    ) : ViewModel() {
+class HomeViewModel(
+    private val soundscapeServiceConnection: SoundscapeServiceConnection,
+    val audioTour: AudioTour
+) : ViewModel() {
     private val _state: MutableStateFlow<HomeState> = MutableStateFlow(HomeState())
     val state: StateFlow<HomeState> = _state.asStateFlow()
 

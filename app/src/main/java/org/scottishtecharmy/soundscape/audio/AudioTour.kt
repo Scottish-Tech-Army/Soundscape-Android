@@ -2,8 +2,6 @@ package org.scottishtecharmy.soundscape.audio
 
 import android.content.Context
 import android.util.Log
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.android.scopes.ActivityRetainedScoped
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -14,8 +12,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
-import javax.inject.Inject
-
 data class AudioTourInstruction(
     val text: String
 )
@@ -51,9 +47,8 @@ enum class TourButton {
     NEARBY_MARKERS
 }
 
-@ActivityRetainedScoped
-class AudioTour @Inject constructor(
-    @param:ApplicationContext private val context: Context,
+class AudioTour(
+    private val context: Context,
     private val serviceConnection: SoundscapeServiceConnection
 ) {
     private val _currentStep = MutableStateFlow(AudioTourStep.NOT_STARTED)

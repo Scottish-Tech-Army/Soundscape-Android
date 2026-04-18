@@ -40,7 +40,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
 import androidx.preference.PreferenceManager
 import com.google.android.play.core.review.ReviewManagerFactory
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.android.ext.android.inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -61,7 +61,6 @@ import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
 import org.scottishtecharmy.soundscape.utils.processMaps
 import java.io.File
 import java.util.Locale
-import javax.inject.Inject
 
 data class ThemeState(
     val hintsEnabled: Boolean = false,
@@ -79,16 +78,11 @@ fun hasPlayServices(context: Context): Boolean {
     }
 }
 
-@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    @Inject
-    lateinit var soundscapeServiceConnection : SoundscapeServiceConnection
-    @Inject
-    lateinit var navigator : Navigator
-    @Inject
-    lateinit var soundscapeIntents : SoundscapeIntents
-    @Inject
-    lateinit var audioTour : AudioTour
+    internal val soundscapeServiceConnection : SoundscapeServiceConnection by inject()
+    internal val navigator : Navigator by inject()
+    private val soundscapeIntents : SoundscapeIntents by inject()
+    private val audioTour : AudioTour by inject()
 
     // we need notification permission to be able to display a notification for the foreground service
     private val notificationPermissionLauncher =

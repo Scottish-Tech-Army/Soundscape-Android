@@ -45,7 +45,7 @@ import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import androidx.navigation.NavHostController
 import androidx.preference.PreferenceManager
 import com.google.gson.GsonBuilder
@@ -84,7 +84,7 @@ fun LocationDetailsScreen(
     heading: Float,
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    viewModel: LocationDetailsViewModel = hiltViewModel(),
+    viewModel: LocationDetailsViewModel = koinViewModel(),
 ) {
     val context = LocalContext.current
 

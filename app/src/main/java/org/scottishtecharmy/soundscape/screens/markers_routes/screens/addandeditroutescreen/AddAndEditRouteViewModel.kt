@@ -3,7 +3,6 @@ package org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandedi
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -20,10 +19,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbySharedLogic
 import org.scottishtecharmy.soundscape.viewmodels.createMarker
-import javax.inject.Inject
-
-@HiltViewModel
-class AddAndEditRouteViewModel @Inject constructor(
+class AddAndEditRouteViewModel(
     private val routeDao: RouteDao,
     private val soundscapeServiceConnection: SoundscapeServiceConnection
 ) : ViewModel() {

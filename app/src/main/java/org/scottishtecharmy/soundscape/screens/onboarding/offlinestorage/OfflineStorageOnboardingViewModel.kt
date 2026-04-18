@@ -3,12 +3,9 @@ package org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.preference.PreferenceManager
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import org.scottishtecharmy.soundscape.MainActivity
-import javax.inject.Inject
 import androidx.core.content.edit
 import org.scottishtecharmy.soundscape.utils.StorageUtils
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
@@ -22,8 +19,7 @@ data class OfflineStorageOnboardingUiState(
     val selectedStorageIndex: Int = -1
 )
 
-@HiltViewModel
-class OffscreenStorageOnboardingViewModel @Inject constructor(@param:ApplicationContext val appContext: Context): ViewModel() {
+class OffscreenStorageOnboardingViewModel(val appContext: Context): ViewModel() {
 
     private val _uiState = MutableStateFlow(OfflineStorageOnboardingUiState())
     val uiState: StateFlow<OfflineStorageOnboardingUiState> = _uiState

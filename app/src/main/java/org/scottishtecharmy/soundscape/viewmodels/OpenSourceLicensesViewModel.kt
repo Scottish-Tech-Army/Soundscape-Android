@@ -3,16 +3,12 @@ package org.scottishtecharmy.soundscape.viewmodels
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.json.JSONArray
 import org.json.JSONObject
-import javax.inject.Inject
-
 data class LicenseInfo(
     val project: String?,
     val description: String?,
@@ -30,9 +26,8 @@ data class OpenSourceLicensesUiState(
     val error: String? = null
 )
 
-@HiltViewModel
-class OpenSourceLicensesViewModel @Inject constructor(
-    @param:ApplicationContext private val appContext: Context
+class OpenSourceLicensesViewModel(
+    private val appContext: Context
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(OpenSourceLicensesUiState())

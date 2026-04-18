@@ -39,7 +39,8 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -77,9 +78,7 @@ fun OfflineMapsScreenVM(
     locationDescription: LocationDescription
 ) {
     // Pass the locationDescription into the view model on creation
-    val viewModel: OfflineMapsViewModel = hiltViewModel<OfflineMapsViewModel, OfflineMapsViewModel.Factory>(
-        creationCallback = { factory -> factory.create(locationDescription) }
-    )
+    val viewModel: OfflineMapsViewModel = koinViewModel { parametersOf(locationDescription) }
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val progress = remember { mutableIntStateOf(0) }

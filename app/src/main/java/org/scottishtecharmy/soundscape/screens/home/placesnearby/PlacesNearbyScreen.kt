@@ -9,7 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
@@ -23,7 +23,7 @@ import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 fun PlacesNearbyScreenVM(
     homeNavController: NavController,
     modifier: Modifier = Modifier,
-    viewModel: PlacesNearbyViewModel =  hiltViewModel(),
+    viewModel: PlacesNearbyViewModel =  koinViewModel(),
 ) {
     val uiState by viewModel.logic.uiState.collectAsStateWithLifecycle()
     PlacesNearbyScreen(

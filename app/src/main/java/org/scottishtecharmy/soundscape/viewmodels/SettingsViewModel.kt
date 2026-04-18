@@ -8,8 +8,6 @@ import androidx.core.content.edit
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.preference.PreferenceManager
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -25,12 +23,9 @@ import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.getBeacon
 import org.scottishtecharmy.soundscape.utils.StorageUtils
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
-import javax.inject.Inject
-
-@HiltViewModel
-class SettingsViewModel @Inject constructor(
+class SettingsViewModel(
     private val soundscapeServiceConnection: SoundscapeServiceConnection,
-    @param:ApplicationContext val appContext: Context
+    val appContext: Context
 ) : ViewModel() {
     data class SettingsUiState(
         // Data for the ViewMode that affects the UI

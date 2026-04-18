@@ -16,7 +16,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -122,7 +122,7 @@ fun getCurrentLocationDescription(viewModel: HomeViewModel, state: HomeState): L
 fun HomeScreen(
     navController: NavHostController,
     preferences: SharedPreferences,
-    viewModel: HomeViewModel = hiltViewModel(),
+    viewModel: HomeViewModel = koinViewModel(),
     audioTour: AudioTour,
     rateSoundscape: () -> Unit,
     contactSupport: () -> Unit,
@@ -178,9 +178,9 @@ fun HomeScreen(
         // Settings screen
         composable(HomeRoutes.Settings.route) {
             // Always just pop back out of settings, don't add to the queue
-            val settingsViewModel: SettingsViewModel = hiltViewModel()
+            val settingsViewModel: SettingsViewModel = koinViewModel()
             val uiState = settingsViewModel.state.collectAsStateWithLifecycle()
-            val languageViewModel: LanguageViewModel = hiltViewModel()
+            val languageViewModel: LanguageViewModel = koinViewModel()
             val languageUiState = languageViewModel.state.collectAsStateWithLifecycle()
             val localActivity = LocalActivity.current as MainActivity
 
@@ -314,7 +314,7 @@ fun HomeScreen(
                 }
             }
 
-            val addAndEditRouteViewModel: AddAndEditRouteViewModel = hiltViewModel()
+            val addAndEditRouteViewModel: AddAndEditRouteViewModel = koinViewModel()
 
             // Call the ViewModel's function to initialize the route data
             LaunchedEffect(data) {

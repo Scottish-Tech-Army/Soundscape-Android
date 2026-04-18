@@ -8,13 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.preference.PreferenceManager
-import dagger.hilt.android.AndroidEntryPoint
 import org.scottishtecharmy.soundscape.screens.onboarding.SetUpOnboardingNavGraph
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import androidx.core.content.edit
 import kotlinx.coroutines.flow.MutableStateFlow
 
-@AndroidEntryPoint
 class OnboardingActivity : AppCompatActivity() {
 
     private lateinit var navController: NavHostController

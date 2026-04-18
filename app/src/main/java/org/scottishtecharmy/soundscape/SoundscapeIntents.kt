@@ -28,14 +28,9 @@ import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
 import java.net.URLDecoder
-import javax.inject.Inject
-
-
-class SoundscapeIntents
-    @Inject
-    constructor(
-        private val navigator: Navigator,
-    ) {
+class SoundscapeIntents(
+    private val navigator: Navigator,
+) {
         private lateinit var geocoder: Geocoder
 
         private fun useGeocoderToGetAddress(

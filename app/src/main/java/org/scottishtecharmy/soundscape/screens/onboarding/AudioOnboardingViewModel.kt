@@ -5,8 +5,6 @@ import android.content.Context
 import androidx.core.content.edit
 import androidx.lifecycle.ViewModel
 import androidx.preference.PreferenceManager
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,10 +12,7 @@ import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import javax.inject.Inject
-
-@HiltViewModel
-class AudioOnboardingViewModel @Inject constructor(@param:ApplicationContext val context: Context, val audioEngine : NativeAudioEngine): ViewModel() {
+class AudioOnboardingViewModel(val context: Context, val audioEngine : NativeAudioEngine): ViewModel() {
 
     data class AudioBeaconsUiState(
         // Data for the ViewMode that affects the UI

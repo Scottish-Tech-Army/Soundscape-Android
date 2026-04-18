@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
 import android.util.Log
-import dagger.hilt.android.scopes.ActivityRetainedScoped
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,10 +19,7 @@ import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.services.SoundscapeBinder
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
-import javax.inject.Inject
-
-@ActivityRetainedScoped
-class SoundscapeServiceConnection @Inject constructor() {
+class SoundscapeServiceConnection {
     var soundscapeService: SoundscapeService? = null
 
     private var _serviceBoundState = MutableStateFlow(false)

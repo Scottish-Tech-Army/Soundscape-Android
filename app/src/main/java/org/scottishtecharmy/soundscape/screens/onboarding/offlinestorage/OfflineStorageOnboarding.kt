@@ -21,7 +21,7 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
@@ -34,7 +34,7 @@ import org.scottishtecharmy.soundscape.utils.StorageUtils
 fun OfflineStorageOnboardingScreenVM(
     onNavigate: (() -> Unit)?,
     modifier: Modifier = Modifier,
-    viewModel: OffscreenStorageOnboardingViewModel = hiltViewModel()
+    viewModel: OffscreenStorageOnboardingViewModel = koinViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 

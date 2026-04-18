@@ -6,12 +6,9 @@ import android.content.Context.ACCESSIBILITY_SERVICE
 import android.view.accessibility.AccessibilityManager
 import androidx.lifecycle.ViewModel
 import androidx.preference.PreferenceManager
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import org.scottishtecharmy.soundscape.MainActivity
-import javax.inject.Inject
 import androidx.core.content.edit
 
 
@@ -19,8 +16,7 @@ data class AccessibilityOnboardingUiState(
     val talkbackEnabled: Boolean = false
 )
 
-@HiltViewModel
-class AccessibilityOnboardingViewModel @Inject constructor(@param:ApplicationContext val appContext: Context): ViewModel() {
+class AccessibilityOnboardingViewModel(val appContext: Context): ViewModel() {
 
     private val _uiState = MutableStateFlow(AccessibilityOnboardingUiState())
     val uiState: StateFlow<AccessibilityOnboardingUiState> = _uiState

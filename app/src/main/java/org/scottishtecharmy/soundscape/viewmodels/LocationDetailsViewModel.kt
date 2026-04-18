@@ -5,7 +5,6 @@ import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
@@ -18,10 +17,7 @@ import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import java.net.URLEncoder
-import javax.inject.Inject
-
-@HiltViewModel
-class LocationDetailsViewModel @Inject constructor(
+class LocationDetailsViewModel(
     private val soundscapeServiceConnection : SoundscapeServiceConnection,
     private val routeDao: RouteDao,
     private val audioTour: AudioTour

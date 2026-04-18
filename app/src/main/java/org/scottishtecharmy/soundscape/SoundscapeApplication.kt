@@ -1,7 +1,16 @@
 package org.scottishtecharmy.soundscape
 
 import android.app.Application
-import dagger.hilt.android.HiltAndroidApp
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
+import org.scottishtecharmy.soundscape.di.appModule
 
-@HiltAndroidApp
-class SoundscapeApplication : Application()
+class SoundscapeApplication : Application() {
+    override fun onCreate() {
+        super.onCreate()
+        startKoin {
+            androidContext(this@SoundscapeApplication)
+            modules(appModule)
+        }
+    }
+}

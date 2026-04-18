@@ -5,8 +5,8 @@ json = "20240303"
 kotlin = "2.2.10"
 protobuf-plugin = "0.9.6"
 wire = "5.5.1"
-dagger-hilt = "2.57"
 devtools-ksp = "2.3.2"
+koin = "4.0.4"
 google-services = "4.4.3"
 jetbrains-dokka = "2.2.0-Beta"
 firebase-crashlytics = "3.0.6"
@@ -28,9 +28,6 @@ coreTesting = "2.2.0"
 datastorePreferences = "1.1.7"
 espressoCoreVersion = "3.7.0"
 firebaseBom = "34.1.0"
-hiltAndroid = "2.57"
-hiltCompiler = "2.57"
-hiltNavigationCompose = "1.2.0"
 junitJupiter = "5.13.4"
 coreKtx = "1.16.0"
 junit = "4.13.2"
@@ -44,6 +41,7 @@ lifecycleService = "2.9.2"
 appcompat = "1.7.1"
 coreKtxVersion = "1.7.0"
 lifecycleViewmodelCompose = "2.9.2"
+navigationCompose = "2.9.4"
 loggingInterceptor = "5.1.0"
 moshi = "1.15.2"
 moshiKotlinCodegen = "1.15.2"
@@ -79,7 +77,9 @@ androidx-core-testing = { module = "androidx.arch.core:core-testing", version.re
 androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "datastorePreferences" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-espresso-core-v351 = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCoreVersion" }
-androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 androidx-junit-v121 = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
@@ -97,8 +97,6 @@ core-google-shortcuts = { module = "androidx.core:core-google-shortcuts", versio
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
-hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
-hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompiler" }
 html-mermaid-dokka-plugin = { module = "com.glureau:html-mermaid-dokka-plugin", version.ref = "htmlMermaidDokkaPlugin" }
 json = { module = "org.json:json", version.ref = "json" }
 jts-core = { module = "org.locationtech.jts:jts-core", version.ref = "jtsCore" }
@@ -158,7 +156,6 @@ android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 google-protobuf = { id = "com.google.protobuf", version.ref = "protobuf-plugin" }
 squareup-wire = { id = "com.squareup.wire", version.ref = "wire" }
-dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger-hilt" }
 devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "devtools-ksp" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics"}

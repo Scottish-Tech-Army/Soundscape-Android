@@ -5,7 +5,6 @@ import android.net.Uri
 import androidx.core.content.FileProvider.getUriForFile
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -19,10 +18,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.Date
-import javax.inject.Inject
-
-@HiltViewModel
-class RouteDetailsViewModel @Inject constructor(
+class RouteDetailsViewModel(
     private val routeDao: RouteDao,
     private val soundscapeServiceConnection: SoundscapeServiceConnection
 ) : ViewModel() {

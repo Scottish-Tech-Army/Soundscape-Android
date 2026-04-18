@@ -31,7 +31,6 @@ import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
 import androidx.preference.PreferenceManager
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -98,7 +97,6 @@ import kotlin.time.Duration.Companion.seconds
  * data persistence with realmDB. It inherits from MediaSessionService so that we can receive
  * Media Transport button presses to act as a remote control whilst the phone is locked.
  */
-@AndroidEntryPoint
 class SoundscapeService : MediaSessionService() {
 
     private val coroutineScope = CoroutineScope(Job())

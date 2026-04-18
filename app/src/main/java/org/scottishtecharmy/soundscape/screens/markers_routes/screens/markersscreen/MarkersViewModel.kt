@@ -5,8 +5,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -19,16 +17,11 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.getSortFie
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.getSortOrderPreference
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.saveSortFieldPreference
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.saveSortOrderPreference
-import javax.inject.Inject
-
-@HiltViewModel
-class MarkersViewModel
-    @Inject
-    constructor(
-        private val routeDao: RouteDao,
-        @param:ApplicationContext private val context: Context,
-        private val soundscapeServiceConnection: SoundscapeServiceConnection
-    ) : ViewModel() {
+class MarkersViewModel(
+    private val routeDao: RouteDao,
+    private val context: Context,
+    private val soundscapeServiceConnection: SoundscapeServiceConnection
+) : ViewModel() {
         private val _uiState = MutableStateFlow(MarkersAndRoutesUiState(markers = true))
         val uiState: StateFlow<MarkersAndRoutesUiState> = _uiState
 

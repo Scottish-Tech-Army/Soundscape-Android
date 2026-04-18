@@ -31,7 +31,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -51,7 +51,7 @@ fun AdvancedMarkersAndRoutesSettingsScreenVM(
     modifier: Modifier
 ) {
     val context = LocalContext.current
-    val viewModel = hiltViewModel<AdvancedMarkersAndRoutesSettingsViewModel>()
+    val viewModel = koinViewModel<AdvancedMarkersAndRoutesSettingsViewModel>()
     val successString = stringResource(R.string.markers_and_routes_import_success)
     val failureString = stringResource(R.string.markers_and_routes_import_failure)
     val clearAllSuccessString = stringResource(R.string.menu_advanced_markers_and_routes_clear_all_success)

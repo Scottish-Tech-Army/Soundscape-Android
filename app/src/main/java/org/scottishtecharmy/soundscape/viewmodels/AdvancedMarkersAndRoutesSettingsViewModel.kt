@@ -7,7 +7,6 @@ import android.util.Log
 import androidx.core.content.FileProvider
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -28,10 +27,7 @@ import java.util.Date
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
 import java.util.zip.ZipOutputStream
-import javax.inject.Inject
-
-@HiltViewModel
-class AdvancedMarkersAndRoutesSettingsViewModel @Inject constructor(
+class AdvancedMarkersAndRoutesSettingsViewModel(
     private val soundscapeServiceConnection : SoundscapeServiceConnection,
     private val routeDao: RouteDao
 ): ViewModel() {

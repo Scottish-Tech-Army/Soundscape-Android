@@ -2,18 +2,12 @@ package org.scottishtecharmy.soundscape.screens.home.placesnearby
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import javax.inject.Inject
-
-@HiltViewModel
-class PlacesNearbyViewModel
-    @Inject
-    constructor(
-        soundscapeServiceConnection: SoundscapeServiceConnection,
-        audioTour: AudioTour
+class PlacesNearbyViewModel(
+    soundscapeServiceConnection: SoundscapeServiceConnection,
+    audioTour: AudioTour
 ) : ViewModel() {
 
     val logic = PlacesNearbySharedLogic(soundscapeServiceConnection, viewModelScope)

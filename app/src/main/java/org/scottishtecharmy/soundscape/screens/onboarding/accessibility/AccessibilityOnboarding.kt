@@ -19,7 +19,7 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
 import me.zhanghai.compose.preference.switchPreference
@@ -34,7 +34,7 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 fun AccessibilityOnboardingScreenVM(
     onNavigate: (() -> Unit)?,
     modifier: Modifier = Modifier,
-    viewModel: AccessibilityOnboardingViewModel = hiltViewModel()
+    viewModel: AccessibilityOnboardingViewModel = koinViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 

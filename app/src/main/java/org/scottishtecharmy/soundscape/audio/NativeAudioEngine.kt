@@ -14,8 +14,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.util.Locale
-import javax.inject.Inject
-import javax.inject.Singleton
 import androidx.core.content.edit
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,8 +30,7 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.VOICE_TYPE_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SPEECH_ENGINE_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SPEECH_ENGINE_DEFAULT
 
-@Singleton
-class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = null): AudioEngine {
+class NativeAudioEngine(val service: SoundscapeService? = null): AudioEngine {
 
     private var engineHandle : Long = 0
     private val engineMutex = Object()

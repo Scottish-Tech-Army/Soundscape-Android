@@ -7,10 +7,6 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.preference.PreferenceManager
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedInject
-import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -47,22 +43,15 @@ data class OfflineMapsUiState(
     val storages: List<StorageUtils.StorageSpace> = emptyList()
 )
 
-@HiltViewModel(assistedFactory = OfflineMapsViewModel.Factory::class)
-class OfflineMapsViewModel @AssistedInject constructor(
-    @param:ApplicationContext val appContext: Context,
-    @Assisted private val locationDescription: LocationDescription
+class OfflineMapsViewModel(
+    val appContext: Context,
+    private val locationDescription: LocationDescription
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(OfflineMapsUiState())
     val uiState: StateFlow<OfflineMapsUiState> = _uiState
     lateinit var offlineDownloader: OfflineDownloader
     lateinit  var downloadState: StateFlow<DownloadState>
-
-    // Add this factory interface inside the ViewModel class
-    @dagger.assisted.AssistedFactory
-    interface Factory {
-        fun create(locationDescription: LocationDescription): OfflineMapsViewModel
-    }
     init {
         viewModelScope.launch {
             // Create downloader to handle getting any offline maps

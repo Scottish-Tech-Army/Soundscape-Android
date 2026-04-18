@@ -23,7 +23,7 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
+import org.koin.androidx.compose.koinViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -40,7 +40,7 @@ fun OpenSourceLicensesVM(
     navController: NavHostController,
     modifier: Modifier
 ) {
-    val viewModel = hiltViewModel<OpenSourceLicensesViewModel>()
+    val viewModel = koinViewModel<OpenSourceLicensesViewModel>()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
     OpenSourceLicenses(
