@@ -98,8 +98,6 @@ import kotlin.time.Duration.Companion.seconds
  * data persistence with realmDB. It inherits from MediaSessionService so that we can receive
  * Media Transport button presses to act as a remote control whilst the phone is locked.
  */
-data class BeaconState(val location: LngLatAlt? = null, val muteState: Boolean = false)
-
 @AndroidEntryPoint
 class SoundscapeService : MediaSessionService() {
 
