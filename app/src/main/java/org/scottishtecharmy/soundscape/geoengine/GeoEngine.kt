@@ -943,11 +943,10 @@ class GeoEngine {
 
         // Run the code within the treeContext to protect it from changes to the trees whilst it's
         // running.
-        val engine = this
         CoroutineScope(Job()).launch(gridState.treeContext) {
             // Get our current location and figure out what GO means
             val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Phone)
-            val choices = streetPreview.getDirectionChoices(engine, userGeometry.location)
+            val choices = streetPreview.getDirectionChoices(gridState, userGeometry.location)
             var heading = 0.0
             if(choices.isNotEmpty()) {
                 // We want to choose a direction roughly in the forward direction if possible. We
@@ -979,7 +978,7 @@ class GeoEngine {
             }
             // Update the heading with the random one that was chosen
             userGeometry.phoneHeading = heading
-            streetPreview.go(userGeometry, engine)
+            streetPreview.go(userGeometry, gridState, locationProvider)
         }
     }
 
@@ -987,16 +986,15 @@ class GeoEngine {
     private fun streetPreviewGoInternal() : List<StreetPreviewChoice> {
         // Run the code within the treeContext to protect it from changes to the trees whilst it's
         // running.  We want to return the new set of choices so that these can be sent up to the UI.
-        val engine = this
         val results = runBlocking {
             withContext(gridState.treeContext) {
                 // Get our current location and figure out what GO means
                 val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Phone)
-                val newLocation = streetPreview.go(userGeometry, engine)
+                val newLocation = streetPreview.go(userGeometry, gridState, locationProvider)
                 if(newLocation != null) {
-                    streetPreview.getDirectionChoices(engine, newLocation)
+                    streetPreview.getDirectionChoices(gridState, newLocation)
                 } else {
-                    streetPreview.getDirectionChoices(engine, userGeometry.location)
+                    streetPreview.getDirectionChoices(gridState, userGeometry.location)
                 }
             }
         }

@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.geoengine
 
-import android.util.Log
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
@@ -8,8 +7,8 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
-import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 
 data class StreetPreviewChoice(
     val heading: Double,
@@ -49,14 +48,12 @@ class StreetPreview {
         running = false
     }
 
-    fun go(userGeometry: UserGeometry, engine: GeoEngine) : LngLatAlt? {
+    fun go(userGeometry: UserGeometry, gridState: GridState, locationProvider: LocationProvider) : LngLatAlt? {
 
-        AnalyticsProvider.getInstance().logEvent("streetPreviewGo", null)
         when (previewState) {
 
             PreviewState.INITIAL -> {
-                // Jump to an intersection on the nearest road or path
-                val road: Way = engine.gridState.getNearestFeature(
+                val road: Way = gridState.getNearestFeature(
                     TreeId.WAYS_SELECTION,
                     userGeometry.ruler,
                     userGeometry.location,
@@ -74,10 +71,9 @@ class StreetPreview {
                     }
                 }
                 if (nearestIntersection != null) {
-                    // We've got a location, so jump to it
                     var heading = userGeometry.phoneHeading
                     if(heading == null) heading = 0.0
-                    engine.locationProvider.updateLocation(SoundscapeLocation(
+                    locationProvider.updateLocation(SoundscapeLocation(
                         latitude = nearestIntersection.location.latitude,
                         longitude = nearestIntersection.location.longitude,
                         bearing = heading.toFloat(),
@@ -89,12 +85,10 @@ class StreetPreview {
             }
 
             PreviewState.AT_NODE -> {
-                // Find which road that we're choosing based on our current heading
-                val choices = getDirectionChoices(engine, userGeometry.location)
+                val choices = getDirectionChoices(gridState, userGeometry.location)
                 var bestIndex = -1
                 var bestHeadingDiff = Double.POSITIVE_INFINITY
 
-                // Find the choice with the closest heading to our own
                 val heading = userGeometry.heading()
                 if(heading != null) {
                     for ((index, choice) in choices.withIndex()) {
@@ -103,25 +97,19 @@ class StreetPreview {
                             bestHeadingDiff = diff
                             bestIndex = index
                         }
-                        Log.d(TAG, "Choice: ${choice.name} heading: ${choice.heading}")
                     }
                 }
 
                 if(bestIndex != -1) {
-                    // We've got a road - let's head down it
                     previewRoad = choices[bestIndex]
                     previewRoad?.let { road ->
-                        // We want the heading to be the angle of the road we're coming in on
                         var thisIntersection : Intersection? = null
-                        // Get the starting intersection
                         for(intersection in road.way.intersections) {
                             if(intersection?.location == userGeometry.location) {
                                 thisIntersection = intersection
                             }
                         }
                         if(thisIntersection != null) {
-                            // Now follow the road out of our current intersection, and find the
-                            // next intersection.
                             val ways = mutableListOf<Pair<Boolean, Way>>()
                             road.way.followWays(thisIntersection, ways) { way, previousWay ->
                                 if(previousWay != null) {
@@ -149,10 +137,8 @@ class StreetPreview {
                                 ways.last().second.intersections[WayEnd.START.id]
 
                             if(nextIntersection != null) {
-                                // We've found the next intersection. Set the heading to be the
-                                // angle of the way arriving at the intersection and move to it.
                                 lastHeading = (road.way.heading(nextIntersection) + 180.0) % 360.0
-                                engine.locationProvider.updateLocation(SoundscapeLocation(
+                                locationProvider.updateLocation(SoundscapeLocation(
                                     latitude = nextIntersection.location.latitude,
                                     longitude = nextIntersection.location.longitude,
                                     bearing = lastHeading.toFloat(),
@@ -170,16 +156,11 @@ class StreetPreview {
         return null
     }
 
-    /**
-     * getDirectionChoices returns a List of possible choices at an intersection
-     * Each entry contains a heading, the street name and a list of points that make up the road.
-     * The app can choose the road based on the heading and then move the user along it.
-     */
-    fun getDirectionChoices(engine: GeoEngine, location: LngLatAlt): List<StreetPreviewChoice> {
+    fun getDirectionChoices(gridState: GridState, location: LngLatAlt): List<StreetPreviewChoice> {
         val choices = mutableListOf<StreetPreviewChoice>()
 
         val ruler = CheapRuler(location.latitude)
-        val nearestIntersection = engine.gridState.getNearestFeature(TreeId.INTERSECTIONS, ruler, location, 1.0) as Intersection?
+        val nearestIntersection = gridState.getNearestFeature(TreeId.INTERSECTIONS, ruler, location, 1.0) as Intersection?
         if(nearestIntersection != null) {
             for(member in nearestIntersection.members) {
                 choices.add(
@@ -187,7 +168,7 @@ class StreetPreview {
                         heading = member.heading(nearestIntersection),
                         name = member.getName(
                             member.intersections[WayEnd.START.id] == nearestIntersection,
-                            engine.gridState
+                            gridState
                         ),
                         way = member
                     )
@@ -201,10 +182,6 @@ class StreetPreview {
         return lastHeading
     }
 
-    /**
-     * updateBestChoice computes the best direction choice for the given heading.
-     * Returns the new best choice only if it changed from the previous one, null otherwise.
-     */
     fun updateBestChoice(
         choices: List<StreetPreviewChoice>,
         heading: Double
@@ -220,9 +197,5 @@ class StreetPreview {
 
     fun resetBestChoice() {
         currentBestChoice = null
-    }
-
-    companion object {
-        private const val TAG = "StreetPreview"
     }
 }
