@@ -214,7 +214,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null): AudioEngine {
         }
     }
 
-    override fun textToSpeechAudioConfigCallback(id : String, sampleRateInHz: Int, format: Int, channelCount: Int) {
+    fun textToSpeechAudioConfigCallback(id : String, sampleRateInHz: Int, format: Int, channelCount: Int) {
         synchronized(engineMutex) {
             if(engineHandle != 0L) {
                 audioConfigTextToSpeech(engineHandle, id, sampleRateInHz, format, channelCount)
@@ -338,15 +338,15 @@ class NativeAudioEngine(val service: SoundscapeService? = null): AudioEngine {
         return false
     }
 
-    override fun getAvailableSpeechEngines() : List<TextToSpeech.EngineInfo> {
+    fun getAvailableSpeechEngines() : List<TextToSpeech.EngineInfo> {
         return ttsEngine.getAvailableEngines()
     }
 
-    override fun getAvailableSpeechLanguages() : Set<Locale> {
+    fun getAvailableSpeechLanguages() : Set<Locale> {
         return ttsEngine.getAvailableSpeechLanguages()
     }
 
-    override fun getAvailableSpeechVoices() : Set<Voice> {
+    fun getAvailableSpeechVoices() : Set<Voice> {
         return ttsEngine.getAvailableSpeechVoices()
     }
 
@@ -354,7 +354,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null): AudioEngine {
         return ttsEngine.setSpeechLanguage(language)
     }
 
-    override fun updateBeaconType(sharedPreferences: SharedPreferences): Boolean {
+    fun updateBeaconType(sharedPreferences: SharedPreferences): Boolean {
         val newBeaconType = sharedPreferences.getString(
             BEACON_TYPE_KEY,
             BEACON_TYPE_DEFAULT
