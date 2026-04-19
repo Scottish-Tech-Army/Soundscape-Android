@@ -292,23 +292,8 @@ private val testColorTheme = darkColorScheme(
 var LocalHintsEnabled = compositionLocalOf { true }
 
 
-val LocalAppButtonColors: ProvidableCompositionLocal<ButtonColors> = compositionLocalOf {
-    error("No AppButtonColors provided.")
-}
-
-val currentAppButtonColors: ButtonColors
-    @Composable
-    get() = LocalAppButtonColors.current
-
-fun defaultAppButtonColors(colorScheme: ColorScheme) : ButtonColors {
-
-    return ButtonColors(
-        containerColor = colorScheme.surfaceContainer,
-        contentColor = colorScheme.onSurface,
-        disabledContainerColor = colorScheme.surfaceContainer.copy(alpha = 0.38f),
-        disabledContentColor = colorScheme.onSurface.copy(alpha = 0.38f)
-    )
-}
+// LocalAppButtonColors, currentAppButtonColors, and defaultAppButtonColors
+// are now in the shared module (ui.theme.AppButtonColors)
 
 @Composable
 fun SoundscapeTheme(
@@ -355,31 +340,9 @@ fun SoundscapeTheme(
     }
 }
 
-/**
- * Specifies amount of spacing that should be used through the application in a non-graphic
- * library specific amount.
- */
-data class Spacing(
-    val none: Dp = 0.dp,
-    val tiny: Dp = 2.dp,
-    val extraSmall: Dp = 4.dp,
-    val small: Dp = 8.dp,
-    val medium: Dp = 16.dp,
-    val large: Dp = 32.dp,
-    val extraLarge: Dp = 64.dp,
-    val default: Dp = small,
+// Spacing, LocalSpacing, and spacing are now in the shared module (ui.theme.Spacing)
 
-    val icon: Dp = 32.dp,
-    val targetSize: Dp = 48.dp,
-
-    val preview: Dp = 200.dp
-)
-val LocalSpacing = compositionLocalOf { Spacing() }
-
-val spacing: Spacing
-    @Composable
-    @ReadOnlyComposable
-    get() = LocalSpacing.current
+// mediumPadding and smallPadding are now in the shared module (ui.theme.Spacing)
 
 @Composable
 fun Modifier.largePadding(): Modifier =
@@ -388,24 +351,6 @@ fun Modifier.largePadding(): Modifier =
         bottom = spacing.large,
         start = spacing.large,
         end = spacing.large
-    )
-
-@Composable
-fun Modifier.mediumPadding(): Modifier =
-    padding(
-        top = spacing.medium,
-        bottom = spacing.medium,
-        start = spacing.medium,
-        end = spacing.medium
-    )
-
-@Composable
-fun Modifier.smallPadding(): Modifier =
-    padding(
-        top = spacing.small,
-        bottom = spacing.small,
-        start = spacing.small,
-        end = spacing.small
     )
 
 @Composable

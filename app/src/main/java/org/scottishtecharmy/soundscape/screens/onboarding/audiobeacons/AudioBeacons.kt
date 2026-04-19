@@ -2,61 +2,15 @@ package org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons
 
 import android.util.Log
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredHeight
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.platform.testTag
-import org.jetbrains.compose.resources.StringResource
-import org.jetbrains.compose.resources.stringResource
-import androidx.compose.ui.semantics.heading
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.AudioOnboardingViewModel
-import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
-import org.scottishtecharmy.soundscape.ui.theme.spacing
-import org.scottishtecharmy.soundscape.resources.*
 
-fun getBeaconResourceId(beaconName: String) : StringResource {
-    when (beaconName) {
-        "Original" -> return Res.string.beacon_styles_original
-        "Current" -> return Res.string.beacon_styles_current
-        "Tactile" -> return Res.string.beacon_styles_tactile
-        "Flare" -> return Res.string.beacon_styles_flare
-        "Shimmer" -> return Res.string.beacon_styles_shimmer
-        "Ping" -> return Res.string.beacon_styles_ping
-        "Drop" -> return Res.string.beacon_styles_drop
-        "Signal" -> return Res.string.beacon_styles_signal
-        "Signal Slow" -> return Res.string.beacon_styles_signal_slow
-        "Signal Very Slow" -> return Res.string.beacon_styles_signal_very_slow
-        "Mallet" -> return Res.string.beacon_styles_mallet
-        "Mallet Slow" -> return Res.string.beacon_styles_mallet_slow
-        "Mallet Very Slow" -> return Res.string.beacon_styles_mallet_very_slow
-        else -> throw IllegalArgumentException("Unknown beacon name: $beaconName")
-    }
-}
+// AudioBeacons, AudioBeaconItem, and getBeaconResourceId are now in shared module
 
 @Composable
 fun AudioBeaconsScreen(
@@ -72,7 +26,6 @@ fun AudioBeaconsScreen(
         }
     }
     BackHandler(enabled = true) {
-        // If the user presses the back button silence the audio
         viewModel.silenceBeacon()
         onBack()
     }
@@ -85,128 +38,17 @@ fun AudioBeaconsScreen(
             onNavigate()
         },
         onBeaconSelected = { beacon ->
-            // change the audio beacon
             viewModel.setAudioBeaconType(beacon)
-            Log.d(
-                "AudioBeacon",
-                "Audio beacon category changed to $beacon")
-
+            Log.d("AudioBeacon", "Audio beacon category changed to $beacon")
         },
         modifier = modifier
     )
 }
 
-@Composable
-fun AudioBeacons(
-    beacons: List<String>,
-    onBeaconSelected: (String) -> Unit,
-    selectedBeacon: String?,
-    onContinue: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    BoxWithGradientBackground(
-        modifier = modifier,
-        color = MaterialTheme.colorScheme.surface
-    ){
-        Column(
-            modifier = Modifier
-                .padding(horizontal = spacing.large)
-                .padding(top = spacing.large)
-                .fillMaxWidth()
-                .fillMaxHeight()
-                .verticalScroll(rememberScrollState()),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Top
-        ) {
-            Text(
-                text = stringResource(Res.string.first_launch_beacon_title),
-                style = MaterialTheme.typography.titleLarge,
-                color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.semantics {
-                    heading()
-                }
-            )
-            Spacer(modifier = Modifier.height(spacing.large))
-            Text(
-                text = stringResource(Res.string.first_launch_beacon_message_1),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
-            )
-            Spacer(modifier = Modifier.height(spacing.large))
-            Text(
-                text = stringResource(Res.string.first_launch_beacon_message_2),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
-            )
-            Spacer(modifier = Modifier.height(spacing.large))
-            Text(
-                text = stringResource(Res.string.first_launch_beacon_message_3),
-                style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
-            )
-            Spacer(modifier = Modifier.height(spacing.large))
-
-            LazyColumn(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(spacing.extraSmall))
-                    .fillMaxWidth()
-                    .heightIn(spacing.extraLarge, spacing.extraLarge * 5)
-                    .background(MaterialTheme.colorScheme.surfaceContainer)
-            ) {
-                items(beacons) { beacon ->
-                    AudioBeaconItem(
-                        text = stringResource(getBeaconResourceId(beacon)),
-                        foregroundColor = MaterialTheme.colorScheme.onSurface,
-                        isSelected = beacon == selectedBeacon,
-                        onSelect = {
-                            onBeaconSelected(beacon)
-                        },
-                        modifier = Modifier.testTag("${beacon}Button"),
-                    )
-                }
-            }
-
-            Column(
-                modifier = Modifier
-                    .padding(horizontal = spacing.medium, vertical = spacing.extraLarge)
-                    .requiredHeight(spacing.targetSize)
-            ) {
-                OnboardButton(
-                    text = stringResource(Res.string.ui_continue),
-                    onClick = {
-                        onContinue()
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .testTag("audioBeaconsContinueButton"),
-                    enabled = selectedBeacon != null,
-                )
-            }
-
-        }
-    }
-}
-
-// Data used by preview
 data object MockHearingPreviewData {
     val names = listOf(
-        "Original",
-        "Current",
-        "Tactile",
-        "Flare",
-        "Shimmer",
-        "Ping",
-        "Drop",
-        "Signal",
-        "Signal Slow",
-        "Signal Very Slow",
-        "Mallet",
-        "Mallet Slow",
-        "Mallet Very Slow"
+        "Original", "Current", "Tactile", "Flare", "Shimmer", "Ping", "Drop",
+        "Signal", "Signal Slow", "Signal Very Slow", "Mallet", "Mallet Slow", "Mallet Very Slow"
     )
 }
 
@@ -219,5 +61,5 @@ fun AudioBeaconPreview() {
         selectedBeacon = MockHearingPreviewData.names[0],
         onBeaconSelected = {},
         onContinue = {},
-        )
+    )
 }

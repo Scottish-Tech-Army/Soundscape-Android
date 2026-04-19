@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons
 
-
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -31,22 +30,16 @@ fun AudioBeaconItem(
 ) {
     Row(
         modifier = modifier
-            // Accessibility recommendation for the size of a clickable thing
             .padding(horizontal = spacing.small, vertical = spacing.medium)
             .fillMaxWidth()
-            .selectable(
-                selected = isSelected
-            ) {
-                onSelect()
-            }
+            .selectable(selected = isSelected) { onSelect() }
     ) {
         if (isSelected) {
             Icon(
                 Icons.Rounded.Done,
                 contentDescription = null,
                 tint = foregroundColor,
-                modifier = modifier
-                    .size(spacing.icon)
+                modifier = modifier.size(spacing.icon)
             )
         }
         Spacer(modifier = Modifier.width(spacing.medium))
@@ -65,8 +58,7 @@ fun AudioBeaconItem(
                 Icons.Rounded.ChevronRight,
                 contentDescription = null,
                 tint = foregroundColor,
-                modifier = modifier
-                    .size(spacing.icon)
+                modifier = modifier.size(spacing.icon)
             )
         }
     }
