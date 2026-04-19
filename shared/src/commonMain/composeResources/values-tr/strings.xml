@@ -19,7 +19,7 @@
     <string name="settings_theme_auto" tools:ignore="MissingTranslation">Otomatik</string>
     <string name="settings_section_units_description" tools:ignore="MissingTranslation">Mesafeyi ölçmek için kullanılacak birimi seçin</string>
     <string name="general_alert_cancel">İptal</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Dil ve Bölge "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">Dil ve Bölge </string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Açık veya Koyu Tema</string>
     <string name="settings_theme_contrast_regular" tools:ignore="MissingTranslation">Düzenli</string>
     <string name="settings_use_value" tools:ignore="MissingTranslation">Kullan</string>
@@ -71,7 +71,7 @@
     <string name="preview_go_title">Git</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">Bu yönde bir sonraki kavşağa gidin.</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">En yakın kavşağa git</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" ve %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> ve %1$s</string>
     <string name="preview_include_unnamed_roads_title">Adı Olmayan Yollar</string>
     <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">Konum simülasyonu sırasında adı olmayan yolları dahil et</string>
     <string name="location_detail_title_default">Konum Ayrıntıları</string>

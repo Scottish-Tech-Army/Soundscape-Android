@@ -439,7 +439,7 @@
     <string name="settings_units_metric" tools:ignore="MissingTranslation">Metrisk (meter)</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">Tekst-til-tale-motor</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Gå til nærmeste kryds</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" og %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> og %1$s</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Vis kortet i fuld skærm</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Afslut fuldskærmsvisning af kortet</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Deaktiveret, da ruten allerede er ved starten</string>
@@ -1265,7 +1265,7 @@
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Steder i nærheden, såsom butikker og restauranter</string>
     <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Oplysninger om vejkryds og transport</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Opdateringer om afstanden til lydfyret, når det er indstillet</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Sprog og region "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">Sprog og region </string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Online-søgning kan bruge resultatets lokale sprog eller tvinges til at returnere engelsk, fransk eller tysk.</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">Nyt sprog er tilgængeligt</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Din telefon er indstillet til %1$s, og det sprog er nu tilgængeligt i Soundscape. Vil du skifte Soundscape til at bruge %1$s?</string>

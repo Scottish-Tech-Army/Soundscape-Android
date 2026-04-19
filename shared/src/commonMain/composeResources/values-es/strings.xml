@@ -406,7 +406,7 @@
     <string name="first_launch_permissions_notification">Notificaciones</string>
     <string name="no_language_selected">Ningún idioma seleccionado</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Vaya a la intersección más cercana</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" y %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> y %1$s</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Hacer el mapa pantalla completa</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Salir del mapa en pantalla completa</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">Ubicado en las inmediaciones de %1$s y adyacente a %2$s</string>
@@ -1265,7 +1265,7 @@
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Lugares cercanos como tiendas y restaurantes</string>
     <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Información sobre intersecciones y transporte</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Actualizaciones sobre la distancia a la señal de audio cuando está establecida</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Idioma y región "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">Idioma y región </string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">La búsqueda en línea puede usar el idioma local del resultado o forzarse a devolver resultados en inglés, francés o alemán.</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">Nuevo idioma disponible</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Su teléfono está configurado en %1$s y ese idioma ya está disponible en Soundscape. ¿Desea cambiar Soundscape para usar %1$s?</string>

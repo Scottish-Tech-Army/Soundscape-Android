@@ -210,7 +210,7 @@
     <string name="confect_name_pavement" tools:ignore="MissingTranslation">Тротуар</string>
     <string name="confect_name_dead_end" tools:ignore="MissingTranslation">тупик</string>
     <string name="preview_title">Симуляция местоположения</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" и %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> и %1$s</string>
     <string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation">С</string>
     <string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation">СВ</string>
     <string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">В</string>
@@ -1265,7 +1265,7 @@
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Ближайшие места, такие как магазины и рестораны</string>
     <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Информация о перекрёстках и транспорте</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Обновления о расстоянии до звукового маяка, когда он установлен</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Язык и регион "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">Язык и регион </string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Онлайн‑поиск может возвращать результаты на местном языке или принудительно выдавать их на английском, французском или немецком.</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">Доступен новый язык</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">На вашем телефоне установлен язык %1$s, и этот язык теперь доступен в Soundscape. Хотите переключить Soundscape на %1$s?</string>

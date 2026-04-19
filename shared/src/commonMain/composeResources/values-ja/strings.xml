@@ -410,7 +410,7 @@
     <string name="settings_units_metric" tools:ignore="MissingTranslation">メートル法（メートル）</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">テキスト読み上げエンジン</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">最寄りの交差点へ移動</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" と %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> と %1$s</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">地図を全画面表示にする</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">全画面表示を終了する</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">ルートが既に開始地点にあるため無効です</string>
@@ -1265,7 +1265,7 @@
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">近くの店舗やレストランなど</string>
     <string name="callouts_mobility_description" tools:ignore="MissingTranslation">交差点および交通に関する情報</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">音声ビーコンが設定されているときの距離に関する更新</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"言語と地域 "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">言語と地域 </string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">オンライン検索は、結果の現地言語を使用するか、英語・フランス語・ドイツ語のいずれかで返すように設定できます。</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">新しい言語が利用可能です</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">お使いの端末の言語が %1$s に設定されており、その言語が Soundscape で利用できるようになりました。Soundscape を %1$s に切り替えますか?</string>

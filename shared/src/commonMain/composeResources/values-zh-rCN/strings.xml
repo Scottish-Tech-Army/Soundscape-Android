@@ -48,7 +48,7 @@
     <string name="preview_title">模拟位置</string>
     <string name="preview_go_title">前进</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">前往最近的路口</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" 和%1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> 和%1$s</string>
     <string name="preview_include_unnamed_roads_title">无名道路</string>
     <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">在位置模拟期间包含无名道路</string>
     <string name="location_detail_title_default">位置详情</string>
@@ -958,7 +958,7 @@
     <string name="notification_text" tools:ignore="MissingTranslation">即使手机锁屏，Soundscape 的定位服务仍会运行。</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">取消搜索</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">音频</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"语言和地区 "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">语言和地区 </string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">无障碍</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">浅色或深色主题</string>
     <string name="settings_theme_auto" tools:ignore="MissingTranslation">自动</string>

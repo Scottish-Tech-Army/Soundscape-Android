@@ -406,7 +406,7 @@
     <string name="first_launch_permissions_notification">Notifiche</string>
     <string name="no_language_selected">Nessuna lingua selezionata</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Vai all\'incrocio più vicino</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" e %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> e %1$s</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Fare la mappa a schermo intero</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Esci dalla mappa a schermo intero</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">Vicino %1$s e vicino a %2$s</string>
@@ -1265,7 +1265,7 @@
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Luoghi nelle vicinanze come negozi e ristoranti</string>
     <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Informazioni su incroci e trasporti</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Aggiornamenti sulla distanza dall\'audiofaro quando è impostato</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Lingua e Regione "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">Lingua e Regione </string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">La ricerca online può usare la lingua locale del risultato o essere forzata a restituire risultati in inglese, francese o tedesco.</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">Nuova lingua disponibile</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Il tuo telefono è impostato su %1$s e questa lingua è ora disponibile in Soundscape. Vuoi che Soundscape utilizzi %1$s?</string>

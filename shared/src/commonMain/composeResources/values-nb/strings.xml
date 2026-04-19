@@ -410,7 +410,7 @@
     <string name="settings_units_metric" tools:ignore="MissingTranslation">Metrisk (meter)</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">Tekst-til-tale-motor</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Gå til nærmeste veikryss</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" og %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> og %1$s</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Vis kartet i fullskjerm</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Avslutt fullskjermvisning av kart</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Inaktiv fordi ruten allerede er på startpunktet</string>
@@ -1265,7 +1265,7 @@
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Steder i nærheten, som butikker og restauranter</string>
     <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Informasjon om veikryss og transport</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Oppdateringer om avstanden til lydsignalet når det er angitt</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Språk og region "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">Språk og region </string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Online‑søk kan bruke resultatets lokale språk, eller tvinges til å returnere engelsk, fransk eller tysk.</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">Nytt språk tilgjengelig</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Telefonen din er satt til %1$s, og dette språket er nå tilgjengelig i Soundscape. Vil du at Soundscape skal bruke %1$s?</string>

@@ -48,7 +48,7 @@
     <string name="preview_title">Simulare locație</string>
     <string name="preview_go_title">Mergi</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Mergi la cea mai apropiată intersecție</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" și %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> și %1$s</string>
     <string name="preview_include_unnamed_roads_title">Drumuri fără nume</string>
     <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">Include drumuri fără nume în timpul simulării locației</string>
     <string name="location_detail_title_default">Detalii locație</string>
@@ -411,7 +411,7 @@
     <string name="notification_text" tools:ignore="MissingTranslation">Serviciul de localizare Soundscape rulează chiar și atunci când telefonul este blocat.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Anulează căutarea</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Audio</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Limbă și regiune "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">Limbă și regiune </string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Accesibilitate</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Temă deschisă sau întunecată</string>
     <string name="settings_theme_auto" tools:ignore="MissingTranslation">Automat</string>

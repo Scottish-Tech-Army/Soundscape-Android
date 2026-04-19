@@ -35,7 +35,7 @@
     <string name="preview_title">Podgląd lokalizacji</string>
     <string name="preview_go_title">Idź</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Idź do najbliższego skrzyżowania</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" i %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> i %1$s</string>
     <string name="preview_include_unnamed_roads_title">Drogi bez nazwy</string>
     <string name="location_detail_title_default">Szczegóły lokalizacji</string>
     <string name="location_detail_action_beacon">Uruchom dźwięk naprowadzający</string>
@@ -1265,7 +1265,7 @@
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Pobliskie miejsca, takie jak sklepy i restauracje</string>
     <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Informacje o skrzyżowaniach i transporcie</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Informacje o odległości do dźwięku naprowadzającego, gdy jest ustawiony</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Język i region "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">Język i region </string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Wyszukiwanie online może używać lokalnego języka wyniku albo można wymusić zwracanie wyników w języku angielskim, francuskim lub niemieckim.</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">Dostępny nowy język</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Twój telefon jest ustawiony na %1$s, a ten język jest teraz dostępny w Soundscape. Czy chcesz, aby Soundscape używał języka %1$s?</string>

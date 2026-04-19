@@ -410,7 +410,7 @@
     <string name="settings_units_metric" tools:ignore="MissingTranslation">Μετρικό (μέτρα)</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">Μηχανή μετατροπής κειμένου σε ομιλία</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Μετάβαση στην πλησιέστερη διασταύρωση</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" και %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> και %1$s</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Εμφάνιση του χάρτη σε πλήρη οθόνη</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Έξοδος από προβολή πλήρους οθόνης του χάρτη</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Ανενεργό καθώς η διαδρομή είναι ήδη στην αρχή</string>
@@ -1265,7 +1265,7 @@
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Κοντινά μέρη όπως καταστήματα και εστιατόρια</string>
     <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Πληροφορίες για διασταυρώσεις και συγκοινωνίες</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Ενημερώσεις σχετικά με την απόσταση από το ηχητικό σήμα όταν έχει οριστεί</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Γλώσσα και περιοχή "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">Γλώσσα και περιοχή </string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Η διαδικτυακή αναζήτηση μπορεί να χρησιμοποιήσει την τοπική γλώσσα του αποτελέσματος ή να επιβάλει επιστροφή αποτελεσμάτων στα Αγγλικά, Γαλλικά ή Γερμανικά.</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">Νέα γλώσσα διαθέσιμη</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Το τηλέφωνό σας έχει ρυθμιστεί στη γλώσσα %1$s και αυτή η γλώσσα είναι πλέον διαθέσιμη στο Soundscape. Θέλετε να αλλάξετε το Soundscape ώστε να χρησιμοποιεί τη γλώσσα %1$s;</string>

@@ -48,7 +48,7 @@
     <string name="preview_title">स्थान सिमुलेशन</string>
     <string name="preview_go_title">जाएँ</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">निकटतम चौराहे पर जाएँ</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" और %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> और %1$s</string>
     <string name="preview_include_unnamed_roads_title">बिना नाम वाली सड़कें</string>
     <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">स्थान सिमुलेशन के दौरान बिना नाम वाली सड़कें शामिल करें</string>
     <string name="location_detail_title_default">स्थान विवरण</string>
@@ -411,7 +411,7 @@
     <string name="notification_text" tools:ignore="MissingTranslation">Soundscape की स्थान सेवा फोन लॉक होने पर भी चलती रहती है।</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">खोज रद्द करें</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">ऑडियो</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"भाषा और क्षेत्र "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">भाषा और क्षेत्र </string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">पहुँच-योग्यता</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">लाइट या डार्क थीम</string>
     <string name="settings_theme_auto" tools:ignore="MissingTranslation">स्वचालित</string>

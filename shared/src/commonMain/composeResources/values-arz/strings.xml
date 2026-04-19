@@ -35,7 +35,7 @@
     <string name="preview_title">محاكاة الموقع</string>
     <string name="preview_go_title">اذهب</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">اذهب إلى أقرب تقاطع</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" و %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> و %1$s</string>
     <string name="preview_include_unnamed_roads_title">طرق لم تسمها</string>
     <string name="location_detail_title_default">تفاصيل الموقع</string>
     <string name="location_detail_action_beacon">ابدأ منارة الصوت</string>
@@ -1265,7 +1265,7 @@
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">أماكن قريبة مثل المحلات والمطاعم</string>
     <string name="callouts_mobility_description" tools:ignore="MissingTranslation">معلومات عن التقاطعات ووسائل النقل</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">تحديثات حول المسافة إلى منارة الصوت عند تعيينها</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"اللغة والمنطقة "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">اللغة والمنطقة </string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">يمكن للبحث عبر الإنترنت أن يستخدم اللغة المحلية للنتيجة، أو إجباره على إرجاع النتائج بالإنجليزية أو الفرنسية أو الألمانية.</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">لغة جديدة متاحة</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">هاتفك مضبوط على %1$s وهذه اللغة أصبحت متاحة الآن في Soundscape. هل تود تحويل Soundscape لاستخدام %1$s؟</string>

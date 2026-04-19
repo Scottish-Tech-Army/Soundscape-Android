@@ -73,7 +73,7 @@
     <!-- Initial street preview state for Go button which is indicating that pressing the button will take the user to the nearest intersection -->
 <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">برو به نزدیک‌ترین تقاطع</string>
     <!-- Notification, %s is the last entry in a comma delimited list e.g. roads within an intersection. e.g. " and Moor Road" -->
-<string name="last_entry_in_list" tools:ignore="MissingTranslation">" و %1$s"</string>
+<string name="last_entry_in_list" tools:ignore="MissingTranslation"> و %1$s</string>
     <!-- Title for a setting to include unnamed roads -->
 <string name="preview_include_unnamed_roads_title">خیابان‌های بدون نام</string>
     <!-- Location Details page title. This page shows information about the location including the address and a map. -->
@@ -1736,7 +1736,7 @@
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">مکان‌های نزدیک مانند فروشگاه‌ها و رستوران‌ها</string>
     <string name="callouts_mobility_description" tools:ignore="MissingTranslation">اطلاعات مربوط به تقاطع‌ها و حمل‌و‌نقل</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">به‌روزرسانی‌هایی دربارهٔ فاصله تا جهت‌نمای صوتی هنگام فعال‌بودن آن</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"زبان و منطقه "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">زبان و منطقه </string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">جستجوی آنلاین می‌تواند نتایج را به زبان محلی نمایش دهد، یا می‌توان آن را طوری تنظیم کرد که نتایج فقط به انگلیسی، فرانسوی یا آلمانی بازگردانده شوند.</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">زبان جدید در دسترس است</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">گوشی شما به زبان %1$s تنظیم شده و این زبان اکنون در ساند‌اسکیپ موجود است. آیا مایلید ساند‌اسکیپ از زبان %1$s استفاده کند؟</string>

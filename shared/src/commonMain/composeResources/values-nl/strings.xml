@@ -410,7 +410,7 @@
     <string name="settings_units_metric" tools:ignore="MissingTranslation">Metrisch (meter)</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">Tekst-naar-spraakmotor</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Ga naar het dichtstbijzijnde kruispunt</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" en %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> en %1$s</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Kaart op volledig scherm weergeven</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Volledig scherm van de kaart sluiten</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Inactief omdat de route al bij het begin is</string>
@@ -1265,7 +1265,7 @@
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Nabijgelegen plaatsen zoals winkels en restaurants</string>
     <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Informatie over kruispunten en vervoer</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Updates over de afstand tot het audiobaken wanneer dit is ingesteld</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Taal en regio "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">Taal en regio </string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Online zoeken kan resultaten in de lokale taal tonen, of geforceerd resultaten in het Engels, Frans of Duits teruggeven.</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">Nieuwe taal beschikbaar</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Uw telefoon is ingesteld op %1$s en die taal is nu beschikbaar in Soundscape. Wilt u dat Soundscape overschakelt naar %1$s?</string>

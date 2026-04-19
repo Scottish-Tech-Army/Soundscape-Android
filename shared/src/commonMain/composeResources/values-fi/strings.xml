@@ -410,7 +410,7 @@
     <string name="settings_units_metric" tools:ignore="MissingTranslation">Metrinen (metrit)</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">Tekstistä puheeksi -moottori</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Mene lähimpään risteykseen</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" ja %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> ja %1$s</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Näytä kartta koko näytöllä</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Poistu koko näytön karttanäkymästä</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Ei käytettävissä, koska reitti on jo alussa</string>
@@ -1265,7 +1265,7 @@
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Lähellä olevat paikat, kuten kaupat ja ravintolat</string>
     <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Risteys- ja liikennetiedot</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Päivityksiä etäisyydestä äänimajakkaan, kun majakka on asetettu</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Kieli ja alue "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">Kieli ja alue </string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Online‑haku voi käyttää hakutulosten paikallista kieltä tai pakottaa tulokset palautumaan englanniksi, ranskaksi tai saksaksi.</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">Uusi kieli saatavilla</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Puhelimesi kieli on asetettu kieleksi %1$s, ja tämä kieli on nyt saatavilla Soundscapessa. Haluatko vaihtaa Soundscapen kieleksi %1$s?</string>

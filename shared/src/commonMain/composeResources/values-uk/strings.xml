@@ -3,7 +3,7 @@
     <string name="general_alert_cancel">Скасувати</string>
     <string name="general_alert_done">Готово</string>
     <string name="general_loading_start">Підготовка…</string>
-    <string name="general_error_location_services_find_location_error">"У нас виникли труднощі з  Вашим поточним місцезнаходженням."</string>
+    <string name="general_error_location_services_find_location_error">У нас виникли труднощі з  Вашим поточним місцезнаходженням.</string>
     <string name="general_error_add_marker_error">У нас виникли труднощі зі створенням мітки для цього місця. Повторіть спробу пізніше.</string>
     <string name="settings_screen_title">Налаштування</string>
     <string name="settings_about_app">Про Soundscape</string>
@@ -34,7 +34,7 @@
     <string name="preview_title">Симулювати місцезнаходження</string>
     <string name="preview_go_title">Далі</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Перейти до найближчого перехрестя</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" та %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> та %1$s</string>
     <string name="preview_include_unnamed_roads_title">Дороги без назв</string>
     <string name="location_detail_title_default">Деталі місця</string>
     <string name="location_detail_action_beacon">Запустити звуковий маячок</string>
@@ -1265,7 +1265,7 @@
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Найближчі місця, як‑от магазини та ресторани</string>
     <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Інформація про перехрестя та транспорт</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Оновлення про відстань до звукового маячка, коли він встановлений</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Мова та регіон "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">Мова та регіон </string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Онлайн‑пошук може використовувати місцеву мову результату або бути примусово налаштований на повернення результатів англійською, французькою або німецькою.</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">Доступна нова мова</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">На вашому телефоні встановлено %1$s, і ця мова тепер доступна у Soundscape. Бажаєте переключити Soundscape на використання %1$s?</string>

@@ -35,7 +35,7 @@
     <string name="preview_title">Herma staðsetningu</string>
     <string name="preview_go_title">fara á næstu gatnamót</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">fara á nálægustu gatnamót</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" og %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> og %1$s</string>
     <string name="preview_include_unnamed_roads_title">nafnlaus vegur</string>
     <string name="location_detail_title_default">upplýsingar um staðsetningu</string>
     <string name="location_detail_action_beacon">hljóð viti</string>
@@ -1265,7 +1265,7 @@
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Nálægir staðir, til dæmis verslanir og veitingastaðir</string>
     <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Upplýsingar um gatnamót og samgöngur</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Uppfærslur um fjarlægð að hljóðvita þegar hann er settur</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Tungumál og svæði "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">Tungumál og svæði </string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Netleit getur notað staðbundið tungumál niðurstaðna, eða verið stillt til að skila niðurstöðum á ensku, frönsku eða þýsku.</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">Nýtt tungumál í boði</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Síminn þinn er stilltur á %1$s og það tungumál er nú í boði í Soundscape. Viltu að Soundscape noti %1$s?</string>

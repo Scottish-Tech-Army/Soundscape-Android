@@ -410,7 +410,7 @@
     <string name="settings_units_metric" tools:ignore="MissingTranslation">Metrisk (meter)</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">Text-till-tal motor</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Gå till närmaste korsning</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" och %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> och %1$s</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Gör kartan full skärm</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Exit full skärm karta</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">Nära %1$s och nära %2$s</string>
@@ -1265,7 +1265,7 @@
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Närliggande platser som butiker och restauranger</string>
     <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Information om vägkorsningar och transporter</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Uppdateringar om avstånd till ljudfyren när den är aktiverad</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Språk och region "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">Språk och region </string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">Onlinesökning kan använda resultatets lokala språk, eller tvingas att returnera engelska, franska eller tyska.</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">Nytt språk tillgängligt</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Din telefon är inställd på %1$s och det språket finns nu tillgängligt i Soundscape. Vill du byta så att Soundscape använder %1$s?</string>

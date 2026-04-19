@@ -412,7 +412,7 @@
     <string name="osm_train_station_named" tools:ignore="MissingTranslation">%1$s Gare</string>
     <string name="directions_cardinal_north" tools:ignore="MissingTranslation">Nord</string>
     <string name="directions_cardinal_north_west" tools:ignore="MissingTranslation">Nord-Ouest</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" et %1$s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation"> et %1$s</string>
     <string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation">N</string>
     <string name="directions_cardinal_south_west" tools:ignore="MissingTranslation">Sud-Ouest</string>
     <string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">E</string>
@@ -1265,7 +1265,7 @@
     <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Lieux à proximité, comme les magasins et les restaurants</string>
     <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Informations sur les intersections et les transports</string>
     <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Mises à jour sur la distance à la balise sonore lorsqu’elle est définie</string>
-    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Langue et région "</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">Langue et région </string>
     <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">La recherche en ligne peut utiliser la langue locale des résultats, ou être configurée pour renvoyer l’anglais, le français ou l’allemand.</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">Nouvelle langue disponible</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Votre téléphone est réglé sur %1$s et cette langue est désormais disponible dans Soundscape. Souhaitez-vous que Soundscape utilise %1$s ?</string>
