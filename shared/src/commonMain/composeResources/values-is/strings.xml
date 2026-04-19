@@ -35,7 +35,7 @@
     <string name="preview_title">Herma staðsetningu</string>
     <string name="preview_go_title">fara á næstu gatnamót</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">fara á nálægustu gatnamót</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" og %s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" og %1$s"</string>
     <string name="preview_include_unnamed_roads_title">nafnlaus vegur</string>
     <string name="location_detail_title_default">upplýsingar um staðsetningu</string>
     <string name="location_detail_action_beacon">hljóð viti</string>
@@ -58,7 +58,7 @@
     <string name="route_detail_action_edit_hint">breyta leiðarpunktum á leiðinni eða endurraða þeim.</string>
     <string name="route_detail_action_create">ný leið</string>
     <string name="route_detail_action_create_hint">búa til nýja leið.</string>
-    <string name="route_end_completed_accessibility">leið lokiðleið lokið %s</string>
+    <string name="route_end_completed_accessibility">leið lokiðleið lokið %1$s</string>
     <string name="route_detail_action_previous">fyrri leiðarpunktur</string>
     <string name="route_detail_action_previous_hint">færa hljóðvita á fyrri leiðarpunkt.</string>
     <string name="route_detail_action_next">næsti leiðarpunktur</string>
@@ -89,7 +89,7 @@
     <string name="markers_no_markers_hint_2">Prófaðu að merkja heimili, skóla eða vinustað.</string>
     <string name="markers_edit_screen_title_edit">Uppfæra Merki</string>
     <string name="markers_generic_name">Merki</string>
-    <string name="markers_marker_with_name">merki sent %s</string>
+    <string name="markers_marker_with_name">merki sent %1$s</string>
     <string name="markers_marker_created">merki búið til</string>
     <string name="markers_annotation">Aðrar athugasemdir</string>
     <string name="search_choose_destination">veldu áfangastað</string>
@@ -118,12 +118,12 @@
     <string name="sleep_sleep_acc_hint">setja Soundscape í dvala.</string>
     <string name="sleep_wake_up_now">úr dvala</string>
     <string name="intersection_approaching_intersection">nálgast gatnamót</string>
-    <string name="directions_at_poi">við %s</string>
+    <string name="directions_at_poi">við %1$s</string>
     <string name="directions_my_location">mín staðsettning</string>
-    <string name="directions_near_name">nærri %s</string>
-    <string name="directions_name_goes_left">%s til vinstri</string>
-    <string name="directions_name_goes_right">%s til hægri</string>
-    <string name="directions_name_continues_ahead">%s beint áfram</string>
+    <string name="directions_near_name">nærri %1$s</string>
+    <string name="directions_name_goes_left">%1$s til vinstri</string>
+    <string name="directions_name_goes_right">%1$s til hægri</string>
+    <string name="directions_name_continues_ahead">%1$s beint áfram</string>
     <string name="directions_direction_ahead">áfram</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">nálægt %1$s %2$s</string>
     <string name="directions_traveling_n">á leið í norður</string>
@@ -150,30 +150,30 @@
     <string name="directions_heading_sw">á leið í suð vestur</string>
     <string name="directions_heading_w">á leið í vestur</string>
     <string name="directions_heading_nw">á leið í norð vestur</string>
-    <string name="directions_along_traveling_n">ferðast í norður eftir %s</string>
-    <string name="directions_along_traveling_ne">ferðast í norð austur eftir %s</string>
-    <string name="directions_along_traveling_e">ferðast í austur eftir %s</string>
-    <string name="directions_along_traveling_se">ferðast í suð austur eftir %s</string>
-    <string name="directions_along_traveling_s">ferðast í suður eftir %s</string>
-    <string name="directions_along_traveling_sw">ferðast í suð vestur eftir %s</string>
-    <string name="directions_along_traveling_w">ferðast í vestur eftir %s</string>
-    <string name="directions_along_traveling_nw">ferðast í norð vestur eftir %s</string>
-    <string name="directions_along_facing_n">þú snýrð í norður eftir %s</string>
-    <string name="directions_along_facing_ne">þú snýrð í norð austur eftir %s</string>
-    <string name="directions_along_facing_e">þú snýrð í austur eftir %s</string>
-    <string name="directions_along_facing_se">þú snýrð í suð austur eftir %s</string>
-    <string name="directions_along_facing_s">þú snýrð í suður eftir %s</string>
-    <string name="directions_along_facing_sw">þú snýrð í suð vestur eftir %s</string>
-    <string name="directions_along_facing_w">þú snýrð í vestur eftir %s</string>
-    <string name="directions_along_facing_nw">þú snýrð í norð vestur eftir %s</string>
-    <string name="directions_along_heading_n">þú stefnir í norður eftir %s</string>
-    <string name="directions_along_heading_ne">þú stefnir í norð austur eftir %s</string>
-    <string name="directions_along_heading_e">þú stefnir í austur eftir %s</string>
-    <string name="directions_along_heading_se">þú stefnir í suð austur eftir %s</string>
-    <string name="directions_along_heading_s">þú stefnir í suður eftir %s</string>
-    <string name="directions_along_heading_sw">þú stefnir í suð vestur eftir %s</string>
-    <string name="directions_along_heading_w">þú stefir í vestur eftir %s</string>
-    <string name="directions_along_heading_nw">þú stefnir í norð vestur eftir %s</string>
+    <string name="directions_along_traveling_n">ferðast í norður eftir %1$s</string>
+    <string name="directions_along_traveling_ne">ferðast í norð austur eftir %1$s</string>
+    <string name="directions_along_traveling_e">ferðast í austur eftir %1$s</string>
+    <string name="directions_along_traveling_se">ferðast í suð austur eftir %1$s</string>
+    <string name="directions_along_traveling_s">ferðast í suður eftir %1$s</string>
+    <string name="directions_along_traveling_sw">ferðast í suð vestur eftir %1$s</string>
+    <string name="directions_along_traveling_w">ferðast í vestur eftir %1$s</string>
+    <string name="directions_along_traveling_nw">ferðast í norð vestur eftir %1$s</string>
+    <string name="directions_along_facing_n">þú snýrð í norður eftir %1$s</string>
+    <string name="directions_along_facing_ne">þú snýrð í norð austur eftir %1$s</string>
+    <string name="directions_along_facing_e">þú snýrð í austur eftir %1$s</string>
+    <string name="directions_along_facing_se">þú snýrð í suð austur eftir %1$s</string>
+    <string name="directions_along_facing_s">þú snýrð í suður eftir %1$s</string>
+    <string name="directions_along_facing_sw">þú snýrð í suð vestur eftir %1$s</string>
+    <string name="directions_along_facing_w">þú snýrð í vestur eftir %1$s</string>
+    <string name="directions_along_facing_nw">þú snýrð í norð vestur eftir %1$s</string>
+    <string name="directions_along_heading_n">þú stefnir í norður eftir %1$s</string>
+    <string name="directions_along_heading_ne">þú stefnir í norð austur eftir %1$s</string>
+    <string name="directions_along_heading_e">þú stefnir í austur eftir %1$s</string>
+    <string name="directions_along_heading_se">þú stefnir í suð austur eftir %1$s</string>
+    <string name="directions_along_heading_s">þú stefnir í suður eftir %1$s</string>
+    <string name="directions_along_heading_sw">þú stefnir í suð vestur eftir %1$s</string>
+    <string name="directions_along_heading_w">þú stefir í vestur eftir %1$s</string>
+    <string name="directions_along_heading_nw">þú stefnir í norð vestur eftir %1$s</string>
     <string name="directions_cardinal_north" tools:ignore="MissingTranslation">norður</string>
     <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">norð austur</string>
     <string name="directions_cardinal_east" tools:ignore="MissingTranslation">austur</string>
@@ -190,10 +190,10 @@
     <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">SV</string>
     <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">V</string>
     <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">NV</string>
-    <string name="distance_format_meters">%s metrar</string>
-    <string name="distance_format_km">%s km</string>
-    <string name="distance_format_feet">%s fet</string>
-    <string name="distance_format_miles">%s mílur</string>
+    <string name="distance_format_meters">%1$s metrar</string>
+    <string name="distance_format_km">%1$s km</string>
+    <string name="distance_format_feet">%1$s fet</string>
+    <string name="distance_format_miles">%1$s mílur</string>
     <string name="ui_action_button_my_location">Mín\nStaðsettning</string>
     <string name="ui_action_button_my_location_acc_hint">fá upplýsingar um núverandi staðsetningu þína.</string>
     <string name="ui_action_button_nearby_markers">Nálæg\nMerki</string>
@@ -232,7 +232,7 @@
     <string name="help_text_section_title_when">hvenar skal nota?</string>
     <string name="help_text_section_title_how">hvernig virkar það?</string>
     <string name="terms_of_use_title">notkunarskilmálar</string>
-    <string name="terms_of_use_message">notkun soundscape er háð eftirfarandi skilmálum %s.</string>
+    <string name="terms_of_use_message">notkun soundscape er háð eftirfarandi skilmálum %1$s.</string>
     <string name="terms_of_use_service_agreement">Sáttmáli Scottish tec army</string>
     <string name="terms_of_use_accept_checkbox_acc_label">samþykkja skilmála</string>
     <string name="terms_of_use_medical_safety_disclaimer">Þú viðurkennir að Soundscape (1) er ekki hannað, ætlað eða gert aðgengilegt sem lækningatæki og (2) er ekki hannað eða ætlað til að koma í stað faglegrar læknisráðgjafar, greiningar, meðferðar eða mats og ætti ekki að vera notað í stað faglegrar læknisráðgjafar, greiningar, meðferðar eða mats.\n\nÖryggistilkynning\n\nSoundscape er leiðsögutæki og ætti ekki að nota í stað hreyfifærni, meðvitundar um umhverfi þitt og góðrar dómgreindar. Gætið varúðar þegar þið röltið um umhverfið þar sem kortlagningargögnin sem eru hluti af Soundscape forritinu eru tekin úr þriðja aðila forriti og því geta verið takmarkanir á nákvæmni upplýsinganna sem kynntar eru.</string>
@@ -286,8 +286,8 @@
     <string name="osm_service_road">ómerkt gata</string>
     <string name="osm_road">vegur</string>
     <string name="osm_highway">hraðbraut</string>
-    <string name="osm_highway_named">%s hraðgata</string>
-    <string name="osm_highway_refed">hraðgata %s</string>
+    <string name="osm_highway_named">%1$s hraðgata</string>
+    <string name="osm_highway_refed">hraðgata %1$s</string>
     <string name="osm_intersection">gatnamot</string>
     <string name="osm_roundabout">hringtorg</string>
     <string name="osm_highway_ramp">aðrein-frárein</string>
@@ -318,10 +318,10 @@
     <string name="osm_gas_station">bensínstöð</string>
     <string name="osm_bank">banki</string>
     <string name="osm_atm">hraðbanki</string>
-    <string name="osm_atm_named">%s hraðbnki</string>
-    <string name="osm_atm_refed">hraðbanki %s</string>
+    <string name="osm_atm_named">%1$s hraðbnki</string>
+    <string name="osm_atm_refed">hraðbanki %1$s</string>
     <string name="osm_bus_stop">stoppistöð</string>
-    <string name="osm_bus_stop_named">%s stoppistöð</string>
+    <string name="osm_bus_stop_named">%1$s stoppistöð</string>
     <string name="osm_recycling_bin">endurvinnslutunna</string>
     <string name="osm_fountain">gosbrunnur</string>
     <string name="osm_place_of_worship">svæði tent trúarbrögðum</string>
@@ -444,13 +444,13 @@
     <string name="notification_text" tools:ignore="MissingTranslation">Staðsetningarþjónusta Soundscape keyrir jafnvel þegar síminn er læstur.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">hætta við leit</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">lestastöð</string>
-    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s lestastöð</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%1$s lestastöð</string>
     <string name="osm_tram_stop" tools:ignore="MissingTranslation">sporvagnastopp</string>
-    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s sporvagnastopp</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%1$s sporvagnastopp</string>
     <string name="osm_subway" tools:ignore="MissingTranslation">neðanjarðarlestarstöð</string>
-    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s neðanjarðarlestarstöð</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%1$s neðanjarðarlestarstöð</string>
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">ferjuhöfn</string>
-    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s ferjuhöfn</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s ferjuhöfn</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Hljóðstillingar</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Aðgengi</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Ljóst eða dökkt þema</string>
@@ -482,20 +482,20 @@
     <string name="offline_maps_title" tools:ignore="MissingTranslation">Ónettengd kort</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">Upplýsingar um ónettengt kort</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">Hleður…</string>
-    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Sækir %s</string>
-    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Þjónninn undirbýr %s fyrir niðurhal. Þetta getur tekið nokkrar mínútur og síðan byrjar niðurhalið sjálfkrafa.</string>
-    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s laust pláss</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Sækir %1$s</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Þjónninn undirbýr %1$s fyrir niðurhal. Þetta getur tekið nokkrar mínútur og síðan byrjar niðurhalið sjálfkrafa.</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%1$s laust pláss</string>
     <string name="offline_maps_storage" tools:ignore="MissingTranslation">Kort eru vistuð á %1$s sem hefur %2$s laust pláss</string>
     <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">Niðurhlaðin kort</string>
     <string name="offline_maps_nearby" tools:ignore="MissingTranslation">Nálæg niðurhlaðin kort</string>
     <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">Sæki lista yfir niðurhlaðin kort</string>
     <string name="offline_map_details_delete" tools:ignore="MissingTranslation">Eyða niðurhlaðnu korti</string>
     <string name="offline_map_details_download" tools:ignore="MissingTranslation">Hlaða niður korti</string>
-    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Stærð í símanum: %s</string>
-    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Stærð niðurhals: %s</string>
-    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Nafn korts: %s</string>
-    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">Kortið inniheldur eftirfarandi staði: %s</string>
-    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Þessir staðir eru einnig þekktir sem: %s</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Stærð í símanum: %1$s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Stærð niðurhals: %1$s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Nafn korts: %1$s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">Kortið inniheldur eftirfarandi staði: %1$s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Þessir staðir eru einnig þekktir sem: %1$s</string>
     <string name="offline_map_storage_title" tools:ignore="MissingTranslation">Geymsla fyrir offline-kort</string>
     <string name="offline_map_storage_description" tools:ignore="MissingTranslation">Til að Soundscape virki án nettengingar er hægt að hlaða niður kortum og vista þau í símanum. Sjálfgefið er að nota ytri geymslu í símanum þínum, en hér geturðu valið annan stað.</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Nota aðeins Wi‑Fi til að hlaða niður kortum</string>
@@ -528,7 +528,7 @@
     <string name="new_version_info_details" tools:ignore="MissingTranslation">\nÍ þessari útgáfu eru tvær nýjar aðgerðir sem gera fjarstýringu forritsins kleift, jafnvel þegar síminn er læstur. Það þýðir að síminn má vera í vasanum meðan þú stjórnar helstu eiginleikum forritsins.\n\nBáðar fjarstýringaraðferðirnar nota Bluetooth fjölmiðlahnappa, annað hvort á heyrnartólunum þínum eða með sér litlum fjarstýringum sem þú getur haft í hendinni eða vasanum. Hamur fjarstýringarinnar er valinn í stillingunum undir Stillingar / Fjölmiðlastýringar og þú getur valið „Raddskipanir\" svo þú getir talað við forritið, eða „Hljóðvalmynd\" þar sem valmyndir eru lesnar upp fyrir þig með valkostum til að velja. „Upprunalegur hamur\" þýðir að Bluetooth hnapparnir virka á sama hátt og í eldri útgáfum.\n\nÍ raddskipana-ham, þegar þú ýtir á spila/hlé hnappinn á heyrnartólunum byrjar forritið að hlusta eftir tali og þú heyrir stutt hljóð sem gefur til kynna að hlustun hafi hafist. Ef þú segir „Hjálp\" mun það telja upp þær skipanir sem í boði eru. Þú getur þá ýtt á hnappinn aftur og reynt aðra skipanir. Því miður styður Android talgreining ekki öll tungumál og hún er ekki tiltæk á öllum símum.\n\nHelsta erfiðleikinn með raddskipanahaminn er að sum heyrnartól taka lengri tíma að virkja hljóðnemann en önnur. Það þýðir að eftir að þú hefur ýtt á spila/hlé gætirðu þurft að bíða allt að 5 sekúndur áður en þú getur talað. Til að læra hversu langan tíma það tekur er best að ýta á spila/hlé og telja frá 1 upp í 10. Síminn ætti að segja upp hvað hann skynjaði og talan sem hann byrjar á var sú fyrsta sem hann skynjaði. Þessi aðferð hjálpar þér að giska á hvenær best er að hefja talið. Sum heyrnartól gefa frá sér greinilegt hljóð þegar hljóðneminn er virkur sem einfaldar þetta, en önnur gera ekkert hljóð. Því miður krefst þetta stundum æfingar.\n\nHinn nýi fjarstýringahamurinn, Hljóðvalmynd, virkar á öllum tungumálum og á öllum símum. Næsta/fyrri fjölmiðlahnapparnir færa áfram og aftur um valkosti í valmyndinni. Spila/hlé hnappurinn velur svo þann valkost sem er valinn. Það er yfirlitsvalmynd og síðan eitt lag af undirmatseðlum sem flokka svipaðar skipanir saman.\n\nÞessar aðgerðir eru mjög nýjar og við myndum gjarnan vilja fá endurgjöf um hvort þær virka vel og hvaða aðrar skipanir þið mynduð vilja.\n\nVinsamlega tilkynnið öll vandamál, jafnvel smávægileg, með valkostinum *Hafa samband, stuðningur* í aðalvalmyndinni.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Leyfi opins hugbúnaðar</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Ferjuhöfn</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s ferjuhöfn</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s ferjuhöfn</string>
     <string name="osm_office" tools:ignore="MissingTranslation">Skrifstofa</string>
     <string name="osm_school" tools:ignore="MissingTranslation">Skóli</string>
     <string name="osm_roof" tools:ignore="MissingTranslation">Þak</string>
@@ -1253,7 +1253,7 @@
     <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">hætta að breyta staðsetningu merkisins.</string>
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">Á %1$s rétt áður en %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">Á %1$s rétt eftir %2$s</string>
-    <string name="street_description_intersection" tools:ignore="MissingTranslation">Nálægt gatnamótum %s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Nálægt gatnamótum %1$s</string>
     <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Þetta merki er þegar í leiðinni á þessari staðsetningu. Við getum ekki bætt því við aftur.</string>
     <string name="settings_explanation" tools:ignore="MissingTranslation">Stillingar forritsins eru flokkaðar í hópa hér neðar. Ýttu á flokk til að opna hann og sjá hvaða valkostir eru í boði.</string>
     <string name="settings_section_units_description" tools:ignore="MissingTranslation">Veldu mælieiningar sem á að nota fyrir fjarlægðir</string>
@@ -1303,12 +1303,12 @@
     <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Tiltæk merki eru,</string>
     <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Engar leiðir hafa verið vistaðar</string>
     <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Engin merki hafa verið vistuð</string>
-    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Leið fannst ekki: %s</string>
-    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Hef spilun leiðarinnar %s</string>
-    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Hefja leið %s</string>
-    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Kveikja á hljóðvita á %s</string>
-    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Hljóðviti settur á %s</string>
-    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Merki fannst ekki: %s</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Leið fannst ekki: %1$s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Hef spilun leiðarinnar %1$s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Hefja leið %1$s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Kveikja á hljóðvita á %1$s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Hljóðviti settur á %1$s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Merki fannst ekki: %1$s</string>
     <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Þú getur einnig sett af stað leiðir og merki með nafni, til dæmis.</string>
     <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Tímaútrunnin nettengingarvilla við talgreiningu.</string>
     <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Nettengingarvilla við talgreiningu.</string>
@@ -1335,9 +1335,9 @@
     <string name="battery_optimization_message">Soundscape þarf óheftan aðgang að rafhlöðu til að halda áfram að veita hljóðleiðsögn þegar síminn er læstur. Vinsamlegast leyfðu þetta í næsta glugga. Ef þú lokar Soundscape stöðvast allar þjónustur og forritið mun ekki lengur nota rafhlöðu.</string>
     <string name="route_detail_action_start_route_reverse">upphaf leiðar í öfugri röð</string>
     <string name="route_detail_action_start_route_reverse_hint">hefja spilun þessarar leiðar í öfugri röð</string>
-    <string name="route_reverse_name">%s í öfugri röð</string>
+    <string name="route_reverse_name">%1$s í öfugri röð</string>
     <string name="callouts_no_nearby_markers">Engin nálæg merki</string>
-    <string name="stationary_on_way">staddur á %s</string>
+    <string name="stationary_on_way">staddur á %1$s</string>
     <string name="settings_relative_directions_text">Afstæðar áttir</string>
     <string name="settings_relative_directions_description">Breyta hvernig afstæðar áttir eru lýstar.</string>
     <string name="settings_relative_directions_clockface">Klukkuás</string>
@@ -1345,8 +1345,8 @@
     <string name="settings_relative_directions_left_right">Vinstri / Hægri</string>
     <string name="callout_settings_position_text">Innihalda fjarlægð og átt þegar tilkynnt er um áhugaverða staði</string>
     <string name="callout_settings_position_description">Sjálfgefið innihalda tilkynningar um staði ekki fjarlægð né átt. Þessi stilling bætir þeim við tilkynningarnar.</string>
-    <string name="relative_clock_direction">klukkan %s</string>
-    <string name="relative_degrees_direction">á %s gráðum</string>
+    <string name="relative_clock_direction">klukkan %1$s</string>
+    <string name="relative_degrees_direction">á %1$s gráðum</string>
     <string name="relative_left_right_direction_ahead">Áfram</string>
     <string name="relative_left_right_direction_ahead_left">Áfram til vinstri</string>
     <string name="relative_left_right_direction_ahead_right">Áfram til hægri</string>

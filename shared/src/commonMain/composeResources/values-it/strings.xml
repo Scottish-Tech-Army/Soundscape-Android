@@ -50,7 +50,7 @@
     <string name="route_detail_action_edit_hint">Modificare i waypoint del percorso o riordinarli.</string>
     <string name="route_detail_action_create">Nuovo Percorso</string>
     <string name="route_detail_action_create_hint">Creare un nuovo percorso</string>
-    <string name="route_end_completed_accessibility">Percorso completato! %s</string>
+    <string name="route_end_completed_accessibility">Percorso completato! %1$s</string>
     <string name="route_detail_action_previous">Waypoint precedente</string>
     <string name="route_detail_action_previous_hint">Spostare l\'audiofaro al waypoint precedente</string>
     <string name="route_detail_action_next">Waypoint successivo</string>
@@ -81,7 +81,7 @@
     <string name="markers_no_markers_hint_2">Prova ad aggiungere un indicatore per la tua abitazione, l\'entrata del tuo luogo di lavoro o il tuo angolo preferito nel parco.</string>
     <string name="markers_edit_screen_title_edit">Modifica indicatore</string>
     <string name="markers_generic_name">Indicatore</string>
-    <string name="markers_marker_with_name">Indicatore, %s</string>
+    <string name="markers_marker_with_name">Indicatore, %1$s</string>
     <string name="markers_marker_created">Indicatore creato</string>
     <string name="markers_annotation">Annotazione</string>
     <string name="search_choose_destination">Scegli la destinazione</string>
@@ -110,12 +110,12 @@
     <string name="sleep_sleep_acc_hint">Mettere Soundscape in modalità Sospendi</string>
     <string name="sleep_wake_up_now">Riattiva ora</string>
     <string name="intersection_approaching_intersection">Ti stai avvicinando all\'incrocio</string>
-    <string name="directions_at_poi">Presso %s</string>
+    <string name="directions_at_poi">Presso %1$s</string>
     <string name="directions_my_location">La mia posizione</string>
-    <string name="directions_near_name">Vicino %s</string>
-    <string name="directions_name_goes_left">%s, è sulla sinistra</string>
-    <string name="directions_name_goes_right">%s, è sulla destra</string>
-    <string name="directions_name_continues_ahead">%s, prosegue</string>
+    <string name="directions_near_name">Vicino %1$s</string>
+    <string name="directions_name_goes_left">%1$s, è sulla sinistra</string>
+    <string name="directions_name_goes_right">%1$s, è sulla destra</string>
+    <string name="directions_name_continues_ahead">%1$s, prosegue</string>
     <string name="directions_direction_ahead">avanti</string>
     <string name="directions_traveling_n">Stai viaggiando verso nord</string>
     <string name="directions_traveling_ne">Stai viaggiando verso nord est</string>
@@ -141,34 +141,34 @@
     <string name="directions_heading_sw">Sei diretto verso sud ovest</string>
     <string name="directions_heading_w">Sei diretto verso ovest</string>
     <string name="directions_heading_nw">Sei diretto verso nord ovest</string>
-    <string name="directions_along_traveling_n">Stai viaggiando verso nord lungo %s</string>
-    <string name="directions_along_traveling_ne">Stai viaggiando verso nord est lungo %s</string>
-    <string name="directions_along_traveling_e">Stai viaggiando verso est lungo %s</string>
-    <string name="directions_along_traveling_se">Stai viaggiando verso sud est lungo %s</string>
-    <string name="directions_along_traveling_s">Stai viaggiando verso sud lungo %s</string>
-    <string name="directions_along_traveling_sw">Stai viaggiando verso sud ovest lungo %s</string>
-    <string name="directions_along_traveling_w">Stai viaggiando verso ovest lungo %s</string>
-    <string name="directions_along_traveling_nw">Stai viaggiando verso nord ovest lungo %s</string>
-    <string name="directions_along_facing_n">Sei rivolto verso nord lungo %s</string>
-    <string name="directions_along_facing_ne">Sei rivolto verso nord est lungo %s</string>
-    <string name="directions_along_facing_e">Sei rivolto verso est lungo %s</string>
-    <string name="directions_along_facing_se">Sei rivolto verso sud est lungo %s</string>
-    <string name="directions_along_facing_s">Sei rivolto verso sud lungo %s</string>
-    <string name="directions_along_facing_sw">Sei rivolto verso sud ovest lungo %s</string>
-    <string name="directions_along_facing_w">Sei rivolto verso ovest lungo %s</string>
-    <string name="directions_along_facing_nw">Sei rivolto verso nord ovest lungo %s</string>
-    <string name="directions_along_heading_n">Sei diretto verso nord lungo %s</string>
-    <string name="directions_along_heading_ne">Sei diretto verso nord est lungo %s</string>
-    <string name="directions_along_heading_e">Sei diretto verso est lungo %s</string>
-    <string name="directions_along_heading_se">Sei diretto verso sud est lungo %s</string>
-    <string name="directions_along_heading_s">Sei diretto verso sud lungo %s</string>
-    <string name="directions_along_heading_sw">Sei diretto verso sud ovest lungo %s</string>
-    <string name="directions_along_heading_w">Sei diretto verso ovest lungo %s</string>
-    <string name="directions_along_heading_nw">Sei diretto verso nord ovest lungo %s</string>
-    <string name="distance_format_meters">%s metri</string>
-    <string name="distance_format_km">%s km</string>
-    <string name="distance_format_feet">%s piedi</string>
-    <string name="distance_format_miles">%s miglia</string>
+    <string name="directions_along_traveling_n">Stai viaggiando verso nord lungo %1$s</string>
+    <string name="directions_along_traveling_ne">Stai viaggiando verso nord est lungo %1$s</string>
+    <string name="directions_along_traveling_e">Stai viaggiando verso est lungo %1$s</string>
+    <string name="directions_along_traveling_se">Stai viaggiando verso sud est lungo %1$s</string>
+    <string name="directions_along_traveling_s">Stai viaggiando verso sud lungo %1$s</string>
+    <string name="directions_along_traveling_sw">Stai viaggiando verso sud ovest lungo %1$s</string>
+    <string name="directions_along_traveling_w">Stai viaggiando verso ovest lungo %1$s</string>
+    <string name="directions_along_traveling_nw">Stai viaggiando verso nord ovest lungo %1$s</string>
+    <string name="directions_along_facing_n">Sei rivolto verso nord lungo %1$s</string>
+    <string name="directions_along_facing_ne">Sei rivolto verso nord est lungo %1$s</string>
+    <string name="directions_along_facing_e">Sei rivolto verso est lungo %1$s</string>
+    <string name="directions_along_facing_se">Sei rivolto verso sud est lungo %1$s</string>
+    <string name="directions_along_facing_s">Sei rivolto verso sud lungo %1$s</string>
+    <string name="directions_along_facing_sw">Sei rivolto verso sud ovest lungo %1$s</string>
+    <string name="directions_along_facing_w">Sei rivolto verso ovest lungo %1$s</string>
+    <string name="directions_along_facing_nw">Sei rivolto verso nord ovest lungo %1$s</string>
+    <string name="directions_along_heading_n">Sei diretto verso nord lungo %1$s</string>
+    <string name="directions_along_heading_ne">Sei diretto verso nord est lungo %1$s</string>
+    <string name="directions_along_heading_e">Sei diretto verso est lungo %1$s</string>
+    <string name="directions_along_heading_se">Sei diretto verso sud est lungo %1$s</string>
+    <string name="directions_along_heading_s">Sei diretto verso sud lungo %1$s</string>
+    <string name="directions_along_heading_sw">Sei diretto verso sud ovest lungo %1$s</string>
+    <string name="directions_along_heading_w">Sei diretto verso ovest lungo %1$s</string>
+    <string name="directions_along_heading_nw">Sei diretto verso nord ovest lungo %1$s</string>
+    <string name="distance_format_meters">%1$s metri</string>
+    <string name="distance_format_km">%1$s km</string>
+    <string name="distance_format_feet">%1$s piedi</string>
+    <string name="distance_format_miles">%1$s miglia</string>
     <string name="ui_action_button_my_location">La mia\nposizione</string>
     <string name="ui_action_button_my_location_acc_hint">Ascoltare informazioni sulla tua posizione attuale</string>
     <string name="ui_action_button_nearby_markers">Indicatori\nnelle vicinanze</string>
@@ -206,7 +206,7 @@
     <string name="help_text_section_title_when">Quando si usa?</string>
     <string name="help_text_section_title_how">Come funziona?</string>
     <string name="terms_of_use_title">Condizioni per l\'utilizzo</string>
-    <string name="terms_of_use_message">L\'utilizzo di Soundscape è soggetto alle condizioni di %s e alle condizioni indicate di seguito (insieme, le *\"Condizioni per l\'utilizzo\"*).</string>
+    <string name="terms_of_use_message">L\'utilizzo di Soundscape è soggetto alle condizioni di %1$s e alle condizioni indicate di seguito (insieme, le *\"Condizioni per l\'utilizzo\"*).</string>
     <string name="terms_of_use_service_agreement">Contratto di servizi Scottish Tech Army</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Accetta le condizioni per l\'utilizzo</string>
     <string name="terms_of_use_medical_safety_disclaimer">L\'utente riconosce che Soundscape (1) non è progettato, inteso o reso disponibile come dispositivo medico e (2) non è progettato o destinato a sostituire la consulenza, la diagnosi, il trattamento o il giudizio medico professionale e non deve essere utilizzato in sostituzione della consulenza, della diagnosi, del trattamento o del giudizio medico professionale.\n\nAvviso di sicurezza\n\nSoundscape è un aiuto per lo spostamento e non è concepito come sostitutivo delle capacità di mobilità, della consapevolezza dei dintorni e del buon senso. Presta attenzione quando esplori l\'ambiente poiché i dati di mapping incorporati nel programma Soundscape vengono acquisiti da un programma di terze parti e, pertanto, potrebbero esserci limitazioni circa l\'accuratezza delle informazioni presentate.</string>
@@ -288,8 +288,8 @@
     <string name="osm_service_road">Strada d’accesso</string>
     <string name="osm_road">Strada</string>
     <string name="osm_highway">Autostrada</string>
-    <string name="osm_highway_named">Autostrada %s</string>
-    <string name="osm_highway_refed">Autostrada %s</string>
+    <string name="osm_highway_named">Autostrada %1$s</string>
+    <string name="osm_highway_refed">Autostrada %1$s</string>
     <string name="osm_intersection">Incrocio</string>
     <string name="osm_roundabout">Rotonda</string>
     <string name="osm_highway_ramp">Svincolo dell\'autostrada</string>
@@ -320,10 +320,10 @@
     <string name="osm_gas_station">Stazione di servizio</string>
     <string name="osm_bank">Banca</string>
     <string name="osm_atm">Sportello bancomat</string>
-    <string name="osm_atm_named">Sportello bancomat %s</string>
-    <string name="osm_atm_refed">Sportello bancomat %s</string>
+    <string name="osm_atm_named">Sportello bancomat %1$s</string>
+    <string name="osm_atm_refed">Sportello bancomat %1$s</string>
     <string name="osm_bus_stop">Fermata dell\'autobus</string>
-    <string name="osm_bus_stop_named">Fermata dell\'autobus %s</string>
+    <string name="osm_bus_stop_named">Fermata dell\'autobus %1$s</string>
     <string name="osm_recycling_bin">Contenitore per la raccolta differenziata</string>
     <string name="osm_fountain">Fontana</string>
     <string name="osm_place_of_worship">Luogo di culto</string>
@@ -406,7 +406,7 @@
     <string name="first_launch_permissions_notification">Notifiche</string>
     <string name="no_language_selected">Nessuna lingua selezionata</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Vai all\'incrocio più vicino</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" e %s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" e %1$s"</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Fare la mappa a schermo intero</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Esci dalla mappa a schermo intero</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">Vicino %1$s e vicino a %2$s</string>
@@ -429,13 +429,13 @@
     <string name="notification_text" tools:ignore="MissingTranslation">Il servizio di localizzazione di Soundscape è attivo anche quando il telefono è bloccato.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Annulla ricerca</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Stazione ferroviaria</string>
-    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s Stazione ferroviaria</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%1$s Stazione ferroviaria</string>
     <string name="osm_tram_stop" tools:ignore="MissingTranslation">Fermata tram</string>
-    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s fermata del tram</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%1$s fermata del tram</string>
     <string name="osm_subway" tools:ignore="MissingTranslation">Stazione della metropolitana</string>
-    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s stazione della metropolitana</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%1$s stazione della metropolitana</string>
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Terminal traghetti</string>
-    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s traghetto terminal</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s traghetto terminal</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Audio</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Accessibilità</string>
     <string name="settings_theme_is_light" tools:ignore="MissingTranslation">Utilizzare il tema della luce</string>
@@ -483,20 +483,20 @@
     <string name="offline_maps_title" tools:ignore="MissingTranslation">Mappe offline</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">Dettagli della mappa offline</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">Caricamento…</string>
-    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Scaricamento %s</string>
-    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Il server sta preparando %s per il download. L\'operazione potrebbe richiedere alcuni minuti, dopodiché il download inizierà automaticamente.</string>
-    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s libero</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Scaricamento %1$s</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Il server sta preparando %1$s per il download. L\'operazione potrebbe richiedere alcuni minuti, dopodiché il download inizierà automaticamente.</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%1$s libero</string>
     <string name="offline_maps_storage" tools:ignore="MissingTranslation">Le mappe sono salvate a %1$s che ha %2$s libero</string>
     <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">Mappe già scaricate</string>
     <string name="offline_maps_nearby" tools:ignore="MissingTranslation">Mappa offline nelle vicinanze</string>
     <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">Caricamento dell\'elenco delle mappe offline</string>
     <string name="offline_map_details_delete" tools:ignore="MissingTranslation">Elimina mappa offline</string>
     <string name="offline_map_details_download" tools:ignore="MissingTranslation">Scarica la mappa offline</string>
-    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Dimensioni al telefono: %s</string>
-    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Dimensione del download: %s</string>
-    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Nome della mappa: %s</string>
-    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">La mappa include questi luoghi: %s</string>
-    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Quei luoghi conosciuti anche come: %s</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Dimensioni al telefono: %1$s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Dimensione del download: %1$s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Nome della mappa: %1$s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">La mappa include questi luoghi: %1$s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Quei luoghi conosciuti anche come: %1$s</string>
     <string name="offline_map_storage_title" tools:ignore="MissingTranslation">Archiviazione mappe offline</string>
     <string name="offline_map_storage_description" tools:ignore="MissingTranslation">Per utilizzare Soundscape senza connessione Internet, è possibile scaricare le mappe e salvarle sul telefono. La memoria predefinita è qualsiasi memoria esterna del telefono, ma è possibile selezionare una destinazione alternativa.</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Utilizzare il WiFi solo per scaricare la mappa</string>
@@ -528,7 +528,7 @@
     <string name="new_version_info_details" tools:ignore="MissingTranslation">\nIn questa versione sono state aggiunte due nuove funzionalità che consentono il controllo remoto dell\'app, anche quando il telefono è bloccato. Ciò significa che il telefono può rimanere in tasca mentre continui a controllare le funzionalità principali dell\'app.\n\nEntrambi i metodi di controllo remoto utilizzano i pulsanti di controllo multimediale Bluetooth, quelli presenti sugli auricolari o, in alternativa, piccoli telecomandi tascabili che puoi tenere in mano o in tasca. La modalità di controllo remoto si seleziona nella sezione Impostazioni / Controlli multimediali: puoi scegliere \"Comando vocale\" per parlare con l\'app, oppure \"Menu audio\" in cui ti vengono letti dei menu con opzioni da selezionare. \"Modalità originale\" indica che i pulsanti Bluetooth funzionano come nelle release precedenti.\n\nIn modalità comando vocale, premendo il pulsante Riproduci/Pausa sugli auricolari l\'app avvia l\'ascolto del parlato e sentirai un breve suono che lo indica. Se dici \"Help\" verranno elencati i comandi disponibili. Puoi poi premere di nuovo il pulsante e provare gli altri comandi. Purtroppo il riconoscimento vocale di Android non supporta tutte le lingue e non è disponibile su tutti i telefoni.\n\nLa principale difficoltà della modalità comando vocale è che alcuni auricolari impiegano più tempo di altri ad attivare il microfono. Questo significa che dopo aver toccato Riproduci/Pausa potresti dover attendere fino a 5 secondi prima di poter parlare. Per capire quanto tempo ci mette, il metodo migliore è toccare Riproduci/Pausa e poi contare da 1 a 10. Il telefono dovrebbe dirti quale parlato ha riconosciuto e il primo numero riconosciuto ti indicherà dopo quanti secondi è possibile parlare. Questo ti aiuta a capire quanto attendere prima di pronunciare il comando. Alcuni auricolari emettono un suono chiaro quando il microfono è attivo, il che facilita la cosa; altri non producono alcun segnale acustico. Purtroppo potrebbe essere necessaria un po\' di pratica.\n\nL\'altra nuova modalità remota è il Menu audio, che funzionerà in tutte le lingue e su tutti i telefoni. I pulsanti Avanti/Indietro scorrono le opzioni del menu avanti e indietro, mentre il pulsante Riproduci/Pausa seleziona l\'opzione corrente. Esiste un menu di primo livello e un livello di sotto‑menu che raggruppa comandi simili.\n\nQueste funzionalità sono molto nuove e gradiremmo molto un tuo feedback su quanto funzionino bene e su quali altri comandi vorresti vedere.\n\nSegnala qualsiasi problema, anche se minimo, tramite l\'opzione *Contatta l’assistenza* nel menu principale.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licenze open source</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal dei traghetti</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Terminal dei traghetti</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s Terminal dei traghetti</string>
     <string name="osm_office" tools:ignore="MissingTranslation">Ufficio</string>
     <string name="osm_school" tools:ignore="MissingTranslation">Scuola</string>
     <string name="osm_roof" tools:ignore="MissingTranslation">Tetto</string>
@@ -1253,7 +1253,7 @@
     <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Uscire dalla modalità di modifica della posizione dell\'indicatore</string>
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">Su %1$s appena prima di %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">Su %1$s appena dopo %2$s</string>
-    <string name="street_description_intersection" tools:ignore="MissingTranslation">Nei pressi dell\'incrocio tra %s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Nei pressi dell\'incrocio tra %1$s</string>
     <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">In questo percorso è già presente un indicatore per questa posizione; non è possibile aggiungerne un altro.</string>
     <string name="settings_explanation" tools:ignore="MissingTranslation">Le varie impostazioni dell\'app sono organizzate in gruppi qui sotto. Tocca un gruppo per espanderlo e vedere le opzioni disponibili.</string>
     <string name="settings_section_units_description" tools:ignore="MissingTranslation">Seleziona le unità di misura da utilizzare per le distanze</string>
@@ -1303,12 +1303,12 @@
     <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Gli indicatori disponibili sono:</string>
     <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Non sono stati salvati percorsi</string>
     <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Non sono stati salvati indicatori</string>
-    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Percorso non trovato: %s</string>
-    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Avvio del percorso %s</string>
-    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Avvia il percorso %s</string>
-    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Avvia l\'audiofaro su %s</string>
-    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Avvio dell\'audiofaro su %s</string>
-    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Indicatore non trovato: %s</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Percorso non trovato: %1$s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Avvio del percorso %1$s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Avvia il percorso %1$s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Avvia l\'audiofaro su %1$s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Avvio dell\'audiofaro su %1$s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Indicatore non trovato: %1$s</string>
     <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Puoi anche avviare percorsi e indicatori per nome, ad esempio.</string>
     <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Errore di timeout della rete nel riconoscimento vocale.</string>
     <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Errore di rete del riconoscimento vocale.</string>
@@ -1335,9 +1335,9 @@
     <string name="battery_optimization_message">Soundscape richiede l\'uso della batteria senza restrizioni per continuare a fornire la navigazione audio quando il telefono è bloccato. Consenti questa impostazione nella finestra di dialogo successiva. Se chiudi Soundscape, tutti i servizi si interromperanno e non consumerà più batteria.</string>
     <string name="route_detail_action_start_route_reverse">Avvia Percorso in senso inverso</string>
     <string name="route_detail_action_start_route_reverse_hint">Avviare la riproduzione di questo percorso in senso inverso</string>
-    <string name="route_reverse_name">%s in senso inverso</string>
+    <string name="route_reverse_name">%1$s in senso inverso</string>
     <string name="callouts_no_nearby_markers">Non ci sono indicatori nelle vicinanze</string>
-    <string name="stationary_on_way">Fermo su %s</string>
+    <string name="stationary_on_way">Fermo su %1$s</string>
     <string name="settings_relative_directions_text">Modalità direzioni relative</string>
     <string name="settings_relative_directions_description">Modifica il modo in cui vengono descritte le direzioni relative.</string>
     <string name="settings_relative_directions_clockface">Quadrante dell\'orologio</string>
@@ -1345,8 +1345,8 @@
     <string name="settings_relative_directions_left_right">Sinistra/Destra</string>
     <string name="callout_settings_position_text">Includi la distanza e la direzione quando vengono annunciati i punti di interesse</string>
     <string name="callout_settings_position_description">Per impostazione predefinita, quando i luoghi vengono annunciati non viene indicata la distanza o la direzione. Questa impostazione aggiunge tali informazioni alle notifiche.</string>
-    <string name="relative_clock_direction">alle ore %s</string>
-    <string name="relative_degrees_direction">a %s gradi</string>
+    <string name="relative_clock_direction">alle ore %1$s</string>
+    <string name="relative_degrees_direction">a %1$s gradi</string>
     <string name="relative_left_right_direction_ahead">avanti</string>
     <string name="relative_left_right_direction_ahead_left">avanti a sinistra</string>
     <string name="relative_left_right_direction_ahead_right">avanti a destra</string>

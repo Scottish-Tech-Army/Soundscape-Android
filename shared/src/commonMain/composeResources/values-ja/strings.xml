@@ -50,7 +50,7 @@
     <string name="route_detail_action_edit_hint">ルートのウェイポイントを変更する、または順序を並べ替える</string>
     <string name="route_detail_action_create">新しいルート</string>
     <string name="route_detail_action_create_hint">新しいルートを作成する</string>
-    <string name="route_end_completed_accessibility">ルートが終了しました! %s</string>
+    <string name="route_end_completed_accessibility">ルートが終了しました! %1$s</string>
     <string name="route_detail_action_previous">以前のウェイポイント</string>
     <string name="route_detail_action_previous_hint">ビーコンを前のウェイポイントに移動する</string>
     <string name="route_detail_action_next">次のウェイポイント</string>
@@ -81,7 +81,7 @@
     <string name="markers_no_markers_hint_2">自宅、勤務先の入り口、公園内のお気に入りのスポットなどのマーカーを作成しましょう。</string>
     <string name="markers_edit_screen_title_edit">マーカーを編集</string>
     <string name="markers_generic_name">マーカー</string>
-    <string name="markers_marker_with_name">マーカー。%s</string>
+    <string name="markers_marker_with_name">マーカー。%1$s</string>
     <string name="markers_marker_created">マーカーを作成しました</string>
     <string name="markers_annotation">追加メモ</string>
     <string name="search_choose_destination">目的地を選択</string>
@@ -110,12 +110,12 @@
     <string name="sleep_sleep_acc_hint">Soundscape をスリープにする</string>
     <string name="sleep_wake_up_now">すぐにスリープ解除</string>
     <string name="intersection_approaching_intersection">まもなく交差点</string>
-    <string name="directions_at_poi">現在地: %s</string>
+    <string name="directions_at_poi">現在地: %1$s</string>
     <string name="directions_my_location">現在地</string>
-    <string name="directions_near_name">%s 付近</string>
-    <string name="directions_name_goes_left">左へ行くと%s</string>
-    <string name="directions_name_goes_right">右へ行くと%s</string>
-    <string name="directions_name_continues_ahead">直進すると%s</string>
+    <string name="directions_near_name">%1$s 付近</string>
+    <string name="directions_name_goes_left">左へ行くと%1$s</string>
+    <string name="directions_name_goes_right">右へ行くと%1$s</string>
+    <string name="directions_name_continues_ahead">直進すると%1$s</string>
     <string name="directions_direction_ahead">前方</string>
     <string name="directions_traveling_n">北へ走行中</string>
     <string name="directions_traveling_ne">北東へ走行中</string>
@@ -141,34 +141,34 @@
     <string name="directions_heading_sw">南西方向へ</string>
     <string name="directions_heading_w">西方向へ</string>
     <string name="directions_heading_nw">北西方向へ</string>
-    <string name="directions_along_traveling_n">%s を北へ移動中</string>
-    <string name="directions_along_traveling_ne">%s を北東へ移動中</string>
-    <string name="directions_along_traveling_e">%s を東へ移動中</string>
-    <string name="directions_along_traveling_se">%s を南東へ移動中</string>
-    <string name="directions_along_traveling_s">%s を南へ移動中</string>
-    <string name="directions_along_traveling_sw">%s を南西へ移動中</string>
-    <string name="directions_along_traveling_w">%s を西へ移動中</string>
-    <string name="directions_along_traveling_nw">%s を北西へ移動中</string>
-    <string name="directions_along_facing_n">%s で北向き</string>
-    <string name="directions_along_facing_ne">%s で北東向き</string>
-    <string name="directions_along_facing_e">%s で東向き</string>
-    <string name="directions_along_facing_se">%s で南東向き</string>
-    <string name="directions_along_facing_s">%s で南向き</string>
-    <string name="directions_along_facing_sw">%s で南西向き</string>
-    <string name="directions_along_facing_w">%s で西向き</string>
-    <string name="directions_along_facing_nw">%s で北西向き</string>
-    <string name="directions_along_heading_n">%s を北方向へ</string>
-    <string name="directions_along_heading_ne">%s を北東方向へ</string>
-    <string name="directions_along_heading_e">%s を東方向へ</string>
-    <string name="directions_along_heading_se">%s を南東方向へ</string>
-    <string name="directions_along_heading_s">%s を南方向へ</string>
-    <string name="directions_along_heading_sw">%s を南西方向へ</string>
-    <string name="directions_along_heading_w">%s を西方向へ</string>
-    <string name="directions_along_heading_nw">%s を北西方向へ</string>
-    <string name="distance_format_meters">%s メートル</string>
-    <string name="distance_format_km">%s km</string>
-    <string name="distance_format_feet">%s フィート</string>
-    <string name="distance_format_miles">%s マイル</string>
+    <string name="directions_along_traveling_n">%1$s を北へ移動中</string>
+    <string name="directions_along_traveling_ne">%1$s を北東へ移動中</string>
+    <string name="directions_along_traveling_e">%1$s を東へ移動中</string>
+    <string name="directions_along_traveling_se">%1$s を南東へ移動中</string>
+    <string name="directions_along_traveling_s">%1$s を南へ移動中</string>
+    <string name="directions_along_traveling_sw">%1$s を南西へ移動中</string>
+    <string name="directions_along_traveling_w">%1$s を西へ移動中</string>
+    <string name="directions_along_traveling_nw">%1$s を北西へ移動中</string>
+    <string name="directions_along_facing_n">%1$s で北向き</string>
+    <string name="directions_along_facing_ne">%1$s で北東向き</string>
+    <string name="directions_along_facing_e">%1$s で東向き</string>
+    <string name="directions_along_facing_se">%1$s で南東向き</string>
+    <string name="directions_along_facing_s">%1$s で南向き</string>
+    <string name="directions_along_facing_sw">%1$s で南西向き</string>
+    <string name="directions_along_facing_w">%1$s で西向き</string>
+    <string name="directions_along_facing_nw">%1$s で北西向き</string>
+    <string name="directions_along_heading_n">%1$s を北方向へ</string>
+    <string name="directions_along_heading_ne">%1$s を北東方向へ</string>
+    <string name="directions_along_heading_e">%1$s を東方向へ</string>
+    <string name="directions_along_heading_se">%1$s を南東方向へ</string>
+    <string name="directions_along_heading_s">%1$s を南方向へ</string>
+    <string name="directions_along_heading_sw">%1$s を南西方向へ</string>
+    <string name="directions_along_heading_w">%1$s を西方向へ</string>
+    <string name="directions_along_heading_nw">%1$s を北西方向へ</string>
+    <string name="distance_format_meters">%1$s メートル</string>
+    <string name="distance_format_km">%1$s km</string>
+    <string name="distance_format_feet">%1$s フィート</string>
+    <string name="distance_format_miles">%1$s マイル</string>
     <string name="ui_action_button_my_location">現在地</string>
     <string name="ui_action_button_my_location_acc_hint">現在地の情報を聞く</string>
     <string name="ui_action_button_nearby_markers">近くの\nマーカー</string>
@@ -206,7 +206,7 @@
     <string name="help_text_section_title_when">どのような場合に使用できますか?</string>
     <string name="help_text_section_title_how">どのような仕組みですか?</string>
     <string name="terms_of_use_title">使用条件</string>
-    <string name="terms_of_use_message">Soundscape のご利用は %s の規約および以下に定める条件（総称して「使用条件」）に従うものとします。</string>
+    <string name="terms_of_use_message">Soundscape のご利用は %1$s の規約および以下に定める条件（総称して「使用条件」）に従うものとします。</string>
     <string name="terms_of_use_service_agreement">Scottish Tech Army サービス規約</string>
     <string name="terms_of_use_accept_checkbox_acc_label">使用条件に同意する</string>
     <string name="terms_of_use_medical_safety_disclaimer">お客様は、Soundscape が (1) 医療機器として設計、意図、提供されているものではないこと、(2) 専門的な医療の助言、診断、治療、判断の代替を意図したものではなく、これらの代替として使用すべきではないことを了承するものとします。\n\n安全上の注意\n\nSoundscape はナビゲーション支援ツールであり、移動技能や周囲への注意、適切な判断に代わるものではありません。Soundscape に組み込まれている地図データは第三者のプログラムから取得されたものであり、提示される情報の正確性には制約がある場合があります。周囲の状況に注意しつつ、慎重に移動してください。</string>
@@ -288,8 +288,8 @@
     <string name="osm_service_road">連絡道路</string>
     <string name="osm_road">道路</string>
     <string name="osm_highway">車道</string>
-    <string name="osm_highway_named">%s 車道</string>
-    <string name="osm_highway_refed">車道 %s</string>
+    <string name="osm_highway_named">%1$s 車道</string>
+    <string name="osm_highway_refed">車道 %1$s</string>
     <string name="osm_intersection">交差点</string>
     <string name="osm_roundabout">環状交差点</string>
     <string name="osm_highway_ramp">接続道路</string>
@@ -320,10 +320,10 @@
     <string name="osm_gas_station">ガソリン スタンド</string>
     <string name="osm_bank">銀行</string>
     <string name="osm_atm">ATM</string>
-    <string name="osm_atm_named">%s ATM</string>
-    <string name="osm_atm_refed">ATM %s</string>
+    <string name="osm_atm_named">%1$s ATM</string>
+    <string name="osm_atm_refed">ATM %1$s</string>
     <string name="osm_bus_stop">バス停</string>
-    <string name="osm_bus_stop_named">%s バス停</string>
+    <string name="osm_bus_stop_named">%1$s バス停</string>
     <string name="osm_recycling_bin">リサイクル用ごみ箱</string>
     <string name="osm_fountain">噴水</string>
     <string name="osm_place_of_worship">神社仏閣</string>
@@ -410,7 +410,7 @@
     <string name="settings_units_metric" tools:ignore="MissingTranslation">メートル法（メートル）</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">テキスト読み上げエンジン</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">最寄りの交差点へ移動</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" と %s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" と %1$s"</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">地図を全画面表示にする</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">全画面表示を終了する</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">ルートが既に開始地点にあるため無効です</string>
@@ -444,13 +444,13 @@
     <string name="notification_text" tools:ignore="MissingTranslation">Soundscape の位置情報サービスは端末がロックされていても動作します。</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">検索をキャンセル</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">駅</string>
-    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s 駅</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%1$s 駅</string>
     <string name="osm_tram_stop" tools:ignore="MissingTranslation">トラム停留所</string>
-    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s 路面電車停留所</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%1$s 路面電車停留所</string>
     <string name="osm_subway" tools:ignore="MissingTranslation">地下鉄駅</string>
-    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s 地下鉄駅</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%1$s 地下鉄駅</string>
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">フェリーターミナル</string>
-    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s フェリーターミナル</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s フェリーターミナル</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">音声</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">アクセシビリティ</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">ライトまたはダーク テーマ</string>
@@ -482,20 +482,20 @@
     <string name="offline_maps_title" tools:ignore="MissingTranslation">オフライン地図</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">オフライン地図の詳細</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">読み込み中…</string>
-    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">%s をダウンロード中</string>
-    <string name="offline_maps_caching" tools:ignore="MissingTranslation">サーバーが %s のダウンロードを準備しています。数分かかることがあり、その後ダウンロードが自動的に開始されます。</string>
-    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">空き容量: %s</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">%1$s をダウンロード中</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">サーバーが %1$s のダウンロードを準備しています。数分かかることがあり、その後ダウンロードが自動的に開始されます。</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">空き容量: %1$s</string>
     <string name="offline_maps_storage" tools:ignore="MissingTranslation">マップは %1$s に保存されており、空き容量は %2$s です</string>
     <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">ダウンロード済みのマップ</string>
     <string name="offline_maps_nearby" tools:ignore="MissingTranslation">近くのオフラインマップ</string>
     <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">オフラインマップの一覧を読み込んでいます</string>
     <string name="offline_map_details_delete" tools:ignore="MissingTranslation">オフラインマップを削除する</string>
     <string name="offline_map_details_download" tools:ignore="MissingTranslation">オフラインマップをダウンロードする</string>
-    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">端末上のサイズ: %s</string>
-    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">ダウンロードサイズ: %s</string>
-    <string name="offline_map_details_name" tools:ignore="MissingTranslation">マップ名: %s</string>
-    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">このマップには次の場所が含まれます: %s</string>
-    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">これらの場所は別名でも知られています: %s</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">端末上のサイズ: %1$s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">ダウンロードサイズ: %1$s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">マップ名: %1$s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">このマップには次の場所が含まれます: %1$s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">これらの場所は別名でも知られています: %1$s</string>
     <string name="offline_map_storage_title" tools:ignore="MissingTranslation">オフラインマップの保存先</string>
     <string name="offline_map_storage_description" tools:ignore="MissingTranslation">Soundscape をインターネット接続がない環境でも使えるように、マップをダウンロードして端末に保存できます。デフォルトの保存先は端末の外部ストレージですが、ここで別の保存先を選択できます。</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">マップのダウンロードは Wi‑Fi のみを使用する</string>
@@ -528,7 +528,7 @@
     <string name="new_version_info_details" tools:ignore="MissingTranslation">\nこのリリースでは、端末がロックされているときでもアプリをリモート操作できる新機能が 2 つ追加されました。これにより、端末をポケットに入れたままでもアプリの主要機能を操作できます。\n\nどちらのリモート操作方法も、ヘッドホンにある Bluetooth のメディアコントロールボタン、あるいは手に持ったりポケットに入れて使える小型のリモコンのボタンを使用します。リモートコントロールのモードは「設定」→「メディアコントロール」セクションで選択できます。話しかけて操作する「音声コマンド」モード、メニューが読み上げられて選択できる「音声メニュー」モード、または従来と同じ動作にする「オリジナルモード」を選べます。\n\n音声コマンドモードでは、ヘッドホンの再生/一時停止ボタンを押すとアプリが音声の聞き取りを開始し、その合図として短い音が鳴ります。「Help（ヘルプ）」と言うと利用可能なコマンド一覧が読み上げられます。その後もう一度ボタンを押して、他のコマンドを試すことができます。残念ながら、Android の音声認識はすべての言語をサポートしているわけではなく、すべての端末で利用できるわけではありません。\n\n音声コマンドモードの主な難点は、ヘッドホンによってマイクが有効になるまでの時間に差がある点です。再生/一時停止を押してから話せるようになるまで最大で数秒（5 秒程度）待つ必要がある場合があります。どのくらい待てばよいかを知るには、再生/一時停止をタップしてから 1 から 10 まで数えてみるのが最もよい方法です。端末は認識した音声（例えば数えた数字）を読み上げ、最初に認識された数字が話し始めるまでの目安になります。マイクがオンになったときに明確な音を出すヘッドホンもあり、その場合は扱いやすいですが、まったく音がしない機種もあります。残念ながら、慣れが必要な場合があります。\n\nもう一方の新しいリモートモードである「音声メニュー」モードは、すべての言語とすべての端末で動作します。次へ/前へ のメディアコントロールボタンでメニュー内の項目を前後に移動し、再生/一時停止ボタンで現在の項目を選択します。最上位のメニューが一つあり、その下に同種の操作をまとめた一層のサブメニューがあります。\n\nこれらの機能は非常に新しいため、うまく動作するかどうか、またどのような追加コマンドが欲しいかについてのフィードバックをぜひお寄せください。\n\nどんなに小さな問題でも、メインメニューの *「サポートに連絡」* からご報告ください。\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">オープンソースライセンス</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">フェリーターミナル</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s フェリーターミナル</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s フェリーターミナル</string>
     <string name="osm_office" tools:ignore="MissingTranslation">事務所</string>
     <string name="osm_school" tools:ignore="MissingTranslation">学校</string>
     <string name="osm_roof" tools:ignore="MissingTranslation">屋根</string>
@@ -1253,7 +1253,7 @@
     <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">マーカーの位置編集モードを終了する</string>
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">%1$s（%2$s の手前）</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">%1$s（%2$s の直後）</string>
-    <string name="street_description_intersection" tools:ignore="MissingTranslation">%s の交差点付近</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">%1$s の交差点付近</string>
     <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">この場所は既にルートに含まれているため、再度追加することはできません。</string>
     <string name="settings_explanation" tools:ignore="MissingTranslation">アプリの各種設定は下のグループに分類されています。グループをタップして展開し、利用可能なオプションを表示してください。</string>
     <string name="settings_section_units_description" tools:ignore="MissingTranslation">距離に使用する測定単位を選択します</string>
@@ -1303,12 +1303,12 @@
     <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">利用可能なマーカーは次のとおりです:</string>
     <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">保存されたルートはありません</string>
     <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">保存されたマーカーはありません</string>
-    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">ルート「%s」が見つかりません</string>
-    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">ルート「%s」を開始します</string>
-    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">ルート %s を開始する</string>
-    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">音声ビーコンを %s で開始する</string>
-    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">音声ビーコンを %s で開始します</string>
-    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">マーカーが見つかりません: %s</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">ルート「%1$s」が見つかりません</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">ルート「%1$s」を開始します</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">ルート %1$s を開始する</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">音声ビーコンを %1$s で開始する</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">音声ビーコンを %1$s で開始します</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">マーカーが見つかりません: %1$s</string>
     <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">名前でルートやマーカーを開始することもできます。例えば、</string>
     <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">音声認識でネットワークのタイムアウトが発生しました。</string>
     <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">音声認識のネットワークエラーが発生しました。</string>
@@ -1335,9 +1335,9 @@
     <string name="battery_optimization_message">端末がロックされている間も音声ナビゲーションを提供し続けるため、Soundscape ではバッテリー使用の制限を解除する必要があります。次のダイアログでこれを許可してください。Soundscape を閉じると、すべてのサービスが停止し、バッテリーの消費はなくなります。</string>
     <string name="route_detail_action_start_route_reverse">ルートを逆順で開始する</string>
     <string name="route_detail_action_start_route_reverse_hint">このルートの再生を逆順で開始する</string>
-    <string name="route_reverse_name">%s（逆順）</string>
+    <string name="route_reverse_name">%1$s（逆順）</string>
     <string name="callouts_no_nearby_markers">近くにマーカーはありません</string>
-    <string name="stationary_on_way">%s 上で静止しています</string>
+    <string name="stationary_on_way">%1$s 上で静止しています</string>
     <string name="settings_relative_directions_text">相対方向モード</string>
     <string name="settings_relative_directions_description">相対方向の表現方法を変更します。</string>
     <string name="settings_relative_directions_clockface">時計式</string>
@@ -1345,8 +1345,8 @@
     <string name="settings_relative_directions_left_right">左右</string>
     <string name="callout_settings_position_text">コールアウトで特定地点の距離と方向を含める</string>
     <string name="callout_settings_position_description">デフォルトでは、場所のコールアウトには距離や方向が含まれません。この設定を有効にすると、コールアウトにそれらが追加されます。</string>
-    <string name="relative_clock_direction">%s時の方向</string>
-    <string name="relative_degrees_direction">%s度の方向</string>
+    <string name="relative_clock_direction">%1$s時の方向</string>
+    <string name="relative_degrees_direction">%1$s度の方向</string>
     <string name="relative_left_right_direction_ahead">前方</string>
     <string name="relative_left_right_direction_ahead_left">左前方</string>
     <string name="relative_left_right_direction_ahead_right">右前方</string>

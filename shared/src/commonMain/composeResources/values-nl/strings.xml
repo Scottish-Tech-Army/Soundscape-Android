@@ -50,7 +50,7 @@
     <string name="route_detail_action_edit_hint">De routepunten van deze route wijzigen of de volgorde ervan aanpassen.</string>
     <string name="route_detail_action_create">Nieuwe route</string>
     <string name="route_detail_action_create_hint">Een nieuwe route maken</string>
-    <string name="route_end_completed_accessibility">Route voltooid! %s</string>
+    <string name="route_end_completed_accessibility">Route voltooid! %1$s</string>
     <string name="route_detail_action_previous">Vorige routepunt</string>
     <string name="route_detail_action_previous_hint">Het baken naar het vorige routepunt verplaatsen</string>
     <string name="route_detail_action_next">Volgende routepunt</string>
@@ -81,7 +81,7 @@
     <string name="markers_no_markers_hint_2">Probeer uw huis te markeren, de toegang tot uw werkplek of uw favoriete plek in het park.</string>
     <string name="markers_edit_screen_title_edit">Markering bewerken</string>
     <string name="markers_generic_name">Markering</string>
-    <string name="markers_marker_with_name">Markering. %s</string>
+    <string name="markers_marker_with_name">Markering. %1$s</string>
     <string name="markers_marker_created">Markering gemaakt</string>
     <string name="markers_annotation">Aanvullende aantekeningen</string>
     <string name="search_choose_destination">Bestemming kiezen</string>
@@ -110,12 +110,12 @@
     <string name="sleep_sleep_acc_hint">Soundscape in slaapstand zetten</string>
     <string name="sleep_wake_up_now">Nu activeren</string>
     <string name="intersection_approaching_intersection">U nadert een kruispunt</string>
-    <string name="directions_at_poi">Bij %s</string>
+    <string name="directions_at_poi">Bij %1$s</string>
     <string name="directions_my_location">Mijn locatie</string>
-    <string name="directions_near_name">Bij %s</string>
-    <string name="directions_name_goes_left">%s, gaat naar links</string>
-    <string name="directions_name_goes_right">%s, gaat naar rechts</string>
-    <string name="directions_name_continues_ahead">%s, gaat rechtdoor</string>
+    <string name="directions_near_name">Bij %1$s</string>
+    <string name="directions_name_goes_left">%1$s, gaat naar links</string>
+    <string name="directions_name_goes_right">%1$s, gaat naar rechts</string>
+    <string name="directions_name_continues_ahead">%1$s, gaat rechtdoor</string>
     <string name="directions_direction_ahead">vóór u</string>
     <string name="directions_traveling_n">U rijdt naar het noorden</string>
     <string name="directions_traveling_ne">U rijdt naar het noordoosten</string>
@@ -141,34 +141,34 @@
     <string name="directions_heading_sw">U loopt naar het zuidwesten</string>
     <string name="directions_heading_w">U loopt naar het westen</string>
     <string name="directions_heading_nw">U loopt naar het noordwesten</string>
-    <string name="directions_along_traveling_n">U rijdt naar het noorden langs %s</string>
-    <string name="directions_along_traveling_ne">U rijdt naar het noordoosten langs %s</string>
-    <string name="directions_along_traveling_e">U rijdt naar het oosten langs %s</string>
-    <string name="directions_along_traveling_se">U rijdt naar het zuidoosten langs %s</string>
-    <string name="directions_along_traveling_s">U rijdt naar het zuiden langs %s</string>
-    <string name="directions_along_traveling_sw">U rijdt naar het zuidwesten langs %s</string>
-    <string name="directions_along_traveling_w">U rijdt naar het westen langs %s</string>
-    <string name="directions_along_traveling_nw">U rijdt naar het noordwesten langs %s</string>
-    <string name="directions_along_facing_n">U kijkt naar het noorden langs %s</string>
-    <string name="directions_along_facing_ne">U kijkt naar het noordoosten langs %s</string>
-    <string name="directions_along_facing_e">U kijkt naar het oosten langs %s</string>
-    <string name="directions_along_facing_se">U kijkt naar het zuidoosten langs %s</string>
-    <string name="directions_along_facing_s">U kijkt naar het zuiden langs %s</string>
-    <string name="directions_along_facing_sw">U kijkt naar het zuidwesten langs %s</string>
-    <string name="directions_along_facing_w">U kijkt naar het westen langs %s</string>
-    <string name="directions_along_facing_nw">U kijkt naar het noordwesten langs %s</string>
-    <string name="directions_along_heading_n">U loopt naar het noorden langs %s</string>
-    <string name="directions_along_heading_ne">U loopt naar het noordoosten langs %s</string>
-    <string name="directions_along_heading_e">U loopt naar het oosten langs %s</string>
-    <string name="directions_along_heading_se">U loopt naar het zuidoosten langs %s</string>
-    <string name="directions_along_heading_s">U loopt naar het zuiden langs %s</string>
-    <string name="directions_along_heading_sw">U loopt naar het zuidwesten langs %s</string>
-    <string name="directions_along_heading_w">U loopt naar het westen langs %s</string>
-    <string name="directions_along_heading_nw">U loopt naar het noordwesten langs %s</string>
-    <string name="distance_format_meters">%s meter</string>
-    <string name="distance_format_km">%s km</string>
-    <string name="distance_format_feet">%s voet</string>
-    <string name="distance_format_miles">%s mijl</string>
+    <string name="directions_along_traveling_n">U rijdt naar het noorden langs %1$s</string>
+    <string name="directions_along_traveling_ne">U rijdt naar het noordoosten langs %1$s</string>
+    <string name="directions_along_traveling_e">U rijdt naar het oosten langs %1$s</string>
+    <string name="directions_along_traveling_se">U rijdt naar het zuidoosten langs %1$s</string>
+    <string name="directions_along_traveling_s">U rijdt naar het zuiden langs %1$s</string>
+    <string name="directions_along_traveling_sw">U rijdt naar het zuidwesten langs %1$s</string>
+    <string name="directions_along_traveling_w">U rijdt naar het westen langs %1$s</string>
+    <string name="directions_along_traveling_nw">U rijdt naar het noordwesten langs %1$s</string>
+    <string name="directions_along_facing_n">U kijkt naar het noorden langs %1$s</string>
+    <string name="directions_along_facing_ne">U kijkt naar het noordoosten langs %1$s</string>
+    <string name="directions_along_facing_e">U kijkt naar het oosten langs %1$s</string>
+    <string name="directions_along_facing_se">U kijkt naar het zuidoosten langs %1$s</string>
+    <string name="directions_along_facing_s">U kijkt naar het zuiden langs %1$s</string>
+    <string name="directions_along_facing_sw">U kijkt naar het zuidwesten langs %1$s</string>
+    <string name="directions_along_facing_w">U kijkt naar het westen langs %1$s</string>
+    <string name="directions_along_facing_nw">U kijkt naar het noordwesten langs %1$s</string>
+    <string name="directions_along_heading_n">U loopt naar het noorden langs %1$s</string>
+    <string name="directions_along_heading_ne">U loopt naar het noordoosten langs %1$s</string>
+    <string name="directions_along_heading_e">U loopt naar het oosten langs %1$s</string>
+    <string name="directions_along_heading_se">U loopt naar het zuidoosten langs %1$s</string>
+    <string name="directions_along_heading_s">U loopt naar het zuiden langs %1$s</string>
+    <string name="directions_along_heading_sw">U loopt naar het zuidwesten langs %1$s</string>
+    <string name="directions_along_heading_w">U loopt naar het westen langs %1$s</string>
+    <string name="directions_along_heading_nw">U loopt naar het noordwesten langs %1$s</string>
+    <string name="distance_format_meters">%1$s meter</string>
+    <string name="distance_format_km">%1$s km</string>
+    <string name="distance_format_feet">%1$s voet</string>
+    <string name="distance_format_miles">%1$s mijl</string>
     <string name="ui_action_button_my_location">Mijn\nlocatie</string>
     <string name="ui_action_button_my_location_acc_hint">Informatie over uw huidige locatie horen</string>
     <string name="ui_action_button_nearby_markers">Marker.\nvlakbij</string>
@@ -206,7 +206,7 @@
     <string name="help_text_section_title_when">Wanneer zou ik het moeten gebruiken?</string>
     <string name="help_text_section_title_how">Hoe werkt het?</string>
     <string name="terms_of_use_title">Gebruiksvoorwaarden</string>
-    <string name="terms_of_use_message">Op uw gebruik van Soundscape zijn de voorwaarden van %s van toepassing en de hieronder beschreven voorwaarden (samen de *\"Gebruiksvoorwaarden\"*).</string>
+    <string name="terms_of_use_message">Op uw gebruik van Soundscape zijn de voorwaarden van %1$s van toepassing en de hieronder beschreven voorwaarden (samen de *\"Gebruiksvoorwaarden\"*).</string>
     <string name="terms_of_use_service_agreement">Scottish Tech Army-serviceovereenkomst</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Gebruiksvoorwaarden accepteren</string>
     <string name="terms_of_use_medical_safety_disclaimer">U erkent dat Soundscape (1) niet is ontworpen, bedoeld of beschikbaar is gesteld als een medisch apparaat, en (2) niet is ontworpen of bedoeld als vervanging voor professionele medische adviezen, diagnoses, behandelingen of beoordelingen en niet moeten worden gebruikt als vervanging of substitutie voor professionele medische adviezen, diagnoses, behandelingen of beoordelingen.\n\nVeiligheidsverklaring\n\nSoundscape is een navigatiehulpmiddel en moet niet worden gebruikt ter vervanging van mobiele vaardigheden, bewustzijn van uw omgeving en gezond verstand. Wees voorzichtig bij het navigeren in uw omgeving omdat de kaartgegevens in Soundscape zijn overgenomen uit een programma van derden. Daarom kunnen er beperkingen zijn in de nauwkeurigheid van de gepresenteerde informatie.</string>
@@ -288,8 +288,8 @@
     <string name="osm_service_road">Vluchtstrook</string>
     <string name="osm_road">Weg</string>
     <string name="osm_highway">Snelweg</string>
-    <string name="osm_highway_named">Snelweg van %s</string>
-    <string name="osm_highway_refed">Snelweg %s</string>
+    <string name="osm_highway_named">Snelweg van %1$s</string>
+    <string name="osm_highway_refed">Snelweg %1$s</string>
     <string name="osm_intersection">Kruispunt</string>
     <string name="osm_roundabout">Rotonde</string>
     <string name="osm_highway_ramp">Oprit naar snelweg</string>
@@ -320,10 +320,10 @@
     <string name="osm_gas_station">Benzinepomp</string>
     <string name="osm_bank">Bank</string>
     <string name="osm_atm">Geldautomaat</string>
-    <string name="osm_atm_named">Geldautomaat van %s</string>
-    <string name="osm_atm_refed">Geldautomaat %s</string>
+    <string name="osm_atm_named">Geldautomaat van %1$s</string>
+    <string name="osm_atm_refed">Geldautomaat %1$s</string>
     <string name="osm_bus_stop">Bushalte</string>
-    <string name="osm_bus_stop_named">Bushalte van %s</string>
+    <string name="osm_bus_stop_named">Bushalte van %1$s</string>
     <string name="osm_recycling_bin">Vuilnisbak</string>
     <string name="osm_fountain">Fontein</string>
     <string name="osm_place_of_worship">Gebedshuis</string>
@@ -410,7 +410,7 @@
     <string name="settings_units_metric" tools:ignore="MissingTranslation">Metrisch (meter)</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">Tekst-naar-spraakmotor</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Ga naar het dichtstbijzijnde kruispunt</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" en %s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" en %1$s"</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Kaart op volledig scherm weergeven</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Volledig scherm van de kaart sluiten</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Inactief omdat de route al bij het begin is</string>
@@ -444,13 +444,13 @@
     <string name="notification_text" tools:ignore="MissingTranslation">De Soundscape-locatieservice blijft actief, ook wanneer de telefoon vergrendeld is.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Zoekopdracht annuleren</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Treinstation</string>
-    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s treinstation</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%1$s treinstation</string>
     <string name="osm_tram_stop" tools:ignore="MissingTranslation">Tramhalte</string>
-    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s tramhalte</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%1$s tramhalte</string>
     <string name="osm_subway" tools:ignore="MissingTranslation">Metrostation</string>
-    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s metrostation</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%1$s metrostation</string>
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Veerterminal</string>
-    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s veerterminal</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s veerterminal</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Audio</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Toegankelijkheid</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Licht- of donker thema</string>
@@ -482,20 +482,20 @@
     <string name="offline_maps_title" tools:ignore="MissingTranslation">Offline kaarten</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">Offline kaartdetails</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">Laden…</string>
-    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Downloaden: %s</string>
-    <string name="offline_maps_caching" tools:ignore="MissingTranslation">De server bereidt %s voor om te downloaden. Dit kan enkele minuten duren; daarna begint de download automatisch.</string>
-    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s vrij</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Downloaden: %1$s</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">De server bereidt %1$s voor om te downloaden. Dit kan enkele minuten duren; daarna begint de download automatisch.</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%1$s vrij</string>
     <string name="offline_maps_storage" tools:ignore="MissingTranslation">Kaarten worden opgeslagen op %1$s, dat %2$s vrij heeft</string>
     <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">Gedownloade kaarten</string>
     <string name="offline_maps_nearby" tools:ignore="MissingTranslation">Offline kaarten in de buurt</string>
     <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">Lijst met offline kaarten laden</string>
     <string name="offline_map_details_delete" tools:ignore="MissingTranslation">Offline kaart verwijderen</string>
     <string name="offline_map_details_download" tools:ignore="MissingTranslation">Offline kaart downloaden</string>
-    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Grootte op telefoon: %s</string>
-    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Downloadgrootte: %s</string>
-    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Kaartnaam: %s</string>
-    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">De kaart bevat de volgende plaatsen: %s</string>
-    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Deze plaatsen zijn ook bekend als: %s</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Grootte op telefoon: %1$s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Downloadgrootte: %1$s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Kaartnaam: %1$s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">De kaart bevat de volgende plaatsen: %1$s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Deze plaatsen zijn ook bekend als: %1$s</string>
     <string name="offline_map_storage_title" tools:ignore="MissingTranslation">Offline kaartopslag</string>
     <string name="offline_map_storage_description" tools:ignore="MissingTranslation">Zodat Soundscape zonder internetverbinding kan worden gebruikt, kunt u kaarten downloaden en op uw telefoon opslaan. De standaardopslag is de externe opslag op uw telefoon, maar u kunt hier een alternatieve bestemming kiezen.</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Alleen Wi‑Fi gebruiken voor kaartdownload</string>
@@ -528,7 +528,7 @@
     <string name="new_version_info_details" tools:ignore="MissingTranslation">\nIn deze release zitten twee nieuwe functies waarmee u de app op afstand kunt bedienen, zelfs wanneer de telefoon vergrendeld is. Dat betekent dat u de telefoon in uw zak kunt houden terwijl u toch de belangrijkste functies van de app bedient.\n\nBeide methoden voor afstandsbediening gebruiken Bluetooth‑mediaknoppen, hetzij die op uw koptelefoon, hetzij kleine afstandsbedieningen die u in de hand of zak kunt bewaren. De afstandsbedieningsmodus kiest u in Instellingen &gt; Mediaregelaars. U kunt \"Spraakbediening\" kiezen om tegen de app te spreken, of \"Audiomenu\" waarbij menu\'s voorgelezen worden en u opties kunt selecteren. \"Originele modus\" zorgt ervoor dat de Bluetooth‑knoppen hetzelfde werken als in eerdere versies.\n\nIn de spraakbedieningsmodus start het drukken op de afspelen/pauzeren‑knop van uw koptelefoon de app die gaat luisteren naar spraak; u hoort een kort signaaltje ter bevestiging. Zegt u \"Help\", dan leest de app de beschikbare commando\'s op. Daarna kunt u de knop nogmaals indrukken en de andere commando\'s uitproberen. Helaas ondersteunt Android spraakherkenning niet alle talen en is het niet op alle telefoons beschikbaar.\n\nHet grootste praktische probleem met spraakbediening is dat sommige koptelefoons langer nodig hebben om hun microfoon actief te maken dan andere. Dit betekent dat u na het tikken op de afspelen/pauzeren‑knop tot ongeveer 5 seconden moet wachten voordat u kunt spreken. Om te ontdekken hoe lang dat bij uw koptelefoon duurt, is de beste aanpak: tik op afspelen/pauzeren en tel hardop van 1 tot 10. De telefoon vertelt u vervolgens welke spraak werd herkend en het eerste nummer dat werd herkend is de eerste die door de microfoon werd opgevangen. Dat helpt u inschatten hoe lang u moet wachten voordat u spreekt. Sommige koptelefoons maken een duidelijk geluid wanneer de microfoon actief is, wat het makkelijker maakt, maar andere geven geen geluid. Dit vereist helaas soms wat oefening.\n\nDe andere nieuwe afstandsbedieningsmodus, het Audiomenu, werkt in alle talen en op alle telefoons. Met de volgende/vorige‑knoppen van de mediacontrole bladert u door de opties van het menu; de afspelen/pauzeren‑knop selecteert vervolgens de huidige optie. Er is een hoofdmenu en één laag met submenu\'s die soortgelijke commando\'s groeperen.\n\nDeze functies zijn nog heel nieuw en we horen graag uw ervaringen: werken ze goed en welke extra commando\'s zou u willen?\n\nMeld eventuele problemen, hoe klein ook, via de optie *Contact opnemen met ondersteuning* in het hoofdmenu.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Open-sourcelicenties</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Veerterminal</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Veerterminal</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s Veerterminal</string>
     <string name="osm_office" tools:ignore="MissingTranslation">Kantoor</string>
     <string name="osm_school" tools:ignore="MissingTranslation">School</string>
     <string name="osm_roof" tools:ignore="MissingTranslation">Dak</string>
@@ -1253,7 +1253,7 @@
     <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Bewerking van de markeringlocatie afsluiten</string>
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">Op %1$s net voor %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">Op %1$s net na %2$s</string>
-    <string name="street_description_intersection" tools:ignore="MissingTranslation">Bij het kruispunt van %s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Bij het kruispunt van %1$s</string>
     <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Er staat al een markering op deze locatie in de route; we kunnen deze niet opnieuw toevoegen.</string>
     <string name="settings_explanation" tools:ignore="MissingTranslation">De verschillende appinstellingen zijn hieronder in groepen ingedeeld. Tik op een groep om deze uit te klappen en de beschikbare opties te bekijken.</string>
     <string name="settings_section_units_description" tools:ignore="MissingTranslation">Selecteer de maateenheden die voor afstanden moeten worden gebruikt</string>
@@ -1303,12 +1303,12 @@
     <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Beschikbare markeringen zijn,</string>
     <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Er zijn geen routes opgeslagen</string>
     <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Er zijn geen markeringen opgeslagen</string>
-    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Route niet gevonden: %s</string>
-    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Route %s wordt gestart</string>
-    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Route %s starten</string>
-    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Audiobaken starten op %s</string>
-    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Audiobaken wordt gestart op %s</string>
-    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Markering niet gevonden: %s</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Route niet gevonden: %1$s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Route %1$s wordt gestart</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Route %1$s starten</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Audiobaken starten op %1$s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Audiobaken wordt gestart op %1$s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Markering niet gevonden: %1$s</string>
     <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">U kunt routes en markeringen ook op naam starten, bijvoorbeeld.</string>
     <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Netwerktimeout bij spraakherkenning.</string>
     <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Netwerkfout bij spraakherkenning.</string>
@@ -1335,9 +1335,9 @@
     <string name="battery_optimization_message">Soundscape heeft onbeperkt batterijgebruik nodig om audio‑navigatie te blijven bieden wanneer uw telefoon vergrendeld is. Sta dit toe in het volgende dialoogvenster. Als u Soundscape sluit, stoppen alle services en gebruikt de app geen batterij meer.</string>
     <string name="route_detail_action_start_route_reverse">Route in omgekeerde volgorde starten</string>
     <string name="route_detail_action_start_route_reverse_hint">Het afspelen van deze route in omgekeerde volgorde starten</string>
-    <string name="route_reverse_name">%s in omgekeerde volgorde</string>
+    <string name="route_reverse_name">%1$s in omgekeerde volgorde</string>
     <string name="callouts_no_nearby_markers">Er zijn geen markeringen in de buurt</string>
-    <string name="stationary_on_way">U staat stil op %s</string>
+    <string name="stationary_on_way">U staat stil op %1$s</string>
     <string name="settings_relative_directions_text">Modus voor relatieve richtingen</string>
     <string name="settings_relative_directions_description">Wijzig hoe relatieve richtingen worden weergegeven.</string>
     <string name="settings_relative_directions_clockface">Kloknotatie</string>
@@ -1345,8 +1345,8 @@
     <string name="settings_relative_directions_left_right">Links/Rechts</string>
     <string name="callout_settings_position_text">Afstand en richting opnemen bij het aankondigen van referentiepunten</string>
     <string name="callout_settings_position_description">Standaard bevatten waarschuwingen over plaatsen geen afstand of richting. Met deze instelling worden die toegevoegd aan de waarschuwingen.</string>
-    <string name="relative_clock_direction">om %s uur</string>
-    <string name="relative_degrees_direction">op %s graden</string>
+    <string name="relative_clock_direction">om %1$s uur</string>
+    <string name="relative_degrees_direction">op %1$s graden</string>
     <string name="relative_left_right_direction_ahead">Vóór</string>
     <string name="relative_left_right_direction_ahead_left">Vóór links</string>
     <string name="relative_left_right_direction_ahead_right">Vóór rechts</string>

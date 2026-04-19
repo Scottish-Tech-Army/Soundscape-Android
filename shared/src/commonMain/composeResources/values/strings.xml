@@ -119,7 +119,7 @@
 <!-- Initial location simulation state for Go button which is indicating that pressing the button will take the user to the nearest intersection -->
 <string name="preview_go_nearest_intersection">"Go to nearest intersection"</string>
 <!-- Notification, %s is the last entry in a comma delimited list e.g. roads within an intersection. e.g. " and Moor Road" -->
-<string name="last_entry_in_list">" and %s"</string>
+<string name="last_entry_in_list">" and %1$s"</string>
 <!-- Title for a setting to include unnamed roads -->
 <string name="preview_include_unnamed_roads_title">"Unnamed Roads"</string>
 <!-- A description for the setting that includes unnamed roads during location simulation-->
@@ -165,7 +165,7 @@
 <!-- Talkback hint for the action to start the route in reverse. This is always preceded by "Double tap to " -->
 <string name="route_detail_action_start_route_reverse_hint">"Start playback of this route in reverse"</string>
 <!-- This is the name of the route when it's being played in reverse. %s is the name of the route when played forwards. -->
-<string name="route_reverse_name">"%s in reverse"</string>
+<string name="route_reverse_name">"%1$s in reverse"</string>
 <!-- Talkback hint for the action to start the route when the action is disabled. This action is only disabled when no waypoints have been added to a route yet. This is always preceded by "Double tap to " -->
 <string name="route_detail_action_start_route_disabled_hint">"Add waypoints before starting the route"</string>
 <!-- Talkback hint for the action to stop the route. This is always preceded by "Double tap to " -->
@@ -179,7 +179,7 @@
 <!-- Talkback hint for the add button on the Route list screen. This is always preceded by "Double tap to " -->
 <string name="route_detail_action_create_hint">"Create a new route"</string>
 <!-- Accessibility Text displayed for when a route ends and the route was completed, %s is name of the route, "Route Completed! Home to Work" -->
-<string name="route_end_completed_accessibility">"Route Completed! %s"</string>
+<string name="route_end_completed_accessibility">"Route Completed! %1$s"</string>
 <!-- Title text of the button used to move to the previous waypoint -->
 <string name="route_detail_action_previous">"Previous Waypoint"</string>
 <!-- Hint text of the button used to move to the previous waypoint, always preceded by "Double tap to " -->
@@ -247,7 +247,7 @@
 <!-- Text used when calling out makers -->
 <string name="markers_generic_name">"Marker"</string>
 <!-- Marker Information, %s is the name of the marker e.g. "Marker. <Starbucks>" -->
-<string name="markers_marker_with_name">"Marker. %s"</string>
+<string name="markers_marker_with_name">"Marker. %1$s"</string>
 <!-- Notification when a marker is created -->
 <string name="markers_marker_created">"Marker created"</string>
 <!-- A marker property that allows users to leave a custom explanation or comment on the marker -->
@@ -333,17 +333,17 @@
 <!-- Callout that a road junction is getting near -->
 <string name="intersection_approaching_intersection">"Approaching intersection"</string>
 <!-- Notification, %s is a point of interest, "At Starbucks" -->
-<string name="directions_at_poi">"At %s"</string>
+<string name="directions_at_poi">"At %1$s"</string>
 <!-- Text for button on home page that callous the current user location -->
 <string name="directions_my_location">"My Location"</string>
 <!-- Notification announced to the user that they are near a location, %s is a physical address or the name of a place, examples: "Near 123 Columbia Street", "Near Starbucks" -->
-<string name="directions_near_name">"Near %s"</string>
+<string name="directions_near_name">"Near %1$s"</string>
 <!-- Notification, %s street name, "<Pike Street>, goes left -->
-<string name="directions_name_goes_left">"%s, goes left"</string>
+<string name="directions_name_goes_left">"%1$s, goes left"</string>
 <!-- Notification, %s street name, "<Pike Street>, goes right -->
-<string name="directions_name_goes_right">"%s, goes right"</string>
+<string name="directions_name_goes_right">"%1$s, goes right"</string>
 <!-- Notification, %s street name, "<Pike Street>, continues ahead -->
-<string name="directions_name_continues_ahead">"%s, continues ahead"</string>
+<string name="directions_name_continues_ahead">"%1$s, continues ahead"</string>
 <!-- Notification orientation, ahead. Used as the direction name in sentences such as "<Pike Street>, <ahead>". -->
 <string name="directions_direction_ahead">"ahead"</string>
 <!-- Notification announced to the user that they are near a location that is near a settlement. The settlement is the nearest by distance, but isn't necessarily the one that the road is actually in. %1$@ is a road name and %2$@ is a settlement name, example: "Near Glasgow Road and close to Milngavie" -->
@@ -397,53 +397,53 @@
 <!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle. -->
 <string name="directions_heading_nw">"Heading northwest"</string>
 <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_along_traveling_n">"Traveling north along %s"</string>
+<string name="directions_along_traveling_n">"Traveling north along %1$s"</string>
 <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_along_traveling_ne">"Traveling northeast along %s"</string>
+<string name="directions_along_traveling_ne">"Traveling northeast along %1$s"</string>
 <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_along_traveling_e">"Traveling east along %s"</string>
+<string name="directions_along_traveling_e">"Traveling east along %1$s"</string>
 <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_along_traveling_se">"Traveling southeast along %s"</string>
+<string name="directions_along_traveling_se">"Traveling southeast along %1$s"</string>
 <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_along_traveling_s">"Traveling south along %s"</string>
+<string name="directions_along_traveling_s">"Traveling south along %1$s"</string>
 <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_along_traveling_sw">"Traveling southwest along %s"</string>
+<string name="directions_along_traveling_sw">"Traveling southwest along %1$s"</string>
 <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_along_traveling_w">"Traveling west along %s"</string>
+<string name="directions_along_traveling_w">"Traveling west along %1$s"</string>
 <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
-<string name="directions_along_traveling_nw">"Traveling northwest along %s"</string>
+<string name="directions_along_traveling_nw">"Traveling northwest along %1$s"</string>
 <!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
-<string name="directions_along_facing_n">"Facing north along %s"</string>
+<string name="directions_along_facing_n">"Facing north along %1$s"</string>
 <!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
-<string name="directions_along_facing_ne">"Facing northeast along %s"</string>
+<string name="directions_along_facing_ne">"Facing northeast along %1$s"</string>
 <!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
-<string name="directions_along_facing_e">"Facing east along %s"</string>
+<string name="directions_along_facing_e">"Facing east along %1$s"</string>
 <!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
-<string name="directions_along_facing_se">"Facing southeast along %s"</string>
+<string name="directions_along_facing_se">"Facing southeast along %1$s"</string>
 <!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
-<string name="directions_along_facing_s">"Facing south along %s"</string>
+<string name="directions_along_facing_s">"Facing south along %1$s"</string>
 <!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
-<string name="directions_along_facing_sw">"Facing southwest along %s"</string>
+<string name="directions_along_facing_sw">"Facing southwest along %1$s"</string>
 <!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
-<string name="directions_along_facing_w">"Facing west along %s"</string>
+<string name="directions_along_facing_w">"Facing west along %1$s"</string>
 <!-- Facing a cardinal direction. If the user is not travelling in a vehicle, or not moving (e.g. on foot) but is stationary along a road somewhere, the application will know which way the user is facing e.g. Facing east along High Street, %s is a road name -->
-<string name="directions_along_facing_nw">"Facing northwest along %s"</string>
+<string name="directions_along_facing_nw">"Facing northwest along %1$s"</string>
 <!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle, %s is a road name-->
-<string name="directions_along_heading_n">"Heading north along %s"</string>
+<string name="directions_along_heading_n">"Heading north along %1$s"</string>
 <!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle, %s is a road name-->
-<string name="directions_along_heading_ne">"Heading northeast along %s"</string>
+<string name="directions_along_heading_ne">"Heading northeast along %1$s"</string>
 <!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle, %s is a road name-->
-<string name="directions_along_heading_e">"Heading east along %s"</string>
+<string name="directions_along_heading_e">"Heading east along %1$s"</string>
 <!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle, %s is a road name-->
-<string name="directions_along_heading_se">"Heading southeast along %s"</string>
+<string name="directions_along_heading_se">"Heading southeast along %1$s"</string>
 <!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle, %s is a road name-->
-<string name="directions_along_heading_s">"Heading south along %s"</string>
+<string name="directions_along_heading_s">"Heading south along %1$s"</string>
 <!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle, %s is a road name-->
-<string name="directions_along_heading_sw">"Heading southwest along %s"</string>
+<string name="directions_along_heading_sw">"Heading southwest along %1$s"</string>
 <!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle, %s is a road name-->
-<string name="directions_along_heading_w">"Heading west along %s"</string>
+<string name="directions_along_heading_w">"Heading west along %1$s"</string>
 <!-- Walking with a cardinal direction. If the user is walking and heading along a road in a specific direction then the app will know the direction of travel of the user along that road e.g. Heading east along High Street. This is different to when a user is moving in a vehicle. %s is a road name -->
-<string name="directions_along_heading_nw">"Heading northwest along %s"</string>
+<string name="directions_along_heading_nw">"Heading northwest along %1$s"</string>
 <!-- Direction, North -->
 <string name="directions_cardinal_north">"North"</string>
 <!-- Direction, North East -->
@@ -477,15 +477,15 @@
 <!-- Direction, Abbreviation for North West -->
 <string name="directions_cardinal_north_west_abb">"NW"</string>
 <!-- Standing still with no direction. %s is a road name -->
-<string name="stationary_on_way">"Stationary on %s"</string>
+<string name="stationary_on_way">"Stationary on %1$s"</string>
 <!-- Preserve meters unit - Do not convert but can translate. Distance string, plural. %s is a plural number, "15 meters" -->
-<string name="distance_format_meters">"%s meters"</string>
+<string name="distance_format_meters">"%1$s meters"</string>
 <!-- Preserve km unit - Do not convert but can translate abbreviation of kilometer. Distance string. %s is a number, "15 km" -->
-<string name="distance_format_km">"%s km"</string>
+<string name="distance_format_km">"%1$s km"</string>
 <!-- Preserve feet unit - Do not convert but can translate. Distance string, plural. %s is a plural number, "15 feet" -->
-<string name="distance_format_feet">"%s feet"</string>
+<string name="distance_format_feet">"%1$s feet"</string>
 <!-- Preserve miles unit - Do not convert but can translate. Distance string, plural.%s is a plural number, "15 miles" -->
-<string name="distance_format_miles">"%s miles"</string>
+<string name="distance_format_miles">"%1$s miles"</string>
 <!-- Similar to `directions.my_location`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
 <string name="ui_action_button_my_location">"My\nLocation"</string>
 <!-- Accessibility Notification, ...hear about your current location. This is always preceded by "Double tap to " -->
@@ -580,7 +580,7 @@
 <!-- Title Terms of Use -->
 <string name="terms_of_use_title">"Terms of Use"</string>
 <!-- Notification message to accept or decline the terms in the Company Service Agreement, Quotes written as \" -->
-<string name="terms_of_use_message">"Your use of Soundscape is subject to the terms of the %s and the terms set out below (together, the *\"Terms of Use\"*)."</string>
+<string name="terms_of_use_message">"Your use of Soundscape is subject to the terms of the %1$s and the terms set out below (together, the *\"Terms of Use\"*)."</string>
 <!-- Title of the link to the Company Services Agreement. This value will be used in the placeholder %s that appears in the terms_of_use.message string -->
 <string name="terms_of_use_service_agreement">"Scottish Tech Army Services Agreement"</string>
 <!-- Terms of use checkbox accessibility label -->
@@ -957,11 +957,11 @@
 <!-- Offscreen maps still loading message -->
 <string name="offline_maps_loading">"Loading…"</string>
 <!-- Offscreen maps downloading message - this indicates to the user that the map is being downloaded. The %s is the name of the map -->
-<string name="offline_maps_downloading">"Downloading %s"</string>
+<string name="offline_maps_downloading">"Downloading %1$s"</string>
 <!-- Offscreen maps caching message - This message appear whilst the server is preparing the offline map named %s for download. -->
-<string name="offline_maps_caching">"Server is preparing %s for download. This can take a few minutes and then the download will start automatically."</string>
+<string name="offline_maps_caching">"Server is preparing %1$s for download. This can take a few minutes and then the download will start automatically."</string>
 <!-- Offscreen maps free space on storage. %s is replaced by value e.g. 32GB -->
-<string name="offline_maps_free_space">"%s free"</string>
+<string name="offline_maps_free_space">"%1$s free"</string>
 <!-- Offscreen maps storage information. %1$s is the name of the storage e.g. "SD" and %2$s is how much free space it has e.g. "31.3 GB" -->
 <string name="offline_maps_storage">"Maps are saved to %1$s which has %2$s free"</string>
 <!-- Offscreen maps title of list of downloaded maps-->
@@ -977,15 +977,15 @@
 <!-- Offscreen map details screen download map from cloud -->
 <string name="offline_map_details_download">"Download offline map"</string>
 <!-- Offscreen map details screen size of map on phone, %s is size e.g. 1.3GB -->
-<string name="offline_map_details_size_on_phone">"Size on phone: %s"</string>
+<string name="offline_map_details_size_on_phone">"Size on phone: %1$s"</string>
 <!-- Offscreen map details screen size of map on server, %s is size e.g. 1.3GB -->
-<string name="offline_map_details_size_on_server">"Download size: %s"</string>
+<string name="offline_map_details_size_on_server">"Download size: %1$s"</string>
 <!-- Offscreen map details extract name -->
-<string name="offline_map_details_name">"Map name: %s"</string>
+<string name="offline_map_details_name">"Map name: %1$s"</string>
 <!-- Offscreen map details prefix to list of cities within extract -->
-<string name="offline_map_details_city_list">"Map includes these places: %s"</string>
+<string name="offline_map_details_city_list">"Map includes these places: %1$s"</string>
 <!-- Offscreen map details prefix to list of cities within extract in alternate language -->
-<string name="offline_map_details_alternate_city_list">"Those places also known as: %s"</string>
+<string name="offline_map_details_alternate_city_list">"Those places also known as: %1$s"</string>
 <!-- Offscreen map storage settings title -->
 <string name="offline_map_storage_title">"Offline map storage"</string>
 <!-- Offscreen map storage description of use -->
@@ -1067,7 +1067,7 @@
 <!-- Callout text when on a street (1) and just after a cross street or point of interest (2) -->
 <string name="street_description_relative_after">"On %1$s just after %2$s"</string>
 <!-- Callout text when at an intersection where we don't know which road we're on -->
-<string name="street_description_intersection">"Near intersection of %s"</string>
+<string name="street_description_intersection">"Near intersection of %1$s"</string>
 <!-- Title for language mismatch dialog -->
 <string name="language_mismatch_title">"New language available"</string>
 <!-- Message for language mismatch dialog. %1$s is the phone language name -->
@@ -1127,7 +1127,7 @@ Please report any problems that you have, however small they may be via the *Con
 <!-- Open Street Map term. Used to map a fuel station, also known as a filling station, petrol station, gas station and petrol garage. It is the retail-type facility where motor vehicles can be refueled. -->
 <string name="osm_gas_station">"Gas Station"</string>
 <!-- Open Street Map term. Used as a display name for place or a location. %s is a bus stop name, such as "London Bus Stop". -->
-<string name="osm_bus_stop_named">"%s Bus Stop"</string>
+<string name="osm_bus_stop_named">"%1$s Bus Stop"</string>
 <!-- Open Street Map term. Used for a container or centre that accepts waste for recycling, and donations of used goods. -->
 <string name="osm_recycling_bin">"Recycling Bin"</string>
 <!-- Open Street Map term. Used for places where humans can obtain potable water for consumption. -->
@@ -1145,7 +1145,7 @@ Please report any problems that you have, however small they may be via the *Con
 <!-- OSM tag for ferry terminal -->
 <string name="osm_tag_ferry_terminal">"Ferry Terminal"</string>
 <!-- OSM tag for named ferry terminal e.g. "Oban Ferry Terminal" -->
-<string name="osm_tag_ferry_terminal_named">"%s Ferry Terminal"</string>
+<string name="osm_tag_ferry_terminal_named">"%1$s Ferry Terminal"</string>
 <!-- Open Street Map term crossing. A marked place where pedestrians cross a road.-->
 <string name="osm_crossing">Crosswalk</string>
 <!-- Open Street Map term construction. A temporary or permanent site of building works.-->
@@ -2303,7 +2303,7 @@ Please report any problems that you have, however small they may be via the *Con
 <!-- Open Street Map term train_station. Railway station where trains stop for passengers-->
 <string name="osm_train_station">"Train Station"</string>
 <!-- OSM tag for train station preceded by its name e.g. "Milngavie Train station" -->
-<string name="osm_train_station_named">"%s Train Station"</string>
+<string name="osm_train_station_named">"%1$s Train Station"</string>
 <!-- Open Street Map term shrine. Sacred place associated with a deity, saint, or relic-->
 <string name="osm_shrine">Shrine</string>
 <!-- Open Street Map term church. Christian place of worship-->
@@ -2381,7 +2381,7 @@ Please report any problems that you have, however small they may be via the *Con
 <!-- Open Street Map term ferry_terminal. Docking and boarding point for ferry services.-->
 <string name="osm_ferry_terminal">Ferry Terminal</string>
 <!-- Open Street Map term ferry_terminal. Named ferry terminal.-->
-<string name="osm_ferry_terminal_named">%s Ferry Terminal</string>
+<string name="osm_ferry_terminal_named">%1$s Ferry Terminal</string>
 <!-- Open Street Map term stadium. Large sporting venue with spectator seating.-->
 <string name="osm_stadium">Stadium</string>
 <!-- Open Street Map term dam. Barrier constructed to hold back or control water.-->
@@ -2503,11 +2503,11 @@ Please report any problems that you have, however small they may be via the *Con
 <!-- Open Street Map term tram_stop. Designated stop for trams or light rail vehicles.-->
 <string name="osm_tram_stop">Tram Stop</string>
 <!-- OSM tag for tram stop preceded by its name e.g. "Moor Road tram stop" -->
-<string name="osm_tram_stop_named">"%s Tram Stop"</string>
+<string name="osm_tram_stop_named">"%1$s Tram Stop"</string>
 <!-- Open Street Map term subway. Underground railway system or metro network.-->
 <string name="osm_subway">Subway Station</string>
 <!-- OSM tag for named subway station (underground trains) e.g. "Kings Cross underground station -->
-<string name="osm_subway_named">"%s Subway Station"</string>
+<string name="osm_subway_named">"%1$s Subway Station"</string>
 <!-- Open Street Map term hampshire_gate. A UK-style gate design used on footpaths.-->
 <string name="osm_hampshire_gate">Hampshire Gate</string>
 <!-- Open Street Map term full-height_turnstile. Tall turnstile controlling pedestrian access.-->
@@ -2661,17 +2661,17 @@ Please report any problems that you have, however small they may be via the *Con
 <!-- Spoken when there are no saved markers -->
 <string name="voice_cmd_no_markers">No markers have been saved</string>
 <!-- Spoken when a named route could not be found. %s = the name spoken by the user -->
-<string name="voice_cmd_route_not_found">Route not found: %s</string>
+<string name="voice_cmd_route_not_found">Route not found: %1$s</string>
 <!-- Spoken when a route is being started. %s = the route name -->
-<string name="voice_cmd_starting_route">Starting route %s</string>
+<string name="voice_cmd_starting_route">Starting route %1$s</string>
 <!-- Command to start a route. %s = the route name -->
-<string name="voice_cmd_start_route">Start route %s</string>
+<string name="voice_cmd_start_route">Start route %1$s</string>
 <!-- Command to start an audio beacon at a marker. %s = the marker name -->
-<string name="voice_cmd_start_beacon_at_marker_with_name">Start audio beacon at %s</string>
+<string name="voice_cmd_start_beacon_at_marker_with_name">Start audio beacon at %1$s</string>
 <!-- Spoken when an audio beacon is being started. %s = the marker name -->
-<string name="voice_cmd_starting_beacon_at_marker">Starting audio beacon at %s</string>
+<string name="voice_cmd_starting_beacon_at_marker">Starting audio beacon at %1$s</string>
 <!-- Spoken when a named marker could not be found. %s = the name spoken by the user -->
-<string name="voice_cmd_marker_not_found">Marker not found: %s</string>
+<string name="voice_cmd_marker_not_found">Marker not found: %1$s</string>
 <!-- Spoken text to explain dynamic routes and markers -->
 <string name="voice_cmd_explain_dynamic_markers">You can also start routes and markers by name, for example.</string>
 <!-- Spoken responses when there are errors in the speech recognition  -->
@@ -2693,9 +2693,9 @@ Please report any problems that you have, however small they may be via the *Con
 <string name="voice_cmd_speech_recognition_error_unknown">"Speech recognition unknown error."</string>
 <string name="voice_cmd_speech_recognition_error_unsupported">"Speech recognition is not supported on this phone."</string>
 <!-- Relative directions using clock face notation, %s is time in hours e.g. at 3 o'clock -->
-<string name="relative_clock_direction">"at %s o'clock"</string>
+<string name="relative_clock_direction">"at %1$s o'clock"</string>
 <!-- Relative directions using degrees, %s is angle e.g. at 45 degrees -->
-<string name="relative_degrees_direction">"at %s degrees"</string>
+<string name="relative_degrees_direction">"at %1$s degrees"</string>
 <!-- Relative directions using left/right -->
 <string name="relative_left_right_direction_ahead">"Ahead"</string>
 <string name="relative_left_right_direction_ahead_left">"Ahead left"</string>

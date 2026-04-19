@@ -50,7 +50,7 @@
     <string name="route_detail_action_edit_hint">Muokkaa reitin reittipisteitä tai muuta niiden järjestystä.</string>
     <string name="route_detail_action_create">Uusi reitti</string>
     <string name="route_detail_action_create_hint">Luo uusi reitti</string>
-    <string name="route_end_completed_accessibility">Reitti kuljettu! %s</string>
+    <string name="route_end_completed_accessibility">Reitti kuljettu! %1$s</string>
     <string name="route_detail_action_previous">Edellinen reittipiste</string>
     <string name="route_detail_action_previous_hint">Siirrä äänimajakka edelliseen reittipisteeseen</string>
     <string name="route_detail_action_next">Seuraava reittipiste</string>
@@ -81,7 +81,7 @@
     <string name="markers_no_markers_hint_2">Kokeile merkitä kotisi, työpaikkasi sisäänkäynti tai lempipaikkasi puistossa.</string>
     <string name="markers_edit_screen_title_edit">Muokkaa merkintää</string>
     <string name="markers_generic_name">Merkintä</string>
-    <string name="markers_marker_with_name">Merkintä. %s</string>
+    <string name="markers_marker_with_name">Merkintä. %1$s</string>
     <string name="markers_marker_created">Merkintä luotu</string>
     <string name="markers_annotation">Lisätiedot</string>
     <string name="search_choose_destination">Valitse määränpää</string>
@@ -110,12 +110,12 @@
     <string name="sleep_sleep_acc_hint">Laita Soundscape lepotilaan</string>
     <string name="sleep_wake_up_now">Herää nyt</string>
     <string name="intersection_approaching_intersection">Lähestytään risteystä</string>
-    <string name="directions_at_poi">Kohteessa %s</string>
+    <string name="directions_at_poi">Kohteessa %1$s</string>
     <string name="directions_my_location">Oma sijaintini</string>
-    <string name="directions_near_name">Lähellä kohdetta %s</string>
-    <string name="directions_name_goes_left">%s, kääntyy vasemmalle</string>
-    <string name="directions_name_goes_right">%s, kääntyy oikealle</string>
-    <string name="directions_name_continues_ahead">%s, jatkuu eteenpäin</string>
+    <string name="directions_near_name">Lähellä kohdetta %1$s</string>
+    <string name="directions_name_goes_left">%1$s, kääntyy vasemmalle</string>
+    <string name="directions_name_goes_right">%1$s, kääntyy oikealle</string>
+    <string name="directions_name_continues_ahead">%1$s, jatkuu eteenpäin</string>
     <string name="directions_direction_ahead">edessä</string>
     <string name="directions_traveling_n">Kuljetaan pohjoiseen</string>
     <string name="directions_traveling_ne">Kuljetaan koilliseen</string>
@@ -141,34 +141,34 @@
     <string name="directions_heading_sw">Matkalla lounaaseen</string>
     <string name="directions_heading_w">Matkalla länteen</string>
     <string name="directions_heading_nw">Matkalla luoteeseen</string>
-    <string name="directions_along_traveling_n">Kuljetaan pohjoiseen tiellä %s</string>
-    <string name="directions_along_traveling_ne">Kuljetaan koilliseen tiellä %s</string>
-    <string name="directions_along_traveling_e">Kuljetaan itään tietä %s pitkin</string>
-    <string name="directions_along_traveling_se">Kuljetaan kaakkoon tiellä %s</string>
-    <string name="directions_along_traveling_s">Kuljetaan etelään tiellä %s</string>
-    <string name="directions_along_traveling_sw">Kuljetaan lounaaseen tiellä %s</string>
-    <string name="directions_along_traveling_w">Kuljetaan länteen tiellä %s</string>
-    <string name="directions_along_traveling_nw">Kuljetaan luoteeseen tiellä %s</string>
-    <string name="directions_along_facing_n">Kääntyneenä pohjoiseen tiellä %s</string>
-    <string name="directions_along_facing_ne">Kääntyneenä koilliseen tiellä %s</string>
-    <string name="directions_along_facing_e">Kääntyneenä itään tiellä %s</string>
-    <string name="directions_along_facing_se">Kääntyneenä kaakkoon tiellä %s</string>
-    <string name="directions_along_facing_s">Kääntyneenä etelään tiellä %s</string>
-    <string name="directions_along_facing_sw">Kääntyneenä lounaaseen tiellä %s</string>
-    <string name="directions_along_facing_w">Kääntyneenä länteen tiellä %s</string>
-    <string name="directions_along_facing_nw">Kääntyneenä luoteeseen tiellä %s</string>
-    <string name="directions_along_heading_n">Matkalla pohjoiseen tiellä %s</string>
-    <string name="directions_along_heading_ne">Matkalla koilliseen tiellä %s</string>
-    <string name="directions_along_heading_e">Matkalla itään tiellä %s</string>
-    <string name="directions_along_heading_se">Matkalla kaakkoon tiellä %s</string>
-    <string name="directions_along_heading_s">Matkalla etelään tiellä %s</string>
-    <string name="directions_along_heading_sw">Matkalla lounaaseen tiellä %s</string>
-    <string name="directions_along_heading_w">Matkalla länteen tiellä %s</string>
-    <string name="directions_along_heading_nw">Matkalla luoteeseen tiellä %s</string>
-    <string name="distance_format_meters">%s metriä</string>
-    <string name="distance_format_km">%s km</string>
-    <string name="distance_format_feet">%s jalkaa</string>
-    <string name="distance_format_miles">%s mailia</string>
+    <string name="directions_along_traveling_n">Kuljetaan pohjoiseen tiellä %1$s</string>
+    <string name="directions_along_traveling_ne">Kuljetaan koilliseen tiellä %1$s</string>
+    <string name="directions_along_traveling_e">Kuljetaan itään tietä %1$s pitkin</string>
+    <string name="directions_along_traveling_se">Kuljetaan kaakkoon tiellä %1$s</string>
+    <string name="directions_along_traveling_s">Kuljetaan etelään tiellä %1$s</string>
+    <string name="directions_along_traveling_sw">Kuljetaan lounaaseen tiellä %1$s</string>
+    <string name="directions_along_traveling_w">Kuljetaan länteen tiellä %1$s</string>
+    <string name="directions_along_traveling_nw">Kuljetaan luoteeseen tiellä %1$s</string>
+    <string name="directions_along_facing_n">Kääntyneenä pohjoiseen tiellä %1$s</string>
+    <string name="directions_along_facing_ne">Kääntyneenä koilliseen tiellä %1$s</string>
+    <string name="directions_along_facing_e">Kääntyneenä itään tiellä %1$s</string>
+    <string name="directions_along_facing_se">Kääntyneenä kaakkoon tiellä %1$s</string>
+    <string name="directions_along_facing_s">Kääntyneenä etelään tiellä %1$s</string>
+    <string name="directions_along_facing_sw">Kääntyneenä lounaaseen tiellä %1$s</string>
+    <string name="directions_along_facing_w">Kääntyneenä länteen tiellä %1$s</string>
+    <string name="directions_along_facing_nw">Kääntyneenä luoteeseen tiellä %1$s</string>
+    <string name="directions_along_heading_n">Matkalla pohjoiseen tiellä %1$s</string>
+    <string name="directions_along_heading_ne">Matkalla koilliseen tiellä %1$s</string>
+    <string name="directions_along_heading_e">Matkalla itään tiellä %1$s</string>
+    <string name="directions_along_heading_se">Matkalla kaakkoon tiellä %1$s</string>
+    <string name="directions_along_heading_s">Matkalla etelään tiellä %1$s</string>
+    <string name="directions_along_heading_sw">Matkalla lounaaseen tiellä %1$s</string>
+    <string name="directions_along_heading_w">Matkalla länteen tiellä %1$s</string>
+    <string name="directions_along_heading_nw">Matkalla luoteeseen tiellä %1$s</string>
+    <string name="distance_format_meters">%1$s metriä</string>
+    <string name="distance_format_km">%1$s km</string>
+    <string name="distance_format_feet">%1$s jalkaa</string>
+    <string name="distance_format_miles">%1$s mailia</string>
     <string name="ui_action_button_my_location">Oma si-\njaintini</string>
     <string name="ui_action_button_my_location_acc_hint">Kuule tietoja nykyisestä sijainnistasi</string>
     <string name="ui_action_button_nearby_markers">Merkin-\nnät</string>
@@ -206,7 +206,7 @@
     <string name="help_text_section_title_when">Milloin käyttäisin sitä?</string>
     <string name="help_text_section_title_how">Kuinka se toimii?</string>
     <string name="terms_of_use_title">Käyttöehdot</string>
-    <string name="terms_of_use_message">Soundscapen käyttöä säätelevät %s:n ehdot sekä alla esitetyt ehdot (yhdessä *\"Käyttöehdot\"*).</string>
+    <string name="terms_of_use_message">Soundscapen käyttöä säätelevät %1$s:n ehdot sekä alla esitetyt ehdot (yhdessä *\"Käyttöehdot\"*).</string>
     <string name="terms_of_use_service_agreement">Scottish Tech Army palvelusopimus</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Hyväksy käyttöehdot</string>
     <string name="terms_of_use_medical_safety_disclaimer">Hyväksyt, että Soundscape (1) ei ole suunniteltu, tarkoitettu tai saatavilla lääketieteellisenä laitteena, ja (2) ei ole suunniteltu eikä tarkoitettu korvaamaan ammattimaista lääketieteellistä neuvontaa, diagnoosia, hoitoa tai arviointia, eikä sitä tule käyttää niiden korvaamiseen tai vaihtoehtona.\n\nTurvallisuusilmoitus\n\nSoundscape on navigointiapu, eikä sitä tule käyttää liikkumistaitojen, ympäristötietoisuuden tai harkinnan korvaajana. Ole varovainen liikkuessasi ympäristössäsi, sillä Soundcapeen sisältyvä karttatieto on peräisin kolmannen osapuolen lähteistä, joten esitettyjen tietojen tarkkuudessa voi olla rajoituksia.</string>
@@ -288,8 +288,8 @@
     <string name="osm_service_road">Huoltotie</string>
     <string name="osm_road">Tie</string>
     <string name="osm_highway">Maantie</string>
-    <string name="osm_highway_named">%s maantie</string>
-    <string name="osm_highway_refed">Maantie %s</string>
+    <string name="osm_highway_named">%1$s maantie</string>
+    <string name="osm_highway_refed">Maantie %1$s</string>
     <string name="osm_intersection">Risteys</string>
     <string name="osm_roundabout">Liikenneympyrä</string>
     <string name="osm_highway_ramp">Maantien liittymä</string>
@@ -320,10 +320,10 @@
     <string name="osm_gas_station">Huoltoasema</string>
     <string name="osm_bank">Pankki</string>
     <string name="osm_atm">Pankkiautomaatti</string>
-    <string name="osm_atm_named">%s Pankkiautomaatti</string>
-    <string name="osm_atm_refed">Pankkiautomaatti %s</string>
+    <string name="osm_atm_named">%1$s Pankkiautomaatti</string>
+    <string name="osm_atm_refed">Pankkiautomaatti %1$s</string>
     <string name="osm_bus_stop">Linja-autopysäkki</string>
-    <string name="osm_bus_stop_named">%s Linja-autopysäkki</string>
+    <string name="osm_bus_stop_named">%1$s Linja-autopysäkki</string>
     <string name="osm_recycling_bin">Kierrätysastia</string>
     <string name="osm_fountain">Suihkulähde</string>
     <string name="osm_place_of_worship">Uskonnollinen rakennus</string>
@@ -410,7 +410,7 @@
     <string name="settings_units_metric" tools:ignore="MissingTranslation">Metrinen (metrit)</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">Tekstistä puheeksi -moottori</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Mene lähimpään risteykseen</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" ja %s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" ja %1$s"</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Näytä kartta koko näytöllä</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Poistu koko näytön karttanäkymästä</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Ei käytettävissä, koska reitti on jo alussa</string>
@@ -444,13 +444,13 @@
     <string name="notification_text" tools:ignore="MissingTranslation">Soundscapen sijaintipalvelu toimii myös, kun puhelin on lukittu.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Peruuta haku</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Rautatieasema</string>
-    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s Rautatieasema</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%1$s Rautatieasema</string>
     <string name="osm_tram_stop" tools:ignore="MissingTranslation">Raitiovaunupysäkki</string>
-    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s Raitiovaunupysäkki</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%1$s Raitiovaunupysäkki</string>
     <string name="osm_subway" tools:ignore="MissingTranslation">Metroasema</string>
-    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s Metroasema</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%1$s Metroasema</string>
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Lauttaterminaali</string>
-    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s Lauttaterminaali</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s Lauttaterminaali</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Ääni</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Saavutettavuus</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Vaalea tai tumma teema</string>
@@ -482,20 +482,20 @@
     <string name="offline_maps_title" tools:ignore="MissingTranslation">Offline-kartat</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">Offline-kartan tiedot</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">Ladataan…</string>
-    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Ladataan %s</string>
-    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Palvelin valmistelee %s latausta varten. Tämä voi kestää muutaman minuutin, minkä jälkeen lataus alkaa automaattisesti.</string>
-    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s vapaata tilaa</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Ladataan %1$s</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Palvelin valmistelee %1$s latausta varten. Tämä voi kestää muutaman minuutin, minkä jälkeen lataus alkaa automaattisesti.</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%1$s vapaata tilaa</string>
     <string name="offline_maps_storage" tools:ignore="MissingTranslation">Kartat tallennetaan kohteeseen %1$s, jossa on %2$s vapaata tilaa</string>
     <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">Jo ladatut kartat</string>
     <string name="offline_maps_nearby" tools:ignore="MissingTranslation">Lähellä olevat offline-kartat</string>
     <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">Ladataan offline-karttien luetteloa</string>
     <string name="offline_map_details_delete" tools:ignore="MissingTranslation">Poista offline-kartta</string>
     <string name="offline_map_details_download" tools:ignore="MissingTranslation">Lataa offline-kartta</string>
-    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Koko puhelimessa: %s</string>
-    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Latauskoko: %s</string>
-    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Karttanimi: %s</string>
-    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">Kartta sisältää nämä paikat: %s</string>
-    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Nämä paikat tunnetaan myös nimillä: %s</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Koko puhelimessa: %1$s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Latauskoko: %1$s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Karttanimi: %1$s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">Kartta sisältää nämä paikat: %1$s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Nämä paikat tunnetaan myös nimillä: %1$s</string>
     <string name="offline_map_storage_title" tools:ignore="MissingTranslation">Offline-karttojen tallennustila</string>
     <string name="offline_map_storage_description" tools:ignore="MissingTranslation">Jotta Soundscapeia voi käyttää ilman Internet-yhteyttä, karttoja voi ladata ja tallentaa puhelimeen. Oletustallennus on puhelimen ulkoinen tallennustila, mutta voit valita vaihtoehtoisen paikan täällä.</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Käytä vain Wi‑Fiä kartan lataamiseen</string>
@@ -528,7 +528,7 @@
     <string name="new_version_info_details" tools:ignore="MissingTranslation">\nTässä julkaisussa on kaksi uutta ominaisuutta, jotka mahdollistavat sovelluksen etäohjauksen myös silloin, kun puhelin on lukittu. Tämä tarkoittaa, että puhelin voi pysyä taskussasi, mutta voit silti ohjata sovelluksen keskeisiä toimintoja.\n\nMolemmat etäohjausmenetelmät käyttävät Bluetooth‑mediasäätöpainikkeita — joko kuulokkeidesi painikkeita tai erillisiä pieniä kauko‑ohjaimia, joita voit pitää kädessä tai taskussa. Etäohjaustilan valinta tehdään Asetukset/Mediasäätimet‑osiosta. Voit valita \"Puhekomento\"-tilan, jolloin puhut sovellukselle, tai \"Äänivalikko\"-tilan, jossa valikot luetaan sinulle ja voit valita niistä vaihtoehtoja. \"Alkuperäinen tila\" tarkoittaa, että Bluetooth‑painikkeet toimivat kuten aiemmissa julkaisuissa.\n\nPuhekomentotilassa kuulokkeidesi toista/pysäytä‑painikkeen napsautus käynnistää sovelluksen kuuntelemaan puhetta, ja kuulet lyhyen äänen merkkinä siitä. Jos sanot \"Help\" (tai asetuksissa määritellyn avainsanan), sovellus listaa käytettävissä olevat komennot. Tämän jälkeen voit painaa painiketta uudelleen ja kokeilla muita komentoja. Valitettavasti Androidin puheentunnistus ei tue kaikkia kieliä, eikä se ole saatavilla kaikilla puhelimilla.\n\nSuurin haaste puhekomentotilassa on se, että joidenkin kuulokkeiden mikrofonin kytkeytyminen voi kestää muita pidempään. Tämä tarkoittaa, että toista/pysäytä‑painikkeen napautuksen jälkeen saatat joutua odottamaan jopa noin 5 sekuntia ennen kuin voit puhua. Helpoin tapa selvittää oman laitteesi viive on napauttaa toista/pysäytä ja laskea ääneen yhdestä kymmeneen. Puhelimen palauttama teksti kertoo, mikä luku tunnistettiin ensimmäisenä — se osoittaa, milloin puhe alkoi rekisteröityä. Tämä auttaa oppimaan, kuinka kauan odottaa ennen puhumista. Joissain kuulokkeissa mikrofonin aktivoitumisesta kuuluu selvä ääni, mikä helpottaa käyttöä, mutta joissain ei kuulu mitään. Tämä voi vaatia harjoittelua.\n\nToinen uusi etätila, Äänivalikko, toimii kaikilla kielillä ja kaikilla puhelimilla. Seuraava/edellinen‑mediasäätöpainikkeet siirtyvät valikon vaihtoehtojen läpi eteen‑ ja taaksepäin. Toista/pysäytä‑painike valitsee nykyisen vaihtoehdon. Valikkorakenne koostuu ylätason valikosta ja yhdestä alivalikkokerroksesta, jossa samankaltaiset komennot on ryhmitelty.\n\nNämä ominaisuudet ovat hyvin uusia, ja toivomme palautetta siitä, miten ne toimivat ja mitä muita komentoja haluaisit nähdä.\n\nIlmoita kaikista ongelmista, vaikka ne olisivat pieniä, valikon *Ota yhteyttä tukeen* -toiminnon kautta.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Avoimen lähdekoodin lisenssit</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Lauttaterminaali</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s lauttaterminaali</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s lauttaterminaali</string>
     <string name="osm_office" tools:ignore="MissingTranslation">Toimisto</string>
     <string name="osm_school" tools:ignore="MissingTranslation">Koulu</string>
     <string name="osm_roof" tools:ignore="MissingTranslation">Katto</string>
@@ -1253,7 +1253,7 @@
     <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Poistu merkinnän sijainnin muokkaustilasta</string>
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">Kadulla %1$s juuri ennen %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">Kadulla %1$s juuri %2$s jälkeen</string>
-    <string name="street_description_intersection" tools:ignore="MissingTranslation">Lähellä risteystä %s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Lähellä risteystä %1$s</string>
     <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Tässä sijainnissa on jo merkintä reitillä. Emme voi lisätä sitä uudelleen.</string>
     <string name="settings_explanation" tools:ignore="MissingTranslation">Sovelluksen eri asetukset on järjestetty alla ryhmiin. Napauta ryhmää laajentaaksesi sen ja nähdäksesi käytettävissä olevat vaihtoehdot.</string>
     <string name="settings_section_units_description" tools:ignore="MissingTranslation">Valitse etäisyyksissä käytettävät mittayksiköt</string>
@@ -1303,12 +1303,12 @@
     <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Saatavilla olevat merkinnät ovat:</string>
     <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Reittejä ei ole tallennettu</string>
     <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Merkintöjä ei ole tallennettu</string>
-    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Reittiä ei löytynyt: %s</string>
-    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Aloitetaan reitti %s</string>
-    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Aloita reitti %s</string>
-    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Käynnistä äänimajakka kohteeseen %s</string>
-    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Käynnistetään äänimajakka kohteeseen %s</string>
-    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Merkintää ei löytynyt: %s</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Reittiä ei löytynyt: %1$s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Aloitetaan reitti %1$s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Aloita reitti %1$s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Käynnistä äänimajakka kohteeseen %1$s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Käynnistetään äänimajakka kohteeseen %1$s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Merkintää ei löytynyt: %1$s</string>
     <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Voit myös käynnistää reittejä ja merkintöjä nimen perusteella, esimerkiksi.</string>
     <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Puheentunnistuksen verkkoyhteyden aikakatkaisu.</string>
     <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Puheentunnistuksen verkkovirhe.</string>
@@ -1335,9 +1335,9 @@
     <string name="battery_optimization_message">Soundscape tarvitsee rajoittamattoman akkukäytön pystyäkseen tarjoamaan ääniohjauksen myös silloin, kun puhelimesi on lukittu. Salli tämä seuraavassa valintaikkunassa. Jos suljet Soundscapen, kaikki palvelut lopetetaan eikä se enää kuluta akkua.</string>
     <string name="route_detail_action_start_route_reverse">Aloita reitti takaperin</string>
     <string name="route_detail_action_start_route_reverse_hint">Aloita tämän reitin toisto takaperin</string>
-    <string name="route_reverse_name">%s takaperin</string>
+    <string name="route_reverse_name">%1$s takaperin</string>
     <string name="callouts_no_nearby_markers">Lähellä ei ole merkintöjä</string>
-    <string name="stationary_on_way">Paikallaan tiellä %s</string>
+    <string name="stationary_on_way">Paikallaan tiellä %1$s</string>
     <string name="settings_relative_directions_text">Suhteellisten suuntien tila</string>
     <string name="settings_relative_directions_description">Muuta, miten suhteelliset suunnat kuvataan.</string>
     <string name="settings_relative_directions_clockface">Kellotaulu</string>
@@ -1345,8 +1345,8 @@
     <string name="settings_relative_directions_left_right">Vasen / Oikea</string>
     <string name="callout_settings_position_text">Sisällytä etäisyys ja suunta kiinnostavien kohteiden ilmoituksiin</string>
     <string name="callout_settings_position_description">Oletusarvoisesti paikkojen ilmoituksiin ei sisälly etäisyyttä tai suuntaa. Tämä asetus lisää ne ilmoituksiin.</string>
-    <string name="relative_clock_direction">kello %s</string>
-    <string name="relative_degrees_direction">%s asteen kulmassa</string>
+    <string name="relative_clock_direction">kello %1$s</string>
+    <string name="relative_degrees_direction">%1$s asteen kulmassa</string>
     <string name="relative_left_right_direction_ahead">Edessä</string>
     <string name="relative_left_right_direction_ahead_left">Edessä vasemmalla</string>
     <string name="relative_left_right_direction_ahead_right">Edessä oikealla</string>

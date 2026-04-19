@@ -35,7 +35,7 @@
     <string name="preview_title">محاكاة الموقع</string>
     <string name="preview_go_title">اذهب</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">اذهب إلى أقرب تقاطع</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" و %s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" و %1$s"</string>
     <string name="preview_include_unnamed_roads_title">طرق لم تسمها</string>
     <string name="location_detail_title_default">تفاصيل الموقع</string>
     <string name="location_detail_action_beacon">ابدأ منارة الصوت</string>
@@ -58,7 +58,7 @@
     <string name="route_detail_action_edit_hint">غيّر نقاط الطريق في المسار أو أعد ترتيبها.</string>
     <string name="route_detail_action_create">طريق جديد</string>
     <string name="route_detail_action_create_hint">أنشئ طريقًا جديدًا</string>
-    <string name="route_end_completed_accessibility">لقد وصلت الى وجهتك %s</string>
+    <string name="route_end_completed_accessibility">لقد وصلت الى وجهتك %1$s</string>
     <string name="route_detail_action_previous">نقطة الطريق السابقة</string>
     <string name="route_detail_action_previous_hint">انقل منارة الصوت إلى نقطة الطريق السابقة</string>
     <string name="route_detail_action_next">نقطة الطريق التالية</string>
@@ -89,7 +89,7 @@
     <string name="markers_no_markers_hint_2">حاول وضع علامة على منزلك ، أو مدخل عملك ، أو مكانك المفضل في الحديقة.</string>
     <string name="markers_edit_screen_title_edit">تحرير العلامات</string>
     <string name="markers_generic_name">علامة</string>
-    <string name="markers_marker_with_name">علامه %s</string>
+    <string name="markers_marker_with_name">علامه %1$s</string>
     <string name="markers_marker_created">تم إنشاء علامة</string>
     <string name="markers_annotation">ملاحظات إضافية</string>
     <string name="search_choose_destination">اختر الوجهة</string>
@@ -118,12 +118,12 @@
     <string name="sleep_sleep_acc_hint">ضع Soundscape في وضع الخمول</string>
     <string name="sleep_wake_up_now">استيقظ الآن</string>
     <string name="intersection_approaching_intersection">تقترب من التقاطع</string>
-    <string name="directions_at_poi">في %s</string>
+    <string name="directions_at_poi">في %1$s</string>
     <string name="directions_my_location">موقعي</string>
-    <string name="directions_near_name">قريب %s</string>
-    <string name="directions_name_goes_left">%s, يتجه يسارا</string>
-    <string name="directions_name_goes_right">%s, يتجه يمينا</string>
-    <string name="directions_name_continues_ahead">%s, يستمر الى الامام</string>
+    <string name="directions_near_name">قريب %1$s</string>
+    <string name="directions_name_goes_left">%1$s, يتجه يسارا</string>
+    <string name="directions_name_goes_right">%1$s, يتجه يمينا</string>
+    <string name="directions_name_continues_ahead">%1$s, يستمر الى الامام</string>
     <string name="directions_direction_ahead">إلى الأمام</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">بالقرب من %1$s و %2$s</string>
     <string name="directions_traveling_n">السفر شمالا</string>
@@ -150,30 +150,30 @@
     <string name="directions_heading_sw">يتجه جنوب غرب</string>
     <string name="directions_heading_w">يتجه غربًا</string>
     <string name="directions_heading_nw">يتجه شمال غرب</string>
-    <string name="directions_along_traveling_n">السفر شمالا للامام %s</string>
-    <string name="directions_along_traveling_ne">السفر شمال شرق للامام %s</string>
-    <string name="directions_along_traveling_e">السفر شرقا للامام %s</string>
-    <string name="directions_along_traveling_se">السفر جنوب شرق للامام %s</string>
-    <string name="directions_along_traveling_s">السفر جنوبا للامام %s</string>
-    <string name="directions_along_traveling_sw">السفر جنوب غرب للامام %s</string>
-    <string name="directions_along_traveling_w">السفر غربا للامام %s</string>
-    <string name="directions_along_traveling_nw">السفر شمال غرب للامام %s</string>
-    <string name="directions_along_facing_n">مواجهة الشمال للامام %s</string>
-    <string name="directions_along_facing_ne">مواجهة الشمال الشرقي للامام %s</string>
-    <string name="directions_along_facing_e">مواجهة الشرق للامام %s</string>
-    <string name="directions_along_facing_se">في مواجهة الجنوب الشرقي للامام %s</string>
-    <string name="directions_along_facing_s">مواجهة الجنوب للامام %s</string>
-    <string name="directions_along_facing_sw">مواجهة الجنوب الغربي للامام %s</string>
-    <string name="directions_along_facing_w">مواجهة الغرب للامام %s</string>
-    <string name="directions_along_facing_nw">مواجهة الشمال الغربي للامام %s</string>
-    <string name="directions_along_heading_n">الاتجاه شمالاً مباشرة %s</string>
-    <string name="directions_along_heading_ne">يتجه شمال شرق على طول %s</string>
-    <string name="directions_along_heading_e">التوجه شرقًا على طول %s</string>
-    <string name="directions_along_heading_se">يتجه جنوب شرق على طول %s</string>
-    <string name="directions_along_heading_s">يتجه جنوبًا على طول %s</string>
-    <string name="directions_along_heading_sw">يتجه جنوب غرب على طول %s</string>
-    <string name="directions_along_heading_w">يتجه غربًا على طول %s</string>
-    <string name="directions_along_heading_nw">يتجه شمال غرب على طول %s</string>
+    <string name="directions_along_traveling_n">السفر شمالا للامام %1$s</string>
+    <string name="directions_along_traveling_ne">السفر شمال شرق للامام %1$s</string>
+    <string name="directions_along_traveling_e">السفر شرقا للامام %1$s</string>
+    <string name="directions_along_traveling_se">السفر جنوب شرق للامام %1$s</string>
+    <string name="directions_along_traveling_s">السفر جنوبا للامام %1$s</string>
+    <string name="directions_along_traveling_sw">السفر جنوب غرب للامام %1$s</string>
+    <string name="directions_along_traveling_w">السفر غربا للامام %1$s</string>
+    <string name="directions_along_traveling_nw">السفر شمال غرب للامام %1$s</string>
+    <string name="directions_along_facing_n">مواجهة الشمال للامام %1$s</string>
+    <string name="directions_along_facing_ne">مواجهة الشمال الشرقي للامام %1$s</string>
+    <string name="directions_along_facing_e">مواجهة الشرق للامام %1$s</string>
+    <string name="directions_along_facing_se">في مواجهة الجنوب الشرقي للامام %1$s</string>
+    <string name="directions_along_facing_s">مواجهة الجنوب للامام %1$s</string>
+    <string name="directions_along_facing_sw">مواجهة الجنوب الغربي للامام %1$s</string>
+    <string name="directions_along_facing_w">مواجهة الغرب للامام %1$s</string>
+    <string name="directions_along_facing_nw">مواجهة الشمال الغربي للامام %1$s</string>
+    <string name="directions_along_heading_n">الاتجاه شمالاً مباشرة %1$s</string>
+    <string name="directions_along_heading_ne">يتجه شمال شرق على طول %1$s</string>
+    <string name="directions_along_heading_e">التوجه شرقًا على طول %1$s</string>
+    <string name="directions_along_heading_se">يتجه جنوب شرق على طول %1$s</string>
+    <string name="directions_along_heading_s">يتجه جنوبًا على طول %1$s</string>
+    <string name="directions_along_heading_sw">يتجه جنوب غرب على طول %1$s</string>
+    <string name="directions_along_heading_w">يتجه غربًا على طول %1$s</string>
+    <string name="directions_along_heading_nw">يتجه شمال غرب على طول %1$s</string>
     <string name="directions_cardinal_north" tools:ignore="MissingTranslation">شمال</string>
     <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">الشمال الشرقي</string>
     <string name="directions_cardinal_east" tools:ignore="MissingTranslation">شرق</string>
@@ -182,10 +182,10 @@
     <string name="directions_cardinal_south_west" tools:ignore="MissingTranslation">الجنوب الغربي</string>
     <string name="directions_cardinal_west" tools:ignore="MissingTranslation">الغرب</string>
     <string name="directions_cardinal_north_west" tools:ignore="MissingTranslation">الشمال الغربي</string>
-    <string name="distance_format_meters">%s امطار</string>
-    <string name="distance_format_km">%s كيلو متر</string>
-    <string name="distance_format_feet">%s قدم</string>
-    <string name="distance_format_miles">%s ميل</string>
+    <string name="distance_format_meters">%1$s امطار</string>
+    <string name="distance_format_km">%1$s كيلو متر</string>
+    <string name="distance_format_feet">%1$s قدم</string>
+    <string name="distance_format_miles">%1$s ميل</string>
     <string name="ui_action_button_my_location">موقعي\n↵</string>
     <string name="ui_action_button_my_location_acc_hint">اسمع عن موقعك الحالي</string>
     <string name="ui_action_button_nearby_markers">علامات\nقريبه</string>
@@ -223,7 +223,7 @@
     <string name="help_text_section_title_when">متى يمكنني استخدامه؟</string>
     <string name="help_text_section_title_how">كيف تعمل؟</string>
     <string name="terms_of_use_title">شروط الاستخدام</string>
-    <string name="terms_of_use_message">يخضع استخدامك لـ Soundscape لشروط %s والشروط التالية (يشار إليها مجتمعة باسم * \"شروط الاستخدام\").والمصطلحات المنصوص عليها أدناه (معًا ، *\"شروط الاستخدام\" *).</string>
+    <string name="terms_of_use_message">يخضع استخدامك لـ Soundscape لشروط %1$s والشروط التالية (يشار إليها مجتمعة باسم * \"شروط الاستخدام\").والمصطلحات المنصوص عليها أدناه (معًا ، *\"شروط الاستخدام\" *).</string>
     <string name="terms_of_use_service_agreement">اتفاقية خدمات جيش التكنولوجيا الاسكتلندية</string>
     <string name="terms_of_use_accept_checkbox_acc_label">قبول شروط الاستخدام</string>
     <string name="terms_of_use_medical_safety_disclaimer">أنت تقر بأن Soundscape (1) غير مصمم أو مقصود أو إتاحته كجهاز طبي ، و (2) غير مصمم أو المقصود منه أن يكون بديلاً عن المشورة الطبية المهنية أو التشخيص أو العلاج أو الحكم ولا ينبغي استخدامه لاستبدال أو كبديل للمشورة الطبية المهنية أو التشخيص أو العلاج أو الحكم.\n↵\nإشعار السلامة\n↵\nSoundscape هي مساعدة في التنقل ويجب عدم استخدامها بدلاً من مهارات التنقل ، والدروع في محيطك ، والحكم الجيد. توخي الحذر عند التنقل في بيئتك حيث يتم التقاط بيانات التعيين المدمجة في برنامج Soundscape من برنامج طرف ثالث ، وبالتالي ، قد تكون هناك قيود على دقة المعلومات المقدمة.</string>
@@ -315,8 +315,8 @@
     <string name="osm_service_road">طريق الخدمة</string>
     <string name="osm_road">طريق</string>
     <string name="osm_highway">الطريق السريع</string>
-    <string name="osm_highway_named">%s الطريق السريع</string>
-    <string name="osm_highway_refed">الطريق السريع %s</string>
+    <string name="osm_highway_named">%1$s الطريق السريع</string>
+    <string name="osm_highway_refed">الطريق السريع %1$s</string>
     <string name="osm_intersection">التقاطع</string>
     <string name="osm_roundabout">دوار</string>
     <string name="osm_highway_ramp">الطريق السريع الطريق المنحدر</string>
@@ -347,9 +347,9 @@
     <string name="osm_gas_station">محطة بنزين</string>
     <string name="osm_bank">بنك</string>
     <string name="osm_atm">أجهزة الصراف الآلي</string>
-    <string name="osm_atm_named">%s أجهزة الصراف الآلي</string>
-    <string name="osm_atm_refed">أجهزة الصراف الآلي\n\n%s</string>
-    <string name="osm_bus_stop_named">محطة الحافلات\n\n%s</string>
+    <string name="osm_atm_named">%1$s أجهزة الصراف الآلي</string>
+    <string name="osm_atm_refed">أجهزة الصراف الآلي\n\n%1$s</string>
+    <string name="osm_bus_stop_named">محطة الحافلات\n\n%1$s</string>
     <string name="osm_recycling_bin">سلة المهملات</string>
     <string name="osm_fountain">نافورة</string>
     <string name="osm_place_of_worship">مكان العبادة</string>
@@ -437,13 +437,13 @@
     <string name="notification_text" tools:ignore="MissingTranslation">خدمة موقع Soundscape تعمل حتى عندما يكون الهاتف مقفلاً.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">إلغاء البحث</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">محطة القطار\n\n ،</string>
-    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s\nمحطة قطار</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%1$s\nمحطة قطار</string>
     <string name="osm_tram_stop" tools:ignore="MissingTranslation">توقف الترام</string>
-    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s\nمحطة الترام</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%1$s\nمحطة الترام</string>
     <string name="osm_subway" tools:ignore="MissingTranslation">محطة مترو الأنفاق</string>
-    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s محطة مترو الأنفاق</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%1$s محطة مترو الأنفاق</string>
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">محطة العبارة</string>
-    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s\nالعبارة</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s\nالعبارة</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">الصوت</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">إمكانية الوصول</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">موضوع خفيف أو مظلم</string>
@@ -483,15 +483,15 @@
     <string name="offline_maps_title" tools:ignore="MissingTranslation">خرائط دون اتصال</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">تفاصيل الخريطة الغير متصلة</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">تحميل…</string>
-    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">جارٍ تنزيل%s</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">جارٍ تنزيل%1$s</string>
     <string name="offline_maps_nearby" tools:ignore="MissingTranslation">بالقرب من باستخدام خرائط غير متصلة بالانترنت</string>
     <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">جارٍ تحميل قائمة الخرائط غير المتصلة بالإنترنت</string>
     <string name="offline_map_details_delete" tools:ignore="MissingTranslation">حذف الخريطة غير المتصلة بالإنترنت</string>
     <string name="offline_map_details_download" tools:ignore="MissingTranslation">تحميل الخرائط الغير متصلة بالانترنت</string>
-    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">المساحة على الهاتف: %s</string>
-    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">حجم التحميل: %s</string>
-    <string name="offline_map_details_name" tools:ignore="MissingTranslation">:اسم الخريطة %s</string>
-    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">تتضمن الخريطة هذه الاماكن: %s</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">المساحة على الهاتف: %1$s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">حجم التحميل: %1$s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">:اسم الخريطة %1$s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">تتضمن الخريطة هذه الاماكن: %1$s</string>
     <string name="offline_map_storage_description" tools:ignore="MissingTranslation">لكي يمكن استخدام Soundscape دون الاتصال بالإنترنت، من الممكن تنزيل الخرائط وتخزينها على الهاتف. وحدة التخزين الافتراضية هي أي وحدة تخزين خارجية على هاتفك، ولكن يمكنك تحديد وجهة بديلة هنا.</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">استخدم WiFi فقط لتنزيل الخريطة</string>
     <string name="text_field_clear_text" tools:ignore="MissingTranslation">محو النص</string>
@@ -503,11 +503,11 @@
     <string name="fab_add_route" tools:ignore="MissingTranslation">إضافة الطريق</string>
     <string name="route_waypoint_progress" tools:ignore="MissingTranslation">قم بتوجيه %1$s عند نقطة الطريق %2$s من %3$s</string>
     <string name="home_screen_title" tools:ignore="MissingTranslation">الصفحة الرئيسية ساوندسكيب</string>
-    <string name="offline_maps_caching" tools:ignore="MissingTranslation">الخادم يقوم بتحضير %s للتنزيل. قد يستغرق ذلك بضع دقائق ثم سيبدأ التنزيل تلقائيًا.</string>
-    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s متبقي</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">الخادم يقوم بتحضير %1$s للتنزيل. قد يستغرق ذلك بضع دقائق ثم سيبدأ التنزيل تلقائيًا.</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%1$s متبقي</string>
     <string name="offline_maps_storage" tools:ignore="MissingTranslation">يتم حفظ الخرائط على %1$s والتي تحتوي على %2$s مساحة خالية</string>
     <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">تم تنزيل الخرائط بالفعل</string>
-    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">تُعرف هذه الأماكن أيضًا باسم: %s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">تُعرف هذه الأماكن أيضًا باسم: %1$s</string>
     <string name="offline_map_storage_title" tools:ignore="MissingTranslation">تخزين خرائط دون اتصال</string>
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">فشل تنزيل بيانات الخريطة غير المتصلة بالإنترنت</string>
     <string name="settings_reset_button" tools:ignore="MissingTranslation">استعادة الإعدادات الافتراضية</string>
@@ -1186,7 +1186,7 @@
     <string name="osm_parking_space" tools:ignore="MissingTranslation">مكان ركن</string>
     <string name="osm_motorcycle_parking" tools:ignore="MissingTranslation">موقف موتوسيكلات</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">محطة العبارات</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">محطة العبارات في %s</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">محطة العبارات في %1$s</string>
     <string name="settings_section_search" tools:ignore="MissingTranslation">البحث</string>
     <string name="settings_search_online" tools:ignore="MissingTranslation">عبر الإنترنت</string>
     <string name="settings_search_offline" tools:ignore="MissingTranslation">دون اتصال</string>
@@ -1253,7 +1253,7 @@
     <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">الخروج من وضع تحرير موقع العلامة</string>
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">في %1$s قبل %2$s بقليل</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">في %1$s بعد %2$s بقليل</string>
-    <string name="street_description_intersection" tools:ignore="MissingTranslation">بالقرب من تقاطع %s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">بالقرب من تقاطع %1$s</string>
     <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">هناك بالفعل علامة في المسار عند هذا الموقع، لا يمكن إضافتها مرة أخرى.</string>
     <string name="settings_explanation" tools:ignore="MissingTranslation">الإعدادات المختلفة للتطبيق مُنظَّمَة في مجموعات أدناه. اضغط على مجموعة لتوسيعها ورؤية الخيارات المتاحة.</string>
     <string name="settings_section_units_description" tools:ignore="MissingTranslation">اختر وحدات القياس المستخدمة للمسافة</string>
@@ -1303,12 +1303,12 @@
     <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">العلامات المتاحة هي:</string>
     <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">لم يتم حفظ أي مسارات</string>
     <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">لم يتم حفظ أي علامات</string>
-    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">المسار غير موجود: %s</string>
-    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">بدء المسار %s</string>
-    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">ابدأ الطريق %s</string>
-    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">ابدأ منارة الصوت عند %s</string>
-    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">جاري تشغيل منارة الصوت عند %s</string>
-    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">لم يتم العثور على العلامة: %s</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">المسار غير موجود: %1$s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">بدء المسار %1$s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">ابدأ الطريق %1$s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">ابدأ منارة الصوت عند %1$s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">جاري تشغيل منارة الصوت عند %1$s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">لم يتم العثور على العلامة: %1$s</string>
     <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">يمكنك أيضًا بدء الطرق والعلامات بالاسم، على سبيل المثال.</string>
     <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">خطأ نفاد مهلة شبكة التعرف على الكلام.</string>
     <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">خطأ في شبكة التعرف على الكلام.</string>
@@ -1335,9 +1335,9 @@
     <string name="battery_optimization_message">يحتاج تطبيق Soundscape إلى السماح باستخدام البطارية دون قيود حتى يستمر في توفير الإرشاد الصوتي عندما يكون هاتفك مقفلاً. الرجاء الموافقة على ذلك في مربع الحوار التالي. إذا قمت بإغلاق Soundscape، ستتوقف كل الخدمات ولن يستهلك التطبيق البطارية بعد ذلك.</string>
     <string name="route_detail_action_start_route_reverse">ابدأ الطريق بالعكس</string>
     <string name="route_detail_action_start_route_reverse_hint">ابدأ تشغيل هذا الطريق بالعكس</string>
-    <string name="route_reverse_name">%s بالعكس</string>
+    <string name="route_reverse_name">%1$s بالعكس</string>
     <string name="callouts_no_nearby_markers">لا توجد علامات قريبة</string>
-    <string name="stationary_on_way">متوقف في %s</string>
+    <string name="stationary_on_way">متوقف في %1$s</string>
     <string name="settings_relative_directions_text">وضع الاتجاهات النسبية</string>
     <string name="settings_relative_directions_description">غيّر كيف يتم وصف الاتجاهات النسبية.</string>
     <string name="settings_relative_directions_clockface">نظام الساعة</string>
@@ -1345,8 +1345,8 @@
     <string name="settings_relative_directions_left_right">يسار/يمين</string>
     <string name="callout_settings_position_text">تضم المسافة والاتجاه عند استدعاء نقاط الاهتمام</string>
     <string name="callout_settings_position_description">بشكل افتراضي، عند استدعاء الأماكن لا تتضمن وسائل الارشاد المسافة أو الاتجاه. يضيف هذا الإعداد هذه المعلومات إلى وسائل الارشاد.</string>
-    <string name="relative_clock_direction">في الساعة %s</string>
-    <string name="relative_degrees_direction">عند %s درجة</string>
+    <string name="relative_clock_direction">في الساعة %1$s</string>
+    <string name="relative_degrees_direction">عند %1$s درجة</string>
     <string name="relative_left_right_direction_ahead">إلى الأمام</string>
     <string name="relative_left_right_direction_ahead_left">أمام وإلى اليسار</string>
     <string name="relative_left_right_direction_ahead_right">أمام وإلى اليمين</string>

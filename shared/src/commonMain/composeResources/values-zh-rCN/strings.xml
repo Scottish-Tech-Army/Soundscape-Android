@@ -48,7 +48,7 @@
     <string name="preview_title">模拟位置</string>
     <string name="preview_go_title">前进</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">前往最近的路口</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" 和%s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" 和%1$s"</string>
     <string name="preview_include_unnamed_roads_title">无名道路</string>
     <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">在位置模拟期间包含无名道路</string>
     <string name="location_detail_title_default">位置详情</string>
@@ -75,7 +75,7 @@
     <string name="route_detail_action_edit_hint">更改路线中的航点或重新排序。</string>
     <string name="route_detail_action_create">新建路线</string>
     <string name="route_detail_action_create_hint">创建新路线</string>
-    <string name="route_end_completed_accessibility">路线已完成！%s</string>
+    <string name="route_end_completed_accessibility">路线已完成！%1$s</string>
     <string name="route_detail_action_previous">上一个航点</string>
     <string name="route_detail_action_previous_hint">将信标移至上一个航点</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">已在路线起点，无法后退</string>
@@ -109,7 +109,7 @@
     <string name="markers_no_markers_hint_2">试着标记您的家、工作地点的入口或公园里您最喜欢的地方。</string>
     <string name="markers_edit_screen_title_edit">编辑标记点</string>
     <string name="markers_generic_name">标记点</string>
-    <string name="markers_marker_with_name">标记点。%s</string>
+    <string name="markers_marker_with_name">标记点。%1$s</string>
     <string name="markers_marker_created">标记点已创建</string>
     <string name="markers_annotation">附加备注</string>
     <string name="search_choose_destination">选择目的地</string>
@@ -667,7 +667,7 @@
     <string name="osm_port" tools:ignore="MissingTranslation">港口</string>
     <string name="osm_archaeological_site" tools:ignore="MissingTranslation">考古遗址</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">火车站</string>
-    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s火车站</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%1$s火车站</string>
     <string name="osm_shrine" tools:ignore="MissingTranslation">神社</string>
     <string name="osm_church" tools:ignore="MissingTranslation">教堂</string>
     <string name="osm_historic_monument" tools:ignore="MissingTranslation">历史古迹</string>
@@ -706,7 +706,7 @@
     <string name="osm_clock" tools:ignore="MissingTranslation">钟</string>
     <string name="osm_casino" tools:ignore="MissingTranslation">赌场</string>
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">渡轮码头</string>
-    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s渡轮码头</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s渡轮码头</string>
     <string name="osm_stadium" tools:ignore="MissingTranslation">体育场</string>
     <string name="osm_dam" tools:ignore="MissingTranslation">大坝</string>
     <string name="osm_dock" tools:ignore="MissingTranslation">船坞码头</string>
@@ -767,9 +767,9 @@
     <string name="osm_stairs" tools:ignore="MissingTranslation">楼梯</string>
     <string name="osm_bicycle_rental" tools:ignore="MissingTranslation">自行车租赁</string>
     <string name="osm_tram_stop" tools:ignore="MissingTranslation">有轨电车站</string>
-    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s有轨电车站</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%1$s有轨电车站</string>
     <string name="osm_subway" tools:ignore="MissingTranslation">地铁站</string>
-    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s地铁站</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%1$s地铁站</string>
     <string name="osm_hampshire_gate" tools:ignore="MissingTranslation">汉普郡门</string>
     <string name="osm_full_height_turnstile" tools:ignore="MissingTranslation">全高旋转闸</string>
     <string name="osm_boat_sharing" tools:ignore="MissingTranslation">共享船只</string>
@@ -990,9 +990,9 @@
     <string name="offline_maps_title" tools:ignore="MissingTranslation">离线地图</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">离线地图详情</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">加载中…</string>
-    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">正在下载%s</string>
-    <string name="offline_maps_caching" tools:ignore="MissingTranslation">服务器正在准备%s以供下载。这可能需要几分钟，下载将自动开始。</string>
-    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s可用</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">正在下载%1$s</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">服务器正在准备%1$s以供下载。这可能需要几分钟，下载将自动开始。</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%1$s可用</string>
     <string name="offline_maps_storage" tools:ignore="MissingTranslation">地图保存在%1$s上，剩余%2$s可用空间</string>
     <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">已下载的地图</string>
     <string name="offline_maps_nearby" tools:ignore="MissingTranslation">附近的离线地图</string>
@@ -1000,11 +1000,11 @@
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">下载离线地图数据失败</string>
     <string name="offline_map_details_delete" tools:ignore="MissingTranslation">删除离线地图</string>
     <string name="offline_map_details_download" tools:ignore="MissingTranslation">下载离线地图</string>
-    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">手机上的大小：%s</string>
-    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">下载大小：%s</string>
-    <string name="offline_map_details_name" tools:ignore="MissingTranslation">地图名称：%s</string>
-    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">地图包含以下地点：%s</string>
-    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">这些地点的其他名称：%s</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">手机上的大小：%1$s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">下载大小：%1$s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">地图名称：%1$s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">地图包含以下地点：%1$s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">这些地点的其他名称：%1$s</string>
     <string name="offline_map_storage_title" tools:ignore="MissingTranslation">离线地图存储</string>
     <string name="offline_map_storage_description" tools:ignore="MissingTranslation">为了在没有网络连接时也能使用Soundscape，您可以下载地图并存储在手机上。默认存储位置为手机的外部存储，您也可以在此选择其他存储位置。</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">仅通过WiFi下载地图</string>
@@ -1041,7 +1041,7 @@
     <string name="street_description_since" tools:ignore="MissingTranslation">在%1$s上，已过%3$s %2$s</string>
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">在%1$s上，即将到达%2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">在%1$s上，刚过%2$s</string>
-    <string name="street_description_intersection" tools:ignore="MissingTranslation">在%s交叉路口附近</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">在%1$s交叉路口附近</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">新版本信息</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">关闭新版本对话框</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">开源许可证</string>
@@ -1057,7 +1057,7 @@
     <string name="osm_taxi_waiting_area" tools:ignore="MissingTranslation">出租车等候区</string>
     <string name="osm_bike_parking" tools:ignore="MissingTranslation">自行车停车处</string>
     <string name="osm_gas_station" tools:ignore="MissingTranslation">加油站</string>
-    <string name="osm_bus_stop_named" tools:ignore="MissingTranslation">%s公交站</string>
+    <string name="osm_bus_stop_named" tools:ignore="MissingTranslation">%1$s公交站</string>
     <string name="osm_recycling_bin" tools:ignore="MissingTranslation">回收箱</string>
     <string name="osm_water_fountain" tools:ignore="MissingTranslation">饮水台</string>
     <string name="osm_sports_field" tools:ignore="MissingTranslation">运动场</string>
@@ -1066,7 +1066,7 @@
     <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s，来自%3$s</string>
     <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">渡轮码头</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s渡轮码头</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s渡轮码头</string>
     <string name="osm_crossing" tools:ignore="MissingTranslation">人行横道</string>
     <string name="osm_construction" tools:ignore="MissingTranslation">施工区</string>
     <string name="osm_dangerous_area" tools:ignore="MissingTranslation">危险区域</string>
@@ -1127,12 +1127,12 @@
     <string name="sleep_sleep_acc_hint">将 Soundscape 设为休眠</string>
     <string name="sleep_wake_up_now">立即唤醒</string>
     <string name="intersection_approaching_intersection">正在接近路口</string>
-    <string name="directions_at_poi">在%s</string>
+    <string name="directions_at_poi">在%1$s</string>
     <string name="directions_my_location">我的位置</string>
-    <string name="directions_near_name">靠近%s</string>
-    <string name="directions_name_goes_left">%s，左转</string>
-    <string name="directions_name_goes_right">%s，右转</string>
-    <string name="directions_name_continues_ahead">%s，直行</string>
+    <string name="directions_near_name">靠近%1$s</string>
+    <string name="directions_name_goes_left">%1$s，左转</string>
+    <string name="directions_name_goes_right">%1$s，右转</string>
+    <string name="directions_name_continues_ahead">%1$s，直行</string>
     <string name="directions_direction_ahead">前方</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">靠近%1$s，接近%2$s</string>
     <string name="directions_traveling_n">向北行驶</string>
@@ -1159,30 +1159,30 @@
     <string name="directions_heading_sw">向西南前行</string>
     <string name="directions_heading_w">向西前行</string>
     <string name="directions_heading_nw">向西北前行</string>
-    <string name="directions_along_traveling_n">沿%s向北行驶</string>
-    <string name="directions_along_traveling_ne">沿%s向东北行驶</string>
-    <string name="directions_along_traveling_e">沿%s向东行驶</string>
-    <string name="directions_along_traveling_se">沿%s向东南行驶</string>
-    <string name="directions_along_traveling_s">沿%s向南行驶</string>
-    <string name="directions_along_traveling_sw">沿%s向西南行驶</string>
-    <string name="directions_along_traveling_w">沿%s向西行驶</string>
-    <string name="directions_along_traveling_nw">沿%s向西北行驶</string>
-    <string name="directions_along_facing_n">在%s上面向北</string>
-    <string name="directions_along_facing_ne">在%s上面向东北</string>
-    <string name="directions_along_facing_e">在%s上面向东</string>
-    <string name="directions_along_facing_se">在%s上面向东南</string>
-    <string name="directions_along_facing_s">在%s上面向南</string>
-    <string name="directions_along_facing_sw">在%s上面向西南</string>
-    <string name="directions_along_facing_w">在%s上面向西</string>
-    <string name="directions_along_facing_nw">在%s上面向西北</string>
-    <string name="directions_along_heading_n">沿%s向北前行</string>
-    <string name="directions_along_heading_ne">沿%s向东北前行</string>
-    <string name="directions_along_heading_e">沿%s向东前行</string>
-    <string name="directions_along_heading_se">沿%s向东南前行</string>
-    <string name="directions_along_heading_s">沿%s向南前行</string>
-    <string name="directions_along_heading_sw">沿%s向西南前行</string>
-    <string name="directions_along_heading_w">沿%s向西前行</string>
-    <string name="directions_along_heading_nw">沿%s向西北前行</string>
+    <string name="directions_along_traveling_n">沿%1$s向北行驶</string>
+    <string name="directions_along_traveling_ne">沿%1$s向东北行驶</string>
+    <string name="directions_along_traveling_e">沿%1$s向东行驶</string>
+    <string name="directions_along_traveling_se">沿%1$s向东南行驶</string>
+    <string name="directions_along_traveling_s">沿%1$s向南行驶</string>
+    <string name="directions_along_traveling_sw">沿%1$s向西南行驶</string>
+    <string name="directions_along_traveling_w">沿%1$s向西行驶</string>
+    <string name="directions_along_traveling_nw">沿%1$s向西北行驶</string>
+    <string name="directions_along_facing_n">在%1$s上面向北</string>
+    <string name="directions_along_facing_ne">在%1$s上面向东北</string>
+    <string name="directions_along_facing_e">在%1$s上面向东</string>
+    <string name="directions_along_facing_se">在%1$s上面向东南</string>
+    <string name="directions_along_facing_s">在%1$s上面向南</string>
+    <string name="directions_along_facing_sw">在%1$s上面向西南</string>
+    <string name="directions_along_facing_w">在%1$s上面向西</string>
+    <string name="directions_along_facing_nw">在%1$s上面向西北</string>
+    <string name="directions_along_heading_n">沿%1$s向北前行</string>
+    <string name="directions_along_heading_ne">沿%1$s向东北前行</string>
+    <string name="directions_along_heading_e">沿%1$s向东前行</string>
+    <string name="directions_along_heading_se">沿%1$s向东南前行</string>
+    <string name="directions_along_heading_s">沿%1$s向南前行</string>
+    <string name="directions_along_heading_sw">沿%1$s向西南前行</string>
+    <string name="directions_along_heading_w">沿%1$s向西前行</string>
+    <string name="directions_along_heading_nw">沿%1$s向西北前行</string>
     <string name="directions_cardinal_north" tools:ignore="MissingTranslation">北</string>
     <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">东北</string>
     <string name="directions_cardinal_east" tools:ignore="MissingTranslation">东</string>
@@ -1199,10 +1199,10 @@
     <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">西南</string>
     <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">西</string>
     <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">西北</string>
-    <string name="distance_format_meters">%s米</string>
-    <string name="distance_format_km">%s公里</string>
-    <string name="distance_format_feet">%s英尺</string>
-    <string name="distance_format_miles">%s英里</string>
+    <string name="distance_format_meters">%1$s米</string>
+    <string name="distance_format_km">%1$s公里</string>
+    <string name="distance_format_feet">%1$s英尺</string>
+    <string name="distance_format_miles">%1$s英里</string>
     <string name="ui_action_button_my_location">我的\n位置</string>
     <string name="ui_action_button_my_location_acc_hint">收听您当前位置的信息</string>
     <string name="ui_action_button_nearby_markers">附近\n标记点</string>
@@ -1245,7 +1245,7 @@
     <string name="help_text_section_title_when">什么时候使用？</string>
     <string name="help_text_section_title_how">如何使用？</string>
     <string name="terms_of_use_title">使用条款</string>
-    <string name="terms_of_use_message">您对 Soundscape 的使用受%s的条款及以下条款（合称*\"使用条款\"*）的约束。</string>
+    <string name="terms_of_use_message">您对 Soundscape 的使用受%1$s的条款及以下条款（合称*\"使用条款\"*）的约束。</string>
     <string name="terms_of_use_service_agreement">Scottish Tech Army 服务协议</string>
     <string name="terms_of_use_accept_checkbox_acc_label">接受使用条款</string>
     <string name="terms_of_use_medical_safety_disclaimer">您确认 Soundscape (1) 并非设计、预期或提供为医疗设备，(2) 并非设计或预期替代专业医疗建议、诊断、治疗或判断，不应用于替代专业医疗建议、诊断、治疗或判断。\n\n安全须知\n\nSoundscape 是一款导航辅助工具，不应取代出行技能、环境感知和良好的判断力。在导航环境时请保持谨慎，因为 Soundscape 程序中使用的地图数据来源于第三方程序，因此所提供信息的准确性可能存在局限。</string>
@@ -1303,12 +1303,12 @@
     <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">可用标记点有：</string>
     <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">尚未保存任何路线</string>
     <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">尚未保存任何标记点</string>
-    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">未找到路线：%s</string>
-    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">开始路线 %s</string>
-    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">开始路线 %s</string>
-    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">在%s处启动音频信标</string>
-    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">正在于%s处启动音频信标</string>
-    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">未找到标记点：%s</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">未找到路线：%1$s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">开始路线 %1$s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">开始路线 %1$s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">在%1$s处启动音频信标</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">正在于%1$s处启动音频信标</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">未找到标记点：%1$s</string>
     <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">例如，您也可以通过名称启动路线或标记点。</string>
     <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">语音识别网络超时错误。</string>
     <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">语音识别网络错误。</string>
@@ -1335,9 +1335,9 @@
     <string name="battery_optimization_message">Soundscape 需要不受限制的后台电量使用权限，以便在手机锁屏时继续提供音频导航。请在接下来的对话框中允许该权限。如果您关闭 Soundscape，所有服务将停止，应用将不再消耗电量。</string>
     <string name="route_detail_action_start_route_reverse">反向开始路线</string>
     <string name="route_detail_action_start_route_reverse_hint">以相反顺序开始播放此路线</string>
-    <string name="route_reverse_name">%s（反向）</string>
+    <string name="route_reverse_name">%1$s（反向）</string>
     <string name="callouts_no_nearby_markers">附近没有标记点</string>
-    <string name="stationary_on_way">在%s处静止</string>
+    <string name="stationary_on_way">在%1$s处静止</string>
     <string name="settings_relative_directions_text">相对方向模式</string>
     <string name="settings_relative_directions_description">更改相对方向的描述方式。</string>
     <string name="settings_relative_directions_clockface">点钟方向</string>
@@ -1345,8 +1345,8 @@
     <string name="settings_relative_directions_left_right">左/右</string>
     <string name="callout_settings_position_text">在播报兴趣点时包含距离和方向</string>
     <string name="callout_settings_position_description">默认情况下，播报地点时不包含距离或方向。启用此设置将在播报中添加这些信息。</string>
-    <string name="relative_clock_direction">在%s点钟方向</string>
-    <string name="relative_degrees_direction">在%s度方向</string>
+    <string name="relative_clock_direction">在%1$s点钟方向</string>
+    <string name="relative_degrees_direction">在%1$s度方向</string>
     <string name="relative_left_right_direction_ahead">前方</string>
     <string name="relative_left_right_direction_ahead_left">前方偏左</string>
     <string name="relative_left_right_direction_ahead_right">前方偏右</string>

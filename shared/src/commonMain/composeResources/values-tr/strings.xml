@@ -71,7 +71,7 @@
     <string name="preview_go_title">Git</string>
     <string name="preview_go_hint" tools:ignore="MissingTranslation">Bu yönde bir sonraki kavşağa gidin.</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">En yakın kavşağa git</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" ve %s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" ve %1$s"</string>
     <string name="preview_include_unnamed_roads_title">Adı Olmayan Yollar</string>
     <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">Konum simülasyonu sırasında adı olmayan yolları dahil et</string>
     <string name="location_detail_title_default">Konum Ayrıntıları</string>
@@ -98,7 +98,7 @@
     <string name="route_detail_action_edit_hint">Rotadaki ara noktaları değiştirin veya sırasını düzenleyin.</string>
     <string name="route_detail_action_create">Yeni Rota</string>
     <string name="route_detail_action_create_hint">Yeni bir rota oluşturun</string>
-    <string name="route_end_completed_accessibility">Rota Tamamlandı! %s</string>
+    <string name="route_end_completed_accessibility">Rota Tamamlandı! %1$s</string>
     <string name="route_detail_action_previous">Önceki Ara Nokta</string>
     <string name="route_detail_action_previous_hint">İşareti önceki ara noktaya taşıyın</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Rota zaten başlangıçta olduğundan devre dışı</string>
@@ -132,7 +132,7 @@
     <string name="markers_no_markers_hint_2">Evinizi, işyerinizin girişini veya parktaki favori yerinizi kayıtlı nokta olarak işaretlemeyi deneyin.</string>
     <string name="markers_edit_screen_title_edit">Kayıtlı Noktayı Düzenle</string>
     <string name="markers_generic_name">Kayıtlı Nokta</string>
-    <string name="markers_marker_with_name">Kayıtlı Nokta. %s</string>
+    <string name="markers_marker_with_name">Kayıtlı Nokta. %1$s</string>
     <string name="markers_marker_created">Kayıtlı nokta oluşturuldu</string>
     <string name="markers_annotation">Ek notlar</string>
     <string name="search_choose_destination">Hedef seçin</string>
@@ -172,12 +172,12 @@
     <string name="sleep_sleep_acc_hint">Soundscape\'i Sessiz Moda al</string>
     <string name="sleep_wake_up_now">Şimdi Uyandır</string>
     <string name="intersection_approaching_intersection">Kavşağa yaklaşılıyor</string>
-    <string name="directions_at_poi">%s\'de</string>
+    <string name="directions_at_poi">%1$s\'de</string>
     <string name="directions_my_location">Konumum</string>
-    <string name="directions_near_name">%s yakınında</string>
-    <string name="directions_name_goes_left">%s, sola gidiyor</string>
-    <string name="directions_name_goes_right">%s, sağa gidiyor</string>
-    <string name="directions_name_continues_ahead">%s, düz devam ediyor</string>
+    <string name="directions_near_name">%1$s yakınında</string>
+    <string name="directions_name_goes_left">%1$s, sola gidiyor</string>
+    <string name="directions_name_goes_right">%1$s, sağa gidiyor</string>
+    <string name="directions_name_continues_ahead">%1$s, düz devam ediyor</string>
     <string name="directions_direction_ahead">düz</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">%1$s yakınında ve %2$s\'e yakın</string>
     <string name="directions_traveling_n">Kuzeye seyahat ediliyor</string>
@@ -204,30 +204,30 @@
     <string name="directions_heading_sw">Güneybatıya yöneliniyor</string>
     <string name="directions_heading_w">Batıya yöneliniyor</string>
     <string name="directions_heading_nw">Kuzeybatıya yöneliniyor</string>
-    <string name="directions_along_traveling_n">%s boyunca kuzeye seyahat ediliyor</string>
-    <string name="directions_along_traveling_ne">%s boyunca kuzeydoğuya seyahat ediliyor</string>
-    <string name="directions_along_traveling_e">%s boyunca doğuya seyahat ediliyor</string>
-    <string name="directions_along_traveling_se">%s boyunca güneydoğuya seyahat ediliyor</string>
-    <string name="directions_along_traveling_s">%s boyunca güneye seyahat ediliyor</string>
-    <string name="directions_along_traveling_sw">%s boyunca güneybatıya seyahat ediliyor</string>
-    <string name="directions_along_traveling_w">%s boyunca batıya seyahat ediliyor</string>
-    <string name="directions_along_traveling_nw">%s boyunca kuzeybatıya seyahat ediliyor</string>
-    <string name="directions_along_facing_n">%s boyunca kuzeye dönük</string>
-    <string name="directions_along_facing_ne">%s boyunca kuzeydoğuya dönük</string>
-    <string name="directions_along_facing_e">%s boyunca doğuya dönük</string>
-    <string name="directions_along_facing_se">%s boyunca güneydoğuya dönük</string>
-    <string name="directions_along_facing_s">%s boyunca güneye dönük</string>
-    <string name="directions_along_facing_sw">%s boyunca güneybatıya dönük</string>
-    <string name="directions_along_facing_w">%s boyunca batıya dönük</string>
-    <string name="directions_along_facing_nw">%s boyunca kuzeybatıya dönük</string>
-    <string name="directions_along_heading_n">%s boyunca kuzeye yöneliniyor</string>
-    <string name="directions_along_heading_ne">%s boyunca kuzeydoğuya yöneliniyor</string>
-    <string name="directions_along_heading_e">%s boyunca doğuya yöneliniyor</string>
-    <string name="directions_along_heading_se">%s boyunca güneydoğuya yöneliniyor</string>
-    <string name="directions_along_heading_s">%s boyunca güneye yöneliniyor</string>
-    <string name="directions_along_heading_sw">%s boyunca güneybatıya yöneliniyor</string>
-    <string name="directions_along_heading_w">%s boyunca batıya yöneliniyor</string>
-    <string name="directions_along_heading_nw">%s boyunca kuzeybatıya yöneliniyor</string>
+    <string name="directions_along_traveling_n">%1$s boyunca kuzeye seyahat ediliyor</string>
+    <string name="directions_along_traveling_ne">%1$s boyunca kuzeydoğuya seyahat ediliyor</string>
+    <string name="directions_along_traveling_e">%1$s boyunca doğuya seyahat ediliyor</string>
+    <string name="directions_along_traveling_se">%1$s boyunca güneydoğuya seyahat ediliyor</string>
+    <string name="directions_along_traveling_s">%1$s boyunca güneye seyahat ediliyor</string>
+    <string name="directions_along_traveling_sw">%1$s boyunca güneybatıya seyahat ediliyor</string>
+    <string name="directions_along_traveling_w">%1$s boyunca batıya seyahat ediliyor</string>
+    <string name="directions_along_traveling_nw">%1$s boyunca kuzeybatıya seyahat ediliyor</string>
+    <string name="directions_along_facing_n">%1$s boyunca kuzeye dönük</string>
+    <string name="directions_along_facing_ne">%1$s boyunca kuzeydoğuya dönük</string>
+    <string name="directions_along_facing_e">%1$s boyunca doğuya dönük</string>
+    <string name="directions_along_facing_se">%1$s boyunca güneydoğuya dönük</string>
+    <string name="directions_along_facing_s">%1$s boyunca güneye dönük</string>
+    <string name="directions_along_facing_sw">%1$s boyunca güneybatıya dönük</string>
+    <string name="directions_along_facing_w">%1$s boyunca batıya dönük</string>
+    <string name="directions_along_facing_nw">%1$s boyunca kuzeybatıya dönük</string>
+    <string name="directions_along_heading_n">%1$s boyunca kuzeye yöneliniyor</string>
+    <string name="directions_along_heading_ne">%1$s boyunca kuzeydoğuya yöneliniyor</string>
+    <string name="directions_along_heading_e">%1$s boyunca doğuya yöneliniyor</string>
+    <string name="directions_along_heading_se">%1$s boyunca güneydoğuya yöneliniyor</string>
+    <string name="directions_along_heading_s">%1$s boyunca güneye yöneliniyor</string>
+    <string name="directions_along_heading_sw">%1$s boyunca güneybatıya yöneliniyor</string>
+    <string name="directions_along_heading_w">%1$s boyunca batıya yöneliniyor</string>
+    <string name="directions_along_heading_nw">%1$s boyunca kuzeybatıya yöneliniyor</string>
     <string name="directions_cardinal_north" tools:ignore="MissingTranslation">Kuzey</string>
     <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">Kuzeydoğu</string>
     <string name="directions_cardinal_east" tools:ignore="MissingTranslation">Doğu</string>
@@ -244,10 +244,10 @@
     <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">GB</string>
     <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">B</string>
     <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">KB</string>
-    <string name="distance_format_meters">%s metre</string>
-    <string name="distance_format_km">%s km</string>
-    <string name="distance_format_feet">%s feet</string>
-    <string name="distance_format_miles">%s mil</string>
+    <string name="distance_format_meters">%1$s metre</string>
+    <string name="distance_format_km">%1$s km</string>
+    <string name="distance_format_feet">%1$s feet</string>
+    <string name="distance_format_miles">%1$s mil</string>
     <string name="ui_action_button_my_location">Konum\num</string>
     <string name="ui_action_button_my_location_acc_hint">Mevcut konumunuzu sesli dinleyin</string>
     <string name="ui_action_button_nearby_markers">Yakın\nNoktalar</string>
@@ -291,7 +291,7 @@
     <string name="help_text_section_title_when">Ne zaman kullanırım?</string>
     <string name="help_text_section_title_how">Nasıl çalışır?</string>
     <string name="terms_of_use_title">Kullanım Koşulları</string>
-    <string name="terms_of_use_message">Soundscape\'i kullanımınız, %s koşullarına ve aşağıda belirtilen koşullara (birlikte *\"Kullanım Koşulları\"*) tabidir.</string>
+    <string name="terms_of_use_message">Soundscape\'i kullanımınız, %1$s koşullarına ve aşağıda belirtilen koşullara (birlikte *\"Kullanım Koşulları\"*) tabidir.</string>
     <string name="terms_of_use_service_agreement">Scottish Tech Army Hizmet Sözleşmesi</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Kullanım Koşullarını Kabul Et</string>
     <string name="terms_of_use_medical_safety_disclaimer">Soundscape\'in (1) tıbbi bir cihaz olarak tasarlanmadığını, amaçlanmadığını veya tıbbi cihaz olarak sunulmadığını ve (2) profesyonel tıbbi tavsiye, tanı, tedavi veya yargının yerini tutacak şekilde tasarlanmadığını ya da amaçlanmadığını ve profesyonel tıbbi tavsiye, tanı, tedavi veya yargının yerine kullanılmaması gerektiğini kabul edersiniz.\n\nGüvenlik Bildirimi\n\nSoundscape bir navigasyon yardımcısıdır ve hareketlilik becerilerinin, çevrenizin farkında olmanın ve sağduyunun yerine kullanılmamalıdır. Soundscape programına dahil edilen harita verileri üçüncü taraf bir programdan alındığından, sunulan bilgilerin doğruluğunda sınırlamalar olabileceğini göz önünde bulundurarak çevrenizde gezinirken dikkatli olun.</string>
@@ -449,9 +449,9 @@
     <string name="offline_maps_title" tools:ignore="MissingTranslation">Çevrimdışı haritalar</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">Çevrimdışı harita ayrıntıları</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">Yükleniyor…</string>
-    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">%s indiriliyor</string>
-    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Sunucu, %s haritasını indirmeye hazırlıyor. Bu birkaç dakika sürebilir, ardından indirme otomatik olarak başlar.</string>
-    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s boş</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">%1$s indiriliyor</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Sunucu, %1$s haritasını indirmeye hazırlıyor. Bu birkaç dakika sürebilir, ardından indirme otomatik olarak başlar.</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%1$s boş</string>
     <string name="offline_maps_storage" tools:ignore="MissingTranslation">Haritalar, %2$s boş alana sahip %1$s konumuna kaydediliyor</string>
     <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">İndirilmiş haritalar</string>
     <string name="offline_maps_nearby" tools:ignore="MissingTranslation">Yakındaki çevrimdışı haritalar</string>
@@ -459,11 +459,11 @@
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Çevrimdışı harita verisi indirilemedi</string>
     <string name="offline_map_details_delete" tools:ignore="MissingTranslation">Çevrimdışı haritayı sil</string>
     <string name="offline_map_details_download" tools:ignore="MissingTranslation">Çevrimdışı haritayı indir</string>
-    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Telefondaki boyutu: %s</string>
-    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">İndirme boyutu: %s</string>
-    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Harita adı: %s</string>
-    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">Harita şu yerleri içeriyor: %s</string>
-    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Bu yerler şu adlarla da bilinir: %s</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Telefondaki boyutu: %1$s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">İndirme boyutu: %1$s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Harita adı: %1$s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">Harita şu yerleri içeriyor: %1$s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Bu yerler şu adlarla da bilinir: %1$s</string>
     <string name="offline_map_storage_title" tools:ignore="MissingTranslation">Çevrimdışı harita depolama</string>
     <string name="offline_map_storage_description" tools:ignore="MissingTranslation">Soundscape\'i internet bağlantısı olmadan kullanabilmek için haritaları indirip telefona kaydetmek mümkündür. Varsayılan depolama alanı telefonunuzdaki harici depolama birimidir; ancak buradan alternatif bir hedef seçebilirsiniz.</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Harita indirme için yalnızca WiFi kullan</string>
@@ -504,7 +504,7 @@
     <string name="street_description_since" tools:ignore="MissingTranslation">%1$s üzerinde, %3$s\'dan bu yana %2$s</string>
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">%1$s üzerinde, %2$s\'ın hemen öncesinde</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">%1$s üzerinde, %2$s\'ın hemen sonrasında</string>
-    <string name="street_description_intersection" tools:ignore="MissingTranslation">%s kavşağı yakınında</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">%1$s kavşağı yakınında</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">Yeni dil mevcut</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Telefonunuz %1$s olarak ayarlı ve bu dil artık Soundscape\'te kullanılabilir. Soundscape\'i %1$s diline geçirmek ister misiniz?</string>
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">%1$s diline geç</string>
@@ -524,7 +524,7 @@
     <string name="osm_taxi_waiting_area" tools:ignore="MissingTranslation">Taksi Bekleme Alanı</string>
     <string name="osm_bike_parking" tools:ignore="MissingTranslation">Bisiklet Parkı</string>
     <string name="osm_gas_station" tools:ignore="MissingTranslation">Benzin İstasyonu</string>
-    <string name="osm_bus_stop_named" tools:ignore="MissingTranslation">%s Otobüs Durağı</string>
+    <string name="osm_bus_stop_named" tools:ignore="MissingTranslation">%1$s Otobüs Durağı</string>
     <string name="osm_recycling_bin" tools:ignore="MissingTranslation">Geri Dönüşüm Kutusu</string>
     <string name="osm_water_fountain" tools:ignore="MissingTranslation">Çeşme</string>
     <string name="osm_sports_field" tools:ignore="MissingTranslation">Spor Sahası</string>
@@ -533,7 +533,7 @@
     <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%3$s\'dan %1$s %2$s</string>
     <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Feribot İskelesi</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Feribot İskelesi</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s Feribot İskelesi</string>
     <string name="osm_crossing" tools:ignore="MissingTranslation">Yaya Geçidi</string>
     <string name="osm_construction" tools:ignore="MissingTranslation">İnşaat</string>
     <string name="osm_dangerous_area" tools:ignore="MissingTranslation">Tehlikeli Bölge</string>
@@ -1112,7 +1112,7 @@
     <string name="osm_port" tools:ignore="MissingTranslation">Liman</string>
     <string name="osm_archaeological_site" tools:ignore="MissingTranslation">Arkeolojik Alan</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Tren İstasyonu</string>
-    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s Tren İstasyonu</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%1$s Tren İstasyonu</string>
     <string name="osm_shrine" tools:ignore="MissingTranslation">Türbe</string>
     <string name="osm_church" tools:ignore="MissingTranslation">Kilise</string>
     <string name="osm_historic_monument" tools:ignore="MissingTranslation">Tarihi Anıt</string>
@@ -1151,7 +1151,7 @@
     <string name="osm_clock" tools:ignore="MissingTranslation">Saat Kulesi</string>
     <string name="osm_casino" tools:ignore="MissingTranslation">Kumarhane</string>
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Vapur İskelesi</string>
-    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s Vapur İskelesi</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s Vapur İskelesi</string>
     <string name="osm_stadium" tools:ignore="MissingTranslation">Stadyum</string>
     <string name="osm_dam" tools:ignore="MissingTranslation">Baraj</string>
     <string name="osm_dock" tools:ignore="MissingTranslation">Rıhtım</string>
@@ -1212,9 +1212,9 @@
     <string name="osm_stairs" tools:ignore="MissingTranslation">Merdiven</string>
     <string name="osm_bicycle_rental" tools:ignore="MissingTranslation">Bisiklet Kiralama</string>
     <string name="osm_tram_stop" tools:ignore="MissingTranslation">Tramvay Durağı</string>
-    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s Tramvay Durağı</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%1$s Tramvay Durağı</string>
     <string name="osm_subway" tools:ignore="MissingTranslation">Metro İstasyonu</string>
-    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s Metro İstasyonu</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%1$s Metro İstasyonu</string>
     <string name="osm_hampshire_gate" tools:ignore="MissingTranslation">Hampshire Kapısı</string>
     <string name="osm_full_height_turnstile" tools:ignore="MissingTranslation">Tam Boy Turnike</string>
     <string name="osm_boat_sharing" tools:ignore="MissingTranslation">Tekne Paylaşımı</string>
@@ -1303,12 +1303,12 @@
     <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Mevcut kayıtlı noktalar şunlardır,</string>
     <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Herhangi bir rota kaydedilmemiş</string>
     <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Herhangi bir kayıtlı nokta yok</string>
-    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Rota bulunamadı: %s</string>
-    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Rota başlatılıyor: %s</string>
-    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">%s rotasını başlat</string>
-    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">%s üzerinde sesli işareti başlat</string>
-    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">%s üzerinde sesli işaret başlatılıyor</string>
-    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Kayıtlı nokta bulunamadı: %s</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Rota bulunamadı: %1$s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Rota başlatılıyor: %1$s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">%1$s rotasını başlat</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">%1$s üzerinde sesli işareti başlat</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">%1$s üzerinde sesli işaret başlatılıyor</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Kayıtlı nokta bulunamadı: %1$s</string>
     <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Örneğin, rotaları ve kayıtlı noktaları isimleriyle başlatabilirsiniz.</string>
     <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Konuşma tanıma ağ zaman aşımı hatası.</string>
     <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Konuşma tanıma ağ hatası.</string>
@@ -1335,9 +1335,9 @@
     <string name="battery_optimization_message">Soundscape, telefonunuz kilitliyken sesli navigasyonu sağlamaya devam edebilmek için kısıtlamasız pil kullanımına ihtiyaç duyar. Lütfen bunu bir sonraki iletişim kutusunda onaylayın. Soundscape\'i kapatırsanız tüm hizmetler durur ve uygulama artık pil kullanmaz.</string>
     <string name="route_detail_action_start_route_reverse">Rotayı Tersine Başlat</string>
     <string name="route_detail_action_start_route_reverse_hint">Bu rotanın ters sırada oynatılmasını başlatın</string>
-    <string name="route_reverse_name">%s tersine</string>
+    <string name="route_reverse_name">%1$s tersine</string>
     <string name="callouts_no_nearby_markers">Yakınınızda kayıtlı nokta yok</string>
-    <string name="stationary_on_way">%s üzerinde hareketsiz</string>
+    <string name="stationary_on_way">%1$s üzerinde hareketsiz</string>
     <string name="settings_relative_directions_text">Göreli Yön Modu</string>
     <string name="settings_relative_directions_description">Göreli yönlerin nasıl anlatıldığını değiştirin.</string>
     <string name="settings_relative_directions_clockface">Saat Kadranı</string>
@@ -1345,8 +1345,8 @@
     <string name="settings_relative_directions_left_right">Sol/Sağ</string>
     <string name="callout_settings_position_text">İlgi noktalarını anons ederken mesafe ve yön bilgisini dahil et</string>
     <string name="callout_settings_position_description">Varsayılan olarak yerlere yapılan anonslarda mesafe veya yön bilgisi yer almaz. Bu ayar bunları anonslara ekler.</string>
-    <string name="relative_clock_direction">saat %s\'te</string>
-    <string name="relative_degrees_direction">%s derecede</string>
+    <string name="relative_clock_direction">saat %1$s\'te</string>
+    <string name="relative_degrees_direction">%1$s derecede</string>
     <string name="relative_left_right_direction_ahead">Ön</string>
     <string name="relative_left_right_direction_ahead_left">Ön-sol</string>
     <string name="relative_left_right_direction_ahead_right">Ön-sağ</string>

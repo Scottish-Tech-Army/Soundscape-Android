@@ -48,7 +48,7 @@
     <string name="preview_title">Simulare locație</string>
     <string name="preview_go_title">Mergi</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Mergi la cea mai apropiată intersecție</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" și %s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" și %1$s"</string>
     <string name="preview_include_unnamed_roads_title">Drumuri fără nume</string>
     <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">Include drumuri fără nume în timpul simulării locației</string>
     <string name="location_detail_title_default">Detalii locație</string>
@@ -75,7 +75,7 @@
     <string name="route_detail_action_edit_hint">Modifică punctele de traseu din rută sau reordonează-le.</string>
     <string name="route_detail_action_create">Rută nouă</string>
     <string name="route_detail_action_create_hint">Creează o rută nouă</string>
-    <string name="route_end_completed_accessibility">Rută finalizată! %s</string>
+    <string name="route_end_completed_accessibility">Rută finalizată! %1$s</string>
     <string name="route_detail_action_previous">Punctul de traseu anterior</string>
     <string name="route_detail_action_previous_hint">Mută baliza la punctul de traseu anterior</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Inactiv deoarece ruta este deja la început</string>
@@ -109,7 +109,7 @@
     <string name="markers_no_markers_hint_2">Încearcă să marchezi casa ta, intrarea la locul de muncă sau locul tău preferat din parc.</string>
     <string name="markers_edit_screen_title_edit">Editează marcaj</string>
     <string name="markers_generic_name">Marcaj</string>
-    <string name="markers_marker_with_name">Marcaj. %s</string>
+    <string name="markers_marker_with_name">Marcaj. %1$s</string>
     <string name="markers_marker_created">Marcaj creat</string>
     <string name="markers_annotation">Note suplimentare</string>
     <string name="search_choose_destination">Alege destinația</string>
@@ -149,12 +149,12 @@
     <string name="sleep_sleep_acc_hint">Pune Soundscape în repaus</string>
     <string name="sleep_wake_up_now">Trezire acum</string>
     <string name="intersection_approaching_intersection">Apropierea de o intersecție</string>
-    <string name="directions_at_poi">La %s</string>
+    <string name="directions_at_poi">La %1$s</string>
     <string name="directions_my_location">Locația mea</string>
-    <string name="directions_near_name">Lângă %s</string>
-    <string name="directions_name_goes_left">%s, continuă la stânga</string>
-    <string name="directions_name_goes_right">%s, continuă la dreapta</string>
-    <string name="directions_name_continues_ahead">%s, continuă înainte</string>
+    <string name="directions_near_name">Lângă %1$s</string>
+    <string name="directions_name_goes_left">%1$s, continuă la stânga</string>
+    <string name="directions_name_goes_right">%1$s, continuă la dreapta</string>
+    <string name="directions_name_continues_ahead">%1$s, continuă înainte</string>
     <string name="directions_direction_ahead">înainte</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">Lângă %1$s și în apropierea %2$s</string>
     <string name="directions_traveling_n">Deplasare spre nord</string>
@@ -181,30 +181,30 @@
     <string name="directions_heading_sw">Mergi spre sud-vest</string>
     <string name="directions_heading_w">Mergi spre vest</string>
     <string name="directions_heading_nw">Mergi spre nord-vest</string>
-    <string name="directions_along_traveling_n">Deplasare spre nord pe %s</string>
-    <string name="directions_along_traveling_ne">Deplasare spre nord-est pe %s</string>
-    <string name="directions_along_traveling_e">Deplasare spre est pe %s</string>
-    <string name="directions_along_traveling_se">Deplasare spre sud-est pe %s</string>
-    <string name="directions_along_traveling_s">Deplasare spre sud pe %s</string>
-    <string name="directions_along_traveling_sw">Deplasare spre sud-vest pe %s</string>
-    <string name="directions_along_traveling_w">Deplasare spre vest pe %s</string>
-    <string name="directions_along_traveling_nw">Deplasare spre nord-vest pe %s</string>
-    <string name="directions_along_facing_n">Orientare spre nord pe %s</string>
-    <string name="directions_along_facing_ne">Orientare spre nord-est pe %s</string>
-    <string name="directions_along_facing_e">Orientare spre est pe %s</string>
-    <string name="directions_along_facing_se">Orientare spre sud-est pe %s</string>
-    <string name="directions_along_facing_s">Orientare spre sud pe %s</string>
-    <string name="directions_along_facing_sw">Orientare spre sud-vest pe %s</string>
-    <string name="directions_along_facing_w">Orientare spre vest pe %s</string>
-    <string name="directions_along_facing_nw">Orientare spre nord-vest pe %s</string>
-    <string name="directions_along_heading_n">Mergi spre nord pe %s</string>
-    <string name="directions_along_heading_ne">Mergi spre nord-est pe %s</string>
-    <string name="directions_along_heading_e">Mergi spre est pe %s</string>
-    <string name="directions_along_heading_se">Mergi spre sud-est pe %s</string>
-    <string name="directions_along_heading_s">Mergi spre sud pe %s</string>
-    <string name="directions_along_heading_sw">Mergi spre sud-vest pe %s</string>
-    <string name="directions_along_heading_w">Mergi spre vest pe %s</string>
-    <string name="directions_along_heading_nw">Mergi spre nord-vest pe %s</string>
+    <string name="directions_along_traveling_n">Deplasare spre nord pe %1$s</string>
+    <string name="directions_along_traveling_ne">Deplasare spre nord-est pe %1$s</string>
+    <string name="directions_along_traveling_e">Deplasare spre est pe %1$s</string>
+    <string name="directions_along_traveling_se">Deplasare spre sud-est pe %1$s</string>
+    <string name="directions_along_traveling_s">Deplasare spre sud pe %1$s</string>
+    <string name="directions_along_traveling_sw">Deplasare spre sud-vest pe %1$s</string>
+    <string name="directions_along_traveling_w">Deplasare spre vest pe %1$s</string>
+    <string name="directions_along_traveling_nw">Deplasare spre nord-vest pe %1$s</string>
+    <string name="directions_along_facing_n">Orientare spre nord pe %1$s</string>
+    <string name="directions_along_facing_ne">Orientare spre nord-est pe %1$s</string>
+    <string name="directions_along_facing_e">Orientare spre est pe %1$s</string>
+    <string name="directions_along_facing_se">Orientare spre sud-est pe %1$s</string>
+    <string name="directions_along_facing_s">Orientare spre sud pe %1$s</string>
+    <string name="directions_along_facing_sw">Orientare spre sud-vest pe %1$s</string>
+    <string name="directions_along_facing_w">Orientare spre vest pe %1$s</string>
+    <string name="directions_along_facing_nw">Orientare spre nord-vest pe %1$s</string>
+    <string name="directions_along_heading_n">Mergi spre nord pe %1$s</string>
+    <string name="directions_along_heading_ne">Mergi spre nord-est pe %1$s</string>
+    <string name="directions_along_heading_e">Mergi spre est pe %1$s</string>
+    <string name="directions_along_heading_se">Mergi spre sud-est pe %1$s</string>
+    <string name="directions_along_heading_s">Mergi spre sud pe %1$s</string>
+    <string name="directions_along_heading_sw">Mergi spre sud-vest pe %1$s</string>
+    <string name="directions_along_heading_w">Mergi spre vest pe %1$s</string>
+    <string name="directions_along_heading_nw">Mergi spre nord-vest pe %1$s</string>
     <string name="directions_cardinal_north" tools:ignore="MissingTranslation">Nord</string>
     <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">Nord-Est</string>
     <string name="directions_cardinal_east" tools:ignore="MissingTranslation">Est</string>
@@ -221,10 +221,10 @@
     <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">SV</string>
     <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">V</string>
     <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">NV</string>
-    <string name="distance_format_meters">%s metri</string>
-    <string name="distance_format_km">%s km</string>
-    <string name="distance_format_feet">%s picioare</string>
-    <string name="distance_format_miles">%s mile</string>
+    <string name="distance_format_meters">%1$s metri</string>
+    <string name="distance_format_km">%1$s km</string>
+    <string name="distance_format_feet">%1$s picioare</string>
+    <string name="distance_format_miles">%1$s mile</string>
     <string name="ui_action_button_my_location">Locația\nmea</string>
     <string name="ui_action_button_my_location_acc_hint">Află despre locația ta curentă</string>
     <string name="ui_action_button_nearby_markers">Marcaje\naproape</string>
@@ -267,7 +267,7 @@
     <string name="help_text_section_title_when">Când aș folosi această funcție?</string>
     <string name="help_text_section_title_how">Cum funcționează?</string>
     <string name="terms_of_use_title">Termeni de utilizare</string>
-    <string name="terms_of_use_message">Utilizarea Soundscape este supusă termenilor din %s și termenilor prezentați mai jos (împreună, *\"Termenii de utilizare\"*).</string>
+    <string name="terms_of_use_message">Utilizarea Soundscape este supusă termenilor din %1$s și termenilor prezentați mai jos (împreună, *\"Termenii de utilizare\"*).</string>
     <string name="terms_of_use_service_agreement">Acordul de servicii Scottish Tech Army</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Acceptă termenii de utilizare</string>
     <string name="terms_of_use_medical_safety_disclaimer">Recunoașteți că Soundscape (1) nu este conceput, destinat sau pus la dispoziție ca dispozitiv medical și (2) nu este conceput sau destinat să fie un substitut pentru sfatul, diagnosticul, tratamentul sau judecata medicală profesională și nu trebuie utilizat pentru a înlocui sau ca substitut al sfatului, diagnosticului, tratamentului sau judecății medicale profesionale.\n\nAviz de siguranță\n\nSoundscape este un ajutor de navigare și nu trebuie utilizat în locul abilităților de mobilitate, al conștienței mediului înconjurător și al bunului simț. Fiți precauți când navigați în mediul dumneavoastră, deoarece datele cartografice încorporate în programul Soundscape sunt preluate dintr-un program terț, și prin urmare pot exista limitări în ceea ce privește acuratețea informațiilor prezentate.</string>
@@ -443,9 +443,9 @@
     <string name="offline_maps_title" tools:ignore="MissingTranslation">Hărți offline</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">Detalii hartă offline</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">Se încarcă…</string>
-    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Se descarcă %s</string>
-    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Serverul pregătește %s pentru descărcare. Aceasta poate dura câteva minute, apoi descărcarea va începe automat.</string>
-    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s liber</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Se descarcă %1$s</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Serverul pregătește %1$s pentru descărcare. Aceasta poate dura câteva minute, apoi descărcarea va începe automat.</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%1$s liber</string>
     <string name="offline_maps_storage" tools:ignore="MissingTranslation">Hărțile sunt salvate pe %1$s care are %2$s liber</string>
     <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">Hărți deja descărcate</string>
     <string name="offline_maps_nearby" tools:ignore="MissingTranslation">Hărți offline din apropiere</string>
@@ -453,11 +453,11 @@
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Descărcarea datelor hărții offline a eșuat</string>
     <string name="offline_map_details_delete" tools:ignore="MissingTranslation">Șterge harta offline</string>
     <string name="offline_map_details_download" tools:ignore="MissingTranslation">Descarcă harta offline</string>
-    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Dimensiune pe telefon: %s</string>
-    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Dimensiune descărcare: %s</string>
-    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Nume hartă: %s</string>
-    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">Harta include aceste locuri: %s</string>
-    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Aceste locuri sunt cunoscute și ca: %s</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Dimensiune pe telefon: %1$s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Dimensiune descărcare: %1$s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Nume hartă: %1$s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">Harta include aceste locuri: %1$s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Aceste locuri sunt cunoscute și ca: %1$s</string>
     <string name="offline_map_storage_title" tools:ignore="MissingTranslation">Stocare hărți offline</string>
     <string name="offline_map_storage_description" tools:ignore="MissingTranslation">Pentru ca Soundscape să poată fi utilizat fără o conexiune la internet, este posibil să descărcați hărți și să le stocați pe telefon. Spațiul de stocare implicit este orice stocare externă de pe telefon, dar puteți selecta o destinație alternativă aici.</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Folosește doar WiFi pentru descărcarea hărților</string>
@@ -494,7 +494,7 @@
     <string name="street_description_since" tools:ignore="MissingTranslation">Pe %1$s, %2$s de la %3$s</string>
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">Pe %1$s chiar înainte de %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">Pe %1$s chiar după %2$s</string>
-    <string name="street_description_intersection" tools:ignore="MissingTranslation">Lângă intersecția %s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Lângă intersecția %1$s</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informații despre noua versiune</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Închide dialogul noii versiuni</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licențe open source</string>
@@ -510,7 +510,7 @@
     <string name="osm_taxi_waiting_area" tools:ignore="MissingTranslation">Zonă de așteptare taxi</string>
     <string name="osm_bike_parking" tools:ignore="MissingTranslation">Parcare biciclete</string>
     <string name="osm_gas_station" tools:ignore="MissingTranslation">Benzinărie</string>
-    <string name="osm_bus_stop_named" tools:ignore="MissingTranslation">Stație de autobuz %s</string>
+    <string name="osm_bus_stop_named" tools:ignore="MissingTranslation">Stație de autobuz %1$s</string>
     <string name="osm_recycling_bin" tools:ignore="MissingTranslation">Coș de reciclare</string>
     <string name="osm_water_fountain" tools:ignore="MissingTranslation">Cișmea</string>
     <string name="osm_sports_field" tools:ignore="MissingTranslation">Teren de sport</string>
@@ -519,7 +519,7 @@
     <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s din %3$s</string>
     <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal de feribot</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">Terminal de feribot %s</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">Terminal de feribot %1$s</string>
     <string name="osm_crossing" tools:ignore="MissingTranslation">Trecere de pietoni</string>
     <string name="osm_construction" tools:ignore="MissingTranslation">Construcție</string>
     <string name="osm_dangerous_area" tools:ignore="MissingTranslation">Zonă periculoasă</string>
@@ -1098,7 +1098,7 @@
     <string name="osm_port" tools:ignore="MissingTranslation">Port</string>
     <string name="osm_archaeological_site" tools:ignore="MissingTranslation">Sit arheologic</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Gară</string>
-    <string name="osm_train_station_named" tools:ignore="MissingTranslation">Gara %s</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">Gara %1$s</string>
     <string name="osm_shrine" tools:ignore="MissingTranslation">Altar</string>
     <string name="osm_church" tools:ignore="MissingTranslation">Biserică</string>
     <string name="osm_historic_monument" tools:ignore="MissingTranslation">Monument istoric</string>
@@ -1137,7 +1137,7 @@
     <string name="osm_clock" tools:ignore="MissingTranslation">Ceas public</string>
     <string name="osm_casino" tools:ignore="MissingTranslation">Cazinou</string>
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Terminal de feribot</string>
-    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">Terminalul de feribot %s</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">Terminalul de feribot %1$s</string>
     <string name="osm_stadium" tools:ignore="MissingTranslation">Stadion</string>
     <string name="osm_dam" tools:ignore="MissingTranslation">Baraj</string>
     <string name="osm_dock" tools:ignore="MissingTranslation">Doc</string>
@@ -1198,9 +1198,9 @@
     <string name="osm_stairs" tools:ignore="MissingTranslation">Scări</string>
     <string name="osm_bicycle_rental" tools:ignore="MissingTranslation">Închirieri biciclete</string>
     <string name="osm_tram_stop" tools:ignore="MissingTranslation">Stație de tramvai</string>
-    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">Stația de tramvai %s</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">Stația de tramvai %1$s</string>
     <string name="osm_subway" tools:ignore="MissingTranslation">Stație de metrou</string>
-    <string name="osm_subway_named" tools:ignore="MissingTranslation">Stația de metrou %s</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">Stația de metrou %1$s</string>
     <string name="osm_hampshire_gate" tools:ignore="MissingTranslation">Poartă Hampshire</string>
     <string name="osm_full_height_turnstile" tools:ignore="MissingTranslation">Turnichet de înălțime completă</string>
     <string name="osm_boat_sharing" tools:ignore="MissingTranslation">Partajare bărci</string>
@@ -1303,12 +1303,12 @@
     <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Marcajele disponibile sunt,</string>
     <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Nu au fost salvate rute</string>
     <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Nu au fost salvate marcaje</string>
-    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Ruta nu a fost găsită: %s</string>
-    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Pornește ruta %s</string>
-    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Pornește ruta %s</string>
-    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Pornește baliza audio la %s</string>
-    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Pornește baliza audio la %s</string>
-    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Marcajul nu a fost găsit: %s</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Ruta nu a fost găsită: %1$s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Pornește ruta %1$s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Pornește ruta %1$s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Pornește baliza audio la %1$s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Pornește baliza audio la %1$s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Marcajul nu a fost găsit: %1$s</string>
     <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">De asemenea, poți porni rute și marcaje după nume, de exemplu.</string>
     <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Eroare: timpul de așteptare al rețelei pentru recunoașterea vocală a expirat.</string>
     <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Eroare de rețea la recunoașterea vocală.</string>
@@ -1335,9 +1335,9 @@
     <string name="battery_optimization_message">Soundscape necesită utilizarea neîngrădită a bateriei pentru a continua să ofere navigare audio chiar și când telefonul este blocat. Te rugăm să permiți acest lucru în dialogul următor. Dacă închizi Soundscape, toate serviciile se vor opri și aplicația nu va mai consuma baterie.</string>
     <string name="route_detail_action_start_route_reverse">Pornește ruta în sens invers</string>
     <string name="route_detail_action_start_route_reverse_hint">Pornește redarea acestei rute în sens invers</string>
-    <string name="route_reverse_name">%s în sens invers</string>
+    <string name="route_reverse_name">%1$s în sens invers</string>
     <string name="callouts_no_nearby_markers">Nu există marcaje în apropiere</string>
-    <string name="stationary_on_way">Staționar pe %s</string>
+    <string name="stationary_on_way">Staționar pe %1$s</string>
     <string name="settings_relative_directions_text">Mod direcții relative</string>
     <string name="settings_relative_directions_description">Schimbă modul în care sunt descrise direcțiile relative.</string>
     <string name="settings_relative_directions_clockface">Fața ceasului</string>
@@ -1345,8 +1345,8 @@
     <string name="settings_relative_directions_left_right">Stânga/Dreapta</string>
     <string name="callout_settings_position_text">Include distanța și direcția atunci când se anunță punctele de interes</string>
     <string name="callout_settings_position_description">Implicit, când locurile sunt anunțate nu este inclusă distanța sau direcția. Această setare adaugă aceste informații în anunțuri.</string>
-    <string name="relative_clock_direction">la ora %s</string>
-    <string name="relative_degrees_direction">la %s grade</string>
+    <string name="relative_clock_direction">la ora %1$s</string>
+    <string name="relative_degrees_direction">la %1$s grade</string>
     <string name="relative_left_right_direction_ahead">Înainte</string>
     <string name="relative_left_right_direction_ahead_left">În față la stânga</string>
     <string name="relative_left_right_direction_ahead_right">În față la dreapta</string>

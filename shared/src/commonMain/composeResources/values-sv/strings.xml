@@ -50,7 +50,7 @@
     <string name="route_detail_action_edit_hint">Ändra brytpunkterna i rutten eller ändra deras ordning.</string>
     <string name="route_detail_action_create">Ny rutt</string>
     <string name="route_detail_action_create_hint">Skapa en ny rutt</string>
-    <string name="route_end_completed_accessibility">Rutten är avklarad! %s</string>
+    <string name="route_end_completed_accessibility">Rutten är avklarad! %1$s</string>
     <string name="route_detail_action_previous">Föregående brytpunkt</string>
     <string name="route_detail_action_previous_hint">Flytta ljudfyren till föregående brytpunkt</string>
     <string name="route_detail_action_next">Nästa brytpunkt</string>
@@ -81,7 +81,7 @@
     <string name="markers_no_markers_hint_2">Prova att markera ditt hem, ingången till ditt arbete eller din favoritplats i parken.</string>
     <string name="markers_edit_screen_title_edit">Redigera platsmarkör</string>
     <string name="markers_generic_name">Platsmarkör</string>
-    <string name="markers_marker_with_name">Platsmarkör. %s</string>
+    <string name="markers_marker_with_name">Platsmarkör. %1$s</string>
     <string name="markers_marker_created">Platsmarkör har skapats</string>
     <string name="markers_annotation">Ytterligare anteckningar</string>
     <string name="search_choose_destination">Välj mål</string>
@@ -110,12 +110,12 @@
     <string name="sleep_sleep_acc_hint">Försätt Soundscape i viloläge</string>
     <string name="sleep_wake_up_now">Aktivera nu</string>
     <string name="intersection_approaching_intersection">Du närmar dig en vägkorsning</string>
-    <string name="directions_at_poi">Vid %s</string>
+    <string name="directions_at_poi">Vid %1$s</string>
     <string name="directions_my_location">Min plats</string>
-    <string name="directions_near_name">I närheten av %s</string>
-    <string name="directions_name_goes_left">%s, går åt vänster</string>
-    <string name="directions_name_goes_right">%s, går åt höger</string>
-    <string name="directions_name_continues_ahead">%s, fortsätter framåt</string>
+    <string name="directions_near_name">I närheten av %1$s</string>
+    <string name="directions_name_goes_left">%1$s, går åt vänster</string>
+    <string name="directions_name_goes_right">%1$s, går åt höger</string>
+    <string name="directions_name_continues_ahead">%1$s, fortsätter framåt</string>
     <string name="directions_direction_ahead">rakt fram</string>
     <string name="directions_traveling_n">Reser norrut</string>
     <string name="directions_traveling_ne">Reser mot nordost</string>
@@ -141,34 +141,34 @@
     <string name="directions_heading_sw">På väg mot sydväst</string>
     <string name="directions_heading_w">På väg västerut</string>
     <string name="directions_heading_nw">På väg mot nordväst</string>
-    <string name="directions_along_traveling_n">Reser norrut utmed %s</string>
-    <string name="directions_along_traveling_ne">Reser mot nordost utmed %s</string>
-    <string name="directions_along_traveling_e">Reser österut utmed %s</string>
-    <string name="directions_along_traveling_se">Reser mot sydost utmed %s</string>
-    <string name="directions_along_traveling_s">Reser söderut utmed %s</string>
-    <string name="directions_along_traveling_sw">Reser mot sydväst utmed %s</string>
-    <string name="directions_along_traveling_w">Reser västerut utmed %s</string>
-    <string name="directions_along_traveling_nw">Reser mot nordväst utmed %s</string>
-    <string name="directions_along_facing_n">Riktning norrut utmed %s</string>
-    <string name="directions_along_facing_ne">Riktning nordost utmed %s</string>
-    <string name="directions_along_facing_e">Riktning österut utmed %s</string>
-    <string name="directions_along_facing_se">Riktning sydost utmed %s</string>
-    <string name="directions_along_facing_s">Riktning söderut utmed %s</string>
-    <string name="directions_along_facing_sw">Riktning sydväst utmed %s</string>
-    <string name="directions_along_facing_w">Riktning västerut utmed %s</string>
-    <string name="directions_along_facing_nw">Riktning nordväst utmed %s</string>
-    <string name="directions_along_heading_n">På väg norrut utmed %s</string>
-    <string name="directions_along_heading_ne">På väg mot nordost utmed %s</string>
-    <string name="directions_along_heading_e">På väg österut utmed %s</string>
-    <string name="directions_along_heading_se">På väg mot sydost utmed %s</string>
-    <string name="directions_along_heading_s">På väg söderut utmed %s</string>
-    <string name="directions_along_heading_sw">På väg mot sydväst utmed %s</string>
-    <string name="directions_along_heading_w">På väg västerut utmed %s</string>
-    <string name="directions_along_heading_nw">På väg mot nordväst utmed %s</string>
-    <string name="distance_format_meters">%s meter</string>
-    <string name="distance_format_km">%s km</string>
-    <string name="distance_format_feet">%s fot</string>
-    <string name="distance_format_miles">%s miles</string>
+    <string name="directions_along_traveling_n">Reser norrut utmed %1$s</string>
+    <string name="directions_along_traveling_ne">Reser mot nordost utmed %1$s</string>
+    <string name="directions_along_traveling_e">Reser österut utmed %1$s</string>
+    <string name="directions_along_traveling_se">Reser mot sydost utmed %1$s</string>
+    <string name="directions_along_traveling_s">Reser söderut utmed %1$s</string>
+    <string name="directions_along_traveling_sw">Reser mot sydväst utmed %1$s</string>
+    <string name="directions_along_traveling_w">Reser västerut utmed %1$s</string>
+    <string name="directions_along_traveling_nw">Reser mot nordväst utmed %1$s</string>
+    <string name="directions_along_facing_n">Riktning norrut utmed %1$s</string>
+    <string name="directions_along_facing_ne">Riktning nordost utmed %1$s</string>
+    <string name="directions_along_facing_e">Riktning österut utmed %1$s</string>
+    <string name="directions_along_facing_se">Riktning sydost utmed %1$s</string>
+    <string name="directions_along_facing_s">Riktning söderut utmed %1$s</string>
+    <string name="directions_along_facing_sw">Riktning sydväst utmed %1$s</string>
+    <string name="directions_along_facing_w">Riktning västerut utmed %1$s</string>
+    <string name="directions_along_facing_nw">Riktning nordväst utmed %1$s</string>
+    <string name="directions_along_heading_n">På väg norrut utmed %1$s</string>
+    <string name="directions_along_heading_ne">På väg mot nordost utmed %1$s</string>
+    <string name="directions_along_heading_e">På väg österut utmed %1$s</string>
+    <string name="directions_along_heading_se">På väg mot sydost utmed %1$s</string>
+    <string name="directions_along_heading_s">På väg söderut utmed %1$s</string>
+    <string name="directions_along_heading_sw">På väg mot sydväst utmed %1$s</string>
+    <string name="directions_along_heading_w">På väg västerut utmed %1$s</string>
+    <string name="directions_along_heading_nw">På väg mot nordväst utmed %1$s</string>
+    <string name="distance_format_meters">%1$s meter</string>
+    <string name="distance_format_km">%1$s km</string>
+    <string name="distance_format_feet">%1$s fot</string>
+    <string name="distance_format_miles">%1$s miles</string>
     <string name="ui_action_button_my_location">Min\nplats</string>
     <string name="ui_action_button_my_location_acc_hint">Hör information om din aktuella plats</string>
     <string name="ui_action_button_nearby_markers">Markörer\nnära</string>
@@ -206,7 +206,7 @@
     <string name="help_text_section_title_when">När ska jag använda det?</string>
     <string name="help_text_section_title_how">Hur fungerar det?</string>
     <string name="terms_of_use_title">Användningsvillkor</string>
-    <string name="terms_of_use_message">Din användning av Soundscape omfattas av villkoren i %s och de villkor som anges nedan (vilka tillsammans utgör *\"Användningsvillkoren\"*).</string>
+    <string name="terms_of_use_message">Din användning av Soundscape omfattas av villkoren i %1$s och de villkor som anges nedan (vilka tillsammans utgör *\"Användningsvillkoren\"*).</string>
     <string name="terms_of_use_service_agreement">Villkor för Scottish Tech Army-tjänster</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Godkänn användningsvillkoren</string>
     <string name="terms_of_use_medical_safety_disclaimer">Du är medveten om att Soundscape (1) inte är avsett för eller gjorts tillgängligt som medicinsk utrustning och (2) inte är avsett att ersätta professionell medicinsk utrustning, diagnoser, behandling eller bedömning och bör ska inte användas i stället för professionell medicinsk utrustning, diagnoser, behandling eller bedömning.\n\nSäkerhetsinformation\n\nSoundscape är ett navigeringshjälpmedel och ska inte användas i stället för mobilitetsfärdigheter, kännedom om omgivningarna och gott omdöme. Var försiktig när du navigerar i din miljö eftersom de kartdata som ingår i Soundscape har samlats in från ett program från tredje part, och det kan därför finnas begränsningar i hur exakt den informationen presenteras.</string>
@@ -288,8 +288,8 @@
     <string name="osm_service_road">Serviceväg</string>
     <string name="osm_road">Väg</string>
     <string name="osm_highway">Motorväg</string>
-    <string name="osm_highway_named">Motorvägen %s</string>
-    <string name="osm_highway_refed">Motorväg %s</string>
+    <string name="osm_highway_named">Motorvägen %1$s</string>
+    <string name="osm_highway_refed">Motorväg %1$s</string>
     <string name="osm_intersection">Vägkorsning</string>
     <string name="osm_roundabout">Rondell</string>
     <string name="osm_highway_ramp">Motorvägsramp</string>
@@ -320,10 +320,10 @@
     <string name="osm_gas_station">Bensinstation</string>
     <string name="osm_bank">Bank</string>
     <string name="osm_atm">Bankomat</string>
-    <string name="osm_atm_named">Bankomat vid %s</string>
-    <string name="osm_atm_refed">Bankomat %s</string>
+    <string name="osm_atm_named">Bankomat vid %1$s</string>
+    <string name="osm_atm_refed">Bankomat %1$s</string>
     <string name="osm_bus_stop">Busshållplats</string>
-    <string name="osm_bus_stop_named">Busshållplatsen %s</string>
+    <string name="osm_bus_stop_named">Busshållplatsen %1$s</string>
     <string name="osm_recycling_bin">Återvinningskärl</string>
     <string name="osm_fountain">Fontän</string>
     <string name="osm_place_of_worship">Helgedom</string>
@@ -410,7 +410,7 @@
     <string name="settings_units_metric" tools:ignore="MissingTranslation">Metrisk (meter)</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">Text-till-tal motor</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Gå till närmaste korsning</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" och %s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" och %1$s"</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Gör kartan full skärm</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Exit full skärm karta</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">Nära %1$s och nära %2$s</string>
@@ -438,13 +438,13 @@
     <string name="notification_text" tools:ignore="MissingTranslation">Soundscapes platstjänst körs även när telefonen är låst.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Avbryt sökning</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Tågstation</string>
-    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s Tågstation</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%1$s Tågstation</string>
     <string name="osm_tram_stop" tools:ignore="MissingTranslation">Spårvagnshållplats</string>
-    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s spårvagnshållplats</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%1$s spårvagnshållplats</string>
     <string name="osm_subway" tools:ignore="MissingTranslation">Tunnelbanestation</string>
-    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s tunnelbanestation</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%1$s tunnelbanestation</string>
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Färjeterminal</string>
-    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s färja_terminal</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s färja_terminal</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Ljud</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Tillgänglighet</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Ljus eller mörk Tema</string>
@@ -483,20 +483,20 @@
     <string name="offline_maps_title" tools:ignore="MissingTranslation">Offlinekartor</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">Detaljer om offlinekarta</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">Laddar…</string>
-    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Laddar ned %s</string>
-    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Servern förbereder %s för nedladdning. Det kan ta några minuter, och sedan startar nedladdningen automatiskt.</string>
-    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s ledigt</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Laddar ned %1$s</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Servern förbereder %1$s för nedladdning. Det kan ta några minuter, och sedan startar nedladdningen automatiskt.</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%1$s ledigt</string>
     <string name="offline_maps_storage" tools:ignore="MissingTranslation">Kartor sparas på %1$s som har %2$s ledigt</string>
     <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">Kartor redan nedladdade</string>
     <string name="offline_maps_nearby" tools:ignore="MissingTranslation">Offlinekartor i närheten</string>
     <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">Läser in lista över offlinekartor</string>
     <string name="offline_map_details_delete" tools:ignore="MissingTranslation">Ta bort offlinekarta</string>
     <string name="offline_map_details_download" tools:ignore="MissingTranslation">Ladda ned offlinekarta</string>
-    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Storlek på telefonen: %s</string>
-    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Nedladdningsstorlek: %s</string>
-    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Kartnamn: %s</string>
-    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">Kartan innehåller dessa platser: %s</string>
-    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Dessa platser är också kända som: %s</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Storlek på telefonen: %1$s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Nedladdningsstorlek: %1$s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Kartnamn: %1$s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">Kartan innehåller dessa platser: %1$s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Dessa platser är också kända som: %1$s</string>
     <string name="offline_map_storage_title" tools:ignore="MissingTranslation">Lagring av offlinekartor</string>
     <string name="offline_map_storage_description" tools:ignore="MissingTranslation">För att Soundscape ska kunna användas utan internetanslutning går det att ladda ned kartor och lagra dem på telefonen. Standardlagringsplatsen är extern lagring på din telefon, men du kan välja en annan plats här.</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Använd endast Wi‑Fi för att ladda ned kartor</string>
@@ -528,7 +528,7 @@
     <string name="new_version_info_details" tools:ignore="MissingTranslation">\nI den här versionen finns två nya funktioner som tillåter fjärrstyrning av appen, även när telefonen är låst. Det innebär att du kan ha telefonen i fickan men fortfarande styra appens huvudfunktioner.\n\nBåda fjärrstyrningsmetoderna använder mediereglageknappar via Bluetooth, antingen de som sitter på dina hörlurar eller små separata fjärrkontroller som du kan ha i handen eller i fickan. Fjärrkontrollsläget väljs i Inställningar/ Mediereglage, och du kan välja \"Röstkommando\" så att du kan tala med appen, eller \"Ljudmeny\" där menyer läses upp med valbara alternativ. \"Originalläge\" betyder att Bluetooth-knapparna fungerar på samma sätt som i tidigare versioner.\n\nI röstkommandoläget startar ett tryck på spela/pausa-knappen på hörlurarna appens lyssning efter tal och du hör en kort signal som indikerar detta. Om du säger \"Hjälp\" listas de kommandon som du kan använda. Därefter kan du trycka på knappen igen och prova andra kommandon. Tyvärr stöder inte Androids taligenkänning alla språk och funktionen finns inte på alla telefoner.\n\nDen största utmaningen med röstkommandoläget är att vissa hörlurar tar längre tid än andra på sig för att aktivera mikrofonen. Det innebär att du efter att ha tryckt spela/pausa kan behöva vänta upp till cirka 5 sekunder innan du kan börja tala. För att lära dig hur lång tid just dina hörlurar behöver är det bästa sättet att trycka på spela/pausa och sedan räkna upp från 1 till 10. Telefonen bör sedan tala om vilket tal den kände igen och det första talet som upptäcktes visar när du kunde börja prata. Detta hjälper dig att avgöra hur länge du ska vänta innan du talar. Vissa hörlurar ger ett tydligt ljud när mikrofonen aktiveras vilket gör det lättare, medan andra är helt tysta. Tyvärr kan detta kräva övning.\n\nDet andra nya fjärrläget, Ljudmeny, fungerar i alla språk och på alla telefoner. Knapparna nästa/föregående bläddrar framåt och bakåt bland alternativen i menyn. Spela/pausa-knappen väljer sedan det aktuella alternativet. Det finns en överordnad meny och ett lager med undermenyer som grupperar liknande kommandon.\n\nDessa funktioner är mycket nya och vi vill gärna ha feedback om de fungerar bra och vilka ytterligare kommandon du skulle vilja ha.\n\nRapportera gärna eventuella problem, hur små de än är, via alternativet *Kontakta supporten* i huvudmenyn.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licenser för öppen källkod</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Färjeterminal</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Färjeterminal</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s Färjeterminal</string>
     <string name="osm_office" tools:ignore="MissingTranslation">Kontor</string>
     <string name="osm_school" tools:ignore="MissingTranslation">Skola</string>
     <string name="osm_roof" tools:ignore="MissingTranslation">Tak</string>
@@ -1253,7 +1253,7 @@
     <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Avsluta redigering av platsmarkörens läge</string>
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">På %1$s precis innan %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">På %1$s precis efter %2$s</string>
-    <string name="street_description_intersection" tools:ignore="MissingTranslation">Nära korsningen %s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Nära korsningen %1$s</string>
     <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Det finns redan en platsmarkör på den här platsen i rutten, vi kan inte lägga till den igen.</string>
     <string name="settings_explanation" tools:ignore="MissingTranslation">Appens inställningar är indelade i grupper nedan. Tryck på en grupp för att öppna den och se vilka alternativ som finns.</string>
     <string name="settings_section_units_description" tools:ignore="MissingTranslation">Välj vilka måttenheter som ska användas för avstånd</string>
@@ -1303,12 +1303,12 @@
     <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Tillgängliga platsmarkörer är,</string>
     <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Inga rutter har sparats</string>
     <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Inga platsmarkörer har sparats</string>
-    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Rutten hittades inte: %s</string>
-    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Startar rutten %s</string>
-    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Starta rutt %s</string>
-    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Ställ in ljudfyr på %s</string>
-    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Ställer in ljudfyr på %s</string>
-    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Platsmarkör hittades inte: %s</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Rutten hittades inte: %1$s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Startar rutten %1$s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Starta rutt %1$s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Ställ in ljudfyr på %1$s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Ställer in ljudfyr på %1$s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Platsmarkör hittades inte: %1$s</string>
     <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Du kan också starta rutter och platsmarkörer med namn, till exempel.</string>
     <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Taligenkänningsfel: nätverkets tidsgräns överskreds.</string>
     <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Taligenkänningsfel: nätverksfel.</string>
@@ -1335,9 +1335,9 @@
     <string name="battery_optimization_message">Soundscape kräver obegränsad batterianvändning för att kunna fortsätta erbjuda ljudnavigering när telefonen är låst. Tillåt detta i dialogrutan som visas härnäst. Om du stänger Soundscape stoppas alla tjänster och appen kommer inte längre att använda batteri.</string>
     <string name="route_detail_action_start_route_reverse">Starta rutt i omvänd ordning</string>
     <string name="route_detail_action_start_route_reverse_hint">Starta uppspelning av den här rutten i omvänd ordning</string>
-    <string name="route_reverse_name">%s i omvänd ordning</string>
+    <string name="route_reverse_name">%1$s i omvänd ordning</string>
     <string name="callouts_no_nearby_markers">Det finns inga platsmarkörer i närheten</string>
-    <string name="stationary_on_way">Står stilla på %s</string>
+    <string name="stationary_on_way">Står stilla på %1$s</string>
     <string name="settings_relative_directions_text">Läge för relativa riktningar</string>
     <string name="settings_relative_directions_description">Ändra hur relativa riktningar beskrivs.</string>
     <string name="settings_relative_directions_clockface">Klockslag</string>
@@ -1345,8 +1345,8 @@
     <string name="settings_relative_directions_left_right">Vänster/Höger</string>
     <string name="callout_settings_position_text">Inkludera avstånd och riktning när intressepunkter läses upp</string>
     <string name="callout_settings_position_description">Som standard innehåller inte uppläsningar av platser avstånd eller riktning. Den här inställningen lägger till dessa i informationsljuden.</string>
-    <string name="relative_clock_direction">klockan %s</string>
-    <string name="relative_degrees_direction">vid %s grader</string>
+    <string name="relative_clock_direction">klockan %1$s</string>
+    <string name="relative_degrees_direction">vid %1$s grader</string>
     <string name="relative_left_right_direction_ahead">rakt fram</string>
     <string name="relative_left_right_direction_ahead_left">framåt till vänster</string>
     <string name="relative_left_right_direction_ahead_right">framåt till höger</string>

@@ -34,7 +34,7 @@
     <string name="preview_title">Симулювати місцезнаходження</string>
     <string name="preview_go_title">Далі</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Перейти до найближчого перехрестя</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" та %s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" та %1$s"</string>
     <string name="preview_include_unnamed_roads_title">Дороги без назв</string>
     <string name="location_detail_title_default">Деталі місця</string>
     <string name="location_detail_action_beacon">Запустити звуковий маячок</string>
@@ -57,7 +57,7 @@
     <string name="route_detail_action_edit_hint">Змінити маршрутні точки в маршруті або їхній порядок.</string>
     <string name="route_detail_action_create">Новий маршрут</string>
     <string name="route_detail_action_create_hint">Створити новий маршрут</string>
-    <string name="route_end_completed_accessibility">Маршрут подолано! %s</string>
+    <string name="route_end_completed_accessibility">Маршрут подолано! %1$s</string>
     <string name="route_detail_action_previous">Попередня маршрутна точка</string>
     <string name="route_detail_action_previous_hint">Перемістити маячок до попередньої маршрутної точки</string>
     <string name="route_detail_action_next">Наступна маршрутна точка</string>
@@ -88,7 +88,7 @@
     <string name="markers_no_markers_hint_2">Спробуйте позначити свій дім, вхід до місця роботи чи улюблене місце в парку.</string>
     <string name="markers_edit_screen_title_edit">Редагування мітки</string>
     <string name="markers_generic_name">Мітка</string>
-    <string name="markers_marker_with_name">Мітка. %s</string>
+    <string name="markers_marker_with_name">Мітка. %1$s</string>
     <string name="markers_marker_created">Мітку створено</string>
     <string name="markers_annotation">Додаткові нотатки</string>
     <string name="search_choose_destination">Виберіть місце призначення</string>
@@ -117,12 +117,12 @@
     <string name="sleep_sleep_acc_hint">Перевести Soundscape у режим сну</string>
     <string name="sleep_wake_up_now">Розбудити зараз</string>
     <string name="intersection_approaching_intersection">Наближення до перехрестя</string>
-    <string name="directions_at_poi">%s,у точці</string>
+    <string name="directions_at_poi">%1$s,у точці</string>
     <string name="directions_my_location">Моє місцезнаходження</string>
-    <string name="directions_near_name">Поблизу %s</string>
-    <string name="directions_name_goes_left">%s, йде ліворуч</string>
-    <string name="directions_name_goes_right">%s, йде праворуч</string>
-    <string name="directions_name_continues_ahead">%s, продовжується прямо</string>
+    <string name="directions_near_name">Поблизу %1$s</string>
+    <string name="directions_name_goes_left">%1$s, йде ліворуч</string>
+    <string name="directions_name_goes_right">%1$s, йде праворуч</string>
+    <string name="directions_name_continues_ahead">%1$s, продовжується прямо</string>
     <string name="directions_direction_ahead">попереду</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">Поруч з %1$s та поблизу %2$s</string>
     <string name="directions_traveling_n">Ви їдете на північ</string>
@@ -149,30 +149,30 @@
     <string name="directions_heading_sw">Ви ідете на південний захід</string>
     <string name="directions_heading_w">Ви ідете на захід</string>
     <string name="directions_heading_nw">Ви ідете на північний захід</string>
-    <string name="directions_along_traveling_n">Ви їдете на північ по %s</string>
-    <string name="directions_along_traveling_ne">Ви їдете на північний схід по %s</string>
-    <string name="directions_along_traveling_e">Ви їдете на схід по %s</string>
-    <string name="directions_along_traveling_se">Ви їдете на південний схід по %s</string>
-    <string name="directions_along_traveling_s">Ви їдете на південь по %s</string>
-    <string name="directions_along_traveling_sw">Ви їдете на південний захід по %s</string>
-    <string name="directions_along_traveling_w">Ви їдете на захід по %s</string>
-    <string name="directions_along_traveling_nw">Ви їдете на північний захід по %s</string>
-    <string name="directions_along_facing_n">Обличчям на північ вздовж %s</string>
-    <string name="directions_along_facing_ne">Обличчям на північний схід вздовж %s</string>
-    <string name="directions_along_facing_e">Обличчям на схід вздовж %s</string>
-    <string name="directions_along_facing_se">Обличчям на південний схід вздовж %s</string>
-    <string name="directions_along_facing_s">Обличчям на південь вздовж %s</string>
-    <string name="directions_along_facing_sw">Обличчям на південний захід вздовж %s</string>
-    <string name="directions_along_facing_w">Обличчям на захід вздовж %s</string>
-    <string name="directions_along_facing_nw">Обличчям на північний захід вздовж %s</string>
-    <string name="directions_along_heading_n">Ви ідете на північ по %s</string>
-    <string name="directions_along_heading_ne">Ви ідете на північний схід по %s</string>
-    <string name="directions_along_heading_e">Ви ідете на схід по %s</string>
-    <string name="directions_along_heading_se">Ви ідете на південний схід по %s</string>
-    <string name="directions_along_heading_s">Ви ідете на південь по %s</string>
-    <string name="directions_along_heading_sw">Ви ідете на південний захід по %s</string>
-    <string name="directions_along_heading_w">Ви ідете на захід по %s</string>
-    <string name="directions_along_heading_nw">Ви ідете на північний захід по %s</string>
+    <string name="directions_along_traveling_n">Ви їдете на північ по %1$s</string>
+    <string name="directions_along_traveling_ne">Ви їдете на північний схід по %1$s</string>
+    <string name="directions_along_traveling_e">Ви їдете на схід по %1$s</string>
+    <string name="directions_along_traveling_se">Ви їдете на південний схід по %1$s</string>
+    <string name="directions_along_traveling_s">Ви їдете на південь по %1$s</string>
+    <string name="directions_along_traveling_sw">Ви їдете на південний захід по %1$s</string>
+    <string name="directions_along_traveling_w">Ви їдете на захід по %1$s</string>
+    <string name="directions_along_traveling_nw">Ви їдете на північний захід по %1$s</string>
+    <string name="directions_along_facing_n">Обличчям на північ вздовж %1$s</string>
+    <string name="directions_along_facing_ne">Обличчям на північний схід вздовж %1$s</string>
+    <string name="directions_along_facing_e">Обличчям на схід вздовж %1$s</string>
+    <string name="directions_along_facing_se">Обличчям на південний схід вздовж %1$s</string>
+    <string name="directions_along_facing_s">Обличчям на південь вздовж %1$s</string>
+    <string name="directions_along_facing_sw">Обличчям на південний захід вздовж %1$s</string>
+    <string name="directions_along_facing_w">Обличчям на захід вздовж %1$s</string>
+    <string name="directions_along_facing_nw">Обличчям на північний захід вздовж %1$s</string>
+    <string name="directions_along_heading_n">Ви ідете на північ по %1$s</string>
+    <string name="directions_along_heading_ne">Ви ідете на північний схід по %1$s</string>
+    <string name="directions_along_heading_e">Ви ідете на схід по %1$s</string>
+    <string name="directions_along_heading_se">Ви ідете на південний схід по %1$s</string>
+    <string name="directions_along_heading_s">Ви ідете на південь по %1$s</string>
+    <string name="directions_along_heading_sw">Ви ідете на південний захід по %1$s</string>
+    <string name="directions_along_heading_w">Ви ідете на захід по %1$s</string>
+    <string name="directions_along_heading_nw">Ви ідете на північний захід по %1$s</string>
     <string name="directions_cardinal_north" tools:ignore="MissingTranslation">Північ</string>
     <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">Північний схід</string>
     <string name="directions_cardinal_east" tools:ignore="MissingTranslation">Схід</string>
@@ -189,10 +189,10 @@
     <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">Пд З</string>
     <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">З</string>
     <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">П З</string>
-    <string name="distance_format_meters">%s метрів</string>
-    <string name="distance_format_km">%s км</string>
-    <string name="distance_format_feet">%s футів</string>
-    <string name="distance_format_miles">%s миль</string>
+    <string name="distance_format_meters">%1$s метрів</string>
+    <string name="distance_format_km">%1$s км</string>
+    <string name="distance_format_feet">%1$s футів</string>
+    <string name="distance_format_miles">%1$s миль</string>
     <string name="ui_action_button_my_location">Моє\nмісце</string>
     <string name="ui_action_button_my_location_acc_hint">Дізнатися про ваше поточне місцезнаходження</string>
     <string name="ui_action_button_nearby_markers">Мітки\nпоблизу</string>
@@ -230,7 +230,7 @@
     <string name="help_text_section_title_when">Коли б я міг це використати?</string>
     <string name="help_text_section_title_how">Як це працює?</string>
     <string name="terms_of_use_title">Умови використання</string>
-    <string name="terms_of_use_message">Використання Soundscape регулюється умовами %s та умовами, викладеними нижче (разом *\"Умови використання\"*).</string>
+    <string name="terms_of_use_message">Використання Soundscape регулюється умовами %1$s та умовами, викладеними нижче (разом *\"Умови використання\"*).</string>
     <string name="terms_of_use_service_agreement">угоди про надання послуг компанії Scottish Tech Army</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Прийняти умови використання</string>
     <string name="terms_of_use_medical_safety_disclaimer">Ви розумієте, що Soundscape (1) не розроблено, не призначено та не надається як медичний пристрій, і (2) не розроблено та не призначено для заміни професійних медичних консультацій, діагностики, лікування чи суджень і не має використовуватися як заміна професійних медичних консультацій, діагностики, лікування чи суджень.\n\nПовідомлення про безпеку\n\nПрограма Soundscape є навігаційним засобом і не повинна використовуватися замість навичок мобільності, обізнаності про оточення та здорового глузду. Будьте обережні під час навігації у вашому середовищі, оскільки картографічні дані, включені в програму Soundscape, отримані зі сторонніх джерел, і, отже, можуть бути обмеження щодо точності представленої інформації.</string>
@@ -312,8 +312,8 @@
     <string name="osm_service_road">Під\'їзна дорога</string>
     <string name="osm_road">Дорога</string>
     <string name="osm_highway">Шосе</string>
-    <string name="osm_highway_named">%s шосе</string>
-    <string name="osm_highway_refed">Шосе %s</string>
+    <string name="osm_highway_named">%1$s шосе</string>
+    <string name="osm_highway_refed">Шосе %1$s</string>
     <string name="osm_intersection">Перехрестя</string>
     <string name="osm_roundabout">Круговий рух</string>
     <string name="osm_highway_ramp">З’їзд із шосе</string>
@@ -344,10 +344,10 @@
     <string name="osm_gas_station">Автозаправна станція</string>
     <string name="osm_bank">Банк</string>
     <string name="osm_atm">Банкомат</string>
-    <string name="osm_atm_named">%s Банкомат</string>
-    <string name="osm_atm_refed">Банкомат %s</string>
+    <string name="osm_atm_named">%1$s Банкомат</string>
+    <string name="osm_atm_refed">Банкомат %1$s</string>
     <string name="osm_bus_stop">Автобусна зупинка</string>
-    <string name="osm_bus_stop_named">%s Автобусна зупинка</string>
+    <string name="osm_bus_stop_named">%1$s Автобусна зупинка</string>
     <string name="osm_recycling_bin">Кошик для вторсировини</string>
     <string name="osm_fountain">Фонтан</string>
     <string name="osm_place_of_worship">Культова споруда</string>
@@ -432,13 +432,13 @@
     <string name="notification_text" tools:ignore="MissingTranslation">Служба визначення місцезнаходження Soundscape працює навіть коли телефон заблоковано.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Скасувати пошук</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Залізнична станція</string>
-    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s Залізнична станція</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%1$s Залізнична станція</string>
     <string name="osm_tram_stop" tools:ignore="MissingTranslation">Трамвайна зупинка</string>
-    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s трамвайна зупинка</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%1$s трамвайна зупинка</string>
     <string name="osm_subway" tools:ignore="MissingTranslation">Станція метро</string>
-    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s станція метро</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%1$s станція метро</string>
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Поромний термінал</string>
-    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s поромний термінал</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s поромний термінал</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Аудіо</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Доступність</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Світла чи Темна Тема</string>
@@ -483,20 +483,20 @@
     <string name="offline_maps_title" tools:ignore="MissingTranslation">Офлайн‑карти</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">Деталі офлайн‑карти</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">Завантаження…</string>
-    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Завантаження %s</string>
-    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Сервер готує %s до завантаження. Це може зайняти кілька хвилин, після чого завантаження почнеться автоматично.</string>
-    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s вільного місця</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Завантаження %1$s</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Сервер готує %1$s до завантаження. Це може зайняти кілька хвилин, після чого завантаження почнеться автоматично.</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%1$s вільного місця</string>
     <string name="offline_maps_storage" tools:ignore="MissingTranslation">Карти збережено на %1$s, доступно %2$s</string>
     <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">Завантажені карти</string>
     <string name="offline_maps_nearby" tools:ignore="MissingTranslation">Офлайн-карти поблизу</string>
     <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">Завантаження списку офлайн-карт</string>
     <string name="offline_map_details_delete" tools:ignore="MissingTranslation">Видалити офлайн-карту</string>
     <string name="offline_map_details_download" tools:ignore="MissingTranslation">Завантажити офлайн-карту</string>
-    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Розмір на телефоні: %s</string>
-    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Розмір завантаження: %s</string>
-    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Назва карти: %s</string>
-    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">Карта включає такі місця: %s</string>
-    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Ці місця також відомі як: %s</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Розмір на телефоні: %1$s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Розмір завантаження: %1$s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Назва карти: %1$s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">Карта включає такі місця: %1$s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Ці місця також відомі як: %1$s</string>
     <string name="offline_map_storage_title" tools:ignore="MissingTranslation">Сховище офлайн-карт</string>
     <string name="offline_map_storage_description" tools:ignore="MissingTranslation">Щоб Soundscape можна було використовувати без підключення до Інтернету, ви можете завантажувати карти та зберігати їх на телефоні. За замовчуванням використовується зовнішнє сховище вашого телефона, але тут ви можете вибрати інше місце для збереження.</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Використовувати тільки Wi‑Fi для завантаження карт</string>
@@ -528,7 +528,7 @@
     <string name="new_version_info_details" tools:ignore="MissingTranslation">\nУ цьому випуску додано дві нові функції, які дозволяють дистанційно керувати додатком навіть коли телефон заблоковано. Це означає, що телефон можна зберігати в кишені й водночас керувати основними можливостями програми.\n\nОбидва методи дистанційного керування використовують Bluetooth‑кнопки медіакерування — або ті, що на ваших навушниках, або незалежні невеликі пульти, які можна носити в руці чи кишені. Режим дистанційного керування вибирається в розділі Налаштування → Керування медіа: можна обрати \"Голосові команди\", щоб говорити з додатком, або \"Аудіо‑меню\", коли вам зачитуються пункти меню з варіантами для вибору. \"Оригінальний режим\" означає, що кнопки Bluetooth працюють так само, як у попередніх версіях.\n\nУ режимі голосових команд натискання кнопки відтворення/паузи на навушниках запускає прослуховування додатком і ви почуєте короткий сигнал, що вказує на це. Якщо ви скажете \"Help\", додаток перелічить доступні команди. Потім можна знову натиснути кнопку й спробувати інші команди. На жаль, механізм розпізнавання мовлення Android не підтримує всі мови й не доступний на всіх телефонах.\n\nГоловна складність режиму голосових команд полягає в тому, що деяким навушникам потрібно більше часу, щоб увімкнути мікрофон. Тому після натискання кнопки відтворення/паузи може знадобитися почекати до 5 секунд перед тим, як говорити. Щоб визначити, скільки часу це займає, найкраще натиснути відтворення/паузу й порахувати від 1 до 10. Телефон повинен повідомити, яке мовлення він розпізнав, і цифра, з якої почалося розпізнавання, буде першою розпізнаною. Це допоможе вам навчитися, скільки чекати перед промовлянням команди. Деякі навушники видають чіткий звук, коли мікрофон активовано, що спрощує процес, а інші взагалі не видають звуку. На жаль, це може потребувати практики.\n\nІнший новий режим — \"Аудіо‑меню\" — працює на всіх мовах і на всіх телефонах. Кнопки Далі/Назад переміщують вас уперед і назад по пунктах меню, а кнопка Відтворити/Пауза обирає поточний пункт. Є верхній рівень меню та один рівень підменю, що групують схожі команди.\n\nЦі функції ще дуже нові, і ми дуже цінуємо ваші відгуки про те, чи працюють вони добре і які ще команди ви хотіли б бачити.\n\nБудь‑ласка, повідомляйте про будь‑які проблеми, навіть якщо вони дрібні, через опцію *Contact Support* у головному меню.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Ліцензії з відкритим кодом</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Поромний термінал</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s поромний термінал</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s поромний термінал</string>
     <string name="osm_office" tools:ignore="MissingTranslation">Офіс</string>
     <string name="osm_school" tools:ignore="MissingTranslation">Школа</string>
     <string name="osm_roof" tools:ignore="MissingTranslation">Дах</string>
@@ -1253,7 +1253,7 @@
     <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Вийти з режиму редагування місцезнаходження мітки</string>
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">На %1$s, одразу перед %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">На %1$s, одразу після %2$s</string>
-    <string name="street_description_intersection" tools:ignore="MissingTranslation">Поблизу перехрестя %s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Поблизу перехрестя %1$s</string>
     <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">У маршруті вже є мітка для цього місця — її не можна додати повторно.</string>
     <string name="settings_explanation" tools:ignore="MissingTranslation">Налаштування програми згруповано нижче. Торкніться групи, щоб розгорнути її та переглянути доступні параметри.</string>
     <string name="settings_section_units_description" tools:ignore="MissingTranslation">Виберіть одиниці вимірювання для відстані</string>
@@ -1303,12 +1303,12 @@
     <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Доступні мітки:</string>
     <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Немає збережених маршрутів</string>
     <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Немає збережених міток</string>
-    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Маршрут не знайдено: %s</string>
-    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Розпочато маршрут %s</string>
-    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Розпочати маршрут %s</string>
-    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Запустити звуковий маячок на %s</string>
-    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Запускається звуковий маячок на %s</string>
-    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Мітку не знайдено: %s</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Маршрут не знайдено: %1$s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Розпочато маршрут %1$s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Розпочати маршрут %1$s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Запустити звуковий маячок на %1$s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Запускається звуковий маячок на %1$s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Мітку не знайдено: %1$s</string>
     <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Ви також можете запускати маршрути та мітки за назвою, наприклад.</string>
     <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Помилка мережі розпізнавання мовлення: перевищено час очікування.</string>
     <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Помилка мережі розпізнавання мовлення.</string>
@@ -1335,9 +1335,9 @@
     <string name="battery_optimization_message">Soundscape потребує необмеженого використання акумулятора, щоб продовжувати забезпечувати аудіо‑навігацію, коли ваш телефон заблоковано. Будь ласка, надайте цей дозвіл у наступному діалоговому вікні. Якщо ви закриєте Soundscape, усі служби зупиняться і програма більше не використовуватиме акумулятор.</string>
     <string name="route_detail_action_start_route_reverse">Розпочати навігацію у зворотному порядку</string>
     <string name="route_detail_action_start_route_reverse_hint">Розпочати відтворення цього маршруту у зворотному порядку</string>
-    <string name="route_reverse_name">%s у зворотному порядку</string>
+    <string name="route_reverse_name">%1$s у зворотному порядку</string>
     <string name="callouts_no_nearby_markers">Поблизу немає міток</string>
-    <string name="stationary_on_way">Ви стоїте на %s</string>
+    <string name="stationary_on_way">Ви стоїте на %1$s</string>
     <string name="settings_relative_directions_text">Режим відносних напрямків</string>
     <string name="settings_relative_directions_description">Змініть спосіб опису відносних напрямків.</string>
     <string name="settings_relative_directions_clockface">Циферблат</string>
@@ -1345,8 +1345,8 @@
     <string name="settings_relative_directions_left_right">Ліворуч/Праворуч</string>
     <string name="callout_settings_position_text">Включати відстань і напрям під час оголошення точок інтересу</string>
     <string name="callout_settings_position_description">За замовчуванням під час оголошень про місця не вказуються відстань або напрям. Цей параметр додає їх до оголошень.</string>
-    <string name="relative_clock_direction">о %s годині</string>
-    <string name="relative_degrees_direction">під кутом %s градусів</string>
+    <string name="relative_clock_direction">о %1$s годині</string>
+    <string name="relative_degrees_direction">під кутом %1$s градусів</string>
     <string name="relative_left_right_direction_ahead">Попереду</string>
     <string name="relative_left_right_direction_ahead_left">Попереду ліворуч</string>
     <string name="relative_left_right_direction_ahead_right">Попереду праворуч</string>

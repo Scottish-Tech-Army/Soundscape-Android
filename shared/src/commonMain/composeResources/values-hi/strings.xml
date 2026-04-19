@@ -48,7 +48,7 @@
     <string name="preview_title">स्थान सिमुलेशन</string>
     <string name="preview_go_title">जाएँ</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">निकटतम चौराहे पर जाएँ</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" और %s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" और %1$s"</string>
     <string name="preview_include_unnamed_roads_title">बिना नाम वाली सड़कें</string>
     <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">स्थान सिमुलेशन के दौरान बिना नाम वाली सड़कें शामिल करें</string>
     <string name="location_detail_title_default">स्थान विवरण</string>
@@ -75,7 +75,7 @@
     <string name="route_detail_action_edit_hint">मार्ग में मार्ग बिंदुओं को बदलें या उनका क्रम बदलें।</string>
     <string name="route_detail_action_create">नया मार्ग</string>
     <string name="route_detail_action_create_hint">एक नया मार्ग बनाएँ</string>
-    <string name="route_end_completed_accessibility">मार्ग पूरा हुआ! %s</string>
+    <string name="route_end_completed_accessibility">मार्ग पूरा हुआ! %1$s</string>
     <string name="route_detail_action_previous">पिछला मार्ग बिंदु</string>
     <string name="route_detail_action_previous_hint">बीकन को पिछले मार्ग बिंदु पर ले जाएँ</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">निष्क्रिय क्योंकि मार्ग पहले से शुरुआत में है</string>
@@ -109,7 +109,7 @@
     <string name="markers_no_markers_hint_2">अपने घर, अपने कार्यस्थल के प्रवेश द्वार, या पार्क में अपनी पसंदीदा जगह को मार्कर के रूप में सहेजकर देखें।</string>
     <string name="markers_edit_screen_title_edit">मार्कर संपादित करें</string>
     <string name="markers_generic_name">मार्कर</string>
-    <string name="markers_marker_with_name">मार्कर। %s</string>
+    <string name="markers_marker_with_name">मार्कर। %1$s</string>
     <string name="markers_marker_created">मार्कर बनाया गया</string>
     <string name="markers_annotation">अतिरिक्त नोट्स</string>
     <string name="search_choose_destination">गंतव्य चुनें</string>
@@ -149,12 +149,12 @@
     <string name="sleep_sleep_acc_hint">Soundscape को स्लीप मोड में डालें</string>
     <string name="sleep_wake_up_now">अभी जागें</string>
     <string name="intersection_approaching_intersection">चौराहे के पास पहुँच रहे हैं</string>
-    <string name="directions_at_poi">%s पर</string>
+    <string name="directions_at_poi">%1$s पर</string>
     <string name="directions_my_location">मेरा स्थान</string>
-    <string name="directions_near_name">%s के पास</string>
-    <string name="directions_name_goes_left">%s, बाएँ जाती है</string>
-    <string name="directions_name_goes_right">%s, दाएँ जाती है</string>
-    <string name="directions_name_continues_ahead">%s, आगे जारी है</string>
+    <string name="directions_near_name">%1$s के पास</string>
+    <string name="directions_name_goes_left">%1$s, बाएँ जाती है</string>
+    <string name="directions_name_goes_right">%1$s, दाएँ जाती है</string>
+    <string name="directions_name_continues_ahead">%1$s, आगे जारी है</string>
     <string name="directions_direction_ahead">आगे</string>
     <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">%1$s के पास और %2$s के नज़दीक</string>
     <string name="directions_traveling_n">उत्तर की ओर यात्रा</string>
@@ -181,30 +181,30 @@
     <string name="directions_heading_sw">दक्षिण-पश्चिम दिशा में चलते हुए</string>
     <string name="directions_heading_w">पश्चिम दिशा में चलते हुए</string>
     <string name="directions_heading_nw">उत्तर-पश्चिम दिशा में चलते हुए</string>
-    <string name="directions_along_traveling_n">%s पर उत्तर की ओर यात्रा</string>
-    <string name="directions_along_traveling_ne">%s पर उत्तर-पूर्व की ओर यात्रा</string>
-    <string name="directions_along_traveling_e">%s पर पूर्व की ओर यात्रा</string>
-    <string name="directions_along_traveling_se">%s पर दक्षिण-पूर्व की ओर यात्रा</string>
-    <string name="directions_along_traveling_s">%s पर दक्षिण की ओर यात्रा</string>
-    <string name="directions_along_traveling_sw">%s पर दक्षिण-पश्चिम की ओर यात्रा</string>
-    <string name="directions_along_traveling_w">%s पर पश्चिम की ओर यात्रा</string>
-    <string name="directions_along_traveling_nw">%s पर उत्तर-पश्चिम की ओर यात्रा</string>
-    <string name="directions_along_facing_n">%s पर उत्तर की ओर मुख</string>
-    <string name="directions_along_facing_ne">%s पर उत्तर-पूर्व की ओर मुख</string>
-    <string name="directions_along_facing_e">%s पर पूर्व की ओर मुख</string>
-    <string name="directions_along_facing_se">%s पर दक्षिण-पूर्व की ओर मुख</string>
-    <string name="directions_along_facing_s">%s पर दक्षिण की ओर मुख</string>
-    <string name="directions_along_facing_sw">%s पर दक्षिण-पश्चिम की ओर मुख</string>
-    <string name="directions_along_facing_w">%s पर पश्चिम की ओर मुख</string>
-    <string name="directions_along_facing_nw">%s पर उत्तर-पश्चिम की ओर मुख</string>
-    <string name="directions_along_heading_n">%s पर उत्तर दिशा में चलते हुए</string>
-    <string name="directions_along_heading_ne">%s पर उत्तर-पूर्व दिशा में चलते हुए</string>
-    <string name="directions_along_heading_e">%s पर पूर्व दिशा में चलते हुए</string>
-    <string name="directions_along_heading_se">%s पर दक्षिण-पूर्व दिशा में चलते हुए</string>
-    <string name="directions_along_heading_s">%s पर दक्षिण दिशा में चलते हुए</string>
-    <string name="directions_along_heading_sw">%s पर दक्षिण-पश्चिम दिशा में चलते हुए</string>
-    <string name="directions_along_heading_w">%s पर पश्चिम दिशा में चलते हुए</string>
-    <string name="directions_along_heading_nw">%s पर उत्तर-पश्चिम दिशा में चलते हुए</string>
+    <string name="directions_along_traveling_n">%1$s पर उत्तर की ओर यात्रा</string>
+    <string name="directions_along_traveling_ne">%1$s पर उत्तर-पूर्व की ओर यात्रा</string>
+    <string name="directions_along_traveling_e">%1$s पर पूर्व की ओर यात्रा</string>
+    <string name="directions_along_traveling_se">%1$s पर दक्षिण-पूर्व की ओर यात्रा</string>
+    <string name="directions_along_traveling_s">%1$s पर दक्षिण की ओर यात्रा</string>
+    <string name="directions_along_traveling_sw">%1$s पर दक्षिण-पश्चिम की ओर यात्रा</string>
+    <string name="directions_along_traveling_w">%1$s पर पश्चिम की ओर यात्रा</string>
+    <string name="directions_along_traveling_nw">%1$s पर उत्तर-पश्चिम की ओर यात्रा</string>
+    <string name="directions_along_facing_n">%1$s पर उत्तर की ओर मुख</string>
+    <string name="directions_along_facing_ne">%1$s पर उत्तर-पूर्व की ओर मुख</string>
+    <string name="directions_along_facing_e">%1$s पर पूर्व की ओर मुख</string>
+    <string name="directions_along_facing_se">%1$s पर दक्षिण-पूर्व की ओर मुख</string>
+    <string name="directions_along_facing_s">%1$s पर दक्षिण की ओर मुख</string>
+    <string name="directions_along_facing_sw">%1$s पर दक्षिण-पश्चिम की ओर मुख</string>
+    <string name="directions_along_facing_w">%1$s पर पश्चिम की ओर मुख</string>
+    <string name="directions_along_facing_nw">%1$s पर उत्तर-पश्चिम की ओर मुख</string>
+    <string name="directions_along_heading_n">%1$s पर उत्तर दिशा में चलते हुए</string>
+    <string name="directions_along_heading_ne">%1$s पर उत्तर-पूर्व दिशा में चलते हुए</string>
+    <string name="directions_along_heading_e">%1$s पर पूर्व दिशा में चलते हुए</string>
+    <string name="directions_along_heading_se">%1$s पर दक्षिण-पूर्व दिशा में चलते हुए</string>
+    <string name="directions_along_heading_s">%1$s पर दक्षिण दिशा में चलते हुए</string>
+    <string name="directions_along_heading_sw">%1$s पर दक्षिण-पश्चिम दिशा में चलते हुए</string>
+    <string name="directions_along_heading_w">%1$s पर पश्चिम दिशा में चलते हुए</string>
+    <string name="directions_along_heading_nw">%1$s पर उत्तर-पश्चिम दिशा में चलते हुए</string>
     <string name="directions_cardinal_north" tools:ignore="MissingTranslation">उत्तर</string>
     <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">उत्तर-पूर्व</string>
     <string name="directions_cardinal_east" tools:ignore="MissingTranslation">पूर्व</string>
@@ -221,10 +221,10 @@
     <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">दप</string>
     <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">प</string>
     <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">उप</string>
-    <string name="distance_format_meters">%s मीटर</string>
-    <string name="distance_format_km">%s किमी</string>
-    <string name="distance_format_feet">%s फ़ीट</string>
-    <string name="distance_format_miles">%s मील</string>
+    <string name="distance_format_meters">%1$s मीटर</string>
+    <string name="distance_format_km">%1$s किमी</string>
+    <string name="distance_format_feet">%1$s फ़ीट</string>
+    <string name="distance_format_miles">%1$s मील</string>
     <string name="ui_action_button_my_location">मेरा\nस्थान</string>
     <string name="ui_action_button_my_location_acc_hint">अपने वर्तमान स्थान के बारे में सुनें</string>
     <string name="ui_action_button_nearby_markers">पास के\nमार्कर</string>
@@ -267,7 +267,7 @@
     <string name="help_text_section_title_when">मैं इसका उपयोग कब करूँ?</string>
     <string name="help_text_section_title_how">यह कैसे काम करता है?</string>
     <string name="terms_of_use_title">उपयोग की शर्तें</string>
-    <string name="terms_of_use_message">Soundscape का आपका उपयोग %s की शर्तों और नीचे दी गई शर्तों (संयुक्त रूप से, *\"उपयोग की शर्तें\"*) के अधीन है।</string>
+    <string name="terms_of_use_message">Soundscape का आपका उपयोग %1$s की शर्तों और नीचे दी गई शर्तों (संयुक्त रूप से, *\"उपयोग की शर्तें\"*) के अधीन है।</string>
     <string name="terms_of_use_service_agreement">Scottish Tech Army सेवा अनुबंध</string>
     <string name="terms_of_use_accept_checkbox_acc_label">उपयोग की शर्तें स्वीकार करें</string>
     <string name="terms_of_use_medical_safety_disclaimer">आप स्वीकार करते हैं कि Soundscape (1) एक चिकित्सा उपकरण के रूप में डिज़ाइन, इच्छित या उपलब्ध नहीं कराया गया है, और (2) पेशेवर चिकित्सा सलाह, निदान, उपचार या निर्णय का विकल्प बनने के लिए डिज़ाइन या इच्छित नहीं है और इसे पेशेवर चिकित्सा सलाह, निदान, उपचार या निर्णय के स्थान पर या विकल्प के रूप में उपयोग नहीं किया जाना चाहिए।\n\nसुरक्षा सूचना\n\nSoundscape एक नेविगेशन सहायता है और इसे गतिशीलता कौशल, अपने परिवेश के प्रति सजगता और अच्छे निर्णय के स्थान पर उपयोग नहीं किया जाना चाहिए। अपने वातावरण में नेविगेट करते समय सावधानी बरतें क्योंकि Soundscape प्रोग्राम में शामिल मानचित्रण डेटा एक तृतीय-पक्ष प्रोग्राम से लिया गया है, और इसलिए, प्रस्तुत जानकारी की सटीकता में सीमाएँ हो सकती हैं।</string>
@@ -443,9 +443,9 @@
     <string name="offline_maps_title" tools:ignore="MissingTranslation">ऑफ़लाइन मानचित्र</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">ऑफ़लाइन मानचित्र विवरण</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">लोड हो रहा है…</string>
-    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">%s डाउनलोड हो रहा है</string>
-    <string name="offline_maps_caching" tools:ignore="MissingTranslation">सर्वर %s को डाउनलोड के लिए तैयार कर रहा है। इसमें कुछ मिनट लग सकते हैं और फिर डाउनलोड अपने आप शुरू हो जाएगा।</string>
-    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s खाली</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">%1$s डाउनलोड हो रहा है</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">सर्वर %1$s को डाउनलोड के लिए तैयार कर रहा है। इसमें कुछ मिनट लग सकते हैं और फिर डाउनलोड अपने आप शुरू हो जाएगा।</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%1$s खाली</string>
     <string name="offline_maps_storage" tools:ignore="MissingTranslation">मानचित्र %1$s में सहेजे जाते हैं जिसमें %2$s खाली है</string>
     <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">पहले से डाउनलोड किए गए मानचित्र</string>
     <string name="offline_maps_nearby" tools:ignore="MissingTranslation">पास के ऑफ़लाइन मानचित्र</string>
@@ -453,11 +453,11 @@
     <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">ऑफ़लाइन मानचित्र डेटा डाउनलोड करने में विफल</string>
     <string name="offline_map_details_delete" tools:ignore="MissingTranslation">ऑफ़लाइन मानचित्र हटाएँ</string>
     <string name="offline_map_details_download" tools:ignore="MissingTranslation">ऑफ़लाइन मानचित्र डाउनलोड करें</string>
-    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">फ़ोन पर आकार: %s</string>
-    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">डाउनलोड आकार: %s</string>
-    <string name="offline_map_details_name" tools:ignore="MissingTranslation">मानचित्र का नाम: %s</string>
-    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">मानचित्र में ये स्थान शामिल हैं: %s</string>
-    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">वे स्थान इस नाम से भी जाने जाते हैं: %s</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">फ़ोन पर आकार: %1$s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">डाउनलोड आकार: %1$s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">मानचित्र का नाम: %1$s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">मानचित्र में ये स्थान शामिल हैं: %1$s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">वे स्थान इस नाम से भी जाने जाते हैं: %1$s</string>
     <string name="offline_map_storage_title" tools:ignore="MissingTranslation">ऑफ़लाइन मानचित्र संग्रहण</string>
     <string name="offline_map_storage_description" tools:ignore="MissingTranslation">Soundscape को बिना इंटरनेट कनेक्शन के उपयोग करने के लिए मानचित्र डाउनलोड करके फ़ोन में सहेजना संभव है। डिफ़ॉल्ट संग्रहण आपके फ़ोन का कोई भी बाहरी संग्रहण है, लेकिन आप यहाँ कोई वैकल्पिक गंतव्य चुन सकते हैं।</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">मानचित्र डाउनलोड के लिए केवल WiFi का उपयोग करें</string>
@@ -494,7 +494,7 @@
     <string name="street_description_since" tools:ignore="MissingTranslation">%1$s पर, %3$s से %2$s</string>
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">%1$s पर, %2$s से ठीक पहले</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">%1$s पर, %2$s के ठीक बाद</string>
-    <string name="street_description_intersection" tools:ignore="MissingTranslation">%s के चौराहे के पास</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">%1$s के चौराहे के पास</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">नई रिलीज़ की जानकारी</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">नई रिलीज़ डायलॉग बंद करें</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">ओपन सोर्स लाइसेंस</string>
@@ -510,7 +510,7 @@
     <string name="osm_taxi_waiting_area" tools:ignore="MissingTranslation">टैक्सी प्रतीक्षा क्षेत्र</string>
     <string name="osm_bike_parking" tools:ignore="MissingTranslation">बाइक पार्किंग</string>
     <string name="osm_gas_station" tools:ignore="MissingTranslation">पेट्रोल पंप</string>
-    <string name="osm_bus_stop_named" tools:ignore="MissingTranslation">%s बस स्टॉप</string>
+    <string name="osm_bus_stop_named" tools:ignore="MissingTranslation">%1$s बस स्टॉप</string>
     <string name="osm_recycling_bin" tools:ignore="MissingTranslation">रीसाइक्लिंग बिन</string>
     <string name="osm_water_fountain" tools:ignore="MissingTranslation">पानी का फव्वारा</string>
     <string name="osm_sports_field" tools:ignore="MissingTranslation">खेल का मैदान</string>
@@ -519,7 +519,7 @@
     <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s %3$s से</string>
     <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%1$s %2$s</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">फ़ेरी टर्मिनल</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s फ़ेरी टर्मिनल</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s फ़ेरी टर्मिनल</string>
     <string name="osm_crossing" tools:ignore="MissingTranslation">पैदल यात्री क्रॉसिंग</string>
     <string name="osm_construction" tools:ignore="MissingTranslation">निर्माण कार्य</string>
     <string name="osm_dangerous_area" tools:ignore="MissingTranslation">खतरनाक क्षेत्र</string>
@@ -1098,7 +1098,7 @@
     <string name="osm_port" tools:ignore="MissingTranslation">बंदरगाह</string>
     <string name="osm_archaeological_site" tools:ignore="MissingTranslation">पुरातात्विक स्थल</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">रेलवे स्टेशन</string>
-    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s रेलवे स्टेशन</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%1$s रेलवे स्टेशन</string>
     <string name="osm_shrine" tools:ignore="MissingTranslation">तीर्थस्थल</string>
     <string name="osm_church" tools:ignore="MissingTranslation">गिरजाघर</string>
     <string name="osm_historic_monument" tools:ignore="MissingTranslation">ऐतिहासिक स्मारक</string>
@@ -1137,7 +1137,7 @@
     <string name="osm_clock" tools:ignore="MissingTranslation">घड़ी</string>
     <string name="osm_casino" tools:ignore="MissingTranslation">कैसीनो</string>
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">फेरी टर्मिनल</string>
-    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s फेरी टर्मिनल</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s फेरी टर्मिनल</string>
     <string name="osm_stadium" tools:ignore="MissingTranslation">स्टेडियम</string>
     <string name="osm_dam" tools:ignore="MissingTranslation">बाँध</string>
     <string name="osm_dock" tools:ignore="MissingTranslation">गोदी</string>
@@ -1198,9 +1198,9 @@
     <string name="osm_stairs" tools:ignore="MissingTranslation">सीढ़ियाँ</string>
     <string name="osm_bicycle_rental" tools:ignore="MissingTranslation">साइकिल किराया</string>
     <string name="osm_tram_stop" tools:ignore="MissingTranslation">ट्राम स्टॉप</string>
-    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s ट्राम स्टॉप</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%1$s ट्राम स्टॉप</string>
     <string name="osm_subway" tools:ignore="MissingTranslation">मेट्रो स्टेशन</string>
-    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s मेट्रो स्टेशन</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%1$s मेट्रो स्टेशन</string>
     <string name="osm_hampshire_gate" tools:ignore="MissingTranslation">हैम्पशायर गेट</string>
     <string name="osm_full_height_turnstile" tools:ignore="MissingTranslation">पूर्ण ऊँचाई वाला टर्नस्टाइल</string>
     <string name="osm_boat_sharing" tools:ignore="MissingTranslation">बोट शेयरिंग</string>
@@ -1303,12 +1303,12 @@
     <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">उपलब्ध मार्कर हैं,</string>
     <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">कोई मार्ग सहेजा नहीं गया है</string>
     <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">कोई मार्कर सहेजा नहीं गया है</string>
-    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">मार्ग नहीं मिला: %s</string>
-    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">मार्ग %s शुरू किया जा रहा है</string>
-    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">मार्ग %s शुरू करें</string>
-    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">%s पर ऑडियो बीकन शुरू करें</string>
-    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">ऑडियो बीकन %s पर शुरू किया जा रहा है</string>
-    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">मार्कर नहीं मिला: %s</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">मार्ग नहीं मिला: %1$s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">मार्ग %1$s शुरू किया जा रहा है</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">मार्ग %1$s शुरू करें</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">%1$s पर ऑडियो बीकन शुरू करें</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">ऑडियो बीकन %1$s पर शुरू किया जा रहा है</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">मार्कर नहीं मिला: %1$s</string>
     <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">उदाहरण के लिए, आप नाम से मार्ग और मार्कर भी शुरू कर सकते हैं।</string>
     <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">वाणी पहचान नेटवर्क टाइमआउट त्रुटि।</string>
     <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">वाणी पहचान नेटवर्क त्रुटि।</string>
@@ -1335,9 +1335,9 @@
     <string name="battery_optimization_message">जब आपका फ़ोन लॉक हो तब भी ऑडियो नेविगेशन प्रदान करते रहने के लिए Soundscape को बिना प्रतिबंध के बैटरी उपयोग की आवश्यकता है। कृपया अगले डायलॉग में इसकी अनुमति दें। यदि आप Soundscape को बंद कर देते हैं, तो सभी सेवाएँ बंद हो जाएँगी और यह अब बैटरी का उपयोग नहीं करेगा।</string>
     <string name="route_detail_action_start_route_reverse">मार्ग उल्टे क्रम में शुरू करें</string>
     <string name="route_detail_action_start_route_reverse_hint">इस मार्ग का प्लेबैक उल्टे क्रम में शुरू करें</string>
-    <string name="route_reverse_name">%s उल्टे क्रम में</string>
+    <string name="route_reverse_name">%1$s उल्टे क्रम में</string>
     <string name="callouts_no_nearby_markers">पास के मार्कर नहीं हैं</string>
-    <string name="stationary_on_way">%s पर स्थिर</string>
+    <string name="stationary_on_way">%1$s पर स्थिर</string>
     <string name="settings_relative_directions_text">सापेक्ष दिशा मोड</string>
     <string name="settings_relative_directions_description">सापेक्ष दिशाओं के वर्णन के तरीके को बदलें।</string>
     <string name="settings_relative_directions_clockface">घड़ी की दिशा</string>
@@ -1345,8 +1345,8 @@
     <string name="settings_relative_directions_left_right">बाएँ/दाएँ</string>
     <string name="callout_settings_position_text">रुचि के स्थानों की कॉलआउट में दूरी और दिशा शामिल करें</string>
     <string name="callout_settings_position_description">डिफ़ॉल्ट रूप से जब स्थानों की घोषणा की जाती है तो उनमें दूरी या दिशा शामिल नहीं होती। यह सेटिंग उन जानकारीयों को कॉलआउट में जोड़ती है।</string>
-    <string name="relative_clock_direction">%s बजे की दिशा</string>
-    <string name="relative_degrees_direction">%s डिग्री पर</string>
+    <string name="relative_clock_direction">%1$s बजे की दिशा</string>
+    <string name="relative_degrees_direction">%1$s डिग्री पर</string>
     <string name="relative_left_right_direction_ahead">आगे</string>
     <string name="relative_left_right_direction_ahead_left">आगे बाएँ</string>
     <string name="relative_left_right_direction_ahead_right">आगे दाएँ</string>

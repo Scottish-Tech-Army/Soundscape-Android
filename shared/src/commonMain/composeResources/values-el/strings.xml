@@ -50,7 +50,7 @@
     <string name="route_detail_action_edit_hint">Αλλάξτε τα σημεία πορείας στη διαδρομή ή αναδιατάξτε τα.</string>
     <string name="route_detail_action_create">Νέα διαδρομή</string>
     <string name="route_detail_action_create_hint">Δημιουργήστε μια νέα διαδρομή</string>
-    <string name="route_end_completed_accessibility">Η διαδρομή ολοκληρώθηκε! %s</string>
+    <string name="route_end_completed_accessibility">Η διαδρομή ολοκληρώθηκε! %1$s</string>
     <string name="route_detail_action_previous">Προηγούμενο σημείο πορείας</string>
     <string name="route_detail_action_previous_hint">Μετακινήστε το ηχητικό σήμα στο προηγούμενο σημείο πορείας</string>
     <string name="route_detail_action_next">Επόμενο σημείο πορείας</string>
@@ -81,7 +81,7 @@
     <string name="markers_no_markers_hint_2">Προσπαθήστε να επισημάνετε το σπίτι σας, την είσοδο στη δουλειά σας ή το αγαπημένο σας σημείο στο πάρκο.</string>
     <string name="markers_edit_screen_title_edit">Επεξεργασία δείκτη</string>
     <string name="markers_generic_name">Δείκτης</string>
-    <string name="markers_marker_with_name">Δείκτης. %s</string>
+    <string name="markers_marker_with_name">Δείκτης. %1$s</string>
     <string name="markers_marker_created">Δείκτης που δημιουργήθηκε</string>
     <string name="markers_annotation">Επιπλέον σημειώσεις</string>
     <string name="search_choose_destination">Επιλέξτε προορισμό</string>
@@ -110,12 +110,12 @@
     <string name="sleep_sleep_acc_hint">Θέστε το Soundscape σε αναστολή λειτουργίας</string>
     <string name="sleep_wake_up_now">Ενεργοποίηση τώρα</string>
     <string name="intersection_approaching_intersection">Πλησιάζετε τη διασταύρωση</string>
-    <string name="directions_at_poi">Σε %s</string>
+    <string name="directions_at_poi">Σε %1$s</string>
     <string name="directions_my_location">Η τοποθεσία μου</string>
-    <string name="directions_near_name">Κοντά σε %s</string>
-    <string name="directions_name_goes_left">%s, πηγαίνει αριστερά</string>
-    <string name="directions_name_goes_right">%s, πηγαίνει δεξιά</string>
-    <string name="directions_name_continues_ahead">%s, συνεχίζει μπροστά</string>
+    <string name="directions_near_name">Κοντά σε %1$s</string>
+    <string name="directions_name_goes_left">%1$s, πηγαίνει αριστερά</string>
+    <string name="directions_name_goes_right">%1$s, πηγαίνει δεξιά</string>
+    <string name="directions_name_continues_ahead">%1$s, συνεχίζει μπροστά</string>
     <string name="directions_direction_ahead">μπροστά</string>
     <string name="directions_traveling_n">Ταξιδεύοντας βόρεια</string>
     <string name="directions_traveling_ne">Ταξιδεύοντας βορειοανατολικά</string>
@@ -141,34 +141,34 @@
     <string name="directions_heading_sw">Κατεύθυνση νοτιοδυτικά</string>
     <string name="directions_heading_w">Κατεύθυνση δυτικά</string>
     <string name="directions_heading_nw">Κατεύθυνση βορειοδυτικά</string>
-    <string name="directions_along_traveling_n">Ταξιδεύοντας βόρεια κατά μήκος της %s</string>
-    <string name="directions_along_traveling_ne">Ταξιδεύοντας βορειοανατολικά κατά μήκος της %s</string>
-    <string name="directions_along_traveling_e">Ταξιδεύοντας ανατολικά κατά μήκος της %s</string>
-    <string name="directions_along_traveling_se">Ταξιδεύοντας νοτιοανατολικά κατά μήκος της %s</string>
-    <string name="directions_along_traveling_s">Ταξιδεύοντας νότια κατά μήκος της %s</string>
-    <string name="directions_along_traveling_sw">Ταξιδεύοντας νοτιοδυτικά κατά μήκος της %s</string>
-    <string name="directions_along_traveling_w">Ταξιδεύοντας δυτικά κατά μήκος της %s</string>
-    <string name="directions_along_traveling_nw">Ταξιδεύοντας βορειοδυτικά κατά μήκος της %s</string>
-    <string name="directions_along_facing_n">Κοιτάζοντας βόρεια κατά μήκος της %s</string>
-    <string name="directions_along_facing_ne">Κοιτάζοντας βορειοανατολικά κατά μήκος της %s</string>
-    <string name="directions_along_facing_e">Κοιτάζοντας ανατολικά κατά μήκος της %s</string>
-    <string name="directions_along_facing_se">Κοιτάζοντας νοτιοανατολικά κατά μήκος της %s</string>
-    <string name="directions_along_facing_s">Κοιτάζοντας νότια κατά μήκος της %s</string>
-    <string name="directions_along_facing_sw">Κοιτάζοντας νοτιοδυτικά κατά μήκος της %s</string>
-    <string name="directions_along_facing_w">Κοιτάζοντας δυτικά κατά μήκος της %s</string>
-    <string name="directions_along_facing_nw">Κοιτάζοντας βορειοδυτικά κατά μήκος της %s</string>
-    <string name="directions_along_heading_n">Κατεύθυνση βόρεια κατά μήκος της %s</string>
-    <string name="directions_along_heading_ne">Κατεύθυνση βορειοανατολικά κατά μήκος της %s</string>
-    <string name="directions_along_heading_e">Κατεύθυνση ανατολικά κατά μήκος της %s</string>
-    <string name="directions_along_heading_se">Κατεύθυνση νοτιοανατολικά κατά μήκος της %s</string>
-    <string name="directions_along_heading_s">Κατεύθυνση νότια κατά μήκος της %s</string>
-    <string name="directions_along_heading_sw">Κατεύθυνση νοτιοδυτικά κατά μήκος της %s</string>
-    <string name="directions_along_heading_w">Κατεύθυνση δυτικά κατά μήκος της %s</string>
-    <string name="directions_along_heading_nw">Κατεύθυνση βορειοδυτικά κατά μήκος της %s</string>
-    <string name="distance_format_meters">%s μέτρα</string>
-    <string name="distance_format_km">%s χλμ</string>
-    <string name="distance_format_feet">%s πόδια</string>
-    <string name="distance_format_miles">%s μίλια</string>
+    <string name="directions_along_traveling_n">Ταξιδεύοντας βόρεια κατά μήκος της %1$s</string>
+    <string name="directions_along_traveling_ne">Ταξιδεύοντας βορειοανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_traveling_e">Ταξιδεύοντας ανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_traveling_se">Ταξιδεύοντας νοτιοανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_traveling_s">Ταξιδεύοντας νότια κατά μήκος της %1$s</string>
+    <string name="directions_along_traveling_sw">Ταξιδεύοντας νοτιοδυτικά κατά μήκος της %1$s</string>
+    <string name="directions_along_traveling_w">Ταξιδεύοντας δυτικά κατά μήκος της %1$s</string>
+    <string name="directions_along_traveling_nw">Ταξιδεύοντας βορειοδυτικά κατά μήκος της %1$s</string>
+    <string name="directions_along_facing_n">Κοιτάζοντας βόρεια κατά μήκος της %1$s</string>
+    <string name="directions_along_facing_ne">Κοιτάζοντας βορειοανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_facing_e">Κοιτάζοντας ανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_facing_se">Κοιτάζοντας νοτιοανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_facing_s">Κοιτάζοντας νότια κατά μήκος της %1$s</string>
+    <string name="directions_along_facing_sw">Κοιτάζοντας νοτιοδυτικά κατά μήκος της %1$s</string>
+    <string name="directions_along_facing_w">Κοιτάζοντας δυτικά κατά μήκος της %1$s</string>
+    <string name="directions_along_facing_nw">Κοιτάζοντας βορειοδυτικά κατά μήκος της %1$s</string>
+    <string name="directions_along_heading_n">Κατεύθυνση βόρεια κατά μήκος της %1$s</string>
+    <string name="directions_along_heading_ne">Κατεύθυνση βορειοανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_heading_e">Κατεύθυνση ανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_heading_se">Κατεύθυνση νοτιοανατολικά κατά μήκος της %1$s</string>
+    <string name="directions_along_heading_s">Κατεύθυνση νότια κατά μήκος της %1$s</string>
+    <string name="directions_along_heading_sw">Κατεύθυνση νοτιοδυτικά κατά μήκος της %1$s</string>
+    <string name="directions_along_heading_w">Κατεύθυνση δυτικά κατά μήκος της %1$s</string>
+    <string name="directions_along_heading_nw">Κατεύθυνση βορειοδυτικά κατά μήκος της %1$s</string>
+    <string name="distance_format_meters">%1$s μέτρα</string>
+    <string name="distance_format_km">%1$s χλμ</string>
+    <string name="distance_format_feet">%1$s πόδια</string>
+    <string name="distance_format_miles">%1$s μίλια</string>
     <string name="ui_action_button_my_location">Η\nτοποθεσία μου</string>
     <string name="ui_action_button_my_location_acc_hint">Ακούστε πληροφορίες για την τρέχουσα τοποθεσία σας</string>
     <string name="ui_action_button_nearby_markers">Κοντινοί\nδείκτες</string>
@@ -206,7 +206,7 @@
     <string name="help_text_section_title_when">Πότε θα το χρησιμοποιούσα;</string>
     <string name="help_text_section_title_how">Πώς λειτουργεί;</string>
     <string name="terms_of_use_title">Όροι Χρήσης</string>
-    <string name="terms_of_use_message">Η χρήση του Soundscape υπόκειται στους όρους του %s και στους όρους που αναφέρονται παρακάτω (μαζί, οι *\"Όροι Χρήσης\"*).</string>
+    <string name="terms_of_use_message">Η χρήση του Soundscape υπόκειται στους όρους του %1$s και στους όρους που αναφέρονται παρακάτω (μαζί, οι *\"Όροι Χρήσης\"*).</string>
     <string name="terms_of_use_service_agreement">Συμφωνητικό υπηρεσιών Scottish Tech Army</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Αποδοχή Όρων Χρήσης</string>
     <string name="terms_of_use_medical_safety_disclaimer">Αναγνωρίζετε ότι το Soundscape (1) δεν έχει σχεδιαστεί, δεν προορίζεται και δεν διατίθεται ως ιατρική συσκευή, και (2) δεν έχει σχεδιαστεί ούτε προορίζεται να αποτελέσει υποκατάστατο επαγγελματικής ιατρικής συμβουλής, διάγνωσης, θεραπείας ή κρίσης και δεν πρέπει να χρησιμοποιείται για να αντικαταστήσει ή να υποκαταστήσει επαγγελματική ιατρική συμβουλή, διάγνωση, θεραπεία ή κρίση.\n\nΣημείωση ασφαλείας\n\nΤο Soundscape είναι βοήθημα πλοήγησης και δεν πρέπει να χρησιμοποιείται αντί της εκμάθησης δεξιοτήτων μετακίνησης, της επαγρύπνησης για το περιβάλλον σας και της καλής κρίσης. Να είστε προσεκτικοί όταν πλοηγείστε στο περιβάλλον σας, καθώς τα δεδομένα χαρτογράφησης που ενσωματώνονται στο πρόγραμμα Soundscape προέρχονται από τρίτο μέρος και, ως εκ τούτου, ενδέχεται να υπάρχουν περιορισμοί στην ακρίβεια των παρεχόμενων πληροφοριών.</string>
@@ -288,8 +288,8 @@
     <string name="osm_service_road">Βοηθητική οδός</string>
     <string name="osm_road">Δρόμος</string>
     <string name="osm_highway">Αυτοκινητόδρομος</string>
-    <string name="osm_highway_named">Αυτοκινητόδρομος %s</string>
-    <string name="osm_highway_refed">Αυτοκινητόδρομος %s</string>
+    <string name="osm_highway_named">Αυτοκινητόδρομος %1$s</string>
+    <string name="osm_highway_refed">Αυτοκινητόδρομος %1$s</string>
     <string name="osm_intersection">Διασταύρωση</string>
     <string name="osm_roundabout">Κυκλικός κόμβος</string>
     <string name="osm_highway_ramp">Έξοδος αυτοκινητόδρομου</string>
@@ -320,10 +320,10 @@
     <string name="osm_gas_station">Πρατήριο καυσίμων</string>
     <string name="osm_bank">Τράπεζα</string>
     <string name="osm_atm">ATM</string>
-    <string name="osm_atm_named">%s ATM</string>
-    <string name="osm_atm_refed">ATM %s</string>
+    <string name="osm_atm_named">%1$s ATM</string>
+    <string name="osm_atm_refed">ATM %1$s</string>
     <string name="osm_bus_stop">Στάση</string>
-    <string name="osm_bus_stop_named">%s Στάση</string>
+    <string name="osm_bus_stop_named">%1$s Στάση</string>
     <string name="osm_recycling_bin">Κάδος ανακύκλωσης</string>
     <string name="osm_fountain">Σιντριβάνι</string>
     <string name="osm_place_of_worship">Τόπος Λατρείας</string>
@@ -410,7 +410,7 @@
     <string name="settings_units_metric" tools:ignore="MissingTranslation">Μετρικό (μέτρα)</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">Μηχανή μετατροπής κειμένου σε ομιλία</string>
     <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Μετάβαση στην πλησιέστερη διασταύρωση</string>
-    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" και %s"</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" και %1$s"</string>
     <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Εμφάνιση του χάρτη σε πλήρη οθόνη</string>
     <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Έξοδος από προβολή πλήρους οθόνης του χάρτη</string>
     <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Ανενεργό καθώς η διαδρομή είναι ήδη στην αρχή</string>
@@ -444,13 +444,13 @@
     <string name="notification_text" tools:ignore="MissingTranslation">Η υπηρεσία τοποθεσίας του Soundscape λειτουργεί ακόμα και όταν το τηλέφωνο είναι κλειδωμένο.</string>
     <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Ακύρωση αναζήτησης</string>
     <string name="osm_train_station" tools:ignore="MissingTranslation">Σιδηροδρομικός σταθμός</string>
-    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s Σιδηροδρομικός σταθμός</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%1$s Σιδηροδρομικός σταθμός</string>
     <string name="osm_tram_stop" tools:ignore="MissingTranslation">Στάση τραμ</string>
-    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s Στάση τραμ</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%1$s Στάση τραμ</string>
     <string name="osm_subway" tools:ignore="MissingTranslation">Σταθμός μετρό</string>
-    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s Σταθμός μετρό</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%1$s Σταθμός μετρό</string>
     <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Τερματικός σταθμός φέρι</string>
-    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%s Τερματικός σταθμός φέρι</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s Τερματικός σταθμός φέρι</string>
     <string name="menu_manage_audio" tools:ignore="MissingTranslation">Ήχος</string>
     <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Προσβασιμότητα</string>
     <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Φωτεινό ή σκούρο θέμα</string>
@@ -482,20 +482,20 @@
     <string name="offline_maps_title" tools:ignore="MissingTranslation">Χάρτες εκτός σύνδεσης</string>
     <string name="offline_map_details_title" tools:ignore="MissingTranslation">Λεπτομέρειες χάρτη εκτός σύνδεσης</string>
     <string name="offline_maps_loading" tools:ignore="MissingTranslation">Φόρτωση…</string>
-    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Λήψη %s</string>
-    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Ο διακομιστής προετοιμάζει το %s για λήψη. Αυτό μπορεί να διαρκέσει λίγα λεπτά και στη συνέχεια η λήψη θα ξεκινήσει αυτόματα.</string>
-    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s διαθέσιμο</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Λήψη %1$s</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">Ο διακομιστής προετοιμάζει το %1$s για λήψη. Αυτό μπορεί να διαρκέσει λίγα λεπτά και στη συνέχεια η λήψη θα ξεκινήσει αυτόματα.</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%1$s διαθέσιμο</string>
     <string name="offline_maps_storage" tools:ignore="MissingTranslation">Οι χάρτες αποθηκεύονται στο %1$s που έχει %2$s ελεύθερο χώρο</string>
     <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">Χάρτες που έχουν ήδη ληφθεί</string>
     <string name="offline_maps_nearby" tools:ignore="MissingTranslation">Κοντινοί χάρτες εκτός σύνδεσης</string>
     <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">Φόρτωση λίστας χαρτών εκτός σύνδεσης</string>
     <string name="offline_map_details_delete" tools:ignore="MissingTranslation">Διαγραφή χάρτη εκτός σύνδεσης</string>
     <string name="offline_map_details_download" tools:ignore="MissingTranslation">Λήψη χάρτη εκτός σύνδεσης</string>
-    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Μέγεθος στη συσκευή: %s</string>
-    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Μέγεθος λήψης: %s</string>
-    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Όνομα χάρτη: %s</string>
-    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">Ο χάρτης περιλαμβάνει τις εξής τοποθεσίες: %s</string>
-    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Αυτές οι τοποθεσίες είναι επίσης γνωστές ως: %s</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Μέγεθος στη συσκευή: %1$s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Μέγεθος λήψης: %1$s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Όνομα χάρτη: %1$s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">Ο χάρτης περιλαμβάνει τις εξής τοποθεσίες: %1$s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Αυτές οι τοποθεσίες είναι επίσης γνωστές ως: %1$s</string>
     <string name="offline_map_storage_title" tools:ignore="MissingTranslation">Αποθήκευση χαρτών εκτός σύνδεσης</string>
     <string name="offline_map_storage_description" tools:ignore="MissingTranslation">Για να μπορεί το Soundscape να χρησιμοποιείται χωρίς σύνδεση στο Internet, μπορείτε να κατεβάσετε χάρτες και να τους αποθηκεύσετε στο τηλέφωνο. Η προεπιλεγμένη τοποθεσία αποθήκευσης είναι ο εξωτερικός αποθηκευτικός χώρος της συσκευής σας, αλλά μπορείτε να επιλέξετε εδώ έναν εναλλακτικό προορισμό.</string>
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Χρησιμοποιήστε μόνο Wi‑Fi για τη λήψη χαρτών</string>
@@ -528,7 +528,7 @@
     <string name="new_version_info_details" tools:ignore="MissingTranslation">\nΣε αυτή την έκδοση υπάρχουν δύο νέες δυνατότητες που επιτρέπουν την απομακρυσμένη διαχείριση της εφαρμογής, ακόμη και όταν το τηλέφωνο είναι κλειδωμένο. Αυτό σημαίνει ότι μπορείτε να το έχετε στην τσέπη σας ενώ εξακολουθείτε να ελέγχετε τις κύριες λειτουργίες της εφαρμογής.\n\nΚαι οι δύο μέθοδοι απομακρυσμένου ελέγχου χρησιμοποιούν τα κουμπιά ελέγχου πολυμέσων μέσω Bluetooth, είτε αυτά που υπάρχουν στα ακουστικά σας, είτε μικρά τηλεχειριστήρια που μπορείτε να αγοράσετε και να έχετε στο χέρι ή στην τσέπη. Η λειτουργία απομακρυσμένου ελέγχου επιλέγεται από τις Ρυθμίσεις/Στοιχεία ελέγχου πολυμέσων και μπορείτε να επιλέξετε *\"Φωνητικές εντολές\"* για να μιλήσετε στην εφαρμογή, ή *\"Ηχητικό μενού\"* όπου οι επιλογές διαβάζονται δυνατά και μπορείτε να επιλέξετε. Η *\"Αρχική λειτουργία\"* σημαίνει ότι τα κουμπιά Bluetooth λειτουργούν με τον ίδιο τρόπο όπως σε προηγούμενες εκδόσεις.\n\nΣε λειτουργία φωνητικών εντολών, πατώντας το κουμπί αναπαραγωγής/παύσης στα ακουστικά, η εφαρμογή ξεκινά να ακούει ομιλία και θα ακούσετε έναν σύντομο ήχο ως ένδειξη. Αν πείτε *\"Βοήθεια\"* θα απαριθμήσει τις διαθέσιμες εντολές που μπορείτε να χρησιμοποιήσετε. Στη συνέχεια μπορείτε να πατήσετε ξανά το κουμπί και να δοκιμάσετε τις άλλες εντολές. Δυστυχώς, η αναγνώριση ομιλίας του Android δεν υποστηρίζει όλες τις γλώσσες και δεν είναι διαθέσιμη σε όλα τα τηλέφωνα.\n\nΤο κύριο πρόβλημα με τη λειτουργία φωνητικών εντολών είναι ότι ορισμένα ακουστικά χρειάζονται περισσότερο χρόνο για να ενεργοποιήσουν το μικρόφωνό τους από ό,τι άλλα. Αυτό σημαίνει ότι μετά το πάτημα του κουμπιού αναπαραγωγής/παύσης μπορεί να χρειαστεί να περιμένετε έως και 5 δευτερόλεπτα πριν μπορέσετε να μιλήσετε. Για να μάθετε πόσο χρόνο χρειάζεται, ο καλύτερος τρόπος είναι να πατήσετε αναπαραγωγή/παύση και μετά να μετρήσετε από το 1 έως το 10. Το τηλέφωνο θα σας πει ποια ομιλία αναγνώρισε και ο αριθμός με τον οποίο ξεκινά ήταν ο πρώτος που αναγνωρίστηκε. Αυτό μπορεί να βοηθήσει να μάθετε πόσο να περιμένετε πριν μιλήσετε. Ορισμένα ακουστικά κάνουν εμφαντικό ήχο όταν το μικρόφωνο είναι ενεργό, κάτι που το καθιστά ευκολότερο, ενώ άλλα δεν κάνουν κανένα ήχο. Δυστυχώς, αυτό μπορεί να χρειαστεί εξάσκηση.\n\nΗ άλλη νέα λειτουργία απομακρυσμένου ελέγχου, το Ηχητικό μενού, λειτουργεί σε όλες τις γλώσσες και σε όλα τα τηλέφωνα. Τα κουμπιά επόμενο/προηγούμενο κινούνται εμπρός και πίσω μέσα στις επιλογές του μενού. Το κουμπί αναπαραγωγής/παύσης επιλέγει την τρέχουσα επιλογή. Υπάρχει ένα κορυφαίο μενού και μία στρώση υπο-μενού που ομαδοποιούν παρόμοιες εντολές.\n\nΑυτές οι λειτουργίες είναι πολύ νέες και θα θέλαμε πραγματικά ανατροφοδότηση για το αν λειτουργούν καλά και ποιες άλλες εντολές μπορεί να θέλατε.\n\nΠαρακαλούμε αναφέρετε τυχόν προβλήματα που αντιμετωπίζετε, όσο μικρά κι αν είναι, μέσω της επιλογής *\"Επικοινωνία με την υποστήριξη\"* στο κύριο μενού.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Άδειες ανοιχτού κώδικα</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Τερματικός Σταθμός Φεριμπότ</string>
-    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Τερματικός Σταθμός Φεριμπότ</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%1$s Τερματικός Σταθμός Φεριμπότ</string>
     <string name="osm_office" tools:ignore="MissingTranslation">Γραφείο</string>
     <string name="osm_school" tools:ignore="MissingTranslation">Σχολείο</string>
     <string name="osm_roof" tools:ignore="MissingTranslation">Στέγη</string>
@@ -1253,7 +1253,7 @@
     <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Έξοδος από τη λειτουργία επεξεργασίας της θέσης του δείκτη</string>
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">Στην %1$s, λίγο πριν από %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">Στην %1$s, λίγο μετά από %2$s</string>
-    <string name="street_description_intersection" tools:ignore="MissingTranslation">Κοντά στη διασταύρωση %s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Κοντά στη διασταύρωση %1$s</string>
     <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Υπάρχει ήδη ένας δείκτης στη διαδρομή σε αυτήν την τοποθεσία, δεν μπορούμε να τον προσθέσουμε ξανά.</string>
     <string name="settings_explanation" tools:ignore="MissingTranslation">Οι διάφορες ρυθμίσεις της εφαρμογής είναι οργανωμένες σε ομάδες παρακάτω. Πατήστε μια ομάδα για να την αναπτύξετε και να δείτε τις διαθέσιμες επιλογές.</string>
     <string name="settings_section_units_description" tools:ignore="MissingTranslation">Επιλέξτε τις μονάδες μέτρησης που θα χρησιμοποιούνται για τις αποστάσεις</string>
@@ -1303,12 +1303,12 @@
     <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Οι διαθέσιμοι δείκτες είναι:</string>
     <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">Δεν έχουν αποθηκευτεί διαδρομές</string>
     <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">Δεν έχουν αποθηκευτεί δείκτες</string>
-    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Η διαδρομή δεν βρέθηκε: %s</string>
-    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Έναρξη διαδρομής %s</string>
-    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Έναρξη διαδρομής %s</string>
-    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Έναρξη ηχητικού σήματος σε %s</string>
-    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Εκκίνηση ηχητικού σήματος σε %s</string>
-    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Ο δείκτης δεν βρέθηκε: %s</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Η διαδρομή δεν βρέθηκε: %1$s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Έναρξη διαδρομής %1$s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Έναρξη διαδρομής %1$s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Έναρξη ηχητικού σήματος σε %1$s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Εκκίνηση ηχητικού σήματος σε %1$s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Ο δείκτης δεν βρέθηκε: %1$s</string>
     <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">Μπορείτε επίσης να ξεκινήσετε διαδρομές και να ενεργοποιήσετε δείκτες με το όνομά τους, για παράδειγμα.</string>
     <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Σφάλμα υπέρβασης χρόνου δικτύου στην αναγνώριση ομιλίας.</string>
     <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Σφάλμα δικτύου στην αναγνώριση ομιλίας.</string>
@@ -1335,9 +1335,9 @@
     <string name="battery_optimization_message">Το Soundscape απαιτεί απεριόριστη χρήση μπαταρίας για να συνεχίσει να παρέχει ηχητική πλοήγηση όταν το τηλέφωνό σας είναι κλειδωμένο. Παρακαλώ επιτρέψτε το στο επόμενο παράθυρο διαλόγου. Εάν κλείσετε το Soundscape, όλες οι υπηρεσίες θα σταματήσουν και δεν θα καταναλώνει πλέον μπαταρία..</string>
     <string name="route_detail_action_start_route_reverse">Έναρξη διαδρομής (αντίστροφα)</string>
     <string name="route_detail_action_start_route_reverse_hint">Ξεκινήστε την αναπαραγωγή αυτής της διαδρομής σε αντίστροφη σειρά</string>
-    <string name="route_reverse_name">%s σε αντίστροφη σειρά</string>
+    <string name="route_reverse_name">%1$s σε αντίστροφη σειρά</string>
     <string name="callouts_no_nearby_markers">Δεν υπάρχουν κοντινοί δείκτες</string>
-    <string name="stationary_on_way">Ακίνητος στην %s</string>
+    <string name="stationary_on_way">Ακίνητος στην %1$s</string>
     <string name="settings_relative_directions_text">Λειτουργία σχετικών κατευθύνσεων</string>
     <string name="settings_relative_directions_description">Αλλάξτε τον τρόπο περιγραφής των σχετικών κατευθύνσεων.</string>
     <string name="settings_relative_directions_clockface">Όψη ρολογιού</string>
@@ -1345,8 +1345,8 @@
     <string name="settings_relative_directions_left_right">Αριστερά/Δεξιά</string>
     <string name="callout_settings_position_text">Συμπεριλάβετε την απόσταση και την κατεύθυνση όταν ανακοινώνονται σημεία ενδιαφέροντος</string>
     <string name="callout_settings_position_description">Κατά προεπιλογή, όταν ανακοινώνονται τοποθεσίες, οι επεξηγήσεις δεν περιλαμβάνουν την απόσταση ή την κατεύθυνση. Αυτή η ρύθμιση τα προσθέτει στις επεξηγήσεις.</string>
-    <string name="relative_clock_direction">στις %s η ώρα</string>
-    <string name="relative_degrees_direction">στους %s βαθμούς</string>
+    <string name="relative_clock_direction">στις %1$s η ώρα</string>
+    <string name="relative_degrees_direction">στους %1$s βαθμούς</string>
     <string name="relative_left_right_direction_ahead">Μπροστά</string>
     <string name="relative_left_right_direction_ahead_left">Μπροστά αριστερά</string>
     <string name="relative_left_right_direction_ahead_right">Μπροστά δεξιά</string>
