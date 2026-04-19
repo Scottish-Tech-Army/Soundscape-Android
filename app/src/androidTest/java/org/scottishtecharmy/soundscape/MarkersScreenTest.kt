@@ -9,7 +9,6 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.navigation.compose.rememberNavController
 import androidx.test.core.app.ApplicationProvider
 import org.junit.Assert.assertTrue
 import org.junit.Rule
@@ -49,12 +48,12 @@ class MarkersScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(markers = true),
                     clearErrorMessage = {},
                     onToggleSortOrder = {},
                     onToggleSortByName = {},
-                    userLocation = null
+                    userLocation = null,
+                    onSelectItem = {}
                 )
             }
         }
@@ -68,7 +67,6 @@ class MarkersScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = true,
                         entries = testMarkers
@@ -76,7 +74,8 @@ class MarkersScreenTest {
                     clearErrorMessage = {},
                     onToggleSortOrder = {},
                     onToggleSortByName = {},
-                    userLocation = null
+                    userLocation = null,
+                    onSelectItem = {}
                 )
             }
         }
@@ -92,7 +91,6 @@ class MarkersScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = true,
                         entries = testMarkers
@@ -100,7 +98,8 @@ class MarkersScreenTest {
                     clearErrorMessage = {},
                     onToggleSortOrder = {},
                     onToggleSortByName = {},
-                    userLocation = null
+                    userLocation = null,
+                    onSelectItem = {}
                 )
             }
         }
@@ -117,7 +116,6 @@ class MarkersScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = true,
                         entries = testMarkers
@@ -125,7 +123,8 @@ class MarkersScreenTest {
                     clearErrorMessage = {},
                     onToggleSortOrder = { sortOrderToggled = true },
                     onToggleSortByName = {},
-                    userLocation = null
+                    userLocation = null,
+                    onSelectItem = {}
                 )
             }
         }
@@ -141,7 +140,6 @@ class MarkersScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = true,
                         entries = testMarkers
@@ -149,7 +147,8 @@ class MarkersScreenTest {
                     clearErrorMessage = {},
                     onToggleSortOrder = {},
                     onToggleSortByName = { sortByNameToggled = true },
-                    userLocation = null
+                    userLocation = null,
+                    onSelectItem = {}
                 )
             }
         }
@@ -163,7 +162,6 @@ class MarkersScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = true,
                         isLoading = true
@@ -171,7 +169,8 @@ class MarkersScreenTest {
                     clearErrorMessage = {},
                     onToggleSortOrder = {},
                     onToggleSortByName = {},
-                    userLocation = null
+                    userLocation = null,
+                    onSelectItem = {}
                 )
             }
         }
@@ -186,7 +185,6 @@ class MarkersScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = true,
                         entries = testMarkers,
@@ -196,7 +194,8 @@ class MarkersScreenTest {
                     clearErrorMessage = {},
                     onToggleSortOrder = {},
                     onToggleSortByName = {},
-                    userLocation = null
+                    userLocation = null,
+                    onSelectItem = {}
                 )
             }
         }
@@ -210,7 +209,6 @@ class MarkersScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = true,
                         entries = testMarkers,
@@ -220,7 +218,8 @@ class MarkersScreenTest {
                     clearErrorMessage = {},
                     onToggleSortOrder = {},
                     onToggleSortByName = {},
-                    userLocation = null
+                    userLocation = null,
+                    onSelectItem = {}
                 )
             }
         }
@@ -234,7 +233,6 @@ class MarkersScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 MarkersScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = true,
                         entries = testMarkers
@@ -243,6 +241,7 @@ class MarkersScreenTest {
                     onToggleSortOrder = {},
                     onToggleSortByName = {},
                     userLocation = null,
+                    onSelectItem = {},
                     onStartBeacon = { _, _ -> }
                 )
             }

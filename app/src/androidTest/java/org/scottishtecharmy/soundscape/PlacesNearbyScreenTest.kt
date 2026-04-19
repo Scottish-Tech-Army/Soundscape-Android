@@ -7,7 +7,6 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.navigation.compose.rememberNavController
 import androidx.test.core.app.ApplicationProvider
 import org.junit.Rule
 import org.junit.Test
@@ -27,7 +26,7 @@ class PlacesNearbyScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 PlacesNearbyScreen(
-                    homeNavController = rememberNavController(),
+                    onSelectItem = {},
                     uiState = PlacesNearbyUiState(
                         level = 0,
                         nearbyPlaces = FeatureCollection()
@@ -57,7 +56,7 @@ class PlacesNearbyScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 PlacesNearbyScreen(
-                    homeNavController = rememberNavController(),
+                    onSelectItem = {},
                     uiState = PlacesNearbyUiState(
                         level = 0,
                         nearbyPlaces = FeatureCollection()
@@ -76,7 +75,7 @@ class PlacesNearbyScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 PlacesNearbyScreen(
-                    homeNavController = rememberNavController(),
+                    onSelectItem = {},
                     uiState = PlacesNearbyUiState(
                         level = 1,
                         title = customTitle,
@@ -98,7 +97,7 @@ class PlacesNearbyScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 PlacesNearbyScreen(
-                    homeNavController = rememberNavController(),
+                    onSelectItem = {},
                     uiState = PlacesNearbyUiState(
                         level = 0,
                         nearbyPlaces = FeatureCollection()
@@ -125,7 +124,7 @@ class PlacesNearbyScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 PlacesNearbyScreen(
-                    homeNavController = rememberNavController(),
+                    onSelectItem = {},
                     uiState = PlacesNearbyUiState(
                         level = 0,
                         nearbyPlaces = FeatureCollection()
@@ -144,7 +143,7 @@ class PlacesNearbyScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 PlacesNearbyScreen(
-                    homeNavController = rememberNavController(),
+                    onSelectItem = {},
                     uiState = PlacesNearbyUiState(
                         level = 0,
                         nearbyPlaces = FeatureCollection()
@@ -169,7 +168,7 @@ class PlacesNearbyScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 PlacesNearbyScreen(
-                    homeNavController = rememberNavController(),
+                    onSelectItem = {},
                     uiState = PlacesNearbyUiState(
                         level = 0,
                         nearbyPlaces = FeatureCollection()
@@ -195,7 +194,7 @@ class PlacesNearbyScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 PlacesNearbyScreen(
-                    homeNavController = rememberNavController(),
+                    onSelectItem = {},
                     uiState = PlacesNearbyUiState(
                         level = 0,
                         nearbyPlaces = FeatureCollection()
@@ -222,7 +221,7 @@ class PlacesNearbyScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 PlacesNearbyScreen(
-                    homeNavController = rememberNavController(),
+                    onSelectItem = {},
                     uiState = PlacesNearbyUiState(
                         level = 0,
                         nearbyPlaces = FeatureCollection()

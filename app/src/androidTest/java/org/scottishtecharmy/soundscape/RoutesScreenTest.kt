@@ -9,7 +9,6 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.navigation.compose.rememberNavController
 import androidx.test.core.app.ApplicationProvider
 import org.junit.Assert.assertTrue
 import org.junit.Rule
@@ -52,12 +51,12 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(markers = false),
                     userLocation = null,
                     clearErrorMessage = {},
                     onToggleSortOrder = {},
-                    onToggleSortByName = {}
+                    onToggleSortByName = {},
+                    onSelectItem = {}
                 )
             }
         }
@@ -71,12 +70,12 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(markers = false),
                     userLocation = null,
                     clearErrorMessage = {},
                     onToggleSortOrder = {},
-                    onToggleSortByName = {}
+                    onToggleSortByName = {},
+                    onSelectItem = {}
                 )
             }
         }
@@ -92,7 +91,6 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         entries = testRoutes
@@ -100,7 +98,8 @@ class RoutesScreenTest {
                     userLocation = null,
                     clearErrorMessage = {},
                     onToggleSortOrder = {},
-                    onToggleSortByName = {}
+                    onToggleSortByName = {},
+                    onSelectItem = {}
                 )
             }
         }
@@ -116,7 +115,6 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         entries = testRoutes
@@ -124,7 +122,8 @@ class RoutesScreenTest {
                     userLocation = null,
                     clearErrorMessage = {},
                     onToggleSortOrder = {},
-                    onToggleSortByName = {}
+                    onToggleSortByName = {},
+                    onSelectItem = {}
                 )
             }
         }
@@ -141,7 +140,6 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         entries = testRoutes
@@ -149,7 +147,8 @@ class RoutesScreenTest {
                     userLocation = null,
                     clearErrorMessage = {},
                     onToggleSortOrder = { sortOrderToggled = true },
-                    onToggleSortByName = {}
+                    onToggleSortByName = {},
+                    onSelectItem = {}
                 )
             }
         }
@@ -165,7 +164,6 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         entries = testRoutes
@@ -187,7 +185,6 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         isLoading = true
@@ -195,7 +192,8 @@ class RoutesScreenTest {
                     userLocation = null,
                     clearErrorMessage = {},
                     onToggleSortOrder = {},
-                    onToggleSortByName = {}
+                    onToggleSortByName = {},
+                    onSelectItem = {}
                 )
             }
         }
@@ -210,7 +208,6 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         entries = testRoutes
@@ -219,6 +216,7 @@ class RoutesScreenTest {
                     clearErrorMessage = {},
                     onToggleSortOrder = {},
                     onToggleSortByName = {},
+                    onSelectItem = {},
                     onStartPlayback = { }
                 )
             }
@@ -251,7 +249,6 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         entries = testRoutes,
@@ -261,7 +258,8 @@ class RoutesScreenTest {
                     userLocation = null,
                     clearErrorMessage = {},
                     onToggleSortOrder = {},
-                    onToggleSortByName = {}
+                    onToggleSortByName = {},
+                    onSelectItem = {}
                 )
             }
         }
@@ -275,7 +273,6 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         entries = testRoutes,
@@ -285,7 +282,8 @@ class RoutesScreenTest {
                     userLocation = null,
                     clearErrorMessage = {},
                     onToggleSortOrder = {},
-                    onToggleSortByName = {}
+                    onToggleSortByName = {},
+                    onSelectItem = {}
                 )
             }
         }
@@ -299,7 +297,6 @@ class RoutesScreenTest {
         composeTestRule.setContent {
             SoundscapeTheme {
                 RoutesScreen(
-                    homeNavController = rememberNavController(),
                     uiState = MarkersAndRoutesUiState(
                         markers = false,
                         entries = testRoutes
@@ -307,7 +304,8 @@ class RoutesScreenTest {
                     userLocation = null,
                     clearErrorMessage = {},
                     onToggleSortOrder = {},
-                    onToggleSortByName = {}
+                    onToggleSortByName = {},
+                    onSelectItem = {}
                 )
             }
         }

@@ -172,6 +172,7 @@ fun RouteDetailsScreen(
                     }
 
                     uiState.route != null -> {
+                        val route = uiState.route!!
                         Column(
                             modifier = Modifier
                                 .fillMaxSize()
@@ -188,14 +189,14 @@ fun RouteDetailsScreen(
                             ) {
                                 Column {
                                     Text(
-                                        text = uiState.route.route.name,
+                                        text = route.route.name,
                                         style = MaterialTheme.typography.headlineMedium,
                                         modifier = Modifier.padding(bottom = spacing.extraSmall),
                                         color = MaterialTheme.colorScheme.onSurface
                                     )
-                                    if (uiState.route.route.description.isNotEmpty()) {
+                                    if (route.route.description.isNotEmpty()) {
                                         Text(
-                                            text = uiState.route.route.description,
+                                            text = route.route.description,
                                             style = MaterialTheme.typography.bodyMedium,
                                             color = MaterialTheme.colorScheme.onSurface
                                         )
@@ -261,7 +262,7 @@ fun RouteDetailsScreen(
                                     talkbackHint = stringResource(Res.string.route_detail_action_edit_hint),
                                     color = MaterialTheme.colorScheme.onSurface
                                 ) {
-                                    navController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=edit&data=${uiState.route.route.routeId}")
+                                    navController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=edit&data=${route.route.routeId}")
                                 }
                                 IconWithTextButton(
                                     modifier = Modifier.fillMaxWidth(),
@@ -271,13 +272,13 @@ fun RouteDetailsScreen(
                                     talkbackHint = stringResource(Res.string.route_detail_action_share_hint),
                                     color = MaterialTheme.colorScheme.onSurface
                                 ) {
-                                    shareRoute(uiState.route.route.routeId)
+                                    shareRoute(route.route.routeId)
                                 }
                             }
                             // Small map showing route
                             MapContainerLibre(
                                 beaconLocation = null,
-                                routeData = uiState.route,
+                                routeData = route,
                                 allowScrolling = true,
                                 onMapLongClick = { _ -> false },
                                 mapCenter = firstWaypoint,
@@ -293,7 +294,7 @@ fun RouteDetailsScreen(
                                 verticalArrangement = Arrangement.spacedBy(spacing.tiny),
                                 modifier = Modifier.weight(2f)
                             ) {
-                                itemsIndexed(uiState.route.markers) { index, marker ->
+                                itemsIndexed(route.markers) { index, marker ->
                                     LocationItem(
                                         item = LocationDescription(
                                             name = marker.name,

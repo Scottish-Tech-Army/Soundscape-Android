@@ -1,24 +1,15 @@
 package org.scottishtecharmy.soundscape.screens.home.placesnearby
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import org.koin.androidx.compose.koinViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
-import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
-import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
-import org.scottishtecharmy.soundscape.resources.*
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 
 @Composable
 fun PlacesNearbyScreenVM(
@@ -28,8 +19,10 @@ fun PlacesNearbyScreenVM(
 ) {
     val uiState by viewModel.logic.uiState.collectAsStateWithLifecycle()
     PlacesNearbyScreen(
-        homeNavController,
         uiState,
+        onSelectItem = { desc ->
+            homeNavController.navigate(generateLocationDetailsRoute(desc))
+        },
         onClickFolder = { folder, title ->
             viewModel.onClickFolder(folder, title)
         },
@@ -46,55 +39,15 @@ fun PlacesNearbyScreenVM(
     )
 }
 
-@Composable
-fun PlacesNearbyScreen(
-    homeNavController: NavController,
-    uiState: PlacesNearbyUiState,
-    modifier: Modifier = Modifier,
-    onClickFolder: (String, String) -> Unit = {_,_ ->},
-    onClickBack: () -> Unit = {},
-    onStartBeacon: (LocationDescription) -> Unit = {},
-) {
-
-    Scaffold(
-        modifier = modifier,
-        topBar = {
-            Column {
-                CustomAppBar(
-                    title =
-                        if(uiState.level == 0) stringResource(Res.string.search_nearby_screen_title)
-                        else uiState.title,
-                    navigationButtonTitle = stringResource(Res.string.ui_back_button_title),
-                    onNavigateUp = {
-                        onClickBack()
-                    },
-                )
-            }
-        },
-    ) { innerPadding ->
-        Box(Modifier.extraSmallPadding()) {
-            // Display the list of places
-            PlacesNearbyList(
-                uiState = uiState,
-                navController = homeNavController,
-                onClickFolder = onClickFolder,
-                onStartBeacon = onStartBeacon,
-                modifier = modifier.padding(innerPadding)
-            )
-        }
-    }
-}
-
-
 @Preview(showBackground = true)
 @Composable
 fun PlacesNearbyPreview() {
     PlacesNearbyScreen(
-        homeNavController = rememberNavController(),
         uiState =
             PlacesNearbyUiState(
                 nearbyPlaces = FeatureCollection()
             ),
+        onSelectItem = {},
     )
 }
 
@@ -102,7 +55,7 @@ fun PlacesNearbyPreview() {
 @Composable
 fun MarkersScreenPreview() {
     PlacesNearbyScreen(
-        homeNavController = rememberNavController(),
         uiState = PlacesNearbyUiState(),
+        onSelectItem = {},
     )
 }
