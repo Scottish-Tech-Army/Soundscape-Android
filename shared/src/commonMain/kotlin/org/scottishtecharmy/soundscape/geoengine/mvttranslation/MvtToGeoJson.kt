@@ -1,3 +1,5 @@
+@file:OptIn(kotlin.experimental.ExperimentalNativeApi::class)
+
 package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL

@@ -32,6 +32,9 @@ kotlin {
     sourceSets {
         commonMain.dependencies {
             implementation(compose.runtime)
+            implementation(compose.foundation)
+            implementation(compose.material3)
+            implementation(compose.ui)
             api(compose.components.resources)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.ktor.client.core)
@@ -46,6 +49,9 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.jts.core)
             implementation(libs.ktor.client.okhttp)
+        }
+        iosMain.dependencies {
+            implementation(libs.ktor.client.darwin)
         }
     }
 }
@@ -72,6 +78,7 @@ wire {
 
 dependencies {
     add("kspAndroid", libs.androidx.room.compiler)
+    // iOS KSP Room processors deferred: DAO functions need suspend conversion first
 }
 
 room {

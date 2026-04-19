@@ -1,3 +1,5 @@
+@file:OptIn(kotlin.experimental.ExperimentalNativeApi::class)
+
 package org.scottishtecharmy.soundscape.geoengine.utils
 
 import okio.Buffer

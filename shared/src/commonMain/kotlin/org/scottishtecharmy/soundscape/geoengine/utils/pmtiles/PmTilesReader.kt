@@ -271,11 +271,16 @@ internal fun hilbertZxyToIndex(z: Int, x: Long, y: Long): Long {
 }
 
 private class LruCache<K, V>(private val maxSize: Int) {
-    private val map = LinkedHashMap<K, V>(maxSize, 0.75f, true)
+    private val map = LinkedHashMap<K, V>()
 
-    operator fun get(key: K): V? = map[key]
+    operator fun get(key: K): V? {
+        val value = map.remove(key) ?: return null
+        map[key] = value
+        return value
+    }
 
     operator fun set(key: K, value: V) {
+        map.remove(key)
         map[key] = value
         if (map.size > maxSize) {
             val eldest = map.keys.first()

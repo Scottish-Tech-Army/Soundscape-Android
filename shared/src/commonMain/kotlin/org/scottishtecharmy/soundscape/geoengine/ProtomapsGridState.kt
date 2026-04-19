@@ -16,7 +16,7 @@ import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import vector_tile.Tile
 import okio.Path.Companion.toPath
 import kotlin.coroutines.cancellation.CancellationException
-import kotlin.system.measureTimeMillis
+import kotlin.time.measureTime
 import kotlin.time.TimeSource
 
 @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
@@ -118,8 +118,8 @@ open class ProtomapsGridState(
                 if (result != null) {
                     val requestTime = startMark.elapsedNow()
                     println("Tile size ${Tile.ADAPTER.encodedSize(result)}")
-                    var collections: Array<FeatureCollection>?
-                    val mvtParseTime = measureTimeMillis {
+                    var collections: Array<FeatureCollection>? = null
+                    val mvtParseTime = measureTime {
                         collections = vectorTileToGeoJson(
                             tileX = x,
                             tileY = y,
@@ -128,9 +128,9 @@ open class ProtomapsGridState(
                             streetNumberMap = streetNumberMap,
                             tileZoom = zoomLevel)
                     }
-                    val addTime = measureTimeMillis {
+                    val addTime = measureTime {
                         if(collections != null) {
-                            for ((index, collection) in collections.withIndex()) {
+                            for ((index, collection) in collections!!.withIndex()) {
                                 featureCollections[index] += collection
                             }
                         }

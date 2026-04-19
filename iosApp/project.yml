@@ -1,0 +1,29 @@
+name: iosApp
+options:
+  bundleIdPrefix: org.scottishtecharmy.soundscape
+  deploymentTarget:
+    iOS: "16.0"
+settings:
+  ENABLE_BITCODE: "NO"
+targets:
+  iosApp:
+    type: application
+    platform: iOS
+    sources:
+      - iosApp
+    info:
+      path: iosApp/Info.plist
+    settings:
+      FRAMEWORK_SEARCH_PATHS:
+        - "$(inherited)"
+        - "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)"
+      OTHER_LINKER_FLAGS:
+        - "$(inherited)"
+        - "-framework"
+        - "Shared"
+    preBuildScripts:
+      - name: "Build Kotlin Framework"
+        script: |
+          cd "$SRCROOT/.."
+          ./gradlew :shared:embedAndSignAppleFrameworkForXcode
+        basedOnDependencyAnalysis: false
