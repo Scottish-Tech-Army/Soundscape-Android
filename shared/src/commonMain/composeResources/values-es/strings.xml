@@ -1,0 +1,1358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="general_alert_cancel">Cancelar</string>
+    <string name="general_alert_done">Listo</string>
+    <string name="general_loading_start">Preparando …</string>
+    <string name="general_error_location_services_find_location_error">Estamos teniendo problemas para encontrar su ubicación actual.</string>
+    <string name="general_error_add_marker_error">Estamos teniendo problemas para marcar este lugar. Porfavor, inténtelo más tarde.</string>
+    <string name="settings_screen_title">Ajustes</string>
+    <string name="settings_about_app">Acerca de Soundscape</string>
+    <string name="voice_settings_speaking_rate">Velocidad de habla</string>
+    <string name="voice_voices">Voces</string>
+    <string name="beacon_settings_style">Estilos de señal de audio</string>
+    <string name="beacon_styles_current">Actual</string>
+    <string name="beacon_styles_original">Original</string>
+    <string name="beacon_styles_flare">Bengala</string>
+    <string name="beacon_styles_shimmer">Centelleo</string>
+    <string name="beacon_styles_tactile">Táctil</string>
+    <string name="beacon_styles_ping">Silbido</string>
+    <string name="beacon_styles_drop">Caída</string>
+    <string name="beacon_styles_signal">Señal</string>
+    <string name="beacon_styles_signal_slow">Señal (lenta)</string>
+    <string name="beacon_styles_signal_very_slow">Señal (muy lenta)</string>
+    <string name="beacon_styles_mallet">Percutor</string>
+    <string name="beacon_styles_mallet_slow">Percutor (lento)</string>
+    <string name="beacon_styles_mallet_very_slow">Percutor (muy lento)</string>
+    <string name="beacon_audio_beacon">Señal de audio</string>
+    <string name="beacon_action_mute_beacon">Silenciar señal</string>
+    <string name="beacon_action_mute_beacon_acc_hint">Silenciar la señal de audio.</string>
+    <string name="beacon_action_unmute_beacon">Reactivar señal</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">Reactivar la señal de audio.</string>
+    <string name="preview_title">Simular ubicación</string>
+    <string name="preview_go_title">Ir</string>
+    <string name="preview_include_unnamed_roads_title">Carreteras sin nombre</string>
+    <string name="location_detail_title_default">Detalles de la ubicación</string>
+    <string name="location_detail_action_beacon">Iniciar señal de audio</string>
+    <string name="location_detail_action_beacon_hint">Guiarle hacia esta ubicación con sonido.</string>
+    <string name="location_detail_action_save_hint">Guardar esta ubicación para usarla más tarde</string>
+    <string name="location_detail_action_edit_hint">Cambiar el nombre del marcador o agregar anotaciones adicionales</string>
+    <string name="location_detail_action_share_hint">Compartir esta ubicación con otra aplicación</string>
+    <string name="location_detail_action_preview_hint">Iniciar la vista previa en esta ubicación</string>
+    <string name="location_detail_add_waypoint_existing_hint">Quitar este marcador de su ruta.</string>
+    <string name="location_detail_add_waypoint_new_hint">Agregar este marcador como punto de ruta en su ruta.</string>
+    <string name="route_detail_action_start_route">Iniciar ruta</string>
+    <string name="route_detail_action_stop_route">Detener ruta</string>
+    <string name="route_detail_action_edit">Editar ruta</string>
+    <string name="route_detail_action_start_route_hint">Iniciar la reproducción de esta ruta</string>
+    <string name="route_detail_action_start_route_disabled_hint">Agregar puntos de ruta antes de iniciar la ruta</string>
+    <string name="route_detail_action_stop_route_hint">Detener la reproducción de esta ruta</string>
+    <string name="route_detail_action_share_hint">Compartir esta ruta con otra aplicación</string>
+    <string name="route_detail_action_edit_hint">Cambiar o reordenar los puntos de ruta de la ruta.</string>
+    <string name="route_detail_action_create">Nueva ruta</string>
+    <string name="route_detail_action_create_hint">Crear una nueva ruta</string>
+    <string name="route_end_completed_accessibility">Ruta completada. %s</string>
+    <string name="route_detail_action_previous">Punto de ruta anterior</string>
+    <string name="route_detail_action_previous_hint">Mover la señal de audio al punto de ruta anterior</string>
+    <string name="route_detail_action_next">Siguiente punto de ruta</string>
+    <string name="route_detail_action_next_hint">Mover la señal de audio al siguiente punto de ruta</string>
+    <string name="route_detail_edit_description">Descripción</string>
+    <string name="route_detail_edit_waypoints_button">Agregar puntos de ruta</string>
+    <string name="route_detail_edit_delete">Eliminar ruta</string>
+    <string name="route_update_success_title">Actualización completada!</string>
+    <string name="waypoint_title">Punto de ruta</string>
+    <string name="universal_links_alert_action_marker">Guardar como marcador</string>
+    <string name="universal_links_marker_share_message">Le he compartido un marcador de Soundscape: \"%1$s\".\n\nPara abrirlo en Soundscape, utilice %2$s.\n\n Para abrirlo en Google Maps, utilice %3$s.</string>
+    <string name="user_activity_save_marker_title">Guardar marcador</string>
+    <string name="routes_title">Rutas</string>
+    <string name="routes_action_deleted">Ruta eliminada</string>
+    <string name="routes_no_routes_title">Introducción a los puntos de ruta</string>
+    <string name="routes_no_routes_hint_1">Cree una ruta para usted o para otra persona organizando un conjunto de marcadores como puntos de referencia en una ruta.</string>
+    <string name="routes_no_routes_hint_2">Mientras se encuentre en una ruta con Soundscape, se le informará a su llegada a cada uno de los puntos de ruta y la señal de audio avanzará automáticamente hasta el siguiente punto de ruta.</string>
+    <string name="routes_sort_by_name">Ordenar por nombre</string>
+    <string name="routes_sort_by_distance">Ordenar por distancia</string>
+    <string name="markers_title">Marcadores</string>
+    <string name="markers_action_delete">Eliminar marcador</string>
+    <string name="markers_sort_button_sort_by_name">Nombre</string>
+    <string name="markers_sort_button_sort_by_name_voiceover">Ordenada por nombre</string>
+    <string name="markers_sort_button_sort_by_distance">Distancia</string>
+    <string name="markers_sort_button_sort_by_distance_voiceover">Ordenada por distancia</string>
+    <string name="markers_no_markers_title">Introducción a los marcadores</string>
+    <string name="markers_no_markers_hint_1">Crea marcadores para sus destinos favoritos, puntos de una ruta o cualquier ubicación para la que desee oír avisos. Solo tiene que elegir una ubicación, o incluso su ubicación actual, en la pantalla de inicio, y seleccionar \"Guardar como marcador\".</string>
+    <string name="markers_no_markers_hint_2">Intente marcar su casa, la entrada a su trabajo o su lugar favorito del parque.</string>
+    <string name="markers_edit_screen_title_edit">Editar marcador</string>
+    <string name="markers_generic_name">Marcador</string>
+    <string name="markers_marker_with_name">Marcador. %s</string>
+    <string name="markers_marker_created">Marcador creado</string>
+    <string name="markers_annotation">Anotación</string>
+    <string name="search_choose_destination">Elegir destino</string>
+    <string name="search_use_current_location">Ubicación actual</string>
+    <string name="search_nearby_screen_title">Lugares cercanos</string>
+    <string name="search_view_markers">Marcadores y rutas</string>
+    <string name="search_button_markers_accessibility_hint">Seleccionar o editar los marcadores que ha guardado</string>
+    <string name="search_button_nearby_accessibility_hint">Explorar restaurantes, paradas de transporte y más lugares cercanos</string>
+    <string name="search_button_current_location_accessibility_hint">Previsualizar, marcar o compartir su ubicación actual con un amigo</string>
+    <string name="filter_all">Todos los lugares</string>
+    <string name="filter_transit">Transporte público</string>
+    <string name="filter_food_drink">Comida y bebidas</string>
+    <string name="filter_groceries">Comestibles y tiendas multiservicios</string>
+    <string name="filter_banks">Bancos y cajeros automáticos</string>
+    <string name="callouts_panel_title">Oír información acerca de lo que hay a mi alrededor</string>
+    <string name="callouts_allow_callouts">Permitir avisos</string>
+    <string name="callouts_places_and_landmarks">Lugares y puntos de referencia</string>
+    <string name="callouts_mobility">Movilidad</string>
+    <string name="callouts_audio_beacon">Distancia a la señal de audio</string>
+    <string name="callouts_automatic_callouts">Avisos automáticos</string>
+    <string name="callouts_nothing_to_call_out_now">No hay nada de lo que avisar ahora mismo</string>
+    <string name="callouts_nearby_markers">Marcadores cercanos</string>
+    <string name="sleep_sleep">Suspender</string>
+    <string name="sleep_sleeping">Suspendiendo</string>
+    <string name="sleep_sleeping_message">Soundscape se encuentra actualmente en el modo de suspensión. Evita que Soundscape use Servicios de localización o descargue datos y ahorra energía de la batería cuando no se usa Soundscape. Pulse en el botón a continuación para reactivar Soundscape.</string>
+    <string name="sleep_sleep_acc_hint">Poner Soundscape en modo de suspensión</string>
+    <string name="sleep_wake_up_now">Reactivar ahora</string>
+    <string name="intersection_approaching_intersection">Aproximándose al cruce</string>
+    <string name="directions_at_poi">En %s</string>
+    <string name="directions_my_location">Mi ubicación</string>
+    <string name="directions_near_name">Cerca de %s</string>
+    <string name="directions_name_goes_left">%s, a la izquierda</string>
+    <string name="directions_name_goes_right">%s, a la derecha</string>
+    <string name="directions_name_continues_ahead">%s, continúa hacia adelante</string>
+    <string name="directions_direction_ahead">adelante</string>
+    <string name="directions_traveling_n">Viajando al norte</string>
+    <string name="directions_traveling_ne">Viajando al nordeste</string>
+    <string name="directions_traveling_e">Viajando al este</string>
+    <string name="directions_traveling_se">Viajando al sudeste</string>
+    <string name="directions_traveling_s">Viajando al sur</string>
+    <string name="directions_traveling_sw">Viajando al suroeste</string>
+    <string name="directions_traveling_w">Viajando al oeste</string>
+    <string name="directions_traveling_nw">Viajando al noroeste</string>
+    <string name="directions_facing_n">Mirando al norte</string>
+    <string name="directions_facing_ne">Mirando al nordeste</string>
+    <string name="directions_facing_e">Mirando al este</string>
+    <string name="directions_facing_se">Mirando al sudeste</string>
+    <string name="directions_facing_s">Mirando al sur</string>
+    <string name="directions_facing_sw">Mirando al suroeste</string>
+    <string name="directions_facing_w">Mirando al oeste</string>
+    <string name="directions_facing_nw">Mirando al noroeste</string>
+    <string name="directions_heading_n">Caminando hacia el norte</string>
+    <string name="directions_heading_ne">Caminando hacia el nordeste</string>
+    <string name="directions_heading_e">Caminando hacia el este</string>
+    <string name="directions_heading_se">Caminando hacia el sudeste</string>
+    <string name="directions_heading_s">Caminando hacia el sur</string>
+    <string name="directions_heading_sw">Caminando hacia el suroeste</string>
+    <string name="directions_heading_w">Caminando hacia el oeste</string>
+    <string name="directions_heading_nw">Caminando hacia el noroeste</string>
+    <string name="directions_along_traveling_n">Viajando al norte por %s</string>
+    <string name="directions_along_traveling_ne">Viajando al nordeste por %s</string>
+    <string name="directions_along_traveling_e">Viajando al este por %s</string>
+    <string name="directions_along_traveling_se">Viajando al sudeste por %s</string>
+    <string name="directions_along_traveling_s">Viajando al sur por %s</string>
+    <string name="directions_along_traveling_sw">Viajando al suroeste por %s</string>
+    <string name="directions_along_traveling_w">Viajando al oeste por %s</string>
+    <string name="directions_along_traveling_nw">Viajando al noroeste por %s</string>
+    <string name="directions_along_facing_n">Mirando al norte por %s</string>
+    <string name="directions_along_facing_ne">Mirando al nordeste por %s</string>
+    <string name="directions_along_facing_e">Mirando al este por %s</string>
+    <string name="directions_along_facing_se">Mirando al sudeste por %s</string>
+    <string name="directions_along_facing_s">Mirando al sur por %s</string>
+    <string name="directions_along_facing_sw">Mirando al suroeste por %s</string>
+    <string name="directions_along_facing_w">Mirando al oeste por %s</string>
+    <string name="directions_along_facing_nw">Mirando al noroeste por %s</string>
+    <string name="directions_along_heading_n">Caminando hacia el norte por %s</string>
+    <string name="directions_along_heading_ne">Caminando hacia el nordeste por %s</string>
+    <string name="directions_along_heading_e">Caminando hacia el este por %s</string>
+    <string name="directions_along_heading_se">Caminando hacia el sudeste por %s</string>
+    <string name="directions_along_heading_s">Caminando hacia el sur por %s</string>
+    <string name="directions_along_heading_sw">Caminando hacia el suroeste por %s</string>
+    <string name="directions_along_heading_w">Caminando hacia el oeste por %s</string>
+    <string name="directions_along_heading_nw">Caminando hacia el noroeste por %s</string>
+    <string name="distance_format_meters">%s metros</string>
+    <string name="distance_format_km">%s km</string>
+    <string name="distance_format_feet">%s pies</string>
+    <string name="distance_format_miles">%s millas</string>
+    <string name="ui_action_button_my_location">Mi\nubicación</string>
+    <string name="ui_action_button_my_location_acc_hint">Oír información acerca de su ubicación actual</string>
+    <string name="ui_action_button_nearby_markers">Marcadores\ncercanos</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">Información sobre los lugares cercanos que ha marcado</string>
+    <string name="ui_action_button_around_me">Alrededor de\nmí</string>
+    <string name="ui_action_button_around_me_acc_hint">Oír información sobre lugares en los cuatro cuadrantes a su alrededor</string>
+    <string name="ui_action_button_ahead_of_me">Delante\nde mí</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">Oír información sobre los lugares que están delante de usted</string>
+    <string name="ui_menu">Menú</string>
+    <string name="ui_menu_hint">Abrir el menú</string>
+    <string name="ui_menu_close">Menú Cerrar</string>
+    <string name="ui_continue">Continuar</string>
+    <string name="menu_manage_callouts">Administrar avisos</string>
+    <string name="menu_help_and_tutorials">Ayuda y tutoriales</string>
+    <string name="menu_rate">Calificación</string>
+    <string name="ui_back_button_title">Atrás</string>
+    <string name="behavior_experiences_route_nav_title">Detalles de la ruta</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag">Señal establecida en %1$s, a una distancia de %2$s, %3$s de %4$s</string>
+    <string name="help_configuration_section_title">Configuración de Soundscape</string>
+    <string name="settings_help_section_beacons_and_pois">Señales y avisos</string>
+    <string name="settings_help_section_home_screen_buttons">Botones de la pantalla principal</string>
+    <string name="help_config_voices_content">Soundscape puede usar cualquiera de las voces que ha descargado a su teléfono Android en la configuración de salida de texto a voz. Dentro de la aplicación Soundscape, puede seleccionar una voz que no sea la de Android predeterminada yendo a Ajustes en el menú principal y luego seleccionando *\"Voces\" *.</string>
+    <string name="help_offline_page_title">¿Por qué está Soundscape funcionando sin conexión?</string>
+    <string name="help_offline_description">Cuando no hay conexión a Internet o se produce una interrupción en los servicios de Soundscape, Soundscape realiza la transición a un modo sin conexión. Sin embargo, Soundscape continuará funcionando, aunque algunas características pueden estar limitadas.</string>
+    <string name="help_offline_limitations_heading">Limitaciones</string>
+    <string name="help_offline_limitations_description">Los avisos continuarán funcionando si se encuentra en una zona por la que ha pasado antes, que se ha guardado en su historial de avisos. De manera similar, puede colocar una señal de audio o crear un marcador en lugares que se han almacenado en su historial de avisos.</string>
+    <string name="help_offline_troubleshooting_heading">¿Qué puede hacer?</string>
+    <string name="help_offline_troubleshooting_description">Soundscape intentará reanudar el funcionamiento normal cuando su teléfono se conecte a Wi-Fi o los datos móviles estén habilitados y se encuentre en una zona con buena señal. Si su teléfono tiene una buena conexión a Internet, pero Soundscape no reanuda el funcionamiento normal, es posible que haya una interrupción en los servicios de Soundscape.</string>
+    <string name="help_orient_page_title">Alrededor de mí</string>
+    <string name="help_explore_page_title">Delante de mí</string>
+    <string name="help_creating_markers_page_title">Creación de marcadores</string>
+    <string name="help_edit_markers_page_title">Personalización de marcadores</string>
+    <string name="help_remote_page_title">Uso de controles multimedia</string>
+    <string name="help_text_section_title_what">¿Qué es?</string>
+    <string name="help_text_section_title_when">¿Cuándo lo usaría?</string>
+    <string name="help_text_section_title_how">¿Cómo funciona?</string>
+    <string name="terms_of_use_title">Términos de uso</string>
+    <string name="terms_of_use_message">El uso que realice de Soundscape está sujeto a los términos del %s y a los términos establecidos a continuación (en conjunto, los \"Términos de uso\").</string>
+    <string name="terms_of_use_service_agreement">Contrato de servicios de Scottish Tech Army</string>
+    <string name="terms_of_use_accept_checkbox_acc_label">Aceptar las condiciones de uso</string>
+    <string name="terms_of_use_medical_safety_disclaimer">Confirma que Soundscape (1) no se ha diseñado, pensado ni puesto a disposición como dispositivo médico, y (2) no se ha diseñado o pensado para sustituir un dispositivo, diagnóstico, tratamiento o criterio médico profesional.\n\nAviso de seguridad\n\nSoundscape es una ayuda de navegación y no se debe usar en lugar de las habilidades de movilidad, el sentido común y el conocimiento del entorno. Tenga cuidado al navegar por su entorno, ya que los datos de mapas incorporados en el programa Soundscape se capturan desde un programa externo y, por tanto, puede haber limitaciones con la precisión de la información presentada.</string>
+    <string name="first_launch_soundscape_language">Idioma de Soundscape</string>
+    <string name="first_launch_soundscape_language_text">Seleccione el idioma que desea que use Soundscape. Siempre podrá cambiar su selección en los ajustes de la aplicación.</string>
+    <string name="first_launch_welcome_title">Bienvenido!</string>
+    <string name="first_launch_welcome_description">Navegue con confianza utilizando el audio espacial de Soundscape</string>
+    <string name="first_launch_welcome_button">Comenzar</string>
+    <string name="first_launch_headphones_title">Escuchar Soundscape</string>
+    <string name="first_launch_headphones_message_1">Soundscape funciona muy bien con cualquier tipo de auriculares. Si desea usar auriculares, tómelos ahora.</string>
+    <string name="first_launch_headphones_message_2">Si no tiene auriculares o prefiere no usarlos, Soundscape seguirá funcionando con los altavoces del teléfono.</string>
+    <string name="first_launch_callouts_title">Oiga su entorno</string>
+    <string name="first_launch_callouts_message">Soundscape le ayuda a saber dónde se encuentra y hacia dónde va avisando de carreteras, cruces y puntos de interés a medida que se acerque a ellos.</string>
+    <string name="first_launch_callouts_listen">Escuche un ejemplo sobre de lo que Soundscape podría avisar en su próximo paseo</string>
+    <string name="first_launch_callouts_listen_accessibility_label">Escuchar</string>
+    <string name="first_launch_callouts_example_1">Cafetería</string>
+    <string name="first_launch_callouts_example_3">Calle principal, a la izquierda</string>
+    <string name="first_launch_callouts_example_4">Calle principal, a la derecha</string>
+    <string name="first_launch_permissions_title">Navegar con Soundscape</string>
+    <string name="first_launch_permissions_message">Al navegar con Soundscape, el usuario se guiará por una señal de audio. Para ello, Soundscape necesita que el usuario habilite los siguientes permisos:</string>
+    <string name="first_launch_permissions_location">Servicios de localización con Ubicación exacta</string>
+    <string name="first_launch_permissions_motion">Actividad física</string>
+    <string name="first_launch_permissions_required">Este permiso es obligatorio</string>
+    <string name="first_launch_beacon_title">Elegir una señal de audio</string>
+    <string name="first_launch_beacon_message_1">Al navegar con Soundscape, oirá la señal de audio en la dirección de su destino. Siguiendo su sonido, siempre sabrá qué camino tomar.</string>
+    <string name="first_launch_beacon_message_2">Escuche las señales de audio disponibles y seleccione su preferencia.</string>
+    <string name="first_launch_beacon_message_3">Esto se puede cambiar más adelante en la configuración de la aplicación.</string>
+    <string name="first_launch_prompt_title">Todo listo!</string>
+    <string name="first_launch_prompt_message">Está listo para su primer paseo con Soundscape. Para probarlo ahora, simplemente elija un destino cercano, inicie la señal de audio y lo escuchará en la dirección de su destino.</string>
+    <string name="first_launch_prompt_button">Finalizar</string>
+    <string name="help_text_destination_beacons_what">Establecer una señal o una ubicación cercana permite a Soundscape mantenerle informado reproduciendo un sonido de señal de audio procedente de la dirección de esa ubicación. Esta señal se puede silenciar o reactivar en la pantalla principal. Además, Soundscape muestra información acerca de la ubicación de la pantalla principal incluyendo la distancia hasta ella y la dirección si se conoce.</string>
+    <string name="help_text_destination_beacons_when">Establecer una señal es útil cuando desea realizar un seguimiento de un punto de referencia familiar cuando explora una zona nueva o cuando va a algún lugar y desea que le informen acerca de su entorno por el camino. La característica de señal no le ofrece indicaciones paso a paso, sino que le proporciona un sonido audible continuo que le indica la dirección hasta la señal, en relación con el lugar en que se encuentra actualmente. Con la señal de audio, sus capacidades de orientación existentes, e incluso su aplicación de navegación favorita, puede elegir cómo desea llegar a las ubicaciones cercanas a usted.</string>
+    <string name="help_text_destination_beacons_how_1">**Para establecer una señal**:\n\n en primer lugar, vea los detalles de una ubicación usando la barra de búsqueda para buscar un lugar, o pulsando en uno de los botones \"Lugares cercanos\", \"Marcadores guardados\" o \"Ubicación actual\" y seleccionando una ubicación. En la pantalla de detalles de la ubicación, puede seleccionar el botón \"Iniciar señal de audio\". Al pulsar en él, volverá a la pantalla principal y activará una señal de audio proveniente de la dirección del lugar que ha seleccionado. El nombre del lugar que ha seleccionado, junto con su distancia y dirección física, si están disponibles, aparecerán ahora en la pantalla principal de la aplicación.</string>
+    <string name="help_text_destination_beacons_how_2">**Para quitar la señal actual**:\n\n solo tiene que presionar el botón \"Quitar señal\" de la pantalla principal.</string>
+    <string name="help_text_destination_beacons_how_3">**Para silenciar la señal de audio**:\n\nPulse en el botón \"Silenciar señal\" que se encuentra debajo del botón \"Quitar señal\" de la pantalla principal.</string>
+    <string name="help_text_automatic_callouts_what">Soundscape puede informarle sobre lo que hay a su alrededor a medida que se aproxima, anunciando el nombre desde la dirección en la que se encuentra el elemento. La aplicación hará esto automáticamente para todo tipo de elementos, como negocios, paradas de autobús e incluso intersecciones. Puede configurar qué anuncia automáticamente la aplicación en la sección *\"Avisos\"* de la pantalla *\"Ajustes\"*, y puede desactivar todos los avisos cuando quiera que la aplicación permanezca en silencio.</string>
+    <string name="help_text_automatic_callouts_when_1">**Exploración de una zona nueva**:\n\n active los avisos automáticos y dé una vuelta para oír información acerca de todas las diferentes tiendas, restaurantes y lugares similares cuando pase por ellos.</string>
+    <string name="help_text_automatic_callouts_when_2">**Caminar hasta una ubicación específica**:\n\n cuando se dirija a una ubicación concreta, los avisos automáticos para cruces pueden ser especialmente útiles. Los avisos de cruces le informan de la disposición de cruces cuando se aproxima a ellos y confirman la carretera en la que se encuentra al salir de ellos.</string>
+    <string name="help_text_automatic_callouts_when_3">**Cuando necesite silencio**:\n\n cuando esté a punto de cruzar una carretera o simplemente necesite que la aplicación esté en silencio, puede desactivar los avisos. Cuando los avisos estén desactivados, la aplicación solo le dará información si pulsa manualmente en uno de los botones *\"Mi ubicación\"*, *\"Marcadores cercanos\"*, *\"Alrededor de mí\"* o *\"Delante de mí\"*.</string>
+    <string name="help_text_automatic_callouts_how_1">**Activar o desactivar los avisos:**\n\n Desactivar los avisos silenciará la aplicación. Los avisos se pueden activar o desactivar en la sección *\"Avisos\"* de la pantalla *\"Ajustes\"*, donde puede pulsar el interruptor *\"Permitir avisos\"* para activarlos o desactivarlos. También puede activar o desactivar los avisos usando el comando *\"saltar hacia adelante\"* (doble toque y mantener pulsado) si sus auriculares tienen botones de control multimedia. Alternativamente, puede usar el botón *\"Suspender\"* en la esquina superior derecha de la pantalla principal para impedir que Soundscape emita avisos hasta que elija reactivarlo.</string>
+    <string name="help_text_automatic_callouts_how_2">**Gestionar qué avisos oye:**\n\n Para elegir los tipos de elementos que Soundscape anunciará automáticamente, vaya a la pantalla *\"Ajustes\"* desde el menú de la pantalla *\"Inicio\"*. La sección *\"Avisos\"* de la pantalla *\"Ajustes\"* contiene una lista de tipos de elementos que la aplicación puede anunciar. Cada elemento tiene un interruptor que puede activar o desactivar. Si desea desactivar todos los avisos, pulse el interruptor *\"Permitir avisos\"* en la parte superior de la lista.</string>
+    <string name="help_text_my_location_what">El botón *\"Mi ubicación\"* le ofrece información rápidamente que le ayuda a averiguar dónde se encuentra actualmente. *\"Mi ubicación\"* le informa acerca de su ubicación actual, incluidas cosas como la dirección hacia la que está orientado, dónde se encuentran cruces o carreteras cercanas, y dónde hay puntos de interés cercanos.</string>
+    <string name="help_text_my_location_when">*\"Mi ubicación\"* es útil cuando necesita averiguar dónde se encuentra o hacia qué dirección cardinal está orientado.</string>
+    <string name="help_text_my_location_how">Como con los cuatro botones de la parte inferior de la pantalla principal, mantenga el teléfono con la pantalla en posición horizontal (hacia arriba) y la parte superior del teléfono apuntando en la dirección hacia la que está orientado antes de presionar el botón *\"Mi ubicación\"*. Esto actúa como una brújula que le indica a la aplicación hacia qué dirección está orientado. Solo tiene que pulsar en el botón *\"Mi ubicación\"* y escuchar.</string>
+    <string name="help_text_nearby_markers_what">El botón *\"Marcadores cercanos\"* le informa de hasta cuatro marcadores que están cerca de usted. *\"Marcadores cercanos\"* está pensado para ayudarle a orientarse con lugares que ya conoce.</string>
+    <string name="help_text_nearby_markers_when">Cuando intente orientarse en su entorno, use *\"Marcadores cercanos\"* para oír información acerca de las ubicaciones de los lugares que conoce.</string>
+    <string name="help_text_nearby_markers_how">Como con los cuatro botones de la parte inferior de la pantalla principal, mantenga el teléfono con la pantalla en posición horizontal (hacia arriba) y la parte superior del teléfono apuntando en la dirección hacia la que está orientado antes de presionar el botón *\"Marcadores cercanos\"*. Esto actúa como una brújula que le indica a la aplicación hacia qué dirección está orientado. Solo tiene que pulsar en el botón *\"Marcadores cercanos\"* y escuchar hasta cuatro marcadores cerca de usted.</string>
+    <string name="help_text_around_me_what">El botón *\"A mi alrededor\"* le informa de algo cosa en cada uno de los cuadrantes que se encuentran a su alrededor (delante, a la derecha, detrás y a la izquierda). *\"A mi alrededor\"* está pensando para ayudarle a orientarse en su entorno.</string>
+    <string name="help_text_around_me_when">Cuando intente orientarse en su entorno, use *\"A mi alrededor\"* para oír información acerca de lo que hay a su alrededor.</string>
+    <string name="help_text_around_me_how">Como con los cuatro botones de la parte inferior de la pantalla principal, mantenga el teléfono con la pantalla en posición horizontal (hacia arriba) y la parte superior del teléfono apuntando en la dirección hacia la que está orientado antes de presionar el botón *\"Alrededor de mí\"*. Esto actúa como una brújula que le indica a la aplicación hacia qué dirección está orientado. Solo tiene que pulsar el botón *\"Alrededor de mí\"* y oirá los cuatro puntos de interés situados a su alrededor.</string>
+    <string name="help_text_ahead_of_me_what">El botón *\"Delante de mí\"* le indica qué se encuentra delante de usted. *\"Delante de mí\"* está pensado para explorar lo que se encuentra delante de usted cuando está conociendo una zona nueva.</string>
+    <string name="help_text_ahead_of_me_when">Cuando camine por la calle, intente usar *\"Delante de mí\"* para descubrir los lugares y los elementos que aparezcan en cualquier lado de la calle delante de usted.</string>
+    <string name="help_text_ahead_of_me_how">Como con los cuatro botones de la parte inferior de la pantalla principal, mantenga el teléfono con la pantalla en posición horizontal (hacia arriba) y la parte superior del teléfono apuntando en la dirección hacia la que está orientado antes de presionar el botón *\"Delante de mí\"*. Esto actúa como brújula que le indica a la aplicación hacia qué dirección está orientado. Solo tiene que pulsar en el botón *\"Delante de mí\"* y oirá varios puntos de interés que estén más o menos delante de usted.</string>
+    <string name="help_text_remote_control_what">Puede obtener acceso a determinadas características de Soundscape con la ayuda de los botones de control multimedia de sus auriculares. Esta funcionalidad funciona con auriculares Bluetooth o por cable que tenga botones de control multimedia, como Reproducir, Pausa, Siguiente, Anterior y otros. Distintos modelos de auriculares con micrófono pueden incluir diferentes botones; consulte la lista de acciones a continuación para determinar cuáles están disponibles para usted.Tenga en cuenta que esta característica solo funciona con auriculares con micrófono que admitan controles multimedia de Apple (como reproducir y pausa).</string>
+    <string name="help_text_remote_control_when">Los controles multimedia de auriculares se pueden usar mientras Soundscape se está ejecutando. Esto es así si se encuentra actualmente en Soundscape o mientras Soundscape se encuentra en segundo plano e incluso cuando el dispositivo está bloqueado. Sin embargo, tenga en cuenta que los botones de control multimedia no funcionarán con Soundscape si está reproduciendo audio como música, podcasts o vídeos con otra aplicación.</string>
+    <string name="help_text_remote_control_how">Existen 3 modos de funcionamiento para los controles multimedia. El modo se puede seleccionar en la sección *\"Ajustes\"* *\"Controles multimedia\"*. Los modos son:\n\n Modo Original.\n\n⏯ Reproducir/Pausa: Activa o desactiva el audio de la señal.\n\n⏭ Siguiente: Si se está reproduciendo una ruta, mueve la señal de audio al siguiente Punto de ruta de la ruta. Si no se está reproduciendo ninguna ruta, activa *\"Mi ubicación\"*.\n\n⏮ Anterior: Si se está reproduciendo una ruta, mueve la señal de audio al punto de ruta anterior de la ruta. Si no se está reproduciendo ninguna ruta, activa *\"Alrededor de mí\"*.\n\n\n\nComandos de voz.\n\n\n\n⏯ Reproducir/Pausa: Esto hace que la aplicación empiece a escuchar comandos de voz.\n\n\n\nMenú de audio.\n\n\n\n⏭ Siguiente y ⏮ Anterior avanzan o retroceden por una serie de opciones de menú que la aplicación describe mediante síntesis de voz. ⏯ Reproducir/Pausa hace que la aplicación ejecute la opción descrita. Hay un único menú de primer nivel que solo tiene submenús como opciones. Cada submenú agrupa un conjunto de acciones similares.</string>
+    <string name="help_text_markers_content_1">Con Soundscape, puedes marcar tu mundo y todo lo que te importa, como clavos en un mapa.</string>
+    <string name="help_text_markers_content_2">Puede marcar las cosas que son personales y relevantes para usted, como su casa, su oficina y su tienda de comestibles preferida. Puede marcar cualquier lugar o dirección, pero también cosas que podrían no estar disponible tradicionalmente en mapas, por ejemplos, entradas a edificios o parques, lugares con pulsador para cruzar la calle, pasos de cebra o puentes, paradas de autobús o incluso el árbol favorito de su perro y usarlos como referencia durante su paseo.</string>
+    <string name="help_text_markers_content_3">Para que conozca los lugares marcados, Soundscape avisará automáticamente de ellos mientras pasa a pie o se aproxima a ellos o bien, puede usar el botón Marcadores cercanos de la parte inferior de la pantalla principal de Soundscape para oír un aviso espacial de los lugares marcados a su alrededor. Además, tiene la capacidad de establecer una señal de audio en cualquier lugar marcado. Cuando haga esto, se oirá la señal de audio de Soundscape que conoce y podrá actuar de la manera habitual.</string>
+    <string name="help_text_creating_markers_content_1">Puede crear marcadores de tres maneras: buscando el lugar que desea guardar usando la barra de búsqueda, buscando un lugar con el botón \"Lugares cercanos\" o usando el botón \"Usar ubicación actual\", todo ello en la pantalla principal de Soundscape. Una vez que haya encontrado el lugar que desea, al seleccionarlo, irá a la página \"Detalles de la ubicación\". En esta página, seleccione el botón \"Guardar marcador\".</string>
+    <string name="help_text_creating_markers_content_2">Tendrá la opción de personalizar este marcador. Si lo desea, puede cambiar el nombre del marcador y también agregar una anotación que se oirá con el marcador para proporcionar información adicional. Una vez que acabó, seleccione el botón \"Listo\" para guardar el marcador.</string>
+    <string name="help_text_customizing_markers_content_1">Si desea cambiar el nombre de un marcador que ha creado anteriormente, o agregarle una anotación, puede hacerlo seleccionando el marcador en la pestaña \"Marcadores\" de la página \"Marcadores y rutas\" y, luego, \"Editar marcador\" . Puede usarlo para asignar a los marcadores sobrenombres útiles o descriptivos, así como para proporcionarles una descripción más larga con el campo de anotación.</string>
+    <string name="help_text_customizing_markers_content_2">En esta pantalla Editar, también puede eliminar un marcador si ya no lo necesita.</string>
+    <string name="help_text_routes_content_what">Las rutas son una serie de puntos de ruta. Se le informará a su llegada a cada uno de ellos y la señal de audio avanzará automáticamente hasta el siguiente.</string>
+    <string name="help_text_routes_content_when">Es posible que desee crear y usar una ruta en algún lugar que conozca para asegurarse de que se mantiene en el camino correcto o bien, puede que desee usarla como herramienta para ayudarle a familiarizarse a lo largo de un nuevo recorrido.</string>
+    <string name="help_text_routes_content_how_1">**Creación de una ruta**:\n\n en primer lugar, vaya a \"Marcadores y rutas\", y seleccione la pestaña \"Rutas\" y el botón \"Nueva ruta\". Asigne un nombre y una descripción opcional a la ruta, luego agregue puntos de ruta a medida que avanza o elíjalos en su lista de marcadores. Puede reorganizar el orden de los puntos de ruta a lo largo de una ruta en cualquier momento editando la ruta.</string>
+    <string name="help_text_routes_content_how_2">**Edición de una ruta**:\n\n seleccione su ruta en la página \"Marcadores y rutas\" y, a continuación, \"Editar ruta\". Desde aquí, puede agregar y eliminar puntos de ruta, así como editar el nombre y la descripción de la ruta.</string>
+    <string name="help_text_routes_content_how_3">**Uso compartido de una ruta**:\n\n seleccione su ruta en la página \"Marcadores y rutas\" y, a continuación, la opción \"Compartir ruta\" utilizando todas las opciones de uso compartido habituales disponibles para usted.</string>
+    <string name="osm_crossing">Paso de peatones</string>
+    <string name="osm_construction">Construcción</string>
+    <string name="osm_dangerous_area">Área peligrosa</string>
+    <string name="osm_townhall">Ayuntamiento</string>
+    <string name="osm_steps">Escaleras</string>
+    <string name="osm_elevator">Ascensor</string>
+    <string name="osm_walking_path">Sendero peatonal</string>
+    <string name="osm_pedestrian_street">Calle peatonal</string>
+    <string name="osm_bicycle_path">Ruta para bicicletas</string>
+    <string name="osm_residential_street">Calle residencial</string>
+    <string name="osm_service_road">Vía de servicio</string>
+    <string name="osm_road">Carretera</string>
+    <string name="osm_highway">Autopista</string>
+    <string name="osm_highway_named">Autopista %s</string>
+    <string name="osm_highway_refed">Autopista %s</string>
+    <string name="osm_intersection">Cruce</string>
+    <string name="osm_roundabout">Rotonda</string>
+    <string name="osm_highway_ramp">Rampa de autopista</string>
+    <string name="osm_merging_lane">Carril de confluencia</string>
+    <string name="osm_office_building">Edificio de oficinas</string>
+    <string name="osm_school_building">Edificio escolar</string>
+    <string name="osm_covered_pavilion">Pabellón cubierto</string>
+    <string name="osm_convenience_store">Minimercado</string>
+    <string name="osm_building_entrance">Entrada de edificio</string>
+    <string name="osm_assembly_point">Punto de ensamblado</string>
+    <string name="osm_cycle_barrier">Barreras para bicis</string>
+    <string name="osm_turnstile">Torno</string>
+    <string name="osm_cattle_grid">Guardaganado</string>
+    <string name="osm_gate">Puerta</string>
+    <string name="osm_restroom">Aseo</string>
+    <string name="osm_parking_lot">Estacionamiento</string>
+    <string name="osm_parking_entrance">Entrada de aparcamiento</string>
+    <string name="osm_bench">Banco</string>
+    <string name="osm_taxi_waiting_area">Área de espera de taxis</string>
+    <string name="osm_post_office">Oficina de correos</string>
+    <string name="osm_post_box">Casilla de correos</string>
+    <string name="osm_waste_basket">Cubo de la basura</string>
+    <string name="osm_shower">Ducha</string>
+    <string name="osm_bike_parking">Aparcamiento para bicicletas</string>
+    <string name="osm_cafe">Cafetería</string>
+    <string name="osm_restaurant">Restaurante</string>
+    <string name="osm_telephone">Teléfono</string>
+    <string name="osm_gas_station">Gasolinera</string>
+    <string name="osm_bank">Banco</string>
+    <string name="osm_atm">Cajero automático</string>
+    <string name="osm_atm_named">Cajero automático de %s</string>
+    <string name="osm_atm_refed">Cajero automático %s</string>
+    <string name="osm_bus_stop">Parada de autobús</string>
+    <string name="osm_bus_stop_named">Parada de autobús %s</string>
+    <string name="osm_recycling_bin">Papelera de reciclaje</string>
+    <string name="osm_fountain">Fuente</string>
+    <string name="osm_place_of_worship">Lugar de culto</string>
+    <string name="osm_water_fountain">Fuente de agua</string>
+    <string name="osm_car_wash">Lavado de automóviles</string>
+    <string name="osm_vending_machine">Expendedor automático</string>
+    <string name="osm_playground">Patio</string>
+    <string name="osm_sports_field">Campo deportivo</string>
+    <string name="osm_swimming_pool">Piscina</string>
+    <string name="osm_garden">Jardín</string>
+    <string name="osm_park">Parque</string>
+    <string name="osm_picnic_table">Mesa de pícnic</string>
+    <string name="osm_picnic_area">Zona de pícnic</string>
+    <string name="share_title">Compartir</string>
+    <string name="faq_title">Preguntas más frecuentes</string>
+    <string name="faq_title_abbreviated">P+F</string>
+    <string name="faq_tips_title">Sugerencias</string>
+    <string name="faq_section_what_is_soundscape">¿Qué es Soundscape y cómo debo usarlo?</string>
+    <string name="faq_when_to_use_soundscape_question">¿Cuándo debo usar Soundscape?</string>
+    <string name="faq_when_to_use_soundscape_answer">Soundscape tiene características y ventajas que abarcan varios escenarios y escalas de tiempo. Además, el valor de que le aporta Soundscape puede evolucionar con el tiempo; cómo lo use hoy puede ser diferente a la manera en que lo usará dentro de tres meses. Los usuarios piensan en las aplicaciones en cuanto a qué problema les resuelven. Sin duda, Soundscape se puede usar caso por caso cuando se tiene una necesidad informativa específica, por ejemplo, realizar el seguimiento de un destino mientras se llega allí, como ayuda para orientarse al salir de una estación de metro o de un coche, o para encontrar los nombres de las calles para el siguiente cruce o la distancia hasta llegar a él. Sin embargo, la filosofía tras Soundscape es la de \"iluminar su mundo con sonido\" y se ha diseñado para usarlo en cualquier momento en que se encuentre fuera para un reconocimiento del entorno, por ejemplo, para saber los nombres de las calles en las que se encuentra, la dirección a la que se dirige y los nombres de los negocios que pasa. En este modo de uso, nuestros usuarios se han referido a Soundscape como una \"buena aplicación complementaria\", con la que se pueden encontrar lugares fantásticos por casualidad, para \"llenar lagunas en su mapa mental\" y que proporciona más \"confianza al caminar\". Estos son algunos otros ejemplos de cómo nuestros usuarios están incorporando Soundscape a su vida:\n\n\"Soundscape me ayudó a volver a mi ruta después de haberme bajado del autobús y haber caminado en la dirección equivocada.\"\n\n\"Incluso ahora en la ciudad en la que llevo viviendo 3 años conozco mejor lo que me rodea [con Soundscape].\"\n\n\"El sonido 3D mejora mi experiencia al caminar, ya que me siento más conectado con mi entorno… Es más probable que pruebe una ruta nueva ahora que tengo la aplicación.\"\n\n\"Echo de menos caminar y encontrar cosas por casualidad. Tener Soundscape está bien; no resulta un esfuerzo oír las cosas que me rodean. La información relacional es útil y resulta una aplicación excelente para reconocer las situaciones y explorar los pasillos comerciales.\"\n\n\"[Usé Soundscape] para encontrar un pub en medio de York. [I] Usé varias de sus opciones para localizarlo primero y después encontrarlo. Me llevó a 3 metros de la puerta, lo cual es fantástico.\"</string>
+    <string name="faq_markers_function_question">¿Qué son los marcadores y cómo puedo aprovecharlos al máximo?</string>
+    <string name="faq_markers_function_answer">Los marcadores son lugares que guardó. Podrían ser lugares detectables dentro de la aplicación u otros completamente nuevos que ha agregado usted mismo. Para guardar su ubicación actual como marcador, seleccione el botón \"Usar ubicación actual\" en la pantalla principal y, a continuación, \"Guardar como marcador\". Puede guardar otras ubicaciones como marcador buscando el lugar que desea guardar con la barra de búsqueda o buscando un lugar mediante el botón \"Lugares cercanos\"; ambos se encuentran en la página principal de Soundscape. Una vez que ha encontrado el lugar que desea, al seleccionarlo, irá a la página \"Detalles de la ubicación\". En esta página, seleccione el botón \"Guardar como marcador\".</string>
+    <string name="faq_section_getting_the_best_experience">¿Cómo aprovecho al máximo Soundscape?</string>
+    <string name="faq_what_can_I_set_question">¿Qué puedo establecer como señal?</string>
+    <string name="faq_what_can_I_set_answer">Puede establecer una señal de audio en cualquier negocio, lugar, punto de interés, dirección o intersección. Hay varias formas de añadir una señal en una ubicación. Primero, vea los detalles de una ubicación usando la barra de búsqueda para buscar un lugar, o pulse uno de los botones *\"Lugares cercanos\"*, *\"Marcadores guardados\"* o *\"Ubicación actual\"* y seleccione una ubicación. En la pantalla *\"Detalles de la ubicación\"* puede seleccionar el botón *\"Iniciar señal de audio\"*. Al pulsarlo volverá a la pantalla principal y activará una señal audible procedente de la dirección del lugar seleccionado. El nombre del lugar que ha elegido, junto con su distancia y su dirección física, si están disponibles, se mostrará ahora en la pantalla principal de la aplicación.</string>
+    <string name="faq_how_to_use_beacon_question">¿Cómo uso una señal como un profesional?</string>
+    <string name="faq_how_to_use_beacon_answer">Piense en la señal de audio como un \"faro para los oídos\", que le notifica la distancia de su destino en relación con su ubicación, a vuelo de pájaro. Como haría un faro, no indica cómo llegar; es posible que necesite muchas opciones de navegación en el trayecto, de la misma manera que un barco tendrá muchas \"indicaciones\" estratégicas para acercarse al faro. El sonido rítmico continuo de la señal de audio proviene de la dirección de destino y le ayuda a conocer la distancia hasta el destino mientras camina. Cuando vaya caminando directamente hacia el destino, o apunte el teléfono hacia él, oirá un \"tono\" más agudo. Esta característica le permitirá identificar la dirección del destino, puesto que la dirección del sonido rítmico a veces puede ser difícil de percibir en entornos ruidosos. Al buscar el \"tono\" más alto, mantenga el teléfono en posición horizontal y realice un movimiento de barrido con el teléfono lentamente. Gire la cabeza hacia la misma dirección del teléfono para asegurarse de que disfruta de la mejor experiencia de audio espacial.\n\nLa metáfora del faro para el diseño de la señal tiene varias implicaciones naturales:\n\n1. No hay ninguna dirección \"correcta\" en la que viajar al usar la señal, en su lugar, con Soundscape elige cómo llegar allí.\n\n2. El \"tono\" más agudo solo le ayuda a identificar la dirección del destino, pero no es una indicación de cómo llegar allí.\n\n3. Si normalmente sabe cómo llegar a su destino, puede que desee silenciar la señal para la mayor parte del trayecto y activarla solo cuando se acerque a su destino.</string>
+    <string name="faq_why_does_beacon_disappear_question">¿Por qué la señal de audio desaparece a veces?</string>
+    <string name="faq_why_does_beacon_disappear_answer">La señal de audio de Soundscape es básicamente una indicación de dirección, que le informa de dónde se encuentra su destino en relación con la dirección hacia la que está orientado. Cuando Soundscape no está seguro de hacia qué dirección está orientado, baja el volumen de la señal. Muy a menudo esto sucede si ha estado caminando con el teléfono guardado en el bolsillo o en el bolso y deja de moverse, como para cruzar la calle. El sonido de la señal será más alto una vez que empiece a moverse de nuevo o si mantiene el teléfono en posición horizontal y lo apunta en la dirección hacia la que está orientado.</string>
+    <string name="faq_beacon_on_address_question">¿Puedo establecer una señal en una dirección?</string>
+    <string name="faq_beacon_on_address_answer">Sí se puede. Las direcciones no se enumeran de forma predeterminada, pero se pueden encontrar usando el cuadro de búsqueda. Para guardar esta dirección para que no necesite buscarla nuevamente, puede agregarlo como marcador desde la pantalla de inicio seleccionando el botón * \"Guardar como marcador\" *.</string>
+    <string name="faq_beacon_on_home_question">¿Cómo establezco una señal en mi casa?</string>
+    <string name="faq_beacon_on_home_answer">Soundscape admite el establecimiento de señales en direcciones. Para establecer una señal en su casa, o en otra dirección, busque una ubicación en la pantalla principal de Soundscape. En la pantalla \"Detalles de la ubicación\", pulse en el botón \"Iniciar señal de audio\".</string>
+    <string name="faq_how_close_to_destination_question">Cuando establezca una señal en un destino, ¿me llevará Soundscape cerca del destino?</string>
+    <string name="faq_how_close_to_destination_answer">Soundscape puede determinar la ubicación de su destino a menos de varios metros, pero no menos. Cuando Soundscape determine que está cerca de su destino, escuchará un aviso final de que su destino está cerca y la señal se apagará.</string>
+    <string name="faq_turn_beacon_back_on_question">¿Puedo volver a activar la señal cuando esté cerca de mi destino?</string>
+    <string name="faq_turn_beacon_back_on_answer">Sí, puede volver a activar la señal cuando Soundscape la haya desactivado. Para ello, seleccione el botón \"reactivar señal\". Sin embargo, dada la baja precisión de Localización a unos 10 metros, no podemos garantizar el comportamiento de la señal cuando se encuentre a pocos metros de su destino.</string>
+    <string name="faq_road_names_question">¿Por qué Soundscape emite un aviso de los nombres de carreteras dos veces al aproximarse a un cruce?</string>
+    <string name="faq_road_names_answer">Para adaptarse a una variedad de configuraciones de cruces, Soundscape describe los cruces como segmentos de carreteras que parten de un punto común. Soundscape usa audio espacial para indicar el nombre de la carretera que va a la izquierda, el nombre de la carretera que continúa de frente y el nombre de la carretera que va a la derecha, en ese orden. Si la descripción del cruce comienza con la carretera en la que se encuentra en lugar de una a la derecha, la intersección es una T con la carretera en la que se encuentra continuando adelante y una carretera que cruza desde la derecha. De manera similar, si la descripción solo incluye una carretera a la izquierda y a la derecha, sabrá que la carretera en la que se encuentra termina en una T delante de usted. Este método de describir cruces también admite la situación de una carretera que cambia de nombre en un cruce.</string>
+    <string name="faq_why_not_every_business_question">¿Por qué Soundscape no anuncia todos los negocios por los que paso?</string>
+    <string name="faq_why_not_every_business_answer">Soundscape se ha diseñado para no emitir demasiados sonidos. Además, usa Open Street Map como su origen de datos back-end. Open Street Map (OSM, https://www.openstreetmap.org/) es un mapa del mundo editado y desarrollado por la comunidad, que depende de los usuarios, para introducir y mantener datos. Si Soundscape no anuncia un negocio o un punto de interés, lo más probable es que todavía no se haya agregado el negocio, o actualizado en algunos casos, por un miembro de la comunidad de OSM.</string>
+    <string name="faq_callouts_stopping_in_vehicle_question">¿Por qué se detienen algunos avisos cuando estoy en un vehículo?</string>
+    <string name="faq_callouts_stopping_in_vehicle_answer">Para que el número de avisos no resulte abrumador, algunas categorías, como los cruces, no se anuncian automáticamente al viajar en un vehículo.</string>
+    <string name="faq_miss_a_callout_question">¿Qué ocurre si no comprendo un aviso o si no lo oigo por el ruido?</string>
+    <string name="faq_miss_a_callout_answer">Soundscape tiene una lista de avisos recientes para que pueda volver a visitar avisos que pueda haber pasado por alto. Para encontrarla, toca en la barra de búsqueda en la pantalla principal de Soundscape. En la parte inferior de esta página, hay una sección \"Avisos recientes\", donde aparecerá el aviso que ha pasado por alto.</string>
+    <string name="faq_section_how_soundscape_works">¿Cómo funciona Soundscape?</string>
+    <string name="faq_supported_phones_question">¿En qué teléfono se ejecuta Soundscape?</string>
+    <string name="faq_supported_phones_answer">Soundscape para Android está actualmente disponible para teléfonos Android que ejecutan Android 11 o posterior.</string>
+    <string name="faq_supported_headsets_question">¿Qué auriculares debo usar con Soundscape?</string>
+    <string name="faq_supported_headsets_answer">Los auriculares que use con Soundscape es una cuestión de preferencia personal y cada opción tiene sus ventajas e inconvenientes. El requisito específico es usar auriculares estéreos para beneficiarse de los avisos acústicos espaciales 3D de Soundscape.</string>
+    <string name="faq_battery_impact_question">¿Cómo afecta Soundscape a la batería de mi teléfono?</string>
+    <string name="faq_battery_impact_answer">La duración de la batería varía significativamente dependiendo del teléfono que tengas y de su antigüedad. Lo que más consume batería es tener la pantalla encendida, por lo que, para maximizar la duración de la batería de tu teléfono, debes mantener la pantalla bloqueada siempre que sea posible. Para ayudar a minimizar el impacto en la batería de tu teléfono, Soundscape ahora cuenta con un modo de suspensión. Para reducir aún más el consumo de batería, cuando no estés utilizando Soundscape, debes forzar su cierre a través del selector de aplicaciones de tu teléfono.</string>
+    <string name="faq_sleep_mode_battery_question">¿Cómo uso el modo de suspensión para minimizar el impacto de Soundscape en la batería del teléfono?</string>
+    <string name="faq_sleep_mode_battery_answer">Para poner Soundscape en el Modo suspendido, seleccione el botón \"Suspender\" de la esquina superior derecha de la pantalla. Al seleccionar esto, Soundscape dejará de usar Localización y los datos móviles hasta que elija reactivarlos de nuevo.</string>
+    <string name="faq_snooze_mode_battery_question">¿Cómo uso el modo de aplazamiento para minimizar el impacto de Soundscape en la batería del teléfono?</string>
+    <string name="faq_snooze_mode_battery_answer">Para poner Soundscape en el modo de aplazamiento, seleccione el botón \"Suspender\" de la esquina superior derecha de la pantalla. Cuando Soundscape se encuentre en el modo de suspensión, seleccione el botón \"Reactivar cuando salga\" y Soundscape entrará en un estado de bajo consumo de la batería hasta que se vaya de la ubicación actual.</string>
+    <string name="faq_headset_battery_impact_question">¿En qué afecta los auriculares que elija a la duración de la batería del teléfono?</string>
+    <string name="faq_headset_battery_impact_answer">En nuestras pruebas, el consumo de la batería de auriculares Bluetooth es comparable a auriculares con cable y no debería ser un factor importante que se debe tener en cuenta a la hora de seleccionar estos audífonos, es decir, tanto los auriculares intrauditivos como los de conducción ósea tienen opciones de modelos por cable e inalámbricos.</string>
+    <string name="faq_background_battery_impact_question">¿De qué manera afecta a la duración de la batería del teléfono ejecutar Soundscape en segundo plano?</string>
+    <string name="faq_background_battery_impact_answer">Soundscape es una aplicación basada en ubicación y usa Localización para determinar su ubicación. En nuestras pruebas, Soundscape no consume más batería que la aplicación media de mapas, pero si le preocupa el consumo de la batería al usar el teléfono, las siguientes son algunas sugerencias que ayudarán a reducir el uso:\n\n1. Desactive la pantalla lo máximo posible cuando no interactúe con la aplicación.\n\n2. Cuando no use la aplicación, ciérrela. Soundscape usa servicios de localización continuamente mientras se ejecuta por lo que siempre conoce su ubicación, incluso cuando no está en movimiento. No se olvide de reiniciar la aplicación al reanudar el trayecto.\n\n3. Con tiempo frío, mantenga el teléfono en una temperatura cálida ya que el rendimiento de las baterías empeora con temperaturas bajas.</string>
+    <string name="faq_mobile_data_use_question">¿Cuántos datos móviles usa Soundscape?</string>
+    <string name="faq_mobile_data_use_answer">La cantidad de datos móviles que use dependerá de cómo utilice Soundscape. Hemos diseñado Soundscape para que utilice solo una pequeña cantidad de datos cuando esté fuera; por ejemplo, por medio de puntos de ahorro mientras camina, a fin de que no tenga que volver a descargarlos cada vez que vuelva a un punto donde ya haya estado. Para usar menos datos móviles, conéctese siempre que pueda a una red Wi-Fi, en especial cuando descargue la aplicación. Cuando no use Soundscape, presione el botón \"Suspender\" para suspender Soundscape, o bien cierre totalmente la aplicación.</string>
+    <string name="faq_difference_from_map_apps_question">¿En qué se diferencia Soundscape de otras aplicaciones de mapas?</string>
+    <string name="faq_difference_from_map_apps_answer">Soundscape ofrece una descripción de su entorno mediante la exploración y la orientación. Usando el sonido espacial, Soundscape avisará de puntos de interés, parques, carreteras y cruces desde la dirección en la que se encuentran físicamente en su entorno inmediato mientras camina. Por ejemplo, si pasa por una tienda que se encuentre a su derecha, oirá el nombre de la tienda sonando a su derecha. Cuando se acerque a un cruce, oirá el sonido del nombre de cada carretera proveniente de la dirección a la que se dirige, comenzando por la izquierda, adelante y a la derecha.\n\nEn lugar de indicaciones paso a paso, a menudo proporcionadas por aplicaciones de mapas o GPS tradicionales, Soundscape reproducirá una señal de audio en la dirección de su destino, lo que le permitirá llegar allí en sus condiciones con el mejor conocimiento posible de su entorno y de la ubicación de su destino. Soundscape se ha diseñado para ejecutarse en segundo plano, lo que le permite usar una aplicación de indicaciones paso a paso, y seguirá proporcionando todo el tiempo información del entorno mientras llega a su destino.</string>
+    <string name="faq_use_with_wayfinding_apps_question">¿Cómo uso Soundscape con una aplicación de orientación?</string>
+    <string name="faq_use_with_wayfinding_apps_answer">Soundscape se ha diseñado como aplicación de reconocimiento para ayudar a completar la información de su entorno que es posible que no conozca de otra manera. Aunque no se ha diseñado como una aplicación de navegación paso a paso, se puede usar junto con esas aplicaciones para proporcionar información complementaria. Para usar Soundscape con estas aplicaciones, inicie su aplicación de navegación primero. A continuación, pase a Soundscape y establezca una señal en el mismo destino que la aplicación de navegación. En este punto, ambas aplicaciones se estarán ejecutando y oirá indicaciones de ruta a pie de su aplicación de navegación, a la vez que recibirá de Soundscape actualizaciones sobre puntos de interés, cruces y la distancia a la que se encuentra de su destino.</string>
+    <string name="faq_controlling_what_you_hear_question">¿Cómo controlo lo que oigo y cómo lo oigo en Soundscape?</string>
+    <string name="faq_controlling_what_you_hear_answer">Soundscape ofrece varias formas de controlar lo que oye y cuándo:\n\n1. Detener todo el audio inmediatamente: toque dos veces la pantalla con dos dedos para apagar inmediatamente todo el audio, incluidos los avisos que se estén reproduciendo y la señal si está activada. Los avisos se reanudarán automáticamente cuando se aproxime al siguiente cruce o punto de interés, pero la señal audible no lo hará. Seleccione el botón *\"reactivar señal\"* en la pantalla principal para volver a oír la señal.\n\n2. Detener los avisos automáticos: cuando no se esté desplazando o haya llegado a su destino, probablemente no necesite que Soundscape siga notificándole lo que hay a su alrededor. En lugar de salir de la aplicación, puede poner Soundscape en modo de aplazamiento y se reactivará cuando salga del lugar, o puede poner Soundscape en modo de suspensión y permanecerá desactivado hasta que decida volver a encenderlo. Como alternativa, puede seleccionar *\"Ajustes\"* en el menú y desactivar todos los avisos en la sección *\"Avisos\"*.\n\n3. Detener la señal: hay varios escenarios en los que puede establecer un destino pero no necesitar que la señal audible permanezca activada. Por ejemplo, puede saber exactamente cómo llegar a su destino y querer solo actualizaciones automáticas sobre la distancia restante. O bien, puede conocer aproximadamente la ruta y necesitar la señal únicamente cuando se acerque a su destino. Sea cual sea el caso, puede elegir cuándo oír la señal alternando el botón *\"Silenciar señal\"*/*\"Reactivar señal\"* en la pantalla principal.</string>
+    <string name="faq_holding_phone_flat_question">¿Es necesario tener el teléfono en la mano todo el tiempo?</string>
+    <string name="faq_holding_phone_flat_answer">Nó. Cuando camine, puede meter el teléfono en una bolsa, un bolsillo o en cualquier otro lugar adecuado para llevarlo. Soundscape usará la dirección hacia la que camina para averiguar qué avisos emitirá a su izquierda y a su derecha. Cuando se pare, Soundscape no sabrá hacia qué dirección está orientado. Si la señal de audio está activada, observará que se silencia hasta que vuelva a moverse. Saque el teléfono y presione los botones de ubicación y exploración de la parte inferior de la pantalla en cualquier momento, sujetando el teléfono con la parte superior apuntando a la dirección hacia la que está orientado y con la pantalla mirando hacia arriba. En esta posición horizontal, Soundscape usará la brújula del teléfono para determinar hacia qué dirección está orientado y proporcionará avisos espaciales precisos. Si la señal está activada, también observará que el volumen se restablece por completo.</string>
+    <string name="faq_what_is_osm_question">¿Qué es Open Street Map y por qué lo usamos para Soundscape?</string>
+    <string name="faq_what_is_osm_answer">Soundscape aprovecha los datos de mapas geográficos para proporcionar los avisos de información en la aplicación. El origen de mapa principal que usamos es Open Street Map (www.openstreetmap.org), una plataforma de mapas generada por la comunidad y enriquecida, que permite a las organizaciones y a los individuos mejorar la calidad y la granularidad de la información proporcionada, así como la accesibilidad de sus espacios empleando herramientas de creación de mapas de Open Street Map.</string>
+    <string name="faq_tip_beacon_quiet">Si se mete el teléfono en el bolsillo y deja de moverse, bajará el volumen del sonido de la señal porque Soundscape no sabrá hacia qué dirección está orientado. Para solucionar esto, empiece a andar de nuevo o saque el teléfono y manténgalo en posición horizontal.</string>
+    <string name="faq_tip_setting_beacon_on_address">Puede establecer una señal en cualquier dirección. En la pantalla principal de Soundscape, busque la dirección. Tras seleccionar la dirección en los resultados de la búsqueda, aparecerá una pantalla \"Detalles de la ubicación\" y tendrá una opción para \"Iniciar señal de audio\" en la dirección. De esta manera, puede establecer una señal en los negocios, lugares, puntos de interés y residencias que no se incluyan en Open Street Maps.</string>
+    <string name="faq_tip_finding_bus_stops">Para encontrar paradas de autobuses cercanos, seleccione el filtro \"Transporte público\" en la lista Lugares públicos.</string>
+    <string name="faq_tip_turning_beacon_off">Para activar y desactivar el sonido rítmico de la señal, use el botón silenciador de la pantalla principal. Si la señal está silenciada, recibirá actualizaciones de la distancia a su destino cada 50 metros aproximadamente.</string>
+    <string name="faq_tip_turning_off_auto_callouts">Si aún desea interactuar con Soundscape pero no quiere oír avisos automáticos, puede desactivar los avisos yendo a la sección *\"Avisos\"* de la pantalla *\"Ajustes\"* desde el menú. O bien, si no va a usar Soundscape, puede ponerlo en modo de suspensión o en modo de aplazamiento usando el botón *\"Suspender\"* en la pantalla principal.</string>
+    <string name="faq_tip_hold_phone_flat">Soundscape funciona mejor cuando se mantiene el teléfono en posición horizontal con la pantalla hacia arriba y la parte superior del teléfono apuntando al lado contrario del usuario.</string>
+    <string name="faq_tip_create_marker_at_bus_stop">Si hay una ruta de autobuses que utilice a menudo, establezca sus paradas de recogida y salida como Marcadores. De esta manera se guardarán para que pueda volver a encontrarlas fácilmente en la lista que aparece en el menú \"Administrar marcadores\". Puede establecer una señal en ellas y recibirá actualizaciones periódicas sobre la distancia hasta la parada de salida. Nota: Puede desactivar el sonido rítmico y seguir obteniendo actualizaciones de la distancia por el camino.</string>
+    <string name="first_launch_permissions_notification">Notificaciones</string>
+    <string name="no_language_selected">Ningún idioma seleccionado</string>
+    <string name="preview_go_nearest_intersection" tools:ignore="MissingTranslation">Vaya a la intersección más cercana</string>
+    <string name="last_entry_in_list" tools:ignore="MissingTranslation">" y %s"</string>
+    <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">Hacer el mapa pantalla completa</string>
+    <string name="location_detail_exit_full_screen_hint" tools:ignore="MissingTranslation">Salir del mapa en pantalla completa</string>
+    <string name="directions_near_road_and_settlement" tools:ignore="MissingTranslation">Ubicado en las inmediaciones de %1$s y adyacente a %2$s</string>
+    <string name="directions_cardinal_north" tools:ignore="MissingTranslation">Norte</string>
+    <string name="directions_cardinal_north_east" tools:ignore="MissingTranslation">Noreste</string>
+    <string name="directions_cardinal_east" tools:ignore="MissingTranslation">Este</string>
+    <string name="directions_cardinal_south_east" tools:ignore="MissingTranslation">Sudeste</string>
+    <string name="directions_cardinal_south" tools:ignore="MissingTranslation">Sur</string>
+    <string name="directions_cardinal_south_west" tools:ignore="MissingTranslation">Suroeste</string>
+    <string name="directions_cardinal_west" tools:ignore="MissingTranslation">Oeste</string>
+    <string name="directions_cardinal_north_west" tools:ignore="MissingTranslation">Noroeste</string>
+    <string name="directions_cardinal_north_abb" tools:ignore="MissingTranslation">N</string>
+    <string name="directions_cardinal_north_east_abb" tools:ignore="MissingTranslation">NE</string>
+    <string name="directions_cardinal_east_abb" tools:ignore="MissingTranslation">E</string>
+    <string name="directions_cardinal_south_east_abb" tools:ignore="MissingTranslation">SE</string>
+    <string name="directions_cardinal_south_abb" tools:ignore="MissingTranslation">S</string>
+    <string name="directions_cardinal_south_west_abb" tools:ignore="MissingTranslation">SO</string>
+    <string name="directions_cardinal_west_abb" tools:ignore="MissingTranslation">O</string>
+    <string name="directions_cardinal_north_west_abb" tools:ignore="MissingTranslation">NO</string>
+    <string name="notification_text" tools:ignore="MissingTranslation">El servicio de localización de Soundscape se ejecuta incluso cuando el teléfono está bloqueado.</string>
+    <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">Cancelar búsqueda</string>
+    <string name="osm_train_station" tools:ignore="MissingTranslation">Estación de tren</string>
+    <string name="osm_train_station_named" tools:ignore="MissingTranslation">%s estación de tren</string>
+    <string name="osm_tram_stop" tools:ignore="MissingTranslation">Parada de tranvía</string>
+    <string name="osm_tram_stop_named" tools:ignore="MissingTranslation">%s Parón de tranvía</string>
+    <string name="osm_subway" tools:ignore="MissingTranslation">Estación de metro</string>
+    <string name="osm_subway_named" tools:ignore="MissingTranslation">%s estación de metro</string>
+    <string name="osm_ferry_terminal" tools:ignore="MissingTranslation">Terminal de ferry</string>
+    <string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">Terminal de ferry %s</string>
+    <string name="menu_manage_audio" tools:ignore="MissingTranslation">Audio</string>
+    <string name="menu_manage_accessibility" tools:ignore="MissingTranslation">Accesibilidad</string>
+    <string name="settings_theme_is_light" tools:ignore="MissingTranslation">Use tema de luz</string>
+    <string name="settings_theme_contrast" tools:ignore="MissingTranslation">Contraste del tema</string>
+    <string name="settings_theme_contrast_regular" tools:ignore="MissingTranslation">Regular</string>
+    <string name="settings_theme_contrast_medium" tools:ignore="MissingTranslation">Mediana</string>
+    <string name="settings_theme_contrast_high" tools:ignore="MissingTranslation">Alto</string>
+    <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s es la elección %2$s de %3$s</string>
+    <string name="settings_keep_value" tools:ignore="MissingTranslation">mantener</string>
+    <string name="settings_use_value" tools:ignore="MissingTranslation">uso</string>
+    <string name="street_preview_exit" tools:ignore="MissingTranslation">Salir de la simulación de ubicación</string>
+    <string name="settings_travel_recording" tools:ignore="MissingTranslation">Habilitar grabación de viaje</string>
+    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Habilitar estilo de mapa accesible</string>
+    <string name="settings_debug_heading" tools:ignore="MissingTranslation">Opciones de depuración</string>
+    <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">Grabación compartida de viajes</string>
+    <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s a %2$s vía %3$s</string>
+    <string name="confect_name_to" tools:ignore="MissingTranslation">%1$s a %2$s</string>
+    <string name="confect_name_joins" tools:ignore="MissingTranslation">%1$s que se une %2$s y %3$s</string>
+    <string name="confect_name_via" tools:ignore="MissingTranslation">%1$s via %2$s</string>
+    <string name="confect_name_pavement_next_to" tools:ignore="MissingTranslation">La acera junto a %1$s</string>
+    <string name="confect_name_pavement" tools:ignore="MissingTranslation">Acera</string>
+    <string name="confect_name_dead_end" tools:ignore="MissingTranslation">Callejón sin salida</string>
+    <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explora el uso de tecnología innovadora basada en audio para que las personas puedan crear una conciencia más rica de su entorno, convirtiéndose así en más confiado y habilitado para moverse.</string>
+    <string name="settings_section_units" tools:ignore="MissingTranslation">Unidades de medida</string>
+    <string name="settings_units_imperial" tools:ignore="MissingTranslation">Imperial (pies)</string>
+    <string name="settings_units_metric" tools:ignore="MissingTranslation">Métrico (metros)</string>
+    <string name="voice_engine" tools:ignore="MissingTranslation">Sintetizador de voz</string>
+    <string name="first_launch_change_language" tools:ignore="MissingTranslation">Cambiar idioma</string>
+    <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">para cambiar el idioma utilizado para la aplicación</string>
+    <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">Tema claro u oscuro</string>
+    <string name="settings_theme_auto" tools:ignore="MissingTranslation">Auto</string>
+    <string name="settings_theme_light" tools:ignore="MissingTranslation">Claro</string>
+    <string name="settings_theme_dark" tools:ignore="MissingTranslation">Oscuro</string>
+    <string name="permissions_required" tools:ignore="MissingTranslation">La aplicación requiere permisos de ubicación para poder ejecutarse.</string>
+    <string name="permissions_button" tools:ignore="MissingTranslation">Cambiar los permisos en la configuración de la aplicación</string>
+    <string name="settings_show_map" tools:ignore="MissingTranslation">Mostrar mapas en pantalla</string>
+    <string name="menu_contact_support" tools:ignore="MissingTranslation">Contacto con soporte</string>
+    <string name="settings_search_results_language" tools:ignore="MissingTranslation">Idioma de búsqueda</string>
+    <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">Inactivo ya que la ruta está al inicio</string>
+    <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">Inactivo porque la ruta ya ha llegado al final</string>
+    <string name="osm_entrance" tools:ignore="MissingTranslation">entrada</string>
+    <string name="osm_main_entrance" tools:ignore="MissingTranslation">entrada principal</string>
+    <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%1$s %2$s de %3$s</string>
+    <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%2$s del %1$s</string>
+    <string name="offline_maps_title" tools:ignore="MissingTranslation">Mapas sin conexión</string>
+    <string name="offline_map_details_title" tools:ignore="MissingTranslation">Detalles del mapa sin conexión</string>
+    <string name="offline_maps_loading" tools:ignore="MissingTranslation">Cargando…</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">Descargando %s</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">El servidor está preparando %s para su descarga. Esto puede tardar unos minutos y luego la descarga comenzará automáticamente.</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s Libre</string>
+    <string name="offline_maps_storage" tools:ignore="MissingTranslation">Los mapas se guardan en %1$s, que tiene %2$s libre</string>
+    <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">Mapas ya descargados</string>
+    <string name="offline_maps_nearby" tools:ignore="MissingTranslation">Mapas sin conexión cercanos</string>
+    <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">Cargando lista de mapas sin conexión</string>
+    <string name="offline_map_details_delete" tools:ignore="MissingTranslation">Eliminar el mapa sin conexión</string>
+    <string name="offline_map_details_download" tools:ignore="MissingTranslation">Descargar mapa sin conexión</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">Tamaño en el teléfono: %s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">Tamaño de la descarga: %s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">Nombre del mapa: %s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">El mapa incluye estos lugares: %s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">Esos lugares también conocidos como: %s</string>
+    <string name="offline_map_storage_title" tools:ignore="MissingTranslation">Almacenamiento de mapas sin conexión</string>
+    <string name="offline_map_storage_description" tools:ignore="MissingTranslation">Para poder usar Soundscape sin conexión a internet, es posible descargar mapas y guardarlos en el teléfono. El almacenamiento predeterminado es cualquier almacenamiento externo del teléfono, pero aquí puedes seleccionar otra ubicación.</string>
+    <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Utilice la conexión Wi-Fi solo para descargar mapas</string>
+    <string name="text_field_clear_text" tools:ignore="MissingTranslation">Borrar texto</string>
+    <string name="marker_name_description_hint" tools:ignore="MissingTranslation">editar el nombre del marcador</string>
+    <string name="annotation_description_hint" tools:ignore="MissingTranslation">añade una nota opcional para ayudarte a reconocer este marcador más adelante</string>
+    <string name="route_name_description_hint" tools:ignore="MissingTranslation">editar el nombre de la ruta</string>
+    <string name="route_description_description_hint" tools:ignore="MissingTranslation">añadir una descripción opcional para esta ruta</string>
+    <string name="fab_add_item" tools:ignore="MissingTranslation">Agregar elemento</string>
+    <string name="fab_add_route" tools:ignore="MissingTranslation">Agregar ruta</string>
+    <string name="route_waypoint_progress" tools:ignore="MissingTranslation">Ruta %1$s en el punto de ruta %2$s de %3$s</string>
+    <string name="home_screen_title" tools:ignore="MissingTranslation">Inicio de Soundscape</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">Error al descargar los datos del mapa sin conexión</string>
+    <string name="settings_reset_button" tools:ignore="MissingTranslation">Restablecer los ajustes a los valores predeterminados</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">restablecer los ajustes a sus valores predeterminados y, a continuación, reiniciar la aplicación.</string>
+    <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">¿Está seguro?</string>
+    <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">Restablecer los ajustes eliminará todas las configuraciones realizadas en la aplicación. ¿Desea continuar?</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">Marcadores y rutas avanzados</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">En esta pantalla puede exportar e importar marcadores y rutas, así como eliminar todos los marcadores y rutas existentes.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">Exportar la base de datos de marcadores y rutas</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">Importar la base de datos de marcadores y rutas</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">Importación de marcadores y rutas completada.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">Error al importar marcadores y rutas.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Eliminar todos los marcadores y rutas</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Eliminar todos los marcadores y rutas no se puede deshacer. ¿Desea continuar?</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Marcadores y rutas eliminados</string>
+    <string name="new_version_info_text" tools:ignore="MissingTranslation">Información sobre la nueva versión</string>
+    <string name="new_version_info_completed" tools:ignore="MissingTranslation">Cerrar el cuadro de diálogo de la nueva versión</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nHay dos funciones nuevas en esta versión que permiten controlar la aplicación de forma remota, incluso cuando el teléfono está bloqueado. Esto significa que puede mantenerlo en el bolsillo mientras sigue controlando las funciones principales de la aplicación.\n\nAmbos métodos de control remoto usan los botones de control multimedia por Bluetooth, ya sean los de sus auriculares o bien mandos remotos pequeños que puede llevar en la mano o en el bolsillo. El modo de control remoto se selecciona desde la sección Ajustes/Controles multimedia y puede elegir \"Comandos de voz\" para hablar con la aplicación, o \"Menú de audio\" donde se le leen menús con opciones para seleccionar. \"Modo Original\" significa que los botones Bluetooth funcionan de la misma manera que en versiones anteriores.\n\nEn el modo de comandos de voz, al pulsar el botón reproducir/pausa de sus auriculares, la aplicación empieza a escuchar y oirá un sonido breve que lo indica. Si dice \"Ayuda\" se listarán los comandos disponibles que puede usar. Después puede pulsar de nuevo el botón y probar otros comandos. Desgraciadamente, el reconocimiento de voz de Android no admite todos los idiomas y no está disponible en todos los teléfonos.\n\nLa principal dificultad del modo de comandos de voz es que algunos auriculares tardan más que otros en activar su micrófono. Esto significa que, tras pulsar reproducir/pausa, puede tener que esperar hasta 5 segundos antes de poder hablar. Para aprender cuánto tarda, el mejor método es pulsar reproducir/pausa y contar del 1 al 10. El teléfono debería decirle el texto que reconoció y el número en el que empieza será el primero detectado. Esto le ayudará a saber cuánto esperar antes de hablar. Algunos auriculares emiten un sonido claro cuando el micrófono está activo, lo que facilita esto; otros no emiten ningún sonido. Desgraciadamente, puede requerir práctica.\n\nEl otro modo remoto nuevo, el modo Menú de audio, funcionará en todos los idiomas y en todos los teléfonos. Los botones de control multimedia siguiente/anterior avanzan y retroceden por las opciones del menú. El botón reproducir/pausa selecciona la opción actual. Hay un menú de primer nivel y una capa de submenús que agrupan comandos similares.\n\nEstas funciones son muy nuevas y realmente nos gustaría recibir comentarios sobre si funcionan bien y qué otros comandos le gustaría tener.\n\nPor favor, informe de cualquier problema que tenga, por pequeño que sea, a través de la opción *Contacto con soporte* en el menú principal.\n</string>
+    <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licencias de código abierto</string>
+    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal de ferry</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">Terminal de ferry %s</string>
+    <string name="osm_office" tools:ignore="MissingTranslation">Oficina</string>
+    <string name="osm_school" tools:ignore="MissingTranslation">Escuela</string>
+    <string name="osm_roof" tools:ignore="MissingTranslation">Tejado</string>
+    <string name="osm_convenience" tools:ignore="MissingTranslation">Tienda de conveniencia</string>
+    <string name="osm_lift_gate" tools:ignore="MissingTranslation">Puerta elevadora</string>
+    <string name="osm_toilets" tools:ignore="MissingTranslation">Aseos</string>
+    <string name="osm_parking" tools:ignore="MissingTranslation">Aparcamiento</string>
+    <string name="osm_taxi" tools:ignore="MissingTranslation">Parada de taxis</string>
+    <string name="osm_bicycle_parking" tools:ignore="MissingTranslation">Aparcamiento para bicicletas</string>
+    <string name="osm_fuel" tools:ignore="MissingTranslation">Estación de servicio</string>
+    <string name="osm_recycling" tools:ignore="MissingTranslation">Punto de reciclaje</string>
+    <string name="osm_drinking_water" tools:ignore="MissingTranslation">Agua potable</string>
+    <string name="osm_pitch" tools:ignore="MissingTranslation">Campo deportivo</string>
+    <string name="osm_picnic_site" tools:ignore="MissingTranslation">Zona de picnic</string>
+    <string name="osm_information" tools:ignore="MissingTranslation">Información</string>
+    <string name="osm_fire_extinguisher" tools:ignore="MissingTranslation">Extintor</string>
+    <string name="osm_defibrillator" tools:ignore="MissingTranslation">Desfibrilador</string>
+    <string name="osm_guide" tools:ignore="MissingTranslation">Poste indicador</string>
+    <string name="osm_water" tools:ignore="MissingTranslation">Agua</string>
+    <string name="osm_fire_hose" tools:ignore="MissingTranslation">Manguera contra incendios</string>
+    <string name="osm_fire_flapper" tools:ignore="MissingTranslation">Abatidor de incendios</string>
+    <string name="osm_information_point" tools:ignore="MissingTranslation">Punto de información</string>
+    <string name="osm_wetland" tools:ignore="MissingTranslation">Humedal</string>
+    <string name="osm_mud" tools:ignore="MissingTranslation">Barro</string>
+    <string name="osm_access_point" tools:ignore="MissingTranslation">Punto de acceso</string>
+    <string name="osm_life_ring" tools:ignore="MissingTranslation">Aro salvavidas</string>
+    <string name="osm_generic_info" tools:ignore="MissingTranslation">Información genérica</string>
+    <string name="osm_turntable" tools:ignore="MissingTranslation">Plataforma giratoria</string>
+    <string name="osm_survey_point" tools:ignore="MissingTranslation">Punto geodésico</string>
+    <string name="osm_snow_net" tools:ignore="MissingTranslation">Red para nieve</string>
+    <string name="osm_silo" tools:ignore="MissingTranslation">Silo</string>
+    <string name="osm_mast" tools:ignore="MissingTranslation">Mástil</string>
+    <string name="osm_bird_hide" tools:ignore="MissingTranslation">Observatorio para aves</string>
+    <string name="osm_transformer_tower" tools:ignore="MissingTranslation">Torre transformadora</string>
+    <string name="osm_generic_object" tools:ignore="MissingTranslation">Objeto genérico</string>
+    <string name="osm_signal" tools:ignore="MissingTranslation">Señal</string>
+    <string name="osm_rock" tools:ignore="MissingTranslation">Roca</string>
+    <string name="osm_kiln" tools:ignore="MissingTranslation">Horno</string>
+    <string name="osm_crane" tools:ignore="MissingTranslation">Grúa</string>
+    <string name="osm_rune_stone" tools:ignore="MissingTranslation">Piedra rúnica</string>
+    <string name="osm_milestone" tools:ignore="MissingTranslation">Hito kilométrico</string>
+    <string name="osm_lifeguard_platform" tools:ignore="MissingTranslation">Plataforma de socorrista</string>
+    <string name="osm_water_tank" tools:ignore="MissingTranslation">Depósito de agua</string>
+    <string name="osm_sty" tools:ignore="MissingTranslation">Pocilga</string>
+    <string name="osm_navigationaid" tools:ignore="MissingTranslation">Ayuda a la navegación</string>
+    <string name="osm_terminal" tools:ignore="MissingTranslation">Terminal</string>
+    <string name="osm_water_tap" tools:ignore="MissingTranslation">Grifo de agua</string>
+    <string name="osm_water_well" tools:ignore="MissingTranslation">Pozo de agua</string>
+    <string name="osm_petroleum_well" tools:ignore="MissingTranslation">Pozo petrolífero</string>
+    <string name="osm_cross" tools:ignore="MissingTranslation">Cruz</string>
+    <string name="osm_gallows" tools:ignore="MissingTranslation">Horca</string>
+    <string name="osm_speed_camera" tools:ignore="MissingTranslation">Cámara de velocidad</string>
+    <string name="osm_siren" tools:ignore="MissingTranslation">Sirena</string>
+    <string name="osm_pylon" tools:ignore="MissingTranslation">Pilón</string>
+    <string name="osm_mineshaft" tools:ignore="MissingTranslation">Pozo minero</string>
+    <string name="osm_flagpole" tools:ignore="MissingTranslation">Mástil</string>
+    <string name="osm_optical_telegraph" tools:ignore="MissingTranslation">Telégrafo óptico</string>
+    <string name="osm_cannon" tools:ignore="MissingTranslation">Cañón</string>
+    <string name="osm_boundary_stone" tools:ignore="MissingTranslation">Piedra delimitadora</string>
+    <string name="osm_shed" tools:ignore="MissingTranslation">Cobertizo</string>
+    <string name="osm_traffic_cones" tools:ignore="MissingTranslation">Conos de tráfico</string>
+    <string name="osm_firepit" tools:ignore="MissingTranslation">Foso para hogueras</string>
+    <string name="osm_stone" tools:ignore="MissingTranslation">Piedra destacada</string>
+    <string name="osm_surveillance" tools:ignore="MissingTranslation">Vigilancia</string>
+    <string name="osm_monitoring_station" tools:ignore="MissingTranslation">Estación de monitorización</string>
+    <string name="osm_wayside_shrine" tools:ignore="MissingTranslation">Pequeño santuario junto al camino</string>
+    <string name="osm_wayside_cross" tools:ignore="MissingTranslation">Cruz junto al camino</string>
+    <string name="osm_tomb" tools:ignore="MissingTranslation">Tumba</string>
+    <string name="osm_traffic_signals" tools:ignore="MissingTranslation">Semáforos</string>
+    <string name="osm_hut" tools:ignore="MissingTranslation">Cabaña</string>
+    <string name="osm_static_caravan" tools:ignore="MissingTranslation">Caravana fija</string>
+    <string name="osm_bollard" tools:ignore="MissingTranslation">Bolardo</string>
+    <string name="osm_block" tools:ignore="MissingTranslation">Bloque</string>
+    <string name="osm_waste_disposal" tools:ignore="MissingTranslation">Punto de eliminación de residuos</string>
+    <string name="osm_photo_booth" tools:ignore="MissingTranslation">Fotomatón</string>
+    <string name="osm_bbq" tools:ignore="MissingTranslation">Barbacoa</string>
+    <string name="osm_shop" tools:ignore="MissingTranslation">Tienda</string>
+    <string name="osm_newsagent" tools:ignore="MissingTranslation">Tienda de prensa</string>
+    <string name="osm_anime" tools:ignore="MissingTranslation">Tienda de anime</string>
+    <string name="osm_musical_instrument" tools:ignore="MissingTranslation">Tienda de instrumentos musicales</string>
+    <string name="osm_vacuum_cleaner" tools:ignore="MissingTranslation">Tienda de aspiradoras</string>
+    <string name="osm_mobile_phone" tools:ignore="MissingTranslation">Tienda de telefonía móvil</string>
+    <string name="osm_carpet" tools:ignore="MissingTranslation">Tienda de alfombras</string>
+    <string name="osm_trade" tools:ignore="MissingTranslation">Comercio</string>
+    <string name="osm_garden_centre" tools:ignore="MissingTranslation">Centro de jardinería</string>
+    <string name="osm_florist" tools:ignore="MissingTranslation">Floristería</string>
+    <string name="osm_fireplace" tools:ignore="MissingTranslation">Chimenea</string>
+    <string name="osm_massage" tools:ignore="MissingTranslation">Centro de masajes</string>
+    <string name="osm_herbalist" tools:ignore="MissingTranslation">Herbolario</string>
+    <string name="osm_bag" tools:ignore="MissingTranslation">Tienda de bolsos</string>
+    <string name="osm_pastry" tools:ignore="MissingTranslation">Pastelería</string>
+    <string name="osm_deli" tools:ignore="MissingTranslation">Delicatessen</string>
+    <string name="osm_beverages" tools:ignore="MissingTranslation">Tienda de bebidas</string>
+    <string name="osm_alcohol" tools:ignore="MissingTranslation">Tienda de alcohol</string>
+    <string name="osm_substation" tools:ignore="MissingTranslation">Subestación eléctrica</string>
+    <string name="osm_travel_agent" tools:ignore="MissingTranslation">Agencia de viajes</string>
+    <string name="osm_research" tools:ignore="MissingTranslation">Centro de investigación</string>
+    <string name="osm_newspaper" tools:ignore="MissingTranslation">Kiosco de periódicos</string>
+    <string name="osm_ammunition" tools:ignore="MissingTranslation">Armería</string>
+    <string name="osm_wildlife_hide" tools:ignore="MissingTranslation">Refugio para observación de fauna</string>
+    <string name="osm_watchmaker" tools:ignore="MissingTranslation">Relojería</string>
+    <string name="osm_tinsmith" tools:ignore="MissingTranslation">Hojalatería</string>
+    <string name="osm_sun_protection" tools:ignore="MissingTranslation">Tienda de protección solar</string>
+    <string name="osm_sculptor" tools:ignore="MissingTranslation">Taller de escultura</string>
+    <string name="osm_metal_construction" tools:ignore="MissingTranslation">Construcción metálica</string>
+    <string name="osm_handicraft" tools:ignore="MissingTranslation">Tienda de artesanía</string>
+    <string name="osm_cowshed" tools:ignore="MissingTranslation">Establo para vacas</string>
+    <string name="osm_cabin" tools:ignore="MissingTranslation">Cabaña</string>
+    <string name="osm_barn" tools:ignore="MissingTranslation">Granero</string>
+    <string name="osm_warehouse" tools:ignore="MissingTranslation">Almacén</string>
+    <string name="osm_houseboat" tools:ignore="MissingTranslation">Casa flotante</string>
+    <string name="osm_book_store" tools:ignore="MissingTranslation">Librería</string>
+    <string name="osm_generic_place" tools:ignore="MissingTranslation">Lugar</string>
+    <string name="osm_hunting_stand" tools:ignore="MissingTranslation">Puesto de caza</string>
+    <string name="osm_game_feeding" tools:ignore="MissingTranslation">Comedero para caza</string>
+    <string name="osm_crypt" tools:ignore="MissingTranslation">Cripta</string>
+    <string name="osm_animal_shelter" tools:ignore="MissingTranslation">Refugio de animales</string>
+    <string name="osm_animal_boarding" tools:ignore="MissingTranslation">Pensión para animales</string>
+    <string name="osm_blood_donation" tools:ignore="MissingTranslation">Donación de sangre</string>
+    <string name="osm_nursing_home" tools:ignore="MissingTranslation">Residencia de ancianos</string>
+    <string name="osm_dentist" tools:ignore="MissingTranslation">Dentista</string>
+    <string name="osm_baby_hatch" tools:ignore="MissingTranslation">Ventana segura para bebés</string>
+    <string name="osm_language_school" tools:ignore="MissingTranslation">Academia de idiomas</string>
+    <string name="osm_public_bookcase" tools:ignore="MissingTranslation">Librero comunitario</string>
+    <string name="osm_biergarten" tools:ignore="MissingTranslation">Jardín cervecero</string>
+    <string name="osm_running" tools:ignore="MissingTranslation">Pista de atletismo</string>
+    <string name="osm_glaziery" tools:ignore="MissingTranslation">Vidriería</string>
+    <string name="osm_garages" tools:ignore="MissingTranslation">Garajes</string>
+    <string name="osm_retail" tools:ignore="MissingTranslation">Tienda minorista</string>
+    <string name="osm_hotel" tools:ignore="MissingTranslation">Hotel</string>
+    <string name="osm_camp_site" tools:ignore="MissingTranslation">Área de acampada</string>
+    <string name="osm_rugby_league" tools:ignore="MissingTranslation">Campo de rugby (liga)</string>
+    <string name="osm_roller_skating" tools:ignore="MissingTranslation">Patinaje sobre ruedas</string>
+    <string name="osm_multi" tools:ignore="MissingTranslation">Polivalente</string>
+    <string name="osm_ice_hockey" tools:ignore="MissingTranslation">Hockey sobre hielo</string>
+    <string name="osm_hapkido" tools:ignore="MissingTranslation">Hapkido</string>
+    <string name="osm_croquet" tools:ignore="MissingTranslation">Croquet</string>
+    <string name="osm_cricket" tools:ignore="MissingTranslation">Críquet</string>
+    <string name="osm_cockfighting" tools:ignore="MissingTranslation">Pelea de gallos</string>
+    <string name="osm_boxing" tools:ignore="MissingTranslation">Boxeo</string>
+    <string name="osm_bmx" tools:ignore="MissingTranslation">BMX</string>
+    <string name="osm_billiards" tools:ignore="MissingTranslation">Billar</string>
+    <string name="osm_toys" tools:ignore="MissingTranslation">Juguetería</string>
+    <string name="osm_pyrotechnics" tools:ignore="MissingTranslation">Tienda de pirotecnia</string>
+    <string name="osm_laundry" tools:ignore="MissingTranslation">Lavandería</string>
+    <string name="osm_funeral_directors" tools:ignore="MissingTranslation">Funeraria</string>
+    <string name="osm_dry_cleaning" tools:ignore="MissingTranslation">Tintorería</string>
+    <string name="osm_copyshop" tools:ignore="MissingTranslation">Copistería</string>
+    <string name="osm_chalet" tools:ignore="MissingTranslation">Chalet</string>
+    <string name="osm_apartment" tools:ignore="MissingTranslation">Apartamento</string>
+    <string name="osm_water_ski" tools:ignore="MissingTranslation">Esquí acuático</string>
+    <string name="osm_water_polo" tools:ignore="MissingTranslation">Polo acuático</string>
+    <string name="osm_table_soccer" tools:ignore="MissingTranslation">Futbolín</string>
+    <string name="osm_table_tennis" tools:ignore="MissingTranslation">Tenis de mesa</string>
+    <string name="osm_skateboard" tools:ignore="MissingTranslation">Patinaje en monopatín</string>
+    <string name="osm_sailing" tools:ignore="MissingTranslation">Vela</string>
+    <string name="osm_safety_training" tools:ignore="MissingTranslation">Formación en seguridad</string>
+    <string name="osm_rowing" tools:ignore="MissingTranslation">Remo</string>
+    <string name="osm_model_aerodrome" tools:ignore="MissingTranslation">Aeródromo de modelos</string>
+    <string name="osm_korfball" tools:ignore="MissingTranslation">Korfball</string>
+    <string name="osm_ice_stock" tools:ignore="MissingTranslation">Eisstock</string>
+    <string name="osm_gymnastics" tools:ignore="MissingTranslation">Gimnasia</string>
+    <string name="osm_football" tools:ignore="MissingTranslation">Fútbol</string>
+    <string name="osm_field_hockey" tools:ignore="MissingTranslation">Hockey sobre césped</string>
+    <string name="osm_equestrian" tools:ignore="MissingTranslation">Equitación</string>
+    <string name="osm_cycling" tools:ignore="MissingTranslation">Ciclismo</string>
+    <string name="osm_curling" tools:ignore="MissingTranslation">Curling</string>
+    <string name="osm_cricket_nets" tools:ignore="MissingTranslation">Redes de críquet</string>
+    <string name="osm_cliff_diving" tools:ignore="MissingTranslation">Saltos desde acantilado</string>
+    <string name="osm_boules" tools:ignore="MissingTranslation">Petanca</string>
+    <string name="osm_bobsleigh" tools:ignore="MissingTranslation">Bobsleigh</string>
+    <string name="osm_baseball" tools:ignore="MissingTranslation">Béisbol</string>
+    <string name="osm_aikido" tools:ignore="MissingTranslation">Aikido</string>
+    <string name="osm_10pin" tools:ignore="MissingTranslation">Bolera</string>
+    <string name="osm_weapons" tools:ignore="MissingTranslation">Armería</string>
+    <string name="osm_pet" tools:ignore="MissingTranslation">Tienda de mascotas</string>
+    <string name="osm_money_lender" tools:ignore="MissingTranslation">Prestamista</string>
+    <string name="osm_gift" tools:ignore="MissingTranslation">Tienda de regalos</string>
+    <string name="osm_books" tools:ignore="MissingTranslation">Librería</string>
+    <string name="osm_bookmaker" tools:ignore="MissingTranslation">Casa de apuestas</string>
+    <string name="osm_photo" tools:ignore="MissingTranslation">Tienda de fotografía</string>
+    <string name="osm_craft" tools:ignore="MissingTranslation">Tienda de artesanía</string>
+    <string name="osm_motorcycle" tools:ignore="MissingTranslation">Tienda de motocicletas</string>
+    <string name="osm_hunting" tools:ignore="MissingTranslation">Tienda de caza</string>
+    <string name="osm_window_blind" tools:ignore="MissingTranslation">Tienda de persianas</string>
+    <string name="osm_curtain" tools:ignore="MissingTranslation">Tienda de cortinas</string>
+    <string name="osm_antiques" tools:ignore="MissingTranslation">Tienda de antigüedades</string>
+    <string name="osm_paint" tools:ignore="MissingTranslation">Tienda de pinturas</string>
+    <string name="osm_tattoo" tools:ignore="MissingTranslation">Estudio de tatuajes</string>
+    <string name="osm_nutrition_supplements" tools:ignore="MissingTranslation">Tienda de suplementos nutricionales</string>
+    <string name="osm_hearing_aids" tools:ignore="MissingTranslation">Tienda de audífonos</string>
+    <string name="osm_cosmetics" tools:ignore="MissingTranslation">Tienda de cosméticos</string>
+    <string name="osm_watches" tools:ignore="MissingTranslation">Tienda de relojes</string>
+    <string name="osm_jewelry" tools:ignore="MissingTranslation">Joyería</string>
+    <string name="osm_boutique" tools:ignore="MissingTranslation">Boutique</string>
+    <string name="osm_baby_goods" tools:ignore="MissingTranslation">Tienda de productos para bebés</string>
+    <string name="osm_tea" tools:ignore="MissingTranslation">Tienda de té</string>
+    <string name="osm_pasta" tools:ignore="MissingTranslation">Tienda de pasta</string>
+    <string name="osm_coffee" tools:ignore="MissingTranslation">Cafetería</string>
+    <string name="osm_quango" tools:ignore="MissingTranslation">Organismo público cuasi‑autónomo</string>
+    <string name="osm_political_party" tools:ignore="MissingTranslation">Partido político</string>
+    <string name="osm_association" tools:ignore="MissingTranslation">Asociación</string>
+    <string name="osm_architect" tools:ignore="MissingTranslation">Estudio de arquitectura</string>
+    <string name="osm_advertising_agency" tools:ignore="MissingTranslation">Agencia de publicidad</string>
+    <string name="osm_summer_camp" tools:ignore="MissingTranslation">Campamento de verano</string>
+    <string name="osm_dance" tools:ignore="MissingTranslation">Estudio de danza</string>
+    <string name="osm_amusement_arcade" tools:ignore="MissingTranslation">Sala de juegos</string>
+    <string name="osm_adult_gaming_centre" tools:ignore="MissingTranslation">Centro de juegos para adultos</string>
+    <string name="osm_window_construction" tools:ignore="MissingTranslation">Fabricación de ventanas</string>
+    <string name="osm_upholsterer" tools:ignore="MissingTranslation">Taller de tapicería</string>
+    <string name="osm_shoemaker" tools:ignore="MissingTranslation">Zapatero</string>
+    <string name="osm_sawmill" tools:ignore="MissingTranslation">Aserradero</string>
+    <string name="osm_pottery" tools:ignore="MissingTranslation">Taller de cerámica</string>
+    <string name="osm_key_cutter" tools:ignore="MissingTranslation">Duplicado de llaves</string>
+    <string name="osm_hvac" tools:ignore="MissingTranslation">Contratista de climatización (HVAC)</string>
+    <string name="osm_clockmaker" tools:ignore="MissingTranslation">Relojero</string>
+    <string name="osm_carpenter" tools:ignore="MissingTranslation">Carpintero</string>
+    <string name="osm_builder" tools:ignore="MissingTranslation">Constructor</string>
+    <string name="osm_bookbinder" tools:ignore="MissingTranslation">Encuadernador</string>
+    <string name="osm_boatbuilder" tools:ignore="MissingTranslation">Constructor de embarcaciones</string>
+    <string name="osm_brewery" tools:ignore="MissingTranslation">Cervecería</string>
+    <string name="osm_blacksmith" tools:ignore="MissingTranslation">Herrero</string>
+    <string name="osm_basket_maker" tools:ignore="MissingTranslation">Cestería</string>
+    <string name="osm_greenhouse" tools:ignore="MissingTranslation">Invernadero</string>
+    <string name="osm_farm_auxiliary" tools:ignore="MissingTranslation">Edificio auxiliar de granja</string>
+    <string name="osm_civic" tools:ignore="MissingTranslation">Edificio cívico</string>
+    <string name="osm_bungalow" tools:ignore="MissingTranslation">Bungalow</string>
+    <string name="osm_detached" tools:ignore="MissingTranslation">Casa independiente</string>
+    <string name="osm_hair_dresser" tools:ignore="MissingTranslation">Peluquería</string>
+    <string name="osm_clothing_store" tools:ignore="MissingTranslation">Tienda de ropa</string>
+    <string name="osm_user" tools:ignore="MissingTranslation">Usuario</string>
+    <string name="osm_dojo" tools:ignore="MissingTranslation">Dojo</string>
+    <string name="osm_nightclub" tools:ignore="MissingTranslation">Club nocturno</string>
+    <string name="osm_community_centre" tools:ignore="MissingTranslation">Centro comunitario</string>
+    <string name="osm_brothel" tools:ignore="MissingTranslation">Burdel</string>
+    <string name="osm_veterinary" tools:ignore="MissingTranslation">Clínica veterinaria</string>
+    <string name="osm_social_facility" tools:ignore="MissingTranslation">Centro de servicios sociales</string>
+    <string name="osm_clinic" tools:ignore="MissingTranslation">Clínica</string>
+    <string name="osm_charging_station" tools:ignore="MissingTranslation">Punto de carga para vehículos eléctricos</string>
+    <string name="osm_kindergarten" tools:ignore="MissingTranslation">Jardín de infancia</string>
+    <string name="osm_ice_cream" tools:ignore="MissingTranslation">Heladería</string>
+    <string name="osm_fast_food" tools:ignore="MissingTranslation">Restaurante de comida rápida</string>
+    <string name="osm_commercial" tools:ignore="MissingTranslation">Edificio comercial</string>
+    <string name="osm_canoe" tools:ignore="MissingTranslation">Piragüismo</string>
+    <string name="osm_scuba_diving" tools:ignore="MissingTranslation">Buceo</string>
+    <string name="osm_fishing" tools:ignore="MissingTranslation">Pesca</string>
+    <string name="osm_optician" tools:ignore="MissingTranslation">Óptica</string>
+    <string name="osm_confectionery" tools:ignore="MissingTranslation">Tienda de golosinas</string>
+    <string name="osm_bunker" tools:ignore="MissingTranslation">Búnker</string>
+    <string name="osm_sleeping_pods" tools:ignore="MissingTranslation">Cápsulas para dormir</string>
+    <string name="osm_motel" tools:ignore="MissingTranslation">Motel</string>
+    <string name="osm_guest_house" tools:ignore="MissingTranslation">Casa de huéspedes</string>
+    <string name="osm_wrestling" tools:ignore="MissingTranslation">Lucha libre</string>
+    <string name="osm_toboggan" tools:ignore="MissingTranslation">Pista de trineo</string>
+    <string name="osm_skiing" tools:ignore="MissingTranslation">Esquí</string>
+    <string name="osm_rc_car" tools:ignore="MissingTranslation">Coche teledirigido</string>
+    <string name="osm_paddle_tennis" tools:ignore="MissingTranslation">Pádel</string>
+    <string name="osm_hockey" tools:ignore="MissingTranslation">Hockey</string>
+    <string name="osm_fencing" tools:ignore="MissingTranslation">Esgrima</string>
+    <string name="osm_bowls" tools:ignore="MissingTranslation">Bowls (bolos sobre césped)</string>
+    <string name="osm_badminton" tools:ignore="MissingTranslation">Bádminton</string>
+    <string name="osm_archery" tools:ignore="MissingTranslation">Tiro con arco</string>
+    <string name="osm_american_football" tools:ignore="MissingTranslation">Fútbol americano</string>
+    <string name="osm_travel_agency" tools:ignore="MissingTranslation">Agencia de viajes</string>
+    <string name="osm_tobacco" tools:ignore="MissingTranslation">Tienda de tabaco</string>
+    <string name="osm_e_cigarette" tools:ignore="MissingTranslation">Tienda de cigarrillos electrónicos</string>
+    <string name="osm_video" tools:ignore="MissingTranslation">Videoclub</string>
+    <string name="osm_car_repair" tools:ignore="MissingTranslation">Taller mecánico</string>
+    <string name="osm_hifi" tools:ignore="MissingTranslation">Tienda de audio</string>
+    <string name="osm_lamps" tools:ignore="MissingTranslation">Tienda de lámparas</string>
+    <string name="osm_kitchen" tools:ignore="MissingTranslation">Tienda de cocinas</string>
+    <string name="osm_interior_decoration" tools:ignore="MissingTranslation">Tienda de decoración</string>
+    <string name="osm_houseware" tools:ignore="MissingTranslation">Tienda de artículos para el hogar</string>
+    <string name="osm_erotic" tools:ignore="MissingTranslation">Tienda erótica</string>
+    <string name="osm_beauty" tools:ignore="MissingTranslation">Tienda de belleza</string>
+    <string name="osm_wine" tools:ignore="MissingTranslation">Tienda de vinos</string>
+    <string name="osm_dairy" tools:ignore="MissingTranslation">Tienda de lácteos</string>
+    <string name="osm_cheese" tools:ignore="MissingTranslation">Quesería</string>
+    <string name="osm_bakery" tools:ignore="MissingTranslation">Panadería</string>
+    <string name="osm_telecommunication" tools:ignore="MissingTranslation">Tienda de telecomunicaciones</string>
+    <string name="osm_tax" tools:ignore="MissingTranslation">Oficina de impuestos</string>
+    <string name="osm_real_estate_agent" tools:ignore="MissingTranslation">Agencia inmobiliaria</string>
+    <string name="osm_notary" tools:ignore="MissingTranslation">Notaría</string>
+    <string name="osm_ngo" tools:ignore="MissingTranslation">Oficina de ONG</string>
+    <string name="osm_lawyer" tools:ignore="MissingTranslation">Despacho de abogados</string>
+    <string name="osm_it" tools:ignore="MissingTranslation">Servicios informáticos</string>
+    <string name="osm_foundation" tools:ignore="MissingTranslation">Fundación</string>
+    <string name="osm_employment_agency" tools:ignore="MissingTranslation">Agencia de empleo</string>
+    <string name="osm_educational_institution" tools:ignore="MissingTranslation">Centro educativo</string>
+    <string name="osm_adoption_agency" tools:ignore="MissingTranslation">Agencia de adopción</string>
+    <string name="osm_miniature_golf" tools:ignore="MissingTranslation">Minigolf</string>
+    <string name="osm_building" tools:ignore="MissingTranslation">Edificio</string>
+    <string name="osm_winery" tools:ignore="MissingTranslation">Bodega</string>
+    <string name="osm_tiler" tools:ignore="MissingTranslation">Colocador de azulejos</string>
+    <string name="osm_chimney_sweeper" tools:ignore="MissingTranslation">Deshollinador</string>
+    <string name="osm_stand_builder" tools:ignore="MissingTranslation">Constructor de stands</string>
+    <string name="osm_saddler" tools:ignore="MissingTranslation">Talabartero</string>
+    <string name="osm_plumber" tools:ignore="MissingTranslation">Fontanero</string>
+    <string name="osm_plasterer" tools:ignore="MissingTranslation">Enlucidor</string>
+    <string name="osm_painter" tools:ignore="MissingTranslation">Pintor</string>
+    <string name="osm_jeweller" tools:ignore="MissingTranslation">Joyería</string>
+    <string name="osm_floorer" tools:ignore="MissingTranslation">Instalador de suelos</string>
+    <string name="osm_distillery" tools:ignore="MissingTranslation">Destilería</string>
+    <string name="osm_carpet_layer" tools:ignore="MissingTranslation">Instalador de alfombras</string>
+    <string name="osm_beekeeper" tools:ignore="MissingTranslation">Apicultor</string>
+    <string name="osm_public" tools:ignore="MissingTranslation">Público</string>
+    <string name="osm_dormitory" tools:ignore="MissingTranslation">Residencia</string>
+    <string name="osm_apartments" tools:ignore="MissingTranslation">Apartamentos</string>
+    <string name="osm_internet_cafe" tools:ignore="MissingTranslation">Cibercafé</string>
+    <string name="osm_shoe_shop" tools:ignore="MissingTranslation">Zapatería</string>
+    <string name="osm_generic_shop" tools:ignore="MissingTranslation">Tienda</string>
+    <string name="osm_coffee_shop" tools:ignore="MissingTranslation">Cafetería</string>
+    <string name="osm_coworking_space" tools:ignore="MissingTranslation">Espacio de coworking</string>
+    <string name="osm_stripclub" tools:ignore="MissingTranslation">Club de striptease</string>
+    <string name="osm_ev_charging" tools:ignore="MissingTranslation">Punto de recarga para vehículos eléctricos</string>
+    <string name="osm_pub" tools:ignore="MissingTranslation">Pub</string>
+    <string name="osm_obstacle_course" tools:ignore="MissingTranslation">Circuito de obstáculos</string>
+    <string name="osm_volleyball" tools:ignore="MissingTranslation">Voleibol</string>
+    <string name="osm_tennis" tools:ignore="MissingTranslation">Tenis</string>
+    <string name="osm_soccer" tools:ignore="MissingTranslation">Fútbol</string>
+    <string name="osm_shooting" tools:ignore="MissingTranslation">Tiro</string>
+    <string name="osm_rugby_union" tools:ignore="MissingTranslation">Rugby</string>
+    <string name="osm_orienteering" tools:ignore="MissingTranslation">Orientación</string>
+    <string name="osm_netball" tools:ignore="MissingTranslation">Netball</string>
+    <string name="osm_motor" tools:ignore="MissingTranslation">Tienda de vehículos y accesorios</string>
+    <string name="osm_kitesurfing" tools:ignore="MissingTranslation">Kitesurf</string>
+    <string name="osm_karting" tools:ignore="MissingTranslation">Karting</string>
+    <string name="osm_judo" tools:ignore="MissingTranslation">Judo</string>
+    <string name="osm_horseshoes" tools:ignore="MissingTranslation">Juego de herraduras</string>
+    <string name="osm_handball" tools:ignore="MissingTranslation">Balonmano</string>
+    <string name="osm_golf" tools:ignore="MissingTranslation">Golf</string>
+    <string name="osm_gaelic_games" tools:ignore="MissingTranslation">Juegos gaélicos</string>
+    <string name="osm_diving" tools:ignore="MissingTranslation">Buceo</string>
+    <string name="osm_darts" tools:ignore="MissingTranslation">Dardos</string>
+    <string name="osm_climbing_adventure" tools:ignore="MissingTranslation">Aventura de escalada</string>
+    <string name="osm_basketball" tools:ignore="MissingTranslation">Baloncesto</string>
+    <string name="osm_bandy" tools:ignore="MissingTranslation">Bandy</string>
+    <string name="osm_australian_football" tools:ignore="MissingTranslation">Fútbol australiano</string>
+    <string name="osm_9pin" tools:ignore="MissingTranslation">Bolos (9 bolos)</string>
+    <string name="osm_vacant" tools:ignore="MissingTranslation">Vacante</string>
+    <string name="osm_lottery" tools:ignore="MissingTranslation">Punto de lotería</string>
+    <string name="osm_trophy" tools:ignore="MissingTranslation">Tienda de trofeos</string>
+    <string name="osm_music" tools:ignore="MissingTranslation">Tienda de música</string>
+    <string name="osm_games" tools:ignore="MissingTranslation">Tienda de juegos</string>
+    <string name="osm_tyres" tools:ignore="MissingTranslation">Taller de neumáticos</string>
+    <string name="osm_sports" tools:ignore="MissingTranslation">Tienda de deportes</string>
+    <string name="osm_outdoor" tools:ignore="MissingTranslation">Tienda de artículos para actividades al aire libre</string>
+    <string name="osm_car" tools:ignore="MissingTranslation">Concesionario de coches</string>
+    <string name="osm_electronics" tools:ignore="MissingTranslation">Tienda de electrónica</string>
+    <string name="osm_computer" tools:ignore="MissingTranslation">Tienda de informática</string>
+    <string name="osm_furniture" tools:ignore="MissingTranslation">Tienda de muebles</string>
+    <string name="osm_candles" tools:ignore="MissingTranslation">Tienda de velas</string>
+    <string name="osm_hardware" tools:ignore="MissingTranslation">Ferretería</string>
+    <string name="osm_gas" tools:ignore="MissingTranslation">Gasolinera</string>
+    <string name="osm_energy" tools:ignore="MissingTranslation">Empresa energética</string>
+    <string name="osm_doityourself" tools:ignore="MissingTranslation">Tienda de bricolaje</string>
+    <string name="osm_bathroom_furnishing" tools:ignore="MissingTranslation">Tienda de baños</string>
+    <string name="osm_medical_supply" tools:ignore="MissingTranslation">Tienda de suministros médicos</string>
+    <string name="osm_variety_store" tools:ignore="MissingTranslation">Tienda de variedades</string>
+    <string name="osm_second_hand" tools:ignore="MissingTranslation">Tienda de segunda mano</string>
+    <string name="osm_charity" tools:ignore="MissingTranslation">Tienda benéfica</string>
+    <string name="osm_fashion" tools:ignore="MissingTranslation">Tienda de moda</string>
+    <string name="osm_fabric" tools:ignore="MissingTranslation">Tienda de telas</string>
+    <string name="osm_clothes" tools:ignore="MissingTranslation">Tienda de ropa</string>
+    <string name="osm_butcher" tools:ignore="MissingTranslation">Carnicería</string>
+    <string name="osm_water_utility" tools:ignore="MissingTranslation">Empresa de agua</string>
+    <string name="osm_realtor" tools:ignore="MissingTranslation">Agente inmobiliario</string>
+    <string name="osm_company" tools:ignore="MissingTranslation">Empresa</string>
+    <string name="osm_accountant" tools:ignore="MissingTranslation">Contable</string>
+    <string name="osm_bunker_silo" tools:ignore="MissingTranslation">Silo bunker</string>
+    <string name="osm_hackerspace" tools:ignore="MissingTranslation">Espacio hacker</string>
+    <string name="osm_lifeguard_base" tools:ignore="MissingTranslation">Base de socorristas</string>
+    <string name="osm_roofer" tools:ignore="MissingTranslation">Techador</string>
+    <string name="osm_rigger" tools:ignore="MissingTranslation">Especialista en rigging</string>
+    <string name="osm_parquet_layer" tools:ignore="MissingTranslation">Instalador de parquet</string>
+    <string name="osm_gardener" tools:ignore="MissingTranslation">Jardinero</string>
+    <string name="osm_stable" tools:ignore="MissingTranslation">Establo</string>
+    <string name="osm_garage" tools:ignore="MissingTranslation">Garaje</string>
+    <string name="osm_transportation" tools:ignore="MissingTranslation">Instalación de transporte</string>
+    <string name="osm_house" tools:ignore="MissingTranslation">Casa</string>
+    <string name="osm_helipad" tools:ignore="MissingTranslation">Helipuerto</string>
+    <string name="osm_apron" tools:ignore="MissingTranslation">Plataforma de aeronaves</string>
+    <string name="osm_consumer_electronics_store" tools:ignore="MissingTranslation">Tienda de electrónica de consumo</string>
+    <string name="osm_speciality_store" tools:ignore="MissingTranslation">Tienda especializada</string>
+    <string name="osm_defined" tools:ignore="MissingTranslation">Definido</string>
+    <string name="osm_sauna" tools:ignore="MissingTranslation">Sauna</string>
+    <string name="osm_gym" tools:ignore="MissingTranslation">Gimnasio</string>
+    <string name="osm_crematorium" tools:ignore="MissingTranslation">Crematorio</string>
+    <string name="osm_gambling" tools:ignore="MissingTranslation">Local de apuestas</string>
+    <string name="osm_music_school" tools:ignore="MissingTranslation">Escuela de música</string>
+    <string name="osm_bar" tools:ignore="MissingTranslation">Bar</string>
+    <string name="osm_farm" tools:ignore="MissingTranslation">Granja</string>
+    <string name="osm_bicycle" tools:ignore="MissingTranslation">Tienda de bicicletas</string>
+    <string name="osm_tailor" tools:ignore="MissingTranslation">Sastre</string>
+    <string name="osm_locksmith" tools:ignore="MissingTranslation">Cerrajero</string>
+    <string name="osm_industrial" tools:ignore="MissingTranslation">Área industrial</string>
+    <string name="osm_wilderness_hut" tools:ignore="MissingTranslation">Refugio en zonas remotas</string>
+    <string name="osm_hostel" tools:ignore="MissingTranslation">Albergue</string>
+    <string name="osm_caravan_site" tools:ignore="MissingTranslation">Área para caravanas</string>
+    <string name="osm_weightlifting" tools:ignore="MissingTranslation">Instalación de halterofilia</string>
+    <string name="osm_taekwondo" tools:ignore="MissingTranslation">Club de taekwondo</string>
+    <string name="osm_swimming" tools:ignore="MissingTranslation">Piscina</string>
+    <string name="osm_surfing" tools:ignore="MissingTranslation">Zona de surf</string>
+    <string name="osm_skating" tools:ignore="MissingTranslation">Pista de patinaje</string>
+    <string name="osm_racquet" tools:ignore="MissingTranslation">Instalación de deportes de raqueta</string>
+    <string name="osm_pelota" tools:ignore="MissingTranslation">Frontón (pelota vasca)</string>
+    <string name="osm_paragliding" tools:ignore="MissingTranslation">Zona de parapente</string>
+    <string name="osm_parachuting" tools:ignore="MissingTranslation">Zona de paracaidismo</string>
+    <string name="osm_motocross" tools:ignore="MissingTranslation">Circuito de motocross</string>
+    <string name="osm_ice_skating" tools:ignore="MissingTranslation">Pista de patinaje sobre hielo</string>
+    <string name="osm_horse_racing" tools:ignore="MissingTranslation">Hipódromo</string>
+    <string name="osm_dog_racing" tools:ignore="MissingTranslation">Pista de carreras de perros</string>
+    <string name="osm_climbing" tools:ignore="MissingTranslation">Zona de escalada</string>
+    <string name="osm_chess" tools:ignore="MissingTranslation">Club de ajedrez</string>
+    <string name="osm_canadian_football" tools:ignore="MissingTranslation">Campo de fútbol canadiense</string>
+    <string name="osm_beachvolleyball" tools:ignore="MissingTranslation">Cancha de voleibol de playa</string>
+    <string name="osm_base" tools:ignore="MissingTranslation">Base</string>
+    <string name="osm_athletics" tools:ignore="MissingTranslation">Pista de atletismo</string>
+    <string name="osm_pawnbroker" tools:ignore="MissingTranslation">Casa de empeños</string>
+    <string name="osm_ticket" tools:ignore="MissingTranslation">Taquilla</string>
+    <string name="osm_stationery" tools:ignore="MissingTranslation">Papelería</string>
+    <string name="osm_video_games" tools:ignore="MissingTranslation">Tienda de videojuegos</string>
+    <string name="osm_model" tools:ignore="MissingTranslation">Tienda de maquetas</string>
+    <string name="osm_frame" tools:ignore="MissingTranslation">Tienda de marcos</string>
+    <string name="osm_art" tools:ignore="MissingTranslation">Tienda de arte</string>
+    <string name="osm_car_parts" tools:ignore="MissingTranslation">Tienda de repuestos para automóviles</string>
+    <string name="osm_radiotechnics" tools:ignore="MissingTranslation">Tienda de equipos de radio</string>
+    <string name="osm_bed" tools:ignore="MissingTranslation">Tienda de camas</string>
+    <string name="osm_garden_furniture" tools:ignore="MissingTranslation">Tienda de muebles de jardín</string>
+    <string name="osm_electrical" tools:ignore="MissingTranslation">Tienda de material eléctrico</string>
+    <string name="osm_perfumery" tools:ignore="MissingTranslation">Perfumería</string>
+    <string name="osm_hairdresser" tools:ignore="MissingTranslation">Peluquería</string>
+    <string name="osm_drugstore" tools:ignore="MissingTranslation">Droguería</string>
+    <string name="osm_shoes" tools:ignore="MissingTranslation">Zapatería</string>
+    <string name="osm_leather" tools:ignore="MissingTranslation">Marroquinería</string>
+    <string name="osm_general" tools:ignore="MissingTranslation">Tienda general</string>
+    <string name="osm_seafood" tools:ignore="MissingTranslation">Pescadería</string>
+    <string name="osm_organic" tools:ignore="MissingTranslation">Tienda de productos ecológicos</string>
+    <string name="osm_greengrocer" tools:ignore="MissingTranslation">Frutería</string>
+    <string name="osm_chocolate" tools:ignore="MissingTranslation">Chocolatería</string>
+    <string name="osm_brewing_supplies" tools:ignore="MissingTranslation">Tienda de suministros para elaboración casera de cerveza</string>
+    <string name="osm_tax_advisor" tools:ignore="MissingTranslation">Asesor fiscal</string>
+    <string name="osm_private_investigator" tools:ignore="MissingTranslation">Detective privado</string>
+    <string name="osm_government" tools:ignore="MissingTranslation">Oficina gubernamental</string>
+    <string name="osm_forestry" tools:ignore="MissingTranslation">Gestión forestal</string>
+    <string name="osm_estate_agent" tools:ignore="MissingTranslation">Agente inmobiliario</string>
+    <string name="osm_spring" tools:ignore="MissingTranslation">Manantial</string>
+    <string name="osm_golf_course" tools:ignore="MissingTranslation">Campo de golf</string>
+    <string name="osm_ses_station" tools:ignore="MissingTranslation">Estación del SES (Servicio de Emergencia Estatal)</string>
+    <string name="osm_lifeguard_place" tools:ignore="MissingTranslation">Puesto de socorrista</string>
+    <string name="osm_stonemason" tools:ignore="MissingTranslation">Cantero</string>
+    <string name="osm_scaffolder" tools:ignore="MissingTranslation">Montador de andamios</string>
+    <string name="osm_sailmaker" tools:ignore="MissingTranslation">Fabricante de velas</string>
+    <string name="osm_photographic_laboratory" tools:ignore="MissingTranslation">Laboratorio fotográfico</string>
+    <string name="osm_photographer" tools:ignore="MissingTranslation">Fotógrafo</string>
+    <string name="osm_insulation" tools:ignore="MissingTranslation">Aislamiento</string>
+    <string name="osm_electrician" tools:ignore="MissingTranslation">Electricista</string>
+    <string name="osm_dressmaker" tools:ignore="MissingTranslation">Modista</string>
+    <string name="osm_caterer" tools:ignore="MissingTranslation">Servicio de catering</string>
+    <string name="osm_terrace" tools:ignore="MissingTranslation">Terraza</string>
+    <string name="osm_toy_shop" tools:ignore="MissingTranslation">Juguetería</string>
+    <string name="osm_dive_centre" tools:ignore="MissingTranslation">Centro de buceo</string>
+    <string name="osm_swingerclub" tools:ignore="MissingTranslation">Club de intercambio de parejas</string>
+    <string name="osm_doctors" tools:ignore="MissingTranslation">Consultorio médico</string>
+    <string name="osm_driving_school" tools:ignore="MissingTranslation">Autoescuela</string>
+    <string name="osm_free_flying" tools:ignore="MissingTranslation">Vuelo libre</string>
+    <string name="osm_religion" tools:ignore="MissingTranslation">Religión</string>
+    <string name="osm_kiosk" tools:ignore="MissingTranslation">Quiosco</string>
+    <string name="osm_residential" tools:ignore="MissingTranslation">Zona residencial</string>
+    <string name="osm_food" tools:ignore="MissingTranslation">Establecimiento de comida</string>
+    <string name="osm_waterfall" tools:ignore="MissingTranslation">Cascada</string>
+    <string name="osm_boatyard" tools:ignore="MissingTranslation">Astillero</string>
+    <string name="osm_theme_park" tools:ignore="MissingTranslation">Parque temático</string>
+    <string name="osm_roundhouse" tools:ignore="MissingTranslation">Nave circular (para locomotoras)</string>
+    <string name="osm_generator" tools:ignore="MissingTranslation">Generador</string>
+    <string name="osm_beach" tools:ignore="MissingTranslation">Playa</string>
+    <string name="osm_naval_base" tools:ignore="MissingTranslation">Base naval</string>
+    <string name="osm_works" tools:ignore="MissingTranslation">Instalaciones industriales</string>
+    <string name="osm_water_works" tools:ignore="MissingTranslation">Planta de tratamiento de agua</string>
+    <string name="osm_telescope" tools:ignore="MissingTranslation">Telescopio</string>
+    <string name="osm_pier" tools:ignore="MissingTranslation">Muelle</string>
+    <string name="osm_observatory" tools:ignore="MissingTranslation">Observatorio</string>
+    <string name="osm_reservoir" tools:ignore="MissingTranslation">Embalse</string>
+    <string name="osm_monument" tools:ignore="MissingTranslation">Monumento</string>
+    <string name="osm_battlefield" tools:ignore="MissingTranslation">Campo de batalla</string>
+    <string name="osm_planetarium" tools:ignore="MissingTranslation">Planetario</string>
+    <string name="osm_social_centre" tools:ignore="MissingTranslation">Centro social</string>
+    <string name="osm_prison" tools:ignore="MissingTranslation">Prisión</string>
+    <string name="osm_courthouse" tools:ignore="MissingTranslation">Palacio de justicia</string>
+    <string name="osm_bridge" tools:ignore="MissingTranslation">Puente</string>
+    <string name="osm_hangar" tools:ignore="MissingTranslation">Hangar</string>
+    <string name="osm_tower" tools:ignore="MissingTranslation">Torre</string>
+    <string name="osm_attraction" tools:ignore="MissingTranslation">Atracción</string>
+    <string name="osm_zoo" tools:ignore="MissingTranslation">Zoológico</string>
+    <string name="osm_gallery" tools:ignore="MissingTranslation">Galería de arte</string>
+    <string name="osm_artwork" tools:ignore="MissingTranslation">Obra de arte</string>
+    <string name="osm_alpine_hut" tools:ignore="MissingTranslation">Refugio alpino</string>
+    <string name="osm_plant" tools:ignore="MissingTranslation">Planta industrial</string>
+    <string name="osm_insurance" tools:ignore="MissingTranslation">Oficina de seguros</string>
+    <string name="osm_airfield" tools:ignore="MissingTranslation">Aeródromo</string>
+    <string name="osm_water_tower" tools:ignore="MissingTranslation">Torre de agua</string>
+    <string name="osm_pumping_station" tools:ignore="MissingTranslation">Estación de bombeo</string>
+    <string name="osm_hot_water_tank" tools:ignore="MissingTranslation">Depósito de agua caliente</string>
+    <string name="osm_campanile" tools:ignore="MissingTranslation">Campanario</string>
+    <string name="osm_sports_centre" tools:ignore="MissingTranslation">Centro deportivo</string>
+    <string name="osm_fitness_centre" tools:ignore="MissingTranslation">Gimnasio</string>
+    <string name="osm_beach_resort" tools:ignore="MissingTranslation">Resort de playa</string>
+    <string name="osm_village_green" tools:ignore="MissingTranslation">Zona verde del pueblo</string>
+    <string name="osm_ship" tools:ignore="MissingTranslation">Barco</string>
+    <string name="osm_memorial" tools:ignore="MissingTranslation">Monumento conmemorativo</string>
+    <string name="osm_synagogue" tools:ignore="MissingTranslation">Sinagoga</string>
+    <string name="osm_mosque" tools:ignore="MissingTranslation">Mezquita</string>
+    <string name="osm_chapel" tools:ignore="MissingTranslation">Capilla</string>
+    <string name="osm_cathedral" tools:ignore="MissingTranslation">Catedral</string>
+    <string name="osm_train_terminal" tools:ignore="MissingTranslation">Terminal de trenes</string>
+    <string name="osm_college" tools:ignore="MissingTranslation">Centro educativo superior</string>
+    <string name="osm_arts_centre" tools:ignore="MissingTranslation">Centro de artes</string>
+    <string name="osm_ranger_station" tools:ignore="MissingTranslation">Estación de guardaparques</string>
+    <string name="osm_hospital" tools:ignore="MissingTranslation">Hospital</string>
+    <string name="osm_track" tools:ignore="MissingTranslation">Pista</string>
+    <string name="osm_conference_centre" tools:ignore="MissingTranslation">Centro de conferencias</string>
+    <string name="osm_viewpoint" tools:ignore="MissingTranslation">Mirador</string>
+    <string name="osm_supermarket" tools:ignore="MissingTranslation">Supermercado</string>
+    <string name="osm_peak" tools:ignore="MissingTranslation">Cumbre</string>
+    <string name="osm_storage_tank" tools:ignore="MissingTranslation">Depósito de almacenamiento</string>
+    <string name="osm_lighthouse" tools:ignore="MissingTranslation">Faro</string>
+    <string name="osm_beacon" tools:ignore="MissingTranslation">Baliza</string>
+    <string name="osm_port" tools:ignore="MissingTranslation">Puerto</string>
+    <string name="osm_archaeological_site" tools:ignore="MissingTranslation">Yacimiento arqueológico</string>
+    <string name="osm_shrine" tools:ignore="MissingTranslation">Santuario</string>
+    <string name="osm_church" tools:ignore="MissingTranslation">Iglesia</string>
+    <string name="osm_historic_monument" tools:ignore="MissingTranslation">Monumento histórico</string>
+    <string name="osm_generic_landmark" tools:ignore="MissingTranslation">Punto de referencia</string>
+    <string name="osm_tourism_museum" tools:ignore="MissingTranslation">Museo</string>
+    <string name="osm_register_office" tools:ignore="MissingTranslation">Registro civil</string>
+    <string name="osm_grave_yard" tools:ignore="MissingTranslation">Cementerio</string>
+    <string name="osm_marketplace" tools:ignore="MissingTranslation">Mercado</string>
+    <string name="osm_fire_station" tools:ignore="MissingTranslation">Estación de bomberos</string>
+    <string name="osm_ruins" tools:ignore="MissingTranslation">Ruinas</string>
+    <string name="osm_weir" tools:ignore="MissingTranslation">Azud</string>
+    <string name="osm_museum" tools:ignore="MissingTranslation">Museo</string>
+    <string name="osm_mall" tools:ignore="MissingTranslation">Centro comercial</string>
+    <string name="osm_volcano" tools:ignore="MissingTranslation">Volcán</string>
+    <string name="osm_hot_spring" tools:ignore="MissingTranslation">Fuente termal</string>
+    <string name="osm_glacier" tools:ignore="MissingTranslation">Glaciar</string>
+    <string name="osm_wastewater_plant" tools:ignore="MissingTranslation">Planta de tratamiento de aguas residuales</string>
+    <string name="osm_offshore_platform" tools:ignore="MissingTranslation">Plataforma marina</string>
+    <string name="osm_gasometer" tools:ignore="MissingTranslation">Gasómetro</string>
+    <string name="osm_water_park" tools:ignore="MissingTranslation">Parque acuático</string>
+    <string name="osm_bandstand" tools:ignore="MissingTranslation">Templete de música</string>
+    <string name="osm_wreck" tools:ignore="MissingTranslation">Restos (naufragio/vehículo)</string>
+    <string name="osm_pillory" tools:ignore="MissingTranslation">Picota</string>
+    <string name="osm_monastery" tools:ignore="MissingTranslation">Monasterio</string>
+    <string name="osm_locomotive" tools:ignore="MissingTranslation">Locomotora</string>
+    <string name="osm_fort" tools:ignore="MissingTranslation">Fuerte</string>
+    <string name="osm_services" tools:ignore="MissingTranslation">Área de servicio</string>
+    <string name="osm_lifeguard_tower" tools:ignore="MissingTranslation">Torre de salvavidas</string>
+    <string name="osm_temple" tools:ignore="MissingTranslation">Templo</string>
+    <string name="osm_national_park" tools:ignore="MissingTranslation">Parque nacional</string>
+    <string name="osm_heliport" tools:ignore="MissingTranslation">Helipuerto</string>
+    <string name="osm_public_park" tools:ignore="MissingTranslation">Parque público</string>
+    <string name="osm_department_store" tools:ignore="MissingTranslation">Grandes almacenes</string>
+    <string name="osm_studio" tools:ignore="MissingTranslation">Estudio</string>
+    <string name="osm_public_building" tools:ignore="MissingTranslation">Edificio público</string>
+    <string name="osm_clock" tools:ignore="MissingTranslation">Reloj público</string>
+    <string name="osm_casino" tools:ignore="MissingTranslation">Casino</string>
+    <string name="osm_stadium" tools:ignore="MissingTranslation">Estadio</string>
+    <string name="osm_dam" tools:ignore="MissingTranslation">Presa</string>
+    <string name="osm_dock" tools:ignore="MissingTranslation">Muelle</string>
+    <string name="osm_geyser" tools:ignore="MissingTranslation">Géiser</string>
+    <string name="osm_bay" tools:ignore="MissingTranslation">Bahía</string>
+    <string name="osm_barracks" tools:ignore="MissingTranslation">Cuartel</string>
+    <string name="osm_windmill" tools:ignore="MissingTranslation">Molino de viento</string>
+    <string name="osm_watermill" tools:ignore="MissingTranslation">Molino de agua</string>
+    <string name="osm_communications_tower" tools:ignore="MissingTranslation">Torre de comunicaciones</string>
+    <string name="osm_swimming_area" tools:ignore="MissingTranslation">Zona de baño</string>
+    <string name="osm_slipway" tools:ignore="MissingTranslation">Rampa para embarcaciones</string>
+    <string name="osm_nature_reserve" tools:ignore="MissingTranslation">Reserva natural</string>
+    <string name="osm_marina" tools:ignore="MissingTranslation">Puerto deportivo</string>
+    <string name="osm_ice_rink" tools:ignore="MissingTranslation">Pista de hielo</string>
+    <string name="osm_manor" tools:ignore="MissingTranslation">Casa solariega</string>
+    <string name="osm_city_gate" tools:ignore="MissingTranslation">Puerta de la ciudad</string>
+    <string name="osm_castle" tools:ignore="MissingTranslation">Castillo</string>
+    <string name="osm_aircraft" tools:ignore="MissingTranslation">Aeronave</string>
+    <string name="osm_digester" tools:ignore="MissingTranslation">Digestor</string>
+    <string name="osm_sally_port" tools:ignore="MissingTranslation">Puerta de acceso controlado</string>
+    <string name="osm_aerodrome" tools:ignore="MissingTranslation">Aeródromo</string>
+    <string name="osm_shopping_mall" tools:ignore="MissingTranslation">Centro comercial</string>
+    <string name="osm_cinema" tools:ignore="MissingTranslation">Cine</string>
+    <string name="osm_rescue_station" tools:ignore="MissingTranslation">Estación de rescate</string>
+    <string name="osm_airport" tools:ignore="MissingTranslation">Aeropuerto</string>
+    <string name="osm_theatre" tools:ignore="MissingTranslation">Teatro</string>
+    <string name="osm_library" tools:ignore="MissingTranslation">Biblioteca</string>
+    <string name="osm_university" tools:ignore="MissingTranslation">Universidad</string>
+    <string name="osm_police" tools:ignore="MissingTranslation">Comisaría</string>
+    <string name="osm_embassy" tools:ignore="MissingTranslation">Embajada</string>
+    <string name="osm_bus_station" tools:ignore="MissingTranslation">Estación de autobuses</string>
+    <string name="osm_station" tools:ignore="MissingTranslation">Estación</string>
+    <string name="osm_toll_booth" tools:ignore="MissingTranslation">Cabina de peaje</string>
+    <string name="osm_lift" tools:ignore="MissingTranslation">Ascensor</string>
+    <string name="osm_unmanaged_crossing" tools:ignore="MissingTranslation">Paso de peatones sin control</string>
+    <string name="osm_pharmacy" tools:ignore="MissingTranslation">Farmacia</string>
+    <string name="osm_kneipp_water_cure" tools:ignore="MissingTranslation">Cura de agua Kneipp</string>
+    <string name="osm_food_court" tools:ignore="MissingTranslation">Zona de comidas</string>
+    <string name="osm_chemist" tools:ignore="MissingTranslation">Farmacia</string>
+    <string name="osm_checkpoint" tools:ignore="MissingTranslation">Puesto de control</string>
+    <string name="osm_dog_park" tools:ignore="MissingTranslation">Parque para perros</string>
+    <string name="osm_kissing_gate" tools:ignore="MissingTranslation">Portillo</string>
+    <string name="osm_car_rental" tools:ignore="MissingTranslation">Alquiler de coches</string>
+    <string name="osm_pedestrianised_area" tools:ignore="MissingTranslation">Zona peatonal</string>
+    <string name="osm_escalator" tools:ignore="MissingTranslation">Escalera mecánica</string>
+    <string name="osm_shelter" tools:ignore="MissingTranslation">Refugio</string>
+    <string name="osm_water_point" tools:ignore="MissingTranslation">Punto de agua</string>
+    <string name="osm_subway_entrance" tools:ignore="MissingTranslation">Entrada al metro</string>
+    <string name="osm_cave_entrance" tools:ignore="MissingTranslation">Entrada a la cueva</string>
+    <string name="osm_swing_gate" tools:ignore="MissingTranslation">Puerta batiente</string>
+    <string name="osm_stile" tools:ignore="MissingTranslation">Paso sobre valla</string>
+    <string name="osm_car_sharing" tools:ignore="MissingTranslation">Coches compartidos</string>
+    <string name="osm_customer_service" tools:ignore="MissingTranslation">Atención al cliente</string>
+    <string name="osm_watering_place" tools:ignore="MissingTranslation">Abrevadero</string>
+    <string name="osm_platform" tools:ignore="MissingTranslation">Andén</string>
+    <string name="osm_horse_stile" tools:ignore="MissingTranslation">Paso para caballos</string>
+    <string name="osm_bureau_de_change" tools:ignore="MissingTranslation">Casa de cambio</string>
+    <string name="osm_stairs" tools:ignore="MissingTranslation">Escaleras</string>
+    <string name="osm_bicycle_rental" tools:ignore="MissingTranslation">Alquiler de bicicletas</string>
+    <string name="osm_hampshire_gate" tools:ignore="MissingTranslation">Puerta estilo Hampshire</string>
+    <string name="osm_full_height_turnstile" tools:ignore="MissingTranslation">Torniquete de altura completa</string>
+    <string name="osm_boat_sharing" tools:ignore="MissingTranslation">Embarcaciones compartidas</string>
+    <string name="osm_help_point" tools:ignore="MissingTranslation">Punto de ayuda</string>
+    <string name="osm_open_space" tools:ignore="MissingTranslation">Espacio abierto</string>
+    <string name="osm_spending_area" tools:ignore="MissingTranslation">Zona de paradas breves</string>
+    <string name="osm_bicycle_repair_station" tools:ignore="MissingTranslation">Estación de reparación de bicicletas</string>
+    <string name="osm_motorcycle_barrier" tools:ignore="MissingTranslation">Barrera para motocicletas</string>
+    <string name="osm_kent_carriage_gap" tools:ignore="MissingTranslation">Paso para carruajes estilo Kent</string>
+    <string name="osm_shared_space" tools:ignore="MissingTranslation">Espacio compartido</string>
+    <string name="osm_cliff" tools:ignore="MissingTranslation">Acantilado</string>
+    <string name="osm_training_area" tools:ignore="MissingTranslation">Zona de entrenamiento</string>
+    <string name="osm_log" tools:ignore="MissingTranslation">Tronco</string>
+    <string name="osm_jersey_barrier" tools:ignore="MissingTranslation">Barrera Jersey</string>
+    <string name="osm_construction_site" tools:ignore="MissingTranslation">Zona de construcción</string>
+    <string name="osm_ridge" tools:ignore="MissingTranslation">Cresta</string>
+    <string name="osm_nuclear_explosion_site" tools:ignore="MissingTranslation">Sitio de explosión nuclear</string>
+    <string name="osm_dyke" tools:ignore="MissingTranslation">Dique</string>
+    <string name="osm_sump_buster" tools:ignore="MissingTranslation">Tope para vehículos de baja altura</string>
+    <string name="osm_rope" tools:ignore="MissingTranslation">Cuerda</string>
+    <string name="osm_debris" tools:ignore="MissingTranslation">Escombros</string>
+    <string name="osm_road_works" tools:ignore="MissingTranslation">Obras viales</string>
+    <string name="osm_lock_gate" tools:ignore="MissingTranslation">Compuerta de esclusa</string>
+    <string name="osm_sinkhole" tools:ignore="MissingTranslation">Sumidero</string>
+    <string name="osm_range" tools:ignore="MissingTranslation">Campo de tiro</string>
+    <string name="osm_ambulance_station" tools:ignore="MissingTranslation">Estación de ambulancias</string>
+    <string name="osm_spikes" tools:ignore="MissingTranslation">Clavos antipinchazos</string>
+    <string name="osm_generic_hazard" tools:ignore="MissingTranslation">Peligro genérico</string>
+    <string name="osm_contact_line" tools:ignore="MissingTranslation">Línea aérea de contacto</string>
+    <string name="osm_danger_area" tools:ignore="MissingTranslation">Zona peligrosa</string>
+    <string name="osm_chain" tools:ignore="MissingTranslation">Barrera de cadena</string>
+    <string name="osm_parking_space" tools:ignore="MissingTranslation">Plaza de aparcamiento</string>
+    <string name="osm_motorcycle_parking" tools:ignore="MissingTranslation">Aparcamiento para motocicletas</string>
+    <string name="settings_section_search" tools:ignore="MissingTranslation">Búsqueda</string>
+    <string name="settings_search_online" tools:ignore="MissingTranslation">En línea</string>
+    <string name="settings_search_offline" tools:ignore="MissingTranslation">Sin conexión</string>
+    <string name="settings_search_auto" tools:ignore="MissingTranslation">Auto</string>
+    <string name="search_no_results" tools:ignore="MissingTranslation">No se han encontrado resultados de búsqueda</string>
+    <string name="search_searching" tools:ignore="MissingTranslation">Buscando…</string>
+    <string name="menu_manage_search" tools:ignore="MissingTranslation">Búsqueda</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">Ruta no encontrada</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">Exportar</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">Seleccionado</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">No seleccionado</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">Mover hacia arriba en la lista</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">Mover hacia abajo en la lista</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">En %1$s, entre %2$s y %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">En %1$s, a %2$s hasta %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">En %1$s, a %2$s desde %3$s</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">Ciudad</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">Pueblo</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">Barrio</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">Aldea</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">Caserío</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">Campo de recreo</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">Río</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">Ferrocarril</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">Bosque</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">Pabellón</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">Instalación deportiva</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">Tienda de productos naturales</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">Recinto para eventos</string>
+    <string name="menu_help" tools:ignore="MissingTranslation">Ayuda</string>
+    <string name="tour_welcome" tools:ignore="MissingTranslation">Bienvenido al tutorial de Soundscape. Este tutorial le guiará por las principales funciones de la aplicación. Puede detener el tutorial en cualquier momento pulsando \"Cancelar tutorial de audio\" en el menú principal. Empecemos con \"Lugares cercanos\", que le permite encontrar sitios de interés. El botón \"Lugares cercanos\" está en la pantalla principal, justo debajo de la barra de búsqueda. Pulse ahora para probarlo.</string>
+    <string name="tour_select_place" tools:ignore="MissingTranslation">Lugares cercanos agrupa los puntos de interés por tipo. Explore las listas de lugares y seleccione uno.</string>
+    <string name="tour_create_marker_started" tools:ignore="MissingTranslation">¡Genial! Ahora está en la pantalla Detalles de la ubicación. Esta pantalla le permite seleccionar varias acciones, entre ellas guardar la ubicación como marcador. Con Soundscape puede marcar cualquier cosa que le interese en su entorno. Por ejemplo, puede marcar su casa, su parada de autobús o incluso el lugar donde se encuentra ahora. Vamos a probarlo. Guarde esta ubicación como marcador pulsando \"Guardar como marcador\".</string>
+    <string name="tour_create_marker_done" tools:ignore="MissingTranslation">¡Perfecto! Al crear un marcador puede editar su nombre y añadir anotaciones adicionales. Hágalo ahora y, cuando esté listo, pulse \"Listo\".</string>
+    <string name="tour_my_location" tools:ignore="MissingTranslation">Ahora que sabe cómo usar los marcadores, veamos otras funciones. En la parte inferior de la pantalla hay cuatro botones que probaremos uno a uno. El botón de la izquierda es \"Mi ubicación\", que describe su ubicación actual. Pulse sobre él ahora.</string>
+    <string name="tour_around_me" tools:ignore="MissingTranslation">El siguiente botón es \"Alrededor de mí\". Le dice qué hay cerca en cada dirección. Pulse \"Alrededor de mí\".</string>
+    <string name="tour_ahead" tools:ignore="MissingTranslation">El siguiente botón es \"Delante de mí\". Le indica lo que hay frente a usted. Pulse \"Delante de mí\".</string>
+    <string name="tour_nearby_markers" tools:ignore="MissingTranslation">El último botón es \"Marcadores cercanos\", que anuncia los lugares guardados a su alrededor. Pulse \"Marcadores cercanos\" para probarlo.</string>
+    <string name="tour_markers_and_routes" tools:ignore="MissingTranslation">Ha creado un marcador correctamente. Reproduzcamos una señal de audio para guiarnos hasta esa ubicación. Pulse \"Marcadores y rutas\", que está justo debajo de \"Lugares cercanos\".</string>
+    <string name="tour_markers" tools:ignore="MissingTranslation">La pantalla \"Marcadores y rutas\" tiene dos pestañas: una muestra las rutas, que son listas de marcadores, y la otra muestra los marcadores individuales. Pulse en \"Marcadores\" para cambiar a la pestaña Marcadores y encontrar el marcador que creó.</string>
+    <string name="tour_start_beacon" tools:ignore="MissingTranslation">Ahora está en la pestaña Marcadores, que muestra todos sus marcadores guardados. Seleccione un marcador y, cuando aparezca la pantalla Detalles de la ubicación, pulse \"Iniciar señal de audio\".</string>
+    <string name="tour_beacon_demo" tools:ignore="MissingTranslation">Ahora puede oír la señal de audio. Suena desde la dirección de su destino. Al cambiar la dirección hacia la que apunta el teléfono, podrá oír cómo la señal se desplaza y cómo varía su sonido. Pruébelo ahora.</string>
+    <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">Aunque su teléfono esté bloqueado, la señal seguirá reproduciéndose. Si camina o va en un vehículo, la aplicación usa la dirección de su desplazamiento para reproducir la señal. Sin embargo, incluso con el teléfono bloqueado puede sostenerlo plano frente a usted, como una brújula, y la app usará la dirección a la que apunta. Pruébelo.</string>
+    <string name="tour_stop_beacon" tools:ignore="MissingTranslation">Cuando esté listo para detener la señal, pulse el botón \"Detener ruta\".</string>
+    <string name="tour_finish" tools:ignore="MissingTranslation">Con esto finaliza el tutorial. Puede volver a ejecutarlo desde el menú principal. ¡Esperamos que la aplicación le resulte útil!</string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation">El tutorial de audio ha sido cancelado. Si lo desea, puede volver a ejecutarlo desde el menú principal.</string>
+    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Tutorial de audio</string>
+    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Cancelar tutorial de audio</string>
+    <string name="search_bar_hint" tools:ignore="MissingTranslation">Escriba el nombre de un destino o una dirección</string>
+    <string name="all_places_nearby_description" tools:ignore="MissingTranslation">Ver una lista sin filtrar de todos los lugares cercanos</string>
+    <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">Ver una lista de paradas de transporte público cercanas</string>
+    <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">Ver una lista de restaurantes y bares cercanos</string>
+    <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">Ver una lista de tiendas de comestibles cercanas</string>
+    <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">Ver una lista de bancos cercanos</string>
+    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">Ver una lista de intersecciones de carreteras cercanas</string>
+    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">Para elegir entre una lista de lugares cercanos</string>
+    <string name="accessibility_title" tools:ignore="MissingTranslation">Accesibilidad</string>
+    <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Dado que tiene un lector de pantalla activado, recomendamos ejecutar la aplicación con los mapas gráficos de la interfaz de usuario desactivados. Puede cambiar esa configuración aquí o simplemente continuar.</string>
+    <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Dado que no tiene un lector de pantalla activado, asumimos que desea que se muestren los mapas gráficos en la interfaz de usuario. Puede cambiar esa configuración aquí o simplemente continuar.</string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation">Continuar</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">Cerrar la ventana emergente y continuar con el tutorial</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Iniciar la señal de audio en este marcador</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Poner el mapa en pantalla completa y editar la ubicación del marcador</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Salir del modo de edición de la ubicación del marcador</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">En %1$s, justo antes de %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">En %1$s, justo después de %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">Cerca de la intersección de %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">Ya existe un marcador en la ruta, en esta ubicación. No se puede agregarlo de nuevo.</string>
+    <string name="settings_explanation" tools:ignore="MissingTranslation">Los ajustes de la aplicación están organizados en grupos más abajo. Haga clic en un grupo para expandirlo y ver las opciones disponibles.</string>
+    <string name="settings_section_units_description" tools:ignore="MissingTranslation">Seleccione la unidad que se utilizará para la distancia</string>
+    <string name="settings_section_search_network" tools:ignore="MissingTranslation">Modo de búsqueda</string>
+    <string name="settings_section_search_network_description" tools:ignore="MissingTranslation">Controle si la búsqueda utiliza únicamente datos sin conexión</string>
+    <string name="beacon_settings_style_description" tools:ignore="MissingTranslation">Seleccione el estilo de señal de audio que desea usar</string>
+    <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">Incluir carreteras sin nombre durante la simulación de ubicación</string>
+    <string name="callouts_allow_callouts_description" tools:ignore="MissingTranslation">Activar o desactivar todos los avisos</string>
+    <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">Lugares cercanos como tiendas y restaurantes</string>
+    <string name="callouts_mobility_description" tools:ignore="MissingTranslation">Información sobre intersecciones y transporte</string>
+    <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">Actualizaciones sobre la distancia a la señal de audio cuando está establecida</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">"Idioma y región "</string>
+    <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">La búsqueda en línea puede usar el idioma local del resultado o forzarse a devolver resultados en inglés, francés o alemán.</string>
+    <string name="language_mismatch_title" tools:ignore="MissingTranslation">Nuevo idioma disponible</string>
+    <string name="language_mismatch_message" tools:ignore="MissingTranslation">Su teléfono está configurado en %1$s y ese idioma ya está disponible en Soundscape. ¿Desea cambiar Soundscape para usar %1$s?</string>
+    <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Cambiar a %1$s</string>
+    <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Mantener el idioma actual</string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation">Moverse en esta dirección hasta la siguiente intersección.</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">No se pudo encontrar la ruta en la base de datos.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">No se pudo eliminar la ruta.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">No se pudo guardar la ruta.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">El servicio de localización de Soundscape sigue ejecutándose.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">Descarga completada</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">Descarga cancelada</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">Error de descarga</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">Señal establecida en %1$s, a una distancia de %2$s</string>
+    <string name="route_beacon_progress" tools:ignore="MissingTranslation">Señal en %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">Control de ruta</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">Siguiente punto de ruta</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">Punto de ruta anterior</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">No hay rutas guardadas</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">Menú principal</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">Grabar audio</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">Este permiso es opcional, pero es necesario si desea usar comandos de voz para controlar la aplicación.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">Controles multimedia</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">Modo de controles multimedia</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">Los botones de control multimedia de sus auriculares o del mando se pueden configurar para que funcionen de diferentes maneras según esta opción.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">Modo Original</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">Comandos de voz</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">Menú de audio</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">Comandos de voz disponibles:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">Escuchando…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">Lo siento, no puedo encontrar el comando %1$s. El comando de voz %2$s mostrará los comandos disponibles.</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">Listar rutas</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">Las rutas disponibles son:</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">Listar marcadores</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">Los marcadores disponibles son:</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">No hay rutas guardadas</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">No hay marcadores guardados</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">Ruta no encontrada: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">Iniciando la ruta %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">Iniciar ruta %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">Iniciar la señal de audio en %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">Iniciando la señal de audio en %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">Marcador no encontrado: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">También puede iniciar rutas y marcadores por nombre, por ejemplo.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">Error de tiempo de espera de red en el reconocimiento de voz.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">Error de red en el reconocimiento de voz.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">Error al grabar el audio para el reconocimiento de voz.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">Error del servidor de reconocimiento de voz.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">Error del cliente de reconocimiento de voz.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">Se agotó el tiempo de escucha y la escucha se ha detenido. Por favor, inténtelo de nuevo.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">No se detectó habla y la escucha se ha detenido. Por favor, inténtelo de nuevo.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">Error: el reconocimiento de voz está ocupado.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">No se concedieron permisos suficientes para ejecutar el reconocimiento de voz.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">Error: demasiadas solicitudes al servicio de reconocimiento de voz.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">Error: el servidor de reconocimiento de voz se desconectó.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">El idioma actual no es compatible con el reconocimiento de voz en Android.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">El idioma actual está soportado, pero no se ha descargado en este teléfono.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">Error al comprobar la compatibilidad del reconocimiento de voz.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">Error al escuchar los eventos de descarga del reconocimiento de voz.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">Error desconocido de reconocimiento de voz.</string>
+    <string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">El reconocimiento de voz no es compatible con este teléfono.</string>
+    <string name="settings_voice_command_listening_prompt" tools:ignore="MissingTranslation">Anunciar la escucha</string>
+    <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">Emitir un aviso antes de que comience el reconocimiento de voz.</string>
+    <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">Micrófono</string>
+    <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">Seleccione qué micrófono usar para los comandos de voz.</string>
+    <string name="battery_optimization_title">Uso de batería en segundo plano</string>
+    <string name="battery_optimization_message">Soundscape requiere un uso de batería sin restricciones para seguir proporcionando navegación por audio cuando su teléfono esté bloqueado. Permita esto en el siguiente cuadro de diálogo. Si cierra Soundscape, todos los servicios se detendrán y la aplicación dejará de consumir batería.</string>
+    <string name="route_detail_action_start_route_reverse">Iniciar ruta en sentido inverso</string>
+    <string name="route_detail_action_start_route_reverse_hint">Iniciar la reproducción de esta ruta en sentido inverso</string>
+    <string name="route_reverse_name">%s en sentido inverso</string>
+    <string name="callouts_no_nearby_markers">No hay marcadores cercanos</string>
+    <string name="stationary_on_way">Detenido en %s</string>
+    <string name="settings_relative_directions_text">Modo de direcciones relativas</string>
+    <string name="settings_relative_directions_description">Cambie la forma en que se describen las direcciones relativas.</string>
+    <string name="settings_relative_directions_clockface">Reloj</string>
+    <string name="settings_relative_directions_degrees">Grados</string>
+    <string name="settings_relative_directions_left_right">Izquierda/Derecha</string>
+    <string name="callout_settings_position_text">Incluir la distancia y la dirección al anunciar puntos de interés</string>
+    <string name="callout_settings_position_description">Por defecto, cuando se anuncian lugares no se incluye la distancia ni la dirección. Esta opción añade esa información a los avisos.</string>
+    <string name="relative_clock_direction">a las %s en punto</string>
+    <string name="relative_degrees_direction">a %s grados</string>
+    <string name="relative_left_right_direction_ahead">Adelante</string>
+    <string name="relative_left_right_direction_ahead_left">Adelante a la izquierda</string>
+    <string name="relative_left_right_direction_ahead_right">Adelante a la derecha</string>
+    <string name="relative_left_right_direction_left">Izquierda</string>
+    <string name="relative_left_right_direction_right">Derecha</string>
+    <string name="relative_left_right_direction_behind_left">Detrás a la izquierda</string>
+    <string name="relative_left_right_direction_behind_right">Detrás a la derecha</string>
+    <string name="relative_left_right_direction_behind">Detrás</string>
+</resources>

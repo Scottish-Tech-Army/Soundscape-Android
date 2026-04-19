@@ -22,7 +22,7 @@ import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
-import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
@@ -52,7 +52,7 @@ class GeocoderTest {
         userGeometry: UserGeometry,
         localizedContext: Context
     ): LocationDescription? {
-        val description = geocoder.getAddressFromLngLat(userGeometry, AndroidLocalizedStrings(localizedContext), false   )
+        val description = geocoder.getAddressFromLngLat(userGeometry, ComposeLocalizedStrings(), false   )
         return description
     }
 
@@ -252,7 +252,7 @@ class GeocoderTest {
         val cheapRuler = CheapRuler(nearbyLocation.latitude)
 
         val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        val appStrings = AndroidLocalizedStrings(appContext)
+        val appStrings = ComposeLocalizedStrings()
         suspend fun findPlace(geocoder: SoundscapeGeocoder, searchString: String, nearbyLocation: LngLatAlt): List<LocationDescription>? {
             val description = geocoder.getAddressFromLocationName(searchString, nearbyLocation, appStrings)
             println("findPlace complete")
@@ -419,7 +419,7 @@ class GeocoderTest {
             val photonGeocoder = PhotonGeocoder(PhotonSearchProvider, processor = { it.process() })
             val platformGeocoder = if (AndroidGeocoder.enabled) AndroidGeocoder(appContext) else null
             val geocoder = FusedGeocoder(gridState, photonGeocoder, platformGeocoder)
-            val appStrings = AndroidLocalizedStrings(appContext)
+            val appStrings = ComposeLocalizedStrings()
 
             gridState.validateContext = false
             gridState.startWithContext(ApplicationProvider.getApplicationContext())
@@ -460,7 +460,7 @@ class GeocoderTest {
                     val ld = feature.toLocationDescription(
                         LocationSource.OfflineGeocoder,
                         getDistanceToFeature(milngavie, feature, gridState.ruler).point,
-                        getTextForFeature(AndroidLocalizedStrings(appContext), mvt)
+                        getTextForFeature(ComposeLocalizedStrings(), mvt)
                     )
                 }
             }

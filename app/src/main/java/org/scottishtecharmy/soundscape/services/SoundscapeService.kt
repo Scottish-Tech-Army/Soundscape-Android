@@ -65,7 +65,7 @@ import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
-import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
@@ -212,7 +212,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener {
             newLocationProvider = locationProvider,
             newDirectionProvider = directionProvider,
             listener = this,
-            localizedStrings = AndroidLocalizedStrings(localizedContext),
+            localizedStrings = ComposeLocalizedStrings(),
             preferencesProvider = preferencesProvider,
             analytics = AnalyticsProvider.getInstance(),
             tileClient = tileClient,
@@ -902,7 +902,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener {
                             result.text + ", " + formatDistanceAndDirection(
                                 distance,
                                 heading,
-                                AndroidLocalizedStrings(localizedContext),
+                                ComposeLocalizedStrings(),
                                 lastGeometry?.heading(),
                                 sharedPreferences.getString(RELATIVE_DIRECTION_KEY, RELATIVE_DIRECTION_DEFAULT)!!
                             )
@@ -948,7 +948,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener {
     }
 
     override fun announceStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {
-        val compassLabel = AndroidLocalizedStrings(localizedContext).get(getCompassLabel(bestChoice.heading.toInt()))
+        val compassLabel = ComposeLocalizedStrings().get(getCompassLabel(bestChoice.heading.toInt()))
         val go = localizedContext.getString(R.string.preview_go_title)
         speakText("$go ${bestChoice.name} $compassLabel", AudioType.STANDARD)
     }

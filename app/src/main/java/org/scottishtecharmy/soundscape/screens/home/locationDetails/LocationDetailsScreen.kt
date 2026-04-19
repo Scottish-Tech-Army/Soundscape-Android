@@ -57,7 +57,7 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geoengine.TextForFeature
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
-import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -415,7 +415,7 @@ private fun LocationDescriptionTextsSection(
         return@remember formatDistanceAndDirection(
             ruler.distance(userLocation, locationDescription.location),
             ruler.bearing(userLocation, locationDescription.location),
-            AndroidLocalizedStrings(context))
+            ComposeLocalizedStrings())
     }
 
     Column(

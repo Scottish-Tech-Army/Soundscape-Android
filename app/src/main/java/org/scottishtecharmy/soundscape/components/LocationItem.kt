@@ -38,7 +38,7 @@ import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
-import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
@@ -87,7 +87,7 @@ fun LocationItem(
         distanceString = formatDistanceAndDirection(
             ruler.distance(userLocation, item.location),
             ruler.bearing(userLocation, item.location),
-            AndroidLocalizedStrings(context)
+            ComposeLocalizedStrings()
         )
     }
     Row(

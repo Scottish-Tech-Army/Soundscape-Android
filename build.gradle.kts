@@ -11,5 +11,6 @@ plugins {
     alias(libs.plugins.google.services) apply false
     alias(libs.plugins.firebase.crashlytics) apply false
     alias(libs.plugins.jetbrains.dokka) apply false
+    alias(libs.plugins.jetbrains.compose) apply false
     alias(libs.plugins.jaredsburrows.license) apply false
 }

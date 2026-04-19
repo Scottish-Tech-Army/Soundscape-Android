@@ -163,4 +163,5 @@ google-services = { id = "com.google.gms.google-services", version.ref = "google
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics"}
 jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "jetbrains-dokka" }
 androidx-room = { id = "androidx.room", version.ref = "roomRuntime" }
+jetbrains-compose = { id = "org.jetbrains.compose", version = "1.10.3" }
 jaredsburrows-license = { id = "com.jaredsburrows.license", version.ref = "jaredsburrows-license" }

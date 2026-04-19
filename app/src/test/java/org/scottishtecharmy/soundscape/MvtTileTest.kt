@@ -242,11 +242,11 @@ class MvtTileTest {
                         if((osmClass == null) && (osmSubClass == null))
                             continue
 
-                        val id =
-                            ResourceMapper.getResourceId(osmClass) ?: ResourceMapper.getResourceId(
+                        val found =
+                            ResourceMapper.hasResource(osmClass) || ResourceMapper.hasResource(
                                 osmSubClass
                             )
-                        if (id == null) {
+                        if (!found) {
                             if(osmClass != null)
                                 missingResourceMapperStrings.add(osmClass)
                             if(osmSubClass != null)

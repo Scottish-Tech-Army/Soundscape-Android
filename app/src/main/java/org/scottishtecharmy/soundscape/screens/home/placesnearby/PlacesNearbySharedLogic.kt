@@ -16,7 +16,7 @@ import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
-import org.scottishtecharmy.soundscape.i18n.AndroidLocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.featureHasEntrances
 import org.scottishtecharmy.soundscape.geoengine.utils.featureIsInFilterGroup
@@ -132,12 +132,12 @@ fun filterLocations(uiState: PlacesNearbyUiState, context: Context): List<Locati
             // Filter based on any folder selected and filter out POIs with entrances
             !featureHasEntrances(feature) &&
             featureIsInFilterGroup(feature, uiState.filter) &&
-                    getTextForFeature(AndroidLocalizedStrings(context), feature as MvtFeature).text.isNotEmpty()
+                    getTextForFeature(ComposeLocalizedStrings(), feature as MvtFeature).text.isNotEmpty()
         }.map { feature ->
             feature.deferredToLocationDescription(
                 LocationSource.OfflineGeocoder,
                 getDistanceToFeature(location, feature, ruler).point,
-                getTextForFeature(AndroidLocalizedStrings(context), feature as MvtFeature)
+                getTextForFeature(ComposeLocalizedStrings(), feature as MvtFeature)
             )
         }.sortedBy {
             uiState.userLocation?.let { location ->

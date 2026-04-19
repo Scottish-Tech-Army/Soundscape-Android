@@ -1,0 +1,1518 @@
+package org.scottishtecharmy.soundscape.geoengine.utils
+
+import org.jetbrains.compose.resources.StringResource
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.osm_10pin
+import org.scottishtecharmy.soundscape.resources.osm_9pin
+import org.scottishtecharmy.soundscape.resources.osm_access_point
+import org.scottishtecharmy.soundscape.resources.osm_accountant
+import org.scottishtecharmy.soundscape.resources.osm_adoption_agency
+import org.scottishtecharmy.soundscape.resources.osm_adult_gaming_centre
+import org.scottishtecharmy.soundscape.resources.osm_advertising_agency
+import org.scottishtecharmy.soundscape.resources.osm_aerodrome
+import org.scottishtecharmy.soundscape.resources.osm_aikido
+import org.scottishtecharmy.soundscape.resources.osm_aircraft
+import org.scottishtecharmy.soundscape.resources.osm_airfield
+import org.scottishtecharmy.soundscape.resources.osm_airport
+import org.scottishtecharmy.soundscape.resources.osm_alcohol
+import org.scottishtecharmy.soundscape.resources.osm_alpine_hut
+import org.scottishtecharmy.soundscape.resources.osm_ambulance_station
+import org.scottishtecharmy.soundscape.resources.osm_american_football
+import org.scottishtecharmy.soundscape.resources.osm_ammunition
+import org.scottishtecharmy.soundscape.resources.osm_amusement_arcade
+import org.scottishtecharmy.soundscape.resources.osm_animal_boarding
+import org.scottishtecharmy.soundscape.resources.osm_animal_shelter
+import org.scottishtecharmy.soundscape.resources.osm_anime
+import org.scottishtecharmy.soundscape.resources.osm_antiques
+import org.scottishtecharmy.soundscape.resources.osm_apartment
+import org.scottishtecharmy.soundscape.resources.osm_apartments
+import org.scottishtecharmy.soundscape.resources.osm_apron
+import org.scottishtecharmy.soundscape.resources.osm_archaeological_site
+import org.scottishtecharmy.soundscape.resources.osm_archery
+import org.scottishtecharmy.soundscape.resources.osm_architect
+import org.scottishtecharmy.soundscape.resources.osm_art
+import org.scottishtecharmy.soundscape.resources.osm_arts_centre
+import org.scottishtecharmy.soundscape.resources.osm_artwork
+import org.scottishtecharmy.soundscape.resources.osm_assembly_point
+import org.scottishtecharmy.soundscape.resources.osm_association
+import org.scottishtecharmy.soundscape.resources.osm_athletics
+import org.scottishtecharmy.soundscape.resources.osm_atm
+import org.scottishtecharmy.soundscape.resources.osm_atm_named
+import org.scottishtecharmy.soundscape.resources.osm_atm_refed
+import org.scottishtecharmy.soundscape.resources.osm_attraction
+import org.scottishtecharmy.soundscape.resources.osm_australian_football
+import org.scottishtecharmy.soundscape.resources.osm_baby_goods
+import org.scottishtecharmy.soundscape.resources.osm_baby_hatch
+import org.scottishtecharmy.soundscape.resources.osm_badminton
+import org.scottishtecharmy.soundscape.resources.osm_bag
+import org.scottishtecharmy.soundscape.resources.osm_bakery
+import org.scottishtecharmy.soundscape.resources.osm_bandstand
+import org.scottishtecharmy.soundscape.resources.osm_bandy
+import org.scottishtecharmy.soundscape.resources.osm_bank
+import org.scottishtecharmy.soundscape.resources.osm_bar
+import org.scottishtecharmy.soundscape.resources.osm_barn
+import org.scottishtecharmy.soundscape.resources.osm_barracks
+import org.scottishtecharmy.soundscape.resources.osm_base
+import org.scottishtecharmy.soundscape.resources.osm_baseball
+import org.scottishtecharmy.soundscape.resources.osm_basketball
+import org.scottishtecharmy.soundscape.resources.osm_basket_maker
+import org.scottishtecharmy.soundscape.resources.osm_bathroom_furnishing
+import org.scottishtecharmy.soundscape.resources.osm_battlefield
+import org.scottishtecharmy.soundscape.resources.osm_bay
+import org.scottishtecharmy.soundscape.resources.osm_bbq
+import org.scottishtecharmy.soundscape.resources.osm_beach
+import org.scottishtecharmy.soundscape.resources.osm_beach_resort
+import org.scottishtecharmy.soundscape.resources.osm_beachvolleyball
+import org.scottishtecharmy.soundscape.resources.osm_beacon
+import org.scottishtecharmy.soundscape.resources.osm_beauty
+import org.scottishtecharmy.soundscape.resources.osm_bed
+import org.scottishtecharmy.soundscape.resources.osm_beekeeper
+import org.scottishtecharmy.soundscape.resources.osm_bench
+import org.scottishtecharmy.soundscape.resources.osm_beverages
+import org.scottishtecharmy.soundscape.resources.osm_bicycle
+import org.scottishtecharmy.soundscape.resources.osm_bicycle_path
+import org.scottishtecharmy.soundscape.resources.osm_bicycle_rental
+import org.scottishtecharmy.soundscape.resources.osm_bicycle_repair_station
+import org.scottishtecharmy.soundscape.resources.osm_biergarten
+import org.scottishtecharmy.soundscape.resources.osm_bike_parking
+import org.scottishtecharmy.soundscape.resources.osm_billiards
+import org.scottishtecharmy.soundscape.resources.osm_bird_hide
+import org.scottishtecharmy.soundscape.resources.osm_blacksmith
+import org.scottishtecharmy.soundscape.resources.osm_block
+import org.scottishtecharmy.soundscape.resources.osm_blood_donation
+import org.scottishtecharmy.soundscape.resources.osm_bmx
+import org.scottishtecharmy.soundscape.resources.osm_boatbuilder
+import org.scottishtecharmy.soundscape.resources.osm_boat_sharing
+import org.scottishtecharmy.soundscape.resources.osm_boatyard
+import org.scottishtecharmy.soundscape.resources.osm_bobsleigh
+import org.scottishtecharmy.soundscape.resources.osm_bollard
+import org.scottishtecharmy.soundscape.resources.osm_bookbinder
+import org.scottishtecharmy.soundscape.resources.osm_bookmaker
+import org.scottishtecharmy.soundscape.resources.osm_books
+import org.scottishtecharmy.soundscape.resources.osm_book_store
+import org.scottishtecharmy.soundscape.resources.osm_boules
+import org.scottishtecharmy.soundscape.resources.osm_boundary_stone
+import org.scottishtecharmy.soundscape.resources.osm_boutique
+import org.scottishtecharmy.soundscape.resources.osm_bowls
+import org.scottishtecharmy.soundscape.resources.osm_boxing
+import org.scottishtecharmy.soundscape.resources.osm_brewery
+import org.scottishtecharmy.soundscape.resources.osm_brewing_supplies
+import org.scottishtecharmy.soundscape.resources.osm_bridge
+import org.scottishtecharmy.soundscape.resources.osm_brothel
+import org.scottishtecharmy.soundscape.resources.osm_builder
+import org.scottishtecharmy.soundscape.resources.osm_building
+import org.scottishtecharmy.soundscape.resources.osm_building_entrance
+import org.scottishtecharmy.soundscape.resources.osm_bungalow
+import org.scottishtecharmy.soundscape.resources.osm_bunker
+import org.scottishtecharmy.soundscape.resources.osm_bunker_silo
+import org.scottishtecharmy.soundscape.resources.osm_bureau_de_change
+import org.scottishtecharmy.soundscape.resources.osm_bus_station
+import org.scottishtecharmy.soundscape.resources.osm_bus_stop
+import org.scottishtecharmy.soundscape.resources.osm_butcher
+import org.scottishtecharmy.soundscape.resources.osm_cabin
+import org.scottishtecharmy.soundscape.resources.osm_cafe
+import org.scottishtecharmy.soundscape.resources.osm_campanile
+import org.scottishtecharmy.soundscape.resources.osm_camp_site
+import org.scottishtecharmy.soundscape.resources.osm_canadian_football
+import org.scottishtecharmy.soundscape.resources.osm_candles
+import org.scottishtecharmy.soundscape.resources.osm_cannon
+import org.scottishtecharmy.soundscape.resources.osm_canoe
+import org.scottishtecharmy.soundscape.resources.osm_car
+import org.scottishtecharmy.soundscape.resources.osm_caravan_site
+import org.scottishtecharmy.soundscape.resources.osm_car_parts
+import org.scottishtecharmy.soundscape.resources.osm_carpenter
+import org.scottishtecharmy.soundscape.resources.osm_carpet
+import org.scottishtecharmy.soundscape.resources.osm_carpet_layer
+import org.scottishtecharmy.soundscape.resources.osm_car_rental
+import org.scottishtecharmy.soundscape.resources.osm_car_repair
+import org.scottishtecharmy.soundscape.resources.osm_car_sharing
+import org.scottishtecharmy.soundscape.resources.osm_car_wash
+import org.scottishtecharmy.soundscape.resources.osm_casino
+import org.scottishtecharmy.soundscape.resources.osm_castle
+import org.scottishtecharmy.soundscape.resources.osm_caterer
+import org.scottishtecharmy.soundscape.resources.osm_cathedral
+import org.scottishtecharmy.soundscape.resources.osm_cattle_grid
+import org.scottishtecharmy.soundscape.resources.osm_cave_entrance
+import org.scottishtecharmy.soundscape.resources.osm_chain
+import org.scottishtecharmy.soundscape.resources.osm_chalet
+import org.scottishtecharmy.soundscape.resources.osm_chapel
+import org.scottishtecharmy.soundscape.resources.osm_charging_station
+import org.scottishtecharmy.soundscape.resources.osm_charity
+import org.scottishtecharmy.soundscape.resources.osm_checkpoint
+import org.scottishtecharmy.soundscape.resources.osm_cheese
+import org.scottishtecharmy.soundscape.resources.osm_chemist
+import org.scottishtecharmy.soundscape.resources.osm_chess
+import org.scottishtecharmy.soundscape.resources.osm_chimney_sweeper
+import org.scottishtecharmy.soundscape.resources.osm_chocolate
+import org.scottishtecharmy.soundscape.resources.osm_church
+import org.scottishtecharmy.soundscape.resources.osm_cinema
+import org.scottishtecharmy.soundscape.resources.osm_city
+import org.scottishtecharmy.soundscape.resources.osm_city_gate
+import org.scottishtecharmy.soundscape.resources.osm_civic
+import org.scottishtecharmy.soundscape.resources.osm_cliff
+import org.scottishtecharmy.soundscape.resources.osm_cliff_diving
+import org.scottishtecharmy.soundscape.resources.osm_climbing
+import org.scottishtecharmy.soundscape.resources.osm_climbing_adventure
+import org.scottishtecharmy.soundscape.resources.osm_clinic
+import org.scottishtecharmy.soundscape.resources.osm_clock
+import org.scottishtecharmy.soundscape.resources.osm_clockmaker
+import org.scottishtecharmy.soundscape.resources.osm_clothes
+import org.scottishtecharmy.soundscape.resources.osm_clothing_store
+import org.scottishtecharmy.soundscape.resources.osm_cockfighting
+import org.scottishtecharmy.soundscape.resources.osm_coffee
+import org.scottishtecharmy.soundscape.resources.osm_coffee_shop
+import org.scottishtecharmy.soundscape.resources.osm_college
+import org.scottishtecharmy.soundscape.resources.osm_commercial
+import org.scottishtecharmy.soundscape.resources.osm_communications_tower
+import org.scottishtecharmy.soundscape.resources.osm_community_centre
+import org.scottishtecharmy.soundscape.resources.osm_company
+import org.scottishtecharmy.soundscape.resources.osm_computer
+import org.scottishtecharmy.soundscape.resources.osm_confectionery
+import org.scottishtecharmy.soundscape.resources.osm_conference_centre
+import org.scottishtecharmy.soundscape.resources.osm_construction
+import org.scottishtecharmy.soundscape.resources.osm_construction_site
+import org.scottishtecharmy.soundscape.resources.osm_consumer_electronics_store
+import org.scottishtecharmy.soundscape.resources.osm_contact_line
+import org.scottishtecharmy.soundscape.resources.osm_convenience_store
+import org.scottishtecharmy.soundscape.resources.osm_copyshop
+import org.scottishtecharmy.soundscape.resources.osm_cosmetics
+import org.scottishtecharmy.soundscape.resources.osm_courthouse
+import org.scottishtecharmy.soundscape.resources.osm_covered_pavilion
+import org.scottishtecharmy.soundscape.resources.osm_coworking_space
+import org.scottishtecharmy.soundscape.resources.osm_cowshed
+import org.scottishtecharmy.soundscape.resources.osm_craft
+import org.scottishtecharmy.soundscape.resources.osm_crane
+import org.scottishtecharmy.soundscape.resources.osm_crematorium
+import org.scottishtecharmy.soundscape.resources.osm_cricket
+import org.scottishtecharmy.soundscape.resources.osm_cricket_nets
+import org.scottishtecharmy.soundscape.resources.osm_croquet
+import org.scottishtecharmy.soundscape.resources.osm_cross
+import org.scottishtecharmy.soundscape.resources.osm_crossing
+import org.scottishtecharmy.soundscape.resources.osm_crypt
+import org.scottishtecharmy.soundscape.resources.osm_curling
+import org.scottishtecharmy.soundscape.resources.osm_curtain
+import org.scottishtecharmy.soundscape.resources.osm_customer_service
+import org.scottishtecharmy.soundscape.resources.osm_cycle_barrier
+import org.scottishtecharmy.soundscape.resources.osm_cycling
+import org.scottishtecharmy.soundscape.resources.osm_dairy
+import org.scottishtecharmy.soundscape.resources.osm_dam
+import org.scottishtecharmy.soundscape.resources.osm_dance
+import org.scottishtecharmy.soundscape.resources.osm_danger_area
+import org.scottishtecharmy.soundscape.resources.osm_dangerous_area
+import org.scottishtecharmy.soundscape.resources.osm_darts
+import org.scottishtecharmy.soundscape.resources.osm_debris
+import org.scottishtecharmy.soundscape.resources.osm_defibrillator
+import org.scottishtecharmy.soundscape.resources.osm_defined
+import org.scottishtecharmy.soundscape.resources.osm_deli
+import org.scottishtecharmy.soundscape.resources.osm_dentist
+import org.scottishtecharmy.soundscape.resources.osm_department_store
+import org.scottishtecharmy.soundscape.resources.osm_detached
+import org.scottishtecharmy.soundscape.resources.osm_digester
+import org.scottishtecharmy.soundscape.resources.osm_distillery
+import org.scottishtecharmy.soundscape.resources.osm_dive_centre
+import org.scottishtecharmy.soundscape.resources.osm_diving
+import org.scottishtecharmy.soundscape.resources.osm_dock
+import org.scottishtecharmy.soundscape.resources.osm_doctors
+import org.scottishtecharmy.soundscape.resources.osm_dog_park
+import org.scottishtecharmy.soundscape.resources.osm_dog_racing
+import org.scottishtecharmy.soundscape.resources.osm_doityourself
+import org.scottishtecharmy.soundscape.resources.osm_dojo
+import org.scottishtecharmy.soundscape.resources.osm_dormitory
+import org.scottishtecharmy.soundscape.resources.osm_dressmaker
+import org.scottishtecharmy.soundscape.resources.osm_driving_school
+import org.scottishtecharmy.soundscape.resources.osm_drugstore
+import org.scottishtecharmy.soundscape.resources.osm_dry_cleaning
+import org.scottishtecharmy.soundscape.resources.osm_dyke
+import org.scottishtecharmy.soundscape.resources.osm_e_cigarette
+import org.scottishtecharmy.soundscape.resources.osm_educational_institution
+import org.scottishtecharmy.soundscape.resources.osm_electrical
+import org.scottishtecharmy.soundscape.resources.osm_electrician
+import org.scottishtecharmy.soundscape.resources.osm_electronics
+import org.scottishtecharmy.soundscape.resources.osm_elevator
+import org.scottishtecharmy.soundscape.resources.osm_embassy
+import org.scottishtecharmy.soundscape.resources.osm_employment_agency
+import org.scottishtecharmy.soundscape.resources.osm_energy
+import org.scottishtecharmy.soundscape.resources.osm_entrance
+import org.scottishtecharmy.soundscape.resources.osm_equestrian
+import org.scottishtecharmy.soundscape.resources.osm_erotic
+import org.scottishtecharmy.soundscape.resources.osm_escalator
+import org.scottishtecharmy.soundscape.resources.osm_estate_agent
+import org.scottishtecharmy.soundscape.resources.osm_ev_charging
+import org.scottishtecharmy.soundscape.resources.osm_events_venue
+import org.scottishtecharmy.soundscape.resources.osm_fabric
+import org.scottishtecharmy.soundscape.resources.osm_farm
+import org.scottishtecharmy.soundscape.resources.osm_farm_auxiliary
+import org.scottishtecharmy.soundscape.resources.osm_fashion
+import org.scottishtecharmy.soundscape.resources.osm_fast_food
+import org.scottishtecharmy.soundscape.resources.osm_fencing
+import org.scottishtecharmy.soundscape.resources.osm_ferry_terminal
+import org.scottishtecharmy.soundscape.resources.osm_field_hockey
+import org.scottishtecharmy.soundscape.resources.osm_fire_extinguisher
+import org.scottishtecharmy.soundscape.resources.osm_fire_flapper
+import org.scottishtecharmy.soundscape.resources.osm_fire_hose
+import org.scottishtecharmy.soundscape.resources.osm_firepit
+import org.scottishtecharmy.soundscape.resources.osm_fireplace
+import org.scottishtecharmy.soundscape.resources.osm_fire_station
+import org.scottishtecharmy.soundscape.resources.osm_fishing
+import org.scottishtecharmy.soundscape.resources.osm_fitness_centre
+import org.scottishtecharmy.soundscape.resources.osm_flagpole
+import org.scottishtecharmy.soundscape.resources.osm_floorer
+import org.scottishtecharmy.soundscape.resources.osm_florist
+import org.scottishtecharmy.soundscape.resources.osm_food
+import org.scottishtecharmy.soundscape.resources.osm_food_court
+import org.scottishtecharmy.soundscape.resources.osm_football
+import org.scottishtecharmy.soundscape.resources.osm_forestry
+import org.scottishtecharmy.soundscape.resources.osm_fort
+import org.scottishtecharmy.soundscape.resources.osm_foundation
+import org.scottishtecharmy.soundscape.resources.osm_fountain
+import org.scottishtecharmy.soundscape.resources.osm_frame
+import org.scottishtecharmy.soundscape.resources.osm_free_flying
+import org.scottishtecharmy.soundscape.resources.osm_fuel
+import org.scottishtecharmy.soundscape.resources.osm_full_height_turnstile
+import org.scottishtecharmy.soundscape.resources.osm_funeral_directors
+import org.scottishtecharmy.soundscape.resources.osm_furniture
+import org.scottishtecharmy.soundscape.resources.osm_gaelic_games
+import org.scottishtecharmy.soundscape.resources.osm_gallery
+import org.scottishtecharmy.soundscape.resources.osm_gallows
+import org.scottishtecharmy.soundscape.resources.osm_gambling
+import org.scottishtecharmy.soundscape.resources.osm_game_feeding
+import org.scottishtecharmy.soundscape.resources.osm_games
+import org.scottishtecharmy.soundscape.resources.osm_garage
+import org.scottishtecharmy.soundscape.resources.osm_garages
+import org.scottishtecharmy.soundscape.resources.osm_garden
+import org.scottishtecharmy.soundscape.resources.osm_garden_centre
+import org.scottishtecharmy.soundscape.resources.osm_gardener
+import org.scottishtecharmy.soundscape.resources.osm_garden_furniture
+import org.scottishtecharmy.soundscape.resources.osm_gas
+import org.scottishtecharmy.soundscape.resources.osm_gasometer
+import org.scottishtecharmy.soundscape.resources.osm_gas_station
+import org.scottishtecharmy.soundscape.resources.osm_gate
+import org.scottishtecharmy.soundscape.resources.osm_general
+import org.scottishtecharmy.soundscape.resources.osm_generator
+import org.scottishtecharmy.soundscape.resources.osm_generic_hazard
+import org.scottishtecharmy.soundscape.resources.osm_generic_info
+import org.scottishtecharmy.soundscape.resources.osm_generic_landmark
+import org.scottishtecharmy.soundscape.resources.osm_generic_object
+import org.scottishtecharmy.soundscape.resources.osm_generic_place
+import org.scottishtecharmy.soundscape.resources.osm_generic_shop
+import org.scottishtecharmy.soundscape.resources.osm_geyser
+import org.scottishtecharmy.soundscape.resources.osm_gift
+import org.scottishtecharmy.soundscape.resources.osm_glacier
+import org.scottishtecharmy.soundscape.resources.osm_glaziery
+import org.scottishtecharmy.soundscape.resources.osm_golf
+import org.scottishtecharmy.soundscape.resources.osm_golf_course
+import org.scottishtecharmy.soundscape.resources.osm_government
+import org.scottishtecharmy.soundscape.resources.osm_grave_yard
+import org.scottishtecharmy.soundscape.resources.osm_greengrocer
+import org.scottishtecharmy.soundscape.resources.osm_greenhouse
+import org.scottishtecharmy.soundscape.resources.osm_guest_house
+import org.scottishtecharmy.soundscape.resources.osm_guide
+import org.scottishtecharmy.soundscape.resources.osm_gym
+import org.scottishtecharmy.soundscape.resources.osm_gymnastics
+import org.scottishtecharmy.soundscape.resources.osm_hackerspace
+import org.scottishtecharmy.soundscape.resources.osm_hair_dresser
+import org.scottishtecharmy.soundscape.resources.osm_hairdresser
+import org.scottishtecharmy.soundscape.resources.osm_hamlet
+import org.scottishtecharmy.soundscape.resources.osm_hampshire_gate
+import org.scottishtecharmy.soundscape.resources.osm_handball
+import org.scottishtecharmy.soundscape.resources.osm_handicraft
+import org.scottishtecharmy.soundscape.resources.osm_hangar
+import org.scottishtecharmy.soundscape.resources.osm_hapkido
+import org.scottishtecharmy.soundscape.resources.osm_hardware
+import org.scottishtecharmy.soundscape.resources.osm_health_food
+import org.scottishtecharmy.soundscape.resources.osm_hearing_aids
+import org.scottishtecharmy.soundscape.resources.osm_helipad
+import org.scottishtecharmy.soundscape.resources.osm_heliport
+import org.scottishtecharmy.soundscape.resources.osm_help_point
+import org.scottishtecharmy.soundscape.resources.osm_herbalist
+import org.scottishtecharmy.soundscape.resources.osm_hifi
+import org.scottishtecharmy.soundscape.resources.osm_highway
+import org.scottishtecharmy.soundscape.resources.osm_highway_named
+import org.scottishtecharmy.soundscape.resources.osm_highway_ramp
+import org.scottishtecharmy.soundscape.resources.osm_highway_refed
+import org.scottishtecharmy.soundscape.resources.osm_historic_monument
+import org.scottishtecharmy.soundscape.resources.osm_hockey
+import org.scottishtecharmy.soundscape.resources.osm_horse_racing
+import org.scottishtecharmy.soundscape.resources.osm_horseshoes
+import org.scottishtecharmy.soundscape.resources.osm_horse_stile
+import org.scottishtecharmy.soundscape.resources.osm_hospital
+import org.scottishtecharmy.soundscape.resources.osm_hostel
+import org.scottishtecharmy.soundscape.resources.osm_hotel
+import org.scottishtecharmy.soundscape.resources.osm_hot_spring
+import org.scottishtecharmy.soundscape.resources.osm_hot_water_tank
+import org.scottishtecharmy.soundscape.resources.osm_house
+import org.scottishtecharmy.soundscape.resources.osm_houseboat
+import org.scottishtecharmy.soundscape.resources.osm_houseware
+import org.scottishtecharmy.soundscape.resources.osm_hunting
+import org.scottishtecharmy.soundscape.resources.osm_hunting_stand
+import org.scottishtecharmy.soundscape.resources.osm_hut
+import org.scottishtecharmy.soundscape.resources.osm_hvac
+import org.scottishtecharmy.soundscape.resources.osm_ice_cream
+import org.scottishtecharmy.soundscape.resources.osm_ice_hockey
+import org.scottishtecharmy.soundscape.resources.osm_ice_rink
+import org.scottishtecharmy.soundscape.resources.osm_ice_skating
+import org.scottishtecharmy.soundscape.resources.osm_ice_stock
+import org.scottishtecharmy.soundscape.resources.osm_industrial
+import org.scottishtecharmy.soundscape.resources.osm_information
+import org.scottishtecharmy.soundscape.resources.osm_information_point
+import org.scottishtecharmy.soundscape.resources.osm_insulation
+import org.scottishtecharmy.soundscape.resources.osm_insurance
+import org.scottishtecharmy.soundscape.resources.osm_interior_decoration
+import org.scottishtecharmy.soundscape.resources.osm_internet_cafe
+import org.scottishtecharmy.soundscape.resources.osm_intersection
+import org.scottishtecharmy.soundscape.resources.osm_it
+import org.scottishtecharmy.soundscape.resources.osm_jersey_barrier
+import org.scottishtecharmy.soundscape.resources.osm_jeweller
+import org.scottishtecharmy.soundscape.resources.osm_jewelry
+import org.scottishtecharmy.soundscape.resources.osm_judo
+import org.scottishtecharmy.soundscape.resources.osm_karting
+import org.scottishtecharmy.soundscape.resources.osm_kent_carriage_gap
+import org.scottishtecharmy.soundscape.resources.osm_key_cutter
+import org.scottishtecharmy.soundscape.resources.osm_kiln
+import org.scottishtecharmy.soundscape.resources.osm_kindergarten
+import org.scottishtecharmy.soundscape.resources.osm_kiosk
+import org.scottishtecharmy.soundscape.resources.osm_kissing_gate
+import org.scottishtecharmy.soundscape.resources.osm_kitchen
+import org.scottishtecharmy.soundscape.resources.osm_kitesurfing
+import org.scottishtecharmy.soundscape.resources.osm_kneipp_water_cure
+import org.scottishtecharmy.soundscape.resources.osm_korfball
+import org.scottishtecharmy.soundscape.resources.osm_lamps
+import org.scottishtecharmy.soundscape.resources.osm_language_school
+import org.scottishtecharmy.soundscape.resources.osm_laundry
+import org.scottishtecharmy.soundscape.resources.osm_lawyer
+import org.scottishtecharmy.soundscape.resources.osm_leather
+import org.scottishtecharmy.soundscape.resources.osm_library
+import org.scottishtecharmy.soundscape.resources.osm_lifeguard_base
+import org.scottishtecharmy.soundscape.resources.osm_lifeguard_place
+import org.scottishtecharmy.soundscape.resources.osm_lifeguard_platform
+import org.scottishtecharmy.soundscape.resources.osm_lifeguard_tower
+import org.scottishtecharmy.soundscape.resources.osm_life_ring
+import org.scottishtecharmy.soundscape.resources.osm_lift
+import org.scottishtecharmy.soundscape.resources.osm_lighthouse
+import org.scottishtecharmy.soundscape.resources.osm_lock_gate
+import org.scottishtecharmy.soundscape.resources.osm_locksmith
+import org.scottishtecharmy.soundscape.resources.osm_locomotive
+import org.scottishtecharmy.soundscape.resources.osm_log
+import org.scottishtecharmy.soundscape.resources.osm_lottery
+import org.scottishtecharmy.soundscape.resources.osm_mall
+import org.scottishtecharmy.soundscape.resources.osm_manor
+import org.scottishtecharmy.soundscape.resources.osm_marina
+import org.scottishtecharmy.soundscape.resources.osm_marketplace
+import org.scottishtecharmy.soundscape.resources.osm_massage
+import org.scottishtecharmy.soundscape.resources.osm_mast
+import org.scottishtecharmy.soundscape.resources.osm_medical_supply
+import org.scottishtecharmy.soundscape.resources.osm_memorial
+import org.scottishtecharmy.soundscape.resources.osm_merging_lane
+import org.scottishtecharmy.soundscape.resources.osm_metal_construction
+import org.scottishtecharmy.soundscape.resources.osm_milestone
+import org.scottishtecharmy.soundscape.resources.osm_mineshaft
+import org.scottishtecharmy.soundscape.resources.osm_miniature_golf
+import org.scottishtecharmy.soundscape.resources.osm_mobile_phone
+import org.scottishtecharmy.soundscape.resources.osm_model
+import org.scottishtecharmy.soundscape.resources.osm_model_aerodrome
+import org.scottishtecharmy.soundscape.resources.osm_monastery
+import org.scottishtecharmy.soundscape.resources.osm_money_lender
+import org.scottishtecharmy.soundscape.resources.osm_monitoring_station
+import org.scottishtecharmy.soundscape.resources.osm_monument
+import org.scottishtecharmy.soundscape.resources.osm_mosque
+import org.scottishtecharmy.soundscape.resources.osm_motel
+import org.scottishtecharmy.soundscape.resources.osm_motocross
+import org.scottishtecharmy.soundscape.resources.osm_motor
+import org.scottishtecharmy.soundscape.resources.osm_motorcycle
+import org.scottishtecharmy.soundscape.resources.osm_motorcycle_barrier
+import org.scottishtecharmy.soundscape.resources.osm_motorcycle_parking
+import org.scottishtecharmy.soundscape.resources.osm_mud
+import org.scottishtecharmy.soundscape.resources.osm_multi
+import org.scottishtecharmy.soundscape.resources.osm_museum
+import org.scottishtecharmy.soundscape.resources.osm_music
+import org.scottishtecharmy.soundscape.resources.osm_musical_instrument
+import org.scottishtecharmy.soundscape.resources.osm_music_school
+import org.scottishtecharmy.soundscape.resources.osm_national_park
+import org.scottishtecharmy.soundscape.resources.osm_nature_reserve
+import org.scottishtecharmy.soundscape.resources.osm_naval_base
+import org.scottishtecharmy.soundscape.resources.osm_navigationaid
+import org.scottishtecharmy.soundscape.resources.osm_neighbourhood
+import org.scottishtecharmy.soundscape.resources.osm_netball
+import org.scottishtecharmy.soundscape.resources.osm_newsagent
+import org.scottishtecharmy.soundscape.resources.osm_newspaper
+import org.scottishtecharmy.soundscape.resources.osm_ngo
+import org.scottishtecharmy.soundscape.resources.osm_nightclub
+import org.scottishtecharmy.soundscape.resources.osm_notary
+import org.scottishtecharmy.soundscape.resources.osm_nuclear_explosion_site
+import org.scottishtecharmy.soundscape.resources.osm_nursing_home
+import org.scottishtecharmy.soundscape.resources.osm_nutrition_supplements
+import org.scottishtecharmy.soundscape.resources.osm_observatory
+import org.scottishtecharmy.soundscape.resources.osm_obstacle_course
+import org.scottishtecharmy.soundscape.resources.osm_office
+import org.scottishtecharmy.soundscape.resources.osm_office_building
+import org.scottishtecharmy.soundscape.resources.osm_offshore_platform
+import org.scottishtecharmy.soundscape.resources.osm_open_space
+import org.scottishtecharmy.soundscape.resources.osm_optical_telegraph
+import org.scottishtecharmy.soundscape.resources.osm_optician
+import org.scottishtecharmy.soundscape.resources.osm_organic
+import org.scottishtecharmy.soundscape.resources.osm_orienteering
+import org.scottishtecharmy.soundscape.resources.osm_outdoor
+import org.scottishtecharmy.soundscape.resources.osm_paddle_tennis
+import org.scottishtecharmy.soundscape.resources.osm_paint
+import org.scottishtecharmy.soundscape.resources.osm_painter
+import org.scottishtecharmy.soundscape.resources.osm_parachuting
+import org.scottishtecharmy.soundscape.resources.osm_paragliding
+import org.scottishtecharmy.soundscape.resources.osm_park
+import org.scottishtecharmy.soundscape.resources.osm_parking_entrance
+import org.scottishtecharmy.soundscape.resources.osm_parking_lot
+import org.scottishtecharmy.soundscape.resources.osm_parking_space
+import org.scottishtecharmy.soundscape.resources.osm_parquet_layer
+import org.scottishtecharmy.soundscape.resources.osm_pasta
+import org.scottishtecharmy.soundscape.resources.osm_pastry
+import org.scottishtecharmy.soundscape.resources.osm_pavillion
+import org.scottishtecharmy.soundscape.resources.osm_pawnbroker
+import org.scottishtecharmy.soundscape.resources.osm_peak
+import org.scottishtecharmy.soundscape.resources.osm_pedestrianised_area
+import org.scottishtecharmy.soundscape.resources.osm_pedestrian_street
+import org.scottishtecharmy.soundscape.resources.osm_pelota
+import org.scottishtecharmy.soundscape.resources.osm_perfumery
+import org.scottishtecharmy.soundscape.resources.osm_pet
+import org.scottishtecharmy.soundscape.resources.osm_petroleum_well
+import org.scottishtecharmy.soundscape.resources.osm_pharmacy
+import org.scottishtecharmy.soundscape.resources.osm_photo
+import org.scottishtecharmy.soundscape.resources.osm_photo_booth
+import org.scottishtecharmy.soundscape.resources.osm_photographer
+import org.scottishtecharmy.soundscape.resources.osm_photographic_laboratory
+import org.scottishtecharmy.soundscape.resources.osm_picnic_area
+import org.scottishtecharmy.soundscape.resources.osm_picnic_table
+import org.scottishtecharmy.soundscape.resources.osm_pier
+import org.scottishtecharmy.soundscape.resources.osm_pillory
+import org.scottishtecharmy.soundscape.resources.osm_place_of_worship
+import org.scottishtecharmy.soundscape.resources.osm_planetarium
+import org.scottishtecharmy.soundscape.resources.osm_plant
+import org.scottishtecharmy.soundscape.resources.osm_plasterer
+import org.scottishtecharmy.soundscape.resources.osm_platform
+import org.scottishtecharmy.soundscape.resources.osm_playground
+import org.scottishtecharmy.soundscape.resources.osm_plumber
+import org.scottishtecharmy.soundscape.resources.osm_police
+import org.scottishtecharmy.soundscape.resources.osm_political_party
+import org.scottishtecharmy.soundscape.resources.osm_port
+import org.scottishtecharmy.soundscape.resources.osm_post_box
+import org.scottishtecharmy.soundscape.resources.osm_post_office
+import org.scottishtecharmy.soundscape.resources.osm_pottery
+import org.scottishtecharmy.soundscape.resources.osm_prison
+import org.scottishtecharmy.soundscape.resources.osm_private_investigator
+import org.scottishtecharmy.soundscape.resources.osm_pub
+import org.scottishtecharmy.soundscape.resources.osm_public
+import org.scottishtecharmy.soundscape.resources.osm_public_bookcase
+import org.scottishtecharmy.soundscape.resources.osm_public_building
+import org.scottishtecharmy.soundscape.resources.osm_public_park
+import org.scottishtecharmy.soundscape.resources.osm_pumping_station
+import org.scottishtecharmy.soundscape.resources.osm_pylon
+import org.scottishtecharmy.soundscape.resources.osm_pyrotechnics
+import org.scottishtecharmy.soundscape.resources.osm_quango
+import org.scottishtecharmy.soundscape.resources.osm_racquet
+import org.scottishtecharmy.soundscape.resources.osm_radiotechnics
+import org.scottishtecharmy.soundscape.resources.osm_railway
+import org.scottishtecharmy.soundscape.resources.osm_range
+import org.scottishtecharmy.soundscape.resources.osm_ranger_station
+import org.scottishtecharmy.soundscape.resources.osm_rc_car
+import org.scottishtecharmy.soundscape.resources.osm_real_estate_agent
+import org.scottishtecharmy.soundscape.resources.osm_realtor
+import org.scottishtecharmy.soundscape.resources.osm_recreation_ground
+import org.scottishtecharmy.soundscape.resources.osm_recycling_bin
+import org.scottishtecharmy.soundscape.resources.osm_register_office
+import org.scottishtecharmy.soundscape.resources.osm_religion
+import org.scottishtecharmy.soundscape.resources.osm_rescue_station
+import org.scottishtecharmy.soundscape.resources.osm_research
+import org.scottishtecharmy.soundscape.resources.osm_reservoir
+import org.scottishtecharmy.soundscape.resources.osm_residential
+import org.scottishtecharmy.soundscape.resources.osm_residential_street
+import org.scottishtecharmy.soundscape.resources.osm_restaurant
+import org.scottishtecharmy.soundscape.resources.osm_restroom
+import org.scottishtecharmy.soundscape.resources.osm_retail
+import org.scottishtecharmy.soundscape.resources.osm_ridge
+import org.scottishtecharmy.soundscape.resources.osm_rigger
+import org.scottishtecharmy.soundscape.resources.osm_river
+import org.scottishtecharmy.soundscape.resources.osm_road
+import org.scottishtecharmy.soundscape.resources.osm_road_works
+import org.scottishtecharmy.soundscape.resources.osm_rock
+import org.scottishtecharmy.soundscape.resources.osm_roller_skating
+import org.scottishtecharmy.soundscape.resources.osm_roofer
+import org.scottishtecharmy.soundscape.resources.osm_rope
+import org.scottishtecharmy.soundscape.resources.osm_roundabout
+import org.scottishtecharmy.soundscape.resources.osm_roundhouse
+import org.scottishtecharmy.soundscape.resources.osm_rowing
+import org.scottishtecharmy.soundscape.resources.osm_rugby_league
+import org.scottishtecharmy.soundscape.resources.osm_rugby_union
+import org.scottishtecharmy.soundscape.resources.osm_ruins
+import org.scottishtecharmy.soundscape.resources.osm_rune_stone
+import org.scottishtecharmy.soundscape.resources.osm_running
+import org.scottishtecharmy.soundscape.resources.osm_saddler
+import org.scottishtecharmy.soundscape.resources.osm_safety_training
+import org.scottishtecharmy.soundscape.resources.osm_sailing
+import org.scottishtecharmy.soundscape.resources.osm_sailmaker
+import org.scottishtecharmy.soundscape.resources.osm_sally_port
+import org.scottishtecharmy.soundscape.resources.osm_sauna
+import org.scottishtecharmy.soundscape.resources.osm_sawmill
+import org.scottishtecharmy.soundscape.resources.osm_scaffolder
+import org.scottishtecharmy.soundscape.resources.osm_school
+import org.scottishtecharmy.soundscape.resources.osm_school_building
+import org.scottishtecharmy.soundscape.resources.osm_scuba_diving
+import org.scottishtecharmy.soundscape.resources.osm_sculptor
+import org.scottishtecharmy.soundscape.resources.osm_seafood
+import org.scottishtecharmy.soundscape.resources.osm_second_hand
+import org.scottishtecharmy.soundscape.resources.osm_service_road
+import org.scottishtecharmy.soundscape.resources.osm_services
+import org.scottishtecharmy.soundscape.resources.osm_ses_station
+import org.scottishtecharmy.soundscape.resources.osm_shared_space
+import org.scottishtecharmy.soundscape.resources.osm_shed
+import org.scottishtecharmy.soundscape.resources.osm_shelter
+import org.scottishtecharmy.soundscape.resources.osm_ship
+import org.scottishtecharmy.soundscape.resources.osm_shoemaker
+import org.scottishtecharmy.soundscape.resources.osm_shoes
+import org.scottishtecharmy.soundscape.resources.osm_shoe_shop
+import org.scottishtecharmy.soundscape.resources.osm_shooting
+import org.scottishtecharmy.soundscape.resources.osm_shop
+import org.scottishtecharmy.soundscape.resources.osm_shopping_mall
+import org.scottishtecharmy.soundscape.resources.osm_shower
+import org.scottishtecharmy.soundscape.resources.osm_shrine
+import org.scottishtecharmy.soundscape.resources.osm_signal
+import org.scottishtecharmy.soundscape.resources.osm_silo
+import org.scottishtecharmy.soundscape.resources.osm_sinkhole
+import org.scottishtecharmy.soundscape.resources.osm_siren
+import org.scottishtecharmy.soundscape.resources.osm_skateboard
+import org.scottishtecharmy.soundscape.resources.osm_skating
+import org.scottishtecharmy.soundscape.resources.osm_skiing
+import org.scottishtecharmy.soundscape.resources.osm_sleeping_pods
+import org.scottishtecharmy.soundscape.resources.osm_slipway
+import org.scottishtecharmy.soundscape.resources.osm_snow_net
+import org.scottishtecharmy.soundscape.resources.osm_soccer
+import org.scottishtecharmy.soundscape.resources.osm_social_centre
+import org.scottishtecharmy.soundscape.resources.osm_social_facility
+import org.scottishtecharmy.soundscape.resources.osm_speciality_store
+import org.scottishtecharmy.soundscape.resources.osm_speed_camera
+import org.scottishtecharmy.soundscape.resources.osm_spending_area
+import org.scottishtecharmy.soundscape.resources.osm_spikes
+import org.scottishtecharmy.soundscape.resources.osm_sport
+import org.scottishtecharmy.soundscape.resources.osm_sports
+import org.scottishtecharmy.soundscape.resources.osm_sports_centre
+import org.scottishtecharmy.soundscape.resources.osm_sports_field
+import org.scottishtecharmy.soundscape.resources.osm_spring
+import org.scottishtecharmy.soundscape.resources.osm_stable
+import org.scottishtecharmy.soundscape.resources.osm_stadium
+import org.scottishtecharmy.soundscape.resources.osm_stairs
+import org.scottishtecharmy.soundscape.resources.osm_stand_builder
+import org.scottishtecharmy.soundscape.resources.osm_static_caravan
+import org.scottishtecharmy.soundscape.resources.osm_station
+import org.scottishtecharmy.soundscape.resources.osm_stationery
+import org.scottishtecharmy.soundscape.resources.osm_steps
+import org.scottishtecharmy.soundscape.resources.osm_stile
+import org.scottishtecharmy.soundscape.resources.osm_stone
+import org.scottishtecharmy.soundscape.resources.osm_stonemason
+import org.scottishtecharmy.soundscape.resources.osm_storage_tank
+import org.scottishtecharmy.soundscape.resources.osm_stripclub
+import org.scottishtecharmy.soundscape.resources.osm_studio
+import org.scottishtecharmy.soundscape.resources.osm_sty
+import org.scottishtecharmy.soundscape.resources.osm_substation
+import org.scottishtecharmy.soundscape.resources.osm_subway
+import org.scottishtecharmy.soundscape.resources.osm_subway_entrance
+import org.scottishtecharmy.soundscape.resources.osm_summer_camp
+import org.scottishtecharmy.soundscape.resources.osm_sump_buster
+import org.scottishtecharmy.soundscape.resources.osm_sun_protection
+import org.scottishtecharmy.soundscape.resources.osm_supermarket
+import org.scottishtecharmy.soundscape.resources.osm_surfing
+import org.scottishtecharmy.soundscape.resources.osm_surveillance
+import org.scottishtecharmy.soundscape.resources.osm_survey_point
+import org.scottishtecharmy.soundscape.resources.osm_swimming
+import org.scottishtecharmy.soundscape.resources.osm_swimming_area
+import org.scottishtecharmy.soundscape.resources.osm_swimming_pool
+import org.scottishtecharmy.soundscape.resources.osm_swingerclub
+import org.scottishtecharmy.soundscape.resources.osm_swing_gate
+import org.scottishtecharmy.soundscape.resources.osm_synagogue
+import org.scottishtecharmy.soundscape.resources.osm_table_soccer
+import org.scottishtecharmy.soundscape.resources.osm_table_tennis
+import org.scottishtecharmy.soundscape.resources.osm_taekwondo
+import org.scottishtecharmy.soundscape.resources.osm_tailor
+import org.scottishtecharmy.soundscape.resources.osm_tattoo
+import org.scottishtecharmy.soundscape.resources.osm_tax
+import org.scottishtecharmy.soundscape.resources.osm_tax_advisor
+import org.scottishtecharmy.soundscape.resources.osm_taxi_waiting_area
+import org.scottishtecharmy.soundscape.resources.osm_tea
+import org.scottishtecharmy.soundscape.resources.osm_telecommunication
+import org.scottishtecharmy.soundscape.resources.osm_telephone
+import org.scottishtecharmy.soundscape.resources.osm_telescope
+import org.scottishtecharmy.soundscape.resources.osm_temple
+import org.scottishtecharmy.soundscape.resources.osm_tennis
+import org.scottishtecharmy.soundscape.resources.osm_terminal
+import org.scottishtecharmy.soundscape.resources.osm_terrace
+import org.scottishtecharmy.soundscape.resources.osm_theatre
+import org.scottishtecharmy.soundscape.resources.osm_theme_park
+import org.scottishtecharmy.soundscape.resources.osm_ticket
+import org.scottishtecharmy.soundscape.resources.osm_tiler
+import org.scottishtecharmy.soundscape.resources.osm_tinsmith
+import org.scottishtecharmy.soundscape.resources.osm_tobacco
+import org.scottishtecharmy.soundscape.resources.osm_toboggan
+import org.scottishtecharmy.soundscape.resources.osm_toll_booth
+import org.scottishtecharmy.soundscape.resources.osm_tomb
+import org.scottishtecharmy.soundscape.resources.osm_tourism_museum
+import org.scottishtecharmy.soundscape.resources.osm_tower
+import org.scottishtecharmy.soundscape.resources.osm_town
+import org.scottishtecharmy.soundscape.resources.osm_townhall
+import org.scottishtecharmy.soundscape.resources.osm_toys
+import org.scottishtecharmy.soundscape.resources.osm_toy_shop
+import org.scottishtecharmy.soundscape.resources.osm_track
+import org.scottishtecharmy.soundscape.resources.osm_trade
+import org.scottishtecharmy.soundscape.resources.osm_traffic_cones
+import org.scottishtecharmy.soundscape.resources.osm_traffic_signals
+import org.scottishtecharmy.soundscape.resources.osm_training_area
+import org.scottishtecharmy.soundscape.resources.osm_train_station
+import org.scottishtecharmy.soundscape.resources.osm_train_terminal
+import org.scottishtecharmy.soundscape.resources.osm_tram_stop
+import org.scottishtecharmy.soundscape.resources.osm_transformer_tower
+import org.scottishtecharmy.soundscape.resources.osm_transportation
+import org.scottishtecharmy.soundscape.resources.osm_travel_agency
+import org.scottishtecharmy.soundscape.resources.osm_travel_agent
+import org.scottishtecharmy.soundscape.resources.osm_trophy
+import org.scottishtecharmy.soundscape.resources.osm_turnstile
+import org.scottishtecharmy.soundscape.resources.osm_turntable
+import org.scottishtecharmy.soundscape.resources.osm_tyres
+import org.scottishtecharmy.soundscape.resources.osm_university
+import org.scottishtecharmy.soundscape.resources.osm_unmanaged_crossing
+import org.scottishtecharmy.soundscape.resources.osm_upholsterer
+import org.scottishtecharmy.soundscape.resources.osm_user
+import org.scottishtecharmy.soundscape.resources.osm_vacant
+import org.scottishtecharmy.soundscape.resources.osm_vacuum_cleaner
+import org.scottishtecharmy.soundscape.resources.osm_variety_store
+import org.scottishtecharmy.soundscape.resources.osm_vending_machine
+import org.scottishtecharmy.soundscape.resources.osm_veterinary
+import org.scottishtecharmy.soundscape.resources.osm_video
+import org.scottishtecharmy.soundscape.resources.osm_video_games
+import org.scottishtecharmy.soundscape.resources.osm_viewpoint
+import org.scottishtecharmy.soundscape.resources.osm_village
+import org.scottishtecharmy.soundscape.resources.osm_village_green
+import org.scottishtecharmy.soundscape.resources.osm_volcano
+import org.scottishtecharmy.soundscape.resources.osm_volleyball
+import org.scottishtecharmy.soundscape.resources.osm_walking_path
+import org.scottishtecharmy.soundscape.resources.osm_warehouse
+import org.scottishtecharmy.soundscape.resources.osm_waste_basket
+import org.scottishtecharmy.soundscape.resources.osm_waste_disposal
+import org.scottishtecharmy.soundscape.resources.osm_wastewater_plant
+import org.scottishtecharmy.soundscape.resources.osm_watches
+import org.scottishtecharmy.soundscape.resources.osm_watchmaker
+import org.scottishtecharmy.soundscape.resources.osm_water
+import org.scottishtecharmy.soundscape.resources.osm_waterfall
+import org.scottishtecharmy.soundscape.resources.osm_water_fountain
+import org.scottishtecharmy.soundscape.resources.osm_watering_place
+import org.scottishtecharmy.soundscape.resources.osm_watermill
+import org.scottishtecharmy.soundscape.resources.osm_water_park
+import org.scottishtecharmy.soundscape.resources.osm_water_point
+import org.scottishtecharmy.soundscape.resources.osm_water_polo
+import org.scottishtecharmy.soundscape.resources.osm_water_ski
+import org.scottishtecharmy.soundscape.resources.osm_water_tank
+import org.scottishtecharmy.soundscape.resources.osm_water_tap
+import org.scottishtecharmy.soundscape.resources.osm_water_tower
+import org.scottishtecharmy.soundscape.resources.osm_water_utility
+import org.scottishtecharmy.soundscape.resources.osm_water_well
+import org.scottishtecharmy.soundscape.resources.osm_water_works
+import org.scottishtecharmy.soundscape.resources.osm_wayside_cross
+import org.scottishtecharmy.soundscape.resources.osm_wayside_shrine
+import org.scottishtecharmy.soundscape.resources.osm_weapons
+import org.scottishtecharmy.soundscape.resources.osm_weightlifting
+import org.scottishtecharmy.soundscape.resources.osm_weir
+import org.scottishtecharmy.soundscape.resources.osm_wetland
+import org.scottishtecharmy.soundscape.resources.osm_wilderness_hut
+import org.scottishtecharmy.soundscape.resources.osm_wildlife_hide
+import org.scottishtecharmy.soundscape.resources.osm_windmill
+import org.scottishtecharmy.soundscape.resources.osm_window_blind
+import org.scottishtecharmy.soundscape.resources.osm_window_construction
+import org.scottishtecharmy.soundscape.resources.osm_wine
+import org.scottishtecharmy.soundscape.resources.osm_winery
+import org.scottishtecharmy.soundscape.resources.osm_wood
+import org.scottishtecharmy.soundscape.resources.osm_works
+import org.scottishtecharmy.soundscape.resources.osm_wreck
+import org.scottishtecharmy.soundscape.resources.osm_wrestling
+import org.scottishtecharmy.soundscape.resources.osm_zoo
+
+class ResourceMapper {
+    companion object {
+        private val unfoundKeys = mutableSetOf<String>()
+        private val resourceMap: HashMap<String, StringResource> by
+        lazy {
+            HashMap<String, StringResource>().apply {
+                put("crossing", Res.string.osm_crossing)
+                put("construction", Res.string.osm_construction)
+                put("dangerous_area", Res.string.osm_dangerous_area)
+                put("townhall", Res.string.osm_townhall)
+                put("steps", Res.string.osm_steps)
+                put("elevator", Res.string.osm_elevator)
+                put("walking_path", Res.string.osm_walking_path)
+                put("pedestrian_street", Res.string.osm_pedestrian_street)
+                put("bicycle_path", Res.string.osm_bicycle_path)
+                put("residential_street", Res.string.osm_residential_street)
+                put("service_road", Res.string.osm_service_road)
+                put("rail", Res.string.osm_railway)
+                put("railway", Res.string.osm_railway)
+                put("service", Res.string.osm_road)
+                put("road", Res.string.osm_road)
+                put("primary", Res.string.osm_road)
+                put("secondary", Res.string.osm_road)
+                put("tertiary", Res.string.osm_road)
+                put("highway", Res.string.osm_highway)
+                put("highway_named", Res.string.osm_highway_named)
+                put("highway_refed", Res.string.osm_highway_refed)
+                put("intersection", Res.string.osm_intersection)
+                put("roundabout", Res.string.osm_roundabout)
+                put("highway_ramp", Res.string.osm_highway_ramp)
+                put("merging_lane", Res.string.osm_merging_lane)
+                put("office", Res.string.osm_office_building)
+                put("school", Res.string.osm_school_building)
+                put("roof", Res.string.osm_covered_pavilion)
+                put("convenience", Res.string.osm_convenience_store)
+                put("entrance", Res.string.osm_building_entrance)
+                put("assembly_point", Res.string.osm_assembly_point)
+                put("cycle_barrier", Res.string.osm_cycle_barrier)
+                put("turnstile", Res.string.osm_turnstile)
+                put("cattle_grid", Res.string.osm_cattle_grid)
+                put("gate", Res.string.osm_gate)
+                put("lift_gate", Res.string.osm_gate)
+                put("toilets", Res.string.osm_restroom)
+                put("parking", Res.string.osm_parking_lot)
+                put("parking_entrance", Res.string.osm_parking_entrance)
+                put("bench", Res.string.osm_bench)
+                put("taxi", Res.string.osm_taxi_waiting_area)
+                put("post_office", Res.string.osm_post_office)
+                put("post_box", Res.string.osm_post_box)
+                put("waste_basket", Res.string.osm_waste_basket)
+                put("shower", Res.string.osm_shower)
+                put("bicycle_parking", Res.string.osm_bike_parking)
+                put("cafe", Res.string.osm_cafe)
+                put("restaurant", Res.string.osm_restaurant)
+                put("telephone", Res.string.osm_telephone)
+                put("fuel", Res.string.osm_gas_station)
+                put("bank", Res.string.osm_bank)
+                put("atm", Res.string.osm_atm)
+                put("atm_named", Res.string.osm_atm_named)
+                put("atm_refed", Res.string.osm_atm_refed)
+                put("bus_stop", Res.string.osm_bus_stop)
+                put("recycling", Res.string.osm_recycling_bin)
+                put("fountain", Res.string.osm_fountain)
+                put("place_of_worship", Res.string.osm_place_of_worship)
+                put("drinking_water", Res.string.osm_water_fountain)
+                put("car_wash", Res.string.osm_car_wash)
+                put("vending_machine", Res.string.osm_vending_machine)
+                put("playground", Res.string.osm_playground)
+                put("pitch", Res.string.osm_sports_field)
+                put("swimming_pool", Res.string.osm_swimming_pool)
+                put("garden", Res.string.osm_garden)
+                put("park", Res.string.osm_park)
+                put("picnic_table", Res.string.osm_picnic_table)
+                put("picnic_site", Res.string.osm_picnic_area)
+                put("information", Res.string.osm_information)
+                put("fire_extinguisher", Res.string.osm_fire_extinguisher)
+                put("defibrillator", Res.string.osm_defibrillator)
+                put("guide", Res.string.osm_guide)
+                put("water", Res.string.osm_water)
+                put("fire_hose", Res.string.osm_fire_hose)
+                put("fire_flapper", Res.string.osm_fire_flapper)
+                put("information_point", Res.string.osm_information_point)
+                put("wetland", Res.string.osm_wetland)
+                put("mud", Res.string.osm_mud)
+                put("access_point", Res.string.osm_access_point)
+                put("life_ring", Res.string.osm_life_ring)
+                put("generic_info", Res.string.osm_generic_info)
+                put("turntable", Res.string.osm_turntable)
+                put("survey_point", Res.string.osm_survey_point)
+                put("snow_net", Res.string.osm_snow_net)
+                put("silo", Res.string.osm_silo)
+                put("mast", Res.string.osm_mast)
+                put("bird_hide", Res.string.osm_bird_hide)
+                put("transformer_tower", Res.string.osm_transformer_tower)
+                put("generic_object", Res.string.osm_generic_object)
+                put("signal", Res.string.osm_signal)
+                put("rock", Res.string.osm_rock)
+                put("kiln", Res.string.osm_kiln)
+                put("crane", Res.string.osm_crane)
+                put("rune_stone", Res.string.osm_rune_stone)
+                put("milestone", Res.string.osm_milestone)
+                put("lifeguard_platform", Res.string.osm_lifeguard_platform)
+                put("water_tank", Res.string.osm_water_tank)
+                put("sty", Res.string.osm_sty)
+                put("navigationaid", Res.string.osm_navigationaid)
+                put("terminal", Res.string.osm_terminal)
+                put("water_tap", Res.string.osm_water_tap)
+                put("water_well", Res.string.osm_water_well)
+                put("petroleum_well", Res.string.osm_petroleum_well)
+                put("cross", Res.string.osm_cross)
+                put("gallows", Res.string.osm_gallows)
+                put("speed_camera", Res.string.osm_speed_camera)
+                put("siren", Res.string.osm_siren)
+                put("pylon", Res.string.osm_pylon)
+                put("mineshaft", Res.string.osm_mineshaft)
+                put("flagpole", Res.string.osm_flagpole)
+                put("optical_telegraph", Res.string.osm_optical_telegraph)
+                put("cannon", Res.string.osm_cannon)
+                put("boundary_stone", Res.string.osm_boundary_stone)
+                put("shed", Res.string.osm_shed)
+                put("traffic_cones", Res.string.osm_traffic_cones)
+                put("firepit", Res.string.osm_firepit)
+                put("stone", Res.string.osm_stone)
+                put("surveillance", Res.string.osm_surveillance)
+                put("monitoring_station", Res.string.osm_monitoring_station)
+                put("wayside_shrine", Res.string.osm_wayside_shrine)
+                put("wayside_cross", Res.string.osm_wayside_cross)
+                put("tomb", Res.string.osm_tomb)
+                put("traffic_signals", Res.string.osm_traffic_signals)
+                put("hut", Res.string.osm_hut)
+                put("static_caravan", Res.string.osm_static_caravan)
+                put("bollard", Res.string.osm_bollard)
+                put("block", Res.string.osm_block)
+                put("waste_disposal", Res.string.osm_waste_disposal)
+                put("photo_booth", Res.string.osm_photo_booth)
+                put("bbq", Res.string.osm_bbq)
+                put("shop", Res.string.osm_shop)
+                put("newsagent", Res.string.osm_newsagent)
+                put("anime", Res.string.osm_anime)
+                put("musical_instrument", Res.string.osm_musical_instrument)
+                put("vacuum_cleaner", Res.string.osm_vacuum_cleaner)
+                put("mobile_phone", Res.string.osm_mobile_phone)
+                put("carpet", Res.string.osm_carpet)
+                put("trade", Res.string.osm_trade)
+                put("garden_centre", Res.string.osm_garden_centre)
+                put("florist", Res.string.osm_florist)
+                put("fireplace", Res.string.osm_fireplace)
+                put("massage", Res.string.osm_massage)
+                put("herbalist", Res.string.osm_herbalist)
+                put("bag", Res.string.osm_bag)
+                put("pastry", Res.string.osm_pastry)
+                put("deli", Res.string.osm_deli)
+                put("beverages", Res.string.osm_beverages)
+                put("alcohol", Res.string.osm_alcohol)
+                put("substation", Res.string.osm_substation)
+                put("travel_agent", Res.string.osm_travel_agent)
+                put("research", Res.string.osm_research)
+                put("newspaper", Res.string.osm_newspaper)
+                put("ammunition", Res.string.osm_ammunition)
+                put("wildlife_hide", Res.string.osm_wildlife_hide)
+                put("watchmaker", Res.string.osm_watchmaker)
+                put("tinsmith", Res.string.osm_tinsmith)
+                put("sun_protection", Res.string.osm_sun_protection)
+                put("sculptor", Res.string.osm_sculptor)
+                put("metal_construction", Res.string.osm_metal_construction)
+                put("handicraft", Res.string.osm_handicraft)
+                put("cowshed", Res.string.osm_cowshed)
+                put("cabin", Res.string.osm_cabin)
+                put("barn", Res.string.osm_barn)
+                put("warehouse", Res.string.osm_warehouse)
+                put("houseboat", Res.string.osm_houseboat)
+                put("book_store", Res.string.osm_book_store)
+                put("generic_place", Res.string.osm_generic_place)
+                put("hunting_stand", Res.string.osm_hunting_stand)
+                put("game_feeding", Res.string.osm_game_feeding)
+                put("crypt", Res.string.osm_crypt)
+                put("animal_shelter", Res.string.osm_animal_shelter)
+                put("animal_boarding", Res.string.osm_animal_boarding)
+                put("blood_donation", Res.string.osm_blood_donation)
+                put("nursing_home", Res.string.osm_nursing_home)
+                put("dentist", Res.string.osm_dentist)
+                put("baby_hatch", Res.string.osm_baby_hatch)
+                put("language_school", Res.string.osm_language_school)
+                put("public_bookcase", Res.string.osm_public_bookcase)
+                put("biergarten", Res.string.osm_biergarten)
+                put("running", Res.string.osm_running)
+                put("glaziery", Res.string.osm_glaziery)
+                put("garages", Res.string.osm_garages)
+                put("retail", Res.string.osm_retail)
+                put("hotel", Res.string.osm_hotel)
+                put("camp_site", Res.string.osm_camp_site)
+                put("rugby_league", Res.string.osm_rugby_league)
+                put("roller_skating", Res.string.osm_roller_skating)
+                put("multi", Res.string.osm_multi)
+                put("ice_hockey", Res.string.osm_ice_hockey)
+                put("hapkido", Res.string.osm_hapkido)
+                put("croquet", Res.string.osm_croquet)
+                put("cricket", Res.string.osm_cricket)
+                put("cockfighting", Res.string.osm_cockfighting)
+                put("boxing", Res.string.osm_boxing)
+                put("bmx", Res.string.osm_bmx)
+                put("billiards", Res.string.osm_billiards)
+                put("toys", Res.string.osm_toys)
+                put("pyrotechnics", Res.string.osm_pyrotechnics)
+                put("laundry", Res.string.osm_laundry)
+                put("funeral_directors", Res.string.osm_funeral_directors)
+                put("dry_cleaning", Res.string.osm_dry_cleaning)
+                put("copyshop", Res.string.osm_copyshop)
+                put("chalet", Res.string.osm_chalet)
+                put("apartment", Res.string.osm_apartment)
+                put("water_ski", Res.string.osm_water_ski)
+                put("water_polo", Res.string.osm_water_polo)
+                put("table_soccer", Res.string.osm_table_soccer)
+                put("table_tennis", Res.string.osm_table_tennis)
+                put("skateboard", Res.string.osm_skateboard)
+                put("sailing", Res.string.osm_sailing)
+                put("safety_training", Res.string.osm_safety_training)
+                put("rowing", Res.string.osm_rowing)
+                put("model_aerodrome", Res.string.osm_model_aerodrome)
+                put("korfball", Res.string.osm_korfball)
+                put("ice_stock", Res.string.osm_ice_stock)
+                put("gymnastics", Res.string.osm_gymnastics)
+                put("football", Res.string.osm_football)
+                put("field_hockey", Res.string.osm_field_hockey)
+                put("equestrian", Res.string.osm_equestrian)
+                put("cycling", Res.string.osm_cycling)
+                put("curling", Res.string.osm_curling)
+                put("cricket_nets", Res.string.osm_cricket_nets)
+                put("cliff_diving", Res.string.osm_cliff_diving)
+                put("boules", Res.string.osm_boules)
+                put("bobsleigh", Res.string.osm_bobsleigh)
+                put("baseball", Res.string.osm_baseball)
+                put("aikido", Res.string.osm_aikido)
+                put("10pin", Res.string.osm_10pin)
+                put("weapons", Res.string.osm_weapons)
+                put("pet", Res.string.osm_pet)
+                put("money_lender", Res.string.osm_money_lender)
+                put("gift", Res.string.osm_gift)
+                put("books", Res.string.osm_books)
+                put("bookmaker", Res.string.osm_bookmaker)
+                put("photo", Res.string.osm_photo)
+                put("craft", Res.string.osm_craft)
+                put("motorcycle", Res.string.osm_motorcycle)
+                put("hunting", Res.string.osm_hunting)
+                put("window_blind", Res.string.osm_window_blind)
+                put("curtain", Res.string.osm_curtain)
+                put("antiques", Res.string.osm_antiques)
+                put("paint", Res.string.osm_paint)
+                put("tattoo", Res.string.osm_tattoo)
+                put("nutrition_supplements", Res.string.osm_nutrition_supplements)
+                put("hearing_aids", Res.string.osm_hearing_aids)
+                put("cosmetics", Res.string.osm_cosmetics)
+                put("watches", Res.string.osm_watches)
+                put("jewelry", Res.string.osm_jewelry)
+                put("boutique", Res.string.osm_boutique)
+                put("baby_goods", Res.string.osm_baby_goods)
+                put("tea", Res.string.osm_tea)
+                put("pasta", Res.string.osm_pasta)
+                put("coffee", Res.string.osm_coffee)
+                put("quango", Res.string.osm_quango)
+                put("political_party", Res.string.osm_political_party)
+                put("association", Res.string.osm_association)
+                put("architect", Res.string.osm_architect)
+                put("advertising_agency", Res.string.osm_advertising_agency)
+                put("summer_camp", Res.string.osm_summer_camp)
+                put("dance", Res.string.osm_dance)
+                put("amusement_arcade", Res.string.osm_amusement_arcade)
+                put("adult_gaming_centre", Res.string.osm_adult_gaming_centre)
+                put("window_construction", Res.string.osm_window_construction)
+                put("upholsterer", Res.string.osm_upholsterer)
+                put("shoemaker", Res.string.osm_shoemaker)
+                put("sawmill", Res.string.osm_sawmill)
+                put("pottery", Res.string.osm_pottery)
+                put("key_cutter", Res.string.osm_key_cutter)
+                put("hvac", Res.string.osm_hvac)
+                put("clockmaker", Res.string.osm_clockmaker)
+                put("carpenter", Res.string.osm_carpenter)
+                put("builder", Res.string.osm_builder)
+                put("bookbinder", Res.string.osm_bookbinder)
+                put("boatbuilder", Res.string.osm_boatbuilder)
+                put("brewery", Res.string.osm_brewery)
+                put("blacksmith", Res.string.osm_blacksmith)
+                put("basket_maker", Res.string.osm_basket_maker)
+                put("greenhouse", Res.string.osm_greenhouse)
+                put("farm_auxiliary", Res.string.osm_farm_auxiliary)
+                put("civic", Res.string.osm_civic)
+                put("bungalow", Res.string.osm_bungalow)
+                put("detached", Res.string.osm_detached)
+                put("hair_dresser", Res.string.osm_hair_dresser)
+                put("clothing_store", Res.string.osm_clothing_store)
+                put("user", Res.string.osm_user)
+                put("dojo", Res.string.osm_dojo)
+                put("nightclub", Res.string.osm_nightclub)
+                put("community_centre", Res.string.osm_community_centre)
+                put("brothel", Res.string.osm_brothel)
+                put("veterinary", Res.string.osm_veterinary)
+                put("social_facility", Res.string.osm_social_facility)
+                put("clinic", Res.string.osm_clinic)
+                put("charging_station", Res.string.osm_charging_station)
+                put("kindergarten", Res.string.osm_kindergarten)
+                put("ice_cream", Res.string.osm_ice_cream)
+                put("fast_food", Res.string.osm_fast_food)
+                put("commercial", Res.string.osm_commercial)
+                put("canoe", Res.string.osm_canoe)
+                put("scuba_diving", Res.string.osm_scuba_diving)
+                put("fishing", Res.string.osm_fishing)
+                put("optician", Res.string.osm_optician)
+                put("confectionery", Res.string.osm_confectionery)
+                put("bunker", Res.string.osm_bunker)
+                put("sleeping_pods", Res.string.osm_sleeping_pods)
+                put("motel", Res.string.osm_motel)
+                put("guest_house", Res.string.osm_guest_house)
+                put("wrestling", Res.string.osm_wrestling)
+                put("toboggan", Res.string.osm_toboggan)
+                put("skiing", Res.string.osm_skiing)
+                put("rc_car", Res.string.osm_rc_car)
+                put("paddle_tennis", Res.string.osm_paddle_tennis)
+                put("hockey", Res.string.osm_hockey)
+                put("fencing", Res.string.osm_fencing)
+                put("bowls", Res.string.osm_bowls)
+                put("badminton", Res.string.osm_badminton)
+                put("archery", Res.string.osm_archery)
+                put("american_football", Res.string.osm_american_football)
+                put("travel_agency", Res.string.osm_travel_agency)
+                put("tobacco", Res.string.osm_tobacco)
+                put("e_cigarette", Res.string.osm_e_cigarette)
+                put("video", Res.string.osm_video)
+                put("car_repair", Res.string.osm_car_repair)
+                put("hifi", Res.string.osm_hifi)
+                put("lamps", Res.string.osm_lamps)
+                put("kitchen", Res.string.osm_kitchen)
+                put("interior_decoration", Res.string.osm_interior_decoration)
+                put("houseware", Res.string.osm_houseware)
+                put("erotic", Res.string.osm_erotic)
+                put("beauty", Res.string.osm_beauty)
+                put("wine", Res.string.osm_wine)
+                put("dairy", Res.string.osm_dairy)
+                put("cheese", Res.string.osm_cheese)
+                put("bakery", Res.string.osm_bakery)
+                put("telecommunication", Res.string.osm_telecommunication)
+                put("tax", Res.string.osm_tax)
+                put("real_estate_agent", Res.string.osm_real_estate_agent)
+                put("notary", Res.string.osm_notary)
+                put("ngo", Res.string.osm_ngo)
+                put("lawyer", Res.string.osm_lawyer)
+                put("it", Res.string.osm_it)
+                put("foundation", Res.string.osm_foundation)
+                put("employment_agency", Res.string.osm_employment_agency)
+                put("educational_institution", Res.string.osm_educational_institution)
+                put("adoption_agency", Res.string.osm_adoption_agency)
+                put("miniature_golf", Res.string.osm_miniature_golf)
+                put("building", Res.string.osm_building)
+                put("winery", Res.string.osm_winery)
+                put("tiler", Res.string.osm_tiler)
+                put("chimney_sweeper", Res.string.osm_chimney_sweeper)
+                put("stand_builder", Res.string.osm_stand_builder)
+                put("saddler", Res.string.osm_saddler)
+                put("plumber", Res.string.osm_plumber)
+                put("plasterer", Res.string.osm_plasterer)
+                put("painter", Res.string.osm_painter)
+                put("jeweller", Res.string.osm_jeweller)
+                put("floorer", Res.string.osm_floorer)
+                put("distillery", Res.string.osm_distillery)
+                put("carpet_layer", Res.string.osm_carpet_layer)
+                put("beekeeper", Res.string.osm_beekeeper)
+                put("public", Res.string.osm_public)
+                put("dormitory", Res.string.osm_dormitory)
+                put("apartments", Res.string.osm_apartments)
+                put("internet_cafe", Res.string.osm_internet_cafe)
+                put("shoe_shop", Res.string.osm_shoe_shop)
+                put("generic_shop", Res.string.osm_generic_shop)
+                put("coffee_shop", Res.string.osm_coffee_shop)
+                put("coworking_space", Res.string.osm_coworking_space)
+                put("stripclub", Res.string.osm_stripclub)
+                put("ev_charging", Res.string.osm_ev_charging)
+                put("pub", Res.string.osm_pub)
+                put("obstacle_course", Res.string.osm_obstacle_course)
+                put("volleyball", Res.string.osm_volleyball)
+                put("tennis", Res.string.osm_tennis)
+                put("soccer", Res.string.osm_soccer)
+                put("shooting", Res.string.osm_shooting)
+                put("rugby_union", Res.string.osm_rugby_union)
+                put("orienteering", Res.string.osm_orienteering)
+                put("netball", Res.string.osm_netball)
+                put("motor", Res.string.osm_motor)
+                put("kitesurfing", Res.string.osm_kitesurfing)
+                put("karting", Res.string.osm_karting)
+                put("judo", Res.string.osm_judo)
+                put("horseshoes", Res.string.osm_horseshoes)
+                put("handball", Res.string.osm_handball)
+                put("golf", Res.string.osm_golf)
+                put("gaelic_games", Res.string.osm_gaelic_games)
+                put("diving", Res.string.osm_diving)
+                put("darts", Res.string.osm_darts)
+                put("climbing_adventure", Res.string.osm_climbing_adventure)
+                put("basketball", Res.string.osm_basketball)
+                put("bandy", Res.string.osm_bandy)
+                put("australian_football", Res.string.osm_australian_football)
+                put("9pin", Res.string.osm_9pin)
+                put("vacant", Res.string.osm_vacant)
+                put("lottery", Res.string.osm_lottery)
+                put("trophy", Res.string.osm_trophy)
+                put("music", Res.string.osm_music)
+                put("games", Res.string.osm_games)
+                put("tyres", Res.string.osm_tyres)
+                put("sports", Res.string.osm_sports)
+                put("outdoor", Res.string.osm_outdoor)
+                put("car", Res.string.osm_car)
+                put("electronics", Res.string.osm_electronics)
+                put("computer", Res.string.osm_computer)
+                put("furniture", Res.string.osm_furniture)
+                put("candles", Res.string.osm_candles)
+                put("hardware", Res.string.osm_hardware)
+                put("gas", Res.string.osm_gas)
+                put("energy", Res.string.osm_energy)
+                put("doityourself", Res.string.osm_doityourself)
+                put("bathroom_furnishing", Res.string.osm_bathroom_furnishing)
+                put("medical_supply", Res.string.osm_medical_supply)
+                put("variety_store", Res.string.osm_variety_store)
+                put("second_hand", Res.string.osm_second_hand)
+                put("charity", Res.string.osm_charity)
+                put("fashion", Res.string.osm_fashion)
+                put("fabric", Res.string.osm_fabric)
+                put("clothes", Res.string.osm_clothes)
+                put("butcher", Res.string.osm_butcher)
+                put("water_utility", Res.string.osm_water_utility)
+                put("realtor", Res.string.osm_realtor)
+                put("company", Res.string.osm_company)
+                put("accountant", Res.string.osm_accountant)
+                put("bunker_silo", Res.string.osm_bunker_silo)
+                put("hackerspace", Res.string.osm_hackerspace)
+                put("lifeguard_base", Res.string.osm_lifeguard_base)
+                put("roofer", Res.string.osm_roofer)
+                put("rigger", Res.string.osm_rigger)
+                put("parquet_layer", Res.string.osm_parquet_layer)
+                put("gardener", Res.string.osm_gardener)
+                put("stable", Res.string.osm_stable)
+                put("garage", Res.string.osm_garage)
+                put("transportation", Res.string.osm_transportation)
+                put("house", Res.string.osm_house)
+                put("helipad", Res.string.osm_helipad)
+                put("apron", Res.string.osm_apron)
+                put("consumer_electronics_store", Res.string.osm_consumer_electronics_store)
+                put("speciality_store", Res.string.osm_speciality_store)
+                put("defined", Res.string.osm_defined)
+                put("sauna", Res.string.osm_sauna)
+                put("gym", Res.string.osm_gym)
+                put("crematorium", Res.string.osm_crematorium)
+                put("gambling", Res.string.osm_gambling)
+                put("music_school", Res.string.osm_music_school)
+                put("bar", Res.string.osm_bar)
+                put("farm", Res.string.osm_farm)
+                put("bicycle", Res.string.osm_bicycle)
+                put("tailor", Res.string.osm_tailor)
+                put("locksmith", Res.string.osm_locksmith)
+                put("industrial", Res.string.osm_industrial)
+                put("wilderness_hut", Res.string.osm_wilderness_hut)
+                put("hostel", Res.string.osm_hostel)
+                put("caravan_site", Res.string.osm_caravan_site)
+                put("weightlifting", Res.string.osm_weightlifting)
+                put("taekwondo", Res.string.osm_taekwondo)
+                put("swimming", Res.string.osm_swimming)
+                put("surfing", Res.string.osm_surfing)
+                put("skating", Res.string.osm_skating)
+                put("racquet", Res.string.osm_racquet)
+                put("pelota", Res.string.osm_pelota)
+                put("paragliding", Res.string.osm_paragliding)
+                put("parachuting", Res.string.osm_parachuting)
+                put("motocross", Res.string.osm_motocross)
+                put("ice_skating", Res.string.osm_ice_skating)
+                put("horse_racing", Res.string.osm_horse_racing)
+                put("dog_racing", Res.string.osm_dog_racing)
+                put("climbing", Res.string.osm_climbing)
+                put("chess", Res.string.osm_chess)
+                put("canadian_football", Res.string.osm_canadian_football)
+                put("beachvolleyball", Res.string.osm_beachvolleyball)
+                put("base", Res.string.osm_base)
+                put("athletics", Res.string.osm_athletics)
+                put("pawnbroker", Res.string.osm_pawnbroker)
+                put("ticket", Res.string.osm_ticket)
+                put("stationery", Res.string.osm_stationery)
+                put("video_games", Res.string.osm_video_games)
+                put("model", Res.string.osm_model)
+                put("frame", Res.string.osm_frame)
+                put("art", Res.string.osm_art)
+                put("car_parts", Res.string.osm_car_parts)
+                put("radiotechnics", Res.string.osm_radiotechnics)
+                put("bed", Res.string.osm_bed)
+                put("garden_furniture", Res.string.osm_garden_furniture)
+                put("electrical", Res.string.osm_electrical)
+                put("perfumery", Res.string.osm_perfumery)
+                put("hairdresser", Res.string.osm_hairdresser)
+                put("drugstore", Res.string.osm_drugstore)
+                put("shoes", Res.string.osm_shoes)
+                put("leather", Res.string.osm_leather)
+                put("general", Res.string.osm_general)
+                put("seafood", Res.string.osm_seafood)
+                put("organic", Res.string.osm_organic)
+                put("greengrocer", Res.string.osm_greengrocer)
+                put("chocolate", Res.string.osm_chocolate)
+                put("brewing_supplies", Res.string.osm_brewing_supplies)
+                put("tax_advisor", Res.string.osm_tax_advisor)
+                put("private_investigator", Res.string.osm_private_investigator)
+                put("government", Res.string.osm_government)
+                put("forestry", Res.string.osm_forestry)
+                put("estate_agent", Res.string.osm_estate_agent)
+                put("spring", Res.string.osm_spring)
+                put("golf_course", Res.string.osm_golf_course)
+                put("ses_station", Res.string.osm_ses_station)
+                put("lifeguard_place", Res.string.osm_lifeguard_place)
+                put("stonemason", Res.string.osm_stonemason)
+                put("scaffolder", Res.string.osm_scaffolder)
+                put("sailmaker", Res.string.osm_sailmaker)
+                put("photographic_laboratory", Res.string.osm_photographic_laboratory)
+                put("photographer", Res.string.osm_photographer)
+                put("insulation", Res.string.osm_insulation)
+                put("electrician", Res.string.osm_electrician)
+                put("dressmaker", Res.string.osm_dressmaker)
+                put("caterer", Res.string.osm_caterer)
+                put("terrace", Res.string.osm_terrace)
+                put("toy_shop", Res.string.osm_toy_shop)
+                put("dive_centre", Res.string.osm_dive_centre)
+                put("swingerclub", Res.string.osm_swingerclub)
+                put("doctors", Res.string.osm_doctors)
+                put("driving_school", Res.string.osm_driving_school)
+                put("free_flying", Res.string.osm_free_flying)
+                put("religion", Res.string.osm_religion)
+                put("kiosk", Res.string.osm_kiosk)
+                put("residential", Res.string.osm_residential)
+                put("food", Res.string.osm_food)
+                put("waterfall", Res.string.osm_waterfall)
+                put("boatyard", Res.string.osm_boatyard)
+                put("theme_park", Res.string.osm_theme_park)
+                put("roundhouse", Res.string.osm_roundhouse)
+                put("generator", Res.string.osm_generator)
+                put("beach", Res.string.osm_beach)
+                put("naval_base", Res.string.osm_naval_base)
+                put("works", Res.string.osm_works)
+                put("water_works", Res.string.osm_water_works)
+                put("telescope", Res.string.osm_telescope)
+                put("pier", Res.string.osm_pier)
+                put("observatory", Res.string.osm_observatory)
+                put("reservoir", Res.string.osm_reservoir)
+                put("monument", Res.string.osm_monument)
+                put("battlefield", Res.string.osm_battlefield)
+                put("planetarium", Res.string.osm_planetarium)
+                put("social_centre", Res.string.osm_social_centre)
+                put("prison", Res.string.osm_prison)
+                put("courthouse", Res.string.osm_courthouse)
+                put("bridge", Res.string.osm_bridge)
+                put("hangar", Res.string.osm_hangar)
+                put("tower", Res.string.osm_tower)
+                put("attraction", Res.string.osm_attraction)
+                put("zoo", Res.string.osm_zoo)
+                put("gallery", Res.string.osm_gallery)
+                put("artwork", Res.string.osm_artwork)
+                put("alpine_hut", Res.string.osm_alpine_hut)
+                put("plant", Res.string.osm_plant)
+                put("insurance", Res.string.osm_insurance)
+                put("airfield", Res.string.osm_airfield)
+                put("water_tower", Res.string.osm_water_tower)
+                put("pumping_station", Res.string.osm_pumping_station)
+                put("hot_water_tank", Res.string.osm_hot_water_tank)
+                put("campanile", Res.string.osm_campanile)
+                put("sports_centre", Res.string.osm_sports_centre)
+                put("fitness_centre", Res.string.osm_fitness_centre)
+                put("beach_resort", Res.string.osm_beach_resort)
+                put("village_green", Res.string.osm_village_green)
+                put("ship", Res.string.osm_ship)
+                put("memorial", Res.string.osm_memorial)
+                put("synagogue", Res.string.osm_synagogue)
+                put("mosque", Res.string.osm_mosque)
+                put("chapel", Res.string.osm_chapel)
+                put("cathedral", Res.string.osm_cathedral)
+                put("train_terminal", Res.string.osm_train_terminal)
+                put("college", Res.string.osm_college)
+                put("arts_centre", Res.string.osm_arts_centre)
+                put("ranger_station", Res.string.osm_ranger_station)
+                put("hospital", Res.string.osm_hospital)
+                put("track", Res.string.osm_track)
+                put("conference_centre", Res.string.osm_conference_centre)
+                put("viewpoint", Res.string.osm_viewpoint)
+                put("supermarket", Res.string.osm_supermarket)
+                put("peak", Res.string.osm_peak)
+                put("storage_tank", Res.string.osm_storage_tank)
+                put("lighthouse", Res.string.osm_lighthouse)
+                put("beacon", Res.string.osm_beacon)
+                put("port", Res.string.osm_port)
+                put("archaeological_site", Res.string.osm_archaeological_site)
+                put("train_station", Res.string.osm_train_station)
+                put("shrine", Res.string.osm_shrine)
+                put("church", Res.string.osm_church)
+                put("historic_monument", Res.string.osm_historic_monument)
+                put("generic_landmark", Res.string.osm_generic_landmark)
+                put("tourism_museum", Res.string.osm_tourism_museum)
+                put("register_office", Res.string.osm_register_office)
+                put("grave_yard", Res.string.osm_grave_yard)
+                put("marketplace", Res.string.osm_marketplace)
+                put("fire_station", Res.string.osm_fire_station)
+                put("ruins", Res.string.osm_ruins)
+                put("weir", Res.string.osm_weir)
+                put("museum", Res.string.osm_museum)
+                put("mall", Res.string.osm_mall)
+                put("volcano", Res.string.osm_volcano)
+                put("hot_spring", Res.string.osm_hot_spring)
+                put("glacier", Res.string.osm_glacier)
+                put("wastewater_plant", Res.string.osm_wastewater_plant)
+                put("offshore_platform", Res.string.osm_offshore_platform)
+                put("gasometer", Res.string.osm_gasometer)
+                put("water_park", Res.string.osm_water_park)
+                put("bandstand", Res.string.osm_bandstand)
+                put("wreck", Res.string.osm_wreck)
+                put("pillory", Res.string.osm_pillory)
+                put("monastery", Res.string.osm_monastery)
+                put("locomotive", Res.string.osm_locomotive)
+                put("fort", Res.string.osm_fort)
+                put("services", Res.string.osm_services)
+                put("lifeguard_tower", Res.string.osm_lifeguard_tower)
+                put("temple", Res.string.osm_temple)
+                put("national_park", Res.string.osm_national_park)
+                put("heliport", Res.string.osm_heliport)
+                put("public_park", Res.string.osm_public_park)
+                put("department_store", Res.string.osm_department_store)
+                put("studio", Res.string.osm_studio)
+                put("public_building", Res.string.osm_public_building)
+                put("clock", Res.string.osm_clock)
+                put("casino", Res.string.osm_casino)
+                put("ferry_terminal", Res.string.osm_ferry_terminal)
+                put("stadium", Res.string.osm_stadium)
+                put("dam", Res.string.osm_dam)
+                put("dock", Res.string.osm_dock)
+                put("geyser", Res.string.osm_geyser)
+                put("bay", Res.string.osm_bay)
+                put("barracks", Res.string.osm_barracks)
+                put("windmill", Res.string.osm_windmill)
+                put("watermill", Res.string.osm_watermill)
+                put("communications_tower", Res.string.osm_communications_tower)
+                put("swimming_area", Res.string.osm_swimming_area)
+                put("slipway", Res.string.osm_slipway)
+                put("nature_reserve", Res.string.osm_nature_reserve)
+                put("marina", Res.string.osm_marina)
+                put("ice_rink", Res.string.osm_ice_rink)
+                put("manor", Res.string.osm_manor)
+                put("city_gate", Res.string.osm_city_gate)
+                put("castle", Res.string.osm_castle)
+                put("aircraft", Res.string.osm_aircraft)
+                put("digester", Res.string.osm_digester)
+                put("sally_port", Res.string.osm_sally_port)
+                put("aerodrome", Res.string.osm_aerodrome)
+                put("shopping_mall", Res.string.osm_shopping_mall)
+                put("cinema", Res.string.osm_cinema)
+                put("rescue_station", Res.string.osm_rescue_station)
+                put("airport", Res.string.osm_airport)
+                put("theatre", Res.string.osm_theatre)
+                put("library", Res.string.osm_library)
+                put("university", Res.string.osm_university)
+                put("police", Res.string.osm_police)
+                put("embassy", Res.string.osm_embassy)
+                put("bus_station", Res.string.osm_bus_station)
+                put("station", Res.string.osm_station)
+                put("toll_booth", Res.string.osm_toll_booth)
+                put("lift", Res.string.osm_lift)
+                put("unmanaged_crossing", Res.string.osm_unmanaged_crossing)
+                put("pharmacy", Res.string.osm_pharmacy)
+                put("kneipp_water_cure", Res.string.osm_kneipp_water_cure)
+                put("food_court", Res.string.osm_food_court)
+                put("chemist", Res.string.osm_chemist)
+                put("checkpoint", Res.string.osm_checkpoint)
+                put("dog_park", Res.string.osm_dog_park)
+                put("kissing_gate", Res.string.osm_kissing_gate)
+                put("car_rental", Res.string.osm_car_rental)
+                put("pedestrianised_area", Res.string.osm_pedestrianised_area)
+                put("escalator", Res.string.osm_escalator)
+                put("shelter", Res.string.osm_shelter)
+                put("water_point", Res.string.osm_water_point)
+                put("subway_entrance", Res.string.osm_subway_entrance)
+                put("cave_entrance", Res.string.osm_cave_entrance)
+                put("swing_gate", Res.string.osm_swing_gate)
+                put("stile", Res.string.osm_stile)
+                put("car_sharing", Res.string.osm_car_sharing)
+                put("customer_service", Res.string.osm_customer_service)
+                put("watering_place", Res.string.osm_watering_place)
+                put("platform", Res.string.osm_platform)
+                put("horse_stile", Res.string.osm_horse_stile)
+                put("bureau_de_change", Res.string.osm_bureau_de_change)
+                put("stairs", Res.string.osm_stairs)
+                put("bicycle_rental", Res.string.osm_bicycle_rental)
+                put("tram_stop", Res.string.osm_tram_stop)
+                put("subway", Res.string.osm_subway)
+                put("hampshire_gate", Res.string.osm_hampshire_gate)
+                put("full-height_turnstile", Res.string.osm_full_height_turnstile)
+                put("boat_sharing", Res.string.osm_boat_sharing)
+                put("help_point", Res.string.osm_help_point)
+                put("open_space", Res.string.osm_open_space)
+                put("spending_area", Res.string.osm_spending_area)
+                put("bicycle_repair_station", Res.string.osm_bicycle_repair_station)
+                put("motorcycle_barrier", Res.string.osm_motorcycle_barrier)
+                put("kent_carriage_gap", Res.string.osm_kent_carriage_gap)
+                put("shared_space", Res.string.osm_shared_space)
+                put("cliff", Res.string.osm_cliff)
+                put("training_area", Res.string.osm_training_area)
+                put("log", Res.string.osm_log)
+                put("jersey_barrier", Res.string.osm_jersey_barrier)
+                put("construction_site", Res.string.osm_construction_site)
+                put("ridge", Res.string.osm_ridge)
+                put("nuclear_explosion_site", Res.string.osm_nuclear_explosion_site)
+                put("dyke", Res.string.osm_dyke)
+                put("sump_buster", Res.string.osm_sump_buster)
+                put("rope", Res.string.osm_rope)
+                put("debris", Res.string.osm_debris)
+                put("road_works", Res.string.osm_road_works)
+                put("lock_gate", Res.string.osm_lock_gate)
+                put("sinkhole", Res.string.osm_sinkhole)
+                put("range", Res.string.osm_range)
+                put("ambulance_station", Res.string.osm_ambulance_station)
+                put("spikes", Res.string.osm_spikes)
+                put("generic_hazard", Res.string.osm_generic_hazard)
+                put("contact_line", Res.string.osm_contact_line)
+                put("danger_area", Res.string.osm_danger_area)
+                put("chain", Res.string.osm_chain)
+                put("parking_space", Res.string.osm_parking_space)
+                put("motorcycle_parking", Res.string.osm_motorcycle_parking)
+                put("shop", Res.string.osm_shop)
+                put("office", Res.string.osm_office)
+                put("town_hall", Res.string.osm_townhall)
+                put("golf", Res.string.osm_golf)
+                put("fast_food", Res.string.osm_fast_food)
+                put("park", Res.string.osm_park)
+                put("bus", Res.string.osm_bus_stop)
+                put("university", Res.string.osm_university)
+                put("entrance", Res.string.osm_entrance)
+                put("campsite", Res.string.osm_camp_site)
+                put("laundry", Res.string.osm_laundry)
+                put("grocery", Res.string.osm_convenience_store)
+                put("library", Res.string.osm_library)
+                put("college", Res.string.osm_college)
+                put("lodging", Res.string.osm_hotel)
+                put("ice_cream", Res.string.osm_ice_cream)
+                put("post", Res.string.osm_post_box)
+                put("cafe", Res.string.osm_cafe)
+                put("school", Res.string.osm_school)
+                put("alcohol_shop", Res.string.osm_alcohol)
+                put("bar", Res.string.osm_bar)
+                put("hospital", Res.string.osm_hospital)
+                put("cemetery", Res.string.osm_grave_yard)
+                put("attraction", Res.string.osm_attraction)
+                put("beer", Res.string.osm_alcohol)
+                put("music", Res.string.osm_music)
+                put("stadium", Res.string.osm_stadium)
+                put("art_gallery", Res.string.osm_gallery)
+                put("clothing_store", Res.string.osm_clothing_store)
+                put("swimming", Res.string.osm_swimming)
+                put("castle", Res.string.osm_castle)
+                put("atm", Res.string.osm_atm)
+                put("fuel", Res.string.osm_fuel)
+                put("river", Res.string.osm_river)
+                put("city", Res.string.osm_city)
+                put("town", Res.string.osm_town)
+                put("village", Res.string.osm_village)
+                put("hamlet", Res.string.osm_hamlet)
+                put("quarter", Res.string.osm_neighbourhood)
+                put("locality", Res.string.osm_neighbourhood)
+                put("neighbourhood", Res.string.osm_neighbourhood)
+                put("recreation_ground", Res.string.osm_recreation_ground)
+                put("wood", Res.string.osm_wood)
+                put("sport", Res.string.osm_sport)
+                put("pavillion", Res.string.osm_pavillion)
+                put("health_food", Res.string.osm_health_food)
+                put("events_venue", Res.string.osm_events_venue)
+            }
+        }
+        fun getStringResource(key: String?): StringResource? {
+            if((key == null) || (key == "unclassified") || (key == "yes") || (key == "no"))
+                return null
+            val result = resourceMap.get(key)
+            if (result == null) {
+                unfoundKeys.add(key)
+            }
+            return result
+        }
+        fun hasResource(key: String?): Boolean = getStringResource(key) != null
+
+        fun getUnfoundKeys(): Set<String> {
+            return unfoundKeys
+        }
+    }
+}
