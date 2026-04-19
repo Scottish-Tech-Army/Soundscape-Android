@@ -1,0 +1,48 @@
+package org.scottishtecharmy.soundscape.screens.markers_routes.components
+
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
+
+@Composable
+fun CustomButton(
+    modifier: Modifier = Modifier, // Modifier for the button
+    onClick: () -> Unit,
+    text: String = "", // Button text
+    buttonColor: Color? = null, // Button background color
+    contentColor: Color? = null, // Button text color
+    shape: Shape,
+    textStyle: TextStyle? = MaterialTheme.typography.labelSmall, // TextStyle for button text with set default
+    fontWeight: FontWeight
+) {
+    var colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors()
+    if((buttonColor != null) && (contentColor != null)) {
+        colors = ButtonDefaults.buttonColors(
+            containerColor = buttonColor, // Customizable button background color
+            contentColor = contentColor // Customizable text color
+        )
+    }
+    Button(
+        onClick = onClick,
+        modifier = modifier,
+        shape = shape,
+        colors = colors
+    ) {
+        Text(
+            text = text,
+            style = textStyle ?: MaterialTheme.typography.labelSmall,
+            fontWeight = fontWeight,
+            textAlign = TextAlign.Center
+            )
+    }
+}

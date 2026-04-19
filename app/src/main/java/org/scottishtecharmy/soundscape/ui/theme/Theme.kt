@@ -342,31 +342,4 @@ fun SoundscapeTheme(
 
 // Spacing, LocalSpacing, and spacing are now in the shared module (ui.theme.Spacing)
 
-// mediumPadding and smallPadding are now in the shared module (ui.theme.Spacing)
-
-@Composable
-fun Modifier.largePadding(): Modifier =
-    padding(
-        top = spacing.large,
-        bottom = spacing.large,
-        start = spacing.large,
-        end = spacing.large
-    )
-
-@Composable
-fun Modifier.extraSmallPadding(): Modifier =
-    padding(
-        top = spacing.extraSmall,
-        bottom = spacing.extraSmall,
-        start = spacing.extraSmall,
-        end = spacing.extraSmall
-    )
-
-@Composable
-fun Modifier.tinyPadding(): Modifier =
-    padding(
-        top = spacing.tiny,
-        bottom = spacing.tiny,
-        start = spacing.tiny,
-        end = spacing.tiny
-    )
+// All padding extensions are now in the shared module (ui.theme.Spacing)

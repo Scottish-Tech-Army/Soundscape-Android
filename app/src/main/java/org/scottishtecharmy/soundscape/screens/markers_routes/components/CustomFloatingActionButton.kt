@@ -4,50 +4,19 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AddCircleOutline
-import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
-import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
-import org.scottishtecharmy.soundscape.R
+import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.resources.*
 
-@Composable
-fun CustomFloatingActionButton(
-    onClick: () -> Unit,
-    icon: ImageVector,
-    contentDescription: String,
-    modifier: Modifier = Modifier,
-    containerColor: Color = MaterialTheme.colorScheme.surfaceDim,
-    iconTint: Color = MaterialTheme.colorScheme.onSurface,
-    iconSize: Dp = spacing.targetSize * 2
-) {
-    FloatingActionButton(
-        onClick = { onClick.invoke() },
-        modifier = modifier
-            .padding(bottom = spacing.medium),
-        containerColor = containerColor
-    ) {
-        Icon(
-            imageVector = icon,
-            tint = iconTint,
-            contentDescription = contentDescription,
-            modifier = Modifier.size(iconSize)
-        )
-    }
-}
+// CustomFloatingActionButton composable is now in shared module
 
 @Preview(showBackground = true)
 @Composable

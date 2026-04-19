@@ -48,3 +48,30 @@ fun Modifier.smallPadding(): Modifier =
         start = spacing.small,
         end = spacing.small
     )
+
+@Composable
+fun Modifier.largePadding(): Modifier =
+    padding(
+        top = spacing.large,
+        bottom = spacing.large,
+        start = spacing.large,
+        end = spacing.large
+    )
+
+@Composable
+fun Modifier.extraSmallPadding(): Modifier =
+    padding(
+        top = spacing.extraSmall,
+        bottom = spacing.extraSmall,
+        start = spacing.extraSmall,
+        end = spacing.extraSmall
+    )
+
+@Composable
+fun Modifier.tinyPadding(): Modifier =
+    padding(
+        top = spacing.tiny,
+        bottom = spacing.tiny,
+        start = spacing.tiny,
+        end = spacing.tiny
+    )

@@ -1,0 +1,100 @@
+package org.scottishtecharmy.soundscape.screens.markers_routes.components
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.selection.toggleable
+import androidx.compose.material3.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.SwapVert
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.ui.platform.testTag
+import org.jetbrains.compose.resources.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.font.FontWeight
+import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
+
+@Composable
+fun MarkersAndRoutesListSort(
+    isSortByName: Boolean,
+    isAscending: Boolean,
+    onToggleSortOrder: () -> Unit,
+    onToggleSortByName: () -> Unit
+) {
+    val sortOrderState =
+        if (isSortByName) stringResource(Res.string.markers_sort_button_sort_by_name_voiceover)
+        else stringResource(Res.string.markers_sort_button_sort_by_distance_voiceover)
+
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = spacing.small, bottom = spacing.tiny)
+            .clearAndSetSemantics {
+                //contentDescription = ""
+                stateDescription = sortOrderState
+                role = Role.Button
+            }
+            .background(color = MaterialTheme.colorScheme.surfaceContainer),
+        horizontalArrangement = Arrangement.Start,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            modifier = Modifier
+                .testTag("SortOrder")
+                .size(spacing.targetSize)
+            .toggleable(
+                value = isAscending,
+                role = Role.Button,
+                onValueChange = { onToggleSortOrder() }
+            ),
+            imageVector = Icons.Default.SwapVert,
+            tint = MaterialTheme.colorScheme.onSurface,
+            contentDescription = "" // TODO: Add ascending/descending hint
+        )
+
+        Spacer(modifier = Modifier.width(spacing.small))
+
+        Text(
+            text = if (isSortByName) stringResource(Res.string.markers_sort_button_sort_by_name)
+                   else stringResource(Res.string.markers_sort_button_sort_by_distance),
+            style = MaterialTheme.typography.headlineMedium,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier.toggleable(
+                value = isSortByName,
+                role = Role.Button,
+                onValueChange = { onToggleSortByName() }
+            )
+            .testTag("SortValue")
+        )
+
+        Spacer(modifier = Modifier.width(spacing.small))
+
+        Text(
+            text = if (isSortByName) stringResource(Res.string.routes_sort_by_distance)
+                   else stringResource(Res.string.routes_sort_by_name),
+            style = MaterialTheme.typography.headlineMedium,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier.toggleable(
+                value = isSortByName,
+                role = Role.Button,
+                onValueChange = { onToggleSortByName() }
+            )
+            .testTag("SortOption")
+        )
+    }
+}
