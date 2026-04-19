@@ -22,7 +22,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.preference.PreferenceManager
@@ -39,6 +39,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.TextOnl
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun SaveAndEditMarkerDialog(
@@ -64,18 +65,18 @@ fun SaveAndEditMarkerDialog(
     val fullscreenMap = remember { mutableStateOf(false) }
     val newLocation = remember { locationDescription.location.clone() }
 
-    val successMessage = stringResource(R.string.markers_marker_created)
-    val failureMessage = stringResource(R.string.general_error_add_marker_error)
-    val duplicateMessage = stringResource(R.string.general_error_add_marker_duplicate)
+    val successMessage = stringResource(Res.string.markers_marker_created)
+    val failureMessage = stringResource(Res.string.general_error_add_marker_error)
+    val duplicateMessage = stringResource(Res.string.general_error_add_marker_duplicate)
     Scaffold(
         modifier = modifier,
         topBar = {
             TextOnlyAppBar(
-                title = if(locationDescription.databaseId != 0L) stringResource(R.string.markers_edit_screen_title_edit)
-                        else  stringResource(R.string.user_activity_save_marker_title),
-                navigationButtonTitle = stringResource(R.string.general_alert_cancel),
+                title = if(locationDescription.databaseId != 0L) stringResource(Res.string.markers_edit_screen_title_edit)
+                        else  stringResource(Res.string.user_activity_save_marker_title),
+                navigationButtonTitle = stringResource(Res.string.general_alert_cancel),
                 onNavigateUp = { dialogState.value = false },
-                rightButtonTitle = stringResource(R.string.general_alert_done),
+                rightButtonTitle = stringResource(Res.string.general_alert_done),
                 onRightButton = {
                     locationDescription.name = name
                     locationDescription.description = annotation
@@ -105,7 +106,7 @@ fun SaveAndEditMarkerDialog(
                         buttonColor = MaterialTheme.colorScheme.errorContainer,
                         contentColor = MaterialTheme.colorScheme.onErrorContainer,
                         shape = RoundedCornerShape(spacing.small),
-                        text = stringResource(R.string.markers_action_delete),
+                        text = stringResource(Res.string.markers_action_delete),
                         textStyle = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Bold,
                     )
@@ -115,8 +116,8 @@ fun SaveAndEditMarkerDialog(
         floatingActionButton = {
             if(showMap) FullScreenMapFab(
                 fullscreenMap = fullscreenMap,
-                openMapHint = R.string.location_detail_full_screen_for_edit_hint,
-                closeMapHint = R.string.location_detail_exit_full_screen_for_edit_hint
+                openMapHint = Res.string.location_detail_full_screen_for_edit_hint,
+                closeMapHint = Res.string.location_detail_exit_full_screen_for_edit_hint
             )
         },
         content = { padding ->
@@ -143,8 +144,8 @@ fun SaveAndEditMarkerDialog(
                         .verticalScroll(rememberScrollState())
                 ) {
                     CustomTextField(
-                        fieldName = stringResource(R.string.markers_sort_button_sort_by_name),
-                        fieldHint = stringResource(R.string.marker_name_description_hint),
+                        fieldName = stringResource(Res.string.markers_sort_button_sort_by_name),
+                        fieldHint = stringResource(Res.string.marker_name_description_hint),
                         modifier = Modifier
                             .fillMaxWidth()
                             .testTag("markerName"),
@@ -155,8 +156,8 @@ fun SaveAndEditMarkerDialog(
                     )
                     Spacer(modifier = Modifier.height(spacing.medium))
                     CustomTextField(
-                        fieldName = stringResource(R.string.markers_annotation),
-                        fieldHint = stringResource(R.string.annotation_description_hint),
+                        fieldName = stringResource(Res.string.markers_annotation),
+                        fieldHint = stringResource(Res.string.annotation_description_hint),
                         modifier = Modifier
                             .fillMaxWidth()
                             .testTag("markerAnnotation"),

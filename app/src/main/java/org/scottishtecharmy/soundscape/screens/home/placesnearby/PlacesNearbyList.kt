@@ -19,9 +19,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.navigation.NavController
-import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.FolderItem
 import org.scottishtecharmy.soundscape.components.LocationItem
@@ -31,21 +31,22 @@ import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLoca
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.process
+import org.scottishtecharmy.soundscape.resources.*
 
 data class Folder(
-    val nameResource: Int,
+    val nameResource: StringResource,
     val icon: ImageVector,
     val filter: String,
-    val talkbackDescriptionResource: Int
+    val talkbackDescriptionResource: StringResource
 )
 
 val placesNearbyFolders = listOf(
-    Folder(R.string.filter_all, Icons.Rounded.ControlCamera, "", R.string.all_places_nearby_description),
-    Folder(R.string.filter_transit, Icons.Rounded.DirectionsBus, "transit", R.string.public_transit_places_nearby_description),
-    Folder(R.string.filter_food_drink, Icons.Rounded.Fastfood, "food_and_drink", R.string.food_drink_places_nearby_description),
-    Folder(R.string.filter_groceries, Icons.Rounded.LocalGroceryStore, "groceries", R.string.groceries_places_nearby_description),
-    Folder(R.string.filter_banks, Icons.Rounded.AttachMoney, "banks", R.string.banks_places_nearby_description),
-    Folder(R.string.osm_intersection, Icons.Rounded.ForkLeft, "intersections", R.string.intersections_places_nearby_description),
+    Folder(Res.string.filter_all, Icons.Rounded.ControlCamera, "", Res.string.all_places_nearby_description),
+    Folder(Res.string.filter_transit, Icons.Rounded.DirectionsBus, "transit", Res.string.public_transit_places_nearby_description),
+    Folder(Res.string.filter_food_drink, Icons.Rounded.Fastfood, "food_and_drink", Res.string.food_drink_places_nearby_description),
+    Folder(Res.string.filter_groceries, Icons.Rounded.LocalGroceryStore, "groceries", Res.string.groceries_places_nearby_description),
+    Folder(Res.string.filter_banks, Icons.Rounded.AttachMoney, "banks", Res.string.banks_places_nearby_description),
+    Folder(Res.string.osm_intersection, Icons.Rounded.ForkLeft, "intersections", Res.string.intersections_places_nearby_description),
 )
 
 @Composable
@@ -109,7 +110,7 @@ fun PlacesNearbyList(
                         startPlayback = EnabledFunction(
                             enabled = true,
                             functionLocation = onStartBeacon,
-                            hint = stringResource(R.string.location_detail_action_beacon_hint)
+                            hint = stringResource(Res.string.location_detail_action_beacon_hint)
                         ),
                     ),
                     userLocation = uiState.userLocation,

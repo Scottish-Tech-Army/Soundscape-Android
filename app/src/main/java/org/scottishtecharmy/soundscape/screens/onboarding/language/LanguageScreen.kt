@@ -18,7 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
@@ -31,6 +31,7 @@ import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradi
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.supportedLanguages
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun LanguageScreen(
@@ -79,7 +80,7 @@ fun LanguageComposable(
             verticalArrangement = Arrangement.Top
         ) {
             Text(
-                text = stringResource(R.string.first_launch_soundscape_language),
+                text = stringResource(Res.string.first_launch_soundscape_language),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
@@ -89,7 +90,7 @@ fun LanguageComposable(
             )
             Spacer(modifier = Modifier.height(spacing.small))
             Text(
-                text = stringResource(R.string.first_launch_soundscape_language_text),
+                text = stringResource(Res.string.first_launch_soundscape_language_text),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
@@ -116,7 +117,7 @@ fun LanguageComposable(
 
             Column(modifier = Modifier.padding(horizontal = spacing.large)) {
                 OnboardButton(
-                    text = stringResource(R.string.ui_continue),
+                    text = stringResource(Res.string.ui_continue),
                     onClick = {
                         onNavigate()
                     },

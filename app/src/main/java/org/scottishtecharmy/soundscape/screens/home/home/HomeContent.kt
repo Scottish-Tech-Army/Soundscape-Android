@@ -47,7 +47,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.LiveRegionMode
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
@@ -59,7 +60,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
-import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.NavigationButton
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
@@ -81,13 +81,14 @@ import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 data class ButtonState(
     val onClick: () -> Unit,
     val imageVector: ImageVector,
-    val contentDescriptionId: Int,
-    val hintActive: Int = 0,
-    val hintInactive: Int = 0,
+    val contentDescriptionId: StringResource,
+    val hintActive: StringResource? = null,
+    val hintInactive: StringResource? = null,
 )
 @Composable
 fun CardStatefulButton(states: Array<ButtonState>,
@@ -101,7 +102,7 @@ fun CardStatefulButton(states: Array<ButtonState>,
         .testTag(testTag)
 
     if(active) {
-        if (state.hintActive != 0)
+        if (state.hintActive != null)
             modifier = modifier
                 .talkbackHint(stringResource(state.hintActive))
                 .clearAndSetSemantics {  } // The built in description is laborious
@@ -134,9 +135,9 @@ fun CardStatefulButton(states: Array<ButtonState>,
 fun CardButton(onClick: () -> Unit,
                imageVector: ImageVector,
                active: Boolean = true,
-               contentDescriptionId: Int,
-               hintActive: Int = 0,
-               hintInactive: Int = 0,
+               contentDescriptionId: StringResource,
+               hintActive: StringResource? = null,
+               hintInactive: StringResource? = null,
                testTag: String) {
     CardStatefulButton(
         arrayOf(ButtonState(onClick, imageVector, contentDescriptionId, hintActive, hintInactive)),
@@ -189,11 +190,11 @@ fun HomeContent(
                 onClick = {
                     onNavigate(HomeRoutes.PlacesNearby.route)
                 },
-                text = stringResource(R.string.search_nearby_screen_title),
+                text = stringResource(Res.string.search_nearby_screen_title),
                 horizontalPadding = spacing.small,
                 modifier = Modifier
                     .semantics { heading() }
-                    .talkbackHint(stringResource(R.string.search_button_nearby_accessibility_hint))
+                    .talkbackHint(stringResource(Res.string.search_button_nearby_accessibility_hint))
                     .testTag("homePlacesNearby")
             )
             // Markers and routes
@@ -201,10 +202,10 @@ fun HomeContent(
                 onClick = {
                     onNavigate(HomeRoutes.MarkersAndRoutes.route)
                 },
-                text = stringResource(R.string.search_view_markers),
+                text = stringResource(Res.string.search_view_markers),
                 horizontalPadding = spacing.small,
                 modifier = Modifier
-                    .talkbackHint(stringResource(R.string.search_button_markers_accessibility_hint))
+                    .talkbackHint(stringResource(Res.string.search_button_markers_accessibility_hint))
                     .testTag("homeMarkersAndRoutes")
             )
             // Current location
@@ -221,7 +222,7 @@ fun HomeContent(
                         .defaultMinSize(minHeight = 48.dp)
                         .then(
                             if (announceLoading) Modifier.semantics {
-                                contentDescription = context.getString(R.string.general_loading_start)
+                                contentDescription = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.general_loading_start) }
                                 liveRegion = LiveRegionMode.Polite
                             } else Modifier
                         )
@@ -243,10 +244,10 @@ fun HomeContent(
                             }
                         }
                     },
-                    text = stringResource(R.string.search_use_current_location),
+                    text = stringResource(Res.string.search_use_current_location),
                     horizontalPadding = spacing.small,
                     modifier = Modifier
-                        .talkbackHint(stringResource(R.string.search_button_current_location_accessibility_hint))
+                        .talkbackHint(stringResource(Res.string.search_button_current_location_accessibility_hint))
                         .testTag("homeCurrentLocation")
                 )
             }
@@ -260,7 +261,7 @@ fun HomeContent(
                                     text =
                                         if(routePlayerState.routeData.markers.size > 1) {
                                             stringResource(
-                                                R.string.route_waypoint_progress
+                                                Res.string.route_waypoint_progress
                                             ).format(
                                                 routePlayerState.routeData.route.name,
                                                 routePlayerState.currentWaypoint + 1,
@@ -268,7 +269,7 @@ fun HomeContent(
                                             )
                                         } else {
                                             stringResource(
-                                                R.string.route_beacon_progress
+                                                Res.string.route_beacon_progress
                                             ).format(
                                                 routePlayerState.routeData.route.name)
                                         },
@@ -303,31 +304,31 @@ fun HomeContent(
                                         onClick = { routeFunctions.skipPrevious() },
                                         imageVector = Icons.Filled.SkipPrevious,
                                         active = (routePlayerState.currentWaypoint != 0),
-                                        contentDescriptionId = R.string.route_detail_action_previous,
-                                        hintActive = R.string.route_detail_action_previous_hint,
-                                        hintInactive = R.string.route_detail_action_previous_disabled_hint,
+                                        contentDescriptionId = Res.string.route_detail_action_previous,
+                                        hintActive = Res.string.route_detail_action_previous_hint,
+                                        hintInactive = Res.string.route_detail_action_previous_disabled_hint,
                                         testTag = "routeSkipPrevious"
                                     )
                                     CardButton(
                                         onClick = { routeFunctions.skipNext() },
                                         imageVector = Icons.Filled.SkipNext,
                                         active = (routePlayerState.currentWaypoint < routePlayerState.routeData.markers.size - 1),
-                                        contentDescriptionId = R.string.route_detail_action_next,
-                                        hintActive = R.string.route_detail_action_next_hint,
-                                        hintInactive = R.string.route_detail_action_next_disabled_hint,
+                                        contentDescriptionId = Res.string.route_detail_action_next,
+                                        hintActive = Res.string.route_detail_action_next_hint,
+                                        hintInactive = Res.string.route_detail_action_next_disabled_hint,
                                         testTag = "routeSkipNext"
                                     )
                                     CardButton(
                                         onClick = { onNavigate("${HomeRoutes.RouteDetails.route}/${routePlayerState.routeData.route.routeId}") },
                                         imageVector = Icons.Filled.Info,
-                                        contentDescriptionId = R.string.behavior_experiences_route_nav_title,
+                                        contentDescriptionId = Res.string.behavior_experiences_route_nav_title,
                                         testTag = "routeDetails"
                                     )
                                 }
                                 CardStatefulButton(
                                     arrayOf(
-                                        ButtonState({ routeFunctions.mute() }, Icons.AutoMirrored.Filled.VolumeOff, R.string.beacon_action_unmute_beacon, R.string.beacon_action_unmute_beacon_acc_hint),
-                                        ButtonState({ routeFunctions.mute() }, Icons.AutoMirrored.Filled.VolumeMute, R.string.beacon_action_mute_beacon, R.string.beacon_action_mute_beacon_acc_hint),
+                                        ButtonState({ routeFunctions.mute() }, Icons.AutoMirrored.Filled.VolumeOff, Res.string.beacon_action_unmute_beacon, Res.string.beacon_action_unmute_beacon_acc_hint),
+                                        ButtonState({ routeFunctions.mute() }, Icons.AutoMirrored.Filled.VolumeMute, Res.string.beacon_action_mute_beacon, Res.string.beacon_action_mute_beacon_acc_hint),
                                     ),
                                     currentState = if (beaconState?.muteState == true) 0 else 1,
                                     testTag = "RouteMute"
@@ -336,7 +337,7 @@ fun HomeContent(
                                 CardButton(
                                     onClick = { routeFunctions.stop() },
                                     imageVector = Icons.Filled.Stop,
-                                    contentDescriptionId = R.string.route_detail_action_stop_route,
+                                    contentDescriptionId = Res.string.route_detail_action_stop_route,
                                     testTag = "routeStop"
                                 )
 
@@ -344,7 +345,7 @@ fun HomeContent(
                                     CardButton(
                                         onClick = { fullscreenMap.value = !fullscreenMap.value },
                                         imageVector = Icons.Rounded.Fullscreen,
-                                        contentDescriptionId = R.string.location_detail_full_screen_hint,
+                                        contentDescriptionId = Res.string.location_detail_full_screen_hint,
                                         testTag = "routeFullScreenMap"
                                     )
                                 }
@@ -370,7 +371,7 @@ fun HomeContent(
                 if(permissionsRequired) {
                     Column {
                         Text(
-                            stringResource(R.string.permissions_required),
+                            stringResource(Res.string.permissions_required),
                             style = MaterialTheme.typography.bodyLarge,
                             color = MaterialTheme.colorScheme.onSurface,
                             textAlign = TextAlign.Center,
@@ -383,7 +384,7 @@ fun HomeContent(
                             onClick = {
                                 goToAppSettings(context)
                             },
-                            text = stringResource(R.string.permissions_button),
+                            text = stringResource(Res.string.permissions_button),
                             horizontalPadding = spacing.small,
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -400,7 +401,7 @@ fun HomeContent(
             modifier = Modifier.fillMaxSize()
         ) {
             Text(
-                text = stringResource(R.string.voice_cmd_listening),
+                text = stringResource(Res.string.voice_cmd_listening),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier

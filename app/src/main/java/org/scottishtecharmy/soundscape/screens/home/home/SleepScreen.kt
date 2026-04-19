@@ -19,7 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
@@ -29,6 +29,7 @@ import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.largePadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 private fun exitSleep(context: MainActivity, navController: NavHostController) {
     context.setServiceState(newServiceState = true, sleeping = false)
@@ -63,7 +64,7 @@ fun SleepScreen(exitSleep: () -> Unit = {},
     ) {
         Row {
             Text(
-                text = stringResource(R.string.sleep_sleeping),
+                text = stringResource(Res.string.sleep_sleeping),
                 style = MaterialTheme.typography.titleLarge,
                 modifier = modifier.largePadding(),
                 color = MaterialTheme.colorScheme.onSurface,
@@ -71,7 +72,7 @@ fun SleepScreen(exitSleep: () -> Unit = {},
         }
         Row {
             Text(
-                text = stringResource(R.string.sleep_sleeping_message),
+                text = stringResource(Res.string.sleep_sleeping_message),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = modifier.largePadding()
@@ -88,7 +89,7 @@ fun SleepScreen(exitSleep: () -> Unit = {},
                 colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
             ) {
                 Text(
-                    text = stringResource(R.string.sleep_wake_up_now),
+                    text = stringResource(Res.string.sleep_wake_up_now),
                     textAlign = TextAlign.Start,
                     style = MaterialTheme.typography.displaySmall,
                 )

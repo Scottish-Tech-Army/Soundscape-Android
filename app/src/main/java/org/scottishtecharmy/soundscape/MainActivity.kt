@@ -44,6 +44,8 @@ import org.koin.android.ext.android.inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.jetbrains.compose.resources.getString
+import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
@@ -109,7 +111,7 @@ class MainActivity : AppCompatActivity() {
 
             else -> {
                 // No location access granted, service can't be started as it will crash
-                Toast.makeText(this, this.getString(R.string.permissions_required), Toast.LENGTH_SHORT)
+                Toast.makeText(this, kotlinx.coroutines.runBlocking { getString(Res.string.permissions_required) }, Toast.LENGTH_SHORT)
                     .show()
             }
         }

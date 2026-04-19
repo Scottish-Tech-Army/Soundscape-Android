@@ -28,7 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
@@ -38,6 +38,7 @@ import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.AudioOnboardingViewModel
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 
 @Composable
@@ -48,11 +49,11 @@ fun HearingScreen(
     viewModel : AudioOnboardingViewModel
 ){
     val speechText = buildString {
-        append(stringResource(R.string.first_launch_callouts_example_1))
+        append(stringResource(Res.string.first_launch_callouts_example_1))
         append(". ")
-        append(stringResource(R.string.first_launch_callouts_example_3))
+        append(stringResource(Res.string.first_launch_callouts_example_3))
         append(". ")
-        append(stringResource(R.string.first_launch_callouts_example_4))
+        append(stringResource(Res.string.first_launch_callouts_example_4))
     }
     BackHandler(enabled = true) {
         // If the user presses the back button silence the speech
@@ -120,7 +121,7 @@ fun Hearing(
                     modifier = Modifier.padding(horizontal = spacing.large)
                 ) {
                     Text(
-                        text = stringResource(R.string.first_launch_callouts_title),
+                        text = stringResource(Res.string.first_launch_callouts_title),
                         style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center,
@@ -130,7 +131,7 @@ fun Hearing(
                     )
                     Spacer(modifier = Modifier.height(spacing.extraLarge))
                     Text(
-                        text = stringResource(R.string.first_launch_callouts_message),
+                        text = stringResource(Res.string.first_launch_callouts_message),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center,
@@ -138,7 +139,7 @@ fun Hearing(
                     )
                     Spacer(modifier = Modifier.height(spacing.large))
                     Text(
-                        text = stringResource(R.string.first_launch_callouts_listen),
+                        text = stringResource(Res.string.first_launch_callouts_listen),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center
@@ -149,7 +150,7 @@ fun Hearing(
                     // <string name="first_launch_callouts_example_3">Main Street goes left</string>
                     // <string name="first_launch_callouts_example_4">Main Street goes right</string>
 
-                    //val speechText = stringResource(R.string.first_launch_callouts_example_4)
+                    //val speechText = stringResource(Res.string.first_launch_callouts_example_4)
 
                     // This is a bodged version to introduce pauses between translation strings
                     // Not sure if this will work with some of the other languages, for example, Japanese
@@ -179,7 +180,7 @@ fun Hearing(
                             )
                             Spacer(modifier = Modifier.width(spacing.small))
                             Text(
-                                text = stringResource(R.string.first_launch_callouts_listen_accessibility_label),
+                                text = stringResource(Res.string.first_launch_callouts_listen_accessibility_label),
                                 color = MaterialTheme.colorScheme.onSurface,
                                 )
                         }
@@ -187,7 +188,7 @@ fun Hearing(
                     Spacer(modifier = Modifier.height(spacing.medium))
 
                     OnboardButton(
-                        text = stringResource(R.string.ui_continue),
+                        text = stringResource(Res.string.ui_continue),
                         onClick = {
                             onContinue()
                         },

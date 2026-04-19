@@ -7,7 +7,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -17,6 +17,7 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.screens.talkbackLive
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
+import org.scottishtecharmy.soundscape.resources.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -56,7 +57,7 @@ fun FlexibleAppBarPreview() {
                 modifier = Modifier
                     .clickable { }
                     .extraSmallPadding(),
-                text = stringResource(R.string.ui_back_button_title),
+                text = stringResource(Res.string.ui_back_button_title),
                 color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.titleLarge,
             )
@@ -66,7 +67,7 @@ fun FlexibleAppBarPreview() {
                 modifier = Modifier
                     .clickable { }
                     .extraSmallPadding(),
-                text = stringResource(R.string.general_alert_done),
+                text = stringResource(Res.string.general_alert_done),
                 color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.titleLarge
             )
@@ -85,7 +86,7 @@ fun FlexibleAppBarEmptyPreview() {
                 modifier = Modifier
                     .clickable { }
                     .extraSmallPadding(),
-                text = stringResource(R.string.ui_back_button_title),
+                text = stringResource(Res.string.ui_back_button_title),
                 color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.titleLarge,
             )

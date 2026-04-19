@@ -9,7 +9,8 @@ import android.util.Log
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import org.scottishtecharmy.soundscape.R
+import org.jetbrains.compose.resources.getString
+import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
@@ -175,7 +176,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null): AudioEngine {
                                     // If the voice type preference changes play some test speech
                                     clearTextToSpeechQueue()
                                     val testString =
-                                        localizedContext.getString(R.string.first_launch_callouts_example_3)
+                                        kotlinx.coroutines.runBlocking { getString(Res.string.first_launch_callouts_example_3) }
                                     createTextToSpeech(testString, AudioType.STANDARD)
                                 }
                             }

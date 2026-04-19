@@ -34,7 +34,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.BuildConfig
@@ -43,6 +43,7 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun DrawerContent(
@@ -85,7 +86,7 @@ fun DrawerContent(
                             Modifier
                                 .size(spacing.targetSize)
                                 .padding(start = spacing.extraSmall),
-                        contentDescription = stringResource(R.string.ui_menu_close),
+                        contentDescription = stringResource(Res.string.ui_menu_close),
                         tint = MaterialTheme.colorScheme.onBackground,
                     )
                 }
@@ -114,18 +115,18 @@ fun DrawerContent(
 // Not implemented yet
 //                DrawerMenuItem(
 //                    onClick = { notAvailableToast() },
-//                    label = stringResource(R.string.menu_devices),
+//                    label = stringResource(Res.string.menu_devices),
 //                    icon = Icons.Rounded.Headset,
 //                )
                 DrawerMenuItem(
                     onClick = { onNavigate(HomeRoutes.Settings.route) },
-                    label = stringResource(R.string.settings_screen_title),
+                    label = stringResource(Res.string.settings_screen_title),
                     icon = Icons.Rounded.Settings,
                     modifier = Modifier.testTag("menuSettings")
                 )
                 DrawerMenuItem(
-                    onClick = { onNavigate(HomeRoutes.Help.route + "/page${R.string.menu_help}") },
-                    label = stringResource(R.string.menu_help),
+                    onClick = { onNavigate(HomeRoutes.Help.route + "/page${Res.string.menu_help.key}") },
+                    label = stringResource(Res.string.menu_help),
                     Icons.AutoMirrored.Rounded.HelpOutline,
                     modifier = Modifier.testTag("menuHelpAndTutorials")
                 )
@@ -135,21 +136,21 @@ fun DrawerContent(
                         scope.launch { drawerState.close() }
                         toggleTutorial()
                     },
-                    label = if(running.value) stringResource(R.string.menu_audio_tutorial_cancel) else stringResource(R.string.menu_audio_tutorial),
+                    label = if(running.value) stringResource(Res.string.menu_audio_tutorial_cancel) else stringResource(Res.string.menu_audio_tutorial),
                     Icons.Rounded.Headphones,
                     modifier = Modifier.testTag("menuAudioTutorial")
                 )
 
                 DrawerMenuItem(
                     onClick = { rateSoundscape() },
-                    label = stringResource(R.string.menu_rate),
+                    label = stringResource(Res.string.menu_rate),
                     icon = Icons.Rounded.Star,
                     modifier = Modifier.testTag("menuRate")
                 )
 
                 DrawerMenuItem(
                     onClick = { contactSupport() },
-                    label = stringResource(R.string.menu_contact_support),
+                    label = stringResource(Res.string.menu_contact_support),
                     icon = Icons.Rounded.Markunread,
                     modifier = Modifier.testTag("menuContactSupport")
                 )
@@ -157,20 +158,20 @@ fun DrawerContent(
 // This is supposed to share the app with someone else (not the location)
 //                DrawerMenuItem(
 //                    onClick = { shareLocation() },
-//                    label = stringResource(R.string.share_title),
+//                    label = stringResource(Res.string.share_title),
 //                    icon = Icons.Rounded.IosShare,
 //                )
 
                 DrawerMenuItem(
                     onClick = { offlineMaps() },
-                    label = stringResource(R.string.offline_maps_title),
+                    label = stringResource(Res.string.offline_maps_title),
                     Icons.Rounded.Download,
                     modifier = Modifier.testTag("menuOfflineMaps")
                 )
 
                 DrawerMenuItem(
-                    onClick = { onNavigate(HomeRoutes.Help.route + "/page${R.string.settings_about_app}") },
-                    label = stringResource(R.string.settings_about_app),
+                    onClick = { onNavigate(HomeRoutes.Help.route + "/page${Res.string.settings_about_app.key}") },
+                    label = stringResource(Res.string.settings_about_app),
                     Icons.AutoMirrored.Rounded.HelpOutline,
                     modifier = Modifier.testTag("menuAboutSoundscape")
                 )
@@ -179,7 +180,7 @@ fun DrawerContent(
                     onClick = {
                         newReleaseDialog?.value = true
                     },
-                    label = stringResource(R.string.new_version_info_text),
+                    label = stringResource(Res.string.new_version_info_text),
                     Icons.AutoMirrored.Rounded.Comment,
                     modifier = Modifier.testTag("newReleaseInfo")
                 )
@@ -187,7 +188,7 @@ fun DrawerContent(
                 if (recordingEnabled) {
                     DrawerMenuItem(
                         onClick = { shareRecording() },
-                        label = stringResource(R.string.menu_share_recorded_route),
+                        label = stringResource(Res.string.menu_share_recorded_route),
                         icon = Icons.Rounded.Share,
                         modifier = Modifier.testTag("menuShareRecording")
                     )

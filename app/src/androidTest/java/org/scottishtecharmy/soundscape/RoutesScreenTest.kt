@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape
 
+import org.scottishtecharmy.soundscape.resources.*
 import android.content.Context
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.test.assertIsDisplayed
@@ -61,7 +62,7 @@ class RoutesScreenTest {
             }
         }
 
-        val noRoutesTitle = context.resources.getString(R.string.routes_no_routes_title)
+        val noRoutesTitle = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.routes_no_routes_title) }
         composeTestRule.onNodeWithText(noRoutesTitle).assertIsDisplayed()
     }
 
@@ -80,8 +81,8 @@ class RoutesScreenTest {
             }
         }
 
-        val hint1 = context.resources.getString(R.string.routes_no_routes_hint_1)
-        val hint2 = context.resources.getString(R.string.routes_no_routes_hint_2)
+        val hint1 = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.routes_no_routes_hint_1) }
+        val hint2 = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.routes_no_routes_hint_2) }
         composeTestRule.onNodeWithText(hint1).assertIsDisplayed()
         composeTestRule.onNodeWithText(hint2).assertIsDisplayed()
     }
@@ -200,7 +201,7 @@ class RoutesScreenTest {
         }
 
         // When loading, the empty state message should not be visible
-        val noRoutesTitle = context.resources.getString(R.string.routes_no_routes_title)
+        val noRoutesTitle = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.routes_no_routes_title) }
         composeTestRule.onNodeWithText(noRoutesTitle).assertDoesNotExist()
     }
 
@@ -237,7 +238,7 @@ class RoutesScreenTest {
         )
 
         // Verify the action label contains expected text (start route hint)
-        val startRouteHint = context.resources.getString(R.string.route_detail_action_start_route_hint)
+        val startRouteHint = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.route_detail_action_start_route_hint) }
         val hasStartRouteAction = customActions?.any { it.label == startRouteHint } ?: false
         assertTrue(
             "Route item should have 'Start this route' accessibility action",
@@ -265,7 +266,7 @@ class RoutesScreenTest {
             }
         }
 
-        val sortByName = context.resources.getString(R.string.markers_sort_button_sort_by_name)
+        val sortByName = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.markers_sort_button_sort_by_name) }
         composeTestRule.onNodeWithText(sortByName, useUnmergedTree = true).assertIsDisplayed()
     }
 
@@ -289,7 +290,7 @@ class RoutesScreenTest {
             }
         }
 
-        val sortByDistance = context.resources.getString(R.string.markers_sort_button_sort_by_distance)
+        val sortByDistance = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.markers_sort_button_sort_by_distance) }
         composeTestRule.onNodeWithText(sortByDistance, useUnmergedTree = true).assertIsDisplayed()
     }
 

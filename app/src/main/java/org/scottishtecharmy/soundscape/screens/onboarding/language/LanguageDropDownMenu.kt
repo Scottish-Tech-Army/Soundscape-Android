@@ -34,7 +34,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.TestTags
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun LanguageDropDownMenu(
@@ -83,7 +84,7 @@ fun LanguageDropDownMenu(
                         text = if (languageSelected) {
                             allLanguages[selectedLanguageIndex].name
                         } else {
-                            stringResource(R.string.no_language_selected) // TODO localize
+                            stringResource(Res.string.no_language_selected) // TODO localize
                         },
                         color = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.weight(1f)

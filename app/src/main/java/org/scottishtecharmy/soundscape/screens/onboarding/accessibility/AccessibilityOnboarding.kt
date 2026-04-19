@@ -14,7 +14,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
@@ -29,6 +29,7 @@ import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun AccessibilityOnboardingScreenVM(
@@ -56,9 +57,9 @@ fun AccessibilityOnboardingScreen(
         color = MaterialTheme.colorScheme.surface
     ){
         val text = if(uiState.talkbackEnabled) {
-            stringResource(R.string.accessibility_screen_reader_enabled)
+            stringResource(Res.string.accessibility_screen_reader_enabled)
         } else {
-            stringResource(R.string.accessibility_screen_reader_disabled)
+            stringResource(Res.string.accessibility_screen_reader_disabled)
         }
 
         ProvidePreferenceLocals {
@@ -73,7 +74,7 @@ fun AccessibilityOnboardingScreen(
             ) {
                 item {
                     Text(
-                        text = stringResource(R.string.accessibility_title),
+                        text = stringResource(Res.string.accessibility_title),
                         style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center,
@@ -96,7 +97,7 @@ fun AccessibilityOnboardingScreen(
                     defaultValue = MainActivity.SHOW_MAP_DEFAULT,
                     title = {
                         Text(
-                            text = stringResource(R.string.settings_show_map),
+                            text = stringResource(Res.string.settings_show_map),
                             color = MaterialTheme.colorScheme.onBackground
                         )
                     },
@@ -105,7 +106,7 @@ fun AccessibilityOnboardingScreen(
                 if(onNavigate != null) {
                     item {
                         OnboardButton(
-                            text = stringResource(R.string.ui_continue),
+                            text = stringResource(Res.string.ui_continue),
                             onClick = { onNavigate() },
                             modifier = Modifier
                                 .fillMaxWidth()

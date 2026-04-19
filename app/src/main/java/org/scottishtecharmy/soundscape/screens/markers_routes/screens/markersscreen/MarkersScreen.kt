@@ -19,7 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
@@ -43,6 +43,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.Markers
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesList
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun MarkersScreenVM(
@@ -81,7 +82,7 @@ fun MarkersScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         val context = LocalContext.current
-        val noMarkersText = stringResource(R.string.markers_no_markers_hint_1)
+        val noMarkersText = stringResource(Res.string.markers_no_markers_hint_1)
         val noMarkerHtmlText = remember(uiState.entries.isEmpty()) {
                 val parser: Parser = Parser.builder().build()
                 val document: Node? =
@@ -126,7 +127,7 @@ fun MarkersScreen(
                         }
                         Box(modifier = Modifier.padding(top = spacing.small)) {
                             Text(
-                                stringResource(R.string.markers_no_markers_title),
+                                stringResource(Res.string.markers_no_markers_title),
                                 style = MaterialTheme.typography.titleLarge,
                                 color = MaterialTheme.colorScheme.onSurface,
                                 textAlign = TextAlign.Center,
@@ -156,7 +157,7 @@ fun MarkersScreen(
                             )
                         ) {
                             Text(
-                                stringResource(R.string.markers_no_markers_hint_2),
+                                stringResource(Res.string.markers_no_markers_hint_2),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurface,
                                 textAlign = TextAlign.Center,

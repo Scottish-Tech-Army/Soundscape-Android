@@ -17,7 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -28,6 +28,7 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun CustomTextField(
@@ -63,7 +64,7 @@ fun CustomTextField(
                 ) {
                     Icon(
                         Icons.Filled.Clear,
-                        contentDescription = stringResource(R.string.text_field_clear_text),
+                        contentDescription = stringResource(Res.string.text_field_clear_text),
                         tint = MaterialTheme.colorScheme.onSurface
                     )
                 }

@@ -30,7 +30,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.liveRegion
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -41,7 +41,6 @@ import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.ui.theme.spacing
-import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.FolderItem
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.Folder
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
@@ -49,6 +48,7 @@ import org.scottishtecharmy.soundscape.screens.home.placesnearby.filterLocations
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.placesNearbyFolders
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.utils.process
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun AddWaypointsList(
@@ -91,7 +91,7 @@ fun AddWaypointsList(
 
     // Add PlacesNearby entries
     val levelZeroFolders = listOf(
-        Folder(R.string.search_nearby_screen_title, Icons.Rounded.LocationSearching, "", R.string.places_nearby_selection_description),
+        Folder(Res.string.search_nearby_screen_title, Icons.Rounded.LocationSearching, "", Res.string.places_nearby_selection_description),
     )
     val levelOneFolders = placesNearbyFolders
     val context = LocalContext.current
@@ -170,7 +170,7 @@ fun AddWaypointsList(
                                 .defaultMinSize(minHeight = 48.dp)
                                 .then(
                                     if (announceLoading) Modifier.semantics {
-                                        contentDescription = context.getString(R.string.general_loading_start)
+                                        contentDescription = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.general_loading_start) }
                                         liveRegion = LiveRegionMode.Polite
                                     } else Modifier
                                 )
@@ -180,7 +180,7 @@ fun AddWaypointsList(
                         }
                     } else {
                         val summaryDescription = LocationDescription(
-                            stringResource(R.string.search_use_current_location),
+                            stringResource(Res.string.search_use_current_location),
                             location = currentLocation
                         )
                         LocationItem(
@@ -219,8 +219,8 @@ fun AddWaypointsList(
                                 onToggleMember(locationDescription)
                             },
                             value = currentState,
-                            hintWhenOn = stringResource(R.string.location_detail_add_waypoint_existing_hint),
-                            hintWhenOff = stringResource(R.string.location_detail_add_waypoint_new_hint)
+                            hintWhenOn = stringResource(Res.string.location_detail_add_waypoint_existing_hint),
+                            hintWhenOff = stringResource(Res.string.location_detail_add_waypoint_new_hint)
                         )
                     ),
                     userLocation = userLocation

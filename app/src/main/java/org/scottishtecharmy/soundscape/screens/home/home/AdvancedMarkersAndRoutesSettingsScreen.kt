@@ -28,7 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import org.koin.androidx.compose.koinViewModel
@@ -44,6 +44,7 @@ import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.viewmodels.AdvancedMarkersAndRoutesSettingsViewModel
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun AdvancedMarkersAndRoutesSettingsScreenVM(
@@ -52,9 +53,9 @@ fun AdvancedMarkersAndRoutesSettingsScreenVM(
 ) {
     val context = LocalContext.current
     val viewModel = koinViewModel<AdvancedMarkersAndRoutesSettingsViewModel>()
-    val successString = stringResource(R.string.markers_and_routes_import_success)
-    val failureString = stringResource(R.string.markers_and_routes_import_failure)
-    val clearAllSuccessString = stringResource(R.string.menu_advanced_markers_and_routes_clear_all_success)
+    val successString = stringResource(Res.string.markers_and_routes_import_success)
+    val failureString = stringResource(Res.string.markers_and_routes_import_failure)
+    val clearAllSuccessString = stringResource(Res.string.menu_advanced_markers_and_routes_clear_all_success)
     val filePickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent(),
         onResult = { uri: Uri? ->
@@ -73,7 +74,7 @@ fun AdvancedMarkersAndRoutesSettingsScreenVM(
             filePickerLauncher.launch("application/zip")
         }
     }
-    val chooserText = stringResource(R.string.advanced_markers_and_routes_export)
+    val chooserText = stringResource(Res.string.advanced_markers_and_routes_export)
     AdvancedMarkersAndRoutesSettingsScreen(
         navController,
         { viewModel.exportMarkersAndRoutes(context, chooserText) },
@@ -111,8 +112,8 @@ fun AdvancedMarkersAndRoutesSettingsScreen(
     if (showConfirmationDialog.value) {
         AlertDialog(
             onDismissRequest = { showConfirmationDialog.value = false },
-            title = { Text(stringResource(R.string.settings_reset_dialog_title)) },
-            text = { Text(stringResource(R.string.advanced_markers_and_routes_clear_all_alert_message)) },
+            title = { Text(stringResource(Res.string.settings_reset_dialog_title)) },
+            text = { Text(stringResource(Res.string.advanced_markers_and_routes_clear_all_alert_message)) },
             confirmButton = {
                 TextButton(
                     onClick = {
@@ -121,9 +122,9 @@ fun AdvancedMarkersAndRoutesSettingsScreen(
                     }
                 ) {
                     Text(
-                        text = stringResource(R.string.ui_continue),
+                        text = stringResource(Res.string.ui_continue),
                         modifier = Modifier
-                            .talkbackHint(stringResource(R.string.settings_reset_button_hint))
+                            .talkbackHint(stringResource(Res.string.settings_reset_button_hint))
                     )
                 }
             },
@@ -131,7 +132,7 @@ fun AdvancedMarkersAndRoutesSettingsScreen(
                 TextButton(
                     onClick = { showConfirmationDialog.value = false }
                 ) {
-                    Text(stringResource(R.string.general_alert_cancel))
+                    Text(stringResource(Res.string.general_alert_cancel))
                 }
             }
         )
@@ -144,10 +145,10 @@ fun AdvancedMarkersAndRoutesSettingsScreen(
         },
         topBar = {
             FlexibleAppBar(
-                title = stringResource(R.string.menu_advanced_markers_and_routes),
+                title = stringResource(Res.string.menu_advanced_markers_and_routes),
                 leftSide = {
                     IconWithTextButton(
-                        text = stringResource(R.string.ui_back_button_title),
+                        text = stringResource(Res.string.ui_back_button_title),
                         color = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.testTag("appBarLeft")
                     ) {
@@ -168,7 +169,7 @@ fun AdvancedMarkersAndRoutesSettingsScreen(
                 verticalArrangement = Arrangement.spacedBy(spacing.extraSmall),
             ) {
                 Text(
-                    text = stringResource(R.string.advanced_markers_and_routes_description),
+                    text = stringResource(Res.string.advanced_markers_and_routes_description),
                     modifier = Modifier
                         .mediumPadding(),
                 )
@@ -176,7 +177,7 @@ fun AdvancedMarkersAndRoutesSettingsScreen(
                     onClick = {
                         showConfirmationDialog.value = true
                     },
-                    text = stringResource(R.string.advanced_markers_and_routes_clear_all_button),
+                    text = stringResource(Res.string.advanced_markers_and_routes_clear_all_button),
                     modifier = Modifier
                         .fillMaxWidth()
                         .smallPadding(),
@@ -188,7 +189,7 @@ fun AdvancedMarkersAndRoutesSettingsScreen(
                     onClick = {
                         exportMarkersAndRoutes()
                     },
-                    text = stringResource(R.string.advanced_markers_and_routes_export_button),
+                    text = stringResource(Res.string.advanced_markers_and_routes_export_button),
                     modifier = Modifier
                         .fillMaxWidth()
                         .smallPadding(),
@@ -200,7 +201,7 @@ fun AdvancedMarkersAndRoutesSettingsScreen(
                     onClick = {
                         importMarkersAndRoutes()
                     },
-                    text = stringResource(R.string.advanced_markers_and_routes_import_button),
+                    text = stringResource(Res.string.advanced_markers_and_routes_import_button),
                     modifier = Modifier
                         .fillMaxWidth()
                         .smallPadding(),

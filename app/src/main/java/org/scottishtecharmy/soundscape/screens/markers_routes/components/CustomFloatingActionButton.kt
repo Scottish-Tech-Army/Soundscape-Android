@@ -16,12 +16,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun CustomFloatingActionButton(
@@ -61,7 +62,7 @@ fun LargeCustomFloatingActionButtonPreview() {
         CustomFloatingActionButton(
             onClick = { /* Handle click */ },
             icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
-            contentDescription = stringResource(R.string.fab_add_item),
+            contentDescription = stringResource(Res.string.fab_add_item),
             iconSize = spacing.targetSize * 2 // Example of customizing the icon size
         )
     }
@@ -81,7 +82,7 @@ fun SmallCustomFloatingActionButtonPreview() {
         CustomFloatingActionButton(
             onClick = { /* Handle click */ },
             icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
-            contentDescription = stringResource(R.string.fab_add_item),
+            contentDescription = stringResource(Res.string.fab_add_item),
             iconSize = spacing.targetSize // Example of customizing the icon size
         )
 
@@ -101,11 +102,11 @@ fun SmallCustomFloatingActionButtonWithTextPreview() {
         CustomFloatingActionButton(
             onClick = { /* Handle click */ },
             icon = Icons.Rounded.AddCircleOutline, // Replace with a sample icon
-            contentDescription = stringResource(R.string.fab_add_route),
+            contentDescription = stringResource(Res.string.fab_add_route),
             iconSize = spacing.targetSize // Example of customizing the icon size
         )
         CustomTextButton(
-            text = stringResource(R.string.route_detail_action_create),
+            text = stringResource(Res.string.route_detail_action_create),
             modifier = Modifier,
             onClick = { },
             textStyle = MaterialTheme.typography.bodyMedium,

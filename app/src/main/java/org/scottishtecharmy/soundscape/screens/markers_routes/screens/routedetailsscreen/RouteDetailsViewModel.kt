@@ -10,7 +10,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.MainActivity
-import org.scottishtecharmy.soundscape.R
+import org.jetbrains.compose.resources.getString
+import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
@@ -36,8 +37,7 @@ class RouteDetailsViewModel(
                 )
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(
-                    errorMessage = soundscapeServiceConnection.soundscapeService?.localizedContext?.getString(
-                        R.string.error_message_route_not_found) ?: "",
+                    errorMessage = getString(Res.string.error_message_route_not_found),
                     isLoading = false
                 )
             }

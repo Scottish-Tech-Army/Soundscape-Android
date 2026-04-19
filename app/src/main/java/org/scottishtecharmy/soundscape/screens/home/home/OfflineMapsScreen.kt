@@ -29,7 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.CollectionInfo
 import androidx.compose.ui.semantics.CollectionItemInfo
 import androidx.compose.ui.semantics.Role
@@ -45,7 +45,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.google.gson.GsonBuilder
-import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
@@ -64,6 +63,7 @@ import org.scottishtecharmy.soundscape.viewmodels.OfflineMapsViewModel
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 import kotlin.time.Duration.Companion.seconds
+import org.scottishtecharmy.soundscape.resources.*
 
 fun generateOfflineMapScreenRoute(locationDescription: LocationDescription): String {
     // Generate JSON for the LocationDescription and append it to the route
@@ -126,12 +126,12 @@ fun OfflineMapsScreenVM(
                     println("Success!")
                     downloading.value = false
                     caching.value = false
-                    userMessage.value = context.getString(R.string.offline_map_download_complete)
+                    userMessage.value = org.jetbrains.compose.resources.getString(Res.string.offline_map_download_complete)
                     viewModel.refreshExtracts()
                 }
                 is DownloadState.Error -> {
                     println("Error!")
-                    userMessage.value = context.getString(R.string.offline_map_download_error)
+                    userMessage.value = org.jetbrains.compose.resources.getString(Res.string.offline_map_download_error)
                     downloading.value = false
                     caching.value = false
                 }
@@ -139,7 +139,7 @@ fun OfflineMapsScreenVM(
                     println("Cancelled!")
                     downloading.value = false
                     caching.value = false
-                    userMessage.value = context.getString(R.string.offline_map_download_cancelled)
+                    userMessage.value = org.jetbrains.compose.resources.getString(Res.string.offline_map_download_cancelled)
                 }
             }
         }
@@ -293,12 +293,12 @@ fun OfflineMapsScreen(
         topBar = {
             FlexibleAppBar(
                 title = if(extractDetailsFeature.value != null)
-                            stringResource(R.string.offline_map_details_title)
+                            stringResource(Res.string.offline_map_details_title)
                         else
-                            stringResource(R.string.offline_maps_title),
+                            stringResource(Res.string.offline_maps_title),
                 leftSide = {
                     IconWithTextButton(
-                        text = if(downloading) stringResource(R.string.general_alert_cancel) else stringResource(R.string.ui_back_button_title),
+                        text = if(downloading) stringResource(Res.string.general_alert_cancel) else stringResource(Res.string.ui_back_button_title),
                         color = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.testTag("appBarLeft")
                     ) {
@@ -346,9 +346,9 @@ fun OfflineMapsScreen(
                     Text(
                         text = stringResource(
                             if(caching)
-                                R.string.offline_maps_caching
+                                Res.string.offline_maps_caching
                             else
-                                R.string.offline_maps_downloading).format(uiState.downloadingExtractName),
+                                Res.string.offline_maps_downloading).format(uiState.downloadingExtractName),
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.headlineLarge,
                         color = MaterialTheme.colorScheme.onSurface,
@@ -381,7 +381,7 @@ fun OfflineMapsScreen(
                     for(storage in uiState.storages) {
                         if(storage.path == uiState.currentPath) {
                             Text(
-                                text = stringResource(R.string.offline_maps_storage).format(storage.description, storage.availableString),
+                                text = stringResource(Res.string.offline_maps_storage).format(storage.description, storage.availableString),
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .mediumPadding()
@@ -398,7 +398,7 @@ fun OfflineMapsScreen(
                             horizontalArrangement = SpaceBetween,
                         ) {
                             Text(
-                                text = stringResource(R.string.offline_maps_already_downloaded),
+                                text = stringResource(Res.string.offline_maps_already_downloaded),
                                 style = MaterialTheme.typography.headlineSmall,
                                 color = MaterialTheme.colorScheme.onSurface,
                                 modifier = Modifier
@@ -437,7 +437,7 @@ fun OfflineMapsScreen(
                         horizontalArrangement = SpaceBetween,
                     ) {
                         Text(
-                            text = stringResource(R.string.offline_maps_nearby),
+                            text = stringResource(Res.string.offline_maps_nearby),
                             style = MaterialTheme.typography.headlineSmall,
                             color = MaterialTheme.colorScheme.onSurface,
                             modifier = Modifier
@@ -469,7 +469,7 @@ fun OfflineMapsScreen(
                         }
                     } else {
                         Text(
-                            text = stringResource(if (uiState.manifestError) R.string.offline_maps_manifest_failed else R.string.offline_maps_loading_manifest),
+                            text = stringResource(if (uiState.manifestError) Res.string.offline_maps_manifest_failed else Res.string.offline_maps_loading_manifest),
                             style = MaterialTheme.typography.headlineSmall,
                             color = MaterialTheme.colorScheme.onSurface,
                             modifier = Modifier

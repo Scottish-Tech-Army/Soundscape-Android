@@ -19,7 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
@@ -28,6 +28,7 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun ListeningScreen(
@@ -80,7 +81,7 @@ fun Listening(
 
                 Column(modifier = Modifier.padding(horizontal = spacing.large)) {
                     Text(
-                        text = stringResource(R.string.first_launch_headphones_title),
+                        text = stringResource(Res.string.first_launch_headphones_title),
                         style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center,
@@ -90,14 +91,14 @@ fun Listening(
                     )
                     Spacer(modifier = Modifier.height(spacing.extraLarge))
                     Text(
-                        text = stringResource(R.string.first_launch_headphones_message_1),
+                        text = stringResource(Res.string.first_launch_headphones_message_1),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center
                     )
                     Spacer(modifier = Modifier.height(spacing.small))
                     Text(
-                        text = stringResource(R.string.first_launch_headphones_message_2),
+                        text = stringResource(Res.string.first_launch_headphones_message_2),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center
@@ -105,7 +106,7 @@ fun Listening(
                     Spacer(modifier = Modifier.height(spacing.extraLarge))
 
                     OnboardButton(
-                        text = stringResource(R.string.ui_continue),
+                        text = stringResource(Res.string.ui_continue),
                         onClick = { onNavigate() },
                         modifier = Modifier
                             .fillMaxWidth()

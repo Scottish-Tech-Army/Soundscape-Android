@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.home.locationDetails
 
 import org.scottishtecharmy.soundscape.utils.fromLatLng
+import org.scottishtecharmy.soundscape.resources.*
 
 import org.scottishtecharmy.soundscape.utils.toLatLng
 
@@ -38,7 +39,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
@@ -54,7 +55,6 @@ import org.commonmark.parser.Parser
 import org.commonmark.renderer.html.HtmlRenderer
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
-import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geoengine.TextForFeature
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
@@ -132,7 +132,7 @@ fun LocationDetailsScreen(
         getLocationDescription = { locationForDescription ->
             viewModel.getLocationDescription(locationForDescription) ?:
                 LocationDescription(
-                    name = context.getString(R.string.general_error_location_services_find_location_error),
+                    name = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.general_error_location_services_find_location_error) },
                     location = locationForDescription
                 )
         },
@@ -192,7 +192,7 @@ fun LocationDetails(
             modifier = modifier,
             topBar = {
                 CustomAppBar(
-                    title = stringResource(R.string.location_detail_title_default),
+                    title = stringResource(Res.string.location_detail_title_default),
                     onNavigateUp = {
                         navController.popBackStack()
                    },
@@ -301,7 +301,7 @@ private fun LocationDescriptionButtonsSection(
     showDialog: () -> Unit
 ) {
     // Parse markdown only once, not on every recomposition
-    val shareMessageResource = stringResource(R.string.universal_links_marker_share_message)
+    val shareMessageResource = stringResource(Res.string.universal_links_marker_share_message)
     val shareMessage = remember(shareMessageResource) {
         val parser: Parser = Parser.builder().build()
         val document: Node? = parser.parse(shareMessageResource)
@@ -322,8 +322,8 @@ private fun LocationDescriptionButtonsSection(
     ) {
         IconWithTextButton(
             icon = Icons.Filled.LocationOn,
-            text = stringResource(R.string.location_detail_action_beacon),
-            talkbackHint = stringResource(R.string.location_detail_action_beacon_hint),
+            text = stringResource(Res.string.location_detail_action_beacon),
+            talkbackHint = stringResource(Res.string.location_detail_action_beacon_hint),
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .defaultMinSize(minHeight = spacing.targetSize)
@@ -336,8 +336,8 @@ private fun LocationDescriptionButtonsSection(
         if(locationDescription.databaseId != 0L) {
             IconWithTextButton(
                 icon = Icons.Filled.EditLocation,
-                text = stringResource(R.string.markers_edit_screen_title_edit),
-                talkbackHint = stringResource(R.string.location_detail_action_edit_hint),
+                text = stringResource(Res.string.markers_edit_screen_title_edit),
+                talkbackHint = stringResource(Res.string.location_detail_action_edit_hint),
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .defaultMinSize(minHeight = spacing.targetSize)
@@ -349,8 +349,8 @@ private fun LocationDescriptionButtonsSection(
         } else {
             IconWithTextButton(
                 icon = Icons.Filled.AddLocation,
-                text = stringResource(R.string.universal_links_alert_action_marker),
-                talkbackHint = stringResource(R.string.location_detail_action_save_hint),
+                text = stringResource(Res.string.universal_links_alert_action_marker),
+                talkbackHint = stringResource(Res.string.location_detail_action_save_hint),
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .defaultMinSize(minHeight = spacing.targetSize)
@@ -364,8 +364,8 @@ private fun LocationDescriptionButtonsSection(
 
         IconWithTextButton(
             icon = Icons.Filled.Navigation,
-            text = stringResource(R.string.preview_title),
-            talkbackHint = stringResource(R.string.location_detail_action_preview_hint),
+            text = stringResource(Res.string.preview_title),
+            talkbackHint = stringResource(Res.string.location_detail_action_preview_hint),
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .defaultMinSize(minHeight = spacing.targetSize)
@@ -377,8 +377,8 @@ private fun LocationDescriptionButtonsSection(
 
         IconWithTextButton(
             icon = Icons.Filled.ShareLocation,
-            text = stringResource(R.string.share_title),
-            talkbackHint = stringResource(R.string.location_detail_action_share_hint),
+            text = stringResource(Res.string.share_title),
+            talkbackHint = stringResource(Res.string.location_detail_action_share_hint),
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .defaultMinSize(minHeight = spacing.targetSize)
@@ -390,7 +390,7 @@ private fun LocationDescriptionButtonsSection(
 
         IconWithTextButton(
             icon = Icons.Rounded.Download,
-            text = stringResource(R.string.offline_maps_nearby),
+            text = stringResource(Res.string.offline_maps_nearby),
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .defaultMinSize(minHeight = spacing.targetSize)

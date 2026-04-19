@@ -29,7 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
@@ -40,6 +40,7 @@ import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun NavigatingScreen(
@@ -103,7 +104,7 @@ fun Navigating(
         )
         {
             Text(
-                text = stringResource(id = R.string.first_launch_permissions_title),
+                text = stringResource(Res.string.first_launch_permissions_title),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
@@ -113,7 +114,7 @@ fun Navigating(
             )
             Spacer(modifier = Modifier.height(spacing.large))
             Text(
-                text = stringResource(id = R.string.first_launch_permissions_message),
+                text = stringResource(Res.string.first_launch_permissions_message),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
@@ -143,12 +144,12 @@ fun Navigating(
                         modifier = Modifier.semantics(mergeDescendants = true) {},
                     ) {
                         Text(
-                            text = stringResource(R.string.first_launch_permissions_location),
+                            text = stringResource(Res.string.first_launch_permissions_location),
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onSurface,
                         )
                         Text(
-                            text = stringResource(R.string.first_launch_permissions_required),
+                            text = stringResource(Res.string.first_launch_permissions_required),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurface,
                         )
@@ -174,12 +175,12 @@ fun Navigating(
                             Text(
                                 // Notification permission doesn't have translations as
                                 // original iOS Soundscape didn't have this
-                                text = stringResource(R.string.first_launch_permissions_notification),
+                                text = stringResource(Res.string.first_launch_permissions_notification),
                                 style = MaterialTheme.typography.titleMedium,
                                 color = MaterialTheme.colorScheme.onSurface,
                             )
                             Text(
-                                text = stringResource(R.string.first_launch_permissions_required),
+                                text = stringResource(Res.string.first_launch_permissions_required),
                                 style = MaterialTheme.typography.bodySmall,
                                 color = MaterialTheme.colorScheme.onSurface,
                             )
@@ -202,12 +203,12 @@ fun Navigating(
                         modifier = Modifier.semantics(mergeDescendants = true) {},
                     ) {
                         Text(
-                            text = stringResource(R.string.first_launch_permissions_record_audio),
+                            text = stringResource(Res.string.first_launch_permissions_record_audio),
                             style = MaterialTheme.typography.titleMedium,
                             color = MaterialTheme.colorScheme.onSurface,
                         )
                         Text(
-                            text = stringResource(R.string.first_launch_permissions_required_for_voice_control),
+                            text = stringResource(Res.string.first_launch_permissions_required_for_voice_control),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurface,
                         )
@@ -219,7 +220,7 @@ fun Navigating(
 
             Column(modifier = Modifier.padding(horizontal = spacing.medium)) {
                 OnboardButton(
-                    text = stringResource(R.string.ui_continue),
+                    text = stringResource(Res.string.ui_continue),
                     // just bodging this at the moment as having problems with rationales
                     // and handling denied permissions
                     onClick = { onContinue() },

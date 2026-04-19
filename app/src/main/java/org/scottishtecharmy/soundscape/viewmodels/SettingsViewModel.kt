@@ -29,7 +29,7 @@ class SettingsViewModel(
 ) : ViewModel() {
     data class SettingsUiState(
         // Data for the ViewMode that affects the UI
-        var beaconDescriptions : List<Int> = emptyList(),
+        var beaconDescriptions : List<org.jetbrains.compose.resources.StringResource> = emptyList(),
         var beaconValues : List<String> = emptyList(),
         var engineTypes : List<String> = emptyList(),
         var voiceTypes : List<String> = emptyList(),
@@ -117,7 +117,7 @@ class SettingsViewModel(
                                 }
 
                                 val audioEngineBeaconTypes = audioEngine.getListOfBeaconTypes()
-                                val beaconTypes = mutableListOf<Int>()
+                                val beaconTypes = mutableListOf<org.jetbrains.compose.resources.StringResource>()
                                 val beaconValues = mutableListOf<String>()
                                 for (type in audioEngineBeaconTypes) {
                                     beaconTypes.add(getBeaconResourceId(type))

@@ -26,36 +26,36 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.AudioOnboardingViewModel
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
-fun getBeaconResourceId(beaconName: String) : Int {
+fun getBeaconResourceId(beaconName: String) : StringResource {
     when (beaconName) {
-        "Original" -> return R.string.beacon_styles_original
-        "Current" -> return R.string.beacon_styles_current
-        "Tactile" -> return R.string.beacon_styles_tactile
-        "Flare" -> return R.string.beacon_styles_flare
-        "Shimmer" -> return R.string.beacon_styles_shimmer
-        "Ping" -> return R.string.beacon_styles_ping
-        "Drop" -> return R.string.beacon_styles_drop
-        "Signal" -> return R.string.beacon_styles_signal
-        "Signal Slow" -> return R.string.beacon_styles_signal_slow
-        "Signal Very Slow" -> return R.string.beacon_styles_signal_very_slow
-        "Mallet" -> return R.string.beacon_styles_mallet
-        "Mallet Slow" -> return R.string.beacon_styles_mallet_slow
-        "Mallet Very Slow" -> return R.string.beacon_styles_mallet_very_slow
-        else -> assert(false)
+        "Original" -> return Res.string.beacon_styles_original
+        "Current" -> return Res.string.beacon_styles_current
+        "Tactile" -> return Res.string.beacon_styles_tactile
+        "Flare" -> return Res.string.beacon_styles_flare
+        "Shimmer" -> return Res.string.beacon_styles_shimmer
+        "Ping" -> return Res.string.beacon_styles_ping
+        "Drop" -> return Res.string.beacon_styles_drop
+        "Signal" -> return Res.string.beacon_styles_signal
+        "Signal Slow" -> return Res.string.beacon_styles_signal_slow
+        "Signal Very Slow" -> return Res.string.beacon_styles_signal_very_slow
+        "Mallet" -> return Res.string.beacon_styles_mallet
+        "Mallet Slow" -> return Res.string.beacon_styles_mallet_slow
+        "Mallet Very Slow" -> return Res.string.beacon_styles_mallet_very_slow
+        else -> throw IllegalArgumentException("Unknown beacon name: $beaconName")
     }
-    return 0
 }
 
 @Composable
@@ -119,7 +119,7 @@ fun AudioBeacons(
             verticalArrangement = Arrangement.Top
         ) {
             Text(
-                text = stringResource(R.string.first_launch_beacon_title),
+                text = stringResource(Res.string.first_launch_beacon_title),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
@@ -129,21 +129,21 @@ fun AudioBeacons(
             )
             Spacer(modifier = Modifier.height(spacing.large))
             Text(
-                text = stringResource(R.string.first_launch_beacon_message_1),
+                text = stringResource(Res.string.first_launch_beacon_message_1),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(spacing.large))
             Text(
-                text = stringResource(R.string.first_launch_beacon_message_2),
+                text = stringResource(Res.string.first_launch_beacon_message_2),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
             )
             Spacer(modifier = Modifier.height(spacing.large))
             Text(
-                text = stringResource(R.string.first_launch_beacon_message_3),
+                text = stringResource(Res.string.first_launch_beacon_message_3),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
@@ -176,7 +176,7 @@ fun AudioBeacons(
                     .requiredHeight(spacing.targetSize)
             ) {
                 OnboardButton(
-                    text = stringResource(R.string.ui_continue),
+                    text = stringResource(Res.string.ui_continue),
                     onClick = {
                         onContinue()
                     },

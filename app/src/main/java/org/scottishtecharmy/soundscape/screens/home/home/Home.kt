@@ -30,7 +30,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
@@ -69,6 +69,7 @@ import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.utils.getLanguageMismatch
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun keyboardAsState(): State<Boolean> {
@@ -218,7 +219,7 @@ fun Home(
                                     generateLocationDetailsRoute(item),
                                 )
                             },
-                            hint = stringResource(R.string.search_bar_hint),
+                            hint = stringResource(Res.string.search_bar_hint),
                             userLocation = state.location,
                             isSearching = state.searchInProgress
                         )
@@ -250,21 +251,21 @@ fun HomeTopAppBar(
     val context = LocalContext.current
     FlexibleAppBar(
         title = if (streetPreviewState)
-                    (stringResource(R.string.preview_title))
+                    (stringResource(Res.string.preview_title))
                 else
-                    (stringResource(R.string.home_screen_title)),
+                    (stringResource(Res.string.home_screen_title)),
         leftSide = {
             IconButton(
                 onClick = {
                     coroutineScope.launch { drawerState.open() }
                 },
                 modifier = Modifier
-                    .talkbackHint(stringResource(R.string.ui_menu_hint))
+                    .talkbackHint(stringResource(Res.string.ui_menu_hint))
                     .testTag("topBarMenu")
             ) {
                 Icon(
                     imageVector = Icons.Rounded.Menu,
-                    contentDescription = stringResource(R.string.ui_menu),
+                    contentDescription = stringResource(Res.string.ui_menu),
                     modifier = Modifier.semantics { heading() },
                 )
             }
@@ -277,11 +278,11 @@ fun HomeTopAppBar(
                         streetPreviewFunctions.exit()
                     },
                     modifier = Modifier
-                        .talkbackHint(stringResource(R.string.street_preview_exit))
+                        .talkbackHint(stringResource(Res.string.street_preview_exit))
                 ) {
                     Icon(
                         Icons.AutoMirrored.Rounded.ExitToApp,
-                        contentDescription = stringResource(R.string.street_preview_exit),
+                        contentDescription = stringResource(Res.string.street_preview_exit),
                         tint = MaterialTheme.colorScheme.onSurface,
                     )
                 }
@@ -296,12 +297,12 @@ fun HomeTopAppBar(
                         onNavigate(HomeRoutes.Sleep.route)
                     },
                     modifier = Modifier
-                        .talkbackHint(stringResource(R.string.sleep_sleep_acc_hint))
+                        .talkbackHint(stringResource(Res.string.sleep_sleep_acc_hint))
                         .testTag("topBarSleep")
                 ) {
                     Icon(
                         Icons.Rounded.Snooze,
-                        contentDescription = stringResource(R.string.sleep_sleep),
+                        contentDescription = stringResource(Res.string.sleep_sleep),
                         tint = MaterialTheme.colorScheme.onSurface,
                     )
                 }
@@ -315,7 +316,7 @@ fun HomeTopAppBar(
 @Preview(showBackground = true, locale = "pl")
 @Composable
 fun HomePreview() {
-    val currentLocationText = stringResource(R.string.search_use_current_location)
+    val currentLocationText = stringResource(Res.string.search_use_current_location)
     SoundscapeTheme {
         Home(
             state = HomeState(),
@@ -346,7 +347,7 @@ fun HomePreview() {
 @Preview(showBackground = true)
 @Composable
 fun HomeSearchPreview() {
-    val currentLocationText = stringResource(R.string.search_use_current_location)
+    val currentLocationText = stringResource(Res.string.search_use_current_location)
     SoundscapeTheme {
         Home(
             state = HomeState(),
@@ -377,7 +378,7 @@ fun HomeSearchPreview() {
 @Preview(showBackground = true)
 @Composable
 fun HomeRoutePreview() {
-    val currentLocationText = stringResource(R.string.search_use_current_location)
+    val currentLocationText = stringResource(Res.string.search_use_current_location)
     val routePlayerState = RoutePlayerState(
         routeData = RouteWithMarkers(
             RouteEntity(
@@ -421,7 +422,7 @@ fun HomeRoutePreview() {
 @Preview(showBackground = true)
 @Composable
 fun StreetPreview() {
-    val currentLocationText = stringResource(R.string.search_use_current_location)
+    val currentLocationText = stringResource(Res.string.search_use_current_location)
     SoundscapeTheme {
         Home(
             state = HomeState(

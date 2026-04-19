@@ -21,7 +21,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
@@ -31,6 +31,7 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun BatteryOptimizationScreen(
@@ -82,7 +83,7 @@ fun BatteryOptimization(
             verticalArrangement = Arrangement.Top
         ) {
             Text(
-                text = stringResource(R.string.battery_optimization_title),
+                text = stringResource(Res.string.battery_optimization_title),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
@@ -92,7 +93,7 @@ fun BatteryOptimization(
             )
             Spacer(modifier = Modifier.height(spacing.large))
             Text(
-                text = stringResource(R.string.battery_optimization_message),
+                text = stringResource(Res.string.battery_optimization_message),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center
@@ -101,7 +102,7 @@ fun BatteryOptimization(
 
             Column(modifier = Modifier.padding(horizontal = spacing.medium)) {
                 OnboardButton(
-                    text = stringResource(R.string.ui_continue),
+                    text = stringResource(Res.string.ui_continue),
                     onClick = { onContinue() },
                     modifier = Modifier
                         .fillMaxWidth()

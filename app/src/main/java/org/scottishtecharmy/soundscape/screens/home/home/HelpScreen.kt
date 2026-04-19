@@ -20,7 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.invisibleToUser
 import androidx.compose.ui.semantics.semantics
@@ -37,7 +37,7 @@ import androidx.navigation.compose.rememberNavController
 import org.commonmark.node.Node
 import org.commonmark.parser.Parser
 import org.commonmark.renderer.html.HtmlRenderer
-import org.scottishtecharmy.soundscape.R
+import org.jetbrains.compose.resources.StringResource
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
@@ -45,6 +45,7 @@ import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 
 enum class SectionType{
@@ -54,270 +55,286 @@ enum class SectionType{
     Faq             // A FAQ question with its answer in the section
 }
 data class Section(
-    val textId: Int,                      // There's always text, this is the resource id for it
+    val textId: StringResource,           // There's always text, this is the resource id for it
     val type: SectionType,
     val skipTalkback: Boolean = false,
     val markdown: Boolean = false,
-    val faqAnswer: Int = -1             // The resource id of the answer to a FAQ question
+    val faqAnswer: StringResource? = null  // The resource id of the answer to a FAQ question
 )
 data class Sections(
-    val titleId: Int,
+    val titleId: StringResource,
     val sections: List<Section>
 )
+
+// Build a lookup map from StringResource key to StringResource for all resources used in helpPages.
+// This is populated lazily after helpPages is initialized.
+private val stringResourceByKey: Map<String, StringResource> by lazy {
+    val map = mutableMapOf<String, StringResource>()
+    for (page in helpPages) {
+        map[page.titleId.key] = page.titleId
+        for (section in page.sections) {
+            map[section.textId.key] = section.textId
+            section.faqAnswer?.let { map[it.key] = it }
+        }
+    }
+    map
+}
+
+fun findStringResourceByKey(key: String): StringResource? = stringResourceByKey[key]
 
 // This is a list of all the possible Sections that can be displayed as part of the help screen.
 // Each one has a unique titleId which is used to identify it in the route.
 val helpPages = listOf(
     Sections(
-        R.string.beacon_audio_beacon,
+        Res.string.beacon_audio_beacon,
         listOf(
-            Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_destination_beacons_what, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_what, SectionType.Title),
+            Section(Res.string.help_text_destination_beacons_what, SectionType.Paragraph, markdown = true),
 
-            Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_destination_beacons_when, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_when, SectionType.Title),
+            Section(Res.string.help_text_destination_beacons_when, SectionType.Paragraph, markdown = true),
 
-            Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_destination_beacons_how_1, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_destination_beacons_how_2, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_destination_beacons_how_3, SectionType.Paragraph, markdown = true)
+            Section(Res.string.help_text_section_title_how, SectionType.Title),
+            Section(Res.string.help_text_destination_beacons_how_1, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_destination_beacons_how_2, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_destination_beacons_how_3, SectionType.Paragraph, markdown = true)
         )
     ),
 
     Sections(
-        R.string.voice_voices,
+        Res.string.voice_voices,
         listOf(
-            Section(R.string.help_config_voices_content, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_config_voices_content, SectionType.Paragraph, markdown = true),
         )
     ),
 
     Sections(
-        R.string.help_remote_page_title,
+        Res.string.help_remote_page_title,
         listOf(
-            Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_remote_control_what, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_what, SectionType.Title),
+            Section(Res.string.help_text_remote_control_what, SectionType.Paragraph, markdown = true),
 
-            Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_remote_control_when, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_when, SectionType.Title),
+            Section(Res.string.help_text_remote_control_when, SectionType.Paragraph, markdown = true),
 
-            Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_remote_control_how, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_how, SectionType.Title),
+            Section(Res.string.help_text_remote_control_how, SectionType.Paragraph, markdown = true),
         )
     ),
 
     Sections(
-        R.string.help_explore_page_title,
+        Res.string.help_explore_page_title,
         listOf(
-            Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_ahead_of_me_what, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_what, SectionType.Title),
+            Section(Res.string.help_text_ahead_of_me_what, SectionType.Paragraph, markdown = true),
 
-            Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_ahead_of_me_when, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_when, SectionType.Title),
+            Section(Res.string.help_text_ahead_of_me_when, SectionType.Paragraph, markdown = true),
 
-            Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_ahead_of_me_how, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_how, SectionType.Title),
+            Section(Res.string.help_text_ahead_of_me_how, SectionType.Paragraph, markdown = true),
         )
     ),
 
     Sections(
-        R.string.help_orient_page_title,
+        Res.string.help_orient_page_title,
         listOf(
-            Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_around_me_what, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_what, SectionType.Title),
+            Section(Res.string.help_text_around_me_what, SectionType.Paragraph, markdown = true),
 
-            Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_around_me_when, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_when, SectionType.Title),
+            Section(Res.string.help_text_around_me_when, SectionType.Paragraph, markdown = true),
 
-            Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_around_me_how, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_how, SectionType.Title),
+            Section(Res.string.help_text_around_me_how, SectionType.Paragraph, markdown = true),
         )
     ),
 
     Sections(
-        R.string.callouts_automatic_callouts,
+        Res.string.callouts_automatic_callouts,
         listOf(
-            Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_automatic_callouts_what, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_what, SectionType.Title),
+            Section(Res.string.help_text_automatic_callouts_what, SectionType.Paragraph, markdown = true),
 
-            Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_automatic_callouts_when_1, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_automatic_callouts_when_2, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_automatic_callouts_when_3, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_when, SectionType.Title),
+            Section(Res.string.help_text_automatic_callouts_when_1, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_automatic_callouts_when_2, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_automatic_callouts_when_3, SectionType.Paragraph, markdown = true),
 
-            Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_automatic_callouts_how_1, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_automatic_callouts_how_2, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_how, SectionType.Title),
+            Section(Res.string.help_text_automatic_callouts_how_1, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_automatic_callouts_how_2, SectionType.Paragraph, markdown = true),
         )
     ),
 
     Sections(
-        R.string.directions_my_location,
+        Res.string.directions_my_location,
         listOf(
-            Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_my_location_what, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_what, SectionType.Title),
+            Section(Res.string.help_text_my_location_what, SectionType.Paragraph, markdown = true),
 
-            Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_my_location_when, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_when, SectionType.Title),
+            Section(Res.string.help_text_my_location_when, SectionType.Paragraph, markdown = true),
 
-            Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_my_location_how, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_how, SectionType.Title),
+            Section(Res.string.help_text_my_location_how, SectionType.Paragraph, markdown = true),
         )
     ),
 
     Sections(
-        R.string.routes_title,
+        Res.string.routes_title,
         listOf(
-            Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_routes_content_what, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_what, SectionType.Title),
+            Section(Res.string.help_text_routes_content_what, SectionType.Paragraph, markdown = true),
 
-            Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_routes_content_when, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_when, SectionType.Title),
+            Section(Res.string.help_text_routes_content_when, SectionType.Paragraph, markdown = true),
 
-            Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_routes_content_how_1, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_routes_content_how_2, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_routes_content_how_3, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_how, SectionType.Title),
+            Section(Res.string.help_text_routes_content_how_1, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_routes_content_how_2, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_routes_content_how_3, SectionType.Paragraph, markdown = true),
         )
     ),
 
     Sections(
-        R.string.callouts_nearby_markers,
+        Res.string.callouts_nearby_markers,
         listOf(
-            Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_nearby_markers_what, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_what, SectionType.Title),
+            Section(Res.string.help_text_nearby_markers_what, SectionType.Paragraph, markdown = true),
 
-            Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_nearby_markers_when, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_when, SectionType.Title),
+            Section(Res.string.help_text_nearby_markers_when, SectionType.Paragraph, markdown = true),
 
-            Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_nearby_markers_how, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_section_title_how, SectionType.Title),
+            Section(Res.string.help_text_nearby_markers_how, SectionType.Paragraph, markdown = true),
         )
     ),
 
     Sections(
-        R.string.markers_title,
+        Res.string.markers_title,
         listOf(
-            Section(R.string.help_text_markers_content_1, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_markers_content_2, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_markers_content_3, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_markers_content_1, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_markers_content_2, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_markers_content_3, SectionType.Paragraph, markdown = true),
         )
     ),
 
     Sections(
-        R.string.help_creating_markers_page_title,
+        Res.string.help_creating_markers_page_title,
         listOf(
-            Section(R.string.help_text_creating_markers_content_1, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_creating_markers_content_2, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_creating_markers_content_1, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_creating_markers_content_2, SectionType.Paragraph, markdown = true),
         )
     ),
 
     Sections(
-        R.string.help_edit_markers_page_title,
+        Res.string.help_edit_markers_page_title,
         listOf(
-            Section(R.string.help_text_customizing_markers_content_1, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_customizing_markers_content_2, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_customizing_markers_content_1, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_text_customizing_markers_content_2, SectionType.Paragraph, markdown = true),
         )
     ),
 
     Sections(
-        R.string.faq_tips_title,
+        Res.string.faq_tips_title,
         listOf(
-            Section(R.string.faq_tip_finding_bus_stops, SectionType.Paragraph, markdown = true),
-            Section(R.string.faq_tip_setting_beacon_on_address, SectionType.Paragraph, markdown = true),
-            Section(R.string.faq_tip_create_marker_at_bus_stop, SectionType.Paragraph, markdown = true),
-            Section(R.string.faq_tip_beacon_quiet, SectionType.Paragraph, markdown = true),
-            Section(R.string.faq_tip_hold_phone_flat, SectionType.Paragraph, markdown = true),
-            Section(R.string.faq_tip_turning_beacon_off, SectionType.Paragraph, markdown = true),
-            Section(R.string.faq_tip_turning_off_auto_callouts, SectionType.Paragraph, markdown = true),
-            //Section(R.string.faq_tip_two_finger_double_tap, SectionType.Paragraph), Currently unsupported on Android
+            Section(Res.string.faq_tip_finding_bus_stops, SectionType.Paragraph, markdown = true),
+            Section(Res.string.faq_tip_setting_beacon_on_address, SectionType.Paragraph, markdown = true),
+            Section(Res.string.faq_tip_create_marker_at_bus_stop, SectionType.Paragraph, markdown = true),
+            Section(Res.string.faq_tip_beacon_quiet, SectionType.Paragraph, markdown = true),
+            Section(Res.string.faq_tip_hold_phone_flat, SectionType.Paragraph, markdown = true),
+            Section(Res.string.faq_tip_turning_beacon_off, SectionType.Paragraph, markdown = true),
+            Section(Res.string.faq_tip_turning_off_auto_callouts, SectionType.Paragraph, markdown = true),
+            //Section(Res.string.faq_tip_two_finger_double_tap, SectionType.Paragraph), Currently unsupported on Android
         )
     ),
 
     Sections(
-        R.string.help_offline_page_title,
+        Res.string.help_offline_page_title,
         listOf(
-            Section(R.string.help_offline_page_title, SectionType.Title),
-            Section(R.string.help_offline_description, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_offline_limitations_heading, SectionType.Title),
-            Section(R.string.help_offline_limitations_description, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_offline_troubleshooting_heading, SectionType.Title),
-            Section(R.string.help_offline_troubleshooting_description, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_offline_page_title, SectionType.Title),
+            Section(Res.string.help_offline_description, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_offline_limitations_heading, SectionType.Title),
+            Section(Res.string.help_offline_limitations_description, SectionType.Paragraph, markdown = true),
+            Section(Res.string.help_offline_troubleshooting_heading, SectionType.Title),
+            Section(Res.string.help_offline_troubleshooting_description, SectionType.Paragraph, markdown = true),
         )
     ),
 
     Sections(
-        R.string.menu_help,
+        Res.string.menu_help,
         listOf(
-            Section(R.string.help_configuration_section_title, SectionType.Title),
-            Section(R.string.voice_voices, SectionType.Link),
-            Section(R.string.help_remote_page_title, SectionType.Link),
+            Section(Res.string.help_configuration_section_title, SectionType.Title),
+            Section(Res.string.voice_voices, SectionType.Link),
+            Section(Res.string.help_remote_page_title, SectionType.Link),
 
-            Section(R.string.settings_help_section_beacons_and_pois, SectionType.Title),
-            Section(R.string.beacon_audio_beacon, SectionType.Link),
-            Section(R.string.callouts_automatic_callouts, SectionType.Link),
+            Section(Res.string.settings_help_section_beacons_and_pois, SectionType.Title),
+            Section(Res.string.beacon_audio_beacon, SectionType.Link),
+            Section(Res.string.callouts_automatic_callouts, SectionType.Link),
 
-            Section(R.string.settings_help_section_home_screen_buttons, SectionType.Title),
-            Section(R.string.directions_my_location, SectionType.Link),
-            Section(R.string.help_orient_page_title, SectionType.Link),
-            Section(R.string.help_explore_page_title, SectionType.Link),
-            Section(R.string.callouts_nearby_markers, SectionType.Link),
+            Section(Res.string.settings_help_section_home_screen_buttons, SectionType.Title),
+            Section(Res.string.directions_my_location, SectionType.Link),
+            Section(Res.string.help_orient_page_title, SectionType.Link),
+            Section(Res.string.help_explore_page_title, SectionType.Link),
+            Section(Res.string.callouts_nearby_markers, SectionType.Link),
 
-            Section(R.string.search_view_markers, SectionType.Title),
-            Section(R.string.markers_title, SectionType.Link),
-            Section(R.string.routes_title, SectionType.Link),
-            Section(R.string.help_creating_markers_page_title, SectionType.Link),
-            Section(R.string.help_edit_markers_page_title, SectionType.Link),
+            Section(Res.string.search_view_markers, SectionType.Title),
+            Section(Res.string.markers_title, SectionType.Link),
+            Section(Res.string.routes_title, SectionType.Link),
+            Section(Res.string.help_creating_markers_page_title, SectionType.Link),
+            Section(Res.string.help_edit_markers_page_title, SectionType.Link),
 
-            Section(R.string.faq_title, SectionType.Title),
-            Section(R.string.faq_title, SectionType.Link),
-            Section(R.string.faq_tips_title, SectionType.Link),
-            Section(R.string.help_offline_page_title, SectionType.Link),
+            Section(Res.string.faq_title, SectionType.Title),
+            Section(Res.string.faq_title, SectionType.Link),
+            Section(Res.string.faq_tips_title, SectionType.Link),
+            Section(Res.string.help_offline_page_title, SectionType.Link),
         )
     ),
 
     Sections(
-        R.string.faq_title,
+        Res.string.faq_title,
         listOf(
-            Section(R.string.faq_section_what_is_soundscape, SectionType.Title),
-            Section(R.string.faq_when_to_use_soundscape_question, SectionType.Faq, faqAnswer = R.string.faq_when_to_use_soundscape_answer),
-            Section(R.string.faq_markers_function_question, SectionType.Faq, faqAnswer = R.string.faq_markers_function_answer),
+            Section(Res.string.faq_section_what_is_soundscape, SectionType.Title),
+            Section(Res.string.faq_when_to_use_soundscape_question, SectionType.Faq, faqAnswer = Res.string.faq_when_to_use_soundscape_answer),
+            Section(Res.string.faq_markers_function_question, SectionType.Faq, faqAnswer = Res.string.faq_markers_function_answer),
 
-            Section(R.string.faq_section_getting_the_best_experience, SectionType.Title),
-            Section(R.string.faq_what_can_I_set_question, SectionType.Faq, faqAnswer = R.string.faq_what_can_I_set_answer),
-            Section(R.string.faq_how_to_use_beacon_question, SectionType.Faq, faqAnswer = R.string.faq_how_to_use_beacon_answer),
-            Section(R.string.faq_why_does_beacon_disappear_question, SectionType.Faq, faqAnswer = R.string.faq_why_does_beacon_disappear_answer),
-            Section(R.string.faq_beacon_on_address_question, SectionType.Faq, faqAnswer = R.string.faq_beacon_on_address_answer),
-            Section(R.string.faq_beacon_on_home_question, SectionType.Faq, faqAnswer = R.string.faq_beacon_on_home_answer),
-            Section(R.string.faq_how_close_to_destination_question, SectionType.Faq, faqAnswer = R.string.faq_how_close_to_destination_answer),
-            Section(R.string.faq_turn_beacon_back_on_question, SectionType.Faq, faqAnswer = R.string.faq_turn_beacon_back_on_answer),
-            Section(R.string.faq_road_names_question, SectionType.Faq, faqAnswer = R.string.faq_road_names_answer),
-            Section(R.string.faq_why_not_every_business_question, SectionType.Faq, faqAnswer = R.string.faq_why_not_every_business_answer),
-            Section(R.string.faq_callouts_stopping_in_vehicle_question, SectionType.Faq, faqAnswer = R.string.faq_callouts_stopping_in_vehicle_answer),
-            Section(R.string.faq_miss_a_callout_question, SectionType.Faq, faqAnswer = R.string.faq_miss_a_callout_answer),
+            Section(Res.string.faq_section_getting_the_best_experience, SectionType.Title),
+            Section(Res.string.faq_what_can_I_set_question, SectionType.Faq, faqAnswer = Res.string.faq_what_can_I_set_answer),
+            Section(Res.string.faq_how_to_use_beacon_question, SectionType.Faq, faqAnswer = Res.string.faq_how_to_use_beacon_answer),
+            Section(Res.string.faq_why_does_beacon_disappear_question, SectionType.Faq, faqAnswer = Res.string.faq_why_does_beacon_disappear_answer),
+            Section(Res.string.faq_beacon_on_address_question, SectionType.Faq, faqAnswer = Res.string.faq_beacon_on_address_answer),
+            Section(Res.string.faq_beacon_on_home_question, SectionType.Faq, faqAnswer = Res.string.faq_beacon_on_home_answer),
+            Section(Res.string.faq_how_close_to_destination_question, SectionType.Faq, faqAnswer = Res.string.faq_how_close_to_destination_answer),
+            Section(Res.string.faq_turn_beacon_back_on_question, SectionType.Faq, faqAnswer = Res.string.faq_turn_beacon_back_on_answer),
+            Section(Res.string.faq_road_names_question, SectionType.Faq, faqAnswer = Res.string.faq_road_names_answer),
+            Section(Res.string.faq_why_not_every_business_question, SectionType.Faq, faqAnswer = Res.string.faq_why_not_every_business_answer),
+            Section(Res.string.faq_callouts_stopping_in_vehicle_question, SectionType.Faq, faqAnswer = Res.string.faq_callouts_stopping_in_vehicle_answer),
+            Section(Res.string.faq_miss_a_callout_question, SectionType.Faq, faqAnswer = Res.string.faq_miss_a_callout_answer),
 
-            Section(R.string.faq_section_how_soundscape_works, SectionType.Title),
-            Section(R.string.faq_supported_phones_question, SectionType.Faq, faqAnswer = R.string.faq_supported_phones_answer),
-            Section(R.string.faq_supported_headsets_question, SectionType.Faq, faqAnswer = R.string.faq_supported_headsets_answer),
-            Section(R.string.faq_battery_impact_question, SectionType.Faq, faqAnswer = R.string.faq_battery_impact_answer),
-            Section(R.string.faq_sleep_mode_battery_question, SectionType.Faq, faqAnswer = R.string.faq_sleep_mode_battery_answer),
-            Section(R.string.faq_snooze_mode_battery_question, SectionType.Faq, faqAnswer = R.string.faq_snooze_mode_battery_answer),
-            Section(R.string.faq_headset_battery_impact_question, SectionType.Faq, faqAnswer = R.string.faq_headset_battery_impact_answer),
-            Section(R.string.faq_background_battery_impact_question, SectionType.Faq, faqAnswer = R.string.faq_background_battery_impact_answer),
-            Section(R.string.faq_mobile_data_use_question, SectionType.Faq, faqAnswer = R.string.faq_mobile_data_use_answer),
-            Section(R.string.faq_difference_from_map_apps_question, SectionType.Faq, faqAnswer = R.string.faq_difference_from_map_apps_answer),
-            Section(R.string.faq_use_with_wayfinding_apps_question, SectionType.Faq, faqAnswer = R.string.faq_use_with_wayfinding_apps_answer),
-            Section(R.string.faq_controlling_what_you_hear_question, SectionType.Faq, faqAnswer = R.string.faq_controlling_what_you_hear_answer),
-            Section(R.string.faq_holding_phone_flat_question, SectionType.Faq, faqAnswer = R.string.faq_holding_phone_flat_answer),
-            Section(R.string.faq_what_is_osm_question, SectionType.Faq, faqAnswer = R.string.faq_what_is_osm_answer),
+            Section(Res.string.faq_section_how_soundscape_works, SectionType.Title),
+            Section(Res.string.faq_supported_phones_question, SectionType.Faq, faqAnswer = Res.string.faq_supported_phones_answer),
+            Section(Res.string.faq_supported_headsets_question, SectionType.Faq, faqAnswer = Res.string.faq_supported_headsets_answer),
+            Section(Res.string.faq_battery_impact_question, SectionType.Faq, faqAnswer = Res.string.faq_battery_impact_answer),
+            Section(Res.string.faq_sleep_mode_battery_question, SectionType.Faq, faqAnswer = Res.string.faq_sleep_mode_battery_answer),
+            Section(Res.string.faq_snooze_mode_battery_question, SectionType.Faq, faqAnswer = Res.string.faq_snooze_mode_battery_answer),
+            Section(Res.string.faq_headset_battery_impact_question, SectionType.Faq, faqAnswer = Res.string.faq_headset_battery_impact_answer),
+            Section(Res.string.faq_background_battery_impact_question, SectionType.Faq, faqAnswer = Res.string.faq_background_battery_impact_answer),
+            Section(Res.string.faq_mobile_data_use_question, SectionType.Faq, faqAnswer = Res.string.faq_mobile_data_use_answer),
+            Section(Res.string.faq_difference_from_map_apps_question, SectionType.Faq, faqAnswer = Res.string.faq_difference_from_map_apps_answer),
+            Section(Res.string.faq_use_with_wayfinding_apps_question, SectionType.Faq, faqAnswer = Res.string.faq_use_with_wayfinding_apps_answer),
+            Section(Res.string.faq_controlling_what_you_hear_question, SectionType.Faq, faqAnswer = Res.string.faq_controlling_what_you_hear_answer),
+            Section(Res.string.faq_holding_phone_flat_question, SectionType.Faq, faqAnswer = Res.string.faq_holding_phone_flat_answer),
+            Section(Res.string.faq_what_is_osm_question, SectionType.Faq, faqAnswer = Res.string.faq_what_is_osm_answer),
         )
     ),
     Sections(
-        R.string.settings_about_app,
+        Res.string.settings_about_app,
         listOf(
-            Section(R.string.about_soundscape, SectionType.Paragraph, skipTalkback = false, markdown = true),
-            Section(R.string.copyright_notices, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.osm_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.openmaptiles_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(Res.string.about_soundscape, SectionType.Paragraph, skipTalkback = false, markdown = true),
+            Section(Res.string.copyright_notices, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(Res.string.osm_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(Res.string.openmaptiles_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
         )
     )
 )
@@ -329,29 +346,33 @@ fun HelpScreen(
     modifier: Modifier
 ) {
     // Find our page
-    var sections = Sections(0, emptyList())
+    var sections = Sections(Res.string.menu_help, emptyList())
     if (topic.startsWith("page")) {
-        // Parse page title id from route
-        val id = topic.substring(4).toInt()
+        // Parse page title key from route
+        val key = topic.substring(4)
         for (page in helpPages) {
-            if(page.titleId == id) {
+            if(page.titleId.key == key) {
                 sections = page
             }
         }
     } else if(topic.startsWith("faq")) {
-        // Parse faq ids from route
-        val ids = topic.substring(3).split(".")
+        // Parse faq keys from route
+        val keys = topic.substring(3).split(".")
         // We want to display the question and answer
-        sections = Sections(R.string.faq_title_abbreviated,
-            listOf(
-                Section(ids[0].toInt(), SectionType.Title),
-                Section(ids[1].toInt(), SectionType.Paragraph)
+        val questionRes = findStringResourceByKey(keys[0])
+        val answerRes = findStringResourceByKey(keys[1])
+        if (questionRes != null && answerRes != null) {
+            sections = Sections(Res.string.faq_title_abbreviated,
+                listOf(
+                    Section(questionRes, SectionType.Title),
+                    Section(answerRes, SectionType.Paragraph)
+                )
             )
-        )
+        }
     } else {
         // Default to home
         for (page in helpPages) {
-            if(page.titleId == R.string.menu_help) {
+            if(page.titleId == Res.string.menu_help) {
                 sections = page
             }
         }
@@ -362,7 +383,7 @@ fun HelpScreen(
         topBar = {
             CustomAppBar(
                 title = stringResource(sections.titleId),
-                navigationButtonTitle = stringResource(R.string.ui_back_button_title),
+                navigationButtonTitle = stringResource(Res.string.ui_back_button_title),
                 onNavigateUp = { navController.popBackStack() },
             )
         },
@@ -427,9 +448,9 @@ fun HelpScreen(
                                 Button(
                                     onClick = {
                                         if (section.type == SectionType.Faq) {
-                                            navController.navigate("${HomeRoutes.Help.route}/faq${section.textId}.${section.faqAnswer}")
+                                            navController.navigate("${HomeRoutes.Help.route}/faq${section.textId.key}.${section.faqAnswer?.key}")
                                         } else {
-                                            navController.navigate("${HomeRoutes.Help.route}/page${section.textId}")
+                                            navController.navigate("${HomeRoutes.Help.route}/page${section.textId.key}")
                                         }
                                     },
                                     modifier = Modifier
@@ -460,10 +481,10 @@ fun HelpScreen(
                         }
                     }
                     item {
-                        if (sections.titleId == R.string.settings_about_app) {
+                        if (sections.titleId == Res.string.settings_about_app) {
                             CustomButton(
                                 onClick = { navController.navigate(HomeRoutes.OpenSourceLicense.route) },
-                                text = stringResource(R.string.menu_open_source_licenses),
+                                text = stringResource(Res.string.menu_open_source_licenses),
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .smallPadding(),
@@ -483,7 +504,7 @@ fun HelpScreen(
 @Composable
 fun HomeHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.menu_help}",
+        topic = "page${Res.string.menu_help.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -493,7 +514,7 @@ fun HomeHelpPreview() {
 @Composable
 fun BeaconHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.beacon_audio_beacon}",
+        topic = "page${Res.string.beacon_audio_beacon.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -503,7 +524,7 @@ fun BeaconHelpPreview() {
 @Composable
 fun VoicesHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.voice_voices}",
+        topic = "page${Res.string.voice_voices.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -513,7 +534,7 @@ fun VoicesHelpPreview() {
 @Composable
 fun RemoteHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.help_remote_page_title}",
+        topic = "page${Res.string.help_remote_page_title.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -523,7 +544,7 @@ fun RemoteHelpPreview() {
 @Composable
 fun AheadOfMeHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.help_explore_page_title}",
+        topic = "page${Res.string.help_explore_page_title.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -533,7 +554,7 @@ fun AheadOfMeHelpPreview() {
 @Composable
 fun AroundMeHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.help_orient_page_title}",
+        topic = "page${Res.string.help_orient_page_title.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -543,7 +564,7 @@ fun AroundMeHelpPreview() {
 @Composable
 fun AutomaticCalloutsHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.callouts_automatic_callouts}",
+        topic = "page${Res.string.callouts_automatic_callouts.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -553,7 +574,7 @@ fun AutomaticCalloutsHelpPreview() {
 @Composable
 fun MyLocationHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.directions_my_location}",
+        topic = "page${Res.string.directions_my_location.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -563,7 +584,7 @@ fun MyLocationHelpPreview() {
 @Composable
 fun RoutesContentHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.routes_title}",
+        topic = "page${Res.string.routes_title.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -573,7 +594,7 @@ fun RoutesContentHelpPreview() {
 @Composable
 fun MarkersHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.markers_title}",
+        topic = "page${Res.string.markers_title.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -583,7 +604,7 @@ fun MarkersHelpPreview() {
 @Composable
 fun CreatingMarkersHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.help_creating_markers_page_title}",
+        topic = "page${Res.string.help_creating_markers_page_title.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -593,7 +614,7 @@ fun CreatingMarkersHelpPreview() {
 @Composable
 fun NearbyMarkersHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.callouts_nearby_markers}",
+        topic = "page${Res.string.callouts_nearby_markers.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -603,7 +624,7 @@ fun NearbyMarkersHelpPreview() {
 @Composable
 fun EditingMarkersHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.help_edit_markers_page_title}",
+        topic = "page${Res.string.help_edit_markers_page_title.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -613,7 +634,7 @@ fun EditingMarkersHelpPreview() {
 @Composable
 fun FaqHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.faq_title}",
+        topic = "page${Res.string.faq_title.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -623,7 +644,7 @@ fun FaqHelpPreview() {
 @Composable
 fun FaqAnswerHelpPreview() {
     HelpScreen(
-        topic = "faq${R.string.faq_when_to_use_soundscape_answer}",
+        topic = "faq${Res.string.faq_when_to_use_soundscape_question.key}.${Res.string.faq_when_to_use_soundscape_answer.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -633,7 +654,7 @@ fun FaqAnswerHelpPreview() {
 @Composable
 fun TipsHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.faq_tips_title}",
+        topic = "page${Res.string.faq_tips_title.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -643,7 +664,7 @@ fun TipsHelpPreview() {
 @Composable
 fun OfflineHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.help_offline_page_title}",
+        topic = "page${Res.string.help_offline_page_title.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )
@@ -653,7 +674,7 @@ fun OfflineHelpPreview() {
 @Composable
 fun AboutHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.settings_about_app}",
+        topic = "page${Res.string.settings_about_app.key}",
         navController = rememberNavController(),
         modifier = Modifier
     )

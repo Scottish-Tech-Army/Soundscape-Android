@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape
 
+import org.scottishtecharmy.soundscape.resources.*
 import android.os.Environment
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.safeDrawing
@@ -299,7 +300,7 @@ class DocumentationScreens {
 
         for (page in helpPages) {
 
-            if(page.titleId == R.string.menu_help)
+            if(page.titleId == Res.string.menu_help)
                 continue
             val pageTitle = targetContext.getString(page.titleId)
 

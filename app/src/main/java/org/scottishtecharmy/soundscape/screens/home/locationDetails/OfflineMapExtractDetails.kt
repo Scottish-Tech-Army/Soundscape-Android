@@ -26,7 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.preference.PreferenceManager
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
@@ -40,6 +40,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.ExtractDetails
 import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun OfflineMapExtractDetails(
@@ -105,7 +106,7 @@ private fun MapExtractButtonsSection(
         if(local) {
             IconWithTextButton(
                 icon = Icons.Filled.Delete,
-                text = stringResource(R.string.offline_map_details_delete),
+                text = stringResource(Res.string.offline_map_details_delete),
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .defaultMinSize(minHeight = spacing.targetSize)
@@ -115,7 +116,7 @@ private fun MapExtractButtonsSection(
         } else {
             IconWithTextButton(
                 icon = Icons.Filled.Download,
-                text = stringResource(R.string.offline_map_details_download),
+                text = stringResource(Res.string.offline_map_details_download),
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .defaultMinSize(minHeight = spacing.targetSize)
@@ -136,7 +137,7 @@ private fun MapExtractTextsSection(
         verticalArrangement = Arrangement.spacedBy(spacing.small),
     ) {
         Text(
-            text = stringResource(R.string.offline_map_details_name).format(details.localName),
+            text = stringResource(Res.string.offline_map_details_name).format(details.localName),
             style = MaterialTheme.typography.titleLarge,
             color = MaterialTheme.colorScheme.onSurface,
         )
@@ -149,9 +150,9 @@ private fun MapExtractTextsSection(
         val size = extract.properties?.get("extract-size-string")
         if (size != null) {
             val sizeString = if (local)
-                stringResource(R.string.offline_map_details_size_on_phone).format(size)
+                stringResource(Res.string.offline_map_details_size_on_phone).format(size)
             else
-                stringResource(R.string.offline_map_details_size_on_server).format(size)
+                stringResource(Res.string.offline_map_details_size_on_server).format(size)
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(spacing.small),
@@ -187,14 +188,14 @@ private fun MapExtractTextsSection(
                     tint = MaterialTheme.colorScheme.onSurface,
                 )
                 Text(
-                    text = stringResource(R.string.offline_map_details_city_list).format(cities),
+                    text = stringResource(Res.string.offline_map_details_city_list).format(cities),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface
                 )
             }
             if(details.alternateCities.isNotEmpty() &&  details.localCities.isNotEmpty())
                 Text(
-                    text = stringResource(R.string.offline_map_details_alternate_city_list).format(details.alternateCities),
+                    text = stringResource(Res.string.offline_map_details_alternate_city_list).format(details.alternateCities),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface
                 )

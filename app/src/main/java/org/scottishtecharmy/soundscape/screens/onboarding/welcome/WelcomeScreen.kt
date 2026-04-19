@@ -22,13 +22,14 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun Welcome(
@@ -71,14 +72,14 @@ fun Welcome(
                     modifier = Modifier.padding(horizontal = spacing.large)
                 ) {
                     Text(
-                        text = stringResource(R.string.first_launch_welcome_title),
+                        text = stringResource(Res.string.first_launch_welcome_title),
                         style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center
                     )
                     Spacer(modifier = Modifier.height(spacing.small))
                     Text(
-                        text = stringResource(R.string.first_launch_welcome_description),
+                        text = stringResource(Res.string.first_launch_welcome_description),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center
@@ -88,7 +89,7 @@ fun Welcome(
 
                     Column(modifier = Modifier.padding(horizontal = spacing.large)) {
                         OnboardButton(
-                            text = stringResource(R.string.first_launch_welcome_button),
+                            text = stringResource(Res.string.first_launch_welcome_button),
                             onClick = { onNavigate() },
                             modifier = Modifier
                                 .fillMaxWidth()

@@ -13,7 +13,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -30,6 +30,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscr
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreenVM
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun MarkersAndRoutesScreen(
@@ -57,10 +58,10 @@ fun MarkersAndRoutesScreen(
         topBar = {
             Column {
                 FlexibleAppBar(
-                    title = stringResource(R.string.search_view_markers),
+                    title = stringResource(Res.string.search_view_markers),
                     leftSide = {
                         IconWithTextButton(
-                            text = stringResource(R.string.ui_back_button_title),
+                            text = stringResource(Res.string.ui_back_button_title),
                             color = MaterialTheme.colorScheme.onSurface
                         ) {
                             navController.popBackStack()
@@ -73,8 +74,8 @@ fun MarkersAndRoutesScreen(
                                 icon = Icons.Default.Add,
                                 iconModifier = Modifier.size(spacing.targetSize),
                                 color = MaterialTheme.colorScheme.onSurface,
-                                contentDescription = stringResource(R.string.route_detail_action_create),
-                                talkbackHint = stringResource(R.string.route_detail_action_create_hint)
+                                contentDescription = stringResource(Res.string.route_detail_action_create),
+                                talkbackHint = stringResource(Res.string.route_detail_action_create_hint)
                             ) {
                                 navController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=new")
                             }

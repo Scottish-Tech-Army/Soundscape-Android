@@ -50,6 +50,8 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MOD
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RELATIVE_DIRECTION_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RELATIVE_DIRECTION_KEY
 import org.scottishtecharmy.soundscape.R
+import org.jetbrains.compose.resources.getString
+import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_ENTER
@@ -535,7 +537,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener {
                     withContext(Dispatchers.Main) {
                         Toast.makeText(
                             this@SoundscapeService,
-                            localizedContext.getString(R.string.service_still_running),
+                            getString(Res.string.service_still_running),
                             Toast.LENGTH_SHORT
                         ).show()
                     }
@@ -565,8 +567,8 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
-            .setContentTitle(getString(R.string.app_name))
-            .setContentText(getString(R.string.notification_text))
+            .setContentTitle(kotlinx.coroutines.runBlocking { getString(Res.string.app_name) })
+            .setContentText(kotlinx.coroutines.runBlocking { getString(Res.string.notification_text) })
             .setSmallIcon(R.drawable.nearby_markers_24px)
             .setOngoing(true)
             .setContentIntent(notifyPendingIntent)
@@ -765,39 +767,35 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener {
     }
     fun routeListRoutes() {
         coroutineScope.launch {
-            val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
             val routes = MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao().getAllRoutes()
             if (routes.isEmpty())
-                speak2dText(ctx.getString(R.string.voice_cmd_no_routes))
+                speak2dText(getString(Res.string.voice_cmd_no_routes))
             else {
                val names = routes.joinToString(". ") { it.name }
-                speak2dText(ctx.getString(R.string.voice_cmd_routes_list) + names)
+                speak2dText(getString(Res.string.voice_cmd_routes_list) + names)
             }
         }
     }
 
     fun routeStart(route: RouteEntity) {
-        val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
-        speak2dText(ctx.getString(R.string.voice_cmd_starting_route).format(route.name))
+        speak2dText(kotlinx.coroutines.runBlocking { getString(Res.string.voice_cmd_starting_route) }.format(route.name))
         routeStartById(route.routeId)
     }
 
     fun routeListMarkers() {
         coroutineScope.launch {
-            val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
             val markers = MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao().getAllMarkers()
             if (markers.isEmpty()) {
-                speak2dText(ctx.getString(R.string.voice_cmd_no_markers))
+                speak2dText(getString(Res.string.voice_cmd_no_markers))
             } else {
                 val names = markers.joinToString(". ") { it.name }
-                speak2dText(ctx.getString(R.string.voice_cmd_markers_list) + names)
+                speak2dText(getString(Res.string.voice_cmd_markers_list) + names)
             }
         }
     }
 
     fun markerStart(marker: MarkerEntity) {
-        val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
-        speak2dText(ctx.getString(R.string.voice_cmd_starting_beacon_at_marker).format(marker.name))
+        speak2dText(kotlinx.coroutines.runBlocking { getString(Res.string.voice_cmd_starting_beacon_at_marker) }.format(marker.name))
 
         val location = LngLatAlt(marker.longitude, marker.latitude)
         startBeacon(location, marker.name)
@@ -949,7 +947,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener {
 
     override fun announceStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {
         val compassLabel = ComposeLocalizedStrings().get(getCompassLabel(bestChoice.heading.toInt()))
-        val go = localizedContext.getString(R.string.preview_go_title)
+        val go = kotlinx.coroutines.runBlocking { getString(Res.string.preview_go_title) }
         speakText("$go ${bestChoice.name} $compassLabel", AudioType.STANDARD)
     }
 

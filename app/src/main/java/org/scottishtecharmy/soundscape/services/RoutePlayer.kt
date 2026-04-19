@@ -11,7 +11,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.scottishtecharmy.soundscape.R
+import org.jetbrains.compose.resources.getString
+import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
@@ -110,7 +111,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             val route = routeDao.getRouteWithMarkers(routeId) ?: return@launch
             currentMarker = 0
             currentRouteData = if (reverse) {
-                val reverseName = localizedContext.getString(R.string.route_reverse_name, route.route.name)
+                val reverseName = getString(Res.string.route_reverse_name, route.route.name)
                 RouteWithMarkers(
                     RouteEntity(route.route.routeId, reverseName, route.route.description),
                     route.markers.reversed()
@@ -160,8 +161,8 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                                     // We've reached the end of the route
                                     // Announce the end of the route
                                     Log.d(TAG, "End of route ${coroutineContext[Job]}")
-                                    val endOfRouteText = localizedContext.getString(
-                                        R.string.route_end_completed_accessibility,
+                                    val endOfRouteText = getString(
+                                        Res.string.route_end_completed_accessibility,
                                         route.route.name
                                     )
                                     service.speakText(
@@ -196,18 +197,18 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                         )
                     val beaconSetText =
                         if(route.markers.size > 1) {
-                            localizedContext.getString(
-                                R.string.behavior_scavenger_hunt_callout_next_flag,
+                            kotlinx.coroutines.runBlocking { getString(
+                                Res.string.behavior_scavenger_hunt_callout_next_flag,
                                 route.markers[index].name,
                                 formatDistanceAndDirection(distance, null, ComposeLocalizedStrings()),
                                 (index + 1).toString(),
                                 (route.markers.size).toString()
-                            )
+                            ) }
                         } else {
-                            localizedContext.getString(
-                                R.string.behavior_scavenger_hunt_callout_next_flag_short_route,
+                            kotlinx.coroutines.runBlocking { getString(
+                                Res.string.behavior_scavenger_hunt_callout_next_flag_short_route,
                                 route.markers[index].name,
-                                formatDistanceAndDirection(distance, null, ComposeLocalizedStrings()))
+                                formatDistanceAndDirection(distance, null, ComposeLocalizedStrings())) }
                         }
                     if(userInitiated) service.audioEngine.clearTextToSpeechQueue()
                     service.speakText(

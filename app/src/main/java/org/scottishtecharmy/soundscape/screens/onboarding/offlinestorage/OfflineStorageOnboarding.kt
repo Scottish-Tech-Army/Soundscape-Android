@@ -16,7 +16,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
@@ -29,6 +29,7 @@ import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradi
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.StorageUtils
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun OfflineStorageOnboardingScreenVM(
@@ -68,7 +69,7 @@ fun OfflineStorageOnboardingScreen(
             verticalArrangement = Arrangement.Top
         ) {
             Text(
-                text = stringResource(R.string.offline_map_storage_title),
+                text = stringResource(Res.string.offline_map_storage_title),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
@@ -79,7 +80,7 @@ fun OfflineStorageOnboardingScreen(
             Spacer(modifier = Modifier.height(spacing.large))
 
             Text(
-                text = stringResource(R.string.offline_map_storage_description),
+                text = stringResource(Res.string.offline_map_storage_description),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.smallPadding()
@@ -99,7 +100,7 @@ fun OfflineStorageOnboardingScreen(
 
             if(onNavigate != null) {
                 OnboardButton(
-                    text = stringResource(R.string.ui_continue),
+                    text = stringResource(Res.string.ui_continue),
                     onClick = { onNavigate() },
                     modifier = Modifier
                         .fillMaxWidth()

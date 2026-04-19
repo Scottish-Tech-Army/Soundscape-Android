@@ -5,12 +5,13 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun CustomTextButton(
@@ -39,7 +40,7 @@ fun CustomTextButton(
 fun CustomTextButtonPreview() {
     CustomTextButton(
         onClick = { /*TODO*/ },
-        text = stringResource(R.string.general_alert_done),
+        text = stringResource(Res.string.general_alert_done),
         textStyle = MaterialTheme.typography.titleMedium,
         fontWeight = FontWeight.Bold
     )

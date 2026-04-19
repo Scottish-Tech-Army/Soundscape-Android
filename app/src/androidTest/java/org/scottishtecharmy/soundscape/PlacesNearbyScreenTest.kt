@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape
 
+import org.scottishtecharmy.soundscape.resources.*
 import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -36,12 +37,12 @@ class PlacesNearbyScreenTest {
         }
 
         // Check that category folders are displayed
-        val allPlaces = context.resources.getString(R.string.filter_all)
-        val transit = context.resources.getString(R.string.filter_transit)
-        val foodDrink = context.resources.getString(R.string.filter_food_drink)
-        val groceries = context.resources.getString(R.string.filter_groceries)
-        val banks = context.resources.getString(R.string.filter_banks)
-        val intersections = context.resources.getString(R.string.osm_intersection)
+        val allPlaces = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.filter_all) }
+        val transit = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.filter_transit) }
+        val foodDrink = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.filter_food_drink) }
+        val groceries = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.filter_groceries) }
+        val banks = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.filter_banks) }
+        val intersections = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.osm_intersection) }
 
         composeTestRule.onNodeWithText(allPlaces).assertIsDisplayed()
         composeTestRule.onNodeWithText(transit).assertIsDisplayed()
@@ -65,7 +66,7 @@ class PlacesNearbyScreenTest {
             }
         }
 
-        val title = context.resources.getString(R.string.search_nearby_screen_title)
+        val title = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.search_nearby_screen_title) }
         composeTestRule.onNodeWithText(title).assertIsDisplayed()
     }
 
@@ -110,7 +111,7 @@ class PlacesNearbyScreenTest {
             }
         }
 
-        val transit = context.resources.getString(R.string.filter_transit)
+        val transit = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.filter_transit) }
         composeTestRule.onNodeWithText(transit).performClick()
 
         assert(clickedFolder == "transit") { "Expected folder 'transit' but got '$clickedFolder'" }
@@ -180,7 +181,7 @@ class PlacesNearbyScreenTest {
             }
         }
 
-        val allPlaces = context.resources.getString(R.string.filter_all)
+        val allPlaces = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.filter_all) }
         composeTestRule.onNodeWithText(allPlaces).performClick()
 
         // "All" filter uses empty string
@@ -206,7 +207,7 @@ class PlacesNearbyScreenTest {
             }
         }
 
-        val intersections = context.resources.getString(R.string.osm_intersection)
+        val intersections = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.osm_intersection) }
         composeTestRule.onNodeWithText(intersections).performClick()
 
         assert(clickedFolder == "intersections") { "Expected filter 'intersections' but got '$clickedFolder'" }
@@ -232,7 +233,7 @@ class PlacesNearbyScreenTest {
         }
 
         // Verify the screen renders without error when onStartBeacon is provided
-        val title = context.resources.getString(R.string.search_nearby_screen_title)
+        val title = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.search_nearby_screen_title) }
         composeTestRule.onNodeWithText(title).assertIsDisplayed()
     }
 }

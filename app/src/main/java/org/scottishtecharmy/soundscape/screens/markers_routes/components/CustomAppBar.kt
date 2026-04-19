@@ -6,18 +6,19 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun CustomAppBar(title : String,
                  onNavigateUp: () -> Unit,
-                 navigationButtonTitle: String = stringResource(R.string.ui_back_button_title),
+                 navigationButtonTitle: String = stringResource(Res.string.ui_back_button_title),
                  onRightButton: () -> Unit = {},
                  rightButtonTitle: String = ""
                  ) {
@@ -55,7 +56,7 @@ fun CustomAppBar(title : String,
 fun CustomAppBarPreview() {
     CustomAppBar(
         "Test app bar with long title",
-        navigationButtonTitle = stringResource(R.string.ui_back_button_title),
+        navigationButtonTitle = stringResource(Res.string.ui_back_button_title),
         onNavigateUp = {},
     )
 }
@@ -66,7 +67,7 @@ fun CustomAppBarPreview() {
 fun CustomAppBarWithActionButtonPreview() {
     CustomAppBar(
         "Test app bar",
-        navigationButtonTitle = stringResource(R.string.ui_back_button_title),
+        navigationButtonTitle = stringResource(Res.string.ui_back_button_title),
         onNavigateUp = {},
     )
 }
@@ -77,9 +78,9 @@ fun CustomAppBarWithActionButtonPreview() {
 fun CustomAppBarWithRightButtonPreview() {
     CustomAppBar(
         "Test app bar",
-        navigationButtonTitle = stringResource(R.string.ui_back_button_title),
+        navigationButtonTitle = stringResource(Res.string.ui_back_button_title),
         onNavigateUp = {},
-        rightButtonTitle = stringResource(R.string.general_alert_done),
+        rightButtonTitle = stringResource(Res.string.general_alert_done),
         onRightButton = {},
     )
 }

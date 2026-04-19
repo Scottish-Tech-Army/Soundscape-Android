@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.role
@@ -27,6 +27,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun MarkersAndRoutesListSort(
@@ -36,8 +37,8 @@ fun MarkersAndRoutesListSort(
     onToggleSortByName: () -> Unit
 ) {
     val sortOrderState =
-        if (isSortByName) stringResource(R.string.markers_sort_button_sort_by_name_voiceover)
-        else stringResource(R.string.markers_sort_button_sort_by_distance_voiceover)
+        if (isSortByName) stringResource(Res.string.markers_sort_button_sort_by_name_voiceover)
+        else stringResource(Res.string.markers_sort_button_sort_by_distance_voiceover)
 
     Row(
         modifier = Modifier
@@ -69,8 +70,8 @@ fun MarkersAndRoutesListSort(
         Spacer(modifier = Modifier.width(spacing.small))
 
         Text(
-            text = if (isSortByName) stringResource(R.string.markers_sort_button_sort_by_name)
-                   else stringResource(R.string.markers_sort_button_sort_by_distance),
+            text = if (isSortByName) stringResource(Res.string.markers_sort_button_sort_by_name)
+                   else stringResource(Res.string.markers_sort_button_sort_by_distance),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onSurface,
@@ -85,8 +86,8 @@ fun MarkersAndRoutesListSort(
         Spacer(modifier = Modifier.width(spacing.small))
 
         Text(
-            text = if (isSortByName) stringResource(R.string.routes_sort_by_distance)
-                   else stringResource(R.string.routes_sort_by_name),
+            text = if (isSortByName) stringResource(Res.string.routes_sort_by_distance)
+                   else stringResource(Res.string.routes_sort_by_name),
             style = MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onSurface,

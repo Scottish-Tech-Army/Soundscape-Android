@@ -34,7 +34,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,7 +43,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.google.gson.GsonBuilder
-import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
@@ -65,6 +64,7 @@ import sh.calvin.reorderable.ReorderableItem
 import sh.calvin.reorderable.rememberReorderableLazyListState
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
+import org.scottishtecharmy.soundscape.resources.*
 
 private data class SimpleMarkerData(
     var addressName: String = "",
@@ -242,8 +242,8 @@ fun AddAndEditRouteScreen(
             }
             onResetDoneAction()
             val message = when (actionType) {
-                ActionType.UPDATE -> context.getString(R.string.route_update_success_title)
-                ActionType.DELETE -> context.getString(R.string.routes_action_deleted)
+                ActionType.UPDATE -> org.jetbrains.compose.resources.getString(Res.string.route_update_success_title)
+                ActionType.DELETE -> org.jetbrains.compose.resources.getString(Res.string.routes_action_deleted)
                 else -> ""
             }
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
@@ -311,16 +311,16 @@ fun AddAndEditRouteScreen(
             topBar = {
                 TextOnlyAppBar(
                     title = stringResource(
-                        if(editRoute) (R.string.route_detail_action_edit)
-                        else  (R.string.route_detail_action_create)
+                        if(editRoute) (Res.string.route_detail_action_edit)
+                        else  (Res.string.route_detail_action_create)
                     ),
                     onNavigateUp = { navController.popBackStack() },
-                    navigationButtonTitle = stringResource(R.string.general_alert_cancel),
+                    navigationButtonTitle = stringResource(Res.string.general_alert_cancel),
                     onRightButton = {
                         // Update the route
                         onEditComplete(routeMembers)
                     },
-                    rightButtonTitle = stringResource(R.string.general_alert_done)
+                    rightButtonTitle = stringResource(Res.string.general_alert_done)
                 )
             },
             bottomBar = {
@@ -338,7 +338,7 @@ fun AddAndEditRouteScreen(
                             buttonColor = MaterialTheme.colorScheme.errorContainer,
                             contentColor = MaterialTheme.colorScheme.onErrorContainer,
                             shape = RoundedCornerShape(spacing.small),
-                            text = stringResource(R.string.route_detail_edit_delete),
+                            text = stringResource(Res.string.route_detail_edit_delete),
                             textStyle = MaterialTheme.typography.bodyLarge,
                             fontWeight = FontWeight.Bold,
                         )
@@ -351,7 +351,7 @@ fun AddAndEditRouteScreen(
                             addWaypointDialog = true
                         },
                         shape = RoundedCornerShape(spacing.small),
-                        text = stringResource(R.string.route_detail_edit_waypoints_button),
+                        text = stringResource(Res.string.route_detail_edit_waypoints_button),
                         textStyle = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Bold,
                     )
@@ -370,16 +370,16 @@ fun AddAndEditRouteScreen(
                             .extraSmallPadding()
                     ) {
                         CustomTextField(
-                            fieldName = stringResource(R.string.markers_sort_button_sort_by_name),
-                            fieldHint = stringResource(R.string.route_name_description_hint),
+                            fieldName = stringResource(Res.string.markers_sort_button_sort_by_name),
+                            fieldHint = stringResource(Res.string.route_name_description_hint),
                             modifier = Modifier.fillMaxWidth(),
                             value = uiState.name,
                             onValueChange = onNameChange
                         )
                         Spacer(modifier = Modifier.height(spacing.medium))
                         CustomTextField(
-                            fieldName = stringResource(R.string.route_detail_edit_description),
-                            fieldHint = stringResource(R.string.route_description_description_hint),
+                            fieldName = stringResource(Res.string.route_detail_edit_description),
+                            fieldHint = stringResource(Res.string.route_description_description_hint),
                             modifier = Modifier.fillMaxWidth(),
                             value = uiState.description,
                             onValueChange = onDescriptionChange
@@ -394,7 +394,7 @@ fun AddAndEditRouteScreen(
                         // Display the list of markers in the route
                         if(routeMembers.isEmpty()) {
                             Text(
-                                stringResource(R.string.route_detail_action_start_route_disabled_hint),
+                                stringResource(Res.string.route_detail_action_start_route_disabled_hint),
                                 textAlign = TextAlign.Center,
                                 style = MaterialTheme.typography.bodyMedium,
                                 modifier = Modifier
@@ -416,7 +416,7 @@ fun AddAndEditRouteScreen(
                                                 modifier = Modifier.weight(1f),
                                                 decoration = LocationItemDecoration(
                                                     index = index,
-                                                    indexDescription = stringResource(R.string.waypoint_title),
+                                                    indexDescription = stringResource(Res.string.waypoint_title),
                                                     reorderable = true,
                                                     moveDown = { i ->
                                                         if (i < routeMembers.size - 1) {

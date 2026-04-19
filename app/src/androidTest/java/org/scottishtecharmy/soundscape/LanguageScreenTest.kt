@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape
 
+import org.scottishtecharmy.soundscape.resources.*
 import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
@@ -38,17 +39,17 @@ class LanguageScreenTest {
                 )
             }
         }
-        val stringLanguageTitle = context.resources.getString(R.string.first_launch_soundscape_language)
-        val stringLanguageText = context.resources.getString(R.string.first_launch_soundscape_language_text)
+        val stringLanguageTitle = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.first_launch_soundscape_language) }
+        val stringLanguageText = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.first_launch_soundscape_language_text) }
 
         composeTestRule.onNodeWithText(stringLanguageTitle)
             .assertIsDisplayed()
         composeTestRule.onNodeWithText(stringLanguageText)
             .assertIsDisplayed()
-        composeTestRule.onNodeWithText(context.resources.getString(R.string.no_language_selected))
+        composeTestRule.onNodeWithText(kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.no_language_selected) })
             .assertIsDisplayed()
 
-        composeTestRule.onNodeWithText(context.resources.getString(R.string.ui_continue))
+        composeTestRule.onNodeWithText(kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.ui_continue) })
             .assertIsNotEnabled()
 
     }
@@ -86,7 +87,7 @@ class LanguageScreenTest {
 
         }
 
-        composeTestRule.onNodeWithText(context.resources.getString(R.string.ui_continue))
+        composeTestRule.onNodeWithText(kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.ui_continue) })
             .assertIsEnabled()
     }
 }

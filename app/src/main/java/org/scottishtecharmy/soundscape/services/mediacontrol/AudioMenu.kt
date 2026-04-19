@@ -8,7 +8,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.scottishtecharmy.soundscape.R
+import org.jetbrains.compose.resources.getString
+import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_ENTER
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_EXIT
@@ -128,7 +129,7 @@ class AudioMenu(
      * Appended as the last child of every sub-menu.
      */
     private fun mainMenuAction(): MenuItem.Action =
-        MenuItem.Action(localizedContext.getString(R.string.menu_main_menu)) {
+        MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.menu_main_menu) }) {
             resetToRoot()
         }
 
@@ -150,7 +151,7 @@ class AudioMenu(
         scope.launch {
             val children = item.childrenProvider()
             if (children.size <= 1) {
-                service.speakText(localizedContext.getString(R.string.menu_no_routes), AudioType.STANDARD)
+                service.speakText(getString(Res.string.menu_no_routes), AudioType.STANDARD)
             } else {
                 val firstLabel = synchronized(this@AudioMenu) {
                     menuStack.addLast(MenuLevel(children, 0))
@@ -161,8 +162,8 @@ class AudioMenu(
         }
     }
 
-    private fun audioProfileAction(@androidx.annotation.StringRes id: Int, profile: String): MenuItem.Action {
-        val label = localizedContext.getString(id)
+    private fun audioProfileAction(id: org.jetbrains.compose.resources.StringResource, profile: String): MenuItem.Action {
+        val label = kotlinx.coroutines.runBlocking { getString(id) }
         return MenuItem.Action(label) {
             applyAudioProfile(profile)
             service.speak2dText(label)
@@ -174,18 +175,18 @@ class AudioMenu(
     private fun buildRootMenu(): List<MenuItem> = listOf(
 
         MenuItem.Submenu(
-            label = localizedContext.getString(R.string.callouts_panel_title),
+            label = kotlinx.coroutines.runBlocking { getString(Res.string.callouts_panel_title) },
             children = listOf(
-                MenuItem.Action(localizedContext.getString(R.string.directions_my_location)) {
+                MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.directions_my_location) }) {
                     service.myLocation()
                 },
-                MenuItem.Action(localizedContext.getString(R.string.help_orient_page_title)) {
+                MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.help_orient_page_title) }) {
                     service.whatsAroundMe()
                 },
-                MenuItem.Action(localizedContext.getString(R.string.help_explore_page_title)) {
+                MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.help_explore_page_title) }) {
                     service.aheadOfMe()
                 },
-                MenuItem.Action(localizedContext.getString(R.string.callouts_nearby_markers)) {
+                MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.callouts_nearby_markers) }) {
                     service.nearbyMarkers()
                 },
                 mainMenuAction(),
@@ -193,18 +194,18 @@ class AudioMenu(
         ),
 
         MenuItem.Submenu(
-            label = localizedContext.getString(R.string.menu_route),
+            label = kotlinx.coroutines.runBlocking { getString(Res.string.menu_route) },
             children = listOf(
-                MenuItem.Action(localizedContext.getString(R.string.menu_route_next_waypoint)) {
+                MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.menu_route_next_waypoint) }) {
                     service.routeSkipNext()
                 },
-                MenuItem.Action(localizedContext.getString(R.string.menu_route_previous_waypoint)) {
+                MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.menu_route_previous_waypoint) }) {
                     service.routeSkipPrevious()
                 },
-                MenuItem.Action(localizedContext.getString(R.string.beacon_action_mute_beacon)) {
+                MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.beacon_action_mute_beacon) }) {
                     service.routeMute()
                 },
-                MenuItem.Action(localizedContext.getString(R.string.route_detail_action_stop_route)) {
+                MenuItem.Action(kotlinx.coroutines.runBlocking { getString(Res.string.route_detail_action_stop_route) }) {
                     service.routeStop()
                 },
                 mainMenuAction(),
@@ -212,12 +213,12 @@ class AudioMenu(
         ),
 
         MenuItem.DynamicSubmenu(
-            label = localizedContext.getString(R.string.route_detail_action_start_route),
+            label = kotlinx.coroutines.runBlocking { getString(Res.string.route_detail_action_start_route) },
             childrenProvider = { loadRouteMenuItems() }
         ),
 
         MenuItem.DynamicSubmenu(
-            label = localizedContext.getString(R.string.location_detail_action_beacon),
+            label = kotlinx.coroutines.runBlocking { getString(Res.string.location_detail_action_beacon) },
             childrenProvider = { loadMarkerMenuItems() }
         ),
     )

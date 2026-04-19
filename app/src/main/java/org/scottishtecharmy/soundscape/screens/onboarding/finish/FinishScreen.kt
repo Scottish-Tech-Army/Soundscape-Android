@@ -21,7 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
@@ -31,6 +31,7 @@ import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun FinishScreen(
@@ -76,7 +77,7 @@ fun FinishScreen(
                     modifier = Modifier.padding(horizontal = spacing.large)
                 ) {
                     Text(
-                        text = stringResource(R.string.first_launch_prompt_title),
+                        text = stringResource(Res.string.first_launch_prompt_title),
                         style = MaterialTheme.typography.titleLarge,
                         color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center,
@@ -88,7 +89,7 @@ fun FinishScreen(
                     Spacer(modifier = Modifier.height(spacing.large))
 
                     Text(
-                        text = stringResource(R.string.first_launch_prompt_message),
+                        text = stringResource(Res.string.first_launch_prompt_message),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface,
                         textAlign = TextAlign.Center,
@@ -98,7 +99,7 @@ fun FinishScreen(
                     Spacer(modifier = Modifier.height(spacing.extraLarge))
 
                     OnboardButton(
-                        text = stringResource(R.string.first_launch_prompt_button),
+                        text = stringResource(Res.string.first_launch_prompt_button),
                         onClick = {
                             onFinish()
                             // Tell our OnboardingActivity that we have completed onboarding

@@ -11,7 +11,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -20,6 +20,7 @@ import org.scottishtecharmy.soundscape.screens.home.locationDetails.SaveAndEditM
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.TextOnlyAppBar
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun AddWaypointsDialog(
@@ -58,16 +59,16 @@ fun AddWaypointsDialog(
             )
         } else {
             TextOnlyAppBar(
-                title = stringResource(R.string.route_detail_edit_waypoints_button),
+                title = stringResource(Res.string.route_detail_edit_waypoints_button),
                 onNavigateUp = {
                     onClickBack()
                 },
-                navigationButtonTitle = stringResource(R.string.general_alert_cancel),
+                navigationButtonTitle = stringResource(Res.string.general_alert_cancel),
                 onRightButton = {
                     // Update the list of waypoints in the route
                     onAddWaypointComplete()
                 },
-                rightButtonTitle = stringResource(R.string.general_alert_done)
+                rightButtonTitle = stringResource(Res.string.general_alert_done)
             )
 
             Spacer(modifier = Modifier.extraSmallPadding())

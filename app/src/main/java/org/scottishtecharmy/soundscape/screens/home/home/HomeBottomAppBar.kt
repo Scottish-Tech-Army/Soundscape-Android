@@ -26,7 +26,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.semantics.semantics
@@ -36,16 +36,17 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.BottomButtonFunctions
 import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun HomeBottomAppBar(
     bottomButtonFunctions: BottomButtonFunctions,
     modifier : Modifier = Modifier
 ) {
-    val myLocationHint = stringResource(R.string.ui_action_button_my_location_acc_hint)
-    val nearbyMarkersHint = stringResource(R.string.ui_action_button_nearby_markers_acc_hint)
-    val aroundMeHint = stringResource(R.string.ui_action_button_around_me_acc_hint)
-    val aheadOfMeHint = stringResource(R.string.ui_action_button_ahead_of_me_acc_hint)
+    val myLocationHint = stringResource(Res.string.ui_action_button_my_location_acc_hint)
+    val nearbyMarkersHint = stringResource(Res.string.ui_action_button_nearby_markers_acc_hint)
+    val aroundMeHint = stringResource(Res.string.ui_action_button_around_me_acc_hint)
+    val aheadOfMeHint = stringResource(Res.string.ui_action_button_ahead_of_me_acc_hint)
 
     Surface(
         modifier = modifier
@@ -66,7 +67,7 @@ fun HomeBottomAppBar(
         ) {
             Text(
                 textAlign = TextAlign.Start,
-                text = stringResource(R.string.callouts_panel_title).uppercase(),
+                text = stringResource(Res.string.callouts_panel_title).uppercase(),
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .padding(start = spacing.medium, top = spacing.medium)
@@ -86,7 +87,7 @@ fun HomeBottomAppBar(
             ) {
                 HomeBottomAppBarButton(
                     icon = painterResource(R.drawable.my_location_24px),
-                    text = stringResource(R.string.ui_action_button_my_location),
+                    text = stringResource(Res.string.ui_action_button_my_location),
                     onClick = { bottomButtonFunctions.myLocation() },
                     modifier = Modifier
                         .weight(1f)
@@ -97,7 +98,7 @@ fun HomeBottomAppBar(
 
                 HomeBottomAppBarButton(
                     icon = painterResource(R.drawable.around_me_24px),
-                    text = stringResource(R.string.ui_action_button_around_me),
+                    text = stringResource(Res.string.ui_action_button_around_me),
                     onClick = { bottomButtonFunctions.aroundMe() },
                     modifier = Modifier
                         .weight(1f)
@@ -108,7 +109,7 @@ fun HomeBottomAppBar(
 
                 HomeBottomAppBarButton(
                     icon = painterResource(R.drawable.ahead_of_me_24px),
-                    text = stringResource(R.string.ui_action_button_ahead_of_me),
+                    text = stringResource(Res.string.ui_action_button_ahead_of_me),
                     onClick = { bottomButtonFunctions.aheadOfMe() },
                     modifier = Modifier
                         .weight(1f)
@@ -119,7 +120,7 @@ fun HomeBottomAppBar(
 
                 HomeBottomAppBarButton(
                     icon = painterResource(R.drawable.nearby_markers_24px),
-                    text = stringResource(R.string.ui_action_button_nearby_markers),
+                    text = stringResource(Res.string.ui_action_button_nearby_markers),
                     onClick = { bottomButtonFunctions.nearbyMarkers() },
                     modifier = Modifier
                         .weight(1f)

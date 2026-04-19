@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
@@ -26,6 +26,7 @@ import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity.Companion.LAST_NEW_RELEASE_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 /**
  * NewReleaseDialog displays text explaining what new features are available within the app
@@ -37,7 +38,7 @@ fun NewReleaseDialog(
     newReleaseDialog: MutableState<Boolean>,
     toggleTutorial: () -> Unit
 ) {
-    val markdownText = stringResource(R.string.new_version_info_details)
+    val markdownText = stringResource(Res.string.new_version_info_details)
     val markdownSentences = remember(markdownText) {
         markdownText.split(Regex("(?<=[.!?][ \n])\\s*")).filter { it.isNotBlank() }
     }
@@ -53,7 +54,7 @@ fun NewReleaseDialog(
         modifier = Modifier
             .padding(innerPadding),
         title = {
-            Text(text = stringResource(R.string.new_version_info_text))
+            Text(text = stringResource(Res.string.new_version_info_text))
         },
         text = {
             LazyColumn(modifier = Modifier.padding(top = spacing.medium)) {
@@ -91,7 +92,7 @@ fun NewReleaseDialog(
                 sharedPreferences.edit(commit = true) {
                     putString(LAST_NEW_RELEASE_KEY, BuildConfig.VERSION_NAME.substringBeforeLast("."))
                 }
-                Text(text = stringResource(R.string.new_version_info_completed))
+                Text(text = stringResource(Res.string.new_version_info_completed))
             }
         }
     )

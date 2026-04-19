@@ -35,7 +35,8 @@ import androidx.preference.PreferenceManager
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -48,7 +49,6 @@ import me.zhanghai.compose.preference.listPreference
 import me.zhanghai.compose.preference.sliderPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.scottishtecharmy.soundscape.MainActivity
-import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
@@ -64,6 +64,7 @@ import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.StorageUtils
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
+import org.scottishtecharmy.soundscape.resources.*
 
 // This code uses the library https://github.com/zhanghai/ComposePreference
 // The UI changes the SharedPreference reference by the `key` which can then be accessed
@@ -89,11 +90,11 @@ fun ListPreferenceItem(description: String,
                 onClick()
             }
             .talkbackHint(
-                if (value == currentValue) stringResource(R.string.settings_keep_value)
-                else stringResource(R.string.settings_use_value)
+                if (value == currentValue) stringResource(Res.string.settings_keep_value)
+                else stringResource(Res.string.settings_use_value)
             )
 //            .talkbackDescription(
-//                stringResource(R.string.settings_list_item_description).format(
+//                stringResource(Res.string.settings_list_item_description).format(
 //                    value,
 //                    index + 1,
 //                    listSize
@@ -161,7 +162,7 @@ fun ExpandableSectionHeader(
     }
 }
 @Composable
-fun SettingDetails(title: Int, description: Int, textColor: Color) {
+fun SettingDetails(title: StringResource, description: StringResource, textColor: Color) {
     Column {
         Text(
             text = stringResource(title),
@@ -226,9 +227,9 @@ fun Settings(
     val textColor = MaterialTheme.colorScheme.onBackground
     val expandedSectionModifier = Modifier.background(MaterialTheme.colorScheme.surfaceVariant)
     val themeContrastDescriptions = listOf(
-        stringResource(R.string.settings_theme_contrast_regular),
-        stringResource(R.string.settings_theme_contrast_medium),
-        stringResource(R.string.settings_theme_contrast_high)
+        stringResource(Res.string.settings_theme_contrast_regular),
+        stringResource(Res.string.settings_theme_contrast_medium),
+        stringResource(Res.string.settings_theme_contrast_high)
     )
     val themeContrastValues = listOf(
         "Regular",
@@ -237,9 +238,9 @@ fun Settings(
     )
 
     val themeLightnessDescriptions = listOf(
-        stringResource(R.string.settings_theme_auto),
-        stringResource(R.string.settings_theme_light),
-        stringResource(R.string.settings_theme_dark),
+        stringResource(Res.string.settings_theme_auto),
+        stringResource(Res.string.settings_theme_light),
+        stringResource(Res.string.settings_theme_dark),
     )
     val themeLightnessValues = listOf(
         "Auto",
@@ -248,9 +249,9 @@ fun Settings(
     )
 
     val unitsDescriptions = listOf(
-        stringResource(R.string.settings_theme_auto),
-        stringResource(R.string.settings_units_imperial),
-        stringResource(R.string.settings_units_metric),
+        stringResource(Res.string.settings_theme_auto),
+        stringResource(Res.string.settings_units_imperial),
+        stringResource(Res.string.settings_units_metric),
     )
     val unitsValues = listOf(
         "Auto",
@@ -259,7 +260,7 @@ fun Settings(
     )
 
     val searchLanguageDescriptions = listOf(
-        stringResource(R.string.settings_theme_auto),
+        stringResource(Res.string.settings_theme_auto),
         "Français",
         "English",
         "Deutsch"
@@ -272,8 +273,8 @@ fun Settings(
     )
 
     val geocoderDescriptions = listOf(
-        stringResource(R.string.settings_search_auto),
-        stringResource(R.string.settings_search_offline),
+        stringResource(Res.string.settings_search_auto),
+        stringResource(Res.string.settings_search_offline),
     )
     val geocoderValues = listOf(
         "Auto",
@@ -281,9 +282,9 @@ fun Settings(
     )
 
     val mediaControlsDescriptions = listOf(
-        stringResource(R.string.settings_media_controls_original),
-        stringResource(R.string.settings_media_controls_voice_command),
-        stringResource(R.string.settings_media_controls_audio_menu),
+        stringResource(Res.string.settings_media_controls_original),
+        stringResource(Res.string.settings_media_controls_voice_command),
+        stringResource(Res.string.settings_media_controls_audio_menu),
     )
     val mediaControlsValues = listOf(
         "Original",
@@ -292,9 +293,9 @@ fun Settings(
     )
 
     val relativeDirectionDescriptions = listOf(
-        stringResource(R.string.settings_relative_directions_clockface),
-        stringResource(R.string.settings_relative_directions_degrees),
-        stringResource(R.string.settings_relative_directions_left_right),
+        stringResource(Res.string.settings_relative_directions_clockface),
+        stringResource(Res.string.settings_relative_directions_degrees),
+        stringResource(Res.string.settings_relative_directions_left_right),
     )
     val relativeDirectionValues = listOf(
         "ClockFace",
@@ -308,8 +309,8 @@ fun Settings(
     if (showConfirmationDialog.value) {
         AlertDialog(
             onDismissRequest = { showConfirmationDialog.value = false },
-            title = { Text(stringResource(R.string.settings_reset_dialog_title)) },
-            text = { Text(stringResource(R.string.settings_reset_dialog_message)) },
+            title = { Text(stringResource(Res.string.settings_reset_dialog_title)) },
+            text = { Text(stringResource(Res.string.settings_reset_dialog_message)) },
             confirmButton = {
                 TextButton(
                     onClick = {
@@ -318,9 +319,9 @@ fun Settings(
                     }
                 ) {
                     Text(
-                        text = stringResource(R.string.ui_continue),
+                        text = stringResource(Res.string.ui_continue),
                         modifier = Modifier
-                            .talkbackHint(stringResource(R.string.settings_reset_button_hint))
+                            .talkbackHint(stringResource(Res.string.settings_reset_button_hint))
                     )
                 }
             },
@@ -328,7 +329,7 @@ fun Settings(
                 TextButton(
                     onClick = { showConfirmationDialog.value = false }
                 ) {
-                    Text(stringResource(R.string.general_alert_cancel))
+                    Text(stringResource(Res.string.general_alert_cancel))
                 }
             }
         )
@@ -356,16 +357,16 @@ fun Settings(
             stickyHeader {
                 Surface {
                     CustomAppBar(
-                        stringResource(R.string.settings_screen_title),
+                        stringResource(Res.string.settings_screen_title),
                         onNavigateUp =  { navController.navigateUp() },
-                        navigationButtonTitle = stringResource(R.string.ui_back_button_title)
+                        navigationButtonTitle = stringResource(Res.string.ui_back_button_title)
                     )
                 }
             }
 
             item(key = "header_explanation") {
                 Text(
-                    text = stringResource(R.string.settings_explanation),
+                    text = stringResource(Res.string.settings_explanation),
                     color = textColor,
                     style = MaterialTheme.typography.bodyLarge,
                     modifier = Modifier.padding(spacing.small)
@@ -375,7 +376,7 @@ fun Settings(
             // Callouts Section
             item(key = "header_callouts") {
                 ExpandableSectionHeader(
-                    title = stringResource(R.string.menu_manage_callouts),
+                    title = stringResource(Res.string.menu_manage_callouts),
                     expanded = expandedSection.value == "callouts",
                     onToggle = { expandedSection.value = if (expandedSection.value == "callouts") null else "callouts" },
                     textColor = textColor
@@ -388,8 +389,8 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         SettingDetails(
-                            R.string.callouts_allow_callouts,
-                            R.string.callouts_allow_callouts_description,
+                            Res.string.callouts_allow_callouts,
+                            Res.string.callouts_allow_callouts_description,
                             textColor
                         )
                     },
@@ -400,8 +401,8 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         SettingDetails(
-                            R.string.callouts_places_and_landmarks,
-                            R.string.callouts_places_and_landmarks_description,
+                            Res.string.callouts_places_and_landmarks,
+                            Res.string.callouts_places_and_landmarks_description,
                             textColor
                         )
                     },
@@ -413,8 +414,8 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         SettingDetails(
-                            R.string.callouts_mobility,
-                            R.string.callouts_mobility_description,
+                            Res.string.callouts_mobility,
+                            Res.string.callouts_mobility_description,
                             textColor
                         )
                     },
@@ -426,8 +427,8 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         SettingDetails(
-                            R.string.callouts_audio_beacon,
-                            R.string.callouts_audio_beacon_description,
+                            Res.string.callouts_audio_beacon,
+                            Res.string.callouts_audio_beacon_description,
                             textColor
                         )
                     },
@@ -439,8 +440,8 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         SettingDetails(
-                            R.string.callout_settings_position_text,
-                            R.string.callout_settings_position_description,
+                            Res.string.callout_settings_position_text,
+                            Res.string.callout_settings_position_description,
                             textColor
                         )
                     },
@@ -453,8 +454,8 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         SettingDetails(
-                            R.string.settings_relative_directions_text,
-                            R.string.settings_relative_directions_description,
+                            Res.string.settings_relative_directions_text,
+                            Res.string.settings_relative_directions_description,
                             textColor
                         )
                     },
@@ -474,8 +475,8 @@ fun Settings(
 //                    defaultValue = MainActivity.UNNAMED_ROADS_DEFAULT,
 //                    title = {
 //                        SettingDetails(
-//                            R.string.preview_include_unnamed_roads_title,
-//                            R.string.preview_include_unnamed_roads_title_description,
+//                            Res.string.preview_include_unnamed_roads_title,
+//                            Res.string.preview_include_unnamed_roads_title_description,
 //                            textColor
 //                        )
 //                    },
@@ -486,7 +487,7 @@ fun Settings(
             // Search Section
             item(key = "header_search") {
                 ExpandableSectionHeader(
-                    title = stringResource(R.string.menu_manage_search),
+                    title = stringResource(Res.string.menu_manage_search),
                     expanded = expandedSection.value == "search",
                     onToggle = { expandedSection.value = if (expandedSection.value == "search") null else "search" },
                     textColor = textColor
@@ -500,8 +501,8 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         SettingDetails(
-                            R.string.settings_section_search_network,
-                            R.string.settings_section_search_network_description,
+                            Res.string.settings_section_search_network,
+                            Res.string.settings_section_search_network_description,
                             textColor
                         )
                     },
@@ -520,8 +521,8 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         SettingDetails(
-                            R.string.settings_search_results_language,
-                            R.string.settings_search_results_language_description,
+                            Res.string.settings_search_results_language,
+                            Res.string.settings_search_results_language_description,
                             textColor
                         )
                     },
@@ -537,7 +538,7 @@ fun Settings(
             // Accessibility Section
             item(key = "header_accessibility") {
                 ExpandableSectionHeader(
-                    title = stringResource(R.string.menu_manage_accessibility),
+                    title = stringResource(Res.string.menu_manage_accessibility),
                     expanded = expandedSection.value == "accessibility",
                     onToggle = { expandedSection.value = if (expandedSection.value == "accessibility") null else "accessibility" },
                     textColor = textColor
@@ -551,7 +552,7 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         Text(
-                            text = stringResource(R.string.settings_theme_light_dark),
+                            text = stringResource(Res.string.settings_theme_light_dark),
                             color = textColor
                         )
                     },
@@ -570,7 +571,7 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         Text(
-                            text = stringResource(R.string.settings_theme_contrast),
+                            text = stringResource(Res.string.settings_theme_contrast),
                             color = textColor
                         )
                     },
@@ -586,7 +587,7 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         Text(
-                            text = stringResource(R.string.settings_show_map),
+                            text = stringResource(Res.string.settings_show_map),
                             color = textColor
                         )
                     },
@@ -596,7 +597,7 @@ fun Settings(
             // Storage Section
             item(key = "header_storage") {
                 ExpandableSectionHeader(
-                    title = stringResource(R.string.offline_map_storage_title),
+                    title = stringResource(Res.string.offline_map_storage_title),
                     expanded = expandedSection.value == "storage",
                     onToggle = { expandedSection.value = if (expandedSection.value == "storage") null else "storage" },
                     textColor = textColor
@@ -608,7 +609,7 @@ fun Settings(
                         modifier = expandedSectionModifier.fillMaxWidth()
                     ) {
                         Text(
-                            text = stringResource(R.string.offline_map_storage_description),
+                            text = stringResource(Res.string.offline_map_storage_description),
                             color = textColor,
                             style = MaterialTheme.typography.bodyLarge,
                             modifier = Modifier.padding(spacing.small)
@@ -627,7 +628,7 @@ fun Settings(
             // Audio Section
             item(key = "header_audio") {
                 ExpandableSectionHeader(
-                    title = stringResource(R.string.menu_manage_audio),
+                    title = stringResource(Res.string.menu_manage_audio),
                     expanded = expandedSection.value == "audio",
                     onToggle = { expandedSection.value = if (expandedSection.value == "audio") null else "audio" },
                     textColor = textColor
@@ -641,8 +642,8 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         SettingDetails(
-                            R.string.beacon_settings_style,
-                            R.string.beacon_settings_style_description,
+                            Res.string.beacon_settings_style,
+                            Res.string.beacon_settings_style_description,
                             textColor
                         )
                     },
@@ -659,7 +660,7 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         Text(
-                            text = stringResource(R.string.voice_engine),
+                            text = stringResource(Res.string.voice_engine),
                             color = textColor
                         )
                     },
@@ -682,7 +683,7 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         Text(
-                            text = stringResource(R.string.voice_voices),
+                            text = stringResource(Res.string.voice_voices),
                             color = textColor
                         )
                     },
@@ -698,7 +699,7 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         Text(
-                            text = stringResource(R.string.voice_settings_speaking_rate),
+                            text = stringResource(Res.string.voice_settings_speaking_rate),
                             color = textColor
                         )
                     },
@@ -711,7 +712,7 @@ fun Settings(
             // Language Section
             item(key = "header_language") {
                 ExpandableSectionHeader(
-                    title = stringResource(R.string.menu_manage_language),
+                    title = stringResource(Res.string.menu_manage_language),
                     expanded = expandedSection.value == "language",
                     onToggle = { expandedSection.value = if (expandedSection.value == "language") null else "language" },
                     textColor = textColor
@@ -725,8 +726,8 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         SettingDetails(
-                            R.string.settings_section_units,
-                            R.string.settings_section_units_description,
+                            Res.string.settings_section_units,
+                            Res.string.settings_section_units_description,
                             textColor
                         )
                     },
@@ -746,7 +747,7 @@ fun Settings(
                         modifier = expandedSectionModifier.fillMaxWidth()
                     ) {
                         Text(
-                            text = stringResource(R.string.first_launch_change_language),
+                            text = stringResource(Res.string.first_launch_change_language),
                             color = textColor,
                             style = MaterialTheme.typography.headlineSmall
                         )
@@ -764,7 +765,7 @@ fun Settings(
             // Media control section
             item(key = "header_media_control") {
                 ExpandableSectionHeader(
-                    title = stringResource(R.string.menu_media_controls),
+                    title = stringResource(Res.string.menu_media_controls),
                     expanded = expandedSection.value == "media_controls",
                     onToggle = { expandedSection.value = if (expandedSection.value == "media_controls") null else "media_controls" },
                     textColor = textColor
@@ -778,8 +779,8 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         SettingDetails(
-                            R.string.settings_section_media_controls,
-                            R.string.settings_section_media_controls_description,
+                            Res.string.settings_section_media_controls,
+                            Res.string.settings_section_media_controls_description,
                             textColor
                         )
                     },
@@ -800,8 +801,8 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         SettingDetails(
-                            R.string.settings_voice_command_listening_prompt,
-                            R.string.settings_voice_command_listening_prompt_description,
+                            Res.string.settings_voice_command_listening_prompt,
+                            Res.string.settings_voice_command_listening_prompt_description,
                             textColor
                         )
                     },
@@ -814,8 +815,8 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         SettingDetails(
-                            R.string.settings_voice_command_microphone,
-                            R.string.settings_voice_command_microphone_description,
+                            Res.string.settings_voice_command_microphone,
+                            Res.string.settings_voice_command_microphone_description,
                             textColor
                         )
                     },
@@ -835,7 +836,7 @@ fun Settings(
             // Debug Section
             item(key = "header_debug") {
                 ExpandableSectionHeader(
-                    title = stringResource(R.string.settings_debug_heading),
+                    title = stringResource(Res.string.settings_debug_heading),
                     expanded = expandedSection.value == "debug",
                     onToggle = { expandedSection.value = if (expandedSection.value == "debug") null else "debug" },
                     textColor = textColor
@@ -848,7 +849,7 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         Text(
-                            text = stringResource(R.string.settings_travel_recording),
+                            text = stringResource(Res.string.settings_travel_recording),
                             color = textColor
                         )
                     },
@@ -859,7 +860,7 @@ fun Settings(
                     modifier = expandedSectionModifier,
                     title = {
                         Text(
-                            text = stringResource(R.string.settings_accessible_map),
+                            text = stringResource(Res.string.settings_accessible_map),
                             color = textColor
                         )
                     },
@@ -875,7 +876,7 @@ fun Settings(
                                 .background(MaterialTheme.colorScheme.surface)
                                 .mediumPadding(),
                             shape = RoundedCornerShape(spacing.extraSmall),
-                            text = stringResource(R.string.menu_advanced_markers_and_routes),
+                            text = stringResource(Res.string.menu_advanced_markers_and_routes),
                             textStyle = MaterialTheme.typography.bodyLarge,
                             fontWeight = FontWeight.Bold,
                         )
@@ -886,11 +887,11 @@ fun Settings(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .mediumPadding()
-                                .talkbackHint(stringResource(R.string.settings_reset_button_hint)),
+                                .talkbackHint(stringResource(Res.string.settings_reset_button_hint)),
                             buttonColor = MaterialTheme.colorScheme.errorContainer,
                             contentColor = MaterialTheme.colorScheme.onErrorContainer,
                             shape = RoundedCornerShape(spacing.small),
-                            text = stringResource(R.string.settings_reset_button),
+                            text = stringResource(Res.string.settings_reset_button),
                             textStyle = MaterialTheme.typography.bodyLarge,
                             fontWeight = FontWeight.Bold,
                         )

@@ -15,7 +15,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -34,6 +34,7 @@ import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.viewmodels.LicenseInfo
 import org.scottishtecharmy.soundscape.viewmodels.OpenSourceLicensesViewModel
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun OpenSourceLicensesVM(
@@ -61,10 +62,10 @@ fun OpenSourceLicenses(
         modifier = modifier,
         topBar = {
             FlexibleAppBar(
-                title = stringResource(R.string.menu_open_source_licenses),
+                title = stringResource(Res.string.menu_open_source_licenses),
                 leftSide = {
                     IconWithTextButton(
-                        text = stringResource(R.string.ui_back_button_title),
+                        text = stringResource(Res.string.ui_back_button_title),
                         color = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.testTag("appBarLeft")
                     ) {

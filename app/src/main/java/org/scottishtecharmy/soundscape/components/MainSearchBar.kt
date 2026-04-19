@@ -28,7 +28,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.CollectionItemInfo
 import androidx.compose.ui.semantics.collectionItemInfo
 import androidx.compose.ui.semantics.semantics
@@ -43,13 +43,14 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.screens.talkbackLive
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun MainSearchBar(
     results: List<LocationDescription>,
     searchFunctions: SearchFunctions,
     modifier: Modifier = Modifier,
-    hint: String = stringResource(R.string.settings_section_search),
+    hint: String = stringResource(Res.string.settings_section_search),
     onItemClick: (LocationDescription) -> Unit,
     userLocation: LngLatAlt?,
     isSearching: Boolean = false)
@@ -79,12 +80,12 @@ fun MainSearchBar(
         ) {
             Icon(
                 imageVector = Icons.Default.Search,
-                contentDescription = stringResource(R.string.settings_section_search),
+                contentDescription = stringResource(Res.string.settings_section_search),
                 tint = colors.onSurfaceVariant
             )
             Spacer(Modifier.width(spacing.small))
             Text(
-                text = query.ifEmpty { stringResource(R.string.settings_section_search) },
+                text = query.ifEmpty { stringResource(Res.string.settings_section_search) },
                 style = textStyle.copy(
                     color = if (query.isEmpty()) colors.onSurfaceVariant else colors.onSurface
                 ),
@@ -135,7 +136,7 @@ fun MainSearchBar(
                             ) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                    contentDescription = stringResource(R.string.ui_back_button_title),
+                                    contentDescription = stringResource(Res.string.ui_back_button_title),
                                     tint = colors.onSurface
                                 )
                             }
@@ -164,7 +165,7 @@ fun MainSearchBar(
                                     Box(Modifier.fillMaxWidth()) {
                                         if (query.isEmpty()) {
                                             Text(
-                                                text = stringResource(R.string.settings_section_search),
+                                                text = stringResource(Res.string.settings_section_search),
                                                 style = textStyle.copy(color = colors.onSurfaceVariant)
                                             )
                                         }
@@ -179,7 +180,7 @@ fun MainSearchBar(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Default.Close,
-                                        contentDescription = stringResource(R.string.text_field_clear_text),
+                                        contentDescription = stringResource(Res.string.text_field_clear_text),
                                         tint = colors.onSurfaceVariant
                                     )
                                 }
@@ -203,7 +204,7 @@ fun MainSearchBar(
                             )
                             Spacer(Modifier.width(spacing.small))
                             Text(
-                                text = stringResource(R.string.search_searching),
+                                text = stringResource(Res.string.search_searching),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = colors.onSurfaceVariant,
                                 modifier = Modifier.talkbackLive()
@@ -212,9 +213,9 @@ fun MainSearchBar(
                     } else if (results.isEmpty()) {
                         Text(
                             text = if (query.isBlank())
-                                    stringResource(R.string.search_choose_destination)
+                                    stringResource(Res.string.search_choose_destination)
                                 else
-                                    stringResource(R.string.search_no_results),
+                                    stringResource(Res.string.search_no_results),
                             style = MaterialTheme.typography.bodyMedium,
                             color = colors.onSurfaceVariant,
                             modifier = Modifier.padding(spacing.small)

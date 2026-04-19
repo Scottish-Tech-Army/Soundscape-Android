@@ -36,7 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
@@ -44,6 +44,7 @@ import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.StorageUtils
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun StorageItem(
@@ -123,9 +124,9 @@ fun StorageDropDownMenu(
                     text = if (storageSelected) {
                         storages[selectedStorageIndex].description +
                         ", " +
-                        stringResource(R.string.offline_maps_free_space).format(storages[selectedStorageIndex].availableString)
+                        stringResource(Res.string.offline_maps_free_space).format(storages[selectedStorageIndex].availableString)
                     } else {
-                        stringResource(R.string.no_language_selected)
+                        stringResource(Res.string.no_language_selected)
                     },
                     color = MaterialTheme.colorScheme.onSurface,
                     modifier = Modifier.weight(1f)

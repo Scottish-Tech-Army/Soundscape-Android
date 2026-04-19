@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun CustomButton(
@@ -59,7 +60,7 @@ fun CustomButtonPreview() {
         onClick = { /*TODO*/ },
         fontWeight = FontWeight.Bold,
         shape = RoundedCornerShape(spacing.small),
-        text = stringResource(R.string.route_detail_edit_waypoints_button),
+        text = stringResource(Res.string.route_detail_edit_waypoints_button),
         textStyle = MaterialTheme.typography.titleLarge
     )
 }

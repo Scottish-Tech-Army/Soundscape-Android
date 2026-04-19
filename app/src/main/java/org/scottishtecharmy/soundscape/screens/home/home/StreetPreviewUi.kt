@@ -5,7 +5,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.NavigationButton
@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun StreetPreview(
@@ -27,7 +28,7 @@ fun StreetPreview(
     Column {
         if (state.enabled == StreetPreviewEnabled.INITIALIZING) {
             Text(
-                text = stringResource(R.string.general_loading_start),
+                text = stringResource(Res.string.general_loading_start),
                 Modifier.mediumPadding()
             )
         } else {
@@ -39,18 +40,18 @@ fun StreetPreview(
                 roads.isEmpty() -> ""
                 roads.size == 1 -> roads.first()
                 else -> roads.dropLast(1).joinToString(", ") +
-                    stringResource(R.string.last_entry_in_list).format(roads.last())
+                    stringResource(Res.string.last_entry_in_list).format(roads.last())
             }
 
             if (intersectionText.isNotEmpty()) {
-                Text(text = stringResource(R.string.directions_at_poi).format(intersectionText))
+                Text(text = stringResource(Res.string.directions_at_poi).format(intersectionText))
             }
             NavigationButton(
                 onClick = {
                     streetPreviewFunctions.go()
                 },
-                text = stringResource(R.string.preview_go_title),
-                modifier = Modifier.talkbackHint(stringResource(R.string.preview_go_hint))
+                text = stringResource(Res.string.preview_go_title),
+                modifier = Modifier.talkbackHint(stringResource(Res.string.preview_go_hint))
             )
         }
     }

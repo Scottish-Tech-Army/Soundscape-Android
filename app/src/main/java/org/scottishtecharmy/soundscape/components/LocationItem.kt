@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.components
 
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
+import org.scottishtecharmy.soundscape.resources.*
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -28,7 +29,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.CustomAccessibilityAction
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
@@ -77,10 +78,10 @@ fun LocationItem(
 ) {
     val context = LocalContext.current
     var distanceString = ""
-    val selectionText = if (decoration.editRoute.value) stringResource(R.string.location_item_selected) else stringResource(R.string.location_item_not_selected)
-    val moveUpLabel = stringResource(R.string.location_item_move_up)
-    val moveUpDown = stringResource(R.string.location_item_move_down)
-    val defaultStartPlaybackLabel = stringResource(R.string.route_detail_action_start_route_hint)
+    val selectionText = if (decoration.editRoute.value) stringResource(Res.string.location_item_selected) else stringResource(Res.string.location_item_not_selected)
+    val moveUpLabel = stringResource(Res.string.location_item_move_up)
+    val moveUpDown = stringResource(Res.string.location_item_move_down)
+    val defaultStartPlaybackLabel = stringResource(Res.string.route_detail_action_start_route_hint)
     val startPlaybackLabel = decoration.startPlayback.hint.ifEmpty { defaultStartPlaybackLabel }
     if(userLocation != null) {
         val ruler = item.location.createCheapRuler()

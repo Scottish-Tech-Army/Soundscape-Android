@@ -18,7 +18,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -35,6 +35,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAnd
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesList
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun RoutesScreenVM(
@@ -112,7 +113,7 @@ fun RoutesScreen(
                         }
                         Box(modifier = Modifier.mediumPadding()) {
                             Text(
-                                stringResource(R.string.routes_no_routes_title),
+                                stringResource(Res.string.routes_no_routes_title),
                                 style = MaterialTheme.typography.titleLarge,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold,
@@ -121,7 +122,7 @@ fun RoutesScreen(
                         }
                         Box(modifier = Modifier.mediumPadding()) {
                             Text(
-                                stringResource(R.string.routes_no_routes_hint_1),
+                                stringResource(Res.string.routes_no_routes_hint_1),
                                 style = MaterialTheme.typography.bodyLarge,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold,
@@ -130,7 +131,7 @@ fun RoutesScreen(
                         }
                         Box(modifier = Modifier.mediumPadding()) {
                             Text(
-                                stringResource(R.string.routes_no_routes_hint_2),
+                                stringResource(Res.string.routes_no_routes_hint_2),
                                 style = MaterialTheme.typography.bodyLarge,
                                 textAlign = TextAlign.Center,
                                 fontWeight = FontWeight.Bold,

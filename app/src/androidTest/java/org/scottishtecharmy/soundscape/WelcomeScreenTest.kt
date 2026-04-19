@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape
 
+import org.scottishtecharmy.soundscape.resources.*
 import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -26,9 +27,9 @@ class WelcomeScreenTest {
         }
         // Unable to get translations strings using the stringResource() which is a composable so..
         val context: Context = ApplicationProvider.getApplicationContext()
-        val stringWelcomeTitle = context.resources.getString(R.string.first_launch_welcome_title)
-        val stringWelcomeDescription = context.resources.getString(R.string.first_launch_welcome_description)
-        val stringWelcomeGetStarted = context.resources.getString(R.string.first_launch_welcome_button)
+        val stringWelcomeTitle = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.first_launch_welcome_title) }
+        val stringWelcomeDescription = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.first_launch_welcome_description) }
+        val stringWelcomeGetStarted = kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.first_launch_welcome_button) }
 
         // format for composeTestRule is:
         // composeTestRule{.finder}{.assertion}{.action}

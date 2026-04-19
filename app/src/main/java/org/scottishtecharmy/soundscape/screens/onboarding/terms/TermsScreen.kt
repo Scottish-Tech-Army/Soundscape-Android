@@ -24,7 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -34,6 +34,7 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 
 @Composable
@@ -56,7 +57,7 @@ fun TermsScreen(
             verticalArrangement = Arrangement.Top
         ) {
             Text(
-                text = stringResource(R.string.terms_of_use_title),
+                text = stringResource(Res.string.terms_of_use_title),
                 style = MaterialTheme.typography.titleLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 textAlign = TextAlign.Center,
@@ -74,8 +75,8 @@ fun TermsScreen(
                     .fillMaxWidth()
                     .background(MaterialTheme.colorScheme.surfaceContainer)
             ) {
-                TermsItem(stringResource(R.string.terms_of_use_message).format(stringResource(R.string.terms_of_use_service_agreement)))
-                TermsItem(stringResource(R.string.terms_of_use_medical_safety_disclaimer))
+                TermsItem(stringResource(Res.string.terms_of_use_message).format(stringResource(Res.string.terms_of_use_service_agreement)))
+                TermsItem(stringResource(Res.string.terms_of_use_medical_safety_disclaimer))
             }
 
             Row(
@@ -99,7 +100,7 @@ fun TermsScreen(
 
                 )
                 Text(
-                    text = stringResource(R.string.terms_of_use_accept_checkbox_acc_label),
+                    text = stringResource(Res.string.terms_of_use_accept_checkbox_acc_label),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface
                 )
@@ -111,7 +112,7 @@ fun TermsScreen(
                     .padding(top = spacing.large)
             ) {
                 OnboardButton(
-                    text = stringResource(R.string.ui_continue),
+                    text = stringResource(Res.string.ui_continue),
                     onClick = {
                         onNavigate()
                     },

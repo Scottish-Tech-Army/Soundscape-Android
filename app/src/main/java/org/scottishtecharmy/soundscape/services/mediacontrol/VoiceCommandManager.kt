@@ -29,7 +29,9 @@ import androidx.core.content.ContextCompat
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import org.scottishtecharmy.soundscape.R
+import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.getString
+import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_CALLOUTS_OFF
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
@@ -251,20 +253,20 @@ class VoiceCommandManager(
 
     // ── Commands & matching ─────────────────────────────────────────────────────
 
-    data class VoiceCommand(val stringId: Int, val action: (arg: ArrayList<String>) -> Unit)
+    data class VoiceCommand(val stringId: StringResource, val action: (arg: ArrayList<String>) -> Unit)
 
     private val simpleCommands = arrayOf(
-        VoiceCommand(R.string.directions_my_location)          { service.myLocation() },
-        VoiceCommand(R.string.help_orient_page_title)          { service.whatsAroundMe() },
-        VoiceCommand(R.string.help_explore_page_title)         { service.aheadOfMe() },
-        VoiceCommand(R.string.callouts_nearby_markers)         { service.nearbyMarkers() },
-        VoiceCommand(R.string.route_detail_action_next)        { service.routeSkipNext() },
-        VoiceCommand(R.string.route_detail_action_previous)    { service.routeSkipPrevious() },
-        VoiceCommand(R.string.beacon_action_mute_beacon)       { service.routeMute() },
-        VoiceCommand(R.string.route_detail_action_stop_route)  { service.routeStop() },
-        VoiceCommand(R.string.voice_cmd_list_routes)           { service.routeListRoutes() },
-        VoiceCommand(R.string.voice_cmd_list_markers)          { service.routeListMarkers() },
-        VoiceCommand(R.string.menu_help)                       { voiceHelp() },
+        VoiceCommand(Res.string.directions_my_location)          { service.myLocation() },
+        VoiceCommand(Res.string.help_orient_page_title)          { service.whatsAroundMe() },
+        VoiceCommand(Res.string.help_explore_page_title)         { service.aheadOfMe() },
+        VoiceCommand(Res.string.callouts_nearby_markers)         { service.nearbyMarkers() },
+        VoiceCommand(Res.string.route_detail_action_next)        { service.routeSkipNext() },
+        VoiceCommand(Res.string.route_detail_action_previous)    { service.routeSkipPrevious() },
+        VoiceCommand(Res.string.beacon_action_mute_beacon)       { service.routeMute() },
+        VoiceCommand(Res.string.route_detail_action_stop_route)  { service.routeStop() },
+        VoiceCommand(Res.string.voice_cmd_list_routes)           { service.routeListRoutes() },
+        VoiceCommand(Res.string.voice_cmd_list_markers)          { service.routeListMarkers() },
+        VoiceCommand(Res.string.menu_help)                       { voiceHelp() },
     )
 
     private fun matchDynamicMarkers(speech: String): Boolean {
@@ -275,7 +277,7 @@ class VoiceCommandManager(
         // Markers
         var bestMarker: MarkerEntity? = null
         for (marker in markers) {
-            val commandString = context.getString(R.string.voice_cmd_start_beacon_at_marker_with_name)
+            val commandString = kotlinx.coroutines.runBlocking { getString(Res.string.voice_cmd_start_beacon_at_marker_with_name) }
                 .format(marker.name).lowercase()
             println("Marker compare \"$commandString\" with \"$speech\"")
             val match = commandString.fuzzyCompare(speech, false)
@@ -292,7 +294,7 @@ class VoiceCommandManager(
         // Routes
         var bestRoute: RouteEntity? = null
         for (route in routes) {
-            val commandString = context.getString(R.string.voice_cmd_start_route)
+            val commandString = kotlinx.coroutines.runBlocking { getString(Res.string.voice_cmd_start_route) }
                 .format(route.name).lowercase()
             println("Route compare \"$commandString\" with \"$speech\"")
             val match = commandString.fuzzyCompare(speech, false)
@@ -317,7 +319,7 @@ class VoiceCommandManager(
 
             // Start with simpleCommands which don't contain any dynamic arguments
             for (command in simpleCommands) {
-                val commandString = context.getString(command.stringId).lowercase()
+                val commandString = kotlinx.coroutines.runBlocking { getString(command.stringId) }.lowercase()
                 val match = commandString.fuzzyCompare(t, false)
                 if (match < 0.3 && match < minMatch) {
                     minMatch = match
@@ -335,17 +337,17 @@ class VoiceCommandManager(
         }
 
         if (bestMatch != null) {
-            println("Found command: ${context.getString(bestMatch.stringId)}")
+            println("Found command: ${kotlinx.coroutines.runBlocking { getString(bestMatch.stringId) }}")
             // Pass in all the speech strings, it may be that the argument is clearer in ones
             // other than our best match.
             bestMatch.action(speech)
             AnalyticsProvider.getInstance().logEvent("voice_command_recognized", null)
         } else {
             service.speak2dText(
-                context.getString(
-                    R.string.voice_cmd_not_recognized).format(
+                kotlinx.coroutines.runBlocking { getString(
+                    Res.string.voice_cmd_not_recognized) }.format(
                     speech.firstOrNull() ?: "",
-                    context.getString(R.string.menu_help)),
+                    kotlinx.coroutines.runBlocking { getString(Res.string.menu_help) }),
                 false,
                 EARCON_CALLOUTS_OFF
             )
@@ -357,17 +359,17 @@ class VoiceCommandManager(
         val firstRoute = listOfRoutes.firstOrNull()?.name
         val firstMarker = listOfMarkers.firstOrNull()?.name
 
-        val commandNames = simpleCommands.map { context.getString(it.stringId) }
+        val commandNames = simpleCommands.map { kotlinx.coroutines.runBlocking { getString(it.stringId) } }
         val builder = StringBuilder()
-        builder.append(context.getString(R.string.voice_cmd_help_response))
+        builder.append(kotlinx.coroutines.runBlocking { getString(Res.string.voice_cmd_help_response) })
         commandNames.forEach { builder.append(it).append(". ") }
 
         if (firstRoute != null || firstMarker != null)
-            builder.append(context.getString(R.string.voice_cmd_explain_dynamic_markers))
+            builder.append(kotlinx.coroutines.runBlocking { getString(Res.string.voice_cmd_explain_dynamic_markers) })
         if (firstRoute != null)
-            builder.append(context.getString(R.string.voice_cmd_start_route).format(firstRoute)).append(". ")
+            builder.append(kotlinx.coroutines.runBlocking { getString(Res.string.voice_cmd_start_route) }.format(firstRoute)).append(". ")
         if (firstMarker != null)
-            builder.append(context.getString(R.string.voice_cmd_start_beacon_at_marker_with_name).format(firstMarker)).append(". ")
+            builder.append(kotlinx.coroutines.runBlocking { getString(Res.string.voice_cmd_start_beacon_at_marker_with_name) }.format(firstMarker)).append(". ")
 
         service.speak2dText(builder.toString())
     }
@@ -376,21 +378,21 @@ class VoiceCommandManager(
 
     @Suppress("NewApi") // Inlined int constants, safe on all API levels
     private val errorMap = mapOf(
-        SpeechRecognizer.ERROR_NETWORK_TIMEOUT to R.string.voice_cmd_speech_recognition_error_network_timeout,
-        SpeechRecognizer.ERROR_NETWORK to R.string.voice_cmd_speech_recognition_error_network,
-        SpeechRecognizer.ERROR_AUDIO to R.string.voice_cmd_speech_recognition_error_audio,
-        SpeechRecognizer.ERROR_SERVER to R.string.voice_cmd_speech_recognition_error_server,
-        SpeechRecognizer.ERROR_CLIENT to R.string.voice_cmd_speech_recognition_error_client,
-        SpeechRecognizer.ERROR_SPEECH_TIMEOUT to R.string.voice_cmd_speech_recognition_error_speech_timeout,
-        SpeechRecognizer.ERROR_NO_MATCH to R.string.voice_cmd_speech_recognition_not_match,
-        SpeechRecognizer.ERROR_RECOGNIZER_BUSY to R.string.voice_cmd_speech_recognition_busy,
-        SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS to R.string.voice_cmd_speech_recognition_error_permissions,
-        SpeechRecognizer.ERROR_TOO_MANY_REQUESTS to R.string.voice_cmd_speech_recognition_error_too_many_requests,
-        SpeechRecognizer.ERROR_SERVER_DISCONNECTED to R.string.voice_cmd_speech_recognition_error_server_disconnected,
-        SpeechRecognizer.ERROR_LANGUAGE_NOT_SUPPORTED to R.string.voice_cmd_speech_recognition_error_language_not_supported,
-        SpeechRecognizer.ERROR_LANGUAGE_UNAVAILABLE to R.string.voice_cmd_speech_recognition_error_language_unavailable,
-        SpeechRecognizer.ERROR_CANNOT_CHECK_SUPPORT to R.string.voice_cmd_speech_recognition_error_cannot_check_support,
-        SpeechRecognizer.ERROR_CANNOT_LISTEN_TO_DOWNLOAD_EVENTS to R.string.voice_cmd_speech_recognition_error_cannot_listen_to_download_events,
+        SpeechRecognizer.ERROR_NETWORK_TIMEOUT to Res.string.voice_cmd_speech_recognition_error_network_timeout,
+        SpeechRecognizer.ERROR_NETWORK to Res.string.voice_cmd_speech_recognition_error_network,
+        SpeechRecognizer.ERROR_AUDIO to Res.string.voice_cmd_speech_recognition_error_audio,
+        SpeechRecognizer.ERROR_SERVER to Res.string.voice_cmd_speech_recognition_error_server,
+        SpeechRecognizer.ERROR_CLIENT to Res.string.voice_cmd_speech_recognition_error_client,
+        SpeechRecognizer.ERROR_SPEECH_TIMEOUT to Res.string.voice_cmd_speech_recognition_error_speech_timeout,
+        SpeechRecognizer.ERROR_NO_MATCH to Res.string.voice_cmd_speech_recognition_not_match,
+        SpeechRecognizer.ERROR_RECOGNIZER_BUSY to Res.string.voice_cmd_speech_recognition_busy,
+        SpeechRecognizer.ERROR_INSUFFICIENT_PERMISSIONS to Res.string.voice_cmd_speech_recognition_error_permissions,
+        SpeechRecognizer.ERROR_TOO_MANY_REQUESTS to Res.string.voice_cmd_speech_recognition_error_too_many_requests,
+        SpeechRecognizer.ERROR_SERVER_DISCONNECTED to Res.string.voice_cmd_speech_recognition_error_server_disconnected,
+        SpeechRecognizer.ERROR_LANGUAGE_NOT_SUPPORTED to Res.string.voice_cmd_speech_recognition_error_language_not_supported,
+        SpeechRecognizer.ERROR_LANGUAGE_UNAVAILABLE to Res.string.voice_cmd_speech_recognition_error_language_unavailable,
+        SpeechRecognizer.ERROR_CANNOT_CHECK_SUPPORT to Res.string.voice_cmd_speech_recognition_error_cannot_check_support,
+        SpeechRecognizer.ERROR_CANNOT_LISTEN_TO_DOWNLOAD_EVENTS to Res.string.voice_cmd_speech_recognition_error_cannot_listen_to_download_events,
     )
 
     private val listener = object : RecognitionListener {
@@ -413,9 +415,9 @@ class VoiceCommandManager(
             cleanUpBtPipe()
             val errorResource = errorMap[error]
             val errorText = if (errorResource != null)
-                context.getString(errorResource)
+                kotlinx.coroutines.runBlocking { getString(errorResource) }
             else
-                context.getString(R.string.voice_cmd_speech_recognition_error_unknown)
+                kotlinx.coroutines.runBlocking { getString(Res.string.voice_cmd_speech_recognition_error_unknown) }
             stopBluetoothSco {
                 service.speak2dText(errorText, false, EARCON_CALLOUTS_OFF)
             }
@@ -444,13 +446,13 @@ class VoiceCommandManager(
             if (language != null) putExtra(RecognizerIntent.EXTRA_LANGUAGE, language)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 val biasingStrings = ArrayList<String>()
-                simpleCommands.forEach { biasingStrings.add(context.getString(it.stringId)) }
+                simpleCommands.forEach { biasingStrings.add(kotlinx.coroutines.runBlocking { getString(it.stringId) }) }
                 val markers = listOfMarkers
                 val routes = listOfRoutes
                 for (marker in markers)
-                    biasingStrings.add(context.getString(R.string.voice_cmd_start_beacon_at_marker_with_name).format(marker.name))
+                    biasingStrings.add(kotlinx.coroutines.runBlocking { getString(Res.string.voice_cmd_start_beacon_at_marker_with_name) }.format(marker.name))
                 for (route in routes)
-                    biasingStrings.add(context.getString(R.string.voice_cmd_start_route).format(route.name))
+                    biasingStrings.add(kotlinx.coroutines.runBlocking { getString(Res.string.voice_cmd_start_route) }.format(route.name))
                 putStringArrayListExtra(RecognizerIntent.EXTRA_BIASING_STRINGS, biasingStrings)
             }
             // If BT audio capture is active, pipe our AudioRecord to the recognizer
@@ -486,7 +488,7 @@ class VoiceCommandManager(
 
         if (!SpeechRecognizer.isRecognitionAvailable(context)) {
             service.speak2dText(
-                context.getString(R.string.voice_cmd_speech_recognition_error_unsupported),
+                kotlinx.coroutines.runBlocking { getString(Res.string.voice_cmd_speech_recognition_error_unsupported) },
                 false,
                 EARCON_CALLOUTS_OFF
             )
@@ -574,7 +576,7 @@ class VoiceCommandManager(
                 MainActivity.VOICE_COMMAND_LISTENING_PROMPT_KEY,
                 MainActivity.VOICE_COMMAND_LISTENING_PROMPT_DEFAULT
             )) {
-            service.speak2dText(context.getString(R.string.voice_cmd_listening), false, EARCON_CALLOUTS_ON)
+            service.speak2dText(kotlinx.coroutines.runBlocking { getString(Res.string.voice_cmd_listening) }, false, EARCON_CALLOUTS_ON)
             val deadline = System.currentTimeMillis() + 1000L
             while (service.isAudioEngineBusy() && System.currentTimeMillis() < deadline) {
                 sleep(20)

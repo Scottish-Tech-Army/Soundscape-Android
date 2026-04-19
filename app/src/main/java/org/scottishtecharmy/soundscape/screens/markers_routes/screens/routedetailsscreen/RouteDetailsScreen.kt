@@ -34,7 +34,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
+import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import org.koin.androidx.compose.koinViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -60,6 +60,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWit
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
 fun RouteDetailsScreenVM(
@@ -132,7 +133,7 @@ fun RouteDetailsScreen(
         modifier = modifier,
         topBar = {
             CustomAppBar(
-                title = stringResource(R.string.behavior_experiences_route_nav_title),
+                title = stringResource(Res.string.behavior_experiences_route_nav_title),
                 onNavigateUp = {
                     navController.popBackStack()
                 }
@@ -208,8 +209,8 @@ fun RouteDetailsScreen(
                                         modifier = Modifier.fillMaxWidth(),
                                         icon = Icons.Default.Stop,
                                         textModifier = Modifier.padding(horizontal = spacing.extraSmall),
-                                        text = stringResource(R.string.route_detail_action_stop_route),
-                                        talkbackHint = stringResource(R.string.route_detail_action_stop_route_hint),
+                                        text = stringResource(Res.string.route_detail_action_stop_route),
+                                        talkbackHint = stringResource(Res.string.route_detail_action_stop_route_hint),
                                         color = MaterialTheme.colorScheme.onSurface
                                     ) {
                                         stopRoute()
@@ -221,8 +222,8 @@ fun RouteDetailsScreen(
                                         modifier = Modifier.fillMaxWidth(),
                                         icon = Icons.Default.PlayArrow,
                                         textModifier = Modifier.padding(horizontal = spacing.extraSmall),
-                                        talkbackHint = stringResource(R.string.route_detail_action_start_route_hint),
-                                        text = stringResource(R.string.route_detail_action_start_route),
+                                        talkbackHint = stringResource(Res.string.route_detail_action_start_route_hint),
+                                        text = stringResource(Res.string.route_detail_action_start_route),
                                         color = MaterialTheme.colorScheme.onSurface
                                     ) {
                                         startRoute()
@@ -238,8 +239,8 @@ fun RouteDetailsScreen(
                                         modifier = Modifier.fillMaxWidth(),
                                         icon = Icons.Default.SwapVert,
                                         textModifier = Modifier.padding(horizontal = spacing.extraSmall),
-                                        talkbackHint = stringResource(R.string.route_detail_action_start_route_reverse_hint),
-                                        text = stringResource(R.string.route_detail_action_start_route_reverse),
+                                        talkbackHint = stringResource(Res.string.route_detail_action_start_route_reverse_hint),
+                                        text = stringResource(Res.string.route_detail_action_start_route_reverse),
                                         color = MaterialTheme.colorScheme.onSurface
                                     ) {
                                         startRouteInReverse()
@@ -256,8 +257,8 @@ fun RouteDetailsScreen(
                                         .defaultMinSize(minHeight = spacing.targetSize),
                                     icon = Icons.Default.Edit,
                                     textModifier = Modifier.padding(horizontal = spacing.extraSmall),
-                                    text = stringResource(R.string.route_detail_action_edit),
-                                    talkbackHint = stringResource(R.string.route_detail_action_edit_hint),
+                                    text = stringResource(Res.string.route_detail_action_edit),
+                                    talkbackHint = stringResource(Res.string.route_detail_action_edit_hint),
                                     color = MaterialTheme.colorScheme.onSurface
                                 ) {
                                     navController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=edit&data=${uiState.route.route.routeId}")
@@ -266,8 +267,8 @@ fun RouteDetailsScreen(
                                     modifier = Modifier.fillMaxWidth(),
                                     icon = Icons.Default.Share,
                                     textModifier = Modifier.padding(horizontal = spacing.extraSmall),
-                                    text = stringResource(R.string.share_title),
-                                    talkbackHint = stringResource(R.string.route_detail_action_share_hint),
+                                    text = stringResource(Res.string.share_title),
+                                    talkbackHint = stringResource(Res.string.route_detail_action_share_hint),
                                     color = MaterialTheme.colorScheme.onSurface
                                 ) {
                                     shareRoute(uiState.route.route.routeId)
@@ -301,7 +302,7 @@ fun RouteDetailsScreen(
                                         decoration = LocationItemDecoration(
                                             location = false,
                                             index = index,
-                                            indexDescription = stringResource(R.string.waypoint_title),
+                                            indexDescription = stringResource(Res.string.waypoint_title),
                                         ),
                                         userLocation = userLocation
                                     )
@@ -315,7 +316,7 @@ fun RouteDetailsScreen(
                             modifier = Modifier.fillMaxSize(),
                             contentAlignment = Alignment.Center
                         ) {
-                            Text(stringResource(R.string.route_not_found))
+                            Text(stringResource(Res.string.route_not_found))
                         }
                     }
                 }
