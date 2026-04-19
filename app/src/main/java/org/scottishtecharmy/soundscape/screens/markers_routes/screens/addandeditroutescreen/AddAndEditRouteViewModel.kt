@@ -236,20 +236,21 @@ class AddAndEditRouteViewModel(
         logic.internalUiState.value = logic.uiState.value.copy(level = newLevel)
     }
     fun onSelectLocation(locationDescription: LocationDescription) {
-
-        val existingMarker = routeDao.getMarkerByLocation(
-            locationDescription.location.longitude,
-            locationDescription.location.latitude
-        )
-        if(existingMarker != null) {
-            val existingLocationDescription = LocationDescription(
-                name = existingMarker.name,
-                location = LngLatAlt(existingMarker.longitude, existingMarker.latitude),
-                databaseId = existingMarker.markerId
+        viewModelScope.launch {
+            val existingMarker = routeDao.getMarkerByLocation(
+                locationDescription.location.longitude,
+                locationDescription.location.latitude
             )
-            logic.internalUiState.value = logic.uiState.value.copy(markerDescription = existingLocationDescription)
-        } else {
-            logic.internalUiState.value = logic.uiState.value.copy(markerDescription = locationDescription)
+            if(existingMarker != null) {
+                val existingLocationDescription = LocationDescription(
+                    name = existingMarker.name,
+                    location = LngLatAlt(existingMarker.longitude, existingMarker.latitude),
+                    databaseId = existingMarker.markerId
+                )
+                logic.internalUiState.value = logic.uiState.value.copy(markerDescription = existingLocationDescription)
+            } else {
+                logic.internalUiState.value = logic.uiState.value.copy(markerDescription = locationDescription)
+            }
         }
     }
 
@@ -276,6 +277,7 @@ class AddAndEditRouteViewModel(
         failureMessage: String,
         duplicateMessage: String
     ) {
+        viewModelScope.launch {
         // Check if a marker already exists at this location
         val existingMarker = routeDao.getMarkerByLocation(
             locationDescription.location.longitude,
@@ -358,5 +360,6 @@ class AddAndEditRouteViewModel(
             markerDescription = null,
             level = 0
         )
+        }
     }
 }

@@ -34,6 +34,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -89,22 +90,18 @@ fun LocationDetailsScreen(
     val context = LocalContext.current
 
     // Check if this location already exists as a marker in the database
-    val finalLocationDescription = remember(locationDescription) {
+    val finalLocationDescription = produceState(locationDescription, locationDescription) {
         if (locationDescription.databaseId == 0L) {
             val existingMarker = viewModel.getMarkerAtLocation(locationDescription.location)
             if (existingMarker != null) {
-                locationDescription.copy(
+                value = locationDescription.copy(
                     databaseId = existingMarker.markerId,
                     name = existingMarker.name,
                     description = existingMarker.fullAddress
                 )
-            } else {
-                locationDescription
             }
-        } else {
-            locationDescription
         }
-    }
+    }.value
 
     LocationDetails(
         navController = navController,

@@ -156,13 +156,15 @@ class RouteDetailsViewModel(
 
 
     fun shareRoute(context: Context, routeId: Long) {
-        // Get the route from the database
-        val route = routeDao.getRouteWithMarkers(routeId)
-        if(route != null) {
-            // Write the route to a file, and then call the MainActivity shareRoute function with a
-            // shared URI to the file.
-            val shareUri = writeRouteAndReturnUri(context, route)
-            (context as MainActivity).shareRoute(shareUri)
+        viewModelScope.launch {
+            // Get the route from the database
+            val route = routeDao.getRouteWithMarkers(routeId)
+            if(route != null) {
+                // Write the route to a file, and then call the MainActivity shareRoute function with a
+                // shared URI to the file.
+                val shareUri = writeRouteAndReturnUri(context, route)
+                (context as MainActivity).shareRoute(shareUri)
+            }
         }
     }
 

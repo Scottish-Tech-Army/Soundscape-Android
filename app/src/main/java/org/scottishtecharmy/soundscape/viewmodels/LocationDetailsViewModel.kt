@@ -132,7 +132,7 @@ class LocationDetailsViewModel(
         return soundscapeServiceConnection.soundscapeService?.getLocationDescription(location)
     }
 
-    fun getMarkerAtLocation(location: LngLatAlt): MarkerEntity? {
+    suspend fun getMarkerAtLocation(location: LngLatAlt): MarkerEntity? {
         return routeDao.getMarkerByLocation(location.longitude, location.latitude)
     }
 

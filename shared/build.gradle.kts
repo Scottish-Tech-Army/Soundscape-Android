@@ -78,7 +78,9 @@ wire {
 
 dependencies {
     add("kspAndroid", libs.androidx.room.compiler)
-    // iOS KSP Room processors deferred: DAO functions need suspend conversion first
+    add("kspIosX64", libs.androidx.room.compiler)
+    add("kspIosArm64", libs.androidx.room.compiler)
+    add("kspIosSimulatorArm64", libs.androidx.room.compiler)
 }
 
 room {

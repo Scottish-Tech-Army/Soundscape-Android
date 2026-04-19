@@ -25,13 +25,13 @@ interface RouteDao {
     suspend fun updateMarker(marker: MarkerEntity)
 
     @Query("SELECT * FROM markers WHERE marker_id = :markerId")
-    fun getMarkerById(markerId: Long): MarkerEntity?
+    suspend fun getMarkerById(markerId: Long): MarkerEntity?
 
     @Query("SELECT * FROM markers WHERE latitude = :latitude AND longitude = :longitude")
-    fun getMarkerByLocation(longitude: Double, latitude: Double): MarkerEntity?
+    suspend fun getMarkerByLocation(longitude: Double, latitude: Double): MarkerEntity?
 
     @Query("SELECT * FROM markers")
-    fun getAllMarkers(): List<MarkerEntity>
+    suspend fun getAllMarkers(): List<MarkerEntity>
 
     @Query("SELECT * FROM markers")
     fun getAllMarkersFlow(): Flow<List<MarkerEntity>>
@@ -51,17 +51,17 @@ interface RouteDao {
     suspend fun removeMarkersForRoute(routeId: Long)
 
     @Query("SELECT * FROM routes")
-    fun getAllRoutes(): List<RouteEntity>
+    suspend fun getAllRoutes(): List<RouteEntity>
 
     // --- Querying Routes With Their Markers ---
     @Query("SELECT * FROM routes WHERE route_id = :routeId")
-    fun getRouteById(routeId: Long): RouteEntity?
+    suspend fun getRouteById(routeId: Long): RouteEntity?
 
     @Query("SELECT * FROM route_marker_cross_ref WHERE route_id = :routeId")
-    fun getMarkerCrossReference(routeId: Long): List<RouteMarkerCrossRef>
+    suspend fun getMarkerCrossReference(routeId: Long): List<RouteMarkerCrossRef>
 
     @Transaction
-    fun getRouteWithMarkers(routeId: Long): RouteWithMarkers? {
+    suspend fun getRouteWithMarkers(routeId: Long): RouteWithMarkers? {
         val route = getRouteById(routeId)
         val crossReferences = getMarkerCrossReference(routeId)
 
@@ -88,7 +88,7 @@ interface RouteDao {
     }
 
     @Transaction
-    fun getAllRoutesWithMarkers(): List<RouteWithMarkers> {
+    suspend fun getAllRoutesWithMarkers(): List<RouteWithMarkers> {
         val routes = getAllRoutes()
         val result = mutableListOf<RouteWithMarkers>()
 

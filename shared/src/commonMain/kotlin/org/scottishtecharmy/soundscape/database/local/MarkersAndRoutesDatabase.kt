@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.database.local
 
+import androidx.room.ConstructedBy
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.RoomDatabaseConstructor
@@ -13,6 +14,7 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteMarkerCrossRef
     version = 1,
     exportSchema = false
 )
+@ConstructedBy(MarkersAndRoutesDatabaseConstructor::class)
 abstract class MarkersAndRoutesDatabase : RoomDatabase() {
     abstract fun routeDao(): RouteDao
 }

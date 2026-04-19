@@ -220,17 +220,19 @@ class SoundscapeIntents(
                             Log.d(TAG, "Starting route from intent: name=$routeName")
                             val db = org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
                                 .getInstance(mainActivity)
-                            val route = db.routeDao().getAllRoutes()
-                                .map { it to routeName.fuzzyCompare(it.name, true) }
-                                .filter { it.second < 0.3 }
-                                .minByOrNull { it.second }
-                                ?.first
-                            if (route != null) {
-                                Log.d(TAG, "Matched route: ${route.name} (id=${route.routeId})")
-                                AnalyticsProvider.getInstance().logEvent("intentStartRoute", null)
-                                mainActivity.soundscapeServiceConnection.routeStart(route.routeId)
-                            } else {
-                                Log.w(TAG, "No route found matching name: $routeName")
+                            CoroutineScope(Dispatchers.IO).launch {
+                                val route = db.routeDao().getAllRoutes()
+                                    .map { it to routeName.fuzzyCompare(it.name, true) }
+                                    .filter { it.second < 0.3 }
+                                    .minByOrNull { it.second }
+                                    ?.first
+                                if (route != null) {
+                                    Log.d(TAG, "Matched route: ${route.name} (id=${route.routeId})")
+                                    AnalyticsProvider.getInstance().logEvent("intentStartRoute", null)
+                                    mainActivity.soundscapeServiceConnection.routeStart(route.routeId)
+                                } else {
+                                    Log.w(TAG, "No route found matching name: $routeName")
+                                }
                             }
                         }
                         return
