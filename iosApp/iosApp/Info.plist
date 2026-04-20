@@ -20,6 +20,8 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>ExtractProviderURL</key>
+	<string>$(EXTRACT_PROVIDER_URL)</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Soundscape needs your location to provide audio navigation even when the app is in the background.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

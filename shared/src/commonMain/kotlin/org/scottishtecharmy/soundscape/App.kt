@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Download
 import androidx.compose.material.icons.rounded.Explore
 import androidx.compose.material.icons.rounded.MyLocation
 import androidx.compose.material.icons.rounded.Route
@@ -44,7 +45,10 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAnd
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
+import org.scottishtecharmy.soundscape.screens.home.offlinemaps.SharedOfflineMapsScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.network.DownloadStateCommon
 import org.scottishtecharmy.soundscape.ui.theme.LocalAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.defaultAppButtonColors
 
@@ -55,6 +59,11 @@ data class AppCallbacks(
     val onStartRoute: (Long) -> Unit = {},
     val onPlacesNearbyClickFolder: (String, String) -> Unit = { _, _ -> },
     val onPlacesNearbyClickBack: () -> Unit = {},
+    val onOfflineMapsRefresh: () -> Unit = {},
+    val onOfflineMapsGetExtracts: (LngLatAlt) -> List<Feature> = { emptyList() },
+    val onOfflineMapsDownload: (Feature) -> Unit = {},
+    val onOfflineMapsDelete: (String) -> Unit = {},
+    val onOfflineMapsCancelDownload: () -> Unit = {},
 )
 
 data class AppFlows(
@@ -63,10 +72,13 @@ data class AppFlows(
     val markersUiState: StateFlow<MarkersAndRoutesUiState>? = null,
     val routesUiState: StateFlow<MarkersAndRoutesUiState>? = null,
     val placesNearbyUiState: StateFlow<PlacesNearbyUiState>? = null,
+    val offlineMapsNearbyExtracts: StateFlow<List<Feature>>? = null,
+    val offlineMapsDownloaded: StateFlow<List<String>>? = null,
+    val offlineMapsDownloadState: StateFlow<DownloadStateCommon>? = null,
 )
 
 private enum class Screen {
-    WELCOME, HOME, PLACES_NEARBY, MARKERS_AND_ROUTES, LOCATION_DETAILS
+    WELCOME, HOME, PLACES_NEARBY, MARKERS_AND_ROUTES, LOCATION_DETAILS, OFFLINE_MAPS
 }
 
 @Composable
@@ -89,6 +101,10 @@ fun App(
                     callbacks = callbacks,
                     onNavigateToPlacesNearby = { screen = Screen.PLACES_NEARBY },
                     onNavigateToMarkersAndRoutes = { screen = Screen.MARKERS_AND_ROUTES },
+                    onNavigateToOfflineMaps = {
+                        callbacks.onOfflineMapsRefresh()
+                        screen = Screen.OFFLINE_MAPS
+                    },
                 )
 
                 Screen.PLACES_NEARBY -> {
@@ -141,6 +157,36 @@ fun App(
                         )
                     }
                 }
+
+                Screen.OFFLINE_MAPS -> {
+                    val location by flows.locationFlow?.collectAsState()
+                        ?: remember { mutableStateOf(null) }
+                    val allExtracts by flows.offlineMapsNearbyExtracts?.collectAsState()
+                        ?: remember { mutableStateOf(emptyList()) }
+                    val downloaded by flows.offlineMapsDownloaded?.collectAsState()
+                        ?: remember { mutableStateOf(emptyList()) }
+
+                    // Filter extracts to those containing the current location
+                    val userLngLat = location?.let { LngLatAlt(it.longitude, it.latitude) }
+                    val containingExtracts = remember(allExtracts, userLngLat) {
+                        if (userLngLat != null) {
+                            callbacks.onOfflineMapsGetExtracts(userLngLat)
+                        } else {
+                            allExtracts // show all if no location yet
+                        }
+                    }
+
+                    SharedOfflineMapsScreen(
+                        nearbyExtracts = containingExtracts,
+                        downloadedPaths = downloaded,
+                        downloadState = flows.offlineMapsDownloadState
+                            ?: kotlinx.coroutines.flow.MutableStateFlow(DownloadStateCommon.Idle),
+                        onBack = { screen = Screen.HOME },
+                        onDownload = { callbacks.onOfflineMapsDownload(it) },
+                        onDelete = { callbacks.onOfflineMapsDelete(it) },
+                        onCancelDownload = { callbacks.onOfflineMapsCancelDownload() },
+                    )
+                }
             }
         }
     }
@@ -152,6 +198,7 @@ private fun HomeScreen(
     callbacks: AppCallbacks,
     onNavigateToPlacesNearby: () -> Unit,
     onNavigateToMarkersAndRoutes: () -> Unit,
+    onNavigateToOfflineMaps: () -> Unit,
 ) {
     val location by flows.locationFlow?.collectAsState() ?: remember { mutableStateOf(null) }
     val direction by flows.directionFlow?.collectAsState() ?: remember { mutableStateOf(null) }
@@ -217,6 +264,12 @@ private fun HomeScreen(
                         Icon(Icons.Rounded.Route, contentDescription = "Markers & Routes")
                     }
                     Text("Markers & Routes", style = MaterialTheme.typography.labelSmall)
+                }
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    IconButton(onClick = onNavigateToOfflineMaps) {
+                        Icon(Icons.Rounded.Download, contentDescription = "Offline Maps")
+                    }
+                    Text("Offline Maps", style = MaterialTheme.typography.labelSmall)
                 }
             }
 

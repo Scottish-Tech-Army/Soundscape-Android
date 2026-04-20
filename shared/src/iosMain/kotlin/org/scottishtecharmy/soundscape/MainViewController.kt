@@ -2,16 +2,21 @@ package org.scottishtecharmy.soundscape
 
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
+import kotlinx.coroutines.flow.map
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 fun MainViewController() = ComposeUIViewController {
     val service = remember { IosSoundscapeService.getInstance() }
+    val mgr = service.offlineMapManager
 
     App(
         flows = AppFlows(
             locationFlow = service.getLocationFlow(),
             directionFlow = service.getOrientationFlow(),
             placesNearbyUiState = service.placesNearbyUiState,
+            offlineMapsNearbyExtracts = mgr.availableExtracts,
+            offlineMapsDownloaded = mgr.downloadedExtracts,
+            offlineMapsDownloadState = mgr.downloadState,
         ),
         callbacks = AppCallbacks(
             onStartBeacon = { lat, lng, name ->
@@ -28,6 +33,24 @@ fun MainViewController() = ComposeUIViewController {
             },
             onPlacesNearbyClickBack = {
                 service.placesNearbyClickBack()
+            },
+            onOfflineMapsRefresh = {
+                mgr.refresh()
+            },
+            onOfflineMapsGetExtracts = { location ->
+                mgr.getExtractsContaining(location)
+            },
+            onOfflineMapsDownload = { feature ->
+                val props = feature.properties ?: return@AppCallbacks
+                val filename = props["filename"] as? String ?: return@AppCallbacks
+                val extractSize = (props["extract-size"] as? String)?.toDoubleOrNull()
+                mgr.startDownload(filename, extractSize)
+            },
+            onOfflineMapsDelete = { path ->
+                mgr.deleteExtract(path)
+            },
+            onOfflineMapsCancelDownload = {
+                mgr.cancelDownload()
             },
         ),
     )

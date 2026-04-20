@@ -12,9 +12,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import okio.FileSystem
 import okio.Path.Companion.toPath
+import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
 
 /**
@@ -36,6 +39,10 @@ class OfflineMapManager(
     private val _manifest = MutableStateFlow<FeatureCollection?>(null)
     val manifest: StateFlow<FeatureCollection?> = _manifest.asStateFlow()
 
+    // Available extracts from manifest (all of them — UI can filter by location)
+    private val _availableExtracts = MutableStateFlow<List<Feature>>(emptyList())
+    val availableExtracts: StateFlow<List<Feature>> = _availableExtracts.asStateFlow()
+
     // Downloaded extracts
     private val _downloadedExtracts = MutableStateFlow<List<String>>(emptyList())
     val downloadedExtracts: StateFlow<List<String>> = _downloadedExtracts.asStateFlow()
@@ -55,7 +62,9 @@ class OfflineMapManager(
             try {
                 val json = manifestClient.getManifestJson()
                 if (json != null) {
-                    _manifest.value = GeoJsonParser.parseFeatureCollection(json)
+                    val fc = GeoJsonParser.parseFeatureCollection(json)
+                    _manifest.value = fc
+                    _availableExtracts.value = fc?.features ?: emptyList()
                 }
             } catch (e: Exception) {
                 println("OfflineMapManager: Error fetching manifest: ${e.message}")
@@ -71,25 +80,25 @@ class OfflineMapManager(
     }
 
     /**
-     * Get manifest features sorted by distance from a location.
+     * Get manifest features whose geometry contains the given location.
      */
-    fun getNearbyExtracts(location: LngLatAlt, limit: Int = 20): List<Feature> {
+    fun getExtractsContaining(location: LngLatAlt): List<Feature> {
         val fc = _manifest.value ?: return emptyList()
-        return fc.features
-            .sortedBy { feature ->
-                val props = feature.properties
-                // Use centroid or first coordinate for distance calculation
-                val geometry = feature.geometry
-                if (geometry is org.scottishtecharmy.soundscape.geojsonparser.geojson.Point) {
-                    val coord = geometry.coordinates
-                    val dlat = coord.latitude - location.latitude
-                    val dlng = coord.longitude - location.longitude
-                    dlat * dlat + dlng * dlng // rough distance squared
-                } else {
-                    Double.MAX_VALUE
-                }
+        return fc.features.filter { feature ->
+            featureContainsLocation(feature, location)
+        }
+    }
+
+    private fun featureContainsLocation(feature: Feature, location: LngLatAlt): Boolean {
+        return when (val geom = feature.geometry) {
+            is Polygon -> polygonContainsCoordinates(location, geom)
+            is MultiPolygon -> geom.coordinates.any { polygonRings ->
+                val poly = Polygon()
+                poly.coordinates.addAll(polygonRings)
+                polygonContainsCoordinates(location, poly)
             }
-            .take(limit)
+            else -> false
+        }
     }
 
     /**
