@@ -38,7 +38,6 @@
 		4E6AF2B1AD9AF9459461F51F /* Current_B.wav in Resources */ = {isa = PBXBuildFile; fileRef = 63E3E2F01FD71339D88277E5 /* Current_B.wav */; };
 		54B9B2ECAB456146D0AE7FDF /* Mallet_Very_Slow_A.wav in Resources */ = {isa = PBXBuildFile; fileRef = 54C85663E032417A1A925B66 /* Mallet_Very_Slow_A.wav */; };
 		566BA84E19965AA3F6EEA34D /* hunt_complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = 283DCE14EBAC081B4EA68F21 /* hunt_complete.wav */; };
-		56B0305B5D3847FC6B326502 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8509E5A49E4A5CAAEB3ADB /* ContentView.swift */; };
 		58051C4733E72E29BAEA4FF7 /* Signal_Very_Slow_A.wav in Resources */ = {isa = PBXBuildFile; fileRef = C18A5C16FA5A61A90F21AC67 /* Signal_Very_Slow_A.wav */; };
 		5D07489F8F9DF4B1CDA3ACE2 /* calibration_success.wav in Resources */ = {isa = PBXBuildFile; fileRef = 67D0264180438E394FFF0AD8 /* calibration_success.wav */; };
 		606A0225BAAFB9D12D3467DB /* Flare_Behind.wav in Resources */ = {isa = PBXBuildFile; fileRef = 68F437DA8E3B7C8B5756255A /* Flare_Behind.wav */; };
@@ -156,7 +155,6 @@
 		C1D9C9B92C46191DC504497C /* Current_Behind.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Current_Behind.wav; sourceTree = "<group>"; };
 		C37CBD2959CC0C50EF5D7DAE /* mode_enter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mode_enter.wav; sourceTree = "<group>"; };
 		CB23F44A226359392EDDEE60 /* Mallet_Slow_A.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Mallet_Slow_A.wav; sourceTree = "<group>"; };
-		CE8509E5A49E4A5CAAEB3ADB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D2124FCF3D3FA3BD6EEF93F4 /* SS_streetFound_48k.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SS_streetFound_48k.wav; sourceTree = "<group>"; };
 		D77A7CC59EB8822AFB41EBF7 /* Shimmer_A.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Shimmer_A.wav; sourceTree = "<group>"; };
 		DAE44CF4D9C86213E8615448 /* flag_found.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = flag_found.wav; sourceTree = "<group>"; };
@@ -177,7 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				F543015C899423D4B01CEB2E /* Assets.xcassets */,
-				CE8509E5A49E4A5CAAEB3ADB /* ContentView.swift */,
 				C117AD187833E2513BD2F553 /* Info.plist */,
 				668CECA83ACC03A83C85A623 /* iOSApp.swift */,
 				8AC3FADF480787D36FB0A878 /* Sounds */,
@@ -450,7 +447,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56B0305B5D3847FC6B326502 /* ContentView.swift in Sources */,
 				307C2654CD5972A25FB7FD87 /* iOSApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
