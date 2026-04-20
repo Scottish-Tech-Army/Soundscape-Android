@@ -78,6 +78,9 @@ class BeaconPlayer(
             beaconLatitude, beaconLongitude
         )
 
+        // Update 3D position based on bearing from listener to beacon
+        layer.position = bearingToPoint(poiBearing)
+
         val selection = beaconType.selector(listenerHeading, poiBearing)
         val newAssetName = if (selection != null) {
             beaconType.assets.getOrNull(selection.assetIndex)
