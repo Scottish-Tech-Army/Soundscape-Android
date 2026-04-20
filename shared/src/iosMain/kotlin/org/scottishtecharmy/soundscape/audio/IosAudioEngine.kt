@@ -48,7 +48,7 @@ class IosAudioEngine : AudioEngine {
 
     private sealed class PlayerEntry {
         class Discrete(val player: DiscretePlayer) : PlayerEntry()
-        // Beacon entries added in Phase 2
+        class Beacon(val player: BeaconPlayer) : PlayerEntry()
     }
 
     private data class QueuedSound(
@@ -283,19 +283,45 @@ class IosAudioEngine : AudioEngine {
         return activePlayers.containsKey(handle)
     }
 
-    // --- AudioEngine Interface: Beacons (Phase 2 stubs) ---
+    // --- AudioEngine Interface: Beacons ---
 
     override fun createBeacon(location: LngLatAlt, headingOnly: Boolean): Long {
-        // TODO: Phase 2 - implement beacon playback
-        return nextHandle++
+        ensureEngineStarted()
+        val handle = nextHandle++
+
+        val type = BEACON_TYPES[currentBeaconType] ?: BEACON_TYPES["Current"]!!
+        val player = BeaconPlayer(type, location.latitude, location.longitude)
+
+        if (!player.loadAssets()) {
+            println("IosAudioEngine: Failed to load beacon assets for $currentBeaconType")
+            return handle
+        }
+
+        val envNode = getOrCreateEnvironmentNode(player.layer.format)
+        player.start(engine, envNode)
+        player.setMuted(beaconMuted)
+
+        // Apply initial geometry
+        player.updateForGeometry(listenerLatitude, listenerLongitude, listenerHeading)
+
+        activePlayers[handle] = PlayerEntry.Beacon(player)
+        return handle
     }
 
     override fun destroyBeacon(beaconHandle: Long) {
-        // TODO: Phase 2
+        val entry = activePlayers.remove(beaconHandle)
+        if (entry is PlayerEntry.Beacon) {
+            entry.player.stop()
+        }
     }
 
     override fun toggleBeaconMute(): Boolean {
         beaconMuted = !beaconMuted
+        for ((_, entry) in activePlayers) {
+            if (entry is PlayerEntry.Beacon) {
+                entry.player.setMuted(beaconMuted)
+            }
+        }
         return beaconMuted
     }
 
@@ -324,6 +350,15 @@ class IosAudioEngine : AudioEngine {
                 envNode.listenerAngularOrientation = orientation
             }
         }
+
+        // Update all active beacon players with new geometry
+        for ((_, entry) in activePlayers) {
+            if (entry is PlayerEntry.Beacon) {
+                entry.player.updateForGeometry(
+                    listenerLatitude, listenerLongitude, this.listenerHeading
+                )
+            }
+        }
     }
 
     // --- AudioEngine Interface: Configuration ---
@@ -346,7 +381,12 @@ class IosAudioEngine : AudioEngine {
     }
 
     override fun onAllBeaconsCleared() {
-        // TODO: Phase 2
+        val beaconHandles = activePlayers.entries
+            .filter { it.value is PlayerEntry.Beacon }
+            .map { it.key }
+        for (handle in beaconHandles) {
+            destroyBeacon(handle)
+        }
     }
 
     override fun setHrtfEnabled(enabled: Boolean) {
