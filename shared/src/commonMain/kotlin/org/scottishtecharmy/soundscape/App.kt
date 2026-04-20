@@ -49,6 +49,8 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscre
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.SharedOfflineMapsScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
+import org.jetbrains.compose.resources.stringResource
+import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.network.DownloadStateCommon
 import org.scottishtecharmy.soundscape.ui.theme.LocalAppButtonColors
@@ -216,7 +218,7 @@ private fun HomeScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Text(
-                text = "Soundscape",
+                text = stringResource(Res.string.app_name),
                 style = MaterialTheme.typography.headlineLarge,
                 color = MaterialTheme.colorScheme.onSurface,
             )
@@ -261,21 +263,21 @@ private fun HomeScreen(
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     IconButton(onClick = onNavigateToPlacesNearby) {
-                        Icon(Icons.Rounded.Explore, contentDescription = "Places Nearby")
+                        Icon(Icons.Rounded.Explore, contentDescription = stringResource(Res.string.search_nearby_screen_title))
                     }
-                    Text("Nearby", style = MaterialTheme.typography.labelSmall)
+                    Text(stringResource(Res.string.search_nearby_screen_title), style = MaterialTheme.typography.labelSmall)
                 }
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     IconButton(onClick = onNavigateToMarkersAndRoutes) {
-                        Icon(Icons.Rounded.Route, contentDescription = "Markers & Routes")
+                        Icon(Icons.Rounded.Route, contentDescription = stringResource(Res.string.search_view_markers))
                     }
-                    Text("Markers & Routes", style = MaterialTheme.typography.labelSmall)
+                    Text(stringResource(Res.string.search_view_markers), style = MaterialTheme.typography.labelSmall)
                 }
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     IconButton(onClick = onNavigateToOfflineMaps) {
-                        Icon(Icons.Rounded.Download, contentDescription = "Offline Maps")
+                        Icon(Icons.Rounded.Download, contentDescription = stringResource(Res.string.offline_maps_title))
                     }
-                    Text("Offline Maps", style = MaterialTheme.typography.labelSmall)
+                    Text(stringResource(Res.string.offline_maps_title), style = MaterialTheme.typography.labelSmall)
                 }
             }
 
@@ -288,27 +290,27 @@ private fun HomeScreen(
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     IconButton(onClick = { callbacks.onMyLocation() }) {
-                        Icon(Icons.Rounded.MyLocation, contentDescription = "My Location")
+                        Icon(Icons.Rounded.MyLocation, contentDescription = stringResource(Res.string.ui_action_button_my_location_acc_hint))
                     }
-                    Text("My Location", style = MaterialTheme.typography.labelSmall)
+                    Text(stringResource(Res.string.directions_my_location), style = MaterialTheme.typography.labelSmall)
                 }
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     IconButton(onClick = { callbacks.onWhatsAroundMe() }) {
-                        Icon(Icons.Rounded.Explore, contentDescription = "Around Me")
+                        Icon(Icons.Rounded.Explore, contentDescription = stringResource(Res.string.ui_action_button_around_me_acc_hint))
                     }
-                    Text("Around Me", style = MaterialTheme.typography.labelSmall)
+                    Text(stringResource(Res.string.help_orient_page_title), style = MaterialTheme.typography.labelSmall)
                 }
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     IconButton(onClick = { callbacks.onAheadOfMe() }) {
-                        Icon(Icons.Rounded.NorthEast, contentDescription = "Ahead of Me")
+                        Icon(Icons.Rounded.NorthEast, contentDescription = stringResource(Res.string.ui_action_button_ahead_of_me_acc_hint))
                     }
-                    Text("Ahead", style = MaterialTheme.typography.labelSmall)
+                    Text(stringResource(Res.string.help_explore_page_title), style = MaterialTheme.typography.labelSmall)
                 }
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     IconButton(onClick = { callbacks.onNearbyMarkers() }) {
-                        Icon(Icons.Rounded.PushPin, contentDescription = "Nearby Markers")
+                        Icon(Icons.Rounded.PushPin, contentDescription = stringResource(Res.string.ui_action_button_nearby_markers_acc_hint))
                     }
-                    Text("Markers", style = MaterialTheme.typography.labelSmall)
+                    Text(stringResource(Res.string.callouts_nearby_markers), style = MaterialTheme.typography.labelSmall)
                 }
             }
         }
