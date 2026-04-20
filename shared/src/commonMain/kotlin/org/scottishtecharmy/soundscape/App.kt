@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Download
 import androidx.compose.material.icons.rounded.Explore
+import androidx.compose.material.icons.rounded.NorthEast
+import androidx.compose.material.icons.rounded.PushPin
 import androidx.compose.material.icons.rounded.MyLocation
 import androidx.compose.material.icons.rounded.Route
 import androidx.compose.foundation.layout.Box
@@ -57,6 +59,10 @@ data class AppCallbacks(
     val onStopBeacon: () -> Unit = {},
     val onSpeak: (String) -> Unit = {},
     val onStartRoute: (Long) -> Unit = {},
+    val onMyLocation: () -> Unit = {},
+    val onWhatsAroundMe: () -> Unit = {},
+    val onAheadOfMe: () -> Unit = {},
+    val onNearbyMarkers: () -> Unit = {},
     val onPlacesNearbyClickFolder: (String, String) -> Unit = { _, _ -> },
     val onPlacesNearbyClickBack: () -> Unit = {},
     val onOfflineMapsRefresh: () -> Unit = {},
@@ -275,23 +281,34 @@ private fun HomeScreen(
 
             Spacer(modifier = Modifier.height(8.dp))
 
+            // Soundscape action buttons
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+                horizontalArrangement = Arrangement.SpaceEvenly
             ) {
-                Button(onClick = { callbacks.onSpeak("Hello from Soundscape") }) {
-                    Text("Speak")
-                }
-                if (location != null) {
-                    Button(onClick = {
-                        val loc = location!!
-                        callbacks.onStartBeacon(loc.latitude, loc.longitude, "Test Beacon")
-                    }) {
-                        Text("Beacon")
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    IconButton(onClick = { callbacks.onMyLocation() }) {
+                        Icon(Icons.Rounded.MyLocation, contentDescription = "My Location")
                     }
+                    Text("My Location", style = MaterialTheme.typography.labelSmall)
                 }
-                Button(onClick = { callbacks.onStopBeacon() }) {
-                    Text("Stop")
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    IconButton(onClick = { callbacks.onWhatsAroundMe() }) {
+                        Icon(Icons.Rounded.Explore, contentDescription = "Around Me")
+                    }
+                    Text("Around Me", style = MaterialTheme.typography.labelSmall)
+                }
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    IconButton(onClick = { callbacks.onAheadOfMe() }) {
+                        Icon(Icons.Rounded.NorthEast, contentDescription = "Ahead of Me")
+                    }
+                    Text("Ahead", style = MaterialTheme.typography.labelSmall)
+                }
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    IconButton(onClick = { callbacks.onNearbyMarkers() }) {
+                        Icon(Icons.Rounded.PushPin, contentDescription = "Nearby Markers")
+                    }
+                    Text("Markers", style = MaterialTheme.typography.labelSmall)
                 }
             }
         }

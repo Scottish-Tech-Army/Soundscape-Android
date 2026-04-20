@@ -213,6 +213,28 @@ class IosSoundscapeService : GeoEngineListener {
     override fun getStreetPreviewBestChoice(): StreetPreviewChoice? = null
     override val menuActive: Boolean = false
 
+    // --- GeoEngine Queries ---
+
+    fun myLocation() {
+        val callout = geoEngine.myLocation()
+        speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+    }
+
+    fun whatsAroundMe() {
+        val callout = geoEngine.whatsAroundMe()
+        speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+    }
+
+    fun aheadOfMe() {
+        val callout = geoEngine.aheadOfMe()
+        speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+    }
+
+    fun nearbyMarkers() {
+        val callout = geoEngine.nearbyMarkers()
+        speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+    }
+
     // --- Beacon Control ---
 
     fun startBeacon(location: LngLatAlt, name: String) {

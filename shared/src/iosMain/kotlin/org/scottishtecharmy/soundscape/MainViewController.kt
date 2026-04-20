@@ -28,6 +28,10 @@ fun MainViewController() = ComposeUIViewController {
             onSpeak = { text ->
                 service.speakCallout(text)
             },
+            onMyLocation = { service.myLocation() },
+            onWhatsAroundMe = { service.whatsAroundMe() },
+            onAheadOfMe = { service.aheadOfMe() },
+            onNearbyMarkers = { service.nearbyMarkers() },
             onPlacesNearbyClickFolder = { filter, title ->
                 service.placesNearbyClickFolder(filter, title)
             },
