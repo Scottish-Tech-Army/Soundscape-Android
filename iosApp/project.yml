@@ -14,6 +14,8 @@ targets:
     platform: iOS
     sources:
       - iosApp
+      - path: iosApp/address
+        type: folder
     info:
       path: iosApp/Info.plist
       properties:

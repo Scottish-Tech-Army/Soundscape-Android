@@ -19,7 +19,10 @@ actual fun readResourceText(path: String): String {
     val ext = if (lastDot >= 0) filename.substring(lastDot + 1) else null
 
     val bundle = NSBundle.mainBundle
+
+    // Try with subdirectory first, then without (Xcode may flatten the structure)
     val filePath = bundle.pathForResource(name, ext, directory)
+        ?: bundle.pathForResource(name, ext)
         ?: error("Resource not found: $path")
 
     return NSString.stringWithContentsOfFile(filePath, NSUTF8StringEncoding, null)

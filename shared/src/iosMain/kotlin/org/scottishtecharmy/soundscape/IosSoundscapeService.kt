@@ -15,9 +15,12 @@ import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GeoEngineListener
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
+import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
@@ -59,6 +62,25 @@ class IosSoundscapeService : GeoEngineListener {
     // Grid state flow for UI
     private val _gridStateFlow = MutableStateFlow<GridState?>(null)
     val gridStateFlow: StateFlow<GridState?> = _gridStateFlow.asStateFlow()
+
+    // Places Nearby state
+    private val _placesNearbyUiState = MutableStateFlow(PlacesNearbyUiState())
+    val placesNearbyUiState: StateFlow<PlacesNearbyUiState> = _placesNearbyUiState.asStateFlow()
+
+    fun placesNearbyClickFolder(filter: String, title: String) {
+        _placesNearbyUiState.value = _placesNearbyUiState.value.copy(
+            level = 1,
+            filter = filter,
+            title = title,
+        )
+    }
+
+    fun placesNearbyClickBack() {
+        val current = _placesNearbyUiState.value
+        if (current.level > 0) {
+            _placesNearbyUiState.value = current.copy(level = 0, filter = "", title = "")
+        }
+    }
 
     // Beacon state
     data class BeaconState(
@@ -167,6 +189,26 @@ class IosSoundscapeService : GeoEngineListener {
 
     override fun tileGridUpdated() {
         _gridStateFlow.value = geoEngine.gridState
+
+        // Update nearby places from the grid
+        scope.launch {
+            try {
+                val pois = kotlinx.coroutines.withContext(geoEngine.gridState.treeContext) {
+                    geoEngine.gridState.getFeatureCollection(TreeId.POIS)
+                }
+                val intersections = kotlinx.coroutines.withContext(geoEngine.gridState.treeContext) {
+                    geoEngine.gridState.getFeatureCollection(TreeId.INTERSECTIONS)
+                }
+                val location = locationProvider.locationFlow.value
+                _placesNearbyUiState.value = _placesNearbyUiState.value.copy(
+                    nearbyPlaces = pois,
+                    nearbyIntersections = intersections,
+                    userLocation = location?.let { LngLatAlt(it.longitude, it.latitude) },
+                )
+            } catch (e: Exception) {
+                println("IosSoundscapeService: Error updating nearby places: ${e.message}")
+            }
+        }
     }
 
     override fun updateStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {}

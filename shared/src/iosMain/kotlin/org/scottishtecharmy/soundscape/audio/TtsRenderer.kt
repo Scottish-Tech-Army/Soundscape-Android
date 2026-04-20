@@ -57,15 +57,17 @@ class TtsRenderer {
     }
 
     /**
-     * Simple convenience: render TTS and play directly through the synthesizer
-     * (bypasses spatial audio graph — used as fallback).
+     * Speak directly through the synthesizer with a completion callback.
      */
-    fun speakDirect(text: String) {
+    fun speakDirect(text: String, onFinish: (() -> Unit)? = null) {
         val utterance = AVSpeechUtterance.speechUtteranceWithString(text)
         language?.let { lang ->
             AVSpeechSynthesisVoice.voiceWithLanguage(lang)?.let { voice ->
                 utterance.voice = voice
             }
+        }
+        if (onFinish != null) {
+            synthesizer.delegate = TtsDelegate(onFinish)
         }
         synthesizer.speakUtterance(utterance)
     }

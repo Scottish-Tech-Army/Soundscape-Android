@@ -222,7 +222,11 @@ class IosAudioEngine : AudioEngine {
         }
 
         val player = DiscretePlayer(onComplete = {
-            onDiscreteComplete(sound.handle)
+            // Dispatch off the audio render thread to avoid deadlock
+            // when mutating the audio graph (disconnect/detach)
+            platform.darwin.dispatch_async(platform.darwin.dispatch_get_main_queue()) {
+                onDiscreteComplete(sound.handle)
+            }
         })
 
         // Set 3D position if needed
@@ -234,14 +238,16 @@ class IosAudioEngine : AudioEngine {
         activePlayers[sound.handle] = PlayerEntry.Discrete(player)
 
         if (sound.isTts) {
-            // For TTS, use direct speak as fallback (buffer rendering can be added later
-            // once we verify AVSpeechSynthesizer.write() works in Kotlin/Native)
-            ttsRenderer.speakDirect(sound.text)
-            // Mark as complete after a delay (direct speak doesn't give us buffer completion)
-            // This is a temporary approach - Phase 1 gets TTS working, spatial TTS comes later
-            activePlayers.remove(sound.handle)
-            currentDiscreteHandle = null
-            playNextQueued()
+            ttsRenderer.speakDirect(sound.text) {
+                // Called when TTS finishes speaking
+                platform.darwin.dispatch_async(platform.darwin.dispatch_get_main_queue()) {
+                    activePlayers.remove(sound.handle)
+                    if (currentDiscreteHandle == sound.handle) {
+                        currentDiscreteHandle = null
+                        playNextQueued()
+                    }
+                }
+            }
         } else {
             player.playEarcon(sound.assetName, engine, targetNode)
         }
