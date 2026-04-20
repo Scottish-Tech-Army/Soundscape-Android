@@ -20,5 +20,9 @@
 	<string>1</string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Soundscape needs your location to provide audio navigation and describe your surroundings.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Soundscape needs your location to provide audio navigation even when the app is in the background.</string>
 </dict>
 </plist>
