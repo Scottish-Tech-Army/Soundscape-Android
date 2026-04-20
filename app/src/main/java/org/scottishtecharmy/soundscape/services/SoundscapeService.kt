@@ -69,6 +69,7 @@ import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
+import org.scottishtecharmy.soundscape.geoengine.speakCalloutCommon
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -858,7 +859,6 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener {
     }
 
     override fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean) : Long {
-
         if(callout == null) return 0L
 
         if (!requestAudioFocus()) {
@@ -866,64 +866,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener {
             return 0L
         }
 
-        var lastHandle = 0L
-        if(addModeEarcon) lastHandle = audioEngine.createEarcon(EARCON_MODE_ENTER, AudioType.STANDARD)
-        for(result in callout.positionedStrings) {
-            val resultLocation = result.location
-            val resultEarcon = result.earcon
-            if(resultLocation == null) {
-                var type = result.type
-                if(type == AudioType.LOCALIZED) type = AudioType.STANDARD
-                if(resultEarcon != null)
-                    audioEngine.createEarcon(resultEarcon, type, 0.0, 0.0, result.heading?:0.0)
-
-                lastHandle = audioEngine.createTextToSpeech(result.text, type, 0.0, 0.0, result.heading?:0.0)
-            }
-            else {
-                if(resultEarcon != null) {
-                    audioEngine.createEarcon(
-                        resultEarcon,
-                        result.type,
-                        resultLocation.latitude,
-                        resultLocation.longitude,
-                        result.heading?:0.0)
-                }
-                val text =
-                    if(result.addDistanceAndHeading) {
-                        lastGeometry?.location?.let { location ->
-                            if (ruler.needsReplacing(location.latitude))
-                                ruler = CheapRuler(location.latitude)
-
-                            val distance =
-                                ruler.distance(location, resultLocation)
-                            val heading = ruler.bearing(location, resultLocation)
-                            result.text + ", " + formatDistanceAndDirection(
-                                distance,
-                                heading,
-                                ComposeLocalizedStrings(),
-                                lastGeometry?.heading(),
-                                sharedPreferences.getString(RELATIVE_DIRECTION_KEY, RELATIVE_DIRECTION_DEFAULT)!!
-                            )
-                        } ?: result.text
-                    }
-                    else
-                        result.text
-                lastHandle = audioEngine.createTextToSpeech(
-                    text,
-                    result.type,
-                    resultLocation.latitude,
-                    resultLocation.longitude,
-                    result.heading?:0.0
-                )
-            }
-        }
-        // Don't set lastHandle on the earcon, we don't really care if this has finished or not,
-        // we just want to wait on the TTS.
-        if(addModeEarcon) audioEngine.createEarcon(EARCON_MODE_EXIT, AudioType.STANDARD)
-
-        callout.calloutHistory?.add(callout)
-        callout.locationFilter?.update(callout.userGeometry)
-        return lastHandle
+        return speakCalloutCommon(callout, addModeEarcon, audioEngine, lastGeometry, ruler)
     }
 
     fun toggleAutoCallouts() {

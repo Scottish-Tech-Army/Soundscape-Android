@@ -18,6 +18,8 @@ import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
+import org.scottishtecharmy.soundscape.geoengine.speakCalloutCommon
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
@@ -144,39 +146,15 @@ class IosSoundscapeService : GeoEngineListener {
         return audioEngine.getQueueDepth() > 0
     }
 
+    private var lastGeometry: UserGeometry? = null
+    private var ruler = CheapRuler(0.0)
+
     override fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean): Long {
-        if (callout == null) return 0L
-
-        var lastHandle = 0L
-        for (result in callout.positionedStrings) {
-            val resultLocation = result.location
-            val resultEarcon = result.earcon
-
-            if (resultLocation == null) {
-                var type = result.type
-                if (type == AudioType.LOCALIZED) type = AudioType.STANDARD
-                if (resultEarcon != null)
-                    audioEngine.createEarcon(resultEarcon, type, 0.0, 0.0, result.heading ?: 0.0)
-                lastHandle = audioEngine.createTextToSpeech(result.text, type, 0.0, 0.0, result.heading ?: 0.0)
-            } else {
-                if (resultEarcon != null) {
-                    audioEngine.createEarcon(
-                        resultEarcon, result.type,
-                        resultLocation.latitude, resultLocation.longitude,
-                        result.heading ?: 0.0
-                    )
-                }
-                lastHandle = audioEngine.createTextToSpeech(
-                    result.text, result.type,
-                    resultLocation.latitude, resultLocation.longitude,
-                    result.heading ?: 0.0
-                )
-            }
-        }
-        return lastHandle
+        return speakCalloutCommon(callout, addModeEarcon, audioEngine, lastGeometry, ruler)
     }
 
     override fun updateAudioEngineGeometry(userGeometry: UserGeometry) {
+        lastGeometry = userGeometry
         audioEngine.updateGeometry(
             userGeometry.location.latitude,
             userGeometry.location.longitude,
@@ -257,9 +235,11 @@ class IosSoundscapeService : GeoEngineListener {
     }
 
     companion object {
-        // These should match the values in local.properties / BuildConfig
-        private const val TILE_PROVIDER_URL = "https://pmtiles.aws-181.workers.dev/"
-        private const val SEARCH_PROVIDER_URL = "https://photon.soundscape.scottishtecharmy.org/photon/"
+        // Read from Info.plist (values set via Local.xcconfig which is gitignored)
+        private val TILE_PROVIDER_URL: String
+            get() = platform.Foundation.NSBundle.mainBundle.objectForInfoDictionaryKey("TileProviderURL") as? String ?: ""
+        private val SEARCH_PROVIDER_URL: String
+            get() = platform.Foundation.NSBundle.mainBundle.objectForInfoDictionaryKey("SearchProviderURL") as? String ?: ""
 
         private var INSTANCE: IosSoundscapeService? = null
 

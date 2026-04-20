@@ -26,6 +26,8 @@ targets:
           - audio
           - location
         UILaunchScreen: {}
+        TileProviderURL: "$(TILE_PROVIDER_URL)"
+        SearchProviderURL: "$(SEARCH_PROVIDER_URL)"
     settings:
       FRAMEWORK_SEARCH_PATHS:
         - "$(inherited)"
