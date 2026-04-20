@@ -11,23 +11,33 @@ import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.IosAudioEngine
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
+import org.scottishtecharmy.soundscape.geoengine.GeoEngine
+import org.scottishtecharmy.soundscape.geoengine.GeoEngineListener
+import org.scottishtecharmy.soundscape.geoengine.GridState
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.IosDirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.IosLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
+import org.scottishtecharmy.soundscape.network.KmpPhotonSearch
+import org.scottishtecharmy.soundscape.network.createIosPhotonSearchClient
+import org.scottishtecharmy.soundscape.network.createIosVectorTileClient
+import org.scottishtecharmy.soundscape.preferences.IosPreferencesProvider
+import org.scottishtecharmy.soundscape.utils.Analytics
+import platform.Foundation.NSHomeDirectory
 
 /**
  * iOS equivalent of the Android SoundscapeServiceConnection + SoundscapeService.
- * Unlike Android's foreground Service, this is a simple singleton that manages
- * the location/direction/audio providers and exposes flows for the UI.
- *
- * Background operation is handled by iOS's UIBackgroundModes (audio + location)
- * configured in Info.plist.
+ * Manages location/direction/audio providers and the GeoEngine.
+ * Background operation via iOS's UIBackgroundModes (audio + location).
  */
-class IosSoundscapeService {
+class IosSoundscapeService : GeoEngineListener {
 
     private val scope = CoroutineScope(Dispatchers.Default + Job())
 
@@ -35,11 +45,20 @@ class IosSoundscapeService {
     val locationProvider: LocationProvider = IosLocationProvider()
     val directionProvider: DirectionProvider = IosDirectionProvider()
     val audioEngine = IosAudioEngine()
+    private val preferencesProvider = IosPreferencesProvider()
+
+    // GeoEngine
+    val geoEngine = GeoEngine()
+    private var geoEngineStarted = false
 
     // Database
     val routeDao: RouteDao by lazy {
         MarkersAndRoutesDatabaseProvider.getInstance().routeDao()
     }
+
+    // Grid state flow for UI
+    private val _gridStateFlow = MutableStateFlow<GridState?>(null)
+    val gridStateFlow: StateFlow<GridState?> = _gridStateFlow.asStateFlow()
 
     // Beacon state
     data class BeaconState(
@@ -52,56 +71,123 @@ class IosSoundscapeService {
     val beaconFlow: StateFlow<BeaconState> = _beaconFlow.asStateFlow()
     private var beaconHandle: Long? = null
 
-    // Service bound state (always true on iOS — no binding needed)
+    // Service bound state (always true on iOS)
     private val _serviceBoundState = MutableStateFlow(true)
     val serviceBoundState: StateFlow<Boolean> = _serviceBoundState.asStateFlow()
 
     // Convenience flow accessors
     fun getLocationFlow(): StateFlow<SoundscapeLocation?> = locationProvider.locationFlow
     fun getOrientationFlow(): StateFlow<DeviceDirection?> = directionProvider.orientationFlow
-
-    // Audio engine geometry updates
-    private var geometryJob: Job? = null
+    fun getGridStateFlow(): StateFlow<GridState?> = gridStateFlow
 
     init {
-        startGeometryUpdates()
+        startGeoEngine()
     }
 
-    private fun startGeometryUpdates() {
-        geometryJob?.cancel()
-        geometryJob = scope.launch {
-            // Combine location and heading updates to drive the audio engine
-            locationProvider.locationFlow.collect { location ->
-                if (location != null) {
-                    val heading = directionProvider.orientationFlow.value?.headingDegrees?.toDouble()
-                    audioEngine.updateGeometry(
-                        listenerLatitude = location.latitude,
-                        listenerLongitude = location.longitude,
-                        listenerHeading = heading,
-                        focusGained = true,
-                        duckingAllowed = true,
-                        proximityNear = 0.0
+    private fun startGeoEngine() {
+        if (geoEngineStarted) return
+
+        val tileClient = createIosVectorTileClient(
+            baseUrl = TILE_PROVIDER_URL
+        )
+
+        val photonClient = createIosPhotonSearchClient(
+            baseUrl = SEARCH_PROVIDER_URL
+        )
+        val photonSearch = KmpPhotonSearch(photonClient)
+
+        val documentsPath = NSHomeDirectory() + "/Documents"
+
+        geoEngine.start(
+            newLocationProvider = locationProvider,
+            newDirectionProvider = directionProvider,
+            listener = this,
+            localizedStrings = ComposeLocalizedStrings(),
+            preferencesProvider = preferencesProvider,
+            analytics = NoOpAnalytics,
+            tileClient = tileClient,
+            routeDao = routeDao,
+            offlineExtractPath = documentsPath,
+            hasNetwork = { true }, // TODO: check reachability
+            photonSearch = photonSearch,
+            platformGeocoder = null,
+            streetPreviewEnabled = false,
+        )
+        geoEngineStarted = true
+    }
+
+    // --- GeoEngineListener ---
+
+    override fun isAudioEngineBusy(): Boolean {
+        return audioEngine.getQueueDepth() > 0
+    }
+
+    override fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean): Long {
+        if (callout == null) return 0L
+
+        var lastHandle = 0L
+        for (result in callout.positionedStrings) {
+            val resultLocation = result.location
+            val resultEarcon = result.earcon
+
+            if (resultLocation == null) {
+                var type = result.type
+                if (type == AudioType.LOCALIZED) type = AudioType.STANDARD
+                if (resultEarcon != null)
+                    audioEngine.createEarcon(resultEarcon, type, 0.0, 0.0, result.heading ?: 0.0)
+                lastHandle = audioEngine.createTextToSpeech(result.text, type, 0.0, 0.0, result.heading ?: 0.0)
+            } else {
+                if (resultEarcon != null) {
+                    audioEngine.createEarcon(
+                        resultEarcon, result.type,
+                        resultLocation.latitude, resultLocation.longitude,
+                        result.heading ?: 0.0
                     )
                 }
+                lastHandle = audioEngine.createTextToSpeech(
+                    result.text, result.type,
+                    resultLocation.latitude, resultLocation.longitude,
+                    result.heading ?: 0.0
+                )
             }
         }
+        return lastHandle
     }
+
+    override fun updateAudioEngineGeometry(userGeometry: UserGeometry) {
+        audioEngine.updateGeometry(
+            userGeometry.location.latitude,
+            userGeometry.location.longitude,
+            userGeometry.presentationHeading(),
+            focusGained = true,
+            duckingAllowed = true,
+            proximityNear = 15.0
+        )
+    }
+
+    override fun tileGridUpdated() {
+        _gridStateFlow.value = geoEngine.gridState
+    }
+
+    override fun updateStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {}
+    override fun announceStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {}
+    override fun getStreetPreviewChoices(): List<StreetPreviewChoice> = emptyList()
+    override fun getStreetPreviewBestChoice(): StreetPreviewChoice? = null
+    override val menuActive: Boolean = false
 
     // --- Beacon Control ---
 
     fun startBeacon(location: LngLatAlt, name: String) {
-        // Destroy existing beacon first
         destroyBeacon()
-
+        geoEngine.updateBeaconLocation(location)
         beaconHandle = audioEngine.createBeacon(location, headingOnly = false)
         _beaconFlow.value = BeaconState(location = location, name = name, muteState = false)
     }
 
     fun destroyBeacon() {
-        beaconHandle?.let { handle ->
-            audioEngine.destroyBeacon(handle)
-        }
+        beaconHandle?.let { audioEngine.destroyBeacon(it) }
         beaconHandle = null
+        geoEngine.updateBeaconLocation(null)
         _beaconFlow.value = BeaconState()
     }
 
@@ -119,17 +205,31 @@ class IosSoundscapeService {
     // --- Lifecycle ---
 
     fun destroy() {
-        geometryJob?.cancel()
+        if (geoEngineStarted) {
+            geoEngine.stop()
+            geoEngineStarted = false
+        }
         destroyBeacon()
         locationProvider.destroy()
         directionProvider.destroy()
     }
 
     companion object {
+        // These should match the values in local.properties / BuildConfig
+        private const val TILE_PROVIDER_URL = "https://pmtiles.aws-181.workers.dev/"
+        private const val SEARCH_PROVIDER_URL = "https://photon.soundscape.scottishtecharmy.org/photon/"
+
         private var INSTANCE: IosSoundscapeService? = null
 
         fun getInstance(): IosSoundscapeService {
             return INSTANCE ?: IosSoundscapeService().also { INSTANCE = it }
         }
     }
+}
+
+private object NoOpAnalytics : Analytics {
+    override fun logEvent(name: String, params: Map<String, Any?>?) {}
+    override fun logCostlyEvent(name: String, params: Map<String, Any?>?) {}
+    override fun crashSetCustomKey(key: String, value: String) {}
+    override fun crashLogNotes(name: String) {}
 }

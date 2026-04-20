@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.database.local
 
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.sqlite.driver.bundled.BundledSQLiteDriver
 import kotlinx.coroutines.Dispatchers
 import platform.Foundation.NSHomeDirectory
 
@@ -17,6 +18,7 @@ object MarkersAndRoutesDatabaseProvider {
 
     fun getInstance(): MarkersAndRoutesDatabase {
         return INSTANCE ?: getDatabaseBuilder()
+            .setDriver(BundledSQLiteDriver())
             .setQueryCoroutineContext(Dispatchers.Default)
             .build()
             .also { INSTANCE = it }
