@@ -51,3 +51,5 @@ google-services.json
 # Android Profiling
 *.hprof
 
+iosApp/Local.xcconfig
+iosApp/iosApp.xcodeproj/

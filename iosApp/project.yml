@@ -3,6 +3,9 @@ options:
   bundleIdPrefix: org.scottishtecharmy.soundscape
   deploymentTarget:
     iOS: "16.0"
+configFiles:
+  Debug: Local.xcconfig
+  Release: Local.xcconfig
 settings:
   ENABLE_BITCODE: "NO"
 targets:

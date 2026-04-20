@@ -80,6 +80,11 @@ class IosAudioEngine : AudioEngine {
             println("IosAudioEngine: Failed to configure audio session: $e")
         }
 
+        // Access mainMixerNode to ensure the output chain is connected
+        // (AVAudioEngine requires at least one node before starting)
+        @Suppress("UNUSED_VARIABLE")
+        val mixer = engine.mainMixerNode
+
         // Start the engine
         try {
             engine.startAndReturnError(null)
