@@ -7,17 +7,81 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		15EF5F4421C92584F06C98A3 /* Travel_inter_v2_spatial_48k.wav in Resources */ = {isa = PBXBuildFile; fileRef = 15061C74D00EFE34988700A4 /* Travel_inter_v2_spatial_48k.wav */; };
+		1631675DCEC37D0773C97F98 /* street_non_1c.wav in Resources */ = {isa = PBXBuildFile; fileRef = 384035A23CE2F18C14204BDD /* street_non_1c.wav */; };
+		18E8A62B92C9364C9E03CC32 /* mode_exit.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4201157FFC9CE390162EF44E /* mode_exit.wav */; };
+		1A9E3D6C0DE9992087C436DD /* callouts_on.wav in Resources */ = {isa = PBXBuildFile; fileRef = 1F36A4560A59DF7925DEEB86 /* callouts_on.wav */; };
+		1D6FF000677A4017EC9B1CBF /* Travel_end_v2_spatial_48k.wav in Resources */ = {isa = PBXBuildFile; fileRef = 9795345D375DB2DA39BFF6BA /* Travel_end_v2_spatial_48k.wav */; };
+		218E7CBDF9B9485FE0624A32 /* connection_success.wav in Resources */ = {isa = PBXBuildFile; fileRef = 42F7A1DCB44CC0504964EE68 /* connection_success.wav */; };
 		22EA1CB33A17DCC6FC82406D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F543015C899423D4B01CEB2E /* Assets.xcassets */; };
+		28DB1ADBBD0196C823A81FAE /* online.wav in Resources */ = {isa = PBXBuildFile; fileRef = 25DD584361242C90CC360293 /* online.wav */; };
+		2E4D4B754F0413FAF6296F6E /* SS_beaconFound2_48k.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5DF7ED23A0C9C0B4B78D9340 /* SS_beaconFound2_48k.wav */; };
 		307C2654CD5972A25FB7FD87 /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 668CECA83ACC03A83C85A623 /* iOSApp.swift */; };
+		34E63E7A7605D0C24B597E36 /* sense_location.wav in Resources */ = {isa = PBXBuildFile; fileRef = EA68DA79CF33052DDCF932AA /* sense_location.wav */; };
+		430F33902D687502EC351E1F /* low_confidence.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F83A0C8062DC9F939341406 /* low_confidence.wav */; };
+		466411D1B476EA79C5CC37E9 /* hush.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5D95E25EAED5782BB9577F1E /* hush.wav */; };
+		566BA84E19965AA3F6EEA34D /* hunt_complete.wav in Resources */ = {isa = PBXBuildFile; fileRef = 283DCE14EBAC081B4EA68F21 /* hunt_complete.wav */; };
 		56B0305B5D3847FC6B326502 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE8509E5A49E4A5CAAEB3ADB /* ContentView.swift */; };
+		5D07489F8F9DF4B1CDA3ACE2 /* calibration_success.wav in Resources */ = {isa = PBXBuildFile; fileRef = 67D0264180438E394FFF0AD8 /* calibration_success.wav */; };
+		61E91A4FC8A40B3CDC568051 /* sense_mobility.wav in Resources */ = {isa = PBXBuildFile; fileRef = DFB88C2C9B850E0ABBAC2057 /* sense_mobility.wav */; };
+		76F62B79888BA91A450287B1 /* app_launch.wav in Resources */ = {isa = PBXBuildFile; fileRef = F27C0CE5404CC1C22F7D4278 /* app_launch.wav */; };
+		76FB72C15EC179F6B7B7342D /* sense_safety.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4D8C83822BE65E1494C1BA42 /* sense_safety.wav */; };
+		7DB9BEBE3CA3CF9F03A16EEC /* Travel_reverse_v2_spatial_48k.wav in Resources */ = {isa = PBXBuildFile; fileRef = B2E371D76DAE4F7CD2FAA3CF /* Travel_reverse_v2_spatial_48k.wav */; };
+		7FC0E22882C21D8F88D9DF9E /* sense_poi.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2CDF00E866BD6E5693D1EF7A /* sense_poi.wav */; };
+		838F5E44D02A906C838F9833 /* callouts_off.wav in Resources */ = {isa = PBXBuildFile; fileRef = DFEED1EB99A2F52A9BFDC076 /* callouts_off.wav */; };
+		84D970FD8668C9E00B4C9462 /* information_alert.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6F0430DB9B21379E3BCA0A38 /* information_alert.wav */; };
+		97B06478F69CBEA4581F4E59 /* SS_logo4_48k.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2057B6FF30E6E25B420B43BC /* SS_logo4_48k.wav */; };
+		A2AB0B1D82AAAE33FB5546F9 /* offline.wav in Resources */ = {isa = PBXBuildFile; fileRef = FE46E8BE7F5C0D4E6C52A2AA /* offline.wav */; };
+		A7605106C9CCCADEFB0831DD /* virtual_remote_click_down.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6A8E45B00E6B31D3C6C9FD6B /* virtual_remote_click_down.wav */; };
+		AFF910437C9FADE358658A92 /* flag_found.wav in Resources */ = {isa = PBXBuildFile; fileRef = DAE44CF4D9C86213E8615448 /* flag_found.wav */; };
+		B44679FB977A60AE77543108 /* Travel_start_v2_spatial_48k.wav in Resources */ = {isa = PBXBuildFile; fileRef = B768E3595918515338960671 /* Travel_start_v2_spatial_48k.wav */; };
+		B5838969C3A6D731FB3941BC /* virtual_remote_click_up.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5DE9D9164B72A5A1C373CB99 /* virtual_remote_click_up.wav */; };
+		B7CAB891FC2D1A9005B631C7 /* calibration_in_progress.wav in Resources */ = {isa = PBXBuildFile; fileRef = 75CB794F6E75E91D11A77E79 /* calibration_in_progress.wav */; };
+		BB445A79986428BEFE434B76 /* SS_streetFound_48k.wav in Resources */ = {isa = PBXBuildFile; fileRef = D2124FCF3D3FA3BD6EEF93F4 /* SS_streetFound_48k.wav */; };
+		C07B19A824515173C982E65B /* mode_enter.wav in Resources */ = {isa = PBXBuildFile; fileRef = C37CBD2959CC0C50EF5D7DAE /* mode_enter.wav */; };
+		CC057C4EBC16E29CBBB353F5 /* invalid_function.wav in Resources */ = {isa = PBXBuildFile; fileRef = 27A94357014F1CC78914FC8B /* invalid_function.wav */; };
+		F3A23E9DF9B89BA3EEA828F6 /* 2.4_roadFinder_loop_rev2_wFades.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2C574BB3C2BBA256AE5306B2 /* 2.4_roadFinder_loop_rev2_wFades.wav */; };
+		FA5DC5B24D37986462D726EA /* Aug12_Experience_end_4c.wav in Resources */ = {isa = PBXBuildFile; fileRef = 42CBE46F65C3362D34774E54 /* Aug12_Experience_end_4c.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		15061C74D00EFE34988700A4 /* Travel_inter_v2_spatial_48k.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Travel_inter_v2_spatial_48k.wav; sourceTree = "<group>"; };
+		1F36A4560A59DF7925DEEB86 /* callouts_on.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = callouts_on.wav; sourceTree = "<group>"; };
+		2057B6FF30E6E25B420B43BC /* SS_logo4_48k.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SS_logo4_48k.wav; sourceTree = "<group>"; };
+		25DD584361242C90CC360293 /* online.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = online.wav; sourceTree = "<group>"; };
+		27A94357014F1CC78914FC8B /* invalid_function.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = invalid_function.wav; sourceTree = "<group>"; };
+		283DCE14EBAC081B4EA68F21 /* hunt_complete.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hunt_complete.wav; sourceTree = "<group>"; };
+		2C574BB3C2BBA256AE5306B2 /* 2.4_roadFinder_loop_rev2_wFades.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 2.4_roadFinder_loop_rev2_wFades.wav; sourceTree = "<group>"; };
+		2CDF00E866BD6E5693D1EF7A /* sense_poi.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sense_poi.wav; sourceTree = "<group>"; };
+		384035A23CE2F18C14204BDD /* street_non_1c.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = street_non_1c.wav; sourceTree = "<group>"; };
+		4201157FFC9CE390162EF44E /* mode_exit.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mode_exit.wav; sourceTree = "<group>"; };
+		42CBE46F65C3362D34774E54 /* Aug12_Experience_end_4c.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Aug12_Experience_end_4c.wav; sourceTree = "<group>"; };
+		42F7A1DCB44CC0504964EE68 /* connection_success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = connection_success.wav; sourceTree = "<group>"; };
+		4D8C83822BE65E1494C1BA42 /* sense_safety.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sense_safety.wav; sourceTree = "<group>"; };
+		5D95E25EAED5782BB9577F1E /* hush.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = hush.wav; sourceTree = "<group>"; };
+		5DE9D9164B72A5A1C373CB99 /* virtual_remote_click_up.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = virtual_remote_click_up.wav; sourceTree = "<group>"; };
+		5DF7ED23A0C9C0B4B78D9340 /* SS_beaconFound2_48k.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SS_beaconFound2_48k.wav; sourceTree = "<group>"; };
 		668CECA83ACC03A83C85A623 /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		67D0264180438E394FFF0AD8 /* calibration_success.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = calibration_success.wav; sourceTree = "<group>"; };
+		6A8E45B00E6B31D3C6C9FD6B /* virtual_remote_click_down.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = virtual_remote_click_down.wav; sourceTree = "<group>"; };
+		6F0430DB9B21379E3BCA0A38 /* information_alert.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = information_alert.wav; sourceTree = "<group>"; };
+		6F83A0C8062DC9F939341406 /* low_confidence.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = low_confidence.wav; sourceTree = "<group>"; };
+		75CB794F6E75E91D11A77E79 /* calibration_in_progress.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = calibration_in_progress.wav; sourceTree = "<group>"; };
 		86038AE1032E284E79B32AD6 /* iosApp.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9795345D375DB2DA39BFF6BA /* Travel_end_v2_spatial_48k.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Travel_end_v2_spatial_48k.wav; sourceTree = "<group>"; };
+		B2E371D76DAE4F7CD2FAA3CF /* Travel_reverse_v2_spatial_48k.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Travel_reverse_v2_spatial_48k.wav; sourceTree = "<group>"; };
+		B768E3595918515338960671 /* Travel_start_v2_spatial_48k.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Travel_start_v2_spatial_48k.wav; sourceTree = "<group>"; };
 		C117AD187833E2513BD2F553 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C37CBD2959CC0C50EF5D7DAE /* mode_enter.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = mode_enter.wav; sourceTree = "<group>"; };
 		CE8509E5A49E4A5CAAEB3ADB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D2124FCF3D3FA3BD6EEF93F4 /* SS_streetFound_48k.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = SS_streetFound_48k.wav; sourceTree = "<group>"; };
+		DAE44CF4D9C86213E8615448 /* flag_found.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = flag_found.wav; sourceTree = "<group>"; };
+		DFB88C2C9B850E0ABBAC2057 /* sense_mobility.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sense_mobility.wav; sourceTree = "<group>"; };
+		DFEED1EB99A2F52A9BFDC076 /* callouts_off.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = callouts_off.wav; sourceTree = "<group>"; };
+		EA68DA79CF33052DDCF932AA /* sense_location.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sense_location.wav; sourceTree = "<group>"; };
+		F27C0CE5404CC1C22F7D4278 /* app_launch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = app_launch.wav; sourceTree = "<group>"; };
 		F543015C899423D4B01CEB2E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FE46E8BE7F5C0D4E6C52A2AA /* offline.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = offline.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -28,6 +92,7 @@
 				CE8509E5A49E4A5CAAEB3ADB /* ContentView.swift */,
 				C117AD187833E2513BD2F553 /* Info.plist */,
 				668CECA83ACC03A83C85A623 /* iOSApp.swift */,
+				8AC3FADF480787D36FB0A878 /* Sounds */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -38,6 +103,45 @@
 				1DB4B685CAEE8BEFEBBAEF94 /* iosApp */,
 				94C98B8B3A2BFC1966447269 /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		8AC3FADF480787D36FB0A878 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				2C574BB3C2BBA256AE5306B2 /* 2.4_roadFinder_loop_rev2_wFades.wav */,
+				F27C0CE5404CC1C22F7D4278 /* app_launch.wav */,
+				42CBE46F65C3362D34774E54 /* Aug12_Experience_end_4c.wav */,
+				75CB794F6E75E91D11A77E79 /* calibration_in_progress.wav */,
+				67D0264180438E394FFF0AD8 /* calibration_success.wav */,
+				DFEED1EB99A2F52A9BFDC076 /* callouts_off.wav */,
+				1F36A4560A59DF7925DEEB86 /* callouts_on.wav */,
+				42F7A1DCB44CC0504964EE68 /* connection_success.wav */,
+				DAE44CF4D9C86213E8615448 /* flag_found.wav */,
+				283DCE14EBAC081B4EA68F21 /* hunt_complete.wav */,
+				5D95E25EAED5782BB9577F1E /* hush.wav */,
+				6F0430DB9B21379E3BCA0A38 /* information_alert.wav */,
+				27A94357014F1CC78914FC8B /* invalid_function.wav */,
+				6F83A0C8062DC9F939341406 /* low_confidence.wav */,
+				C37CBD2959CC0C50EF5D7DAE /* mode_enter.wav */,
+				4201157FFC9CE390162EF44E /* mode_exit.wav */,
+				FE46E8BE7F5C0D4E6C52A2AA /* offline.wav */,
+				25DD584361242C90CC360293 /* online.wav */,
+				EA68DA79CF33052DDCF932AA /* sense_location.wav */,
+				DFB88C2C9B850E0ABBAC2057 /* sense_mobility.wav */,
+				2CDF00E866BD6E5693D1EF7A /* sense_poi.wav */,
+				4D8C83822BE65E1494C1BA42 /* sense_safety.wav */,
+				5DF7ED23A0C9C0B4B78D9340 /* SS_beaconFound2_48k.wav */,
+				2057B6FF30E6E25B420B43BC /* SS_logo4_48k.wav */,
+				D2124FCF3D3FA3BD6EEF93F4 /* SS_streetFound_48k.wav */,
+				384035A23CE2F18C14204BDD /* street_non_1c.wav */,
+				9795345D375DB2DA39BFF6BA /* Travel_end_v2_spatial_48k.wav */,
+				15061C74D00EFE34988700A4 /* Travel_inter_v2_spatial_48k.wav */,
+				B2E371D76DAE4F7CD2FAA3CF /* Travel_reverse_v2_spatial_48k.wav */,
+				B768E3595918515338960671 /* Travel_start_v2_spatial_48k.wav */,
+				6A8E45B00E6B31D3C6C9FD6B /* virtual_remote_click_down.wav */,
+				5DE9D9164B72A5A1C373CB99 /* virtual_remote_click_up.wav */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 		94C98B8B3A2BFC1966447269 /* Products */ = {
@@ -105,7 +209,39 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3A23E9DF9B89BA3EEA828F6 /* 2.4_roadFinder_loop_rev2_wFades.wav in Resources */,
 				22EA1CB33A17DCC6FC82406D /* Assets.xcassets in Resources */,
+				FA5DC5B24D37986462D726EA /* Aug12_Experience_end_4c.wav in Resources */,
+				2E4D4B754F0413FAF6296F6E /* SS_beaconFound2_48k.wav in Resources */,
+				97B06478F69CBEA4581F4E59 /* SS_logo4_48k.wav in Resources */,
+				BB445A79986428BEFE434B76 /* SS_streetFound_48k.wav in Resources */,
+				1D6FF000677A4017EC9B1CBF /* Travel_end_v2_spatial_48k.wav in Resources */,
+				15EF5F4421C92584F06C98A3 /* Travel_inter_v2_spatial_48k.wav in Resources */,
+				7DB9BEBE3CA3CF9F03A16EEC /* Travel_reverse_v2_spatial_48k.wav in Resources */,
+				B44679FB977A60AE77543108 /* Travel_start_v2_spatial_48k.wav in Resources */,
+				76F62B79888BA91A450287B1 /* app_launch.wav in Resources */,
+				B7CAB891FC2D1A9005B631C7 /* calibration_in_progress.wav in Resources */,
+				5D07489F8F9DF4B1CDA3ACE2 /* calibration_success.wav in Resources */,
+				838F5E44D02A906C838F9833 /* callouts_off.wav in Resources */,
+				1A9E3D6C0DE9992087C436DD /* callouts_on.wav in Resources */,
+				218E7CBDF9B9485FE0624A32 /* connection_success.wav in Resources */,
+				AFF910437C9FADE358658A92 /* flag_found.wav in Resources */,
+				566BA84E19965AA3F6EEA34D /* hunt_complete.wav in Resources */,
+				466411D1B476EA79C5CC37E9 /* hush.wav in Resources */,
+				84D970FD8668C9E00B4C9462 /* information_alert.wav in Resources */,
+				CC057C4EBC16E29CBBB353F5 /* invalid_function.wav in Resources */,
+				430F33902D687502EC351E1F /* low_confidence.wav in Resources */,
+				C07B19A824515173C982E65B /* mode_enter.wav in Resources */,
+				18E8A62B92C9364C9E03CC32 /* mode_exit.wav in Resources */,
+				A2AB0B1D82AAAE33FB5546F9 /* offline.wav in Resources */,
+				28DB1ADBBD0196C823A81FAE /* online.wav in Resources */,
+				34E63E7A7605D0C24B597E36 /* sense_location.wav in Resources */,
+				61E91A4FC8A40B3CDC568051 /* sense_mobility.wav in Resources */,
+				7FC0E22882C21D8F88D9DF9E /* sense_poi.wav in Resources */,
+				76FB72C15EC179F6B7B7342D /* sense_safety.wav in Resources */,
+				1631675DCEC37D0773C97F98 /* street_non_1c.wav in Resources */,
+				A7605106C9CCCADEFB0831DD /* virtual_remote_click_down.wav in Resources */,
+				B5838969C3A6D731FB3941BC /* virtual_remote_click_up.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,6 +13,13 @@ targets:
       - iosApp
     info:
       path: iosApp/Info.plist
+      properties:
+        CADisableMinimumFrameDurationOnPhone: true
+        NSLocationWhenInUseUsageDescription: "Soundscape needs your location to provide audio navigation and describe your surroundings."
+        NSLocationAlwaysAndWhenInUseUsageDescription: "Soundscape needs your location to provide audio navigation even when the app is in the background."
+        UIBackgroundModes:
+          - audio
+          - location
     settings:
       FRAMEWORK_SEARCH_PATHS:
         - "$(inherited)"
