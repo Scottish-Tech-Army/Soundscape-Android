@@ -124,6 +124,27 @@ class IosSoundscapeService : GeoEngineListener {
 
     init {
         startGeoEngine()
+        observeAppLifecycle()
+    }
+
+    private fun observeAppLifecycle() {
+        val center = platform.Foundation.NSNotificationCenter.defaultCenter
+        center.addObserverForName(
+            platform.UIKit.UIApplicationDidBecomeActiveNotification,
+            `object` = null,
+            queue = null
+        ) { _ ->
+            println("App in FOREGROUND")
+            geoEngine.appInForeground = true
+        }
+        center.addObserverForName(
+            platform.UIKit.UIApplicationWillResignActiveNotification,
+            `object` = null,
+            queue = null
+        ) { _ ->
+            println("App NOT in FOREGROUND")
+            geoEngine.appInForeground = false
+        }
     }
 
     private fun startGeoEngine() {
