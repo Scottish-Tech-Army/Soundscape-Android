@@ -2,15 +2,22 @@ package org.scottishtecharmy.soundscape
 
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
-import org.scottishtecharmy.soundscape.locationprovider.IosDirectionProvider
-import org.scottishtecharmy.soundscape.locationprovider.IosLocationProvider
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 fun MainViewController() = ComposeUIViewController {
-    val locationProvider = remember { IosLocationProvider() }
-    val directionProvider = remember { IosDirectionProvider() }
+    val service = remember { IosSoundscapeService.getInstance() }
 
     App(
-        locationFlow = locationProvider.locationFlow,
-        directionFlow = directionProvider.orientationFlow,
+        locationFlow = service.getLocationFlow(),
+        directionFlow = service.getOrientationFlow(),
+        onStartBeacon = { lat, lng, name ->
+            service.startBeacon(LngLatAlt(lng, lat), name)
+        },
+        onStopBeacon = {
+            service.destroyBeacon()
+        },
+        onSpeak = { text ->
+            service.speakCallout(text)
+        },
     )
 }

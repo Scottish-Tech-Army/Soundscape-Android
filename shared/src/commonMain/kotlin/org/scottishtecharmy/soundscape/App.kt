@@ -2,8 +2,11 @@ package org.scottishtecharmy.soundscape
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -24,38 +27,58 @@ import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 import org.scottishtecharmy.soundscape.ui.theme.LocalAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.defaultAppButtonColors
 
+enum class AppScreen {
+    WELCOME,
+    HOME,
+}
+
 @Composable
 fun App(
     locationFlow: StateFlow<SoundscapeLocation?>? = null,
     directionFlow: StateFlow<DeviceDirection?>? = null,
+    onStartBeacon: ((Double, Double, String) -> Unit)? = null,
+    onStopBeacon: (() -> Unit)? = null,
+    onSpeak: ((String) -> Unit)? = null,
 ) {
     MaterialTheme {
         val buttonColors = defaultAppButtonColors(MaterialTheme.colorScheme)
         CompositionLocalProvider(LocalAppButtonColors provides buttonColors) {
-            var onboarded by remember { mutableStateOf(false) }
+            var currentScreen by remember { mutableStateOf(AppScreen.WELCOME) }
 
-            if (!onboarded) {
-                Welcome(onNavigate = { onboarded = true })
-            } else {
-                LocationScreen(locationFlow, directionFlow)
+            when (currentScreen) {
+                AppScreen.WELCOME -> {
+                    Welcome(onNavigate = { currentScreen = AppScreen.HOME })
+                }
+                AppScreen.HOME -> {
+                    HomeScreen(
+                        locationFlow = locationFlow,
+                        directionFlow = directionFlow,
+                        onStartBeacon = onStartBeacon,
+                        onStopBeacon = onStopBeacon,
+                        onSpeak = onSpeak,
+                    )
+                }
             }
         }
     }
 }
 
 @Composable
-private fun LocationScreen(
+private fun HomeScreen(
     locationFlow: StateFlow<SoundscapeLocation?>?,
     directionFlow: StateFlow<DeviceDirection?>?,
+    onStartBeacon: ((Double, Double, String) -> Unit)?,
+    onStopBeacon: (() -> Unit)?,
+    onSpeak: ((String) -> Unit)?,
 ) {
     val location by locationFlow?.collectAsState() ?: remember { mutableStateOf(null) }
     val direction by directionFlow?.collectAsState() ?: remember { mutableStateOf(null) }
 
     Surface(modifier = Modifier.fillMaxSize()) {
         Column(
-            modifier = Modifier.fillMaxSize().padding(32.dp),
+            modifier = Modifier.fillMaxSize().padding(24.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+            verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             Text(
                 text = "Soundscape",
@@ -71,7 +94,6 @@ private fun LocationScreen(
                     text = "$latStr, $lonStr",
                     style = MaterialTheme.typography.titleMedium,
                     color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.padding(top = 16.dp)
                 )
                 if (loc.hasAccuracy) {
                     Text(
@@ -85,7 +107,6 @@ private fun LocationScreen(
                     text = "Waiting for location...",
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.padding(top = 16.dp)
                 )
             }
 
@@ -94,8 +115,34 @@ private fun LocationScreen(
                     text = "Heading: ${direction!!.headingDegrees.toInt()}\u00B0",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier.padding(top = 8.dp)
                 )
+            }
+
+            // Action buttons
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(top = 16.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp, Alignment.CenterHorizontally)
+            ) {
+                if (onSpeak != null) {
+                    Button(onClick = { onSpeak("Hello from Soundscape") }) {
+                        Text("Speak")
+                    }
+                }
+
+                if (onStartBeacon != null && location != null) {
+                    Button(onClick = {
+                        val loc = location!!
+                        onStartBeacon(loc.latitude, loc.longitude, "Test Beacon")
+                    }) {
+                        Text("Start Beacon")
+                    }
+                }
+
+                if (onStopBeacon != null) {
+                    Button(onClick = { onStopBeacon() }) {
+                        Text("Stop Beacon")
+                    }
+                }
             }
         }
     }
