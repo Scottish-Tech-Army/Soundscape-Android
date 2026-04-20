@@ -66,24 +66,14 @@ class DiscretePlayer(
     }
 
     /**
-     * Play pre-rendered TTS buffers through the audio graph.
+     * Schedule pre-rendered TTS buffers on an already-connected layer.
+     * The layer must be attached, connected, and playing before calling this.
      */
-    fun playTtsBuffers(
-        buffers: List<AVAudioPCMBuffer>,
-        engine: AVAudioEngine,
-        targetNode: AVAudioNode
-    ) {
+    fun scheduleTtsBuffers(buffers: List<AVAudioPCMBuffer>) {
         if (buffers.isEmpty()) {
             notifyComplete()
             return
         }
-
-        val firstBuffer = buffers.first()
-        layer.format = firstBuffer.format
-        layer.attach(engine)
-        layer.connect(targetNode, firstBuffer.format)
-        layer.play()
-
         for (i in buffers.indices) {
             val isLast = (i == buffers.lastIndex)
             if (isLast) {

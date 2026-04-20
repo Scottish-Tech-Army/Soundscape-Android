@@ -10,11 +10,8 @@ import platform.Foundation.NSURL
 
 /**
  * Continuous looped audio player for beacons.
- * Port of DynamicAudioPlayer.swift (simplified — no beat-aligned switching initially).
- *
  * Pre-loads all WAV variants for the selected beacon type, then loops the
  * appropriate asset based on the user's angular relationship to the beacon.
- * The asset is re-selected on each geometry update.
  */
 @OptIn(ExperimentalForeignApi::class)
 class BeaconPlayer(
@@ -30,8 +27,7 @@ class BeaconPlayer(
     private var muted = false
 
     /**
-     * Load all WAV assets for this beacon type from the app bundle.
-     * Returns false if any required asset is missing.
+     * Load all WAV assets using each file's processingFormat (mono Float32).
      */
     fun loadAssets(): Boolean {
         for (assetName in beaconType.assets) {
@@ -53,14 +49,12 @@ class BeaconPlayer(
             buffers[assetName] = buffer
         }
 
-        // Create a silent buffer matching the first asset's format and length
         val firstBuffer = buffers.values.firstOrNull() ?: return false
         silentBuffer = AVAudioPCMBuffer(
             pCMFormat = firstBuffer.format,
             frameCapacity = firstBuffer.frameLength
         )?.also {
             it.frameLength = firstBuffer.frameLength
-            // Buffer is zero-initialized = silence
         }
 
         layer.format = firstBuffer.format
@@ -68,22 +62,14 @@ class BeaconPlayer(
     }
 
     /**
-     * Start playing the beacon through the audio engine.
+     * Start playing after the layer has been attached and connected externally.
      */
-    fun start(engine: AVAudioEngine, targetNode: AVAudioNode) {
-        layer.attach(engine)
-        layer.connect(targetNode, layer.format)
+    fun startPlaying() {
         layer.play()
         isPlaying = true
-
-        // Schedule initial buffer (silence until first geometry update picks the right asset)
         scheduleCurrentAsset()
     }
 
-    /**
-     * Update the beacon based on the listener's current position and heading.
-     * Re-selects the appropriate asset based on angular relationship.
-     */
     fun updateForGeometry(
         listenerLatitude: Double,
         listenerLongitude: Double,
@@ -100,7 +86,7 @@ class BeaconPlayer(
         val newAssetName = if (selection != null) {
             beaconType.assets.getOrNull(selection.assetIndex)
         } else {
-            null // silence
+            null
         }
 
         val volume = selection?.volume ?: 0f
@@ -110,20 +96,14 @@ class BeaconPlayer(
             scheduleCurrentAsset()
         }
 
-        // Apply volume (respecting mute state)
         layer.volume = if (muted) 0f else volume
     }
 
-    /**
-     * Schedule the current asset buffer as a loop.
-     */
     private fun scheduleCurrentAsset() {
-        // Stop current playback to switch buffers
         layer.player.stop()
 
         val buffer = currentAssetName?.let { buffers[it] } ?: silentBuffer ?: return
 
-        // Schedule as looping
         layer.player.scheduleBuffer(
             buffer,
             atTime = null,

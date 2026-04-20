@@ -4,6 +4,7 @@ import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.cValue
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import platform.AVFAudio.AVAudio3DAngularOrientation
+import platform.AVFAudio.AVAudioChannelLayout
 import platform.AVFAudio.AVAudioEngine
 import platform.AVFAudio.AVAudioEnvironmentNode
 import platform.AVFAudio.AVAudioFormat
@@ -11,6 +12,7 @@ import platform.AVFAudio.AVAudioSession
 import platform.AVFAudio.AVAudioSessionCategoryOptionMixWithOthers
 import platform.AVFAudio.AVAudioSessionCategoryPlayback
 import platform.AVFAudio.setActive
+import platform.CoreAudioTypes.kAudioChannelLayoutTag_Stereo
 
 /**
  * iOS audio engine implementing the KMP AudioEngine interface.
@@ -94,23 +96,50 @@ class IosAudioEngine : AudioEngine {
         }
     }
 
-    private fun getOrCreateEnvironmentNode(format: AVAudioFormat?): AVAudioEnvironmentNode {
-        val sampleRate = format?.sampleRate ?: 48000.0
+    /**
+     * Matches AudioEngine.outputFormat() from the original iOS app:
+     * Creates a stereo format with a channel layout at the given sample rate.
+     */
+    private fun outputFormat(sampleRate: Double): AVAudioFormat? {
+        val layout = AVAudioChannelLayout(layoutTag = kAudioChannelLayoutTag_Stereo) ?: return null
+        return AVAudioFormat(standardFormatWithSampleRate = sampleRate, channelLayout = layout)
+    }
 
-        // Look for existing node with matching sample rate
+    /**
+     * Connect a layer to the 3D audio environment, matching the original iOS app's
+     * connectLayer(_:for:) method. Handles:
+     * - Finding/creating the environment node
+     * - Disconnecting the layer first
+     * - Connecting layer → environment (with source format)
+     * - Connecting environment → mainMixer (with stereo output format)
+     */
+    fun connectLayerToEnvironment(layer: AudioLayer) {
+        val format = layer.format
+        val envNode = getOrCreateEnvironmentNode(format)
+
+        // Disconnect existing connections (matching original)
+        layer.disconnect()
+
+        // Connect layer → environment (uses the file's processingFormat)
+        layer.connect(envNode, format)
+
+        // Connect environment → mainMixer with stereo layout format at source sample rate
+        val sampleRate = format?.sampleRate ?: engine.outputNode.outputFormatForBus(0u).sampleRate
+        val envOutputFmt = outputFormat(sampleRate)
+        engine.connect(envNode, to = engine.mainMixerNode, format = envOutputFmt)
+    }
+
+    private fun getOrCreateEnvironmentNode(format: AVAudioFormat?): AVAudioEnvironmentNode {
+        // Reuse existing environment node
         for (node in environmentNodes) {
-            val outputFormat = engine.outputNode.inputFormatForBus(0u)
-            // Reuse any existing environment node for simplicity
             return node
         }
 
         // Create new environment node
         val envNode = AVAudioEnvironmentNode()
         engine.attachNode(envNode)
-        engine.connect(envNode, to = engine.mainMixerNode, format = null)
-
-        // Configure distance attenuation
         envNode.distanceAttenuationParameters.referenceDistance = DEFAULT_RENDERING_DISTANCE.toFloat()
+        envNode.outputVolume = 1.0f
 
         // Apply current listener heading
         listenerHeading?.let { heading ->
@@ -215,41 +244,47 @@ class IosAudioEngine : AudioEngine {
         currentDiscreteHandle = sound.handle
 
         val is3D = sound.audioType != AudioType.STANDARD
-        val targetNode = if (is3D) {
-            getOrCreateEnvironmentNode(null)
-        } else {
-            engine.mainMixerNode
-        }
 
         val player = DiscretePlayer(onComplete = {
-            // Dispatch off the audio render thread to avoid deadlock
-            // when mutating the audio graph (disconnect/detach)
             platform.darwin.dispatch_async(platform.darwin.dispatch_get_main_queue()) {
                 onDiscreteComplete(sound.handle)
             }
         })
 
-        // Set 3D position if needed
-        val position = positionForType(sound.audioType, sound.latitude, sound.longitude, sound.heading)
-        if (position != null) {
-            player.layer.position = position
-        }
-
         activePlayers[sound.handle] = PlayerEntry.Discrete(player)
 
         if (sound.isTts) {
-            ttsRenderer.speakDirect(sound.text) {
-                // Called when TTS finishes speaking
+            // Render TTS to PCM buffers, then connect and play through the audio graph
+            ttsRenderer.render(sound.text) { buffers ->
                 platform.darwin.dispatch_async(platform.darwin.dispatch_get_main_queue()) {
-                    activePlayers.remove(sound.handle)
-                    if (currentDiscreteHandle == sound.handle) {
-                        currentDiscreteHandle = null
-                        playNextQueued()
+                    if (buffers.isNotEmpty()) {
+                        // Attach the layer
+                        player.layer.format = buffers.first().format
+                        player.layer.attach(engine)
+
+                        if (is3D) {
+                            connectLayerToEnvironment(player.layer)
+                        } else {
+                            player.layer.connect(engine.mainMixerNode)
+                        }
+
+                        val position = positionForType(sound.audioType, sound.latitude, sound.longitude, sound.heading)
+                        if (position != null) player.layer.position = position
+
+                        player.layer.play()
+                        player.scheduleTtsBuffers(buffers)
+                    } else {
+                        onDiscreteComplete(sound.handle)
                     }
                 }
             }
         } else {
+            // For earcons: load, attach, connect, play
+            val targetNode = if (is3D) getOrCreateEnvironmentNode(null) else engine.mainMixerNode
             player.playEarcon(sound.assetName, engine, targetNode)
+
+            val position = positionForType(sound.audioType, sound.latitude, sound.longitude, sound.heading)
+            if (position != null) player.layer.position = position
         }
     }
 
@@ -271,6 +306,9 @@ class IosAudioEngine : AudioEngine {
     }
 
     override fun clearTextToSpeechQueue() {
+        // Cancel any in-progress TTS rendering
+        ttsRenderer.cancel()
+
         // Remove TTS entries from queue
         discreteQueue.removeAll { it.isTts }
 
@@ -282,7 +320,6 @@ class IosAudioEngine : AudioEngine {
                 entry.player.stop()
             }
         }
-        ttsRenderer.stopDirect()
     }
 
     override fun getQueueDepth(): Long {
@@ -308,8 +345,9 @@ class IosAudioEngine : AudioEngine {
             return handle
         }
 
-        val envNode = getOrCreateEnvironmentNode(player.layer.format)
-        player.start(engine, envNode)
+        player.layer.attach(engine)
+        connectLayerToEnvironment(player.layer)
+        player.startPlaying()
         player.setMuted(beaconMuted)
 
         // Apply initial geometry
