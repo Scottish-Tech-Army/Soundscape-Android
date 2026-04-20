@@ -279,12 +279,24 @@ class IosAudioEngine : AudioEngine {
                 }
             }
         } else {
-            // For earcons: load, attach, connect, play
-            val targetNode = if (is3D) getOrCreateEnvironmentNode(null) else engine.mainMixerNode
-            player.playEarcon(sound.assetName, engine, targetNode)
+            // For earcons: load the WAV, then attach/connect/play
+            if (!player.loadEarcon(sound.assetName)) {
+                onDiscreteComplete(sound.handle)
+                return
+            }
+
+            player.layer.attach(engine)
+            if (is3D) {
+                connectLayerToEnvironment(player.layer)
+            } else {
+                player.layer.connect(engine.mainMixerNode)
+            }
 
             val position = positionForType(sound.audioType, sound.latitude, sound.longitude, sound.heading)
             if (position != null) player.layer.position = position
+
+            player.layer.play()
+            player.scheduleEarconBuffer()
         }
     }
 

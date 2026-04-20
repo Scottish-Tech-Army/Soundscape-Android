@@ -19,19 +19,17 @@ class DiscretePlayer(
 ) {
     val layer = AudioLayer()
     private var completed = false
+    private var earconBuffer: AVAudioPCMBuffer? = null
 
     /**
-     * Load and play a WAV file from the app bundle.
+     * Load a WAV file from the app bundle into a buffer.
+     * Sets layer.format but does NOT attach/connect/play.
+     * Call scheduleEarconBuffer() after connecting the layer.
      */
-    fun playEarcon(
-        assetName: String,
-        engine: AVAudioEngine,
-        targetNode: AVAudioNode
-    ): Boolean {
+    fun loadEarcon(assetName: String): Boolean {
         val path = NSBundle.mainBundle.pathForResource(assetName, "wav")
             ?: run {
                 println("DiscretePlayer: WAV not found: $assetName")
-                notifyComplete()
                 return false
             }
 
@@ -39,30 +37,33 @@ class DiscretePlayer(
         val audioFile = AVAudioFile(forReading = url, error = null)
             ?: run {
                 println("DiscretePlayer: Failed to load audio file: $assetName")
-                notifyComplete()
                 return false
             }
 
         val processingFormat = audioFile.processingFormat
         val frameCount = audioFile.length().toUInt()
         val buffer = AVAudioPCMBuffer(pCMFormat = processingFormat, frameCapacity = frameCount)
-            ?: run {
-                notifyComplete()
-                return false
-            }
+            ?: return false
 
         audioFile.readIntoBuffer(buffer, error = null)
 
         layer.format = processingFormat
-        layer.attach(engine)
-        layer.connect(targetNode, processingFormat)
-        layer.play()
+        earconBuffer = buffer
+        return true
+    }
 
+    /**
+     * Schedule the loaded earcon buffer for playback.
+     * The layer must be attached, connected, and playing before calling this.
+     */
+    fun scheduleEarconBuffer() {
+        val buffer = earconBuffer ?: run {
+            notifyComplete()
+            return
+        }
         layer.player.scheduleBuffer(buffer, completionHandler = {
             notifyComplete()
         })
-
-        return true
     }
 
     /**
