@@ -30,7 +30,10 @@ import org.scottishtecharmy.soundscape.locationprovider.IosDirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.IosLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
+import org.scottishtecharmy.soundscape.network.IosFileDownloader
 import org.scottishtecharmy.soundscape.network.KmpPhotonSearch
+import org.scottishtecharmy.soundscape.network.ManifestClient
+import org.scottishtecharmy.soundscape.network.OfflineMapManager
 import org.scottishtecharmy.soundscape.network.createIosPhotonSearchClient
 import org.scottishtecharmy.soundscape.network.createIosVectorTileClient
 import org.scottishtecharmy.soundscape.preferences.IosPreferencesProvider
@@ -59,6 +62,21 @@ class IosSoundscapeService : GeoEngineListener {
     // Database
     val routeDao: RouteDao by lazy {
         MarkersAndRoutesDatabaseProvider.getInstance().routeDao()
+    }
+
+    // Offline maps
+    private val documentsPath = platform.Foundation.NSHomeDirectory() + "/Documents"
+    val offlineMapManager by lazy {
+        val manifestClient = ManifestClient(
+            io.ktor.client.HttpClient(io.ktor.client.engine.darwin.Darwin) { expectSuccess = false },
+            EXTRACT_PROVIDER_URL
+        )
+        OfflineMapManager(
+            manifestClient = manifestClient,
+            fileDownloader = IosFileDownloader(),
+            extractBasePath = documentsPath,
+            extractBaseUrl = EXTRACT_PROVIDER_URL,
+        )
     }
 
     // Grid state flow for UI
@@ -240,6 +258,8 @@ class IosSoundscapeService : GeoEngineListener {
             get() = platform.Foundation.NSBundle.mainBundle.objectForInfoDictionaryKey("TileProviderURL") as? String ?: ""
         private val SEARCH_PROVIDER_URL: String
             get() = platform.Foundation.NSBundle.mainBundle.objectForInfoDictionaryKey("SearchProviderURL") as? String ?: ""
+        private val EXTRACT_PROVIDER_URL: String
+            get() = platform.Foundation.NSBundle.mainBundle.objectForInfoDictionaryKey("ExtractProviderURL") as? String ?: ""
 
         private var INSTANCE: IosSoundscapeService? = null
 

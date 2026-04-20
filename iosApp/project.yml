@@ -28,6 +28,7 @@ targets:
         UILaunchScreen: {}
         TileProviderURL: "$(TILE_PROVIDER_URL)"
         SearchProviderURL: "$(SEARCH_PROVIDER_URL)"
+        ExtractProviderURL: "$(EXTRACT_PROVIDER_URL)"
     settings:
       FRAMEWORK_SEARCH_PATHS:
         - "$(inherited)"
