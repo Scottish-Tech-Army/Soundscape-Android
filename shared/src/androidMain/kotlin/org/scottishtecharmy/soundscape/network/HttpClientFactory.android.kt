@@ -6,10 +6,6 @@ import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.ResponseBody.Companion.toResponseBody
-import okio.GzipSource
-import okio.buffer
-import org.scottishtecharmy.soundscape.geoengine.MANIFEST_NAME
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -47,7 +43,6 @@ fun createAndroidManifestClient(
 ): ManifestClient {
     val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(userAgentInterceptor(userAgent))
-        .addInterceptor(manifestGzipInterceptor())
         .build()
     val httpClient = HttpClient(OkHttp) {
         engine { preconfigured = okHttpClient }
@@ -72,21 +67,6 @@ fun createAndroidPhotonSearchClient(
     return PhotonSearchClient(httpClient, baseUrl)
 }
 
-private fun manifestGzipInterceptor() = Interceptor { chain ->
-    val response = chain.proceed(chain.request())
-    if (response.isSuccessful && response.request.url.toString().endsWith(MANIFEST_NAME)) {
-        val responseBody = response.body
-        val gzipSource = GzipSource(responseBody.source())
-        val decompressed = gzipSource.buffer().readUtf8()
-        gzipSource.close()
-        response.newBuilder()
-            .body(decompressed.toResponseBody(responseBody.contentType()))
-            .removeHeader("Content-Length")
-            .build()
-    } else {
-        response
-    }
-}
 
 private fun cacheControlInterceptor(hasNetwork: () -> Boolean) = Interceptor { chain ->
     val request = chain.request()

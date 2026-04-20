@@ -20,7 +20,6 @@ class ManifestClient(
         if (!response.status.isSuccess()) return null
 
         // The manifest is gzip-compressed (.gz) — decompress before returning as text.
-        // On Android, an OkHttp interceptor handles this, but on iOS we do it here.
         return if (MANIFEST_NAME.endsWith(".gz")) {
             val bytes = response.readRawBytes()
             val source = Buffer().write(bytes)
