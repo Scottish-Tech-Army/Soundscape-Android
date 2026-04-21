@@ -85,6 +85,20 @@ class IosSoundscapeService : GeoEngineListener {
     private val _gridStateFlow = MutableStateFlow<GridState?>(null)
     val gridStateFlow: StateFlow<GridState?> = _gridStateFlow.asStateFlow()
 
+    // Markers UI state
+    private val _markersUiState = MutableStateFlow(
+        org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState(markers = true)
+    )
+    val markersUiState: StateFlow<org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState>
+        = _markersUiState.asStateFlow()
+
+    // Routes UI state
+    private val _routesUiState = MutableStateFlow(
+        org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState(markers = false)
+    )
+    val routesUiState: StateFlow<org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState>
+        = _routesUiState.asStateFlow()
+
     // Places Nearby state
     private val _placesNearbyUiState = MutableStateFlow(PlacesNearbyUiState())
     val placesNearbyUiState: StateFlow<PlacesNearbyUiState> = _placesNearbyUiState.asStateFlow()
@@ -126,6 +140,7 @@ class IosSoundscapeService : GeoEngineListener {
         startGeoEngine()
         observeAppLifecycle()
         startHomeStateUpdates()
+        startDatabaseObservers()
     }
 
     private fun startHomeStateUpdates() {
@@ -148,6 +163,37 @@ class IosSoundscapeService : GeoEngineListener {
                 _homeState.value = _homeState.value.copy(
                     heading = direction?.headingDegrees ?: 0f,
                 )
+            }
+        }
+    }
+
+    private fun startDatabaseObservers() {
+        // Observe markers from database
+        scope.launch {
+            routeDao.getAllMarkersFlow().collect { markers ->
+                val entries = markers.map { marker ->
+                    LocationDescription(
+                        name = marker.name,
+                        description = marker.fullAddress,
+                        location = LngLatAlt(marker.longitude, marker.latitude),
+                        databaseId = marker.markerId,
+                    )
+                }
+                _markersUiState.value = _markersUiState.value.copy(entries = entries)
+            }
+        }
+
+        // Observe routes from database
+        scope.launch {
+            routeDao.getAllRoutesFlow().collect { routes ->
+                val entries = routes.map { route ->
+                    LocationDescription(
+                        name = route.name,
+                        location = LngLatAlt(0.0, 0.0), // Routes don't have a single location
+                        databaseId = route.routeId,
+                    )
+                }
+                _routesUiState.value = _routesUiState.value.copy(entries = entries)
             }
         }
     }
@@ -275,8 +321,8 @@ class IosSoundscapeService : GeoEngineListener {
                     latitude = locationDescription.location.latitude
                 )
                 routeDao.insertMarker(marker)
-                audioEngine.createTextToSpeech(
-                    "Marker saved",
+                audioEngine.createEarcon(
+                    "file:///android_asset/earcons/sense_poi.wav",
                     org.scottishtecharmy.soundscape.audio.AudioType.STANDARD
                 )
             } catch (e: Exception) {
