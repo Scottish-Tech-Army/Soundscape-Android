@@ -286,8 +286,8 @@
     <string name="first_launch_callouts_example_1">कैफ़े</string>
     <string name="first_launch_callouts_example_3">मुख्य सड़क बाएँ जाती है</string>
     <string name="first_launch_callouts_example_4">मुख्य सड़क दाएँ जाती है</string>
-    <string name="first_launch_permissions_title">Soundscape के साथ नेविगेट करना</string>
-    <string name="first_launch_permissions_message">Soundscape के साथ नेविगेट करते समय आपको एक ऑडियो बीकन द्वारा मार्गदर्शन किया जाएगा। ऐसा करने के लिए, Soundscape को आपसे निम्नलिखित अनुमतियाँ सक्षम करने की आवश्यकता है:</string>
+    <string name="first_launch_permissions_title">ऐप अनुमतियाँ</string>
+    <string name="first_launch_permissions_message">Soundscape को चलाने के लिए कुछ अनुमतियाँ आवश्यक हैं। ये अनुमतियाँ फोन के स्थान से अपडेट होने की अनुमति देती हैं, भले ही फोन लॉक हो। कृपया नीचे दी गई प्रत्येक अनुमति पर टैप करें और संकेत मिलने पर उन्हें सक्षम करें:</string>
     <string name="first_launch_permissions_location">सटीक स्थान के साथ स्थान सेवाएँ</string>
     <string name="first_launch_permissions_motion">मोशन और फ़िटनेस</string>
     <string name="first_launch_permissions_required">यह अनुमति आवश्यक है</string>
@@ -498,7 +498,7 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">नई रिलीज़ की जानकारी</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">नई रिलीज़ डायलॉग बंद करें</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">ओपन सोर्स लाइसेंस</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nइस रिलीज़ में दो नई सुविधाएँ शामिल हैं जो फ़ोन लॉक होने पर भी ऐप का रिमोट नियंत्रण करने की अनुमति देती हैं। इसका अर्थ है कि आप फ़ोन को अपनी जेब में रखकर भी ऐप की मुख्य सुविधाओं को नियंत्रित कर सकते हैं।\n\nदोनों रिमोट‑कंट्रोल विधियाँ ब्लूटूथ मीडिया नियंत्रण बटनों का उपयोग करती हैं — या तो आपके हेडफ़ोन पर मौजूद बटन या आप अपने हाथ या जेब में रखने के लिए छोटे रिमोट कंट्रोल भी खरीद सकते हैं। रिमोट नियंत्रण मोड *सेटिंग्स/मीडिया नियंत्रण* सेक्शन से चुना जाता है और आप *\"वॉइस कमांड\"* चुन सकते हैं ताकि आप ऐप से बात कर सकें, या *\"ऑडियो मेनू\"* चुन सकते हैं जहाँ आपको विकल्पों के साथ मेनू पढ़कर सुनाया जाता है जिसे आप चुनते हैं। *\"मूल मोड\"* का मतलब है कि ब्लूटूथ बटन पिछली रिलीज़ की तरह ही काम करेंगे।\n\nवॉइस कमांड मोड में, अपने हेडफ़ोन पर प्ले/पॉज़ बटन दबाने पर ऐप वाणी सुनना शुरू कर देता है और इसके संकेत के लिए आपको एक छोटा सा ध्वनि संकेत सुनाई देगा। यदि आप *\"Help\"* कहेंगे तो यह उपयोग करने के लिए उपलब्ध कमांड की सूची बताएगा। उसके बाद आप बटन फिर से दबाकर अन्य कमांड आज़मा सकते हैं। दुर्भाग्यवश, Android स्पीच रिकॉग्निशन सभी भाषाओं का समर्थन नहीं करता और यह सभी फ़ोन में उपलब्ध भी नहीं है।\n\nवॉइस कमांड मोड की मुख्य कठिनाई यह है कि कुछ हेडफ़ोन दूसरों की तुलना में माइक्रोफ़ोन चालू करने में अधिक समय लेते हैं। इसका मतलब है कि प्ले/पॉज़ बटन टैप करने के बाद आपको बोलने से पहले 5 सेकंड तक प्रतीक्षा करनी पड़ सकती है। यह जानने के लिए कि कितना समय लगता है, सबसे अच्छा तरीका यह है कि प्ले/पॉज़ टैप करें और फिर 1 से 10 तक गिनती करें। फ़ोन को यह बताना चाहिए कि उसने कौन‑सी वाणी पहचानी और जो संख्या वह पहली बार पहचानता है वह वह है जिससे पहचान शुरू हुई। इसका उपयोग यह सीखने में किया जा सकता है कि बोलने से पहले कितना इंतज़ार करना है। कुछ हेडफ़ोन माइक्रोफ़ोन चालू होने पर स्पष्ट ध्वनि देते हैं जो इसे आसान बनाती है, लेकिन अन्य बिल्कुल भी ध्वनि नहीं करते। दुर्भाग्यवश, इसके लिए अभ्यास की आवश्यकता हो सकती है।\n\nदूसरा नया रिमोट मोड ऑडियो मेनू है जो सभी भाषाओं में और सभी फ़ोन पर काम करेगा। नेक्स्ट/प्रीवियस मीडिया कंट्रोल बटन मेनू के भीतर विकल्पों के बीच आगे और पीछे जाते हैं। प्ले/पॉज़ बटन फिर वर्तमान विकल्प का चयन करता है। एक शीर्ष‑स्तरीय मेनू होता है और फिर एक परत सब‑मेनू की होती है जो समान कमांडों को समूहित करती है।\n\nये सुविधाएँ अभी बहुत नई हैं, और हम वास्तव में यह जानना चाहेंगे कि क्या ये अच्छी तरह काम कर रही हैं और आप किन अन्य कमांड्स की अपेक्षा रखेंगें।\n\nकृपया मुख्य मेनू में *\"सहायता से संपर्क करें\"* विकल्प के माध्यम से किसी भी समस्या की रिपोर्ट करें, चाहे वह कितनी ही छोटी क्यों न हो।\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nयह Soundscape का पहला प्रोडक्शन रिलीज़ है। यदि आप ऐप में नए हैं, तो आप इसके बारे में और जानकारी *सहायता* स्क्रीन से प्राप्त कर सकते हैं या *ट्यूटोरियल* लेकर भी जान सकते हैं। ये दोनों विकल्प मुख्य मेनू में उपलब्ध हैं।\n\nहम अभी भी ऐप में सुधार हेतु लगातार काम कर रहे हैं, इसलिए कृपया किसी भी समस्या की रिपोर्ट करें—भले ही वह कितनी भी छोटी क्यों न हो—मुख्य मेनू में उपलब्ध *सहायता से संपर्क करें* विकल्प के माध्यम से।\n</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape नवीन ऑडियो-आधारित तकनीक के उपयोग की खोज करता है ताकि लोगों को अपने आसपास की बेहतर जागरूकता बनाने में सक्षम बनाया जा सके, जिससे वे अधिक आत्मविश्वासी और सशक्त होकर घूम-फिर सकें।</string>
     <string name="osm_office_building" tools:ignore="MissingTranslation">कार्यालय भवन</string>
     <string name="osm_school_building" tools:ignore="MissingTranslation">विद्यालय भवन</string>
@@ -1355,4 +1355,14 @@
     <string name="relative_left_right_direction_behind_left">पीछे बाएँ</string>
     <string name="relative_left_right_direction_behind_right">पीछे दाएँ</string>
     <string name="relative_left_right_direction_behind">पीछे</string>
+    <string name="settings_collapse_section">अनुभाग संकुचित करें</string>
+    <string name="settings_expand_section">अनुभाग विस्तारित करें</string>
+    <string name="settings_collapsed">संकुचित</string>
+    <string name="settings_expanded">विस्तारित</string>
+    <string name="ui_grant_permission">अनुमति दें</string>
+    <string name="copyright_notices">इन शानदार तृतीय‑पक्ष लाइब्रेरी और डेटा के बिना Soundscape संभव नहीं होता। उनके लाइसेंस देखने के लिए लिंक पर क्लिक करें:</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) Soundscape में उपयोग होने वाले मैपिंग और ऑडियो के सभी भू‑आंकिक (geo) डेटा प्रदान करते हैं।</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) का उपयोग उन मैपिंग टाइल्स को उत्पन्न करने के लिए किया जाता है जिनका हम उपयोग करते हैं।</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) का उपयोग 3D ऑडियो उत्पन्न करने के लिए किया जाता है, और इसे उपयोग के लिए [Apache 2.0 लाइसेंस](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) के अंतर्गत उपलब्ध कराया गया है।</string>
+    <string name="trademark_disclaimer">सभी तृतीय‑पक्ष उत्पादों, कंपनी नामों और लोगो ट्रेडमार्क या पंजीकृत ट्रेडमार्क हैं और अपने‑अपने धारकों की संपत्ति बने रहते हैं।</string>
 </resources>
