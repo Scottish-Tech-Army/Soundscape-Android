@@ -29,6 +29,7 @@ fun MainViewController() = ComposeUIViewController {
             onSpeak = { text ->
                 service.speakCallout(text)
             },
+            onSearch = { query -> service.search(query) },
             onMyLocation = { service.myLocation() },
             onWhatsAroundMe = { service.whatsAroundMe() },
             onAheadOfMe = { service.aheadOfMe() },

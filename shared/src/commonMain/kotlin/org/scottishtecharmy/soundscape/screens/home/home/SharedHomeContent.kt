@@ -29,8 +29,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.stringResource
+import org.scottishtecharmy.soundscape.components.MainSearchBar
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeState
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.resources.*
 
@@ -42,9 +44,21 @@ fun SharedHomeContent(
     onRouteSkipNext: () -> Unit = {},
     onRouteMute: () -> Unit = {},
     onRouteStop: () -> Unit = {},
+    onSearch: (String) -> Unit = {},
+    onSearchItemClick: (LocationDescription) -> Unit = {},
     onMapLongClick: ((LngLatAlt) -> Boolean)? = null,
 ) {
     Column(modifier = modifier.fillMaxSize()) {
+        // Search bar
+        MainSearchBar(
+            results = homeState.searchItems ?: emptyList(),
+            onTriggerSearch = onSearch,
+            onItemClick = onSearchItemClick,
+            userLocation = homeState.location,
+            isSearching = homeState.searchInProgress,
+            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+        )
+
         // Route player card (if route is active)
         val routeData = homeState.currentRouteData
         if (routeData.routeData != null) {

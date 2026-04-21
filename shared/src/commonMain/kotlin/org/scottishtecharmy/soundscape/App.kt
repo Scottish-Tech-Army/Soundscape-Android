@@ -73,6 +73,7 @@ data class AppCallbacks(
     val onRouteSkipPrevious: () -> Unit = {},
     val onRouteMute: () -> Unit = {},
     val onRouteStop: () -> Unit = {},
+    val onSearch: (String) -> Unit = {},
     val onPlacesNearbyClickFolder: (String, String) -> Unit = { _, _ -> },
     val onPlacesNearbyClickBack: () -> Unit = {},
     val onOfflineMapsRefresh: () -> Unit = {},
@@ -132,6 +133,12 @@ fun App(
                         onRouteSkipNext = callbacks.onRouteSkipNext,
                         onRouteMute = callbacks.onRouteMute,
                         onRouteStop = callbacks.onRouteStop,
+                        onSearch = callbacks.onSearch,
+                        onSearchItemClick = { desc ->
+                            selectedLocation = desc
+                            previousScreen = Screen.HOME
+                            screen = Screen.LOCATION_DETAILS
+                        },
                     )
                 }
 

@@ -258,6 +258,24 @@ class IosSoundscapeService : GeoEngineListener {
     override fun getStreetPreviewBestChoice(): StreetPreviewChoice? = null
     override val menuActive: Boolean = false
 
+    // --- Search ---
+
+    fun search(query: String) {
+        scope.launch {
+            _homeState.value = _homeState.value.copy(searchInProgress = true, searchItems = null)
+            try {
+                val results = geoEngine.searchResult(query)
+                _homeState.value = _homeState.value.copy(
+                    searchInProgress = false,
+                    searchItems = results,
+                )
+            } catch (e: Exception) {
+                _homeState.value = _homeState.value.copy(searchInProgress = false)
+                println("IosSoundscapeService: Search failed: ${e.message}")
+            }
+        }
+    }
+
     // --- GeoEngine Queries ---
 
     fun myLocation() {

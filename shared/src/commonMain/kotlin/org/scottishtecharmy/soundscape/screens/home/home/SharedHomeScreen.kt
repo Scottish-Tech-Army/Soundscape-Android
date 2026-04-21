@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.screens.home.HomeState
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.resources.*
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,6 +40,9 @@ fun SharedHomeScreen(
     onRouteSkipNext: () -> Unit = {},
     onRouteMute: () -> Unit = {},
     onRouteStop: () -> Unit = {},
+    // Search
+    onSearch: (String) -> Unit = {},
+    onSearchItemClick: (LocationDescription) -> Unit = {},
 ) {
     Scaffold(
         modifier = modifier,
@@ -93,6 +97,8 @@ fun SharedHomeScreen(
             onRouteSkipNext = onRouteSkipNext,
             onRouteMute = onRouteMute,
             onRouteStop = onRouteStop,
+            onSearch = onSearch,
+            onSearchItemClick = onSearchItemClick,
         )
     }
 }
