@@ -251,8 +251,8 @@
     <string name="first_launch_callouts_example_1">kaffihús</string>
     <string name="first_launch_callouts_example_3">aðalgata til vinstri</string>
     <string name="first_launch_callouts_example_4">aðalgata til hægri</string>
-    <string name="first_launch_permissions_title">á ferðinni með Soundscape</string>
-    <string name="first_launch_permissions_message">Þegar þú ferðast með Soundscape er notast við hljóðvita. til þess þarf að veita eftirfarandi leyfi:</string>
+    <string name="first_launch_permissions_title">Leyfi forrits</string>
+    <string name="first_launch_permissions_message">Til að Soundscape virki þarf að veita forritinu ákveðin leyfi. Þau gera því kleift að uppfæra sig með staðsetningu símans, jafnvel þegar síminn er læstur. Vinsamlegast bankaðu á hvert af eftirfarandi leyfunum og virkjaðu þau þegar beðið er um það:</string>
     <string name="first_launch_permissions_location">staðsettning með nákvæmri staðsettningu</string>
     <string name="first_launch_permissions_motion">hreyfing og líkamlegt ástand</string>
     <string name="first_launch_permissions_required">þetta leyfi er nauðsynlegt</string>
@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Merki og leiðir eytt</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Upplýsingar um nýja útgáfu</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Loka útgáfuupplýsingum</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nÍ þessari útgáfu eru tvær nýjar aðgerðir sem gera fjarstýringu forritsins kleift, jafnvel þegar síminn er læstur. Það þýðir að síminn má vera í vasanum meðan þú stjórnar helstu eiginleikum forritsins.\n\nBáðar fjarstýringaraðferðirnar nota Bluetooth fjölmiðlahnappa, annað hvort á heyrnartólunum þínum eða með sér litlum fjarstýringum sem þú getur haft í hendinni eða vasanum. Hamur fjarstýringarinnar er valinn í stillingunum undir Stillingar / Fjölmiðlastýringar og þú getur valið „Raddskipanir\" svo þú getir talað við forritið, eða „Hljóðvalmynd\" þar sem valmyndir eru lesnar upp fyrir þig með valkostum til að velja. „Upprunalegur hamur\" þýðir að Bluetooth hnapparnir virka á sama hátt og í eldri útgáfum.\n\nÍ raddskipana-ham, þegar þú ýtir á spila/hlé hnappinn á heyrnartólunum byrjar forritið að hlusta eftir tali og þú heyrir stutt hljóð sem gefur til kynna að hlustun hafi hafist. Ef þú segir „Hjálp\" mun það telja upp þær skipanir sem í boði eru. Þú getur þá ýtt á hnappinn aftur og reynt aðra skipanir. Því miður styður Android talgreining ekki öll tungumál og hún er ekki tiltæk á öllum símum.\n\nHelsta erfiðleikinn með raddskipanahaminn er að sum heyrnartól taka lengri tíma að virkja hljóðnemann en önnur. Það þýðir að eftir að þú hefur ýtt á spila/hlé gætirðu þurft að bíða allt að 5 sekúndur áður en þú getur talað. Til að læra hversu langan tíma það tekur er best að ýta á spila/hlé og telja frá 1 upp í 10. Síminn ætti að segja upp hvað hann skynjaði og talan sem hann byrjar á var sú fyrsta sem hann skynjaði. Þessi aðferð hjálpar þér að giska á hvenær best er að hefja talið. Sum heyrnartól gefa frá sér greinilegt hljóð þegar hljóðneminn er virkur sem einfaldar þetta, en önnur gera ekkert hljóð. Því miður krefst þetta stundum æfingar.\n\nHinn nýi fjarstýringahamurinn, Hljóðvalmynd, virkar á öllum tungumálum og á öllum símum. Næsta/fyrri fjölmiðlahnapparnir færa áfram og aftur um valkosti í valmyndinni. Spila/hlé hnappurinn velur svo þann valkost sem er valinn. Það er yfirlitsvalmynd og síðan eitt lag af undirmatseðlum sem flokka svipaðar skipanir saman.\n\nÞessar aðgerðir eru mjög nýjar og við myndum gjarnan vilja fá endurgjöf um hvort þær virka vel og hvaða aðrar skipanir þið mynduð vilja.\n\nVinsamlega tilkynnið öll vandamál, jafnvel smávægileg, með valkostinum *Hafa samband, stuðningur* í aðalvalmyndinni.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nÞetta er fyrsta framleiðsluútgáfa af Soundscape. Ef þú ert nýr(n) í forritinu geturðu fengið nánari upplýsingar í *Hjálp* skjánum eða með því að fara í *Hljóðleiðsögnina*. Báðir þessir valkostir er að finna í aðalvalmyndinni.\n\nVið erum enn að vinna að því að bæta forritið, svo vinsamlegast tilkynntu öll vandamál sem koma upp, jafnvel þó þau séu smávægileg, með valkostinum *Hafa samband, stuðningur* í aðalvalmyndinni.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Leyfi opins hugbúnaðar</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Ferjuhöfn</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s ferjuhöfn</string>
@@ -1355,4 +1355,14 @@
     <string name="relative_left_right_direction_behind_left">Aftan til vinstri</string>
     <string name="relative_left_right_direction_behind_right">Aftan til hægri</string>
     <string name="relative_left_right_direction_behind">Aftan</string>
+    <string name="settings_collapse_section">Fella kaflann saman</string>
+    <string name="settings_expand_section">Opna kaflann</string>
+    <string name="settings_collapsed">Samanfellt</string>
+    <string name="settings_expanded">Opnað</string>
+    <string name="ui_grant_permission">Veita leyfi</string>
+    <string name="copyright_notices">Soundscape væri ekki mögulegt án þessara frábæru þriðju aðila bókasafna og gagna. Smelltu á tenglana til að skoða leyfin þeirra:</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) veita öll landfræðileg gögn sem notuð eru við kortlagningu og hljóð í Soundscape.</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) er notað til að búa til þær kortaflísur sem við notum.</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) er notað til að búa til þrívíddarhljóð og er aðgengilegt til notkunar undir [Apache 2.0 leyfinu](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
+    <string name="trademark_disclaimer">Öll vörumerki, fyrirtækjanöfn og lógó þriðja aðila eru vörumerki eða skráð vörumerki og eru áfram eign þeirra sem eiga þau.</string>
 </resources>
