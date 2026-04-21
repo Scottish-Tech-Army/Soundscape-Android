@@ -225,8 +225,8 @@
     <string name="first_launch_callouts_example_1">Café</string>
     <string name="first_launch_callouts_example_3">Hoofdstraat gaat naar links</string>
     <string name="first_launch_callouts_example_4">Hoofdstraat gaat naar rechts</string>
-    <string name="first_launch_permissions_title">Navigeren met Soundscape</string>
-    <string name="first_launch_permissions_message">Wanneer u navigeert met Soundscape, wordt u begeleid door een audiobaken. Als u dat wilt gebruiken, moet u de volgende machtigingen in Soundscape inschakelen:</string>
+    <string name="first_launch_permissions_title">App-machtigingen</string>
+    <string name="first_launch_permissions_message">Om Soundscape te laten werken, moeten bepaalde machtigingen aan de app worden verleend. Hiermee kan de app uw telefoonlocatie bijwerken, zelfs wanneer de telefoon vergrendeld is. Tik op elk van de volgende machtigingen en schakel ze in wanneer daarom wordt gevraagd:</string>
     <string name="first_launch_permissions_location">Locatievoorzieningen met exacte locatie</string>
     <string name="first_launch_permissions_motion">Beweging en Conditie</string>
     <string name="first_launch_permissions_required">Deze toestemming is verplicht</string>
@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markeringen en routes verwijderd</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informatie over de nieuwe release</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Nieuwe releasedialoog sluiten</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nIn deze release zitten twee nieuwe functies waarmee u de app op afstand kunt bedienen, zelfs wanneer de telefoon vergrendeld is. Dat betekent dat u de telefoon in uw zak kunt houden terwijl u toch de belangrijkste functies van de app bedient.\n\nBeide methoden voor afstandsbediening gebruiken Bluetooth‑mediaknoppen, hetzij die op uw koptelefoon, hetzij kleine afstandsbedieningen die u in de hand of zak kunt bewaren. De afstandsbedieningsmodus kiest u in Instellingen &gt; Mediaregelaars. U kunt \"Spraakbediening\" kiezen om tegen de app te spreken, of \"Audiomenu\" waarbij menu\'s voorgelezen worden en u opties kunt selecteren. \"Originele modus\" zorgt ervoor dat de Bluetooth‑knoppen hetzelfde werken als in eerdere versies.\n\nIn de spraakbedieningsmodus start het drukken op de afspelen/pauzeren‑knop van uw koptelefoon de app die gaat luisteren naar spraak; u hoort een kort signaaltje ter bevestiging. Zegt u \"Help\", dan leest de app de beschikbare commando\'s op. Daarna kunt u de knop nogmaals indrukken en de andere commando\'s uitproberen. Helaas ondersteunt Android spraakherkenning niet alle talen en is het niet op alle telefoons beschikbaar.\n\nHet grootste praktische probleem met spraakbediening is dat sommige koptelefoons langer nodig hebben om hun microfoon actief te maken dan andere. Dit betekent dat u na het tikken op de afspelen/pauzeren‑knop tot ongeveer 5 seconden moet wachten voordat u kunt spreken. Om te ontdekken hoe lang dat bij uw koptelefoon duurt, is de beste aanpak: tik op afspelen/pauzeren en tel hardop van 1 tot 10. De telefoon vertelt u vervolgens welke spraak werd herkend en het eerste nummer dat werd herkend is de eerste die door de microfoon werd opgevangen. Dat helpt u inschatten hoe lang u moet wachten voordat u spreekt. Sommige koptelefoons maken een duidelijk geluid wanneer de microfoon actief is, wat het makkelijker maakt, maar andere geven geen geluid. Dit vereist helaas soms wat oefening.\n\nDe andere nieuwe afstandsbedieningsmodus, het Audiomenu, werkt in alle talen en op alle telefoons. Met de volgende/vorige‑knoppen van de mediacontrole bladert u door de opties van het menu; de afspelen/pauzeren‑knop selecteert vervolgens de huidige optie. Er is een hoofdmenu en één laag met submenu\'s die soortgelijke commando\'s groeperen.\n\nDeze functies zijn nog heel nieuw en we horen graag uw ervaringen: werken ze goed en welke extra commando\'s zou u willen?\n\nMeld eventuele problemen, hoe klein ook, via de optie *Contact opnemen met ondersteuning* in het hoofdmenu.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDit is de eerste productieversie van Soundscape. Als u nieuw bent met de app, kunt u meer erover te weten komen via de *Help*-schermen of door de *Zelfstudie* te volgen. Beide opties vindt u in het hoofdmenu.\n\nWe werken nog hard aan het verbeteren van de app, dus meldt ons alstublieft eventuele problemen, hoe klein ook, via de optie *Contact opnemen met ondersteuning* in het hoofdmenu.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Open-sourcelicenties</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Veerterminal</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Veerterminal</string>
@@ -1355,4 +1355,14 @@
     <string name="relative_left_right_direction_behind_left">Achter links</string>
     <string name="relative_left_right_direction_behind_right">Achter rechts</string>
     <string name="relative_left_right_direction_behind">Achter</string>
+    <string name="settings_collapse_section">Sectie inklappen</string>
+    <string name="settings_expand_section">Sectie uitklappen</string>
+    <string name="settings_collapsed">Ingeklapt</string>
+    <string name="settings_expanded">Uitgeklapt</string>
+    <string name="ui_grant_permission">Toestemming verlenen</string>
+    <string name="copyright_notices">Soundscape zou niet mogelijk zijn zonder deze fantastische bibliotheken en gegevens van derden. Klik op de links om hun licenties te bekijken:</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) leveren alle geografische gegevens die worden gebruikt voor de kaarten en audio in Soundscape.</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) wordt gebruikt om de kaarttegels te genereren die we gebruiken.</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) wordt gebruikt om de 3D-audio te genereren en is beschikbaar voor gebruik onder de [Apache 2.0-licentie](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
+    <string name="trademark_disclaimer">Alle product- en bedrijfsnamen en logo\'s van derden zijn handelsmerken of geregistreerde handelsmerken en blijven het eigendom van de betreffende houders.</string>
 </resources>
