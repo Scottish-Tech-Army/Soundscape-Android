@@ -354,8 +354,8 @@
     <string name="first_launch_callouts_listen">Послушайте пример того, что Soundscape может воспроизводить во время вашей следующей прогулки</string>
     <string name="first_launch_callouts_example_3">Главная улица идёт налево</string>
     <string name="first_launch_callouts_example_4">Главная улица идёт направо</string>
-    <string name="first_launch_permissions_title">Навигация с Soundscape</string>
-    <string name="first_launch_permissions_message">При навигации с Soundscape вы будете использовать звуковой маяк. Для этого Soundscape необходимо включить следующие разрешения:</string>
+    <string name="first_launch_permissions_title">Разрешения приложения</string>
+    <string name="first_launch_permissions_message">Для работы Soundscape требуется предоставить приложению ряд разрешений. Они позволяют получать обновления о местоположении телефона, даже когда устройство заблокировано. Нажмите на каждое из перечисленных разрешений и при появлении запроса разрешите доступ.</string>
     <string name="first_launch_permissions_location">Службы геолокации с точным определением местоположения</string>
     <string name="first_launch_permissions_required">Это разрешение необходимо</string>
     <string name="first_launch_beacon_message_1">При навигации с Soundscape вы услышите звуковой маяк в направлении вашего пункта назначения. Следуя за его звуком, вы всегда будете знать, куда идти.</string>
@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Отметки и пути удалены</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Информация о новом выпуске</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Закрыть окно с информацией о новом выпуске</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nВ этом выпуске добавлены две новые возможности удалённого управления приложением, которые работают даже при заблокированном телефоне. Это означает, что телефон можно держать в кармане и при этом управлять основными функциями Soundscape.\n\nОба способа удалённого управления используют Bluetooth‑кнопки управления мультимедиа — либо кнопки на ваших наушниках, либо внешние компактные пульты, которые можно держать в руке или в кармане. Режим удалённого управления выбирается в разделе «Настройки» / «Элементы управления мультимедиа». Вы можете выбрать режим \"Голосовое управление\", чтобы отдавать команды голосом, или \"Аудио‑меню\", в котором меню озвучивается и вы выбираете опцию. Режим \"Исходный режим\" означает, что кнопки Bluetooth работают так же, как в предыдущих выпусках.\n\nВ режиме голосового управления нажатие кнопки воспроизведения/паузы на наушниках запускает прослушивание приложением, и вы услышите короткий звук, который это подтвердит. Если вы скажете \"Help\", приложение перечислит доступные команды. Затем вы можете снова нажать кнопку и попробовать другие команды. К сожалению, распознавание речи Android не поддерживает все языки и недоступно на всех телефонах.\n\nОсновная сложность режима голосового управления в том, что некоторые наушники дольше включают микрофон, чем другие. Это значит, что после нажатия кнопки воспроизведения/паузы вам может потребоваться подождать до 5 секунд, прежде чем будет можно говорить. Чтобы понять, сколько времени это занимает на ваших наушниках, лучше всего нажать воспроизведение/пауза и сосчитать от 1 до 10. Телефон затем озвучит, какую фразу он распознал, и число, с которого началось распознавание, покажет, когда можно начинать говорить. Это поможет понять, сколько ждать перед началом речи. Некоторые наушники издавали заметный звук при включении микрофона, что облегчает задачу, у других же такого звука нет — придётся потренироваться.\n\nДругой новый режим — «Аудио‑меню» — будет работать на всех языках и на всех телефонах. Кнопки «Далее»/«Назад» перемещаются по пунктам меню вперёд и назад, а кнопка воспроизведения/паузы выбирает текущую опцию. Есть меню верхнего уровня и один уровень подменю, в которых сгруппированы похожие команды.\n\nЭти возможности очень новые, и нам бы очень пригодилась ваша обратная связь: работают ли они хорошо и какие ещё команды вы хотели бы видеть.\n\nПожалуйста, сообщайте о любых проблемах, даже самых небольших, через опцию *\"Связаться со службой поддержки\"* в главном меню.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nЭто первый производственный релиз Soundscape. Если вы новичок в приложении, вы можете узнать о нём больше в разделах *Помощь* или пройдя *Аудиоурок*. Оба пункта доступны в главном меню.\n\nМы всё ещё активно работаем над улучшением приложения, поэтому сообщайте о любых проблемах, даже самых незначительных, через опцию *Связаться со службой поддержки* в главном меню.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Лицензии с открытым исходным кодом</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Паромный терминал</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Паромный терминал</string>
@@ -1355,4 +1355,14 @@
     <string name="relative_left_right_direction_behind_left">Позади слева</string>
     <string name="relative_left_right_direction_behind_right">Позади справа</string>
     <string name="relative_left_right_direction_behind">Позади</string>
+    <string name="settings_collapse_section">Свернуть раздел</string>
+    <string name="settings_expand_section">Развернуть раздел</string>
+    <string name="settings_collapsed">Свернуто</string>
+    <string name="settings_expanded">Развернуто</string>
+    <string name="ui_grant_permission">Предоставить разрешение</string>
+    <string name="copyright_notices">Soundscape не был бы возможен без этих замечательных сторонних библиотек и данных. Нажмите на ссылки, чтобы просмотреть их лицензии:</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) предоставляют все геоданные, используемые в Soundscape для картографии и аудио.</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) используется для генерации картографических плиток, которые мы применяем.</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) используется для генерации 3D‑аудио и предоставляется для использования в соответствии с [лицензией Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
+    <string name="trademark_disclaimer">Все названия продуктов и компаний третьих сторон, а также их логотипы являются товарными знаками или зарегистрированными товарными знаками и остаются собственностью соответствующих владельцев.</string>
 </resources>
