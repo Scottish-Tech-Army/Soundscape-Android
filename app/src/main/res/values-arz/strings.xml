@@ -242,8 +242,8 @@
     <string name="first_launch_callouts_example_1">مقهى</string>
     <string name="first_launch_callouts_example_3">يذهب الشارع الرئيسي إلى اليسار</string>
     <string name="first_launch_callouts_example_4">الشارع الرئيسي يتجه يمينا</string>
-    <string name="first_launch_permissions_title">التنقل مع soundscape</string>
-    <string name="first_launch_permissions_message">عند التنقل مع SoundScape ، سيتم توجيهك بواسطة منارة صوتية. للقيام بذلك ، يحتاجك Soundscape إلى تمكين الأذونات التالية:</string>
+    <string name="first_launch_permissions_title">أذونات التطبيق</string>
+    <string name="first_launch_permissions_message">لكي يعمل Soundscape، يحتاج إلى منح بعض الأذونات. تتيح هذه الأذونات للتطبيق تحديث موقع الهاتف حتى عندما يكون مقفلاً. الرجاء الضغط على كل إذن من الأذونات التالية وتمكينه عند ظهور الطلب:</string>
     <string name="first_launch_permissions_location">خدمات الموقع مع موقع دقيق</string>
     <string name="first_launch_permissions_motion">الحركة واللياقة</string>
     <string name="first_launch_permissions_required">هذا الإذن مطلوب</string>
@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">تم حذف العلامات والطرق</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">معلومات الإصدار الجديد</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">إغلاق مربع حوار الإصدار الجديد</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nهاتان ميزتان جديدتان في هذا الإصدار تتيحان التحكم عن بُعد في التطبيق حتى عندما يكون الهاتف مقفلاً. هذا يعني أنه يمكنك إبقاؤه في جيبك مع الاستمرار في التحكم في الميزات الأساسية للتطبيق.\n\nتعتمد طريقتا التحكم عن بُعد على أزرار تحكم الوسائط عبر البلوتوث، إما الأزرار الموجودة على سماعاتك أو عبر أجهزة تحكم صغيرة يمكن شراؤها ووضعها في اليد أو الجيب. يتم اختيار وضع التحكم عن بُعد من قسم *\"الإعدادات\"*/*\"عناصر تحكم الوسائط\"*، ويمكنك اختيار *\"الأوامر الصوتية\"* للتحدث مع التطبيق، أو *\"القائمة الصوتية\"* حيث تُقرأ لك قوائم بخيارات للاختيار منها. *\"الوضع الأصلي\"* يعني أن أزرار البلوتوث تعمل بنفس الطريقة كما في الإصدارات السابقة.\n\nفي وضع الأوامر الصوتية، يؤدي النقر على زر التشغيل/الإيقاف المؤقت في سماعاتك إلى جعل التطبيق يستمع للصوت وستسمع صوتًا قصيرًا للدلالة على ذلك. إذا قلت \"Help\" سيعرض التطبيق قائمة بالأوامر المتاحة التي يمكنك استخدامها. بعد ذلك يمكنك النقر على الزر مرة أخرى وتجربة أوامر أخرى. للأسف، لا تدعم ميزة التعرف على الكلام في Android جميع اللغات، وليست متاحة على كل الهواتف.\n\nالصعوبة الرئيسية في وضع الأوامر الصوتية هي أن بعض السماعات تستغرق وقتًا أطول لتفعيل الميكروفون من غيرها. وهذا يعني أنه بعد الضغط على زر التشغيل/الإيقاف المؤقت قد تضطر للانتظار حتى 5 ثوانٍ قبل أن تتمكن من التحدث. لمعرفة المدة المناسبة، أفضل طريقة هي الضغط على التشغيل/الإيقاف المؤقت ثم العد من 1 إلى 10. يجب أن يخبرك الهاتف بالكلام الذي تعرفه وأن الرقم الذي بدأ عنده هو أول رقم تم التعرف عليه. يمكن استخدام هذا لمعرفة المدة التي يجب الانتظار قبل الكلام. بعض السماعات تصدر صوتًا واضحًا عند تفعيل الميكروفون مما يسهل الأمر، بينما بعضها الآخر لا يصدر أي صوت. للأسف، قد يتطلب الأمر بعض التدريب.\n\nالوضع الجديد الآخر هو وضع *القائمة الصوتية*، والذي سيعمل في كل اللغات وعلى كل الهواتف. أزرار التالي/السابق في تحكم الوسائط تتحرك للأمام والخلف عبر الخيارات داخل القائمة. ثم يقوم زر التشغيل/الإيقاف المؤقت باختيار الخيار الحالي. هناك قائمة على مستوى أعلى، ثم طبقة واحدة من القوائم الفرعية التي تجمع أوامر متشابهة.\n\nهذه الميزات جديدة جدًا، ونود حقًا الحصول على ملاحظات حول ما إذا كانت تعمل جيدًا وأي أوامر إضافية تودون وجودها.\n\nيرجى الإبلاغ عن أي مشاكل تواجهك، مهما صغرت، عبر خيار *\"الاتصال للدعم\"* في القائمة الرئيسية.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nهذا هو الإصدار الإنتاجي الأول من Soundscape. إذا كنت جديدًا على التطبيق، يمكنك معرفة المزيد عنه من شاشات *المساعدة* أو عن طريق إجراء *البرنامج التعليمي*. كلاهما خياران في القائمة الرئيسية.\n\nما زلنا نعمل جاهدين على تحسين التطبيق، لذا يرجى الإبلاغ عن أي مشكلة تواجهك، مهما كانت صغيرة، عبر خيار *الاتصال للدعم* في القائمة الرئيسية.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">تراخيص المصادر المفتوحة</string>
     <string name="osm_office" tools:ignore="MissingTranslation">مكتب</string>
     <string name="osm_school" tools:ignore="MissingTranslation">مدرسة</string>
@@ -1355,4 +1355,14 @@
     <string name="relative_left_right_direction_behind_left">خلف وإلى اليسار</string>
     <string name="relative_left_right_direction_behind_right">خلف وإلى اليمين</string>
     <string name="relative_left_right_direction_behind">في الخلف</string>
+    <string name="settings_collapse_section">طي القسم</string>
+    <string name="settings_expand_section">توسيع القسم</string>
+    <string name="settings_collapsed">مطوي</string>
+    <string name="settings_expanded">موسع</string>
+    <string name="ui_grant_permission">منح الإذن</string>
+    <string name="copyright_notices">لن يكون بإمكان Soundscape الوجود بدون هذه المكتبات والبيانات الرائعة من أطراف خارجية. اضغط على الروابط للاطلاع على تراخيصها:</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) يوفرون كل البيانات الجغرافية والخرائطية والصوتية المستخدمة في Soundscape.</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) تُستخدم لتوليد بلاطات الخرائط التي نستخدمها.</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) تُستخدم لتوليد الصوت ثلاثي الأبعاد، ومتاحة للاستخدام بموجب [رخصة Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
+    <string name="trademark_disclaimer">جميع أسماء المنتجات والشركات والشعارات الخاصة بأطراف ثالثة هي علامات تجارية أو علامات تجارية مسجلة وتظل ملكًا لأصحابها.</string>
 </resources>
