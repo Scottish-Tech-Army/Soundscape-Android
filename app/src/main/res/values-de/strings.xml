@@ -225,8 +225,8 @@
     <string name="first_launch_callouts_example_1">Café</string>
     <string name="first_launch_callouts_example_3">Hauptstraße geht nach links</string>
     <string name="first_launch_callouts_example_4">Hauptstraße geht nach rechts</string>
-    <string name="first_launch_permissions_title">Navigieren mit Soundscape</string>
-    <string name="first_launch_permissions_message">Wenn Sie mit Soundscape navigieren, werden Sie von einem Audiobeacon geführt. Dazu müssen Sie Soundscape die folgenden Berechtigungen erteilen:</string>
+    <string name="first_launch_permissions_title">App‑Berechtigungen</string>
+    <string name="first_launch_permissions_message">Damit Soundscape ausgeführt werden kann, benötigt die App bestimmte Berechtigungen. Diese erlauben es, den Standort Ihres Telefons zu erfassen, auch wenn das Gerät gesperrt ist. Bitte tippen Sie auf jede der folgenden Berechtigungen und aktivieren Sie sie, wenn Sie dazu aufgefordert werden:</string>
     <string name="first_launch_permissions_location">Ortungsdienste mit genauem Standort</string>
     <string name="first_launch_permissions_motion">Bewegung und Fitness</string>
     <string name="first_launch_permissions_required">Diese Berechtigung ist erforderlich</string>
@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markierungen und Routen gelöscht</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informationen zur neuen Version</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Dialog zur neuen Version schließen</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nIn dieser Version gibt es zwei neue Funktionen, mit denen sich die App aus der Ferne steuern lässt – sogar dann, wenn das Telefon gesperrt ist. Das bedeutet, Sie können das Telefon in der Tasche lassen und dennoch die wichtigsten Funktionen der App steuern.\n\nBeide Fernsteuerungsmethoden verwenden Bluetooth‑Medientasten, entweder die an Ihren Kopfhörern oder kleine Fernbedienungen, die Sie in der Hand oder der Tasche mitführen können. Den Remote‑Modus wählen Sie in Einstellungen → Mediensteuerungen. Dort können Sie „Sprachsteuerung“ wählen, um mit der App zu sprechen, oder „Audio‑Menü“, in dem Menüs für Sie vorgelesen werden und Sie Optionen auswählen können. „Originalmodus“ bedeutet, dass die Bluetooth‑Tasten wie in früheren Versionen funktionieren.\n\nIm Sprachsteuerungsmodus startet ein Druck auf die Wiedergabe/Pause‑Taste Ihrer Kopfhörer die App zum Zuhören; ein kurzer Ton signalisiert, dass die Spracherkennung aktiv ist. Wenn Sie „Help“ sagen, listet die App die verfügbaren Befehle auf. Danach können Sie die Taste erneut drücken und andere Befehle ausprobieren. Leider unterstützt die Android‑Spracherkennung nicht alle Sprachen und ist nicht auf allen Telefonen verfügbar.\n\nDas Hauptproblem beim Sprachsteuerungsmodus ist, dass manche Kopfhörer länger brauchen, um das Mikrofon einzuschalten als andere. Das bedeutet, dass Sie nach dem Tippen der Wiedergabe/Pause‑Taste bis zu 5 Sekunden warten müssen, bevor Sie sprechen können. Um herauszufinden, wie lange Ihr Gerät benötigt, tippen Sie Wiedergabe/Pause und zählen dann von 1 bis 10. Das Telefon sollte Ihnen anschließend anzeigen, welche Spracheingabe erkannt wurde; die Zahl, bei der die Erkennung beginnt, war die erste, die erkannt wurde. Das hilft Ihnen einzuschätzen, wie lange Sie warten müssen, bevor Sie sprechen. Manche Kopfhörer geben ein deutliches Signalton ab, wenn das Mikrofon aktiv ist, was die Benutzung erleichtert; andere geben gar kein Geräusch von sich. Das erfordert leider etwas Übung.\n\nDer andere neue Remote‑Modus, das Audio‑Menü, funktioniert in allen Sprachen und auf allen Telefonen. Die Weiter/Zurück‑Tasten der Mediensteuerung bewegen Sie vorwärts bzw. rückwärts durch die Menüoptionen; die Wiedergabe/Pause‑Taste wählt die aktuelle Option aus. Es gibt ein Hauptmenü und eine Ebene von Untermenüs, die ähnliche Befehle gruppieren.\n\nDiese Funktionen sind ganz neu, und wir freuen uns sehr über Rückmeldungen dazu, ob sie gut funktionieren und welche zusätzlichen Befehle Sie sich wünschen.\n\nBitte melden Sie Probleme, auch wenn sie klein erscheinen, über die Option *Support kontaktieren* im Hauptmenü.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDies ist die erste Produktionsversion von Soundscape. Wenn Sie die App noch nicht kennen, können Sie mehr darüber in den *Hilfe*-Bildschirmen erfahren oder das *Tutorial* absolvieren. Beides finden Sie im Hauptmenü.\n\nWir arbeiten weiterhin intensiv an der Verbesserung der App. Bitte melden Sie etwaige Probleme, auch wenn sie noch so klein erscheinen, über die Option *Support kontaktieren* im Hauptmenü.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Open-Source-Lizenzen</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Fährterminal</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Fährterminal</string>
@@ -1355,4 +1355,14 @@
     <string name="relative_left_right_direction_behind_left">hinten links</string>
     <string name="relative_left_right_direction_behind_right">hinten rechts</string>
     <string name="relative_left_right_direction_behind">hinten</string>
+    <string name="settings_collapse_section">Abschnitt einklappen</string>
+    <string name="settings_expand_section">Abschnitt ausklappen</string>
+    <string name="settings_collapsed">Eingeklappt</string>
+    <string name="settings_expanded">Ausgeklappt</string>
+    <string name="ui_grant_permission">Berechtigung erteilen</string>
+    <string name="copyright_notices">Soundscape wäre ohne diese großartigen Drittanbieter‑Bibliotheken und -Daten nicht möglich. Klicken Sie auf die Links, um deren Lizenzen einzusehen:</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) stellen alle Geodaten für die Kartendarstellung und die in Soundscape verwendeten Audiodaten bereit.</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) wird verwendet, um die Kartenkacheln zu erzeugen, die wir einsetzen.</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) wird zur Erzeugung des 3D‑Audios verwendet und steht unter der [Apache‑2.0‑Lizenz](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) zur Nutzung bereit.</string>
+    <string name="trademark_disclaimer">Alle Produkt‑ und Firmennamen Dritter sowie deren Logos sind Marken oder eingetragene Marken und bleiben Eigentum ihrer jeweiligen Inhaber.</string>
 </resources>
