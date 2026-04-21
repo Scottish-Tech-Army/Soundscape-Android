@@ -51,6 +51,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomA
 import org.scottishtecharmy.soundscape.screens.home.HomeState
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.SharedOfflineMapsScreen
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.SharedAddAndEditRouteScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.resources.*
@@ -75,6 +76,8 @@ data class AppCallbacks(
     val onRouteStop: () -> Unit = {},
     val onSearch: (String) -> Unit = {},
     val onSaveMarker: (LocationDescription) -> Unit = {},
+    val onSaveRoute: (String, String, List<LocationDescription>) -> Unit = { _, _, _ -> },
+    val onDeleteRoute: (Long) -> Unit = {},
     val onPlacesNearbyClickFolder: (String, String) -> Unit = { _, _ -> },
     val onPlacesNearbyClickBack: () -> Unit = {},
     val onOfflineMapsRefresh: () -> Unit = {},
@@ -97,7 +100,7 @@ data class AppFlows(
 )
 
 private enum class Screen {
-    WELCOME, HOME, PLACES_NEARBY, MARKERS_AND_ROUTES, LOCATION_DETAILS, OFFLINE_MAPS
+    WELCOME, HOME, PLACES_NEARBY, MARKERS_AND_ROUTES, LOCATION_DETAILS, OFFLINE_MAPS, ADD_ROUTE
 }
 
 @Composable
@@ -174,6 +177,7 @@ fun App(
                         flows = flows,
                         callbacks = callbacks,
                         onBack = { screen = Screen.HOME },
+                        onAddRoute = { screen = Screen.ADD_ROUTE },
                     )
                 }
 
@@ -234,6 +238,19 @@ fun App(
                         onCancelDownload = { callbacks.onOfflineMapsCancelDownload() },
                     )
                 }
+
+                Screen.ADD_ROUTE -> {
+                    val markersState by flows.markersUiState?.collectAsState()
+                        ?: remember { mutableStateOf(MarkersAndRoutesUiState()) }
+                    SharedAddAndEditRouteScreen(
+                        availableMarkers = markersState.entries,
+                        onNavigateUp = { screen = Screen.MARKERS_AND_ROUTES },
+                        onSave = { name, desc, waypoints ->
+                            callbacks.onSaveRoute(name, desc, waypoints)
+                            screen = Screen.MARKERS_AND_ROUTES
+                        },
+                    )
+                }
             }
         }
     }
@@ -244,6 +261,7 @@ private fun MarkersAndRoutesContainer(
     flows: AppFlows,
     callbacks: AppCallbacks,
     onBack: () -> Unit,
+    onAddRoute: () -> Unit = {},
 ) {
     var selectedTab by remember { mutableStateOf(0) }
     val location by flows.locationFlow?.collectAsState() ?: remember { mutableStateOf(null) }
@@ -253,8 +271,10 @@ private fun MarkersAndRoutesContainer(
         topBar = {
             Column {
                 CustomAppBar(
-                    title = "Markers & Routes",
+                    title = stringResource(Res.string.search_view_markers),
                     onNavigateUp = onBack,
+                    rightButtonTitle = if (selectedTab == 1) "+" else "",
+                    onRightButton = { if (selectedTab == 1) onAddRoute() },
                 )
                 TabRow(selectedTabIndex = selectedTab) {
                     Tab(

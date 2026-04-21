@@ -305,6 +305,50 @@ class IosSoundscapeService : GeoEngineListener {
     override fun getStreetPreviewBestChoice(): StreetPreviewChoice? = null
     override val menuActive: Boolean = false
 
+    // --- Routes ---
+
+    fun saveRoute(name: String, description: String, waypoints: List<LocationDescription>) {
+        scope.launch {
+            try {
+                val route = org.scottishtecharmy.soundscape.database.local.model.RouteEntity(
+                    name = name,
+                    description = description,
+                )
+                val markers = waypoints.map { wp ->
+                    org.scottishtecharmy.soundscape.database.local.model.MarkerEntity(
+                        markerId = wp.databaseId,
+                        name = wp.name,
+                        fullAddress = wp.description ?: "",
+                        longitude = wp.location.longitude,
+                        latitude = wp.location.latitude,
+                    )
+                }
+                if (markers.all { it.markerId != 0L }) {
+                    routeDao.insertRouteWithExistingMarkers(route, markers)
+                } else {
+                    routeDao.insertRouteWithNewMarkers(route, markers)
+                }
+                audioEngine.createEarcon(
+                    "file:///android_asset/earcons/sense_poi.wav",
+                    org.scottishtecharmy.soundscape.audio.AudioType.STANDARD
+                )
+            } catch (e: Exception) {
+                println("IosSoundscapeService: Failed to save route: ${e.message}")
+            }
+        }
+    }
+
+    fun deleteRoute(routeId: Long) {
+        scope.launch {
+            try {
+                routeDao.removeMarkersForRoute(routeId)
+                routeDao.removeRoute(routeId)
+            } catch (e: Exception) {
+                println("IosSoundscapeService: Failed to delete route: ${e.message}")
+            }
+        }
+    }
+
     // --- Markers ---
 
     fun saveMarker(locationDescription: LocationDescription) {
