@@ -310,8 +310,8 @@
     <string name="first_launch_callouts_example_1">Kafe</string>
     <string name="first_launch_callouts_example_3">Ana Cadde sola gidiyor</string>
     <string name="first_launch_callouts_example_4">Ana Cadde sağa gidiyor</string>
-    <string name="first_launch_permissions_title">Soundscape ile Gezinme</string>
-    <string name="first_launch_permissions_message">Soundscape ile gezinirken bir sesli işaret rehberliğinde ilerlersiniz. Bunun için Soundscape\'in aşağıdaki izinleri etkinleştirmeniz gerekir:</string>
+    <string name="first_launch_permissions_title">Uygulama İzinleri</string>
+    <string name="first_launch_permissions_message">Soundscape\'in çalışabilmesi için bazı izinlerin verilmesi gerekir. Bu izinler telefon konumuyla güncellenmesini sağlar; telefon kilitliyken bile. Lütfen aşağıdaki izinlerin her birine dokunun ve istendiğinde etkinleştirin:</string>
     <string name="first_launch_permissions_location">Kesin Konum ile Konum Servisleri</string>
     <string name="first_launch_permissions_motion">Hareket ve Kondisyon</string>
     <string name="first_launch_permissions_required">Bu izin gereklidir</string>
@@ -512,7 +512,7 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Yeni sürüm bilgileri</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Yeni sürüm iletişim kutusunu kapat</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Açık kaynak lisansları</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nBu sürümde, telefon kilitli olsa bile uygulamayı uzaktan kontrol etmeye izin veren iki yeni özellik eklenmiştir. Bu sayede telefonu cebinizde tutarken bile uygulamanın temel özelliklerini kontrol edebilirsiniz.\n\nHer iki uzaktan kontrol yöntemi de Bluetooth medya kontrol düğmelerini kullanır; bunlar kulaklıklarınızdaki düğmeler olabileceği gibi, elinizde veya cebinizde tutmak için küçük uzaktan kumandalar da satın alabilirsiniz. Uzaktan kontrol modu, Ayarlar/Medya Kontrolleri bölümünden seçilir ve uygulamaya konuşabilmeniz için \"Sesli Komut\" (\"Voice command\") ya da size seçenekleri sesli olarak okuyan menüler sunan \"Sesli Menü\" (\"Audio menu\") seçeneğini tercih edebilirsiniz. \"Orijinal Mod\" (\"Original mode\") ise Bluetooth düğmelerinin önceki sürümlerde olduğu gibi çalışması demektir.\n\nSesli komut modunda, kulaklığınızdaki oynat/duraklat düğmesine bastığınızda uygulama konuşma için dinlemeye başlar ve bunu göstermek için kısa bir ses duyarsınız. Eğer \"Yardım\" derseniz kullanılabilir komutları listeler. Daha sonra düğmeye tekrar basıp diğer komutları deneyebilirsiniz. Ne yazık ki Android konuşma tanıma tüm dilleri desteklemiyor ve tüm telefonlarda kullanılamayabiliyor.\n\nSesli komut modunun başlıca zorluğu bazı kulaklıkların mikrofonlarını diğerlerine göre daha geç açmasıdır. Bu nedenle oynat/duraklat düğmesine bastıktan sonra konuşabilmek için 5 saniyeye kadar beklemeniz gerekebilir. Ne kadar sürdüğünü öğrenmenin en iyi yolu oynat/duraklat düğmesine basmak ve sonra 1\'den 10\'a kadar saymaktır. Telefon, hangi konuşmayı algıladığını size söylemelidir ve algılanan ilk sayı, konuşmanın ne zaman başladığını göstermede yardımcı olur. Bu, konuşmadan önce ne kadar beklemeniz gerektiğini öğrenmenize yardımcı olur. Bazı kulaklıklar mikrofon açıldığında belirgin bir ses çıkarır ve bu işi kolaylaştırır, bazıları ise hiç ses çıkarmaz. Maalesef bunun pratik gerektirebileceğini unutmayın.\n\nDiğer yeni uzaktan mod olan Sesli Menü (Audio menu) tüm dillerde ve tüm telefonlarda çalışır. İleri/geri medya kontrol düğmeleri menü içindeki seçenekler arasında ileri ve geri hareket eder. Oynat/duraklat düğmesi ise mevcut seçeneği onaylar. Üst seviyede bir menü vardır ve bunun altında benzer komutları gruplandıran bir katman alt menü bulunur.\n\nBu özellikler çok yenidir; bunların iyi çalışıp çalışmadığı ve hangi ek komutları görmek istediğiniz hakkında geri bildirimlerinizi gerçekten duymak isteriz.\n\nHerhangi bir sorunla karşılaşırsanız, ne kadar küçük olursa olsun lütfen ana menüdeki *Destek ile iletişime geç* (Contact Support) seçeneği aracılığıyla bize bildirin.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nBu, Soundscape\'in ilk üretim sürümüdür. Uygulamaya yeniyseniz, hakkında daha fazla bilgiyi ana menüdeki *Yardım* ekranlarından ya da *Eğitim*\'i alarak öğrenebilirsiniz. Her ikisi de ana menüde birer seçenektir.\n\nUygulamayı geliştirmeye hâlâ yoğun şekilde devam ediyoruz; bu yüzden, karşılaştığınız sorunları ne kadar küçük olursa olsun ana menüdeki *Destek ile iletişime geç* seçeneği aracılığıyla bildirmenizi rica ediyoruz.\n</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape, insanların çevrelerini daha zengin biçimde kavramalarını sağlamak ve böylece dolaşma konusunda daha özgüvenli ve güçlü hissettirmek için yenilikçi ses tabanlı teknolojinin kullanımını araştırmaktadır.</string>
     <string name="osm_office_building" tools:ignore="MissingTranslation">Ofis Binası</string>
     <string name="osm_school_building" tools:ignore="MissingTranslation">Okul Binası</string>
@@ -1355,4 +1355,14 @@
     <string name="relative_left_right_direction_behind_left">Arka-sol</string>
     <string name="relative_left_right_direction_behind_right">Arka-sağ</string>
     <string name="relative_left_right_direction_behind">Arka</string>
+    <string name="settings_collapse_section">Bölümü daralt</string>
+    <string name="settings_expand_section">Bölümü genişlet</string>
+    <string name="settings_collapsed">Daraltıldı</string>
+    <string name="settings_expanded">Genişletildi</string>
+    <string name="ui_grant_permission">İzin Ver</string>
+    <string name="copyright_notices">Soundscape, bu harika üçüncü taraf kütüphaneler ve veriler olmadan mümkün olmazdı. Lisanslarını görmek için bağlantılara tıklayın:</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) Soundscape\'te haritalama ve ses için kullanılan tüm coğrafi verileri sağlar.</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) kullandığımız harita karolarını oluşturmak için kullanılır.</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) 3D sesi oluşturmak için kullanılır ve [Apache 2.0 lisansı](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) kapsamında kullanıma sunulmuştur.</string>
+    <string name="trademark_disclaimer">Tüm üçüncü taraf ürün, şirket adları ve logolar ticari marka veya tescilli ticari markalardır ve ilgili sahiplerinin mülkiyetinde kalır.</string>
 </resources>
