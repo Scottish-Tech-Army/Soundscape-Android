@@ -80,6 +80,7 @@ data class AppCallbacks(
     val onDeleteMarker: (Long) -> Unit = {},
     val onSaveRoute: (String, String, List<LocationDescription>) -> Unit = { _, _, _ -> },
     val onDeleteRoute: (Long) -> Unit = {},
+    val onLoadRoute: (Long) -> List<LocationDescription>? = { null },
     val onPlacesNearbyClickFolder: (String, String) -> Unit = { _, _ -> },
     val onPlacesNearbyClickBack: () -> Unit = {},
     val onOfflineMapsRefresh: () -> Unit = {},
@@ -102,7 +103,7 @@ data class AppFlows(
 )
 
 private enum class Screen {
-    WELCOME, HOME, PLACES_NEARBY, MARKERS_AND_ROUTES, LOCATION_DETAILS, OFFLINE_MAPS, ADD_ROUTE, EDIT_MARKER
+    WELCOME, HOME, PLACES_NEARBY, MARKERS_AND_ROUTES, LOCATION_DETAILS, OFFLINE_MAPS, ADD_ROUTE, EDIT_ROUTE, EDIT_MARKER
 }
 
 @Composable
@@ -185,6 +186,10 @@ fun App(
                             previousScreen = Screen.MARKERS_AND_ROUTES
                             screen = Screen.EDIT_MARKER
                         },
+                        onSelectRoute = { desc ->
+                            selectedLocation = desc
+                            screen = Screen.EDIT_ROUTE
+                        },
                     )
                 }
 
@@ -266,6 +271,33 @@ fun App(
                     )
                 }
 
+                Screen.EDIT_ROUTE -> {
+                    val markersState by flows.markersUiState?.collectAsState()
+                        ?: remember { mutableStateOf(MarkersAndRoutesUiState()) }
+                    val routeDesc = selectedLocation
+                    if (routeDesc != null) {
+                        val routeWaypoints = remember(routeDesc.databaseId) {
+                            callbacks.onLoadRoute(routeDesc.databaseId) ?: emptyList()
+                        }
+                        SharedAddAndEditRouteScreen(
+                            isEditing = true,
+                            routeName = routeDesc.name,
+                            routeDescription = routeDesc.description ?: "",
+                            waypoints = routeWaypoints,
+                            availableMarkers = markersState.entries,
+                            onNavigateUp = { screen = Screen.MARKERS_AND_ROUTES },
+                            onSave = { name, desc, waypoints ->
+                                callbacks.onSaveRoute(name, desc, waypoints)
+                                screen = Screen.MARKERS_AND_ROUTES
+                            },
+                            onDelete = {
+                                callbacks.onDeleteRoute(routeDesc.databaseId)
+                                screen = Screen.MARKERS_AND_ROUTES
+                            },
+                        )
+                    }
+                }
+
                 Screen.EDIT_MARKER -> {
                     val homeState by flows.homeState?.collectAsState()
                         ?: remember { mutableStateOf(HomeState()) }
@@ -299,6 +331,7 @@ private fun MarkersAndRoutesContainer(
     onBack: () -> Unit,
     onAddRoute: () -> Unit = {},
     onSelectMarker: (LocationDescription) -> Unit = {},
+    onSelectRoute: (LocationDescription) -> Unit = {},
 ) {
     var selectedTab by remember { mutableStateOf(0) }
     val location by flows.locationFlow?.collectAsState() ?: remember { mutableStateOf(null) }
@@ -354,7 +387,7 @@ private fun MarkersAndRoutesContainer(
                         clearErrorMessage = {},
                         onToggleSortOrder = {},
                         onToggleSortByName = {},
-                        onSelectItem = { callbacks.onSpeak(it.name) },
+                        onSelectItem = { onSelectRoute(it) },
                         onStartPlayback = { callbacks.onStartRoute(it) },
                     )
                 }

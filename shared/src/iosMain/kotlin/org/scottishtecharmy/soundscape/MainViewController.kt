@@ -36,6 +36,7 @@ fun MainViewController() = ComposeUIViewController {
             onDeleteMarker = { markerId -> service.deleteMarker(markerId) },
             onSaveRoute = { name, desc, waypoints -> service.saveRoute(name, desc, waypoints) },
             onDeleteRoute = { routeId -> service.deleteRoute(routeId) },
+            onLoadRoute = { routeId -> service.loadRouteWaypoints(routeId) },
             onMyLocation = { service.myLocation() },
             onWhatsAroundMe = { service.whatsAroundMe() },
             onAheadOfMe = { service.aheadOfMe() },

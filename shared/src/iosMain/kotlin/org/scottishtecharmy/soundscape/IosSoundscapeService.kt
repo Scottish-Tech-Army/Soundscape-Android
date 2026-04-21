@@ -338,6 +338,25 @@ class IosSoundscapeService : GeoEngineListener {
         }
     }
 
+    fun loadRouteWaypoints(routeId: Long): List<LocationDescription> {
+        return kotlinx.coroutines.runBlocking {
+            try {
+                val routeWithMarkers = routeDao.getRouteWithMarkers(routeId)
+                routeWithMarkers?.markers?.map { marker ->
+                    LocationDescription(
+                        name = marker.name,
+                        description = marker.fullAddress,
+                        location = LngLatAlt(marker.longitude, marker.latitude),
+                        databaseId = marker.markerId,
+                    )
+                } ?: emptyList()
+            } catch (e: Exception) {
+                println("IosSoundscapeService: Failed to load route: ${e.message}")
+                emptyList()
+            }
+        }
+    }
+
     fun deleteRoute(routeId: Long) {
         scope.launch {
             try {
