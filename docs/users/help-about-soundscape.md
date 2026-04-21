@@ -15,3 +15,7 @@ Soundscape wouldn't be possible without these fantastic third party libraries an
 
 [©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
 
+[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+
+All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
+
