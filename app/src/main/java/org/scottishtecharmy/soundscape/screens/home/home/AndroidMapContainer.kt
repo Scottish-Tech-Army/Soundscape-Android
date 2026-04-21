@@ -24,12 +24,15 @@ import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_PATH
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import android.os.Environment
+import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.mapstyle.AccessibleTheme
 import org.scottishtecharmy.soundscape.mapstyle.LayerPaintOverrides
 import org.scottishtecharmy.soundscape.mapstyle.OriginalTheme
 import org.scottishtecharmy.soundscape.mapstyle.accessibleLayerOverrides
 import org.scottishtecharmy.soundscape.mapstyle.argbToRgba
 import org.scottishtecharmy.soundscape.mapstyle.buildMapStyle
+import org.scottishtecharmy.soundscape.mapstyle.resolveTileSourceUrl
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 
@@ -74,7 +77,7 @@ fun createLocationMarkerImageBitmap(context: Context, number: Int): ImageBitmap 
 }
 
 @Composable
-fun rememberMapBaseStyle(): BaseStyle {
+fun rememberMapBaseStyle(userLocation: LngLatAlt? = null): BaseStyle {
     val context = LocalContext.current
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     val accessibleMapEnabled = sharedPreferences.getBoolean(
@@ -97,12 +100,24 @@ fun rememberMapBaseStyle(): BaseStyle {
         LayerPaintOverrides()
     }
 
-    return remember(accessibleMapEnabled, foregroundColor, backgroundColor) {
+    // Resolve tile source: prefer offline extracts over network
+    val extractsPath = sharedPreferences.getString(
+        MainActivity.SELECTED_STORAGE_KEY,
+        MainActivity.SELECTED_STORAGE_DEFAULT
+    )!! + "/" + Environment.DIRECTORY_DOWNLOADS
+
+    return remember(accessibleMapEnabled, foregroundColor, backgroundColor, userLocation) {
+        val tileSourceUrl = resolveTileSourceUrl(
+            location = userLocation,
+            extractsPath = extractsPath,
+            networkTileUrl = BuildConfig.TILE_PROVIDER_URL,
+        )
+
         buildMapStyle(
             theme = theme,
             spritePath = "file://$filesDir/osm-liberty-accessible/osm-liberty",
             glyphsPath = "file://$filesDir/osm-liberty-accessible/fonts/{fontstack}/{range}.pbf",
-            tileSourceUrl = "${BuildConfig.TILE_PROVIDER_URL}/$PROTOMAPS_SERVER_PATH.json",
+            tileSourceUrl = tileSourceUrl,
             overrides = overrides,
             symbolForegroundColor = if (accessibleMapEnabled) foregroundColor else null,
             symbolBackgroundColor = if (accessibleMapEnabled) backgroundColor else null,
@@ -134,7 +149,7 @@ fun AndroidMapContainerLibre(
     editBeaconLocation: Boolean = false,
     onMapLongClick: ((LngLatAlt) -> Boolean)? = null,
 ) {
-    val baseStyle = rememberMapBaseStyle()
+    val baseStyle = rememberMapBaseStyle(userLocation = userLocation)
     val routeMarkerImages = if (routeData != null) rememberRouteMarkerImages() else null
 
     MapContainerLibre(

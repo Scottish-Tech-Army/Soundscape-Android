@@ -7,12 +7,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
-import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_PATH
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.mapstyle.AccessibleTheme
 import org.scottishtecharmy.soundscape.mapstyle.accessibleLayerOverrides
 import org.scottishtecharmy.soundscape.mapstyle.argbToRgba
 import org.scottishtecharmy.soundscape.mapstyle.buildMapStyle
+import org.scottishtecharmy.soundscape.mapstyle.resolveTileSourceUrl
 
 @Composable
 actual fun PlatformMapContainer(
@@ -42,12 +42,22 @@ actual fun PlatformMapContainer(
         } catch (_: Exception) { "" }
     }
 
-    val baseStyle = remember(foregroundColor, backgroundColor) {
+    // Use offline extracts if available, otherwise fall back to network
+    val extractsPath = context.getExternalFilesDir(null)?.absolutePath ?: ""
+    val tileSourceUrl = remember(userLocation) {
+        resolveTileSourceUrl(
+            location = userLocation,
+            extractsPath = extractsPath,
+            networkTileUrl = tileProviderUrl,
+        )
+    }
+
+    val baseStyle = remember(foregroundColor, backgroundColor, tileSourceUrl) {
         buildMapStyle(
             theme = AccessibleTheme,
             spritePath = "file://$filesDir/osm-liberty-accessible/osm-liberty",
             glyphsPath = "file://$filesDir/osm-liberty-accessible/fonts/{fontstack}/{range}.pbf",
-            tileSourceUrl = "$tileProviderUrl/$PROTOMAPS_SERVER_PATH.json",
+            tileSourceUrl = tileSourceUrl,
             overrides = overrides,
             symbolForegroundColor = foregroundColor,
             symbolBackgroundColor = backgroundColor,

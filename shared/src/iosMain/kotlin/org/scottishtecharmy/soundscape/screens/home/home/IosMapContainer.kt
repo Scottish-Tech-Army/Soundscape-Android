@@ -14,6 +14,8 @@ import org.scottishtecharmy.soundscape.mapstyle.AccessibleTheme
 import org.scottishtecharmy.soundscape.mapstyle.accessibleLayerOverrides
 import org.scottishtecharmy.soundscape.mapstyle.argbToRgba
 import org.scottishtecharmy.soundscape.mapstyle.buildMapStyle
+import org.scottishtecharmy.soundscape.mapstyle.resolveTileSourceUrl
+import platform.Foundation.NSHomeDirectory
 import platform.Foundation.NSBundle
 import platform.Foundation.NSDocumentDirectory
 import platform.Foundation.NSFileManager
@@ -63,7 +65,7 @@ private fun getTileProviderUrl(): String {
 }
 
 @Composable
-fun rememberIosMapBaseStyle(): BaseStyle {
+fun rememberIosMapBaseStyle(location: LngLatAlt?): BaseStyle {
     val foregroundColor = argbToRgba(MaterialTheme.colorScheme.onBackground.toArgb())
     val backgroundColor = argbToRgba(MaterialTheme.colorScheme.background.toArgb())
     val overrides = accessibleLayerOverrides(
@@ -71,15 +73,20 @@ fun rememberIosMapBaseStyle(): BaseStyle {
         backgroundColor = backgroundColor,
     )
 
-    return remember(foregroundColor, backgroundColor) {
+    return remember(foregroundColor, backgroundColor, location) {
         val assetsDir = extractMapAssets()
-        val tileUrl = getTileProviderUrl()
+        val extractsPath = NSHomeDirectory() + "/Documents"
+        val tileSourceUrl = resolveTileSourceUrl(
+            location = location,
+            extractsPath = extractsPath,
+            networkTileUrl = getTileProviderUrl(),
+        )
 
         buildMapStyle(
             theme = AccessibleTheme,
             spritePath = "file://$assetsDir/osm-liberty",
             glyphsPath = "file://$assetsDir/fonts/{fontstack}/{range}.pbf",
-            tileSourceUrl = "$tileUrl/$PROTOMAPS_SERVER_PATH.json",
+            tileSourceUrl = tileSourceUrl,
             overrides = overrides,
             symbolForegroundColor = foregroundColor,
             symbolBackgroundColor = backgroundColor,
@@ -100,7 +107,7 @@ fun IosMapContainerLibre(
     routeData: RouteWithMarkers? = null,
     modifier: Modifier = Modifier,
 ) {
-    val baseStyle = rememberIosMapBaseStyle()
+    val baseStyle = rememberIosMapBaseStyle(location = userLocation)
 
     MapContainerLibre(
         mapCenter = mapCenter,
