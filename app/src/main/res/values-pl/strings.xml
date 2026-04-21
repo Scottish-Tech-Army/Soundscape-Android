@@ -111,7 +111,7 @@
     <string name="callouts_audio_beacon">Odległość do celu naprowadzania</string>
     <string name="callouts_automatic_callouts">Automatyczne powiadomienia głosowe</string>
     <string name="callouts_nothing_to_call_out_now">W tej chwili brak informacji</string>
-    <string name="callouts_nearby_markers">Bliskie znaczniki mapy (pinezki)</string>
+    <string name="callouts_nearby_markers">Bliskie znaczniki</string>
     <string name="sleep_sleep">Tryb uśpienia</string>
     <string name="sleep_sleeping">Aplikacja w trybie uśpienia</string>
     <string name="sleep_sleeping_message">Soundscape jest obecnie w trybie uśpienia. Uniemożliwia to korzystanie przez Soundscape z usług lokalizacyjnych oraz pobieranie danych. Dzięki temu oszczędzasz baterię, gdy nie używasz aplikacji. Stuknij przycisk poniżej, aby obudzić Soundscape.</string>
