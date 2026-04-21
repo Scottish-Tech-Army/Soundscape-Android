@@ -225,8 +225,8 @@
     <string name="first_launch_callouts_example_1">Café</string>
     <string name="first_launch_callouts_example_3">A Rua Principal continua à esquerda</string>
     <string name="first_launch_callouts_example_4">A Rua Principal continua à direita</string>
-    <string name="first_launch_permissions_title">Navegar com o Soundscape</string>
-    <string name="first_launch_permissions_message">Quando navegar com o Soundscape, será orientado por um sinal de áudio. Para tal, o Soundscape necessita que ative as permissões seguintes:</string>
+    <string name="first_launch_permissions_title">Permissões da Aplicação</string>
+    <string name="first_launch_permissions_message">Para o Soundscape funcionar, é necessário conceder‑lhe determinadas permissões. Estas permitem que a aplicação seja atualizada com a localização do telemóvel, mesmo quando este estiver bloqueado. Toque em cada uma das permissões abaixo e ative‑as quando for solicitado:</string>
     <string name="first_launch_permissions_location">Serviços de localização com Localização exata</string>
     <string name="first_launch_permissions_motion">Movimento e fitness</string>
     <string name="first_launch_permissions_required">Esta permissão é necessária</string>
@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Marcos e rotas eliminados</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Novidades desta versão</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Fechar o diálogo da nova versão</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nExistem duas funcionalidades novas nesta versão que permitem o controlo remoto da aplicação, mesmo quando o telemóvel está bloqueado. Isto significa que pode manter o telemóvel no bolso enquanto continua a controlar as principais funcionalidades da aplicação.\n\nAmbos os métodos de controlo remoto utilizam os botões de controlo multimédia Bluetooth — quer os dos seus auscultadores, quer pequenos comandos remotos que pode comprar para levar na mão ou no bolso. O modo de controlo remoto é selecionado em Definições / Controlos Multimédia e pode escolher \"Comando de voz\" para falar com a aplicação, ou \"Menu de Áudio\", em que são lidos menus com opções para selecionar. \"Modo Original\" significa que os botões Bluetooth funcionam da mesma forma que nas versões anteriores.\n\nNo modo de comando de voz, premir o botão reproduzir/pausa nos seus auscultadores faz com que a aplicação comece a ouvir a sua voz e ouvirá um som curto a indicar que a escuta começou. Se disser \"Ajuda\", a aplicação listará os comandos disponíveis. Depois pode premir o botão outra vez e experimentar os outros comandos. Infelizmente, o reconhecimento de voz do Android não suporta todos os idiomas e não está disponível em todos os telemóveis.\n\nA principal dificuldade no modo de comando de voz é que alguns auscultadores demoram mais do que outros a ativar o microfone. Isto significa que, depois de premir o botão reproduzir/pausa, poderá ter de esperar até 5 segundos antes de poder falar. Para descobrir quanto tempo demora, a melhor abordagem é premir reproduzir/pausa e depois contar de 1 a 10. O telemóvel deverá dizer qual foi a fala reconhecida e o número que reconheceu primeiro foi o primeiro a ser identificado. Pode usar isto para aprender quanto tempo deve esperar antes de falar. Alguns auscultadores emitem um som claro quando o microfone está ativo, o que facilita este processo; outros não fazem nenhum som. Infelizmente, isto pode requerer alguma prática.\n\nO outro modo remoto novo — o modo Menu de Áudio — funcionará em todos os idiomas e em todos os telefones. Os botões de controlo multimédia seguinte/anterior deslocam‑se para frente e para trás pelas opções do menu. O botão reproduzir/pausa seleciona a opção atual. Existe um menu de topo e uma camada de sub‑menus que agrupam comandos semelhantes.\n\nEstas funcionalidades são muito recentes e gostaríamos muito de receber feedback sobre se funcionam bem e que outros comandos gostaria de ver.\n\nPor favor, reporte quaisquer problemas que tenha, por mais pequenos que sejam, através da opção *Contactar o apoio ao cliente* no menu principal.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nEsta é a primeira versão de produção do Soundscape. Se é novo na aplicação, pode saber mais através dos ecrãs de *Ajuda* ou fazendo o *Tutorial*. Ambos estão disponíveis no menu principal.\n\nContinuamos a trabalhar arduamente na melhoria da aplicação, pelo que agradecemos que reporte quaisquer problemas que encontre, por mais pequenos que sejam, através da opção *Contactar o apoio ao cliente* no menu principal.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licenças de código aberto</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal de balsas</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s - Terminal de balsas</string>
@@ -1355,4 +1355,14 @@
     <string name="relative_left_right_direction_behind_left">Atrás e à esquerda</string>
     <string name="relative_left_right_direction_behind_right">Atrás e à direita</string>
     <string name="relative_left_right_direction_behind">Atrás</string>
+    <string name="settings_collapse_section">Recolher secção</string>
+    <string name="settings_expand_section">Expandir secção</string>
+    <string name="settings_collapsed">Recolhida</string>
+    <string name="settings_expanded">Expandida</string>
+    <string name="ui_grant_permission">Conceder Permissão</string>
+    <string name="copyright_notices">O Soundscape não seria possível sem estas fantásticas bibliotecas e dados de terceiros. Clique nas ligações para ver as respetivas licenças:</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) fornecem todos os dados geográficos para o mapeamento e o áudio utilizados no Soundscape.</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) é usado para gerar os tiles de mapa que utilizamos.</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) é usado para gerar o áudio 3D e encontra‑se disponível para utilização ao abrigo da [licença Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
+    <string name="trademark_disclaimer">Todos os nomes de produtos e empresas de terceiros, bem como os respetivos logótipos, são marcas comerciais ou marcas registadas e continuam a ser propriedade dos respetivos titulares.</string>
 </resources>
