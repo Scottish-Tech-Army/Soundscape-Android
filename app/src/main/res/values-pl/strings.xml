@@ -251,8 +251,8 @@
     <string name="first_launch_callouts_example_1">Kawiarnia</string>
     <string name="first_launch_callouts_example_3">Ulica Słoneczna biegnie w lewo</string>
     <string name="first_launch_callouts_example_4">Ulica Słoneczna biegnie w prawo</string>
-    <string name="first_launch_permissions_title">Nawigacja z Soundscape</string>
-    <string name="first_launch_permissions_message">Podczas nawigacji za pomocą Soundscape będziesz prowadzony przez dźwięk naprowadzający. Aby działać, Soundscape potrzebuje, abyś udzielił następujących uprawnień:</string>
+    <string name="first_launch_permissions_title">Uprawnienia aplikacji</string>
+    <string name="first_launch_permissions_message">Aby Soundscape działał, potrzebuje przydzielenia niektórych uprawnień. Pozwalają one na aktualizowanie pozycji telefonu, nawet gdy jest zablokowany. Stuknij każde z poniższych uprawnień i włącz je, gdy pojawi się monit:</string>
     <string name="first_launch_permissions_location">Usługi lokalizacji (dokładna lokalizacja)</string>
     <string name="first_launch_permissions_motion">Ruch i aktywność fizyczna</string>
     <string name="first_launch_permissions_required">To uprawnienie jest wymagane</string>
@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Znaczniki i trasy usunięte</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informacje o nowej wersji</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Zamknij okno informacji o nowej wersji</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nW tej wersji dodaliśmy dwie nowe funkcje umożliwiające zdalne sterowanie aplikacją nawet wtedy, gdy telefon jest zablokowany. Dzięki temu telefon można trzymać w kieszeni, a mimo to sterować podstawowymi funkcjami aplikacji.\n\nObie metody zdalnego sterowania wykorzystują przyciski multimedialne Bluetooth — te w słuchawkach lub dodatkowe niewielkie piloty, które można trzymać w ręce lub kieszeni. Tryb sterowania wybiera się w Ustawieniach → Sterowanie przyciskami multimedialnymi. Możesz wybrać „Polecenia głosowe”, aby rozmawiać z aplikacją, lub „Menu audio”, gdzie aplikacja odczytuje menu z opcjami do wyboru. „Tryb oryginalny” sprawia, że przyciski Bluetooth działają tak jak w poprzednich wersjach.\n\nW trybie poleceń głosowych naciśnięcie przycisku odtwarzania/pauzy w słuchawkach powoduje, że aplikacja zaczyna nasłuchiwać mowy — usłyszysz krótki dźwięk informujący o tym. Jeśli powiesz „Help” (Pomoc), aplikacja wyświetli listę dostępnych poleceń. Następnie możesz ponownie kliknąć przycisk i spróbować innych poleceń. Niestety systemowe rozpoznawanie mowy Androida nie obsługuje wszystkich języków i nie jest dostępne we wszystkich telefonach.\n\nGłównym utrudnieniem w trybie poleceń głosowych jest fakt, że niektóre słuchawki potrzebują więcej czasu na aktywację mikrofonu niż inne. Oznacza to, że po naciśnięciu przycisku odtwarzania/pauzy może być konieczne odczekanie nawet do 5 sekund, zanim będzie można mówić. Aby sprawdzić, ile to trwa, najlepiej nacisnąć odtwarzanie/pauzę i policzyć od 1 do 10. Telefon powinien powiedzieć, jaką mowę rozpoznał — liczba, od której zacznie, to numer pierwszego rozpoznanego słowa. To pomoże określić, ile trzeba odczekać przed rozpoczęciem mówienia. Niektóre słuchawki wydają wyraźny dźwięk po włączeniu mikrofonu, co ułatwia sprawę, inne są zupełnie ciche — niestety może to wymagać ćwiczeń.\n\nDrugi nowy tryb zdalny — Menu audio — działa we wszystkich językach i na wszystkich telefonach. Przyciski dalej/wstecz przesuwają Cię przez opcje w menu, a przycisk odtwarzania/pauzy wybiera aktualną opcję. Jest menu główne oraz jedna warstwa podmenu, które grupują podobne polecenia.\n\nFunkcje te są bardzo nowe, dlatego będziemy wdzięczni za informacje zwrotne, czy dobrze działają i jakie inne polecenia chciałbyś widzieć.\n\nZgłaszaj wszelkie problemy — nawet drobne — za pomocą opcji *Kontakt z pomocą techniczną* w menu głównym.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nTo jest pierwsze wydanie produkcyjne Soundscape. Jeśli dopiero zaczynasz korzystać z aplikacji, dowiesz się o niej więcej na ekranach *Pomoc* lub wykonując *Samouczek*. Obie opcje znajdziesz w menu głównym.\n\nWciąż intensywnie pracujemy nad ulepszeniem aplikacji, dlatego prosimy zgłaszać wszelkie problemy, nawet drobne, korzystając z opcji *Kontakt z pomocą techniczną* w menu głównym.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licencje open source</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal promowy</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Terminal promowy</string>
@@ -1355,4 +1355,14 @@
     <string name="relative_left_right_direction_behind_left">Za tobą po lewej</string>
     <string name="relative_left_right_direction_behind_right">Za tobą po prawej</string>
     <string name="relative_left_right_direction_behind">Za tobą</string>
+    <string name="settings_collapse_section">Zwiń sekcję</string>
+    <string name="settings_expand_section">Rozwiń sekcję</string>
+    <string name="settings_collapsed">Zwinięte</string>
+    <string name="settings_expanded">Rozwinięte</string>
+    <string name="ui_grant_permission">Przyznaj uprawnienie</string>
+    <string name="copyright_notices">Soundscape nie byłby możliwy bez tych fantastycznych bibliotek i danych firm trzecich. Kliknij linki, aby zobaczyć ich licencje:</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) dostarczają wszystkie dane geograficzne wykorzystywane do mapowania i generowania dźwięku w Soundscape.</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) jest używany do generowania kafelków mapy, których używamy.</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) służy do generowania dźwięku 3D i jest udostępniona do użytku na warunkach [licencji Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
+    <string name="trademark_disclaimer">Wszystkie nazwy produktów i firm oraz logotypy stron trzecich są znakami towarowymi lub zarejestrowanymi znakami towarowymi i pozostają własnością ich odpowiednich właścicieli.</string>
 </resources>
