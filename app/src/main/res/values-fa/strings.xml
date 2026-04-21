@@ -504,9 +504,9 @@
     <!-- Example callout for a generic street name. In the US, a generic street name is "Main Street" but this might vary by locale -->
 <string name="first_launch_callouts_example_4">خیابان بهار به راست می‌رود</string>
     <!-- Title text for screen that asks for location permissions -->
-<string name="first_launch_permissions_title">مسیریابی با ساند‌اسکیپ</string>
+<string name="first_launch_permissions_title">مجوزهای اپلیکیشن</string>
     <!-- Message text for screen that asks for location permissions -->
-<string name="first_launch_permissions_message">هنگام مسیریابی با ساند‌اسکیپ، هدایت شما به‌وسیله‌ی یک جهت‌نمای صوتی صورت خواهد پذیرفت. برای این کار، لازم است مجوز‌های زیر را در اختیار ساند‌اسکیپ قرار دهید:</string>
+<string name="first_launch_permissions_message">برای اجرای ساند‌اسکیپ لازم است چند مجوز به اپلیکیشن داده شود. این مجوزها به آن اجازه می‌دهند تا حتی زمانی که گوشی قفل است، موقعیت مکانی گوشی را دریافت و به‌روزرسانی کند. لطفاً روی هر یک از مجوزهای زیر ضربه بزنید و هنگام درخواست، آنها را فعال کنید:</string>
     <!-- Title text for permission to use iOS Location Services -->
 <string name="first_launch_permissions_location">خدمات مکان‌یابی با دقت بالا</string>
     <!-- Title text for permission to use iOS Motion and Fitness data -->
@@ -996,7 +996,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">نشانه‌ها و مسیرها حذف شدند</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">اطلاعات نسخه‌ی جدید</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">بستن پنجره‌ی اطلاعات نسخه‌ی جدید</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nدر این نسخه دو قابلیت جدید اضافه شده که کنترل از راه دور اپ را حتی زمانی که گوشی قفل است ممکن می‌سازد. این بدان معناست که می‌توانید گوشی را در جیبتان قرار دهید و در عین حال امکانات اصلی اپ را کنترل کنید.\n\nهر دو روش کنترل از راه دور از دکمه‌های کنترل رسانه‌ای بلوتوث استفاده می‌کنند؛ این دکمه‌ها می‌توانند روی هدفون شما قرار داشته باشند یا می‌توانید ریموت‌های کوچک خریداری کنید و در دست یا جیب نگه دارید. حالت کنترل از راه دور از بخش تنظیمات / کنترل‌های رسانه‌ای انتخاب می‌شود و می‌توانید «فرمان صوتی» را انتخاب کنید تا با اپ صحبت کنید، یا «منوی صوتی» را انتخاب کنید که در آن منوها برای شما خوانده می‌شوند و می‌توانید گزینه‌ای را انتخاب نمایید. «حالت اصلی» یعنی دکمه‌های بلوتوث همان‌طور که در نسخه‌های قبلی عمل می‌کردند رفتار می‌کنند.\n\nدر حالت فرمان صوتی، فشردن دکمه‌ی پخش/مکث روی هدفون باعث می‌شود اپ برای دریافت گفتار گوش دهد و شما صدای کوتاهی می‌شنوید که این وضعیت را نشان می‌دهد. اگر بگویید «کمک» فهرستی از فرمان‌های قابل استفاده را خواهید شنید. سپس می‌توانید دوباره دکمه را فشار داده و سایر دستورات را امتحان کنید. متأسفانه، تشخیص گفتار اندروید از همهٔ زبان‌ها پشتیبانی نمی‌کند و روی همهٔ گوشی‌ها در دسترس نیست.\n\nچالش اصلی در حالت فرمان صوتی این است که بعضی هدفون‌ها نسبت به بقیه زمان بیشتری برای فعال کردن میکروفون نیاز دارند. بنابراین ممکن است پس از زدن دکمه‌ی پخش/مکث تا ۵ ثانیه باید صبر کنید تا بتوانید صحبت کنید. برای فهمیدن این مدت، بهترین روش این است که دکمه‌ی پخش/مکث را فشار داده و از ۱ تا ۱۰ بشمارید. گوشی باید بگوید چه گفتاری را تشخیص داده و عددی که ابتدا تشخیص داده شده نشان می‌دهد از چه زمانی می‌توان صحبت کرد. این روش به شما کمک می‌کند زمان مناسب برای انتظار پیش از صحبت را بیاموزید. برخی هدفون‌ها هنگام روشن شدن میکروفون صدای مشخصی تولید می‌کنند که کار را آسان‌تر می‌سازد، اما برخی اصلاً صدایی ندارند. متأسفانه ممکن است نیاز به تمرین داشته باشد.\n\nحالت راه‌انداز کنترل از راه دور دیگر، حالت «منوی صوتی» است که در همهٔ زبان‌ها و روی همهٔ گوشی‌ها کار می‌کند. دکمه‌های بعدی/قبلی کنترل رسانه‌ای درون منو میان گزینه‌ها جلو و عقب می‌روند و دکمه‌ی پخش/مکث گزینهٔ فعلی را انتخاب می‌کند. یک منوی سطح بالا وجود دارد و سپس یک لایه زیرمنو که دستورات مشابه را گروه‌بندی می‌کند.\n\nاین قابلیت‌ها بسیار جدید هستند و ما بسیار مایل به دریافت بازخورد دربارهٔ عملکرد آن‌ها و اینکه چه دستورات دیگری ممکن است مفید باشد، هستیم.\n\nلطفاً هر مشکلی، هرچقدر هم جزئی باشد، از طریق گزینهٔ *«تماس با پشتیبانی»* در منوی اصلی گزارش دهید.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nاین اولین نسخهٔ تولیدی ساند‌اسکیپ است. اگر با اپ تازه‌کار هستید، می‌توانید اطلاعات بیشتر را از صفحه‌های *راهنما* یا با گذراندن *آموزش صوتی* بیابید. هر دوی این گزینه‌ها در منوی اصلی در دسترس هستند.\n\nما همچنان برای بهبود اپ سخت در تلاشیم، بنابراین لطفاً هر مشکلی را، هرچقدر هم کوچک باشد، از طریق گزینهٔ *«تماس با پشتیبانی»* در منوی اصلی گزارش دهید.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">مجوزهای متن‌باز</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">پایانه کشتی</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s پایانه کشتی</string>
@@ -1826,4 +1826,14 @@
     <string name="relative_left_right_direction_behind_left">پشت-چپ</string>
     <string name="relative_left_right_direction_behind_right">پشت-راست</string>
     <string name="relative_left_right_direction_behind">پشت</string>
+    <string name="settings_collapse_section">جمع کردن بخش</string>
+    <string name="settings_expand_section">باز کردن بخش</string>
+    <string name="settings_collapsed">جمع‌شده</string>
+    <string name="settings_expanded">بازشده</string>
+    <string name="ui_grant_permission">دادن مجوز</string>
+    <string name="copyright_notices">بدون این کتابخانه‌ها و داده‌های فوق‌العادهٔ شخص ثالث، توسعهٔ ساند‌اسکیپ ممکن نبود. برای مشاهدهٔ مجوزهای آنها روی پیوندها کلیک کنید:</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) کلیهٔ داده‌های جغرافیایی مورد استفاده برای نقشه‌برداری و تولید صدا در ساند‌اسکیپ را فراهم می‌کنند.</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) برای تولید کاشی‌های نقشه‌ای که ما از آنها استفاده می‌کنیم به‌کار می‌رود.</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) برای تولید صدای سه‌بعدی استفاده می‌شود و تحت [مجوز Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) برای استفاده در دسترس قرار گرفته است.</string>
+    <string name="trademark_disclaimer">تمامی نام‌ها، لوگوها و نشان‌های تجاری محصولات و شرکت‌های شخص ثالث علامت تجاری یا علامت تجاری ثبت‌شده هستند و مالکیت آنها برای دارندگان مربوطه محفوظ است.</string>
 </resources>
