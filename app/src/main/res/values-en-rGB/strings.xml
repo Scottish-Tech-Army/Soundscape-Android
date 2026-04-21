@@ -225,8 +225,8 @@
     <string name="first_launch_callouts_example_1">Cafe</string>
     <string name="first_launch_callouts_example_3">Main Street goes left</string>
     <string name="first_launch_callouts_example_4">Main Street goes right</string>
-    <string name="first_launch_permissions_title">Navigating with Soundscape</string>
-    <string name="first_launch_permissions_message">When navigating with Soundscape you will be guided by an audio beacon. To do that, Soundscape needs you to enable the following permissions:</string>
+    <string name="first_launch_permissions_title">App Permissions</string>
+    <string name="first_launch_permissions_message">In order for Soundscape to run, it needs certain permissions granted. These allow it to be updated with the phone\'s location, even when locked. Please tap each of the following permissions and enable them when prompted:</string>
     <string name="first_launch_permissions_location">Location Services with Precise Location</string>
     <string name="first_launch_permissions_required">This permission is required</string>
     <string name="first_launch_beacon_title">Choose an Audio Beacon</string>
@@ -523,7 +523,7 @@
     <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Delete all markers and routes</string>
     <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Deleting all of the markers and routes cannot be undone, do you want to continue?</string>
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markers and routes deleted</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nThere are two new features in this release that allow remote control of the app even when the phone is locked. This means you can keep the phone in your pocket while still controlling the app’s main features.\n\nBoth remote control methods use Bluetooth media control buttons — either those on your headphones, or small remote controls that you can keep in your hand or pocket. The remote control mode is selected from Settings / Media controls and you can pick *\"Voice command\"* so you can talk to the app, or *\"Audio menu\"* where menus are read out to you with options to select. *\"Original mode\"* means the Bluetooth buttons work the same way as in previous releases.\n\nIn voice command mode, pressing the play/pause button on your headphones starts the app listening for speech and you will hear a short sound to indicate this. If you say *\"Help\"* it will list the available commands you can use. You can then press the button again and try the other commands. Unfortunately, Android speech recognition does not support all languages and it is not available on all phones.\n\nThe main difficulty with voice command mode is that some headphones take longer to switch their microphone on than others. This means that after tapping the play/pause button you may have to wait up to 5 seconds before you can speak. To learn how long it takes, tap play/pause and count from 1 to 10. The phone should tell you what speech it recognised and the number it starts at will be the first to be recognised. This helps you learn how long to wait before speaking. Some headphones make a clear noise when the microphone is on, which makes this easier; others make no noise at all. Unfortunately, this can take practise.\n\nThe other remote mode, Audio menu mode, will work in all languages and on all phones. The next/previous media control buttons move forwards and backwards through the options within the menu. The play/pause button then selects the current option. There is a top‑level menu and one layer of sub‑menus which group similar commands together.\n\nThese features are very new and we’d really welcome feedback on whether they work well and what other commands you might like.\n\nPlease report any problems, however small, via the *Contact support* option in the main menu.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nThis is the first production release of Soundscape. If you are new to the app, then you can find out more about it from the *Help* screens or by taking the *Tutorial*. These are both options in the main menu.\n\nWe\'re still working hard on improving the app, so please report any problems that you have, however small they may be, via the *Contact support* option in the main menu.\n</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Release Notes</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Close Release Notes</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Open-source Licences</string>
@@ -1355,4 +1355,14 @@
     <string name="relative_left_right_direction_behind_left">Behind left</string>
     <string name="relative_left_right_direction_behind_right">Behind right</string>
     <string name="relative_left_right_direction_behind">Behind</string>
+    <string name="settings_collapse_section">Collapse section</string>
+    <string name="settings_expand_section">Expand section</string>
+    <string name="settings_collapsed">Collapsed</string>
+    <string name="settings_expanded">Expanded</string>
+    <string name="ui_grant_permission">Grant Permission</string>
+    <string name="copyright_notices">Soundscape wouldn\'t be possible without these fantastic third-party libraries and data. Click on the links to see their licences:</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geographical data for mapping and audio used in Soundscape.</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the map tiles we use.</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
+    <string name="trademark_disclaimer">All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective owners.</string>
 </resources>
