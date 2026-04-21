@@ -11,6 +11,7 @@ import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.IosAudioEngine
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
+import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GeoEngineListener
 import org.scottishtecharmy.soundscape.geoengine.GridState
@@ -102,13 +103,7 @@ class IosSoundscapeService : GeoEngineListener {
         }
     }
 
-    // Beacon state
-    data class BeaconState(
-        val location: LngLatAlt? = null,
-        val name: String = "",
-        val muteState: Boolean = false
-    )
-
+    // Beacon state — uses shared BeaconState from services package
     private val _beaconFlow = MutableStateFlow(BeaconState())
     val beaconFlow: StateFlow<BeaconState> = _beaconFlow.asStateFlow()
     private var beaconHandle: Long? = null
@@ -116,6 +111,10 @@ class IosSoundscapeService : GeoEngineListener {
     // Service bound state (always true on iOS)
     private val _serviceBoundState = MutableStateFlow(true)
     val serviceBoundState: StateFlow<Boolean> = _serviceBoundState.asStateFlow()
+
+    // Home state flow — combines location, heading, beacon, route
+    private val _homeState = MutableStateFlow(org.scottishtecharmy.soundscape.screens.home.HomeState())
+    val homeState: StateFlow<org.scottishtecharmy.soundscape.screens.home.HomeState> = _homeState.asStateFlow()
 
     // Convenience flow accessors
     fun getLocationFlow(): StateFlow<SoundscapeLocation?> = locationProvider.locationFlow
@@ -125,6 +124,31 @@ class IosSoundscapeService : GeoEngineListener {
     init {
         startGeoEngine()
         observeAppLifecycle()
+        startHomeStateUpdates()
+    }
+
+    private fun startHomeStateUpdates() {
+        // Update home state from location and heading flows
+        scope.launch {
+            locationProvider.locationFlow.collect { location ->
+                val heading = directionProvider.orientationFlow.value?.headingDegrees ?: 0f
+                _homeState.value = _homeState.value.copy(
+                    location = location?.let { LngLatAlt(it.longitude, it.latitude) },
+                    heading = heading,
+                    beaconState = org.scottishtecharmy.soundscape.services.BeaconState(
+                        location = _beaconFlow.value.location,
+                        muteState = _beaconFlow.value.muteState,
+                    ),
+                )
+            }
+        }
+        scope.launch {
+            directionProvider.orientationFlow.collect { direction ->
+                _homeState.value = _homeState.value.copy(
+                    heading = direction?.headingDegrees ?: 0f,
+                )
+            }
+        }
     }
 
     private fun observeAppLifecycle() {

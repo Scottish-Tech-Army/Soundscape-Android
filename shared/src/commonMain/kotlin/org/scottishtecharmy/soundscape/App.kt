@@ -48,6 +48,8 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAnd
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
+import org.scottishtecharmy.soundscape.screens.home.HomeState
+import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.SharedOfflineMapsScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 import org.jetbrains.compose.resources.stringResource
@@ -67,6 +69,10 @@ data class AppCallbacks(
     val onWhatsAroundMe: () -> Unit = {},
     val onAheadOfMe: () -> Unit = {},
     val onNearbyMarkers: () -> Unit = {},
+    val onRouteSkipNext: () -> Unit = {},
+    val onRouteSkipPrevious: () -> Unit = {},
+    val onRouteMute: () -> Unit = {},
+    val onRouteStop: () -> Unit = {},
     val onPlacesNearbyClickFolder: (String, String) -> Unit = { _, _ -> },
     val onPlacesNearbyClickBack: () -> Unit = {},
     val onOfflineMapsRefresh: () -> Unit = {},
@@ -79,6 +85,7 @@ data class AppCallbacks(
 data class AppFlows(
     val locationFlow: StateFlow<SoundscapeLocation?>? = null,
     val directionFlow: StateFlow<DeviceDirection?>? = null,
+    val homeState: StateFlow<HomeState>? = null,
     val markersUiState: StateFlow<MarkersAndRoutesUiState>? = null,
     val routesUiState: StateFlow<MarkersAndRoutesUiState>? = null,
     val placesNearbyUiState: StateFlow<PlacesNearbyUiState>? = null,
@@ -106,16 +113,27 @@ fun App(
             when (screen) {
                 Screen.WELCOME -> Welcome(onNavigate = { screen = Screen.HOME })
 
-                Screen.HOME -> HomeScreen(
-                    flows = flows,
-                    callbacks = callbacks,
-                    onNavigateToPlacesNearby = { screen = Screen.PLACES_NEARBY },
-                    onNavigateToMarkersAndRoutes = { screen = Screen.MARKERS_AND_ROUTES },
-                    onNavigateToOfflineMaps = {
-                        callbacks.onOfflineMapsRefresh()
-                        screen = Screen.OFFLINE_MAPS
-                    },
-                )
+                Screen.HOME -> {
+                    val homeState by flows.homeState?.collectAsState()
+                        ?: remember { mutableStateOf(HomeState()) }
+                    SharedHomeScreen(
+                        homeState = homeState,
+                        onMyLocation = callbacks.onMyLocation,
+                        onAroundMe = callbacks.onWhatsAroundMe,
+                        onAheadOfMe = callbacks.onAheadOfMe,
+                        onNearbyMarkers = callbacks.onNearbyMarkers,
+                        onNavigateToPlacesNearby = { screen = Screen.PLACES_NEARBY },
+                        onNavigateToMarkersAndRoutes = { screen = Screen.MARKERS_AND_ROUTES },
+                        onNavigateToOfflineMaps = {
+                            callbacks.onOfflineMapsRefresh()
+                            screen = Screen.OFFLINE_MAPS
+                        },
+                        onRouteSkipPrevious = callbacks.onRouteSkipPrevious,
+                        onRouteSkipNext = callbacks.onRouteSkipNext,
+                        onRouteMute = callbacks.onRouteMute,
+                        onRouteStop = callbacks.onRouteStop,
+                    )
+                }
 
                 Screen.PLACES_NEARBY -> {
                     val uiState by flows.placesNearbyUiState?.collectAsState()
@@ -196,138 +214,6 @@ fun App(
                         onDelete = { callbacks.onOfflineMapsDelete(it) },
                         onCancelDownload = { callbacks.onOfflineMapsCancelDownload() },
                     )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun HomeScreen(
-    flows: AppFlows,
-    callbacks: AppCallbacks,
-    onNavigateToPlacesNearby: () -> Unit,
-    onNavigateToMarkersAndRoutes: () -> Unit,
-    onNavigateToOfflineMaps: () -> Unit,
-) {
-    val location by flows.locationFlow?.collectAsState() ?: remember { mutableStateOf(null) }
-    val direction by flows.directionFlow?.collectAsState() ?: remember { mutableStateOf(null) }
-
-    Surface(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier.fillMaxSize().padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(12.dp)
-        ) {
-            Text(
-                text = stringResource(Res.string.app_name),
-                style = MaterialTheme.typography.headlineLarge,
-                color = MaterialTheme.colorScheme.onSurface,
-            )
-
-            if (location != null) {
-                val loc = location!!
-                val latStr = ((loc.latitude * 100000).toLong() / 100000.0).toString()
-                val lonStr = ((loc.longitude * 100000).toLong() / 100000.0).toString()
-                Text(
-                    text = "$latStr, $lonStr",
-                    style = MaterialTheme.typography.titleMedium,
-                    color = MaterialTheme.colorScheme.onSurface,
-                )
-                if (loc.hasAccuracy) {
-                    Text(
-                        text = "Accuracy: ${loc.accuracy.toInt()} m",
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurface,
-                    )
-                }
-            } else {
-                Text(
-                    text = "Waiting for location...",
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurface,
-                )
-            }
-
-            if (direction != null) {
-                Text(
-                    text = "Heading: ${direction!!.headingDegrees.toInt()}\u00B0",
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface,
-                )
-            }
-
-            // Map
-            if (location != null) {
-                PlatformMapContainer(
-                    mapCenter = LngLatAlt(location!!.longitude, location!!.latitude),
-                    allowScrolling = false,
-                    userLocation = LngLatAlt(location!!.longitude, location!!.latitude),
-                    userSymbolRotation = direction?.headingDegrees?.toFloat() ?: 0f,
-                    beaconLocation = null,
-                    routeData = null,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .aspectRatio(1.5f),
-                )
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    IconButton(onClick = onNavigateToPlacesNearby) {
-                        Icon(Icons.Rounded.Explore, contentDescription = stringResource(Res.string.search_nearby_screen_title))
-                    }
-                    Text(stringResource(Res.string.search_nearby_screen_title), style = MaterialTheme.typography.labelSmall)
-                }
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    IconButton(onClick = onNavigateToMarkersAndRoutes) {
-                        Icon(Icons.Rounded.Route, contentDescription = stringResource(Res.string.search_view_markers))
-                    }
-                    Text(stringResource(Res.string.search_view_markers), style = MaterialTheme.typography.labelSmall)
-                }
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    IconButton(onClick = onNavigateToOfflineMaps) {
-                        Icon(Icons.Rounded.Download, contentDescription = stringResource(Res.string.offline_maps_title))
-                    }
-                    Text(stringResource(Res.string.offline_maps_title), style = MaterialTheme.typography.labelSmall)
-                }
-            }
-
-            Spacer(modifier = Modifier.height(8.dp))
-
-            // Soundscape action buttons
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    IconButton(onClick = { callbacks.onMyLocation() }) {
-                        Icon(Icons.Rounded.MyLocation, contentDescription = stringResource(Res.string.ui_action_button_my_location_acc_hint))
-                    }
-                    Text(stringResource(Res.string.directions_my_location), style = MaterialTheme.typography.labelSmall)
-                }
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    IconButton(onClick = { callbacks.onWhatsAroundMe() }) {
-                        Icon(Icons.Rounded.Explore, contentDescription = stringResource(Res.string.ui_action_button_around_me_acc_hint))
-                    }
-                    Text(stringResource(Res.string.help_orient_page_title), style = MaterialTheme.typography.labelSmall)
-                }
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    IconButton(onClick = { callbacks.onAheadOfMe() }) {
-                        Icon(Icons.Rounded.NorthEast, contentDescription = stringResource(Res.string.ui_action_button_ahead_of_me_acc_hint))
-                    }
-                    Text(stringResource(Res.string.help_explore_page_title), style = MaterialTheme.typography.labelSmall)
-                }
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    IconButton(onClick = { callbacks.onNearbyMarkers() }) {
-                        Icon(Icons.Rounded.PushPin, contentDescription = stringResource(Res.string.ui_action_button_nearby_markers_acc_hint))
-                    }
-                    Text(stringResource(Res.string.callouts_nearby_markers), style = MaterialTheme.typography.labelSmall)
                 }
             }
         }

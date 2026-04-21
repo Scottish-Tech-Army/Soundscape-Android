@@ -25,7 +25,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 
-data class RoutePlayerState(val routeData: RouteWithMarkers? = null, val currentWaypoint: Int = 0, val beaconOnly: Boolean = false)
+// RoutePlayerState is now in shared module (services/SharedServiceState.kt)
 
 class RoutePlayer(val service: SoundscapeService, context: Context) {
     private var currentRouteData: RouteWithMarkers? = null

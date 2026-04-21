@@ -251,26 +251,27 @@ fun HomeContent(
                 )
             }
             if (location != null) {
-                if (routePlayerState.routeData != null) {
+                val currentRoute = routePlayerState.routeData
+                if (currentRoute != null) {
                     Card(modifier = Modifier
                         .smallPadding(),
                     ) {
                             Row {
                                 Text(
                                     text =
-                                        if(routePlayerState.routeData.markers.size > 1) {
+                                        if(currentRoute.markers.size > 1) {
                                             stringResource(
                                                 Res.string.route_waypoint_progress
                                             ).format(
-                                                routePlayerState.routeData.route.name,
+                                                currentRoute.route.name,
                                                 routePlayerState.currentWaypoint + 1,
-                                                routePlayerState.routeData.markers.size
+                                                currentRoute.markers.size
                                             )
                                         } else {
                                             stringResource(
                                                 Res.string.route_beacon_progress
                                             ).format(
-                                                routePlayerState.routeData.route.name)
+                                                currentRoute.route.name)
                                         },
                                     style = MaterialTheme.typography.labelLarge,
                                     modifier = Modifier.smallPadding()
@@ -310,14 +311,14 @@ fun HomeContent(
                                     CardButton(
                                         onClick = { routeFunctions.skipNext() },
                                         imageVector = Icons.Filled.SkipNext,
-                                        active = (routePlayerState.currentWaypoint < routePlayerState.routeData.markers.size - 1),
+                                        active = (routePlayerState.currentWaypoint < currentRoute.markers.size - 1),
                                         contentDescriptionId = Res.string.route_detail_action_next,
                                         hintActive = Res.string.route_detail_action_next_hint,
                                         hintInactive = Res.string.route_detail_action_next_disabled_hint,
                                         testTag = "routeSkipNext"
                                     )
                                     CardButton(
-                                        onClick = { onNavigate("${HomeRoutes.RouteDetails.route}/${routePlayerState.routeData.route.routeId}") },
+                                        onClick = { onNavigate("${HomeRoutes.RouteDetails.route}/${currentRoute.route.routeId}") },
                                         imageVector = Icons.Filled.Info,
                                         contentDescriptionId = Res.string.behavior_experiences_route_nav_title,
                                         testTag = "routeDetails"

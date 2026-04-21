@@ -13,6 +13,7 @@ fun MainViewController() = ComposeUIViewController {
         flows = AppFlows(
             locationFlow = service.getLocationFlow(),
             directionFlow = service.getOrientationFlow(),
+            homeState = service.homeState,
             placesNearbyUiState = service.placesNearbyUiState,
             offlineMapsNearbyExtracts = mgr.availableExtracts,
             offlineMapsDownloaded = mgr.downloadedExtracts,
