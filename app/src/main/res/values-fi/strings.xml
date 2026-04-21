@@ -225,8 +225,8 @@
     <string name="first_launch_callouts_example_1">Kahvila</string>
     <string name="first_launch_callouts_example_3">Pääkatu jatkuu vasemmalle</string>
     <string name="first_launch_callouts_example_4">Pääkatu jatkuu oikealle</string>
-    <string name="first_launch_permissions_title">Soundscapen avulla suunnistaminen</string>
-    <string name="first_launch_permissions_message">Kun suunnistat Soundscapen avulla, sinua opastaa äänimajakka. Sinun on annettava seuraavat luvat Soundscapelle voidaksesi tätä varten:</string>
+    <string name="first_launch_permissions_title">Sovelluksen käyttöoikeudet</string>
+    <string name="first_launch_permissions_message">Jotta Soundscape voi toimia, sille täytyy myöntää tietyt käyttöoikeudet. Ne mahdollistavat sijainnin päivitykset myös silloin, kun puhelin on lukittu. Napauta seuraavia käyttöoikeuksia yksitellen ja ota ne käyttöön, kun tästä pyydetään:</string>
     <string name="first_launch_permissions_location">Sijaintipalvelut tarkalla sijainnilla</string>
     <string name="first_launch_permissions_motion">Liike ja kuntoilu</string>
     <string name="first_launch_permissions_required">Tämä käyttöoikeus vaaditaan</string>
@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Merkinnät ja reitit poistettu</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Uuden julkaisun tiedot</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Sulje uuden julkaisun valintaikkuna</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nTässä julkaisussa on kaksi uutta ominaisuutta, jotka mahdollistavat sovelluksen etäohjauksen myös silloin, kun puhelin on lukittu. Tämä tarkoittaa, että puhelin voi pysyä taskussasi, mutta voit silti ohjata sovelluksen keskeisiä toimintoja.\n\nMolemmat etäohjausmenetelmät käyttävät Bluetooth‑mediasäätöpainikkeita — joko kuulokkeidesi painikkeita tai erillisiä pieniä kauko‑ohjaimia, joita voit pitää kädessä tai taskussa. Etäohjaustilan valinta tehdään Asetukset/Mediasäätimet‑osiosta. Voit valita \"Puhekomento\"-tilan, jolloin puhut sovellukselle, tai \"Äänivalikko\"-tilan, jossa valikot luetaan sinulle ja voit valita niistä vaihtoehtoja. \"Alkuperäinen tila\" tarkoittaa, että Bluetooth‑painikkeet toimivat kuten aiemmissa julkaisuissa.\n\nPuhekomentotilassa kuulokkeidesi toista/pysäytä‑painikkeen napsautus käynnistää sovelluksen kuuntelemaan puhetta, ja kuulet lyhyen äänen merkkinä siitä. Jos sanot \"Help\" (tai asetuksissa määritellyn avainsanan), sovellus listaa käytettävissä olevat komennot. Tämän jälkeen voit painaa painiketta uudelleen ja kokeilla muita komentoja. Valitettavasti Androidin puheentunnistus ei tue kaikkia kieliä, eikä se ole saatavilla kaikilla puhelimilla.\n\nSuurin haaste puhekomentotilassa on se, että joidenkin kuulokkeiden mikrofonin kytkeytyminen voi kestää muita pidempään. Tämä tarkoittaa, että toista/pysäytä‑painikkeen napautuksen jälkeen saatat joutua odottamaan jopa noin 5 sekuntia ennen kuin voit puhua. Helpoin tapa selvittää oman laitteesi viive on napauttaa toista/pysäytä ja laskea ääneen yhdestä kymmeneen. Puhelimen palauttama teksti kertoo, mikä luku tunnistettiin ensimmäisenä — se osoittaa, milloin puhe alkoi rekisteröityä. Tämä auttaa oppimaan, kuinka kauan odottaa ennen puhumista. Joissain kuulokkeissa mikrofonin aktivoitumisesta kuuluu selvä ääni, mikä helpottaa käyttöä, mutta joissain ei kuulu mitään. Tämä voi vaatia harjoittelua.\n\nToinen uusi etätila, Äänivalikko, toimii kaikilla kielillä ja kaikilla puhelimilla. Seuraava/edellinen‑mediasäätöpainikkeet siirtyvät valikon vaihtoehtojen läpi eteen‑ ja taaksepäin. Toista/pysäytä‑painike valitsee nykyisen vaihtoehdon. Valikkorakenne koostuu ylätason valikosta ja yhdestä alivalikkokerroksesta, jossa samankaltaiset komennot on ryhmitelty.\n\nNämä ominaisuudet ovat hyvin uusia, ja toivomme palautetta siitä, miten ne toimivat ja mitä muita komentoja haluaisit nähdä.\n\nIlmoita kaikista ongelmista, vaikka ne olisivat pieniä, valikon *Ota yhteyttä tukeen* -toiminnon kautta.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nTämä on Soundscapen ensimmäinen tuotantojulkaisu. Jos olet uusi sovelluksen käyttäjä, voit lukea lisää *Ohjeet*-näytöiltä tai suorittamalla *Äänitutoriaalin*. Molemmat löytyvät päävalikosta.\n\nKehitämme sovellusta edelleen aktiivisesti, joten ilmoitathan kohtaamistasi ongelmista, vaikka ne vaikuttaisivatkin pieniltä, käyttämällä päävalikon *Ota yhteyttä tukeen* -vaihtoehtoa.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Avoimen lähdekoodin lisenssit</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Lauttaterminaali</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s lauttaterminaali</string>
@@ -1355,4 +1355,14 @@
     <string name="relative_left_right_direction_behind_left">Takana vasemmalla</string>
     <string name="relative_left_right_direction_behind_right">Takana oikealla</string>
     <string name="relative_left_right_direction_behind">Takana</string>
+    <string name="settings_collapse_section">Sulje osio</string>
+    <string name="settings_expand_section">Laajenna osio</string>
+    <string name="settings_collapsed">Suljettu</string>
+    <string name="settings_expanded">Avoinna</string>
+    <string name="ui_grant_permission">Salli käyttöoikeus</string>
+    <string name="copyright_notices">Soundscape ei olisi mahdollista ilman näitä mahtavia kolmannen osapuolen kirjastoja ja aineistoja. Napauta linkkejä nähdäksesi niiden lisenssit:</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) tarjoavat kaikki Soundscape-sovelluksessa kartoituksessa ja ääniin liittyvässä käytössä olevat paikkatiedot.</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md)ia käytetään niiden karttatiilten tuottamiseen, joita sovelluksemme käyttää.</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio)ia käytetään 3D-äänen tuottamiseen, ja se on saatavilla käytettäväksi [Apache 2.0 -lisenssin](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) nojalla.</string>
+    <string name="trademark_disclaimer">Kaikki kolmansien osapuolten tuotteiden ja yritysten nimet sekä logot ovat tavaramerkkejä tai rekisteröityjä tavaramerkkejä, ja ne säilyvät niiden omistajien omaisuutena.</string>
 </resources>
