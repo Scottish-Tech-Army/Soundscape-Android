@@ -30,6 +30,7 @@ fun MainViewController() = ComposeUIViewController {
                 service.speakCallout(text)
             },
             onSearch = { query -> service.search(query) },
+            onSaveMarker = { desc -> service.saveMarker(desc) },
             onMyLocation = { service.myLocation() },
             onWhatsAroundMe = { service.whatsAroundMe() },
             onAheadOfMe = { service.aheadOfMe() },

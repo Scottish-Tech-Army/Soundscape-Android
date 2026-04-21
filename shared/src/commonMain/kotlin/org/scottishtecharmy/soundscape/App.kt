@@ -74,6 +74,7 @@ data class AppCallbacks(
     val onRouteMute: () -> Unit = {},
     val onRouteStop: () -> Unit = {},
     val onSearch: (String) -> Unit = {},
+    val onSaveMarker: (LocationDescription) -> Unit = {},
     val onPlacesNearbyClickFolder: (String, String) -> Unit = { _, _ -> },
     val onPlacesNearbyClickBack: () -> Unit = {},
     val onOfflineMapsRefresh: () -> Unit = {},
@@ -189,6 +190,9 @@ fun App(
                             onStartBeacon = { loc, name ->
                                 callbacks.onStartBeacon(loc.latitude, loc.longitude, name)
                                 screen = Screen.HOME
+                            },
+                            onSaveMarker = { desc ->
+                                callbacks.onSaveMarker(desc)
                             },
                             onEnableStreetPreview = { loc ->
                                 // TODO: wire street preview

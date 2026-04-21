@@ -11,6 +11,7 @@ import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.IosAudioEngine
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GeoEngineListener
@@ -257,6 +258,32 @@ class IosSoundscapeService : GeoEngineListener {
     override fun getStreetPreviewChoices(): List<StreetPreviewChoice> = emptyList()
     override fun getStreetPreviewBestChoice(): StreetPreviewChoice? = null
     override val menuActive: Boolean = false
+
+    // --- Markers ---
+
+    fun saveMarker(locationDescription: LocationDescription) {
+        scope.launch {
+            try {
+                var name = locationDescription.name
+                if (name.isEmpty()) {
+                    name = locationDescription.description ?: "Unknown"
+                }
+                val marker = org.scottishtecharmy.soundscape.database.local.model.MarkerEntity(
+                    name = name,
+                    fullAddress = locationDescription.description ?: "",
+                    longitude = locationDescription.location.longitude,
+                    latitude = locationDescription.location.latitude
+                )
+                routeDao.insertMarker(marker)
+                audioEngine.createTextToSpeech(
+                    "Marker saved",
+                    org.scottishtecharmy.soundscape.audio.AudioType.STANDARD
+                )
+            } catch (e: Exception) {
+                println("IosSoundscapeService: Failed to save marker: ${e.message}")
+            }
+        }
+    }
 
     // --- Search ---
 
