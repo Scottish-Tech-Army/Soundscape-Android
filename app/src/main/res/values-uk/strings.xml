@@ -249,8 +249,8 @@
     <string name="first_launch_callouts_example_1">Кав\'ярня</string>
     <string name="first_launch_callouts_example_3">проспект Соборний іде ліворуч</string>
     <string name="first_launch_callouts_example_4">проспект Соборний іде праворуч</string>
-    <string name="first_launch_permissions_title">Навігація за допомогою Soundscape</string>
-    <string name="first_launch_permissions_message">Під час навігації за допомогою Soundscape ви будете чути звуковий маячок. Щоб програма могла працювати, вам необхідно надати Soundscape такі дозволи:</string>
+    <string name="first_launch_permissions_title">Дозволи програми</string>
+    <string name="first_launch_permissions_message">Щоб Soundscape міг працювати, йому потрібні певні дозволи. Вони дозволяють програмі отримувати інформацію про місцезнаходження телефону, навіть коли телефон заблоковано. Торкніться кожного з наведених нижче дозволів і увімкніть їх, коли з\'явиться відповідний запит:</string>
     <string name="first_launch_permissions_location">Геодані з доступом до точного місцезнаходження</string>
     <string name="first_launch_permissions_motion">Рух і фітнес</string>
     <string name="first_launch_permissions_required">Цей дозвіл є обов\'язковим</string>
@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Мітки та маршрути видалено</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Інформація про нове оновлення</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Закрити вікно про нове оновлення</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nУ цьому випуску додано дві нові функції, які дозволяють дистанційно керувати додатком навіть коли телефон заблоковано. Це означає, що телефон можна зберігати в кишені й водночас керувати основними можливостями програми.\n\nОбидва методи дистанційного керування використовують Bluetooth‑кнопки медіакерування — або ті, що на ваших навушниках, або незалежні невеликі пульти, які можна носити в руці чи кишені. Режим дистанційного керування вибирається в розділі Налаштування → Керування медіа: можна обрати \"Голосові команди\", щоб говорити з додатком, або \"Аудіо‑меню\", коли вам зачитуються пункти меню з варіантами для вибору. \"Оригінальний режим\" означає, що кнопки Bluetooth працюють так само, як у попередніх версіях.\n\nУ режимі голосових команд натискання кнопки відтворення/паузи на навушниках запускає прослуховування додатком і ви почуєте короткий сигнал, що вказує на це. Якщо ви скажете \"Help\", додаток перелічить доступні команди. Потім можна знову натиснути кнопку й спробувати інші команди. На жаль, механізм розпізнавання мовлення Android не підтримує всі мови й не доступний на всіх телефонах.\n\nГоловна складність режиму голосових команд полягає в тому, що деяким навушникам потрібно більше часу, щоб увімкнути мікрофон. Тому після натискання кнопки відтворення/паузи може знадобитися почекати до 5 секунд перед тим, як говорити. Щоб визначити, скільки часу це займає, найкраще натиснути відтворення/паузу й порахувати від 1 до 10. Телефон повинен повідомити, яке мовлення він розпізнав, і цифра, з якої почалося розпізнавання, буде першою розпізнаною. Це допоможе вам навчитися, скільки чекати перед промовлянням команди. Деякі навушники видають чіткий звук, коли мікрофон активовано, що спрощує процес, а інші взагалі не видають звуку. На жаль, це може потребувати практики.\n\nІнший новий режим — \"Аудіо‑меню\" — працює на всіх мовах і на всіх телефонах. Кнопки Далі/Назад переміщують вас уперед і назад по пунктах меню, а кнопка Відтворити/Пауза обирає поточний пункт. Є верхній рівень меню та один рівень підменю, що групують схожі команди.\n\nЦі функції ще дуже нові, і ми дуже цінуємо ваші відгуки про те, чи працюють вони добре і які ще команди ви хотіли б бачити.\n\nБудь‑ласка, повідомляйте про будь‑які проблеми, навіть якщо вони дрібні, через опцію *Contact Support* у головному меню.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nЦе перший офіційний реліз Soundscape. Якщо ви новачок у застосунку, дізнатися більше можна на екранах *Довідка* або пройшовши *Аудіоурок*. Обидві опції доступні в головному меню.\n\nМи продовжуємо інтенсивно працювати над покращенням програми, тому будь ласка повідомляйте про будь‑які проблеми, навіть найдрібніші, через опцію *Звернутися до служби підтримки* у головному меню.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Ліцензії з відкритим кодом</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Поромний термінал</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s поромний термінал</string>
@@ -1355,4 +1355,14 @@
     <string name="relative_left_right_direction_behind_left">Позаду ліворуч</string>
     <string name="relative_left_right_direction_behind_right">Позаду праворуч</string>
     <string name="relative_left_right_direction_behind">Позаду</string>
+    <string name="settings_collapse_section">Згорнути розділ</string>
+    <string name="settings_expand_section">Розгорнути розділ</string>
+    <string name="settings_collapsed">Згорнуто</string>
+    <string name="settings_expanded">Розгорнуто</string>
+    <string name="ui_grant_permission">Надати дозвіл</string>
+    <string name="copyright_notices">Soundscape не був би можливим без цих чудових сторонніх бібліотек і даних. Натисніть на посилання, щоб переглянути їхні ліцензії:</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) надають усі геодані для картографії та аудіо, що використовуються у Soundscape.</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) використовується для генерації картографічних плиток, які ми використовуємо.</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) використовується для генерації 3D‑аудіо і надається для використання відповідно до [ліцензії Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
+    <string name="trademark_disclaimer">Усі назви сторонніх продуктів, компаній та логотипи є торговельними марками або зареєстрованими торговельними марками й належать їхнім відповідним правовласникам.</string>
 </resources>
