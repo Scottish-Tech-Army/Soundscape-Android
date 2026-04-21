@@ -1045,7 +1045,7 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">新版本信息</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">关闭新版本对话框</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">开源许可证</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\n本次版本新增了两项远程控制功能，可在手机锁屏时远程操作应用。这样您可以把手机放在口袋里，同时控制应用的主要功能。\n\n两种远程控制方式都使用蓝牙媒体控制按钮：可以是耳机上的按钮，也可以购买小型遥控器放在手中或口袋中控制。远程控制模式可在“设置/媒体控制”中选择，您可以选择*\"语音命令\"*以对应用讲话，或选择*\"音频菜单\"*，此模式会朗读可选的菜单供您选择。*\"经典模式\"*表示蓝牙按钮的行为与以前的版本相同。\n\n在语音命令模式下，按下耳机上的播放/暂停按钮会使应用开始监听语音，并播放一段短音作为提示。如果您说出*\"Help\"*，应用会列出可用命令供您使用。之后您可以再次按按钮并尝试其他命令。不幸的是，Android 的语音识别并不支持所有语言，并且并非所有手机都提供该功能。\n\n语音命令模式的主要难点在于，不同耳机将麦克风切换到可用状态所需时间不同。这意味着在按下播放/暂停按钮后，您可能需要等待最长约 5 秒钟才能开始说话。要掌握需要等待的时间，最佳方法是按一次播放/暂停，然后从 1 数到 10。手机会告诉您识别到的语音片段，识别到的第一个数字就是最早被识别的，这样可以帮助您判断在按下按钮后要等待多久。一些耳机会在麦克风开启时发出明显声响，使用起来更容易；但也有些耳机完全没有提示音。不幸的是，这可能需要练习。\n\n另一种新的远程模式是音频菜单模式，该模式可在所有语言和所有手机上工作。下一曲/上一曲媒体控制按钮在菜单选项中向前或向后移动，播放/暂停按钮则选择当前选项。菜单结构为顶层菜单，顶层下有一层子菜单，用于将相似命令分组。\n\n这些功能都很新，我们非常希望收到关于它们是否好用以及您希望加入哪些其他命令的反馈。\n\n如遇任何问题（无论大小），请通过主菜单中的*\"联系支持\"*选项向我们报告。\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\n这是 Soundscape 的第一个正式发布版。如果您是第一次使用此应用，可通过主菜单中的 *\"帮助\"* 页面或运行 *\"教程\"* 来了解更多信息。\n\n我们仍在努力改进应用。如果您遇到任何问题（无论大小），请通过主菜单中的 *\"联系支持\"* 选项向我们反馈。\n</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape 探索使用创新的音频技术，帮助人们更好地感知周围环境，从而更加自信、自主地出行。</string>
     <string name="osm_office_building" tools:ignore="MissingTranslation">办公楼</string>
     <string name="osm_school_building" tools:ignore="MissingTranslation">教学楼</string>
@@ -1264,8 +1264,8 @@
     <string name="first_launch_callouts_example_1">咖啡馆</string>
     <string name="first_launch_callouts_example_3">大街向左延伸</string>
     <string name="first_launch_callouts_example_4">大街向右延伸</string>
-    <string name="first_launch_permissions_title">使用 Soundscape 导航</string>
-    <string name="first_launch_permissions_message">使用 Soundscape 导航时，您将通过音频信标获得引导。为此，Soundscape 需要您启用以下权限：</string>
+    <string name="first_launch_permissions_title">应用权限</string>
+    <string name="first_launch_permissions_message">为了让 Soundscape 正常运行，需要授予某些权限。这些权限允许应用在手机锁屏时也能获取位置信息并保持更新。请点击下列每一项权限，并在提示时启用它们：</string>
     <string name="first_launch_permissions_location">定位服务（精确定位）</string>
     <string name="language_mismatch_title" tools:ignore="MissingTranslation">新语言可用</string>
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">您的手机语言设置为%1$s，该语言现在已在 Soundscape 中可用。是否将 Soundscape 切换为使用 %1$s？</string>
@@ -1355,4 +1355,14 @@
     <string name="relative_left_right_direction_behind_left">后方偏左</string>
     <string name="relative_left_right_direction_behind_right">后方偏右</string>
     <string name="relative_left_right_direction_behind">后方</string>
+    <string name="settings_collapse_section">折叠该部分</string>
+    <string name="settings_expand_section">展开该部分</string>
+    <string name="settings_collapsed">已折叠</string>
+    <string name="settings_expanded">已展开</string>
+    <string name="ui_grant_permission">授予权限</string>
+    <string name="copyright_notices">没有这些优秀的第三方库和数据，Soundscape 无法实现。点击以下链接查看它们的许可证：</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) 为 Soundscape 提供用于地图和音频的全部地理数据。</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) 用于生成我们使用的地图切片。</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) 用于生成 3D 音频，并在 [Apache 2.0 许可证](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) 下提供使用。</string>
+    <string name="trademark_disclaimer">所有第三方产品、公司名称和徽标均为其各自所有者的商标或注册商标，且仍归其各自所有者所有。</string>
 </resources>
