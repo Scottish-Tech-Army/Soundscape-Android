@@ -225,8 +225,8 @@
     <string name="first_launch_callouts_example_1">Kafé</string>
     <string name="first_launch_callouts_example_3">Hovedgaten går til venstre</string>
     <string name="first_launch_callouts_example_4">Hovedgaten går til høyre</string>
-    <string name="first_launch_permissions_title">Naviger med Soundscape</string>
-    <string name="first_launch_permissions_message">Når du navigerer med Soundscape, blir du veiledet av et lydsignal. For å gjøre dette må du gi Soundscape følgende tillatelser:</string>
+    <string name="first_launch_permissions_title">App-tillatelser</string>
+    <string name="first_launch_permissions_message">For at Soundscape skal kunne kjøre, må appen ha noen tillatelser. Disse gjør at appen kan oppdateres med telefonens posisjon, også når telefonen er låst. Trykk på hver av følgende tillatelser og aktiver dem når du blir bedt om det:</string>
     <string name="first_launch_permissions_location">Stedstjenester med nøyaktig posisjon</string>
     <string name="first_launch_permissions_motion">Bevegelse og aktivitet</string>
     <string name="first_launch_permissions_required">Denne tillatelsen er obligatorisk</string>
@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markører og ruter er slettet</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informasjon om ny versjon</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Lukk dialog for ny versjon</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDet er to nye funksjoner i denne utgivelsen som lar deg fjernstyre appen, også når telefonen er låst. Det betyr at telefonen kan være i lommen mens du likevel styrer appens hovedfunksjoner.\n\nBegge fjernkontrollmetodene bruker Bluetooth‑mediekontrollknapper, enten de på hodetelefonene dine, eller små håndholdte fjernkontroller du kan ha i hånden eller i lomma. Fjernkontrollmodus velges i Innstillinger / Mediekontroller, og du kan velge \"Talekommando\" slik at du kan snakke til appen, eller \"Lydmeny\" der menyer blir opplest og du kan velge blant alternativene. \"Originalmodus\" betyr at Bluetooth‑knappene fungerer på samme måte som i tidligere utgaver.\n\nI talekommandomodus starter et trykk på spill av/pause‑knappen på hodetelefonene appens lytting etter tale, og du hører en kort lyd som bekrefter dette. Hvis du sier \"Hjelp\" vil den liste opp tilgjengelige kommandoer du kan bruke. Deretter kan du trykke knappen igjen og prøve de andre kommandoene. Dessverre støtter ikke Androids talegjenkjenning alle språk, og den er ikke tilgjengelig på alle telefoner.\n\nHovedutfordringen med talekommandomodus er at noen hodetelefoner bruker lengre tid enn andre på å aktivere mikrofonen. Det betyr at etter å ha trykket spill av/pause må du kanskje vente opptil 5 sekunder før du kan snakke. For å finne ut hvor lang ventetid som trengs er den beste fremgangsmåten å trykke spill av/pause og så telle fra 1 til 10. Telefonen bør fortelle deg hva den gjenkjente av talen, og tallet den først gjenkjenner viser hvor tidlig lyd inngikk. Dette hjelper deg å lære hvor lenge du skal vente før du snakker. Noen hodetelefoner gir en tydelig lyd når mikrofonen er aktiv, noe som gjør det enklere, men andre gir ingen lyd. Dessverre kan dette kreve øvelse.\n\nDen andre nye fjernkontrollmodusen, Lydmeny‑modus, fungerer på alle språk og på alle telefoner. Neste/forrige‑knappene flytter frem og tilbake gjennom menyvalgene, og spill av/pause‑knappen velger det gjeldende valget. Det finnes en toppnivåmeny, og ett nivå med undermenyer som grupperer lignende kommandoer.\n\nDisse funksjonene er veldig nye, og vi ønsker gjerne tilbakemelding på om de fungerer godt og hvilke andre kommandoer du kunne tenke deg.\n\nRapporter gjerne eventuelle problemer, uansett hvor små, via alternativet *Kontakt brukerstøtte* i hovedmenyen.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDette er den første produksjonsutgivelsen av Soundscape. Hvis du er ny i appen, kan du finne mer informasjon på *Hjelp*-skjermene eller ved å ta *Veiledningen*. Begge disse alternativene finner du i hovedmenyen.\n\nVi jobber fortsatt hardt med å forbedre appen, så rapporter gjerne alle problemer du opplever, uansett hvor små de måtte være, via alternativet *Kontakt brukerstøtte* i hovedmenyen.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Åpne kildekodelisenser</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Fergeterminal</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s fergeterminal</string>
@@ -1355,4 +1355,14 @@
     <string name="relative_left_right_direction_behind_left">Bak til venstre</string>
     <string name="relative_left_right_direction_behind_right">Bak til høyre</string>
     <string name="relative_left_right_direction_behind">Bak</string>
+    <string name="settings_collapse_section">Skjul seksjon</string>
+    <string name="settings_expand_section">Utvid seksjon</string>
+    <string name="settings_collapsed">Skjult</string>
+    <string name="settings_expanded">Åpnet</string>
+    <string name="ui_grant_permission">Gi tillatelse</string>
+    <string name="copyright_notices">Soundscape ville ikke vært mulig uten disse fantastiske tredjepartsbibliotekene og -dataene. Klikk på lenkene for å se lisensene deres:</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) leverer alle geodataene som brukes til kartlegging og lyd i Soundscape.</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) brukes til å generere kartflisene vi bruker.</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) brukes til å generere 3D-lyden, og er gjort tilgjengelig for bruk under [Apache 2.0-lisensen](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
+    <string name="trademark_disclaimer">Alle tredjeparts produktnavn, firmanavn og logoer er varemerker eller registrerte varemerker og tilhører sine respektive eiere.</string>
 </resources>
