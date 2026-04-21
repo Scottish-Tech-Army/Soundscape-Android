@@ -58,12 +58,15 @@ import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradi
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.utils.AndroidDevice
+import org.scottishtecharmy.soundscape.utils.Device
 
 enum class Permission(
     val manifestIdentifier: String,
     val icon: ImageVector,
     @StringRes val mainText: Int,
     @StringRes val subtitleText: Int,
+    val minSdkVersion: String? = null,
 ) {
     ACCESS_FINE_LOCATION(
         Manifest.permission.ACCESS_FINE_LOCATION, Icons.Rounded.LocationOn,
@@ -77,12 +80,12 @@ enum class Permission(
         R.string.first_launch_permissions_required_for_voice_control,
     ),
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     POST_NOTIFICATIONS(
         Manifest.permission.POST_NOTIFICATIONS,
         Icons.Rounded.Notifications,
         R.string.first_launch_permissions_notification,
         R.string.first_launch_permissions_required,
+        minSdkVersion = "33",
     ),
 }
 
@@ -91,6 +94,7 @@ fun NavigatingScreen(
     onNavigate: () -> Unit,
     modifier: Modifier = Modifier,
     vm: NavigatingScreenViewModel = viewModel(),
+    device: Device = AndroidDevice(Build.VERSION.SDK_INT.toString())
 ) {
     val uiState = vm.state.collectAsStateWithLifecycle()
 
@@ -130,7 +134,7 @@ fun NavigatingScreen(
         onContinue = onNavigate,
         permissionsStatus = uiState.value.permissionsStatus,
         onPermissionResult = onPermissionResult,
-        continueEnabled = uiState.value.continueEnabled,
+        continueEnabled = uiState.value.continueEnabled(device),
         modifier = modifier,
     )
 }

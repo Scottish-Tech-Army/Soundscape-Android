@@ -1,7 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.navigating
 
-import android.Manifest
 import org.junit.Test
+import org.scottishtecharmy.soundscape.utils.AndroidDevice
 
 class NavigatingScreenViewModelTest {
     private val viewModel = NavigatingScreenViewModel()
@@ -69,5 +69,58 @@ class NavigatingScreenViewModelTest {
         currentState = viewModel.state.value
 
         assert(currentState.permissionsStatus[Permission.ACCESS_FINE_LOCATION] == false)
+    }
+
+    @Test
+    fun navigatingScreenState_ContinueEnabled_WhenAllPermissionsGranted_ContinueEnabled() {
+        var currentState = viewModel.state.value
+
+        assert(currentState.permissionsStatus.isEmpty())
+
+        viewModel.permissionsRequired(
+            mapOf(
+                Permission.ACCESS_FINE_LOCATION to true,
+                Permission.POST_NOTIFICATIONS to true
+            )
+        )
+
+        currentState = viewModel.state.value
+
+        assert(currentState.continueEnabled(AndroidDevice("33")))
+    }
+
+    @Test
+    fun navigatingScreenState_ContinueEnabled_WhenDeviceSdkIsLessThan33AndLocationPermissionGranted_ContinueEnabled() {
+        var currentState = viewModel.state.value
+
+        assert(currentState.permissionsStatus.isEmpty())
+
+        viewModel.permissionsRequired(
+            mapOf(
+                Permission.ACCESS_FINE_LOCATION to true,
+            )
+        )
+
+        currentState = viewModel.state.value
+
+        assert(currentState.continueEnabled(AndroidDevice("32")))
+    }
+
+    @Test
+    fun navigatingScreenState_ContinueEnabled_WhenDeviceSdkIs33AndOnlyLocationPermissionGranted_ContinueDisabled() {
+        var currentState = viewModel.state.value
+
+        assert(currentState.permissionsStatus.isEmpty())
+
+        viewModel.permissionsRequired(
+            mapOf(
+                Permission.ACCESS_FINE_LOCATION to true,
+                Permission.POST_NOTIFICATIONS to false,
+            )
+        )
+
+        currentState = viewModel.state.value
+
+        assert(!currentState.continueEnabled(AndroidDevice("33")))
     }
 }

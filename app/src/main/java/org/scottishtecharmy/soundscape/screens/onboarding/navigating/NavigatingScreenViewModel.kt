@@ -1,21 +1,24 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.navigating
 
-import android.os.Build
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import org.scottishtecharmy.soundscape.utils.Device
 
 data class NavigatingScreenState(
-    val permissionsStatus: Map<Permission, Boolean>) {
-    val continueEnabled: Boolean
-        get() = permissionsStatus.filterKeys {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                it == Permission.ACCESS_FINE_LOCATION || it == Permission.POST_NOTIFICATIONS
+    val permissionsStatus: Map<Permission, Boolean>
+) {
+    fun continueEnabled(device: Device): Boolean {
+        return permissionsStatus.filterKeys { permission ->
+            if (device.osSdkVersionNumber().toInt() >= (permission.minSdkVersion?.toInt()
+                    ?: Int.MAX_VALUE)
+            ) {
+                permission == Permission.ACCESS_FINE_LOCATION || permission == Permission.POST_NOTIFICATIONS
             } else {
-                it == Permission.ACCESS_FINE_LOCATION
+                permission == Permission.ACCESS_FINE_LOCATION
             }
         }.none { !it.value }
+    }
 }
 
 class NavigatingScreenViewModel : ViewModel() {
