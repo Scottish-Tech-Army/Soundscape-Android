@@ -37,7 +37,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import org.scottishtecharmy.soundscape.screens.home.home.ExtractDetails
-import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
+import org.scottishtecharmy.soundscape.screens.home.home.AndroidMapContainerLibre
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.resources.*
@@ -75,21 +75,16 @@ fun OfflineMapExtractDetails(
             local = local
         )
 
-        MapContainerLibre(
+        AndroidMapContainerLibre(
             beaconLocation = null,
             allowScrolling = true,
             routeData = null,
             mapCenter = LngLatAlt(),
             userLocation = LngLatAlt(),
             userSymbolRotation = 0.0f,
-            onMapLongClick = { _ ->
-                true
-            },
-            showMap = showMap,
             modifier = modifier
                 .fillMaxWidth()
                 .aspectRatio(1.0f),
-            overlayGeoJson = adapter.toJson(fc)
         )
     }
 }

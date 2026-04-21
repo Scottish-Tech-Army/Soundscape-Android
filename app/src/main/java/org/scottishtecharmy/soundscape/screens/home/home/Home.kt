@@ -37,7 +37,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.MainActivity.Companion.LANGUAGE_SUPPORTED_PROMPTED_DEFAULT
@@ -82,7 +81,7 @@ fun Home(
     state: HomeState,
     onNavigate: (String) -> Unit,
     preferences: SharedPreferences?,
-    onMapLongClick: OnMapLongClickListener,
+    onMapLongClick: ((LngLatAlt) -> Boolean)?,
     bottomButtonFunctions: BottomButtonFunctions,
     getCurrentLocationDescription: () -> LocationDescription,
     rateSoundscape: () -> Unit,
@@ -189,7 +188,7 @@ fun Home(
 
             if (fullscreenMap.value) {
                 state.location?.let { location ->
-                    MapContainerLibre(
+                    AndroidMapContainerLibre(
                         beaconLocation = state.beaconState?.location,
                         routeData = state.currentRouteData.routeData,
                         mapCenter = location,
@@ -198,7 +197,6 @@ fun Home(
                         userSymbolRotation = state.heading,
                         onMapLongClick = onMapLongClick,
                         modifier = modifier.fillMaxSize(),
-                        showMap = showMap
                     )
                 }
             } else {
@@ -322,7 +320,7 @@ fun HomePreview() {
             state = HomeState(),
             onNavigate = {},
             preferences = null,
-            onMapLongClick = { false },
+            onMapLongClick = null,
             bottomButtonFunctions = BottomButtonFunctions(null),
             getCurrentLocationDescription = {
                 LocationDescription(
@@ -353,7 +351,7 @@ fun HomeSearchPreview() {
             state = HomeState(),
             onNavigate = {},
             preferences = null,
-            onMapLongClick = { false },
+            onMapLongClick = null,
             bottomButtonFunctions = BottomButtonFunctions(null),
             getCurrentLocationDescription = {
                 LocationDescription(
@@ -398,7 +396,7 @@ fun HomeRoutePreview() {
             ),
             onNavigate = {},
             preferences = null,
-            onMapLongClick = { false },
+            onMapLongClick = null,
             bottomButtonFunctions = BottomButtonFunctions(null),
             getCurrentLocationDescription = {
                 LocationDescription(
@@ -438,7 +436,7 @@ fun StreetPreview() {
             ),
             onNavigate = {},
             preferences = null,
-            onMapLongClick = { false },
+            onMapLongClick = null,
             bottomButtonFunctions = BottomButtonFunctions(null),
             getCurrentLocationDescription = {
                 LocationDescription(

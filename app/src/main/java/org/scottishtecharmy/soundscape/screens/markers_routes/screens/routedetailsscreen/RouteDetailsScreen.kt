@@ -53,8 +53,8 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.home.AndroidMapContainerLibre
 import org.scottishtecharmy.soundscape.screens.home.home.FullScreenMapFab
-import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
@@ -144,16 +144,14 @@ fun RouteDetailsScreen(
         }
     ) { innerPadding ->
         if(fullscreenMap.value) {
-            MapContainerLibre(
+            AndroidMapContainerLibre(
                 beaconLocation = null,
                 routeData = uiState.route,
                 allowScrolling = true,
-                onMapLongClick = { _ -> false },
                 mapCenter = firstWaypoint,
                 userLocation = userLocation,
                 userSymbolRotation = heading,
                 modifier = modifier.fillMaxSize(),
-                showMap = showMap
             )
         } else {
             Box(
@@ -276,16 +274,14 @@ fun RouteDetailsScreen(
                                 }
                             }
                             // Small map showing route
-                            MapContainerLibre(
+                            AndroidMapContainerLibre(
                                 beaconLocation = null,
                                 routeData = route,
                                 allowScrolling = true,
-                                onMapLongClick = { _ -> false },
                                 mapCenter = firstWaypoint,
                                 userLocation = userLocation,
                                 userSymbolRotation = heading,
                                 modifier = modifier.fillMaxWidth().weight(1f).smallPadding(),
-                                showMap = showMap
                             )
                             Spacer(modifier = Modifier.size(spacing.medium))
 

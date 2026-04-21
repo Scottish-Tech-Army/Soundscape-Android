@@ -31,8 +31,8 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.home.AndroidMapContainerLibre
 import org.scottishtecharmy.soundscape.screens.home.home.FullScreenMapFab
-import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.TextOnlyAppBar
@@ -122,7 +122,7 @@ fun SaveAndEditMarkerDialog(
         },
         content = { padding ->
             if(fullscreenMap.value) {
-                MapContainerLibre(
+                AndroidMapContainerLibre(
                     beaconLocation = newLocation,
                     mapCenter = newLocation,
                     editBeaconLocation = true,
@@ -130,10 +130,8 @@ fun SaveAndEditMarkerDialog(
                     userLocation = location ?: LngLatAlt(),
                     userSymbolRotation = heading,
                     routeData = null,
-                    onMapLongClick = { false },
                     modifier = Modifier
                         .fillMaxSize(),
-                    showMap = showMap
                 )
             } else {
                 Column(
@@ -168,7 +166,7 @@ fun SaveAndEditMarkerDialog(
                     )
                     Spacer(modifier = Modifier.height(spacing.medium))
 
-                    MapContainerLibre(
+                    AndroidMapContainerLibre(
                         beaconLocation = newLocation,
                         mapCenter = newLocation,
                         editBeaconLocation = false,
@@ -176,12 +174,10 @@ fun SaveAndEditMarkerDialog(
                         userLocation = location ?: LngLatAlt(),
                         userSymbolRotation = heading,
                         routeData = null,
-                        onMapLongClick = { false },
                         modifier = Modifier
                             .fillMaxWidth()
                             .aspectRatio(1.0f)
                             .smallPadding(),
-                        showMap = showMap
                     )
                 }
             }

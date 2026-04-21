@@ -29,6 +29,7 @@ object PreferenceKeys {
     const val SEARCH_LANGUAGE = "SearchLanguage"
     const val SELECTED_STORAGE = "SelectedStorage"
     const val GEOCODER_MODE = "GeocoderMode"
+    const val ACCESSIBLE_MAP = "AccessibleMap"
 }
 
 object PreferenceDefaults {
@@ -37,4 +38,5 @@ object PreferenceDefaults {
     const val SEARCH_LANGUAGE = "auto"
     const val SELECTED_STORAGE = ""
     const val GEOCODER_MODE = "Auto"
+    const val ACCESSIBLE_MAP = true
 }

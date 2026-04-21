@@ -25,7 +25,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
-import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -135,9 +134,8 @@ fun HomeScreen(
     val streetPreviewFunctions = remember(viewModel) { StreetPreviewFunctions(viewModel) }
     val bottomButtonFunctions = remember(viewModel, audioTour) { BottomButtonFunctions(viewModel, audioTour) }
     val onMapLongClickListener = remember(viewModel) {
-        OnMapLongClickListener { latLong ->
-            val location = LngLatAlt(latLong.longitude, latLong.latitude)
-            val ld = viewModel.getLocationDescription(location) ?: LocationDescription("", location)
+        { lngLatAlt: LngLatAlt ->
+            val ld = viewModel.getLocationDescription(lngLatAlt) ?: LocationDescription("", lngLatAlt)
             navController.navigate(generateLocationDetailsRoute(ld))
 
             AnalyticsProvider.getInstance().logEvent("longPressOnMap", null)

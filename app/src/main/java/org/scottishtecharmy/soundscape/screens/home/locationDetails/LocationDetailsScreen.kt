@@ -62,8 +62,8 @@ import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.home.AndroidMapContainerLibre
 import org.scottishtecharmy.soundscape.screens.home.home.FullScreenMapFab
-import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
 import org.scottishtecharmy.soundscape.screens.home.home.generateOfflineMapScreenRoute
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
@@ -197,21 +197,20 @@ fun LocationDetails(
             },
             content = { padding ->
                 if (fullscreenMap.value) {
-                    MapContainerLibre(
+                    AndroidMapContainerLibre(
                         beaconLocation = description.value.location,
                         allowScrolling = true,
-                        onMapLongClick = { latLong ->
-                            val clickLocation = fromLatLng(latLong)
+                        onMapLongClick = { clickLocation ->
                             val ld = getLocationDescription(clickLocation)
 
                             // This effectively replaces the current screen with the new one
+                            val currentRoute = navController.currentBackStackEntry?.destination?.route
                             navController.navigate(generateLocationDetailsRoute(ld)) {
-                                println("entry: ${navController.currentBackStackEntry?.destination?.route}")
-                                popUpTo(
-                                    navController.currentBackStackEntry?.destination?.route
-                                        ?: return@navigate
-                                ) {
-                                    inclusive = true
+                                println("entry: $currentRoute")
+                                if (currentRoute != null) {
+                                    popUpTo(currentRoute) {
+                                        inclusive = true
+                                    }
                                 }
                                 launchSingleTop = true // Prevents multiple instances of Home
                             }
@@ -223,7 +222,6 @@ fun LocationDetails(
                         userSymbolRotation = heading,
                         routeData = null,
                         modifier = modifier.fillMaxSize(),
-                        showMap = showMap
                     )
                 } else {
                     Column(
@@ -249,21 +247,20 @@ fun LocationDetails(
                             showDialog = showDialog
                         )
 
-                        MapContainerLibre(
+                        AndroidMapContainerLibre(
                             beaconLocation = description.value.location,
                             allowScrolling = true,
-                            onMapLongClick = { latLong ->
-                                val clickLocation = fromLatLng(latLong)
+                            onMapLongClick = { clickLocation ->
                                 val ld = getLocationDescription(clickLocation)
 
                                 // This effectively replaces the current screen with the new one
+                                val currentRoute = navController.currentBackStackEntry?.destination?.route
                                 navController.navigate(generateLocationDetailsRoute(ld)) {
-                                    println("entry: ${navController.currentBackStackEntry?.destination?.route}")
-                                    popUpTo(
-                                        navController.currentBackStackEntry?.destination?.route
-                                            ?: return@navigate
-                                    ) {
-                                        inclusive = true
+                                    println("entry: $currentRoute")
+                                    if (currentRoute != null) {
+                                        popUpTo(currentRoute) {
+                                            inclusive = true
+                                        }
                                     }
                                     launchSingleTop = true // Prevents multiple instances of Home
                                 }
@@ -275,7 +272,6 @@ fun LocationDetails(
                             userSymbolRotation = heading,
                             routeData = null,
                             modifier = modifier.fillMaxWidth().aspectRatio(1.0f),
-                            showMap = showMap
                         )
                     }
                 }

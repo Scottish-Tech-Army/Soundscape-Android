@@ -59,7 +59,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.components.NavigationButton
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
@@ -153,7 +152,7 @@ fun HomeContent(
     routePlayerState: RoutePlayerState,
     heading: Float,
     onNavigate: (String) -> Unit,
-    onMapLongClick: OnMapLongClickListener,
+    onMapLongClick: ((LngLatAlt) -> Boolean)?,
     getCurrentLocationDescription: () -> LocationDescription,
     searchBar: @Composable () -> Unit,
     modifier: Modifier = Modifier,
@@ -279,7 +278,7 @@ fun HomeContent(
                             }
                             if(showMap) {
                                 Row(modifier = Modifier.fillMaxWidth().aspectRatio(2.0f)) {
-                                    MapContainerLibre(
+                                    AndroidMapContainerLibre(
                                         beaconLocation = beaconState?.location,
                                         routeData = routePlayerState.routeData,
                                         mapCenter = location,
@@ -288,7 +287,6 @@ fun HomeContent(
                                         userSymbolRotation = heading,
                                         onMapLongClick = onMapLongClick,
                                         modifier = Modifier.fillMaxWidth().extraSmallPadding(),
-                                        showMap = true
                                     )
                                 }
                             }
@@ -352,7 +350,7 @@ fun HomeContent(
                         }
                     }
                 } else {
-                    MapContainerLibre(
+                    AndroidMapContainerLibre(
                         beaconLocation = beaconState?.location,
                         routeData = null,
                         mapCenter = location,
@@ -364,7 +362,6 @@ fun HomeContent(
                             .fillMaxWidth()
                             .aspectRatio(1f)
                             .mediumPadding(),
-                        showMap = showMap
                     )
                 }
             } else {
@@ -424,7 +421,7 @@ fun StreetPreviewHomeContent() {
         routePlayerState = RoutePlayerState(),
         heading = 45.0f,
         onNavigate = {},
-        onMapLongClick = { false },
+        onMapLongClick = null,
         searchBar = {},
         streetPreviewState = StreetPreviewState(StreetPreviewEnabled.ON),
         streetPreviewFunctions = StreetPreviewFunctions(null),
@@ -470,7 +467,7 @@ fun PreviewHomeContent() {
         routePlayerState = routePlayerState,
         heading = 45.0f,
         onNavigate = {},
-        onMapLongClick = { false },
+        onMapLongClick = null,
         searchBar = {},
         streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
         streetPreviewFunctions = StreetPreviewFunctions(null),
@@ -513,7 +510,7 @@ fun PreviewHomeContentBeacon() {
         routePlayerState = routePlayerState,
         heading = 45.0f,
         onNavigate = {},
-        onMapLongClick = { false },
+        onMapLongClick = null,
         searchBar = {},
         streetPreviewState = StreetPreviewState(StreetPreviewEnabled.OFF),
         streetPreviewFunctions = StreetPreviewFunctions(null),
