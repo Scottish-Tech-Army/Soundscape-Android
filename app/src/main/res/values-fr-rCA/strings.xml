@@ -226,7 +226,7 @@
     <string name="first_launch_callouts_example_3">La rue principale continue vers la gauche</string>
     <string name="first_launch_callouts_example_4">La rue principale continue vers la droite</string>
     <string name="first_launch_permissions_title">Se promener avec Soundscape</string>
-    <string name="first_launch_permissions_message">Lorsque vous vous déplacez avec Soundscape, vous êtes guidé par une balise audio. Pour cela, vous devez accorder à Soundscape les autorisations suivantes :</string>
+    <string name="first_launch_permissions_message">Lorsque vous vous déplacez avec Soundscape, vous êtes guidé par une balise audio. Pour cela, vous devez accorder à Soundscape les autorisations suivantes :</string>
     <string name="first_launch_permissions_location">Services de localisation avec un emplacement exact</string>
     <string name="first_launch_permissions_motion">Mouvements et forme</string>
     <string name="first_launch_permissions_required">Cette autorisation est requise</string>
