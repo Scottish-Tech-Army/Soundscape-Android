@@ -225,8 +225,8 @@
     <string name="first_launch_callouts_example_1">喫茶店</string>
     <string name="first_launch_callouts_example_3">大通りは左方向</string>
     <string name="first_launch_callouts_example_4">大通りは右方向</string>
-    <string name="first_launch_permissions_title">移動中に Soundscape を使用</string>
-    <string name="first_launch_permissions_message">移動中に Soundscape を使用すると、音声ビーコンでガイドが聞こえます。この機能を使用するには、次の項目を許可する必要があります:</string>
+    <string name="first_launch_permissions_title">アプリの権限</string>
+    <string name="first_launch_permissions_message">Soundscape を実行するにはいくつかの権限の許可が必要です。これにより、端末がロックされている場合でも位置情報に基づいて更新が行えます。以下の各権限をタップし、表示されたら許可を有効にしてください：</string>
     <string name="first_launch_permissions_location">位置情報サービスと正確な位置情報</string>
     <string name="first_launch_permissions_motion">モーションとフィットネス</string>
     <string name="first_launch_permissions_required">この許可は必須です</string>
@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">マーカーおよびルートを削除しました</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">新しいリリース情報</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">新しいリリース情報を閉じる</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nこのリリースでは、端末がロックされているときでもアプリをリモート操作できる新機能が 2 つ追加されました。これにより、端末をポケットに入れたままでもアプリの主要機能を操作できます。\n\nどちらのリモート操作方法も、ヘッドホンにある Bluetooth のメディアコントロールボタン、あるいは手に持ったりポケットに入れて使える小型のリモコンのボタンを使用します。リモートコントロールのモードは「設定」→「メディアコントロール」セクションで選択できます。話しかけて操作する「音声コマンド」モード、メニューが読み上げられて選択できる「音声メニュー」モード、または従来と同じ動作にする「オリジナルモード」を選べます。\n\n音声コマンドモードでは、ヘッドホンの再生/一時停止ボタンを押すとアプリが音声の聞き取りを開始し、その合図として短い音が鳴ります。「Help（ヘルプ）」と言うと利用可能なコマンド一覧が読み上げられます。その後もう一度ボタンを押して、他のコマンドを試すことができます。残念ながら、Android の音声認識はすべての言語をサポートしているわけではなく、すべての端末で利用できるわけではありません。\n\n音声コマンドモードの主な難点は、ヘッドホンによってマイクが有効になるまでの時間に差がある点です。再生/一時停止を押してから話せるようになるまで最大で数秒（5 秒程度）待つ必要がある場合があります。どのくらい待てばよいかを知るには、再生/一時停止をタップしてから 1 から 10 まで数えてみるのが最もよい方法です。端末は認識した音声（例えば数えた数字）を読み上げ、最初に認識された数字が話し始めるまでの目安になります。マイクがオンになったときに明確な音を出すヘッドホンもあり、その場合は扱いやすいですが、まったく音がしない機種もあります。残念ながら、慣れが必要な場合があります。\n\nもう一方の新しいリモートモードである「音声メニュー」モードは、すべての言語とすべての端末で動作します。次へ/前へ のメディアコントロールボタンでメニュー内の項目を前後に移動し、再生/一時停止ボタンで現在の項目を選択します。最上位のメニューが一つあり、その下に同種の操作をまとめた一層のサブメニューがあります。\n\nこれらの機能は非常に新しいため、うまく動作するかどうか、またどのような追加コマンドが欲しいかについてのフィードバックをぜひお寄せください。\n\nどんなに小さな問題でも、メインメニューの *「サポートに連絡」* からご報告ください。\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nこれは Soundscape の最初の本番リリースです。アプリを初めてお使いの場合は、メインメニューにある *ヘルプ* 画面や *チュートリアル* で詳細をご確認ください。\n\n私たちは引き続きアプリの改善に取り組んでいますので、どんなに小さな問題でも、メインメニューの *サポートに連絡* オプションからご報告いただけると助かります。\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">オープンソースライセンス</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">フェリーターミナル</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s フェリーターミナル</string>
@@ -1355,4 +1355,14 @@
     <string name="relative_left_right_direction_behind_left">左後方</string>
     <string name="relative_left_right_direction_behind_right">右後方</string>
     <string name="relative_left_right_direction_behind">後方</string>
+    <string name="settings_collapse_section">セクションを折りたたむ</string>
+    <string name="settings_expand_section">セクションを展開する</string>
+    <string name="settings_collapsed">折りたたみ済み</string>
+    <string name="settings_expanded">展開済み</string>
+    <string name="ui_grant_permission">許可を付与</string>
+    <string name="copyright_notices">Soundscape は、これらの素晴らしいサードパーティのライブラリやデータなしでは実現できません。リンクをクリックしてそれぞれのライセンスを確認してください：</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) は、Soundscape で使用される地図および音声の地理データをすべて提供しています。</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) は、アプリで使用する地図タイルの生成に使用されています。</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) は 3D オーディオの生成に使用されており、[Apache 2.0 ライセンス](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) のもとで利用可能です。</string>
+    <string name="trademark_disclaimer">第三者の製品名、会社名およびロゴは各社の商標または登録商標であり、それぞれの権利所有者に帰属します。</string>
 </resources>
