@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -53,6 +54,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.network.DownloadStateCommon
+import org.scottishtecharmy.soundscape.screens.home.home.PlatformMapContainer
 import org.scottishtecharmy.soundscape.ui.theme.LocalAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.defaultAppButtonColors
 
@@ -252,6 +254,21 @@ private fun HomeScreen(
                     text = "Heading: ${direction!!.headingDegrees.toInt()}\u00B0",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface,
+                )
+            }
+
+            // Map
+            if (location != null) {
+                PlatformMapContainer(
+                    mapCenter = LngLatAlt(location!!.longitude, location!!.latitude),
+                    allowScrolling = false,
+                    userLocation = LngLatAlt(location!!.longitude, location!!.latitude),
+                    userSymbolRotation = direction?.headingDegrees?.toFloat() ?: 0f,
+                    beaconLocation = null,
+                    routeData = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1.5f),
                 )
             }
 

@@ -8,13 +8,25 @@ configFiles:
   Release: Local.xcconfig
 settings:
   ENABLE_BITCODE: "NO"
+packages:
+  MapLibre:
+    url: https://github.com/maplibre/maplibre-gl-native-distribution
+    version: 6.17.1
 targets:
   iosApp:
     type: application
     platform: iOS
+    dependencies:
+      - package: MapLibre
+        product: MapLibre
     sources:
-      - iosApp
+      - path: iosApp
+        excludes:
+          - "address"
+          - "osm-liberty-accessible"
       - path: iosApp/address
+        type: folder
+      - path: iosApp/osm-liberty-accessible
         type: folder
     info:
       path: iosApp/Info.plist
