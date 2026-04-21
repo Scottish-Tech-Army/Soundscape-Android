@@ -359,18 +359,33 @@ class IosSoundscapeService : GeoEngineListener {
                     name = locationDescription.description ?: "Unknown"
                 }
                 val marker = org.scottishtecharmy.soundscape.database.local.model.MarkerEntity(
+                    markerId = locationDescription.databaseId,
                     name = name,
                     fullAddress = locationDescription.description ?: "",
                     longitude = locationDescription.location.longitude,
                     latitude = locationDescription.location.latitude
                 )
-                routeDao.insertMarker(marker)
+                if (locationDescription.databaseId != 0L) {
+                    routeDao.updateMarker(marker)
+                } else {
+                    routeDao.insertMarker(marker)
+                }
                 audioEngine.createEarcon(
                     "file:///android_asset/earcons/sense_poi.wav",
                     org.scottishtecharmy.soundscape.audio.AudioType.STANDARD
                 )
             } catch (e: Exception) {
                 println("IosSoundscapeService: Failed to save marker: ${e.message}")
+            }
+        }
+    }
+
+    fun deleteMarker(markerId: Long) {
+        scope.launch {
+            try {
+                routeDao.removeMarker(markerId)
+            } catch (e: Exception) {
+                println("IosSoundscapeService: Failed to delete marker: ${e.message}")
             }
         }
     }

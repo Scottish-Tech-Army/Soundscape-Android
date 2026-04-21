@@ -33,6 +33,7 @@ fun MainViewController() = ComposeUIViewController {
             },
             onSearch = { query -> service.search(query) },
             onSaveMarker = { desc -> service.saveMarker(desc) },
+            onDeleteMarker = { markerId -> service.deleteMarker(markerId) },
             onSaveRoute = { name, desc, waypoints -> service.saveRoute(name, desc, waypoints) },
             onDeleteRoute = { routeId -> service.deleteRoute(routeId) },
             onMyLocation = { service.myLocation() },

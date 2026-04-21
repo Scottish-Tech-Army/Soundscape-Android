@@ -42,6 +42,7 @@ import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedLocationDetailsScreen
+import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedSaveAndEditMarkerScreen
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyScreen
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState
@@ -76,6 +77,7 @@ data class AppCallbacks(
     val onRouteStop: () -> Unit = {},
     val onSearch: (String) -> Unit = {},
     val onSaveMarker: (LocationDescription) -> Unit = {},
+    val onDeleteMarker: (Long) -> Unit = {},
     val onSaveRoute: (String, String, List<LocationDescription>) -> Unit = { _, _, _ -> },
     val onDeleteRoute: (Long) -> Unit = {},
     val onPlacesNearbyClickFolder: (String, String) -> Unit = { _, _ -> },
@@ -100,7 +102,7 @@ data class AppFlows(
 )
 
 private enum class Screen {
-    WELCOME, HOME, PLACES_NEARBY, MARKERS_AND_ROUTES, LOCATION_DETAILS, OFFLINE_MAPS, ADD_ROUTE
+    WELCOME, HOME, PLACES_NEARBY, MARKERS_AND_ROUTES, LOCATION_DETAILS, OFFLINE_MAPS, ADD_ROUTE, EDIT_MARKER
 }
 
 @Composable
@@ -178,6 +180,11 @@ fun App(
                         callbacks = callbacks,
                         onBack = { screen = Screen.HOME },
                         onAddRoute = { screen = Screen.ADD_ROUTE },
+                        onSelectMarker = { desc ->
+                            selectedLocation = desc
+                            previousScreen = Screen.MARKERS_AND_ROUTES
+                            screen = Screen.EDIT_MARKER
+                        },
                     )
                 }
 
@@ -196,7 +203,14 @@ fun App(
                                 screen = Screen.HOME
                             },
                             onSaveMarker = { desc ->
-                                callbacks.onSaveMarker(desc)
+                                selectedLocation = desc
+                                previousScreen = Screen.LOCATION_DETAILS
+                                screen = Screen.EDIT_MARKER
+                            },
+                            onEditMarker = { desc ->
+                                selectedLocation = desc
+                                previousScreen = Screen.LOCATION_DETAILS
+                                screen = Screen.EDIT_MARKER
                             },
                             onEnableStreetPreview = { loc ->
                                 // TODO: wire street preview
@@ -251,6 +265,28 @@ fun App(
                         },
                     )
                 }
+
+                Screen.EDIT_MARKER -> {
+                    val homeState by flows.homeState?.collectAsState()
+                        ?: remember { mutableStateOf(HomeState()) }
+                    val desc = selectedLocation
+                    if (desc != null) {
+                        SharedSaveAndEditMarkerScreen(
+                            locationDescription = desc,
+                            userLocation = homeState.location,
+                            heading = homeState.heading,
+                            onCancel = { screen = previousScreen },
+                            onSave = { updated ->
+                                callbacks.onSaveMarker(updated)
+                                screen = Screen.HOME
+                            },
+                            onDelete = { markerId ->
+                                callbacks.onDeleteMarker(markerId)
+                                screen = Screen.HOME
+                            },
+                        )
+                    }
+                }
             }
         }
     }
@@ -262,6 +298,7 @@ private fun MarkersAndRoutesContainer(
     callbacks: AppCallbacks,
     onBack: () -> Unit,
     onAddRoute: () -> Unit = {},
+    onSelectMarker: (LocationDescription) -> Unit = {},
 ) {
     var selectedTab by remember { mutableStateOf(0) }
     val location by flows.locationFlow?.collectAsState() ?: remember { mutableStateOf(null) }
@@ -302,7 +339,7 @@ private fun MarkersAndRoutesContainer(
                         onToggleSortOrder = {},
                         onToggleSortByName = {},
                         userLocation = userLocation,
-                        onSelectItem = { callbacks.onSpeak(it.name) },
+                        onSelectItem = { onSelectMarker(it) },
                         onStartBeacon = { loc, name ->
                             callbacks.onStartBeacon(loc.latitude, loc.longitude, name)
                         },
