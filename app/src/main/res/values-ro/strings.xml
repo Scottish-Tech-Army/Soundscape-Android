@@ -286,8 +286,8 @@
     <string name="first_launch_callouts_example_1">Cafenea</string>
     <string name="first_launch_callouts_example_3">Strada Principală merge la stânga</string>
     <string name="first_launch_callouts_example_4">Strada Principală merge la dreapta</string>
-    <string name="first_launch_permissions_title">Navigarea cu Soundscape</string>
-    <string name="first_launch_permissions_message">Când navighezi cu Soundscape, vei fi ghidat de o baliză audio. Pentru aceasta, Soundscape are nevoie să activezi următoarele permisiuni:</string>
+    <string name="first_launch_permissions_title">Permisiuni aplicației</string>
+    <string name="first_launch_permissions_message">Pentru ca Soundscape să poată rula, are nevoie ca anumite permisiuni să îi fie acordate. Acestea îi permit să fie actualizat(ă) cu locația telefonului, chiar și atunci când dispozitivul este blocat. Atinge fiecare dintre permisiunile de mai jos și activează‑le când ți se solicită:</string>
     <string name="first_launch_permissions_location">Servicii de localizare cu locație precisă</string>
     <string name="first_launch_permissions_motion">Mișcare și fitness</string>
     <string name="first_launch_permissions_required">Această permisiune este necesară</string>
@@ -498,7 +498,7 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informații despre noua versiune</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Închide dialogul noii versiuni</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licențe open source</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nÎn această versiune există două funcții noi care permit controlul de la distanță al aplicației, chiar și atunci când telefonul este blocat. Asta înseamnă că îl poți păstra în buzunar în timp ce controlezi funcțiile principale ale aplicației.\n\nAmbele metode de control la distanță folosesc butoanele media Bluetooth, fie cele de pe căști, fie telecomenzi mici pe care le poți cumpăra pentru a le ține în mână sau în buzunar. Modul de control la distanță se selectează din Setări/Controale media și poți alege „Comandă vocală” pentru a vorbi cu aplicația, sau „Meniu audio”, unde ți se citesc meniuri cu opțiuni de selectat. „Mod original” înseamnă că butoanele Bluetooth funcționează în același fel ca în versiunile anterioare.\n\nÎn modul comandă vocală, apăsarea butonului Redare/Pauză de pe căști pornește ascultarea aplicației pentru comenzi vocale și vei auzi un sunet scurt care indică acest lucru. Dacă spui „Help” (Ajutor) se va lista comenzile disponibile pe care le poți folosi. Apoi poți apăsa din nou butonul și încerca celelalte comenzi. Din păcate, funcția de recunoaștere vocală Android nu acceptă toate limbile și nu este disponibilă pe toate telefoanele.\n\nPrincipala dificultate la modul comandă vocală este că unele căști pornesc microfonul mai lent decât altele. Asta înseamnă că după ce apeși butonul Redare/Pauză poate fi nevoie să aștepți până la 5 secunde înainte de a putea vorbi. Pentru a afla cât durează, cea mai bună abordare este să apeși Redare/Pauză și să numeri de la 1 la 10. Telefonul îți va spune ce text a recunoscut, iar numărul la care pornește recunoașterea va fi primul recunoscut. Aceasta te poate ajuta să înveți cât să aștepți înainte de a vorbi. Unele căști fac un sunet clar atunci când microfonul este activ, ceea ce facilitează acest lucru, dar altele nu fac niciun zgomot. Din păcate, poate necesita exercițiu.\n\nCelălalt mod nou la distanță, Meniul audio, va funcționa în toate limbile și pe toate telefoanele. Butoanele media Următorul/Anterior avansează sau revin prin opțiunile din meniu. Butonul Redare/Pauză selectează opțiunea curentă. Există un meniu principal, urmat de un strat de submeniuri care grupează comenzile similare.\n\nAceste funcții sunt foarte noi și ne-ar plăcea foarte mult să primim feedback despre cât de bine funcționează și ce alte comenzi ați dori.\n\nVă rugăm să raportați orice problemă, oricât de mică, prin opțiunea *Contactează asistența* din meniul principal.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nAceasta este prima versiune de producție a Soundscape. Dacă ești nou(ă) în aplicație, poți afla mai multe despre aceasta din ecranele *Ajutor* sau urmând *Tutorialul*. Ambele sunt opțiuni din meniul principal.\n\nContinuăm să lucrăm intens la îmbunătățirea aplicației, așa că te rugăm să raportezi orice problemă întâmpini, oricât de mică ar fi, prin opțiunea *Contactează asistența* din meniul principal.\n</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explorează utilizarea tehnologiei audio inovatoare pentru a permite oamenilor să își dezvolte o conștientizare mai bogată a împrejurimilor, devenind astfel mai încrezători și mai autonomi în deplasări.</string>
     <string name="osm_office_building" tools:ignore="MissingTranslation">Clădire de birouri</string>
     <string name="osm_school_building" tools:ignore="MissingTranslation">Clădire de școală</string>
@@ -1355,4 +1355,14 @@
     <string name="relative_left_right_direction_behind_left">În spate la stânga</string>
     <string name="relative_left_right_direction_behind_right">În spate la dreapta</string>
     <string name="relative_left_right_direction_behind">În spate</string>
+    <string name="settings_collapse_section">Restrânge secțiunea</string>
+    <string name="settings_expand_section">Extinde secțiunea</string>
+    <string name="settings_collapsed">Restrânsă</string>
+    <string name="settings_expanded">Extinsă</string>
+    <string name="ui_grant_permission">Acordă permisiunea</string>
+    <string name="copyright_notices">Soundscape nu ar fi fost posibil fără aceste biblioteci și date terțe excelente. Apasă pe linkuri pentru a vedea licențele lor:</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) furnizează toate datele geografice utilizate pentru cartografiere și pentru audio în Soundscape.</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) este folosit pentru a genera plăcile de hartă pe care le utilizăm.</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) este folosită pentru generarea audio 3D și este pusă la dispoziție pentru utilizare sub [licența Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
+    <string name="trademark_disclaimer">Toate denumirile și logourile produselor și companiilor terțe sunt mărci comerciale sau mărci înregistrate și rămân proprietatea titularilor lor.</string>
 </resources>
