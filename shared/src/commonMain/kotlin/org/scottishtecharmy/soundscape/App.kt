@@ -177,17 +177,25 @@ fun App(
                 }
 
                 Screen.LOCATION_DETAILS -> {
-                    val location by flows.locationFlow?.collectAsState()
-                        ?: remember { mutableStateOf(null) }
+                    val homeState by flows.homeState?.collectAsState()
+                        ?: remember { mutableStateOf(HomeState()) }
                     val desc = selectedLocation
                     if (desc != null) {
                         SharedLocationDetailsScreen(
                             locationDescription = desc,
-                            userLocation = location?.let { LngLatAlt(it.longitude, it.latitude) },
+                            userLocation = homeState.location,
+                            heading = homeState.heading,
                             onNavigateUp = { screen = previousScreen },
                             onStartBeacon = { loc, name ->
                                 callbacks.onStartBeacon(loc.latitude, loc.longitude, name)
                                 screen = Screen.HOME
+                            },
+                            onEnableStreetPreview = { loc ->
+                                // TODO: wire street preview
+                            },
+                            onOfflineMaps = { locationDesc ->
+                                callbacks.onOfflineMapsRefresh()
+                                screen = Screen.OFFLINE_MAPS
                             },
                         )
                     }
