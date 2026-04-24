@@ -11,8 +11,30 @@ import platform.AVFAudio.AVAudioFormat
 import platform.AVFAudio.AVAudioSession
 import platform.AVFAudio.AVAudioSessionCategoryOptionMixWithOthers
 import platform.AVFAudio.AVAudioSessionCategoryPlayback
+import platform.AVFAudio.AVAudioSessionInterruptionTypeEnded
+import platform.AVFAudio.AVAudioSessionInterruptionTypeBegan
+import platform.AVFAudio.AVAudioSessionInterruptionTypeKey
 import platform.AVFAudio.setActive
 import platform.CoreAudioTypes.kAudioChannelLayoutTag_Stereo
+import platform.Foundation.NSNotification
+import platform.Foundation.NSNotificationCenter
+import platform.Foundation.NSOperationQueue
+import platform.MediaPlayer.MPMediaItemPropertyArtist
+import platform.MediaPlayer.MPMediaItemPropertyTitle
+import platform.MediaPlayer.MPNowPlayingInfoCenter
+import platform.MediaPlayer.MPNowPlayingInfoPropertyMediaType
+import platform.MediaPlayer.MPRemoteCommandCenter
+import platform.MediaPlayer.MPRemoteCommandHandlerStatusSuccess
+
+/**
+ * Callback interface for remote command events from the lock screen / headphone controls.
+ * Mirrors the OriginalMediaControls behavior from the Android app.
+ */
+interface RemoteCommandListener {
+    fun onPlayPause()
+    fun onNext()
+    fun onPrevious()
+}
 
 /**
  * iOS audio engine implementing the KMP AudioEngine interface.
@@ -48,6 +70,14 @@ class IosAudioEngine : AudioEngine {
     private var currentBeaconType = "Current"
     private var beaconMuted = false
 
+    // Remote command listener
+    var remoteCommandListener: RemoteCommandListener? = null
+
+    // Audio session state
+    private var needsReactivation = false
+    private var interruptionObserver: Any? = null
+    private var mediaResetObserver: Any? = null
+
     private sealed class PlayerEntry {
         class Discrete(val player: DiscretePlayer) : PlayerEntry()
         class Beacon(val player: BeaconPlayer) : PlayerEntry()
@@ -81,6 +111,15 @@ class IosAudioEngine : AudioEngine {
         } catch (e: Exception) {
             println("IosAudioEngine: Failed to configure audio session: $e")
         }
+
+        // Register for audio session notifications
+        registerAudioSessionObservers()
+
+        // Set up lock screen remote commands
+        registerRemoteCommands()
+
+        // Set initial Now Playing info so we appear on the lock screen
+        setNowPlayingInfo("Soundscape")
 
         // Access mainMixerNode to ensure the output chain is connected
         // (AVAudioEngine requires at least one node before starting)
@@ -453,5 +492,114 @@ class IosAudioEngine : AudioEngine {
     override fun setHrtfEnabled(enabled: Boolean) {
         // AVAudioEnvironmentNode uses HRTF by default
         // Could toggle rendering algorithm here if needed
+    }
+
+    // --- Audio Session Interruption Handling ---
+
+    private fun registerAudioSessionObservers() {
+        val center = NSNotificationCenter.defaultCenter
+
+        interruptionObserver = center.addObserverForName(
+            name = platform.AVFAudio.AVAudioSessionInterruptionNotification,
+            `object` = AVAudioSession.sharedInstance(),
+            queue = NSOperationQueue.mainQueue
+        ) { notification ->
+            handleInterruption(notification)
+        }
+
+        mediaResetObserver = center.addObserverForName(
+            name = platform.AVFAudio.AVAudioSessionMediaServicesWereResetNotification,
+            `object` = AVAudioSession.sharedInstance(),
+            queue = NSOperationQueue.mainQueue
+        ) { _ ->
+            handleMediaServicesReset()
+        }
+    }
+
+    private fun handleInterruption(notification: NSNotification?) {
+        val userInfo = notification?.userInfo ?: return
+        val typeValue = userInfo[AVAudioSessionInterruptionTypeKey] as? Long ?: return
+
+        if (typeValue == AVAudioSessionInterruptionTypeBegan.toLong()) {
+            println("IosAudioEngine: Audio session interruption began")
+            needsReactivation = true
+        } else if (typeValue == AVAudioSessionInterruptionTypeEnded.toLong()) {
+            println("IosAudioEngine: Audio session interruption ended")
+            // Reactivate audio session
+            val session = AVAudioSession.sharedInstance()
+            try {
+                session.setActive(true, error = null)
+                needsReactivation = false
+                println("IosAudioEngine: Audio session reactivated after interruption")
+            } catch (e: Exception) {
+                println("IosAudioEngine: Failed to reactivate audio session: $e")
+            }
+
+            // Restart engine if needed
+            if (!engine.isRunning()) {
+                try {
+                    engine.startAndReturnError(null)
+                    println("IosAudioEngine: Engine restarted after interruption")
+                } catch (e: Exception) {
+                    println("IosAudioEngine: Failed to restart engine: $e")
+                }
+            }
+        }
+    }
+
+    private fun handleMediaServicesReset() {
+        println("IosAudioEngine: Media services were reset — reconfiguring")
+        engineStarted = false
+        environmentNodes.clear()
+        ensureEngineStarted()
+    }
+
+    // --- Now Playing Info ---
+
+    fun setNowPlayingInfo(title: String, subtitle: String? = null) {
+        val info = mutableMapOf<Any?, Any?>(
+            MPNowPlayingInfoPropertyMediaType to 1L, // MPNowPlayingInfoMediaType.audio
+            MPMediaItemPropertyTitle to title,
+        )
+        if (subtitle != null) {
+            info[MPMediaItemPropertyArtist] = subtitle
+        }
+        MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = info
+    }
+
+    // --- Remote Command Center ---
+
+    private fun registerRemoteCommands() {
+        val commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
+
+        commandCenter.togglePlayPauseCommand.setEnabled(true)
+        commandCenter.togglePlayPauseCommand.addTargetWithHandler { _ ->
+            remoteCommandListener?.onPlayPause()
+            MPRemoteCommandHandlerStatusSuccess
+        }
+
+        commandCenter.playCommand.setEnabled(true)
+        commandCenter.playCommand.addTargetWithHandler { _ ->
+            remoteCommandListener?.onPlayPause()
+            MPRemoteCommandHandlerStatusSuccess
+        }
+
+        commandCenter.pauseCommand.setEnabled(true)
+        commandCenter.pauseCommand.addTargetWithHandler { _ ->
+            remoteCommandListener?.onPlayPause()
+            MPRemoteCommandHandlerStatusSuccess
+        }
+
+        commandCenter.nextTrackCommand.setEnabled(true)
+        commandCenter.nextTrackCommand.addTargetWithHandler { _ ->
+            remoteCommandListener?.onNext()
+            MPRemoteCommandHandlerStatusSuccess
+        }
+
+        commandCenter.previousTrackCommand.setEnabled(true)
+        commandCenter.previousTrackCommand.addTargetWithHandler { _ ->
+            remoteCommandListener?.onPrevious()
+            MPRemoteCommandHandlerStatusSuccess
+        }
     }
 }

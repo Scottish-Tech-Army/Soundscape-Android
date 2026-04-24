@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.IosAudioEngine
+import org.scottishtecharmy.soundscape.audio.RemoteCommandListener
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -47,7 +48,7 @@ import platform.Foundation.NSHomeDirectory
  * Manages location/direction/audio providers and the GeoEngine.
  * Background operation via iOS's UIBackgroundModes (audio + location).
  */
-class IosSoundscapeService : GeoEngineListener {
+class IosSoundscapeService : GeoEngineListener, RemoteCommandListener {
 
     private val scope = CoroutineScope(Dispatchers.Default + Job())
 
@@ -137,6 +138,7 @@ class IosSoundscapeService : GeoEngineListener {
     fun getGridStateFlow(): StateFlow<GridState?> = gridStateFlow
 
     init {
+        audioEngine.remoteCommandListener = this
         startGeoEngine()
         observeAppLifecycle()
         startHomeStateUpdates()
@@ -474,6 +476,33 @@ class IosSoundscapeService : GeoEngineListener {
 
     fun speakCallout(text: String) {
         audioEngine.createTextToSpeech(text, AudioType.STANDARD)
+    }
+
+    // --- Remote Command Listener (OriginalMediaControls behavior) ---
+
+    override fun onPlayPause() {
+
+        println("onPlayPause")
+        // Toggle beacon mute if a beacon/route is playing
+        if (beaconHandle != null) {
+            audioEngine.clearTextToSpeechQueue()
+            val muted = audioEngine.toggleBeaconMute()
+            _beaconFlow.value = _beaconFlow.value.copy(muteState = muted)
+        }
+    }
+
+    override fun onNext() {
+        println("onNext")
+        // If a route is playing, skip to next waypoint; otherwise callout My Location
+        // TODO: wire up route skip when route playback is implemented on iOS
+        myLocation()
+    }
+
+    override fun onPrevious() {
+        println("onPreviousAfter ")
+        // If a route is playing, skip to previous waypoint; otherwise callout Around Me
+        // TODO: wire up route skip when route playback is implemented on iOS
+        whatsAroundMe()
     }
 
     // --- Lifecycle ---

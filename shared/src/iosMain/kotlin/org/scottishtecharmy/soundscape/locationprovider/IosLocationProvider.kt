@@ -19,7 +19,9 @@ class IosLocationProvider : LocationProvider() {
         locationManager.delegate = delegate
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
-        locationManager.requestWhenInUseAuthorization()
+        locationManager.allowsBackgroundLocationUpdates = true
+        locationManager.pausesLocationUpdatesAutomatically = false
+        locationManager.requestAlwaysAuthorization()
         locationManager.startUpdatingLocation()
     }
 
