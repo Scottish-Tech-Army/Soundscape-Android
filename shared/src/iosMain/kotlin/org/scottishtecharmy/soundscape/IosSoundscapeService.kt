@@ -139,6 +139,10 @@ class IosSoundscapeService : GeoEngineListener, RemoteCommandListener {
 
     init {
         audioEngine.remoteCommandListener = this
+        audioEngine.mixWithOthers = preferencesProvider.getBoolean(
+            org.scottishtecharmy.soundscape.preferences.PreferenceKeys.MIX_AUDIO,
+            org.scottishtecharmy.soundscape.preferences.PreferenceDefaults.MIX_AUDIO,
+        )
         startGeoEngine()
         observeAppLifecycle()
         startHomeStateUpdates()
@@ -476,6 +480,12 @@ class IosSoundscapeService : GeoEngineListener, RemoteCommandListener {
 
     fun speakCallout(text: String) {
         audioEngine.createTextToSpeech(text, AudioType.STANDARD)
+    }
+
+    // --- Mix Audio Setting ---
+
+    fun setMixAudio(enabled: Boolean) {
+        audioEngine.mixWithOthers = enabled
     }
 
     // --- Remote Command Listener (OriginalMediaControls behavior) ---

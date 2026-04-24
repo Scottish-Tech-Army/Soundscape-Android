@@ -73,6 +73,17 @@ class IosAudioEngine : AudioEngine {
     // Remote command listener
     var remoteCommandListener: RemoteCommandListener? = null
 
+    // Audio session configuration
+    var mixWithOthers: Boolean = true
+        set(value) {
+            if (field != value) {
+                field = value
+                if (engineStarted) {
+                    reconfigureAudioSession()
+                }
+            }
+        }
+
     // Audio session state
     private var needsReactivation = false
     private var interruptionObserver: Any? = null
@@ -99,27 +110,15 @@ class IosAudioEngine : AudioEngine {
     private fun ensureEngineStarted() {
         if (engineStarted) return
 
-        // Configure audio session
-        val session = AVAudioSession.sharedInstance()
-        try {
-            session.setCategory(
-                AVAudioSessionCategoryPlayback,
-                withOptions = AVAudioSessionCategoryOptionMixWithOthers,
-                error = null
-            )
-            session.setActive(true, error = null)
-        } catch (e: Exception) {
-            println("IosAudioEngine: Failed to configure audio session: $e")
-        }
+        // Configure and activate audio session
+        configureAndActivateSession()
 
         // Register for audio session notifications
         registerAudioSessionObservers()
 
-        // Set up lock screen remote commands
+        // Set up lock screen remote commands (always registered, but only
+        // effective when not mixing — iOS ignores them otherwise)
         registerRemoteCommands()
-
-        // Set initial Now Playing info so we appear on the lock screen
-        setNowPlayingInfo("Soundscape")
 
         // Access mainMixerNode to ensure the output chain is connected
         // (AVAudioEngine requires at least one node before starting)
@@ -133,6 +132,35 @@ class IosAudioEngine : AudioEngine {
         } catch (e: Exception) {
             println("IosAudioEngine: Failed to start engine: $e")
         }
+    }
+
+    private fun configureAndActivateSession() {
+        val session = AVAudioSession.sharedInstance()
+        val options = if (mixWithOthers) AVAudioSessionCategoryOptionMixWithOthers else 0u
+        try {
+            session.setCategory(
+                AVAudioSessionCategoryPlayback,
+                withOptions = options,
+                error = null
+            )
+            session.setActive(true, error = null)
+        } catch (e: Exception) {
+            println("IosAudioEngine: Failed to configure audio session: $e")
+        }
+
+        if (!mixWithOthers) {
+            setNowPlayingInfo("Soundscape")
+        } else {
+            MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = null
+        }
+    }
+
+    /**
+     * Reconfigure the audio session when the mixWithOthers setting changes at runtime.
+     */
+    private fun reconfigureAudioSession() {
+        configureAndActivateSession()
+        println("IosAudioEngine: Audio session reconfigured (mixWithOthers=$mixWithOthers)")
     }
 
     /**
