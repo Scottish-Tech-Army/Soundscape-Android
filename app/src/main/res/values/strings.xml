@@ -2707,4 +2707,9 @@ We\'re still working hard on improving the app, so please report any problems th
 <string name="relative_left_right_direction_behind_left">"Behind left"</string>
 <string name="relative_left_right_direction_behind_right">"Behind right"</string>
 <string name="relative_left_right_direction_behind">"Behind"</string>
+
+    <!-- Feedback prompt (SA-310 / SA-314) -->
+    <string name="feedback_question_route_followability">How easy was it to follow your route just now?</string>
+    <string name="feedback_question_audio_balance">Was there too much or too little audio feedback?</string>
+    <string name="feedback_question_confusion">Did anything feel confusing or overwhelming?</string>
 </resources>
