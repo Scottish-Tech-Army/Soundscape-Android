@@ -88,6 +88,7 @@ android {
         var searchProviderUrl = ""
         var searchProviderApiKey = ""
         var extractProviderUrl = ""
+        var feedbackProviderUrl = ""
         try {
             val localProperties = Properties()
             localProperties.load(FileInputStream(rootProject.file("local.properties")))
@@ -96,6 +97,7 @@ android {
             searchProviderUrl = localProperties["searchProviderUrl"].toString()
             searchProviderApiKey = localProperties["searchProviderApiKey"].toString()
             extractProviderUrl = localProperties["extractProviderUrl"].toString()
+            feedbackProviderUrl = localProperties["feedbackProviderUrl"]?.toString() ?: ""
         } catch (e: Exception) {
             println("Failed to load local.properties for tile and search providers: $e")
         }
@@ -104,6 +106,7 @@ android {
         buildConfigField("String", "SEARCH_PROVIDER_URL", "\"${searchProviderUrl}\"")
         buildConfigField("String", "SEARCH_PROVIDER_API_KEY", "\"${searchProviderApiKey}\"")
         buildConfigField("String", "EXTRACT_PROVIDER_URL", "\"${extractProviderUrl}\"")
+        buildConfigField("String", "FEEDBACK_PROVIDER_URL", "\"${feedbackProviderUrl}\"")
 
         buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
 
