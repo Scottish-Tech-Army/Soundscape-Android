@@ -18,6 +18,8 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.BuildConfig
+import org.scottishtecharmy.soundscape.feedback.FeedbackPrompter
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 
@@ -165,6 +167,11 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                                         endOfRouteText,
                                         AudioType.STANDARD
                                     )
+
+                                    FeedbackPrompter.getInstance(
+                                        dummy = BuildConfig.DUMMY_FEEDBACK,
+                                        context = localizedContext
+                                    ).onRouteCompleted(route.route.name)
 
                                     // Stop the beacon
                                     stopRoute()
