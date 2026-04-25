@@ -1,0 +1,49 @@
+diff --git a/gradle/libs.versions.toml b/gradle/libs.versions.toml
+index 41ec897..c66ed4f 100644
+--- a/gradle/libs.versions.toml
++++ b/gradle/libs.versions.toml
+@@ -1,15 +1,15 @@
+ [versions]
+-android-buildTools = "37.0.0"
+-android-compileSdk = "37"
+-android-gradlePlugin = "9.1.0"
++android-buildTools = "36.0.0"
++android-compileSdk = "36"
++android-gradlePlugin = "9.0.1"
+ android-minSdk = "23"
+-android-targetSdk = "37"
++android-targetSdk = "36"
+ androidx-activity = "1.13.0"
+ compose = "1.10.3"
+ dokka = "2.2.0"
+ # https://kotlinlang.org/docs/multiplatform/whats-new-compose-110.html#dependencies
+ jetbrains-androidx-lifecycle = "2.10.0"
+-kotlin = "2.3.20"
++kotlin = "2.2.10"
+ kotlinx-binaryCompatibilityValidator = "0.18.1"
+ kotlinx-coroutines = "1.10.2"
+ kotlinx-serialization = "1.10.0"
+diff --git a/preference/src/appleMain/kotlin/PreferenceFlow.apple.kt b/preference/src/appleMain/kotlin/PreferenceFlow.apple.kt
+index b6ab61b..38c2e1b 100644
+--- a/preference/src/appleMain/kotlin/PreferenceFlow.apple.kt
++++ b/preference/src/appleMain/kotlin/PreferenceFlow.apple.kt
+@@ -48,9 +48,10 @@ public fun createPreferenceFlow(userDefaults: NSUserDefaults): MutableStateFlow<
+ 
+ private var NSUserDefaults.preferences: Preferences
+     get() {
++        val bundleId = NSBundle.mainBundle.bundleIdentifier ?: return MapPreferences(emptyMap())
+         @Suppress("UNCHECKED_CAST")
+         val dictionary =
+-            persistentDomainForName(NSBundle.mainBundle.bundleIdentifier!!) as Map<String, Any>
++            (persistentDomainForName(bundleId) as? Map<String, Any>) ?: return MapPreferences(emptyMap())
+         val map =
+             dictionary.mapValues { (_, value) ->
+                 @Suppress("CAST_NEVER_SUCCEEDS")
+@@ -128,5 +129,6 @@ private var NSUserDefaults.preferences: Preferences
+                     else -> throw IllegalArgumentException("Unsupported type for value $mapValue")
+                 }
+             }
+-        setPersistentDomain(dictionary, NSBundle.mainBundle.bundleIdentifier!!)
++        val bundleId = NSBundle.mainBundle.bundleIdentifier ?: return
++        setPersistentDomain(dictionary, bundleId)
+     }

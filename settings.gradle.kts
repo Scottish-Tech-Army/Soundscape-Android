@@ -35,6 +35,19 @@ develocity {
 rootProject.name = "Soundscape"
 include(":app")
 include(":shared")
+
+// Apply local patches to ComposePreference submodule before includeBuild configures it
+val patchFile = file("patches/ComposePreference.patch")
+val patchMarker = file("ComposePreference/.patched")
+if (patchFile.exists() && !patchMarker.exists()) {
+    val cpDir = file("ComposePreference")
+    ProcessBuilder("git", "checkout", ".").directory(cpDir).start().waitFor()
+    val apply = ProcessBuilder("git", "apply", patchFile.absolutePath).directory(cpDir).start()
+    if (apply.waitFor() == 0) {
+        patchMarker.writeText("patched")
+    }
+}
+
 includeBuild("ComposePreference") {
     dependencySubstitution {
         substitute(module("me.zhanghai.compose.preference:preference")).using(project(":preference"))
