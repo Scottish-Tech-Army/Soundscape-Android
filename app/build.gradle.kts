@@ -137,6 +137,7 @@ android {
 
         debug {
             buildConfigField("Boolean", "DUMMY_ANALYTICS", "true")
+            buildConfigField("Boolean", "DUMMY_FEEDBACK", "true")
         }
 
         release {
@@ -148,11 +149,13 @@ android {
                 "proguard-rules.pro"
             )
             buildConfigField("Boolean", "DUMMY_ANALYTICS", "false")
+            buildConfigField("Boolean", "DUMMY_FEEDBACK", "false")
         }
 
         create("releaseTest") {
             initWith(getByName("release"))
             buildConfigField("Boolean", "DUMMY_ANALYTICS", "true")
+            buildConfigField("Boolean", "DUMMY_FEEDBACK", "true")
         }
     }
     compileOptions {
