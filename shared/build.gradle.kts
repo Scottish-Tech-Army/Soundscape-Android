@@ -19,7 +19,6 @@ kotlin {
         }
     }
     listOf(
-        iosX64(),
         iosArm64(),
         iosSimulatorArm64(),
     ).forEach {
@@ -44,6 +43,7 @@ kotlin {
             api(libs.androidx.room.runtime)
             implementation(libs.androidx.sqlite.bundled)
             implementation(libs.maplibre.compose)
+            implementation(libs.composepreferencelibrary)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
@@ -80,7 +80,6 @@ wire {
 
 dependencies {
     add("kspAndroid", libs.androidx.room.compiler)
-    add("kspIosX64", libs.androidx.room.compiler)
     add("kspIosArm64", libs.androidx.room.compiler)
     add("kspIosSimulatorArm64", libs.androidx.room.compiler)
 }

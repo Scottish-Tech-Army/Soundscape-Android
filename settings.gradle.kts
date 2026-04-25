@@ -35,4 +35,9 @@ develocity {
 rootProject.name = "Soundscape"
 include(":app")
 include(":shared")
+includeBuild("ComposePreference") {
+    dependencySubstitution {
+        substitute(module("me.zhanghai.compose.preference:preference")).using(project(":preference"))
+    }
+}
  

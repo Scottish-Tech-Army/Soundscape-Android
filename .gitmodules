@@ -1,0 +1,3 @@
+[submodule "ComposePreference"]
+	path = ComposePreference
+	url = https://github.com/zhanghai/ComposePreference.git

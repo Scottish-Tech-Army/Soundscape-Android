@@ -52,6 +52,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomA
 import org.scottishtecharmy.soundscape.screens.home.HomeState
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.SharedOfflineMapsScreen
+import org.scottishtecharmy.soundscape.screens.home.settings.SharedSettingsScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.SharedAddAndEditRouteScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 import org.jetbrains.compose.resources.stringResource
@@ -100,10 +101,11 @@ data class AppFlows(
     val offlineMapsNearbyExtracts: StateFlow<List<Feature>>? = null,
     val offlineMapsDownloaded: StateFlow<List<String>>? = null,
     val offlineMapsDownloadState: StateFlow<DownloadStateCommon>? = null,
+    val beaconTypes: List<String> = emptyList(),
 )
 
 private enum class Screen {
-    WELCOME, HOME, PLACES_NEARBY, MARKERS_AND_ROUTES, LOCATION_DETAILS, OFFLINE_MAPS, ADD_ROUTE, EDIT_ROUTE, EDIT_MARKER
+    WELCOME, HOME, PLACES_NEARBY, MARKERS_AND_ROUTES, LOCATION_DETAILS, OFFLINE_MAPS, ADD_ROUTE, EDIT_ROUTE, EDIT_MARKER, SETTINGS
 }
 
 @Composable
@@ -136,6 +138,7 @@ fun App(
                             callbacks.onOfflineMapsRefresh()
                             screen = Screen.OFFLINE_MAPS
                         },
+                        onNavigateToSettings = { screen = Screen.SETTINGS },
                         onRouteSkipPrevious = callbacks.onRouteSkipPrevious,
                         onRouteSkipNext = callbacks.onRouteSkipNext,
                         onRouteMute = callbacks.onRouteMute,
@@ -318,6 +321,13 @@ fun App(
                             },
                         )
                     }
+                }
+
+                Screen.SETTINGS -> {
+                    SharedSettingsScreen(
+                        onNavigateUp = { screen = Screen.HOME },
+                        beaconTypes = flows.beaconTypes,
+                    )
                 }
             }
         }

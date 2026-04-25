@@ -926,6 +926,10 @@
 <string name="settings_travel_recording">Enable recording of travel</string>
 <!-- Settings option for enabling a map styling which has improved accessibility -->
 <string name="settings_accessible_map">Enable accessible map styling</string>
+<!-- Settings option for mixing audio with other apps -->
+<string name="settings_mix_audio">Mix audio with other apps</string>
+<!-- Settings description for mixing audio with other apps -->
+<string name="settings_mix_audio_description">When disabled, other audio apps will pause and lock screen media controls will be available</string>
 <!-- Settings option for showing or hiding the map on the screen -->
 <string name="settings_show_map">Show maps on screen</string>
 <!-- Settings title for various debugging options to aid developers -->

@@ -20,6 +20,7 @@ fun MainViewController() = ComposeUIViewController {
             offlineMapsNearbyExtracts = mgr.availableExtracts,
             offlineMapsDownloaded = mgr.downloadedExtracts,
             offlineMapsDownloadState = mgr.downloadState,
+            beaconTypes = service.audioEngine.getListOfBeaconTypes().toList(),
         ),
         callbacks = AppCallbacks(
             onStartBeacon = { lat, lng, name ->
