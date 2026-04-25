@@ -36,11 +36,17 @@ rootProject.name = "Soundscape"
 include(":app")
 include(":shared")
 
+// Initialize ComposePreference submodule if not already checked out
+val cpDir = file("ComposePreference")
+if (!file("ComposePreference/settings.gradle.kts").exists()) {
+    ProcessBuilder("git", "submodule", "update", "--init", "ComposePreference")
+        .directory(rootDir).start().waitFor()
+}
+
 // Apply local patches to ComposePreference submodule before includeBuild configures it
 val patchFile = file("patches/ComposePreference.patch")
 val patchMarker = file("ComposePreference/.patched")
 if (patchFile.exists() && !patchMarker.exists()) {
-    val cpDir = file("ComposePreference")
     ProcessBuilder("git", "checkout", ".").directory(cpDir).start().waitFor()
     val apply = ProcessBuilder("git", "apply", patchFile.absolutePath).directory(cpDir).start()
     if (apply.waitFor() == 0) {

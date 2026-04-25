@@ -1,24 +1,22 @@
 diff --git a/gradle/libs.versions.toml b/gradle/libs.versions.toml
-index 41ec897..c66ed4f 100644
+index 2db14a5..b91d348 100644
 --- a/gradle/libs.versions.toml
 +++ b/gradle/libs.versions.toml
-@@ -1,15 +1,15 @@
+@@ -1,7 +1,7 @@
  [versions]
--android-buildTools = "37.0.0"
--android-compileSdk = "37"
--android-gradlePlugin = "9.1.0"
+-android-buildTools = "36.1.0"
 +android-buildTools = "36.0.0"
-+android-compileSdk = "36"
+ android-compileSdk = "36"
+-android-gradlePlugin = "9.1.0"
 +android-gradlePlugin = "9.0.1"
  android-minSdk = "23"
--android-targetSdk = "37"
-+android-targetSdk = "36"
- androidx-activity = "1.13.0"
- compose = "1.10.3"
- dokka = "2.2.0"
+ android-targetSdk = "36"
+ androidx-activity = "1.12.4"
+@@ -9,7 +9,7 @@ compose = "1.10.2"
+ dokka = "2.1.0"
  # https://kotlinlang.org/docs/multiplatform/whats-new-compose-110.html#dependencies
- jetbrains-androidx-lifecycle = "2.10.0"
--kotlin = "2.3.20"
+ jetbrains-androidx-lifecycle = "2.10.0-beta01"
+-kotlin = "2.3.10"
 +kotlin = "2.2.10"
  kotlinx-binaryCompatibilityValidator = "0.18.1"
  kotlinx-coroutines = "1.10.2"
