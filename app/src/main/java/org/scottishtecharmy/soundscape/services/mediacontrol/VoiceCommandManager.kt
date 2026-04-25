@@ -129,20 +129,25 @@ class VoiceCommandManager(
 
             var discard = true
             ParcelFileDescriptor.AutoCloseOutputStream(pipeWriteFd).use { os ->
-                while (!Thread.currentThread().isInterrupted) {
-                    val read = record.read(buf, 0, buf.size)
-                    if (read > 0) {
-                        if(discard) {
-                            discard = false
-                            continue
-                        }
+                try {
+                    while (!Thread.currentThread().isInterrupted) {
+                        val read = record.read(buf, 0, buf.size)
+                        if (read > 0) {
+                            if (discard) {
+                                discard = false
+                                continue
+                            }
 
-                        debugStream?.write(buf, 0, read)
-                        os.write(buf, 0, read)
-                    } else {
-                        println("BT audio: read() returned $read, stopping")
-                        break
+                            debugStream?.write(buf, 0, read)
+                            os.write(buf, 0, read)
+                        } else {
+                            println("BT audio: read() returned $read, stopping")
+                            break
+                        }
                     }
+                } catch (e: java.io.IOException) {
+                    // Recognizer closed the read end of the pipe — normal EOF path.
+                    println("BT audio: pipe write ended (${e.message})")
                 }
             }
             debugStream?.close()
