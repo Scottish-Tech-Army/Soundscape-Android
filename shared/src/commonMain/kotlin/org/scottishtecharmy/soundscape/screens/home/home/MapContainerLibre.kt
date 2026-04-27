@@ -8,6 +8,7 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -94,6 +95,15 @@ fun MapContainerLibre(
             zoom = 15.0,
         )
     )
+    // Re-center the map when mapCenter changes (e.g. when location becomes available on iOS)
+    LaunchedEffect(mapCenter.latitude, mapCenter.longitude) {
+        cameraState.animateTo(
+            CameraPosition(
+                target = Position(mapCenter.longitude, mapCenter.latitude),
+                zoom = cameraState.position.zoom,
+            )
+        )
+    }
     val styleState = rememberStyleState()
 
     if(editBeaconLocation && (beaconLocation != null)) {
