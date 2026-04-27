@@ -45,7 +45,6 @@ import org.scottishtecharmy.soundscape.preferences.PreferencesListener
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.AudioTourInstructionDialog
-import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.OfflineMapsScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.AdvancedMarkersAndRoutesSettingsScreenVM
@@ -186,6 +185,7 @@ fun HomeScreen(
                 }
             },
             onGetLanguageMismatch = { getLanguageMismatch(context) },
+            onOpenSourceLicenses = { navController.navigate(HomeRoutes.OpenSourceLicense.route) },
         )
     }
 
@@ -350,16 +350,6 @@ fun HomeScreen(
                     )
                 }
 
-                composable(HomeRoutes.Help.route + "/{topic}") { backStackEntry ->
-                    val topic = backStackEntry.arguments?.getString("topic") ?: ""
-                    HelpScreen(
-                        topic = topic,
-                        navController = navController,
-                        modifier = Modifier
-                            .windowInsetsPadding(WindowInsets.safeDrawing)
-                            .semantics { testTagsAsResourceId = true },
-                    )
-                }
                 composable(HomeRoutes.Sleep.route) {
                     SleepScreenVM(
                         navController = navController,

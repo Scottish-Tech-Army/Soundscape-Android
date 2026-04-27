@@ -18,6 +18,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.savedstate.read
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.AppCallbacks
 import org.scottishtecharmy.soundscape.AppFlows
@@ -25,6 +26,7 @@ import org.scottishtecharmy.soundscape.audio.AudioEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.network.DownloadStateCommon
 import org.scottishtecharmy.soundscape.screens.home.HomeState
+import org.scottishtecharmy.soundscape.screens.home.home.SharedHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedLocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedSaveAndEditMarkerScreen
@@ -339,6 +341,16 @@ fun SharedNavHost(
                     },
                 )
             }
+        }
+
+        composable(SharedRoutes.HELP + "/{topic}") { backStackEntry ->
+            val topic = backStackEntry.arguments?.read { getString("topic") } ?: ""
+            SharedHelpScreen(
+                topic = topic,
+                onNavigate = { dest -> navController.navigate(dest) },
+                onNavigateUp = { navController.popBackStack() },
+                onOpenSourceLicenses = callbacks.onOpenSourceLicenses,
+            )
         }
 
         composable(SharedRoutes.SETTINGS) {

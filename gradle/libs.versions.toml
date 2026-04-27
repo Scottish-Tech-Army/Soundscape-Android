@@ -1,6 +1,7 @@
 [versions]
 agp = "9.0.1"
 commonmark = "0.25.1"
+intellijMarkdown = "0.7.3"
 json = "20240303"
 kotlin = "2.2.10"
 maplibreCompose = "0.12.1"
@@ -95,6 +96,7 @@ androidx-sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.r
 androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
 androidx-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiautomator" }
 commonmark = { module = "org.commonmark:commonmark", version.ref = "commonmark" }
+intellij-markdown = { module = "org.jetbrains:markdown", version.ref = "intellijMarkdown" }
 converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "converterMoshi" }
 converter-protobuf = { module = "com.squareup.retrofit2:converter-protobuf", version.ref = "converterProtobuf" }
 converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "converterScalars" }

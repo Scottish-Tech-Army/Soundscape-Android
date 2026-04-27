@@ -45,6 +45,7 @@ kotlin {
             implementation(libs.maplibre.compose)
             implementation(libs.composepreferencelibrary)
             implementation(libs.jetbrains.navigation.compose)
+            implementation(libs.intellij.markdown)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))

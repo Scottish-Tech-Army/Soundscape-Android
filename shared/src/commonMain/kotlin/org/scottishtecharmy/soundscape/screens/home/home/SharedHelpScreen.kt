@@ -20,40 +20,32 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalInspectionMode
-import org.jetbrains.compose.resources.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.invisibleToUser
 import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.TextLinkStyles
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
-import org.commonmark.node.Node
-import org.commonmark.parser.Parser
-import org.commonmark.renderer.html.HtmlRenderer
+import org.intellij.markdown.flavours.commonmark.CommonMarkFlavourDescriptor
+import org.intellij.markdown.html.HtmlGenerator
+import org.intellij.markdown.parser.MarkdownParser
 import org.jetbrains.compose.resources.StringResource
-import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.jetbrains.compose.resources.stringResource
+import org.scottishtecharmy.soundscape.navigation.SharedRoutes
+import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
-import org.scottishtecharmy.soundscape.resources.*
 
-
-enum class SectionType{
+enum class SectionType {
     Title,          // A non-clickable title of a group of other text
     Link,           // A clickable text link
     Paragraph,      // A paragraph of text
     Faq             // A FAQ question with its answer in the section
 }
+
 data class Section(
     val textId: StringResource,           // There's always text, this is the resource id for it
     val type: SectionType,
@@ -61,13 +53,12 @@ data class Section(
     val markdown: Boolean = false,
     val faqAnswer: StringResource? = null  // The resource id of the answer to a FAQ question
 )
+
 data class Sections(
     val titleId: StringResource,
     val sections: List<Section>
 )
 
-// Build a lookup map from StringResource key to StringResource for all resources used in helpPages.
-// This is populated lazily after helpPages is initialized.
 private val stringResourceByKey: Map<String, StringResource> by lazy {
     val map = mutableMapOf<String, StringResource>()
     for (page in helpPages) {
@@ -81,6 +72,12 @@ private val stringResourceByKey: Map<String, StringResource> by lazy {
 }
 
 fun findStringResourceByKey(key: String): StringResource? = stringResourceByKey[key]
+
+private fun markdownToHtml(markdown: String): String {
+    val flavour = CommonMarkFlavourDescriptor()
+    val tree = MarkdownParser(flavour).buildMarkdownTreeFromString(markdown)
+    return HtmlGenerator(markdown, tree, flavour).generateHtml()
+}
 
 // This is a list of all the possible Sections that can be displayed as part of the help screen.
 // Each one has a unique titleId which is used to identify it in the route.
@@ -340,29 +337,28 @@ val helpPages = listOf(
 )
 
 @Composable
-fun HelpScreen(
+fun SharedHelpScreen(
     topic: String,
-    navController: NavHostController,
-    modifier: Modifier
+    onNavigate: (String) -> Unit,
+    onNavigateUp: () -> Unit,
+    onOpenSourceLicenses: (() -> Unit)? = null,
+    modifier: Modifier = Modifier,
 ) {
-    // Find our page
     var sections = Sections(Res.string.menu_help, emptyList())
     if (topic.startsWith("page")) {
-        // Parse page title key from route
         val key = topic.substring(4)
         for (page in helpPages) {
-            if(page.titleId.key == key) {
+            if (page.titleId.key == key) {
                 sections = page
             }
         }
-    } else if(topic.startsWith("faq")) {
-        // Parse faq keys from route
+    } else if (topic.startsWith("faq")) {
         val keys = topic.substring(3).split(".")
-        // We want to display the question and answer
         val questionRes = findStringResourceByKey(keys[0])
-        val answerRes = findStringResourceByKey(keys[1])
+        val answerRes = if (keys.size > 1) findStringResourceByKey(keys[1]) else null
         if (questionRes != null && answerRes != null) {
-            sections = Sections(Res.string.faq_title_abbreviated,
+            sections = Sections(
+                Res.string.faq_title_abbreviated,
                 listOf(
                     Section(questionRes, SectionType.Title),
                     Section(answerRes, SectionType.Paragraph)
@@ -370,9 +366,8 @@ fun HelpScreen(
             )
         }
     } else {
-        // Default to home
         for (page in helpPages) {
-            if(page.titleId == Res.string.menu_help) {
+            if (page.titleId == Res.string.menu_help) {
                 sections = page
             }
         }
@@ -384,15 +379,13 @@ fun HelpScreen(
             CustomAppBar(
                 title = stringResource(sections.titleId),
                 navigationButtonTitle = stringResource(Res.string.ui_back_button_title),
-                onNavigateUp = { navController.popBackStack() },
+                onNavigateUp = onNavigateUp,
             )
         },
         content = { padding ->
             Box(
-                modifier = Modifier
-                    .padding(padding)
+                modifier = Modifier.padding(padding)
             ) {
-                // Help topic page
                 LazyColumn(
                     modifier = modifier
                         .fillMaxWidth()
@@ -419,26 +412,16 @@ fun HelpScreen(
 
                             SectionType.Paragraph -> {
                                 var htmlText = stringResource(section.textId)
-                                if(section.markdown) {
-                                    val parser: Parser = Parser.builder().build()
-                                    val document: Node? = parser.parse(htmlText)
-                                    val renderer = HtmlRenderer.builder().build()
-                                    htmlText = renderer.render(document)
+                                if (section.markdown) {
+                                    htmlText = markdownToHtml(htmlText)
                                 }
                                 Text(
-                                    text = AnnotatedString.fromHtml(
-                                        htmlString = htmlText,
-                                        linkStyles = TextLinkStyles(
-                                            style = SpanStyle(
-                                                textDecoration = TextDecoration.Underline,
-                                            )
-                                        )
-                                    ),
+                                    text = parseHtmlToAnnotatedString(htmlText),
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = MaterialTheme.colorScheme.onSurface,
                                     modifier = Modifier
                                         .semantics {
-                                            if(section.skipTalkback)
+                                            if (section.skipTalkback)
                                                 invisibleToUser()
                                         }
                                 )
@@ -448,28 +431,23 @@ fun HelpScreen(
                                 Button(
                                     onClick = {
                                         if (section.type == SectionType.Faq) {
-                                            navController.navigate("${HomeRoutes.Help.route}/faq${section.textId.key}.${section.faqAnswer?.key}")
+                                            onNavigate("${SharedRoutes.HELP}/faq${section.textId.key}.${section.faqAnswer?.key}")
                                         } else {
-                                            navController.navigate("${HomeRoutes.Help.route}/page${section.textId.key}")
+                                            onNavigate("${SharedRoutes.HELP}/page${section.textId.key}")
                                         }
                                     },
-                                    modifier = Modifier
-                                        .fillMaxWidth(),
+                                    modifier = Modifier.fillMaxWidth(),
                                     shape = RoundedCornerShape(spacing.extraSmall),
                                     colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
                                 ) {
-                                    Box(
-                                        Modifier.weight(6f)
-                                    ) {
+                                    Box(Modifier.weight(6f)) {
                                         Text(
                                             text = stringResource(section.textId),
                                             textAlign = TextAlign.Start,
                                             style = MaterialTheme.typography.titleMedium,
                                         )
                                     }
-                                    Box(
-                                        Modifier.weight(1f)
-                                    ) {
+                                    Box(Modifier.weight(1f)) {
                                         Icon(
                                             Icons.Rounded.ChevronRight,
                                             null,
@@ -481,9 +459,9 @@ fun HelpScreen(
                         }
                     }
                     item {
-                        if (sections.titleId == Res.string.settings_about_app) {
+                        if (sections.titleId == Res.string.settings_about_app && onOpenSourceLicenses != null) {
                             CustomButton(
-                                onClick = { navController.navigate(HomeRoutes.OpenSourceLicense.route) },
+                                onClick = onOpenSourceLicenses,
                                 text = stringResource(Res.string.menu_open_source_licenses),
                                 modifier = Modifier
                                     .fillMaxWidth()
@@ -497,185 +475,5 @@ fun HelpScreen(
                 }
             }
         }
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun HomeHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.menu_help.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun BeaconHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.beacon_audio_beacon.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun VoicesHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.voice_voices.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun RemoteHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.help_remote_page_title.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun AheadOfMeHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.help_explore_page_title.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun AroundMeHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.help_orient_page_title.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun AutomaticCalloutsHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.callouts_automatic_callouts.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun MyLocationHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.directions_my_location.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun RoutesContentHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.routes_title.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun MarkersHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.markers_title.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun CreatingMarkersHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.help_creating_markers_page_title.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun NearbyMarkersHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.callouts_nearby_markers.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun EditingMarkersHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.help_edit_markers_page_title.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun FaqHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.faq_title.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun FaqAnswerHelpPreview() {
-    HelpScreen(
-        topic = "faq${Res.string.faq_when_to_use_soundscape_question.key}.${Res.string.faq_when_to_use_soundscape_answer.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun TipsHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.faq_tips_title.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun OfflineHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.help_offline_page_title.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun AboutHelpPreview() {
-    HelpScreen(
-        topic = "page${Res.string.settings_about_app.key}",
-        navController = rememberNavController(),
-        modifier = Modifier
     )
 }
