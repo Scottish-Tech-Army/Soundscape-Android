@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -24,6 +25,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,6 +37,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.home.FullScreenMapFab
 import org.scottishtecharmy.soundscape.screens.home.home.PlatformMapContainer
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
@@ -49,6 +52,7 @@ fun SharedLocationDetailsScreen(
     locationDescription: LocationDescription,
     userLocation: LngLatAlt?,
     heading: Float = 0f,
+    showMap: Boolean = true,
     onNavigateUp: () -> Unit,
     onStartBeacon: (LngLatAlt, String) -> Unit,
     onSaveMarker: ((LocationDescription) -> Unit)? = null,
@@ -58,6 +62,8 @@ fun SharedLocationDetailsScreen(
     onShareLocation: ((LocationDescription) -> Unit)? = null,
     onOfflineMaps: ((LocationDescription) -> Unit)? = null,
 ) {
+    val fullscreenMap = remember { mutableStateOf(false) }
+
     Scaffold(
         topBar = {
             CustomAppBar(
@@ -65,45 +71,62 @@ fun SharedLocationDetailsScreen(
                 onNavigateUp = onNavigateUp,
             )
         },
+        floatingActionButton = {
+            if (showMap) FullScreenMapFab(fullscreenMap)
+        },
     ) { padding ->
-        Column(
-            modifier = Modifier
-                .padding(padding)
-                .verticalScroll(rememberScrollState())
-                .background(MaterialTheme.colorScheme.surface),
-            verticalArrangement = Arrangement.spacedBy(spacing.small),
-        ) {
-            // Location info section
-            LocationDescriptionTextsSection(
-                locationDescription = locationDescription,
-                userLocation = userLocation,
-            )
-
-            HorizontalDivider()
-
-            // Action buttons
-            LocationDescriptionButtonsSection(
-                locationDescription = locationDescription,
-                onStartBeacon = onStartBeacon,
-                onSaveMarker = onSaveMarker,
-                onEditMarker = onEditMarker,
-                onEnableStreetPreview = onEnableStreetPreview,
-                onShareLocation = onShareLocation,
-                onOfflineMaps = onOfflineMaps,
-            )
-
-            // Map showing the location
+        if (fullscreenMap.value) {
             PlatformMapContainer(
-                mapCenter = locationDescription.location,
+                beaconLocation = locationDescription.location,
                 allowScrolling = true,
+                mapCenter = locationDescription.location,
                 userLocation = userLocation,
                 userSymbolRotation = heading,
-                beaconLocation = locationDescription.location,
                 routeData = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1.0f),
+                modifier = Modifier.fillMaxSize(),
             )
+        } else {
+            Column(
+                modifier = Modifier
+                    .padding(padding)
+                    .verticalScroll(rememberScrollState())
+                    .background(MaterialTheme.colorScheme.surface),
+                verticalArrangement = Arrangement.spacedBy(spacing.small),
+            ) {
+                // Location info section
+                LocationDescriptionTextsSection(
+                    locationDescription = locationDescription,
+                    userLocation = userLocation,
+                )
+
+                HorizontalDivider()
+
+                // Action buttons
+                LocationDescriptionButtonsSection(
+                    locationDescription = locationDescription,
+                    onStartBeacon = onStartBeacon,
+                    onSaveMarker = onSaveMarker,
+                    onEditMarker = onEditMarker,
+                    onEnableStreetPreview = onEnableStreetPreview,
+                    onShareLocation = onShareLocation,
+                    onOfflineMaps = onOfflineMaps,
+                )
+
+                // Map showing the location
+                if (showMap) {
+                    PlatformMapContainer(
+                        mapCenter = locationDescription.location,
+                        allowScrolling = true,
+                        userLocation = userLocation,
+                        userSymbolRotation = heading,
+                        beaconLocation = locationDescription.location,
+                        routeData = null,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .aspectRatio(1.0f),
+                    )
+                }
+            }
         }
     }
 }
