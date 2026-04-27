@@ -199,7 +199,7 @@ fun HomeScreen(
                 supportedLanguages = languageUiState.value.supportedLanguages,
                 onLanguageSelected = { selectedLanguage ->
                     languageViewModel.updateLanguage(selectedLanguage)
-                    settingsViewModel.updateLanguage(localActivity)
+                    settingsViewModel.updateLanguage()
                  },
                 selectedLanguageIndex = languageUiState.value.selectedLanguageIndex,
                 storages = uiState.value.storages,

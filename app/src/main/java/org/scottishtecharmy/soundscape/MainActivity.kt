@@ -776,6 +776,12 @@ class MainActivity : AppCompatActivity() {
     var serviceSleeping = false
     fun setServiceState(newServiceState: Boolean, sleeping: Boolean? = null) {
         Log.d(TAG, "setServiceState $newServiceState, sleeping = $sleeping, serviceSleeping = $serviceSleeping")
+        // Bail out if we're a destroyed activity instance still being held by some caller —
+        // ActivityResultLaunchers are unregistered on destroy and launch() would throw.
+        if (isFinishing || isDestroyed) {
+            Log.w(TAG, "setServiceState called on finishing/destroyed activity; ignoring")
+            return
+        }
         if(!serviceSleeping || (sleeping == false)) {
             if (!newServiceState) {
                 soundscapeServiceConnection.stopService()
