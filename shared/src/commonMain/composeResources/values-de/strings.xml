@@ -61,7 +61,7 @@
     <string name="route_update_success_title">Update abgeschlossen!</string>
     <string name="waypoint_title">Wegpunkt</string>
     <string name="universal_links_alert_action_marker">Als Markierung speichern</string>
-    <string name="universal_links_marker_share_message">Ich habe eine Soundscape‑Markierung mit Ihnen geteilt: \"%1$s\".\n\nUm sie in Soundscape zu öffnen, verwenden Sie %2$s.\n\nUm sie in Google Maps zu öffnen, verwenden Sie %3$s.</string>
+    <string name="universal_links_marker_share_message">Ich habe eine Soundscape‑Markierung mit Ihnen geteilt: "%1$s".\n\nUm sie in Soundscape zu öffnen, verwenden Sie %2$s.\n\nUm sie in Google Maps zu öffnen, verwenden Sie %3$s.</string>
     <string name="user_activity_save_marker_title">Markierung speichern</string>
     <string name="routes_title">Routen</string>
     <string name="routes_action_deleted">Route gelöscht</string>
@@ -77,7 +77,7 @@
     <string name="markers_sort_button_sort_by_distance">Entfernung</string>
     <string name="markers_sort_button_sort_by_distance_voiceover">Nach Entfernung sortiert</string>
     <string name="markers_no_markers_title">Erste Schritte mit Markierungen</string>
-    <string name="markers_no_markers_hint_1">Erstellen Sie Markierungen für Ihre Lieblingsziele, Wegpunkte einer Route oder andere Orte, die Sie hervorheben möchten. Wählen Sie einfach einen Ort oder Ihren aktuellen Standort auf dem Startbildschirm aus. Wählen Sie dann *\"Als Markierung speichern\"* aus.</string>
+    <string name="markers_no_markers_hint_1">Erstellen Sie Markierungen für Ihre Lieblingsziele, Wegpunkte einer Route oder andere Orte, die Sie hervorheben möchten. Wählen Sie einfach einen Ort oder Ihren aktuellen Standort auf dem Startbildschirm aus. Wählen Sie dann *"Als Markierung speichern"* aus.</string>
     <string name="markers_no_markers_hint_2">Markieren Sie doch einmal Ihr Zuhause, den Eingang zu Ihrer Arbeit oder Ihren Lieblingsplatz im Park.</string>
     <string name="markers_edit_screen_title_edit">Markierung bearbeiten</string>
     <string name="markers_generic_name">Markierung</string>
@@ -272,7 +272,7 @@
     <string name="help_text_customizing_markers_content_2">Auf dem Bildschirm *„Bearbeiten“* können Sie eine Markierung auch löschen, wenn Sie sie nicht mehr benötigen.</string>
     <string name="help_text_routes_content_what">Routen bestehen aus einer Reihe von Wegpunkten. Sie werden bei der Ankunft an einem Wegpunkt informiert. Dann springt das Audiobeacon automatisch zum nächsten Wegpunkt.</string>
     <string name="help_text_routes_content_when">Sie können eine Route an einem Ihnen bekannten Ort erstellen und diese verwenden, um auf dem richtigen Weg zu bleiben. Oder Sie können Routen als Hilfsmittel verwenden, um sich auf einem unbekannten Weg mit diesem vertraut zu machen.</string>
-    <string name="help_text_routes_content_how_1">**Route erstellen**:\n\n Gehen Sie zunächst zu \"Markierungen und Routen\", wählen Sie die Registerkarte \"Routen\" aus, und wählen Sie dann die Schaltfläche \"Neue Route\" aus. Geben Sie der Route einen Namen und eine optionale Beschreibung, und fügen Sie dann nach und nach Wegpunkte hinzu, oder wählen Sie diese aus Ihrer Liste der Markierungen aus. Sie können die Reihenfolge der Wegpunkte entlang einer Route jederzeit neu anordnen, indem Sie die Route bearbeiten.</string>
+    <string name="help_text_routes_content_how_1">**Route erstellen**:\n\n Gehen Sie zunächst zu "Markierungen und Routen", wählen Sie die Registerkarte "Routen" aus, und wählen Sie dann die Schaltfläche "Neue Route" aus. Geben Sie der Route einen Namen und eine optionale Beschreibung, und fügen Sie dann nach und nach Wegpunkte hinzu, oder wählen Sie diese aus Ihrer Liste der Markierungen aus. Sie können die Reihenfolge der Wegpunkte entlang einer Route jederzeit neu anordnen, indem Sie die Route bearbeiten.</string>
     <string name="help_text_routes_content_how_2">**Route bearbeiten**:\n\nWählen Sie Ihre Route auf dem Bildschirm *„Markierungen und Routen“* und anschließend *„Route bearbeiten“*. Hier können Sie Wegpunkte hinzufügen oder entfernen sowie den Namen und die Beschreibung der Route bearbeiten.</string>
     <string name="help_text_routes_content_how_3">**Route teilen**:\n\nWählen Sie Ihre Route auf dem Bildschirm *„Markierungen und Routen“* und tippen Sie dann auf die Option *„Teilen“*, um eine der üblichen Freigabeoptionen zu verwenden.</string>
     <string name="osm_crossing">Zebrastreifen</string>
