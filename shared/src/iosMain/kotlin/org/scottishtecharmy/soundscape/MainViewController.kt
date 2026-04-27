@@ -38,6 +38,7 @@ fun MainViewController() = ComposeUIViewController {
             placesNearbyUiState = service.placesNearbyUiState,
             offlineMapsNearbyExtracts = mgr.availableExtracts,
             offlineMapsDownloaded = mgr.downloadedExtracts,
+            offlineMapsDownloadedFc = mgr.downloadedExtractsFc,
             offlineMapsDownloadState = mgr.downloadState,
             beaconTypes = service.audioEngine.getListOfBeaconTypes().toList(),
             audioTourRunning = audioTourRunning,
@@ -73,13 +74,14 @@ fun MainViewController() = ComposeUIViewController {
             onPlacesNearbyClickBack = { service.placesNearbyClickBack() },
             onOfflineMapsRefresh = { mgr.refresh() },
             onOfflineMapsGetExtracts = { location -> mgr.getExtractsContaining(location) },
-            onOfflineMapsDownload = { feature ->
+            onOfflineMapsDownload = { _, feature ->
                 val props = feature.properties ?: return@AppCallbacks
                 val filename = props["filename"] as? String ?: return@AppCallbacks
-                val extractSize = (props["extract-size"] as? String)?.toDoubleOrNull()
+                val extractSize = (props["extract-size"] as? Number)?.toDouble()
+                    ?: (props["extract-size"] as? String)?.toDoubleOrNull()
                 mgr.startDownload(filename, extractSize)
             },
-            onOfflineMapsDelete = { path -> mgr.deleteExtract(path) },
+            onOfflineMapsDelete = { feature -> mgr.deleteExtractByFeature(feature) },
             onOfflineMapsCancelDownload = { mgr.cancelDownload() },
             // iOS hooks for the previously Android-only home features. Stubs for now —
             // a future change can wire these to native iOS subsystems.

@@ -7,8 +7,11 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import okio.FileSystem
 import okio.Path.Companion.toPath
@@ -19,6 +22,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
+import org.scottishtecharmy.soundscape.utils.formatBytes
 
 /**
  * Cross-platform offline map manager. Handles:
@@ -46,6 +50,38 @@ class OfflineMapManager(
     // Downloaded extracts
     private val _downloadedExtracts = MutableStateFlow<List<String>>(emptyList())
     val downloadedExtracts: StateFlow<List<String>> = _downloadedExtracts.asStateFlow()
+
+    /**
+     * Downloaded extracts joined with their manifest metadata (so the UI can show
+     * the localised name, cities, size string, etc). For each downloaded `.pmtiles`
+     * path we find the matching manifest entry by filename suffix; if there is no
+     * match we fall back to a stub feature with just the path.
+     */
+    val downloadedExtractsFc: StateFlow<FeatureCollection> =
+        combine(_manifest, _downloadedExtracts) { manifest, paths ->
+            val fc = FeatureCollection()
+            for (path in paths) {
+                val baseName = path.substringAfterLast("/")
+                val match = manifest?.features?.firstOrNull { feature ->
+                    val filename = feature.properties?.get("filename") as? String ?: return@firstOrNull false
+                    filename.substringAfterLast("/") == baseName ||
+                        filename.substringAfter("-").substringAfter("-") == baseName
+                }
+                if (match != null) {
+                    fc.addFeature(match.withSizeString())
+                } else {
+                    // Stub feature so the UI can at least show the filename
+                    val stub = Feature()
+                    val props = HashMap<String, Any?>()
+                    props["name"] = baseName.removeSuffix(".pmtiles")
+                    props["filename"] = baseName
+                    props["extract-size-string"] = ""
+                    stub.properties = props
+                    fc.addFeature(stub)
+                }
+            }
+            fc
+        }.stateIn(scope, SharingStarted.Eagerly, FeatureCollection())
 
     // Download state
     private val _downloadState = MutableStateFlow<DownloadStateCommon>(DownloadStateCommon.Idle)
@@ -80,13 +116,29 @@ class OfflineMapManager(
     }
 
     /**
-     * Get manifest features whose geometry contains the given location.
+     * Get manifest features whose geometry contains the given location, decorated
+     * with a human-readable size string for the UI.
      */
     fun getExtractsContaining(location: LngLatAlt): List<Feature> {
         val fc = _manifest.value ?: return emptyList()
-        return fc.features.filter { feature ->
-            featureContainsLocation(feature, location)
-        }
+        return fc.features
+            .filter { feature -> featureContainsLocation(feature, location) }
+            .map { it.withSizeString() }
+    }
+
+    /**
+     * Returns a copy of the feature with `extract-size-string` populated from
+     * `extract-size`, mutating only the properties map.
+     */
+    private fun Feature.withSizeString(): Feature {
+        val sizeProp = properties?.get("extract-size")
+        val sizeBytes = (sizeProp as? Number)?.toDouble()
+            ?: (sizeProp as? String)?.toDoubleOrNull()
+            ?: return this
+        val props = HashMap<String, Any?>(properties ?: emptyMap())
+        props["extract-size-string"] = formatBytes(sizeBytes.toLong())
+        properties = props
+        return this
     }
 
     private fun featureContainsLocation(feature: Feature, location: LngLatAlt): Boolean {
@@ -192,5 +244,19 @@ class OfflineMapManager(
         } catch (e: Exception) {
             println("OfflineMapManager: Error deleting extract: ${e.message}")
         }
+    }
+
+    /**
+     * Delete the downloaded extract corresponding to the given manifest feature, by
+     * matching its filename against the known downloaded paths.
+     */
+    fun deleteExtractByFeature(feature: Feature) {
+        val filename = feature.properties?.get("filename") as? String ?: return
+        val baseName = filename.substringAfterLast("/")
+        val match = _downloadedExtracts.value.firstOrNull { it.endsWith(baseName) }
+            ?: _downloadedExtracts.value.firstOrNull {
+                it.endsWith(filename.substringAfter("-").substringAfter("-"))
+            }
+        if (match != null) deleteExtract(match)
     }
 }

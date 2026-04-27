@@ -50,8 +50,8 @@ data class AppCallbacks(
     val onPlacesNearbyClickBack: () -> Unit = {},
     val onOfflineMapsRefresh: () -> Unit = {},
     val onOfflineMapsGetExtracts: (LngLatAlt) -> List<Feature> = { emptyList() },
-    val onOfflineMapsDownload: (Feature) -> Unit = {},
-    val onOfflineMapsDelete: (String) -> Unit = {},
+    val onOfflineMapsDownload: (String, Feature) -> Unit = { _, _ -> },
+    val onOfflineMapsDelete: (Feature) -> Unit = {},
     val onOfflineMapsCancelDownload: () -> Unit = {},
     // Home-screen extras
     val onSleep: () -> Unit = {},
@@ -78,6 +78,7 @@ data class AppFlows(
     val placesNearbyUiState: StateFlow<PlacesNearbyUiState>? = null,
     val offlineMapsNearbyExtracts: StateFlow<List<Feature>>? = null,
     val offlineMapsDownloaded: StateFlow<List<String>>? = null,
+    val offlineMapsDownloadedFc: StateFlow<org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection>? = null,
     val offlineMapsDownloadState: StateFlow<DownloadStateCommon>? = null,
     val beaconTypes: List<String> = emptyList(),
     // Home-screen extras

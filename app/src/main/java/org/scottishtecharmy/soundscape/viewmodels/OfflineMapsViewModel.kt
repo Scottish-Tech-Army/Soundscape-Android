@@ -8,15 +8,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.preference.PreferenceManager
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
+import org.scottishtecharmy.soundscape.network.DownloadStateCommon
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.offlinemaps.OfflineMapsUiState
+import org.scottishtecharmy.soundscape.screens.home.offlinemaps.StorageInfo
 import org.scottishtecharmy.soundscape.utils.DownloadState
 import org.scottishtecharmy.soundscape.utils.OfflineDownloader
 import org.scottishtecharmy.soundscape.utils.StorageUtils
@@ -27,21 +32,17 @@ import java.io.File
 import java.io.FileOutputStream
 import kotlin.collections.HashMap
 
-data class OfflineMapsUiState(
-    val downloadingExtractName: String = "",
+private fun StorageUtils.StorageSpace.toStorageInfo(): StorageInfo =
+    StorageInfo(path = path, description = description, availableString = availableString)
 
-    val manifestError: Boolean = false,
-
-    // Extracts in manifest to choose from
-    val nearbyExtracts: FeatureCollection? = null,
-
-    // Offline extracts in storage
-    val downloadedExtracts: FeatureCollection? = null,
-
-    // Storage status
-    val currentPath: String = "",
-    val storages: List<StorageUtils.StorageSpace> = emptyList()
-)
+private fun DownloadState.toCommon(): DownloadStateCommon = when (this) {
+    is DownloadState.Idle -> DownloadStateCommon.Idle
+    is DownloadState.Caching -> DownloadStateCommon.Caching
+    is DownloadState.Downloading -> DownloadStateCommon.Downloading(progress)
+    is DownloadState.Success -> DownloadStateCommon.Success
+    is DownloadState.Canceled -> DownloadStateCommon.Canceled
+    is DownloadState.Error -> DownloadStateCommon.Error(message)
+}
 
 class OfflineMapsViewModel(
     val appContext: Context,
@@ -50,14 +51,18 @@ class OfflineMapsViewModel(
 
     private val _uiState = MutableStateFlow(OfflineMapsUiState())
     val uiState: StateFlow<OfflineMapsUiState> = _uiState
-    lateinit var offlineDownloader: OfflineDownloader
-    lateinit  var downloadState: StateFlow<DownloadState>
+
+    private val offlineDownloader = OfflineDownloader()
+    val downloadState: StateFlow<DownloadStateCommon> = offlineDownloader.downloadState
+        .map { it.toCommon() }
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.Eagerly,
+            initialValue = DownloadStateCommon.Idle,
+        )
+
     init {
         viewModelScope.launch {
-            // Create downloader to handle getting any offline maps
-            offlineDownloader = OfflineDownloader()
-            downloadState = offlineDownloader.downloadState
-
             val storages = getOfflineMapStorage(appContext)
 
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)
@@ -65,7 +70,7 @@ class OfflineMapsViewModel(
             val extractCollection = findExtracts(File(path, Environment.DIRECTORY_DOWNLOADS).path)
             _uiState.value = _uiState.value.copy(
                 downloadedExtracts = extractCollection,
-                storages = storages,
+                storages = storages.map { it.toStorageInfo() },
                 currentPath = path
             )
 

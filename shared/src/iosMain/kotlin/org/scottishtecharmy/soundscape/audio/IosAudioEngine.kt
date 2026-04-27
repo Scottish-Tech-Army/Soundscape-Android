@@ -16,6 +16,7 @@ import platform.AVFAudio.AVAudioSessionInterruptionTypeBegan
 import platform.AVFAudio.AVAudioSessionInterruptionTypeKey
 import platform.AVFAudio.setActive
 import platform.CoreAudioTypes.kAudioChannelLayoutTag_Stereo
+import platform.Foundation.NSLock
 import platform.Foundation.NSNotification
 import platform.Foundation.NSNotificationCenter
 import platform.Foundation.NSOperationQueue
@@ -45,6 +46,12 @@ class IosAudioEngine : AudioEngine {
     // Handle tracking
     private var nextHandle = 1L
     private val activePlayers = mutableMapOf<Long, PlayerEntry>()
+
+    // activePlayers is touched from multiple threads: from coroutine dispatchers
+    // (updateGeometry, createBeacon, speakCallout, ...) and from the main queue
+    // via dispatch_async completion callbacks. mutableMapOf is not thread-safe,
+    // so guard every access with this lock.
+    private val activePlayersLock = NSLock()
 
     // Discrete sound queue
     private val discreteQueue = ArrayDeque<QueuedSound>()
@@ -84,6 +91,15 @@ class IosAudioEngine : AudioEngine {
     private sealed class PlayerEntry {
         class Discrete(val player: DiscretePlayer) : PlayerEntry()
         class Beacon(val player: BeaconPlayer) : PlayerEntry()
+    }
+
+    private inline fun <T> withActivePlayersLock(block: () -> T): T {
+        activePlayersLock.lock()
+        try {
+            return block()
+        } finally {
+            activePlayersLock.unlock()
+        }
     }
 
     private data class QueuedSound(
@@ -310,7 +326,7 @@ class IosAudioEngine : AudioEngine {
             }
         })
 
-        activePlayers[sound.handle] = PlayerEntry.Discrete(player)
+        withActivePlayersLock { activePlayers[sound.handle] = PlayerEntry.Discrete(player) }
 
         if (sound.isTts) {
             // Render TTS to PCM buffers, then connect and play through the audio graph
@@ -360,7 +376,7 @@ class IosAudioEngine : AudioEngine {
     }
 
     private fun onDiscreteComplete(handle: Long) {
-        val entry = activePlayers.remove(handle)
+        val entry = withActivePlayersLock { activePlayers.remove(handle) }
         if (entry is PlayerEntry.Discrete) {
             entry.player.layer.disconnect()
             entry.player.layer.detach()
@@ -386,7 +402,7 @@ class IosAudioEngine : AudioEngine {
         // Stop current if it's TTS
         val currentHandle = currentDiscreteHandle
         if (currentHandle != null) {
-            val entry = activePlayers[currentHandle]
+            val entry = withActivePlayersLock { activePlayers[currentHandle] }
             if (entry is PlayerEntry.Discrete) {
                 entry.player.stop()
             }
@@ -399,7 +415,7 @@ class IosAudioEngine : AudioEngine {
     }
 
     override fun isHandleActive(handle: Long): Boolean {
-        return activePlayers.containsKey(handle)
+        return withActivePlayersLock { activePlayers.containsKey(handle) }
     }
 
     // --- AudioEngine Interface: Beacons ---
@@ -424,12 +440,12 @@ class IosAudioEngine : AudioEngine {
         // Apply initial geometry
         player.updateForGeometry(listenerLatitude, listenerLongitude, listenerHeading)
 
-        activePlayers[handle] = PlayerEntry.Beacon(player)
+        withActivePlayersLock { activePlayers[handle] = PlayerEntry.Beacon(player) }
         return handle
     }
 
     override fun destroyBeacon(beaconHandle: Long) {
-        val entry = activePlayers.remove(beaconHandle)
+        val entry = withActivePlayersLock { activePlayers.remove(beaconHandle) }
         if (entry is PlayerEntry.Beacon) {
             entry.player.stop()
         }
@@ -437,10 +453,11 @@ class IosAudioEngine : AudioEngine {
 
     override fun toggleBeaconMute(): Boolean {
         beaconMuted = !beaconMuted
-        for ((_, entry) in activePlayers) {
-            if (entry is PlayerEntry.Beacon) {
-                entry.player.setMuted(beaconMuted)
-            }
+        val beacons = withActivePlayersLock {
+            activePlayers.values.filterIsInstance<PlayerEntry.Beacon>()
+        }
+        for (entry in beacons) {
+            entry.player.setMuted(beaconMuted)
         }
         return beaconMuted
     }
@@ -471,13 +488,16 @@ class IosAudioEngine : AudioEngine {
             }
         }
 
-        // Update all active beacon players with new geometry
-        for ((_, entry) in activePlayers) {
-            if (entry is PlayerEntry.Beacon) {
-                entry.player.updateForGeometry(
-                    listenerLatitude, listenerLongitude, this.listenerHeading
-                )
-            }
+        // Update all active beacon players with new geometry. Snapshot under
+        // the lock so we don't iterate the live map (which can be mutated on
+        // the main queue by onDiscreteComplete or by other callers).
+        val beacons = withActivePlayersLock {
+            activePlayers.values.filterIsInstance<PlayerEntry.Beacon>()
+        }
+        for (entry in beacons) {
+            entry.player.updateForGeometry(
+                listenerLatitude, listenerLongitude, this.listenerHeading
+            )
         }
     }
 
@@ -501,9 +521,11 @@ class IosAudioEngine : AudioEngine {
     }
 
     override fun onAllBeaconsCleared() {
-        val beaconHandles = activePlayers.entries
-            .filter { it.value is PlayerEntry.Beacon }
-            .map { it.key }
+        val beaconHandles = withActivePlayersLock {
+            activePlayers.entries
+                .filter { it.value is PlayerEntry.Beacon }
+                .map { it.key }
+        }
         for (handle in beaconHandles) {
             destroyBeacon(handle)
         }

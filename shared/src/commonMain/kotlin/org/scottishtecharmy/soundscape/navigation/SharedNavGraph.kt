@@ -30,6 +30,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.SharedHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedLocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedSaveAndEditMarkerScreen
+import org.scottishtecharmy.soundscape.screens.home.offlinemaps.OfflineMapsUiState
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.SharedOfflineMapsScreen
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyScreen
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
@@ -224,26 +225,35 @@ fun SharedNavHost(
                 ?: remember { mutableStateOf(null) }
             val allExtracts by flows.offlineMapsNearbyExtracts?.collectAsState()
                 ?: remember { mutableStateOf(emptyList()) }
-            val downloaded by flows.offlineMapsDownloaded?.collectAsState()
-                ?: remember { mutableStateOf(emptyList()) }
+            val downloadedFc by flows.offlineMapsDownloadedFc?.collectAsState()
+                ?: remember {
+                    mutableStateOf(org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection())
+                }
 
             val userLngLat = location?.let { LngLatAlt(it.longitude, it.latitude) }
-            val containingExtracts = remember(allExtracts, userLngLat) {
-                if (userLngLat != null) {
+            val nearbyFc = remember(allExtracts, userLngLat) {
+                val list = if (userLngLat != null) {
                     callbacks.onOfflineMapsGetExtracts(userLngLat)
                 } else {
                     allExtracts
                 }
+                org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection().apply {
+                    list.forEach { addFeature(it) }
+                }
             }
 
+            val uiState = OfflineMapsUiState(
+                nearbyExtracts = nearbyFc,
+                downloadedExtracts = downloadedFc,
+            )
+
             SharedOfflineMapsScreen(
-                nearbyExtracts = containingExtracts,
-                downloadedPaths = downloaded,
+                uiState = uiState,
                 downloadState = flows.offlineMapsDownloadState
                     ?: kotlinx.coroutines.flow.MutableStateFlow(DownloadStateCommon.Idle),
                 onBack = { navController.popBackStack() },
-                onDownload = { callbacks.onOfflineMapsDownload(it) },
-                onDelete = { callbacks.onOfflineMapsDelete(it) },
+                onDownload = { name, feature -> callbacks.onOfflineMapsDownload(name, feature) },
+                onDelete = { feature -> callbacks.onOfflineMapsDelete(feature) },
                 onCancelDownload = { callbacks.onOfflineMapsCancelDownload() },
             )
         }
