@@ -40,6 +40,9 @@ import org.scottishtecharmy.soundscape.network.OfflineMapManager
 import org.scottishtecharmy.soundscape.network.createIosPhotonSearchClient
 import org.scottishtecharmy.soundscape.network.createIosVectorTileClient
 import org.scottishtecharmy.soundscape.preferences.IosPreferencesProvider
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesListener
 import org.scottishtecharmy.soundscape.utils.Analytics
 import platform.Foundation.NSHomeDirectory
 
@@ -137,12 +140,37 @@ class IosSoundscapeService : GeoEngineListener, RemoteCommandListener {
     fun getOrientationFlow(): StateFlow<DeviceDirection?> = directionProvider.orientationFlow
     fun getGridStateFlow(): StateFlow<GridState?> = gridStateFlow
 
+    private val preferencesListener = PreferencesListener { key ->
+        when (key) {
+            PreferenceKeys.BEACON_TYPE -> {
+                val type = preferencesProvider.getString(
+                    PreferenceKeys.BEACON_TYPE,
+                    PreferenceDefaults.BEACON_TYPE,
+                )
+                audioEngine.setBeaconType(type)
+            }
+            PreferenceKeys.MIX_AUDIO -> {
+                audioEngine.mixWithOthers = preferencesProvider.getBoolean(
+                    PreferenceKeys.MIX_AUDIO,
+                    PreferenceDefaults.MIX_AUDIO,
+                )
+            }
+        }
+    }
+
     init {
         audioEngine.remoteCommandListener = this
         audioEngine.mixWithOthers = preferencesProvider.getBoolean(
-            org.scottishtecharmy.soundscape.preferences.PreferenceKeys.MIX_AUDIO,
-            org.scottishtecharmy.soundscape.preferences.PreferenceDefaults.MIX_AUDIO,
+            PreferenceKeys.MIX_AUDIO,
+            PreferenceDefaults.MIX_AUDIO,
         )
+        audioEngine.setBeaconType(
+            preferencesProvider.getString(
+                PreferenceKeys.BEACON_TYPE,
+                PreferenceDefaults.BEACON_TYPE,
+            )
+        )
+        preferencesProvider.addListener(preferencesListener)
         startGeoEngine()
         observeAppLifecycle()
         startHomeStateUpdates()
