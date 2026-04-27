@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import kotlinx.cinterop.ExperimentalForeignApi
 import org.maplibre.compose.style.BaseStyle
+import org.maplibre.spatialk.geojson.Geometry
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_PATH
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -106,6 +107,7 @@ fun IosMapContainerLibre(
     beaconLocation: LngLatAlt? = null,
     routeData: RouteWithMarkers? = null,
     modifier: Modifier = Modifier,
+    extractGeometry: Geometry? = null,
 ) {
     val baseStyle = rememberIosMapBaseStyle(location = userLocation)
 
@@ -118,5 +120,6 @@ fun IosMapContainerLibre(
         routeData = routeData,
         modifier = modifier,
         baseStyle = baseStyle,
+        extractGeometry = extractGeometry,
     )
 }

@@ -8,6 +8,7 @@ import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -213,6 +214,7 @@ fun SharedNavHost(
                         // TODO: wire street preview
                     },
                     onOfflineMaps = { locationDesc ->
+                        navStateHolder.setOfflineMapsTargetLocation(locationDesc.location)
                         callbacks.onOfflineMapsRefresh()
                         navController.navigate(SharedRoutes.OFFLINE_MAPS)
                     },
@@ -223,6 +225,7 @@ fun SharedNavHost(
         composable(SharedRoutes.OFFLINE_MAPS) {
             val location by flows.locationFlow?.collectAsState()
                 ?: remember { mutableStateOf(null) }
+            val targetLocation by navStateHolder.offlineMapsTargetLocation.collectAsState()
             val allExtracts by flows.offlineMapsNearbyExtracts?.collectAsState()
                 ?: remember { mutableStateOf(emptyList()) }
             val downloadedFc by flows.offlineMapsDownloadedFc?.collectAsState()
@@ -230,16 +233,24 @@ fun SharedNavHost(
                     mutableStateOf(org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection())
                 }
 
-            val userLngLat = location?.let { LngLatAlt(it.longitude, it.latitude) }
-            val nearbyFc = remember(allExtracts, userLngLat) {
-                val list = if (userLngLat != null) {
-                    callbacks.onOfflineMapsGetExtracts(userLngLat)
+            // Prefer the location the user navigated from (e.g. a place from
+            // location details) so "Nearby offline maps" reflects that place
+            // rather than the device's current location.
+            val nearbyLngLat = targetLocation
+                ?: location?.let { LngLatAlt(it.longitude, it.latitude) }
+            val nearbyFc = remember(allExtracts, nearbyLngLat) {
+                val list = if (nearbyLngLat != null) {
+                    callbacks.onOfflineMapsGetExtracts(nearbyLngLat)
                 } else {
                     allExtracts
                 }
                 org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection().apply {
                     list.forEach { addFeature(it) }
                 }
+            }
+
+            DisposableEffect(Unit) {
+                onDispose { navStateHolder.setOfflineMapsTargetLocation(null) }
             }
 
             val uiState = OfflineMapsUiState(

@@ -24,8 +24,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import org.jetbrains.compose.resources.stringResource
+import org.maplibre.spatialk.geojson.Position
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.offline_map_details_alternate_city_list
 import org.scottishtecharmy.soundscape.resources.offline_map_details_city_list
@@ -47,6 +50,7 @@ fun SharedOfflineMapExtractDetails(
     modifier: Modifier = Modifier,
 ) {
     val details = remember(extract) { ExtractDetails(extract) }
+    val extractGeometry = remember(extract) { extract.toMaplibreGeometry() }
 
     Column(
         modifier = modifier.verticalScroll(rememberScrollState()),
@@ -69,12 +73,28 @@ fun SharedOfflineMapExtractDetails(
             allowScrolling = true,
             routeData = null,
             mapCenter = LngLatAlt(),
-            userLocation = LngLatAlt(),
+            userLocation = null,
             userSymbolRotation = 0.0f,
+            extractGeometry = extractGeometry,
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(1.0f),
         )
+    }
+}
+
+private fun ArrayList<LngLatAlt>.toPositionRing(): List<Position> =
+    map { Position(it.longitude, it.latitude) }
+
+private fun Feature.toMaplibreGeometry(): org.maplibre.spatialk.geojson.Geometry? {
+    return when (val g = geometry) {
+        is Polygon -> org.maplibre.spatialk.geojson.Polygon(
+            g.coordinates.map { ring -> ring.toPositionRing() }
+        )
+        is MultiPolygon -> org.maplibre.spatialk.geojson.MultiPolygon(
+            g.coordinates.map { polygon -> polygon.map { ring -> ring.toPositionRing() } }
+        )
+        else -> null
     }
 }
 

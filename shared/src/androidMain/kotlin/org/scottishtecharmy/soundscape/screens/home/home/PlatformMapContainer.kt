@@ -6,6 +6,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
+import org.maplibre.spatialk.geojson.Geometry
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.mapstyle.AccessibleTheme
@@ -23,6 +24,7 @@ actual fun PlatformMapContainer(
     beaconLocation: LngLatAlt?,
     routeData: RouteWithMarkers?,
     modifier: Modifier,
+    extractGeometry: Geometry?,
 ) {
     val context = LocalContext.current
     val filesDir = context.filesDir.toString()
@@ -73,5 +75,6 @@ actual fun PlatformMapContainer(
         routeData = routeData,
         modifier = modifier,
         baseStyle = baseStyle,
+        extractGeometry = extractGeometry,
     )
 }

@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.screens.home.home
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import org.maplibre.spatialk.geojson.Geometry
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
@@ -18,4 +19,5 @@ expect fun PlatformMapContainer(
     beaconLocation: LngLatAlt?,
     routeData: RouteWithMarkers?,
     modifier: Modifier,
+    extractGeometry: Geometry? = null,
 )

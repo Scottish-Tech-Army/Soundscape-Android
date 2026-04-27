@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Fullscreen
 import androidx.compose.material.icons.rounded.FullscreenExit
@@ -14,6 +15,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -22,6 +24,8 @@ import org.maplibre.compose.camera.rememberCameraState
 import org.maplibre.compose.expressions.dsl.const
 import org.maplibre.compose.expressions.dsl.image
 import org.maplibre.compose.expressions.value.SymbolAnchor
+import org.maplibre.compose.layers.FillLayer
+import org.maplibre.compose.layers.LineLayer
 import org.maplibre.compose.layers.SymbolLayer
 import org.maplibre.compose.map.GestureOptions
 import org.maplibre.compose.map.MapOptions
@@ -31,7 +35,11 @@ import org.maplibre.compose.sources.GeoJsonData
 import org.maplibre.compose.sources.rememberGeoJsonSource
 import org.maplibre.compose.style.BaseStyle
 import org.maplibre.compose.style.rememberStyleState
+import org.maplibre.spatialk.geojson.BoundingBox
+import org.maplibre.spatialk.geojson.Geometry
+import org.maplibre.spatialk.geojson.MultiPolygon
 import org.maplibre.spatialk.geojson.Point
+import org.maplibre.spatialk.geojson.Polygon
 import org.maplibre.spatialk.geojson.Position
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -87,22 +95,33 @@ fun MapContainerLibre(
     editBeaconLocation: Boolean = false,
     onMapLongClick: ((LngLatAlt) -> Boolean)? = null,
     baseStyle: BaseStyle,
-    routeMarkerImages: List<ImageBitmap>? = null
+    routeMarkerImages: List<ImageBitmap>? = null,
+    extractGeometry: Geometry? = null,
 ) {
+    val extractBounds = remember(extractGeometry) { extractGeometry?.computeBounds() }
     val cameraState = rememberCameraState(
         firstPosition = CameraPosition(
             target = Position(mapCenter.longitude, mapCenter.latitude),
             zoom = 15.0,
         )
     )
-    // Re-center the map when mapCenter changes (e.g. when location becomes available on iOS)
-    LaunchedEffect(mapCenter.latitude, mapCenter.longitude) {
-        cameraState.animateTo(
-            CameraPosition(
-                target = Position(mapCenter.longitude, mapCenter.latitude),
-                zoom = cameraState.position.zoom,
+    // When an extract polygon is provided, fit the camera to its bounds.
+    // Otherwise re-center on mapCenter when it changes (e.g. when location
+    // becomes available on iOS).
+    LaunchedEffect(mapCenter.latitude, mapCenter.longitude, extractBounds) {
+        if (extractBounds != null) {
+            cameraState.animateTo(
+                boundingBox = extractBounds,
+                padding = PaddingValues(16.dp),
             )
-        )
+        } else {
+            cameraState.animateTo(
+                CameraPosition(
+                    target = Position(mapCenter.longitude, mapCenter.latitude),
+                    zoom = cameraState.position.zoom,
+                )
+            )
+        }
     }
     val styleState = rememberStyleState()
 
@@ -133,6 +152,24 @@ fun MapContainerLibre(
                 )
             )
         ) {
+            if (extractGeometry != null) {
+                val extractSource = rememberGeoJsonSource(
+                    data = GeoJsonData.Features(extractGeometry)
+                )
+                FillLayer(
+                    id = "extract-fill",
+                    source = extractSource,
+                    color = const(MaterialTheme.colorScheme.primary),
+                    opacity = const(0.25f),
+                    outlineColor = const(MaterialTheme.colorScheme.primary),
+                )
+                LineLayer(
+                    id = "extract-outline",
+                    source = extractSource,
+                    color = const(MaterialTheme.colorScheme.primary),
+                    width = const(2.dp),
+                )
+            }
             if (userLocation != null) {
                 val marker = painterResource(Res.drawable.navigation)
 
@@ -200,4 +237,24 @@ fun MapContainerLibre(
             }
         }
     }
+}
+
+private fun Geometry.computeBounds(): BoundingBox? {
+    val positions: List<Position> = when (this) {
+        is Polygon -> coordinates.flatten()
+        is MultiPolygon -> coordinates.flatten().flatten()
+        else -> return null
+    }
+    if (positions.isEmpty()) return null
+    var west = Double.POSITIVE_INFINITY
+    var east = Double.NEGATIVE_INFINITY
+    var south = Double.POSITIVE_INFINITY
+    var north = Double.NEGATIVE_INFINITY
+    for (p in positions) {
+        if (p.longitude < west) west = p.longitude
+        if (p.longitude > east) east = p.longitude
+        if (p.latitude < south) south = p.latitude
+        if (p.latitude > north) north = p.latitude
+    }
+    return BoundingBox(west, south, east, north)
 }
