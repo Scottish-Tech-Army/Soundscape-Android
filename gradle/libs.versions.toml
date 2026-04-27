@@ -43,6 +43,7 @@ appcompat = "1.7.1"
 coreKtxVersion = "1.7.0"
 lifecycleViewmodelCompose = "2.9.2"
 navigationCompose = "2.9.4"
+navigationComposeMultiplatform = "2.9.2"
 loggingInterceptor = "5.1.0"
 moshi = "1.15.2"
 moshiKotlinCodegen = "1.15.2"
@@ -80,6 +81,7 @@ androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "d
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-espresso-core-v351 = { module = "androidx.test.espresso:espresso-core", version.ref = "espressoCoreVersion" }
 androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+jetbrains-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigationComposeMultiplatform" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 androidx-junit-v121 = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
@@ -167,4 +169,5 @@ firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "
 jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "jetbrains-dokka" }
 androidx-room = { id = "androidx.room", version.ref = "roomRuntime" }
 jetbrains-compose = { id = "org.jetbrains.compose", version = "1.10.3" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 jaredsburrows-license = { id = "com.jaredsburrows.license", version.ref = "jaredsburrows-license" }

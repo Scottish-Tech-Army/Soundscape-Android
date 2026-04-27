@@ -51,7 +51,7 @@ import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
-import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.screens.onboarding.battery.requestBatteryOptimizationExemption
 import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
@@ -722,7 +722,7 @@ class MainActivity : AppCompatActivity() {
         super.onNewIntent(intent)
         Log.d(TAG, "onNewIntent")
         // Pop up to home page
-        navigator.navigate(HomeRoutes.Home.route)
+        navigator.navigate(SharedRoutes.HOME)
         // And then parse the new intent which may take us to the LocationDetails screen
         soundscapeIntents.parse(intent, this@MainActivity)
     }

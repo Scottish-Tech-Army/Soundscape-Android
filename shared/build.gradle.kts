@@ -44,6 +44,7 @@ kotlin {
             implementation(libs.androidx.sqlite.bundled)
             implementation(libs.maplibre.compose)
             implementation(libs.composepreferencelibrary)
+            implementation(libs.jetbrains.navigation.compose)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
