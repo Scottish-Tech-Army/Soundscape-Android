@@ -12,6 +12,9 @@ interface PreferencesProvider {
     fun getString(key: String, default: String): String
     fun getFloat(key: String, default: Float): Float
 
+    fun putBoolean(key: String, value: Boolean)
+    fun putString(key: String, value: String)
+
     fun addListener(listener: PreferencesListener)
     fun removeListener(listener: PreferencesListener)
 }
@@ -39,6 +42,7 @@ object PreferenceKeys {
     const val ACCESSIBLE_MAP = "AccessibleMap"
     const val MIX_AUDIO = "MixAudio"
     const val MEDIA_CONTROLS_MODE = "MediaControlsMode"
+    const val FIRST_LAUNCH = "FirstLaunch"
 }
 
 object PreferenceDefaults {
@@ -60,4 +64,5 @@ object PreferenceDefaults {
     const val ACCESSIBLE_MAP = true
     const val MIX_AUDIO = false
     const val MEDIA_CONTROLS_MODE = "Original"
+    const val FIRST_LAUNCH = true
 }

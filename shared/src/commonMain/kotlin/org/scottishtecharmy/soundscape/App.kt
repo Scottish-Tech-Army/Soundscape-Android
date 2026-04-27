@@ -8,6 +8,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.flow.StateFlow
+import org.scottishtecharmy.soundscape.audio.AudioEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
@@ -16,6 +17,7 @@ import org.scottishtecharmy.soundscape.navigation.NavigationStateHolder
 import org.scottishtecharmy.soundscape.navigation.SharedNavHost
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.network.DownloadStateCommon
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.screens.home.HomeState
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
@@ -70,6 +72,8 @@ fun App(
     flows: AppFlows = AppFlows(),
     callbacks: AppCallbacks = AppCallbacks(),
     startDestination: String? = null,
+    audioEngine: AudioEngine? = null,
+    preferencesProvider: PreferencesProvider? = null,
     homeContent: (@Composable (NavHostController, NavigationStateHolder) -> Unit)? = null,
     settingsContent: (@Composable (NavHostController) -> Unit)? = null,
     platformNavBuilder: (NavGraphBuilder.() -> Unit)? = null,
@@ -86,6 +90,8 @@ fun App(
                 flows = flows,
                 callbacks = callbacks,
                 startDestination = startDestination ?: SharedRoutes.WELCOME,
+                audioEngine = audioEngine,
+                preferencesProvider = preferencesProvider,
                 homeContent = homeContent,
                 settingsContent = settingsContent,
                 platformNavBuilder = platformNavBuilder,

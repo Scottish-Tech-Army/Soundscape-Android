@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.preferences
 
 import android.content.SharedPreferences
+import androidx.core.content.edit
 
 class AndroidPreferencesProvider(
     private val sharedPreferences: SharedPreferences
@@ -15,6 +16,14 @@ class AndroidPreferencesProvider(
 
     override fun getFloat(key: String, default: Float): Float =
         sharedPreferences.getFloat(key, default)
+
+    override fun putBoolean(key: String, value: Boolean) {
+        sharedPreferences.edit { putBoolean(key, value) }
+    }
+
+    override fun putString(key: String, value: String) {
+        sharedPreferences.edit { putString(key, value) }
+    }
 
     override fun addListener(listener: PreferencesListener) {
         val androidListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->

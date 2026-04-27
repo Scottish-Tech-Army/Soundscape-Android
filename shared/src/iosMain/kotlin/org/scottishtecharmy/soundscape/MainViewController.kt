@@ -4,10 +4,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
 import kotlinx.coroutines.flow.map
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.navigation.SharedRoutes
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 
 fun MainViewController() = ComposeUIViewController {
     val service = remember { IosSoundscapeService.getInstance() }
     val mgr = service.offlineMapManager
+    val prefs = service.preferencesProvider
+
+    val isFirstLaunch = remember {
+        prefs.getBoolean(PreferenceKeys.FIRST_LAUNCH, PreferenceDefaults.FIRST_LAUNCH)
+    }
+    val startDestination = if (isFirstLaunch) SharedRoutes.ONBOARDING else SharedRoutes.HOME
 
     App(
         flows = AppFlows(
@@ -72,5 +81,8 @@ fun MainViewController() = ComposeUIViewController {
                 mgr.cancelDownload()
             },
         ),
+        startDestination = startDestination,
+        audioEngine = service.audioEngine,
+        preferencesProvider = prefs,
     )
 }

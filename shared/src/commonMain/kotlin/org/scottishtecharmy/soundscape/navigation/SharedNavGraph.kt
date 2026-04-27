@@ -21,6 +21,7 @@ import androidx.navigation.compose.composable
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.AppCallbacks
 import org.scottishtecharmy.soundscape.AppFlows
+import org.scottishtecharmy.soundscape.audio.AudioEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.network.DownloadStateCommon
 import org.scottishtecharmy.soundscape.screens.home.HomeState
@@ -38,6 +39,9 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetai
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
+import org.scottishtecharmy.soundscape.screens.onboarding.SharedOnboardingNavHost
 import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 import org.scottishtecharmy.soundscape.resources.*
 
@@ -48,6 +52,8 @@ fun SharedNavHost(
     flows: AppFlows,
     callbacks: AppCallbacks,
     startDestination: String = SharedRoutes.WELCOME,
+    audioEngine: AudioEngine? = null,
+    preferencesProvider: PreferencesProvider? = null,
     homeContent: (@Composable (NavHostController, NavigationStateHolder) -> Unit)? = null,
     settingsContent: (@Composable (NavHostController) -> Unit)? = null,
     platformNavBuilder: (NavGraphBuilder.() -> Unit)? = null,
@@ -58,6 +64,22 @@ fun SharedNavHost(
             Welcome(onNavigate = { navController.navigate(SharedRoutes.HOME) {
                 popUpTo(SharedRoutes.WELCOME) { inclusive = true }
             } })
+        }
+
+        composable(SharedRoutes.ONBOARDING) {
+            if (audioEngine != null && preferencesProvider != null) {
+                SharedOnboardingNavHost(
+                    audioEngine = audioEngine,
+                    preferencesProvider = preferencesProvider,
+                    beaconTypes = flows.beaconTypes,
+                    onFinish = {
+                        preferencesProvider.putBoolean(PreferenceKeys.FIRST_LAUNCH, false)
+                        navController.navigate(SharedRoutes.HOME) {
+                            popUpTo(SharedRoutes.ONBOARDING) { inclusive = true }
+                        }
+                    },
+                )
+            }
         }
 
         composable(SharedRoutes.HOME) {

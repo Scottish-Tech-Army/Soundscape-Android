@@ -45,6 +45,14 @@ class IosPreferencesProvider : PreferencesProvider {
         }
     }
 
+    override fun putBoolean(key: String, value: Boolean) {
+        defaults.setBool(value, forKey = key)
+    }
+
+    override fun putString(key: String, value: String) {
+        defaults.setObject(value, forKey = key)
+    }
+
     override fun addListener(listener: PreferencesListener) {
         listeners.add(listener)
     }

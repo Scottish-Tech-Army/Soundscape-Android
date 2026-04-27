@@ -64,7 +64,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
     val locationProvider: LocationProvider = IosLocationProvider()
     val directionProvider: DirectionProvider = IosDirectionProvider()
     val audioEngine = IosAudioEngine()
-    private val preferencesProvider = IosPreferencesProvider()
+    val preferencesProvider = IosPreferencesProvider()
 
     // GeoEngine
     val geoEngine = GeoEngine()

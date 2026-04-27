@@ -16,4 +16,5 @@ object SharedRoutes {
     const val ADD_ROUTE = "add_route"
     const val EDIT_ROUTE = "edit_route"
     const val OFFLINE_MAPS = "offline_maps"
+    const val ONBOARDING = "onboarding"
 }
