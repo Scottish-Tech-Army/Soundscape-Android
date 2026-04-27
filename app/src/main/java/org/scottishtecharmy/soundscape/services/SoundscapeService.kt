@@ -54,8 +54,8 @@ import org.jetbrains.compose.resources.getString
 import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_ENTER
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_EXIT
+import org.scottishtecharmy.soundscape.audio.EARCON_MODE_ENTER
+import org.scottishtecharmy.soundscape.audio.EARCON_MODE_EXIT
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
@@ -372,7 +372,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
             audioEngine.initialize(applicationContext)
 
             audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
-            audioMenu = AudioMenu(this, application)
+            audioMenu = AudioMenu(this, MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao())
             routePlayer = RoutePlayer(this, MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao())
 
             if(true) {
@@ -684,7 +684,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         }
     }
 
-    fun aheadOfMe() {
+    override fun aheadOfMe() {
         if (cancelCallout()) return
         calloutJob = coroutineScope.launch {
             val results = geoEngine.aheadOfMe()
@@ -697,7 +697,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         }
     }
 
-    fun nearbyMarkers() {
+    override fun nearbyMarkers() {
         if (cancelCallout()) return
         calloutJob = coroutineScope.launch {
             val results = geoEngine.nearbyMarkers()
@@ -738,17 +738,17 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         return geoEngine.getLocationDescription(location)
     }
 
-    fun startBeacon(location: LngLatAlt, name: String) {
+    override fun startBeacon(location: LngLatAlt, name: String) {
         routePlayer.startBeacon(location, name)
     }
-    fun routeStartById(routeId: Long) {
+    override fun routeStartById(routeId: Long) {
         routePlayer.startRoute(routeId)
     }
 
     fun routeStartReverse(routeId: Long) {
         routePlayer.startRoute(routeId, reverse = true)
     }
-    fun routeStop() {
+    override fun routeStop() {
         routePlayer.stopRoute()
     }
     override fun routeSkipPrevious(): Boolean {
@@ -835,7 +835,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         audioEngine.clearTextToSpeechQueue()
     }
 
-    fun speak2dText(text: String, clearQueue: Boolean = false, earcon: String? = null) {
+    override fun speak2dText(text: String, clearQueue: Boolean, earcon: String?) {
         if (!requestAudioFocus()) {
             Log.w(TAG, "speak2dText: Could not get audio focus.")
             return
@@ -923,7 +923,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         return gpxRecorder?.getShareUri(context)
     }
 
-    fun requestAudioFocus(): Boolean {
+    override fun requestAudioFocus(): Boolean {
         if(!audioFocusGained) {
             if (audioFocusRequest == null) {
                 // Build our audio focus request
@@ -976,7 +976,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     /** Cancels pending re-enable of auto callouts and restarts the 10-second countdown. */
     private var suppressionJob: Job? = null
     private val scope = CoroutineScope(Dispatchers.Default)
-    fun callbackHoldOff() {
+    override fun callbackHoldOff() {
         menuActive = true
         suppressionJob?.cancel()
         suppressionJob = scope.launch {

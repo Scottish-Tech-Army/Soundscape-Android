@@ -1,8 +1,5 @@
 package org.scottishtecharmy.soundscape.services.mediacontrol
 
-import android.content.Context
-import android.content.res.Configuration
-import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -11,13 +8,10 @@ import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.getString
 import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.audio.AudioType
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_ENTER
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine.Companion.EARCON_MODE_EXIT
-import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
+import org.scottishtecharmy.soundscape.audio.EARCON_MODE_ENTER
+import org.scottishtecharmy.soundscape.audio.EARCON_MODE_EXIT
+import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.services.SoundscapeService
-import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
-import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 
 /**
  * AudioMenu provides a hierarchical, navigable audio menu controlled by media buttons.
@@ -29,8 +23,9 @@ import org.scottishtecharmy.soundscape.utils.getCurrentLocale
  * There is no inactivity timeout — the current position is remembered until changed.
  */
 class AudioMenu(
-    private val service: SoundscapeService,
-    private val application: Context) {
+    private val service: MediaControllableService,
+    private val routeDao: RouteDao,
+) {
 
     // ── Menu item types ───────────────────────────────────────────────────────
 
@@ -67,12 +62,7 @@ class AudioMenu(
 
     private val scope = CoroutineScope(Dispatchers.Default)
 
-    val localizedContext: Context
     init {
-        val configLocale = getCurrentLocale()
-        val configuration = Configuration(application.applicationContext.resources.configuration)
-        configuration.setLocale(configLocale)
-        localizedContext = application.applicationContext.createConfigurationContext(configuration)
         menuStack.addLast(MenuLevel(buildRootMenu(), 0))
     }
 
@@ -80,42 +70,32 @@ class AudioMenu(
 
     fun next() {
         service.callbackHoldOff()
-        val label = synchronized(this) {
-            val level = menuStack.last()
-            level.currentIndex = (level.currentIndex + 1) % level.items.size
-            level.items[level.currentIndex].label
-        }
-        service.speak2dText(label, true)
+        val level = menuStack.last()
+        level.currentIndex = (level.currentIndex + 1) % level.items.size
+        service.speak2dText(level.items[level.currentIndex].label, true)
     }
 
     fun previous() {
         service.callbackHoldOff()
-        val label = synchronized(this) {
-            val level = menuStack.last()
-            level.currentIndex =
-                if(level.currentIndex == 0)
-                    level.items.size - 1
-                else
-                    level.currentIndex - 1
-            level.items[level.currentIndex].label
-        }
-        service.speak2dText(label, true)
+        val level = menuStack.last()
+        level.currentIndex =
+            if(level.currentIndex == 0)
+                level.items.size - 1
+            else
+                level.currentIndex - 1
+        service.speak2dText(level.items[level.currentIndex].label, true)
     }
 
     fun select() {
         service.callbackHoldOff()
-        val item = synchronized(this) { menuStack.last().let { it.items[it.currentIndex] } }
-        AnalyticsProvider.getInstance().logEvent("audio_menu_action", null)
+        val item = menuStack.last().let { it.items[it.currentIndex] }
         when (item) {
             is MenuItem.Action -> {
                 item.action()
             }
             is MenuItem.Submenu -> {
-                val firstLabel = synchronized(this) {
-                    menuStack.addLast(MenuLevel(item.children, 0))
-                    item.children[0].label
-                }
-                service.speak2dText(firstLabel, true, EARCON_MODE_ENTER)
+                menuStack.addLast(MenuLevel(item.children, 0))
+                service.speak2dText(item.children[0].label, true, EARCON_MODE_ENTER)
             }
             is MenuItem.DynamicSubmenu -> loadAndEnter(item)
         }
@@ -134,13 +114,10 @@ class AudioMenu(
         }
 
     private fun resetToRoot() {
-        val firstRootLabel = synchronized(this) {
-            while (menuStack.size > 1) menuStack.removeLast()
-            menuStack.last().currentIndex = 0
-            menuStack.last().items[0].label
-        }
+        while (menuStack.size > 1) menuStack.removeLast()
+        menuStack.last().currentIndex = 0
+        val firstRootLabel = menuStack.last().items[0].label
         if (!service.requestAudioFocus()) {
-            Log.w(TAG, "resetToRoot: could not get audio focus")
             return
         }
         service.speak2dText(firstRootLabel, true, EARCON_MODE_EXIT)
@@ -153,20 +130,9 @@ class AudioMenu(
             if (children.size <= 1) {
                 service.speakText(getString(Res.string.menu_no_routes), AudioType.STANDARD)
             } else {
-                val firstLabel = synchronized(this@AudioMenu) {
-                    menuStack.addLast(MenuLevel(children, 0))
-                    children[0].label
-                }
-                service.speak2dText(firstLabel, true, EARCON_MODE_ENTER)
+                menuStack.addLast(MenuLevel(children, 0))
+                service.speak2dText(children[0].label, true, EARCON_MODE_ENTER)
             }
-        }
-    }
-
-    private fun audioProfileAction(id: org.jetbrains.compose.resources.StringResource, profile: String): MenuItem.Action {
-        val label = kotlinx.coroutines.runBlocking { getString(id) }
-        return MenuItem.Action(label) {
-            applyAudioProfile(profile)
-            service.speak2dText(label)
         }
     }
 
@@ -226,17 +192,15 @@ class AudioMenu(
     // ── Feature implementations ───────────────────────────────────────────────
 
     private suspend fun loadRouteMenuItems(): List<MenuItem> =
-        withContext(Dispatchers.IO) {
-            val db = MarkersAndRoutesDatabaseProvider.getInstance(service)
-            db.routeDao().getAllRoutes().map { route ->
+        withContext(Dispatchers.Default) {
+            routeDao.getAllRoutes().map { route ->
                 MenuItem.Action(route.name) { service.routeStartById(route.routeId) }
             } + mainMenuAction()
         }
 
     private suspend fun loadMarkerMenuItems(): List<MenuItem> =
-        withContext(Dispatchers.IO) {
-            val db = MarkersAndRoutesDatabaseProvider.getInstance(service)
-            db.routeDao().getAllMarkers().map { marker ->
+        withContext(Dispatchers.Default) {
+            routeDao.getAllMarkers().map { marker ->
                 MenuItem.Action(marker.name) {
                     val location = LngLatAlt(marker.longitude, marker.latitude)
                     service.startBeacon(location, marker.name)
@@ -244,26 +208,10 @@ class AudioMenu(
             } + mainMenuAction()
         }
 
-    /**
-     */
-    private fun applyAudioProfile(profileName: String) {
-        when (profileName) {
-            "eating" -> {}
-            "shopping" -> {}
-            "navigating" -> {}
-            "roads_only" -> {}
-            "all" -> {}
-        }
-    }
-
     // ── Lifecycle ─────────────────────────────────────────────────────────────
 
     fun destroy() {
         service.menuActive = false
         scope.cancel()
-    }
-
-    companion object {
-        private const val TAG = "AudioMenu"
     }
 }

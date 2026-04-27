@@ -9,6 +9,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.IosAudioEngine
+import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenu
+import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenuMediaControls
 import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService
 import org.scottishtecharmy.soundscape.services.mediacontrol.OriginalMediaControls
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
@@ -56,6 +58,7 @@ import platform.Foundation.NSHomeDirectory
 class IosSoundscapeService : GeoEngineListener, MediaControllableService {
 
     private val scope = CoroutineScope(Dispatchers.Default + Job())
+    private var suppressionJob: Job? = null
 
     // Providers
     val locationProvider: LocationProvider = IosLocationProvider()
@@ -129,8 +132,9 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
     val beaconFlow: StateFlow<BeaconState> = _beaconFlow.asStateFlow()
     private var beaconHandle: Long? = null
 
-    // Route player
+    // Route player and audio menu
     lateinit var routePlayer: RoutePlayer
+    lateinit var audioMenu: AudioMenu
 
     // Service bound state (always true on iOS)
     private val _serviceBoundState = MutableStateFlow(true)
@@ -171,6 +175,8 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
     }
 
     init {
+        routePlayer = RoutePlayer(this, routeDao)
+        audioMenu = AudioMenu(this, routeDao)
         updateMediaControls(
             preferencesProvider.getString(
                 PreferenceKeys.MEDIA_CONTROLS_MODE,
@@ -187,7 +193,6 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
                 PreferenceDefaults.BEACON_TYPE,
             )
         )
-        routePlayer = RoutePlayer(this, routeDao)
         preferencesProvider.addListener(preferencesListener)
         startGeoEngine()
         observeAppLifecycle()
@@ -355,7 +360,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
     override fun announceStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {}
     override fun getStreetPreviewChoices(): List<StreetPreviewChoice> = emptyList()
     override fun getStreetPreviewBestChoice(): StreetPreviewChoice? = null
-    override val menuActive: Boolean = false
+    override var menuActive: Boolean = false
 
     // --- Routes ---
 
@@ -491,12 +496,12 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
         speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
     }
 
-    fun aheadOfMe() {
+    override fun aheadOfMe() {
         val callout = geoEngine.aheadOfMe()
         speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
     }
 
-    fun nearbyMarkers() {
+    override fun nearbyMarkers() {
         val callout = geoEngine.nearbyMarkers()
         speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
     }
@@ -519,7 +524,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
         _beaconFlow.value = BeaconState()
     }
 
-    fun startBeacon(location: LngLatAlt, name: String) {
+    override fun startBeacon(location: LngLatAlt, name: String) {
         routePlayer.startBeacon(location, name)
     }
 
@@ -544,7 +549,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
 
     fun updateMediaControls(target: String) {
         audioEngine.mediaControlTarget = when (target) {
-            // AudioMenu not yet available on iOS — fall back to Original
+            "AudioMenu" -> AudioMenuMediaControls(audioMenu)
             else -> OriginalMediaControls(this)
         }
     }
@@ -586,6 +591,34 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
         return routePlayer.moveToPrevious(true)
     }
 
+    override fun speak2dText(text: String, clearQueue: Boolean, earcon: String?) {
+        if (clearQueue) audioEngine.clearTextToSpeechQueue()
+        if (earcon != null) audioEngine.createEarcon(earcon, AudioType.STANDARD)
+        if (text.isNotEmpty()) audioEngine.createTextToSpeech(text, AudioType.STANDARD)
+    }
+
+    override fun callbackHoldOff() {
+        menuActive = true
+        suppressionJob?.cancel()
+        suppressionJob = scope.launch {
+            kotlinx.coroutines.delay(CALLOUT_SUPPRESS_TIMEOUT_MS)
+            menuActive = false
+        }
+    }
+
+    override fun requestAudioFocus(): Boolean {
+        // iOS handles audio session activation at engine level — always return true
+        return true
+    }
+
+    override fun routeStop() {
+        routePlayer.stopRoute()
+    }
+
+    override fun routeStartById(routeId: Long) {
+        routePlayer.startRoute(routeId)
+    }
+
     // --- Lifecycle ---
 
     fun destroy() {
@@ -599,6 +632,8 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
     }
 
     companion object {
+        private const val CALLOUT_SUPPRESS_TIMEOUT_MS = 8_000L
+
         // Read from Info.plist (values set via Local.xcconfig which is gitignored)
         private val TILE_PROVIDER_URL: String
             get() = platform.Foundation.NSBundle.mainBundle.objectForInfoDictionaryKey("TileProviderURL") as? String ?: ""

@@ -2,12 +2,11 @@ package org.scottishtecharmy.soundscape.geoengine
 
 import org.scottishtecharmy.soundscape.audio.AudioEngine
 import org.scottishtecharmy.soundscape.audio.AudioType
+import org.scottishtecharmy.soundscape.audio.EARCON_MODE_ENTER
+import org.scottishtecharmy.soundscape.audio.EARCON_MODE_EXIT
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
-
-private const val EARCON_MODE_ENTER = "file:///android_asset/earcons/mode_enter.wav"
-private const val EARCON_MODE_EXIT = "file:///android_asset/earcons/mode_exit.wav"
 
 /**
  * Shared implementation of speakCallout used by both Android and iOS service layers.

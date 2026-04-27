@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.audio
 
 import kotlinx.cinterop.ExperimentalForeignApi
 import platform.AVFAudio.AVAudioPCMBuffer
+import platform.AVFAudio.AVSpeechBoundary
 import platform.AVFAudio.AVSpeechSynthesisVoice
 import platform.AVFAudio.AVSpeechSynthesizer
 import platform.AVFAudio.AVSpeechSynthesizerDelegateProtocol
@@ -48,9 +49,9 @@ class TtsRenderer {
         }
     }
 
+    @Suppress("DEPRECATION")
     fun cancel() {
-        @Suppress("CAST_NEVER_SUCCEEDS")
-        synthesizer.stopSpeakingAtBoundary(0L as platform.AVFAudio.AVSpeechBoundary)
+        synthesizer.stopSpeakingAtBoundary(AVSpeechBoundary.byValue(0))
     }
 }
 

@@ -25,4 +25,15 @@ interface MediaControllableService {
     fun clearTextToSpeechQueue()
     fun createBeacon(location: LngLatAlt?, headingOnly: Boolean)
     fun destroyBeacon()
+
+    // Audio menu support
+    var menuActive: Boolean
+    fun speak2dText(text: String, clearQueue: Boolean = false, earcon: String? = null)
+    fun callbackHoldOff()
+    fun requestAudioFocus(): Boolean
+    fun aheadOfMe()
+    fun nearbyMarkers()
+    fun routeStop()
+    fun routeStartById(routeId: Long)
+    fun startBeacon(location: LngLatAlt, name: String)
 }

@@ -12,20 +12,3 @@ class VoiceCommandMediaControls(val service: SoundscapeService) : MediaControlTa
     override fun onNext() : Boolean { return false }
     override fun onPrevious() : Boolean { return false }
 }
-
-// This is how the menu navigation media controls work
-class AudioMenuMediaControls(val audioMenu: AudioMenu?) : MediaControlTarget {
-
-    override fun onPlayPause() : Boolean {
-        audioMenu?.select()
-        return true
-    }
-    override fun onNext() : Boolean {
-        audioMenu?.next()
-        return true
-    }
-    override fun onPrevious() : Boolean {
-        audioMenu?.previous()
-        return true
-    }
-}
