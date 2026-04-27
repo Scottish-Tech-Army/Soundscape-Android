@@ -10,7 +10,6 @@ import androidx.lifecycle.viewModelScope
 import androidx.preference.PreferenceManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -50,7 +49,6 @@ class SettingsViewModel @Inject constructor(
 
     private val _state: MutableStateFlow<SettingsUiState> = MutableStateFlow(SettingsUiState())
     val state: StateFlow<SettingsUiState> = _state.asStateFlow()
-    private val coroutineScope = CoroutineScope(Job())
     private var serviceBoundJob: Job? = null
 
     init {
@@ -182,12 +180,13 @@ class SettingsViewModel @Inject constructor(
         else -> "Type $type"
     }
 
-    fun updateLanguage(localContext: MainActivity) {
-        coroutineScope.launch {
-            localContext.setServiceState(false)
-            Thread.sleep(1000)
-            localContext.setServiceState(true)
-        }
+    fun updateLanguage() {
+        // Stop the service so it picks up the new locale on next start. The activity will be
+        // recreated by AppCompatDelegate.setApplicationLocales(...); its onResume() detects the
+        // stopped service and calls setServiceState(true) from a freshly-registered
+        // ActivityResultLauncher. Holding a MainActivity reference across recreate would crash
+        // when launch() is invoked on the destroyed activity's launcher.
+        soundscapeServiceConnection.stopService()
     }
 
     fun selectStorage(path: String) {
