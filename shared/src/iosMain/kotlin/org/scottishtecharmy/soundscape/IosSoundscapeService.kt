@@ -9,7 +9,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.IosAudioEngine
-import org.scottishtecharmy.soundscape.audio.RemoteCommandListener
+import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService
+import org.scottishtecharmy.soundscape.services.mediacontrol.OriginalMediaControls
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -51,7 +52,7 @@ import platform.Foundation.NSHomeDirectory
  * Manages location/direction/audio providers and the GeoEngine.
  * Background operation via iOS's UIBackgroundModes (audio + location).
  */
-class IosSoundscapeService : GeoEngineListener, RemoteCommandListener {
+class IosSoundscapeService : GeoEngineListener, MediaControllableService {
 
     private val scope = CoroutineScope(Dispatchers.Default + Job())
 
@@ -159,7 +160,7 @@ class IosSoundscapeService : GeoEngineListener, RemoteCommandListener {
     }
 
     init {
-        audioEngine.remoteCommandListener = this
+        audioEngine.mediaControlTarget = OriginalMediaControls(this)
         audioEngine.mixWithOthers = preferencesProvider.getBoolean(
             PreferenceKeys.MIX_AUDIO,
             PreferenceDefaults.MIX_AUDIO,
@@ -463,12 +464,12 @@ class IosSoundscapeService : GeoEngineListener, RemoteCommandListener {
 
     // --- GeoEngine Queries ---
 
-    fun myLocation() {
+    override fun myLocation() {
         val callout = geoEngine.myLocation()
         speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
     }
 
-    fun whatsAroundMe() {
+    override fun whatsAroundMe() {
         val callout = geoEngine.whatsAroundMe()
         speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
     }
@@ -516,31 +517,26 @@ class IosSoundscapeService : GeoEngineListener, RemoteCommandListener {
         audioEngine.mixWithOthers = enabled
     }
 
-    // --- Remote Command Listener (OriginalMediaControls behavior) ---
+    // --- MediaControllableService ---
 
-    override fun onPlayPause() {
-
-        println("onPlayPause")
-        // Toggle beacon mute if a beacon/route is playing
+    override fun routeMute(): Boolean {
         if (beaconHandle != null) {
             audioEngine.clearTextToSpeechQueue()
             val muted = audioEngine.toggleBeaconMute()
             _beaconFlow.value = _beaconFlow.value.copy(muteState = muted)
+            return true
         }
+        return false
     }
 
-    override fun onNext() {
-        println("onNext")
-        // If a route is playing, skip to next waypoint; otherwise callout My Location
+    override fun routeSkipNext(): Boolean {
         // TODO: wire up route skip when route playback is implemented on iOS
-        myLocation()
+        return false
     }
 
-    override fun onPrevious() {
-        println("onPreviousAfter ")
-        // If a route is playing, skip to previous waypoint; otherwise callout Around Me
+    override fun routeSkipPrevious(): Boolean {
         // TODO: wire up route skip when route playback is implemented on iOS
-        whatsAroundMe()
+        return false
     }
 
     // --- Lifecycle ---

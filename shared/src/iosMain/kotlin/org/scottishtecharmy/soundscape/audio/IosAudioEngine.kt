@@ -26,15 +26,7 @@ import platform.MediaPlayer.MPNowPlayingInfoPropertyMediaType
 import platform.MediaPlayer.MPRemoteCommandCenter
 import platform.MediaPlayer.MPRemoteCommandHandlerStatusSuccess
 
-/**
- * Callback interface for remote command events from the lock screen / headphone controls.
- * Mirrors the OriginalMediaControls behavior from the Android app.
- */
-interface RemoteCommandListener {
-    fun onPlayPause()
-    fun onNext()
-    fun onPrevious()
-}
+import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControlTarget
 
 /**
  * iOS audio engine implementing the KMP AudioEngine interface.
@@ -70,8 +62,8 @@ class IosAudioEngine : AudioEngine {
     private var currentBeaconType = "Current"
     private var beaconMuted = false
 
-    // Remote command listener
-    var remoteCommandListener: RemoteCommandListener? = null
+    // Media control target for remote commands
+    var mediaControlTarget: MediaControlTarget? = null
 
     // Audio session configuration
     var mixWithOthers: Boolean = true
@@ -602,31 +594,31 @@ class IosAudioEngine : AudioEngine {
 
         commandCenter.togglePlayPauseCommand.setEnabled(true)
         commandCenter.togglePlayPauseCommand.addTargetWithHandler { _ ->
-            remoteCommandListener?.onPlayPause()
+            mediaControlTarget?.onPlayPause()
             MPRemoteCommandHandlerStatusSuccess
         }
 
         commandCenter.playCommand.setEnabled(true)
         commandCenter.playCommand.addTargetWithHandler { _ ->
-            remoteCommandListener?.onPlayPause()
+            mediaControlTarget?.onPlayPause()
             MPRemoteCommandHandlerStatusSuccess
         }
 
         commandCenter.pauseCommand.setEnabled(true)
         commandCenter.pauseCommand.addTargetWithHandler { _ ->
-            remoteCommandListener?.onPlayPause()
+            mediaControlTarget?.onPlayPause()
             MPRemoteCommandHandlerStatusSuccess
         }
 
         commandCenter.nextTrackCommand.setEnabled(true)
         commandCenter.nextTrackCommand.addTargetWithHandler { _ ->
-            remoteCommandListener?.onNext()
+            mediaControlTarget?.onNext()
             MPRemoteCommandHandlerStatusSuccess
         }
 
         commandCenter.previousTrackCommand.setEnabled(true)
         commandCenter.previousTrackCommand.addTargetWithHandler { _ ->
-            remoteCommandListener?.onPrevious()
+            mediaControlTarget?.onPrevious()
             MPRemoteCommandHandlerStatusSuccess
         }
     }

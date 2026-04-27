@@ -85,6 +85,7 @@ import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenu
 import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenuMediaControls
+import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService
 import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControlTarget
 import org.scottishtecharmy.soundscape.services.mediacontrol.OriginalMediaControls
 import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeDummyMediaPlayer
@@ -109,7 +110,7 @@ import kotlin.time.Duration.Companion.seconds
  * data persistence with realmDB. It inherits from MediaSessionService so that we can receive
  * Media Transport button presses to act as a remote control whilst the phone is locked.
  */
-class SoundscapeService : MediaSessionService(), GeoEngineListener {
+class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControllableService {
 
     private val coroutineScope = CoroutineScope(Job())
 
@@ -644,7 +645,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener {
         return wasActive
     }
 
-    fun myLocation() {
+    override fun myLocation() {
         if (cancelCallout()) return
         calloutJob = coroutineScope.launch {
             if (requestAudioFocus()) {
@@ -666,7 +667,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener {
         }
     }
 
-    fun whatsAroundMe() {
+    override fun whatsAroundMe() {
         if (cancelCallout()) return
         calloutJob = coroutineScope.launch {
             val results = geoEngine.whatsAroundMe()
@@ -746,13 +747,13 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener {
     fun routeStop() {
         routePlayer.stopRoute()
     }
-    fun routeSkipPrevious(): Boolean {
+    override fun routeSkipPrevious(): Boolean {
         return routePlayer.moveToPrevious(true)
     }
-    fun routeSkipNext(): Boolean {
+    override fun routeSkipNext(): Boolean {
         return routePlayer.moveToNext(true)
     }
-    fun routeMute(): Boolean {
+    override fun routeMute(): Boolean {
         if(routePlayer.isPlaying()) {
             // Silence any current text-to-speech output
             audioEngine.clearTextToSpeechQueue()
