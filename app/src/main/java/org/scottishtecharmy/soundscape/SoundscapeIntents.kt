@@ -358,7 +358,7 @@ class SoundscapeIntents(
 
 
                                                 } else {
-                                                    routeData = parseGpxFile(input)
+                                                    routeData = parseGpxFile(input.bufferedReader().readText())
                                                 }
                                                 // If no exception was thrown, then the parsing has
                                                 // succeeded, pass the data to the new route screen.

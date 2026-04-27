@@ -1,7 +1,5 @@
 package org.scottishtecharmy.soundscape.audio
 
-import android.content.Context
-import android.util.Log
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -10,9 +8,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.jetbrains.compose.resources.getString
 import org.scottishtecharmy.soundscape.resources.*
-import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
+
 data class AudioTourInstruction(
     val text: String
 )
@@ -48,9 +47,13 @@ enum class TourButton {
     NEARBY_MARKERS
 }
 
+interface AudioTourHost {
+    fun isAudioEngineBusy(): Boolean
+    fun clearTextToSpeechQueue()
+}
+
 class AudioTour(
-    private val context: Context,
-    private val serviceConnection: SoundscapeServiceConnection
+    private val host: AudioTourHost
 ) {
     private val _currentStep = MutableStateFlow(AudioTourStep.NOT_STARTED)
 
@@ -74,13 +77,13 @@ class AudioTour(
     }
 
     fun start() {
-        Log.d(TAG, "Starting audio tour")
+        println("$TAG: Starting audio tour")
         _currentStep.value = AudioTourStep.WELCOME
-        showTourInstruction(kotlinx.coroutines.runBlocking { getString(Res.string.tour_welcome) })
+        showTourInstruction(runBlocking { getString(Res.string.tour_welcome) })
     }
 
     fun onInstructionAcknowledged() {
-        Log.d(TAG, "Instruction acknowledged, current step: ${_currentStep.value}")
+        println("$TAG: Instruction acknowledged, current step: ${_currentStep.value}")
         _currentInstruction.value = null
 
         when (_currentStep.value) {
@@ -113,17 +116,17 @@ class AudioTour(
     }
 
     private fun showTourInstruction(text: String) {
-        Log.d(TAG, "Showing instruction: $text")
+        println("$TAG: Showing instruction: $text")
         _currentInstruction.value = AudioTourInstruction(text)
     }
 
     fun stop() {
-        Log.d(TAG, "Stopping audio tour")
+        println("$TAG: Stopping audio tour")
         advanceToStep(AudioTourStep.CANCEL)
     }
 
     fun onButtonPressed(button: TourButton) {
-        Log.d(TAG, "Button pressed: $button, current step: ${_currentStep.value}")
+        println("$TAG: Button pressed: $button, current step: ${_currentStep.value}")
 
         when (_currentStep.value) {
             AudioTourStep.MY_LOCATION_WAIT -> {
@@ -161,121 +164,121 @@ class AudioTour(
     }
 
     fun onNavigatedToPlacesNearby() {
-        Log.d(TAG, "Navigated to Places Nearby, current step: ${_currentStep.value}")
+        println("$TAG: Navigated to Places Nearby, current step: ${_currentStep.value}")
         if (_currentStep.value == AudioTourStep.WELCOME) {
             advanceToStep(AudioTourStep.SELECT_PLACE)
         }
     }
 
     fun onPlaceSelected() {
-        Log.d(TAG, "Place selected, current step: ${_currentStep.value}")
+        println("$TAG: Place selected, current step: ${_currentStep.value}")
         if (_currentStep.value == AudioTourStep.SELECT_PLACE) {
             advanceToStep(AudioTourStep.CREATE_MARKER_STARTED)
         }
     }
 
     fun onMarkerCreateStarted() {
-        Log.d(TAG, "Marker create started, current step: ${_currentStep.value}")
+        println("$TAG: Marker create started, current step: ${_currentStep.value}")
         if (_currentStep.value == AudioTourStep.CREATE_MARKER_STARTED) {
             advanceToStep(AudioTourStep.CREATE_MARKER_DONE)
         }
     }
 
     fun onMarkerCreateDone() {
-        Log.d(TAG, "Marker create done, current step: ${_currentStep.value}")
+        println("$TAG: Marker create done, current step: ${_currentStep.value}")
         if (_currentStep.value == AudioTourStep.CREATE_MARKER_DONE) {
             advanceToStep(AudioTourStep.MARKERS_AND_ROUTES)
         }
     }
 
     fun onMarkerAndRoutes() {
-        Log.d(TAG, "Marker and routes, current step: ${_currentStep.value}")
+        println("$TAG: Marker and routes, current step: ${_currentStep.value}")
         if (_currentStep.value == AudioTourStep.MARKERS_AND_ROUTES) {
             advanceToStep(AudioTourStep.MARKERS)
         }
     }
 
     fun onMarkers() {
-        Log.d(TAG, "Marker and routes, current step: ${_currentStep.value}")
+        println("$TAG: Marker and routes, current step: ${_currentStep.value}")
         if (_currentStep.value == AudioTourStep.MARKERS) {
             advanceToStep(AudioTourStep.START_BEACON)
         }
     }
 
     fun onBeaconStarted() {
-        Log.d(TAG, "Beacon started, current step: ${_currentStep.value}")
+        println("$TAG: Beacon started, current step: ${_currentStep.value}")
         if (_currentStep.value == AudioTourStep.START_BEACON) {
             advanceToStep(AudioTourStep.BEACON_DEMO)
         }
     }
 
     fun onBeaconStopped() {
-        Log.d(TAG, "Beacon stopped, current step: ${_currentStep.value}")
+        println("$TAG: Beacon stopped, current step: ${_currentStep.value}")
         if (_currentStep.value == AudioTourStep.STOP_BEACON) {
             advanceToStep(AudioTourStep.MY_LOCATION_PROMPT)
         }
     }
 
     private fun advanceToStep(step: AudioTourStep) {
-        Log.d(TAG, "Advancing to step: $step")
+        println("$TAG: Advancing to step: $step")
         if(_currentStep.value == AudioTourStep.NOT_STARTED)
             return
 
         _currentStep.value = step
         when (step) {
             AudioTourStep.MY_LOCATION_PROMPT -> {
-                showTourInstruction(kotlinx.coroutines.runBlocking { getString(Res.string.tour_my_location) })
+                showTourInstruction(runBlocking { getString(Res.string.tour_my_location) })
                 pendingStepAfterAcknowledgment = AudioTourStep.MY_LOCATION_WAIT
             }
             AudioTourStep.AROUND_ME_PROMPT -> {
-                showTourInstruction(kotlinx.coroutines.runBlocking { getString(Res.string.tour_around_me) })
+                showTourInstruction(runBlocking { getString(Res.string.tour_around_me) })
                 pendingStepAfterAcknowledgment = AudioTourStep.AROUND_ME_WAIT
             }
             AudioTourStep.AHEAD_PROMPT -> {
-                showTourInstruction(kotlinx.coroutines.runBlocking { getString(Res.string.tour_ahead) })
+                showTourInstruction(runBlocking { getString(Res.string.tour_ahead) })
                 pendingStepAfterAcknowledgment = AudioTourStep.AHEAD_WAIT
             }
             AudioTourStep.NEARBY_MARKERS_PROMPT -> {
-                showTourInstruction(kotlinx.coroutines.runBlocking { getString(Res.string.tour_nearby_markers) })
+                showTourInstruction(runBlocking { getString(Res.string.tour_nearby_markers) })
                 pendingStepAfterAcknowledgment = AudioTourStep.NEARBY_MARKERS_WAIT
             }
             AudioTourStep.SELECT_PLACE -> {
-                showTourInstruction(kotlinx.coroutines.runBlocking { getString(Res.string.tour_select_place) })
+                showTourInstruction(runBlocking { getString(Res.string.tour_select_place) })
             }
             AudioTourStep.CREATE_MARKER_STARTED -> {
-                showTourInstruction(kotlinx.coroutines.runBlocking { getString(Res.string.tour_create_marker_started) })
+                showTourInstruction(runBlocking { getString(Res.string.tour_create_marker_started) })
             }
             AudioTourStep.CREATE_MARKER_DONE -> {
-                showTourInstruction(kotlinx.coroutines.runBlocking { getString(Res.string.tour_create_marker_done) })
+                showTourInstruction(runBlocking { getString(Res.string.tour_create_marker_done) })
             }
             AudioTourStep.MARKERS_AND_ROUTES -> {
-                showTourInstruction(kotlinx.coroutines.runBlocking { getString(Res.string.tour_markers_and_routes) })
+                showTourInstruction(runBlocking { getString(Res.string.tour_markers_and_routes) })
             }
             AudioTourStep.MARKERS -> {
-                showTourInstruction(kotlinx.coroutines.runBlocking { getString(Res.string.tour_markers) })
+                showTourInstruction(runBlocking { getString(Res.string.tour_markers) })
             }
             AudioTourStep.START_BEACON -> {
-                showTourInstruction(kotlinx.coroutines.runBlocking { getString(Res.string.tour_start_beacon) })
+                showTourInstruction(runBlocking { getString(Res.string.tour_start_beacon) })
             }
             AudioTourStep.BEACON_DEMO -> {
                 // Show dialog, delay timer starts in onInstructionAcknowledged()
-                showTourInstruction(kotlinx.coroutines.runBlocking { getString(Res.string.tour_beacon_demo) })
+                showTourInstruction(runBlocking { getString(Res.string.tour_beacon_demo) })
             }
             AudioTourStep.BEACON_DEMO_LOCKED -> {
                 // Show dialog, delay timer starts in onInstructionAcknowledged()
-                showTourInstruction(kotlinx.coroutines.runBlocking { getString(Res.string.tour_beacon_demo_locked) })
+                showTourInstruction(runBlocking { getString(Res.string.tour_beacon_demo_locked) })
             }
             AudioTourStep.STOP_BEACON -> {
-                showTourInstruction(kotlinx.coroutines.runBlocking { getString(Res.string.tour_stop_beacon) })
+                showTourInstruction(runBlocking { getString(Res.string.tour_stop_beacon) })
             }
             AudioTourStep.FINISH -> {
                 // Show dialog, reset to NOT_STARTED in onInstructionAcknowledged()
-                showTourInstruction(kotlinx.coroutines.runBlocking { getString(Res.string.tour_finish) })
+                showTourInstruction(runBlocking { getString(Res.string.tour_finish) })
             }
             AudioTourStep.CANCEL -> {
-                serviceConnection.soundscapeService?.audioEngine?.clearTextToSpeechQueue()
+                host.clearTextToSpeechQueue()
                 // Show dialog, reset to NOT_STARTED in onInstructionAcknowledged()
-                showTourInstruction(kotlinx.coroutines.runBlocking { getString(Res.string.tour_cancel) })
+                showTourInstruction(runBlocking { getString(Res.string.tour_cancel) })
             }
             else -> { /* No action needed */ }
         }
@@ -284,11 +287,11 @@ class AudioTour(
     private suspend fun waitForAudioComplete() {
         while(true) {
             // Wait for the audio queue to empty, debounce and then check it's still not busy
-            while ((serviceConnection.soundscapeService?.isAudioEngineBusy() == true)) {
+            while (host.isAudioEngineBusy()) {
                 delay(100)
             }
             delay(1000)
-            if (serviceConnection.soundscapeService?.isAudioEngineBusy() == false) break
+            if (!host.isAudioEngineBusy()) break
         }
     }
 

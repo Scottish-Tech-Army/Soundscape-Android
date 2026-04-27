@@ -1,16 +1,14 @@
 package org.scottishtecharmy.soundscape.utils
 
-import android.util.Log
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geoengine.utils.gpx.parseGpx
-import java.io.InputStream
 
-fun parseGpxFile(input : InputStream) : RouteWithMarkers? {
-    Log.d("gpx", "Parsing GPX file")
+fun parseGpxFile(input: String): RouteWithMarkers? {
+    println("gpx: Parsing GPX file")
     try {
-        val parsedGpx = parseGpx(input.bufferedReader().readText())
+        val parsedGpx = parseGpx(input)
         val waypoints = mutableListOf<MarkerEntity>()
 
         // We're parsing WayPoints and RoutePoints here. RoutePoints is the way that iOS
@@ -19,7 +17,7 @@ fun parseGpxFile(input : InputStream) : RouteWithMarkers? {
         // RoutePoints are found.
 
         parsedGpx.routes.forEach { route ->
-            Log.d("gpx", "RoutePoint " + route.routeName)
+            println("gpx: RoutePoint " + route.routeName)
             route.routePoints.forEach { waypoint ->
                 waypoints.add(
                     MarkerEntity(
@@ -31,9 +29,9 @@ fun parseGpxFile(input : InputStream) : RouteWithMarkers? {
                 )
             }
         }
-        if(waypoints.isEmpty()) {
+        if (waypoints.isEmpty()) {
             parsedGpx.waypoints.forEach { waypoint ->
-                Log.d("gpx", "WayPoint " + waypoint.name)
+                println("gpx: WayPoint " + waypoint.name)
                 waypoints.add(
                     MarkerEntity(
                         name = waypoint.name,
@@ -44,17 +42,15 @@ fun parseGpxFile(input : InputStream) : RouteWithMarkers? {
                 )
             }
         }
-        val routeData = RouteWithMarkers(
+        return RouteWithMarkers(
             RouteEntity(
                 name = parsedGpx.metadata.name,
                 description = parsedGpx.metadata.desc,
             ),
             waypoints
         )
-        return routeData
-
     } catch (e: Exception) {
-        Log.e("gpx", "Exception whilst parsing GPX file: ${e.message}")
+        println("gpx: Exception whilst parsing GPX file: ${e.message}")
         e.printStackTrace()
     }
 

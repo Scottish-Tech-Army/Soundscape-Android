@@ -9,6 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.flow.StateFlow
 import org.scottishtecharmy.soundscape.audio.AudioEngine
+import org.scottishtecharmy.soundscape.audio.AudioTourInstruction
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
@@ -61,6 +62,7 @@ data class AppCallbacks(
     val onRateApp: () -> Unit = {},
     val onContactSupport: () -> Unit = {},
     val onToggleAudioTour: () -> Unit = {},
+    val onAudioTourInstructionAcknowledged: () -> Unit = {},
     val onMapLongClick: ((LngLatAlt) -> Boolean)? = null,
     val onGoToAppSettings: () -> Unit = {},
     val onGetCurrentLocationDescription: () -> LocationDescription = { LocationDescription("", LngLatAlt()) },
@@ -83,6 +85,7 @@ data class AppFlows(
     val beaconTypes: List<String> = emptyList(),
     // Home-screen extras
     val audioTourRunning: StateFlow<Boolean>? = null,
+    val audioTourInstruction: StateFlow<AudioTourInstruction?>? = null,
     val recordingEnabled: StateFlow<Boolean>? = null,
     val permissionsRequired: StateFlow<Boolean>? = null,
     val voiceCommandListening: StateFlow<Boolean>? = null,

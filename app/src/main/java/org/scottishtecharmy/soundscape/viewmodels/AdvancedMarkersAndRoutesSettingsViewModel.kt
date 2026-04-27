@@ -182,13 +182,8 @@ class AdvancedMarkersAndRoutesSettingsViewModel(
                     while (zipEntry != null) {
                         if (!zipEntry.isDirectory && zipEntry.name.endsWith(".gpx")) {
                             try {
-                                // Read the current zip entry into a byte array because parseGpxFile
-                                // requires an InputStream and it closes the stream internally.
-                                val entryBytes = zipInputStream.readBytes()
-                                val byteArrayInputStream = entryBytes.inputStream()
-
                                 // Parse GPX file
-                                val route = parseGpxFile(byteArrayInputStream)
+                                val route = parseGpxFile(zipInputStream.readBytes().decodeToString())
                                 if (route != null) {
                                     if(zipEntry.name.contains(globalMarkersName)) {
                                         // This is all of the markers

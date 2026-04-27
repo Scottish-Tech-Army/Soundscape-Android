@@ -3,6 +3,9 @@ package org.scottishtecharmy.soundscape
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
 import kotlinx.coroutines.flow.MutableStateFlow
+import org.scottishtecharmy.soundscape.audio.AudioTour
+import org.scottishtecharmy.soundscape.audio.AudioTourHost
+import org.scottishtecharmy.soundscape.audio.TourButton
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
@@ -21,9 +24,22 @@ fun MainViewController() = ComposeUIViewController {
     }
     val startDestination = if (isFirstLaunch) SharedRoutes.ONBOARDING else SharedRoutes.HOME
 
+    val audioTour = remember {
+        AudioTour(object : AudioTourHost {
+            override fun isAudioEngineBusy(): Boolean = service.isAudioEngineBusy()
+            override fun clearTextToSpeechQueue() { service.clearTextToSpeechQueue() }
+        })
+    }
+    val audioTourRunning = remember { MutableStateFlow(false) }
+    // Mirror tour running state off the instruction flow — same trick HomeScreen uses on Android.
+    androidx.compose.runtime.LaunchedEffect(audioTour) {
+        audioTour.currentInstruction.collect {
+            audioTourRunning.value = audioTour.isRunning()
+        }
+    }
+
     // Stub flows for features iOS doesn't yet have its own state for. They're @Composable-safe
     // because they're MutableStateFlow.
-    val audioTourRunning = remember { MutableStateFlow(false) }
     val recordingEnabled = remember { MutableStateFlow(false) }
     val permissionsRequired = remember { MutableStateFlow(false) }
     val voiceCommandListening = remember { MutableStateFlow(false) }
@@ -42,6 +58,7 @@ fun MainViewController() = ComposeUIViewController {
             offlineMapsDownloadState = mgr.downloadState,
             beaconTypes = service.audioEngine.getListOfBeaconTypes().toList(),
             audioTourRunning = audioTourRunning,
+            audioTourInstruction = audioTour.currentInstruction,
             recordingEnabled = recordingEnabled,
             permissionsRequired = permissionsRequired,
             voiceCommandListening = voiceCommandListening,
@@ -49,25 +66,47 @@ fun MainViewController() = ComposeUIViewController {
         callbacks = AppCallbacks(
             onStartBeacon = { lat, lng, name ->
                 service.startBeacon(LngLatAlt(lng, lat), name)
+                audioTour.onBeaconStarted()
             },
-            onStopBeacon = { service.destroyBeacon() },
+            onStopBeacon = {
+                service.destroyBeacon()
+                audioTour.onBeaconStopped()
+            },
             onSpeak = { text -> service.speakCallout(text) },
             onStartRoute = { routeId -> service.routeStartById(routeId) },
             onStartRouteInReverse = { routeId -> service.routePlayer.startRoute(routeId, reverse = true) },
-            onRouteStop = { service.routeStop() },
+            onRouteStop = {
+                service.routeStop()
+                audioTour.onBeaconStopped()
+            },
             onRouteSkipNext = { service.routeSkipNext() },
             onRouteSkipPrevious = { service.routeSkipPrevious() },
             onRouteMute = { service.routeMute() },
             onSearch = { query -> service.search(query) },
-            onSaveMarker = { desc -> service.saveMarker(desc) },
+            onSaveMarker = { desc ->
+                service.saveMarker(desc)
+                audioTour.onMarkerCreateDone()
+            },
             onDeleteMarker = { markerId -> service.deleteMarker(markerId) },
             onSaveRoute = { name, desc, waypoints -> service.saveRoute(name, desc, waypoints) },
             onDeleteRoute = { routeId -> service.deleteRoute(routeId) },
             onLoadRoute = { routeId -> service.loadRouteWaypoints(routeId) },
-            onMyLocation = { service.myLocation() },
-            onWhatsAroundMe = { service.whatsAroundMe() },
-            onAheadOfMe = { service.aheadOfMe() },
-            onNearbyMarkers = { service.nearbyMarkers() },
+            onMyLocation = {
+                service.myLocation()
+                audioTour.onButtonPressed(TourButton.MY_LOCATION)
+            },
+            onWhatsAroundMe = {
+                service.whatsAroundMe()
+                audioTour.onButtonPressed(TourButton.AROUND_ME)
+            },
+            onAheadOfMe = {
+                service.aheadOfMe()
+                audioTour.onButtonPressed(TourButton.AHEAD_OF_ME)
+            },
+            onNearbyMarkers = {
+                service.nearbyMarkers()
+                audioTour.onButtonPressed(TourButton.NEARBY_MARKERS)
+            },
             onPlacesNearbyClickFolder = { filter, title ->
                 service.placesNearbyClickFolder(filter, title)
             },
@@ -97,7 +136,8 @@ fun MainViewController() = ComposeUIViewController {
                 val url = NSURL.URLWithString("mailto:soundscape@scottishtecharmy.support")
                 if (url != null) UIApplication.sharedApplication.openURL(url)
             },
-            onToggleAudioTour = { /* TODO iOS audio tour */ },
+            onToggleAudioTour = { audioTour.toggleState() },
+            onAudioTourInstructionAcknowledged = { audioTour.onInstructionAcknowledged() },
             onMapLongClick = null,
             onGoToAppSettings = {
                 val url = NSURL.URLWithString("app-settings:")

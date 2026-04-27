@@ -27,6 +27,7 @@ import org.scottishtecharmy.soundscape.audio.AudioEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.network.DownloadStateCommon
 import org.scottishtecharmy.soundscape.screens.home.HomeState
+import org.scottishtecharmy.soundscape.screens.home.home.AudioTourInstructionDialog
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedLocationDetailsScreen
@@ -96,11 +97,14 @@ fun SharedNavHost(
                     ?: remember { mutableStateOf(false) }
                 val audioTourRunning by flows.audioTourRunning?.collectAsState()
                     ?: remember { mutableStateOf(false) }
+                val audioTourInstruction by flows.audioTourInstruction?.collectAsState()
+                    ?: remember { mutableStateOf<org.scottishtecharmy.soundscape.audio.AudioTourInstruction?>(null) }
                 val voiceCommandListening by flows.voiceCommandListening?.collectAsState()
                     ?: remember { mutableStateOf(false) }
                 val permissionsRequired by flows.permissionsRequired?.collectAsState()
                     ?: remember { mutableStateOf(false) }
 
+                Box(modifier = Modifier) {
                 SharedHomeScreen(
                     state = homeState,
                     onNavigate = { dest -> navController.navigate(dest) },
@@ -143,6 +147,14 @@ fun SharedNavHost(
                     onSetApplicationLocale = callbacks.onSetApplicationLocale,
                     getLanguageMismatch = callbacks.onGetLanguageMismatch,
                 )
+
+                audioTourInstruction?.let { instruction ->
+                    AudioTourInstructionDialog(
+                        instruction = instruction,
+                        onContinue = callbacks.onAudioTourInstructionAcknowledged,
+                    )
+                }
+                }
             }
         }
 

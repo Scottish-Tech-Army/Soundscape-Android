@@ -8,6 +8,7 @@ import org.koin.dsl.module
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.SoundscapeIntents
 import org.scottishtecharmy.soundscape.audio.AudioTour
+import org.scottishtecharmy.soundscape.audio.AudioTourHost
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.screens.home.Navigator
@@ -44,7 +45,17 @@ val appModule = module {
 
     single { SoundscapeServiceConnection() }
 
-    single { AudioTour(androidContext(), get()) }
+    single {
+        val connection = get<SoundscapeServiceConnection>()
+        AudioTour(object : AudioTourHost {
+            override fun isAudioEngineBusy(): Boolean =
+                connection.soundscapeService?.isAudioEngineBusy() ?: false
+
+            override fun clearTextToSpeechQueue() {
+                connection.soundscapeService?.clearTextToSpeechQueue()
+            }
+        })
+    }
 
     single { SoundscapeIntents(get()) }
 

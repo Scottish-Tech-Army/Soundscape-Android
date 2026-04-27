@@ -26,7 +26,7 @@ class GpxTest {
         nameOverride: String? = null,
     ) : Long {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        val input = context.assets.open(filename)
+        val input = context.assets.open(filename).bufferedReader().use { it.readText() }
 
         val routeData = parseGpxFile(input)
         if (routeData == null) {
