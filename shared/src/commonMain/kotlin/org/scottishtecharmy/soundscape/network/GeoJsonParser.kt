@@ -12,7 +12,9 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.GeoJsonObject
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiLineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPoint
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 
@@ -86,6 +88,8 @@ object GeoJsonParser {
             "LineString" -> parseLineString(obj)
             "Polygon" -> parsePolygon(obj)
             "MultiPoint" -> parseMultiPoint(obj)
+            "MultiLineString" -> parseMultiLineString(obj)
+            "MultiPolygon" -> parseMultiPolygon(obj)
             else -> null
         }
     }
@@ -132,5 +136,35 @@ object GeoJsonParser {
             multiPoint.coordinates.add(parseCoordinate(coord.jsonArray))
         }
         return multiPoint
+    }
+
+    private fun parseMultiLineString(obj: JsonObject): MultiLineString {
+        val coords = obj["coordinates"]!!.jsonArray
+        val multiLineString = MultiLineString()
+        for (line in coords) {
+            val lineCoords = arrayListOf<LngLatAlt>()
+            for (coord in line.jsonArray) {
+                lineCoords.add(parseCoordinate(coord.jsonArray))
+            }
+            multiLineString.coordinates.add(lineCoords)
+        }
+        return multiLineString
+    }
+
+    private fun parseMultiPolygon(obj: JsonObject): MultiPolygon {
+        val coords = obj["coordinates"]!!.jsonArray
+        val multiPolygon = MultiPolygon()
+        for (polygon in coords) {
+            val rings = arrayListOf<ArrayList<LngLatAlt>>()
+            for (ring in polygon.jsonArray) {
+                val ringCoords = arrayListOf<LngLatAlt>()
+                for (coord in ring.jsonArray) {
+                    ringCoords.add(parseCoordinate(coord.jsonArray))
+                }
+                rings.add(ringCoords)
+            }
+            multiPolygon.coordinates.add(rings)
+        }
+        return multiPolygon
     }
 }
