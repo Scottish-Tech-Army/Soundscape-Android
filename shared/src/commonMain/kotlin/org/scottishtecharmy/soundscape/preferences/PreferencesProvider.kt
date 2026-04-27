@@ -43,6 +43,9 @@ object PreferenceKeys {
     const val MIX_AUDIO = "MixAudio"
     const val MEDIA_CONTROLS_MODE = "MediaControlsMode"
     const val FIRST_LAUNCH = "FirstLaunch"
+    const val SHOW_MAP = "ShowMap"
+    const val LANGUAGE_SUPPORTED_PROMPTED = "LanguageSupported"
+    const val LAST_NEW_RELEASE = "LastNewRelease"
 }
 
 object PreferenceDefaults {
@@ -65,4 +68,7 @@ object PreferenceDefaults {
     const val MIX_AUDIO = false
     const val MEDIA_CONTROLS_MODE = "Original"
     const val FIRST_LAUNCH = true
+    const val SHOW_MAP = true
+    const val LANGUAGE_SUPPORTED_PROMPTED = false
+    const val LAST_NEW_RELEASE = ""
 }

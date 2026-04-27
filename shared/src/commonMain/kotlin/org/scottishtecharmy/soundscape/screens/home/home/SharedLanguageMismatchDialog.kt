@@ -1,7 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
-import android.content.SharedPreferences
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
@@ -11,47 +9,41 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.stringResource
-import androidx.core.content.edit
-import androidx.core.os.LocaleListCompat
-import org.scottishtecharmy.soundscape.MainActivity.Companion.LANGUAGE_SUPPORTED_PROMPTED_KEY
-import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.language_mismatch_keep
+import org.scottishtecharmy.soundscape.resources.language_mismatch_message
+import org.scottishtecharmy.soundscape.resources.language_mismatch_switch
+import org.scottishtecharmy.soundscape.resources.language_mismatch_title
 import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
-import org.scottishtecharmy.soundscape.resources.*
 
 /**
  * Dialog shown when the phone's language differs from the app's configured language
  * and the phone language is supported by the app.
  */
 @Composable
-fun LanguageMismatchDialog(
+fun SharedLanguageMismatchDialog(
     innerPadding: PaddingValues,
-    sharedPreferences: SharedPreferences,
+    preferencesProvider: PreferencesProvider?,
     showDialog: MutableState<Boolean>,
     phoneLanguage: Language,
+    onSetApplicationLocale: (String?) -> Unit,
 ) {
     AlertDialog(
         modifier = Modifier.padding(innerPadding),
-        title = {
-            Text(text = stringResource(Res.string.language_mismatch_title))
-        },
+        title = { Text(text = stringResource(Res.string.language_mismatch_title)) },
         text = {
-            Text(
-                text = stringResource(Res.string.language_mismatch_message, phoneLanguage.name)
-            )
+            Text(text = stringResource(Res.string.language_mismatch_message, phoneLanguage.name))
         },
         onDismissRequest = { },
         confirmButton = {
             TextButton(
                 onClick = {
-                    sharedPreferences.edit(commit = true) {
-                        putBoolean(LANGUAGE_SUPPORTED_PROMPTED_KEY, true)
-                    }
+                    preferencesProvider?.putBoolean(PreferenceKeys.LANGUAGE_SUPPORTED_PROMPTED, true)
                     showDialog.value = false
-                    val list = LocaleListCompat.forLanguageTags(
-                        "${phoneLanguage.code}-${phoneLanguage.region}"
-                    )
-                    AppCompatDelegate.setApplicationLocales(list)
-                }
+                    onSetApplicationLocale("${phoneLanguage.code}-${phoneLanguage.region}")
+                },
             ) {
                 Text(text = stringResource(Res.string.language_mismatch_switch, phoneLanguage.name))
             }
@@ -59,14 +51,12 @@ fun LanguageMismatchDialog(
         dismissButton = {
             TextButton(
                 onClick = {
-                    sharedPreferences.edit(commit = true) {
-                        putBoolean(LANGUAGE_SUPPORTED_PROMPTED_KEY, true)
-                    }
+                    preferencesProvider?.putBoolean(PreferenceKeys.LANGUAGE_SUPPORTED_PROMPTED, true)
                     showDialog.value = false
-                }
+                },
             ) {
                 Text(text = stringResource(Res.string.language_mismatch_keep))
             }
-        }
+        },
     )
 }

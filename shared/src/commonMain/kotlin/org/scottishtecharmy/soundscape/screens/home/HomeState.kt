@@ -15,4 +15,7 @@ data class HomeState(
     val isSearching: Boolean = false,
     val searchInProgress: Boolean = false,
     val searchItems: List<LocationDescription>? = null,
+    val routesTabSelected: Boolean = true,
+    val permissionsRequired: Boolean = false,
+    val voiceCommandListening: Boolean = false,
 )

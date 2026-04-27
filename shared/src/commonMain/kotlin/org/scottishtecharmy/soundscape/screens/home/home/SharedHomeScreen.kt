@@ -1,211 +1,211 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.HelpOutline
-import androidx.compose.material.icons.automirrored.rounded.ArrowBack
-import androidx.compose.material.icons.automirrored.rounded.Comment
-import androidx.compose.material.icons.rounded.Download
-import androidx.compose.material.icons.rounded.Explore
-import androidx.compose.material.icons.rounded.Headphones
-import androidx.compose.material.icons.rounded.Markunread
-import androidx.compose.material.icons.rounded.Menu
-import androidx.compose.material.icons.rounded.Route
-import androidx.compose.material.icons.rounded.Settings
-import androidx.compose.material.icons.rounded.Star
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.DrawerValue
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import kotlinx.coroutines.launch
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.testTag
 import org.jetbrains.compose.resources.stringResource
-import org.scottishtecharmy.soundscape.components.DrawerMenuItem
+import org.scottishtecharmy.soundscape.components.MainSearchBar
+import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.navigation.SharedRoutes
+import org.scottishtecharmy.soundscape.platform.analyticsEnabled
+import org.scottishtecharmy.soundscape.platform.appVersionMinorTrimmed
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.search_bar_hint
 import org.scottishtecharmy.soundscape.screens.home.HomeState
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import org.scottishtecharmy.soundscape.ui.theme.spacing
-import org.scottishtecharmy.soundscape.resources.*
 
-@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun keyboardAsState(): State<Boolean> {
+    val isImeVisible = WindowInsets.ime.getBottom(LocalDensity.current) > 0
+    return rememberUpdatedState(isImeVisible)
+}
+
 @Composable
 fun SharedHomeScreen(
-    homeState: HomeState,
+    state: HomeState,
+    onNavigate: (String) -> Unit,
+    onSelectLocation: (LocationDescription) -> Unit,
+    preferencesProvider: PreferencesProvider?,
+    onMapLongClick: ((LngLatAlt) -> Boolean)?,
+    bottomButtonFunctions: BottomButtonFunctions,
+    routeFunctions: RouteFunctions,
+    streetPreviewFunctions: StreetPreviewFunctions,
+    searchFunctions: SearchFunctions,
+    getCurrentLocationDescription: () -> LocationDescription,
+    rateSoundscape: () -> Unit,
+    contactSupport: () -> Unit,
+    shareRecording: () -> Unit,
+    toggleTutorial: () -> Unit,
+    tutorialRunning: Boolean,
+    recordingEnabled: Boolean,
+    voiceCommandListening: Boolean,
+    permissionsRequired: Boolean,
+    goToAppSettings: () -> Unit,
+    onSleep: () -> Unit,
+    onSetApplicationLocale: (String?) -> Unit,
+    getLanguageMismatch: () -> org.scottishtecharmy.soundscape.screens.onboarding.language.Language?,
     modifier: Modifier = Modifier,
-    // Bottom bar actions
-    onMyLocation: () -> Unit = {},
-    onAroundMe: () -> Unit = {},
-    onAheadOfMe: () -> Unit = {},
-    onNearbyMarkers: () -> Unit = {},
-    // Navigation
-    onNavigateToPlacesNearby: () -> Unit = {},
-    onNavigateToMarkersAndRoutes: () -> Unit = {},
-    onNavigateToOfflineMaps: () -> Unit = {},
-    onNavigateToSettings: () -> Unit = {},
-    onNavigateToHelp: () -> Unit = {},
-    // Route controls
-    onRouteSkipPrevious: () -> Unit = {},
-    onRouteSkipNext: () -> Unit = {},
-    onRouteMute: () -> Unit = {},
-    onRouteStop: () -> Unit = {},
-    // Search
-    onSearch: (String) -> Unit = {},
-    onSearchItemClick: (LocationDescription) -> Unit = {},
 ) {
-    val drawerState = rememberDrawerState(DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
+    val showMap = preferencesProvider?.getBoolean(PreferenceKeys.SHOW_MAP, PreferenceDefaults.SHOW_MAP)
+        ?: PreferenceDefaults.SHOW_MAP
+    val coroutineScope = rememberCoroutineScope()
+    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    val fullscreenMap = remember { mutableStateOf(false) }
+    val keyboardOpen = keyboardAsState()
+    val routePlaying = (state.currentRouteData.routeData != null)
+
+    val newReleaseDialog = remember {
+        mutableStateOf(
+            (preferencesProvider?.getString(PreferenceKeys.LAST_NEW_RELEASE, PreferenceDefaults.LAST_NEW_RELEASE)
+                != appVersionMinorTrimmed()) &&
+                analyticsEnabled,
+        )
+    }
+    val phoneLanguage = remember { getLanguageMismatch() }
+    val languageMismatchDialog = remember {
+        mutableStateOf(
+            (phoneLanguage != null &&
+                (preferencesProvider?.getBoolean(
+                    PreferenceKeys.LANGUAGE_SUPPORTED_PROMPTED,
+                    PreferenceDefaults.LANGUAGE_SUPPORTED_PROMPTED,
+                ) == false)) &&
+                analyticsEnabled,
+        )
+    }
+
+    val currentLocation by rememberUpdatedState(state.location)
+    val offlineMaps = remember(onNavigate) {
+        {
+            // Carry the current location through the offline maps refresh implicitly via state.
+            currentLocation?.let { _ -> }
+            onNavigate(SharedRoutes.OFFLINE_MAPS)
+        }
+    }
 
     ModalNavigationDrawer(
         drawerState = drawerState,
+        gesturesEnabled = drawerState.isOpen,
         drawerContent = {
-            ModalDrawerSheet(
-                drawerContainerColor = MaterialTheme.colorScheme.background,
-                drawerContentColor = MaterialTheme.colorScheme.onBackground,
-            ) {
-                Scaffold(
-                    topBar = {
-                        IconButton(
-                            onClick = { scope.launch { drawerState.close() } },
-                        ) {
-                            Icon(
-                                Icons.AutoMirrored.Rounded.ArrowBack,
-                                modifier = Modifier
-                                    .size(spacing.targetSize)
-                                    .padding(start = spacing.extraSmall),
-                                contentDescription = stringResource(Res.string.ui_menu_close),
-                                tint = MaterialTheme.colorScheme.onBackground,
-                            )
-                        }
-                    },
-                ) { innerPadding ->
-                    Column(
-                        modifier = Modifier
-                            .padding(innerPadding)
-                            .verticalScroll(rememberScrollState()),
-                    ) {
-                        DrawerMenuItem(
-                            onClick = {
-                                scope.launch { drawerState.close() }
-                                onNavigateToSettings()
-                            },
-                            label = stringResource(Res.string.settings_screen_title),
-                            icon = Icons.Rounded.Settings,
-                        )
-                        DrawerMenuItem(
-                            onClick = {
-                                scope.launch { drawerState.close() }
-                                onNavigateToHelp()
-                            },
-                            label = stringResource(Res.string.menu_help),
-                            icon = Icons.AutoMirrored.Rounded.HelpOutline,
-                        )
-                        DrawerMenuItem(
-                            onClick = { scope.launch { drawerState.close() } },
-                            label = stringResource(Res.string.menu_rate),
-                            icon = Icons.Rounded.Star,
-                        )
-                        DrawerMenuItem(
-                            onClick = { scope.launch { drawerState.close() } },
-                            label = stringResource(Res.string.menu_contact_support),
-                            icon = Icons.Rounded.Markunread,
-                        )
-                        DrawerMenuItem(
-                            onClick = {
-                                scope.launch { drawerState.close() }
-                                onNavigateToOfflineMaps()
-                            },
-                            label = stringResource(Res.string.offline_maps_title),
-                            icon = Icons.Rounded.Download,
-                        )
-                        DrawerMenuItem(
-                            onClick = { scope.launch { drawerState.close() } },
-                            label = stringResource(Res.string.settings_about_app),
-                            icon = Icons.AutoMirrored.Rounded.HelpOutline,
-                        )
-                        DrawerMenuItem(
-                            onClick = { scope.launch { drawerState.close() } },
-                            label = stringResource(Res.string.new_version_info_text),
-                            icon = Icons.AutoMirrored.Rounded.Comment,
-                        )
-                    }
-                }
-            }
+            SharedDrawerContent(
+                drawerState = drawerState,
+                onNavigate = onNavigate,
+                rateSoundscape = rateSoundscape,
+                contactSupport = contactSupport,
+                shareRecording = shareRecording,
+                offlineMaps = offlineMaps,
+                toggleTutorial = toggleTutorial,
+                tutorialRunning = tutorialRunning,
+                recordingEnabled = recordingEnabled,
+                newReleaseDialog = newReleaseDialog,
+            )
         },
+        modifier = modifier,
     ) {
         Scaffold(
-            modifier = modifier,
             topBar = {
-                CenterAlignedTopAppBar(
-                    title = {
-                        Text(
-                            text = stringResource(Res.string.app_name),
-                            style = MaterialTheme.typography.titleLarge,
-                            fontWeight = FontWeight.Bold,
-                        )
-                    },
-                    navigationIcon = {
-                        IconButton(onClick = { scope.launch { drawerState.open() } }) {
-                            Icon(
-                                Icons.Rounded.Menu,
-                                contentDescription = stringResource(Res.string.ui_menu),
-                            )
-                        }
-                    },
-                    actions = {
-                        Row {
-                            IconButton(onClick = onNavigateToPlacesNearby) {
-                                Icon(
-                                    Icons.Rounded.Explore,
-                                    contentDescription = stringResource(Res.string.search_nearby_screen_title),
-                                )
-                            }
-                            IconButton(onClick = onNavigateToMarkersAndRoutes) {
-                                Icon(
-                                    Icons.Rounded.Route,
-                                    contentDescription = stringResource(Res.string.search_view_markers),
-                                )
-                            }
-                        }
-                    },
-                )
+                if (!keyboardOpen.value) {
+                    SharedHomeTopAppBar(
+                        drawerState = drawerState,
+                        coroutineScope = coroutineScope,
+                        streetPreviewState = state.streetPreviewState.enabled != StreetPreviewEnabled.OFF,
+                        streetPreviewFunctions = streetPreviewFunctions,
+                        onSleep = onSleep,
+                    )
+                }
             },
             bottomBar = {
-                SharedHomeBottomAppBar(
-                    buttonFunctions = BottomButtonFunctions(
-                        myLocation = onMyLocation,
-                        aroundMe = onAroundMe,
-                        aheadOfMe = onAheadOfMe,
-                        nearbyMarkers = onNearbyMarkers,
-                    ),
-                )
+                if (!fullscreenMap.value && !keyboardOpen.value) {
+                    SharedHomeBottomAppBar(bottomButtonFunctions)
+                }
             },
+            floatingActionButton = {
+                if ((!keyboardOpen.value) && showMap && (fullscreenMap.value || !routePlaying)) {
+                    FullScreenMapFab(
+                        fullscreenMap,
+                        Modifier.testTag("homeFullScreenMap"),
+                    )
+                }
+            },
+            contentWindowInsets = WindowInsets(0, 0, 0, 0),
         ) { innerPadding ->
-            SharedHomeContent(
-                homeState = homeState,
-                modifier = Modifier.padding(innerPadding),
-                onRouteSkipPrevious = onRouteSkipPrevious,
-                onRouteSkipNext = onRouteSkipNext,
-                onRouteMute = onRouteMute,
-                onRouteStop = onRouteStop,
-                onSearch = onSearch,
-                onSearchItemClick = onSearchItemClick,
-            )
+            if (languageMismatchDialog.value && phoneLanguage != null) {
+                SharedLanguageMismatchDialog(
+                    innerPadding = innerPadding,
+                    preferencesProvider = preferencesProvider,
+                    showDialog = languageMismatchDialog,
+                    phoneLanguage = phoneLanguage,
+                    onSetApplicationLocale = onSetApplicationLocale,
+                )
+            } else if (newReleaseDialog.value) {
+                SharedNewReleaseDialog(
+                    innerPadding = innerPadding,
+                    preferencesProvider = preferencesProvider,
+                    newReleaseDialog = newReleaseDialog,
+                )
+            }
+
+            if (fullscreenMap.value) {
+                state.location?.let { location ->
+                    PlatformMapContainer(
+                        beaconLocation = state.beaconState?.location,
+                        routeData = state.currentRouteData.routeData,
+                        mapCenter = location,
+                        allowScrolling = false,
+                        userLocation = location,
+                        userSymbolRotation = state.heading,
+                        modifier = modifier.fillMaxSize(),
+                    )
+                }
+            } else {
+                SharedHomeContent(
+                    location = state.location,
+                    beaconState = state.beaconState,
+                    routePlayerState = state.currentRouteData,
+                    heading = state.heading,
+                    modifier = modifier.padding(innerPadding),
+                    onNavigate = onNavigate,
+                    onSelectLocation = onSelectLocation,
+                    getCurrentLocationDescription = getCurrentLocationDescription,
+                    searchBar = {
+                        MainSearchBar(
+                            results = state.searchItems.orEmpty(),
+                            onTriggerSearch = searchFunctions.onTriggerSearch,
+                            onItemClick = { item -> onSelectLocation(item) },
+                            hint = stringResource(Res.string.search_bar_hint),
+                            userLocation = state.location,
+                            isSearching = state.searchInProgress,
+                        )
+                    },
+                    onMapLongClick = onMapLongClick,
+                    streetPreviewState = state.streetPreviewState,
+                    routeFunctions = routeFunctions,
+                    streetPreviewFunctions = streetPreviewFunctions,
+                    goToAppSettings = goToAppSettings,
+                    fullscreenMap = fullscreenMap,
+                    permissionsRequired = permissionsRequired,
+                    showMap = showMap,
+                    voiceCommandListening = voiceCommandListening,
+                )
+            }
         }
     }
 }

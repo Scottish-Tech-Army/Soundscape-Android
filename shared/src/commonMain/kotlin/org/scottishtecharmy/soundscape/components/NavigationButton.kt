@@ -20,7 +20,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -31,7 +30,7 @@ fun NavigationButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit = {},
     icon: ImageVector? = null,
-    horizontalPadding: Dp = spacing.medium
+    horizontalPadding: Dp = spacing.medium,
 ) {
     Button(
         onClick = { onClick() },
@@ -39,40 +38,32 @@ fun NavigationButton(
             .fillMaxWidth()
             .padding(horizontal = horizontalPadding),
         shape = RoundedCornerShape(spacing.none),
-        colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors()
+        colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically,
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(
                     horizontal = spacing.small,
-                    vertical = spacing.extraSmall
+                    vertical = spacing.extraSmall,
                 ),
         ) {
             if (icon != null) {
-                Icon(
-                    icon,
-                    null
-                )
+                Icon(icon, null)
                 Spacer(modifier = Modifier.width(spacing.small))
             }
             Text(
                 text,
                 style = MaterialTheme.typography.bodyLarge,
                 textAlign = TextAlign.Start,
-                modifier = Modifier.weight(1f)
+                modifier = Modifier.weight(1f),
             )
             Icon(
                 Icons.Rounded.ChevronRight,
                 null,
-                modifier = Modifier.defaultMinSize(spacing.targetSize)
+                modifier = Modifier.defaultMinSize(spacing.targetSize),
             )
         }
     }
-}
-
-@Preview
-@Composable
-fun PreviewNavigationButton() {
-    NavigationButton(text = "Long text to show what happens on a wrap", onClick = {})
 }

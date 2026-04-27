@@ -20,13 +20,13 @@ import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.screens.home.BottomButtonFunctions
-import org.scottishtecharmy.soundscape.screens.home.RouteFunctions
-import org.scottishtecharmy.soundscape.screens.home.SearchFunctions
-import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import org.scottishtecharmy.soundscape.screens.home.home.Home
+import org.scottishtecharmy.soundscape.screens.home.home.BottomButtonFunctions
+import org.scottishtecharmy.soundscape.screens.home.home.RouteFunctions
+import org.scottishtecharmy.soundscape.screens.home.home.SearchFunctions
 import org.scottishtecharmy.soundscape.screens.home.home.SectionType
+import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
+import org.scottishtecharmy.soundscape.screens.home.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.home.helpPages
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteScreen
@@ -34,8 +34,8 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandedit
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RouteDetailsScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RouteDetailsUiState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
+import org.scottishtecharmy.soundscape.screens.home.HomeState
 import org.scottishtecharmy.soundscape.utils.processMaps
-import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 import java.io.File
 import java.io.FileOutputStream
 
@@ -131,32 +131,38 @@ class DocumentationScreens {
         sharedPreferences.edit().putBoolean(ACCESSIBLE_MAP_KEY, true).apply()
 
         runScreenTest("homeScreen") {
-            Home(
+            SharedHomeScreen(
                 state = HomeState(
                     location = location,
                     heading = 45.0F,
-
-                    ),
+                ),
                 onNavigate = {},
-                preferences = sharedPreferences,
-                onMapLongClick = { false},
-                bottomButtonFunctions = BottomButtonFunctions(null),
+                onSelectLocation = {},
+                preferencesProvider = null,
+                onMapLongClick = { false },
+                bottomButtonFunctions = BottomButtonFunctions(),
                 getCurrentLocationDescription = {
                     LocationDescription(
                         name = "Milngavie",
-                        location = location
+                        location = location,
                     )
                 },
-                searchFunctions = SearchFunctions(null),
+                searchFunctions = SearchFunctions(),
                 rateSoundscape = { },
                 contactSupport = { },
+                shareRecording = { },
                 toggleTutorial = {},
                 tutorialRunning = false,
-                routeFunctions = RouteFunctions(viewModel = null),
-                streetPreviewFunctions = StreetPreviewFunctions(viewModel = null),
+                recordingEnabled = false,
+                voiceCommandListening = false,
+                routeFunctions = RouteFunctions(),
+                streetPreviewFunctions = StreetPreviewFunctions(),
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
                 goToAppSettings = { },
-                permissionsRequired = false
+                permissionsRequired = false,
+                onSleep = {},
+                onSetApplicationLocale = {},
+                getLanguageMismatch = { null },
             )
         }
     }
@@ -175,32 +181,39 @@ class DocumentationScreens {
         )
 
         runScreenTest("homeScreenWithRoute") {
-            Home(
+            SharedHomeScreen(
                 state = HomeState(
                     location = location,
                     heading = 45.0F,
-                    currentRouteData = routePlayerState
+                    currentRouteData = routePlayerState,
                 ),
                 onNavigate = {},
-                preferences = sharedPreferences,
-                onMapLongClick = { false},
-                bottomButtonFunctions = BottomButtonFunctions(null),
+                onSelectLocation = {},
+                preferencesProvider = null,
+                onMapLongClick = { false },
+                bottomButtonFunctions = BottomButtonFunctions(),
                 getCurrentLocationDescription = {
                     LocationDescription(
                         name = "Milngavie",
-                        location = location
+                        location = location,
                     )
                 },
-                searchFunctions = SearchFunctions(null),
+                searchFunctions = SearchFunctions(),
                 rateSoundscape = { },
                 contactSupport = {},
+                shareRecording = {},
                 toggleTutorial = {},
                 tutorialRunning = false,
-                routeFunctions = RouteFunctions(viewModel = null),
-                streetPreviewFunctions = StreetPreviewFunctions(viewModel = null),
+                recordingEnabled = false,
+                voiceCommandListening = false,
+                routeFunctions = RouteFunctions(),
+                streetPreviewFunctions = StreetPreviewFunctions(),
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
                 goToAppSettings = { },
-                permissionsRequired = false
+                permissionsRequired = false,
+                onSleep = {},
+                onSetApplicationLocale = {},
+                getLanguageMismatch = { null },
             )
         }
     }

@@ -22,6 +22,7 @@ import org.scottishtecharmy.soundscape.screens.home.HomeState
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState
+import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
 import org.scottishtecharmy.soundscape.ui.theme.LocalAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.defaultAppButtonColors
 
@@ -52,6 +53,19 @@ data class AppCallbacks(
     val onOfflineMapsDownload: (Feature) -> Unit = {},
     val onOfflineMapsDelete: (String) -> Unit = {},
     val onOfflineMapsCancelDownload: () -> Unit = {},
+    // Home-screen extras
+    val onSleep: () -> Unit = {},
+    val onStreetPreviewGo: () -> Unit = {},
+    val onStreetPreviewExit: () -> Unit = {},
+    val onShareRecording: () -> Unit = {},
+    val onRateApp: () -> Unit = {},
+    val onContactSupport: () -> Unit = {},
+    val onToggleAudioTour: () -> Unit = {},
+    val onMapLongClick: ((LngLatAlt) -> Boolean)? = null,
+    val onGoToAppSettings: () -> Unit = {},
+    val onGetCurrentLocationDescription: () -> LocationDescription = { LocationDescription("", LngLatAlt()) },
+    val onSetApplicationLocale: (String?) -> Unit = {},
+    val onGetLanguageMismatch: () -> Language? = { null },
 )
 
 data class AppFlows(
@@ -65,6 +79,11 @@ data class AppFlows(
     val offlineMapsDownloaded: StateFlow<List<String>>? = null,
     val offlineMapsDownloadState: StateFlow<DownloadStateCommon>? = null,
     val beaconTypes: List<String> = emptyList(),
+    // Home-screen extras
+    val audioTourRunning: StateFlow<Boolean>? = null,
+    val recordingEnabled: StateFlow<Boolean>? = null,
+    val permissionsRequired: StateFlow<Boolean>? = null,
+    val voiceCommandListening: StateFlow<Boolean>? = null,
 )
 
 @Composable

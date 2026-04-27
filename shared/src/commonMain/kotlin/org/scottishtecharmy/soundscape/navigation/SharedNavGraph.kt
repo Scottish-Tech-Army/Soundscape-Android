@@ -88,28 +88,56 @@ fun SharedNavHost(
             } else {
                 val homeState by flows.homeState?.collectAsState()
                     ?: remember { mutableStateOf(HomeState()) }
+                val recordingEnabled by flows.recordingEnabled?.collectAsState()
+                    ?: remember { mutableStateOf(false) }
+                val audioTourRunning by flows.audioTourRunning?.collectAsState()
+                    ?: remember { mutableStateOf(false) }
+                val voiceCommandListening by flows.voiceCommandListening?.collectAsState()
+                    ?: remember { mutableStateOf(false) }
+                val permissionsRequired by flows.permissionsRequired?.collectAsState()
+                    ?: remember { mutableStateOf(false) }
+
                 SharedHomeScreen(
-                    homeState = homeState,
-                    onMyLocation = callbacks.onMyLocation,
-                    onAroundMe = callbacks.onWhatsAroundMe,
-                    onAheadOfMe = callbacks.onAheadOfMe,
-                    onNearbyMarkers = callbacks.onNearbyMarkers,
-                    onNavigateToPlacesNearby = { navController.navigate(SharedRoutes.PLACES_NEARBY) },
-                    onNavigateToMarkersAndRoutes = { navController.navigate(SharedRoutes.MARKERS_AND_ROUTES) },
-                    onNavigateToOfflineMaps = {
-                        callbacks.onOfflineMapsRefresh()
-                        navController.navigate(SharedRoutes.OFFLINE_MAPS)
-                    },
-                    onNavigateToSettings = { navController.navigate(SharedRoutes.SETTINGS) },
-                    onRouteSkipPrevious = callbacks.onRouteSkipPrevious,
-                    onRouteSkipNext = callbacks.onRouteSkipNext,
-                    onRouteMute = callbacks.onRouteMute,
-                    onRouteStop = callbacks.onRouteStop,
-                    onSearch = callbacks.onSearch,
-                    onSearchItemClick = { desc ->
+                    state = homeState,
+                    onNavigate = { dest -> navController.navigate(dest) },
+                    onSelectLocation = { desc ->
                         navStateHolder.setSelectedLocation(desc)
                         navController.navigate(SharedRoutes.LOCATION_DETAILS)
                     },
+                    preferencesProvider = preferencesProvider,
+                    onMapLongClick = callbacks.onMapLongClick,
+                    bottomButtonFunctions = org.scottishtecharmy.soundscape.screens.home.home.BottomButtonFunctions(
+                        myLocation = callbacks.onMyLocation,
+                        aroundMe = callbacks.onWhatsAroundMe,
+                        aheadOfMe = callbacks.onAheadOfMe,
+                        nearbyMarkers = callbacks.onNearbyMarkers,
+                    ),
+                    routeFunctions = org.scottishtecharmy.soundscape.screens.home.home.RouteFunctions(
+                        skipPrevious = callbacks.onRouteSkipPrevious,
+                        skipNext = callbacks.onRouteSkipNext,
+                        mute = callbacks.onRouteMute,
+                        stop = callbacks.onRouteStop,
+                    ),
+                    streetPreviewFunctions = org.scottishtecharmy.soundscape.screens.home.home.StreetPreviewFunctions(
+                        go = callbacks.onStreetPreviewGo,
+                        exit = callbacks.onStreetPreviewExit,
+                    ),
+                    searchFunctions = org.scottishtecharmy.soundscape.screens.home.home.SearchFunctions(
+                        onTriggerSearch = callbacks.onSearch,
+                    ),
+                    getCurrentLocationDescription = callbacks.onGetCurrentLocationDescription,
+                    rateSoundscape = callbacks.onRateApp,
+                    contactSupport = callbacks.onContactSupport,
+                    shareRecording = callbacks.onShareRecording,
+                    toggleTutorial = callbacks.onToggleAudioTour,
+                    tutorialRunning = audioTourRunning,
+                    recordingEnabled = recordingEnabled,
+                    voiceCommandListening = voiceCommandListening,
+                    permissionsRequired = permissionsRequired,
+                    goToAppSettings = callbacks.onGoToAppSettings,
+                    onSleep = callbacks.onSleep,
+                    onSetApplicationLocale = callbacks.onSetApplicationLocale,
+                    getLanguageMismatch = callbacks.onGetLanguageMismatch,
                 )
             }
         }

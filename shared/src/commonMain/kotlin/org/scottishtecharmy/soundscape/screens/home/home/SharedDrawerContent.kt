@@ -1,6 +1,5 @@
-package org.scottishtecharmy.soundscape.screens.home
+package org.scottishtecharmy.soundscape.screens.home.home
 
-import android.content.SharedPreferences
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,14 +12,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.Comment
 import androidx.compose.material.icons.automirrored.rounded.HelpOutline
+import androidx.compose.material.icons.rounded.Download
 import androidx.compose.material.icons.rounded.Headphones
 import androidx.compose.material.icons.rounded.Markunread
-import androidx.compose.material.icons.rounded.Download
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material.icons.rounded.Star
 import androidx.compose.material3.DrawerState
-import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -34,19 +32,27 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
-import org.jetbrains.compose.resources.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import kotlinx.coroutines.launch
-import org.scottishtecharmy.soundscape.BuildConfig
-import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_DEFAULT
-import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_KEY
-import org.scottishtecharmy.soundscape.R
+import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
+import org.scottishtecharmy.soundscape.navigation.SharedRoutes
+import org.scottishtecharmy.soundscape.platform.appVersionName
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.menu_audio_tutorial
+import org.scottishtecharmy.soundscape.resources.menu_audio_tutorial_cancel
+import org.scottishtecharmy.soundscape.resources.menu_contact_support
+import org.scottishtecharmy.soundscape.resources.menu_help
+import org.scottishtecharmy.soundscape.resources.menu_rate
+import org.scottishtecharmy.soundscape.resources.menu_share_recorded_route
+import org.scottishtecharmy.soundscape.resources.new_version_info_text
+import org.scottishtecharmy.soundscape.resources.offline_maps_title
+import org.scottishtecharmy.soundscape.resources.settings_about_app
+import org.scottishtecharmy.soundscape.resources.settings_screen_title
+import org.scottishtecharmy.soundscape.resources.ui_menu_close
 import org.scottishtecharmy.soundscape.ui.theme.spacing
-import org.scottishtecharmy.soundscape.resources.*
 
 @Composable
-fun DrawerContent(
+fun SharedDrawerContent(
     drawerState: DrawerState,
     onNavigate: (String) -> Unit,
     rateSoundscape: () -> Unit,
@@ -55,18 +61,17 @@ fun DrawerContent(
     offlineMaps: () -> Unit,
     toggleTutorial: () -> Unit,
     tutorialRunning: Boolean,
-    preferences: SharedPreferences?,
-    newReleaseDialog: MutableState<Boolean>?
+    recordingEnabled: Boolean,
+    newReleaseDialog: MutableState<Boolean>?,
 ) {
     val scope = rememberCoroutineScope()
-    val recordingEnabled = preferences?.getBoolean(RECORD_TRAVEL_KEY, RECORD_TRAVEL_DEFAULT) == true
     val running = remember(tutorialRunning) { mutableStateOf(tutorialRunning) }
 
     ModalDrawerSheet(
         drawerContainerColor = MaterialTheme.colorScheme.background,
         drawerContentColor = MaterialTheme.colorScheme.onBackground,
     ) {
-        Scaffold (
+        Scaffold(
             topBar = {
                 IconButton(
                     onClick = {
@@ -78,14 +83,13 @@ fun DrawerContent(
                             }
                         }
                     },
-                    modifier = Modifier.testTag("menuDrawerBack")
+                    modifier = Modifier.testTag("menuDrawerBack"),
                 ) {
                     Icon(
                         Icons.AutoMirrored.Rounded.ArrowBack,
-                        modifier =
-                            Modifier
-                                .size(spacing.targetSize)
-                                .padding(start = spacing.extraSmall),
+                        modifier = Modifier
+                            .size(spacing.targetSize)
+                            .padding(start = spacing.extraSmall),
                         contentDescription = stringResource(Res.string.ui_menu_close),
                         tint = MaterialTheme.colorScheme.onBackground,
                     )
@@ -97,92 +101,76 @@ fun DrawerContent(
                         .fillMaxWidth()
                         .padding(
                             horizontal = spacing.medium,
-                            vertical = spacing.medium),
-                    horizontalArrangement = Arrangement.End
+                            vertical = spacing.medium,
+                        ),
+                    horizontalArrangement = Arrangement.End,
                 ) {
                     Text(
-                        text = "v${BuildConfig.VERSION_NAME}",
-                        color = MaterialTheme.colorScheme.onBackground
+                        text = "v${appVersionName()}",
+                        color = MaterialTheme.colorScheme.onBackground,
                     )
                 }
             },
         ) { innerPadding ->
             Column(
                 modifier = Modifier
-                .padding(innerPadding)
-                .verticalScroll(rememberScrollState()),
+                    .padding(innerPadding)
+                    .verticalScroll(rememberScrollState()),
             ) {
-// Not implemented yet
-//                DrawerMenuItem(
-//                    onClick = { notAvailableToast() },
-//                    label = stringResource(Res.string.menu_devices),
-//                    icon = Icons.Rounded.Headset,
-//                )
                 DrawerMenuItem(
-                    onClick = { onNavigate(HomeRoutes.Settings.route) },
+                    onClick = { onNavigate(SharedRoutes.SETTINGS) },
                     label = stringResource(Res.string.settings_screen_title),
                     icon = Icons.Rounded.Settings,
-                    modifier = Modifier.testTag("menuSettings")
+                    modifier = Modifier.testTag("menuSettings"),
                 )
                 DrawerMenuItem(
-                    onClick = { onNavigate(HomeRoutes.Help.route + "/page${Res.string.menu_help.key}") },
+                    onClick = { onNavigate(SharedRoutes.HELP + "/page${Res.string.menu_help.key}") },
                     label = stringResource(Res.string.menu_help),
-                    Icons.AutoMirrored.Rounded.HelpOutline,
-                    modifier = Modifier.testTag("menuHelpAndTutorials")
+                    icon = Icons.AutoMirrored.Rounded.HelpOutline,
+                    modifier = Modifier.testTag("menuHelpAndTutorials"),
                 )
-
                 DrawerMenuItem(
                     onClick = {
                         scope.launch { drawerState.close() }
                         toggleTutorial()
                     },
-                    label = if(running.value) stringResource(Res.string.menu_audio_tutorial_cancel) else stringResource(Res.string.menu_audio_tutorial),
-                    Icons.Rounded.Headphones,
-                    modifier = Modifier.testTag("menuAudioTutorial")
+                    label = if (running.value) {
+                        stringResource(Res.string.menu_audio_tutorial_cancel)
+                    } else {
+                        stringResource(Res.string.menu_audio_tutorial)
+                    },
+                    icon = Icons.Rounded.Headphones,
+                    modifier = Modifier.testTag("menuAudioTutorial"),
                 )
-
                 DrawerMenuItem(
                     onClick = { rateSoundscape() },
                     label = stringResource(Res.string.menu_rate),
                     icon = Icons.Rounded.Star,
-                    modifier = Modifier.testTag("menuRate")
+                    modifier = Modifier.testTag("menuRate"),
                 )
-
                 DrawerMenuItem(
                     onClick = { contactSupport() },
                     label = stringResource(Res.string.menu_contact_support),
                     icon = Icons.Rounded.Markunread,
-                    modifier = Modifier.testTag("menuContactSupport")
+                    modifier = Modifier.testTag("menuContactSupport"),
                 )
-
-// This is supposed to share the app with someone else (not the location)
-//                DrawerMenuItem(
-//                    onClick = { shareLocation() },
-//                    label = stringResource(Res.string.share_title),
-//                    icon = Icons.Rounded.IosShare,
-//                )
-
                 DrawerMenuItem(
                     onClick = { offlineMaps() },
                     label = stringResource(Res.string.offline_maps_title),
-                    Icons.Rounded.Download,
-                    modifier = Modifier.testTag("menuOfflineMaps")
+                    icon = Icons.Rounded.Download,
+                    modifier = Modifier.testTag("menuOfflineMaps"),
                 )
-
                 DrawerMenuItem(
-                    onClick = { onNavigate(HomeRoutes.Help.route + "/page${Res.string.settings_about_app.key}") },
+                    onClick = { onNavigate(SharedRoutes.HELP + "/page${Res.string.settings_about_app.key}") },
                     label = stringResource(Res.string.settings_about_app),
-                    Icons.AutoMirrored.Rounded.HelpOutline,
-                    modifier = Modifier.testTag("menuAboutSoundscape")
+                    icon = Icons.AutoMirrored.Rounded.HelpOutline,
+                    modifier = Modifier.testTag("menuAboutSoundscape"),
                 )
-
                 DrawerMenuItem(
-                    onClick = {
-                        newReleaseDialog?.value = true
-                    },
+                    onClick = { newReleaseDialog?.value = true },
                     label = stringResource(Res.string.new_version_info_text),
-                    Icons.AutoMirrored.Rounded.Comment,
-                    modifier = Modifier.testTag("newReleaseInfo")
+                    icon = Icons.AutoMirrored.Rounded.Comment,
+                    modifier = Modifier.testTag("newReleaseInfo"),
                 )
 
                 if (recordingEnabled) {
@@ -190,26 +178,10 @@ fun DrawerContent(
                         onClick = { shareRecording() },
                         label = stringResource(Res.string.menu_share_recorded_route),
                         icon = Icons.Rounded.Share,
-                        modifier = Modifier.testTag("menuShareRecording")
+                        modifier = Modifier.testTag("menuShareRecording"),
                     )
                 }
             }
         }
     }
-}
-@Preview
-@Composable
-fun PreviewDrawerContent() {
-    DrawerContent(
-        DrawerState(DrawerValue.Open) { true },
-        onNavigate = { },
-        rateSoundscape = { },
-        contactSupport = { },
-        shareRecording = { },
-        offlineMaps = { },
-        toggleTutorial = { },
-        tutorialRunning = false,
-        preferences = null,
-        newReleaseDialog = null
-    )
 }
