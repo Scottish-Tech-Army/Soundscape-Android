@@ -19,6 +19,8 @@ import me.zhanghai.compose.preference.listPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
@@ -108,6 +110,8 @@ fun Settings(
     SharedSettingsScreen(
         onNavigateUp = { navController.navigateUp() },
         beaconTypes = beaconValues,
+        mediaControlsValues = mediaControlsValues,
+        mediaControlsDescriptions = mediaControlsDescriptions,
         modifier = modifier,
 
         platformAccessibilityContent = {
@@ -206,17 +210,6 @@ fun Settings(
         },
 
         platformMediaControlsContent = {
-            listPreference(
-                key = MainActivity.MEDIA_CONTROLS_MODE_KEY,
-                defaultValue = MainActivity.MEDIA_CONTROLS_MODE_DEFAULT,
-                values = mediaControlsValues,
-                modifier = expandedSectionModifier,
-                title = { SettingDetails(Res.string.settings_section_media_controls, Res.string.settings_section_media_controls_description, textColor) },
-                item = { value, currentValue, onClick ->
-                    ListPreferenceItem(mediaControlsDescriptions[mediaControlsValues.indexOf(value)], value, currentValue, onClick, mediaControlsValues.indexOf(value), mediaControlsValues.size)
-                },
-                summary = { ClickableOption(mediaControlsDescriptions[mediaControlsValues.indexOf(it)], textColor) },
-            )
             switchPreference(
                 key = MainActivity.VOICE_COMMAND_LISTENING_PROMPT_KEY,
                 defaultValue = MainActivity.VOICE_COMMAND_LISTENING_PROMPT_DEFAULT,

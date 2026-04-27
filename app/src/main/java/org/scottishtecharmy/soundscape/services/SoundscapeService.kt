@@ -45,8 +45,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MODE_DEFAULT
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MODE_KEY
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RELATIVE_DIRECTION_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RELATIVE_DIRECTION_KEY
 import org.scottishtecharmy.soundscape.R
@@ -81,6 +81,7 @@ import org.scottishtecharmy.soundscape.locationprovider.GooglePlayLocationProvid
 import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.GpxDrivenProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
+import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenu
@@ -117,6 +118,9 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     lateinit var locationProvider: LocationProvider
     lateinit var directionProvider: DirectionProvider
     lateinit var routePlayer: RoutePlayer
+
+    override val filteredLocationFlow: StateFlow<SoundscapeLocation?>
+        get() = locationProvider.filteredLocationFlow
 
     // secondary service
     private var timerJob: Job? = null
@@ -369,7 +373,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
             audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
             audioMenu = AudioMenu(this, application)
-            routePlayer = RoutePlayer(this, applicationContext)
+            routePlayer = RoutePlayer(this, MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao())
 
             if(true) {
                 // Normal app behaviour using the phone location and direction providers
@@ -400,7 +404,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
             // Update the media controls mode
             sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
-            val mode = sharedPreferences.getString(MEDIA_CONTROLS_MODE_KEY, MEDIA_CONTROLS_MODE_DEFAULT)!!
+            val mode = sharedPreferences.getString(PreferenceKeys.MEDIA_CONTROLS_MODE, PreferenceDefaults.MEDIA_CONTROLS_MODE)!!
             updateMediaControls(mode)
 
             // Keep biasing strings up to date whenever markers or routes change
@@ -605,7 +609,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
             Realm.deleteRealm(config)
         }*/
 
-    fun createBeacon(location: LngLatAlt?, headingOnly: Boolean) {
+    override fun createBeacon(location: LngLatAlt?, headingOnly: Boolean) {
         if(location == null) return
 
         requestAudioFocus()
@@ -619,7 +623,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         geoEngine.updateBeaconLocation(location)
     }
 
-    fun destroyBeacon() {
+    override fun destroyBeacon() {
         if (audioBeacon != 0L) {
             audioEngine.destroyBeacon(audioBeacon)
             audioBeacon = 0L
@@ -813,11 +817,11 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         return (depth > 0)
     }
 
-    fun speakText(text: String,
+    override fun speakText(text: String,
                   type: AudioType,
-                  latitude: Double = Double.NaN,
-                  longitude: Double = Double.NaN,
-                  heading: Double = Double.NaN) {
+                  latitude: Double,
+                  longitude: Double,
+                  heading: Double) {
 
         if (!requestAudioFocus()) {
             Log.w(TAG, "speakText: Could not get audio focus.")
@@ -825,6 +829,10 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         }
         Log.d(TAG, "speakText $text")
         audioEngine.createTextToSpeech(text, type, latitude, longitude, heading)
+    }
+
+    override fun clearTextToSpeechQueue() {
+        audioEngine.clearTextToSpeechQueue()
     }
 
     fun speak2dText(text: String, clearQueue: Boolean = false, earcon: String? = null) {

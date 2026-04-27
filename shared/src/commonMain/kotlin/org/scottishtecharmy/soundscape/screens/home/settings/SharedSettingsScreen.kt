@@ -31,6 +31,8 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 fun SharedSettingsScreen(
     onNavigateUp: () -> Unit,
     beaconTypes: List<String>,
+    mediaControlsValues: List<String>? = null,
+    mediaControlsDescriptions: List<String>? = null,
     platformAccessibilityContent: (LazyListScope.() -> Unit)? = null,
     platformStorageContent: (LazyListScope.() -> Unit)? = null,
     platformAudioContent: (LazyListScope.() -> Unit)? = null,
@@ -65,6 +67,15 @@ fun SharedSettingsScreen(
         "Français", "English", "Deutsch",
     )
     val searchLanguageValues = listOf("auto", "fr", "en", "de")
+
+    val defaultMediaControlsDescriptions = listOf(
+        stringResource(Res.string.settings_media_controls_original),
+        stringResource(Res.string.settings_media_controls_audio_menu),
+    )
+    val defaultMediaControlsValues = listOf("Original", "AudioMenu")
+
+    val effectiveMediaControlsValues = mediaControlsValues ?: defaultMediaControlsValues
+    val effectiveMediaControlsDescriptions = mediaControlsDescriptions ?: defaultMediaControlsDescriptions
 
     val geocoderDescriptions = listOf(
         stringResource(Res.string.settings_search_auto),
@@ -289,19 +300,29 @@ fun SharedSettingsScreen(
                 platformLanguageContent?.invoke(this)
             }
 
-            // ── Media Controls Section (platform-only) ───────────────────
-            if (platformMediaControlsContent != null) {
-                item(key = "header_media_control") {
-                    ExpandableSectionHeader(
-                        title = stringResource(Res.string.menu_media_controls),
-                        expanded = expandedSection.value == "media_controls",
-                        onToggle = { expandedSection.value = if (expandedSection.value == "media_controls") null else "media_controls" },
-                        textColor = textColor,
-                    )
-                }
-                if (expandedSection.value == "media_controls") {
-                    platformMediaControlsContent()
-                }
+            // ── Media Controls Section ───────────────────────────────────
+            item(key = "header_media_control") {
+                ExpandableSectionHeader(
+                    title = stringResource(Res.string.menu_media_controls),
+                    expanded = expandedSection.value == "media_controls",
+                    onToggle = { expandedSection.value = if (expandedSection.value == "media_controls") null else "media_controls" },
+                    textColor = textColor,
+                )
+            }
+            if (expandedSection.value == "media_controls") {
+                listPreference(
+                    key = PreferenceKeys.MEDIA_CONTROLS_MODE,
+                    defaultValue = PreferenceDefaults.MEDIA_CONTROLS_MODE,
+                    values = effectiveMediaControlsValues,
+                    modifier = expandedSectionModifier,
+                    title = { SettingDetails(Res.string.settings_section_media_controls, Res.string.settings_section_media_controls_description, textColor) },
+                    item = { value, currentValue, onClick ->
+                        ListPreferenceItem(effectiveMediaControlsDescriptions[effectiveMediaControlsValues.indexOf(value)], value, currentValue, onClick, effectiveMediaControlsValues.indexOf(value), effectiveMediaControlsValues.size)
+                    },
+                    summary = { ClickableOption(effectiveMediaControlsDescriptions[effectiveMediaControlsValues.indexOf(it)], textColor) },
+                )
+
+                platformMediaControlsContent?.invoke(this)
             }
 
             // ── Debug Section ────────────────────────────────────────────

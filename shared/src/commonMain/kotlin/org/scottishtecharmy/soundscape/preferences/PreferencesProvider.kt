@@ -38,6 +38,7 @@ object PreferenceKeys {
     const val GEOCODER_MODE = "GeocoderMode"
     const val ACCESSIBLE_MAP = "AccessibleMap"
     const val MIX_AUDIO = "MixAudio"
+    const val MEDIA_CONTROLS_MODE = "MediaControlsMode"
 }
 
 object PreferenceDefaults {
@@ -58,4 +59,5 @@ object PreferenceDefaults {
     const val GEOCODER_MODE = "Auto"
     const val ACCESSIBLE_MAP = true
     const val MIX_AUDIO = false
+    const val MEDIA_CONTROLS_MODE = "Original"
 }

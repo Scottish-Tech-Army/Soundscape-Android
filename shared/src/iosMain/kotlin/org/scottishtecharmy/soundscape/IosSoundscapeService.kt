@@ -15,6 +15,7 @@ import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabasePr
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.BeaconState
+import org.scottishtecharmy.soundscape.services.RoutePlayer
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GeoEngineListener
 import org.scottishtecharmy.soundscape.geoengine.GridState
@@ -128,6 +129,9 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
     val beaconFlow: StateFlow<BeaconState> = _beaconFlow.asStateFlow()
     private var beaconHandle: Long? = null
 
+    // Route player
+    lateinit var routePlayer: RoutePlayer
+
     // Service bound state (always true on iOS)
     private val _serviceBoundState = MutableStateFlow(true)
     val serviceBoundState: StateFlow<Boolean> = _serviceBoundState.asStateFlow()
@@ -156,11 +160,23 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
                     PreferenceDefaults.MIX_AUDIO,
                 )
             }
+            PreferenceKeys.MEDIA_CONTROLS_MODE -> {
+                val mode = preferencesProvider.getString(
+                    PreferenceKeys.MEDIA_CONTROLS_MODE,
+                    PreferenceDefaults.MEDIA_CONTROLS_MODE,
+                )
+                updateMediaControls(mode)
+            }
         }
     }
 
     init {
-        audioEngine.mediaControlTarget = OriginalMediaControls(this)
+        updateMediaControls(
+            preferencesProvider.getString(
+                PreferenceKeys.MEDIA_CONTROLS_MODE,
+                PreferenceDefaults.MEDIA_CONTROLS_MODE,
+            )
+        )
         audioEngine.mixWithOthers = preferencesProvider.getBoolean(
             PreferenceKeys.MIX_AUDIO,
             PreferenceDefaults.MIX_AUDIO,
@@ -171,6 +187,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
                 PreferenceDefaults.BEACON_TYPE,
             )
         )
+        routePlayer = RoutePlayer(this, routeDao)
         preferencesProvider.addListener(preferencesListener)
         startGeoEngine()
         observeAppLifecycle()
@@ -486,18 +503,24 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
 
     // --- Beacon Control ---
 
-    fun startBeacon(location: LngLatAlt, name: String) {
-        destroyBeacon()
+    override fun createBeacon(location: LngLatAlt?, headingOnly: Boolean) {
+        if (location == null) return
+        val oldBeacon = beaconHandle
+        beaconHandle = audioEngine.createBeacon(location, headingOnly)
+        oldBeacon?.let { audioEngine.destroyBeacon(it) }
+        _beaconFlow.value = _beaconFlow.value.copy(location = location)
         geoEngine.updateBeaconLocation(location)
-        beaconHandle = audioEngine.createBeacon(location, headingOnly = false)
-        _beaconFlow.value = BeaconState(location = location, name = name, muteState = false)
     }
 
-    fun destroyBeacon() {
+    override fun destroyBeacon() {
         beaconHandle?.let { audioEngine.destroyBeacon(it) }
         beaconHandle = null
         geoEngine.updateBeaconLocation(null)
         _beaconFlow.value = BeaconState()
+    }
+
+    fun startBeacon(location: LngLatAlt, name: String) {
+        routePlayer.startBeacon(location, name)
     }
 
     fun toggleBeaconMute() {
@@ -517,7 +540,33 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
         audioEngine.mixWithOthers = enabled
     }
 
+    // --- Media Controls ---
+
+    fun updateMediaControls(target: String) {
+        audioEngine.mediaControlTarget = when (target) {
+            // AudioMenu not yet available on iOS — fall back to Original
+            else -> OriginalMediaControls(this)
+        }
+    }
+
     // --- MediaControllableService ---
+
+    override val filteredLocationFlow: StateFlow<SoundscapeLocation?>
+        get() = locationProvider.filteredLocationFlow
+
+    override fun speakText(
+        text: String,
+        type: AudioType,
+        latitude: Double,
+        longitude: Double,
+        heading: Double,
+    ) {
+        audioEngine.createTextToSpeech(text, type, latitude, longitude, heading)
+    }
+
+    override fun clearTextToSpeechQueue() {
+        audioEngine.clearTextToSpeechQueue()
+    }
 
     override fun routeMute(): Boolean {
         if (beaconHandle != null) {
@@ -530,13 +579,11 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
     }
 
     override fun routeSkipNext(): Boolean {
-        // TODO: wire up route skip when route playback is implemented on iOS
-        return false
+        return routePlayer.moveToNext(true)
     }
 
     override fun routeSkipPrevious(): Boolean {
-        // TODO: wire up route skip when route playback is implemented on iOS
-        return false
+        return routePlayer.moveToPrevious(true)
     }
 
     // --- Lifecycle ---

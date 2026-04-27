@@ -2,6 +2,8 @@ package org.scottishtecharmy.soundscape
 
 import android.Manifest
 import android.accessibilityservice.AccessibilityServiceInfo
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import android.content.Context
 import android.media.AudioDeviceInfo
 import android.media.AudioManager
@@ -168,8 +170,8 @@ class MainActivity : AppCompatActivity() {
                 )
             }
 
-            MEDIA_CONTROLS_MODE_KEY -> {
-                val mode = preferences.getString(MEDIA_CONTROLS_MODE_KEY, MEDIA_CONTROLS_MODE_DEFAULT)!!
+            PreferenceKeys.MEDIA_CONTROLS_MODE -> {
+                val mode = preferences.getString(PreferenceKeys.MEDIA_CONTROLS_MODE, PreferenceDefaults.MEDIA_CONTROLS_MODE)!!
                 Log.e(TAG, "mediaControlsMode $mode")
                 soundscapeServiceConnection.soundscapeService?.updateMediaControls(mode)
             }
@@ -852,8 +854,6 @@ class MainActivity : AppCompatActivity() {
         const val GEOCODER_MODE_KEY = "GeocoderMode"
         const val LAST_SPLASH_RELEASE_DEFAULT = ""
         const val LAST_SPLASH_RELEASE_KEY = "LastNewRelease"
-        const val MEDIA_CONTROLS_MODE_DEFAULT = "Original"
-        const val MEDIA_CONTROLS_MODE_KEY = "MediaControlsMode"
         const val VOICE_COMMAND_LISTENING_PROMPT_DEFAULT = true
         const val VOICE_COMMAND_LISTENING_PROMPT_KEY = "VoiceCommandListeningPrompt"
         const val VOICE_COMMAND_MICROPHONE_DEFAULT = "Auto"
