@@ -20,4 +20,5 @@ expect fun PlatformMapContainer(
     routeData: RouteWithMarkers?,
     modifier: Modifier,
     extractGeometry: Geometry? = null,
+    forceOnlineTiles: Boolean = false,
 )

@@ -76,6 +76,7 @@ fun SharedOfflineMapExtractDetails(
             userLocation = null,
             userSymbolRotation = 0.0f,
             extractGeometry = extractGeometry,
+            forceOnlineTiles = true,
             modifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(1.0f),

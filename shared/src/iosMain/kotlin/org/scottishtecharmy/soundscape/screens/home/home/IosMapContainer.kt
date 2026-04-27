@@ -66,7 +66,7 @@ private fun getTileProviderUrl(): String {
 }
 
 @Composable
-fun rememberIosMapBaseStyle(location: LngLatAlt?): BaseStyle {
+fun rememberIosMapBaseStyle(location: LngLatAlt?, forceOnlineTiles: Boolean = false): BaseStyle {
     val foregroundColor = argbToRgba(MaterialTheme.colorScheme.onBackground.toArgb())
     val backgroundColor = argbToRgba(MaterialTheme.colorScheme.background.toArgb())
     val overrides = accessibleLayerOverrides(
@@ -74,14 +74,18 @@ fun rememberIosMapBaseStyle(location: LngLatAlt?): BaseStyle {
         backgroundColor = backgroundColor,
     )
 
-    return remember(foregroundColor, backgroundColor, location) {
+    return remember(foregroundColor, backgroundColor, location, forceOnlineTiles) {
         val assetsDir = extractMapAssets()
         val extractsPath = NSHomeDirectory() + "/Documents"
-        val tileSourceUrl = resolveTileSourceUrl(
-            location = location,
-            extractsPath = extractsPath,
-            networkTileUrl = getTileProviderUrl(),
-        )
+        val tileSourceUrl = if (forceOnlineTiles) {
+            resolveTileSourceUrl(location = null, extractsPath = "", networkTileUrl = getTileProviderUrl())
+        } else {
+            resolveTileSourceUrl(
+                location = location,
+                extractsPath = extractsPath,
+                networkTileUrl = getTileProviderUrl(),
+            )
+        }
 
         buildMapStyle(
             theme = AccessibleTheme,
@@ -108,8 +112,9 @@ fun IosMapContainerLibre(
     routeData: RouteWithMarkers? = null,
     modifier: Modifier = Modifier,
     extractGeometry: Geometry? = null,
+    forceOnlineTiles: Boolean = false,
 ) {
-    val baseStyle = rememberIosMapBaseStyle(location = userLocation)
+    val baseStyle = rememberIosMapBaseStyle(location = userLocation, forceOnlineTiles = forceOnlineTiles)
 
     MapContainerLibre(
         mapCenter = mapCenter,

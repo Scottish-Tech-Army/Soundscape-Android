@@ -25,6 +25,7 @@ actual fun PlatformMapContainer(
     routeData: RouteWithMarkers?,
     modifier: Modifier,
     extractGeometry: Geometry?,
+    forceOnlineTiles: Boolean,
 ) {
     val context = LocalContext.current
     val filesDir = context.filesDir.toString()
@@ -44,14 +45,21 @@ actual fun PlatformMapContainer(
         } catch (_: Exception) { "" }
     }
 
-    // Use offline extracts if available, otherwise fall back to network
+    // Use offline extracts if available, otherwise fall back to network — unless
+    // the caller explicitly requires online tiles (e.g. the offline-map details
+    // preview, which should always render from the network regardless of what's
+    // already downloaded).
     val extractsPath = context.getExternalFilesDir(null)?.absolutePath ?: ""
-    val tileSourceUrl = remember(userLocation) {
-        resolveTileSourceUrl(
-            location = userLocation,
-            extractsPath = extractsPath,
-            networkTileUrl = tileProviderUrl,
-        )
+    val tileSourceUrl = remember(userLocation, forceOnlineTiles) {
+        if (forceOnlineTiles) {
+            resolveTileSourceUrl(location = null, extractsPath = "", networkTileUrl = tileProviderUrl)
+        } else {
+            resolveTileSourceUrl(
+                location = userLocation,
+                extractsPath = extractsPath,
+                networkTileUrl = tileProviderUrl,
+            )
+        }
     }
 
     val baseStyle = remember(foregroundColor, backgroundColor, tileSourceUrl) {

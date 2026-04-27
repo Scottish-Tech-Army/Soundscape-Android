@@ -16,6 +16,7 @@ actual fun PlatformMapContainer(
     routeData: RouteWithMarkers?,
     modifier: Modifier,
     extractGeometry: Geometry?,
+    forceOnlineTiles: Boolean,
 ) {
     IosMapContainerLibre(
         mapCenter = mapCenter,
@@ -26,5 +27,6 @@ actual fun PlatformMapContainer(
         routeData = routeData,
         modifier = modifier,
         extractGeometry = extractGeometry,
+        forceOnlineTiles = forceOnlineTiles,
     )
 }
