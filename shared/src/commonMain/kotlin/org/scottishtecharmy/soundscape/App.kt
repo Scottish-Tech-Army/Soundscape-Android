@@ -54,6 +54,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.SharedOfflineMapsScreen
 import org.scottishtecharmy.soundscape.screens.home.settings.SharedSettingsScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.SharedAddAndEditRouteScreen
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.SharedRouteDetailsScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.resources.*
@@ -68,6 +69,7 @@ data class AppCallbacks(
     val onStopBeacon: () -> Unit = {},
     val onSpeak: (String) -> Unit = {},
     val onStartRoute: (Long) -> Unit = {},
+    val onStartRouteInReverse: (Long) -> Unit = {},
     val onMyLocation: () -> Unit = {},
     val onWhatsAroundMe: () -> Unit = {},
     val onAheadOfMe: () -> Unit = {},
@@ -105,7 +107,7 @@ data class AppFlows(
 )
 
 private enum class Screen {
-    WELCOME, HOME, PLACES_NEARBY, MARKERS_AND_ROUTES, LOCATION_DETAILS, OFFLINE_MAPS, ADD_ROUTE, EDIT_ROUTE, EDIT_MARKER, SETTINGS
+    WELCOME, HOME, PLACES_NEARBY, MARKERS_AND_ROUTES, LOCATION_DETAILS, OFFLINE_MAPS, ADD_ROUTE, EDIT_ROUTE, EDIT_MARKER, SETTINGS, ROUTE_DETAILS
 }
 
 @Composable
@@ -191,7 +193,7 @@ fun App(
                         },
                         onSelectRoute = { desc ->
                             selectedLocation = desc
-                            screen = Screen.EDIT_ROUTE
+                            screen = Screen.ROUTE_DETAILS
                         },
                     )
                 }
@@ -296,6 +298,39 @@ fun App(
                             onDelete = {
                                 callbacks.onDeleteRoute(routeDesc.databaseId)
                                 screen = Screen.MARKERS_AND_ROUTES
+                            },
+                        )
+                    }
+                }
+
+                Screen.ROUTE_DETAILS -> {
+                    val homeState by flows.homeState?.collectAsState()
+                        ?: remember { mutableStateOf(HomeState()) }
+                    val routeDesc = selectedLocation
+                    if (routeDesc != null) {
+                        val routeWaypoints = remember(routeDesc.databaseId) {
+                            callbacks.onLoadRoute(routeDesc.databaseId) ?: emptyList()
+                        }
+                        val isRoutePlaying = homeState.currentRouteData.routeData?.route?.routeId == routeDesc.databaseId
+                        SharedRouteDetailsScreen(
+                            routeName = routeDesc.name,
+                            routeDescription = routeDesc.description ?: "",
+                            waypoints = routeWaypoints,
+                            isRoutePlaying = isRoutePlaying,
+                            userLocation = homeState.location,
+                            heading = homeState.heading,
+                            onNavigateUp = { screen = Screen.MARKERS_AND_ROUTES },
+                            onStartRoute = {
+                                callbacks.onStartRoute(routeDesc.databaseId)
+                                screen = Screen.HOME
+                            },
+                            onStartRouteInReverse = {
+                                callbacks.onStartRouteInReverse(routeDesc.databaseId)
+                                screen = Screen.HOME
+                            },
+                            onStopRoute = { callbacks.onRouteStop() },
+                            onEditRoute = {
+                                screen = Screen.EDIT_ROUTE
                             },
                         )
                     }

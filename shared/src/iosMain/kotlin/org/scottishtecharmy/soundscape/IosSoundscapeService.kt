@@ -222,6 +222,13 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
                 )
             }
         }
+        scope.launch {
+            routePlayer.currentRouteFlow.collect { routePlayerState ->
+                _homeState.value = _homeState.value.copy(
+                    currentRouteData = routePlayerState,
+                )
+            }
+        }
     }
 
     private fun startDatabaseObservers() {

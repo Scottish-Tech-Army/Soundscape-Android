@@ -32,6 +32,11 @@ fun MainViewController() = ComposeUIViewController {
             onSpeak = { text ->
                 service.speakCallout(text)
             },
+            onStartRoute = { routeId -> service.routeStartById(routeId) },
+            onStartRouteInReverse = { routeId -> service.routePlayer.startRoute(routeId, reverse = true) },
+            onRouteStop = { service.routeStop() },
+            onRouteSkipNext = { service.routeSkipNext() },
+            onRouteSkipPrevious = { service.routeSkipPrevious() },
             onSearch = { query -> service.search(query) },
             onSaveMarker = { desc -> service.saveMarker(desc) },
             onDeleteMarker = { markerId -> service.deleteMarker(markerId) },
