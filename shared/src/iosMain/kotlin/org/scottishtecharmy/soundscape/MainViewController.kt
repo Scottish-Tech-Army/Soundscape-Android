@@ -9,6 +9,7 @@ import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteStateHolder
 import platform.Foundation.NSURL
 import platform.UIKit.UIApplication
 
@@ -84,6 +85,9 @@ fun MainViewController() = ComposeUIViewController {
             onSaveRoute = { name, desc, waypoints -> service.saveRoute(name, desc, waypoints) },
             onDeleteRoute = { routeId -> service.deleteRoute(routeId) },
             onLoadRoute = { routeId -> service.loadRouteWaypoints(routeId) },
+            createAddAndEditRouteStateHolder = {
+                AddAndEditRouteStateHolder(service.routeDao, service)
+            },
             onMyLocation = {
                 homeStateHolder.myLocation()
                 audioTour.onButtonPressed(TourButton.MY_LOCATION)

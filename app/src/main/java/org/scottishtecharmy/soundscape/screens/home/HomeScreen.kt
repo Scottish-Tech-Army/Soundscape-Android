@@ -328,9 +328,7 @@ fun HomeScreen(
                             addAndEditRouteViewModel.initializeRouteFromDatabase(data.toLong())
                         }
                     }
-                    val uiState by addAndEditRouteViewModel.uiState.collectAsStateWithLifecycle()
                     AddAndEditRouteScreenVM(
-                        routeObjectId = uiState.routeObjectId,
                         navController = navController,
                         viewModel = addAndEditRouteViewModel,
                         modifier = Modifier

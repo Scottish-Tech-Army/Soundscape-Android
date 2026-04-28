@@ -24,6 +24,7 @@ import org.scottishtecharmy.soundscape.screens.home.HomeState
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState
+import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteStateHolder
 import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
 import org.scottishtecharmy.soundscape.ui.theme.LocalAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.defaultAppButtonColors
@@ -48,6 +49,7 @@ data class AppCallbacks(
     val onSaveRoute: (String, String, List<LocationDescription>) -> Unit = { _, _, _ -> },
     val onDeleteRoute: (Long) -> Unit = {},
     val onLoadRoute: (Long) -> List<LocationDescription>? = { null },
+    val createAddAndEditRouteStateHolder: (() -> AddAndEditRouteStateHolder)? = null,
     val onPlacesNearbyClickFolder: (String, String) -> Unit = { _, _ -> },
     val onPlacesNearbyClickBack: () -> Unit = {},
     val onOfflineMapsRefresh: () -> Unit = {},

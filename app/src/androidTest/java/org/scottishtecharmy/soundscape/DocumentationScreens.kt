@@ -29,8 +29,6 @@ import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
 import org.scottishtecharmy.soundscape.screens.home.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.home.helpPages
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteScreen
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RouteDetailsScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RouteDetailsUiState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
@@ -245,59 +243,6 @@ class DocumentationScreens {
             )
         }
     }
-    @Test
-    fun editScreen() {
-        val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
-
-        val route = routeToShops
-        val members = mutableListOf<LocationDescription>()
-        for ((index, marker) in route.markers.withIndex()) {
-            members.add(
-                LocationDescription(
-                    name = marker.name,
-                    location = LngLatAlt(marker.longitude, marker.latitude),
-                    orderId = index.toLong(),
-                )
-            )
-        }
-
-        val uiState = AddAndEditRouteUiState(
-            name = "To shops",
-            description = "Route to shops",
-            routeMembers = members,
-        )
-
-        runScreenTest("routeEdit") {
-            AddAndEditRouteScreen(
-                routeObjectId = 1,
-                navController = NavController(targetContext),
-                modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
-                uiState = uiState,
-                placesNearbyUiState = PlacesNearbyUiState(),
-                editRoute = true,
-                userLocation = location,
-                heading = 45.0f,
-                onClearErrorMessage = { },
-                onResetDoneAction = { },
-                onNameChange = { },
-                onDescriptionChange = { },
-                onDeleteRoute = { },
-                onEditComplete = { },
-                onClickFolder = { _, _ -> },
-                onClickBack = { },
-                onSelectLocation = { },
-                createAndAddMarker = { _, _, _, _ -> },
-                getCurrentLocationDescription = {
-                    LocationDescription(
-                        "Current Location",
-                        location
-                    )
-                },
-                onToggleMember = {},
-            )
-        }
-    }
-
     @Test
     fun getHelp() {
 

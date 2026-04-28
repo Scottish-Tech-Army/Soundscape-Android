@@ -46,6 +46,7 @@ kotlin {
             implementation(libs.composepreferencelibrary)
             implementation(libs.jetbrains.navigation.compose)
             implementation(libs.intellij.markdown)
+            implementation(libs.reorderable)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))

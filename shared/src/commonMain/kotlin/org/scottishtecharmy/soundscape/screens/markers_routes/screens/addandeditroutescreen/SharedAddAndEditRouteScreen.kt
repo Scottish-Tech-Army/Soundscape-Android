@@ -1,6 +1,8 @@
 package org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -8,13 +10,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material3.Button
+import androidx.compose.material.icons.rounded.DragIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -22,219 +25,311 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
+import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.stringResource
-import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
-import org.scottishtecharmy.soundscape.resources.*
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.general_alert_cancel
+import org.scottishtecharmy.soundscape.resources.general_alert_done
+import org.scottishtecharmy.soundscape.resources.markers_sort_button_sort_by_name
+import org.scottishtecharmy.soundscape.resources.route_description_description_hint
+import org.scottishtecharmy.soundscape.resources.route_detail_action_create
+import org.scottishtecharmy.soundscape.resources.route_detail_action_edit
+import org.scottishtecharmy.soundscape.resources.route_detail_action_start_route_disabled_hint
+import org.scottishtecharmy.soundscape.resources.route_detail_edit_delete
+import org.scottishtecharmy.soundscape.resources.route_detail_edit_description
+import org.scottishtecharmy.soundscape.resources.route_detail_edit_waypoints_button
+import org.scottishtecharmy.soundscape.resources.route_name_description_hint
+import org.scottishtecharmy.soundscape.resources.route_update_success_title
+import org.scottishtecharmy.soundscape.resources.routes_action_deleted
+import org.scottishtecharmy.soundscape.resources.waypoint_title
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.TextOnlyAppBar
+import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
+import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
+import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import sh.calvin.reorderable.ReorderableItem
+import sh.calvin.reorderable.rememberReorderableLazyListState
 
 @Composable
 fun SharedAddAndEditRouteScreen(
-    isEditing: Boolean = false,
-    routeName: String = "",
-    routeDescription: String = "",
-    waypoints: List<LocationDescription> = emptyList(),
-    availableMarkers: List<LocationDescription> = emptyList(),
+    holder: AddAndEditRouteStateHolder,
+    isEditing: Boolean,
+    userLocation: LngLatAlt?,
+    heading: Float,
+    getCurrentLocationDescription: () -> LocationDescription,
     onNavigateUp: () -> Unit,
-    onSave: (name: String, description: String, waypoints: List<LocationDescription>) -> Unit,
-    onDelete: (() -> Unit)? = null,
+    onSaveComplete: () -> Unit,
+    onDeleteComplete: () -> Unit,
+    onShowError: (String) -> Unit = {},
+    onShowSuccess: (String) -> Unit = {},
+    modifier: Modifier = Modifier,
 ) {
-    var name by remember { mutableStateOf(routeName) }
-    var description by remember { mutableStateOf(routeDescription) }
-    var currentWaypoints by remember { mutableStateOf(waypoints) }
-    var showAddWaypoints by remember { mutableStateOf(false) }
+    val uiState by holder.uiState.collectAsState()
+    val placesNearbyUiState by holder.logic.uiState.collectAsState()
 
-    if (showAddWaypoints) {
-        AddWaypointSelectionScreen(
-            currentWaypoints = currentWaypoints,
-            availableMarkers = availableMarkers,
-            onBack = { showAddWaypoints = false },
-            onSelectWaypoint = { desc ->
-                currentWaypoints = currentWaypoints + desc
-                showAddWaypoints = false
+    var addWaypointDialog by remember { mutableStateOf(false) }
+    var routeMembers by remember(uiState.routeMembers) {
+        val members = uiState.routeMembers.toList()
+        for ((index, marker) in members.withIndex()) {
+            marker.orderId = index.toLong()
+        }
+        mutableStateOf(members)
+    }
+
+    val lazyListState = rememberLazyListState()
+    val reorderableLazyListState = rememberReorderableLazyListState(lazyListState) { from, to ->
+        routeMembers = routeMembers.toMutableList().apply {
+            add(to.index, removeAt(from.index))
+        }
+    }
+
+    LaunchedEffect(uiState.errorMessage) {
+        uiState.errorMessage?.let { message ->
+            onShowError(message)
+            holder.clearErrorMessage()
+        }
+    }
+
+    LaunchedEffect(uiState.doneActionCompleted) {
+        if (uiState.doneActionCompleted) {
+            val actionType = uiState.actionType
+            holder.resetDoneActionState()
+            when (actionType) {
+                ActionType.UPDATE -> {
+                    onShowSuccess(getString(Res.string.route_update_success_title))
+                    onSaveComplete()
+                }
+                ActionType.DELETE -> {
+                    onShowSuccess(getString(Res.string.routes_action_deleted))
+                    onDeleteComplete()
+                }
+                else -> Unit
+            }
+        }
+    }
+
+    if (addWaypointDialog) {
+        AddWaypointsDialog(
+            uiState = uiState,
+            placesNearbyUiState = placesNearbyUiState,
+            modifier = modifier,
+            onAddWaypointComplete = {
+                val keepIds = uiState.routeMembers
+                    .filter { marker -> !uiState.toggledMembers.any { it.databaseId == marker.databaseId } }
+                    .map { it.databaseId }
+                    .toSet()
+
+                val routeMemberIds = routeMembers.map { it.databaseId }.toSet()
+                val members = routeMembers
+                    .filter { it.databaseId in keepIds }
+                    .toMutableList()
+
+                val missingFromReorder = uiState.routeMembers
+                    .filter { it.databaseId in keepIds && it.databaseId !in routeMemberIds }
+                members.addAll(missingFromReorder)
+
+                for (marker in uiState.toggledMembers) {
+                    if (!uiState.routeMembers.any { it.databaseId == marker.databaseId }) {
+                        members.add(marker)
+                    }
+                }
+                for ((index, marker) in members.withIndex()) {
+                    marker.orderId = index.toLong()
+                }
+
+                routeMembers = members
+                addWaypointDialog = false
             },
+            onClickFolder = { filter, title -> holder.onClickFolder(filter, title) },
+            onClickBack = {
+                if (placesNearbyUiState.level == 0) {
+                    addWaypointDialog = false
+                } else {
+                    holder.onClickBack()
+                }
+            },
+            onSelectLocation = { holder.onSelectLocation(it) },
+            onToggleMember = { holder.toggleMember(it) },
+            createAndAddMarker = { desc, success, failure, duplicate ->
+                holder.createAndAddMarker(desc, success, failure, duplicate)
+            },
+            userLocation = userLocation,
+            heading = heading,
+            getCurrentLocationDescription = getCurrentLocationDescription,
         )
     } else {
         Scaffold(
+            modifier = modifier,
             topBar = {
-                CustomAppBar(
-                    title = if (isEditing) stringResource(Res.string.route_detail_action_edit)
-                            else stringResource(Res.string.route_detail_action_create),
+                TextOnlyAppBar(
+                    title = stringResource(
+                        if (isEditing) Res.string.route_detail_action_edit
+                        else Res.string.route_detail_action_create
+                    ),
                     onNavigateUp = onNavigateUp,
+                    navigationButtonTitle = stringResource(Res.string.general_alert_cancel),
+                    onRightButton = { holder.editComplete(routeMembers) },
                     rightButtonTitle = stringResource(Res.string.general_alert_done),
-                    onRightButton = {
-                        if (name.isNotBlank()) {
-                            onSave(name, description, currentWaypoints)
-                        }
-                    },
                 )
             },
-        ) { padding ->
-            Column(
-                modifier = Modifier
-                    .padding(padding)
-                    .fillMaxSize()
-                    .padding(horizontal = spacing.medium),
-            ) {
-                // Route name
-                CustomTextField(
-                    fieldName = stringResource(Res.string.markers_sort_button_sort_by_name),
-                    fieldHint = stringResource(Res.string.route_name_description_hint),
-                    value = name,
-                    onValueChange = { name = it },
-                    modifier = Modifier.fillMaxWidth(),
-                )
-
-                Spacer(modifier = Modifier.height(spacing.small))
-
-                // Route description
-                CustomTextField(
-                    fieldName = stringResource(Res.string.route_detail_edit_description),
-                    fieldHint = stringResource(Res.string.route_detail_edit_description),
-                    value = description,
-                    onValueChange = { description = it },
-                    modifier = Modifier.fillMaxWidth(),
-                )
-
-                Spacer(modifier = Modifier.height(spacing.medium))
-
-                // Waypoints header with add button
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(
+            bottomBar = {
+                Column {
+                    if (isEditing) {
+                        CustomButton(
+                            onClick = {
+                                uiState.routeObjectId?.let { holder.deleteRoute(it) }
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .mediumPadding(),
+                            buttonColor = MaterialTheme.colorScheme.errorContainer,
+                            contentColor = MaterialTheme.colorScheme.onErrorContainer,
+                            shape = RoundedCornerShape(spacing.small),
+                            text = stringResource(Res.string.route_detail_edit_delete),
+                            textStyle = MaterialTheme.typography.bodyLarge,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    }
+                    CustomButton(
+                        Modifier
+                            .fillMaxWidth()
+                            .smallPadding(),
+                        onClick = { addWaypointDialog = true },
+                        shape = RoundedCornerShape(spacing.small),
                         text = stringResource(Res.string.route_detail_edit_waypoints_button),
-                        style = MaterialTheme.typography.titleMedium,
+                        textStyle = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Bold,
                     )
-                    IconButton(onClick = { showAddWaypoints = true }) {
-                        Icon(Icons.Filled.Add, contentDescription = stringResource(Res.string.route_detail_edit_waypoints_button))
-                    }
                 }
+            },
+            content = { padding ->
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .extraSmallPadding(),
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxSize()
+                            .padding(padding)
+                            .extraSmallPadding(),
+                    ) {
+                        CustomTextField(
+                            fieldName = stringResource(Res.string.markers_sort_button_sort_by_name),
+                            fieldHint = stringResource(Res.string.route_name_description_hint),
+                            modifier = Modifier.fillMaxWidth(),
+                            value = uiState.name,
+                            onValueChange = { holder.onNameChange(it) },
+                        )
+                        Spacer(modifier = Modifier.height(spacing.medium))
+                        CustomTextField(
+                            fieldName = stringResource(Res.string.route_detail_edit_description),
+                            fieldHint = stringResource(Res.string.route_description_description_hint),
+                            modifier = Modifier.fillMaxWidth(),
+                            value = uiState.description,
+                            onValueChange = { holder.onDescriptionChange(it) },
+                        )
 
-                // Waypoints list
-                if (currentWaypoints.isEmpty()) {
-                    Text(
-                        text = stringResource(Res.string.route_detail_action_start_route_disabled_hint),
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        modifier = Modifier.padding(vertical = spacing.small),
-                    )
-                } else {
-                    LazyColumn(modifier = Modifier.weight(1f)) {
-                        itemsIndexed(currentWaypoints) { index, waypoint ->
-                            LocationItem(
-                                item = waypoint,
-                                decoration = LocationItemDecoration(
-                                    index = index,
-                                    editRoute = EnabledFunction(
-                                        enabled = true,
-                                        value = true,
-                                        functionBoolean = {
-                                            currentWaypoints = currentWaypoints.toMutableList().also {
-                                                it.removeAt(index)
-                                            }
-                                        },
-                                        hintWhenOn = stringResource(Res.string.route_detail_edit_delete),
-                                        hintWhenOff = "",
-                                    ),
-                                ),
-                                userLocation = null,
+                        HorizontalDivider(
+                            thickness = spacing.tiny,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .mediumPadding(),
+                        )
+
+                        if (routeMembers.isEmpty()) {
+                            Text(
+                                stringResource(Res.string.route_detail_action_start_route_disabled_hint),
+                                textAlign = TextAlign.Center,
+                                style = MaterialTheme.typography.bodyMedium,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = spacing.large),
                             )
+                        } else {
+                            LazyColumn(
+                                state = lazyListState,
+                                verticalArrangement = Arrangement.spacedBy(spacing.tiny),
+                            ) {
+                                itemsIndexed(routeMembers, key = { _, item -> item.orderId.toString() }) { index, item ->
+                                    ReorderableItem(reorderableLazyListState, item.orderId.toString()) { _ ->
+                                        Row(modifier = Modifier
+                                            .background(MaterialTheme.colorScheme.surface)
+                                        ) {
+                                            LocationItem(
+                                                item = item,
+                                                modifier = Modifier.weight(1f),
+                                                decoration = LocationItemDecoration(
+                                                    index = index,
+                                                    indexDescription = stringResource(Res.string.waypoint_title),
+                                                    reorderable = true,
+                                                    moveDown = { i ->
+                                                        if (i < routeMembers.size - 1) {
+                                                            routeMembers = routeMembers.toMutableList().apply {
+                                                                add(i + 1, removeAt(i))
+                                                            }
+                                                            true
+                                                        } else {
+                                                            false
+                                                        }
+                                                    },
+                                                    moveUp = { i ->
+                                                        if (i > 0) {
+                                                            routeMembers = routeMembers.toMutableList().apply {
+                                                                add(i - 1, removeAt(i))
+                                                            }
+                                                            true
+                                                        } else {
+                                                            false
+                                                        }
+                                                    },
+                                                ),
+                                                userLocation = userLocation,
+                                            )
+
+                                            IconButton(
+                                                modifier = Modifier
+                                                    .draggableHandle()
+                                                    .width(spacing.targetSize)
+                                                    .align(Alignment.CenterVertically),
+                                                onClick = {},
+                                            ) {
+                                                Icon(
+                                                    imageVector = Icons.Rounded.DragIndicator,
+                                                    contentDescription = "",
+                                                    modifier = Modifier.size(spacing.targetSize),
+                                                    tint = MaterialTheme.colorScheme.onSurface,
+                                                )
+                                            }
+                                        }
+                                        HorizontalDivider(
+                                            thickness = spacing.tiny,
+                                            color = MaterialTheme.colorScheme.outlineVariant,
+                                        )
+                                    }
+                                }
+                            }
                         }
                     }
                 }
-
-                // Delete route button (only when editing)
-                if (isEditing && onDelete != null) {
-                    Spacer(modifier = Modifier.height(spacing.medium))
-                    Button(
-                        onClick = onDelete,
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(spacing.small),
-                    ) {
-                        Text(stringResource(Res.string.route_detail_edit_delete))
-                    }
-                }
-            }
-        }
+            },
+        )
     }
 }
 
-@Composable
-private fun AddWaypointSelectionScreen(
-    currentWaypoints: List<LocationDescription>,
-    availableMarkers: List<LocationDescription>,
-    onBack: () -> Unit,
-    onSelectWaypoint: (LocationDescription) -> Unit,
-) {
-    val currentIds = currentWaypoints.map { it.databaseId }.toSet()
-    val available = availableMarkers.filter { it.databaseId !in currentIds }
-
-    Scaffold(
-        topBar = {
-            CustomAppBar(
-                title = stringResource(Res.string.route_detail_edit_waypoints_button),
-                onNavigateUp = onBack,
-            )
-        },
-    ) { padding ->
-        if (available.isEmpty()) {
-            Column(
-                modifier = Modifier
-                    .padding(padding)
-                    .fillMaxSize()
-                    .padding(spacing.large),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center,
-            ) {
-                Text(
-                    text = stringResource(Res.string.markers_no_markers_title),
-                    style = MaterialTheme.typography.titleMedium,
-                )
-                Spacer(modifier = Modifier.height(spacing.small))
-                Text(
-                    text = stringResource(Res.string.markers_no_markers_hint_2),
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        } else {
-            LazyColumn(
-                modifier = Modifier
-                    .padding(padding)
-                    .fillMaxSize(),
-            ) {
-                itemsIndexed(available) { index, marker ->
-                    if (index == 0) {
-                        HorizontalDivider(thickness = spacing.tiny)
-                    }
-                    LocationItem(
-                        item = marker,
-                        decoration = LocationItemDecoration(
-                            location = true,
-                            details = EnabledFunction(
-                                enabled = true,
-                                functionLocation = onSelectWaypoint,
-                            ),
-                        ),
-                        userLocation = null,
-                    )
-                }
-            }
-        }
-    }
-}

@@ -315,8 +315,6 @@ dependencies {
     // Leak canary
     debugImplementation(libs.leakcanary.android)
 
-    implementation(libs.reorderable)
-
     implementation(libs.symbol.processing.api)
 
     // Markdown to HTML converter for Help screens

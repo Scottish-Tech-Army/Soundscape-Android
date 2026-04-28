@@ -40,9 +40,6 @@ import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreviewCall
 import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreviewDebug
 import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreviewOfflineMaps
 import org.scottishtecharmy.soundscape.screens.home.settings.SettingsPreviewSearch
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddWaypointsScreenPopulatedPreview
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.EditRouteScreenPreview
-import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.NewRouteScreenPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreenPopulatedPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RoutesDetailsPopulatedPreview
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreenPopulatedPreview
@@ -278,24 +275,6 @@ class ThemeTestClass {
     @CustomPreviews
     @Composable
     @PreviewTest
-    fun NewRouteScreenPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) {
-            NewRouteScreenPreview()
-        }
-    }
-
-    @CustomPreviews
-    @Composable
-    @PreviewTest
-    fun EditRouteScreenPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) {
-            EditRouteScreenPreview()
-        }
-    }
-
-    @CustomPreviews
-    @Composable
-    @PreviewTest
     fun RouteDetailsPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) {
             RoutesDetailsPopulatedPreview()
@@ -507,15 +486,6 @@ class ThemeTestClass {
     fun PreviewDrawerContentTest() {
         SoundscapeTheme(testTheme = testTheme) {
             PreviewDrawerContent()
-        }
-    }
-
-    @CustomPreviews
-    @Composable
-    @PreviewTest
-    fun AddWaypointsScreenPopulatedPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) {
-            AddWaypointsScreenPopulatedPreview()
         }
     }
 

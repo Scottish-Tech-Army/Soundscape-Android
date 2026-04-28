@@ -282,39 +282,55 @@ fun SharedNavHost(
         }
 
         composable(SharedRoutes.ADD_ROUTE) {
-            val markersState by flows.markersUiState?.collectAsState()
-                ?: remember { mutableStateOf(MarkersAndRoutesUiState()) }
-            SharedAddAndEditRouteScreen(
-                availableMarkers = markersState.entries,
-                onNavigateUp = { navController.popBackStack() },
-                onSave = { name, desc, waypoints ->
-                    callbacks.onSaveRoute(name, desc, waypoints)
-                    navController.popBackStack(SharedRoutes.MARKERS_AND_ROUTES, inclusive = false)
-                },
-            )
+            val factory = callbacks.createAddAndEditRouteStateHolder
+            if (factory != null) {
+                val homeState by flows.homeState?.collectAsState()
+                    ?: remember { mutableStateOf(HomeState()) }
+                val holder = remember { factory() }
+                DisposableEffect(holder) {
+                    holder.loadMarkers()
+                    onDispose { holder.dispose() }
+                }
+                SharedAddAndEditRouteScreen(
+                    holder = holder,
+                    isEditing = false,
+                    userLocation = homeState.location,
+                    heading = homeState.heading,
+                    getCurrentLocationDescription = callbacks.onGetCurrentLocationDescription,
+                    onNavigateUp = { navController.popBackStack() },
+                    onSaveComplete = {
+                        navController.popBackStack(SharedRoutes.MARKERS_AND_ROUTES, inclusive = false)
+                    },
+                    onDeleteComplete = {
+                        navController.popBackStack(SharedRoutes.MARKERS_AND_ROUTES, inclusive = false)
+                    },
+                )
+            }
         }
 
         composable(SharedRoutes.EDIT_ROUTE) {
-            val markersState by flows.markersUiState?.collectAsState()
-                ?: remember { mutableStateOf(MarkersAndRoutesUiState()) }
+            val factory = callbacks.createAddAndEditRouteStateHolder
             val routeDesc = navStateHolder.selectedLocation.collectAsState().value
-            if (routeDesc != null) {
-                val routeWaypoints = remember(routeDesc.databaseId) {
-                    callbacks.onLoadRoute(routeDesc.databaseId) ?: emptyList()
+            if (factory != null && routeDesc != null) {
+                val homeState by flows.homeState?.collectAsState()
+                    ?: remember { mutableStateOf(HomeState()) }
+                val holder = remember(routeDesc.databaseId) { factory() }
+                DisposableEffect(holder) {
+                    holder.loadMarkers()
+                    holder.initializeRouteFromDatabase(routeDesc.databaseId)
+                    onDispose { holder.dispose() }
                 }
                 SharedAddAndEditRouteScreen(
+                    holder = holder,
                     isEditing = true,
-                    routeName = routeDesc.name,
-                    routeDescription = routeDesc.description ?: "",
-                    waypoints = routeWaypoints,
-                    availableMarkers = markersState.entries,
+                    userLocation = homeState.location,
+                    heading = homeState.heading,
+                    getCurrentLocationDescription = callbacks.onGetCurrentLocationDescription,
                     onNavigateUp = { navController.popBackStack() },
-                    onSave = { name, desc, waypoints ->
-                        callbacks.onSaveRoute(name, desc, waypoints)
+                    onSaveComplete = {
                         navController.popBackStack(SharedRoutes.MARKERS_AND_ROUTES, inclusive = false)
                     },
-                    onDelete = {
-                        callbacks.onDeleteRoute(routeDesc.databaseId)
+                    onDeleteComplete = {
                         navController.popBackStack(SharedRoutes.MARKERS_AND_ROUTES, inclusive = false)
                     },
                 )
