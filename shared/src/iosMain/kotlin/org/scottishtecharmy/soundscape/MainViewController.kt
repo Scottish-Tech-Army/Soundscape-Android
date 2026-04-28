@@ -171,7 +171,7 @@ fun MainViewController() = ComposeUIViewController {
             onGetCurrentLocationDescription = {
                 val location = homeStateHolder.state.value.location
                 if (location != null) {
-                    LocationDescription("", location)
+                    service.getLocationDescription(location)
                 } else {
                     LocationDescription("", LngLatAlt())
                 }
@@ -220,11 +220,13 @@ private fun buildShareLocationText(
     val soundscapeUrl =
         "https://links.soundscape.scottishtecharmy.org/v1/sharemarker?" +
             "lat=$latitude&lon=$longitude&name=$encodedName"
-    val googleMapsUrl = "https://www.google.com/maps/?q=$latitude,$longitude"
+    val appleMapsUrl =
+        "https://maps.apple.com/?q=$encodedName&ll=$latitude,$longitude"
     return messageTemplate
+        .replace("Google Maps", "Apple Maps")
         .replace("%1\$s", desc.name)
         .replace("%2\$s", soundscapeUrl)
-        .replace("%3\$s", googleMapsUrl)
+        .replace("%3\$s", appleMapsUrl)
 }
 
 private fun formatCoordinate(value: Double): String {

@@ -461,6 +461,10 @@ fun SharedNavHost(
     }
 }
 
+private object MarkersAndRoutesTabMemory {
+    var selected: Int = 1
+}
+
 @Composable
 private fun MarkersAndRoutesContainer(
     flows: AppFlows,
@@ -471,8 +475,9 @@ private fun MarkersAndRoutesContainer(
     onSelectMarker: (LocationDescription) -> Unit = {},
     onSelectRoute: (LocationDescription) -> Unit = {},
 ) {
-    var selectedTab by remember { mutableStateOf(1) }
+    var selectedTab by remember { mutableStateOf(MarkersAndRoutesTabMemory.selected) }
     LaunchedEffect(selectedTab) {
+        MarkersAndRoutesTabMemory.selected = selectedTab
         when (selectedTab) {
             0 -> audioTour?.onMarkers()
             1 -> audioTour?.onMarkerAndRoutes()
