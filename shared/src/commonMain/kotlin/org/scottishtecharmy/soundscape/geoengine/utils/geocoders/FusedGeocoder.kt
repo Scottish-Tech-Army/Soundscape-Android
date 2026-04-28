@@ -47,12 +47,17 @@ class FusedGeocoder(
         var streetResult: LocationDescription? = null
         if(platformResults != null) {
             for (platformResult in platformResults) {
+                println("Platform: $platformResult")
                 if(platformResult.locationType == LocationType.StreetNumber) {
                     streetResult = platformResult
-                    if(locationName.containsNumber())
-                        streetResult.name = streetResult.description?.substringBefore(", ") ?: streetResult.name
+                    if(locationName.containsNumber()) {
+                        streetResult.name =
+                            streetResult.description?.substringBefore(", ") ?: streetResult.name
+                        println("Platform contains number: ${streetResult.name}")
+                    }
 
-                    results.add(platformResult)
+                    results.add(streetResult)
+                    println("Use platform result")
                     break
                 }
             }
@@ -60,13 +65,16 @@ class FusedGeocoder(
         val photonResults = if(geocoderList.size > 1) geocoderResults[1] else geocoderResults[0]
         if(photonResults != null) {
             for (photonResult in photonResults) {
+                println("Photon: $photonResult")
                 if(streetResult != null) {
+                    println("streetResult was set, see if we can improve the name")
                     if(photonResult.locationType == LocationType.StreetNumber) {
                         if (gridState.ruler.distance(
                                 streetResult.location,
                                 photonResult.location
                             ) < 100.0
                         ) {
+                            println("Using photon result")
                             streetResult.name = photonResult.name
                             streetResult.location = photonResult.location
                             streetResult.typeDescription = photonResult.typeDescription

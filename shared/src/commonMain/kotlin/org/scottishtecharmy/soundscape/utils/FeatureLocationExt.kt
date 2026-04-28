@@ -50,8 +50,10 @@ fun LocationDescription.process() {
             val mvt = (feature as? MvtFeature)
             var nameLocal: String? = null
 
+            println("$featureName")
             feature.properties?.let { properties ->
                 properties.forEach { (key, value) ->
+                    println("$key -> $value")
                     when (key) {
                         "countrycode" -> jsonFields["country_code"] = value.toString()
                         "housenumber" -> {
@@ -82,7 +84,7 @@ fun LocationDescription.process() {
                         "postcode", "country", "state" -> {}
                     }
                 }
-                nameLocal = properties["name"] as String?
+                //nameLocal = properties["name"] as String?
                 if (mvt != null) {
                     if (mvt.housenumber != null) {
                         jsonFields["house_number"] = mvt.housenumber!!

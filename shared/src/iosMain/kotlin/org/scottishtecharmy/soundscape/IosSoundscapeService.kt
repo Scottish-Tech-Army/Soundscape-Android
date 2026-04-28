@@ -28,6 +28,7 @@ import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.IosGeocoder
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.speakCalloutCommon
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
@@ -241,7 +242,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
             offlineExtractPath = documentsPath,
             hasNetwork = { true }, // TODO: check reachability
             photonSearch = photonSearch,
-            platformGeocoder = null,
+            platformGeocoder = IosGeocoder(),
             streetPreviewEnabled = false,
         )
         geoEngineStarted = true
