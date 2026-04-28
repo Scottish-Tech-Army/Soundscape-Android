@@ -104,6 +104,32 @@ class AddAndEditRouteStateHolder(
         }
     }
 
+    /**
+     * Pre-populates the holder from an imported (unsaved) RouteWithMarkers, e.g.
+     * the result of opening a Soundscape JSON or GPX file. Markers are presented
+     * as routeMembers with synthetic order ids so the user can review and save.
+     */
+    fun initializeFromImport(route: RouteWithMarkers) {
+        val members = route.markers.mapIndexed { index, waypoint ->
+            LocationDescription(
+                name = waypoint.name,
+                location = LngLatAlt(waypoint.longitude, waypoint.latitude),
+                description = waypoint.fullAddress,
+                orderId = index.toLong(),
+                databaseId = 0L,
+            )
+        }
+        val name = route.route.name
+        val description = route.route.description
+        _uiState.value = _uiState.value.copy(
+            name = name,
+            description = description,
+            routeMembers = members,
+            routeObjectId = 0L,
+            showDoneButton = name.isNotBlank() && description.isNotBlank(),
+        )
+    }
+
     fun initializeRouteFromDatabase(routeId: Long) {
         scope.launch {
             try {

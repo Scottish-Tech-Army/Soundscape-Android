@@ -35,6 +35,8 @@ import org.scottishtecharmy.soundscape.geoengine.speakCalloutCommon
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.intents.IncomingIntent
+import org.scottishtecharmy.soundscape.intents.resolveRouteByName
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
@@ -112,6 +114,33 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     private val _beaconFlow = MutableStateFlow(BeaconState())
     override val beaconFlow: StateFlow<BeaconState> = _beaconFlow.asStateFlow()
     private var beaconHandle: Long? = null
+
+    // Pending intent flow — populated by Swift IntentBridge from onOpenURL etc.
+    private val _pendingIntent = MutableStateFlow<IncomingIntent?>(null)
+    val pendingIntent: StateFlow<IncomingIntent?> = _pendingIntent.asStateFlow()
+
+    /**
+     * Publishes a parsed inbound intent into the shared navigation pipeline.
+     * If the intent is a name-based route launch, the name is resolved against
+     * the route DAO on a background coroutine before being republished as a
+     * concrete StartRoute(routeId).
+     */
+    fun publishPendingIntent(intent: IncomingIntent) {
+        if (intent is IncomingIntent.StartRouteByName) {
+            scope.launch {
+                val id = resolveRouteByName(routeDao, intent.name)
+                if (id != null) {
+                    _pendingIntent.value = IncomingIntent.StartRoute(id)
+                }
+            }
+        } else {
+            _pendingIntent.value = intent
+        }
+    }
+
+    fun pendingIntentHandled() {
+        _pendingIntent.value = null
+    }
 
     // Route player and audio menu
     lateinit var routePlayer: RoutePlayer

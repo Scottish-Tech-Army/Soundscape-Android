@@ -6,6 +6,11 @@ import androidx.compose.ui.window.ComposeUIViewController
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.scottishtecharmy.soundscape.audio.TourButton
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.intents.IncomingIntent
+import org.scottishtecharmy.soundscape.intents.resolveRouteByName
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.platform.readResourceText
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
@@ -77,6 +82,8 @@ fun MainViewController() = ComposeUIViewController {
             recordingEnabled = recordingEnabled,
             permissionsRequired = permissionsRequired,
             voiceCommandListening = voiceCommandListening,
+            pendingIntent = service.pendingIntent,
+            onPendingIntentHandled = { service.pendingIntentHandled() },
         ),
         callbacks = AppCallbacks(
             onStartBeacon = { lat, lng, name ->
@@ -90,6 +97,12 @@ fun MainViewController() = ComposeUIViewController {
             onSpeak = { text -> service.speakCallout(text) },
             onStartRoute = { routeId -> service.routeStartById(routeId) },
             onStartRouteInReverse = { routeId -> service.routeStartReverse(routeId) },
+            onStartRouteByName = { name ->
+                CoroutineScope(Dispatchers.Default).launch {
+                    val id = resolveRouteByName(service.routeDao, name)
+                    if (id != null) service.routeStartById(id)
+                }
+            },
             onRouteStop = {
                 service.routeStop()
                 audioTour.onBeaconStopped()

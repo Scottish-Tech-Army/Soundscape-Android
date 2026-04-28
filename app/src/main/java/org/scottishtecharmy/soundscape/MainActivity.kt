@@ -698,6 +698,22 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Resolves a route name to a routeId via the shared fuzzy-match resolver, then
+     * starts playback. Used by the IncomingIntent.StartRouteByName dispatch path.
+     */
+    fun startRouteByName(name: String) {
+        val db = org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider.getInstance(applicationContext)
+        lifecycleScope.launch {
+            val id = org.scottishtecharmy.soundscape.intents.resolveRouteByName(db.routeDao(), name)
+            if (id != null) {
+                soundscapeServiceConnection.routeStart(id)
+            } else {
+                Log.w(TAG, "No route found matching name: $name")
+            }
+        }
+    }
+
     fun shareRoute(shareUri: Uri?) {
         if(shareUri != null) {
             val sendIntent: Intent =

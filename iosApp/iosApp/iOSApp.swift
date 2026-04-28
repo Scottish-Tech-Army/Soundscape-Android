@@ -7,6 +7,14 @@ struct iOSApp: App {
         WindowGroup {
             ComposeView()
                 .ignoresSafeArea(.all)
+                .onOpenURL { url in
+                    IntentBridge.shared.handle(url: url)
+                }
+                .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { activity in
+                    if let url = activity.webpageURL {
+                        IntentBridge.shared.handle(url: url)
+                    }
+                }
         }
     }
 }

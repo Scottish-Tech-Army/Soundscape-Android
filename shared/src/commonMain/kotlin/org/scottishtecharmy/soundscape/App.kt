@@ -13,6 +13,7 @@ import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.audio.AudioTourInstruction
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.intents.IncomingIntent
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import org.scottishtecharmy.soundscape.navigation.NavigationStateHolder
@@ -35,6 +36,7 @@ data class AppCallbacks(
     val onSpeak: (String) -> Unit = {},
     val onStartRoute: (Long) -> Unit = {},
     val onStartRouteInReverse: (Long) -> Unit = {},
+    val onStartRouteByName: (String) -> Unit = {},
     val onMyLocation: () -> Unit = {},
     val onWhatsAroundMe: () -> Unit = {},
     val onAheadOfMe: () -> Unit = {},
@@ -95,6 +97,13 @@ data class AppFlows(
     val recordingEnabled: StateFlow<Boolean>? = null,
     val permissionsRequired: StateFlow<Boolean>? = null,
     val voiceCommandListening: StateFlow<Boolean>? = null,
+    /**
+     * Single-shot inbound intent (URL, file import, deep link) emitted by the
+     * platform launch handler. SharedNavHost dispatches to navigation/callbacks
+     * and then invokes [onPendingIntentHandled] so the publisher can clear it.
+     */
+    val pendingIntent: StateFlow<IncomingIntent?>? = null,
+    val onPendingIntentHandled: (() -> Unit)? = null,
 )
 
 @Composable

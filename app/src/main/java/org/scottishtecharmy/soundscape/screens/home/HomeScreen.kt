@@ -36,6 +36,7 @@ import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.audio.TourButton
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.intents.IntentEventBus
 import org.scottishtecharmy.soundscape.navigation.NavigationStateHolder
 import org.scottishtecharmy.soundscape.navigation.SharedNavHost
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
@@ -85,6 +86,7 @@ fun HomeScreen(
     val context = LocalContext.current
     val activity = LocalActivity.current as MainActivity
     val serviceConnection: SoundscapeServiceConnection = koinInject()
+    val intentBus: IntentEventBus = koinInject()
 
     val audioTourRunningFlow = remember(audioTour) { MutableStateFlow(audioTour.isRunning()) }
     LaunchedEffect(audioTour) {
@@ -126,7 +128,7 @@ fun HomeScreen(
         }
     }
 
-    val flows = remember(audioTour, audioTourRunningFlow, recordingEnabledFlow, permissionsRequiredFlow, voiceCommandListeningFlow) {
+    val flows = remember(audioTour, audioTourRunningFlow, recordingEnabledFlow, permissionsRequiredFlow, voiceCommandListeningFlow, intentBus) {
         AppFlows(
             homeState = viewModel.state,
             audioTourRunning = audioTourRunningFlow.asStateFlow(),
@@ -134,6 +136,8 @@ fun HomeScreen(
             recordingEnabled = recordingEnabledFlow.asStateFlow(),
             permissionsRequired = permissionsRequiredFlow.asStateFlow(),
             voiceCommandListening = voiceCommandListeningFlow,
+            pendingIntent = intentBus.pendingIntent,
+            onPendingIntentHandled = { intentBus.handled() },
         )
     }
 
@@ -143,6 +147,8 @@ fun HomeScreen(
                 serviceConnection.soundscapeService?.createBeacon(LngLatAlt(lng, lat), headingOnly = false)
             },
             onStopBeacon = { serviceConnection.soundscapeService?.destroyBeacon() },
+            onStartRoute = { routeId -> serviceConnection.routeStart(routeId) },
+            onStartRouteByName = { name -> activity.startRouteByName(name) },
             onMyLocation = { viewModel.myLocation(); audioTour.onButtonPressed(TourButton.MY_LOCATION) },
             onWhatsAroundMe = { viewModel.whatsAroundMe(); audioTour.onButtonPressed(TourButton.AROUND_ME) },
             onAheadOfMe = { viewModel.aheadOfMe(); audioTour.onButtonPressed(TourButton.AHEAD_OF_ME) },

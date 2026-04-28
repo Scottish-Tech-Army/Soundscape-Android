@@ -8,6 +8,7 @@ configFiles:
   Release: Local.xcconfig
 settings:
   ENABLE_BITCODE: "NO"
+  #DEVELOPMENT_TEAM: 48N3J4V5KM
 packages:
   MapLibre:
     url: https://github.com/maplibre/maplibre-gl-native-distribution
@@ -19,6 +20,8 @@ targets:
     dependencies:
       - package: MapLibre
         product: MapLibre
+      - target: ShareExtension
+        embed: true
     sources:
       - path: iosApp
       - path: ../shared/src/commonMain/resources/address
@@ -42,6 +45,40 @@ targets:
         TileProviderURL: "$(TILE_PROVIDER_URL)"
         SearchProviderURL: "$(SEARCH_PROVIDER_URL)"
         ExtractProviderURL: "$(EXTRACT_PROVIDER_URL)"
+        LSSupportsOpeningDocumentsInPlace: true
+        CFBundleURLTypes:
+          - CFBundleURLName: org.scottishtecharmy.soundscape.geo
+            CFBundleURLSchemes: [geo]
+          - CFBundleURLName: org.scottishtecharmy.soundscape.soundscape
+            CFBundleURLSchemes: [soundscape]
+        CFBundleDocumentTypes:
+          - CFBundleTypeName: Soundscape Route
+            LSHandlerRank: Owner
+            LSItemContentTypes:
+              - org.scottishtecharmy.soundscape.route-json
+              - public.json
+            CFBundleTypeRole: Editor
+          - CFBundleTypeName: GPX Route
+            LSHandlerRank: Alternate
+            LSItemContentTypes:
+              - com.topografix.gpx
+              - public.xml
+            CFBundleTypeRole: Viewer
+        UTImportedTypeDeclarations:
+          - UTTypeIdentifier: org.scottishtecharmy.soundscape.route-json
+            UTTypeDescription: Soundscape Route
+            UTTypeConformsTo:
+              - public.json
+            UTTypeTagSpecification:
+              public.filename-extension:
+                - json
+          - UTTypeIdentifier: com.topografix.gpx
+            UTTypeDescription: GPX File
+            UTTypeConformsTo:
+              - public.xml
+            UTTypeTagSpecification:
+              public.filename-extension:
+                - gpx
     settings:
       FRAMEWORK_SEARCH_PATHS:
         - "$(inherited)"
@@ -50,9 +87,35 @@ targets:
         - "$(inherited)"
         - "-framework"
         - "Shared"
+      # Re-enable once a paid team is configured (DEVELOPMENT_TEAM above).
+      # The entitlements file requests the Associated Domains capability for
+      # universal links, which Personal Teams cannot sign.
+      #CODE_SIGN_ENTITLEMENTS: iosApp/iosApp.entitlements
     preBuildScripts:
       - name: "Build Kotlin Framework"
         script: |
           cd "$SRCROOT/.."
           ./gradlew :shared:embedAndSignAppleFrameworkForXcode
         basedOnDependencyAnalysis: false
+
+  ShareExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: ShareExtension
+        excludes:
+          - Info.plist
+    info:
+      path: ShareExtension/Info.plist
+      properties:
+        CFBundleDisplayName: Soundscape
+        LSApplicationQueriesSchemes:
+          - soundscape
+        NSExtension:
+          NSExtensionAttributes:
+            NSExtensionActivationRule: 'SUBQUERY(extensionItems, $extensionItem, SUBQUERY($extensionItem.attachments, $attachment, ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "com.apple.mapkit.map-item" || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.url" || ANY $attachment.registeredTypeIdentifiers UTI-CONFORMS-TO "public.plain-text").@count > 0).@count > 0'
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: org.scottishtecharmy.soundscape.iosApp.ShareExtension
+      SKIP_INSTALL: "YES"

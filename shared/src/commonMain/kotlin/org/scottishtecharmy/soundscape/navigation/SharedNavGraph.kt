@@ -27,6 +27,7 @@ import org.scottishtecharmy.soundscape.AppFlows
 import org.scottishtecharmy.soundscape.audio.AudioEngine
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.intents.IncomingIntent
 import org.scottishtecharmy.soundscape.network.DownloadStateCommon
 import org.scottishtecharmy.soundscape.screens.home.HomeState
 import org.scottishtecharmy.soundscape.screens.home.home.AudioTourInstructionDialog
@@ -69,6 +70,40 @@ fun SharedNavHost(
     settingsContent: (@Composable (NavHostController) -> Unit)? = null,
     platformNavBuilder: (NavGraphBuilder.() -> Unit)? = null,
 ) {
+    val pendingIntent by flows.pendingIntent?.collectAsState()
+        ?: remember { mutableStateOf<IncomingIntent?>(null) }
+    LaunchedEffect(pendingIntent) {
+        val intent = pendingIntent ?: return@LaunchedEffect
+        when (intent) {
+            is IncomingIntent.OpenLocation -> {
+                navStateHolder.setSelectedLocation(intent.locationDescription)
+                navController.navigate(SharedRoutes.LOCATION_DETAILS)
+            }
+            is IncomingIntent.OpenLatLon -> {
+                val displayName = intent.displayName ?: "${intent.latitude},${intent.longitude}"
+                navStateHolder.setSelectedLocation(
+                    org.scottishtecharmy.soundscape.screens.home.data.LocationDescription(
+                        name = displayName,
+                        location = LngLatAlt(intent.longitude, intent.latitude),
+                    )
+                )
+                navController.navigate(SharedRoutes.LOCATION_DETAILS)
+            }
+            is IncomingIntent.StartRoute -> callbacks.onStartRoute(intent.routeId)
+            IncomingIntent.StopRoute -> callbacks.onRouteStop()
+            is IncomingIntent.OpenFeature -> {
+                MarkersAndRoutesTabMemory.selected = if (intent.tab == "markers") 0 else 1
+                navController.navigate(SharedRoutes.MARKERS_AND_ROUTES)
+            }
+            is IncomingIntent.ImportRoute -> {
+                navStateHolder.setPendingImportRoute(intent.route)
+                navController.navigate(SharedRoutes.ADD_ROUTE)
+            }
+            is IncomingIntent.StartRouteByName -> callbacks.onStartRouteByName(intent.name)
+        }
+        flows.onPendingIntentHandled?.invoke()
+    }
+
     Box(modifier = Modifier) {
     NavHost(navController = navController, startDestination = startDestination) {
 
@@ -297,6 +332,11 @@ fun SharedNavHost(
                 val holder = remember { factory() }
                 DisposableEffect(holder) {
                     holder.loadMarkers()
+                    val pendingImport = navStateHolder.pendingImportRoute.value
+                    if (pendingImport != null) {
+                        holder.initializeFromImport(pendingImport)
+                        navStateHolder.setPendingImportRoute(null)
+                    }
                     onDispose { holder.dispose() }
                 }
                 SharedAddAndEditRouteScreen(
@@ -464,7 +504,7 @@ fun SharedNavHost(
     }
 }
 
-private object MarkersAndRoutesTabMemory {
+internal object MarkersAndRoutesTabMemory {
     var selected: Int = 1
 }
 

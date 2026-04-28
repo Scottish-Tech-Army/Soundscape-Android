@@ -10,6 +10,7 @@ import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.preferences.AndroidPreferencesProvider
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.SoundscapeIntents
+import org.scottishtecharmy.soundscape.intents.IntentEventBus
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.audio.AudioTourHost
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
@@ -63,6 +64,7 @@ val appModule = module {
         })
     }
 
+    single { IntentEventBus() }
     single { SoundscapeIntents(get()) }
 
     // ViewModels
