@@ -150,6 +150,10 @@ fun MainViewController() = ComposeUIViewController {
                 val fileUrl = service.writeRecordingFile()
                 if (fileUrl != null) presentShareSheet(fileUrl)
             },
+            onShareRoute = { routeId ->
+                val fileUrl = service.writeRouteFile(routeId)
+                if (fileUrl != null) presentShareSheet(fileUrl)
+            },
             onShareLocation = { desc, message ->
                 presentShareText(buildShareLocationText(desc, message))
             },

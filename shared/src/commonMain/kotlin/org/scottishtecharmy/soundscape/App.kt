@@ -11,7 +11,6 @@ import kotlinx.coroutines.flow.StateFlow
 import org.scottishtecharmy.soundscape.audio.AudioEngine
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.audio.AudioTourInstruction
-import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
@@ -64,7 +63,7 @@ data class AppCallbacks(
     val onStreetPreviewGo: () -> Unit = {},
     val onStreetPreviewExit: () -> Unit = {},
     val onShareRecording: () -> Unit = {},
-    val onShareRoute: (RouteWithMarkers) -> Unit = {},
+    val onShareRoute: (routeId: Long) -> Unit = {},
     val onShareLocation: (LocationDescription, message: String) -> Unit = { _, _ -> },
     val onRateApp: () -> Unit = {},
     val onContactSupport: () -> Unit = {},

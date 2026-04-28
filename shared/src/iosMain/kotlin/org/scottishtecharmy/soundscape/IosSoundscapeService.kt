@@ -54,6 +54,7 @@ import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesListener
 import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.routeToShareJson
 import platform.Foundation.NSFileManager
 import platform.Foundation.NSHomeDirectory
 import platform.Foundation.NSString
@@ -561,6 +562,36 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         val outputPath = "$recordingsDir/travel.gpx"
         val gpx = kotlinx.coroutines.runBlocking { gpxRecorder.generateGpx() }
         val ok = (NSString.create(string = gpx)).writeToFile(
+            path = outputPath,
+            atomically = true,
+            encoding = NSUTF8StringEncoding,
+            error = null,
+        )
+        return if (ok) NSURL.fileURLWithPath(outputPath) else null
+    }
+
+    @OptIn(
+        kotlinx.cinterop.ExperimentalForeignApi::class,
+        kotlinx.cinterop.BetaInteropApi::class,
+    )
+    fun writeRouteFile(routeId: Long): NSURL? {
+        val route = kotlinx.coroutines.runBlocking { routeDao.getRouteWithMarkers(routeId) }
+            ?: return null
+        val routesDir = NSHomeDirectory() + "/Documents/routes"
+        NSFileManager.defaultManager.createDirectoryAtPath(
+            path = routesDir,
+            withIntermediateDirectories = true,
+            attributes = null,
+            error = null,
+        )
+        val safeName = route.route.name
+            .replace(Regex("[/\\\\:*?\"<>|\\x00]"), "_")
+            .take(100)
+        val timestamp = platform.Foundation.NSDateFormatter().apply {
+            dateFormat = "yyyyMMdd_HHmm"
+        }.stringFromDate(platform.Foundation.NSDate())
+        val outputPath = "$routesDir/soundscape-route-$safeName-$timestamp.json"
+        val ok = (NSString.create(string = routeToShareJson(route))).writeToFile(
             path = outputPath,
             atomically = true,
             encoding = NSUTF8StringEncoding,

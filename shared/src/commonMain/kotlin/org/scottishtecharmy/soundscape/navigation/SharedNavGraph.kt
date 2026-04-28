@@ -374,6 +374,9 @@ fun SharedNavHost(
                     onEditRoute = {
                         navController.navigate(SharedRoutes.EDIT_ROUTE)
                     },
+                    onShareRoute = {
+                        callbacks.onShareRoute(routeDesc.databaseId)
+                    },
                 )
             }
         }
