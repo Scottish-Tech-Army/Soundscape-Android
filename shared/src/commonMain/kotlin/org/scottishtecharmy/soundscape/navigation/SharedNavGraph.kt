@@ -9,6 +9,7 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -24,6 +25,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.AppCallbacks
 import org.scottishtecharmy.soundscape.AppFlows
 import org.scottishtecharmy.soundscape.audio.AudioEngine
+import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.network.DownloadStateCommon
 import org.scottishtecharmy.soundscape.screens.home.HomeState
@@ -60,11 +62,13 @@ fun SharedNavHost(
     callbacks: AppCallbacks,
     startDestination: String = SharedRoutes.WELCOME,
     audioEngine: AudioEngine? = null,
+    audioTour: AudioTour? = null,
     preferencesProvider: PreferencesProvider? = null,
     homeContent: (@Composable (NavHostController, NavigationStateHolder) -> Unit)? = null,
     settingsContent: (@Composable (NavHostController) -> Unit)? = null,
     platformNavBuilder: (NavGraphBuilder.() -> Unit)? = null,
 ) {
+    Box(modifier = Modifier) {
     NavHost(navController = navController, startDestination = startDestination) {
 
         composable(SharedRoutes.WELCOME) {
@@ -99,14 +103,11 @@ fun SharedNavHost(
                     ?: remember { mutableStateOf(false) }
                 val audioTourRunning by flows.audioTourRunning?.collectAsState()
                     ?: remember { mutableStateOf(false) }
-                val audioTourInstruction by flows.audioTourInstruction?.collectAsState()
-                    ?: remember { mutableStateOf<org.scottishtecharmy.soundscape.audio.AudioTourInstruction?>(null) }
                 val voiceCommandListening by flows.voiceCommandListening?.collectAsState()
                     ?: remember { mutableStateOf(false) }
                 val permissionsRequired by flows.permissionsRequired?.collectAsState()
                     ?: remember { mutableStateOf(false) }
 
-                Box(modifier = Modifier) {
                 SharedHomeScreen(
                     state = homeState,
                     onNavigate = { dest -> navController.navigate(dest) },
@@ -149,18 +150,11 @@ fun SharedNavHost(
                     onSetApplicationLocale = callbacks.onSetApplicationLocale,
                     getLanguageMismatch = callbacks.onGetLanguageMismatch,
                 )
-
-                audioTourInstruction?.let { instruction ->
-                    AudioTourInstructionDialog(
-                        instruction = instruction,
-                        onContinue = callbacks.onAudioTourInstructionAcknowledged,
-                    )
-                }
-                }
             }
         }
 
         composable(SharedRoutes.PLACES_NEARBY) {
+            LaunchedEffect(Unit) { audioTour?.onNavigatedToPlacesNearby() }
             val uiState by flows.placesNearbyUiState?.collectAsState()
                 ?: remember { mutableStateOf(PlacesNearbyUiState()) }
             PlacesNearbyScreen(
@@ -189,6 +183,7 @@ fun SharedNavHost(
             MarkersAndRoutesContainer(
                 flows = flows,
                 callbacks = callbacks,
+                audioTour = audioTour,
                 onBack = { navController.popBackStack() },
                 onAddRoute = { navController.navigate(SharedRoutes.ADD_ROUTE) },
                 onSelectMarker = { desc ->
@@ -203,6 +198,7 @@ fun SharedNavHost(
         }
 
         composable(SharedRoutes.LOCATION_DETAILS) {
+            LaunchedEffect(Unit) { audioTour?.onPlaceSelected() }
             val homeState by flows.homeState?.collectAsState()
                 ?: remember { mutableStateOf(HomeState()) }
             val desc = navStateHolder.selectedLocation.collectAsState().value
@@ -217,10 +213,12 @@ fun SharedNavHost(
                         navController.popBackStack(SharedRoutes.HOME, inclusive = false)
                     },
                     onSaveMarker = { updatedDesc ->
+                        audioTour?.onMarkerCreateStarted()
                         navStateHolder.setSelectedLocation(updatedDesc)
                         navController.navigate(SharedRoutes.EDIT_MARKER)
                     },
                     onEditMarker = { updatedDesc ->
+                        audioTour?.onMarkerCreateStarted()
                         navStateHolder.setSelectedLocation(updatedDesc)
                         navController.navigate(SharedRoutes.EDIT_MARKER)
                     },
@@ -434,18 +432,35 @@ fun SharedNavHost(
 
         platformNavBuilder?.invoke(this)
     }
+
+    val audioTourInstruction by flows.audioTourInstruction?.collectAsState()
+        ?: remember { mutableStateOf<org.scottishtecharmy.soundscape.audio.AudioTourInstruction?>(null) }
+    audioTourInstruction?.let { instruction ->
+        AudioTourInstructionDialog(
+            instruction = instruction,
+            onContinue = { audioTour?.onInstructionAcknowledged() },
+        )
+    }
+    }
 }
 
 @Composable
 private fun MarkersAndRoutesContainer(
     flows: AppFlows,
     callbacks: AppCallbacks,
+    audioTour: AudioTour? = null,
     onBack: () -> Unit,
     onAddRoute: () -> Unit = {},
     onSelectMarker: (LocationDescription) -> Unit = {},
     onSelectRoute: (LocationDescription) -> Unit = {},
 ) {
-    var selectedTab by remember { mutableStateOf(0) }
+    var selectedTab by remember { mutableStateOf(1) }
+    LaunchedEffect(selectedTab) {
+        when (selectedTab) {
+            0 -> audioTour?.onMarkers()
+            1 -> audioTour?.onMarkerAndRoutes()
+        }
+    }
     val location by flows.locationFlow?.collectAsState() ?: remember { mutableStateOf(null) }
     val userLocation = location?.let { LngLatAlt(it.longitude, it.latitude) }
 

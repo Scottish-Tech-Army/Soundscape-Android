@@ -285,6 +285,15 @@ class AudioTour(
     }
 
     private suspend fun waitForAudioComplete() {
+        // The action that produces the audio (e.g. myLocation) is dispatched on
+        // a different coroutine, so the queue may not yet be busy when we get
+        // here. Poll until it becomes busy (or we hit the timeout, in which
+        // case nothing was queued and we can fall through).
+        var waited = 0
+        while (!host.isAudioEngineBusy() && waited < BUSY_WAIT_TIMEOUT_MS) {
+            delay(100)
+            waited += 100
+        }
         while(true) {
             // Wait for the audio queue to empty, debounce and then check it's still not busy
             while (host.isAudioEngineBusy()) {
@@ -297,5 +306,6 @@ class AudioTour(
 
     companion object {
         private const val TAG = "AudioTour"
+        private const val BUSY_WAIT_TIMEOUT_MS = 2000
     }
 }

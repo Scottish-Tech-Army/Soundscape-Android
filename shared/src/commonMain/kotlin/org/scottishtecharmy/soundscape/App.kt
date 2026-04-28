@@ -9,6 +9,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import kotlinx.coroutines.flow.StateFlow
 import org.scottishtecharmy.soundscape.audio.AudioEngine
+import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.audio.AudioTourInstruction
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -102,6 +103,7 @@ fun App(
     callbacks: AppCallbacks = AppCallbacks(),
     startDestination: String? = null,
     audioEngine: AudioEngine? = null,
+    audioTour: AudioTour? = null,
     preferencesProvider: PreferencesProvider? = null,
     homeContent: (@Composable (NavHostController, NavigationStateHolder) -> Unit)? = null,
     settingsContent: (@Composable (NavHostController) -> Unit)? = null,
@@ -120,6 +122,7 @@ fun App(
                 callbacks = callbacks,
                 startDestination = startDestination ?: SharedRoutes.WELCOME,
                 audioEngine = audioEngine,
+                audioTour = audioTour,
                 preferencesProvider = preferencesProvider,
                 homeContent = homeContent,
                 settingsContent = settingsContent,

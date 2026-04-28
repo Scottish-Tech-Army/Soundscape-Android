@@ -3,9 +3,7 @@ package org.scottishtecharmy.soundscape.screens.home
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.activity.compose.LocalActivity
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
@@ -44,7 +42,6 @@ import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.preferences.PreferencesListener
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import org.scottishtecharmy.soundscape.screens.home.home.AudioTourInstructionDialog
 import org.scottishtecharmy.soundscape.screens.home.home.OfflineMapsScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.AdvancedMarkersAndRoutesSettingsScreenVM
@@ -86,7 +83,6 @@ fun HomeScreen(
     permissionsRequired: Boolean,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
-    val audioTourInstruction by audioTour.currentInstruction.collectAsStateWithLifecycle()
     val context = LocalContext.current
     val activity = LocalActivity.current as MainActivity
     val serviceConnection: SoundscapeServiceConnection = koinInject()
@@ -131,10 +127,11 @@ fun HomeScreen(
         }
     }
 
-    val flows = remember(audioTourRunningFlow, recordingEnabledFlow, permissionsRequiredFlow, voiceCommandListeningFlow) {
+    val flows = remember(audioTour, audioTourRunningFlow, recordingEnabledFlow, permissionsRequiredFlow, voiceCommandListeningFlow) {
         AppFlows(
             homeState = viewModel.state,
             audioTourRunning = audioTourRunningFlow.asStateFlow(),
+            audioTourInstruction = audioTour.currentInstruction,
             recordingEnabled = recordingEnabledFlow.asStateFlow(),
             permissionsRequired = permissionsRequiredFlow.asStateFlow(),
             voiceCommandListening = voiceCommandListeningFlow,
@@ -192,13 +189,13 @@ fun HomeScreen(
         )
     }
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        SharedNavHost(
+    SharedNavHost(
             navController = navController,
             navStateHolder = navStateHolder,
             flows = flows,
             callbacks = callbacks,
             startDestination = SharedRoutes.HOME,
+            audioTour = audioTour,
             preferencesProvider = remember(preferences) { AndroidSharedPreferencesAdapter(preferences) },
             settingsContent = { navCtrl ->
                 val settingsViewModel: SettingsViewModel = koinViewModel()
@@ -392,14 +389,6 @@ fun HomeScreen(
                 }
             },
         )
-
-        audioTourInstruction?.let { instruction ->
-            AudioTourInstructionDialog(
-                instruction = instruction,
-                onContinue = { audioTour.onInstructionAcknowledged() },
-            )
-        }
-    }
 }
 
 private class AndroidSharedPreferencesAdapter(

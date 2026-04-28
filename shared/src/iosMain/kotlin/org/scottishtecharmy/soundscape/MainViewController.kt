@@ -178,6 +178,7 @@ fun MainViewController() = ComposeUIViewController {
         ),
         startDestination = startDestination,
         audioEngine = service.audioEngine,
+        audioTour = audioTour,
         preferencesProvider = prefs,
     )
 }
