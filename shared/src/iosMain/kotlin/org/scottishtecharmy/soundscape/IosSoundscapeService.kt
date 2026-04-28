@@ -28,6 +28,7 @@ import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewChoice
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.IosGeocoder
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.speakCalloutCommon
@@ -53,7 +54,13 @@ import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesListener
 import org.scottishtecharmy.soundscape.utils.Analytics
+import platform.Foundation.NSFileManager
 import platform.Foundation.NSHomeDirectory
+import platform.Foundation.NSString
+import platform.Foundation.NSURL
+import platform.Foundation.NSUTF8StringEncoding
+import platform.Foundation.create
+import platform.Foundation.writeToFile
 
 /**
  * iOS equivalent of the Android SoundscapeServiceConnection + SoundscapeService.
@@ -74,6 +81,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     // GeoEngine
     val geoEngine = GeoEngine()
     private var geoEngineStarted = false
+    private val gpxRecorder = GpxRecorder()
 
     // Database
     val routeDao: RouteDao by lazy {
@@ -229,6 +237,8 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         val photonSearch = KmpPhotonSearch(photonClient)
 
         val documentsPath = NSHomeDirectory() + "/Documents"
+
+        geoEngine.locationRecorder = gpxRecorder
 
         geoEngine.start(
             newLocationProvider = locationProvider,
@@ -532,6 +542,31 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
 
     override suspend fun searchResult(query: String): List<LocationDescription>? {
         return geoEngine.searchResult(query)
+    }
+
+    // --- Recording ---
+
+    @OptIn(
+        kotlinx.cinterop.ExperimentalForeignApi::class,
+        kotlinx.cinterop.BetaInteropApi::class,
+    )
+    fun writeRecordingFile(): NSURL? {
+        val recordingsDir = NSHomeDirectory() + "/Documents/recordings"
+        NSFileManager.defaultManager.createDirectoryAtPath(
+            path = recordingsDir,
+            withIntermediateDirectories = true,
+            attributes = null,
+            error = null,
+        )
+        val outputPath = "$recordingsDir/travel.gpx"
+        val gpx = kotlinx.coroutines.runBlocking { gpxRecorder.generateGpx() }
+        val ok = (NSString.create(string = gpx)).writeToFile(
+            path = outputPath,
+            atomically = true,
+            encoding = NSUTF8StringEncoding,
+            error = null,
+        )
+        return if (ok) NSURL.fileURLWithPath(outputPath) else null
     }
 
     // --- Lifecycle ---

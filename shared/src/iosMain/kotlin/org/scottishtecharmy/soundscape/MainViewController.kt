@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape
 
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -9,10 +10,14 @@ import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.platform.readResourceText
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesListener
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteStateHolder
 import platform.Foundation.NSURL
+import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIApplication
+import platform.UIKit.UIViewController
+import platform.UIKit.UIWindow
 
 fun MainViewController() = ComposeUIViewController {
     val service = remember { IosSoundscapeService.getInstance() }
@@ -34,8 +39,23 @@ fun MainViewController() = ComposeUIViewController {
         }
     }
 
+    val recordingEnabled = remember {
+        MutableStateFlow(prefs.getBoolean(PreferenceKeys.RECORD_TRAVEL, PreferenceDefaults.RECORD_TRAVEL))
+    }
+    DisposableEffect(prefs) {
+        val listener = PreferencesListener { key ->
+            if (key == PreferenceKeys.RECORD_TRAVEL) {
+                recordingEnabled.value = prefs.getBoolean(
+                    PreferenceKeys.RECORD_TRAVEL,
+                    PreferenceDefaults.RECORD_TRAVEL,
+                )
+            }
+        }
+        prefs.addListener(listener)
+        onDispose { prefs.removeListener(listener) }
+    }
+
     // Stub flows for features iOS doesn't yet have its own state for.
-    val recordingEnabled = remember { MutableStateFlow(false) }
     val permissionsRequired = remember { MutableStateFlow(false) }
     val voiceCommandListening = remember { MutableStateFlow(false) }
 
@@ -125,7 +145,10 @@ fun MainViewController() = ComposeUIViewController {
             onSleep = { /* TODO iOS sleep mode */ },
             onStreetPreviewGo = { homeStateHolder.streetPreviewGo() },
             onStreetPreviewExit = { homeStateHolder.streetPreviewExit() },
-            onShareRecording = { /* TODO iOS UIActivityViewController */ },
+            onShareRecording = {
+                val fileUrl = service.writeRecordingFile()
+                if (fileUrl != null) presentShareSheet(fileUrl)
+            },
             onRateApp = {
                 val url = NSURL.URLWithString("itms-apps://itunes.apple.com/app/idXXXXXXXX?action=write-review")
                 if (url != null) UIApplication.sharedApplication.openURL(url)
@@ -157,4 +180,19 @@ fun MainViewController() = ComposeUIViewController {
         audioEngine = service.audioEngine,
         preferencesProvider = prefs,
     )
+}
+
+private fun presentShareSheet(fileUrl: NSURL) {
+    val keyWindow = UIApplication.sharedApplication.windows
+        .mapNotNull { it as? UIWindow }
+        .firstOrNull { it.isKeyWindow() }
+        ?: UIApplication.sharedApplication.windows.firstOrNull() as? UIWindow
+        ?: return
+    var top: UIViewController? = keyWindow.rootViewController
+    while (top?.presentedViewController != null) top = top.presentedViewController
+    val activityVc = UIActivityViewController(
+        activityItems = listOf(fileUrl),
+        applicationActivities = null,
+    )
+    top?.presentViewController(activityVc, animated = true, completion = null)
 }

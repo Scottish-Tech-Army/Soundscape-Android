@@ -27,6 +27,7 @@ import androidx.annotation.OptIn
 import androidx.core.app.NotificationCompat
 import androidx.core.app.ServiceCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider.getUriForFile
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.session.MediaSession
 import androidx.media3.session.MediaSessionService
@@ -42,6 +43,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
@@ -103,6 +105,8 @@ import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.NetworkUtils
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
+import java.io.File
+import java.io.FileOutputStream
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -929,7 +933,15 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     }
 
     fun getRecordingShareUri(context: Context): Uri? {
-        return gpxRecorder?.getShareUri(context)
+        val recorder = gpxRecorder ?: return null
+        val recordingsStorageDir = File("${context.filesDir}/recordings/")
+        if (!recordingsStorageDir.exists()) {
+            recordingsStorageDir.mkdirs()
+        }
+        val outputFile = File(recordingsStorageDir, "travel.gpx")
+        val gpx = runBlocking { recorder.generateGpx() }
+        FileOutputStream(outputFile, false).use { it.write(gpx.toByteArray()) }
+        return getUriForFile(context, "${context.packageName}.provider", outputFile)
     }
 
     override fun requestAudioFocus(): Boolean {
