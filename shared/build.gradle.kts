@@ -71,6 +71,9 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+    // Reuse shared resources for the Android target so JSON data files live
+    // in a single canonical location consumed by both platforms.
+    sourceSets["main"].resources.srcDir("src/commonMain/resources")
 }
 
 wire {

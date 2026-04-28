@@ -21,12 +21,11 @@ targets:
         product: MapLibre
     sources:
       - path: iosApp
-        excludes:
-          - "address"
-          - "osm-liberty-accessible"
-      - path: iosApp/address
+      - path: ../shared/src/commonMain/resources/address
         type: folder
-      - path: iosApp/osm-liberty-accessible
+      - path: ../app/src/main/assets/open_source_licenses.json
+        buildPhase: resources
+      - path: ../app/src/main/assets/osm-liberty-accessible
         type: folder
     info:
       path: iosApp/Info.plist

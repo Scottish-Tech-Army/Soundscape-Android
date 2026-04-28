@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
-import kotlinx.cinterop.ExperimentalForeignApi
 import org.maplibre.compose.style.BaseStyle
 import org.maplibre.spatialk.geojson.Geometry
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
@@ -18,51 +17,19 @@ import org.scottishtecharmy.soundscape.mapstyle.buildMapStyle
 import org.scottishtecharmy.soundscape.mapstyle.resolveTileSourceUrl
 import platform.Foundation.NSHomeDirectory
 import platform.Foundation.NSBundle
-import platform.Foundation.NSDocumentDirectory
-import platform.Foundation.NSFileManager
-import platform.Foundation.NSSearchPathForDirectoriesInDomains
-import platform.Foundation.NSString
-import platform.Foundation.NSUserDomainMask
-import platform.Foundation.stringByAppendingPathComponent
 
-@OptIn(ExperimentalForeignApi::class)
-private fun getIosDocumentsDir(): String {
-    val paths = NSSearchPathForDirectoriesInDomains(
-        NSDocumentDirectory,
-        NSUserDomainMask,
-        true
-    )
-    return paths.firstOrNull() as? String ?: ""
+private fun getTileProviderUrl(): String {
+    return NSBundle.mainBundle.objectForInfoDictionaryKey("TileProviderURL") as? String ?: ""
 }
 
 /**
- * Extracts map assets (sprites, fonts) from the iOS app bundle to the Documents directory
- * so MapLibre can access them via file:// URIs.
+ * Returns the bundle path of the osm-liberty-accessible folder.
+ * MapLibre can read sprites/fonts directly from the bundle via file:// URIs —
+ * no copy to Documents required.
  */
-@OptIn(ExperimentalForeignApi::class)
-private fun extractMapAssets(): String {
-    val docsDir = getIosDocumentsDir()
-    @Suppress("CAST_NEVER_SUCCEEDS")
-    val destDir = (docsDir as NSString).stringByAppendingPathComponent("osm-liberty-accessible")
-
-    val fileManager = NSFileManager.defaultManager
-    if (fileManager.fileExistsAtPath(destDir)) {
-        return destDir
-    }
-
-    // Find the bundled osm-liberty-accessible directory
-    val bundle = NSBundle.mainBundle
-    val bundlePath = bundle.pathForResource("osm-liberty-accessible", ofType = null)
-
-    if (bundlePath != null) {
-        fileManager.copyItemAtPath(bundlePath, destDir, null)
-    }
-
-    return destDir
-}
-
-private fun getTileProviderUrl(): String {
-    return platform.Foundation.NSBundle.mainBundle.objectForInfoDictionaryKey("TileProviderURL") as? String ?: ""
+private fun getMapAssetsBundlePath(): String {
+    return NSBundle.mainBundle.pathForResource("osm-liberty-accessible", ofType = null)
+        ?: error("osm-liberty-accessible not found in app bundle")
 }
 
 @Composable
@@ -75,7 +42,7 @@ fun rememberIosMapBaseStyle(location: LngLatAlt?, forceOnlineTiles: Boolean = fa
     )
 
     return remember(foregroundColor, backgroundColor, location, forceOnlineTiles) {
-        val assetsDir = extractMapAssets()
+        val assetsDir = getMapAssetsBundlePath()
         val extractsPath = NSHomeDirectory() + "/Documents"
         val tileSourceUrl = if (forceOnlineTiles) {
             resolveTileSourceUrl(location = null, extractsPath = "", networkTileUrl = getTileProviderUrl())

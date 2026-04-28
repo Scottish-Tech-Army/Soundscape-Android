@@ -28,7 +28,6 @@ actual fun PlatformMapContainer(
     forceOnlineTiles: Boolean,
 ) {
     val context = LocalContext.current
-    val filesDir = context.filesDir.toString()
 
     val foregroundColor = argbToRgba(MaterialTheme.colorScheme.onBackground.toArgb())
     val backgroundColor = argbToRgba(MaterialTheme.colorScheme.background.toArgb())
@@ -65,8 +64,8 @@ actual fun PlatformMapContainer(
     val baseStyle = remember(foregroundColor, backgroundColor, tileSourceUrl) {
         buildMapStyle(
             theme = AccessibleTheme,
-            spritePath = "file://$filesDir/osm-liberty-accessible/osm-liberty",
-            glyphsPath = "file://$filesDir/osm-liberty-accessible/fonts/{fontstack}/{range}.pbf",
+            spritePath = "asset://osm-liberty-accessible/osm-liberty",
+            glyphsPath = "asset://osm-liberty-accessible/fonts/{fontstack}/{range}.pbf",
             tileSourceUrl = tileSourceUrl,
             overrides = overrides,
             symbolForegroundColor = foregroundColor,

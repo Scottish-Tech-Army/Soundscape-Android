@@ -33,7 +33,6 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetai
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RouteDetailsUiState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.screens.home.HomeState
-import org.scottishtecharmy.soundscape.utils.processMaps
 import java.io.File
 import java.io.FileOutputStream
 
@@ -98,9 +97,6 @@ class DocumentationScreens {
         testCode: @Composable () -> Unit) {
 
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
-
-        // Unpack map assets
-        processMaps(targetContext)
 
         val themeStateFlow = MutableStateFlow(ThemeState())
         composeTestRule.setContent {

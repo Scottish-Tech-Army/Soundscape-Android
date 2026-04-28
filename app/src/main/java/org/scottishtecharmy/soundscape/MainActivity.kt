@@ -62,7 +62,6 @@ import org.scottishtecharmy.soundscape.utils.LogcatHelper
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.utils.findExtracts
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
-import org.scottishtecharmy.soundscape.utils.processMaps
 import java.io.File
 import java.util.Locale
 
@@ -382,9 +381,6 @@ class MainActivity : AppCompatActivity() {
 
         // Validate offline map directory
         getOfflineMapStorage(this)
-
-        // Unpack map assets
-        processMaps(applicationContext)
 
         // When opening a JSON file containing a route from Android File we can end up with two
         // instances of the app running. This check ensures that we have only one instance.

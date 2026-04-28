@@ -84,7 +84,6 @@ fun rememberMapBaseStyle(userLocation: LngLatAlt? = null): BaseStyle {
         PreferenceKeys.ACCESSIBLE_MAP,
         PreferenceDefaults.ACCESSIBLE_MAP
     )
-    val filesDir = context.filesDir.toString()
     val theme = if (accessibleMapEnabled) AccessibleTheme else OriginalTheme
 
     // In accessible mode, use theme-derived foreground/background colors for
@@ -115,8 +114,8 @@ fun rememberMapBaseStyle(userLocation: LngLatAlt? = null): BaseStyle {
 
         buildMapStyle(
             theme = theme,
-            spritePath = "file://$filesDir/osm-liberty-accessible/osm-liberty",
-            glyphsPath = "file://$filesDir/osm-liberty-accessible/fonts/{fontstack}/{range}.pbf",
+            spritePath = "asset://osm-liberty-accessible/osm-liberty",
+            glyphsPath = "asset://osm-liberty-accessible/fonts/{fontstack}/{range}.pbf",
             tileSourceUrl = tileSourceUrl,
             overrides = overrides,
             symbolForegroundColor = if (accessibleMapEnabled) foregroundColor else null,
