@@ -30,6 +30,8 @@ import org.scottishtecharmy.soundscape.screens.home.HomeState
 import org.scottishtecharmy.soundscape.screens.home.home.AudioTourInstructionDialog
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
+import org.scottishtecharmy.soundscape.screens.home.home.SharedOpenSourceLicensesScreen
+import org.scottishtecharmy.soundscape.viewmodels.OpenSourceLicensesStateHolder
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedLocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedSaveAndEditMarkerScreen
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.OfflineMapsUiState
@@ -398,8 +400,25 @@ fun SharedNavHost(
                 topic = topic,
                 onNavigate = { dest -> navController.navigate(dest) },
                 onNavigateUp = { navController.popBackStack() },
-                onOpenSourceLicenses = callbacks.onOpenSourceLicenses,
+                onOpenSourceLicenses = if (callbacks.getOpenSourceLicensesJson != null) {
+                    { navController.navigate(SharedRoutes.OPEN_SOURCE_LICENSES) }
+                } else {
+                    null
+                },
             )
+        }
+
+        composable(SharedRoutes.OPEN_SOURCE_LICENSES) {
+            val getJson = callbacks.getOpenSourceLicensesJson
+            if (getJson != null) {
+                val stateHolder = remember { OpenSourceLicensesStateHolder(getJson()) }
+                val uiState by stateHolder.uiState.collectAsState()
+                SharedOpenSourceLicensesScreen(
+                    licenses = uiState.licenses,
+                    onNavigateUp = { navController.popBackStack() },
+                    onLicenseClick = stateHolder::toggleLicense,
+                )
+            }
         }
 
         composable(SharedRoutes.SETTINGS) {

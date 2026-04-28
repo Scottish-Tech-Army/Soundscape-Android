@@ -27,7 +27,6 @@ import org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage.Offscre
 import org.scottishtecharmy.soundscape.viewmodels.AdvancedMarkersAndRoutesSettingsViewModel
 import org.scottishtecharmy.soundscape.viewmodels.LocationDetailsViewModel
 import org.scottishtecharmy.soundscape.viewmodels.OfflineMapsViewModel
-import org.scottishtecharmy.soundscape.viewmodels.OpenSourceLicensesViewModel
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -70,7 +69,6 @@ val appModule = module {
     viewModelOf(::HomeViewModel)
     viewModelOf(::SettingsViewModel)
     viewModelOf(::LocationDetailsViewModel)
-    viewModelOf(::OpenSourceLicensesViewModel)
     viewModelOf(::AdvancedMarkersAndRoutesSettingsViewModel)
     viewModelOf(::LanguageViewModel)
     viewModelOf(::AccessibilityOnboardingViewModel)

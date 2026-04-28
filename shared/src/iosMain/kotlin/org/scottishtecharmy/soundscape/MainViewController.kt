@@ -6,6 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import org.scottishtecharmy.soundscape.audio.TourButton
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
+import org.scottishtecharmy.soundscape.platform.readResourceText
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -150,6 +151,7 @@ fun MainViewController() = ComposeUIViewController {
             },
             onSetApplicationLocale = { /* TODO iOS NSUserDefaults AppleLanguages */ },
             onGetLanguageMismatch = { null },
+            getOpenSourceLicensesJson = { readResourceText("open_source_licenses.json") },
         ),
         startDestination = startDestination,
         audioEngine = service.audioEngine,

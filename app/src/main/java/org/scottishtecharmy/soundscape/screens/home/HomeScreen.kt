@@ -48,7 +48,6 @@ import org.scottishtecharmy.soundscape.screens.home.home.AudioTourInstructionDia
 import org.scottishtecharmy.soundscape.screens.home.home.OfflineMapsScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.AdvancedMarkersAndRoutesSettingsScreenVM
-import org.scottishtecharmy.soundscape.screens.home.home.OpenSourceLicensesVM
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyScreenVM
 import org.scottishtecharmy.soundscape.screens.home.settings.Settings
@@ -185,7 +184,11 @@ fun HomeScreen(
                 }
             },
             onGetLanguageMismatch = { getLanguageMismatch(context) },
-            onOpenSourceLicenses = { navController.navigate(HomeRoutes.OpenSourceLicense.route) },
+            getOpenSourceLicensesJson = {
+                context.assets.open("open_source_licenses.json")
+                    .bufferedReader()
+                    .use { it.readText() }
+            },
         )
     }
 
@@ -366,14 +369,6 @@ fun HomeScreen(
                 }
                 composable(HomeRoutes.AdvancedMarkersAndRoutesSettings.route) {
                     AdvancedMarkersAndRoutesSettingsScreenVM(
-                        navController = navController,
-                        modifier = Modifier
-                            .windowInsetsPadding(WindowInsets.safeDrawing)
-                            .semantics { testTagsAsResourceId = true },
-                    )
-                }
-                composable(HomeRoutes.OpenSourceLicense.route) {
-                    OpenSourceLicensesVM(
                         navController = navController,
                         modifier = Modifier
                             .windowInsetsPadding(WindowInsets.safeDrawing)

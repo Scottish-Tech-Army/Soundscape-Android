@@ -73,7 +73,7 @@ data class AppCallbacks(
     val onGetCurrentLocationDescription: () -> LocationDescription = { LocationDescription("", LngLatAlt()) },
     val onSetApplicationLocale: (String?) -> Unit = {},
     val onGetLanguageMismatch: () -> Language? = { null },
-    val onOpenSourceLicenses: (() -> Unit)? = null,
+    val getOpenSourceLicensesJson: (() -> String)? = null,
 )
 
 data class AppFlows(
