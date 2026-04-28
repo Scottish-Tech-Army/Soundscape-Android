@@ -191,7 +191,7 @@ fun SharedNavHost(
                 onAddRoute = { navController.navigate(SharedRoutes.ADD_ROUTE) },
                 onSelectMarker = { desc ->
                     navStateHolder.setSelectedLocation(desc)
-                    navController.navigate(SharedRoutes.EDIT_MARKER)
+                    navController.navigate(SharedRoutes.LOCATION_DETAILS)
                 },
                 onSelectRoute = { desc ->
                     navStateHolder.setSelectedLocation(desc)
