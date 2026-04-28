@@ -43,7 +43,6 @@ import org.scottishtecharmy.soundscape.preferences.PreferencesListener
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.OfflineMapsScreenVM
-import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.AdvancedMarkersAndRoutesSettingsScreenVM
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyScreenVM
@@ -155,10 +154,8 @@ fun HomeScreen(
             onSearch = { viewModel.onTriggerSearch(it) },
             onStreetPreviewGo = { viewModel.streetPreviewGo() },
             onStreetPreviewExit = { viewModel.streetPreviewExit() },
-            onSleep = {
-                activity.setServiceState(newServiceState = false, sleeping = true)
-                navController.navigate(HomeRoutes.Sleep.route)
-            },
+            onSleep = { activity.setServiceState(newServiceState = false, sleeping = true) },
+            onWakeUp = { activity.setServiceState(newServiceState = true, sleeping = false) },
             onShareRecording = { activity.shareRecording() },
             onRateApp = rateSoundscape,
             onContactSupport = contactSupport,
@@ -348,14 +345,6 @@ fun HomeScreen(
                     )
                 }
 
-                composable(HomeRoutes.Sleep.route) {
-                    SleepScreenVM(
-                        navController = navController,
-                        modifier = Modifier
-                            .windowInsetsPadding(WindowInsets.safeDrawing)
-                            .semantics { testTagsAsResourceId = true },
-                    )
-                }
                 composable(HomeRoutes.PlacesNearby.route) {
                     PlacesNearbyScreenVM(
                         homeNavController = navController,

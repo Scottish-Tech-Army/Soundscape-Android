@@ -16,18 +16,26 @@ class IosLocationProvider : LocationProvider() {
     private val delegate = LocationDelegate(this)
 
     init {
-        locationManager.delegate = delegate
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
         locationManager.requestAlwaysAuthorization()
+        start()
+    }
+
+    fun start() {
+        locationManager.delegate = delegate
         locationManager.startUpdatingLocation()
     }
 
-    override fun destroy() {
+    fun pause() {
         locationManager.stopUpdatingLocation()
         locationManager.delegate = null
+    }
+
+    override fun destroy() {
+        pause()
     }
 
     @OptIn(ExperimentalForeignApi::class)

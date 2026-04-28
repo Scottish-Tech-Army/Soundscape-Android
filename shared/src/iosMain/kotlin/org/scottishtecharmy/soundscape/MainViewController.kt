@@ -142,7 +142,8 @@ fun MainViewController() = ComposeUIViewController {
             onOfflineMapsCancelDownload = { mgr.cancelDownload() },
             // iOS hooks for the previously Android-only home features. Stubs for now —
             // a future change can wire these to native iOS subsystems.
-            onSleep = { /* TODO iOS sleep mode */ },
+            onSleep = { service.setSleeping(true) },
+            onWakeUp = { service.setSleeping(false) },
             onStreetPreviewGo = { homeStateHolder.streetPreviewGo() },
             onStreetPreviewExit = { homeStateHolder.streetPreviewExit() },
             onShareRecording = {

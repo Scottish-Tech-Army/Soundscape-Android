@@ -22,13 +22,17 @@ class IosDirectionProvider : DirectionProvider() {
     private var currentAttitude = floatArrayOf(0f, 0f, 0f, 1f) // identity = flat
 
     init {
+        start()
+    }
+
+    fun start() {
         locationManager.delegate = delegate
         if (CLLocationManager.headingAvailable()) {
             locationManager.startUpdatingHeading()
         }
 
         // Start device motion updates for attitude (flat/upright detection)
-        if (motionManager.isDeviceMotionAvailable()) {
+        if (motionManager.isDeviceMotionAvailable() && !motionManager.isDeviceMotionActive()) {
             motionManager.deviceMotionUpdateInterval = 0.2 // 5 Hz
             motionManager.startDeviceMotionUpdatesToQueue(NSOperationQueue.mainQueue) { motion, _ ->
                 if (motion != null) {
@@ -41,12 +45,16 @@ class IosDirectionProvider : DirectionProvider() {
         }
     }
 
-    override fun destroy() {
+    fun pause() {
         locationManager.stopUpdatingHeading()
         locationManager.delegate = null
         if (motionManager.isDeviceMotionActive()) {
             motionManager.stopDeviceMotionUpdates()
         }
+    }
+
+    override fun destroy() {
+        pause()
     }
 
     internal fun onHeadingUpdate(heading: CLHeading) {

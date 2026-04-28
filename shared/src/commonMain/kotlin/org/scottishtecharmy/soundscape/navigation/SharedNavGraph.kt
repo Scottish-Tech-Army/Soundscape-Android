@@ -33,6 +33,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.AudioTourInstructionDia
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedOpenSourceLicensesScreen
+import org.scottishtecharmy.soundscape.screens.home.home.SharedSleepScreen
 import org.scottishtecharmy.soundscape.viewmodels.OpenSourceLicensesStateHolder
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedLocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedSaveAndEditMarkerScreen
@@ -146,7 +147,10 @@ fun SharedNavHost(
                     voiceCommandListening = voiceCommandListening,
                     permissionsRequired = permissionsRequired,
                     goToAppSettings = callbacks.onGoToAppSettings,
-                    onSleep = callbacks.onSleep,
+                    onSleep = {
+                        callbacks.onSleep()
+                        navController.navigate(SharedRoutes.SLEEP)
+                    },
                     onSetApplicationLocale = callbacks.onSetApplicationLocale,
                     getLanguageMismatch = callbacks.onGetLanguageMismatch,
                 )
@@ -417,6 +421,15 @@ fun SharedNavHost(
                     onLicenseClick = stateHolder::toggleLicense,
                 )
             }
+        }
+
+        composable(SharedRoutes.SLEEP) {
+            SharedSleepScreen(
+                onWakeUp = callbacks.onWakeUp,
+                onExit = {
+                    navController.popBackStack(SharedRoutes.HOME, inclusive = false)
+                },
+            )
         }
 
         composable(SharedRoutes.SETTINGS) {

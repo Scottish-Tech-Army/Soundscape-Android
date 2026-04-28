@@ -36,10 +36,6 @@ sealed class HomeRoutes(
         route = "help_screen",
         title = "HelpScreen",
     )
-    data object Sleep : HomeRoutes(
-        route = "sleep_screen",
-        title = "SleepScreen",
-    )
     data object Language : HomeRoutes(
         route = "language_screen",
         title = "LanguageScreen",

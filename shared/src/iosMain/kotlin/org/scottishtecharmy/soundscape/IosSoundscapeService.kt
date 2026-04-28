@@ -73,8 +73,8 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     private var suppressionJob: Job? = null
 
     // Providers
-    val locationProvider: LocationProvider = IosLocationProvider()
-    val directionProvider: DirectionProvider = IosDirectionProvider()
+    val locationProvider: IosLocationProvider = IosLocationProvider()
+    val directionProvider: IosDirectionProvider = IosDirectionProvider()
     val audioEngine = IosAudioEngine()
     val preferencesProvider = IosPreferencesProvider()
 
@@ -567,6 +567,25 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
             error = null,
         )
         return if (ok) NSURL.fileURLWithPath(outputPath) else null
+    }
+
+    // --- Sleep mode ---
+
+    fun setSleeping(sleeping: Boolean) {
+        // Mirror the Android foreground-service shutdown: stop the location
+        // and direction providers so GeoEngine sees no new updates (no grid
+        // tile fetches, no automatic callouts), silence in-flight audio, and
+        // gate any callouts that slip through via the existing menuActive flag.
+        menuActive = sleeping
+        if (sleeping) {
+            locationProvider.pause()
+            directionProvider.pause()
+            audioEngine.clearTextToSpeechQueue()
+            destroyBeacon()
+        } else {
+            locationProvider.start()
+            directionProvider.start()
+        }
     }
 
     // --- Lifecycle ---

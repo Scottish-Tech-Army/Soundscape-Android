@@ -60,6 +60,7 @@ data class AppCallbacks(
     val onOfflineMapsCancelDownload: () -> Unit = {},
     // Home-screen extras
     val onSleep: () -> Unit = {},
+    val onWakeUp: () -> Unit = {},
     val onStreetPreviewGo: () -> Unit = {},
     val onStreetPreviewExit: () -> Unit = {},
     val onShareRecording: () -> Unit = {},
