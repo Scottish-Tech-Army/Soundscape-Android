@@ -17,7 +17,7 @@ fun PlacesNearbyScreenVM(
     modifier: Modifier = Modifier,
     viewModel: PlacesNearbyViewModel =  koinViewModel(),
 ) {
-    val uiState by viewModel.logic.uiState.collectAsStateWithLifecycle()
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     PlacesNearbyScreen(
         uiState,
         onSelectItem = { desc ->

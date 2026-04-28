@@ -122,6 +122,15 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     override val filteredLocationFlow: StateFlow<SoundscapeLocation?>
         get() = locationProvider.filteredLocationFlow
 
+    override val locationFlow: StateFlow<SoundscapeLocation?>
+        get() = locationProvider.locationFlow
+
+    override val orientationFlow: StateFlow<org.scottishtecharmy.soundscape.locationprovider.DeviceDirection?>
+        get() = directionProvider.orientationFlow
+
+    override val currentRouteFlow: StateFlow<org.scottishtecharmy.soundscape.services.RoutePlayerState>
+        get() = routePlayer.currentRouteFlow
+
     // secondary service
     private var timerJob: Job? = null
 
@@ -235,19 +244,19 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
     // Flow to return beacon location
     private val _beaconFlow = MutableStateFlow(BeaconState())
-    var beaconFlow: StateFlow<BeaconState> = _beaconFlow
+    override val beaconFlow: StateFlow<BeaconState> = _beaconFlow
 
     // Flow to return street preview mode
     private val _streetPreviewFlow = MutableStateFlow(StreetPreviewState(StreetPreviewEnabled.OFF))
-    var streetPreviewFlow: StateFlow<StreetPreviewState> = _streetPreviewFlow
+    override val streetPreviewFlow: StateFlow<StreetPreviewState> = _streetPreviewFlow
 
     // Flow to return nearby places
     private val _gridStateFlow = MutableStateFlow<GridState?>(null)
-    var gridStateFlow: StateFlow<GridState?> = _gridStateFlow
+    override val gridStateFlow: StateFlow<GridState?> = _gridStateFlow
 
     // Voice command manager — only initialized when RECORD_AUDIO permission is granted
     private var voiceCommandManager: VoiceCommandManager? = null
-    val voiceCommandStateFlow: StateFlow<VoiceCommandState>
+    override val voiceCommandStateFlow: StateFlow<VoiceCommandState>
         get() = voiceCommandManager?.state ?: MutableStateFlow(VoiceCommandState.Idle)
 
     // Media control button code
@@ -270,7 +279,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         return binder!!
     }
 
-    fun setStreetPreviewMode(on: Boolean, location: LngLatAlt?) {
+    override fun setStreetPreviewMode(on: Boolean, location: LngLatAlt?) {
         directionProvider.destroy()
         locationProvider.destroy()
         geoEngine.stop()
@@ -730,11 +739,11 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         }
     }
 
-    suspend fun searchResult(searchString: String): List<LocationDescription>? {
-        return geoEngine.searchResult(searchString)
+    override suspend fun searchResult(query: String): List<LocationDescription>? {
+        return geoEngine.searchResult(query)
     }
 
-    fun getLocationDescription(location: LngLatAlt) : LocationDescription {
+    override fun getLocationDescription(location: LngLatAlt) : LocationDescription {
         return geoEngine.getLocationDescription(location)
     }
 
@@ -745,7 +754,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         routePlayer.startRoute(routeId)
     }
 
-    fun routeStartReverse(routeId: Long) {
+    override fun routeStartReverse(routeId: Long) {
         routePlayer.startRoute(routeId, reverse = true)
     }
     override fun routeStop() {
@@ -887,7 +896,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
      * It indicates that the user has selected the direction of travel in which they which to move.
      */
 
-    fun streetPreviewGo() {
+    override fun streetPreviewGo() {
         val choices = geoEngine.streetPreviewGo()
         _streetPreviewFlow.value = _streetPreviewFlow.value.copy(choices = choices, bestChoice = null)
         geoEngine.recomputeStreetPreviewBestChoice()

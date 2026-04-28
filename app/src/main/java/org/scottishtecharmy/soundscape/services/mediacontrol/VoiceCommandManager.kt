@@ -45,12 +45,6 @@ import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.lang.Thread.sleep
 import java.util.Locale
 
-sealed class VoiceCommandState {
-    object Idle : VoiceCommandState()
-    object Listening : VoiceCommandState()
-    object Error : VoiceCommandState()
-}
-
 class VoiceCommandManager(
     private val service: SoundscapeService
 ) {

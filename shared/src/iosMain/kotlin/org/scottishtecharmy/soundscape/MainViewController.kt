@@ -3,8 +3,6 @@ package org.scottishtecharmy.soundscape
 import androidx.compose.runtime.remember
 import androidx.compose.ui.window.ComposeUIViewController
 import kotlinx.coroutines.flow.MutableStateFlow
-import org.scottishtecharmy.soundscape.audio.AudioTour
-import org.scottishtecharmy.soundscape.audio.AudioTourHost
 import org.scottishtecharmy.soundscape.audio.TourButton
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
@@ -18,40 +16,35 @@ fun MainViewController() = ComposeUIViewController {
     val service = remember { IosSoundscapeService.getInstance() }
     val mgr = service.offlineMapManager
     val prefs = service.preferencesProvider
+    val audioTour = service.audioTour
+    val homeStateHolder = service.homeStateHolder
+    val placesNearbyStateHolder = service.placesNearbyStateHolder
 
     val isFirstLaunch = remember {
         prefs.getBoolean(PreferenceKeys.FIRST_LAUNCH, PreferenceDefaults.FIRST_LAUNCH)
     }
     val startDestination = if (isFirstLaunch) SharedRoutes.ONBOARDING else SharedRoutes.HOME
 
-    val audioTour = remember {
-        AudioTour(object : AudioTourHost {
-            override fun isAudioEngineBusy(): Boolean = service.isAudioEngineBusy()
-            override fun clearTextToSpeechQueue() { service.clearTextToSpeechQueue() }
-        })
-    }
     val audioTourRunning = remember { MutableStateFlow(false) }
-    // Mirror tour running state off the instruction flow — same trick HomeScreen uses on Android.
     androidx.compose.runtime.LaunchedEffect(audioTour) {
         audioTour.currentInstruction.collect {
             audioTourRunning.value = audioTour.isRunning()
         }
     }
 
-    // Stub flows for features iOS doesn't yet have its own state for. They're @Composable-safe
-    // because they're MutableStateFlow.
+    // Stub flows for features iOS doesn't yet have its own state for.
     val recordingEnabled = remember { MutableStateFlow(false) }
     val permissionsRequired = remember { MutableStateFlow(false) }
     val voiceCommandListening = remember { MutableStateFlow(false) }
 
     App(
         flows = AppFlows(
-            locationFlow = service.getLocationFlow(),
-            directionFlow = service.getOrientationFlow(),
-            homeState = service.homeState,
-            markersUiState = service.markersUiState,
-            routesUiState = service.routesUiState,
-            placesNearbyUiState = service.placesNearbyUiState,
+            locationFlow = service.locationFlow,
+            directionFlow = service.orientationFlow,
+            homeState = homeStateHolder.state,
+            markersUiState = service.markersStateHolder.uiState,
+            routesUiState = service.routesStateHolder.uiState,
+            placesNearbyUiState = placesNearbyStateHolder.uiState,
             offlineMapsNearbyExtracts = mgr.availableExtracts,
             offlineMapsDownloaded = mgr.downloadedExtracts,
             offlineMapsDownloadedFc = mgr.downloadedExtractsFc,
@@ -74,7 +67,7 @@ fun MainViewController() = ComposeUIViewController {
             },
             onSpeak = { text -> service.speakCallout(text) },
             onStartRoute = { routeId -> service.routeStartById(routeId) },
-            onStartRouteInReverse = { routeId -> service.routePlayer.startRoute(routeId, reverse = true) },
+            onStartRouteInReverse = { routeId -> service.routeStartReverse(routeId) },
             onRouteStop = {
                 service.routeStop()
                 audioTour.onBeaconStopped()
@@ -82,7 +75,7 @@ fun MainViewController() = ComposeUIViewController {
             onRouteSkipNext = { service.routeSkipNext() },
             onRouteSkipPrevious = { service.routeSkipPrevious() },
             onRouteMute = { service.routeMute() },
-            onSearch = { query -> service.search(query) },
+            onSearch = { query -> homeStateHolder.onTriggerSearch(query) },
             onSaveMarker = { desc ->
                 service.saveMarker(desc)
                 audioTour.onMarkerCreateDone()
@@ -92,25 +85,25 @@ fun MainViewController() = ComposeUIViewController {
             onDeleteRoute = { routeId -> service.deleteRoute(routeId) },
             onLoadRoute = { routeId -> service.loadRouteWaypoints(routeId) },
             onMyLocation = {
-                service.myLocation()
+                homeStateHolder.myLocation()
                 audioTour.onButtonPressed(TourButton.MY_LOCATION)
             },
             onWhatsAroundMe = {
-                service.whatsAroundMe()
+                homeStateHolder.whatsAroundMe()
                 audioTour.onButtonPressed(TourButton.AROUND_ME)
             },
             onAheadOfMe = {
-                service.aheadOfMe()
+                homeStateHolder.aheadOfMe()
                 audioTour.onButtonPressed(TourButton.AHEAD_OF_ME)
             },
             onNearbyMarkers = {
-                service.nearbyMarkers()
+                homeStateHolder.nearbyMarkers()
                 audioTour.onButtonPressed(TourButton.NEARBY_MARKERS)
             },
             onPlacesNearbyClickFolder = { filter, title ->
-                service.placesNearbyClickFolder(filter, title)
+                placesNearbyStateHolder.onClickFolder(filter, title)
             },
-            onPlacesNearbyClickBack = { service.placesNearbyClickBack() },
+            onPlacesNearbyClickBack = { placesNearbyStateHolder.onClickBack() },
             onOfflineMapsRefresh = { mgr.refresh() },
             onOfflineMapsGetExtracts = { location -> mgr.getExtractsContaining(location) },
             onOfflineMapsDownload = { _, feature ->
@@ -125,8 +118,8 @@ fun MainViewController() = ComposeUIViewController {
             // iOS hooks for the previously Android-only home features. Stubs for now —
             // a future change can wire these to native iOS subsystems.
             onSleep = { /* TODO iOS sleep mode */ },
-            onStreetPreviewGo = { /* TODO iOS street preview */ },
-            onStreetPreviewExit = { /* TODO iOS street preview */ },
+            onStreetPreviewGo = { homeStateHolder.streetPreviewGo() },
+            onStreetPreviewExit = { homeStateHolder.streetPreviewExit() },
             onShareRecording = { /* TODO iOS UIActivityViewController */ },
             onRateApp = {
                 val url = NSURL.URLWithString("itms-apps://itunes.apple.com/app/idXXXXXXXX?action=write-review")
@@ -144,7 +137,7 @@ fun MainViewController() = ComposeUIViewController {
                 if (url != null) UIApplication.sharedApplication.openURL(url)
             },
             onGetCurrentLocationDescription = {
-                val location = service.homeState.value.location
+                val location = homeStateHolder.state.value.location
                 if (location != null) {
                     LocationDescription("", location)
                 } else {

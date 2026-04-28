@@ -46,6 +46,8 @@ object PreferenceKeys {
     const val SHOW_MAP = "ShowMap"
     const val LANGUAGE_SUPPORTED_PROMPTED = "LanguageSupported"
     const val LAST_NEW_RELEASE = "LastNewRelease"
+    const val MARKERS_SORT_BY_NAME = "MarkersSortByName"
+    const val MARKERS_SORT_ASCENDING = "MarkersSortAscending"
 }
 
 object PreferenceDefaults {
@@ -71,4 +73,6 @@ object PreferenceDefaults {
     const val SHOW_MAP = true
     const val LANGUAGE_SUPPORTED_PROMPTED = false
     const val LAST_NEW_RELEASE = ""
+    const val MARKERS_SORT_BY_NAME = false  // distance by default
+    const val MARKERS_SORT_ASCENDING = true
 }

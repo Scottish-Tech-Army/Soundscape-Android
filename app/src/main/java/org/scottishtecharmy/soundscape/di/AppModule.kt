@@ -1,11 +1,14 @@
 package org.scottishtecharmy.soundscape.di
 
+import androidx.preference.PreferenceManager
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
+import org.scottishtecharmy.soundscape.preferences.AndroidPreferencesProvider
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.SoundscapeIntents
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.audio.AudioTourHost
@@ -42,6 +45,10 @@ val appModule = module {
     single { MarkersAndRoutesDatabaseProvider.getInstance(androidContext()) }
 
     single { get<org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabase>().routeDao() }
+
+    single<PreferencesProvider> {
+        AndroidPreferencesProvider(PreferenceManager.getDefaultSharedPreferences(androidContext()))
+    }
 
     single { SoundscapeServiceConnection() }
 

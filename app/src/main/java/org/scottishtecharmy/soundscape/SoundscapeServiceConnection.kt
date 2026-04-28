@@ -3,7 +3,7 @@ package org.scottishtecharmy.soundscape
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
-import android.content.ServiceConnection
+import android.content.ServiceConnection as AndroidServiceConnection
 import android.os.IBinder
 import android.util.Log
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
@@ -16,14 +16,19 @@ import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
+import org.scottishtecharmy.soundscape.services.ServiceConnection
 import org.scottishtecharmy.soundscape.services.SoundscapeBinder
 import org.scottishtecharmy.soundscape.services.SoundscapeService
+import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService
 import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
-class SoundscapeServiceConnection {
+class SoundscapeServiceConnection : ServiceConnection {
     var soundscapeService: SoundscapeService? = null
 
+    override val service: MediaControllableService?
+        get() = soundscapeService
+
     private var _serviceBoundState = MutableStateFlow(false)
-    val serviceBoundState = _serviceBoundState.asStateFlow()
+    override val serviceBoundState = _serviceBoundState.asStateFlow()
 
     // Simplify access of flows
     fun getLocationFlow() : StateFlow<SoundscapeLocation?>? {
@@ -81,7 +86,7 @@ class SoundscapeServiceConnection {
     }
 
     // needed to communicate with the service.
-    private val connection = object : ServiceConnection {
+    private val connection = object : AndroidServiceConnection {
 
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
             // we've bound to ExampleLocationForegroundService, cast the IBinder and get ExampleLocationForegroundService instance.

@@ -7,6 +7,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.audio.AudioTour
+import org.scottishtecharmy.soundscape.audio.AudioTourHost
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.IosAudioEngine
 import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenu
@@ -18,6 +20,8 @@ import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.RoutePlayer
+import org.scottishtecharmy.soundscape.services.RoutePlayerState
+import org.scottishtecharmy.soundscape.services.ServiceConnection
 import org.scottishtecharmy.soundscape.geoengine.GeoEngine
 import org.scottishtecharmy.soundscape.geoengine.GeoEngineListener
 import org.scottishtecharmy.soundscape.geoengine.GridState
@@ -55,7 +59,7 @@ import platform.Foundation.NSHomeDirectory
  * Manages location/direction/audio providers and the GeoEngine.
  * Background operation via iOS's UIBackgroundModes (audio + location).
  */
-class IosSoundscapeService : GeoEngineListener, MediaControllableService {
+class IosSoundscapeService : GeoEngineListener, MediaControllableService, ServiceConnection {
 
     private val scope = CoroutineScope(Dispatchers.Default + Job())
     private var suppressionJob: Job? = null
@@ -92,44 +96,11 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
 
     // Grid state flow for UI
     private val _gridStateFlow = MutableStateFlow<GridState?>(null)
-    val gridStateFlow: StateFlow<GridState?> = _gridStateFlow.asStateFlow()
-
-    // Markers UI state
-    private val _markersUiState = MutableStateFlow(
-        org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState(markers = true)
-    )
-    val markersUiState: StateFlow<org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState>
-        = _markersUiState.asStateFlow()
-
-    // Routes UI state
-    private val _routesUiState = MutableStateFlow(
-        org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState(markers = false)
-    )
-    val routesUiState: StateFlow<org.scottishtecharmy.soundscape.screens.markers_routes.screens.MarkersAndRoutesUiState>
-        = _routesUiState.asStateFlow()
-
-    // Places Nearby state
-    private val _placesNearbyUiState = MutableStateFlow(PlacesNearbyUiState())
-    val placesNearbyUiState: StateFlow<PlacesNearbyUiState> = _placesNearbyUiState.asStateFlow()
-
-    fun placesNearbyClickFolder(filter: String, title: String) {
-        _placesNearbyUiState.value = _placesNearbyUiState.value.copy(
-            level = 1,
-            filter = filter,
-            title = title,
-        )
-    }
-
-    fun placesNearbyClickBack() {
-        val current = _placesNearbyUiState.value
-        if (current.level > 0) {
-            _placesNearbyUiState.value = current.copy(level = 0, filter = "", title = "")
-        }
-    }
+    override val gridStateFlow: StateFlow<GridState?> = _gridStateFlow.asStateFlow()
 
     // Beacon state — uses shared BeaconState from services package
     private val _beaconFlow = MutableStateFlow(BeaconState())
-    val beaconFlow: StateFlow<BeaconState> = _beaconFlow.asStateFlow()
+    override val beaconFlow: StateFlow<BeaconState> = _beaconFlow.asStateFlow()
     private var beaconHandle: Long? = null
 
     // Route player and audio menu
@@ -138,16 +109,42 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
 
     // Service bound state (always true on iOS)
     private val _serviceBoundState = MutableStateFlow(true)
-    val serviceBoundState: StateFlow<Boolean> = _serviceBoundState.asStateFlow()
+    override val serviceBoundState: StateFlow<Boolean> = _serviceBoundState.asStateFlow()
+    override val service: MediaControllableService get() = this
 
-    // Home state flow — combines location, heading, beacon, route
-    private val _homeState = MutableStateFlow(org.scottishtecharmy.soundscape.screens.home.HomeState())
-    val homeState: StateFlow<org.scottishtecharmy.soundscape.screens.home.HomeState> = _homeState.asStateFlow()
+    // Forward MediaControllableService flow surface
+    override val locationFlow: StateFlow<SoundscapeLocation?>
+        get() = locationProvider.locationFlow
+    override val orientationFlow: StateFlow<DeviceDirection?>
+        get() = directionProvider.orientationFlow
+    override val currentRouteFlow: StateFlow<RoutePlayerState>
+        get() = routePlayer.currentRouteFlow
 
-    // Convenience flow accessors
-    fun getLocationFlow(): StateFlow<SoundscapeLocation?> = locationProvider.locationFlow
-    fun getOrientationFlow(): StateFlow<DeviceDirection?> = directionProvider.orientationFlow
-    fun getGridStateFlow(): StateFlow<GridState?> = gridStateFlow
+    // Audio tour — shared with the Compose UI
+    val audioTour: AudioTour by lazy {
+        AudioTour(object : AudioTourHost {
+            override fun isAudioEngineBusy(): Boolean = this@IosSoundscapeService.isAudioEngineBusy()
+            override fun clearTextToSpeechQueue() { this@IosSoundscapeService.clearTextToSpeechQueue() }
+        })
+    }
+
+    // Shared state-holders — replace the per-VM iOS reimplementations
+    val homeStateHolder by lazy {
+        org.scottishtecharmy.soundscape.screens.home.HomeStateHolder(this, audioTour)
+    }
+    val placesNearbyStateHolder by lazy {
+        org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyStateHolder(this, audioTour)
+    }
+    val markersStateHolder by lazy {
+        org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersStateHolder(
+            routeDao, preferencesProvider, this,
+        )
+    }
+    val routesStateHolder by lazy {
+        org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesStateHolder(
+            routeDao, preferencesProvider, this,
+        )
+    }
 
     private val preferencesListener = PreferencesListener { key ->
         when (key) {
@@ -196,70 +193,6 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
         preferencesProvider.addListener(preferencesListener)
         startGeoEngine()
         observeAppLifecycle()
-        startHomeStateUpdates()
-        startDatabaseObservers()
-    }
-
-    private fun startHomeStateUpdates() {
-        // Update home state from location and heading flows
-        scope.launch {
-            locationProvider.locationFlow.collect { location ->
-                val heading = directionProvider.orientationFlow.value?.headingDegrees ?: 0f
-                _homeState.value = _homeState.value.copy(
-                    location = location?.let { LngLatAlt(it.longitude, it.latitude) },
-                    heading = heading,
-                    beaconState = org.scottishtecharmy.soundscape.services.BeaconState(
-                        location = _beaconFlow.value.location,
-                        muteState = _beaconFlow.value.muteState,
-                    ),
-                )
-            }
-        }
-        scope.launch {
-            directionProvider.orientationFlow.collect { direction ->
-                _homeState.value = _homeState.value.copy(
-                    heading = direction?.headingDegrees ?: 0f,
-                )
-            }
-        }
-        scope.launch {
-            routePlayer.currentRouteFlow.collect { routePlayerState ->
-                _homeState.value = _homeState.value.copy(
-                    currentRouteData = routePlayerState,
-                )
-            }
-        }
-    }
-
-    private fun startDatabaseObservers() {
-        // Observe markers from database
-        scope.launch {
-            routeDao.getAllMarkersFlow().collect { markers ->
-                val entries = markers.map { marker ->
-                    LocationDescription(
-                        name = marker.name,
-                        description = marker.fullAddress,
-                        location = LngLatAlt(marker.longitude, marker.latitude),
-                        databaseId = marker.markerId,
-                    )
-                }
-                _markersUiState.value = _markersUiState.value.copy(entries = entries)
-            }
-        }
-
-        // Observe routes from database
-        scope.launch {
-            routeDao.getAllRoutesFlow().collect { routes ->
-                val entries = routes.map { route ->
-                    LocationDescription(
-                        name = route.name,
-                        location = LngLatAlt(0.0, 0.0), // Routes don't have a single location
-                        databaseId = route.routeId,
-                    )
-                }
-                _routesUiState.value = _routesUiState.value.copy(entries = entries)
-            }
-        }
     }
 
     private fun observeAppLifecycle() {
@@ -341,26 +274,6 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
 
     override fun tileGridUpdated() {
         _gridStateFlow.value = geoEngine.gridState
-
-        // Update nearby places from the grid
-        scope.launch {
-            try {
-                val pois = kotlinx.coroutines.withContext(geoEngine.gridState.treeContext) {
-                    geoEngine.gridState.getFeatureCollection(TreeId.POIS)
-                }
-                val intersections = kotlinx.coroutines.withContext(geoEngine.gridState.treeContext) {
-                    geoEngine.gridState.getFeatureCollection(TreeId.INTERSECTIONS)
-                }
-                val location = locationProvider.locationFlow.value
-                _placesNearbyUiState.value = _placesNearbyUiState.value.copy(
-                    nearbyPlaces = pois,
-                    nearbyIntersections = intersections,
-                    userLocation = location?.let { LngLatAlt(it.longitude, it.latitude) },
-                )
-            } catch (e: Exception) {
-                println("IosSoundscapeService: Error updating nearby places: ${e.message}")
-            }
-        }
     }
 
     override fun updateStreetPreviewBestChoice(bestChoice: StreetPreviewChoice) {}
@@ -469,24 +382,6 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
                 routeDao.removeMarker(markerId)
             } catch (e: Exception) {
                 println("IosSoundscapeService: Failed to delete marker: ${e.message}")
-            }
-        }
-    }
-
-    // --- Search ---
-
-    fun search(query: String) {
-        scope.launch {
-            _homeState.value = _homeState.value.copy(searchInProgress = true, searchItems = null)
-            try {
-                val results = geoEngine.searchResult(query)
-                _homeState.value = _homeState.value.copy(
-                    searchInProgress = false,
-                    searchItems = results,
-                )
-            } catch (e: Exception) {
-                _homeState.value = _homeState.value.copy(searchInProgress = false)
-                println("IosSoundscapeService: Search failed: ${e.message}")
             }
         }
     }
@@ -624,6 +519,18 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService {
 
     override fun routeStartById(routeId: Long) {
         routePlayer.startRoute(routeId)
+    }
+
+    override fun routeStartReverse(routeId: Long) {
+        routePlayer.startRoute(routeId, reverse = true)
+    }
+
+    override fun getLocationDescription(location: LngLatAlt): LocationDescription {
+        return geoEngine.getLocationDescription(location)
+    }
+
+    override suspend fun searchResult(query: String): List<LocationDescription>? {
+        return geoEngine.searchResult(query)
     }
 
     // --- Lifecycle ---

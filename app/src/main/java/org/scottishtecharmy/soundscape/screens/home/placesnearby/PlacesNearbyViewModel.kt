@@ -1,32 +1,24 @@
 package org.scottishtecharmy.soundscape.screens.home.placesnearby
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+
 class PlacesNearbyViewModel(
     soundscapeServiceConnection: SoundscapeServiceConnection,
-    audioTour: AudioTour
+    audioTour: AudioTour,
 ) : ViewModel() {
 
-    val logic = PlacesNearbySharedLogic(soundscapeServiceConnection, viewModelScope)
+    val holder = PlacesNearbyStateHolder(soundscapeServiceConnection, audioTour)
+    val uiState = holder.uiState
 
-    init {
-        // Notify audio tour that we've navigated to Places Nearby
-        audioTour.onNavigatedToPlacesNearby()
-    }
+    fun onClickBack() = holder.onClickBack()
+    fun onClickFolder(filter: String, title: String) = holder.onClickFolder(filter, title)
+    fun startBeacon(location: LngLatAlt, name: String) = holder.startBeacon(location, name)
 
-    fun onClickBack() {
-        logic.internalUiState.value = logic.uiState.value.copy(level = 0)
-    }
-
-    fun onClickFolder(filter: String, title: String) {
-        // Apply the filter
-        logic.internalUiState.value = logic.uiState.value.copy(level = 1, filter = filter, title = title)
-    }
-
-    fun startBeacon(location: LngLatAlt, name: String) {
-        logic.startBeacon(location, name)
+    override fun onCleared() {
+        super.onCleared()
+        holder.dispose()
     }
 }

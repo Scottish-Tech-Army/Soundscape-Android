@@ -4,252 +4,44 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.screens.home.HomeState
+import org.scottishtecharmy.soundscape.screens.home.HomeStateHolder
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
-@OptIn(FlowPreview::class)
+
 class HomeViewModel(
-    private val soundscapeServiceConnection: SoundscapeServiceConnection,
-    val audioTour: AudioTour
+    soundscapeServiceConnection: SoundscapeServiceConnection,
+    val audioTour: AudioTour,
 ) : ViewModel() {
-    private val _state: MutableStateFlow<HomeState> = MutableStateFlow(HomeState())
-    val state: StateFlow<HomeState> = _state.asStateFlow()
 
-    private var job : Job? = null
-    private var spJob : Job? = null
+    val holder = HomeStateHolder(soundscapeServiceConnection, audioTour)
+    val state = holder.state
 
-    init {
-        handleMonitoring()
-    }
+    fun myLocation() = holder.myLocation()
+    fun aheadOfMe() = holder.aheadOfMe()
+    fun whatsAroundMe() = holder.whatsAroundMe()
+    fun nearbyMarkers() = holder.nearbyMarkers()
+    fun streetPreviewGo() = holder.streetPreviewGo()
+    fun streetPreviewExit() = holder.streetPreviewExit()
+    fun routeSkipPrevious() = holder.routeSkipPrevious()
+    fun routeSkipNext() = holder.routeSkipNext()
+    fun routeMute() = holder.routeMute()
+    fun routeStop() = holder.routeStop()
+    fun getLocationDescription(location: LngLatAlt): LocationDescription? =
+        holder.getLocationDescription(location)
+    fun onTriggerSearch(text: String) = holder.onTriggerSearch(text)
+    fun setRoutesAndMarkersTab(pickRoutes: Boolean) = holder.setRoutesAndMarkersTab(pickRoutes)
 
-    private fun handleMonitoring() {
-        viewModelScope.launch {
-            soundscapeServiceConnection.serviceBoundState.collect { serviceBoundState ->
-                Log.d(TAG, "serviceBoundState $serviceBoundState")
-                if (serviceBoundState) {
-                    // The service has started, so start monitoring the location and heading
-                    startMonitoringLocation()
-                    // And start monitoring the street preview state
-                    startMonitoringStreetPreviewState()
-                } else {
-                    // The service has gone away so remove the current location marker
-                    stopMonitoringStreetPreviewState()
-                    stopMonitoringLocation()
-                }
-            }
-        }
+    fun goToAppSettings(context: Context) {
+        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+        intent.data = Uri.fromParts("package", "org.scottishtecharmy.soundscape", null)
+        context.startActivity(intent)
     }
 
     override fun onCleared() {
         super.onCleared()
-        stopMonitoringStreetPreviewState()
-        stopMonitoringLocation()
-    }
-
-    /**
-     * startMonitoringLocation launches monitoring of the location and orientation providers. These
-     * can change e.g. when switching to and from StreetPreview mode, so they are launched in a job.
-     * That job is cancelled when the StreetPreview mode changes and the monitoring restarted.
-     */
-    private fun startMonitoringLocation() {
-        Log.d(TAG, "ViewModel startMonitoringLocation")
-        job = Job()
-        viewModelScope.launch(job!!) {
-            // Observe location updates from the service
-            soundscapeServiceConnection.getLocationFlow()?.collectLatest { value ->
-                if (value != null) {
-                    Log.d(TAG, "Location $value")
-                    _state.update { it.copy(location = LngLatAlt(value.longitude, value.latitude)) }
-                }
-            }
-        }
-        viewModelScope.launch(job!!) {
-            // Observe orientation updates from the service
-            soundscapeServiceConnection.getOrientationFlow()?.collectLatest { value ->
-                if (value != null) {
-                    _state.update { it.copy(heading = value.headingDegrees) }
-                }
-            }
-        }
-        viewModelScope.launch(job!!) {
-            // Observe beacon location update from the service so we can show it on the map
-            soundscapeServiceConnection.getBeaconFlow()?.collectLatest { value ->
-                Log.d(TAG, "beacon collected $value")
-                _state.update {
-                    it.copy(
-                        beaconState = value
-                    )
-                }
-            }
-        }
-        viewModelScope.launch(job!!) {
-            // Observe current route from the service so we can show it on the map
-            soundscapeServiceConnection.getCurrentRouteFlow()?.collectLatest { value ->
-                _state.update { it.copy(currentRouteData = value) }
-            }
-        }
-        viewModelScope.launch(job!!) {
-            // Observe voice command listening state
-            soundscapeServiceConnection.getVoiceCommandStateFlow()?.collectLatest { voiceState ->
-                _state.update { it.copy(voiceCommandListening = voiceState is VoiceCommandState.Listening) }
-            }
-        }
-    }
-
-    private fun stopMonitoringLocation() {
-        Log.d(TAG, "stopMonitoringLocation")
-        job?.cancel()
-    }
-
-    /**
-     * startMonitoringStreetPreviewState launches a job to monitor the state of street preview mode.
-     * When the mode from the service changes then the local flow for the UI is updated and the
-     * location and orientation monitoring is turned off and on again so as to use the new providers.
-     */
-    private fun startMonitoringStreetPreviewState() {
-        Log.d(TAG, "startMonitoringStreetPreviewState")
-        spJob = Job()
-        viewModelScope.launch(spJob!!) {
-            // Observe street preview mode from the service so we can update state
-            soundscapeServiceConnection.getStreetPreviewModeFlow()?.collect { value ->
-                Log.d(TAG, "Street Preview Mode: $value")
-                val enabled = state.value.streetPreviewState.enabled
-                _state.update { it.copy(streetPreviewState = value) }
-
-                if(enabled != value.enabled) {
-                    // Restart location monitoring for new provider
-                    stopMonitoringLocation()
-                    startMonitoringLocation()
-                }
-            }
-        }
-    }
-
-    private fun stopMonitoringStreetPreviewState() {
-        Log.d(TAG, "stopMonitoringStreetPreviewState")
-        spJob?.cancel()
-    }
-
-//
-// We moved from the deprecated MapLibre Marker API to using the Symbol API instead. We don't yet
-// have a listener for a click on symbols.
-//
-//    fun onMarkerClick(marker: Marker): Boolean {
-//        Log.d(TAG, "marker click")
-//
-//        if ((marker.position.latitude == _state.value.beaconLocation?.latitude) &&
-//            (marker.position.longitude == _state.value.beaconLocation?.longitude)){
-//            soundscapeServiceConnection.soundscapeService?.destroyBeacon()
-//            _state.update { it.copy(beaconLocation = null) }
-//
-//            return true
-//        }
-//        return false
-//    }
-
-    fun myLocation() {
-        // Log.d(TAG, "myLocation() triggered")
-        viewModelScope.launch {
-            soundscapeServiceConnection.soundscapeService?.myLocation()
-        }
-    }
-
-    fun aheadOfMe() {
-        // Log.d(TAG, "myLocation() triggered")
-        viewModelScope.launch {
-            soundscapeServiceConnection.soundscapeService?.aheadOfMe()
-        }
-    }
-
-    fun whatsAroundMe() {
-        // Log.d(TAG, "myLocation() triggered")
-        viewModelScope.launch {
-            soundscapeServiceConnection.soundscapeService?.whatsAroundMe()
-        }
-    }
-
-    fun nearbyMarkers() {
-        // Log.d(TAG, "nearbyMarkers() triggered")
-        viewModelScope.launch {
-            soundscapeServiceConnection.soundscapeService?.nearbyMarkers()
-        }
-    }
-
-    fun streetPreviewGo() {
-        // Log.d(TAG, "myLocation() triggered")
-        viewModelScope.launch {
-            soundscapeServiceConnection.streetPreviewGo()
-        }
-    }
-
-    fun streetPreviewExit() {
-        // Log.d(TAG, "myLocation() triggered")
-        viewModelScope.launch {
-            soundscapeServiceConnection.setStreetPreviewMode(false)
-        }
-    }
-
-    fun routeSkipPrevious() {
-        viewModelScope.launch {
-            soundscapeServiceConnection.routeSkipPrevious()
-        }
-    }
-    fun routeSkipNext() {
-        viewModelScope.launch {
-            soundscapeServiceConnection.routeSkipNext()
-        }
-    }
-    fun routeMute() {
-        viewModelScope.launch {
-            soundscapeServiceConnection.routeMute()
-        }
-    }
-    fun routeStop() {
-        viewModelScope.launch {
-            soundscapeServiceConnection.routeStop()
-            audioTour.onBeaconStopped()
-        }
-    }
-
-    fun getLocationDescription(location: LngLatAlt) : LocationDescription? {
-        return soundscapeServiceConnection.soundscapeService?.getLocationDescription(location)
-    }
-
-    fun onTriggerSearch(text: String) {
-        viewModelScope.launch {
-            _state.update { it.copy(searchInProgress = true) }
-            val result =
-                soundscapeServiceConnection.soundscapeService?.searchResult(text)
-            _state.update { it.copy(searchItems = result,searchInProgress = false) }
-        }
-    }
-
-    fun setRoutesAndMarkersTab(pickRoutes: Boolean) {
-        _state.update { it.copy(routesTabSelected = pickRoutes) }
-    }
-
-    fun goToAppSettings(context: Context) {
-        val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
-        val uri = Uri.fromParts("package", "org.scottishtecharmy.soundscape", null)
-        intent.data = uri
-        context.startActivity(intent)
-    }
-
-companion object {
-        private const val TAG = "HomeViewModel"
+        holder.dispose()
     }
 }
