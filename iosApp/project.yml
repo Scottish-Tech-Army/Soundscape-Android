@@ -8,7 +8,7 @@ configFiles:
   Release: Local.xcconfig
 settings:
   ENABLE_BITCODE: "NO"
-  #DEVELOPMENT_TEAM: 48N3J4V5KM
+  DEVELOPMENT_TEAM: 48N3J4V5KM
 packages:
   MapLibre:
     url: https://github.com/maplibre/maplibre-gl-native-distribution
@@ -35,6 +35,8 @@ targets:
     info:
       path: iosApp/Info.plist
       properties:
+        CFBundleDisplayName: Soundscape
+        CFBundleName: Soundscape
         CADisableMinimumFrameDurationOnPhone: true
         NSLocationWhenInUseUsageDescription: "Soundscape needs your location to provide audio navigation and describe your surroundings."
         NSLocationAlwaysAndWhenInUseUsageDescription: "Soundscape needs your location to provide audio navigation even when the app is in the background."
@@ -80,6 +82,8 @@ targets:
               public.filename-extension:
                 - gpx
     settings:
+      PRODUCT_BUNDLE_IDENTIFIER: org.scottishtecharmy.soundscape
+      PRODUCT_NAME: Soundscape
       FRAMEWORK_SEARCH_PATHS:
         - "$(inherited)"
         - "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)"
@@ -87,10 +91,7 @@ targets:
         - "$(inherited)"
         - "-framework"
         - "Shared"
-      # Re-enable once a paid team is configured (DEVELOPMENT_TEAM above).
-      # The entitlements file requests the Associated Domains capability for
-      # universal links, which Personal Teams cannot sign.
-      #CODE_SIGN_ENTITLEMENTS: iosApp/iosApp.entitlements
+      CODE_SIGN_ENTITLEMENTS: iosApp/iosApp.entitlements
     preBuildScripts:
       - name: "Build Kotlin Framework"
         script: |
@@ -117,5 +118,5 @@ targets:
           NSExtensionPointIdentifier: com.apple.share-services
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: org.scottishtecharmy.soundscape.iosApp.ShareExtension
+      PRODUCT_BUNDLE_IDENTIFIER: org.scottishtecharmy.soundscape.shareextension
       SKIP_INSTALL: "YES"
