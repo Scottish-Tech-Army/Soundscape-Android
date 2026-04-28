@@ -206,6 +206,7 @@ fun SharedNavHost(
             val homeState by flows.homeState?.collectAsState()
                 ?: remember { mutableStateOf(HomeState()) }
             val desc = navStateHolder.selectedLocation.collectAsState().value
+            val shareMessage = stringResource(Res.string.universal_links_marker_share_message)
             if (desc != null) {
                 SharedLocationDetailsScreen(
                     locationDescription = desc,
@@ -228,6 +229,9 @@ fun SharedNavHost(
                     },
                     onEnableStreetPreview = { loc ->
                         // TODO: wire street preview
+                    },
+                    onShareLocation = { sharedDesc ->
+                        callbacks.onShareLocation(sharedDesc, shareMessage)
                     },
                     onOfflineMaps = { locationDesc ->
                         navStateHolder.setOfflineMapsTargetLocation(locationDesc.location)

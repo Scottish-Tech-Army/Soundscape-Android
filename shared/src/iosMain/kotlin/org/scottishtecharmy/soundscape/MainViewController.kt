@@ -150,6 +150,9 @@ fun MainViewController() = ComposeUIViewController {
                 val fileUrl = service.writeRecordingFile()
                 if (fileUrl != null) presentShareSheet(fileUrl)
             },
+            onShareLocation = { desc, message ->
+                presentShareText(buildShareLocationText(desc, message))
+            },
             onRateApp = {
                 val url = NSURL.URLWithString("itms-apps://itunes.apple.com/app/idXXXXXXXX?action=write-review")
                 if (url != null) UIApplication.sharedApplication.openURL(url)
@@ -185,6 +188,14 @@ fun MainViewController() = ComposeUIViewController {
 }
 
 private fun presentShareSheet(fileUrl: NSURL) {
+    presentActivityViewController(listOf(fileUrl))
+}
+
+private fun presentShareText(text: String) {
+    presentActivityViewController(listOf(text))
+}
+
+private fun presentActivityViewController(items: List<Any>) {
     val keyWindow = UIApplication.sharedApplication.windows
         .mapNotNull { it as? UIWindow }
         .firstOrNull { it.isKeyWindow() }
@@ -193,8 +204,55 @@ private fun presentShareSheet(fileUrl: NSURL) {
     var top: UIViewController? = keyWindow.rootViewController
     while (top?.presentedViewController != null) top = top.presentedViewController
     val activityVc = UIActivityViewController(
-        activityItems = listOf(fileUrl),
+        activityItems = items,
         applicationActivities = null,
     )
     top?.presentViewController(activityVc, animated = true, completion = null)
+}
+
+private fun buildShareLocationText(
+    desc: LocationDescription,
+    messageTemplate: String,
+): String {
+    val latitude = formatCoordinate(desc.location.latitude)
+    val longitude = formatCoordinate(desc.location.longitude)
+    val encodedName = urlEncode(desc.name)
+    val soundscapeUrl =
+        "https://links.soundscape.scottishtecharmy.org/v1/sharemarker?" +
+            "lat=$latitude&lon=$longitude&name=$encodedName"
+    val googleMapsUrl = "https://www.google.com/maps/?q=$latitude,$longitude"
+    return messageTemplate
+        .replace("%1\$s", desc.name)
+        .replace("%2\$s", soundscapeUrl)
+        .replace("%3\$s", googleMapsUrl)
+}
+
+private fun formatCoordinate(value: Double): String {
+    val scaled = kotlin.math.round(value * 100000.0) / 100000.0
+    val asString = scaled.toString()
+    val dot = asString.indexOf('.')
+    return when {
+        dot < 0 -> "$asString.00000"
+        asString.length - dot - 1 >= 5 -> asString.substring(0, dot + 6)
+        else -> asString + "0".repeat(5 - (asString.length - dot - 1))
+    }
+}
+
+private fun urlEncode(value: String): String {
+    val bytes = value.encodeToByteArray()
+    val builder = StringBuilder(bytes.size)
+    for (b in bytes) {
+        val c = b.toInt() and 0xFF
+        val isUnreserved = (c in 0x30..0x39) || // 0-9
+            (c in 0x41..0x5A) || // A-Z
+            (c in 0x61..0x7A) || // a-z
+            c == '-'.code || c == '_'.code || c == '.'.code || c == '~'.code
+        if (isUnreserved) {
+            builder.append(c.toChar())
+        } else {
+            builder.append('%')
+            builder.append(c.toString(16).uppercase().padStart(2, '0'))
+        }
+    }
+    return builder.toString()
 }
