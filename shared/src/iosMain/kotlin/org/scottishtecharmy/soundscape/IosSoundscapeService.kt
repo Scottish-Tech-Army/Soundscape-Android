@@ -306,7 +306,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
                     routeDao.insertRouteWithNewMarkers(route, markers)
                 }
                 audioEngine.createEarcon(
-                    "file:///android_asset/earcons/sense_poi.wav",
+                    "file:///android_asset/Sounds/sense_poi.wav",
                     org.scottishtecharmy.soundscape.audio.AudioType.STANDARD
                 )
             } catch (e: Exception) {
@@ -367,7 +367,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
                     routeDao.insertMarker(marker)
                 }
                 audioEngine.createEarcon(
-                    "file:///android_asset/earcons/sense_poi.wav",
+                    "file:///android_asset/Sounds/sense_poi.wav",
                     org.scottishtecharmy.soundscape.audio.AudioType.STANDARD
                 )
             } catch (e: Exception) {

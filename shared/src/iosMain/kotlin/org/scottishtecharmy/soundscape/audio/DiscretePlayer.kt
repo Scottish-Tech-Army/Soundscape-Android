@@ -27,7 +27,7 @@ class DiscretePlayer(
      * Call scheduleEarconBuffer() after connecting the layer.
      */
     fun loadEarcon(assetName: String): Boolean {
-        val path = NSBundle.mainBundle.pathForResource(assetName, "wav")
+        val path = NSBundle.mainBundle.pathForResource(assetName, "wav", "Sounds")
             ?: run {
                 println("DiscretePlayer: WAV not found: $assetName")
                 return false

@@ -100,10 +100,10 @@ BeaconBufferGroup::BeaconBufferGroup(AAssetManager *mgr,
     }
 
     m_pIntro = std::make_unique<BeaconBuffer>(mgr,
-                                               "file:///android_asset/Route/Route_Start.wav",
+                                               "file:///android_asset/Sounds/Route_Start.wav",
                                                180.0, targetSampleRate);
     m_pOutro = std::make_unique<BeaconBuffer>(mgr,
-                                               "file:///android_asset/Route/Route_End.wav",
+                                               "file:///android_asset/Sounds/Route_End.wav",
                                                180.0, targetSampleRate);
 }
 

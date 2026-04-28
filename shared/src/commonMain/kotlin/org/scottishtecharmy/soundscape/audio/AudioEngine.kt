@@ -2,8 +2,8 @@ package org.scottishtecharmy.soundscape.audio
 
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
-const val EARCON_MODE_ENTER = "file:///android_asset/earcons/mode_enter.wav"
-const val EARCON_MODE_EXIT = "file:///android_asset/earcons/mode_exit.wav"
+const val EARCON_MODE_ENTER = "file:///android_asset/Sounds/mode_enter.wav"
+const val EARCON_MODE_EXIT = "file:///android_asset/Sounds/mode_exit.wav"
 
 interface AudioEngine {
     fun createBeacon(location: LngLatAlt, headingOnly: Boolean) : Long

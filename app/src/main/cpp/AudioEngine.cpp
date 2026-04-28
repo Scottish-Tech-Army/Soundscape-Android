@@ -19,124 +19,120 @@ const BeaconDescriptor AudioEngine::msc_BeaconDescriptors[] =
                 "Original",
                 2,
                 {
-                        {"file:///android_asset/Classic/Classic_OnAxis.wav", 22.5},
-                        {"file:///android_asset/Classic/Classic_OffAxis.wav", 180.0},
+                        {"file:///android_asset/Sounds/Classic_OnAxis.wav", 22.5},
+                        {"file:///android_asset/Sounds/Classic_OffAxis.wav", 180.0},
                 }
         },
         {
                 "Current",
                 6,
                 {
-                        {"file:///android_asset/New/Current_A+.wav", 15.0},
-                        {"file:///android_asset/New/Current_A.wav", 55.0},
-                        {"file:///android_asset/New/Current_B.wav", 125.0},
-                        {"file:///android_asset/New/Current_Behind.wav", 180.0},
+                        {"file:///android_asset/Sounds/Current_A+.wav", 15.0},
+                        {"file:///android_asset/Sounds/Current_A.wav", 55.0},
+                        {"file:///android_asset/Sounds/Current_B.wav", 125.0},
+                        {"file:///android_asset/Sounds/Current_Behind.wav", 180.0},
                 }
         },
         {
                 "Tactile",
                 6,
                 {
-                        {"file:///android_asset/Tactile/Tactile_OnAxis.wav", 15.0},
-                        {"file:///android_asset/Tactile/Tactile_OffAxis.wav", 125.0},
-                        {"file:///android_asset/Tactile/Tactile_Behind.wav", 180.0}
+                        {"file:///android_asset/Sounds/Tactile_OnAxis.wav", 15.0},
+                        {"file:///android_asset/Sounds/Tactile_OffAxis.wav", 125.0},
+                        {"file:///android_asset/Sounds/Tactile_Behind.wav", 180.0}
                 }
         },
         {
                 "Flare",
                 6,
                 {
-                        {"file:///android_asset/Flare/Flare_A+.wav", 15.0},
-                        {"file:///android_asset/Flare/Flare_A.wav", 55.0},
-                        {"file:///android_asset/Flare/Flare_B.wav", 125.0},
-                        {"file:///android_asset/Flare/Flare_Behind.wav", 180.0}
+                        {"file:///android_asset/Sounds/Flare_A+.wav", 15.0},
+                        {"file:///android_asset/Sounds/Flare_A.wav", 55.0},
+                        {"file:///android_asset/Sounds/Flare_B.wav", 125.0},
+                        {"file:///android_asset/Sounds/Flare_Behind.wav", 180.0}
                 }
         },
         {
                 "Shimmer",
                 6,
                 {
-                        {"file:///android_asset/Shimmer/Shimmer_A+.wav", 15.0},
-                        {"file:///android_asset/Shimmer/Shimmer_A.wav", 55.0},
-                        {"file:///android_asset/Shimmer/Shimmer_B.wav", 125.0},
-                        {"file:///android_asset/Shimmer/Shimmer_Behind.wav", 180.0}
+                        {"file:///android_asset/Sounds/Shimmer_A+.wav", 15.0},
+                        {"file:///android_asset/Sounds/Shimmer_A.wav", 55.0},
+                        {"file:///android_asset/Sounds/Shimmer_B.wav", 125.0},
+                        {"file:///android_asset/Sounds/Shimmer_Behind.wav", 180.0}
                 }
         },
         {
                 "Ping",
                 6,
                 {
-                        {"file:///android_asset/Ping/Ping_A+.wav", 15.0},
-                        {"file:///android_asset/Ping/Ping_A.wav", 55.0},
-                        {"file:///android_asset/Ping/Ping_B.wav", 125.0},
-                        {"file:///android_asset/Tactile/Tactile_Behind.wav", 180.0}
+                        {"file:///android_asset/Sounds/Ping_A+.wav", 15.0},
+                        {"file:///android_asset/Sounds/Ping_A.wav", 55.0},
+                        {"file:///android_asset/Sounds/Ping_B.wav", 125.0},
+                        {"file:///android_asset/Sounds/Tactile_Behind.wav", 180.0}
                 }
         },
         {
                 "Drop",
                 6,
                 {
-                        {"file:///android_asset/Drop/Drop_A+.wav", 15.0},
-                        {"file:///android_asset/Drop/Drop_A.wav", 55.0},
-                        {"file:///android_asset/Drop/Drop_Behind.wav", 180.0}
+                        {"file:///android_asset/Sounds/Drop_A+.wav", 15.0},
+                        {"file:///android_asset/Sounds/Drop_A.wav", 55.0},
+                        {"file:///android_asset/Sounds/Drop_Behind.wav", 180.0}
                 }
         },
         {
                 "Signal",
                 6,
                 {
-                        {"file:///android_asset/Signal/Signal_A+.wav", 15.0},
-                        {"file:///android_asset/Signal/Signal_A.wav", 55.0},
-                        {"file:///android_asset/Drop/Drop_Behind.wav", 180.0}
+                        {"file:///android_asset/Sounds/Signal_A+.wav", 15.0},
+                        {"file:///android_asset/Sounds/Signal_A.wav", 55.0},
+                        {"file:///android_asset/Sounds/Drop_Behind.wav", 180.0}
                 }
         },
         {
                 "Signal Slow",
                 12,
                 {
-                        {"file:///android_asset/Signal Slow/Signal_Slow_A+.wav", 15.0},
-                        {"file:///android_asset/Signal Slow/Signal_Slow_A.wav", 55.0},
-                        {"file:///android_asset/Signal Slow/Signal_Slow_Behind.wav", 180.0}
+                        {"file:///android_asset/Sounds/Signal_Slow_A+.wav", 15.0},
+                        {"file:///android_asset/Sounds/Signal_Slow_A.wav", 55.0},
+                        {"file:///android_asset/Sounds/Signal_Slow_Behind.wav", 180.0}
                 }
         },
         {
                 "Signal Very Slow",
                 18,
                 {
-                        {"file:///android_asset/Signal Very Slow/Signal_Very_Slow_A+.wav",
-                                15.0},
-                        {"file:///android_asset/Signal Very Slow/Signal_Very_Slow_A.wav",
-                                55.0},
-                        {"file:///android_asset/Signal Very Slow/Signal_Very_Slow_Behind.wav",
-                                180.0
-                        }
+                        {"file:///android_asset/Sounds/Signal_Very_Slow_A+.wav", 15.0},
+                        {"file:///android_asset/Sounds/Signal_Very_Slow_A.wav", 55.0},
+                        {"file:///android_asset/Sounds/Signal_Very_Slow_Behind.wav", 180.0}
                 },
         },
         {
                 "Mallet",
                 6,
                 {
-                        {"file:///android_asset/Mallet/Mallet_A+.wav", 15.0},
-                        {"file:///android_asset/Mallet/Mallet_A.wav", 55.0},
-                        {"file:///android_asset/Mallet/Mallet_Behind.wav", 180.0}
+                        {"file:///android_asset/Sounds/Mallet_A+.wav", 15.0},
+                        {"file:///android_asset/Sounds/Mallet_A.wav", 55.0},
+                        {"file:///android_asset/Sounds/Mallet_Behind.wav", 180.0}
                 }
         },
         {
                 "Mallet Slow",
                 12,
                 {
-                        {"file:///android_asset/Mallet Slow/Mallet_Slow_A+.wav", 15.0},
-                        {"file:///android_asset/Mallet Slow/Mallet_Slow_A.wav", 55.0},
-                        {"file:///android_asset/Mallet Slow/Mallet_Slow_Behind.wav", 180.0}
+                        {"file:///android_asset/Sounds/Mallet_Slow_A+.wav", 15.0},
+                        {"file:///android_asset/Sounds/Mallet_Slow_A.wav", 55.0},
+                        {"file:///android_asset/Sounds/Mallet_Slow_Behind.wav", 180.0}
                 }
         },
         {
                 "Mallet Very Slow",
                 18,
                 {
-                        {"file:///android_asset/Mallet Very Slow/Mallet_Very_Slow_A+.wav", 15.0},
-                        {"file:///android_asset/Mallet Very Slow/Mallet_Very_Slow_A.wav", 55.0},
-                        {"file:///android_asset/Mallet Very Slow/Mallet_Very_Slow_Behind.wav", 180.0}
+                        {"file:///android_asset/Sounds/Mallet_Very_Slow_A+.wav", 15.0},
+                        {"file:///android_asset/Sounds/Mallet_Very_Slow_A.wav", 55.0},
+                        {"file:///android_asset/Sounds/Mallet_Very_Slow_Behind.wav", 180.0}
                 }
         }
 };

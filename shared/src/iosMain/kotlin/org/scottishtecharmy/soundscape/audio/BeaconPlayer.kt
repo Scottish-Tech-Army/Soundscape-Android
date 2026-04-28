@@ -30,7 +30,7 @@ class BeaconPlayer(
 
     fun loadAssets(): Boolean {
         for (assetName in beaconType.assets) {
-            val path = NSBundle.mainBundle.pathForResource(assetName, "wav")
+            val path = NSBundle.mainBundle.pathForResource(assetName, "wav", "Sounds")
                 ?: run {
                     println("BeaconPlayer: WAV not found: $assetName")
                     return false

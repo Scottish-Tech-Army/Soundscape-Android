@@ -16,8 +16,8 @@ namespace soundscape {
         "Proximity",
         36,
         {
-            {"file:///android_asset/Route/Proximity_Close.wav" ,0}, // NEAR_INDEX
-            {"file:///android_asset/Route/Proximity_Far.wav" ,0},   // FAR_INDEX
+            {"file:///android_asset/Sounds/Proximity_Close.wav" ,0}, // NEAR_INDEX
+            {"file:///android_asset/Sounds/Proximity_Far.wav" ,0},   // FAR_INDEX
         }
     };
 

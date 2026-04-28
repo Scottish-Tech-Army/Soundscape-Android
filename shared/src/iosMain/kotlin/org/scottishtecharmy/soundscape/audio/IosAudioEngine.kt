@@ -293,7 +293,7 @@ class IosAudioEngine : AudioEngine {
 
         // Extract asset name from Android-style path
         val assetName = asset
-            .removePrefix("file:///android_asset/earcons/")
+            .removePrefix("file:///android_asset/Sounds/")
             .removeSuffix(".wav")
 
         val queuedSound = QueuedSound(

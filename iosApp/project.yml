@@ -27,6 +27,8 @@ targets:
         buildPhase: resources
       - path: ../app/src/main/assets/osm-liberty-accessible
         type: folder
+      - path: ../app/src/main/assets/Sounds
+        type: folder
     info:
       path: iosApp/Info.plist
       properties:
