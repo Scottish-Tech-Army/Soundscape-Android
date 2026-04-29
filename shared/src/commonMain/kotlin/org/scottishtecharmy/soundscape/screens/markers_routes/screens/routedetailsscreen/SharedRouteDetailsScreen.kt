@@ -25,6 +25,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -36,6 +37,10 @@ import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
+import org.scottishtecharmy.soundscape.preferences.rememberBooleanPreference
 import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.FullScreenMapFab
@@ -53,7 +58,7 @@ fun SharedRouteDetailsScreen(
     isRoutePlaying: Boolean,
     userLocation: LngLatAlt?,
     heading: Float,
-    showMap: Boolean = true,
+    preferencesProvider: PreferencesProvider? = null,
     onNavigateUp: () -> Unit,
     onStartRoute: () -> Unit,
     onStartRouteInReverse: () -> Unit,
@@ -61,6 +66,11 @@ fun SharedRouteDetailsScreen(
     onEditRoute: () -> Unit,
     onShareRoute: (() -> Unit)? = null,
 ) {
+    val showMap by rememberBooleanPreference(
+        preferencesProvider,
+        PreferenceKeys.SHOW_MAP,
+        PreferenceDefaults.SHOW_MAP,
+    )
     val routeWithMarkers = remember(waypoints, routeName, routeDescription) {
         RouteWithMarkers(
             route = RouteEntity(name = routeName, description = routeDescription),
@@ -88,7 +98,7 @@ fun SharedRouteDetailsScreen(
             if (showMap) FullScreenMapFab(fullscreenMap)
         }
     ) { innerPadding ->
-        if (fullscreenMap.value) {
+        if (fullscreenMap.value && showMap) {
             PlatformMapContainer(
                 beaconLocation = null,
                 routeData = routeWithMarkers,

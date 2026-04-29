@@ -25,6 +25,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -35,6 +36,10 @@ import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
+import org.scottishtecharmy.soundscape.preferences.rememberBooleanPreference
 import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.FullScreenMapFab
@@ -52,7 +57,7 @@ fun SharedLocationDetailsScreen(
     locationDescription: LocationDescription,
     userLocation: LngLatAlt?,
     heading: Float = 0f,
-    showMap: Boolean = true,
+    preferencesProvider: PreferencesProvider? = null,
     onNavigateUp: () -> Unit,
     onStartBeacon: (LngLatAlt, String) -> Unit,
     onSaveMarker: ((LocationDescription) -> Unit)? = null,
@@ -62,6 +67,11 @@ fun SharedLocationDetailsScreen(
     onShareLocation: ((LocationDescription) -> Unit)? = null,
     onOfflineMaps: ((LocationDescription) -> Unit)? = null,
 ) {
+    val showMap by rememberBooleanPreference(
+        preferencesProvider,
+        PreferenceKeys.SHOW_MAP,
+        PreferenceDefaults.SHOW_MAP,
+    )
     val fullscreenMap = remember { mutableStateOf(false) }
 
     Scaffold(
@@ -75,7 +85,7 @@ fun SharedLocationDetailsScreen(
             if (showMap) FullScreenMapFab(fullscreenMap)
         },
     ) { padding ->
-        if (fullscreenMap.value) {
+        if (fullscreenMap.value && showMap) {
             PlatformMapContainer(
                 beaconLocation = locationDescription.location,
                 allowScrolling = true,

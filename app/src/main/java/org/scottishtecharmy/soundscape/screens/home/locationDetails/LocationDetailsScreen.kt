@@ -10,14 +10,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import org.jetbrains.compose.resources.stringResource
 import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.koinInject
 import androidx.navigation.NavHostController
-import androidx.preference.PreferenceManager
 import com.google.gson.GsonBuilder
 import org.commonmark.parser.Parser
 import org.commonmark.renderer.html.HtmlRenderer
-import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
-import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.generateOfflineMapScreenRoute
@@ -45,8 +44,7 @@ fun LocationDetailsScreen(
     viewModel: LocationDetailsViewModel = koinViewModel(),
 ) {
     val context = LocalContext.current
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-    val showMap = sharedPreferences.getBoolean(SHOW_MAP_KEY, SHOW_MAP_DEFAULT)
+    val preferencesProvider: PreferencesProvider = koinInject()
 
     // Check if this location already exists as a marker in the database
     val finalLocationDescription = produceState(locationDescription, locationDescription) {
@@ -99,7 +97,7 @@ fun LocationDetailsScreen(
             locationDescription = finalLocationDescription,
             userLocation = location,
             heading = heading,
-            showMap = showMap,
+            preferencesProvider = preferencesProvider,
             onNavigateUp = { navController.popBackStack() },
             onStartBeacon = { loc, name ->
                 viewModel.startBeacon(loc, name)

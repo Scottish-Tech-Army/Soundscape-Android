@@ -13,13 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import org.jetbrains.compose.resources.stringResource
 import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.koinInject
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavGraph.Companion.findStartDestination
-import androidx.preference.PreferenceManager
-import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
-import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
@@ -37,8 +36,7 @@ fun RouteDetailsScreenVM(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
-    val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-    val showMap = sharedPreferences.getBoolean(SHOW_MAP_KEY, SHOW_MAP_DEFAULT)
+    val preferencesProvider: PreferencesProvider = koinInject()
 
     // Fetch the route details when the screen is launched
     LaunchedEffect(routeId) {
@@ -80,7 +78,7 @@ fun RouteDetailsScreenVM(
                 isRoutePlaying = thisRoutePlaying,
                 userLocation = userLocation,
                 heading = heading,
-                showMap = showMap,
+                preferencesProvider = preferencesProvider,
                 onNavigateUp = { navController.popBackStack() },
                 onStartRoute = {
                     viewModel.startRoute(routeId)

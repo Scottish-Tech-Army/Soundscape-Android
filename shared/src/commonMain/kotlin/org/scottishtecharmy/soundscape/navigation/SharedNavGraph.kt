@@ -247,6 +247,7 @@ fun SharedNavHost(
                     locationDescription = desc,
                     userLocation = homeState.location,
                     heading = homeState.heading,
+                    preferencesProvider = preferencesProvider,
                     onNavigateUp = { navController.popBackStack() },
                     onStartBeacon = { loc, name ->
                         callbacks.onStartBeacon(loc.latitude, loc.longitude, name)
@@ -324,6 +325,7 @@ fun SharedNavHost(
                 onDownload = { name, feature -> callbacks.onOfflineMapsDownload(name, feature) },
                 onDelete = { feature -> callbacks.onOfflineMapsDelete(feature) },
                 onCancelDownload = { callbacks.onOfflineMapsCancelDownload() },
+                preferencesProvider = preferencesProvider,
             )
         }
 
@@ -404,6 +406,7 @@ fun SharedNavHost(
                     isRoutePlaying = isRoutePlaying,
                     userLocation = homeState.location,
                     heading = homeState.heading,
+                    preferencesProvider = preferencesProvider,
                     onNavigateUp = { navController.popBackStack() },
                     onStartRoute = {
                         callbacks.onStartRoute(routeDesc.databaseId)
@@ -433,6 +436,7 @@ fun SharedNavHost(
                     locationDescription = desc,
                     userLocation = homeState.location,
                     heading = homeState.heading,
+                    preferencesProvider = preferencesProvider,
                     onCancel = { navController.popBackStack() },
                     onSave = { updated ->
                         callbacks.onSaveMarker(updated)
@@ -489,6 +493,7 @@ fun SharedNavHost(
                 SharedSettingsScreen(
                     onNavigateUp = { navController.popBackStack() },
                     beaconTypes = flows.beaconTypes,
+                    preferencesProvider = preferencesProvider,
                 )
             }
         }

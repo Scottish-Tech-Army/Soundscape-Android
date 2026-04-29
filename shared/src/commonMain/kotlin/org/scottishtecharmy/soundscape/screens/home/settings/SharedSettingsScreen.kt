@@ -22,6 +22,8 @@ import me.zhanghai.compose.preference.switchPreference
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
+import org.scottishtecharmy.soundscape.preferences.rememberBooleanPreferenceState
 import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -31,6 +33,7 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 fun SharedSettingsScreen(
     onNavigateUp: () -> Unit,
     beaconTypes: List<String>,
+    preferencesProvider: PreferencesProvider? = null,
     mediaControlsValues: List<String>? = null,
     mediaControlsDescriptions: List<String>? = null,
     platformAccessibilityContent: (LazyListScope.() -> Unit)? = null,
@@ -201,8 +204,11 @@ fun SharedSettingsScreen(
                 )
             }
 
-            // ── Accessibility Section (platform-only) ────────────────────
-            if (platformAccessibilityContent != null) {
+            // ── Accessibility Section ────────────────────────────────────
+            // Section header always renders. The shared "Show map" toggle is
+            // included here when a PreferencesProvider is supplied; the
+            // platform slot adds platform-specific items (e.g. Android theme).
+            if (preferencesProvider != null || platformAccessibilityContent != null) {
                 item(key = "header_accessibility") {
                     ExpandableSectionHeader(
                         title = stringResource(Res.string.menu_manage_accessibility),
@@ -212,7 +218,28 @@ fun SharedSettingsScreen(
                     )
                 }
                 if (expandedSection.value == "accessibility") {
-                    platformAccessibilityContent()
+                    if (preferencesProvider != null) {
+                        item(key = "shared_show_map") {
+                            val showMap = rememberBooleanPreferenceState(
+                                preferencesProvider,
+                                PreferenceKeys.SHOW_MAP,
+                                PreferenceDefaults.SHOW_MAP,
+                            )
+                            me.zhanghai.compose.preference.SwitchPreference(
+                                state = showMap,
+                                title = {
+                                    Text(
+                                        text = stringResource(Res.string.settings_show_map),
+                                        color = textColor,
+                                    )
+                                },
+                                modifier = expandedSectionModifier,
+                            )
+                        }
+                    }
+                    if (platformAccessibilityContent != null) {
+                        platformAccessibilityContent()
+                    }
                 }
             }
 

@@ -13,6 +13,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.audio.AudioEngine
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.platform.requestLocationPermission
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.resources.Res
@@ -25,6 +26,7 @@ import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.AudioBeac
 import org.scottishtecharmy.soundscape.screens.onboarding.finish.FinishScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.hearing.Hearing
 import org.scottishtecharmy.soundscape.screens.onboarding.listening.Listening
+import org.scottishtecharmy.soundscape.screens.onboarding.permissions.PermissionsScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.terms.TermsScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 
@@ -32,6 +34,7 @@ private object OnboardingRoutes {
     const val WELCOME = "onboarding_welcome"
     const val LISTENING = "onboarding_listening"
     const val HEARING = "onboarding_hearing"
+    const val PERMISSIONS = "onboarding_permissions"
     const val AUDIO_BEACONS = "onboarding_audio_beacons"
     const val ACCESSIBILITY = "onboarding_accessibility"
     const val TERMS = "onboarding_terms"
@@ -88,11 +91,20 @@ fun SharedOnboardingNavHost(
             Hearing(
                 onContinue = {
                     audioEngine.clearTextToSpeechQueue()
-                    navController.navigate(OnboardingRoutes.AUDIO_BEACONS)
+                    navController.navigate(OnboardingRoutes.PERMISSIONS)
                 },
                 onPlaySpeech = {
                     audioEngine.clearTextToSpeechQueue()
                     audioEngine.createTextToSpeech(speechText, AudioType.LOCALIZED)
+                },
+            )
+        }
+
+        composable(OnboardingRoutes.PERMISSIONS) {
+            PermissionsScreen(
+                onContinue = {
+                    requestLocationPermission()
+                    navController.navigate(OnboardingRoutes.AUDIO_BEACONS)
                 },
             )
         }
@@ -125,6 +137,7 @@ fun SharedOnboardingNavHost(
         composable(OnboardingRoutes.ACCESSIBILITY) {
             AccessibilityOnboardingScreen(
                 isScreenReaderActive = isScreenReaderEnabled(),
+                preferencesProvider = preferencesProvider,
                 onNavigate = { navController.navigate(OnboardingRoutes.TERMS) },
             )
         }

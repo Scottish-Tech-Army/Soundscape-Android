@@ -37,6 +37,13 @@ fun MainViewController() = ComposeUIViewController {
     }
     val startDestination = if (isFirstLaunch) SharedRoutes.ONBOARDING else SharedRoutes.HOME
 
+    // First-launch users grant location permission from the onboarding permissions screen.
+    // For returning users, ask now so the location provider can resume — iOS no-ops if the
+    // status is already determined.
+    if (!isFirstLaunch) {
+        remember { service.locationProvider.requestPermission() }
+    }
+
     val audioTourRunning = remember { MutableStateFlow(false) }
     androidx.compose.runtime.LaunchedEffect(audioTour) {
         audioTour.currentInstruction.collect {

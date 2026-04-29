@@ -121,7 +121,7 @@ fun SaveAndEditMarkerDialog(
             )
         },
         content = { padding ->
-            if(fullscreenMap.value) {
+            if(fullscreenMap.value && showMap) {
                 AndroidMapContainerLibre(
                     beaconLocation = newLocation,
                     mapCenter = newLocation,
@@ -166,19 +166,21 @@ fun SaveAndEditMarkerDialog(
                     )
                     Spacer(modifier = Modifier.height(spacing.medium))
 
-                    AndroidMapContainerLibre(
-                        beaconLocation = newLocation,
-                        mapCenter = newLocation,
-                        editBeaconLocation = false,
-                        allowScrolling = true,
-                        userLocation = location ?: LngLatAlt(),
-                        userSymbolRotation = heading,
-                        routeData = null,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .aspectRatio(1.0f)
-                            .smallPadding(),
-                    )
+                    if (showMap) {
+                        AndroidMapContainerLibre(
+                            beaconLocation = newLocation,
+                            mapCenter = newLocation,
+                            editBeaconLocation = false,
+                            allowScrolling = true,
+                            userLocation = location ?: LngLatAlt(),
+                            userSymbolRotation = heading,
+                            routeData = null,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .aspectRatio(1.0f)
+                                .smallPadding(),
+                        )
+                    }
                 }
             }
         }

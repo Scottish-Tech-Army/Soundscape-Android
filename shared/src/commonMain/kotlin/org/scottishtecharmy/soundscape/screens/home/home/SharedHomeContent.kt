@@ -376,7 +376,7 @@ fun SharedHomeContent(
                                 }
                             }
                         }
-                    } else {
+                    } else if (showMap) {
                         PlatformMapContainer(
                             beaconLocation = beaconState?.location,
                             routeData = null,

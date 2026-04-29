@@ -18,9 +18,11 @@ import androidx.navigation.NavHostController
 import me.zhanghai.compose.preference.listPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.jetbrains.compose.resources.stringResource
+import org.koin.compose.koinInject
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
@@ -107,9 +109,12 @@ fun Settings(
         )
     }
 
+    val preferencesProvider: PreferencesProvider = koinInject()
+
     SharedSettingsScreen(
         onNavigateUp = { navController.navigateUp() },
         beaconTypes = beaconValues,
+        preferencesProvider = preferencesProvider,
         mediaControlsValues = mediaControlsValues,
         mediaControlsDescriptions = mediaControlsDescriptions,
         modifier = modifier,
@@ -136,12 +141,6 @@ fun Settings(
                     ListPreferenceItem(themeContrastDescriptions[themeContrastValues.indexOf(value)], value, currentValue, onClick, themeContrastValues.indexOf(value), themeContrastValues.size)
                 },
                 summary = { ClickableOption(themeContrastDescriptions[themeContrastValues.indexOf(it)], textColor) },
-            )
-            switchPreference(
-                key = MainActivity.SHOW_MAP_KEY,
-                defaultValue = MainActivity.SHOW_MAP_DEFAULT,
-                modifier = expandedSectionModifier,
-                title = { Text(text = stringResource(Res.string.settings_show_map), color = textColor) },
             )
         },
 

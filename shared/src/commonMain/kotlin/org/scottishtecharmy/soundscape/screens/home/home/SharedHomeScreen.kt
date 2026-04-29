@@ -28,6 +28,7 @@ import org.scottishtecharmy.soundscape.platform.appVersionMinorTrimmed
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
+import org.scottishtecharmy.soundscape.preferences.rememberBooleanPreference
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.search_bar_hint
 import org.scottishtecharmy.soundscape.screens.home.HomeState
@@ -65,8 +66,11 @@ fun SharedHomeScreen(
     getLanguageMismatch: () -> org.scottishtecharmy.soundscape.screens.onboarding.language.Language?,
     modifier: Modifier = Modifier,
 ) {
-    val showMap = preferencesProvider?.getBoolean(PreferenceKeys.SHOW_MAP, PreferenceDefaults.SHOW_MAP)
-        ?: PreferenceDefaults.SHOW_MAP
+    val showMap by rememberBooleanPreference(
+        preferencesProvider,
+        PreferenceKeys.SHOW_MAP,
+        PreferenceDefaults.SHOW_MAP,
+    )
     val coroutineScope = rememberCoroutineScope()
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val fullscreenMap = remember { mutableStateOf(false) }
@@ -163,7 +167,7 @@ fun SharedHomeScreen(
                 )
             }
 
-            if (fullscreenMap.value) {
+            if (fullscreenMap.value && showMap) {
                 state.location?.let { location ->
                     PlatformMapContainer(
                         beaconLocation = state.beaconState?.location,

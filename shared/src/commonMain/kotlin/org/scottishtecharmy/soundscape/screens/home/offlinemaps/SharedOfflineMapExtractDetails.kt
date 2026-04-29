@@ -19,6 +19,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,6 +30,10 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
+import org.scottishtecharmy.soundscape.preferences.rememberBooleanPreference
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.offline_map_details_alternate_city_list
 import org.scottishtecharmy.soundscape.resources.offline_map_details_city_list
@@ -47,8 +52,14 @@ fun SharedOfflineMapExtractDetails(
     downloadExtract: (String, Feature) -> Unit,
     deleteExtract: (Feature) -> Unit,
     local: Boolean,
+    preferencesProvider: PreferencesProvider? = null,
     modifier: Modifier = Modifier,
 ) {
+    val showMap by rememberBooleanPreference(
+        preferencesProvider,
+        PreferenceKeys.SHOW_MAP,
+        PreferenceDefaults.SHOW_MAP,
+    )
     val details = remember(extract) { ExtractDetails(extract) }
     val extractGeometry = remember(extract) { extract.toMaplibreGeometry() }
 
@@ -68,19 +79,21 @@ fun SharedOfflineMapExtractDetails(
             local = local,
         )
 
-        PlatformMapContainer(
-            beaconLocation = null,
-            allowScrolling = true,
-            routeData = null,
-            mapCenter = LngLatAlt(),
-            userLocation = null,
-            userSymbolRotation = 0.0f,
-            extractGeometry = extractGeometry,
-            forceOnlineTiles = true,
-            modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(1.0f),
-        )
+        if (showMap) {
+            PlatformMapContainer(
+                beaconLocation = null,
+                allowScrolling = true,
+                routeData = null,
+                mapCenter = LngLatAlt(),
+                userLocation = null,
+                userSymbolRotation = 0.0f,
+                extractGeometry = extractGeometry,
+                forceOnlineTiles = true,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(1.0f),
+            )
+        }
     }
 }
 

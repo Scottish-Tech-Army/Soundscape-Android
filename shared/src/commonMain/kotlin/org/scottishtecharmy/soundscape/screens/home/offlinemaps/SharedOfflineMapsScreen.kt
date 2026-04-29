@@ -69,6 +69,7 @@ fun SharedOfflineMapsScreen(
     onDownload: (String, Feature) -> Unit,
     onDelete: (Feature) -> Unit,
     onCancelDownload: () -> Unit,
+    preferencesProvider: org.scottishtecharmy.soundscape.preferences.PreferencesProvider? = null,
     modifier: Modifier = Modifier,
 ) {
     val progress = remember { mutableIntStateOf(0) }
@@ -126,6 +127,7 @@ fun SharedOfflineMapsScreen(
         onDownload = onDownload,
         onDelete = onDelete,
         onCancelDownload = onCancelDownload,
+        preferencesProvider = preferencesProvider,
         modifier = modifier,
     )
 }
@@ -141,6 +143,7 @@ fun OfflineMapsScreenContent(
     onDownload: (String, Feature) -> Unit,
     onDelete: (Feature) -> Unit,
     onCancelDownload: () -> Unit,
+    preferencesProvider: org.scottishtecharmy.soundscape.preferences.PreferencesProvider? = null,
     modifier: Modifier = Modifier,
 ) {
     val extractDetailsFeature = remember { mutableStateOf<Feature?>(null) }
@@ -184,6 +187,7 @@ fun OfflineMapsScreenContent(
                         extractDetailsFeature.value = null
                     },
                     local = localExtractDetails.value,
+                    preferencesProvider = preferencesProvider,
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(padding)

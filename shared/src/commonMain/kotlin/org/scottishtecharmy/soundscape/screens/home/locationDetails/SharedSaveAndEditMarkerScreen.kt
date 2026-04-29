@@ -22,6 +22,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
+import org.scottishtecharmy.soundscape.preferences.rememberBooleanPreference
 import org.scottishtecharmy.soundscape.resources.*
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.PlatformMapContainer
@@ -41,10 +45,16 @@ fun SharedSaveAndEditMarkerScreen(
     locationDescription: LocationDescription,
     userLocation: LngLatAlt?,
     heading: Float = 0f,
+    preferencesProvider: PreferencesProvider? = null,
     onCancel: () -> Unit,
     onSave: (LocationDescription) -> Unit,
     onDelete: ((Long) -> Unit)? = null,
 ) {
+    val showMap by rememberBooleanPreference(
+        preferencesProvider,
+        PreferenceKeys.SHOW_MAP,
+        PreferenceDefaults.SHOW_MAP,
+    )
     var name by rememberSaveable { mutableStateOf(locationDescription.name) }
     var annotation by rememberSaveable { mutableStateOf(locationDescription.description ?: "") }
     val isEditing = locationDescription.databaseId != 0L
@@ -115,17 +125,19 @@ fun SharedSaveAndEditMarkerScreen(
             Spacer(modifier = Modifier.height(spacing.medium))
 
             // Map showing the marker location
-            PlatformMapContainer(
-                mapCenter = locationDescription.location,
-                allowScrolling = true,
-                userLocation = userLocation,
-                userSymbolRotation = heading,
-                beaconLocation = locationDescription.location,
-                routeData = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(1.0f),
-            )
+            if (showMap) {
+                PlatformMapContainer(
+                    mapCenter = locationDescription.location,
+                    allowScrolling = true,
+                    userLocation = userLocation,
+                    userSymbolRotation = heading,
+                    beaconLocation = locationDescription.location,
+                    routeData = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(1.0f),
+                )
+            }
         }
     }
 }

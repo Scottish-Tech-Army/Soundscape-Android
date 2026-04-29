@@ -20,8 +20,11 @@ class IosLocationProvider : LocationProvider() {
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
-        locationManager.requestAlwaysAuthorization()
         start()
+    }
+
+    fun requestPermission() {
+        locationManager.requestAlwaysAuthorization()
     }
 
     fun start() {

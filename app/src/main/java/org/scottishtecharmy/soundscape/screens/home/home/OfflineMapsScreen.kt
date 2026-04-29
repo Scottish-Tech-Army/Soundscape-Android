@@ -14,8 +14,10 @@ import androidx.navigation.NavHostController
 import com.google.gson.GsonBuilder
 import org.jetbrains.compose.resources.getString
 import org.koin.androidx.compose.koinViewModel
+import org.koin.compose.koinInject
 import org.koin.core.parameter.parametersOf
 import org.scottishtecharmy.soundscape.network.DownloadStateCommon
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.offline_map_download_cancelled
 import org.scottishtecharmy.soundscape.resources.offline_map_download_complete
@@ -76,6 +78,7 @@ fun OfflineMapsScreenVM(
         // Swallow back-press while a download is in progress; user must tap Cancel in the app bar.
     }
 
+    val preferencesProvider: PreferencesProvider = koinInject()
     SharedOfflineMapsScreen(
         uiState = uiState,
         downloadState = viewModel.downloadState,
@@ -83,6 +86,7 @@ fun OfflineMapsScreenVM(
         onDownload = { name, feature -> viewModel.download(name, feature) },
         onDelete = { feature -> viewModel.delete(feature) },
         onCancelDownload = { viewModel.cancelDownload() },
+        preferencesProvider = preferencesProvider,
         modifier = modifier,
     )
 }
