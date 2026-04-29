@@ -9,13 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.navigation.NavController
-import androidx.preference.PreferenceManager
 import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.junit.Rule
 import org.junit.Test
-import org.scottishtecharmy.soundscape.MainActivity.Companion.ACCESSIBLE_MAP_KEY
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
@@ -118,12 +116,6 @@ class DocumentationScreens {
     @Test
     fun homeScreen(){
 
-        val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
-
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(targetContext)
-        // Use accessible map
-        sharedPreferences.edit().putBoolean(ACCESSIBLE_MAP_KEY, true).apply()
-
         runScreenTest("homeScreen") {
             SharedHomeScreen(
                 state = HomeState(
@@ -163,12 +155,6 @@ class DocumentationScreens {
 
     @Test
     fun homeScreenWithRoute(){
-        val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
-
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(targetContext)
-        // Use accessible map
-        sharedPreferences.edit().putBoolean(ACCESSIBLE_MAP_KEY, true).apply()
-
         val routePlayerState = RoutePlayerState(
             routeData = routeToShops,
             currentWaypoint = 0

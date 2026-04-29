@@ -455,7 +455,6 @@
     <string name="settings_use_value" tools:ignore="MissingTranslation">використовувати</string>
     <string name="street_preview_exit" tools:ignore="MissingTranslation">Вийти з режиму симуляції місцезнаходження</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Увімкнути запис подорожі</string>
-    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Увімкнути доступний стиль карти</string>
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">Параметри налагодження</string>
     <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">Поділитися записом подорожі</string>
     <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s у напрямку %2$s через %3$s</string>

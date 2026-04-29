@@ -314,7 +314,6 @@
     <string name="settings_list_item_description" tools:ignore="MissingTranslation">%1$s это выбор %2$s из %3$s</string>
     <string name="street_preview_exit" tools:ignore="MissingTranslation">Выйти из режима симуляции местоположения</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Включить запись поездки</string>
-    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Включить доступный стиль карты</string>
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">Параметры отладки</string>
     <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">Поделиться записью поездки</string>
     <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s ко %2$s через %3$s</string>

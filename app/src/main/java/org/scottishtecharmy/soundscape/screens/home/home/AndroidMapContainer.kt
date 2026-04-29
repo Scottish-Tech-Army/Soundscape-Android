@@ -27,14 +27,10 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import android.os.Environment
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.mapstyle.AccessibleTheme
-import org.scottishtecharmy.soundscape.mapstyle.LayerPaintOverrides
-import org.scottishtecharmy.soundscape.mapstyle.OriginalTheme
 import org.scottishtecharmy.soundscape.mapstyle.accessibleLayerOverrides
 import org.scottishtecharmy.soundscape.mapstyle.argbToRgba
 import org.scottishtecharmy.soundscape.mapstyle.buildMapStyle
 import org.scottishtecharmy.soundscape.mapstyle.resolveTileSourceUrl
-import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
-import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 
 /**
  * Create a location marker drawable which has location_marker as its background, and an integer
@@ -80,32 +76,20 @@ fun createLocationMarkerImageBitmap(context: Context, number: Int): ImageBitmap 
 fun rememberMapBaseStyle(mapCenter: LngLatAlt? = null): BaseStyle {
     val context = LocalContext.current
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
-    val accessibleMapEnabled = sharedPreferences.getBoolean(
-        PreferenceKeys.ACCESSIBLE_MAP,
-        PreferenceDefaults.ACCESSIBLE_MAP
-    )
-    val theme = if (accessibleMapEnabled) AccessibleTheme else OriginalTheme
 
-    // In accessible mode, use theme-derived foreground/background colors for
-    // line layers, fill layers, and symbol layers (matching main branch behavior)
     val foregroundColor = argbToRgba(MaterialTheme.colorScheme.onBackground.toArgb())
     val backgroundColor = argbToRgba(MaterialTheme.colorScheme.background.toArgb())
-    val overrides = if (accessibleMapEnabled) {
-        accessibleLayerOverrides(
-            foregroundColor = foregroundColor,
-            backgroundColor = backgroundColor,
-        )
-    } else {
-        LayerPaintOverrides()
-    }
+    val overrides = accessibleLayerOverrides(
+        foregroundColor = foregroundColor,
+        backgroundColor = backgroundColor,
+    )
 
-    // Resolve tile source: prefer offline extracts over network
     val extractsPath = sharedPreferences.getString(
         MainActivity.SELECTED_STORAGE_KEY,
         MainActivity.SELECTED_STORAGE_DEFAULT
     )!! + "/" + Environment.DIRECTORY_DOWNLOADS
 
-    return remember(accessibleMapEnabled, foregroundColor, backgroundColor, mapCenter) {
+    return remember(foregroundColor, backgroundColor, mapCenter) {
         val tileSourceUrl = resolveTileSourceUrl(
             location = mapCenter,
             extractsPath = extractsPath,
@@ -113,13 +97,13 @@ fun rememberMapBaseStyle(mapCenter: LngLatAlt? = null): BaseStyle {
         )
 
         buildMapStyle(
-            theme = theme,
+            theme = AccessibleTheme,
             spritePath = "asset://osm-liberty-accessible/osm-liberty",
             glyphsPath = "asset://osm-liberty-accessible/fonts/{fontstack}/{range}.pbf",
             tileSourceUrl = tileSourceUrl,
             overrides = overrides,
-            symbolForegroundColor = if (accessibleMapEnabled) foregroundColor else null,
-            symbolBackgroundColor = if (accessibleMapEnabled) backgroundColor else null,
+            symbolForegroundColor = foregroundColor,
+            symbolBackgroundColor = backgroundColor,
         )
     }
 }

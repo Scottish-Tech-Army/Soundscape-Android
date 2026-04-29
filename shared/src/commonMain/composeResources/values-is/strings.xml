@@ -467,7 +467,6 @@
     <string name="settings_use_value" tools:ignore="MissingTranslation">nota</string>
     <string name="street_preview_exit" tools:ignore="MissingTranslation">hætta við staðsetningarhermun</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Virkja skráningu ferða</string>
-    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Virkja aðgengilegan kortastíl</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">Sýna kort á skjánum</string>
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">Villuleitarmöguleikar</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">Leitartungumál</string>

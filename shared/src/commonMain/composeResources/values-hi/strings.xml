@@ -427,7 +427,6 @@
     <string name="settings_use_value" tools:ignore="MissingTranslation">उपयोग करें</string>
     <string name="street_preview_exit" tools:ignore="MissingTranslation">स्थान सिमुलेशन से बाहर निकलें</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">यात्रा की रिकॉर्डिंग सक्षम करें</string>
-    <string name="settings_accessible_map" tools:ignore="MissingTranslation">पहुँच-योग्य नक्शा शैली सक्षम करें</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">स्क्रीन पर नक्शा दिखाएँ</string>
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">डीबग विकल्प</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">खोज भाषा</string>

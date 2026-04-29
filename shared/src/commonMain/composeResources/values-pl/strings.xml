@@ -461,7 +461,6 @@
     <string name="settings_use_value" tools:ignore="MissingTranslation">użyj</string>
     <string name="street_preview_exit" tools:ignore="MissingTranslation">Zakończ podgląd lokalizacji</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Włącz rejestrowanie podróży</string>
-    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Włącz styl mapy z ułatwieniami dostępności</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">Wyświetlaj mapy na ekranie</string>
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">Opcje debugowania</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">Język wyszukiwania</string>

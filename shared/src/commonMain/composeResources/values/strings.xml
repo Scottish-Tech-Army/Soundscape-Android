@@ -925,7 +925,6 @@
 <!-- Settings option for enabling recording of travel locations -->
 <string name="settings_travel_recording">Enable recording of travel</string>
 <!-- Settings option for enabling a map styling which has improved accessibility -->
-<string name="settings_accessible_map">Enable accessible map styling</string>
 <!-- Settings option for mixing audio with other apps -->
 <string name="settings_mix_audio">Mix audio with other apps</string>
 <!-- Settings description for mixing audio with other apps -->

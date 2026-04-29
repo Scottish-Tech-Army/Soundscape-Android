@@ -919,7 +919,6 @@
     <!-- Settings option for enabling recording of travel locations -->
 <string name="settings_travel_recording" tools:ignore="MissingTranslation">فعال‌سازی ضبط سفر</string>
     <!-- Settings option for enabling a map styling which has improved accessibility -->
-<string name="settings_accessible_map" tools:ignore="MissingTranslation">نمایش نقشه‌ی دسترسی‌پذیر</string>
     <!-- Settings title for various debugging options to aid developers -->
 <string name="settings_debug_heading" tools:ignore="MissingTranslation">گزینه‌های اشکال‌زدایی</string>
     <!-- Menu option for sharing the recorded travel route via another app -->

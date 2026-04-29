@@ -39,7 +39,6 @@ object PreferenceKeys {
     const val SEARCH_LANGUAGE = "SearchLanguage"
     const val SELECTED_STORAGE = "SelectedStorage"
     const val GEOCODER_MODE = "GeocoderMode"
-    const val ACCESSIBLE_MAP = "AccessibleMap"
     const val MIX_AUDIO = "MixAudio"
     const val MEDIA_CONTROLS_MODE = "MediaControlsMode"
     const val FIRST_LAUNCH = "FirstLaunch"
@@ -66,7 +65,6 @@ object PreferenceDefaults {
     const val SEARCH_LANGUAGE = "auto"
     const val SELECTED_STORAGE = ""
     const val GEOCODER_MODE = "Auto"
-    const val ACCESSIBLE_MAP = true
     const val MIX_AUDIO = false
     const val MEDIA_CONTROLS_MODE = "Original"
     const val FIRST_LAUNCH = true

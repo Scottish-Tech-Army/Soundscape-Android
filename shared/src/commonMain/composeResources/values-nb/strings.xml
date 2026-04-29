@@ -467,7 +467,6 @@
     <string name="settings_use_value" tools:ignore="MissingTranslation">bruk</string>
     <string name="street_preview_exit" tools:ignore="MissingTranslation">Avslutt posisjonssimulering</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Aktiver registrering av reiser</string>
-    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Aktiver tilgjengelig kartstil</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">Vis kart på skjermen</string>
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">Feilsøkingsalternativer</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">Søkespråk</string>

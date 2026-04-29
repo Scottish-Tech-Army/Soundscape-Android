@@ -341,12 +341,6 @@ fun SharedSettingsScreen(
                     modifier = expandedSectionModifier,
                     title = { Text(text = stringResource(Res.string.settings_travel_recording), color = textColor) },
                 )
-                switchPreference(
-                    key = PreferenceKeys.ACCESSIBLE_MAP,
-                    defaultValue = PreferenceDefaults.ACCESSIBLE_MAP,
-                    modifier = expandedSectionModifier,
-                    title = { Text(text = stringResource(Res.string.settings_accessible_map), color = textColor) },
-                )
 
                 platformDebugContent?.invoke(this)
             }

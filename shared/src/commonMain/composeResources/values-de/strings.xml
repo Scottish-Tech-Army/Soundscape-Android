@@ -467,7 +467,6 @@
     <string name="settings_use_value" tools:ignore="MissingTranslation">verwenden</string>
     <string name="street_preview_exit" tools:ignore="MissingTranslation">Standortsimulation beenden</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Aufzeichnung von Reisen aktivieren</string>
-    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Barrierefreies Karten-Design aktivieren</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">Karten auf dem Bildschirm anzeigen</string>
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">Debug‑Optionen</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">Suchsprache</string>

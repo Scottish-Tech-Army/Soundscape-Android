@@ -433,7 +433,6 @@
     <string name="no_language_selected">Dil seçilmedi</string>
     <string name="street_preview_exit" tools:ignore="MissingTranslation">Konum simülasyonundan çık</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Seyahat kaydını etkinleştir</string>
-    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Erişilebilir harita stilini etkinleştir</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">Haritayı ekranda göster</string>
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">Hata ayıklama seçenekleri</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">Arama dili</string>

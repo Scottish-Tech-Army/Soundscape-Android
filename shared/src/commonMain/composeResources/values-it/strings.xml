@@ -448,7 +448,6 @@
     <string name="settings_use_value" tools:ignore="MissingTranslation">uso</string>
     <string name="street_preview_exit" tools:ignore="MissingTranslation">Esci dalla simulazione della posizione</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">Abilitare la registrazione del viaggio</string>
-    <string name="settings_accessible_map" tools:ignore="MissingTranslation">Abilita lo stile della mappa accessibile</string>
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">Opzioni di debug</string>
     <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">Condividi la registrazione del viaggio</string>
     <string name="confect_name_to_via" tools:ignore="MissingTranslation">%1$s a %2$s via %3$s</string>

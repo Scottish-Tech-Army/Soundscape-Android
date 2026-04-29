@@ -974,7 +974,6 @@
     <string name="settings_use_value" tools:ignore="MissingTranslation">使用</string>
     <string name="street_preview_exit" tools:ignore="MissingTranslation">退出位置模拟</string>
     <string name="settings_travel_recording" tools:ignore="MissingTranslation">启用行程录制</string>
-    <string name="settings_accessible_map" tools:ignore="MissingTranslation">启用无障碍地图样式</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">在屏幕上显示地图</string>
     <string name="settings_debug_heading" tools:ignore="MissingTranslation">调试选项</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">搜索语言</string>
