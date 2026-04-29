@@ -172,18 +172,15 @@ fun MainViewController() = ComposeUIViewController {
             },
             onRateApp = {
                 val url = NSURL.URLWithString("itms-apps://itunes.apple.com/app/idXXXXXXXX?action=write-review")
-                if (url != null) UIApplication.sharedApplication.openURL(url)
+                if (url != null) openExternalUrl(url)
             },
-            onContactSupport = {
-                val url = NSURL.URLWithString("mailto:soundscape@scottishtecharmy.support")
-                if (url != null) UIApplication.sharedApplication.openURL(url)
-            },
+            onContactSupport = { presentContactSupport(service) },
             onToggleAudioTour = { audioTour.toggleState() },
             onAudioTourInstructionAcknowledged = { audioTour.onInstructionAcknowledged() },
             onMapLongClick = null,
             onGoToAppSettings = {
                 val url = NSURL.URLWithString("app-settings:")
-                if (url != null) UIApplication.sharedApplication.openURL(url)
+                if (url != null) openExternalUrl(url)
             },
             onGetCurrentLocationDescription = {
                 val location = homeStateHolder.state.value.location
@@ -213,6 +210,15 @@ private fun presentShareText(text: String) {
 }
 
 private fun presentActivityViewController(items: List<Any>) {
+    presentTopViewController(
+        UIActivityViewController(
+            activityItems = items,
+            applicationActivities = null,
+        ),
+    )
+}
+
+internal fun presentTopViewController(viewController: UIViewController) {
     val keyWindow = UIApplication.sharedApplication.windows
         .mapNotNull { it as? UIWindow }
         .firstOrNull { it.isKeyWindow() }
@@ -220,11 +226,15 @@ private fun presentActivityViewController(items: List<Any>) {
         ?: return
     var top: UIViewController? = keyWindow.rootViewController
     while (top?.presentedViewController != null) top = top.presentedViewController
-    val activityVc = UIActivityViewController(
-        activityItems = items,
-        applicationActivities = null,
+    top?.presentViewController(viewController, animated = true, completion = null)
+}
+
+internal fun openExternalUrl(url: NSURL) {
+    UIApplication.sharedApplication.openURL(
+        url,
+        options = emptyMap<Any?, Any?>(),
+        completionHandler = null,
     )
-    top?.presentViewController(activityVc, animated = true, completion = null)
 }
 
 private fun buildShareLocationText(
