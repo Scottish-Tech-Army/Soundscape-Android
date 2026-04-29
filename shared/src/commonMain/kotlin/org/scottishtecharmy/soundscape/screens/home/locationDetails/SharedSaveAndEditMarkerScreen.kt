@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -49,6 +50,7 @@ fun SharedSaveAndEditMarkerScreen(
     val isEditing = locationDescription.databaseId != 0L
 
     Scaffold(
+        modifier = Modifier.imePadding(),
         topBar = {
             TextOnlyAppBar(
                 title = if (isEditing) stringResource(Res.string.markers_edit_screen_title_edit)
