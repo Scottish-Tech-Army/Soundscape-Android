@@ -21,8 +21,14 @@ import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.maplibre.compose.camera.CameraPosition
 import org.maplibre.compose.camera.rememberCameraState
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.em
+import androidx.compose.ui.unit.sp
 import org.maplibre.compose.expressions.dsl.const
+import org.maplibre.compose.expressions.dsl.format
 import org.maplibre.compose.expressions.dsl.image
+import org.maplibre.compose.expressions.dsl.offset
+import org.maplibre.compose.expressions.dsl.span
 import org.maplibre.compose.expressions.value.SymbolAnchor
 import org.maplibre.compose.layers.FillLayer
 import org.maplibre.compose.layers.LineLayer
@@ -213,9 +219,9 @@ fun MapContainerLibre(
                 )
             }
 
-            if (routeData != null && routeMarkerImages != null) {
+            if (routeData != null) {
+                val waypointMarker = painterResource(Res.drawable.location_marker)
                 for ((index, waypoint) in routeData.markers.withIndex()) {
-                    if (index >= routeMarkerImages.size) break
                     val position = Position(
                         latitude = waypoint.latitude,
                         longitude = waypoint.longitude
@@ -225,14 +231,36 @@ fun MapContainerLibre(
                             data = GeoJsonData.Features(Point(position))
                         )
 
-                    SymbolLayer(
-                        id = "marker-$index",
-                        source = markerLocationGeoJson,
-                        iconImage = image(routeMarkerImages[index]),
-                        iconSize = const(1.2F),
-                        iconAllowOverlap = const(true),
-                        iconAnchor = const(SymbolAnchor.Bottom)
-                    )
+                    val preRendered = routeMarkerImages?.getOrNull(index)
+                    if (preRendered != null) {
+                        SymbolLayer(
+                            id = "marker-$index",
+                            source = markerLocationGeoJson,
+                            iconImage = image(preRendered),
+                            iconSize = const(1.2F),
+                            iconAllowOverlap = const(true),
+                            iconAnchor = const(SymbolAnchor.Bottom)
+                        )
+                    } else {
+                        SymbolLayer(
+                            id = "marker-$index",
+                            source = markerLocationGeoJson,
+                            iconImage = image(waypointMarker),
+                            iconSize = const(1.2F),
+                            iconAllowOverlap = const(true),
+                            iconAnchor = const(SymbolAnchor.Bottom),
+                            // Default font stack (Open Sans, Arial Unicode MS) is not
+                            // bundled — must use a Roboto variant that ships with the
+                            // glyph PBFs in osm-liberty-accessible/fonts/.
+                            textField = format(span("${index + 1}")),
+                            textFont = const(listOf("Roboto Bold")),
+                            textColor = const(Color.White),
+                            textSize = const(11.sp),
+                            textAllowOverlap = const(true),
+                            textAnchor = const(SymbolAnchor.Center),
+                            textOffset = offset(0f.em, (-1.3f).em),
+                        )
+                    }
                 }
             }
         }
