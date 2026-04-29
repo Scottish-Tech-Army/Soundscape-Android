@@ -270,7 +270,6 @@ fun SharedNavHost(
                     },
                     onOfflineMaps = { locationDesc ->
                         navStateHolder.setOfflineMapsTargetLocation(locationDesc.location)
-                        callbacks.onOfflineMapsRefresh()
                         navController.navigate(SharedRoutes.OFFLINE_MAPS)
                     },
                 )
@@ -287,6 +286,10 @@ fun SharedNavHost(
                 ?: remember {
                     mutableStateOf(org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection())
                 }
+
+            // Refresh the manifest on every entry so the nearby list is
+            // populated regardless of how the user reached this screen.
+            LaunchedEffect(Unit) { callbacks.onOfflineMapsRefresh() }
 
             // Prefer the location the user navigated from (e.g. a place from
             // location details) so "Nearby offline maps" reflects that place
