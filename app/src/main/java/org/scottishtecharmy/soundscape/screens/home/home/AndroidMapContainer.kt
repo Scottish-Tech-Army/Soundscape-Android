@@ -77,7 +77,7 @@ fun createLocationMarkerImageBitmap(context: Context, number: Int): ImageBitmap 
 }
 
 @Composable
-fun rememberMapBaseStyle(userLocation: LngLatAlt? = null): BaseStyle {
+fun rememberMapBaseStyle(mapCenter: LngLatAlt? = null): BaseStyle {
     val context = LocalContext.current
     val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     val accessibleMapEnabled = sharedPreferences.getBoolean(
@@ -105,9 +105,9 @@ fun rememberMapBaseStyle(userLocation: LngLatAlt? = null): BaseStyle {
         MainActivity.SELECTED_STORAGE_DEFAULT
     )!! + "/" + Environment.DIRECTORY_DOWNLOADS
 
-    return remember(accessibleMapEnabled, foregroundColor, backgroundColor, userLocation) {
+    return remember(accessibleMapEnabled, foregroundColor, backgroundColor, mapCenter) {
         val tileSourceUrl = resolveTileSourceUrl(
-            location = userLocation,
+            location = mapCenter,
             extractsPath = extractsPath,
             networkTileUrl = BuildConfig.TILE_PROVIDER_URL,
         )
@@ -148,7 +148,7 @@ fun AndroidMapContainerLibre(
     editBeaconLocation: Boolean = false,
     onMapLongClick: ((LngLatAlt) -> Boolean)? = null,
 ) {
-    val baseStyle = rememberMapBaseStyle(userLocation = userLocation)
+    val baseStyle = rememberMapBaseStyle(mapCenter = mapCenter)
     val routeMarkerImages = if (routeData != null) rememberRouteMarkerImages() else null
 
     MapContainerLibre(

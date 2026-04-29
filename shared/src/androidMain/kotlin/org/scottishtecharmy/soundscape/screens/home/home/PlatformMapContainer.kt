@@ -49,12 +49,12 @@ actual fun PlatformMapContainer(
     // preview, which should always render from the network regardless of what's
     // already downloaded).
     val extractsPath = context.getExternalFilesDir(null)?.absolutePath ?: ""
-    val tileSourceUrl = remember(userLocation, forceOnlineTiles) {
+    val tileSourceUrl = remember(mapCenter, forceOnlineTiles) {
         if (forceOnlineTiles) {
             resolveTileSourceUrl(location = null, extractsPath = "", networkTileUrl = tileProviderUrl)
         } else {
             resolveTileSourceUrl(
-                location = userLocation,
+                location = mapCenter,
                 extractsPath = extractsPath,
                 networkTileUrl = tileProviderUrl,
             )

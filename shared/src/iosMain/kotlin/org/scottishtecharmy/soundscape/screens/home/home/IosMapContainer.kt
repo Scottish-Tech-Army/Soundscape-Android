@@ -81,7 +81,7 @@ fun IosMapContainerLibre(
     extractGeometry: Geometry? = null,
     forceOnlineTiles: Boolean = false,
 ) {
-    val baseStyle = rememberIosMapBaseStyle(location = userLocation, forceOnlineTiles = forceOnlineTiles)
+    val baseStyle = rememberIosMapBaseStyle(location = mapCenter, forceOnlineTiles = forceOnlineTiles)
 
     MapContainerLibre(
         mapCenter = mapCenter,
