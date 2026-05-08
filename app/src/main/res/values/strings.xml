@@ -289,7 +289,7 @@
 <!-- Talkback hint text for nearby road intersections. Talkback reads this as "Double tap to " followed by the string.-->
 <string name="intersections_places_nearby_description">"see a list of nearby road intersections"</string>
 <!-- A description of a button that opens the places nearby selection list -->
-<string name="places_nearby_selection_description">"to choose from a list of places nearby"</string>
+<string name="places_nearby_selection_description">"choose from a list of places nearby"</string>
 <!-- Places nearby filter that shows public transport relates places e.g. bus stops and railway stations -->
 <string name="filter_transit">"Public Transit"</string>
 <!-- Places nearby filter that shows food and drink relates places e.g. restaurants and cafes -->
@@ -657,7 +657,7 @@
 <!-- Button to change the configured language for the UI -->
 <string name="first_launch_change_language">"Change Language"</string>
 <!-- Hint for configuring the language -->
-<string name="first_launch_change_language_hint">"to change the language used for the app"</string>
+<string name="first_launch_change_language_hint">"change the language used for the app"</string>
 <!-- Notification, Information on what a beacon is used for -->
 <string name="help_text_destination_beacons_what">"Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known."</string>
 <!-- Notification, Information on when to use a beacon -->
