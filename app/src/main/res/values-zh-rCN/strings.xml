@@ -848,18 +848,18 @@
     <string name="first_launch_prompt_message">您已准备好与Soundscape一起出发。现在就来试试吧，只需选择一个附近的目的地，启动音频信标，您就会听到信标从目的地方向传来的声音。</string>
     <string name="first_launch_prompt_button">完成</string>
     <string name="first_launch_change_language" tools:ignore="MissingTranslation">更改语言</string>
-    <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">更改应用使用的语言</string>
+    <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">更改应用所使用的语言</string>
     <string name="help_text_destination_beacons_what">在附近地点上设置信标后，Soundscape会从该地点的方向播放音频信标声音，让您随时了解方位。您可以在主屏幕上将信标设为静音或取消静音。此外，Soundscape还会在主屏幕上显示该地点的相关信息，包括到该地点的距离以及其街道地址（如果已知）。</string>
     <string name="help_text_destination_beacons_when">当您想在探索新区域时保持对某个熟悉地标的追踪，或者当您在前往某地途中想了解周围环境时，设置信标非常有用。信标功能不会提供逐向导航，但它会持续播放音频声音，告诉您信标相对于您当前位置的方向。借助音频信标、您自身的导航技能，甚至您常用的导航应用，您可以自行选择如何到达附近地点。</string>
     <string name="help_text_destination_beacons_how_1">**设置信标：**\n\n首先，查看某个地点的详细信息——您可以使用搜索栏搜索地点，也可以点击*\"附近地点\"*、*\"已保存标记点\"*或*\"当前位置\"*按钮并选择一个地点。在地点详情页面中，您可以点击*\"启动音频信标\"*按钮。点击后将返回主屏幕，并开启从您所选地点方向传来的音频信标。您所选地点的名称及其距离和实际地址（如果有）将显示在应用主屏幕上。</string>
-    <string name="help_text_destination_beacons_how_2">**移除当前信标：**\n\n只需按下主屏幕上的*\"停止信标\"*按钮。</string>
-    <string name="help_text_destination_beacons_how_3">**将音频信标设为静音：**\n\n点击主屏幕上*\"停止信标\"*按钮旁边的*\"信标静音\"*按钮。</string>
-    <string name="help_text_automatic_callouts_what">当您接近周围的事物时，Soundscape可以从其所在方向播报名称来告知您。应用会自动为各类事物执行此操作，如商铺、公交站甚至路口。您可以在*\"设置\"*页面的*\"播报\"*部分配置应用自动播报的内容，也可以在需要安静时关闭所有播报。</string>
+    <string name="help_text_destination_beacons_how_2">**要移除当前信标：**\n\n只需在主屏幕上点击*\"停止路线\"*按钮。</string>
+    <string name="help_text_destination_beacons_how_3">**要将可听信标静音：**\n\n点击主屏幕上位于*\"停止路线\"*按钮旁的*\"静音信标\"*按钮。</string>
+    <string name="help_text_automatic_callouts_what">Soundscape 会在您接近周围事物时，从其所在方向播报其名称，告诉您周围有什么。应用会为各种事物（例如商家、公交站，甚至路口）自动执行此操作。您可以在*\"设置\"*页面的*\"管理提示\"*部分配置应用自动播报的内容；当您希望应用保持安静时，也可以关闭所有提示。</string>
     <string name="help_text_automatic_callouts_when_1">**探索新区域：**\n\n打开自动播报，四处走走，当您经过各种商店、餐馆等时就会听到相关播报。</string>
     <string name="help_text_automatic_callouts_when_2">**步行前往特定地点：**\n\n当您在前往某个特定地点的途中，路口自动播报特别有用。路口提示会在您接近路口时告诉您路口的布局，并在您离开路口时确认您所在的道路。</string>
     <string name="help_text_automatic_callouts_when_3">**当您需要安静时：**\n\n当您准备过马路或只是需要应用保持安静时，可以关闭播报。关闭播报后，应用只会在您手动点击*\"我的位置\"*、*\"附近标记点\"*、*\"周围\"*或*\"前方\"*按钮时才会播报信息。</string>
-    <string name="help_text_automatic_callouts_how_1">**开启或关闭播报：**\n\n关闭播报将使应用静音。您可以在*\"设置\"*页面的*\"播报\"*部分中点击*\"允许播报\"*开关来开启或关闭播报。您也可以使用耳机上的媒体控制按钮通过*\"快进\"*命令（双击并按住）来开启或关闭播报。此外，您还可以使用主屏幕右上角的*\"休眠\"*按钮，让Soundscape停止播报，直到您选择再次唤醒它。</string>
-    <string name="help_text_automatic_callouts_how_2">**管理您听到的播报内容：**\n\n要选择Soundscape自动播报的类型，请通过*\"主页\"*屏幕菜单进入*\"设置\"*页面。*\"设置\"*页面的*\"播报\"*部分包含应用可以播报的类型列表。每个项目都有一个开关，您可以打开或关闭。如果您希望关闭所有播报，请点击列表顶部的*\"允许播报\"*开关。</string>
+    <string name="help_text_automatic_callouts_how_1">**开启或关闭播报：**\n\n关闭播报将使应用保持静默。您可以在*\"设置\"*页面的*\"管理提示\"*部分，通过点击*\"允许提示\"*开关来开启或关闭播报。如果您的耳机带有媒体控制按钮，也可以使用*\"向前跳过\"*命令（双击并按住）来切换播报。或者，您也可以使用主屏幕右上角的*\"休眠\"*按钮，让 Soundscape 停止播报，直到您选择将其唤醒。</string>
+    <string name="help_text_automatic_callouts_how_2">**管理您将听到的播报类型：**\n\n要选择 Soundscape 会自动播报的事项类型，请在*\"主屏幕\"*的菜单中进入*\"设置\"*页面。*\"设置\"*页面的*\"管理提示\"*部分包含应用可播报的事项类型列表。每一项都有一个可开启或关闭的切换按钮。若要关闭全部播报，请点击列表顶部的*\"允许提示\"*开关。</string>
     <string name="help_text_my_location_what">*\"我的位置\"*按钮可以快速为您提供帮助确定当前位置的信息。*\"我的位置\"*会告诉您当前位置的相关信息，包括您面朝的方向、附近的道路或路口，以及附近的兴趣点。</string>
     <string name="help_text_my_location_when">当您需要确定自己所在的位置或面朝的方向时，*\"我的位置\"*非常有用。</string>
     <string name="help_text_my_location_how">与主屏幕底部的所有四个按钮一样，在按下*\"我的位置\"*按钮之前，请将手机屏幕朝上平放（面向天空），手机顶部指向您面朝的方向。这就像指南针一样告诉应用您面朝的方向。只需点击*\"我的位置\"*按钮并聆听即可。</string>
@@ -941,7 +941,7 @@
     <string name="faq_use_with_wayfinding_apps_question">如何将Soundscape与导航应用一起使用？</string>
     <string name="faq_use_with_wayfinding_apps_answer">Soundscape是一款环境感知应用，旨在帮助您了解可能不知道的周围环境细节。虽然它不是一款逐向导航应用，但可以与此类应用配合使用以提供补充信息。要将Soundscape与这些应用一起使用，请先启动您的导航应用。然后切换到Soundscape，在与导航应用相同的目的地上设置信标。此时，两个应用都将运行，您将听到导航应用的步行路线指引，同时从Soundscape获取兴趣点、路口以及到目的地距离的更新信息。</string>
     <string name="faq_controlling_what_you_hear_question">如何控制在Soundscape中听到的内容和时间？</string>
-    <string name="faq_controlling_what_you_hear_answer">Soundscape提供了多种方式来控制您听到的内容和时间：\n\n1. 立即停止所有音频：用两根手指双击屏幕可立即关闭所有音频，包括当前正在播放的播报以及信标（如果已开启）。当您接近下一个路口或兴趣点时，播报会自动恢复，但音频信标不会。点击主屏幕上的*\"取消静音信标按钮\"*可恢复信标声音。\n\n2. 停止自动播报：当您不在行走或已到达目的地时，可能不需要Soundscape继续通知您周围的事物。您可以将Soundscape设为小睡模式，它会在您离开时自动唤醒；或者将Soundscape设为休眠模式，它会保持关闭直到您选择重新开启。您也可以从菜单中选择*\"设置\"*，在*\"播报\"*部分选择关闭所有播报。\n\n3. 停止信标：在某些情况下您可能设置了目的地，但不需要音频信标开启。例如，您可能确切知道如何到达目的地，只想获取关于距目的地距离的自动更新。或者，您大致知道如何到达目的地，只需在接近目的地时使用音频信标。无论哪种情况，您都可以通过切换主屏幕上的*\"信标静音\"*/*\"取消静音信标\"*按钮来选择何时听到信标。</string>
+    <string name="faq_controlling_what_you_hear_answer">Soundscape 提供了多种方式来控制您听到的内容及其时间：\n\n1. 立即停止所有音频：用两指在屏幕上双击可立即关闭所有音频，包括当前正在播放的任何播报以及（如果开启）信标。播报会在您接近下一个路口或兴趣点时自动恢复，但可听信标不会自动恢复。要恢复听到信标，请在主屏幕上选择*\"取消静音信标按钮\"*。\n\n2. 关闭自动播报：当您不在出行中或已到达目的地时，通常不需要 Soundscape 继续播报周围的事物。与其退出应用，您可以将 Soundscape 设为小睡模式，它将在您离开时再次唤醒；或者将其设为休眠模式，它会保持关闭直到您选择重新打开。或者，您也可以从菜单中选择*\"设置\"*，并在*\"管理提示\"*部分关闭所有播报。\n\n3. 关闭信标：有些情况下您可能会设定目的地，但不需要一直开启可听信标。例如，您可能已经完全知道如何到达目的地，但想要自动更新与目的地的距离；或者您大致知道如何前往，仅在接近目的地时才需要信标。无论哪种情况，您都可以通过主屏幕上的*\"静音信标\"*/*\"取消静音信标\"*按钮来选择何时听到信标。</string>
     <string name="faq_holding_phone_flat_question">我需要一直将手机拿在手上吗？</string>
     <string name="faq_holding_phone_flat_answer">不需要！步行时，您可以将手机放在包里、口袋里或任何方便的地方。Soundscape将使用您的行走方向来确定哪些播报在您的左侧和右侧。当您停止移动时，Soundscape无法判断您面朝的方向。如果音频信标已开启，您会注意到它在您停止移动后变安静，直到您重新开始移动。您可以随时拿出手机按下屏幕底部的位置和探索按钮，但请确保将手机平放，顶部指向您面朝的方向，屏幕面向天空。在这种*\"平放\"*位置下，Soundscape会使用手机的指南针来确定您面朝的方向，并提供准确的空间播报。如果信标已开启，您也会注意到它恢复到正常音量。</string>
     <string name="faq_what_is_osm_question">什么是Open Street Map，为什么Soundscape使用它？</string>
@@ -950,7 +950,7 @@
     <string name="faq_tip_setting_beacon_on_address">您可以在任何地址上设置信标。在Soundscape主屏幕上搜索地址。选择搜索结果中的地址后，将显示*\"位置详情\"*页面，其中有*\"启动音频信标\"*选项。通过这种方式，您可以在Open Street Maps中没有的商铺、地点、兴趣点和住宅上设置信标。</string>
     <string name="faq_tip_finding_bus_stops">您可以通过在附近地点列表中选择*\"公共交通\"*筛选条件来查找附近的公交站。</string>
     <string name="faq_tip_turning_beacon_off">您可以使用主屏幕上的静音按钮来开启和关闭信标的节奏声。如果信标被静音，您仍会每隀50米左右收到关于到目的地距离的更新。</string>
-    <string name="faq_tip_turning_off_auto_callouts">如果您仍想与Soundscape互动但不想听到自动播报，可以通过菜单进入*\"设置\"*页面的*\"播报\"*部分来关闭播报。或者，如果您不打算使用Soundscape，可以使用主屏幕上的*\"休眠\"*按钮将其设为休眠或小睡模式。</string>
+    <string name="faq_tip_turning_off_auto_callouts">如果您仍想与 Soundscape 交互但不想听到自动播报，可从菜单进入*\"设置\"*页面的*\"管理提示\"*部分将播报关闭。或者，如果暂时不使用 Soundscape，可在主屏幕使用*\"休眠\"*按钮将其设为休眠或小睡模式。</string>
     <string name="faq_tip_hold_phone_flat">Soundscape在您将手机平放、屏幕朝向天空、手机顶部指向远离您的方向时效果最佳。</string>
     <string name="faq_tip_create_marker_at_bus_stop">如果有一条您经常乘坐的公交线路，请将您的上车站和下车站设为标记点。这样它们会被保存，方便您再次找到，只需从菜单中进入*\"管理标记点\"*并在列表中找到它们。您可以在上面设置信标，这样会定期收到关于距下车站距离的更新。注意：您可以关闭节奏声，仍然会收到沿途的距离更新。</string>
     <string name="no_language_selected">未选择语言</string>
