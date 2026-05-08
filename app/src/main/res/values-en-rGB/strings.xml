@@ -25,36 +25,36 @@
     <string name="beacon_styles_mallet_very_slow">Mallet (Very Slow)</string>
     <string name="beacon_audio_beacon">Audio Beacon</string>
     <string name="beacon_action_mute_beacon">Mute Beacon</string>
-    <string name="beacon_action_mute_beacon_acc_hint">Mute the audio beacon.</string>
+    <string name="beacon_action_mute_beacon_acc_hint">mute the audio beacon.</string>
     <string name="beacon_action_unmute_beacon">Unmute Beacon</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">Unmute the audio beacon.</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">unmute the audio beacon.</string>
     <string name="preview_title">Simulate Location</string>
     <string name="preview_go_title">Go</string>
     <string name="preview_include_unnamed_roads_title">Unnamed Roads</string>
     <string name="location_detail_title_default">Location Details</string>
     <string name="location_detail_action_beacon">Start Audio Beacon</string>
-    <string name="location_detail_action_beacon_hint">Guide you towards this location with sound.</string>
-    <string name="location_detail_action_save_hint">Save this location to use later</string>
-    <string name="location_detail_action_edit_hint">Change the marker name or add additional notes</string>
-    <string name="location_detail_action_share_hint">Share this location with another app</string>
-    <string name="location_detail_action_preview_hint">Start previewing at this location</string>
-    <string name="location_detail_add_waypoint_existing_hint">Remove this marker from your route.</string>
-    <string name="location_detail_add_waypoint_new_hint">Add this marker as a waypoint on your route.</string>
+    <string name="location_detail_action_beacon_hint">guide you towards this location with sound.</string>
+    <string name="location_detail_action_save_hint">save this location to use later</string>
+    <string name="location_detail_action_edit_hint">change the marker name or add additional notes</string>
+    <string name="location_detail_action_share_hint">share this location with another app</string>
+    <string name="location_detail_action_preview_hint">start previewing at this location</string>
+    <string name="location_detail_add_waypoint_existing_hint">remove this marker from your route.</string>
+    <string name="location_detail_add_waypoint_new_hint">add this marker as a waypoint on your route.</string>
     <string name="route_detail_action_start_route">Start Route</string>
     <string name="route_detail_action_stop_route">Stop Route</string>
     <string name="route_detail_action_edit">Edit Route</string>
-    <string name="route_detail_action_start_route_hint">Start playback of this route</string>
+    <string name="route_detail_action_start_route_hint">start playback of this route</string>
     <string name="route_detail_action_start_route_disabled_hint">Add waypoints before starting the route</string>
-    <string name="route_detail_action_stop_route_hint">Stop playback of this route</string>
-    <string name="route_detail_action_share_hint">Share this route with another app</string>
-    <string name="route_detail_action_edit_hint">Change the waypoints in the route, or reorder them.</string>
+    <string name="route_detail_action_stop_route_hint">stop playback of this route</string>
+    <string name="route_detail_action_share_hint">share this route with another app</string>
+    <string name="route_detail_action_edit_hint">change the waypoints in the route, or reorder them.</string>
     <string name="route_detail_action_create">New Route</string>
-    <string name="route_detail_action_create_hint">Create a new route</string>
+    <string name="route_detail_action_create_hint">create a new route</string>
     <string name="route_end_completed_accessibility">Route Completed! %s</string>
     <string name="route_detail_action_previous">Previous Waypoint</string>
-    <string name="route_detail_action_previous_hint">Move the beacon to the previous waypoint</string>
+    <string name="route_detail_action_previous_hint">move the beacon to the previous waypoint</string>
     <string name="route_detail_action_next">Next Waypoint</string>
-    <string name="route_detail_action_next_hint">Move the beacon to the next waypoint</string>
+    <string name="route_detail_action_next_hint">move the beacon to the next waypoint</string>
     <string name="route_detail_edit_description">Description</string>
     <string name="route_detail_edit_waypoints_button">Add Waypoints</string>
     <string name="route_detail_edit_delete">Delete Route</string>
@@ -239,13 +239,13 @@
     <string name="help_text_destination_beacons_what">Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.</string>
     <string name="help_text_destination_beacons_when">Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favourite navigation app, you can choose how you want to get to nearby locations yourself.</string>
     <string name="help_text_destination_beacons_how_1">**To set a beacon**:\n\n First, view the details for a location by either using the search bar to search for a place, or tapping one of the \"Places Nearby\", \"Saved Markers\", or \"Current Location\" buttons and selecting a location. From the location details screen you can select the \"Start Audio Beacon\" button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.</string>
-    <string name="help_text_destination_beacons_how_2">**To remove the current beacon**:\n\n Simply press the \"Stop Beacon\" button on the home screen.</string>
-    <string name="help_text_destination_beacons_how_3">**To mute the audible beacon**:\n\n Tap the \"Mute Beacon\" button next to the \"Stop Beacon\" button on the home screen.</string>
-    <string name="help_text_automatic_callouts_what">Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things, such as businesses, bus stops and even intersections. You can configure what the app automatically calls out in the *\"Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.</string>
+    <string name="help_text_destination_beacons_how_2">**To remove the current beacon**:\n\n Simply press the \"Stop Route\" button on the home screen.</string>
+    <string name="help_text_destination_beacons_how_3">**To mute the audible beacon :**\n\n Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.</string>
+    <string name="help_text_automatic_callouts_what">Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things, such as businesses, bus stops and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.</string>
     <string name="help_text_automatic_callouts_when_1">**Exploring a new area**:\n\n Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.</string>
     <string name="help_text_automatic_callouts_when_2">**Walking to a specific location**:\n\n When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.</string>
     <string name="help_text_automatic_callouts_when_3">**When you need silence**:\n\n When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *\"My Location\"*, *\"Nearby Markers\"*, *\"Around Me\"*, or *\"Ahead of Me\"* buttons.</string>
-    <string name="help_text_automatic_callouts_how_1">**Turning callouts on or off:**\n\nTurning callouts off will silence the app. Callouts can be turned on or off in the *\"Callouts\"* section of the *\"Settings\"* screen, where you can tap the *\"Allow Callouts\"* toggle. You can also toggle callouts using the \"skip forward\" command (double‑tap and hold) if your headphones have media control buttons. Alternatively, use the *\"Sleep\"* button in the top‑right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.</string>
+    <string name="help_text_automatic_callouts_how_1">**Turning callouts on or off:**\n\nTurning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, where you can tap the *\"Allow Callouts\"* toggle. You can also toggle callouts using the \"skip forward\" command (double‑tap and hold) if your headphones have media control buttons. Alternatively, use the *\"Sleep\"* button in the top‑right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.</string>
     <string name="help_text_automatic_callouts_how_2">**Managing which callouts you hear:**\n\nTo choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen from the menu on the *\"Home\"* screen. The *\"Callouts\"* section contains a list of categories the app can call out. Each item has a toggle that you can switch on or off. To turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.</string>
     <string name="help_text_my_location_what">The *\"My Location\"* button quickly gives you information that helps you figure out where you currently are. *\"My Location\"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.</string>
     <string name="help_text_my_location_when">*\"My Location\"* is useful when you need to figure out where you are or what cardinal direction you are facing.</string>
@@ -468,7 +468,7 @@
     <string name="settings_theme_dark" tools:ignore="MissingTranslation">Dark</string>
     <string name="voice_engine" tools:ignore="MissingTranslation">Text-to-Speech Engine</string>
     <string name="first_launch_change_language" tools:ignore="MissingTranslation">Change Language</string>
-    <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">to change the language used for the app</string>
+    <string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">change the language used for the app</string>
     <string name="permissions_required" tools:ignore="MissingTranslation">The app requires location permissions to be able to run.</string>
     <string name="permissions_button" tools:ignore="MissingTranslation">Change the permissions in app settings</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">Show maps on screen</string>
@@ -1242,15 +1242,15 @@
     <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">see a list of nearby grocery stores</string>
     <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">see a list of nearby banks</string>
     <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">see a list of nearby road intersections</string>
-    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">to choose from a list of nearby places</string>
+    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">choose from a list of nearby places</string>
     <string name="accessibility_title" tools:ignore="MissingTranslation">Accessibility</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Because you have a screen reader enabled, we recommend running the app with the user interface\'s graphical maps turned off. You can change that setting here, or just continue on.</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">Because you do not have a screen reader enabled, we assume that you want the graphical maps in the user interface to be displayed. You can change that setting here, or just continue on.</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">Continue</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">Close the pop-up and continue with the tutorial</string>
     <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">Start audio beacon at this marker</string>
-    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Make the map full screen and edit the marker location</string>
-    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">Exit marker location editing mode</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">make the map full screen and edit the marker location</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">exit marker location editing mode</string>
     <string name="street_description_relative_before" tools:ignore="MissingTranslation">On %1$s, just before %2$s</string>
     <string name="street_description_relative_after" tools:ignore="MissingTranslation">On %1$s, just after %2$s</string>
     <string name="street_description_intersection" tools:ignore="MissingTranslation">Near the intersection of %s</string>
@@ -1271,7 +1271,7 @@
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Your phone is set to %1$s and that language is now available in Soundscape. Would you like Soundscape to switch to %1$s?</string>
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Switch to %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Keep Current Language</string>
-    <string name="preview_go_hint" tools:ignore="MissingTranslation">Move in this direction to the next intersection.</string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation">move in this direction to the next intersection.</string>
     <string name="error_message_route_not_found" tools:ignore="MissingTranslation">Failed to find route in the database.</string>
     <string name="error_message_deleting_route" tools:ignore="MissingTranslation">Failed to delete the route.</string>
     <string name="error_message_saving_route" tools:ignore="MissingTranslation">Failed to save the route.</string>
@@ -1334,7 +1334,7 @@
     <string name="battery_optimization_title">Background Battery Usage</string>
     <string name="battery_optimization_message">Soundscape requires unrestricted battery use to continue providing audio navigation while your phone is locked. Please allow this in the next dialog. If you close Soundscape, all services will stop and the app will no longer use battery.</string>
     <string name="route_detail_action_start_route_reverse">Start Route in Reverse</string>
-    <string name="route_detail_action_start_route_reverse_hint">Start playback of this route in reverse</string>
+    <string name="route_detail_action_start_route_reverse_hint">start playback of this route in reverse</string>
     <string name="route_reverse_name">%s in reverse</string>
     <string name="callouts_no_nearby_markers">There are no nearby markers</string>
     <string name="stationary_on_way">Stationary on %s</string>
