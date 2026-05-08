@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -19,8 +20,6 @@ import androidx.compose.material.icons.rounded.Download
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material.icons.rounded.Star
-import androidx.compose.material3.DrawerState
-import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -31,12 +30,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import kotlinx.coroutines.launch
+import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_KEY
@@ -46,7 +45,7 @@ import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun DrawerContent(
-    drawerState: DrawerState,
+    onClose: () -> Unit,
     onNavigate: (String) -> Unit,
     rateSoundscape: () -> Unit,
     contactSupport: () -> Unit,
@@ -57,26 +56,19 @@ fun DrawerContent(
     preferences: SharedPreferences?,
     newReleaseDialog: MutableState<Boolean>?
 ) {
-    val scope = rememberCoroutineScope()
     val recordingEnabled = preferences?.getBoolean(RECORD_TRAVEL_KEY, RECORD_TRAVEL_DEFAULT) == true
     val running = remember(tutorialRunning) { mutableStateOf(tutorialRunning) }
+    val screenWidth = LocalConfiguration.current.screenWidthDp.dp
 
     ModalDrawerSheet(
+        modifier = Modifier.requiredWidth(screenWidth),
         drawerContainerColor = MaterialTheme.colorScheme.background,
         drawerContentColor = MaterialTheme.colorScheme.onBackground,
     ) {
         Scaffold (
             topBar = {
                 IconButton(
-                    onClick = {
-                        scope.launch {
-                            if (drawerState.isClosed) {
-                                drawerState.open()
-                            } else {
-                                drawerState.close()
-                            }
-                        }
-                    },
+                    onClick = onClose,
                     modifier = Modifier.testTag("menuDrawerBack")
                 ) {
                     Icon(
@@ -132,7 +124,7 @@ fun DrawerContent(
 
                 DrawerMenuItem(
                     onClick = {
-                        scope.launch { drawerState.close() }
+                        onClose()
                         toggleTutorial()
                     },
                     label = if(running.value) stringResource(R.string.menu_audio_tutorial_cancel) else stringResource(R.string.menu_audio_tutorial),
@@ -200,7 +192,7 @@ fun DrawerContent(
 @Composable
 fun PreviewDrawerContent() {
     DrawerContent(
-        DrawerState(DrawerValue.Open) { true },
+        onClose = { },
         onNavigate = { },
         rateSoundscape = { },
         contactSupport = { },

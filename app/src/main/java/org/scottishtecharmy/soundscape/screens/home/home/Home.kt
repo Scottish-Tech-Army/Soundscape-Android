@@ -2,6 +2,11 @@ package org.scottishtecharmy.soundscape.screens.home.home
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.activity.compose.BackHandler
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.ime
@@ -10,33 +15,28 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ExitToApp
 import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material.icons.rounded.Snooze
-import androidx.compose.material3.DrawerState
-import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.preference.PreferenceManager
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.launch
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
@@ -98,8 +98,7 @@ fun Home(
     val context = LocalContext.current
     val sharedPreferences = remember { PreferenceManager.getDefaultSharedPreferences(context) }
     val showMap = sharedPreferences.getBoolean(SHOW_MAP_KEY, SHOW_MAP_DEFAULT)
-    val coroutineScope = rememberCoroutineScope()
-    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    var drawerOpen by remember { mutableStateOf(false) }
     val fullscreenMap = remember { mutableStateOf(false) }
     val keyboardOpen = keyboardAsState()
     val routePlaying = (state.currentRouteData.routeData != null)
@@ -130,37 +129,19 @@ fun Home(
         }
     }
 
-    ModalNavigationDrawer(
-        drawerState = drawerState,
-        gesturesEnabled = drawerState.isOpen,
-        drawerContent = {
-            DrawerContent(
-                onNavigate = onNavigate,
-                drawerState = drawerState,
-                rateSoundscape = rateSoundscape,
-                contactSupport = contactSupport,
-                shareRecording = shareRecording,
-                offlineMaps = offlineMaps,
-                toggleTutorial = toggleTutorial,
-                tutorialRunning = tutorialRunning,
-                preferences = preferences,
-                newReleaseDialog = newReleaseDialog
-            )
-        },
-        modifier = modifier,
-    ) {
+    Box(modifier = modifier) {
         Scaffold(
+            modifier = if (drawerOpen) Modifier.clearAndSetSemantics { } else Modifier,
             // If the keyboard is open, then we don't show the top or the bottom bars. This makes more
             // room for the search. This is important when the font size is very large, but it's
             // also good for allowing the user to view more search results.
             topBar = {
                 if(!keyboardOpen.value) {
                     HomeTopAppBar(
-                        drawerState,
-                        coroutineScope,
-                        onNavigate,
-                        state.streetPreviewState.enabled != StreetPreviewEnabled.OFF,
-                        streetPreviewFunctions
+                        onMenuClick = { drawerOpen = true },
+                        onNavigate = onNavigate,
+                        streetPreviewState = state.streetPreviewState.enabled != StreetPreviewEnabled.OFF,
+                        streetPreviewFunctions = streetPreviewFunctions
                     )
                 }
             },
@@ -235,14 +216,36 @@ fun Home(
                 )
             }
         }
+
+        AnimatedVisibility(
+            visible = drawerOpen,
+            enter = slideInHorizontally(initialOffsetX = { -it }),
+            exit = slideOutHorizontally(targetOffsetX = { -it })
+        ) {
+            DrawerContent(
+                onClose = { drawerOpen = false },
+                onNavigate = onNavigate,
+                rateSoundscape = rateSoundscape,
+                contactSupport = contactSupport,
+                shareRecording = shareRecording,
+                offlineMaps = offlineMaps,
+                toggleTutorial = toggleTutorial,
+                tutorialRunning = tutorialRunning,
+                preferences = preferences,
+                newReleaseDialog = newReleaseDialog
+            )
+        }
+
+        BackHandler(enabled = drawerOpen) {
+            drawerOpen = false
+        }
     }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeTopAppBar(
-    drawerState: DrawerState,
-    coroutineScope: CoroutineScope,
+    onMenuClick: () -> Unit,
     onNavigate: (String) -> Unit,
     streetPreviewState: Boolean,
     streetPreviewFunctions: StreetPreviewFunctions
@@ -255,9 +258,7 @@ fun HomeTopAppBar(
                     (stringResource(R.string.home_screen_title)),
         leftSide = {
             IconButton(
-                onClick = {
-                    coroutineScope.launch { drawerState.open() }
-                },
+                onClick = onMenuClick,
                 modifier = Modifier
                     .talkbackHint(stringResource(R.string.ui_menu_hint))
                     .testTag("topBarMenu")
