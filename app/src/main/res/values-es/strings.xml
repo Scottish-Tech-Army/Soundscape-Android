@@ -1231,8 +1231,8 @@
     <string name="tour_beacon_demo" tools:ignore="MissingTranslation">Ahora puedes oír la señal de audio. Suena desde la dirección de tu destino. Al cambiar la dirección hacia la que apunta el teléfono, podrás oír cómo la señal se desplaza y cómo varía su sonido. Pruébalo ahora.</string>
     <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">Aunque tu teléfono esté bloqueado, la señal de audio seguirá reproduciéndose. Si caminas o vas en un vehículo, la aplicación usa la dirección de tu desplazamiento para reproducir la señal. Sin embargo, incluso con el teléfono bloqueado, puedes sostenerlo plano frente a ti, como una brújula, y la app usará la dirección hacia la que apunta el teléfono. Pruébalo.</string>
     <string name="tour_stop_beacon" tools:ignore="MissingTranslation">Cuando estés listo para detener la señal, pulsa el botón \"Detener ruta\".</string>
-    <string name="tour_finish" tools:ignore="MissingTranslation">Con esto finaliza el tutorial. Puede volver a ejecutarlo desde el menú principal. ¡Esperamos que la aplicación le resulte útil!</string>
-    <string name="tour_cancel" tools:ignore="MissingTranslation">El tutorial de audio ha sido cancelado. Si lo desea, puede volver a ejecutarlo desde el menú principal.</string>
+    <string name="tour_finish" tools:ignore="MissingTranslation">Con esto finaliza el tutorial. Puedes volver a ejecutarlo desde el menú principal. ¡Esperamos que la aplicación te resulte útil!</string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation">El tutorial de audio ha sido cancelado. Si lo deseas, puedes volver a ejecutarlo desde el menú principal.</string>
     <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Tutorial de audio</string>
     <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Cancelar tutorial de audio</string>
     <string name="search_bar_hint" tools:ignore="MissingTranslation">Escriba el nombre de un destino o una dirección</string>
