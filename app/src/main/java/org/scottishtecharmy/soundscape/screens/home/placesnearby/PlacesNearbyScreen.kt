@@ -23,7 +23,7 @@ import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
 fun PlacesNearbyScreenVM(
     homeNavController: NavController,
     modifier: Modifier = Modifier,
-    viewModel: PlacesNearbyViewModel =  hiltViewModel(),
+    viewModel: PlacesNearbyViewModel = hiltViewModel(),
 ) {
     val uiState by viewModel.logic.uiState.collectAsStateWithLifecycle()
     PlacesNearbyScreen(
@@ -33,7 +33,7 @@ fun PlacesNearbyScreenVM(
             viewModel.onClickFolder(folder, title)
         },
         onClickBack = {
-            if(uiState.level == 0)
+            if (uiState.level == 0)
                 homeNavController.navigateUp()
             else
                 viewModel.onClickBack()
@@ -50,7 +50,7 @@ fun PlacesNearbyScreen(
     homeNavController: NavController,
     uiState: PlacesNearbyUiState,
     modifier: Modifier = Modifier,
-    onClickFolder: (String, String) -> Unit = {_,_ ->},
+    onClickFolder: (String, String) -> Unit = { _, _ -> },
     onClickBack: () -> Unit = {},
     onStartBeacon: (LocationDescription) -> Unit = {},
 ) {
@@ -61,7 +61,7 @@ fun PlacesNearbyScreen(
             Column {
                 CustomAppBar(
                     title =
-                        if(uiState.level == 0) stringResource(R.string.search_nearby_screen_title)
+                        if (uiState.level == 0) stringResource(R.string.search_nearby_screen_title)
                         else uiState.title,
                     navigationButtonTitle = stringResource(R.string.ui_back_button_title),
                     onNavigateUp = {
@@ -74,11 +74,15 @@ fun PlacesNearbyScreen(
         Box(Modifier.extraSmallPadding()) {
             // Display the list of places
             PlacesNearbyList(
-                uiState = uiState,
                 navController = homeNavController,
                 onClickFolder = onClickFolder,
                 onStartBeacon = onStartBeacon,
-                modifier = modifier.padding(innerPadding)
+                userLocation = uiState.userLocation,
+                nearbyIntersections = uiState.nearbyIntersections,
+                nearbyPlaces = uiState.nearbyPlaces,
+                filter = uiState.filter,
+                level = uiState.level,
+                modifier = modifier.padding(innerPadding),
             )
         }
     }

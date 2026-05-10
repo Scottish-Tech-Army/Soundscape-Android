@@ -49,11 +49,11 @@ import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.previewLocationList
-import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyUiState
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomTextField
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.TextOnlyAppBar
@@ -70,6 +70,7 @@ private data class SimpleMarkerData(
     var addressName: String = "",
     var location: LngLatAlt = LngLatAlt()
 )
+
 private data class SimpleRouteData(
     var name: String = "",
     var description: String = "",
@@ -106,7 +107,7 @@ fun parseSimpleRouteData(jsonData: String): RouteWithMarkers {
     for (waypoint in simpleRouteData.waypoints) {
         markers.add(
             MarkerEntity(
-                name =waypoint.addressName,
+                name = waypoint.addressName,
                 longitude = waypoint.location.longitude,
                 latitude = waypoint.location.latitude,
             )
@@ -135,12 +136,12 @@ fun AddAndEditRouteScreenVM(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val placesNearbyUiState by viewModel.logic.uiState.collectAsStateWithLifecycle()
+
     AddAndEditRouteScreen(
         routeObjectId = routeObjectId,
         navController = navController,
         modifier = modifier,
         uiState = uiState,
-        placesNearbyUiState = placesNearbyUiState,
         editRoute = editRoute,
         onClearErrorMessage = { viewModel.clearErrorMessage() },
         onResetDoneAction = { viewModel.resetDoneActionState() },
@@ -161,9 +162,13 @@ fun AddAndEditRouteScreenVM(
                 location,
                 successMessage,
                 failureMessage,
-                duplicateMessage)
+                duplicateMessage
+            )
         },
-        getCurrentLocationDescription = getCurrentLocationDescription
+        getCurrentLocationDescription = getCurrentLocationDescription,
+        level = placesNearbyUiState.level,
+        nearbyIntersections = placesNearbyUiState.nearbyIntersections,
+        nearbyPlaces = placesNearbyUiState.nearbyPlaces,
     )
 }
 
@@ -174,7 +179,6 @@ fun AddAndEditRouteScreen(
     navController: NavController,
     modifier: Modifier,
     uiState: AddAndEditRouteUiState,
-    placesNearbyUiState: PlacesNearbyUiState,
     editRoute: Boolean,
     userLocation: LngLatAlt?,
     onClearErrorMessage: () -> Unit,
@@ -190,19 +194,22 @@ fun AddAndEditRouteScreen(
     createAndAddMarker: (LocationDescription, String, String, String) -> Unit,
     getCurrentLocationDescription: () -> LocationDescription,
     heading: Float,
+    level: Int,
+    nearbyIntersections: FeatureCollection,
+    nearbyPlaces: FeatureCollection,
 ) {
     val context = LocalContext.current
     var addWaypointDialog by remember { mutableStateOf(false) }
     var routeMembers by remember(uiState.routeMembers) {
         val members = uiState.routeMembers.toList()
-        for((index, marker) in members.withIndex()) {
+        for ((index, marker) in members.withIndex()) {
             marker.orderId = index.toLong()
         }
         mutableStateOf(members)
     }
 
     val lazyListState = rememberLazyListState()
-    val location by remember(userLocation) {mutableStateOf(userLocation)}
+    val location by remember(userLocation) { mutableStateOf(userLocation) }
     val reorderableLazyListState = rememberReorderableLazyListState(lazyListState) { from, to ->
         // Update the list when an item is dragging
         routeMembers = routeMembers.toMutableList().apply {
@@ -227,6 +234,7 @@ fun AddAndEditRouteScreen(
                 ActionType.UPDATE -> {
                     navController.popBackStack()
                 }
+
                 ActionType.DELETE -> {
                     // The route has been deleted, so navigate directly to the routes tab.
                     // Use popUpTo(home) so AddAndEditRouteScreen (and anything above MarkersAndRoutes)
@@ -236,6 +244,7 @@ fun AddAndEditRouteScreen(
                         popUpTo(HomeRoutes.Home.route) { inclusive = false }
                     }
                 }
+
                 else -> {
                     assert(false)
                 }
@@ -250,10 +259,9 @@ fun AddAndEditRouteScreen(
         }
     }
 
-    if(addWaypointDialog) {
+    if (addWaypointDialog) {
         AddWaypointsDialog(
             uiState = uiState,
-            placesNearbyUiState = placesNearbyUiState,
             onAddWaypointComplete = {
                 // Create the final list of markers within the route
 
@@ -275,13 +283,13 @@ fun AddAndEditRouteScreen(
                 members.addAll(missingFromReorder)
 
                 // Add toggled members that weren't already in the route
-                for(marker in uiState.toggledMembers) {
-                    if(!uiState.routeMembers.any { it.databaseId == marker.databaseId }) {
+                for (marker in uiState.toggledMembers) {
+                    if (!uiState.routeMembers.any { it.databaseId == marker.databaseId }) {
                         members.add(marker)
                     }
                 }
                 // Reset orderId values
-                for((index, marker) in members.withIndex()) {
+                for ((index, marker) in members.withIndex()) {
                     marker.orderId = index.toLong()
                 }
 
@@ -290,10 +298,9 @@ fun AddAndEditRouteScreen(
             },
             onClickFolder = onClickFolder,
             onClickBack = {
-                if(placesNearbyUiState.level == 0) {
+                if (level == 0) {
                     addWaypointDialog = false
-                }
-                else
+                } else
                     onClickBack()
             },
             onSelectLocation = onSelectLocation,
@@ -302,17 +309,20 @@ fun AddAndEditRouteScreen(
             modifier = modifier,
             userLocation = location,
             heading = heading,
-            getCurrentLocationDescription = getCurrentLocationDescription
+            getCurrentLocationDescription = getCurrentLocationDescription,
+            level = level,
+            markerDescription = LocationDescription("", LngLatAlt()),
+            nearbyIntersections = nearbyIntersections,
+            nearbyPlaces = nearbyPlaces,
         )
-    }
-    else {
+    } else {
         Scaffold(
             modifier = modifier,
             topBar = {
                 TextOnlyAppBar(
                     title = stringResource(
-                        if(editRoute) (R.string.route_detail_action_edit)
-                        else  (R.string.route_detail_action_create)
+                        if (editRoute) (R.string.route_detail_action_edit)
+                        else (R.string.route_detail_action_create)
                     ),
                     onNavigateUp = { navController.popBackStack() },
                     navigationButtonTitle = stringResource(R.string.general_alert_cancel),
@@ -327,7 +337,7 @@ fun AddAndEditRouteScreen(
                 Column(
                     modifier = Modifier
                 ) {
-                    if(editRoute) {
+                    if (editRoute) {
                         CustomButton(
                             onClick = {
                                 onDeleteRoute(routeObjectId!!)
@@ -392,7 +402,7 @@ fun AddAndEditRouteScreen(
                                 .mediumPadding(),
                         )
                         // Display the list of markers in the route
-                        if(routeMembers.isEmpty()) {
+                        if (routeMembers.isEmpty()) {
                             Text(
                                 stringResource(R.string.route_detail_action_start_route_disabled_hint),
                                 textAlign = TextAlign.Center,
@@ -406,10 +416,16 @@ fun AddAndEditRouteScreen(
                                 state = lazyListState,
                                 verticalArrangement = Arrangement.spacedBy(spacing.tiny),
                             ) {
-                                itemsIndexed(routeMembers, key = { _,item -> item.orderId.toString() }) { index, item ->
-                                    ReorderableItem(reorderableLazyListState, item.orderId.toString()) { _ ->
-                                        Row(modifier = Modifier
-                                            .background(MaterialTheme.colorScheme.surface)
+                                itemsIndexed(
+                                    routeMembers,
+                                    key = { _, item -> item.orderId.toString() }) { index, item ->
+                                    ReorderableItem(
+                                        reorderableLazyListState,
+                                        item.orderId.toString()
+                                    ) { _ ->
+                                        Row(
+                                            modifier = Modifier
+                                                .background(MaterialTheme.colorScheme.surface)
                                         ) {
                                             LocationItem(
                                                 item = item,
@@ -420,9 +436,10 @@ fun AddAndEditRouteScreen(
                                                     reorderable = true,
                                                     moveDown = { i ->
                                                         if (i < routeMembers.size - 1) {
-                                                            routeMembers = routeMembers.toMutableList().apply {
-                                                                add(i + 1, removeAt(i))
-                                                            }
+                                                            routeMembers =
+                                                                routeMembers.toMutableList().apply {
+                                                                    add(i + 1, removeAt(i))
+                                                                }
                                                             true
                                                         } else {
                                                             false
@@ -430,9 +447,10 @@ fun AddAndEditRouteScreen(
                                                     },
                                                     moveUp = { i ->
                                                         if (i > 0) {
-                                                            routeMembers = routeMembers.toMutableList().apply {
-                                                                add(i - 1, removeAt(i))
-                                                            }
+                                                            routeMembers =
+                                                                routeMembers.toMutableList().apply {
+                                                                    add(i - 1, removeAt(i))
+                                                                }
                                                             true
                                                         } else {
                                                             false
@@ -481,7 +499,6 @@ fun NewRouteScreenPreview() {
         navController = rememberNavController(),
         modifier = Modifier,
         uiState = AddAndEditRouteUiState(),
-        placesNearbyUiState = PlacesNearbyUiState(),
         editRoute = false,
         userLocation = LngLatAlt(),
         heading = 45.0F,
@@ -490,13 +507,16 @@ fun NewRouteScreenPreview() {
         onNameChange = {},
         onDescriptionChange = {},
         onDeleteRoute = {},
-        onEditComplete = {_ -> },
-        onClickFolder = {_,_ ->},
+        onEditComplete = { _ -> },
+        onClickFolder = { _, _ -> },
         onClickBack = {},
-        onSelectLocation = {_ ->},
-        onToggleMember = {_ ->},
-        createAndAddMarker = {_,_,_,_ ->},
+        onSelectLocation = { _ -> },
+        onToggleMember = { _ -> },
+        createAndAddMarker = { _, _, _, _ -> },
         getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
+        level = 0,
+        nearbyIntersections = FeatureCollection(),
+        nearbyPlaces = FeatureCollection(),
     )
 }
 
@@ -510,7 +530,6 @@ fun EditRouteScreenPreview() {
         uiState = AddAndEditRouteUiState(
             routeMembers = previewLocationList
         ),
-        placesNearbyUiState = PlacesNearbyUiState(),
         editRoute = true,
         userLocation = LngLatAlt(),
         heading = 45.0F,
@@ -519,12 +538,15 @@ fun EditRouteScreenPreview() {
         onNameChange = {},
         onDescriptionChange = {},
         onDeleteRoute = {},
-        onEditComplete = {_ -> },
-        onClickFolder = {_,_ ->},
+        onEditComplete = { _ -> },
+        onClickFolder = { _, _ -> },
         onClickBack = {},
-        onSelectLocation = {_ ->},
-        onToggleMember = {_ ->},
-        createAndAddMarker = {_,_,_,_ ->},
+        onSelectLocation = { _ -> },
+        onToggleMember = { _ -> },
+        createAndAddMarker = { _, _, _, _ -> },
         getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
+        level = 0,
+        nearbyIntersections = FeatureCollection(),
+        nearbyPlaces = FeatureCollection(),
     )
 }

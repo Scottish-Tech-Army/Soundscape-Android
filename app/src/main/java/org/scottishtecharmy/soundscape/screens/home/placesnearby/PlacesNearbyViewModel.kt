@@ -24,12 +24,12 @@ class PlacesNearbyViewModel
     }
 
     fun onClickBack() {
-        logic.internalUiState.value = logic.uiState.value.copy(level = 0)
+        logic.resetLevel()
     }
 
     fun onClickFolder(filter: String, title: String) {
         // Apply the filter
-        logic.internalUiState.value = logic.uiState.value.copy(level = 1, filter = filter, title = title)
+        logic.applyFilter(level = 1, filter = filter, title = title)
     }
 
     fun startBeacon(location: LngLatAlt, name: String) {

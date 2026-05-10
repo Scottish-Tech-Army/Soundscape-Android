@@ -236,8 +236,9 @@ class AddAndEditRouteViewModel @Inject constructor(
     fun onClickBack() {
         var newLevel = logic.uiState.value.level
         if(newLevel > 0) newLevel -= 1
-        logic.internalUiState.value = logic.uiState.value.copy(level = newLevel)
+        logic.navigateToLevel(level = newLevel)
     }
+
     fun onSelectLocation(locationDescription: LocationDescription) {
 
         val existingMarker = routeDao.getMarkerByLocation(
@@ -250,9 +251,9 @@ class AddAndEditRouteViewModel @Inject constructor(
                 location = LngLatAlt(existingMarker.longitude, existingMarker.latitude),
                 databaseId = existingMarker.markerId
             )
-            logic.internalUiState.value = logic.uiState.value.copy(markerDescription = existingLocationDescription)
+            logic.locationSelected(markerDescription = existingLocationDescription)
         } else {
-            logic.internalUiState.value = logic.uiState.value.copy(markerDescription = locationDescription)
+            logic.locationSelected(markerDescription = locationDescription)
         }
     }
 
@@ -270,7 +271,7 @@ class AddAndEditRouteViewModel @Inject constructor(
     fun onClickFolder(filter: String, title: String) {
         // Apply the filter
         val newLevel = logic.uiState.value.level + 1
-        logic.internalUiState.value = logic.uiState.value.copy(level = newLevel, filter = filter, title = title)
+        logic.applyFilter(level = newLevel, filter = filter, title = title)
     }
 
     fun createAndAddMarker(
@@ -357,9 +358,7 @@ class AddAndEditRouteViewModel @Inject constructor(
         }
 
         // And ensure we're on the top level
-        logic.internalUiState.value = logic.uiState.value.copy(
-            markerDescription = null,
-            level = 0
-        )
+        logic.resetMarkerDescription()
+        logic.resetLevel()
     }
 }
