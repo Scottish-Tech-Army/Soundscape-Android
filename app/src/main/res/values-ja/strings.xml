@@ -25,36 +25,36 @@
     <string name="beacon_styles_mallet_very_slow">マレット (非常に遅い)</string>
     <string name="beacon_audio_beacon">音声ビーコン</string>
     <string name="beacon_action_mute_beacon">ビーコンをミュート</string>
-    <string name="beacon_action_mute_beacon_acc_hint">音声ビーコンをミュートする</string>
+    <string name="beacon_action_mute_beacon_acc_hint">音声ビーコンをミュートします</string>
     <string name="beacon_action_unmute_beacon">ビーコンのミュートを解除</string>
-    <string name="beacon_action_unmute_beacon_acc_hint">音声ビーコンのミュートを解除する</string>
+    <string name="beacon_action_unmute_beacon_acc_hint">音声ビーコンのミュートを解除します</string>
     <string name="preview_title">位置のシミュレーション</string>
     <string name="preview_go_title">移動</string>
     <string name="preview_include_unnamed_roads_title">無名道路</string>
     <string name="location_detail_title_default">場所の詳細</string>
     <string name="location_detail_action_beacon">音声ビーコンを開始</string>
-    <string name="location_detail_action_beacon_hint">音声でこの場所へ案内する</string>
-    <string name="location_detail_action_save_hint">後で使用するためにこの場所を保存する</string>
-    <string name="location_detail_action_edit_hint">マーカー名を変更するか注記を追加する</string>
-    <string name="location_detail_action_share_hint">別のアプリでこの場所を共有する</string>
-    <string name="location_detail_action_preview_hint">この場所でプレビューを開始する</string>
-    <string name="location_detail_add_waypoint_existing_hint">このマーカーをルートから削除する</string>
-    <string name="location_detail_add_waypoint_new_hint">このマーカーをルートのウェイポイントとして追加する</string>
+    <string name="location_detail_action_beacon_hint">この場所へ音声で案内します</string>
+    <string name="location_detail_action_save_hint">この場所を保存して後で使えるようにします</string>
+    <string name="location_detail_action_edit_hint">マーカー名を変更したり、後で役立つ任意のメモを追加します</string>
+    <string name="location_detail_action_share_hint">この場所を他のアプリと共有します</string>
+    <string name="location_detail_action_preview_hint">この場所のプレビューを開始します</string>
+    <string name="location_detail_add_waypoint_existing_hint">このマーカーをルートから削除します</string>
+    <string name="location_detail_add_waypoint_new_hint">このマーカーをルートのウェイポイントとして追加します</string>
     <string name="route_detail_action_start_route">ルートを開始する</string>
     <string name="route_detail_action_stop_route">ルートを中止する</string>
     <string name="route_detail_action_edit">ルートを編集</string>
-    <string name="route_detail_action_start_route_hint">このルートの再生を開始する</string>
-    <string name="route_detail_action_start_route_disabled_hint">ルートを開始する前にウェイポイントを追加します</string>
-    <string name="route_detail_action_stop_route_hint">このルートの再生を中止する</string>
-    <string name="route_detail_action_share_hint">別のアプリでこのルートを共有する</string>
-    <string name="route_detail_action_edit_hint">ルートのウェイポイントを変更する、または順序を並べ替える</string>
+    <string name="route_detail_action_start_route_hint">このルートの再生を開始します</string>
+    <string name="route_detail_action_start_route_disabled_hint">ルートを開始する前にウェイポイントを追加してください</string>
+    <string name="route_detail_action_stop_route_hint">このルートの再生を停止します</string>
+    <string name="route_detail_action_share_hint">このルートを他のアプリと共有します</string>
+    <string name="route_detail_action_edit_hint">ルートのウェイポイントを変更したり、順序を並べ替えます</string>
     <string name="route_detail_action_create">新しいルート</string>
-    <string name="route_detail_action_create_hint">新しいルートを作成する</string>
+    <string name="route_detail_action_create_hint">新しいルートを作成します</string>
     <string name="route_end_completed_accessibility">ルートが終了しました! %s</string>
     <string name="route_detail_action_previous">以前のウェイポイント</string>
-    <string name="route_detail_action_previous_hint">ビーコンを前のウェイポイントに移動する</string>
+    <string name="route_detail_action_previous_hint">ビーコンを前のウェイポイントに移動します</string>
     <string name="route_detail_action_next">次のウェイポイント</string>
-    <string name="route_detail_action_next_hint">ビーコンを次のウェイポイントに移動する</string>
+    <string name="route_detail_action_next_hint">ビーコンを次のウェイポイントに移動します</string>
     <string name="route_detail_edit_description">説明</string>
     <string name="route_detail_edit_waypoints_button">ウェイポイントを追加</string>
     <string name="route_detail_edit_delete">ルートを削除する</string>
@@ -88,9 +88,9 @@
     <string name="search_use_current_location">現在地</string>
     <string name="search_nearby_screen_title">近くの場所</string>
     <string name="search_view_markers">マーカーおよびルート</string>
-    <string name="search_button_markers_accessibility_hint">保存したマーカーを選択または編集する</string>
-    <string name="search_button_nearby_accessibility_hint">近くのレストラン、交通停留所などを探索する</string>
-    <string name="search_button_current_location_accessibility_hint">現在地をプレビュー、マーク、または友人と共有する</string>
+    <string name="search_button_markers_accessibility_hint">保存したマーカーやルートを選択または編集します</string>
+    <string name="search_button_nearby_accessibility_hint">近くのレストラン、公共交通の停留所などを探索します</string>
+    <string name="search_button_current_location_accessibility_hint">現在地をプレビューしたり、マーカーとして保存したり、友人と共有したりします</string>
     <string name="filter_all">すべての場所</string>
     <string name="filter_transit">公共交通機関</string>
     <string name="filter_food_drink">飲食店</string>
@@ -107,7 +107,7 @@
     <string name="sleep_sleep">スリープ</string>
     <string name="sleep_sleeping">スリープ中</string>
     <string name="sleep_sleeping_message">Soundscape は現在スリープ状態です。そのため、位置情報サービスの使用やデータのダウンロードができません。スリープ モードでは、Soundscape を使用しない間のバッテリー消費が抑えられます。Soundscape のスリープを解除するには、下のボタンをタップしてください。</string>
-    <string name="sleep_sleep_acc_hint">Soundscape をスリープにする</string>
+    <string name="sleep_sleep_acc_hint">Soundscape をスリープ状態にします</string>
     <string name="sleep_wake_up_now">すぐにスリープ解除</string>
     <string name="intersection_approaching_intersection">まもなく交差点</string>
     <string name="directions_at_poi">現在地: %s</string>
@@ -170,13 +170,13 @@
     <string name="distance_format_feet">%s フィート</string>
     <string name="distance_format_miles">%s マイル</string>
     <string name="ui_action_button_my_location">現在地</string>
-    <string name="ui_action_button_my_location_acc_hint">現在地の情報を聞く</string>
+    <string name="ui_action_button_my_location_acc_hint">現在地の情報を聞きます</string>
     <string name="ui_action_button_nearby_markers">近くの\nマーカー</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">近くに保存した場所について聞く</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">自分でマークした近くの場所について聞きます</string>
     <string name="ui_action_button_around_me">周辺</string>
-    <string name="ui_action_button_around_me_acc_hint">周辺の4方向にある場所について聞く</string>
+    <string name="ui_action_button_around_me_acc_hint">自分の周囲の4つの象限にある場所について聞きます</string>
     <string name="ui_action_button_ahead_of_me">前方</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">前方にある場所について聞く</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">前方にある場所について聞きます</string>
     <string name="ui_menu">メニュー</string>
     <string name="ui_menu_hint">メニューを開く</string>
     <string name="ui_menu_close">メニューを閉じる</string>
@@ -190,7 +190,7 @@
     <string name="help_configuration_section_title">Soundscape の構成</string>
     <string name="settings_help_section_beacons_and_pois">ビーコンとコールアウト</string>
     <string name="settings_help_section_home_screen_buttons">ホーム画面のボタン</string>
-    <string name="help_config_voices_content">Soundscape は、Android のテキスト読み上げ出力設定でダウンロードした任意の音声を使用できます。Soundscape アプリ内では、メインメニューの [設定] に移動して [声] を選択することで、Android のデフォルト以外の音声を選択できます。</string>
+    <string name="help_config_voices_content">Soundscape は、Android のテキスト読み上げ（音声合成）出力設定で端末にダウンロードした任意の音声を使用できます。Soundscape アプリ内で Android の既定の音声以外を選択するには、メインメニューから *「設定」* を開き、*「音声」* セクションを展開してから *「声」* を選択してください。</string>
     <string name="help_offline_page_title">Soundscape がオフラインになるのはなぜですか?</string>
     <string name="help_offline_description">インターネットに接続されていない場合や Soundscape サービスが停止している場合、Soundscape はオフライン モードになります。この状態でも Soundscape を使用できますが、一部の機能が制限される可能性があります。</string>
     <string name="help_offline_limitations_heading">制限</string>
@@ -239,15 +239,15 @@
     <string name="first_launch_prompt_button">完了</string>
     <string name="help_text_destination_beacons_what">近くの場所にビーコンを設定すると、その場所の方向から音声ビーコンが鳴り、常に場所を確認することができます。このビーコンはホーム画面でミュートの設定/解除ができます。また、Soundscape のホーム画面に、その場所への距離や、住所がわかる場合は住所など、その場所の情報が表示されます。</string>
     <string name="help_text_destination_beacons_when">新しい場所に出かけるときに、知っているランドマークが常にわかるようにしておきたい場合や、どこかへ行く際に道中に何があるか周辺の情報を確認したい場合に、ビーコンを設定しておくと便利です。ビーコンの機能では、細かな道順はわかりませんが、継続的にサウンドが鳴って、現在いる場所に対してビーコンがどちらの方向にあるかがわかります。音声ビーコンを使いながら、自分で道順を考えたり、お気に入りのウェイファインディング アプリを使ったりして、目的地までの行き方を自分で選択することができます。</string>
-    <string name="help_text_destination_beacons_how_1">**ビーコンを設定するには**:\n\n まず、場所の詳細を表示します。それには、検索バーを使って場所を検索するか、[近くの場所]、[保存したマーカー]、[現在地] のいずれかのボタンをタップして、場所を選択します。 場所の詳細画面で [音声ビーコンを開始] ボタンを選択できます。このボタンをタップするとホーム画面に戻り、選択した場所の方向から聞こえる音声ビーコンが有効になります。選択した場所の名前と距離、住所がわかる場合はその住所がアプリのメイン画面に表示されます。</string>
+    <string name="help_text_destination_beacons_how_1">**ビーコンを設定するには：**\n\n まず、検索バーで場所を検索するか、ホーム画面の *「近くの場所」*、*「マーカーおよびルート」*、または *「現在地」* のいずれかのボタンをタップして場所を選び、場所の詳細を表示します。*「場所の詳細」* 画面で *「音声ビーコンを開始」* ボタンを選択してください。これをタップするとホーム画面に戻り、選択した場所の方向から聞こえる音声ビーコンがオンになります。選択した場所の名前と、利用可能であれば距離や住所がメイン画面に表示されます。</string>
     <string name="help_text_destination_beacons_how_2">**現在のビーコンを削除するには：**\n\n 単にホーム画面の *\"ルートを中止する\"* ボタンを押してください。</string>
     <string name="help_text_destination_beacons_how_3">**音声ビーコンをミュートするには：**\n\n ホーム画面で *\"ルートを中止する\"* ボタンの隣にある *\"ビーコンをミュート\"* ボタンをタップしてください。</string>
     <string name="help_text_automatic_callouts_what">Soundscape は、近づくとその場所のある方向から名前を読み上げることで、周囲にあるものについて知らせてくれます。店舗やバス停、さらには交差点など、さまざまな対象について自動的にコールアウトを行います。アプリが自動的にコールアウトする項目は、*\"設定\"* 画面の *\"コールアウト\"* セクションで構成できます。アプリを静かにしたいときは、すべてのコールアウトをオフにすることもできます。</string>
     <string name="help_text_automatic_callouts_when_1">**新しい場所の探索**:\n\n 自動コールアウトをオンにして歩くと、移動に応じて近くの店舗やレストランなどさまざまな情報を耳で確認できます。</string>
     <string name="help_text_automatic_callouts_when_2">**特定の場所への移動**:\n\n 特定の場所に向かって歩く際には、交差点の自動コールアウトが特に役立つ可能性があります。交差点のコールアウトを使用すると、交差点に近付くとその交差点の構造がわかり、交差点を出るときには、どの道路にいるかを確認できます。</string>
     <string name="help_text_automatic_callouts_when_3">**無音にしたい場合**:\n\n 交差点を横断するときや、単にアプリの音声を消したい場合、コールアウトをオフにすることができます。コールアウトをオフにすると、[*現在地*]、[*近くのマーカー*]、[*周辺*]、[*前方*] のいずれかのボタンをタップしたときにだけ、情報が伝えられます。</string>
-    <string name="help_text_automatic_callouts_how_1">**コールアウトのオン／オフ：**\n\n コールアウトをオフにするとアプリは無音になります。コールアウトは、*\"設定\"* 画面の *\"コールアウト\"* セクションで、*\"コールアウトを使用\"* トグルをタップしてオン／オフを切り替えることで設定できます。ヘッドホンにメディアコントロールボタンがある場合は、*\"次へスキップ\"* コマンド（ダブルタップして長押し）でコールアウトをオン／オフできます。あるいは、ホーム画面右上の *\"スリープ\"* ボタンを使って、スリープ解除するまで Soundscape がコールアウトを行わないようにすることも可能です。</string>
-    <string name="help_text_automatic_callouts_how_2">**どのコールアウトを聞くかの設定：**\n\n Soundscape が自動的にコールアウトする対象の種類を選ぶには、ホーム画面のメニューから *\"設定\"* 画面に移動してください。*\"設定\"* 画面の *\"コールアウト\"* セクションには、アプリがコールアウトできる対象の一覧が表示されます。各項目にはオン／オフのトグルがあり、切り替えて有効化または無効化できます。すべてのコールアウトをオフにしたい場合は、リストの先頭にある *\"コールアウトを使用\"* トグルをタップしてください。</string>
+    <string name="help_text_automatic_callouts_how_1">**コールアウトのオン／オフ：**\n\n コールアウトをオフにするとアプリは無音になります。コールアウトは、ホーム画面のメニューから開く *「設定」* 画面の *「コールアウト」* セクションで、*「コールアウトを使用」* のトグルを切り替えてオン／オフできます。ヘッドホンにメディアコントロールボタンがある場合は、*「スキップ前へ」* コマンド（ダブルタップしてホールド）でコールアウトのオン／オフを切り替えることもできます。あるいはホーム画面右上の *「スリープ」* ボタンを使って、再びウェイクアップするまで Soundscape のコールアウトを停止することもできます。</string>
+    <string name="help_text_automatic_callouts_how_2">**聞きたいコールアウトの管理：**\n\n Soundscape が自動的にコールアウトする項目の種類を選ぶには、ホーム画面のメニューから *「設定」* 画面に移動してください。*「設定」* 画面の *「コールアウト」* セクションにはアプリがコールアウトできる項目の一覧があり、各項目にはオン／オフ可能なトグルがあります。すべてのコールアウトをオフにしたい場合は、一覧の一番上にある *「コールアウトを使用」* トグルをタップしてください。</string>
     <string name="help_text_my_location_what">[*現在地*] ボタンを使用すると、自分の現在地を簡単に確認できるように情報が提供されます。[*現在地*] ボタンでは、自分が向いている方向、近くの道路や交差点がどこにあるか、近くの特定地点がどこにあるかなど、現在地に関する情報がわかります。</string>
     <string name="help_text_my_location_when">[*現在地*] は、自分の現在地や向かっている方向を確認する必要がある場合に役立ちます。</string>
     <string name="help_text_my_location_how">ホーム画面の下部の 4 つのボタンはどれも同じですが、スマートフォンの画面を上 (空) に向けて水平に持ち、スマートフォンの画面上部を自分が向いている方向に合わせてから、[*現在地*] ボタンを押します。これにより、コンパスを合わせるように、自分が向いている方向をアプリに伝えることができます。[*現在地*] ボタンをタップすると、音声が聞こえます。</string>
@@ -257,7 +257,7 @@
     <string name="help_text_around_me_what">[*周辺*] ボタンでは、ユーザーの周辺の 4 方向 (前方、右側、後方、左側) のそれぞれについて 1 つ程度の情報が聞こえます。[*周辺*] ボタンは、その場所で自分がどの方向に向いているかを確認するのに役立ちます。</string>
     <string name="help_text_around_me_when">自分がどこにいて、どの方向を向いているのかを確認したい場合は、[*周辺*] ボタンを使用すると、自分の周辺の情報を聞くことができます。</string>
     <string name="help_text_around_me_how">ホーム画面の下部の 4 つのボタンはどれも同じですが、スマートフォンの画面を上 (空) に向けて水平に持ち、スマートフォンの画面上部を自分が向いている方向に合わせてから、[*周辺*] ボタンを押します。これにより、コンパスを合わせるように、自分が向いている方向をアプリに伝えることができます。[*周辺*] ボタンをタップすると、自分の周辺にある 4 つの特定地点の情報が聞こえます。</string>
-    <string name="help_text_ahead_of_me_what">[*前方*] ボタンでは、前方にあるものを 4 つ程度聞くことができます。[*前方*] ボタンは、新しい場所に行ったときに自分の前方にある道について確認するのに役立ちます。</string>
+    <string name="help_text_ahead_of_me_what">[*前方*] ボタンでは、前方にある最大 5 件の情報が伝えられます。[*前方*] は、新しいエリアを学習しているときに、進行方向の状況を確認するのに役立ちます。</string>
     <string name="help_text_ahead_of_me_when">通りを歩いているときに [*前方*] ボタンを使用すると、前方にある通りの両側に何があるかがわかります。</string>
     <string name="help_text_ahead_of_me_how">ホーム画面の下部の 4 つのボタンはどれも同じですが、スマートフォンの画面を上 (空) に向けて水平に持ち、スマートフォンの画面上部を自分が向いている方向に合わせてから、[*前方*] ボタンを押します。これにより、コンパスを合わせるように、自分が向いている方向をアプリに伝えることができます。[*前方*] ボタンをタップすると、自分の前方にあるいくつかの特定地点の情報が聞こえます。</string>
     <string name="help_text_remote_control_what">ヘッドホンのメディアコントロール ボタンを使用して、Soundscape の特定の機能にアクセスできます。この機能は、再生、一時停止、次へ、前へなどのメディアコントロール ボタンのある有線または Bluetooth のヘッドホンで使用できます。ヘッドホンによって使用できるボタンが異なる場合があるため、使用できる機能については、以下の動作の一覧を参照してください。なお、この機能は、Apple のメディアコントロール (再生や一時停止など) に対応しているヘッドホンでのみ使用できます。</string>
@@ -265,15 +265,15 @@
     <string name="help_text_remote_control_how">メディアコントロールには 3 つの動作モードがあります。モードは *「設定」* の *「メディアコントロール」* セクションで選択できます。モードは次のとおりです：\n\nオリジナルモード。\n\n⏯ 再生/一時停止: ビーコンの音声をオン／オフに切り替えます。\n\n⏭ 次へ: ルートが再生中の場合は、音声ビーコンをルート内の次のウェイポイントに移動します。ルートが再生されていない場合は *「現在地」* をコールアウトします。\n\n⏮ 前へ: ルートが再生中の場合は、音声ビーコンをルート内の前のウェイポイントに移動します。ルートが再生されていない場合は *「周辺」* をコールアウトします。\n\n\n\n音声コマンドモード。\n\n⏯ 再生/一時停止: アプリが音声コマンドの聞き取りを開始します。\n\n\n\n音声メニューモード。\n\n⏭ 次へ と ⏮ 前へ は、アプリがテキスト読み上げで案内する一連のメニュー項目を前後に移動します。⏯ 再生/一時停止 を押すと、読み上げられている項目が実行されます。最上位にメニューが一つあり、その下にサブメニューが並び、各サブメニューには類似した操作がグループ化されています。</string>
     <string name="help_text_markers_content_1">Soundscape を使えば、地図のピンのように、自分にとって大切な場所や気になる場所にマーカーを付けられます。</string>
     <string name="help_text_markers_content_2">自宅やオフィス、よく行くコンビニやスーパーなど、個人的に重要な場所にマーカーを付けることができます。マーカーは任意の場所や住所に付けることができますが、たとえば、ビルや公園の入口、横断歩道の押しボタン、横断歩道や歩道橋、バス停、飼っているイヌのお気に入りの木など、これまでは地図上になかったような場所にもマーカーを付けることができ、歩くときの目印として使用できます。</string>
-    <string name="help_text_markers_content_3">マーカーを付けた場所は、その場所に近付くと Soundscape で自動的にコールアウトされます。また、Soundscape ホーム画面の下部にある [近くのマーカー] ボタンを使用すると、周辺にあるマーカーを付けた場所の立体音響のコールアウトが聞こえます。さらに、マーカーを付けた場所に音声ビーコンを設定することができます。設定すると、Soundscape の通常の音声ビーコンと同じように音が聞こえ、操作できます。</string>
-    <string name="help_text_creating_markers_content_1">マーカーは3通りの方法で作成できます: 検索バーで保存したい場所を検索する、ホーム画面の [近くの場所] ボタンで見つける、または [現在地を使用] ボタンを使う。場所が見つかったら選択すると [場所の詳細] 画面に移動します。この画面で [マーカーを保存] ボタンを選択してください。</string>
+    <string name="help_text_markers_content_3">マーカーを設定した場所を体験するには、近くを歩いたり接近したりしたときに Soundscape が自動的にそのマーカーをコールアウトします。あるいは、Soundscape ホーム画面下部にある [*近くのマーカー*] ボタンを使って、周囲のマーカーの空間的なコールアウトを聞くこともできます。さらに、任意のマーカーに音声ビーコンを設定することも可能です。設定すると、いつも聞き慣れている Soundscape の音声ビーコンが鳴り、通常どおり操作できます。</string>
+    <string name="help_text_creating_markers_content_1">マーカーは次の 3 通りの方法で作成できます：検索バーで保存したい場所を検索する、ホーム画面の *「近くの場所」* ボタンで場所を探す、またはホーム画面の *「現在地」* ボタンを使う、いずれかです。保存したい場所を見つけたらそれを選択すると *「場所の詳細」* 画面に移動します。この画面で *「マーカーを保存」* ボタンを選択してください。</string>
     <string name="help_text_creating_markers_content_2">ここでこのマーカーをカスタマイズできます。名前を変更したり、マーカーと一緒に読み上げる注記を追加して補足情報を付けることができます。完了したら [完了] を選択してマーカーを保存してください。</string>
-    <string name="help_text_customizing_markers_content_1">既に作成したマーカーの名前を変更したり注記を追加したい場合は、[マーカーおよびルート] ページの [マーカー] タブから対象のマーカーを選択し、[マーカーを編集] を選択してください。これにより、マーカーに分かりやすい名前やニックネームを付けたり、注記フィールドで詳細な説明を追加したりできます。</string>
+    <string name="help_text_customizing_markers_content_1">以前に作成したマーカーの名前を変更したり注記を追加したい場合は、*「マーカーおよびルート」* 画面の *「マーカー」* タブから対象のマーカーを選択し、*「マーカーを編集」* ボタンを押してください。これにより、マーカーに分かりやすいニックネームを付けたり、注記欄で詳しい説明を追加したりできます。</string>
     <string name="help_text_customizing_markers_content_2">この [編集] 画面では、不要になったマーカーを削除することもできます。</string>
     <string name="help_text_routes_content_what">ルートは複数のウェイポイントです。各ウェイポイントに到着するたびに通知され、音声ビーコンが次のウェイポイントを自動的に案内します。</string>
     <string name="help_text_routes_content_when">知っている場所のルートを作成して使用することで正しい進路を進んでいることを確認したり、初めて訪れる場所までの道筋に慣れるようにするためのツールとして使用することができます。</string>
     <string name="help_text_routes_content_how_1">**ルートを作成する**:\n\n まず、\"マーカーおよびルート\" に移動して \"ルート\" タブを選択し、\"新しいルート\" ボタンを選択します。ルート名を指定して、オプションで説明を入力します。その後、ルートを進む中でウェイポイントを追加するか、マーカーのリストから選択します。ウェイポイントの順序は、ルートを進む間いつでもルートを編集することで変更できます。</string>
-    <string name="help_text_routes_content_how_2">**ルートを編集する**:\n\n[マーカーおよびルート] 画面でルートを選択し、[ルートを編集] を選択します。ここからウェイポイントの追加や削除、ルート名や説明の編集ができます。</string>
+    <string name="help_text_routes_content_how_2">**ルートを編集する：**\n\n *「マーカーおよびルート」* 画面でルートを選択し、*「ルートを編集」* を選択します。ここからウェイポイントの追加・削除や、ルート名および説明の編集ができます。</string>
     <string name="help_text_routes_content_how_3">**ルートを共有する**:\n\n[マーカーおよびルート] 画面でルートを選択し、通常の共有オプションを使って [共有する] を選択します。</string>
     <string name="osm_crossing">横断歩道</string>
     <string name="osm_construction">工事中</string>
@@ -302,7 +302,7 @@
     <string name="osm_assembly_point">集合場所</string>
     <string name="osm_cycle_barrier">歩行者自転車用柵</string>
     <string name="osm_turnstile">回転ドア</string>
-    <string name="osm_cattle_grid">畜産用フェンス</string>
+    <string name="osm_cattle_grid">牛止め柵</string>
     <string name="osm_gate">ゲート</string>
     <string name="osm_restroom">トイレ</string>
     <string name="osm_parking_lot">駐車場</string>
@@ -345,16 +345,16 @@
     <string name="faq_when_to_use_soundscape_question">どのようなときに Soundscape を使用したらよいですか?</string>
     <string name="faq_when_to_use_soundscape_answer">Soundscape には、さまざまな場面や時間軸にわたって役立つ機能と利点があります。さらに、Soundscape の価値は時間とともに変わる可能性があるため、今日の使い方が数か月後の使い方と異なることもあります。人はしばしばアプリを「このアプリはどのような問題を解決するのに適しているか？」という観点で考えます。Soundscape は確かに、目的地に向かう途中で目的地を把握したり、地下鉄の駅を出たときに方角を確認したり、車を降りたあとで現在地を見定めたり、次の交差点の通り名や距離を知るといった、特定の情報が必要な場面でケースバイケースに使えます。しかし、Soundscape の理念は「音で世界を照らす」という考え方にあり、外出時にいつでも使って周囲の状況に関する環境的な気づきを与えるように設計されています。たとえば、自分がいる通りの名前、進んでいる方向、通り過ぎる店舗の名前などを常に把握できるようにします。この利用方法において、ユーザーの多くは Soundscape を「良い伴走アプリ」と呼び、偶発的な発見（セレンディピティ）を助けたり、「頭の中の地図の穴を埋める」ことを支援したり、「歩行時の自信」を高めたりすると述べています。以下はユーザーが Soundscape を日常に取り入れている例です。\n\n「バスを降りて逆方向に進んでしまったとき、Soundscape が進路を取り戻すのに役立った。」\n\n「ここに住んで3年になる街でも、Soundscape を使って周囲の状況についてより良いイメージができるようになった。」\n\n「3D サウンドは散歩の体験を豊かにしてくれる。環境とよりつながっている感じがして…このアプリがあれば新しいルートに挑戦しやすくなった。」\n\n「歩き回って何かを見つけるという偶発的な楽しみが恋しい。Soundscape があると良い — 周囲の情報を聞くのに手間が要らない。関係性のある情報は役に立つし、状況認識や商業通りの探索に最適なアプリだ。」\n\n「（Soundscape を使って）ヨークの中心部でパブを見つけた。まず場所を特定し、その後実際に見つけるまでに各種の機能を使った。ドアの3メートル以内まで案内してくれた — 素晴らしい！」</string>
     <string name="faq_markers_function_question">マーカーとはどのようなもので、活用するにはどうしたらよいですか?</string>
-    <string name="faq_markers_function_answer">マーカーはユーザーが保存した場所です。アプリ内で見つかる場所でも、ユーザー自身が新たに追加した場所でもかまいません。現在地をマーカーとして保存するには、ホーム画面の [現在地を使用] を選択し、[マーカーを保存] を選択します。他の場所を保存するには、検索バーで保存したい場所を検索するか、ホーム画面の [近くの場所] ボタンで探します。目的の場所を見つけたら選択すると [場所の詳細] 画面に移動します。この画面で [マーカーを保存] ボタンを選択してください。</string>
+    <string name="faq_markers_function_answer">マーカーは、ユーザーが保存した場所です。アプリ内で見つけられる場所でも、自分で新たに追加した場所でもかまいません。現在地をマーカーとして保存するには、ホーム画面の *「現在地」* ボタンを選択してから *「マーカーを保存」* を選択してください。その他の場所をマーカーとして保存するには、ホーム画面の検索バーで保存したい場所を検索するか、*「近くの場所」* ボタンで探してください。保存したい場所を見つけそれを選択すると *「場所の詳細」* 画面が表示されます。この画面で *「マーカーを保存」* ボタンを選択してください。</string>
     <string name="faq_section_getting_the_best_experience">Soundscape を最大限に活用するにはどうしたらよいですか?</string>
     <string name="faq_what_can_I_set_question">ビーコンを設定するにはどうしたらよいですか?</string>
-    <string name="faq_what_can_I_set_answer">音声ビーコンは、店舗、場所、特定地点、住所、交差点など、あらゆる場所に設定できます。場所にビーコンを追加するにはいくつかの方法があります。まず、検索バーで場所を検索するか、[近くの場所]、[保存したマーカー]、[現在地] のいずれかのボタンをタップして場所の詳細を表示します。[場所の詳細] 画面で [音声ビーコンを開始] ボタンを選択できます。このボタンをタップするとホーム画面に戻り、選択した場所の方向から聞こえる音声ビーコンが有効になります。選択した場所の名前と、距離および住所（利用可能な場合）は、アプリのメイン画面に表示されます。</string>
+    <string name="faq_what_can_I_set_answer">音声ビーコンは、店舗や施設、特定地点、住所、交差点など、あらゆる場所に設定できます。場所にビーコンを追加する方法はいくつかあります。まず、検索バーで場所を検索するか、*「近くの場所」*、*「マーカーおよびルート」*、または *「現在地」* のいずれかをタップして場所の詳細を表示します。*「場所の詳細」* 画面で *「音声ビーコンを開始」* ボタンを選択してください。これをタップするとホーム画面に戻り、選択した場所の方向から聞こえる音声ビーコンがオンになります。選択した場所の名前と、利用可能であれば距離や住所がメイン画面に表示されます。</string>
     <string name="faq_how_to_use_beacon_question">ビーコンを使いこなすにはどのような方法がありますか?</string>
-    <string name="faq_how_to_use_beacon_answer">音声ビーコンは「耳のための灯台」のようなものと考えられます。目的地が自分の現在地に対してどの方向にあるか（直線距離で）を知らせてくれます。灯台と同じように、そこへどう行くか（細かな道順）は教えてくれません。航海で帆船が灯台に近づくために何度も進路を変えるように、途中で多数の判断をする必要があることがあります。音声ビーコンは目的地の方向から立体的に再生されるリズミカルな継続音で、歩いている間、目的地が自分に対してどの方向にあるかを把握するのに役立ちます。目的地に向かって直接歩いているとき、または端末を目的地の方向に向けたときには、高めの「リング」音が聞こえます。この高音の「リング」は、騒がしい環境ではリズム音の方向が分かりにくい場合に目的地の方向を特定するのに便利です。高音の「リング」を探すときは、スマートフォンを水平に持ち、ゆっくりと振るように向けてみてください。端末と同じ方向へ頭を向けると、より良い立体音響の体験が得られます。\n\nこの「灯台」メタファーにはいくつかの含意があります。\n\n1. ビーコンを使うときに「正しい」進行方向はありません。Soundscape では自分で行き方を選びます。\n\n2. 高音の「リング」は目的地の方向を特定するためのものであり、そこへどう行くべきかを示すものではありません。\n\n3. 目的地への行き方が大まかに分かっている場合は、移動の大部分でビーコンをミュートし、目的地に近づいたときだけオンにする、という使い方もあります。</string>
+    <string name="faq_how_to_use_beacon_answer">音声ビーコンは「耳の灯台」のようなもので、ユーザーの位置に対して目的地がどちらにあるか（直線距離で）を知らせます。灯台と同様に、行き方そのものは示しません—目的地に近づくには航海のように何度も進路を選ぶ必要がある場合があります。継続的なリズミカルなビーコン音は目的地の方向から空間的に再生され、歩いている間に目的地が自分に対してどこにあるかを把握するのに役立ちます。目的地に向かってまっすぐ歩いているとき、あるいは端末を目的地の方向に向けると、高い音の「リン」という音が聞こえます。これは騒がしい環境でも方向を特定しやすくするための機能です。高い音の「リン」を探すときは、端末を水平に持ってゆっくりと振り（向きを変え）、頭も端末と同じ方向に向けると、空間オーディオの効果が最も得られます。\n\nビーコンを灯台に例えることには次のような意味があります：\n\n1. ビーコンを使う際に「正しい」進行方向はなく、Soundscape ではあなた自身が行き方を選びます。\n\n2. 高い音の「リン」は目的地の方向を特定するのに役立つだけであり、そこへどう行くべきかを示すものではありません。\n\n3. 目的地までのおおよその行き方が分かっている場合は、移動の大部分でビーコンをミュートにして、目的地が近づいたときだけオンにすることを検討してください。</string>
     <string name="faq_why_does_beacon_disappear_question">音声ビーコンがときどき聞こえなくなるのはなぜですか?</string>
     <string name="faq_why_does_beacon_disappear_answer">Soundscape の音声ビーコンは、基本的には、ユーザーが向いている方向に対して目的地がどこにあるか、その方向を知らせる合図です。ユーザーがどちらの方向を向いているかを Soundscape が認識できないときには、ビーコンの音量が下がります。多くの場合、このような状態になるのは、ポケットやカバンにスマートフォンを入れたまま歩いていて、横断歩道で立ち止まったときなどです。再び動き出すか、スマートフォンを自分の向いている方向に合わせて水平に持つとビーコンが大きな音で聞こえるようになります。</string>
     <string name="faq_beacon_on_address_question">住所に対してビーコンを設定できますか?</string>
-    <string name="faq_beacon_on_address_answer">はい、設定できます。住所はデフォルトで一覧に表示されませんが、検索欄で見つけることができます。再度検索しなくて済むようにその住所を保存するには、ホーム画面で「マーカーを保存」ボタンを選択してマーカーとして追加してください。</string>
+    <string name="faq_beacon_on_address_answer">はい、可能です。住所はデフォルトで一覧には表示されませんが、検索欄で見つけることができます。その住所を毎回検索しなくてすむように保存したい場合は、*「場所の詳細」* 画面で *「マーカーを保存」* ボタンを選んでマーカーとして追加してください。</string>
     <string name="faq_beacon_on_home_question">自宅にビーコンを設定するには、どうしたらよいですか?</string>
     <string name="faq_beacon_on_home_answer">Soundscape は住所に対してビーコンを設定できます。自宅やその他の住所にビーコンを設定するには、Soundscape のメイン画面で場所を検索してください。[場所の詳細] 画面で [音声ビーコンを開始] ボタンをタップします。</string>
     <string name="faq_how_close_to_destination_question">目的地にビーコンを設定した場合、Soundscape では目的地のどの程度近くまで案内ができますか?</string>
@@ -377,9 +377,9 @@
     <string name="faq_battery_impact_question">Soundscape はスマートフォンのバッテリーにどのような影響がありますか?</string>
     <string name="faq_battery_impact_answer">バッテリー持続時間は端末の機種や経年によって大きく異なります。最もバッテリーを消費する要因は画面が点灯していることなので、バッテリーを長持ちさせるには可能な限り画面をロックしておくとよいでしょう。バッテリーへの影響を最小限にするため、Soundscape にはスリープ モードがあります。さらに使用電力を減らすには、使用していないときに端末のアプリスイッチャーから Soundscape を強制終了してください。</string>
     <string name="faq_sleep_mode_battery_question">Soundscape によるスマートフォンのバッテリーへの影響を最小限に抑えるためにスリープ モードを使用するにはどうしたらよいですか?</string>
-    <string name="faq_sleep_mode_battery_answer">Soundscape をスリープ モードにするには、画面右上の「スリープ」ボタンを選択してください。スリープにすると、Soundscape はスリープを解除するまで位置情報サービスとモバイルデータの使用を停止します。</string>
+    <string name="faq_sleep_mode_battery_answer">Soundscape をスリープ モードにするには、画面右上の *「スリープ」* ボタンを選択してください。これを選ぶと、再度スリープを解除するまで Soundscape は位置情報サービスやモバイルデータの使用を停止します。</string>
     <string name="faq_snooze_mode_battery_question">Soundscape によるスマートフォンのバッテリーへの影響を最小限に抑えるためにスヌーズ モードを使用するにはどうしたらよいですか?</string>
-    <string name="faq_snooze_mode_battery_answer">Soundscape をスヌーズ モードにするには、画面右上の「スリープ」ボタンを選択します。スリープ画面で「離れたらスリープ解除」ボタンを選ぶと、Soundscape は現在地を離れるまで低電力状態になります。</string>
+    <string name="faq_snooze_mode_battery_answer">Soundscape をスヌーズ モードにするには、画面右上の *「スリープ」* ボタンを選択してください。Soundscape がスリープ モードになったら *「離れたらスリープ解除」* ボタンを選択すると、現在地を離れるまで低電力状態になります。</string>
     <string name="faq_headset_battery_impact_question">使用するヘッドホンによってスマートフォンのバッテリー駆動時間にどのような影響がありますか?</string>
     <string name="faq_headset_battery_impact_answer">当社のテストでは、Bluetooth ヘッドホンのバッテリー消費は有線ヘッドホンとほぼ同等であり、ヘッドホン選びの大きな要因にはならないはずです。</string>
     <string name="faq_background_battery_impact_question">Soundscape をバックグラウンドで実行していると、スマートフォンのバッテリー駆動時間にどのような影響がありますか?</string>
@@ -387,22 +387,22 @@
     <string name="faq_mobile_data_use_question">Soundscape ではどの程度のモバイル データが使用されますか?</string>
     <string name="faq_mobile_data_use_answer">モバイルデータの使用量は Soundscape の使い方によって異なります。Soundscape は、移動中にポイントを保存しておけば同じ場所に戻った際に再度ダウンロードする必要がないなど、外出時のデータ使用を抑えるよう設計されています。モバイルデータ使用量を減らすには、可能な限り Wi‑Fi に接続する（特にアプリのダウンロード時）ようにしてください。使用していないときは「スリープ」ボタンで Soundscape をスリープにするか、アプリを強制終了してください。</string>
     <string name="faq_difference_from_map_apps_question">Soundscape は他の地図アプリとどう違うのですか?</string>
-    <string name="faq_difference_from_map_apps_answer">Soundscape は、ユーザーがいる場所の周辺情報を提供するもので、散策や経路確認に役立ちます。Soundscape は空間オーディオにより、ユーザーの移動に応じて、ユーザーの周辺の特定地点や公園、道路、交差点が実際に存在する方向から聞こえるように、それらの情報をコールアウトでユーザーに伝えます。たとえば、歩いている右側にショップがあれば、そのショップの名前が右方向から聞こえます。交差点に近付くと、それぞれの道路の名前が左、前方、右の順にその方向から聞こえます。\n\n他の地図アプリでよくあるように、進行方向を変えるときに案内があるのではなく、Soundscape では目的地の方向から音声ビーコンが聞こえます。周辺に何があるかという情報と目的地の場所がわかるので、自分の好きなように進むことができます。Soundscape はバックグラウンドで実行できるため、経路案内のアプリも使用することができ、目的地に向けて進む間、周辺の情報を確認し続けることができます。</string>
+    <string name="faq_difference_from_map_apps_answer">Soundscape は探索や位置把握を支援するために周囲の環境を環境的に説明します。空間オーディオを用いて、歩行中に目の前の環境にある特定地点、公園、道路、交差点などを、それぞれが物理的に存在する方向からコールアウトします。たとえば、右手に店舗があれば店舗名が右側から聞こえます。交差点に近づくと、左、前方、右の順で、それぞれの方向にある道路名が聞こえます。\n\n他の地図アプリでよくあるターンバイターンの案内の代わりに、Soundscape は目的地の方向から聞こえる音声ビーコンを再生し、周囲の状況や目的地の位置に対する気づきを高めた上で、自分で判断して目的地へ進めるように設計されています。Soundscape はバックグラウンドでの動作を想定しているため、ターンバイターンの案内アプリと併用しても、目的地へ向かう間に環境に関する情報を引き続き提供します。</string>
     <string name="faq_use_with_wayfinding_apps_question">Soundscape をウェイファインディング アプリと同時に使用するには、どうしたらよいですか?</string>
     <string name="faq_use_with_wayfinding_apps_answer">Soundscape は、従来の方法では知りえなかった、自分の周辺の情報を知ることができる視覚サポート アプリです。道順を案内するアプリではありませんが、道案内のアプリと併せて使用すると、補助的な情報が得られます。そのようなアプリと Soundscape を併用する場合は、道案内のアプリを先に起動します。それから Soundscape に切り替えて、道案内のアプリと同じ目的地にビーコンを設定します。この状態で両方のアプリを実行しておくと、道案内アプリで進む道の指示が聞こえるのと同時に、Soundscape で特定地点や交差点、目的地までの距離に関する情報を確認できます。</string>
     <string name="faq_controlling_what_you_hear_question">Soundscape のどの音声案内をいつ鳴らすかを指定することはできますか?</string>
     <string name="faq_controlling_what_you_hear_answer">Soundscape では、聞く内容やタイミングを制御するためのいくつかの方法を用意しています：\n\n1. すべての音声を即座に停止する：画面を2本指でダブルタップすると、現在再生中のコールアウトや、オンになっている場合はビーコンを含むすべての音声を即座にオフにできます。コールアウトは次の交差点や特定地点に近づくと自動的に再開されますが、音声ビーコンは自動では再開されません。ビーコンを再度聞きたい場合は、メイン画面の *\"ビーコンのミュートを解除\"* ボタンを選択してください。\n\n2. 自動コールアウトを停止する：移動していないときや目的地に到着したときは、周囲の通知を続ける必要はないでしょう。アプリを終了する代わりに、Soundscape をスヌーズ モードにしておくと離れたときに自動で再開しますし、スリープ モードにすれば自分でオンにするまでオフのままにできます。あるいはメニューの *\"設定\"* を開き、*\"コールアウト\"* セクションで全てのコールアウトをオフにすることもできます。\n\n3. ビーコンを停止する：目的地を設定していても、常に音声ビーコンをオンにしておく必要がない場合があります。たとえば、目的地までの行き方が正確に分かっていて距離だけ知りたい場合や、大まかな行き方は分かっていて目的地付近でだけビーコンを使いたい場合などです。どの場合でも、メイン画面の *\"ビーコンをミュート\"*／*\"ビーコンのミュートを解除\"* ボタンを切り替えることで、いつビーコンを聞くかを選べます。</string>
     <string name="faq_holding_phone_flat_question">常にスマートフォンを手に持っている必要がありますか?</string>
-    <string name="faq_holding_phone_flat_answer">いいえ！歩いている間はスマートフォンをバッグやポケットなどに入れておいて構いません。Soundscape は歩行方向を使って左右どちらのコールアウトを流すかを判断します。立ち止まると、Soundscape はどちらを向いているかわからなくなります。音声ビーコンがオンの場合は、再び動き出すまでビーコンが静かになります。画面下部の現在地や探索ボタンを押すためにスマートフォンを取り出すことはいつでもできますが、そのときは端末を水平に（画面を上に向け）持ち、端末の上側が自分の向いている方向を向くようにしてください。この「水平」な持ち方をすると、端末のコンパスで向きを判定して正確な立体的コールアウトを提供します。ビーコンがオンの場合は、同時に音量が元に戻るのが分かります。</string>
+    <string name="faq_holding_phone_flat_answer">いいえ！歩いているときはスマートフォンをバッグやポケットなど使いやすい場所に入れてかまいません。Soundscape は歩行方向を使って左右どちらのコールアウトを再生するかを判断します。立ち止まっているときは、Soundscape はどちらを向いているか分からなくなります。音声ビーコンがオンの場合、歩き始めるまで音が小さくなるのに気づくでしょう。いつでも端末を取り出して画面下部の位置情報や探索ボタンを押すことができますが、その際は端末の上端を自分が向いている方向に向け、画面を空（天）に向けて水平に持ってください。この「水平」な姿勢にすると端末のコンパスが向きを検出し、正確な空間コールアウトが提供されます。ビーコンがオンの場合は、音量が元に戻るのも確認できるでしょう。</string>
     <string name="faq_what_is_osm_question">Open Street Map とは何ですか、なぜ Soundscape で使用されているのですか?</string>
     <string name="faq_what_is_osm_answer">Soundscape は、アプリ内で情報をコールアウトするために、地図データを利用します。地図データの主要な情報源となっているのが Open Street Map (www.openstreetmap.org) です。Open Street Map は、充実したコミュニティによって作成されている地図データ プラットフォームで、組織や個人が Open Street Map の地図編集ツールを使用して、提供される情報の品質や精度とその空間へのアクセス性を向上させることができます。</string>
     <string name="faq_tip_beacon_quiet">スマートフォンをポケットに入れたままで立ち止まると、ビーコンの音が静かになります。これは、ユーザーがどちらを向いているかを Soundscape が認識できないためです。歩き出すか、スマートフォンを取り出して水平に持つと、ビーコンが聞こえるようになります。</string>
-    <string name="faq_tip_setting_beacon_on_address">任意の住所にビーコンを設定できます。メイン画面で住所を検索し、検索結果で住所を選択すると「場所の詳細」画面が表示され、その住所に対して「音声ビーコンを開始」するオプションがあります。この方法で、OpenStreetMap に登録されていない店舗や場所、特定地点、住宅にもビーコンを設定できます。</string>
-    <string name="faq_tip_finding_bus_stops">近くのバス停は、[近くの場所] の一覧で「公共交通機関」フィルタを選択すると見つけられます。</string>
+    <string name="faq_tip_setting_beacon_on_address">任意の住所にビーコンを設定できます。Soundscape のメイン画面で住所を検索してください。検索結果で住所を選択すると *「場所の詳細」* 画面が表示され、その住所で *「音声ビーコンを開始」* を実行できます。これにより、Open Street Map に載っていない店舗や施設、住宅などにもビーコンを設定できます。</string>
+    <string name="faq_tip_finding_bus_stops">*「近くの場所」* の一覧で *「公共交通機関」* フィルターを選択すると、近くのバス停を見つけることができます。</string>
     <string name="faq_tip_turning_beacon_off">ホーム画面のミュート ボタンを使うと、一定のリズムのビーコンのサウンドのオン/オフを切り替えることができます。ビーコンがミュートされていても、目的地までの距離に関する情報は、約 50 メートルごとに通知されます。</string>
-    <string name="faq_tip_turning_off_auto_callouts">Soundscape とやり取りはしたいが自動コールアウトは聞きたくない場合は、メニューから *\"設定\"* 画面の *\"コールアウト\"* セクションに移動してコールアウトをオフにできます。あるいは、しばらく Soundscape を使用しない場合は、ホーム画面の *\"スリープ\"* ボタンでスリープまたはスヌーズ モードにしておくこともできます。</string>
+    <string name="faq_tip_turning_off_auto_callouts">Soundscape とやり取りはしたいが自動コールアウトを聞きたくない場合は、メニューから *「設定」* を開き *「コールアウト」* セクションでコールアウトをオフにできます。あるいは、しばらく使用しない場合はホーム画面の *「スリープ」* ボタンでスヌーズまたはスリープにしてください。</string>
     <string name="faq_tip_hold_phone_flat">スマートフォンの画面を上 (空) に向けて水平に持ち、画面の下側を自分に向けると、Soundscape が適切に動作しやすくなります。</string>
-    <string name="faq_tip_create_marker_at_bus_stop">よく利用するバス路線がある場合は、乗車停留所と降車停留所をマーカーとして設定してください。こうして保存しておけば、メニューの「マーカーを管理」で一覧から簡単に見つけられます。それらにビーコンを設定すれば、降車停留所までの距離を定期的に知らせてもらえます。注: リズミカルな音をオフにしても、移動中の距離更新は受け取れます。</string>
+    <string name="faq_tip_create_marker_at_bus_stop">よく利用する路線がある場合は、乗車停留所と降車停留所をマーカーとして設定しておくと便利です。こうしておけば後で簡単に見つけられます。ホーム画面から *「マーカーおよびルート」* に移動して *「マーカー」* ページで確認してください。それらにビーコンを設定すれば、降車停留所までの距離が定期的に通知されます。注：リズミカルな音をオフにしても、途中の距離更新は受け取れます。</string>
     <string name="first_launch_permissions_notification">通知</string>
     <string name="no_language_selected">言語が選択されていません</string>
     <string name="settings_section_units" tools:ignore="MissingTranslation">測定単位</string>
@@ -1247,7 +1247,7 @@
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">スクリーンリーダーが有効になっているため、ユーザーインターフェースの地図表示はオフにしてアプリを実行することをおすすめします。ここで設定を変更するか、そのまま続行してください。</string>
     <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">スクリーンリーダーが有効になっていないため、ユーザーインターフェースに地図を表示することを想定しています。ここで設定を変更するか、そのまま続行してください。</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">続行</string>
-    <string name="tour_continue_hint" tools:ignore="MissingTranslation">ポップアップを閉じてチュートリアルを続行します</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">ポップアップを閉じてチュートリアルを続行する</string>
     <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">このマーカーで音声ビーコンを開始する</string>
     <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">地図を全画面表示にしてマーカーの位置を編集する</string>
     <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">マーカーの位置編集モードを終了する</string>
@@ -1271,7 +1271,7 @@
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">お使いの端末の言語が %1$s に設定されており、その言語が Soundscape で利用できるようになりました。Soundscape を %1$s に切り替えますか?</string>
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">%1$s に切り替える</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">現在の言語を保持する</string>
-    <string name="preview_go_hint" tools:ignore="MissingTranslation">この方向に進んで次の交差点へ移動する</string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation">この方向に移動して次の交差点へ進む</string>
     <string name="error_message_route_not_found" tools:ignore="MissingTranslation">データベースでルートが見つかりませんでした。</string>
     <string name="error_message_deleting_route" tools:ignore="MissingTranslation">ルートの削除に失敗しました。</string>
     <string name="error_message_saving_route" tools:ignore="MissingTranslation">ルートの保存に失敗しました。</string>
@@ -1332,9 +1332,9 @@
     <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">マイク</string>
     <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">音声コマンドに使用するマイクを選択します。</string>
     <string name="battery_optimization_title">バックグラウンドでのバッテリー使用</string>
-    <string name="battery_optimization_message">端末がロックされている間も音声ナビゲーションを提供し続けるため、Soundscape ではバッテリー使用の制限を解除する必要があります。次のダイアログでこれを許可してください。Soundscape を閉じると、すべてのサービスが停止し、バッテリーの消費はなくなります。</string>
+    <string name="battery_optimization_message">端末がロックされている間も音声ナビを継続して提供するには、Soundscape に対してバッテリーの制限なしの使用を許可する必要があります。次のダイアログで許可してください。Soundscape を閉じると、すべてのサービスが停止し、バッテリーは使用されなくなります。</string>
     <string name="route_detail_action_start_route_reverse">ルートを逆順で開始する</string>
-    <string name="route_detail_action_start_route_reverse_hint">このルートの再生を逆順で開始する</string>
+    <string name="route_detail_action_start_route_reverse_hint">このルートを逆順で再生します</string>
     <string name="route_reverse_name">%s（逆順）</string>
     <string name="callouts_no_nearby_markers">近くにマーカーはありません</string>
     <string name="stationary_on_way">%s 上で静止しています</string>
@@ -1355,8 +1355,8 @@
     <string name="relative_left_right_direction_behind_left">左後方</string>
     <string name="relative_left_right_direction_behind_right">右後方</string>
     <string name="relative_left_right_direction_behind">後方</string>
-    <string name="settings_collapse_section">セクションを折りたたむ</string>
-    <string name="settings_expand_section">セクションを展開する</string>
+    <string name="settings_collapse_section">セクションを折りたたみます</string>
+    <string name="settings_expand_section">セクションを展開します</string>
     <string name="settings_collapsed">折りたたみ済み</string>
     <string name="settings_expanded">展開済み</string>
     <string name="ui_grant_permission">許可を付与</string>
