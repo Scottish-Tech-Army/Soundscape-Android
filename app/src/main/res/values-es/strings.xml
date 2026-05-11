@@ -88,7 +88,7 @@
     <string name="search_use_current_location">Ubicación actual</string>
     <string name="search_nearby_screen_title">Lugares cercanos</string>
     <string name="search_view_markers">Marcadores y rutas</string>
-    <string name="search_button_markers_accessibility_hint">seleccionar o editar sus marcadores y rutas guardadas</string>
+    <string name="search_button_markers_accessibility_hint">seleccionar o editar sus marcadores y rutas guardados</string>
     <string name="search_button_nearby_accessibility_hint">explorar restaurantes cercanos, paradas de transporte y más</string>
     <string name="search_button_current_location_accessibility_hint">previsualizar, guardar o compartir su ubicación actual con un amigo</string>
     <string name="filter_all">Todos los lugares</string>
