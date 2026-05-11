@@ -206,7 +206,7 @@
     <string name="help_text_section_title_when">¿Cuándo lo usaría?</string>
     <string name="help_text_section_title_how">¿Cómo funciona?</string>
     <string name="terms_of_use_title">Términos de uso</string>
-    <string name="terms_of_use_message">El uso que realice de Soundscape está sujeto a los términos del %s y a los términos establecidos a continuación (en conjunto, los \"*Términos de uso\"*).</string>
+    <string name="terms_of_use_message">El uso que realice de Soundscape está sujeto a los términos del %s y a los términos establecidos a continuación (en conjunto, los *\"Términos de uso\"*).</string>
     <string name="terms_of_use_service_agreement">Contrato de servicios de Scottish Tech Army</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Aceptar los términos de uso</string>
     <string name="terms_of_use_medical_safety_disclaimer">Confirma que Soundscape (1) no se ha diseñado, pensado ni puesto a disposición como dispositivo médico, y (2) no se ha diseñado o pensado para sustituir un dispositivo, diagnóstico, tratamiento o criterio médico profesional.\n\nAviso de seguridad\n\nSoundscape es una ayuda de navegación y no se debe usar en lugar de las habilidades de movilidad, el sentido común y el conocimiento del entorno. Tenga cuidado al navegar por su entorno, ya que los datos de mapas incorporados en el programa Soundscape se capturan desde un programa externo y, por tanto, puede haber limitaciones con la precisión de la información presentada.</string>
@@ -659,7 +659,7 @@
     <string name="osm_garages" tools:ignore="MissingTranslation">Garajes</string>
     <string name="osm_retail" tools:ignore="MissingTranslation">Tienda minorista</string>
     <string name="osm_hotel" tools:ignore="MissingTranslation">Hotel</string>
-    <string name="osm_camp_site" tools:ignore="MissingTranslation">Área de acampada</string>
+    <string name="osm_camp_site" tools:ignore="MissingTranslation">Campamento</string>
     <string name="osm_rugby_league" tools:ignore="MissingTranslation">Campo de rugby (liga)</string>
     <string name="osm_roller_skating" tools:ignore="MissingTranslation">Patinaje sobre ruedas</string>
     <string name="osm_multi" tools:ignore="MissingTranslation">Polivalente</string>
