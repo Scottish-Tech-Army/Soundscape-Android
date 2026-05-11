@@ -44,7 +44,7 @@
     <string name="route_detail_action_stop_route">Detener ruta</string>
     <string name="route_detail_action_edit">Editar ruta</string>
     <string name="route_detail_action_start_route_hint">iniciar la reproducción de esta ruta</string>
-    <string name="route_detail_action_start_route_disabled_hint">agregar puntos antes de iniciar la ruta</string>
+    <string name="route_detail_action_start_route_disabled_hint">Agregar puntos antes de iniciar la ruta</string>
     <string name="route_detail_action_stop_route_hint">detener la reproducción de esta ruta</string>
     <string name="route_detail_action_share_hint">compartir esta ruta con otra aplicación</string>
     <string name="route_detail_action_edit_hint">cambiar o reordenar los puntos de referencia de la ruta</string>
@@ -77,7 +77,7 @@
     <string name="markers_sort_button_sort_by_distance">Distancia</string>
     <string name="markers_sort_button_sort_by_distance_voiceover">Ordenada por distancia</string>
     <string name="markers_no_markers_title">Introducción a los marcadores</string>
-    <string name="markers_no_markers_hint_1">Cree marcadores para sus destinos favoritos, puntos de una ruta o cualquier ubicación para la que desee oír avisos. Solo tiene que elegir una ubicación, o incluso su ubicación actual, en la pantalla de inicio, y seleccionar *\"Guardar como marcador\"*.</string>
+    <string name="markers_no_markers_hint_1">Cree marcadores para sus destinos favoritos, puntos de una ruta o cualquier ubicación para la que desee oír avisos. Solo tiene que elegir una ubicación, o incluso su ubicación actual, en la pantalla de inicio, y seleccionar *\\\"Guardar como marcador\\\"*.</string>
     <string name="markers_no_markers_hint_2">Intente marcar su casa, la entrada a su trabajo o su lugar favorito del parque.</string>
     <string name="markers_edit_screen_title_edit">Editar marcador</string>
     <string name="markers_generic_name">Marcador</string>
@@ -1241,7 +1241,7 @@
     <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">ver una lista de restaurantes y bares cercanos</string>
     <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">ver una lista de tiendas de comestibles cercanas</string>
     <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">ver una lista de bancos cercanos</string>
-    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">Ver una lista de los cruces de las carreteras cercanas</string>
+    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">ver una lista de los cruces de las carreteras cercanas</string>
     <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">elegir entre una lista de lugares cercanos</string>
     <string name="accessibility_title" tools:ignore="MissingTranslation">Accesibilidad</string>
     <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">Dado que tiene un lector de pantalla activado, recomendamos ejecutar la aplicación con los mapas gráficos de la interfaz de usuario desactivados. Puede cambiar esa configuración aquí o simplemente continuar.</string>
