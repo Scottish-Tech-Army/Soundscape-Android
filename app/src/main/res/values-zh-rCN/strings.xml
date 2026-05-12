@@ -937,7 +937,7 @@
     <string name="faq_mobile_data_use_question">Soundscape使用多少移动数据？</string>
     <string name="faq_mobile_data_use_answer">移动数据的使用量取决于您如何使用Soundscape。我们设计Soundscape在您外出时仅使用少量数据，例如在您走过时保存地点数据，这样您再次回到已经去过的地方时就无需重新下载。要减少移动数据使用量，请确保尽可能连接Wi-Fi，特别是在下载应用时。当您不使用Soundscape时，应使用*\"休眠\"*按钮让Soundscape进入休眠状态或强制关闭应用。</string>
     <string name="faq_difference_from_map_apps_question">Soundscape与其他地图应用有何不同？</string>
-    <string name="faq_difference_from_map_apps_answer">与其他地图应用常提供的逐向导航不同，Soundscape 会在目的地方向播放可听信标，借助您对周围环境和目的地位置的感知，让您能够以自己的方式前往目的地。Soundscape 设计为可在后台运行，这样您可以同时使用逐向导航应用，而 Soundscape 会持续为您提供环境感知方面的信息。</string>
+    <string name="faq_difference_from_map_apps_answer">Soundscape 提供关于您周围环境的概览性语音描述，帮助您进行探索与定位。借助空间音频，Soundscape 会在您行走时从事物实际所在的方向播报兴趣点、公园、道路和路口。例如，如果您在右侧经过一家商店，您会听到该商店的名称从右侧传来。接近路口时，您会依次听到每条道路的名称从其所在方向传来，顺序为左侧、前方和右侧。\n\n与其他地图应用常提供的逐向导航不同，Soundscape 会在目的地方向播放音频信标，帮助您在增强的环境感知和对目的地位置的了解基础上，按您自己的方式前行。Soundscape 被设计为在后台运行，这样即便您同时使用逐向导航应用，它也能在您前往目的地的过程中持续提供环境感知信息。</string>
     <string name="faq_use_with_wayfinding_apps_question">如何将Soundscape与导航应用一起使用？</string>
     <string name="faq_use_with_wayfinding_apps_answer">Soundscape是一款环境感知应用，旨在帮助您了解可能不知道的周围环境细节。虽然它不是一款逐向导航应用，但可以与此类应用配合使用以提供补充信息。要将Soundscape与这些应用一起使用，请先启动您的导航应用。然后切换到Soundscape，在与导航应用相同的目的地上设置信标。此时，两个应用都将运行，您将听到导航应用的步行路线指引，同时从Soundscape获取兴趣点、路口以及到目的地距离的更新信息。</string>
     <string name="faq_controlling_what_you_hear_question">如何控制在Soundscape中听到的内容和时间？</string>
