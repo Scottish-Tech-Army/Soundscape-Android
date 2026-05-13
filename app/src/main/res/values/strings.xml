@@ -1097,7 +1097,7 @@
 <string name="menu_open_source_licenses">"Open source licenses"</string>
 <!-- Text for dialog which explains what is new in the current release. This is in markdown format. -->
 <string name="new_version_info_details">"
-This is the first production release of Soundscape. If you are new to the app, then you can find out more about it from the *Help* screens or by taking the *Tutorial*. These are both options in the main menu.
+This is the first production release of Soundscape. If you are new to the app, then you can find out more about it from the *Help* screens or by taking the *Guided Tutorial*. These are both options in the main menu.
 
 We\'re still working hard on improving the app, so please report any problems that you have, however small they may be via the *Contact Support* option in the main menu.
 "</string>
@@ -2605,9 +2605,9 @@ We\'re still working hard on improving the app, so please report any problems th
 <!-- Open Street Map term for an events venue. -->
 <string name="osm_events_venue">Events Venue</string>
 
-<!-- Audio Tutorial strings -->
-<!-- Welcome message for the audio tutorial -->
-<string name="tour_welcome">"Welcome to the Soundscape tutorial. This tutorial will guide you through the main features of the app. You can stop the tutorial at any time by tapping on Cancel Audio Tutorial in the Main Menu. Let's start with Places Nearby, which lets you find places of interest. The Places Nearby button is on the Home screen just below the Search bar. Tap it now to try it."</string>
+<!-- Tutorial strings -->
+<!-- Welcome message for the tutorial -->
+<string name="tour_welcome">"Welcome to the guided tutorial. This tutorial will guide you through the main features of the app. You can stop the tutorial at any time by tapping on Cancel Guided Tutorial in the Main Menu. Let's start with Places Nearby, which lets you find places of interest. The Places Nearby button is on the Home screen just below the Search bar. Tap it now to try it."</string>
 <!-- Prompt to select a place from the list -->
 <string name="tour_select_place">Places Nearby groups points of interest by type. Have a browse of the places in the lists and select one.</string>
 <!-- Prompt to save a marker -->
@@ -2637,11 +2637,11 @@ We\'re still working hard on improving the app, so please report any problems th
 <!-- Tutorial completion message -->
 <string name="tour_finish">"That completes the tutorial. You can run it again from the main menu. We hope you find the app useful!"</string>
 <!-- Tutorial cancellation message -->
-<string name="tour_cancel">"The audio tutorial has been cancelled. If you wish, you can run it again from the main menu."</string>
-<!-- Menu item for starting the audio tutorial -->
-<string name="menu_audio_tutorial">Tutorial</string>
-<!-- Menu item for cancelling the audio tutorial -->
-<string name="menu_audio_tutorial_cancel">Cancel Tutorial</string>
+<string name="tour_cancel">"The guided tutorial has been cancelled. If you wish, you can run it again from the main menu."</string>
+<!-- Menu item for starting the tutorial -->
+<string name="menu_audio_tutorial">Guided tutorial</string>
+<!-- Menu item for cancelling the tutorial -->
+<string name="menu_audio_tutorial_cancel">Cancel guided tutorial</string>
 <!-- Tutorial dialog continue button text -->
 <string name="tour_continue_button">Continue</string>
 <!-- Tutorial dialog continue button hint. This is always preceded by "Double tap to " -->
