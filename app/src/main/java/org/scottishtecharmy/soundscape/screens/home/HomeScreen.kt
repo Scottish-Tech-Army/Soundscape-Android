@@ -207,7 +207,10 @@ fun HomeScreen(
                     settingsViewModel.selectStorage(path)
                 },
                 selectedStorageIndex = uiState.value.selectedStorageIndex,
-                resetSettings = { settingsViewModel.resetToDefaults() }
+                resetSettings = { settingsViewModel.resetToDefaults() },
+                onBeaconPreviewStart = { type -> settingsViewModel.startBeaconPreview(type) },
+                onBeaconPreviewUpdate = { type -> settingsViewModel.updateBeaconPreviewType(type) },
+                onBeaconPreviewStop = { commit, chosen -> settingsViewModel.stopBeaconPreview(commit, chosen) },
             )
         }
 

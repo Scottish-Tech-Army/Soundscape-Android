@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckBox
@@ -27,9 +28,11 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.preference.PreferenceManager
 import androidx.compose.ui.Alignment
@@ -198,6 +201,140 @@ fun ClickableOption(text: String, textColor: Color) {
     }
 }
 
+/**
+ * Beacon style preference with an inline audio preview.
+ *
+ * Tapping the row opens a dialog that:
+ *  - on open, asks the service to stop any running beacon and start a preview beacon
+ *    directly north of the listener using the currently saved style;
+ *  - on each option tap, swaps the preview beacon to the tapped style without
+ *    persisting the choice yet (so a Cancel cleanly reverts);
+ *  - on OK, persists the selected style and tells the service to restore the
+ *    previously-running beacon (now using the new style);
+ *  - on Cancel/back, reverts the engine to the original style and restores the
+ *    previously-running beacon.
+ */
+@Composable
+fun BeaconStylePreference(
+    beaconValues: List<String>,
+    beaconDescriptions: List<String>,
+    modifier: Modifier,
+    textColor: Color,
+    onPreviewStart: (String) -> Unit,
+    onPreviewUpdate: (String) -> Unit,
+    onPreviewStop: (Boolean, String?) -> Unit,
+) {
+    val context = LocalContext.current
+    val sharedPreferences = remember { PreferenceManager.getDefaultSharedPreferences(context) }
+
+    var savedValue by remember {
+        mutableStateOf(
+            sharedPreferences.getString(
+                MainActivity.BEACON_TYPE_KEY,
+                MainActivity.BEACON_TYPE_DEFAULT
+            ) ?: MainActivity.BEACON_TYPE_DEFAULT
+        )
+    }
+    DisposableEffect(sharedPreferences) {
+        val listener = android.content.SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            if (key == MainActivity.BEACON_TYPE_KEY) {
+                savedValue = sharedPreferences.getString(
+                    MainActivity.BEACON_TYPE_KEY,
+                    MainActivity.BEACON_TYPE_DEFAULT
+                ) ?: MainActivity.BEACON_TYPE_DEFAULT
+            }
+        }
+        sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
+        onDispose { sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener) }
+    }
+
+    var showDialog by rememberSaveable { mutableStateOf(false) }
+    var selectedInDialog by rememberSaveable { mutableStateOf(savedValue) }
+
+    Column(
+        modifier = modifier
+            .fillMaxWidth()
+            .clickable(role = Role.Button) {
+                selectedInDialog = savedValue
+                showDialog = true
+            }
+    ) {
+        SettingDetails(
+            R.string.beacon_settings_style,
+            R.string.beacon_settings_style_description,
+            textColor
+        )
+        val idx = beaconValues.indexOf(savedValue).coerceAtLeast(0)
+        val label = beaconDescriptions.getOrNull(idx) ?: savedValue
+        ClickableOption(label, textColor)
+    }
+
+    if (showDialog) {
+        // Start the preview once when the dialog opens. Using selectedInDialog
+        // (which is rememberSaveable) means that if the dialog is recreated
+        // — e.g. after a configuration change — the preview resumes on
+        // whichever style the user had last tapped, not on the persisted
+        // value. Service-side state is idempotently reset, so a re-fire here
+        // is safe.
+        DisposableEffect(Unit) {
+            onPreviewStart(selectedInDialog)
+            // Explicit cancel/commit paths run onPreviewStop synchronously
+            // before dismissing the dialog; service-side state is idempotent
+            // so we don't need to call it again from onDispose.
+            onDispose { }
+        }
+
+        AlertDialog(
+            onDismissRequest = {
+                onPreviewStop(false, null)
+                showDialog = false
+            },
+            title = {
+                Text(
+                    text = stringResource(R.string.beacon_settings_style),
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
+            },
+            text = {
+                LazyColumn(modifier = Modifier.fillMaxWidth()) {
+                    items(beaconValues.size) { index ->
+                        val value = beaconValues[index]
+                        ListPreferenceItem(
+                            description = beaconDescriptions[index],
+                            value = value,
+                            currentValue = selectedInDialog,
+                            onClick = {
+                                if (selectedInDialog != value) {
+                                    selectedInDialog = value
+                                    onPreviewUpdate(value)
+                                }
+                            },
+                            index = index,
+                            listSize = beaconValues.size,
+                        )
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    onPreviewStop(true, selectedInDialog)
+                    showDialog = false
+                }) {
+                    Text(stringResource(R.string.ui_continue))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = {
+                    onPreviewStop(false, null)
+                    showDialog = false
+                }) {
+                    Text(stringResource(R.string.general_alert_cancel))
+                }
+            },
+        )
+    }
+}
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Settings(
@@ -211,6 +348,9 @@ fun Settings(
     onStorageSelected: (String) -> Unit,
     selectedStorageIndex: Int,
     resetSettings: () -> Unit,
+    onBeaconPreviewStart: (String) -> Unit = {},
+    onBeaconPreviewUpdate: (String) -> Unit = {},
+    onBeaconPreviewStop: (Boolean, String?) -> Unit = { _, _ -> },
     previewExpandedSection: String? = null
 )
 {
@@ -634,23 +774,17 @@ fun Settings(
                 )
             }
             if (expandedSection.value == "audio") {
-                listPreference(
-                    key = MainActivity.BEACON_TYPE_KEY,
-                    defaultValue = MainActivity.BEACON_TYPE_DEFAULT,
-                    values = beaconValues,
-                    modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            R.string.beacon_settings_style,
-                            R.string.beacon_settings_style_description,
-                            textColor
-                        )
-                    },
-                    item = { value, currentValue, onClick ->
-                        ListPreferenceItem(beaconDescriptions[beaconValues.indexOf(value)], value, currentValue, onClick, beaconValues.indexOf(value), beaconValues.size)
-                    },
-                    summary = { ClickableOption(it, textColor) },
-                )
+                item(key = "beacon_style_preview") {
+                    BeaconStylePreference(
+                        beaconValues = beaconValues,
+                        beaconDescriptions = beaconDescriptions,
+                        modifier = expandedSectionModifier,
+                        textColor = textColor,
+                        onPreviewStart = onBeaconPreviewStart,
+                        onPreviewUpdate = onBeaconPreviewUpdate,
+                        onPreviewStop = onBeaconPreviewStop,
+                    )
+                }
 
                 listPreference(
                     key = MainActivity.SPEECH_ENGINE_KEY,

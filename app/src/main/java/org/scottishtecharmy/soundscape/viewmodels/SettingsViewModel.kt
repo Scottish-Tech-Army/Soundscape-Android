@@ -206,6 +206,18 @@ class SettingsViewModel @Inject constructor(
         )
     }
 
+    fun startBeaconPreview(beaconType: String) {
+        soundscapeServiceConnection.startBeaconPreview(beaconType)
+    }
+
+    fun updateBeaconPreviewType(beaconType: String) {
+        soundscapeServiceConnection.updateBeaconPreviewType(beaconType)
+    }
+
+    fun stopBeaconPreview(commit: Boolean, chosenBeaconType: String?) {
+        soundscapeServiceConnection.stopBeaconPreview(commit, chosenBeaconType)
+    }
+
     fun resetToDefaults() {
         viewModelScope.launch {
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)

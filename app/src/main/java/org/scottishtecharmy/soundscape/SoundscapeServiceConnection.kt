@@ -122,6 +122,18 @@ class SoundscapeServiceConnection @Inject constructor() {
         soundscapeService?.streetPreviewGo()
     }
 
+    fun startBeaconPreview(beaconType: String) {
+        soundscapeService?.startBeaconPreview(beaconType)
+    }
+
+    fun updateBeaconPreviewType(beaconType: String) {
+        soundscapeService?.updateBeaconPreviewType(beaconType)
+    }
+
+    fun stopBeaconPreview(commit: Boolean, chosenBeaconType: String?) {
+        soundscapeService?.stopBeaconPreview(commit, chosenBeaconType)
+    }
+
     companion object {
         private const val TAG = "SoundscapeServiceConnection"
     }
