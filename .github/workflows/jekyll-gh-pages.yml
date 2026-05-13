@@ -69,6 +69,21 @@ jobs:
           cache-version: 0 # Increment this number if you need to re-download cached gems
           working-directory: '${{ github.workspace }}/docs'
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install beacon generator dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y vorbis-tools
+          python3 -m pip install --upgrade pip
+          python3 -m pip install numpy scipy matplotlib
+
+      - name: Generate beacon audio samples and spectrum plots
+        run: python3 generate-beacons.py
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v6
