@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import java.net.URLEncoder
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -102,8 +103,8 @@ class LocationDetailsViewModel @Inject constructor(
             Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TITLE, locationDescription.name)
-                val latitude = "%.5f".format(location.latitude)
-                val longitude = "%.5f".format(location.longitude)
+                val latitude = "%.5f".format(Locale.ROOT, location.latitude)
+                val longitude = "%.5f".format(Locale.ROOT, location.longitude)
 
                 val soundscapeUrl =
                     "https://links.soundscape.scottishtecharmy.org/v1/sharemarker?" +

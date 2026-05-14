@@ -484,7 +484,7 @@ class FeatureTree(featureCollection: FeatureCollection?) {
             var newItem: EntryWithDistance? = if (newItemIterator.hasNext()) newItemIterator.next() else null
 
             while((initialItem != null) or (newItem != null)) {
-                if(featureCollection.features.size > maxCount) break
+                if(featureCollection.features.size >= maxCount) break
                 if (initialItem != null) {
                     var addInitial = false
                     if (newItem == null) addInitial = true

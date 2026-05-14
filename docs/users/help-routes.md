@@ -23,7 +23,7 @@ You may want to create and use a route somewhere you know to make sure you keep 
 
 **Editing a route :**
 
- Select your route on the *"Markers and Routes"* screen and then select *"Edit Route"*. From here you can add and remove waypoints, as well as editing the name and description of the route.
+ Select your route on the *"Markers and Routes"* screen and then select *"Edit Route"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
 
 **Sharing a route :**
 

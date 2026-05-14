@@ -547,6 +547,34 @@ class MvtTileTest {
         // Clone is cloning all of the hashmap entries
     }
 
+    @Test
+    fun testGetNearestCollection(){
+        val userGeometry = UserGeometry(LngLatAlt(-4.313, 55.945245))
+        val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, 2)
+
+        val collection = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
+            .getNearestCollection(userGeometry.location, 2000.0, 10, gridState.ruler)
+
+        println("collection size ${collection.features.size}")
+        assertEquals(10, collection.features.size)
+    }
+
+    @Test
+    fun testGetNearestCollectionWithinTriangle(){
+        val userGeometry = UserGeometry(LngLatAlt(-4.313, 55.945245), fovDistance = 2000.0)
+        val gridState = getGridStateForLocation(userGeometry.location, MAX_ZOOM_LEVEL, 2)
+
+        val triangle = getFovTriangle(userGeometry, true)
+
+        val duration = measureTime {
+            val collection = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
+                .getNearestCollectionWithinTriangle(triangle, 10, gridState.ruler)
+
+            println("collection size ${collection.features.size}")
+            assertEquals(10, collection.features.size)
+        }
+        println("Processing time $duration")
+    }
 
     @Test
     fun testRoadBearing(){

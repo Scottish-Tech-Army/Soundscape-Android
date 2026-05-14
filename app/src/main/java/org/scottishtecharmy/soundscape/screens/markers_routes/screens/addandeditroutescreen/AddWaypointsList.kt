@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
@@ -32,6 +33,8 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -50,6 +53,11 @@ import org.scottishtecharmy.soundscape.screens.home.placesnearby.placesNearbyFol
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.utils.process
 
+class AddWaypointsListViewModel : ViewModel() {
+    private val _listState = LazyListState()
+    val listState = _listState
+}
+
 @Composable
 fun AddWaypointsList(
     uiState: AddAndEditRouteUiState,
@@ -58,7 +66,8 @@ fun AddWaypointsList(
     userLocation: LngLatAlt?,
     onSelectLocation: (LocationDescription) -> Unit,
     onToggleMember: (LocationDescription) -> Unit,
-    getCurrentLocationDescription: () -> LocationDescription
+    getCurrentLocationDescription: () -> LocationDescription,
+    addWaypointsListViewModel: AddWaypointsListViewModel = viewModel()
 ) {
     // Create our list of locations, with those already in the route first
     val locations = remember(uiState.routeMembers, uiState.markers) {
@@ -102,6 +111,7 @@ fun AddWaypointsList(
     var fetchingLocation by remember { mutableStateOf(false) }
 
     LazyColumn(
+        state = addWaypointsListViewModel.listState,
         modifier = Modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.spacedBy(spacing.tiny),
     ) {
