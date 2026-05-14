@@ -54,10 +54,12 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.Flexibl
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.screens.talkbackHidden
 import org.scottishtecharmy.soundscape.screens.talkbackLive
+import org.scottishtecharmy.soundscape.ui.LoadingDialog
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.DownloadState
 import org.scottishtecharmy.soundscape.utils.StorageUtils
+import org.scottishtecharmy.soundscape.viewmodels.NearbyExtractsState
 import org.scottishtecharmy.soundscape.viewmodels.OfflineMapsUiState
 import org.scottishtecharmy.soundscape.viewmodels.OfflineMapsViewModel
 import java.net.URLEncoder
@@ -67,7 +69,12 @@ import kotlin.time.Duration.Companion.seconds
 fun generateOfflineMapScreenRoute(locationDescription: LocationDescription): String {
     // Generate JSON for the LocationDescription and append it to the route
     val json = GsonBuilder().create().toJson(locationDescription)
-    return "${HomeRoutes.OfflineMaps.route}/${URLEncoder.encode(json, StandardCharsets.UTF_8.toString())}"
+    return "${HomeRoutes.OfflineMaps.route}/${
+        URLEncoder.encode(
+            json,
+            StandardCharsets.UTF_8.toString()
+        )
+    }"
 }
 
 @Composable
@@ -77,9 +84,10 @@ fun OfflineMapsScreenVM(
     locationDescription: LocationDescription
 ) {
     // Pass the locationDescription into the view model on creation
-    val viewModel: OfflineMapsViewModel = hiltViewModel<OfflineMapsViewModel, OfflineMapsViewModel.Factory>(
-        creationCallback = { factory -> factory.create(locationDescription) }
-    )
+    val viewModel: OfflineMapsViewModel =
+        hiltViewModel<OfflineMapsViewModel, OfflineMapsViewModel.Factory>(
+            creationCallback = { factory -> factory.create(locationDescription) }
+        )
 
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val progress = remember { mutableIntStateOf(0) }
@@ -101,28 +109,32 @@ fun OfflineMapsScreenVM(
                     downloading.value = false
                     caching.value = false
                 }
+
                 is DownloadState.Caching -> {
                     caching.value = true
                     downloading.value = true
                     progress.intValue = 0
                     progressForBar.intValue = 0
                 }
+
                 is DownloadState.Downloading -> {
                     val currentTime = System.currentTimeMillis()
-                    if(caching.value)
+                    if (caching.value)
                         caching.value = false
 
-                    if((progressForBar.intValue != state.progress / 10)  &&
-                       (currentTime - lastUpdateTime) > throttleDuration) {
+                    if ((progressForBar.intValue != state.progress / 10) &&
+                        (currentTime - lastUpdateTime) > throttleDuration
+                    ) {
                         progressForBar.intValue = (state.progress / 10)
                         lastUpdateTime = currentTime
                     }
                     if (progress.intValue != state.progress) {
                         progress.intValue = state.progress
                     }
-                    if(!downloading.value)
+                    if (!downloading.value)
                         downloading.value = true
                 }
+
                 is DownloadState.Success -> {
                     println("Success!")
                     downloading.value = false
@@ -130,12 +142,14 @@ fun OfflineMapsScreenVM(
                     userMessage.value = context.getString(R.string.offline_map_download_complete)
                     viewModel.refreshExtracts()
                 }
+
                 is DownloadState.Error -> {
                     println("Error!")
                     userMessage.value = context.getString(R.string.offline_map_download_error)
                     downloading.value = false
                     caching.value = false
                 }
+
                 is DownloadState.Canceled -> {
                     println("Cancelled!")
                     downloading.value = false
@@ -147,7 +161,7 @@ fun OfflineMapsScreenVM(
     }
     // Display error message if it exists
     LaunchedEffect(userMessage.value) {
-        if(userMessage.value.isNotEmpty()) {
+        if (userMessage.value.isNotEmpty()) {
             Toast.makeText(context, userMessage.value, Toast.LENGTH_LONG).show()
             userMessage.value = ""
         }
@@ -162,7 +176,7 @@ fun OfflineMapsScreenVM(
         caching = caching.value,
         modifier = modifier,
         downloadExtract = { name, feature -> viewModel.download(name, feature) },
-        deleteExtract = { feature -> viewModel.delete( feature) },
+        deleteExtract = { feature -> viewModel.delete(feature) },
         cancelDownload = { viewModel.cancelDownload() }
     )
 }
@@ -179,11 +193,10 @@ class ExtractDetails(
     init {
         val namePropLocal = extract.properties?.get("name_local")
         val nameProp = extract.properties?.get("name")
-        if(namePropLocal != null) {
+        if (namePropLocal != null) {
             localName = namePropLocal.toString()
             alternateName = nameProp.toString()
-        }
-        else
+        } else
             localName = nameProp.toString()
 
         val localCitiesProps = extract.properties?.get("city_local_names")
@@ -215,8 +228,8 @@ class ExtractDetails(
 fun OfflineExtract(
     extract: Feature,
     extractSelected: (String, Feature) -> Unit,
-    row: Int)
-{
+    row: Int
+) {
     val details = remember(extract) { ExtractDetails(extract) }
     val size = extract.properties?.get("extract-size-string")
     if (size != null) {
@@ -273,16 +286,15 @@ fun OfflineMapsScreen(
     downloadExtract: (String, Feature) -> Unit,
     deleteExtract: (Feature) -> Unit,
     cancelDownload: () -> Unit
-)
-{
+) {
     val extractDetailsFeature = remember { mutableStateOf(null as Feature?) }
-    val localExtractDetails =  remember { mutableStateOf(false) }
+    val localExtractDetails = remember { mutableStateOf(false) }
 
     BackHandler(enabled = true) {
-        if(extractDetailsFeature.value != null) {
+        if (extractDetailsFeature.value != null) {
             // Swipe back exits offset details page
             extractDetailsFeature.value = null
-        } else if(!downloading) {
+        } else if (!downloading) {
             // Ignore any back swipes when downloading content. Instead we should probably have a dialog
             // pop up at this point to check whether the user would really like to cancel the download.
             navController.navigateUp()
@@ -293,23 +305,23 @@ fun OfflineMapsScreen(
         modifier = modifier,
         topBar = {
             FlexibleAppBar(
-                title = if(extractDetailsFeature.value != null)
-                            stringResource(R.string.offline_map_details_title)
-                        else
-                            stringResource(R.string.offline_maps_title),
+                title = if (extractDetailsFeature.value != null)
+                    stringResource(R.string.offline_map_details_title)
+                else
+                    stringResource(R.string.offline_maps_title),
                 leftSide = {
                     IconWithTextButton(
-                        text = if(downloading) stringResource(R.string.general_alert_cancel) else stringResource(R.string.ui_back_button_title),
+                        text = if (downloading) stringResource(R.string.general_alert_cancel) else stringResource(
+                            R.string.ui_back_button_title
+                        ),
                         color = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.testTag("appBarLeft")
                     ) {
-                        if(extractDetailsFeature.value != null) {
+                        if (extractDetailsFeature.value != null) {
                             extractDetailsFeature.value = null
-                        }
-                        else if(downloading) {
+                        } else if (downloading) {
                             cancelDownload()
-                        }
-                        else {
+                        } else {
                             navController.navigateUp()
                         }
                     }
@@ -318,7 +330,7 @@ fun OfflineMapsScreen(
         },
 
         content = { padding ->
-            if(extractDetailsFeature.value != null) {
+            if (extractDetailsFeature.value != null) {
                 OfflineMapExtractDetails(
                     extractDetailsFeature.value!!,
                     { name, feature ->
@@ -346,16 +358,17 @@ fun OfflineMapsScreen(
                 ) {
                     Text(
                         text = stringResource(
-                            if(caching)
+                            if (caching)
                                 R.string.offline_maps_caching
                             else
-                                R.string.offline_maps_downloading).format(uiState.downloadingExtractName),
+                                R.string.offline_maps_downloading
+                        ).format(uiState.downloadingExtractName),
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.headlineLarge,
                         color = MaterialTheme.colorScheme.onSurface,
                         modifier = Modifier.talkbackLive()
                     )
-                    LinearProgressIndicator (
+                    LinearProgressIndicator(
                         progress = { progressForBar.toFloat() / 100.0f },
                         modifier = Modifier
                             .padding(spacing.medium)
@@ -379,10 +392,13 @@ fun OfflineMapsScreen(
                     verticalArrangement = Arrangement.spacedBy(spacing.tiny),
                 ) {
 
-                    for(storage in uiState.storages) {
-                        if(storage.path == uiState.currentPath) {
+                    for (storage in uiState.storages) {
+                        if (storage.path == uiState.currentPath) {
                             Text(
-                                text = stringResource(R.string.offline_maps_storage).format(storage.description, storage.availableString),
+                                text = stringResource(R.string.offline_maps_storage).format(
+                                    storage.description,
+                                    storage.availableString
+                                ),
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .mediumPadding()
@@ -390,7 +406,7 @@ fun OfflineMapsScreen(
                         }
                     }
 
-                    if((uiState.downloadedExtracts != null) && (uiState.downloadedExtracts.features.isNotEmpty())) {
+                    if ((uiState.downloadedExtracts != null) && (uiState.downloadedExtracts.features.isNotEmpty())) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -447,36 +463,52 @@ fun OfflineMapsScreen(
                                 .semantics { heading() }
                         )
                     }
-                    if (uiState.nearbyExtracts != null) {
-                        Column(
-                            modifier = Modifier.semantics {
-                                collectionInfo =
-                                    CollectionInfo(
-                                        rowCount = uiState.nearbyExtracts.features.size,
-                                        columnCount = 1
+                    when (uiState.nearbyExtractsState) {
+                        is NearbyExtractsState.Loading -> {
+                            LoadingDialog()
+                            Text(
+                                text = stringResource(R.string.offline_maps_loading_manifest),
+                                style = MaterialTheme.typography.headlineSmall,
+                                color = MaterialTheme.colorScheme.onSurface,
+                                modifier = Modifier
+                                    .talkbackLive()
+                                    .mediumPadding()
+                            )
+                        }
+
+                        NearbyExtractsState.Error -> {
+                            Text(
+                                text = stringResource(R.string.offline_maps_manifest_failed),
+                                style = MaterialTheme.typography.headlineSmall,
+                                color = MaterialTheme.colorScheme.onSurface,
+                                modifier = Modifier
+                                    .talkbackLive()
+                                    .mediumPadding()
+                            )
+                        }
+
+                        is NearbyExtractsState.Loaded -> {
+                            Column(
+                                modifier = Modifier.semantics {
+                                    collectionInfo =
+                                        CollectionInfo(
+                                            rowCount = uiState.nearbyExtractsState.nearbyExtracts.features.size,
+                                            columnCount = 1
+                                        )
+                                }
+                            ) {
+                                for ((index, extract) in uiState.nearbyExtractsState.nearbyExtracts.features.withIndex()) {
+                                    OfflineExtract(
+                                        extract,
+                                        { _, extract ->
+                                            extractDetailsFeature.value = extract
+                                            localExtractDetails.value = false
+                                        },
+                                        index
                                     )
-                            }
-                        ) {
-                            for((index, extract) in uiState.nearbyExtracts.features.withIndex()) {
-                                OfflineExtract(
-                                    extract,
-                                    { _, extract ->
-                                        extractDetailsFeature.value = extract
-                                        localExtractDetails.value = false
-                                    },
-                                    index
-                                )
+                                }
                             }
                         }
-                    } else {
-                        Text(
-                            text = stringResource(if (uiState.manifestError) R.string.offline_maps_manifest_failed else R.string.offline_maps_loading_manifest),
-                            style = MaterialTheme.typography.headlineSmall,
-                            color = MaterialTheme.colorScheme.onSurface,
-                            modifier = Modifier
-                                .talkbackLive()
-                                .mediumPadding()
-                        )
                     }
                 }
             }
@@ -485,16 +517,17 @@ fun OfflineMapsScreen(
 }
 
 @Preview(showBackground = true, fontScale = 1.5f)
-@Composable 
+@Composable
 fun OfflineMapsScreenPreview() {
     val fc = FeatureCollection()
     val city = Feature()
     val properties: HashMap<String, Any?> = hashMapOf()
     properties["feature_type"] = "city_cluster"
     properties["name"] = "Bristol"
-    properties["extract-size"] = 120*1024*1024.0
+    properties["extract-size"] = 120 * 1024 * 1024.0
     properties["extract-size-string"] = "120 MB"
-    properties["city_names"] = listOf("Bristol", "Bath", "Cardiff", "Birmingham", "Exeter", "Northampton", "Chesterfield")
+    properties["city_names"] =
+        listOf("Bristol", "Bath", "Cardiff", "Birmingham", "Exeter", "Northampton", "Chesterfield")
     city.properties = properties
 
     val state = Feature()
@@ -505,7 +538,7 @@ fun OfflineMapsScreenPreview() {
     properties3["country_name"] = "Japan"
     properties3["country_name_local"] = "日本"
     properties3["iso_a2"] = "JA"
-    properties3["extract-size"] = 0.5*1024*1024*1024
+    properties3["extract-size"] = 0.5 * 1024 * 1024 * 1024
     properties3["extract-size-string"] = "0.4 GB"
     state.properties = properties3
 
@@ -516,10 +549,12 @@ fun OfflineMapsScreenPreview() {
     properties4["name_local"] = "いわき市"
     properties4["country_name"] = "Japan"
     properties4["country_name_local"] = "日本"
-    properties4["city_names"] = listOf("Hitachi","Nihommatsu","Kōriyama","Hitachi-ota","Sukagawa","Shirakawa","Iwaki")
-    properties4["city_names_local"] = listOf("日立","二本松","郡山市","常陸太田","須賀川市","白河","いわき市")
+    properties4["city_names"] =
+        listOf("Hitachi", "Nihommatsu", "Kōriyama", "Hitachi-ota", "Sukagawa", "Shirakawa", "Iwaki")
+    properties4["city_names_local"] =
+        listOf("日立", "二本松", "郡山市", "常陸太田", "須賀川市", "白河", "いわき市")
     properties4["iso_a2"] = "JA"
-    properties4["extract-size"] = 0.5*1024*1024*1024
+    properties4["extract-size"] = 0.5 * 1024 * 1024 * 1024
     properties4["extract-size-string"] = "0.4 GB"
     state1.properties = properties4
 
@@ -527,7 +562,7 @@ fun OfflineMapsScreenPreview() {
     val properties2: HashMap<String, Any?> = hashMapOf()
     properties2["feature_type"] = "country"
     properties2["name"] = "United Kingdom"
-    properties2["extract-size"] = 3.4*1024*1024*1024
+    properties2["extract-size"] = 3.4 * 1024 * 1024 * 1024
     properties2["extract-size-string"] = "3.4 GB"
     country.properties = properties2
 
@@ -541,25 +576,25 @@ fun OfflineMapsScreenPreview() {
         description = "SD",
         isExternal = true,
         isPrimary = false,
-        128*1024*1024*1024L,
-        88*1024*1024*1024L,
+        128 * 1024 * 1024 * 1024L,
+        88 * 1024 * 1024 * 1024L,
         "88000 MB",
-        90*1024*1024*1024L
+        90 * 1024 * 1024 * 1024L
     )
     val internalStorage = StorageUtils.StorageSpace(
         "/path/to/internal",
         description = "Internal shared storage",
         isExternal = false,
         isPrimary = false,
-        64*1024*1024*1024L,
-        22*1024*1024*1024L,
+        64 * 1024 * 1024 * 1024L,
+        22 * 1024 * 1024 * 1024L,
         "22000 MB",
-        23*1024*1024*1024L
+        23 * 1024 * 1024 * 1024L
     )
 
     val uiState = OfflineMapsUiState(
         downloadingExtractName = "",
-        nearbyExtracts = fc,
+        nearbyExtractsState = NearbyExtractsState.Loaded(fc),
         downloadedExtracts = fc,
         currentPath = "/path/to/internal",
         storages = listOf(internalStorage, externalStorage),
@@ -573,8 +608,8 @@ fun OfflineMapsScreenPreview() {
         progressPrecise = 491,
         downloading = false,
         caching = false,
-        downloadExtract = { _,_ -> },
-        deleteExtract = { _ ->},
+        downloadExtract = { _, _ -> },
+        deleteExtract = { _ -> },
         cancelDownload = {}
     )
 }
@@ -586,7 +621,7 @@ fun OfflineMapsScreenDownloadingPreview() {
     OfflineMapsScreen(
         rememberNavController(),
         OfflineMapsUiState(
-            nearbyExtracts = FeatureCollection(),
+            nearbyExtractsState = NearbyExtractsState.Loaded(FeatureCollection()),
             storages = emptyList(),
             downloadingExtractName = "United Kingdom"
         ),
@@ -595,8 +630,8 @@ fun OfflineMapsScreenDownloadingPreview() {
         progressPrecise = 491,
         downloading = true,
         caching = true,
-        downloadExtract = { _,_ -> },
-        deleteExtract = { _ ->},
+        downloadExtract = { _, _ -> },
+        deleteExtract = { _ -> },
         cancelDownload = {}
     )
 }

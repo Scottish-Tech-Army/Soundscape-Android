@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.preference.PreferenceManager
 import dagger.assisted.Assisted
+import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -29,15 +30,18 @@ import org.scottishtecharmy.soundscape.utils.findExtracts
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
 import java.io.File
 import java.io.FileOutputStream
-import kotlin.collections.HashMap
+
+sealed class NearbyExtractsState {
+    object Loading : NearbyExtractsState()
+    data class Loaded(val nearbyExtracts: FeatureCollection) : NearbyExtractsState()
+    object Error : NearbyExtractsState()
+}
 
 data class OfflineMapsUiState(
     val downloadingExtractName: String = "",
 
-    val manifestError: Boolean = false,
-
     // Extracts in manifest to choose from
-    val nearbyExtracts: FeatureCollection? = null,
+    val nearbyExtractsState: NearbyExtractsState = NearbyExtractsState.Loading,
 
     // Offline extracts in storage
     val downloadedExtracts: FeatureCollection? = null,
@@ -56,13 +60,14 @@ class OfflineMapsViewModel @AssistedInject constructor(
     private val _uiState = MutableStateFlow(OfflineMapsUiState())
     val uiState: StateFlow<OfflineMapsUiState> = _uiState
     lateinit var offlineDownloader: OfflineDownloader
-    lateinit  var downloadState: StateFlow<DownloadState>
+    lateinit var downloadState: StateFlow<DownloadState>
 
     // Add this factory interface inside the ViewModel class
-    @dagger.assisted.AssistedFactory
+    @AssistedFactory
     interface Factory {
         fun create(locationDescription: LocationDescription): OfflineMapsViewModel
     }
+
     init {
         viewModelScope.launch {
             // Create downloader to handle getting any offline maps
@@ -72,7 +77,10 @@ class OfflineMapsViewModel @AssistedInject constructor(
             val storages = getOfflineMapStorage(appContext)
 
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)
-            var path = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)!!
+            var path = sharedPreferences.getString(
+                MainActivity.SELECTED_STORAGE_KEY,
+                MainActivity.SELECTED_STORAGE_DEFAULT
+            )!!
             val extractCollection = findExtracts(File(path, Environment.DIRECTORY_DOWNLOADS).path)
             _uiState.value = _uiState.value.copy(
                 downloadedExtracts = extractCollection,
@@ -81,7 +89,7 @@ class OfflineMapsViewModel @AssistedInject constructor(
             )
 
             val fc = downloadAndParseManifest(appContext)
-            if(fc != null) {
+            if (fc != null) {
                 val tree = FeatureTree(fc)
 
                 val location = locationDescription.location
@@ -90,32 +98,33 @@ class OfflineMapsViewModel @AssistedInject constructor(
                 val extracts = tree.getContainingPolygons(location)
 
                 println("Extracts ${extracts.features.size}")
-                for(extract in extracts.features) {
+                for (extract in extracts.features) {
                     val size = extract.properties?.get("extract-size") as Double
                     val properties: HashMap<String, Any?> = extract.properties!!
-                    properties["extract-size-string"] = Formatter.formatFileSize(appContext, size.toLong())
+                    properties["extract-size-string"] =
+                        Formatter.formatFileSize(appContext, size.toLong())
                     extract.properties = properties
 
                     Log.d(TAG, "extract: ${extract.properties}")
                 }
                 _uiState.value = _uiState.value.copy(
-                    nearbyExtracts = extracts
+                    nearbyExtractsState = NearbyExtractsState.Loaded(extracts)
                 )
             } else {
                 _uiState.value = _uiState.value.copy(
-                    manifestError = true
+                    nearbyExtractsState = NearbyExtractsState.Error
                 )
             }
         }
     }
 
-    private fun translateToLocalFilenameFrom(filename: String) : String {
+    private fun translateToLocalFilenameFrom(filename: String): String {
         return filename.substringAfter("-").substringAfter("-")
     }
 
     fun delete(feature: Feature) {
         val filename = feature.properties?.get("filename")
-        if(filename != null) {
+        if (filename != null) {
             val localFilename = translateToLocalFilenameFrom(filename as String)
             val extractsDir = File(_uiState.value.currentPath, Environment.DIRECTORY_DOWNLOADS)
             if (extractsDir.exists() && extractsDir.isDirectory) {
@@ -124,7 +133,7 @@ class OfflineMapsViewModel @AssistedInject constructor(
                 }?.toList() ?: emptyList()
 
                 // Delete whatever we find
-                for(file in files)
+                for (file in files)
                     file.delete()
 
                 refreshExtracts()
@@ -134,9 +143,10 @@ class OfflineMapsViewModel @AssistedInject constructor(
 
     fun download(name: String, feature: Feature) {
         val filename = feature.properties?.get("filename")
-        if(filename != null) {
+        if (filename != null) {
             val localFilename = translateToLocalFilenameFrom(filename as String)
-            val path = _uiState.value.currentPath + "/" + Environment.DIRECTORY_DOWNLOADS + "/" +  localFilename
+            val path =
+                _uiState.value.currentPath + "/" + Environment.DIRECTORY_DOWNLOADS + "/" + localFilename
 
             // Write out the feature metadata to a file
             val adapter = GeoJsonObjectMoshiAdapter()
