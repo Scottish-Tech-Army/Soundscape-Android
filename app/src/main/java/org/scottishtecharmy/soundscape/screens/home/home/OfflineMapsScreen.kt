@@ -25,6 +25,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -330,6 +331,14 @@ fun OfflineMapsScreen(
         },
 
         content = { padding ->
+            var showLoadingDialog by remember { mutableStateOf(false) }
+
+            if (showLoadingDialog) {
+                LoadingDialog {
+                    navController.navigateUp()
+                }
+            }
+
             if (extractDetailsFeature.value != null) {
                 OfflineMapExtractDetails(
                     extractDetailsFeature.value!!,
@@ -465,7 +474,7 @@ fun OfflineMapsScreen(
                     }
                     when (uiState.nearbyExtractsState) {
                         is NearbyExtractsState.Loading -> {
-                            LoadingDialog()
+                            showLoadingDialog = true
                             Text(
                                 text = stringResource(R.string.offline_maps_loading_manifest),
                                 style = MaterialTheme.typography.headlineSmall,
@@ -477,6 +486,7 @@ fun OfflineMapsScreen(
                         }
 
                         NearbyExtractsState.Error -> {
+                            showLoadingDialog = false
                             Text(
                                 text = stringResource(R.string.offline_maps_manifest_failed),
                                 style = MaterialTheme.typography.headlineSmall,
@@ -488,6 +498,7 @@ fun OfflineMapsScreen(
                         }
 
                         is NearbyExtractsState.Loaded -> {
+                            showLoadingDialog = false
                             Column(
                                 modifier = Modifier.semantics {
                                     collectionInfo =
