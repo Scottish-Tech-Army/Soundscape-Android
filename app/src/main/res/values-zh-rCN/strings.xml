@@ -816,7 +816,7 @@
     <string name="osm_sport" tools:ignore="MissingTranslation">体育场所</string>
     <string name="osm_health_food" tools:ignore="MissingTranslation">健康食品</string>
     <string name="osm_events_venue" tools:ignore="MissingTranslation">活动场所</string>
-    <string name="tour_welcome" tools:ignore="MissingTranslation">欢迎使用Soundscape教程。本教程将引导您了解应用的主要功能。您可以随时在主菜单中点击取消语音教程来停止教程。让我们从附近地点开始，它可以帮您发现感兴趣的地点。附近地点按钮位于主屏幕搜索栏下方。现在点击它来试试看。</string>
+    <string name="tour_welcome" tools:ignore="MissingTranslation">欢迎使用引导教程。本教程将带您了解应用的主要功能。您可以随时在主菜单中点击*\"取消引导教程\"*来停止教程。我们先从*\"附近地点\"*开始，它可以帮助您查找感兴趣的地点。*\"附近地点\"*按钮位于主屏幕的搜索栏下方。现在点击它试试。</string>
     <string name="tour_select_place" tools:ignore="MissingTranslation">附近地点按类型对兴趣点进行分组。浏览列表中的地点并选择一个。</string>
     <string name="tour_create_marker_started" tools:ignore="MissingTranslation">很好！您现在进入了位置详情屏幕。此屏幕允许您执行各种操作，包括将位置保存为标记点。使用Soundscape，您可以标记周围任何您关心的地方。例如，您可以标记您的家、公交车站，甚至只是您当前所在的位置。让我们来试试。点击保存为标记点来保存此位置。</string>
     <string name="tour_create_marker_done" tools:ignore="MissingTranslation">太棒了！创建标记点时，您可以编辑名称并添加附加注释。现在试试看，准备好后点击完成。</string>
@@ -831,9 +831,9 @@
     <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">当您的手机锁屏时，信标仍会继续播放。如果您在步行或乘车，应用会使用您的行进方向来播放音频信标。不过，即使在锁屏状态下，您也可以将手机平放在面前，像指南针一样，它会使用手机指向的方向。试试看。</string>
     <string name="tour_stop_beacon" tools:ignore="MissingTranslation">当您准备好停止信标时，点击停止路线按钮。</string>
     <string name="tour_finish" tools:ignore="MissingTranslation">教程到此结束。您可以从主菜单再次运行教程。希望您觉得这个应用有用！</string>
-    <string name="tour_cancel" tools:ignore="MissingTranslation">语音教程已取消。如果需要，您可以从主菜单再次运行。</string>
-    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">教程</string>
-    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">取消教程</string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation">引导教程已取消。如有需要，您可以从主菜单再次运行该教程。</string>
+    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">引导教程</string>
+    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">取消引导教程</string>
     <string name="tour_continue_button" tools:ignore="MissingTranslation">继续</string>
     <string name="tour_continue_hint" tools:ignore="MissingTranslation">关闭弹窗并继续教程</string>
     <string name="first_launch_permissions_motion">运动与健身</string>
@@ -859,7 +859,7 @@
     <string name="help_text_automatic_callouts_when_2">**步行前往特定地点：**\n\n当您在前往某个特定地点的途中，路口自动播报特别有用。路口提示会在您接近路口时告诉您路口的布局，并在您离开路口时确认您所在的道路。</string>
     <string name="help_text_automatic_callouts_when_3">**当您需要安静时：**\n\n当您准备过马路或只是需要应用保持安静时，可以关闭播报。关闭播报后，应用只会在您手动点击*\"我的位置\"*、*\"附近标记点\"*、*\"周围\"*或*\"前方\"*按钮时才会播报信息。</string>
     <string name="help_text_automatic_callouts_how_1">**开启或关闭提示：**\n\n关闭提示将使应用静音。您可以在*\"设置\"*屏幕的*\"管理提示\"*部分通过点击*\"允许提示\"*切换来开启或关闭提示。如果您的耳机带有媒体控制按钮，也可以通过*\"跳过向前\"*命令（双击并按住）来开启或关闭提示。或者，您可以使用主屏幕右上角的*\"休眠\"*按钮，让 Soundscape 停止播报提示，直到您再次唤醒它。</string>
-    <string name="help_text_automatic_callouts_how_2">**管理要听到的提示：**\n\n要选择 Soundscape 将自动播报的内容类型，请通过主屏幕的菜单进入*\"设置\"*页面。*\"管理提示\"*部分列出了应用可播报的各类项目。每一项旁边都有一个可开关的切换按钮。如果您想关闭所有播报，请点击列表顶部的*\"允许提示\"*切换。</string>
+    <string name="help_text_automatic_callouts_how_2">**管理您听到的提示：**\n\n要选择 Soundscape 会自动播报的内容类型，请从主屏幕的菜单进入*\"设置\"*页面。*\"设置\"*页面中的*\"管理提示\"*部分列出了应用可播报的各类项目。每一项旁边都有一个开关，您可以将其打开或关闭。如果您想关闭所有播报，请点击列表顶部的*\"允许提示\"*切换开关。</string>
     <string name="help_text_my_location_what">*\"我的位置\"*按钮可以快速为您提供帮助确定当前位置的信息。*\"我的位置\"*会告诉您当前位置的相关信息，包括您面朝的方向、附近的道路或路口，以及附近的兴趣点。</string>
     <string name="help_text_my_location_when">当您需要确定自己所在的位置或面朝的方向时，*\"我的位置\"*非常有用。</string>
     <string name="help_text_my_location_how">与主屏幕底部的所有四个按钮一样，在按下*\"我的位置\"*按钮之前，请将手机屏幕朝上平放（面向天空），手机顶部指向您面朝的方向。这就像指南针一样告诉应用您面朝的方向。只需点击*\"我的位置\"*按钮并聆听即可。</string>
@@ -1045,7 +1045,7 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">新版本信息</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">关闭新版本对话框</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">开源许可证</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\n这是 Soundscape 的第一个正式发布版。如果您是第一次使用此应用，可通过主菜单中的 *\"帮助\"* 页面或运行 *\"教程\"* 来了解更多信息。\n\n我们仍在努力改进应用。如果您遇到任何问题（无论大小），请通过主菜单中的 *\"联系支持\"* 选项向我们反馈。\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\n这是 Soundscape 的第一个正式发布版本。如果您是新用户，可以通过主菜单中的*\"帮助\"*页面或参加*\"引导教程\"*来了解更多。两者均可在主菜单中找到。\n\n我们仍在不断努力改进应用，因此无论问题多么轻微，都请通过主菜单中的*\"联系支持\"*选项向我们反馈。\n</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape 探索使用创新的音频技术，帮助人们更好地感知周围环境，从而更加自信、自主地出行。</string>
     <string name="osm_office_building" tools:ignore="MissingTranslation">办公楼</string>
     <string name="osm_school_building" tools:ignore="MissingTranslation">教学楼</string>
@@ -1365,4 +1365,5 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) 用于生成我们使用的地图切片。</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) 用于生成 3D 音频，并在 [Apache 2.0 许可证](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) 下提供使用。</string>
     <string name="trademark_disclaimer">所有第三方产品、公司名称和徽标均为其各自所有者的商标或注册商标，且仍归其各自所有者所有。</string>
+    <string name="loading_indicator_content_description">加载中</string>
 </resources>
