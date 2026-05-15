@@ -35,6 +35,8 @@ import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.beacon_styles_bass
+import org.scottishtecharmy.soundscape.resources.beacon_styles_broadband
 import org.scottishtecharmy.soundscape.resources.beacon_styles_current
 import org.scottishtecharmy.soundscape.resources.beacon_styles_drop
 import org.scottishtecharmy.soundscape.resources.beacon_styles_flare
@@ -43,6 +45,7 @@ import org.scottishtecharmy.soundscape.resources.beacon_styles_mallet_slow
 import org.scottishtecharmy.soundscape.resources.beacon_styles_mallet_very_slow
 import org.scottishtecharmy.soundscape.resources.beacon_styles_original
 import org.scottishtecharmy.soundscape.resources.beacon_styles_ping
+import org.scottishtecharmy.soundscape.resources.beacon_styles_rhythm
 import org.scottishtecharmy.soundscape.resources.beacon_styles_shimmer
 import org.scottishtecharmy.soundscape.resources.beacon_styles_signal
 import org.scottishtecharmy.soundscape.resources.beacon_styles_signal_slow
@@ -71,6 +74,9 @@ fun getBeaconResourceId(beaconName: String): StringResource {
         "Mallet" -> return Res.string.beacon_styles_mallet
         "Mallet Slow" -> return Res.string.beacon_styles_mallet_slow
         "Mallet Very Slow" -> return Res.string.beacon_styles_mallet_very_slow
+        "Bass" -> return Res.string.beacon_styles_bass
+        "Rhythm" -> return Res.string.beacon_styles_rhythm
+        "Broadband" -> return Res.string.beacon_styles_broadband
         else -> throw IllegalArgumentException("Unknown beacon name: $beaconName")
     }
 }

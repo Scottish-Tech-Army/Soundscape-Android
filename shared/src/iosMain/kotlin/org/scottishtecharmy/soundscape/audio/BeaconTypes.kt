@@ -164,4 +164,22 @@ val BEACON_TYPES: Map<String, BeaconType> = mapOf(
         beatsInPhrase = 18,
         selector = ::threeRegionSelector
     ),
+    "Bass" to BeaconType(
+        name = "Bass",
+        assets = listOf("Bass_A+", "Bass_A", "Bass_Behind"),
+        beatsInPhrase = 6,
+        selector = ::threeRegionSelector
+    ),
+    "Rhythm" to BeaconType(
+        name = "Rhythm",
+        assets = listOf("Rhythm_A+", "Rhythm_A", "Rhythm_Behind"),
+        beatsInPhrase = 12,
+        selector = ::threeRegionSelector
+    ),
+    "Broadband" to BeaconType(
+        name = "Broadband",
+        assets = listOf("Broadband_A+", "Broadband_A", "Broadband_Behind"),
+        beatsInPhrase = 6,
+        selector = ::threeRegionSelector
+    ),
 )

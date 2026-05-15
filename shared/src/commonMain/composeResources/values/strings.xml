@@ -108,6 +108,12 @@
     <string name="beacon_styles_mallet_slow">Mallet (Slow)</string>
     <!-- Name of a beacon style. "Mallet" is used in the same way here as in the string with key 'beacon.styles.mallet'. The difference here is that this version is a much slower version of the beacon audio. -->
     <string name="beacon_styles_mallet_very_slow">Mallet (Very Slow)</string>
+    <!-- Name of a beacon style designed for users with high-frequency hearing loss (presbycusis). The audio is dominated by low-frequency drum-like hits, hence the name "Bass". -->
+    <string name="beacon_styles_bass">Bass</string>
+    <!-- Name of a beacon style designed for users with single-sided deafness or asymmetric hearing loss. Direction is conveyed by the rhythmic pattern of clicks rather than by stereo panning, hence the name "Rhythm". -->
+    <string name="beacon_styles_rhythm">Rhythm</string>
+    <!-- Name of a beacon style designed for users with tinnitus or audiometric notches. The audio is a wide-spectrum pink-noise burst that has energy across the whole audible band, so it cannot be fully masked by a notch in any one frequency region. -->
+    <string name="beacon_styles_broadband">Broadband</string>
     <!-- Title for section in settings for audio beacons -->
     <string name="beacon_audio_beacon">Audio Beacon</string>
     <!-- Mute Beacon text description -->

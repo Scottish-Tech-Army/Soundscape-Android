@@ -134,6 +134,33 @@ namespace soundscape {
                                     {"file:///android_asset/Sounds/Mallet_Very_Slow_A.wav", 55.0},
                                     {"file:///android_asset/Sounds/Mallet_Very_Slow_Behind.wav", 180.0}
                             }
+                    },
+                    {
+                            "Bass",
+                            6,
+                            {
+                                    {"file:///android_asset/Sounds/Bass_A+.wav",             15.0},
+                                    {"file:///android_asset/Sounds/Bass_A.wav",              125.0},
+                                    {"file:///android_asset/Sounds/Bass_Behind.wav",              180.0}
+                            }
+                    },
+                    {
+                            "Rhythm",
+                            12,
+                            {
+                                    {"file:///android_asset/Sounds/Rhythm_A+.wav",           15.0},
+                                    {"file:///android_asset/Sounds/Rhythm_A.wav",            125.0},
+                                    {"file:///android_asset/Sounds/Rhythm_Behind.wav",            180.0}
+                            }
+                    },
+                    {
+                            "Broadband",
+                            6,
+                            {
+                                    {"file:///android_asset/Sounds/Broadband_A+.wav",        15.0},
+                                    {"file:///android_asset/Sounds/Broadband_A.wav",         125.0},
+                                    {"file:///android_asset/Sounds/Broadband_Behind.wav",         180.0}
+                            }
                     }
             };
 

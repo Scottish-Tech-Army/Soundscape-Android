@@ -15,7 +15,7 @@ class AudioEngineTest {
     fun beaconList() {
         val audioEngine = NativeAudioEngine()
         val beaconTypes = audioEngine.getListOfBeaconTypes()
-        Assert.assertEquals(beaconTypes.size, 13)
+        Assert.assertEquals(beaconTypes.size, 16)
         Assert.assertEquals("Original", beaconTypes[0])
         Assert.assertEquals("Current", beaconTypes[1])
         Assert.assertEquals("Tactile", beaconTypes[2])
@@ -29,6 +29,9 @@ class AudioEngineTest {
         Assert.assertEquals("Mallet", beaconTypes[10])
         Assert.assertEquals("Mallet Slow", beaconTypes[11])
         Assert.assertEquals("Mallet Very Slow", beaconTypes[12])
+        Assert.assertEquals("Bass", beaconTypes[13])
+        Assert.assertEquals("Rhythm", beaconTypes[14])
+        Assert.assertEquals("Broadband", beaconTypes[15])
     }
 
     private fun moveListener(audioEngine: AudioEngine, duration: Int, noMovement: Boolean = false) {
