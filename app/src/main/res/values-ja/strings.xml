@@ -247,7 +247,7 @@
     <string name="help_text_automatic_callouts_when_2">**特定の場所への移動**:\n\n 特定の場所に向かって歩く際には、交差点の自動コールアウトが特に役立つ可能性があります。交差点のコールアウトを使用すると、交差点に近付くとその交差点の構造がわかり、交差点を出るときには、どの道路にいるかを確認できます。</string>
     <string name="help_text_automatic_callouts_when_3">**無音にしたい場合**:\n\n 交差点を横断するときや、単にアプリの音声を消したい場合、コールアウトをオフにすることができます。コールアウトをオフにすると、[*現在地*]、[*近くのマーカー*]、[*周辺*]、[*前方*] のいずれかのボタンをタップしたときにだけ、情報が伝えられます。</string>
     <string name="help_text_automatic_callouts_how_1">**コールアウトのオン／オフ：**\n\n コールアウトをオフにするとアプリは無音になります。コールアウトは、ホーム画面のメニューから開く *「設定」* 画面の *「コールアウト」* セクションで、*「コールアウトを使用」* のトグルを切り替えてオン／オフできます。ヘッドホンにメディアコントロールボタンがある場合は、*「スキップ前へ」* コマンド（ダブルタップしてホールド）でコールアウトのオン／オフを切り替えることもできます。あるいはホーム画面右上の *「スリープ」* ボタンを使って、再びウェイクアップするまで Soundscape のコールアウトを停止することもできます。</string>
-    <string name="help_text_automatic_callouts_how_2">**聞きたいコールアウトの管理：**\n\n Soundscape が自動的にコールアウトする項目の種類を選ぶには、ホーム画面のメニューから *「設定」* 画面に移動してください。*「設定」* 画面の *「コールアウト」* セクションにはアプリがコールアウトできる項目の一覧があり、各項目にはオン／オフ可能なトグルがあります。すべてのコールアウトをオフにしたい場合は、一覧の一番上にある *「コールアウトを使用」* トグルをタップしてください。</string>
+    <string name="help_text_automatic_callouts_how_2">**どのコールアウトを聞くかの管理：**\n\n Soundscape が自動的にコールアウトする項目の種類を選択するには、ホーム画面のメニューから *\"設定\"* 画面に移動してください。*\"設定\"* 画面の *\"コールアウト\"* セクションには、アプリがコールアウトできる項目の一覧があります。各項目にはオン／オフを切り替えられるトグルボタンがあります。すべてのコールアウトをオフにしたい場合は、一覧の一番上にある *\"コールアウトを使用\"* のトグルをタップしてください。</string>
     <string name="help_text_my_location_what">[*現在地*] ボタンを使用すると、自分の現在地を簡単に確認できるように情報が提供されます。[*現在地*] ボタンでは、自分が向いている方向、近くの道路や交差点がどこにあるか、近くの特定地点がどこにあるかなど、現在地に関する情報がわかります。</string>
     <string name="help_text_my_location_when">[*現在地*] は、自分の現在地や向かっている方向を確認する必要がある場合に役立ちます。</string>
     <string name="help_text_my_location_how">ホーム画面の下部の 4 つのボタンはどれも同じですが、スマートフォンの画面を上 (空) に向けて水平に持ち、スマートフォンの画面上部を自分が向いている方向に合わせてから、[*現在地*] ボタンを押します。これにより、コンパスを合わせるように、自分が向いている方向をアプリに伝えることができます。[*現在地*] ボタンをタップすると、音声が聞こえます。</string>
@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">マーカーおよびルートを削除しました</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">新しいリリース情報</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">新しいリリース情報を閉じる</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nこれは Soundscape の最初の本番リリースです。アプリを初めてお使いの場合は、メインメニューにある *ヘルプ* 画面や *チュートリアル* で詳細をご確認ください。\n\n私たちは引き続きアプリの改善に取り組んでいますので、どんなに小さな問題でも、メインメニューの *サポートに連絡* オプションからご報告いただけると助かります。\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nこれは Soundscape の最初の製品版リリースです。アプリを初めて使う場合は、メインメニューの *ヘルプ* 画面や *ガイド付きチュートリアル* で詳しく確認できます。\n\n今後もアプリの改善に努めておりますので、どんなに小さな問題でも、メインメニューの *サポートに連絡* オプションからご報告ください。\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">オープンソースライセンス</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">フェリーターミナル</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s フェリーターミナル</string>
@@ -1217,7 +1217,7 @@
     <string name="osm_health_food" tools:ignore="MissingTranslation">健康食品店</string>
     <string name="osm_events_venue" tools:ignore="MissingTranslation">イベント会場</string>
     <string name="menu_help" tools:ignore="MissingTranslation">ヘルプ</string>
-    <string name="tour_welcome" tools:ignore="MissingTranslation">Soundscape のチュートリアルへようこそ。このチュートリアルではアプリの主な機能を案内します。チュートリアルはいつでもメインメニューの「音声チュートリアルを中止する」をタップして停止できます。まずは「近くの場所」を使って、興味のある場所を探してみましょう。「近くの場所」ボタンはホーム画面の検索バーのすぐ下にあります。今すぐタップして試してください。</string>
+    <string name="tour_welcome" tools:ignore="MissingTranslation">ガイド付きチュートリアルへようこそ。本チュートリアルではアプリの主な機能を順にご案内します。チュートリアルはいつでもメインメニューの「ガイド付きチュートリアルをキャンセル」をタップして中止できます。まずは「近くの場所」を見てみましょう。「近くの場所」はホーム画面の検索バーのすぐ下にあります。今すぐタップして試してください。</string>
     <string name="tour_select_place" tools:ignore="MissingTranslation">「近くの場所」では特定地点を種類別にグループ化しています。リストを見て回り、ひとつ選択してください。</string>
     <string name="tour_create_marker_started" tools:ignore="MissingTranslation">いいですね！現在は「場所の詳細」画面にいます。この画面では場所をマーカーとして保存するなどの操作ができます。Soundscape では自宅やバス停、今いる地点など、関心のある場所を何でもマークできます。試してみましょう。[マーカーを保存] をタップしてこの場所をマーカーとして保存してください。</string>
     <string name="tour_create_marker_done" tools:ignore="MissingTranslation">完了です！マーカー作成時は名前を編集したり追加のメモを付けたりできます。今それを試してみて、準備ができたら [完了] をタップしてください。</string>
@@ -1232,9 +1232,9 @@
     <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">端末がロックされていてもビーコンは再生されます。歩行中や乗り物に乗っているときは、移動方向を基にビーコンが再生されます。ただしロック中でも、コンパスのように端末を水平に前方に向ければ、その向きを使って音が再生されます。試してみてください。</string>
     <string name="tour_stop_beacon" tools:ignore="MissingTranslation">ビーコンを止める準備ができたら、[ルートを中止する] ボタンをタップしてください。</string>
     <string name="tour_finish" tools:ignore="MissingTranslation">これでチュートリアルは終了です。メインメニューからいつでも再度実行できます。アプリがお役に立てることを願っています！</string>
-    <string name="tour_cancel" tools:ignore="MissingTranslation">音声チュートリアルは中止されました。必要であれば、メインメニューから再度実行できます。</string>
-    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">音声チュートリアル</string>
-    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">音声チュートリアルを中止する</string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation">ガイド付きチュートリアルはキャンセルされました。必要であればメインメニューからいつでも再度実行できます。</string>
+    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">ガイド付きチュートリアル</string>
+    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">ガイド付きチュートリアルをキャンセル</string>
     <string name="search_bar_hint" tools:ignore="MissingTranslation">目的地の名前または住所を入力してください</string>
     <string name="all_places_nearby_description" tools:ignore="MissingTranslation">近くのすべての場所をフィルタなしで表示する</string>
     <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">近くの公共交通機関の一覧を表示する</string>
@@ -1365,4 +1365,5 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) は、アプリで使用する地図タイルの生成に使用されています。</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) は 3D オーディオの生成に使用されており、[Apache 2.0 ライセンス](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) のもとで利用可能です。</string>
     <string name="trademark_disclaimer">第三者の製品名、会社名およびロゴは各社の商標または登録商標であり、それぞれの権利所有者に帰属します。</string>
+    <string name="loading_indicator_content_description">読み込み中</string>
 </resources>
