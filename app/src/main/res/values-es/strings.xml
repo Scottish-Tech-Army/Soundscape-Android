@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Marcadores y rutas eliminados</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Información sobre la nueva versión</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Cerrar el cuadro de diálogo de la nueva versión</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nEsta es la primera versión de producción de Soundscape. Si es nuevo en la aplicación, puede obtener más información en las pantallas de *Ayuda* o realizando el *Tutorial*. Ambas opciones están disponibles en el menú principal.\n\nSeguimos trabajando intensamente para mejorar la aplicación, así que, por favor, informe de cualquier problema que encuentre, por pequeño que sea, a través de la opción *Contacto con soporte* del menú principal.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nEsta es la primera versión de producción de Soundscape. Si es nuevo en la aplicación, puede obtener más información en las pantallas de *Ayuda* o realizando el *Tutorial guiado*. Ambas opciones están disponibles en el menú principal.\n\nSeguimos trabajando intensamente para mejorar la aplicación, así que, por favor, informe de cualquier problema que encuentre, por pequeño que sea, a través de la opción *Contacto con soporte* del menú principal.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licencias de código abierto</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal de ferry</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">Terminal de ferry %s</string>
@@ -1217,7 +1217,7 @@
     <string name="osm_health_food" tools:ignore="MissingTranslation">Tienda de productos naturales</string>
     <string name="osm_events_venue" tools:ignore="MissingTranslation">Recinto para eventos</string>
     <string name="menu_help" tools:ignore="MissingTranslation">Ayuda</string>
-    <string name="tour_welcome" tools:ignore="MissingTranslation">Bienvenido al tutorial de Soundscape. Este tutorial te guiará por las principales funciones de la aplicación. Puedes detener el tutorial en cualquier momento pulsando \"Cancelar tutorial de audio\" en el menú principal. Empecemos con \"Lugares cercanos\", que te permite encontrar sitios de interés. El botón \"Lugares cercanos\" está en la pantalla principal, justo debajo de la barra de búsqueda. Pulsa ahora para probarlo.</string>
+    <string name="tour_welcome" tools:ignore="MissingTranslation">Bienvenido al tutorial de Soundscape. Este tutorial te guiará por las principales funciones de la aplicación. Puedes detener el tutorial en cualquier momento pulsando \"Cancelar tutorial guiado\" en el menú principal. Empecemos con \"Lugares cercanos\", que te permite encontrar sitios de interés. El botón \"Lugares cercanos\" está en la pantalla principal, justo debajo de la barra de búsqueda. Pulsa ahora para probarlo.</string>
     <string name="tour_select_place" tools:ignore="MissingTranslation">Lugares cercanos agrupa los puntos de interés por tipo. Explora las listas de lugares y selecciona uno de ellos.</string>
     <string name="tour_create_marker_started" tools:ignore="MissingTranslation">¡Genial! Ahora te encuentras en la pantalla Detalles de la ubicación. Esta pantalla te permite seleccionar varias acciones, entre ellas guardar la ubicación como marcador. Con Soundscape, puedes marcar cualquier cosa que te interese en tu entorno. Por ejemplo, puedes marcar tu casa, tu parada de autobús o incluso el lugar donde te encuentras ahora. Vamos a probarlo. Guarda esta ubicación como marcador pulsando \"Guardar como marcador\".</string>
     <string name="tour_create_marker_done" tools:ignore="MissingTranslation">¡Perfecto! Al crear un marcador, puedes editar su nombre y añadir anotaciones adicionales. Hazlo ahora y, cuando estés listo, pulsa \"Listo\".</string>
@@ -1232,9 +1232,9 @@
     <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">Aunque tu teléfono esté bloqueado, la señal de audio seguirá reproduciéndose. Si caminas o vas en un vehículo, la aplicación usa la dirección de tu desplazamiento para reproducir la señal. Sin embargo, incluso con el teléfono bloqueado, puedes sostenerlo plano frente a ti, como una brújula, y la app usará la dirección hacia la que apunta el teléfono. Pruébalo.</string>
     <string name="tour_stop_beacon" tools:ignore="MissingTranslation">Cuando estés listo para detener la señal, pulsa el botón \"Detener ruta\".</string>
     <string name="tour_finish" tools:ignore="MissingTranslation">Con esto finaliza el tutorial. Puedes volver a ejecutarlo desde el menú principal. ¡Esperamos que la aplicación te resulte útil!</string>
-    <string name="tour_cancel" tools:ignore="MissingTranslation">El tutorial de audio ha sido cancelado. Si lo deseas, puedes volver a ejecutarlo desde el menú principal.</string>
-    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Tutorial de audio</string>
-    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Cancelar tutorial de audio</string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation">El tutorial guiado ha sido cancelado. Si lo deseas, puedes volver a ejecutarlo desde el menú principal.</string>
+    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">Tutorial guiado</string>
+    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">Cancelar tutorial guiado</string>
     <string name="search_bar_hint" tools:ignore="MissingTranslation">Escriba el nombre de un destino o una dirección</string>
     <string name="all_places_nearby_description" tools:ignore="MissingTranslation">ver una lista sin filtrar de todos los lugares cercanos</string>
     <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">ver una lista de paradas de transporte público cercanas</string>
