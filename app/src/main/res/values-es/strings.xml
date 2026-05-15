@@ -1365,4 +1365,5 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) se utiliza para generar las teselas de mapas que usamos.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) se utiliza para generar el audio 3D y está disponible para su uso bajo la [licencia Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">Todos los nombres y logotipos de productos y empresas de terceros son marcas comerciales o marcas registradas y siguen siendo propiedad de sus respectivos titulares.</string>
+    <string name="loading_indicator_content_description">Cargando…</string>
 </resources>
