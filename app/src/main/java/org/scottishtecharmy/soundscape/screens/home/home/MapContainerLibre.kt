@@ -251,6 +251,7 @@ fun MapContainerLibre(
     userSymbolRotation: Float,
     beaconLocation: LngLatAlt?,
     routeData: RouteWithMarkers?,
+    currentBeaconWaypointIndex: Int = 0,
     modifier: Modifier = Modifier,
     editBeaconLocation: Boolean = false,
     onMapLongClick: OnMapLongClickListener,
@@ -298,6 +299,8 @@ fun MapContainerLibre(
             val currentRouteData = remember { mutableStateOf(routeData) }
             val routeMarkers = remember { mutableStateOf<List<Symbol>?>(null) }
             val beaconLocationMarker = remember { mutableStateOf<Symbol?>(null) }
+            val currentBeaconLocation = remember { mutableStateOf(beaconLocation) }
+            val currentBeaconIndex = remember { mutableStateOf(currentBeaconWaypointIndex) }
             val symbol = remember { mutableStateOf<Symbol?>(null) }
             val symbolManager = remember { mutableStateOf<SymbolManager?>(null) }
             val filesDir = remember { context.filesDir.toString() }
@@ -514,7 +517,7 @@ fun MapContainerLibre(
                         if (beaconLocation != null) {
                             val markerOptions = SymbolOptions()
                                 .withLatLng(beaconLocation.toLatLng())
-                                .withIconImage(LOCATION_MARKER_NAME.format(0))
+                                .withIconImage(LOCATION_MARKER_NAME.format(currentBeaconWaypointIndex))
                                 .withIconAnchor("bottom")
                                 .withIconSize(1.5f)
                             val beacon = sm.create(markerOptions)
@@ -650,6 +653,25 @@ fun MapContainerLibre(
                     updateRouteMarkers(sm, annotationList, routeData, routeMarkers)
                     sm.update(annotationList)
                     currentRouteData.value = routeData
+                }
+            }
+
+            // Check if the beacon location or waypoint index has changed
+            if (beaconLocation != currentBeaconLocation.value ||
+                currentBeaconWaypointIndex != currentBeaconIndex.value) {
+                symbolManager.value?.let { sm ->
+                    beaconLocationMarker.value?.let { sm.delete(it) }
+                    beaconLocationMarker.value = null
+                    if (beaconLocation != null) {
+                        val markerOptions = SymbolOptions()
+                            .withLatLng(beaconLocation.toLatLng())
+                            .withIconImage(LOCATION_MARKER_NAME.format(currentBeaconWaypointIndex))
+                            .withIconAnchor("bottom")
+                            .withIconSize(1.5f)
+                        beaconLocationMarker.value = sm.create(markerOptions)
+                    }
+                    currentBeaconLocation.value = beaconLocation
+                    currentBeaconIndex.value = currentBeaconWaypointIndex
                 }
             }
 

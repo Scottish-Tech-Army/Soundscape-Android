@@ -172,6 +172,7 @@ fun Home(
                     MapContainerLibre(
                         beaconLocation = state.beaconState?.location,
                         routeData = state.currentRouteData.routeData,
+                        currentBeaconWaypointIndex = state.currentRouteData.currentWaypoint,
                         mapCenter = location,
                         allowScrolling = false,
                         userLocation = location,
