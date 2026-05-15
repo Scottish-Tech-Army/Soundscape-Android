@@ -276,7 +276,7 @@
     <string name="help_text_automatic_callouts_when_2">عندما تكون في طريقك إلى موقع معين ، يمكن أن تكون وسائل الشرح التلقائية للتقاطعات مفيدة بشكل خاص. تخبرك شرح التقاطع عن تخطيط التقاطعات مع اقترابها ، وتأكيد الطريق الذي تسير فيه عند تركها.</string>
     <string name="help_text_automatic_callouts_when_3">عندما تكون على وشك عبور طريق أو فقط تحتاج إلى أن يكون التطبيق هادئًا ، يمكنك إيقاف شرح الشرح. عندما يتم إيقاف شرح الشرح ، لن يخبرك التطبيق بالمعلومات فقط إذا قمت بالنقر على أحد الأزرار \" *\" *أو \"العلامات القريبة\" *أو *\"حولي\" *أو *\"أمامي\" *.</string>
     <string name="help_text_automatic_callouts_how_1">**تشغيل أو إيقاف وسائل الارشاد:**\n\nإيقاف وسائل الارشاد سيصمت التطبيق. يمكن تشغيل أو إيقاف وسائل الارشاد في قسم *\"إدارة وسائل الارشاد\"* في شاشة *\"الإعدادات\"* حيث يمكنك النقر على مفتاح التبديل *\"وسائل الارشاد\"* لتشغيلها أو إيقافها. يمكنك أيضًا تشغيل أو إيقاف وسائل الارشاد باستخدام أمر *\"تخطي إلى الأمام\"* (اضغط مرتين مع الاستمرار) إذا كانت لسماعات رأسك أزرار تحكم في الوسائط. بدلاً من ذلك، يمكنك استخدام زر *\"وضع الخمول\"* في الزاوية العلوية اليسرى من الشاشة الرئيسية لإيقاف Soundscape عن إصدار وسائل الارشاد حتى تختار إيقاظه مجددًا.</string>
-    <string name="help_text_automatic_callouts_how_2">**إدارة أنواع وسائل الارشاد التي تسمعها:**\n\nلاختيار أنواع الأشياء التي سيعلنها Soundscape تلقائيًا، اذهب إلى شاشة *\"الإعدادات\"* من القائمة على الشاشة الرئيسية. يتضمن قسم *\"وسائل الارشاد\"* في شاشة *\"الإعدادات\"* قائمة بأنواع الأشياء التي يمكن للتطبيق الإعلان عنها. يحتوي كل عنصر على زر تبديل يمكنك تشغيله أو إيقافه. إذا رغبت في إيقاف كل وسائل الارشاد، انقر على زر التبديل *\"وسائل الارشاد\"* في أعلى القائمة.</string>
+    <string name="help_text_automatic_callouts_how_2">**إدارة ما تُعلن عنه وسائل الارشاد:**\n\nلاختيار أنواع الأشياء التي سيعلنها Soundscape تلقائيًا، اذهب إلى شاشة *\"إعدادات\"* من القائمة في الشاشة الرئيسية. يحتوي قسم *\"إدارة وسائل الارشاد\"* في شاشة *\"إعدادات\"* على قائمة بأنواع الأشياء التي يمكن للتطبيق الإعلان عنها. يحتوي كل بند على زر تبديل يمكنك تشغيله أو إيقافه. إذا رغبت في إيقاف جميع وسائل الارشاد، فاضغط على مفتاح التبديل *\"وسائل الارشاد\"* في أعلى القائمة.</string>
     <string name="help_text_my_location_what">يمنحك زر * \"موقعي\" * بسرعة معلومات تساعدك على معرفة مكان وجودك حاليًا. * \"موقعي\"* يخبرك عن موقعك الحالي بما في ذلك أشياء مثل الاتجاه الذي تواجهه ، حيث توجد الطرق أو التقاطعات القريبة ، وحيث توجد نقاط اهتمام قريبة.</string>
     <string name="help_text_my_location_when">* \"موقعي\"* مفيد عندما تحتاج إلى معرفة مكانك أو الاتجاه الأساسي الذي تواجهه.</string>
     <string name="help_text_my_location_how">كما هو الحال مع جميع الأزرار الأربعة الموجودة في أسفل الشاشة الرئيسية ، امسك هاتفك مع الشاشة شقة (في مواجهة السماء) وأعلى الهاتف يشير إلى الاتجاه الذي تواجهه قبل الضغط على زر * \"My Fork\" *. هذا يتصرف مثل بوصلة تخبر التطبيق عن الاتجاه الذي تواجهه. ببساطة ، انقر فوق الزر \"My Focation\" * واستمع.</string>
@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">تم حذف العلامات والطرق</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">معلومات الإصدار الجديد</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">إغلاق مربع حوار الإصدار الجديد</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nهذا هو الإصدار الإنتاجي الأول من Soundscape. إذا كنت جديدًا على التطبيق، يمكنك معرفة المزيد عنه من شاشات *المساعدة* أو عن طريق إجراء *البرنامج التعليمي*. كلاهما خياران في القائمة الرئيسية.\n\nما زلنا نعمل جاهدين على تحسين التطبيق، لذا يرجى الإبلاغ عن أي مشكلة تواجهك، مهما كانت صغيرة، عبر خيار *الاتصال للدعم* في القائمة الرئيسية.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nهذا هو الإصدار الإنتاجي الأول من Soundscape. إذا كنت جديدًا على التطبيق، يمكنك معرفة المزيد عنه من شاشات *\"المساعدة\"* أو من خلال أخذ *\"الدرس التعليمي\"*. كلا الخيارين متاحان في القائمة الرئيسية.\n\nنحن لا نزال نعمل جاهدين على تحسين التطبيق، لذا نرجو منك الإبلاغ عن أي مشكلات تواجهها، مهما كانت صغيرة، عبر خيار *\"الاتصال للدعم\"* في القائمة الرئيسية.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">تراخيص المصادر المفتوحة</string>
     <string name="osm_office" tools:ignore="MissingTranslation">مكتب</string>
     <string name="osm_school" tools:ignore="MissingTranslation">مدرسة</string>
@@ -1217,7 +1217,7 @@
     <string name="osm_health_food" tools:ignore="MissingTranslation">محل أطعمة صحية</string>
     <string name="osm_events_venue" tools:ignore="MissingTranslation">مكان فعاليات</string>
     <string name="menu_help" tools:ignore="MissingTranslation">المساعدة</string>
-    <string name="tour_welcome" tools:ignore="MissingTranslation">مرحبًا بك في الدرس التعليمي الخاص بـ Soundscape. هذا الدرس سيرشدك عبر الميزات الرئيسية للتطبيق. يمكنك إيقاف الدرس في أي وقت بالضغط على «إلغاء البرنامج التعليمي الصوتي» من القائمة الرئيسية. نبدأ بـ «الأماكن القريبة» التي تُمكّنك من العثور على أماكن تهمك. زر «الأماكن القريبة» موجود على الشاشة الرئيسية أسفل شريط البحث مباشرة. اضغط عليه الآن لتجربته.</string>
+    <string name="tour_welcome" tools:ignore="MissingTranslation">مرحبًا بك في الدرس التعليمي. هذا الدرس سيعلّمك الميزات الرئيسية للتطبيق. يمكنك إيقاف الدرس في أي وقت بالضغط على \"إلغاء الدرس التعليمي\" من القائمة الرئيسية. لنبدأ بـ \"الأماكن القريبة\"، الذي يتيح لك العثور على أماكن ذات اهتمام. زر \"الأماكن القريبة\" موجود في الشاشة الرئيسية أسفل شريط البحث مباشرة. اضغط عليه الآن لتجربته.</string>
     <string name="tour_select_place" tools:ignore="MissingTranslation">تجميعة «الأماكن القريبة» بتجمّع نقاط الاهتمام حسب النوع. تصفّح القوائم واختر مكانًا.</string>
     <string name="tour_create_marker_started" tools:ignore="MissingTranslation">ممتاز! أنت الآن في شاشة تفاصيل الموقع. الشاشة دي بتتيح لك تنفيذ عدة إجراءات منها حفظ الموقع كعلامة. في Soundscape تقدر تعلّم أي مكان حواليك يهمك — مثلاً منزلك، موقف الأتوبيس، أو حتى المكان اللي أنت واقف فيه دلوقتي. خلّينا نجرب. احفظ هذا الموقع كعلامة بالضغط على «حفظ كعلامة».</string>
     <string name="tour_create_marker_done" tools:ignore="MissingTranslation">رائع! لما تنشئ علامة تقدر تعدل اسمها وتضيف ملاحظات إضافية. جرّب ده الآن، ولما تكون جاهزًا اضغط «تم».</string>
@@ -1232,9 +1232,9 @@
     <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">لما يكون هاتفك مقفول، المنارة هتشتغل برضه. لو كنت ماشي أو في وسيلة مواصلات، التطبيق هيستخدم اتجاه حركتك لتشغيل المنارة. لكن حتى لو الهاتف مقفول تقدر تمسكه مسطح قدامك زي البوصلة، وهيستخدم الاتجاه اللي الهاتف مشير ليه. جرّب كده.</string>
     <string name="tour_stop_beacon" tools:ignore="MissingTranslation">لما تكون جاهز توقف المنارة، اضغط زر «ايقاف الطريق».</string>
     <string name="tour_finish" tools:ignore="MissingTranslation">بهذا ينتهي الدرس التعليمي. يمكنك تشغيله مرة أخرى من القائمة الرئيسية. نأمل أن تجد التطبيق مفيدًا!</string>
-    <string name="tour_cancel" tools:ignore="MissingTranslation">تم إلغاء الدرس التعليمي الصوتي. إذا رغبت، يمكنك تشغيله مرة أخرى من القائمة الرئيسية.</string>
-    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">البرنامج التعليمي الصوتي</string>
-    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">إلغاء البرنامج التعليمي الصوتي</string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation">تم إلغاء الدرس التعليمي. إذا رغبت، يمكنك تشغيله مرة أخرى من القائمة الرئيسية.</string>
+    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">الدرس التعليمي</string>
+    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">إلغاء الدرس التعليمي</string>
     <string name="search_bar_hint" tools:ignore="MissingTranslation">اكتب اسم الوجهة أو العنوان</string>
     <string name="all_places_nearby_description" tools:ignore="MissingTranslation">عرض قائمة بكل الأماكن القريبة</string>
     <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">عرض قائمة بمحطات ووسائل النقل العام القريبة</string>
@@ -1365,4 +1365,5 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) تُستخدم لتوليد بلاطات الخرائط التي نستخدمها.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) تُستخدم لتوليد الصوت ثلاثي الأبعاد، ومتاحة للاستخدام بموجب [رخصة Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">جميع أسماء المنتجات والشركات والشعارات الخاصة بأطراف ثالثة هي علامات تجارية أو علامات تجارية مسجلة وتظل ملكًا لأصحابها.</string>
+    <string name="loading_indicator_content_description">تحميل</string>
 </resources>
