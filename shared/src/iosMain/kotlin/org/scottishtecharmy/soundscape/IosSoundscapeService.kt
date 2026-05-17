@@ -34,7 +34,7 @@ import org.scottishtecharmy.soundscape.intents.IncomingIntent
 import org.scottishtecharmy.soundscape.intents.resolveRouteByName
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import org.scottishtecharmy.soundscape.locationprovider.IosDirectionProvider
-import org.scottishtecharmy.soundscape.locationprovider.IosHeadTrackingProvider
+import org.scottishtecharmy.soundscape.locationprovider.IosCompositeHeadTrackingProvider
 import org.scottishtecharmy.soundscape.locationprovider.IosLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
@@ -92,8 +92,8 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     var locationProvider: LocationProvider = iosLocationProvider
         private set
     val directionProvider: IosDirectionProvider = IosDirectionProvider()
-    val headTrackingProvider: IosHeadTrackingProvider =
-        IosHeadTrackingProvider(directionProvider, iosLocationProvider)
+    val headTrackingProvider: IosCompositeHeadTrackingProvider =
+        IosCompositeHeadTrackingProvider(directionProvider, iosLocationProvider)
     val audioEngine = IosAudioEngine()
     val preferencesProvider = IosPreferencesProvider()
     val networkUtils = IosNetworkUtils()

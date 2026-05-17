@@ -70,6 +70,7 @@ lifecycleRuntimeComposeAndroid = "2.9.2"
 lifecycleProcess = "2.9.2"
 uiautomator = "2.3.0"
 jaredsburrows-license = "0.9.8"
+kable = "0.40.2"
 
 # These libraries can't go any higher without breaking map zooming
 composeBom = "2025.04.00"
@@ -112,6 +113,7 @@ html-mermaid-dokka-plugin = { module = "com.glureau:html-mermaid-dokka-plugin", 
 json = { module = "org.json:json", version.ref = "json" }
 jts-core = { module = "org.locationtech.jts:jts-core", version.ref = "jtsCore" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+kable-core = { module = "com.juul.kable:kable-core", version.ref = "kable" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
 androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityCompose" }
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBom" }

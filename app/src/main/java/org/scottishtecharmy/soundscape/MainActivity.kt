@@ -103,6 +103,14 @@ class MainActivity : AppCompatActivity() {
     private val micPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { /* no-op */ }
 
+    // Bluetooth scan + connect for the external BLE head-tracker. Re-applies the
+    // HEAD_TRACKING_ENABLED preference once the user has decided, so the service
+    // picks up newly-granted permissions without a toggle.
+    private val bluetoothPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {
+            soundscapeServiceConnection.soundscapeService?.applyHeadTrackingEnabled()
+        }
+
     // we need location permission to be able to start the service
     private val locationPermissionRequest = registerForActivityResult(
         ActivityResultContracts.RequestMultiplePermissions()
@@ -187,7 +195,27 @@ class MainActivity : AppCompatActivity() {
                 Log.e(TAG, "mediaControlsMode $mode")
                 soundscapeServiceConnection.soundscapeService?.updateMediaControls(mode)
             }
+
+            PreferenceKeys.HEAD_TRACKING_ENABLED -> {
+                val enabled = preferences.getBoolean(
+                    PreferenceKeys.HEAD_TRACKING_ENABLED,
+                    PreferenceDefaults.HEAD_TRACKING_ENABLED,
+                )
+                if (enabled) requestBluetoothPermissionsIfNeeded()
+            }
         }
+    }
+
+    private fun requestBluetoothPermissionsIfNeeded() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) return
+        val needed = listOf(
+            Manifest.permission.BLUETOOTH_SCAN,
+            Manifest.permission.BLUETOOTH_CONNECT,
+        ).filter {
+            ContextCompat.checkSelfPermission(this, it) !=
+                android.content.pm.PackageManager.PERMISSION_GRANTED
+        }
+        if (needed.isNotEmpty()) bluetoothPermissionLauncher.launch(needed.toTypedArray())
     }
 
     private var locationPermissionGranted = -1

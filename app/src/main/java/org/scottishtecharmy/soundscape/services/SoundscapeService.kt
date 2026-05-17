@@ -82,6 +82,7 @@ import org.scottishtecharmy.soundscape.locationprovider.GpxDrivenProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
+import org.scottishtecharmy.soundscape.locationprovider.bleimu.BleImuHeadTrackingProvider
 import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
 import org.scottishtecharmy.soundscape.network.UserAgentInterceptor
 import org.scottishtecharmy.soundscape.network.createAndroidVectorTileClient
@@ -131,6 +132,16 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     lateinit var locationProvider: LocationProvider
     lateinit var directionProvider: DirectionProvider
     lateinit var routePlayer: RoutePlayer
+
+    // External BLE IMU head tracker (WitMotion WT9011DCL). Null until providers are built;
+    // null again on Android versions without the necessary permissions granted.
+    private var headTrackingProvider: BleImuHeadTrackingProvider? = null
+
+    // Listener instance is field-level so it can be unregistered cleanly in onDestroy.
+    private val headTrackingPrefListener =
+        SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            if (key == PreferenceKeys.HEAD_TRACKING_ENABLED) applyHeadTrackingEnabled()
+        }
 
     override val filteredLocationFlow: StateFlow<SoundscapeLocation?>
         get() = locationProvider.filteredLocationFlow
@@ -257,6 +268,45 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
             platformGeocoder = platformGeocoder,
             streetPreviewEnabled = streetPreviewEnabled,
         )
+
+        rebuildHeadTrackingProvider()
+    }
+
+    /**
+     * Replace [headTrackingProvider] with a fresh instance bound to the current
+     * location/direction providers. Called whenever those providers are rebuilt
+     * (initial start or street-preview toggle). Honours the HEAD_TRACKING_ENABLED
+     * preference — only starts streaming if the user has it on.
+     */
+    private fun rebuildHeadTrackingProvider() {
+        headTrackingProvider?.destroy()
+        val provider = BleImuHeadTrackingProvider(directionProvider, locationProvider)
+        headTrackingProvider = provider
+        geoEngine.setHeadTrackingProvider(provider)
+        applyHeadTrackingEnabled()
+    }
+
+    fun applyHeadTrackingEnabled() {
+        val enabled = sharedPreferences.getBoolean(
+            PreferenceKeys.HEAD_TRACKING_ENABLED,
+            PreferenceDefaults.HEAD_TRACKING_ENABLED,
+        )
+        val provider = headTrackingProvider ?: return
+        if (enabled) {
+            // If permissions are missing the start is deferred — MainActivity
+            // requests them and re-applies the preference once granted.
+            if (hasBluetoothPermissions()) provider.start()
+        } else {
+            provider.stop()
+        }
+    }
+
+    private fun hasBluetoothPermissions(): Boolean {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.S) return true
+        val scan = ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN)
+        val connect = ContextCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_CONNECT)
+        return scan == PackageManager.PERMISSION_GRANTED &&
+            connect == PackageManager.PERMISSION_GRANTED
     }
 
     // Flow to return beacon location
@@ -438,6 +488,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
             // Update the media controls mode
             sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
+            sharedPreferences.registerOnSharedPreferenceChangeListener(headTrackingPrefListener)
             val mode = sharedPreferences.getString(
                 PreferenceKeys.MEDIA_CONTROLS_MODE,
                 PreferenceDefaults.MEDIA_CONTROLS_MODE
@@ -505,6 +556,11 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         audioBeacon = 0
         audioEngine.destroy()
 
+        headTrackingProvider?.destroy()
+        headTrackingProvider = null
+        if (::sharedPreferences.isInitialized) {
+            sharedPreferences.unregisterOnSharedPreferenceChangeListener(headTrackingPrefListener)
+        }
         locationProvider.destroy()
         directionProvider.destroy()
         started = false

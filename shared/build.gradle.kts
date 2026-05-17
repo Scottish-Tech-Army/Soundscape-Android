@@ -51,6 +51,7 @@ kotlin {
             implementation(libs.jetbrains.lifecycle.viewmodel.compose)
             implementation(libs.intellij.markdown)
             implementation(libs.reorderable)
+            implementation(libs.kable.core)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
