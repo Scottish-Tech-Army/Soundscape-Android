@@ -81,8 +81,11 @@ import org.scottishtecharmy.soundscape.locationprovider.GooglePlayLocationProvid
 import org.scottishtecharmy.soundscape.locationprovider.GpxDrivenProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
+import org.scottishtecharmy.soundscape.locationprovider.CompositeHeadTrackingProvider
+import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.bleimu.BleImuHeadTrackingProvider
+import org.scottishtecharmy.soundscape.locationprovider.bose.BoseFramesHeadTrackingProvider
 import org.scottishtecharmy.soundscape.network.PhotonSearchProvider
 import org.scottishtecharmy.soundscape.network.UserAgentInterceptor
 import org.scottishtecharmy.soundscape.network.createAndroidVectorTileClient
@@ -133,9 +136,9 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     lateinit var directionProvider: DirectionProvider
     lateinit var routePlayer: RoutePlayer
 
-    // External BLE IMU head tracker (WitMotion WT9011DCL). Null until providers are built;
-    // null again on Android versions without the necessary permissions granted.
-    private var headTrackingProvider: BleImuHeadTrackingProvider? = null
+    // External head-tracker — currently a composite of WitMotion (WT9011DCL)
+    // and Bose Frames AR. Null until providers are built.
+    private var headTrackingProvider: HeadTrackingProvider? = null
 
     // Listener instance is field-level so it can be unregistered cleanly in onDestroy.
     private val headTrackingPrefListener =
@@ -280,7 +283,12 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
      */
     private fun rebuildHeadTrackingProvider() {
         headTrackingProvider?.destroy()
-        val provider = BleImuHeadTrackingProvider(directionProvider, locationProvider)
+        val provider = CompositeHeadTrackingProvider(
+            listOf(
+                BleImuHeadTrackingProvider(directionProvider, locationProvider),
+                BoseFramesHeadTrackingProvider(directionProvider, locationProvider),
+            ),
+        )
         headTrackingProvider = provider
         geoEngine.setHeadTrackingProvider(provider)
         applyHeadTrackingEnabled()
