@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -54,7 +55,6 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.components.Flexibl
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.screens.talkbackHidden
 import org.scottishtecharmy.soundscape.screens.talkbackLive
-import org.scottishtecharmy.soundscape.ui.LoadingDialog
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.DownloadState
@@ -465,15 +465,24 @@ fun OfflineMapsScreen(
                     }
                     when (uiState.nearbyExtractsState) {
                         is NearbyExtractsState.Loading -> {
-                            LoadingDialog()
-                            Text(
-                                text = stringResource(R.string.offline_maps_loading_manifest),
-                                style = MaterialTheme.typography.headlineSmall,
-                                color = MaterialTheme.colorScheme.onSurface,
+                            Row(
                                 modifier = Modifier
-                                    .talkbackLive()
-                                    .mediumPadding()
-                            )
+                                    .fillMaxWidth()
+                                    .mediumPadding(),
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(spacing.small),
+                            ) {
+                                CircularProgressIndicator(
+                                    color = MaterialTheme.colorScheme.secondary,
+                                    trackColor = MaterialTheme.colorScheme.surfaceVariant,
+                                )
+                                Text(
+                                    text = stringResource(R.string.offline_maps_loading_manifest),
+                                    style = MaterialTheme.typography.headlineSmall,
+                                    color = MaterialTheme.colorScheme.onSurface,
+                                    modifier = Modifier.talkbackLive()
+                                )
+                            }
                         }
 
                         NearbyExtractsState.Error -> {
