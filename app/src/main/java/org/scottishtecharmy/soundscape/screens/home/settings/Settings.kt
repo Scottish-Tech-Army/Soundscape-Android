@@ -46,6 +46,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import me.zhanghai.compose.preference.Preference
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
 import me.zhanghai.compose.preference.listPreference
 import me.zhanghai.compose.preference.sliderPreference
@@ -251,23 +252,23 @@ fun BeaconStylePreference(
     var showDialog by rememberSaveable { mutableStateOf(false) }
     var selectedInDialog by rememberSaveable { mutableStateOf(savedValue) }
 
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .clickable(role = Role.Button) {
-                selectedInDialog = savedValue
-                showDialog = true
-            }
-    ) {
-        SettingDetails(
-            R.string.beacon_settings_style,
-            R.string.beacon_settings_style_description,
-            textColor
-        )
-        val idx = beaconValues.indexOf(savedValue).coerceAtLeast(0)
-        val label = beaconDescriptions.getOrNull(idx) ?: savedValue
-        ClickableOption(label, textColor)
-    }
+    val idx = beaconValues.indexOf(savedValue).coerceAtLeast(0)
+    val label = beaconDescriptions.getOrNull(idx) ?: savedValue
+    Preference(
+        modifier = modifier,
+        title = {
+            SettingDetails(
+                R.string.beacon_settings_style,
+                R.string.beacon_settings_style_description,
+                textColor
+            )
+        },
+        summary = { ClickableOption(label, textColor) },
+        onClick = {
+            selectedInDialog = savedValue
+            showDialog = true
+        },
+    )
 
     if (showDialog) {
         // Start the preview once when the dialog opens. Using selectedInDialog
