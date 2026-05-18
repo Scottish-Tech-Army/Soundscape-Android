@@ -42,11 +42,9 @@ class BoseFramesClient {
         val peripheral = Peripheral(advertisement)
         peripheral.connect()
         try {
-            peripheral.write(
-                configCharacteristic,
-                boseEnableRotationOnlyConfig(rotationPeriodMs = ROTATION_PERIOD_MS),
-                WriteType.WithResponse,
-            )
+            val existing = peripheral.read(configCharacteristic)
+            val patched = patchEnableRotation(existing, rotationPeriodMs = ROTATION_PERIOD_MS)
+            peripheral.write(configCharacteristic, patched, WriteType.WithResponse)
             onConnected()
             peripheral.observe(dataCharacteristic).collect { bytes ->
                 onBytes(bytes)
@@ -54,6 +52,26 @@ class BoseFramesClient {
         } finally {
             peripheral.disconnect()
         }
+    }
+
+    /**
+     * Take the configuration the device just reported and turn on the fused
+     * rotation entry (sensorId = 2) at [rotationPeriodMs], leaving every other
+     * entry untouched. Preserving the original length is important — some
+     * firmware versions reject writes of a different size to what they sent.
+     */
+    private fun patchEnableRotation(existing: ByteArray, rotationPeriodMs: Int): ByteArray {
+        val out = existing.copyOf()
+        var pos = 0
+        while (pos + 2 < out.size) {
+            val sensorId = out[pos].toInt() and 0xFF
+            if (sensorId == ROTATION_SENSOR_ID) {
+                out[pos + 1] = ((rotationPeriodMs shr 8) and 0xFF).toByte()
+                out[pos + 2] = (rotationPeriodMs and 0xFF).toByte()
+            }
+            pos += 3
+        }
+        return out
     }
 
     companion object {
@@ -64,5 +82,7 @@ class BoseFramesClient {
 
         // 25 Hz — high enough for responsive head tracking, gentle on the frames' battery.
         private const val ROTATION_PERIOD_MS = 40
+        // Bose sensor index for the fused rotation quaternion.
+        private const val ROTATION_SENSOR_ID = 2
     }
 }

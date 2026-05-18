@@ -15,8 +15,10 @@ import org.scottishtecharmy.soundscape.locationprovider.bose.BoseFramesHeadTrack
  *  - [externalBle] — fallback composite of any paired external BLE head trackers
  *    (WitMotion IMU, Bose Frames AR), used only when AirPods are absent
  *
- * All children run continuously so swapping between AirPods and a BLE head
- * tracker is instant when the user removes / replaces them.
+ * To keep BLE scans off the air when AirPods are doing the job, [externalBle]
+ * is only kept running while AirPods are *not* in Connected / Calibrated state.
+ * When AirPods drop the connection, the external composite is restarted and
+ * its inner arbitration picks the first BLE device that connects.
  */
 class IosCompositeHeadTrackingProvider(
     directionProvider: DirectionProvider,
@@ -39,7 +41,24 @@ class IosCompositeHeadTrackingProvider(
         scope = newScope
 
         airpods.start()
-        externalBle.start()
+
+        newScope.launch {
+            // Gate the external-BLE composite on AirPods status. When AirPods
+            // are connected we don't need BLE scanning at all; the moment they
+            // disconnect, kick the external composite back on so WT/Bose can
+            // take over.
+            airpods.statusFlow.collect { airpodsStatus ->
+                val airpodsActive = airpodsStatus == HeadTrackingStatus.Connected ||
+                    airpodsStatus == HeadTrackingStatus.Calibrated
+                if (airpodsActive) {
+                    if (externalBle.statusFlow.value != HeadTrackingStatus.Inactive) {
+                        externalBle.stop()
+                    }
+                } else if (externalBle.statusFlow.value == HeadTrackingStatus.Inactive) {
+                    externalBle.start()
+                }
+            }
+        }
 
         newScope.launch {
             combine(

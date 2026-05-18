@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -75,9 +76,16 @@ open class HomeViewModel(
             }
         }
         scope.launch {
-            service.orientationFlow.collectLatest { value ->
-                if (value != null) {
-                    _state.update { it.copy(heading = value.headingDegrees) }
+            // Prefer the external head-tracker heading when one is active;
+            // fall back to the phone compass when no head tracker is paired.
+            combine(
+                service.orientationFlow,
+                service.headHeadingFlow,
+            ) { orientation, head ->
+                head?.degrees?.toFloat() ?: orientation?.headingDegrees
+            }.collectLatest { heading ->
+                if (heading != null) {
+                    _state.update { it.copy(heading = heading) }
                 }
             }
         }

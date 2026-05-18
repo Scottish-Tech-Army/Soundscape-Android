@@ -178,6 +178,8 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         get() = locationProvider.locationFlow
     override val orientationFlow: StateFlow<DeviceDirection?>
         get() = directionProvider.orientationFlow
+    override val headHeadingFlow: StateFlow<org.scottishtecharmy.soundscape.locationprovider.HeadHeading?>
+        get() = headTrackingProvider.headHeadingFlow
     override val currentRouteFlow: StateFlow<RoutePlayerState>
         get() = routePlayer.currentRouteFlow
 

@@ -61,23 +61,44 @@ class WitMotionFrameParserTest {
     }
 
     @Test
-    fun ignoresNonActiveHeader() {
-        // 0x55 0x71 is the register-response packet — parser should skip it
-        // (no IMU sample available) and pick up the next active frame.
-        val parser = WitMotionFrameParser()
-        val regFrame = ByteArray(20).also {
-            it[0] = 0x55; it[1] = 0x71
-        }
+    fun registerResponseRoutedToCallback() {
+        val seen = mutableListOf<WitMotionRegisterResponse>()
+        val parser = WitMotionFrameParser(onRegisterResponse = { seen.add(it) })
+        // Battery voltage register (0x64) returning 410 (= 4.10 V at 0.01 V/unit).
+        val regFrame = registerFrame(address = 0x64, rawValue = 410)
         val active = activeFrame(0, 0, 16384)
-        val out = parser.consume(regFrame + active, 0L)
+        val out = parser.consume(regFrame + active, 7L)
         assertEquals(1, out.size)
         assertNear(90.0, out[0].yawDegrees)
+        assertEquals(1, seen.size)
+        assertEquals(0x64, seen[0].address)
+        assertEquals(410, seen[0].rawValue)
+        assertEquals(7L, seen[0].timestampMillis)
     }
 
     @Test
     fun emptyInputProducesNothing() {
         val parser = WitMotionFrameParser()
         assertTrue(parser.consume(ByteArray(0), 0L).isEmpty())
+    }
+
+    @Test
+    fun decodesAccelAndGyroChannels() {
+        // 1g on Z (raw = 2048 because scale is 16/32768) and 100 deg/s about X
+        // (raw = 1638 because scale is 2000/32768).
+        val frame = activeFrame(
+            accelXRaw = 0, accelYRaw = 0, accelZRaw = 2048,
+            gyroXRaw = 1638, gyroYRaw = 0, gyroZRaw = 0,
+            rollRaw = 0, pitchRaw = 0, yawRaw = 0,
+        )
+        val out = WitMotionFrameParser().consume(frame, 0L)
+        assertEquals(1, out.size)
+        assertNear(0.0, out[0].accelG.x)
+        assertNear(0.0, out[0].accelG.y)
+        assertNear(1.0, out[0].accelG.z)
+        assertNear(100.0, out[0].gyroDps.x, tolerance = 0.5)
+        assertNear(0.0, out[0].gyroDps.y)
+        assertNear(0.0, out[0].gyroDps.z)
     }
 
     private fun assertNear(expected: Double, actual: Double, tolerance: Double = 0.01) {
@@ -87,11 +108,29 @@ class WitMotionFrameParserTest {
         )
     }
 
-    private fun activeFrame(rollRaw: Int, pitchRaw: Int, yawRaw: Int): ByteArray {
+    private fun activeFrame(rollRaw: Int, pitchRaw: Int, yawRaw: Int): ByteArray =
+        activeFrame(0, 0, 0, 0, 0, 0, rollRaw, pitchRaw, yawRaw)
+
+    private fun activeFrame(
+        accelXRaw: Int,
+        accelYRaw: Int,
+        accelZRaw: Int,
+        gyroXRaw: Int,
+        gyroYRaw: Int,
+        gyroZRaw: Int,
+        rollRaw: Int,
+        pitchRaw: Int,
+        yawRaw: Int,
+    ): ByteArray {
         val b = ByteArray(20)
         b[0] = 0x55
         b[1] = 0x61
-        // accel + gyro left as zero (offsets 2-13)
+        writeInt16Le(b, 2, accelXRaw)
+        writeInt16Le(b, 4, accelYRaw)
+        writeInt16Le(b, 6, accelZRaw)
+        writeInt16Le(b, 8, gyroXRaw)
+        writeInt16Le(b, 10, gyroYRaw)
+        writeInt16Le(b, 12, gyroZRaw)
         writeInt16Le(b, 14, rollRaw)
         writeInt16Le(b, 16, pitchRaw)
         writeInt16Le(b, 18, yawRaw)
@@ -101,5 +140,16 @@ class WitMotionFrameParserTest {
     private fun writeInt16Le(b: ByteArray, offset: Int, value: Int) {
         b[offset] = (value and 0xFF).toByte()
         b[offset + 1] = ((value shr 8) and 0xFF).toByte()
+    }
+
+    private fun registerFrame(address: Int, rawValue: Int): ByteArray {
+        val b = ByteArray(20)
+        b[0] = 0x55
+        b[1] = 0x71
+        b[2] = address.toByte()
+        // offset 3 reserved
+        writeInt16Le(b, 4, rawValue)
+        // remainder zero
+        return b
     }
 }

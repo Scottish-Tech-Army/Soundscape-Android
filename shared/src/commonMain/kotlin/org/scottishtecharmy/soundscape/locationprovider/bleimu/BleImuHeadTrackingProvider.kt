@@ -5,6 +5,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.geoengine.headtracking.HeadphoneCalibrationManager
@@ -29,8 +31,16 @@ class BleImuHeadTrackingProvider(
     private val client: BleImuClient = BleImuClient(),
 ) : HeadTrackingProvider() {
 
-    private val parser = WitMotionFrameParser()
-    private val calibrationManager = HeadphoneCalibrationManager()
+    private val parser = WitMotionFrameParser(onRegisterResponse = ::onRegisterResponse)
+    // The WT streams at 100 Hz, so the device calibrator needs a ~10 s window
+    // of samples to be as forgiving of brief look-aways as the iOS AirPods
+    // path (which gets ~8 s from its 200-sample default at ~25 Hz).
+    private val calibrationManager = HeadphoneCalibrationManager(deviceWindowSize = 1_000)
+    private val yawIntegrator = GravityAlignedYawIntegrator()
+
+    private val _batteryVoltageFlow = MutableStateFlow<Float?>(null)
+    /** Most recent battery voltage in volts, or null before the first reading. */
+    val batteryVoltageFlow: StateFlow<Float?> = _batteryVoltageFlow
 
     private var scope: CoroutineScope? = null
 
@@ -49,6 +59,7 @@ class BleImuHeadTrackingProvider(
         scope = newScope
         calibrationManager.start()
         parser.reset()
+        yawIntegrator.reset()
         mutableStatusFlow.value = HeadTrackingStatus.Disconnected
 
         newScope.launch { observeDeviceHeading() }
@@ -61,11 +72,20 @@ class BleImuHeadTrackingProvider(
         scope = null
         calibrationManager.stop()
         parser.reset()
+        yawIntegrator.reset()
         lastDeviceHeadingDegrees = null
         lastCourseDegrees = null
         lastCourseTimestampMillis = 0L
         mutableHeadHeadingFlow.value = null
         mutableStatusFlow.value = HeadTrackingStatus.Inactive
+        _batteryVoltageFlow.value = null
+    }
+
+    private fun onRegisterResponse(response: WitMotionRegisterResponse) {
+        if (response.address == BleImuClient.REG_BATTERY_VOLTAGE) {
+            // Register units are 0.01 V (e.g. 410 -> 4.10 V).
+            _batteryVoltageFlow.value = response.rawValue / 100.0f
+        }
     }
 
     private suspend fun observeDeviceHeading() {
@@ -102,6 +122,7 @@ class BleImuHeadTrackingProvider(
                         calibrationManager.stop()
                         calibrationManager.start()
                         parser.reset()
+                        yawIntegrator.reset()
                     },
                     onBytes = { bytes -> onBytes(bytes) },
                 )
@@ -125,11 +146,16 @@ class BleImuHeadTrackingProvider(
     }
 
     private fun processSample(sample: WitMotionSample, nowMillis: Long) {
-        // WitMotion follows the right-hand rule with Z up, so its yaw increases
-        // counter-clockwise looking down. Compass heading increases clockwise,
-        // so negate before handing off — without this the spatial audio rotates
-        // the opposite way to head movement.
-        val yawDegrees = -sample.yawDegrees
+        // Don't use sample.yawDegrees — it's rotation about the sensor's body
+        // Z axis, which is only useful when the sensor happens to be mounted
+        // Z-up. Instead derive yaw rate about the world-up axis from
+        // (gyro · gravity_in_body) and integrate. Drift is corrected by the
+        // calibration manager's correlation against compass and walking course.
+        val integrated = yawIntegrator.update(sample.accelG, sample.gyroDps, nowMillis)
+            ?: return
+        // Integrator produces CCW-positive about world-up (right-hand rule).
+        // Compass heading is CW-positive, so negate before the calibrator.
+        val yawDegrees = -integrated
 
         calibrationManager.pushDeviceReference(
             yawDegrees,

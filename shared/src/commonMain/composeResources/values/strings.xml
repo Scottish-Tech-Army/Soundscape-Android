@@ -971,10 +971,10 @@
     <string name="settings_mix_audio">Mix audio with other apps</string>
     <!-- Settings description for mixing audio with other apps -->
     <string name="settings_mix_audio_description">When disabled, other audio apps will pause and lock screen media controls will be available</string>
-    <!-- Settings option for enabling AirPods head tracking -->
-    <string name="settings_head_tracking">Use AirPods head tracking</string>
-    <!-- Description for AirPods head tracking option -->
-    <string name="settings_head_tracking_description">Position spatial audio relative to where your head is facing, using motion data from supported AirPods. Calibrates automatically while you walk.</string>
+    <!-- Settings option for enabling head tracking from a paired headset or external IMU -->
+    <string name="settings_head_tracking">Enable head tracking</string>
+    <!-- Description for head tracking option -->
+    <string name="settings_head_tracking_description">Position spatial audio relative to where your head is facing, using motion data from supported AirPods, Bose Frames or an external Bluetooth IMU. Calibrates automatically while you walk.</string>
     <!-- Settings option for showing or hiding the map on the screen -->
     <string name="settings_show_map">Show maps on screen</string>
     <!-- Settings title for various debugging options to aid developers -->

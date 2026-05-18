@@ -10,6 +10,7 @@ import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
+import org.scottishtecharmy.soundscape.locationprovider.HeadHeading
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.BeaconState
@@ -20,6 +21,12 @@ private val DEFAULT_STREET_PREVIEW_FLOW: StateFlow<StreetPreviewState> =
 
 private val DEFAULT_VOICE_COMMAND_FLOW: StateFlow<VoiceCommandState> =
     MutableStateFlow<VoiceCommandState>(VoiceCommandState.Idle).asStateFlow()
+
+private val DEFAULT_HEAD_HEADING_FLOW: StateFlow<HeadHeading?> =
+    MutableStateFlow<HeadHeading?>(null).asStateFlow()
+
+private val DEFAULT_HEADSET_BATTERY_FLOW: StateFlow<Int?> =
+    MutableStateFlow<Int?>(null).asStateFlow()
 
 interface MediaControllableService {
     // Media control target methods
@@ -58,6 +65,16 @@ interface MediaControllableService {
     // location/direction provider, route player, beacon state, etc.
     val locationFlow: StateFlow<SoundscapeLocation?>
     val orientationFlow: StateFlow<DeviceDirection?>
+    /** Calibrated head heading from an external head tracker, or null when no
+     *  external head tracker is active. The home screen uses this in
+     *  preference to [orientationFlow] when present. */
+    val headHeadingFlow: StateFlow<HeadHeading?>
+        get() = DEFAULT_HEAD_HEADING_FLOW
+    /** 0–100 battery for the most-recently-active Bluetooth audio device, or
+     *  null when the platform hasn't reported one (no headphones paired, or
+     *  the device doesn't expose battery — e.g. AirPods on Android). */
+    val headsetBatteryPercentFlow: StateFlow<Int?>
+        get() = DEFAULT_HEADSET_BATTERY_FLOW
     val beaconFlow: StateFlow<BeaconState>
     val currentRouteFlow: StateFlow<RoutePlayerState>
     val gridStateFlow: StateFlow<GridState?>

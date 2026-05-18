@@ -5,8 +5,12 @@ import com.juul.kable.Peripheral
 import com.juul.kable.Scanner
 import com.juul.kable.WriteType
 import com.juul.kable.characteristicOf
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
+import kotlin.coroutines.coroutineContext
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
@@ -45,13 +49,36 @@ class BleImuClient {
         try {
             configureForHeadTracking(peripheral)
             onConnected()
-            peripheral.observe(dataCharacteristic).collect { bytes ->
-                onBytes(bytes)
+            coroutineScope {
+                // Sibling coroutine periodically asks the sensor for its battery
+                // voltage. The reply arrives on the notify characteristic and is
+                // routed to the parser like any other frame.
+                launch {
+                    while (coroutineContext.isActive) {
+                        peripheral.write(
+                            commandCharacteristic,
+                            readRegisterCommand(REG_BATTERY_VOLTAGE),
+                            WriteType.WithoutResponse,
+                        )
+                        delay(BATTERY_POLL_INTERVAL_MILLIS)
+                    }
+                }
+                peripheral.observe(dataCharacteristic).collect { bytes ->
+                    onBytes(bytes)
+                }
             }
         } finally {
             peripheral.disconnect()
         }
     }
+
+    private fun readRegisterCommand(register: Int): ByteArray = byteArrayOf(
+        0xFF.toByte(),
+        0xAA.toByte(),
+        0x27,
+        register.toByte(),
+        0x00,
+    )
 
     private suspend fun configureForHeadTracking(peripheral: Peripheral) {
         // Raise the output rate to 100 Hz (default is 10 Hz). The sensor needs
@@ -82,5 +109,12 @@ class BleImuClient {
         private const val RATE_100_HZ = 0x09
         private val CMD_SAVE = byteArrayOf(0xFF.toByte(), 0xAA.toByte(), 0x00, 0x00, 0x00)
         private const val CONFIG_SETTLE_MILLIS = 100L
+
+        /** Register that holds battery voltage in 0.01 V units (e.g. 410 = 4.10 V). */
+        const val REG_BATTERY_VOLTAGE = 0x64
+
+        // Battery level barely changes minute-to-minute; polling every 30 s is
+        // plenty to drive a UI indicator and is negligible RF load.
+        private const val BATTERY_POLL_INTERVAL_MILLIS = 30_000L
     }
 }

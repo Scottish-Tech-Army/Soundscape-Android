@@ -54,6 +54,7 @@ import org.scottishtecharmy.soundscape.audio.BeaconPreviewController
 import org.scottishtecharmy.soundscape.audio.EARCON_MODE_ENTER
 import org.scottishtecharmy.soundscape.audio.EARCON_MODE_EXIT
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.bluetooth.AudioHeadsetBatteryMonitor
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
@@ -82,6 +83,7 @@ import org.scottishtecharmy.soundscape.locationprovider.GpxDrivenProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import org.scottishtecharmy.soundscape.locationprovider.CompositeHeadTrackingProvider
+import org.scottishtecharmy.soundscape.locationprovider.HeadHeading
 import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.bleimu.BleImuHeadTrackingProvider
@@ -139,6 +141,17 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     // External head-tracker — currently a composite of WitMotion (WT9011DCL)
     // and Bose Frames AR. Null until providers are built.
     private var headTrackingProvider: HeadTrackingProvider? = null
+
+    // Stable flow that mirrors the current provider's headHeadingFlow. Kept
+    // separate so subscribers (HomeViewModel) survive provider rebuilds.
+    private val _headHeadingFlow = MutableStateFlow<HeadHeading?>(null)
+    override val headHeadingFlow: StateFlow<HeadHeading?> = _headHeadingFlow
+    private var headHeadingForwarderJob: Job? = null
+
+    // System broadcast-based battery monitor for paired Bluetooth headphones.
+    private val headsetBatteryMonitor by lazy { AudioHeadsetBatteryMonitor(this) }
+    override val headsetBatteryPercentFlow: StateFlow<Int?>
+        get() = headsetBatteryMonitor.batteryPercentFlow
 
     // Listener instance is field-level so it can be unregistered cleanly in onDestroy.
     private val headTrackingPrefListener =
@@ -283,6 +296,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
      */
     private fun rebuildHeadTrackingProvider() {
         headTrackingProvider?.destroy()
+        headHeadingForwarderJob?.cancel()
         val provider = CompositeHeadTrackingProvider(
             listOf(
                 BleImuHeadTrackingProvider(directionProvider, locationProvider),
@@ -291,6 +305,9 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         )
         headTrackingProvider = provider
         geoEngine.setHeadTrackingProvider(provider)
+        headHeadingForwarderJob = coroutineScope.launch {
+            provider.headHeadingFlow.collect { _headHeadingFlow.value = it }
+        }
         applyHeadTrackingEnabled()
     }
 
@@ -494,6 +511,8 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
                 )
             }
 
+            headsetBatteryMonitor.start()
+
             // Update the media controls mode
             sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this)
             sharedPreferences.registerOnSharedPreferenceChangeListener(headTrackingPrefListener)
@@ -564,8 +583,12 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         audioBeacon = 0
         audioEngine.destroy()
 
+        headsetBatteryMonitor.stop()
+        headHeadingForwarderJob?.cancel()
+        headHeadingForwarderJob = null
         headTrackingProvider?.destroy()
         headTrackingProvider = null
+        _headHeadingFlow.value = null
         if (::sharedPreferences.isInitialized) {
             sharedPreferences.unregisterOnSharedPreferenceChangeListener(headTrackingPrefListener)
         }
