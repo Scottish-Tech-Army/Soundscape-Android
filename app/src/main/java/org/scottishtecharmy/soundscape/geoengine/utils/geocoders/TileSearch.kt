@@ -176,9 +176,14 @@ class TileSearch(val offlineExtractPath: String,
         val extracts = findExtractPaths(offlineExtractPath).toMutableList()
         var reader: Reader? = null
         for (extract in extracts) {
-            reader = Reader(File(extract))
-            if (reader.getTile(MAX_ZOOM_LEVEL, tileLocation.first, tileLocation.second) != null)
-                break
+            try {
+                reader = Reader(File(extract))
+                if (reader.getTile(MAX_ZOOM_LEVEL, tileLocation.first, tileLocation.second) != null)
+                    break
+            } catch (_: Exception) {
+                try { reader?.close() } catch (_: Exception) {}
+                reader = null
+            }
         }
 
         // We now have a PM tile reader
@@ -232,9 +237,9 @@ class TileSearch(val offlineExtractPath: String,
             if (cache == null) {
                 // Load the tile and add all of its String to a cache
                 cache = mutableListOf()
-                val tileData = reader?.getTile(MAX_ZOOM_LEVEL, x, y)
+                val tileData = try { reader?.getTile(MAX_ZOOM_LEVEL, x, y) } catch (_: Exception) { null }
                 if (tileData != null) {
-                    val tile = decompressTile(reader.tileCompression, tileData)
+                    val tile = decompressTile(reader!!.tileCompression, tileData)
                     if (tile != null) {
                         for (layer in tile.layersList) {
                             if ((layer.name == "transportation") || (layer.name == "poi")) {
@@ -310,9 +315,9 @@ class TileSearch(val offlineExtractPath: String,
         val ruler = CheapRuler(location.latitude)
         val detailedResults = mutableListOf<DetailedSearchResult>()
         for(result in searchResults) {
-            val tileData = reader?.getTile(MAX_ZOOM_LEVEL, result.tileX, result.tileY)
+            val tileData = try { reader?.getTile(MAX_ZOOM_LEVEL, result.tileX, result.tileY) } catch (_: Exception) { null }
             if (tileData != null) {
-                val tile = decompressTile(reader.tileCompression, tileData)
+                val tile = decompressTile(reader!!.tileCompression, tileData)
                 if(tile != null) {
                     var stringValue = ""
                     for(layer in tile.layersList) {
@@ -643,6 +648,7 @@ class TileSearch(val offlineExtractPath: String,
                 }
                 accumulator
             }
+        try { reader?.close() } catch (_: Exception) {}
         return streetResults.map { (mvt, result) ->
             mvt.toLocationDescription(
                 LocationSource.OfflineGeocoder,

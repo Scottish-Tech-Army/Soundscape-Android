@@ -208,9 +208,12 @@ private fun getSourceUri(appContext: Context, location: LngLatAlt?, forceNetwork
                 val tileXY = getXYTile(location, MAX_ZOOM_LEVEL)
                 var largestSize = 0L
                 for(extract in offlineExtractPaths) {
-                    val reader = Reader(File(extract))
-                    val fileTile = reader.getTile(MAX_ZOOM_LEVEL, tileXY.first, tileXY.second)
-                    reader.close()
+                    val fileTile = try {
+                        val reader = Reader(File(extract))
+                        val tile = reader.getTile(MAX_ZOOM_LEVEL, tileXY.first, tileXY.second)
+                        try { reader.close() } catch (_: Exception) {}
+                        tile
+                    } catch (_: Exception) { null }
                     if(fileTile != null) {
                         // This extract contains our location, check its size
                         val fileSize = Path(extract).fileSize()
