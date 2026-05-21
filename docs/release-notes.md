@@ -7,6 +7,15 @@ has_toc: false
 
 # Release notes
 
+# 1.0.x
+1.0 is our first main release. The changes are relatively small and aimed at improving usability:
+* Choosing a new beacon style in Settings/Audio now plays a beacon as a preview. The beacon is placed directly ahead of you and as you turn your phone you can hear how that beacon style changes.
+* The onboarding screens have been improved to make Talkback focus work properly. Previously it was jumping to the Continue button instead of the top of the screen.
+* The main Menu now covers the whole screen which removes the extra Close button that appeared in Talkback where the user could tap on the area of screen outside of the menu.
+* A couple of minor crash fixes.
+* Share location now always gives correct URLs. In many languages it was using commas in place of a decimal point in the latitude and longitude.
+* UI improvements in the offline map screen to indicate that the offline map manifest is downloading.
+
 # 0.4.x
 0.4 releases add some new means of controlling the app remotely through using headphone media controls and speech recognition. For more information see [Help using Media Controls]({{ "/users/help-using-media-controls.html" | relative_url }}).
 Smaller fixes include:
