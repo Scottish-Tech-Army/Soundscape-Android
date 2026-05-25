@@ -140,7 +140,7 @@ android {
 
         debug {
             buildConfigField("Boolean", "DUMMY_ANALYTICS", "true")
-            buildConfigField("Boolean", "DUMMY_FEEDBACK", "true")
+            buildConfigField("Boolean", "DUMMY_FEEDBACK", "false")
         }
 
         release {

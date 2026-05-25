@@ -2712,4 +2712,14 @@ We\'re still working hard on improving the app, so please report any problems th
     <string name="feedback_question_route_followability">How easy was it to follow your route just now?</string>
     <string name="feedback_question_audio_balance">Was there too much or too little audio feedback?</string>
     <string name="feedback_question_confusion">Did anything feel confusing or overwhelming?</string>
+    <string name="feedback_dialog_pane_title_with_question">Feedback question: %1$s</string>
+    <string name="feedback_choice_easy">Easy</string>
+    <string name="feedback_choice_ok">OK</string>
+    <string name="feedback_choice_hard">Hard</string>
+    <string name="feedback_choice_hint">Double-tap to send your answer</string>
+    <string name="feedback_skip">Skip</string>
+    <string name="feedback_skip_hint">Double-tap to dismiss without answering</string>
+    <string name="feedback_comment_label">Add a comment (optional)</string>
+    <string name="feedback_comment_hint">Optional free text to send with your answer</string>
+    <string name="feedback_thanks_toast">Thanks for your feedback</string>
 </resources>

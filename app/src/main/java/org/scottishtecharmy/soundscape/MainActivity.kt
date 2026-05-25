@@ -45,9 +45,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.audio.AudioTour
+import org.scottishtecharmy.soundscape.feedback.FeedbackPrompter
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
+import org.scottishtecharmy.soundscape.screens.home.home.FeedbackDialog
 import org.scottishtecharmy.soundscape.screens.onboarding.battery.requestBatteryOptimizationExemption
 import org.scottishtecharmy.soundscape.screens.home.HomeScreen
 import org.scottishtecharmy.soundscape.screens.home.Navigator
@@ -433,6 +435,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        val feedbackPrompter = FeedbackPrompter.getInstance(
+            dummy = BuildConfig.DUMMY_FEEDBACK,
+            context = this
+        )
+        // TEMP smoke test — REMOVE
+        lifecycleScope.launch {
+            kotlinx.coroutines.delay(4000)
+            feedbackPrompter.onRouteCompleted("smoke-test")
+        }
+
         setContent {
             SoundscapeTheme(themeStateFlow = themeStateFlow) {
                 val navController = rememberNavController()
@@ -461,6 +473,23 @@ class MainActivity : AppCompatActivity() {
                     },
                     permissionsRequired = remember { locationPermissionGranted != 1}
                 )
+
+                val pendingFeedbackQuestion by feedbackPrompter.pendingQuestion.collectAsState()
+                pendingFeedbackQuestion?.let { question ->
+                    val activity = this@MainActivity
+                    FeedbackDialog(
+                        question = question,
+                        onSubmit = { choice, freeText ->
+                            feedbackPrompter.submitResponse(question, choice, freeText)
+                            Toast.makeText(
+                                activity,
+                                R.string.feedback_thanks_toast,
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        },
+                        onSkip = { feedbackPrompter.dismissCurrent() },
+                    )
+                }
             }
         }
     }
