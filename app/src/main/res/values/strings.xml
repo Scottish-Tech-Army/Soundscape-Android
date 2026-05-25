@@ -38,6 +38,8 @@
 <string name="settings_units_metric">"Metric (Meters)"</string>
 <!-- In the Settings page the title of the section for selecting which search system to use -->
 <string name="settings_section_search">"Search"</string>
+<!-- Label for the inline Search button next to the search input field -->
+<string name="search_button_label">"Search"</string>
 <!-- A hint for the search bar explaining what it's for -->
 <string name="search_bar_hint">"Type a destination name or address"</string>
 <!-- This is the setting to control whether the Search uses offline data or can use an online server -->
