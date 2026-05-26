@@ -84,6 +84,12 @@ jobs:
       - name: Generate beacon audio samples and spectrum plots
         run: python3 generate-beacons.py
 
+      - name: Stage offline map extracts manifest
+        run: |
+          mkdir -p assets
+          gunzip -c ../app/src/test/res/org/scottishtecharmy/soundscape/manifest.geojson.gz \
+            > assets/manifest.geojson
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v6
