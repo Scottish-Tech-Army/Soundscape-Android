@@ -47,6 +47,9 @@ fun OfflineMapExtractDetails(
     downloadExtract: (String, Feature) -> Unit,
     deleteExtract: (Feature) -> Unit,
     local: Boolean,
+    userLocation: LngLatAlt? = null,
+    userHeading: Float = 0.0f,
+    markerLocation: LngLatAlt? = null,
     modifier: Modifier = Modifier) {
 
     val details = remember(extract) { ExtractDetails(extract) }
@@ -75,12 +78,12 @@ fun OfflineMapExtractDetails(
         )
 
         MapContainerLibre(
-            beaconLocation = null,
+            beaconLocation = markerLocation,
             allowScrolling = true,
             routeData = null,
-            mapCenter = LngLatAlt(),
-            userLocation = LngLatAlt(),
-            userSymbolRotation = 0.0f,
+            mapCenter = markerLocation ?: userLocation ?: LngLatAlt(),
+            userLocation = userLocation,
+            userSymbolRotation = userHeading,
             onMapLongClick = { _ ->
                 true
             },

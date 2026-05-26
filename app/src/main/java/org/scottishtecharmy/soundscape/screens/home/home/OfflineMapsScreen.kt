@@ -342,6 +342,9 @@ fun OfflineMapsScreen(
                         extractDetailsFeature.value = null
                     },
                     localExtractDetails.value,
+                    userLocation = uiState.userLocation,
+                    userHeading = uiState.userHeading,
+                    markerLocation = uiState.markerLocation,
                     modifier = modifier
                         .fillMaxSize()
                         .padding(padding)

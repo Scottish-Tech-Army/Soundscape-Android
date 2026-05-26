@@ -17,9 +17,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.DownloadState
@@ -48,12 +50,22 @@ data class OfflineMapsUiState(
 
     // Storage status
     val currentPath: String = "",
-    val storages: List<StorageUtils.StorageSpace> = emptyList()
+    val storages: List<StorageUtils.StorageSpace> = emptyList(),
+
+    // Live user GPS location
+    val userLocation: LngLatAlt? = null,
+
+    // Live user heading (degrees) for the map symbol rotation
+    val userHeading: Float = 0.0f,
+
+    // Search/marker location used to find nearby extracts
+    val markerLocation: LngLatAlt? = null
 )
 
 @HiltViewModel(assistedFactory = OfflineMapsViewModel.Factory::class)
 class OfflineMapsViewModel @AssistedInject constructor(
     @param:ApplicationContext val appContext: Context,
+    private val soundscapeServiceConnection: SoundscapeServiceConnection,
     @Assisted private val locationDescription: LocationDescription
 ) : ViewModel() {
 
@@ -85,7 +97,8 @@ class OfflineMapsViewModel @AssistedInject constructor(
             _uiState.value = _uiState.value.copy(
                 downloadedExtracts = extractCollection,
                 storages = storages,
-                currentPath = path
+                currentPath = path,
+                markerLocation = locationDescription.location
             )
 
             val fc = downloadAndParseManifest(appContext)
@@ -114,6 +127,25 @@ class OfflineMapsViewModel @AssistedInject constructor(
                 _uiState.value = _uiState.value.copy(
                     nearbyExtractsState = NearbyExtractsState.Error
                 )
+            }
+        }
+
+        viewModelScope.launch {
+            soundscapeServiceConnection.getLocationFlow()?.collect { location ->
+                if (location != null) {
+                    _uiState.value = _uiState.value.copy(
+                        userLocation = LngLatAlt(location.longitude, location.latitude)
+                    )
+                }
+            }
+        }
+        viewModelScope.launch {
+            soundscapeServiceConnection.getOrientationFlow()?.collect { orientation ->
+                if (orientation != null) {
+                    _uiState.value = _uiState.value.copy(
+                        userHeading = orientation.headingDegrees
+                    )
+                }
             }
         }
     }
