@@ -1062,6 +1062,11 @@ fun getTextForFeature(localizedContext: Context?, feature: MvtFeature) : TextFor
 
     var text = name
 
+    // The default descriptor id is based on the feature class or subclass, but can be overridden
+    // by more complex OSM tagging structures like transit stops.
+    var id = ResourceMapper.getResourceId(feature.featureClass) ?:
+    ResourceMapper.getResourceId(feature.featureSubClass)
+
     val namedTransit = when (featureValue) {
         "bus_stop" -> Pair(R.string.osm_bus_stop_named, R.string.osm_bus_stop)
         "station" -> Pair(R.string.osm_train_station_named, R.string.osm_train_station)
@@ -1071,6 +1076,7 @@ fun getTextForFeature(localizedContext: Context?, feature: MvtFeature) : TextFor
         else -> null
     }
     if(namedTransit != null) {
+        id = namedTransit.second    // Update description based on transit tagging
         text = if (name != null)
             localizedContext?.getString(namedTransit.first, name) ?: "$name Transit Stop"
         else
@@ -1123,8 +1129,6 @@ fun getTextForFeature(localizedContext: Context?, feature: MvtFeature) : TextFor
             TextForFeature(text, false)
     }
 
-    val id = ResourceMapper.getResourceId(feature.featureClass) ?:
-             ResourceMapper.getResourceId(feature.featureSubClass)
     val osmText = if (id == null) {
         null
     } else {
