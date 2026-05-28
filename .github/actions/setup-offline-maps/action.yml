@@ -10,14 +10,31 @@ inputs:
 runs:
   using: composite
   steps:
+    # Bump the `v` in the cache key below to force a refresh when the R2 fixtures change.
+    - name: Restore cached pmtiles + manifest
+      id: cache
+      uses: actions/cache@v4
+      with:
+        path: |
+          ${{ inputs.output_dir }}/bristol-gb.pmtiles
+          ${{ inputs.output_dir }}/glasgow-gb.pmtiles
+          ${{ inputs.output_dir }}/liverpool-gb.pmtiles
+          ${{ inputs.output_dir }}/manifest.geojson.gz
+        key: pmtiles-v1-${{ hashFiles('.github/actions/setup-offline-maps/action.yml') }}
+
     - name: Download pmtiles + manifest
+      if: steps.cache.outputs.cache-hit != 'true'
       shell: bash
       env:
         OUTPUT_DIR: ${{ inputs.output_dir }}
       run: |
         mkdir -p "$OUTPUT_DIR"
         base=https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev
-        wget --no-verbose --show-progress --progress=dot:giga "$base/street-metadata/bristol-gb.pmtiles"   -O "$OUTPUT_DIR/bristol-gb.pmtiles"
-        wget --no-verbose --show-progress --progress=dot:giga "$base/street-metadata/glasgow-gb.pmtiles"   -O "$OUTPUT_DIR/glasgow-gb.pmtiles"
-        wget --no-verbose --show-progress --progress=dot:giga "$base/street-metadata/liverpool-gb.pmtiles" -O "$OUTPUT_DIR/liverpool-gb.pmtiles"
-        wget --no-verbose --show-progress --progress=dot:giga "$base/manifest.geojson.gz"                  -O "$OUTPUT_DIR/manifest.geojson.gz"
+        # --timeout aborts a stalled connection after 30s, --tries retries on failure,
+        # --waitretry backs off between retries. Without these, wget can silently hang
+        # for an hour at <50 KB/s when R2 connections drop.
+        WGET_OPTS="--no-verbose --show-progress --progress=dot:giga --tries=5 --timeout=30 --waitretry=10"
+        wget $WGET_OPTS "$base/street-metadata/bristol-gb.pmtiles"   -O "$OUTPUT_DIR/bristol-gb.pmtiles"
+        wget $WGET_OPTS "$base/street-metadata/glasgow-gb.pmtiles"   -O "$OUTPUT_DIR/glasgow-gb.pmtiles"
+        wget $WGET_OPTS "$base/street-metadata/liverpool-gb.pmtiles" -O "$OUTPUT_DIR/liverpool-gb.pmtiles"
+        wget $WGET_OPTS "$base/manifest.geojson.gz"                  -O "$OUTPUT_DIR/manifest.geojson.gz"
