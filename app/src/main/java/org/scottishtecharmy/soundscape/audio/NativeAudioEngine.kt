@@ -78,7 +78,7 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     private var _ttsRunningStateChange = MutableStateFlow(false)
     val ttsRunningStateChange = _ttsRunningStateChange.asStateFlow()
 
-    fun ttsRunningStateChanged(value: Boolean) {
+    override fun ttsRunningStateChanged(value: Boolean) {
         _ttsRunningStateChange.value = value
     }
 
@@ -100,7 +100,7 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
         }
     }
 
-    fun destroy()
+    override fun destroy()
     {
         isActive = false
         geometryUpdateJob?.cancel()
@@ -124,7 +124,7 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     private var sharedPreferences : SharedPreferences? = null
     private lateinit var sharedPreferencesListener : SharedPreferences.OnSharedPreferenceChangeListener
 
-    fun initialize(context : Context)
+    override fun initialize(context : Context)
     {
         val configLocale = getCurrentLocale()
         val configuration = Configuration(context.resources.configuration)

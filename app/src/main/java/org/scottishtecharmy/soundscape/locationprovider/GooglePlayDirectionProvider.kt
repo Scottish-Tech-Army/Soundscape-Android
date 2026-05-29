@@ -6,7 +6,7 @@ import com.google.android.gms.location.DeviceOrientation
 import com.google.android.gms.location.DeviceOrientationListener
 import com.google.android.gms.location.DeviceOrientationRequest
 import com.google.android.gms.location.LocationServices
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.audio.AudioEngine
 import java.util.concurrent.Executors
 import kotlin.math.abs
 
@@ -37,7 +37,7 @@ class GooglePlayDirectionProvider(context : Context) :
     }
 
     @SuppressLint("MissingPermission")
-    override fun start(audio: NativeAudioEngine, locProvider: LocationProvider) {
+    override fun start(audio: AudioEngine, locProvider: LocationProvider) {
 
         listener = DeviceOrientationListener { orientation ->
             val newHeading = orientation.headingDegrees.toDouble()

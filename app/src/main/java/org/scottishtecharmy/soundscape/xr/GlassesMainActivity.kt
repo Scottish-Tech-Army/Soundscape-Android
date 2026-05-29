@@ -24,14 +24,24 @@ import androidx.xr.projected.ProjectedDisplayController
 import androidx.xr.projected.ProjectedDeviceController
 import androidx.xr.projected.ProjectedDeviceController.Capability.Companion.CAPABILITY_VISUAL_UI
 import androidx.xr.projected.experimental.ExperimentalProjectedApi
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
+import javax.inject.Inject
 
+@AndroidEntryPoint
 @OptIn(ExperimentalProjectedApi::class)
 class GlassesMainActivity : ComponentActivity() {
+
+    @Inject
+    lateinit var serviceConnection: SoundscapeServiceConnection
 
     private var displayController: ProjectedDisplayController? = null
     private var isVisualUiSupported by mutableStateOf(false)
     private var areVisualsOn by mutableStateOf(true)
+
+    private var xrSession: androidx.xr.runtime.Session? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +52,13 @@ class GlassesMainActivity : ComponentActivity() {
                     displayController?.close()
                 }
                 displayController = null
+                
+                serviceConnection.soundscapeService?.setXrSession(null)
+                xrSession = null
             }
         })
+
+        serviceConnection.tryToBindToServiceIfRunning(this)
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
             lifecycleScope.launch {
@@ -56,6 +71,19 @@ class GlassesMainActivity : ComponentActivity() {
                 
                 // In a real app, you'd use a more robust observer for visuals state
                 areVisualsOn = isVisualUiSupported
+
+                // Create XR Session for spatial audio
+                val sessionResult = androidx.xr.runtime.Session.create(this@GlassesMainActivity)
+                if (sessionResult is androidx.xr.runtime.SessionCreateSuccess) {
+                    xrSession = sessionResult.session
+
+                    // Wait for service to be bound and then set the session
+                    serviceConnection.serviceBoundState.collectLatest { bound ->
+                        if (bound) {
+                            serviceConnection.soundscapeService?.setXrSession(xrSession)
+                        }
+                    }
+                }
             }
         }
 

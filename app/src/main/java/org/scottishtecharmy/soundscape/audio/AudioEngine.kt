@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.audio
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
@@ -7,6 +8,9 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.util.Locale
 
 interface AudioEngine {
+    fun initialize(context: Context)
+    fun destroy()
+    fun ttsRunningStateChanged(value: Boolean)
     fun createBeacon(location: LngLatAlt, headingOnly: Boolean) : Long
     fun destroyBeacon(beaconHandle : Long)
     fun toggleBeaconMute() : Boolean

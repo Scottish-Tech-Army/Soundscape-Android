@@ -2,14 +2,14 @@ package org.scottishtecharmy.soundscape.locationprovider
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.audio.AudioEngine
 import kotlin.math.acos
 
 open class DirectionProvider {
 
-    var audioEngine : NativeAudioEngine? = null
+    var audioEngine : AudioEngine? = null
 
-    open fun start(audio: NativeAudioEngine, locProvider: LocationProvider) {
+    open fun start(audio: AudioEngine, locProvider: LocationProvider) {
         audioEngine = audio
     }
     open fun destroy() {}

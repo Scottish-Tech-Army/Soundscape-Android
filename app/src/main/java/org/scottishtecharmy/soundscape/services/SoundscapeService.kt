@@ -120,8 +120,25 @@ class SoundscapeService : MediaSessionService() {
     private var wakeLock: PowerManager.WakeLock? = null
 
     // Audio engine
-    var audioEngine = NativeAudioEngine(this)
+    var audioEngine: org.scottishtecharmy.soundscape.audio.AudioEngine = NativeAudioEngine(this)
     private var audioBeacon: Long = 0
+
+    fun setXrSession(session: androidx.xr.runtime.Session?) {
+        Log.d(TAG, "setXrSession: $session")
+        if (session != null) {
+            audioEngine.destroy()
+            audioEngine = org.scottishtecharmy.soundscape.audio.xr.XrAudioEngine(session, session.context)
+            audioEngine.initialize(session.context)
+        } else {
+            if (audioEngine !is NativeAudioEngine) {
+                audioEngine.destroy()
+                audioEngine = NativeAudioEngine(this)
+                audioEngine.initialize(this)
+            }
+        }
+        // Update direction provider with new engine
+        directionProvider.audioEngine = audioEngine
+    }
 
     // Audio menu (navigated via media buttons when no route is active)
     var audioMenu : AudioMenu? = null

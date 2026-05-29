@@ -5,7 +5,7 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
+import org.scottishtecharmy.soundscape.audio.AudioEngine
 import kotlin.math.abs
 import kotlin.math.atan2
 
@@ -225,7 +225,7 @@ class AndroidDirectionProvider(context: Context) : DirectionProvider() {
         sensorManager.unregisterListener(sensorEventListener)
     }
 
-    override fun start(audio: NativeAudioEngine, locProvider: LocationProvider) {
+    override fun start(audio: AudioEngine, locProvider: LocationProvider) {
         super.start(audio, locProvider)
 
         // Prefer rotation vector sensor (fuses accelerometer, magnetometer, and gyroscope)
