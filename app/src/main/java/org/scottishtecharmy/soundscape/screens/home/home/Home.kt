@@ -15,6 +15,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ExitToApp
 import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material.icons.rounded.Snooze
+import androidx.compose.material.icons.rounded.ViewInAr
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -288,6 +289,19 @@ fun HomeTopAppBar(
                     )
                 }
             } else {
+                IconButton(
+                    onClick = {
+                        org.scottishtecharmy.soundscape.xr.SoundscapeXR.launchXR(context)
+                    },
+                    modifier = Modifier.testTag("topBarXR")
+                ) {
+                    Icon(
+                        Icons.Rounded.ViewInAr,
+                        contentDescription = "Start XR",
+                        tint = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
+
                 IconButton(
                     enabled = true,
                     onClick = {

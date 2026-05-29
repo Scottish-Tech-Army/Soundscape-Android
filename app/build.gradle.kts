@@ -19,7 +19,7 @@ plugins {
 
 android {
     namespace = "org.scottishtecharmy.soundscape"
-    compileSdk = 36
+    compileSdk = 37
 
     buildFeatures {
         buildConfig = true
@@ -361,6 +361,14 @@ dependencies {
 
     // Markdown to HTML converter for Help screens
     implementation(libs.commonmark)
+
+    // Android XR dependencies
+    implementation(libs.androidx.xr.runtime)
+    implementation(libs.androidx.xr.scenecore)
+    implementation(libs.androidx.xr.compose)
+    implementation(libs.androidx.xr.glimmer)
+    implementation(libs.androidx.xr.projected)
+    implementation(libs.androidx.xr.arcore)
 
     // PMTiles reading libraries
     implementation(libs.pmtilesreader)

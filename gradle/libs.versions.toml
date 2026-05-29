@@ -1,5 +1,5 @@
 [versions]
-agp = "9.0.1"
+agp = "9.2.1"
 androidaddressformatter = "8f279fecd4"
 commonmark = "0.25.1"
 json = "20240303"
@@ -62,6 +62,12 @@ roomRuntime = "2.7.2"
 rtree2 = "0.9.3"
 screenshot = "0.0.1-alpha14"
 screenshotValidationApi = "0.0.1-alpha14"
+xr-compose = "1.0.0-alpha14"
+xr-scenecore = "1.0.0-alpha15"
+xr-runtime = "1.0.0-alpha14"
+xr-glimmer = "1.0.0-alpha13"
+xr-projected = "1.0.0-alpha08"
+xr-arcore = "1.0.0-alpha14"
 benchmarkCommon = "1.4.0"
 lifecycleRuntimeComposeAndroid = "2.9.2"
 lifecycleProcess = "2.9.2"
@@ -147,6 +153,12 @@ androidx-media3-session = { group = "androidx.media3", name = "media3-session", 
 maplibre-annotations = { module = "org.maplibre.gl:android-plugin-annotation-v9", version.ref = "mapLibreAnnotation" }
 androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycleProcess" }
 screenshot-validation-api = { group = "com.android.tools.screenshot", name = "screenshot-validation-api", version.ref = "screenshotValidationApi" }
+androidx-xr-runtime = { group = "androidx.xr.runtime", name = "runtime", version.ref = "xr-runtime" }
+androidx-xr-scenecore = { group = "androidx.xr.scenecore", name = "scenecore", version.ref = "xr-scenecore" }
+androidx-xr-compose = { group = "androidx.xr.compose", name = "compose", version.ref = "xr-compose" }
+androidx-xr-glimmer = { group = "androidx.xr.glimmer", name = "glimmer", version.ref = "xr-glimmer" }
+androidx-xr-projected = { group = "androidx.xr.projected", name = "projected", version.ref = "xr-projected" }
+androidx-xr-arcore = { group = "androidx.xr.arcore", name = "arcore", version.ref = "xr-arcore" }
 
 [plugins]
 screenshot = { id = "com.android.compose.screenshot", version.ref = "screenshot"}
