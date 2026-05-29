@@ -15,6 +15,8 @@ import androidx.xr.runtime.math.Vector3
 import androidx.xr.scenecore.PanelEntity
 import androidx.xr.scenecore.PointSourceParams
 import androidx.xr.scenecore.scene
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.audio.AudioEngine
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.TtsEngine
@@ -23,6 +25,10 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.util.Locale
 
 class XrAudioEngine(val session: Session, val context: Context) : AudioEngine {
+
+    private var _ttsRunningStateChange = MutableStateFlow(false)
+    override val ttsRunningStateChange = _ttsRunningStateChange.asStateFlow()
+
     private val scene = session.scene
 
     private val soundPool = SoundPool.Builder()
@@ -173,4 +179,7 @@ class XrAudioEngine(val session: Session, val context: Context) : AudioEngine {
     }
 
     override fun setHrtfEnabled(enabled: Boolean) {}
+    override fun setSuppressRestart(suppress: Boolean) {
+        // no-op
+    }
 }

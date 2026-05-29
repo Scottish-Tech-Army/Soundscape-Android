@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.xr
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.util.Log
 import androidx.xr.projected.ProjectedContext
 import androidx.xr.projected.experimental.ExperimentalProjectedApi
 
@@ -18,6 +19,7 @@ object SoundscapeXR {
                 // Fallback or log error
                 val intent = Intent(context, GlassesMainActivity::class.java)
                 context.startActivity(intent)
+                Log.e("ScoundscapeXR", e.message ?: e.cause.toString())
             }
         } else {
             // Fallback for older devices (though activity won't be projected)

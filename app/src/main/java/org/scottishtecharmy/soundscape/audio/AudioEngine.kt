@@ -4,10 +4,12 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.speech.tts.TextToSpeech
 import android.speech.tts.Voice
+import kotlinx.coroutines.flow.StateFlow
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.util.Locale
 
 interface AudioEngine {
+    val ttsRunningStateChange: StateFlow<Boolean>
     fun initialize(context: Context)
     fun destroy()
     fun ttsRunningStateChanged(value: Boolean)
@@ -30,4 +32,5 @@ interface AudioEngine {
     fun onAllBeaconsCleared()
     fun textToSpeechAudioConfigCallback(id : String, sampleRateInHz: Int, format: Int, channelCount: Int)
     fun setHrtfEnabled(enabled: Boolean)
+    fun setSuppressRestart(suppress: Boolean)
 }
