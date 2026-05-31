@@ -1,0 +1,8 @@
+{%- comment -%}
+  Localised search box placeholder. Overrides the theme default
+  ("Search {{ site.title }}"). Looks up the string for the current
+  jekyll-polyglot render language in _data/ui_strings.yml, falling back to the
+  default language when a translation is missing.
+{%- endcomment -%}
+{%- assign search_strings = site.data.ui_strings.search -%}
+{{- search_strings[site.active_lang] | default: search_strings[site.default_lang] -}}
