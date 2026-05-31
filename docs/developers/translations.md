@@ -34,6 +34,7 @@ Whole new languages can be added via the Weblate UI and generally the translatio
 * Add the language to `getAllLanguages` in `LanguageScreen.kt`. This also requires the name of the language in that language e.g. Español for Spanish.
 * Also add the language to `MockLanguagePreviewData` in `LanguageScreen.kt` so that the `@Preview` of the `LanguageScreen` remains accurate.
 * Edit `res/xml/locales_config.xml` to include the new language code. This is the list of languages that the app advertises to Android. The list is used within Android to show the user what languages are supported by an app and allow per-app language configuration.
+* Add the language to the documentation website so the localized help pages are generated and served (see [The documentation website](#the-documentation-website) below): add an entry to `localeMap` in `DocumentationScreens.kt` (mapping the Android resource qualifier to its web/BCP-47 code) and add the same web code to the `languages` list in `docs/_config.yml`.
 
 ## AI translations
 Unfortunately, we don't currently have native speakers helping with translation in the majority of languages that we support and so we needed an additional approach. We want to try and ensure that the translations don't get left behind as we add new features which require new text. It's also quite a big task to add a new translation and so we looked at ways of accelerating that.
@@ -50,6 +51,55 @@ One of the issues with translating Soundscape is that it has some rather unique 
 2. The glossary is passed into OpenAI as context along with all of the terms to be translated by a [Python Script](https://github.com/davecraig/weblate-translate/blob/main/weblate-translation.py). The aim is to maintain a consistency of terms across the translation.
 
 The resulting translation can then be uploaded into Weblate either as Suggestions for the translator or as approved translations.
+
+## The documentation website
+
+This website is built with [Jekyll](https://jekyllrb.com/) and the [just-the-docs](https://just-the-docs.com/) theme, and is published to GitHub Pages by the `jekyll-gh-pages.yml` workflow. It is multilingual via the [`jekyll-polyglot`](https://github.com/untra/polyglot) plugin: every supported language gets its own URL subtree (e.g. `/de/`, `/fr-CA/`) and a language switcher appears in the header. Pages that have no translation in a given language fall back to the English version automatically, so the developer documentation (which is English-only) still appears under every language.
+
+### Localized help pages come from the app's strings
+
+The user help pages (`docs/users/help-*.md`) are **generated**, not hand-written. They are produced by the `getHelp` test in `app/src/androidTest/.../DocumentationScreens.kt`, which walks the `helpPages` structure in `HelpScreen.kt` and emits markdown using `context.getString(...)`. Because `getString` is locale-aware, the test loops over every supported locale (using a context built with `createConfigurationContext`) and emits one markdown file per page per language:
+
+* English is written with no suffix, e.g. `help-routes.md`.
+* Each other language is written with its web/BCP-47 code as a suffix, e.g. `help-routes.de.md`, and carries a `lang:` entry plus a `permalink:` pinned to the English page's URL (e.g. `permalink: /users/help-routes.html`). polyglot matches translations by URL, so the shared permalink is what makes it serve the German file at `/de/users/help-routes.html` rather than a separate URL.
+* A locale that has nothing translated on a page is skipped, so polyglot serves the English fallback rather than a page mislabelled as translated.
+
+The set of locales lives in `localeMap` in `DocumentationScreens.kt`, which mirrors `resourceConfigurations` in `app/build.gradle.kts` and must stay in sync with the `languages` list in `docs/_config.yml`.
+
+### Regenerating the help pages
+
+The `generate-help-docs.yaml` workflow runs `getHelp` on an emulator, pulls the generated markdown off the device, and commits any changes to `v1.0` (which triggers the Pages deploy). It runs weekly and can be triggered manually from the Actions tab — run it after a batch of Weblate translations has landed.
+
+To regenerate locally instead:
+
+1. Run only the doc-generation test on a connected device/emulator:
+   ```
+   ./gradlew connectedDebugAndroidTest \
+     -Pandroid.testInstrumentationRunnerArguments.class=org.scottishtecharmy.soundscape.DocumentationScreens#getHelp
+   ```
+2. Pull the generated files into the repo:
+   ```
+   adb pull /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Documents/help/. docs/users/
+   ```
+3. Review the diff and commit. (`help-beacon-styles.md` is hand-authored — it is not produced by the test, so leave it in place.)
+
+### Pages not driven by strings
+
+`how-it-works.md`, `index.md` and the legal pages are hand-authored and not part of `strings.xml`, so they are currently English only and rely on polyglot's English fallback under each `/<lang>/` URL. A translation can be added later by committing a per-language variant (e.g. `index.de.md` with `lang: de`). The legal pages (privacy policy, terms and conditions) should only ever be translated by a human reviewer — do not machine-translate them.
+
+### Linking to localized pages
+
+Do **not** use Jekyll's {% raw %}`{% link users/help-….md %}`{% endraw %} tag to link to a help page (or any other page that has translations). The {% raw %}`{% link %}`{% endraw %} tag resolves by *source filename*, but in each non-default language pass polyglot replaces the English page with its localized variant in the document set — so the English source filename is not found and the build fails with `Could not find document … in tag 'link'`.
+
+Instead, link to such pages by URL so polyglot can rewrite it to the active language:
+
+{% raw %}
+```
+[Help using Media Controls]({{ "/users/help-using-media-controls.html" | relative_url }})
+```
+{% endraw %}
+
+{% raw %}`{% link %}`{% endraw %} is still fine for English-only pages (developer docs, `user.md`, `how-it-works.md`), because their English source stays in every language pass.
 
 ## Weblate usage tips
 

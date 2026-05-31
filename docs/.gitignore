@@ -1,0 +1,11 @@
+# Local Jekyll build artifacts (the site is built in CI by jekyll-gh-pages.yml)
+_site/
+.jekyll-cache/
+.jekyll-metadata
+# Local bundler install (CI uses bundler-cache instead)
+.bundle/
+vendor/
+Gemfile.lock
+# Generated locally before the Jekyll build (committed copies live elsewhere / are CI-generated)
+_includes/beacon-styles.md
+dokka/

@@ -10,3 +10,22 @@ aux_links:
 
 mermaid:
   version: "11.8.1"
+
+# --- Multilingual support (jekyll-polyglot) ---
+# Allowed because the site is built with `bundle exec jekyll build` in a custom
+# GitHub Actions workflow (not the plugin-restricted native GitHub Pages build).
+plugins:
+  - jekyll-polyglot
+
+# Web/BCP-47 language codes. The help-page generator maps Android resource
+# qualifiers (zh-rCN, fr-rCA, pt-rBR, en-rGB) to these. Source of truth for the
+# supported set: app/build.gradle.kts resourceConfigurations.
+languages: ["en", "arz", "da", "de", "el", "en-GB", "es", "fa", "fi", "fr", "fr-CA",
+            "hi", "is", "it", "ja", "nb", "nl", "pl", "pt", "pt-BR", "ro", "ru", "sv",
+            "tr", "uk", "zh-CN"]
+default_lang: "en"
+# Untranslated pages fall back to the default_lang version under every /<lang>/ URL.
+exclude_from_localization: ["assets", "dokka", "documentationScreens", "javascript", "*.svg", "*.png", "generate-beacons.py"]
+# Keep serial for now: just-the-docs nav generation can race under polyglot's
+# parallel mode. Revisit only if build time becomes a problem.
+parallel_localization: false

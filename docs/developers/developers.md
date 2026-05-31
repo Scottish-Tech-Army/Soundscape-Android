@@ -67,4 +67,4 @@ If you would like access to the main Soundscape tile provider for development, g
 * [Unit test example]({% link developers/unit-test-example.md %}) — using host-side unit tests with real map data to prototype and debug geo features.
 
 ## Reference
-* [Dokka generated docs]({% link dokka/index.html %}) — API docs auto-generated from KDoc comments.
+* [Dokka generated docs]({{ "/dokka/index.html" | relative_url }}) — API docs auto-generated from KDoc comments.

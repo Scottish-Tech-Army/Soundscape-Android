@@ -1,0 +1,106 @@
+name: Generate localized help docs
+
+# Regenerates the user help pages (docs/users/help-*.md) in every supported
+# language from the app's string resources. The pages are produced by the
+# `DocumentationScreens.getHelp` instrumentation test, which needs an emulator,
+# so this can't run inside the lightweight Jekyll Pages build. Instead this
+# workflow runs the test, pulls the generated markdown off the emulator and
+# commits it to v1.0 — which in turn triggers the Pages deploy.
+
+env:
+  main_project_module: app
+
+on:
+  # Run manually, and weekly so translations merged from Weblate get picked up.
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * 1"   # Mondays 04:00 UTC
+
+# Needed to commit the regenerated docs back to the repository.
+permissions:
+  contents: write
+
+# Don't pile up runs; a newer run supersedes an in-flight one.
+concurrency:
+  group: "generate-help-docs"
+  cancel-in-progress: true
+
+jobs:
+  generate-help:
+    runs-on: ubuntu-latest
+    environment: development
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: v1.0
+          fetch-depth: 0
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v5
+
+      - name: Set Up JDK
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'zulu'
+          java-version: '19'
+
+      # getHelp() itself only needs string resources, but the app/test build
+      # reads the providers from local.properties, so populate them as the
+      # other workflows do.
+      - name: Setup tile and search providers
+        env:
+          TILE_PROVIDER_API_KEY: ${{ secrets.TILE_PROVIDER_API_KEY }}
+          TILE_PROVIDER_URL: ${{ secrets.TILE_PROVIDER_URL }}
+          SEARCH_PROVIDER_API_KEY: ${{ secrets.SEARCH_PROVIDER_API_KEY }}
+          SEARCH_PROVIDER_URL: ${{ secrets.SEARCH_PROVIDER_URL }}
+          EXTRACT_PROVIDER_URL: ${{ secrets.EXTRACT_PROVIDER_URL }}
+        run: |
+          echo tileProviderUrl="$TILE_PROVIDER_URL" > local.properties
+          echo tileProviderApiKey="$TILE_PROVIDER_API_KEY" >> local.properties
+          echo searchProviderUrl="$SEARCH_PROVIDER_URL" >> local.properties
+          echo searchProviderApiKey="$SEARCH_PROVIDER_API_KEY" >> local.properties
+          echo extractProviderUrl="$EXTRACT_PROVIDER_URL" >> local.properties
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Generate help markdown on emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: default
+          arch: x86_64
+          script: |
+            adb root
+            # Run only the doc-generation test (skips the heavy screenshot tests).
+            # The test creates its own output directory (via getExternalFilesDir +
+            # mkdirs) so the app owns it and can write to it — don't pre-create it
+            # here with adb, or the app process hits EACCES.
+            ./gradlew connectedDebugAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=org.scottishtecharmy.soundscape.DocumentationScreens#getHelp
+            mkdir -p generated-help
+            adb pull /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Documents/help/. generated-help/
+
+      - name: Sync generated markdown into docs/users
+        run: |
+          # Remove stale localized files (help-<slug>.<lang>.md — two dots) so dropped
+          # locales/pages don't linger. The English base files (help-<slug>.md) and any
+          # hand-authored pages (e.g. help-beacon-styles.md) are left in place and the
+          # English ones are overwritten by the copy below.
+          find docs/users -name 'help-*.*.md' -delete
+          cp generated-help/*.md docs/users/
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name  "soundscape-bot"
+          git config user.email "soundscapeAndroid@scottishtecharmy.support"
+          git add docs/users/help-*.md
+          if git diff --cached --quiet; then
+            echo "No changes to localized help docs."
+          else
+            git commit -m "Regenerate localized help docs from string resources"
+            git push origin HEAD:v1.0
+          fi

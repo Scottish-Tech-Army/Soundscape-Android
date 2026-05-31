@@ -8,7 +8,7 @@ has_toc: false
 # Release notes
 
 # 0.4.x
-0.4 releases add some new means of controlling the app remotely through using headphone media controls and speech recognition. For more information see [Help using Media Controls]({% link users/help-using-media-controls.md %}).
+0.4 releases add some new means of controlling the app remotely through using headphone media controls and speech recognition. For more information see [Help using Media Controls]({{ "/users/help-using-media-controls.html" | relative_url }}).
 Smaller fixes include:
 * Add an onboarding screen to give the user the ability to allow the app to run unhindered when the phone is locked. This is important for phone manufacturers which run more aggressive battery optimization which can stop Soundscape running.
 * Tapping any of the Hear My Surroundings buttons will cancel any which were already in progress. For example, tapping My Location and then tapping it again will stop the speech.

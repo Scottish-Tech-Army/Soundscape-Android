@@ -1,6 +1,9 @@
 package org.scottishtecharmy.soundscape
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Environment
+import android.os.LocaleList
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -37,6 +40,7 @@ import org.scottishtecharmy.soundscape.utils.processMaps
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 import java.io.File
 import java.io.FileOutputStream
+import java.util.Locale
 
 fun String.toSafeFilename(replacement: String = "-"): String {
     val illegalCharsRegex = """[/:\\?*"<>|#%&{}^`~ ]""".toRegex()
@@ -284,63 +288,157 @@ class DocumentationScreens {
         }
     }
 
+    // Maps each Android resource qualifier to its web / BCP-47 (jekyll-polyglot)
+    // language code. The default language "en" is emitted with no filename suffix.
+    // Source of truth for the supported set: app/build.gradle.kts resourceConfigurations.
+    // Keep this in sync with the `languages` list in docs/_config.yml.
+    private val localeMap: Map<String, String> = mapOf(
+        "en" to "en",          // default -> no suffix, no `lang:` front matter
+        "arz" to "arz",
+        "zh-rCN" to "zh-CN",
+        "da" to "da",
+        "de" to "de",
+        "el" to "el",
+        "en-rGB" to "en-GB",
+        "es" to "es",
+        "fa" to "fa",
+        "fi" to "fi",
+        "fr" to "fr",
+        "fr-rCA" to "fr-CA",
+        "hi" to "hi",
+        "is" to "is",
+        "it" to "it",
+        "ja" to "ja",
+        "nb" to "nb",
+        "nl" to "nl",
+        "pl" to "pl",
+        "pt" to "pt",
+        "pt-rBR" to "pt-BR",
+        "ro" to "ro",
+        "ru" to "ru",
+        "sv" to "sv",
+        "tr" to "tr",
+        "uk" to "uk",
+    )
+
+    /** Returns a Context whose getString() resolves strings in [webLang]. */
+    private fun localizedContext(base: Context, webLang: String): Context {
+        val locale = Locale.forLanguageTag(webLang)   // "fr-CA", "pt-BR", "zh-CN" all resolve
+        val config = Configuration(base.resources.configuration).apply {
+            setLocales(LocaleList(locale))
+        }
+        return base.createConfigurationContext(config)
+    }
+
+    /**
+     * Builds the markdown for a single help page rendered in [ctx]'s locale.
+     *
+     * @param baseCtx the English context, used to detect whether anything on the page is
+     *   actually translated (a missing string silently falls back to English).
+     * @return the markdown, and whether at least one string differed from English.
+     */
+    private fun buildPageMarkdown(
+        ctx: Context,
+        baseCtx: Context,
+        page: org.scottishtecharmy.soundscape.screens.home.home.Sections,
+        webLang: String,
+        slug: String
+    ): Pair<String, Boolean> {
+        var translated = false
+        fun localized(resId: Int): String {
+            val text = ctx.getString(resId)
+            if (text != baseCtx.getString(resId)) translated = true
+            return text
+        }
+
+        val pageTitle = localized(page.titleId)
+
+        val sb = StringBuilder()
+        sb.append("---\n")
+        sb.append("title: $pageTitle\n")
+        sb.append("layout: page\n")
+        // Language-invariant parent key: the English "Using Soundscape" parent page
+        // (user.md) falls back into every language tree, so localized children attach to it.
+        sb.append("parent: Using Soundscape\n")
+        sb.append("has_toc: false\n")
+        if (webLang != "en") {
+            sb.append("lang: $webLang\n")
+            // Pin the permalink to the English page's URL so jekyll-polyglot matches this
+            // file (by page_id, which it derives from the URL) to its English sibling and
+            // serves it at /<lang>/users/help-<slug>.html instead of a separate URL.
+            sb.append("permalink: /users/help-$slug.html\n")
+        }
+        sb.append("---\n\n")
+
+        sb.append("# ")
+        sb.append(pageTitle)
+        sb.append("\n")
+        for (section in page.sections) {
+            when (section.type) {
+                SectionType.Faq -> {
+                    sb.append("\n")
+                    sb.append("### ")
+                    sb.append(localized(section.textId))
+                    sb.append("\n")
+                    sb.append(localized(section.faqAnswer))
+                }
+                SectionType.Title -> {
+                    sb.append("\n")
+                    sb.append("## ")
+                    sb.append(localized(section.textId))
+                }
+                else -> {
+                    sb.append("\n")
+                    sb.append(localized(section.textId))
+                }
+            }
+            sb.append("\n")
+        }
+        sb.append("\n")
+
+        return Pair(sb.toString(), translated)
+    }
+
     @Test
     fun getHelp() {
 
-        val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
+        val base = InstrumentationRegistry.getInstrumentation().targetContext
 
         val helpDir = File(
-            targetContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),
+            base.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),
             "help"
         )
         if (!helpDir.exists()) {
             helpDir.mkdirs()
         }
 
-        for (page in helpPages) {
+        for ((_, webLang) in localeMap) {
+            val ctx = if (webLang == "en") base else localizedContext(base, webLang)
 
-            if(page.titleId == R.string.menu_help)
-                continue
-            val pageTitle = targetContext.getString(page.titleId)
+            for (page in helpPages) {
 
-            val markdownOutput = StringBuilder()
-            markdownOutput.append("---\n")
-            markdownOutput.append("title: $pageTitle\n")
-            markdownOutput.append("layout: page\n")
-            markdownOutput.append("parent: Using Soundscape\n")
-            markdownOutput.append("has_toc: false\n")
-            markdownOutput.append("---\n\n")
+                if (page.titleId == R.string.menu_help)
+                    continue
 
-            markdownOutput.append("# ")
-            markdownOutput.append(pageTitle)
-            markdownOutput.append("\n")
-            for(section in page.sections) {
-                when (section.type) {
-                    SectionType.Faq -> {
-                        markdownOutput.append("\n")
-                        markdownOutput.append("### ")
-                        markdownOutput.append(targetContext.getString(section.textId))
-                        markdownOutput.append("\n")
-                        markdownOutput.append(targetContext.getString(section.faqAnswer))
-                    }
-                    SectionType.Title -> {
-                        markdownOutput.append("\n")
-                        markdownOutput.append("## ")
-                        markdownOutput.append(targetContext.getString(section.textId))
-                    }
-                    else -> {
-                        markdownOutput.append("\n")
-                        markdownOutput.append(targetContext.getString(section.textId))
-                    }
-                }
-                markdownOutput.append("\n")
+                // Slug always comes from the English title so all languages of one page
+                // share a base name (help-routes.md / help-routes.de.md) and the same
+                // permalink, which is how polyglot pairs them.
+                val slug = base.getString(page.titleId).toSafeFilename()
+
+                val (markdown, translated) = buildPageMarkdown(ctx, base, page, webLang, slug)
+
+                // Skip non-default locales with nothing translated on this page: polyglot
+                // will serve the English fallback rather than a page mislabelled as `lang:`.
+                if (webLang != "en" && !translated)
+                    continue
+
+                val suffix = if (webLang == "en") "" else ".$webLang"
+
+                val file = File(helpDir, "help-$slug$suffix.md")
+                val outputFile = FileOutputStream(file)
+                outputFile.write(markdown.toByteArray())
+                outputFile.close()
             }
-            markdownOutput.append("\n")
-
-            val file = File(helpDir, "help-${pageTitle.toSafeFilename()}.md")
-            val outputFile = FileOutputStream(file)
-            outputFile.write(markdownOutput.toString().toByteArray())
-            outputFile.close()
         }
     }
 }

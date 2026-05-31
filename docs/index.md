@@ -20,10 +20,8 @@ The app carries on working in the background when the phone in a pocket or bag -
 
 Soundscape was originally developed on iOS by [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) and was widely used before being open sourced in 2022. The [Scottish Tech Army](https://www.scottishtecharmy.org) has kept it available on iOS and also rewritten it as an open-source Android app.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="GetItOnGooglePlay_Badge_Web_color_English.svg" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img 
-src="Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" alt="Get Soundscape on Apple App 
-Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
 
 # Soundscape support
 The email address <soundscapeAndroid@scottishtecharmy.support> links straight into our help desk system. Please send in any feedback you have, whether it's a feature request or a bug report. You'll receive an automated email in response and we'll get pinged that there's a new ticket to look at and we'll try and answer it as quickly as possible.
