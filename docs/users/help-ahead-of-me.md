@@ -1,7 +1,7 @@
 ---
 title: Ahead of Me
 layout: page
-parent: Using Soundscape
+parent: "Using Soundscape"
 has_toc: false
 ---
 
