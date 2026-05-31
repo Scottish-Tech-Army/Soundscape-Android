@@ -1,7 +1,7 @@
 ---
 title: Stiluri de baliză
 layout: page
-parent: Using Soundscape
+parent: "Utilizarea Soundscape"
 has_toc: true
 lang: ro
 permalink: /users/help-beacon-styles.html

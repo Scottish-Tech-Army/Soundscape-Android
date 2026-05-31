@@ -1,7 +1,7 @@
 ---
 title: Використання елементів керування медіа
 layout: page
-parent: Using Soundscape
+parent: "Використання Soundscape"
 has_toc: false
 lang: uk
 permalink: /users/help-using-media-controls.html

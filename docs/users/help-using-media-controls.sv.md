@@ -1,7 +1,7 @@
 ---
 title: Använda mediereglage
 layout: page
-parent: Using Soundscape
+parent: "Använda Soundscape"
 has_toc: false
 lang: sv
 permalink: /users/help-using-media-controls.html

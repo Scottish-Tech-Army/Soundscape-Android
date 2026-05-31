@@ -1,7 +1,7 @@
 ---
 title: Stilarter for lydfyr
 layout: page
-parent: Using Soundscape
+parent: "Brug af Soundscape"
 has_toc: true
 lang: da
 permalink: /users/help-beacon-styles.html

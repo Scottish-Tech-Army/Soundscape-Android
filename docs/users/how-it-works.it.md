@@ -1,7 +1,7 @@
 ---
 title: Come funziona Soundscape
 layout: page
-parent: Using Soundscape
+parent: "Usare Soundscape"
 has_toc: false
 lang: it
 permalink: /users/how-it-works.html

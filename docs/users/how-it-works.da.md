@@ -1,7 +1,7 @@
 ---
 title: Sådan fungerer Soundscape
 layout: page
-parent: Using Soundscape
+parent: "Brug af Soundscape"
 has_toc: false
 lang: da
 permalink: /users/how-it-works.html

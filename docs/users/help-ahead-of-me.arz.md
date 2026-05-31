@@ -1,7 +1,7 @@
 ---
 title: أمامي
 layout: page
-parent: Using Soundscape
+parent: "استخدام ساوندسكيب"
 has_toc: false
 lang: arz
 permalink: /users/help-ahead-of-me.html

@@ -1,7 +1,7 @@
 ---
 title: Vanlige spørsmål
 layout: page
-parent: Using Soundscape
+parent: "Bruke Soundscape"
 has_toc: false
 lang: nb
 permalink: /users/help-frequently-asked-questions.html

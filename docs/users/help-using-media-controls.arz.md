@@ -1,7 +1,7 @@
 ---
 title: باستخدام عناصر التحكم في الوسائط
 layout: page
-parent: Using Soundscape
+parent: "استخدام ساوندسكيب"
 has_toc: false
 lang: arz
 permalink: /users/help-using-media-controls.html

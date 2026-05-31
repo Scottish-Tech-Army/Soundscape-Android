@@ -1,7 +1,7 @@
 ---
 title: Merkinnät
 layout: page
-parent: Using Soundscape
+parent: "Soundscapen käyttö"
 has_toc: false
 lang: fi
 permalink: /users/help-markers.html

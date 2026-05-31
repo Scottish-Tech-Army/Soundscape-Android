@@ -1,7 +1,7 @@
 ---
 title: Στυλ ηχητικού σήματος
 layout: page
-parent: Using Soundscape
+parent: "Χρήση του Soundscape"
 has_toc: true
 lang: el
 permalink: /users/help-beacon-styles.html

@@ -1,7 +1,7 @@
 ---
 title: De ce funcționează Soundscape offline?
 layout: page
-parent: Using Soundscape
+parent: "Utilizarea Soundscape"
 has_toc: false
 lang: ro
 permalink: /users/help-why-is-soundscape-working-offline-.html

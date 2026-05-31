@@ -1,7 +1,7 @@
 ---
 title: Як Soundscape працює без доступу до інтернету?
 layout: page
-parent: Using Soundscape
+parent: "Використання Soundscape"
 has_toc: false
 lang: uk
 permalink: /users/help-why-is-soundscape-working-offline-.html

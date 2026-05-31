@@ -1,7 +1,7 @@
 ---
 title: Styles de balises
 layout: page
-parent: Using Soundscape
+parent: "Utiliser Soundscape"
 has_toc: true
 lang: fr
 permalink: /users/help-beacon-styles.html

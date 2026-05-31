@@ -1,7 +1,7 @@
 ---
 title: Utilizarea comenzilor media
 layout: page
-parent: Using Soundscape
+parent: "Utilizarea Soundscape"
 has_toc: false
 lang: ro
 permalink: /users/help-using-media-controls.html

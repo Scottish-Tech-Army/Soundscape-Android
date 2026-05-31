@@ -1,7 +1,7 @@
 ---
 title: Marqueurs
 layout: page
-parent: Using Soundscape
+parent: "Utiliser Soundscape"
 has_toc: false
 lang: fr
 permalink: /users/help-markers.html

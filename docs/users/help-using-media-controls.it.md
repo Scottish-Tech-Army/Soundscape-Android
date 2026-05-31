@@ -1,7 +1,7 @@
 ---
 title: Utilizzo dei controlli di riproduzione
 layout: page
-parent: Using Soundscape
+parent: "Usare Soundscape"
 has_toc: false
 lang: it
 permalink: /users/help-using-media-controls.html

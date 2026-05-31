@@ -85,7 +85,7 @@ To regenerate locally instead:
 
 ### Pages not driven by strings
 
-`how-it-works.md`, `index.md` and the legal pages are hand-authored and not part of `strings.xml`, so they are currently English only and rely on polyglot's English fallback under each `/<lang>/` URL. A translation can be added later by committing a per-language variant (e.g. `index.de.md` with `lang: de`). The legal pages (privacy policy, terms and conditions) should only ever be translated by a human reviewer — do not machine-translate them.
+`index.md` and the legal pages are hand-authored and not part of `strings.xml`, so they are currently English only and rely on polyglot's English fallback under each `/<lang>/` URL. A translation can be added later by committing a per-language variant (e.g. `index.de.md` with `lang: de`). The legal pages (privacy policy, terms and conditions) should only ever be translated by a human reviewer — do not machine-translate them.
 
 ### Linking to localized pages
 
@@ -99,7 +99,7 @@ Instead, link to such pages by URL so polyglot can rewrite it to the active lang
 ```
 {% endraw %}
 
-{% raw %}`{% link %}`{% endraw %} is still fine for English-only pages (developer docs, `user.md`, `how-it-works.md`), because their English source stays in every language pass.
+{% raw %}`{% link %}`{% endraw %} is still fine for English-only pages (developer docs, `user.md`), because their English source stays in every language pass.
 
 ## Weblate usage tips
 

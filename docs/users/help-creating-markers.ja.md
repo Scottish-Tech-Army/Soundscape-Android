@@ -1,7 +1,7 @@
 ---
 title: マーカーの作成
 layout: page
-parent: Using Soundscape
+parent: "Soundscape を使う"
 has_toc: false
 lang: ja
 permalink: /users/help-creating-markers.html

@@ -1,7 +1,7 @@
 ---
 title: 前方
 layout: page
-parent: Using Soundscape
+parent: "Soundscape を使う"
 has_toc: false
 lang: ja
 permalink: /users/help-ahead-of-me.html

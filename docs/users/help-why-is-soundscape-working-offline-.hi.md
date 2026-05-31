@@ -1,7 +1,7 @@
 ---
 title: Soundscape ऑफ़लाइन क्यों काम कर रहा है?
 layout: page
-parent: Using Soundscape
+parent: "Soundscape का उपयोग"
 has_toc: false
 lang: hi
 permalink: /users/help-why-is-soundscape-working-offline-.html

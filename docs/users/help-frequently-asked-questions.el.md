@@ -1,7 +1,7 @@
 ---
 title: Συνήθεις ερωτήσεις
 layout: page
-parent: Using Soundscape
+parent: "Χρήση του Soundscape"
 has_toc: false
 lang: el
 permalink: /users/help-frequently-asked-questions.html

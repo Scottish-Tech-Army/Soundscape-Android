@@ -1,7 +1,7 @@
 ---
 title: Soundscape neden çevrimdışı çalışıyor?
 layout: page
-parent: Using Soundscape
+parent: "Soundscape Kullanımı"
 has_toc: false
 lang: tr
 permalink: /users/help-why-is-soundscape-working-offline-.html

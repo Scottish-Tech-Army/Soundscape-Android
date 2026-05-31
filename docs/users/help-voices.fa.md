@@ -1,7 +1,7 @@
 ---
 title: صدای موتور صوتی
 layout: page
-parent: Using Soundscape
+parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
 lang: fa
 permalink: /users/help-voices.html

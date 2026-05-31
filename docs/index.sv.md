@@ -22,14 +22,14 @@ Appen fortsätter att fungera i bakgrunden när telefonen ligger i en ficka elle
 
 Soundscape utvecklades ursprungligen på iOS av [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) och användes flitigt innan källkoden gjordes öppen 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) har hållit den tillgänglig på iOS och även skrivit om den som en Android-app med öppen källkod.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
 
 # Soundscape-support
 E-postadressen <soundscapeAndroid@scottishtecharmy.support> går direkt till vårt supportsystem. Skicka gärna in all återkoppling du har, oavsett om det är en funktionsönskan eller en felrapport. Du får ett automatiskt e-postmeddelande som svar och vi får en avisering om att det finns ett nytt ärende att titta på, och vi försöker besvara det så snabbt som möjligt.
 
 # Hur du använder Soundscape
-[Hur du använder Soundscape]({% link users/user.md %})
+[Hur du använder Soundscape]({{ "/users/user.html" | relative_url }})
 
 # Soundscape på ditt språk
 Vi strävar efter att stödja så många språk som möjligt och har därför börjat använda det fantastiska verktyget [Weblate](https://hosted.weblate.org/projects/soundscape-android/) för att hjälpa till med lokaliseringen av appen. Vi började med att stödja samma språk som stöds på iOS, men vi har en del nya strängar i Android-appen och därför saknas det översättningar i de flesta språk. All hjälp med att lägga till dessa, eller att lägga till nya språk, tas tacksamt emot. En beskrivning av hur detta fungerar finns [här](https://docs.weblate.org/en/latest/user/translating.html). När du skapar ett Weblate-konto väljer du vilka språk du kan översätta till, och om Soundscape-appen för närvarande inte stöder det språket har du möjlighet att lägga till det språket på appens huvud[sida](https://hosted.weblate.org/projects/soundscape-android/android-app/).

@@ -1,7 +1,7 @@
 ---
 title: Customising Markers
 layout: page
-parent: Using Soundscape
+parent: "Using Soundscape"
 has_toc: false
 lang: en-GB
 permalink: /users/help-customizing-markers.html

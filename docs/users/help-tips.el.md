@@ -1,7 +1,7 @@
 ---
 title: Συμβουλές
 layout: page
-parent: Using Soundscape
+parent: "Χρήση του Soundscape"
 has_toc: false
 lang: el
 permalink: /users/help-tips.html

@@ -1,7 +1,7 @@
 ---
 title: Ljudfyrstilar
 layout: page
-parent: Using Soundscape
+parent: "Använda Soundscape"
 has_toc: true
 lang: sv
 permalink: /users/help-beacon-styles.html

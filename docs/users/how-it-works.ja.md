@@ -1,7 +1,7 @@
 ---
 title: Soundscape の仕組み
 layout: page
-parent: Using Soundscape
+parent: "Soundscape を使う"
 has_toc: false
 lang: ja
 permalink: /users/how-it-works.html

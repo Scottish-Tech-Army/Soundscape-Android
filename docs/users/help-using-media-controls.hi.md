@@ -1,7 +1,7 @@
 ---
 title: मीडिया नियंत्रणों का उपयोग
 layout: page
-parent: Using Soundscape
+parent: "Soundscape का उपयोग"
 has_toc: false
 lang: hi
 permalink: /users/help-using-media-controls.html

@@ -1,7 +1,7 @@
 ---
 title: Întrebări frecvente
 layout: page
-parent: Using Soundscape
+parent: "Utilizarea Soundscape"
 has_toc: false
 lang: ro
 permalink: /users/help-frequently-asked-questions.html

@@ -1,7 +1,7 @@
 ---
 title: Hvorfor kjører Soundscape i frakoblet modus?
 layout: page
-parent: Using Soundscape
+parent: "Bruke Soundscape"
 has_toc: false
 lang: nb
 permalink: /users/help-why-is-soundscape-working-offline-.html

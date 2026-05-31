@@ -1,7 +1,7 @@
 ---
 title: Perguntas Mais Frequentes
 layout: page
-parent: Using Soundscape
+parent: "Utilizar o Soundscape"
 has_toc: false
 lang: pt
 permalink: /users/help-frequently-asked-questions.html

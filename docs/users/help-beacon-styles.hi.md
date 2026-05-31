@@ -1,7 +1,7 @@
 ---
 title: बीकन शैलियाँ
 layout: page
-parent: Using Soundscape
+parent: "Soundscape का उपयोग"
 has_toc: true
 lang: hi
 permalink: /users/help-beacon-styles.html

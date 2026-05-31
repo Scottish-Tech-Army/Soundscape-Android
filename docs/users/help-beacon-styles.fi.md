@@ -1,7 +1,7 @@
 ---
 title: Majakan tyylit
 layout: page
-parent: Using Soundscape
+parent: "Soundscapen käyttö"
 has_toc: true
 lang: fi
 permalink: /users/help-beacon-styles.html

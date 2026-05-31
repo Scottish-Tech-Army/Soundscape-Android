@@ -1,7 +1,7 @@
 ---
 title: Vanliga frågor
 layout: page
-parent: Using Soundscape
+parent: "Använda Soundscape"
 has_toc: false
 lang: sv
 permalink: /users/help-frequently-asked-questions.html

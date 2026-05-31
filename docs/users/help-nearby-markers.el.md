@@ -1,7 +1,7 @@
 ---
 title: Κοντινοί δείκτες
 layout: page
-parent: Using Soundscape
+parent: "Χρήση του Soundscape"
 has_toc: false
 lang: el
 permalink: /users/help-nearby-markers.html

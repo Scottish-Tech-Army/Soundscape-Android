@@ -1,7 +1,7 @@
 ---
 title: Rundt meg
 layout: page
-parent: Using Soundscape
+parent: "Bruke Soundscape"
 has_toc: false
 lang: nb
 permalink: /users/help-around-me.html

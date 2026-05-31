@@ -1,7 +1,7 @@
 ---
 title: لماذا يعمل SoundScape في وضع عدم الاتصال؟
 layout: page
-parent: Using Soundscape
+parent: "استخدام ساوندسكيب"
 has_toc: false
 lang: arz
 permalink: /users/help-why-is-soundscape-working-offline-.html

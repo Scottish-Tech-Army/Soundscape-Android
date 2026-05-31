@@ -1,7 +1,7 @@
 ---
 title: Γιατί το Soundscape λειτουργεί εκτός σύνδεσης;
 layout: page
-parent: Using Soundscape
+parent: "Χρήση του Soundscape"
 has_toc: false
 lang: el
 permalink: /users/help-why-is-soundscape-working-offline-.html

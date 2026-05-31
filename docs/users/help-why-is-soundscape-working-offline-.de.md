@@ -1,7 +1,7 @@
 ---
 title: Warum wird Soundscape im Offlinemodus ausgeführt?
 layout: page
-parent: Using Soundscape
+parent: "Soundscape verwenden"
 has_toc: false
 lang: de
 permalink: /users/help-why-is-soundscape-working-offline-.html

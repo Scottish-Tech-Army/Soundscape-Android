@@ -1,7 +1,7 @@
 ---
 title: Personalizando Favoritos
 layout: page
-parent: Using Soundscape
+parent: "Usando o Soundscape"
 has_toc: false
 lang: pt-BR
 permalink: /users/help-customizing-markers.html

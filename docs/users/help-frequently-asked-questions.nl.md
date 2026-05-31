@@ -1,7 +1,7 @@
 ---
 title: Veelgestelde vragen
 layout: page
-parent: Using Soundscape
+parent: "Soundscape gebruiken"
 has_toc: false
 lang: nl
 permalink: /users/help-frequently-asked-questions.html

@@ -1,7 +1,7 @@
 ---
 title: Tworzenie znaczników (pinezek)
 layout: page
-parent: Using Soundscape
+parent: "Korzystanie z Soundscape"
 has_toc: false
 lang: pl
 permalink: /users/help-creating-markers.html

@@ -1,7 +1,7 @@
 ---
 title: Davanti a me
 layout: page
-parent: Using Soundscape
+parent: "Usare Soundscape"
 has_toc: false
 lang: it
 permalink: /users/help-ahead-of-me.html

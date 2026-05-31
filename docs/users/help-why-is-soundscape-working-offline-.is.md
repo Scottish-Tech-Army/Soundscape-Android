@@ -1,7 +1,7 @@
 ---
 title: Hversvegna er Soundscape án net möguleika?
 layout: page
-parent: Using Soundscape
+parent: "Að nota Soundscape"
 has_toc: false
 lang: is
 permalink: /users/help-why-is-soundscape-working-offline-.html

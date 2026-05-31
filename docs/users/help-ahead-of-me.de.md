@@ -1,7 +1,7 @@
 ---
 title: Vor mir
 layout: page
-parent: Using Soundscape
+parent: "Soundscape verwenden"
 has_toc: false
 lang: de
 permalink: /users/help-ahead-of-me.html

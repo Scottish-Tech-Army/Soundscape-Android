@@ -1,7 +1,7 @@
 ---
 title: Bakenstijlen
 layout: page
-parent: Using Soundscape
+parent: "Soundscape gebruiken"
 has_toc: true
 lang: nl
 permalink: /users/help-beacon-styles.html

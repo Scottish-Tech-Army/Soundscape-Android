@@ -1,7 +1,7 @@
 ---
 title: Использование элементов управления мультимедиа
 layout: page
-parent: Using Soundscape
+parent: "Использование Soundscape"
 has_toc: false
 lang: ru
 permalink: /users/help-using-media-controls.html

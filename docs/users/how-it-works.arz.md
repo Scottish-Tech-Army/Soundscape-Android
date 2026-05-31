@@ -1,7 +1,7 @@
 ---
 title: إزاي Soundscape بيشتغل
 layout: page
-parent: Using Soundscape
+parent: "استخدام ساوندسكيب"
 has_toc: false
 lang: arz
 permalink: /users/how-it-works.html

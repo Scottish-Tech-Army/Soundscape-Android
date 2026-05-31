@@ -321,6 +321,39 @@ class DocumentationScreens {
         "uk" to "uk",
     )
 
+    // Localized "Using Soundscape" — the nav parent/section title. Keyed by web language
+    // code. just-the-docs matches a child page's `parent:` to the parent page's `title:`
+    // within each language, so the value here must exactly match the title of the
+    // corresponding docs/users/user.<lang>.md. English (and en-GB) keep the English label.
+    private val parentLabels: Map<String, String> = mapOf(
+        "en" to "Using Soundscape",
+        "en-GB" to "Using Soundscape",
+        "arz" to "استخدام ساوندسكيب",
+        "zh-CN" to "使用 Soundscape",
+        "da" to "Brug af Soundscape",
+        "de" to "Soundscape verwenden",
+        "el" to "Χρήση του Soundscape",
+        "es" to "Usar Soundscape",
+        "fa" to "استفاده از ساند‌اسکیپ",
+        "fi" to "Soundscapen käyttö",
+        "fr" to "Utiliser Soundscape",
+        "fr-CA" to "Utiliser Soundscape",
+        "hi" to "Soundscape का उपयोग",
+        "is" to "Að nota Soundscape",
+        "it" to "Usare Soundscape",
+        "ja" to "Soundscape を使う",
+        "nb" to "Bruke Soundscape",
+        "nl" to "Soundscape gebruiken",
+        "pl" to "Korzystanie z Soundscape",
+        "pt" to "Utilizar o Soundscape",
+        "pt-BR" to "Usando o Soundscape",
+        "ro" to "Utilizarea Soundscape",
+        "ru" to "Использование Soundscape",
+        "sv" to "Använda Soundscape",
+        "tr" to "Soundscape Kullanımı",
+        "uk" to "Використання Soundscape",
+    )
+
     /** Returns a Context whose getString() resolves strings in [webLang]. */
     private fun localizedContext(base: Context, webLang: String): Context {
         val locale = Locale.forLanguageTag(webLang)   // "fr-CA", "pt-BR", "zh-CN" all resolve
@@ -332,24 +365,16 @@ class DocumentationScreens {
 
     /**
      * Builds the markdown for a single help page rendered in [ctx]'s locale.
-     *
-     * @param baseCtx the English context, used to detect whether anything on the page is
-     *   actually translated (a missing string silently falls back to English).
-     * @return the markdown, and whether at least one string differed from English.
+     * [parentLabel] is the localized "Using Soundscape" nav parent for [webLang].
      */
     private fun buildPageMarkdown(
         ctx: Context,
-        baseCtx: Context,
         page: org.scottishtecharmy.soundscape.screens.home.home.Sections,
         webLang: String,
-        slug: String
-    ): Pair<String, Boolean> {
-        var translated = false
-        fun localized(resId: Int): String {
-            val text = ctx.getString(resId)
-            if (text != baseCtx.getString(resId)) translated = true
-            return text
-        }
+        slug: String,
+        parentLabel: String
+    ): String {
+        fun localized(resId: Int): String = ctx.getString(resId)
 
         val pageTitle = localized(page.titleId)
 
@@ -357,9 +382,9 @@ class DocumentationScreens {
         sb.append("---\n")
         sb.append("title: $pageTitle\n")
         sb.append("layout: page\n")
-        // Language-invariant parent key: the English "Using Soundscape" parent page
-        // (user.md) falls back into every language tree, so localized children attach to it.
-        sb.append("parent: Using Soundscape\n")
+        // Parent must match the title of docs/users/user.<lang>.md in the same language so
+        // just-the-docs nests this page under the localized "Using Soundscape" section.
+        sb.append("parent: \"$parentLabel\"\n")
         sb.append("has_toc: false\n")
         if (webLang != "en") {
             sb.append("lang: $webLang\n")
@@ -396,7 +421,7 @@ class DocumentationScreens {
         }
         sb.append("\n")
 
-        return Pair(sb.toString(), translated)
+        return sb.toString()
     }
 
     @Test
@@ -414,6 +439,8 @@ class DocumentationScreens {
 
         for ((_, webLang) in localeMap) {
             val ctx = if (webLang == "en") base else localizedContext(base, webLang)
+            // Fall back to the English label if a language is somehow missing from the map.
+            val parentLabel = parentLabels[webLang] ?: "Using Soundscape"
 
             for (page in helpPages) {
 
@@ -425,12 +452,11 @@ class DocumentationScreens {
                 // permalink, which is how polyglot pairs them.
                 val slug = base.getString(page.titleId).toSafeFilename()
 
-                val (markdown, translated) = buildPageMarkdown(ctx, base, page, webLang, slug)
-
-                // Skip non-default locales with nothing translated on this page: polyglot
-                // will serve the English fallback rather than a page mislabelled as `lang:`.
-                if (webLang != "en" && !translated)
-                    continue
+                // Emit a file for every language even when a page is untranslated (its
+                // strings fall back to English). The localized `parent:` keeps it nested
+                // under the language's "Using Soundscape" section instead of orphaning a
+                // fallback page whose English parent wouldn't match.
+                val markdown = buildPageMarkdown(ctx, page, webLang, slug, parentLabel)
 
                 val suffix = if (webLang == "en") "" else ".$webLang"
 

@@ -1,7 +1,7 @@
 ---
 title: Häufig gestellte Fragen
 layout: page
-parent: Using Soundscape
+parent: "Soundscape verwenden"
 has_toc: false
 lang: de
 permalink: /users/help-frequently-asked-questions.html

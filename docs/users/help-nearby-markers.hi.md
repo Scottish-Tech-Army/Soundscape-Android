@@ -1,7 +1,7 @@
 ---
 title: पास के मार्कर
 layout: page
-parent: Using Soundscape
+parent: "Soundscape का उपयोग"
 has_toc: false
 lang: hi
 permalink: /users/help-nearby-markers.html

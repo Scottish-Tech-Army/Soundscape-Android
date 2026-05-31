@@ -1,7 +1,7 @@
 ---
 title: Ljudfyr
 layout: page
-parent: Using Soundscape
+parent: "Använda Soundscape"
 has_toc: false
 lang: sv
 permalink: /users/help-audio-beacon.html

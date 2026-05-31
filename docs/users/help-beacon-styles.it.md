@@ -1,7 +1,7 @@
 ---
 title: Stili audiofaro
 layout: page
-parent: Using Soundscape
+parent: "Usare Soundscape"
 has_toc: true
 lang: it
 permalink: /users/help-beacon-styles.html

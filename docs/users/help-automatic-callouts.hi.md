@@ -1,7 +1,7 @@
 ---
 title: स्वचालित कॉलआउट
 layout: page
-parent: Using Soundscape
+parent: "Soundscape का उपयोग"
 has_toc: false
 lang: hi
 permalink: /users/help-automatic-callouts.html

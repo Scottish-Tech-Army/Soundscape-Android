@@ -1,7 +1,7 @@
 ---
 title: استفاده از دکمه‌های کنترل پخش صوت و تصویر روی هندزفری
 layout: page
-parent: Using Soundscape
+parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
 lang: fa
 permalink: /users/help-using-media-controls.html

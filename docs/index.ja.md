@@ -22,14 +22,14 @@ Soundscape は、ターン・バイ・ターンの道案内をするのではな
 
 Soundscape はもともと [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) によって iOS 向けに開発され、2022 年にオープンソース化される前から広く利用されていました。[Scottish Tech Army](https://www.scottishtecharmy.org) は、iOS での提供を継続するとともに、オープンソースの Android アプリとして書き直しました。
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
 
 # Soundscape のサポート
 メール アドレス <soundscapeAndroid@scottishtecharmy.support> は、当社のヘルプデスク システムに直接つながっています。機能の要望でもバグの報告でも、どのようなフィードバックでもお寄せください。自動返信メールが届き、当社には新しいチケットがあることが通知されますので、できるだけ早く対応するよう努めます。
 
 # Soundscape の使い方
-[Soundscape の使い方]({% link users/user.md %})
+[Soundscape の使い方]({{ "/users/user.html" | relative_url }})
 
 # Soundscape をあなたの言語で
 当社はできるだけ多くの言語をサポートすることを目指しており、アプリのローカライズを支援するために、素晴らしい [Weblate](https://hosted.weblate.org/projects/soundscape-android/) の利用を開始しました。当初は iOS でサポートされているのと同じ言語をサポートしていましたが、Android アプリにはいくつか新しい文字列があるため、ほとんどの言語で未翻訳の部分があります。これらの追加翻訳、あるいは新しい言語の追加について、ご協力いただけると大変ありがたく思います。この仕組みの説明は[こちら](https://docs.weblate.org/en/latest/user/translating.html)でご覧いただけます。Weblate アカウントを設定すると、翻訳できる言語を選択でき、Soundscape アプリが現在その言語をサポートしていない場合は、メイン アプリの[ページ](https://hosted.weblate.org/projects/soundscape-android/android-app/)でその言語を追加するオプションが表示されます。

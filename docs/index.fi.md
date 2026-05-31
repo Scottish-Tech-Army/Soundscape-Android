@@ -22,14 +22,14 @@ Sovellus toimii edelleen taustalla, kun puhelin on taskussa tai laukussa – sit
 
 Soundscapen kehitti alun perin iOS:lle [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/), ja se oli laajalti käytössä ennen kuin se julkaistiin avoimena lähdekoodina vuonna 2022. [Scottish Tech Army](https://www.scottishtecharmy.org) on pitänyt sen saatavilla iOS:llä ja myös kirjoittanut sen uudelleen avoimen lähdekoodin Android-sovellukseksi.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
 
 # Soundscapen tuki
 Sähköpostiosoite <soundscapeAndroid@scottishtecharmy.support> johtaa suoraan tukijärjestelmäämme. Lähetä meille mitä tahansa palautetta, oli kyseessä sitten ominaisuuspyyntö tai virheraportti. Saat vastauksena automaattisen sähköpostin, ja meille tulee ilmoitus uudesta käsiteltävästä tiketistä, jonka yritämme vastata mahdollisimman nopeasti.
 
 # Kuinka Soundscapea käytetään
-[Kuinka Soundscapea käytetään]({% link users/user.md %})
+[Kuinka Soundscapea käytetään]({{ "/users/user.html" | relative_url }})
 
 # Soundscape omalla kielelläsi
 Pyrimme tukemaan mahdollisimman monia kieliä, ja siksi olemme alkaneet käyttää fantastista [Weblatea](https://hosted.weblate.org/projects/soundscape-android/) auttamaan sovelluksen lokalisoinnissa. Aloitimme tukemalla samoja kieliä kuin iOS:llä tuetaan, mutta Android-sovelluksessa on joitakin uusia merkkijonoja, joten useimmista kielistä puuttuu joitakin käännöksiä. Kaikki apu näiden lisäämisessä, tai jopa uusien kielten lisäämisessä, otetaan kiitollisena vastaan. Kuvaus siitä, kuinka tämä toimii, löytyy [täältä](https://docs.weblate.org/en/latest/user/translating.html). Kun perustat Weblate-tilin, valitset, mille kielille voit kääntää, ja jos Soundscape-sovellus ei tällä hetkellä tue kyseistä kieltä, sinulla on mahdollisuus lisätä kyseinen kieli sovelluksen pää[sivulla](https://hosted.weblate.org/projects/soundscape-android/android-app/).

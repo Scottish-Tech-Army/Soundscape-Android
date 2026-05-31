@@ -1,7 +1,7 @@
 ---
 title: Stílar hljóðvita
 layout: page
-parent: Using Soundscape
+parent: "Að nota Soundscape"
 has_toc: true
 lang: is
 permalink: /users/help-beacon-styles.html

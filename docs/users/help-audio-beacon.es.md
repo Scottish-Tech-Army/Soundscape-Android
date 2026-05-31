@@ -1,7 +1,7 @@
 ---
 title: Señal de audio
 layout: page
-parent: Using Soundscape
+parent: "Usar Soundscape"
 has_toc: false
 lang: es
 permalink: /users/help-audio-beacon.html

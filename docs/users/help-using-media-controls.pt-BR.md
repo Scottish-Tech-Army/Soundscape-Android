@@ -1,7 +1,7 @@
 ---
 title: Uso dos Controles de Mídia
 layout: page
-parent: Using Soundscape
+parent: "Usando o Soundscape"
 has_toc: false
 lang: pt-BR
 permalink: /users/help-using-media-controls.html

@@ -1,7 +1,7 @@
 ---
 title: Skapar platsmarkörer
 layout: page
-parent: Using Soundscape
+parent: "Använda Soundscape"
 has_toc: false
 lang: sv
 permalink: /users/help-creating-markers.html

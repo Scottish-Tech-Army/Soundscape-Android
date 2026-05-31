@@ -1,7 +1,7 @@
 ---
 title: Création de marqueurs
 layout: page
-parent: Using Soundscape
+parent: "Utiliser Soundscape"
 has_toc: false
 lang: fr-CA
 permalink: /users/help-creating-markers.html

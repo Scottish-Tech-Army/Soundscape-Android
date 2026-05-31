@@ -1,7 +1,7 @@
 ---
 title: मेरे आगे
 layout: page
-parent: Using Soundscape
+parent: "Soundscape का उपयोग"
 has_toc: false
 lang: hi
 permalink: /users/help-ahead-of-me.html

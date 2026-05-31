@@ -1,7 +1,7 @@
 ---
 title: أنماط المنارات
 layout: page
-parent: Using Soundscape
+parent: "استخدام ساوندسكيب"
 has_toc: true
 lang: arz
 permalink: /users/help-beacon-styles.html

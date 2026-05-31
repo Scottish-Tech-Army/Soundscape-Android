@@ -1,7 +1,7 @@
 ---
 title: Informacje o aplikacji Soundscape
 layout: page
-parent: Using Soundscape
+parent: "Korzystanie z Soundscape"
 has_toc: false
 lang: pl
 permalink: /users/help-about-soundscape.html

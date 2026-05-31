@@ -1,7 +1,7 @@
 ---
 title: Äänet
 layout: page
-parent: Using Soundscape
+parent: "Soundscapen käyttö"
 has_toc: false
 lang: fi
 permalink: /users/help-voices.html

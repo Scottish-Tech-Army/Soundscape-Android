@@ -1,7 +1,7 @@
 ---
 title: حول soundscape
 layout: page
-parent: Using Soundscape
+parent: "استخدام ساوندسكيب"
 has_toc: false
 lang: arz
 permalink: /users/help-about-soundscape.html

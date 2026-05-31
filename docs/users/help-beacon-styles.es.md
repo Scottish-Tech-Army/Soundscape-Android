@@ -1,7 +1,7 @@
 ---
 title: Estilos de señal
 layout: page
-parent: Using Soundscape
+parent: "Usar Soundscape"
 has_toc: true
 lang: es
 permalink: /users/help-beacon-styles.html

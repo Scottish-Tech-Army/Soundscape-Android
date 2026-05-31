@@ -1,7 +1,7 @@
 ---
 title: اطراف من
 layout: page
-parent: Using Soundscape
+parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
 lang: fa
 permalink: /users/help-around-me.html

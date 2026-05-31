@@ -1,7 +1,7 @@
 ---
 title: Γύρω μου
 layout: page
-parent: Using Soundscape
+parent: "Χρήση του Soundscape"
 has_toc: false
 lang: el
 permalink: /users/help-around-me.html

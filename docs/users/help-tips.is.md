@@ -1,7 +1,7 @@
 ---
 title: góð ráð
 layout: page
-parent: Using Soundscape
+parent: "Að nota Soundscape"
 has_toc: false
 lang: is
 permalink: /users/help-tips.html

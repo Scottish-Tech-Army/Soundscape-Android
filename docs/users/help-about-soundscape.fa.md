@@ -1,7 +1,7 @@
 ---
 title: درباره‌ی ساند‌اسکیپ
 layout: page
-parent: Using Soundscape
+parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
 lang: fa
 permalink: /users/help-about-soundscape.html

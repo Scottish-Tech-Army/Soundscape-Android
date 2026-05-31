@@ -1,7 +1,7 @@
 ---
 title: Tips
 layout: page
-parent: Using Soundscape
+parent: "Brug af Soundscape"
 has_toc: false
 lang: da
 permalink: /users/help-tips.html

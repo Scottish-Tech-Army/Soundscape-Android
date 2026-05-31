@@ -1,7 +1,7 @@
 ---
 title: Markeringen aanpassen
 layout: page
-parent: Using Soundscape
+parent: "Soundscape gebruiken"
 has_toc: false
 lang: nl
 permalink: /users/help-customizing-markers.html

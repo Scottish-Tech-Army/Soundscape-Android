@@ -1,7 +1,7 @@
 ---
 title: Personalizarea marcajelor
 layout: page
-parent: Using Soundscape
+parent: "Utilizarea Soundscape"
 has_toc: false
 lang: ro
 permalink: /users/help-customizing-markers.html

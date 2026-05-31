@@ -1,7 +1,7 @@
 ---
 title: Попереду Мене
 layout: page
-parent: Using Soundscape
+parent: "Використання Soundscape"
 has_toc: false
 lang: uk
 permalink: /users/help-ahead-of-me.html

@@ -1,7 +1,7 @@
 ---
 title: Pourquoi Soundscape est-il en mode hors ligne?
 layout: page
-parent: Using Soundscape
+parent: "Utiliser Soundscape"
 has_toc: false
 lang: fr-CA
 permalink: /users/help-why-is-soundscape-working-offline-.html

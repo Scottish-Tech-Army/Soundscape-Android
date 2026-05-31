@@ -1,7 +1,7 @@
 ---
 title: Erstellen von Markierungen
 layout: page
-parent: Using Soundscape
+parent: "Soundscape verwenden"
 has_toc: false
 lang: de
 permalink: /users/help-creating-markers.html

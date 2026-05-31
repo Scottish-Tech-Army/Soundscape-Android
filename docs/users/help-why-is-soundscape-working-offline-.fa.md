@@ -1,7 +1,7 @@
 ---
 title: چرا ساند‌اسکیپ آفلاین کار می‌کند؟
 layout: page
-parent: Using Soundscape
+parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
 lang: fa
 permalink: /users/help-why-is-soundscape-working-offline-.html

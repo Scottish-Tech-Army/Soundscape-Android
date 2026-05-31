@@ -1,7 +1,7 @@
 ---
 title: Omkring mig
 layout: page
-parent: Using Soundscape
+parent: "Brug af Soundscape"
 has_toc: false
 lang: da
 permalink: /users/help-around-me.html

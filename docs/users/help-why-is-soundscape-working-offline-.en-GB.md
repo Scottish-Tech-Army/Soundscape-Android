@@ -1,7 +1,7 @@
 ---
 title: Why is Soundscape working offline?
 layout: page
-parent: Using Soundscape
+parent: "Using Soundscape"
 has_toc: false
 lang: en-GB
 permalink: /users/help-why-is-soundscape-working-offline-.html

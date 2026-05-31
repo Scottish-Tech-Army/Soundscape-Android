@@ -1,7 +1,7 @@
 ---
 title: Automatyczne powiadomienia głosowe
 layout: page
-parent: Using Soundscape
+parent: "Korzystanie z Soundscape"
 has_toc: false
 lang: pl
 permalink: /users/help-automatic-callouts.html

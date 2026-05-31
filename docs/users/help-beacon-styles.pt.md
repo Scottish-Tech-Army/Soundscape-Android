@@ -1,7 +1,7 @@
 ---
 title: Estilos do Sinal de Áudio
 layout: page
-parent: Using Soundscape
+parent: "Utilizar o Soundscape"
 has_toc: true
 lang: pt
 permalink: /users/help-beacon-styles.html

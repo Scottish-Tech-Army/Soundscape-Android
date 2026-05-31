@@ -1,7 +1,7 @@
 ---
 title: Стили маяка
 layout: page
-parent: Using Soundscape
+parent: "Использование Soundscape"
 has_toc: true
 lang: ru
 permalink: /users/help-beacon-styles.html

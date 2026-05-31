@@ -1,7 +1,7 @@
 ---
 title: Частые вопросы
 layout: page
-parent: Using Soundscape
+parent: "Использование Soundscape"
 has_toc: false
 lang: ru
 permalink: /users/help-frequently-asked-questions.html

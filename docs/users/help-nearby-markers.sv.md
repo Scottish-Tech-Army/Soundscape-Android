@@ -1,7 +1,7 @@
 ---
 title: Platsmarkörer i närheten
 layout: page
-parent: Using Soundscape
+parent: "Använda Soundscape"
 has_toc: false
 lang: sv
 permalink: /users/help-nearby-markers.html

@@ -1,7 +1,7 @@
 ---
 title: În jurul meu
 layout: page
-parent: Using Soundscape
+parent: "Utilizarea Soundscape"
 has_toc: false
 lang: ro
 permalink: /users/help-around-me.html

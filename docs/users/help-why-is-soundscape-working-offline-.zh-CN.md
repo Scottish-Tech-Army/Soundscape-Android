@@ -1,7 +1,7 @@
 ---
 title: 为什么 Soundscape 在离线模式下运行？
 layout: page
-parent: Using Soundscape
+parent: "使用 Soundscape"
 has_toc: false
 lang: zh-CN
 permalink: /users/help-why-is-soundscape-working-offline-.html

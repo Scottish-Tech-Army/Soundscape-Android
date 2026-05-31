@@ -1,7 +1,7 @@
 ---
 title: Markører i nærheten
 layout: page
-parent: Using Soundscape
+parent: "Bruke Soundscape"
 has_toc: false
 lang: nb
 permalink: /users/help-nearby-markers.html

@@ -1,7 +1,7 @@
 ---
 title: 現在地
 layout: page
-parent: Using Soundscape
+parent: "Soundscape を使う"
 has_toc: false
 lang: ja
 permalink: /users/help-my-location.html

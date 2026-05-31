@@ -1,7 +1,7 @@
 ---
 title: 关于 Soundscape
 layout: page
-parent: Using Soundscape
+parent: "使用 Soundscape"
 has_toc: false
 lang: zh-CN
 permalink: /users/help-about-soundscape.html

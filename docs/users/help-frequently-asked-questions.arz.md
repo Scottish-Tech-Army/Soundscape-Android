@@ -1,7 +1,7 @@
 ---
 title: الأسئلة المتداولة
 layout: page
-parent: Using Soundscape
+parent: "استخدام ساوندسكيب"
 has_toc: false
 lang: arz
 permalink: /users/help-frequently-asked-questions.html

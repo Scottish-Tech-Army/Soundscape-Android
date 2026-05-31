@@ -1,7 +1,7 @@
 ---
 title: Bruk mediekontroller
 layout: page
-parent: Using Soundscape
+parent: "Bruke Soundscape"
 has_toc: false
 lang: nb
 permalink: /users/help-using-media-controls.html

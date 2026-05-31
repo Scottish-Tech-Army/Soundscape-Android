@@ -1,7 +1,7 @@
 ---
 title: Luodaan merkintöjä
 layout: page
-parent: Using Soundscape
+parent: "Soundscapen käyttö"
 has_toc: false
 lang: fi
 permalink: /users/help-creating-markers.html

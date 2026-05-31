@@ -22,14 +22,14 @@ machine-translated: true
 
 ساند‌اسکیپ در ابتدا توسط [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) روی iOS توسعه داده شد و پیش از آنکه در سال ۲۰۲۲ متن‌باز شود، به‌طور گسترده‌ای مورد استفاده قرار می‌گرفت. [Scottish Tech Army](https://www.scottishtecharmy.org) آن را روی iOS در دسترس نگه داشته و همچنین آن را به‌عنوان یک اپلیکیشن اندروید متن‌باز بازنویسی کرده است.
 
-<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
-<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
+<a href="https://play.google.com/store/apps/details?id=org.scottishtecharmy.soundscape"> <img src="{{ "/assets/GetItOnGooglePlay_Badge_Web_color_English.svg" | relative_url }}" alt="Get Soundscape on Google Play Store" height=80></a>
+<a href="https://apps.apple.com/gb/app/soundscape/id6459021379"> <img src="{{ "/assets/Download_on_the_App_Store_Badge_US-UK_RGB_blk_092917.svg" | relative_url }}" alt="Get Soundscape on Apple App Store" height=80></a>
 
 # پشتیبانی ساند‌اسکیپ
 آدرس ایمیل <soundscapeAndroid@scottishtecharmy.support> مستقیماً به سامانه‌ی میز پشتیبانی ما متصل می‌شود. لطفاً هر بازخوردی که دارید برای ما بفرستید، چه درخواست یک ویژگی باشد و چه گزارش یک اشکال. شما در پاسخ یک ایمیل خودکار دریافت خواهید کرد و به ما اطلاع داده می‌شود که یک درخواست جدید برای بررسی وجود دارد و ما تلاش می‌کنیم در سریع‌ترین زمان ممکن به آن پاسخ دهیم.
 
 # چگونه از ساند‌اسکیپ استفاده کنیم
-[چگونه از ساند‌اسکیپ استفاده کنیم]({% link users/user.md %})
+[چگونه از ساند‌اسکیپ استفاده کنیم]({{ "/users/user.html" | relative_url }})
 
 # ساند‌اسکیپ به زبان شما
 ما تلاش می‌کنیم تا از هر تعداد زبان که ممکن است پشتیبانی کنیم و به همین دلیل شروع به استفاده از [Weblate](https://hosted.weblate.org/projects/soundscape-android/) فوق‌العاده کرده‌ایم تا به بومی‌سازی اپلیکیشن کمک کند. ما در ابتدا از همان زبان‌هایی که در iOS پشتیبانی می‌شدند پشتیبانی کردیم، اما در اپلیکیشن اندروید برخی رشته‌های جدید داریم و بنابراین در بیشتر زبان‌ها برخی ترجمه‌ها وجود ندارند. هرگونه کمک در افزودن این موارد، یا حتی افزودن زبان‌های جدید با سپاس پذیرفته می‌شود. توضیحی درباره‌ی چگونگی کارکرد این موضوع را می‌توان [اینجا](https://docs.weblate.org/en/latest/user/translating.html) یافت. وقتی یک حساب Weblate ایجاد می‌کنید، انتخاب می‌کنید که می‌توانید به کدام زبان‌ها ترجمه کنید و اگر اپلیکیشن ساند‌اسکیپ در حال حاضر از آن زبان پشتیبانی نمی‌کند، این گزینه را خواهید داشت که آن زبان را در [صفحه‌ی](https://hosted.weblate.org/projects/soundscape-android/android-app/) اصلی اپلیکیشن اضافه کنید.

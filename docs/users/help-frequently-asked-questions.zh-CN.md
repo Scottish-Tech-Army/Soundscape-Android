@@ -1,7 +1,7 @@
 ---
 title: 常见问题
 layout: page
-parent: Using Soundscape
+parent: "使用 Soundscape"
 has_toc: false
 lang: zh-CN
 permalink: /users/help-frequently-asked-questions.html

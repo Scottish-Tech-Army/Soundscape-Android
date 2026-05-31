@@ -1,7 +1,7 @@
 ---
 title: پرسش‌های متداول
 layout: page
-parent: Using Soundscape
+parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
 lang: fa
 permalink: /users/help-frequently-asked-questions.html

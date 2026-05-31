@@ -1,7 +1,7 @@
 ---
 title: Sinalizador Sonoro
 layout: page
-parent: Using Soundscape
+parent: "Usando o Soundscape"
 has_toc: false
 lang: pt-BR
 permalink: /users/help-audio-beacon.html

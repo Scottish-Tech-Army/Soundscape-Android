@@ -1,7 +1,7 @@
 ---
 title: Avisos automáticos
 layout: page
-parent: Using Soundscape
+parent: "Usar Soundscape"
 has_toc: false
 lang: es
 permalink: /users/help-automatic-callouts.html

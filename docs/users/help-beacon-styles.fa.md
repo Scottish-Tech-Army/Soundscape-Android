@@ -1,7 +1,7 @@
 ---
 title: سبک‌های جهت‌نما
 layout: page
-parent: Using Soundscape
+parent: "استفاده از ساند‌اسکیپ"
 has_toc: true
 lang: fa
 permalink: /users/help-beacon-styles.html

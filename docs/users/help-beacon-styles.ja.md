@@ -1,7 +1,7 @@
 ---
 title: ビーコンのスタイル
 layout: page
-parent: Using Soundscape
+parent: "Soundscape を使う"
 has_toc: true
 lang: ja
 permalink: /users/help-beacon-styles.html

@@ -1,7 +1,7 @@
 ---
 title: Beacon Styles
 layout: page
-parent: Using Soundscape
+parent: "Using Soundscape"
 has_toc: true
 lang: en-GB
 permalink: /users/help-beacon-styles.html

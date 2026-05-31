@@ -1,7 +1,7 @@
 ---
 title: Stiler for lydsignal
 layout: page
-parent: Using Soundscape
+parent: "Bruke Soundscape"
 has_toc: true
 lang: nb
 permalink: /users/help-beacon-styles.html

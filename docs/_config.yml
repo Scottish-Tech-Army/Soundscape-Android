@@ -25,7 +25,11 @@ languages: ["en", "arz", "da", "de", "el", "en-GB", "es", "fa", "fi", "fr", "fr-
             "tr", "uk", "zh-CN"]
 default_lang: "en"
 # Untranslated pages fall back to the default_lang version under every /<lang>/ URL.
-exclude_from_localization: ["assets", "dokka", "documentationScreens", "javascript", "*.svg", "*.png", "generate-beacons.py"]
+# NB: do not add bare "*.svg"/"*.png" globs here — polyglot compiles them to
+# greedy `(?!.*\.svg)` lookaheads that break link relativization for any link
+# earlier on the same (minified) line as an image. Exclude image *directories*
+# instead; all binary assets live under assets/, dokka/ or documentationScreens/.
+exclude_from_localization: ["assets", "dokka", "documentationScreens", "javascript", "generate-beacons.py"]
 # Keep serial for now: just-the-docs nav generation can race under polyglot's
 # parallel mode. Revisit only if build time becomes a problem.
 parallel_localization: false

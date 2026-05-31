@@ -1,7 +1,7 @@
 ---
 title: Markører
 layout: page
-parent: Using Soundscape
+parent: "Bruke Soundscape"
 has_toc: false
 lang: nb
 permalink: /users/help-markers.html

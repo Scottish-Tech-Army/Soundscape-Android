@@ -1,7 +1,7 @@
 ---
 title: Estilos do Sinalizador Sonoro
 layout: page
-parent: Using Soundscape
+parent: "Usando o Soundscape"
 has_toc: true
 lang: pt-BR
 permalink: /users/help-beacon-styles.html
