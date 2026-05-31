@@ -1,0 +1,15 @@
+---
+title: Creating Markers
+layout: page
+parent: Using Soundscape
+has_toc: false
+lang: en-GB
+permalink: /users/help-creating-markers.html
+---
+
+# Creating Markers
+
+You can create markers in three ways: by searching for the place you want to save using the search bar, by finding somewhere using the *"Places Nearby"* button, or by using the *"Use Current Location"* button — all of which are on the Soundscape home screen. Once you have found the place you want, selecting it will open the *"Location Details"* screen. On that screen, select the *"Save as Marker"* button.
+
+You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
+
