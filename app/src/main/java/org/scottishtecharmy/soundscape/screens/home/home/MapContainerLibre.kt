@@ -70,6 +70,7 @@ import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.PROTOMAPS_SERVER_PATH
 import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
+import org.scottishtecharmy.soundscape.utils.isPmtilesUsable
 import kotlin.io.path.Path
 import kotlin.io.path.fileSize
 
@@ -197,8 +198,13 @@ private fun getSourceUri(appContext: Context, location: LngLatAlt?, forceNetwork
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)
         val extractsPath = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)!!
 
-        // Get locally downloaded files
-        val offlineExtractPaths =  findExtractPaths(extractsPath + "/" + Environment.DIRECTORY_DOWNLOADS)
+        // Get locally downloaded files, excluding any that are corrupt or truncated.
+        // Handing a bad .pmtiles file to MapLibre triggers an uncaught native exception
+        // (gzip metadata decompress failure) that aborts the whole app, so we validate
+        // up front and silently fall back to the network tile source instead.
+        val offlineExtractPaths =
+            findExtractPaths(extractsPath + "/" + Environment.DIRECTORY_DOWNLOADS)
+                .filter { isPmtilesUsable(it) }
         if(offlineExtractPaths.isNotEmpty()) {
             if(location == null){
                 urlReplacement = "pmtiles://file://${offlineExtractPaths[0]}"

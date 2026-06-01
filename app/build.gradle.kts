@@ -142,6 +142,14 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            // Embed native debug symbols in the App Bundle so native (NDK) crashes
+            // symbolicate in Play Console / Crashlytics. Note: this can only extract
+            // symbols from libraries that still contain them - prebuilt third party
+            // libs that ship stripped (e.g. libmaplibre.so) must be symbolicated
+            // manually using their BuildId and the matching debug-symbols package.
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
             signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),

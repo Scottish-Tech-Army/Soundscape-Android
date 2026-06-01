@@ -127,6 +127,14 @@ class OfflineDownloader {
                             saveFile(this, body, tempFile.path) { progress ->
                                 _downloadState.value = DownloadState.Downloading(progress)
                             }
+                            // Verify the download is intact before publishing it. A
+                            // truncated or corrupt .pmtiles extract crashes MapLibre
+                            // natively when opened, so reject it here and let the user
+                            // retry rather than persisting a file that will abort the app.
+                            if (finalFile.name.endsWith(".pmtiles") &&
+                                !isPmtilesUsable(tempFile.path)) {
+                                throw Exception("Downloaded extract failed validation (corrupt or truncated)")
+                            }
                             retries = 0
                             // Delete any file that already exists
                             finalFile.delete()

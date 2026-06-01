@@ -169,6 +169,35 @@ fun findExtracts(path: String) : FeatureCollection? {
     return null
 }
 
+/**
+ * Check that a .pmtiles extract is safe to hand to MapLibre as a tile source.
+ *
+ * MapLibre's native PMTilesFileSource decompresses the gzip-compressed JSON metadata
+ * section as soon as it opens the source. That decompress call
+ * (mbgl::util::decompress, compression.cpp:98) is NOT wrapped in a try/catch in
+ * PMTilesFileSource::Impl::getMetadata (pmtiles_file_source.cpp:389), so a corrupt or
+ * truncated extract makes it throw std::runtime_error. The exception escapes MapLibre's
+ * file-source worker thread, reaches std::terminate and aborts the whole process - a
+ * native crash we cannot catch from Kotlin.
+ *
+ * To avoid that we open the file with the same Reader we already depend on and force the
+ * identical metadata decompression here, where the exception IS catchable. If it throws,
+ * the extract is corrupt and must not be used.
+ */
+fun isPmtilesUsable(path: String): Boolean {
+    return try {
+        ch.poole.geo.pmtiles.Reader(File(path)).use { reader ->
+            // Forces decompression of the gzip metadata - the exact operation that
+            // crashes MapLibre natively when the file is corrupt or truncated.
+            reader.metadata
+        }
+        true
+    } catch (e: Exception) {
+        Log.e(StorageUtils.TAG, "Rejecting unusable pmtiles extract $path: ${e.message}")
+        false
+    }
+}
+
 fun findExtractPaths(path: String) : List<String> {
     // Find any extracts that we have downloaded
     val extractsDir = File(path)
