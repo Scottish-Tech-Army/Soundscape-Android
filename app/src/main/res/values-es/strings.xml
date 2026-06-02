@@ -33,13 +33,13 @@
     <string name="preview_include_unnamed_roads_title">Carreteras sin nombre</string>
     <string name="location_detail_title_default">Detalles de la ubicación</string>
     <string name="location_detail_action_beacon">Iniciar señal de audio</string>
-    <string name="location_detail_action_beacon_hint">guiarle hacia esta ubicación con sonido</string>
+    <string name="location_detail_action_beacon_hint">guiarte hacia esta ubicación con sonido</string>
     <string name="location_detail_action_save_hint">guardar esta ubicación para usarla más tarde</string>
     <string name="location_detail_action_edit_hint">cambiar el nombre del marcador o agregar anotaciones adicionales</string>
     <string name="location_detail_action_share_hint">compartir esta ubicación con otra aplicación</string>
     <string name="location_detail_action_preview_hint">iniciar la vista previa en esta ubicación</string>
-    <string name="location_detail_add_waypoint_existing_hint">quitar este marcador de su ruta</string>
-    <string name="location_detail_add_waypoint_new_hint">agregar este marcador como punto en su ruta</string>
+    <string name="location_detail_add_waypoint_existing_hint">quitar este marcador de la ruta</string>
+    <string name="location_detail_add_waypoint_new_hint">agregar este marcador como punto en la ruta</string>
     <string name="route_detail_action_start_route">Iniciar ruta</string>
     <string name="route_detail_action_stop_route">Detener ruta</string>
     <string name="route_detail_action_edit">Editar ruta</string>
@@ -88,9 +88,9 @@
     <string name="search_use_current_location">Ubicación actual</string>
     <string name="search_nearby_screen_title">Lugares cercanos</string>
     <string name="search_view_markers">Marcadores y rutas</string>
-    <string name="search_button_markers_accessibility_hint">seleccionar o editar sus marcadores y rutas guardados</string>
+    <string name="search_button_markers_accessibility_hint">seleccionar o editar tus marcadores y rutas guardados</string>
     <string name="search_button_nearby_accessibility_hint">explorar restaurantes, paradas de transporte, etcétera</string>
-    <string name="search_button_current_location_accessibility_hint">previsualizar, marcar o compartir su ubicación actual con un amigo</string>
+    <string name="search_button_current_location_accessibility_hint">previsualizar, marcar o compartir tu ubicación actual con un amigo</string>
     <string name="filter_all">Todos los lugares</string>
     <string name="filter_transit">Transporte público</string>
     <string name="filter_food_drink">Comida y bebidas</string>
@@ -170,13 +170,13 @@
     <string name="distance_format_feet">%s pies</string>
     <string name="distance_format_miles">%s millas</string>
     <string name="ui_action_button_my_location">Mi\nubicación</string>
-    <string name="ui_action_button_my_location_acc_hint">escuchar sobre su ubicación actual</string>
+    <string name="ui_action_button_my_location_acc_hint">escuchar sobre tu ubicación actual</string>
     <string name="ui_action_button_nearby_markers">Marcadores\ncercanos</string>
-    <string name="ui_action_button_nearby_markers_acc_hint">escuchar sobre los lugares cercanos que ha marcado</string>
+    <string name="ui_action_button_nearby_markers_acc_hint">escuchar sobre los lugares cercanos que has marcado</string>
     <string name="ui_action_button_around_me">Alrededor de\nmí</string>
-    <string name="ui_action_button_around_me_acc_hint">escuchar sobre lugares en los cuatro cuadrantes a su alrededor</string>
+    <string name="ui_action_button_around_me_acc_hint">escuchar sobre lugares en los cuatro cuadrantes a tu alrededor</string>
     <string name="ui_action_button_ahead_of_me">Delante\nde mí</string>
-    <string name="ui_action_button_ahead_of_me_acc_hint">escuchar sobre los lugares que están delante de usted</string>
+    <string name="ui_action_button_ahead_of_me_acc_hint">escuchar sobre los lugares que están delante de ti</string>
     <string name="ui_menu">Menú</string>
     <string name="ui_menu_hint">abrir el menú</string>
     <string name="ui_menu_close">Cerrar menú</string>
@@ -189,7 +189,7 @@
     <string name="behavior_scavenger_hunt_callout_next_flag">Señal establecida en %1$s, a una distancia de %2$s, %3$s de %4$s</string>
     <string name="help_configuration_section_title">Configuración de Soundscape</string>
     <string name="settings_help_section_beacons_and_pois">Señales y avisos</string>
-    <string name="settings_help_section_home_screen_buttons">Botones de la pantalla principal</string>
+    <string name="settings_help_section_home_screen_buttons">Botones de ubicación y exploración</string>
     <string name="help_config_voices_content">Soundscape puede usar cualquiera de las voces que ha descargado a su teléfono Android en la configuración de salida de texto a voz. Dentro de la aplicación Soundscape, para seleccionar una voz que no sea la de Android predeterminada, vaya a *\"Ajustes\"* en el menú principal, expanda la cección *\"Audio\"* y luego, seleccione *\"Voces\" *.</string>
     <string name="help_offline_page_title">¿Por qué está Soundscape funcionando sin conexión?</string>
     <string name="help_offline_description">Cuando no hay conexión a Internet o se produce una interrupción en los servicios de Soundscape, Soundscape realiza la transición a un modo sin conexión. Sin embargo, Soundscape continuará funcionando, aunque algunas características pueden estar limitadas.</string>
@@ -502,7 +502,7 @@
     <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">Utilice la conexión Wi-Fi solo para descargar mapas</string>
     <string name="text_field_clear_text" tools:ignore="MissingTranslation">Borrar texto</string>
     <string name="marker_name_description_hint" tools:ignore="MissingTranslation">editar el nombre del marcador</string>
-    <string name="annotation_description_hint" tools:ignore="MissingTranslation">agregar una nota opcional para ayudarle a reconocer este marcador más adelante</string>
+    <string name="annotation_description_hint" tools:ignore="MissingTranslation">agregar una nota opcional para ayudarte a reconocer este marcador más adelante</string>
     <string name="route_name_description_hint" tools:ignore="MissingTranslation">editar el nombre de la ruta</string>
     <string name="route_description_description_hint" tools:ignore="MissingTranslation">agregar una descripción opcional para esta ruta</string>
     <string name="fab_add_item" tools:ignore="MissingTranslation">Agregar elemento</string>
@@ -1223,7 +1223,7 @@
     <string name="tour_create_marker_done" tools:ignore="MissingTranslation">¡Perfecto! Al crear un marcador, puedes editar su nombre y añadir anotaciones adicionales. Hazlo ahora y, cuando estés listo, pulsa \"Listo\".</string>
     <string name="tour_my_location" tools:ignore="MissingTranslation">Ahora que sabes cómo usar los marcadores, veamos otras funciones. En la parte inferior de la pantalla, hay cuatro botones que probaremos uno a uno. El botón de la izquierda es \"Mi ubicación\", que describe tu ubicación actual. Púlsalo ahora.</string>
     <string name="tour_around_me" tools:ignore="MissingTranslation">El siguiente botón es \"Alrededor de mí\". Te dice qué hay cerca en cada dirección. Pulsa \"Alrededor de mí\".</string>
-    <string name="tour_ahead" tools:ignore="MissingTranslation">El siguiente botón es \"Delante de mí\". Te indica lo que hay frente a usted. Pulsa \"Delante de mí\".</string>
+    <string name="tour_ahead" tools:ignore="MissingTranslation">El siguiente botón es \"Delante de mí\". Te indica lo que hay frente a ti. Pulsa \"Delante de mí\".</string>
     <string name="tour_nearby_markers" tools:ignore="MissingTranslation">El último botón es \"Marcadores cercanos\", que anuncia los lugares guardados a tu alrededor. Pulsa \"Marcadores cercanos\" para probarlo.</string>
     <string name="tour_markers_and_routes" tools:ignore="MissingTranslation">Has creado un marcador correctamente. Reproduzcamos una señal de audio para guiarnos hasta esa ubicación. Pulsa \"Marcadores y rutas\", que está justo debajo de \"Lugares cercanos\".</string>
     <string name="tour_markers" tools:ignore="MissingTranslation">La pantalla \"Marcadores y rutas\" tiene dos pestañas: una muestra las rutas, que son listas de marcadores, y la otra muestra los marcadores individuales. Pulsa en \"Marcadores\" para cambiar a la pestaña Marcadores y encontrar el marcador que has creado.</string>
@@ -1271,7 +1271,7 @@
     <string name="language_mismatch_message" tools:ignore="MissingTranslation">Su teléfono está configurado en %1$s y ese idioma ya está disponible en Soundscape. ¿Desea cambiar Soundscape para usar %1$s?</string>
     <string name="language_mismatch_switch" tools:ignore="MissingTranslation">Cambiar a %1$s</string>
     <string name="language_mismatch_keep" tools:ignore="MissingTranslation">Mantener el idioma actual</string>
-    <string name="preview_go_hint" tools:ignore="MissingTranslation">moverse en esta dirección hasta el siguiente cruce</string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation">moverte en esta dirección hasta el siguiente cruce</string>
     <string name="error_message_route_not_found" tools:ignore="MissingTranslation">No se pudo encontrar la ruta en la base de datos.</string>
     <string name="error_message_deleting_route" tools:ignore="MissingTranslation">No se pudo eliminar la ruta.</string>
     <string name="error_message_saving_route" tools:ignore="MissingTranslation">No se pudo guardar la ruta.</string>
@@ -1355,8 +1355,8 @@
     <string name="relative_left_right_direction_behind_left">Detrás a la izquierda</string>
     <string name="relative_left_right_direction_behind_right">Detrás a la derecha</string>
     <string name="relative_left_right_direction_behind">Detrás</string>
-    <string name="settings_collapse_section">contraer sección</string>
-    <string name="settings_expand_section">expandir sección</string>
+    <string name="settings_collapse_section">contraer la sección</string>
+    <string name="settings_expand_section">expandir la sección</string>
     <string name="settings_collapsed">Contraída</string>
     <string name="settings_expanded">Expandida</string>
     <string name="ui_grant_permission">Conceder permiso</string>
