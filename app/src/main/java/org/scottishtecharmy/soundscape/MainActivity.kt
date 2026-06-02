@@ -2,6 +2,8 @@ package org.scottishtecharmy.soundscape
 
 import android.Manifest
 import android.accessibilityservice.AccessibilityServiceInfo
+import android.content.ActivityNotFoundException
+import android.content.ComponentName
 import android.content.Context
 import android.media.AudioDeviceInfo
 import android.media.AudioManager
@@ -652,9 +654,10 @@ class MainActivity : AppCompatActivity() {
         unknownOsmKeys.forEach { bodyText.append("\t$it<br/>") }
         bodyText.append("-----------------------------<br/><br/>")
 
+        val supportEmail = "soundscapeAndroid@scottishtecharmy.support"
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "message/rfc822"
-            putExtra(Intent.EXTRA_EMAIL, arrayOf("soundscapeAndroid@scottishtecharmy.support"))
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(supportEmail))
             putExtra(Intent.EXTRA_SUBJECT, subjectText)
             putExtra(Intent.EXTRA_TEXT, Html.fromHtml(bodyText.toString(), 0))
         }
@@ -679,11 +682,39 @@ class MainActivity : AppCompatActivity() {
         }
 
         Log.e(TAG, Html.fromHtml(bodyText.toString(), 0).toString())
-        if (intent.resolveActivity(packageManager) != null) {
-            startActivity(intent)
+
+        // Send straight to the user's email app (no chooser) with the recipient,
+        // subject, body and log attachment all pre-filled. A selector or a plain
+        // ACTION_SEND chooser proved unreliable here: ACTION_SEND/message-rfc822
+        // also matches non-email share targets, and an ACTION_SENDTO selector
+        // fails to resolve under package-visibility filtering. We instead resolve
+        // the activity that handles mailto: (declared in <queries> in the manifest)
+        // and target the ACTION_SEND intent at that exact component. Targeting the
+        // package alone is not enough: the Gmail package also contains a Google
+        // Chat (Dynamite) ACTION_SEND handler, so setPackage() still shows a chooser.
+        val mailtoProbe = Intent(Intent.ACTION_SENDTO, "mailto:".toUri())
+        val emailActivity = packageManager.resolveActivity(mailtoProbe, 0)?.activityInfo
+        // resolveActivity returns the system "resolver/chooser" component when there
+        // are multiple email apps with no default - in that case leave it unset so the
+        // user picks among email apps rather than targeting the resolver itself.
+        val emailPackage = emailActivity?.packageName
+        val isSystemResolver = emailPackage == "android" || emailPackage == "com.android.intentresolver"
+        if (emailActivity != null && emailPackage != null && !isSystemResolver) {
+            Log.d(TAG, "Sending support email via $emailPackage/${emailActivity.name}")
+            intent.component = ComponentName(emailPackage, emailActivity.name)
         } else {
-            val alternativeIntent = Intent.createChooser(intent, "")
-            startActivity(alternativeIntent)
+            Log.d(TAG, "No single email app resolved (got $emailPackage), using chooser")
+        }
+        try {
+            startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            Log.w(TAG, "Targeted email launch failed, falling back to chooser", e)
+            intent.component = null
+            try {
+                startActivity(Intent.createChooser(intent, null))
+            } catch (e: ActivityNotFoundException) {
+                Log.e(TAG, "No app available to contact support", e)
+            }
         }
     }
 
