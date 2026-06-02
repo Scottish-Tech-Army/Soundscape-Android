@@ -446,6 +446,14 @@ class SoundscapeService : MediaSessionService() {
                 Analytics.getInstance().crashSetCustomKey("Service start success", "false")
                 return false
             }
+            // Any other failure (e.g. building or posting the notification) means the service did
+            // not actually reach the foreground. Previously this was swallowed and the method went
+            // on to report success, leaving `running = true` for a service that never started.
+            Log.e(TAG, "startAsForegroundService failed", e)
+            analytics.crashLogNotes("startAsForegroundService failed: $e")
+            analytics.logEvent("startAsForegroundServiceError", null)
+            Analytics.getInstance().crashSetCustomKey("Service start success", "false")
+            return false
         }
         analytics.crashSetCustomKey("Service start success", "true")
         return true
@@ -504,7 +512,11 @@ class SoundscapeService : MediaSessionService() {
         val builder = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle(getString(R.string.app_name))
             .setContentText(getString(R.string.notification_text))
-            .setSmallIcon(R.drawable.nearby_markers_24px)
+            // Use a rasterized (PNG) small icon rather than the vector drawable: some OEM System
+            // UIs (e.g. Kapsys SmartVision3) fail to inflate vector notification icons, which makes
+            // the system reject the foreground-service notification and kill us with a
+            // RemoteServiceException.
+            .setSmallIcon(R.drawable.ic_notification)
             .setOngoing(true)
             .setContentIntent(notifyPendingIntent)
 
