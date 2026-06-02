@@ -978,6 +978,8 @@
 <string name="offline_maps_storage">"Maps are saved to %1$s which has %2$s free"</string>
 <!-- Offscreen maps title of list of downloaded maps-->
 <string name="offline_maps_already_downloaded">"Maps already downloaded"</string>
+<!-- Status shown on a downloaded offline map that is damaged and must be re-downloaded-->
+<string name="offline_maps_extract_damaged">"Damaged - delete and download again"</string>
 <!-- Offscreen maps title of list of nearby maps-->
 <string name="offline_maps_nearby">"Nearby offline maps"</string>
 <!-- Offscreen maps text shown whilst downloading offline map manifest -->

@@ -200,8 +200,9 @@ private fun getSourceUri(appContext: Context, location: LngLatAlt?, forceNetwork
 
         // Get locally downloaded files, excluding any that are corrupt or truncated.
         // Handing a bad .pmtiles file to MapLibre triggers an uncaught native exception
-        // (gzip metadata decompress failure) that aborts the whole app, so we validate
-        // up front and silently fall back to the network tile source instead.
+        // (gzip metadata decompress failure) that aborts the whole app, so we never
+        // select those - we fall back to the network tile source instead. Damaged
+        // extracts are surfaced to the user separately on the Offline Maps screen.
         val offlineExtractPaths =
             findExtractPaths(extractsPath + "/" + Environment.DIRECTORY_DOWNLOADS)
                 .filter { isPmtilesUsable(it) }

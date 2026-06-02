@@ -159,9 +159,17 @@ fun findExtracts(path: String) : FeatureCollection? {
         val extractCollection = FeatureCollection()
         for(file in files) {
             val feature = getMetadata(file.path)
-            if(feature != null)
+            if(feature != null) {
+                // Validate the extract so callers can show whether it is working or
+                // damaged. A damaged extract (its metadata won't decompress) would crash
+                // MapLibre if used, so it is excluded from the live map; here we flag it
+                // via the "usable" property instead. This does file I/O, so callers
+                // should run findExtracts off the main thread.
+                val properties = feature.properties ?: HashMap()
+                properties["usable"] = isPmtilesUsable(file.path)
+                feature.properties = properties
                 extractCollection.addFeature(feature)
-            else
+            } else
                 println("No metadata")
         }
         return extractCollection

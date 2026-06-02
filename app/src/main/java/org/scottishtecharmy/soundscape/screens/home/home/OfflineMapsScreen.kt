@@ -12,9 +12,13 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Warning
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
@@ -262,6 +266,27 @@ fun OfflineExtract(
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurface,
                     )
+                }
+                // Flag damaged downloaded extracts. The "usable" property is only set for
+                // downloaded extracts (by findExtracts), so nearby/available extracts are
+                // never flagged. A damaged extract can't be used by the map (it would crash
+                // MapLibre) and needs re-downloading.
+                val usable = extract.properties?.get("usable") as? Boolean
+                if (usable == false) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Icon(
+                            imageVector = Icons.Rounded.Warning,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.error,
+                            modifier = Modifier.size(spacing.medium)
+                        )
+                        Text(
+                            text = stringResource(R.string.offline_maps_extract_damaged),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.error,
+                            modifier = Modifier.padding(start = spacing.tiny)
+                        )
+                    }
                 }
             }
             Text(

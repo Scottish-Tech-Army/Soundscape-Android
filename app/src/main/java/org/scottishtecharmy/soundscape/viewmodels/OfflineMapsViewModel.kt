@@ -12,9 +12,11 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
@@ -93,7 +95,9 @@ class OfflineMapsViewModel @AssistedInject constructor(
                 MainActivity.SELECTED_STORAGE_KEY,
                 MainActivity.SELECTED_STORAGE_DEFAULT
             )!!
-            val extractCollection = findExtracts(File(path, Environment.DIRECTORY_DOWNLOADS).path)
+            val extractCollection = withContext(Dispatchers.IO) {
+                findExtracts(File(path, Environment.DIRECTORY_DOWNLOADS).path)
+            }
             _uiState.value = _uiState.value.copy(
                 downloadedExtracts = extractCollection,
                 storages = storages,
@@ -204,12 +208,17 @@ class OfflineMapsViewModel @AssistedInject constructor(
     }
 
     fun refreshExtracts() {
-        // Update the UI to reflect the deletions
-        val extractsDir = File(_uiState.value.currentPath, Environment.DIRECTORY_DOWNLOADS)
-        val extractCollection = findExtracts(extractsDir.path)
-        _uiState.value = _uiState.value.copy(
-            downloadedExtracts = extractCollection
-        )
+        // Update the UI to reflect the deletions. findExtracts validates each extract
+        // (file I/O), so run it off the main thread.
+        viewModelScope.launch {
+            val extractsDir = File(_uiState.value.currentPath, Environment.DIRECTORY_DOWNLOADS)
+            val extractCollection = withContext(Dispatchers.IO) {
+                findExtracts(extractsDir.path)
+            }
+            _uiState.value = _uiState.value.copy(
+                downloadedExtracts = extractCollection
+            )
+        }
     }
 
     companion object {
