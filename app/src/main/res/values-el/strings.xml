@@ -1366,4 +1366,5 @@
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) χρησιμοποιείται για τη δημιουργία του 3D ήχου και διατίθεται για χρήση υπό την [άδεια Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">Όλα τα ονόματα προϊόντων, εταιρειών και λογότυπα τρίτων είναι εμπορικά σήματα ή καταχωρημένα εμπορικά σήματα και παραμένουν ιδιοκτησία των αντίστοιχων κατόχων τους.</string>
     <string name="loading_indicator_content_description">Φόρτωση</string>
+    <string name="offline_maps_extract_damaged">Κατεστραμμένο - διαγράψτε και κατεβάστε ξανά</string>
 </resources>
