@@ -49,6 +49,7 @@ import org.maplibre.android.style.layers.SymbolLayer
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import java.io.File
+import java.util.concurrent.atomic.AtomicBoolean
 import androidx.core.graphics.createBitmap
 import androidx.core.graphics.drawable.toDrawable
 import androidx.preference.PreferenceManager
@@ -330,7 +331,16 @@ fun MapContainerLibre(
             }
 
             val coroutineScope = rememberCoroutineScope()
+            // Set true just before the MapView (and its native style/layers) is torn down. The
+            // setStyle callback below is asynchronous, so if the screen is closed while the style
+            // is still loading the callback can fire against an already-destroyed map. Touching
+            // style.layers / layer.id then dereferences freed native peers and crashes in
+            // libmaplibre.so (mbgl::style::Layer::getID). Checking this flag in the callback avoids
+            // that use-after-free. dispose and the callback both run on the main thread, so once
+            // the flag is set the queued callback safely bails out.
+            val mapDestroyed = remember { AtomicBoolean(false) }
             val map = rememberMapViewWithLifecycle { mapView: MapView ->
+                mapDestroyed.set(true)
                 // This code will be run just before the MapView is destroyed to tidy up any map
                 // allocations that have been made. I did try replacing the LaunchedEffects below with
                 // DisposableEffects and putting the code there, but by the time onDisposal is called it's
@@ -366,11 +376,18 @@ fun MapContainerLibre(
             LaunchedEffect(map) {
                 // init map first time it is displayed
                 map.getMapAsync { mapLibre ->
+                    // If the screen has been closed while waiting for the map, the native map has
+                    // already been destroyed - don't touch it (see mapDestroyed above).
+                    if (mapDestroyed.get()) return@getMapAsync
                     val styleName =
                         if (accessibleMapEnabled) "style.json" else "originalStyle.json"
                     val styleUrl =
                         Uri.fromFile(File("$filesDir/osm-liberty-accessible/$styleName")).toString()
                     mapLibre.setStyle(styleUrl) { style ->
+                        // The style load is asynchronous, so the map may have been destroyed
+                        // between requesting the style and it loading. Bail out before touching any
+                        // native style/source/layer objects to avoid a use-after-free crash.
+                        if (mapDestroyed.get()) return@setStyle
 
                         // Dynamically add tile source to our style. We force use of the network
                         // tile server when we're displaying overlays for offline extracts to ensure
@@ -691,6 +708,7 @@ fun MapContainerLibre(
                 update = { mapView ->
                     coroutineScope.launch {
                         mapView.getMapAsync { mapLibre ->
+                            if (mapDestroyed.get()) return@getMapAsync
                             mapLibre.cameraPosition = cameraPosition
                             symbol.value?.let { sym ->
                                 if (userLocation != null) {
