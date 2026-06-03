@@ -280,6 +280,7 @@ fun HomeTopAppBar(
                     },
                     modifier = Modifier
                         .talkbackHint(stringResource(R.string.street_preview_exit))
+                        .testTag("topBarStreetPreviewExit")
                 ) {
                     Icon(
                         Icons.AutoMirrored.Rounded.ExitToApp,

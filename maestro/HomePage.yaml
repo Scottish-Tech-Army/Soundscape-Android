@@ -5,12 +5,28 @@ appId: org.scottishtecharmy.soundscape
 
 - tapOn:
     id: homeMyLocation
+- runFlow:
+    file: Wait.yaml
+    env:
+      TIMEOUT: 10000
 - tapOn:
     id: homeAroundMe
+- runFlow:
+    file: Wait.yaml
+    env:
+      TIMEOUT: 30000
 - tapOn:
     id: homeAheadOfMe
+- runFlow:
+    file: Wait.yaml
+    env:
+      TIMEOUT: 30000
 - tapOn:
     id: homeNearbyMarkers
+- runFlow:
+    file: Wait.yaml
+    env:
+      TIMEOUT: 10000
 - tapOn:
     id: topBarSleep
 - tapOn:
@@ -21,5 +37,7 @@ appId: org.scottishtecharmy.soundscape
     id: menuAboutSoundscape
 - tapOn:
     id: appBarLeft
+- tapOn:
+    id: topBarMenu
 - tapOn:
     id: menuSettings

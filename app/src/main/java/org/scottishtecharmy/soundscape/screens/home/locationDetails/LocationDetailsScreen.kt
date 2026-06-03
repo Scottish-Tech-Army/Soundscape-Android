@@ -278,7 +278,7 @@ fun LocationDetails(
                 }
             },
             floatingActionButton = {
-                if(showMap) FullScreenMapFab(fullscreenMap)
+                if(showMap) FullScreenMapFab(fullscreenMap, modifier = Modifier.testTag("locationDetailsFullScreenMapFab"))
             }
         )
     }

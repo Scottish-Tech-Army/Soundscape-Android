@@ -34,6 +34,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -334,7 +335,8 @@ fun AddAndEditRouteScreen(
                             },
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .mediumPadding(),
+                                .mediumPadding()
+                                .testTag("addAndEditRouteDeleteButton"),
                             buttonColor = MaterialTheme.colorScheme.errorContainer,
                             contentColor = MaterialTheme.colorScheme.onErrorContainer,
                             shape = RoundedCornerShape(spacing.small),
@@ -346,7 +348,8 @@ fun AddAndEditRouteScreen(
                     CustomButton(
                         Modifier
                             .fillMaxWidth()
-                            .smallPadding(),
+                            .smallPadding()
+                            .testTag("addWaypointsButton"),
                         onClick = {
                             addWaypointDialog = true
                         },
@@ -372,7 +375,9 @@ fun AddAndEditRouteScreen(
                         CustomTextField(
                             fieldName = stringResource(R.string.markers_sort_button_sort_by_name),
                             fieldHint = stringResource(R.string.route_name_description_hint),
-                            modifier = Modifier.fillMaxWidth(),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .testTag("routeName"),
                             value = uiState.name,
                             onValueChange = onNameChange
                         )
@@ -447,7 +452,8 @@ fun AddAndEditRouteScreen(
                                                 modifier = Modifier
                                                     .draggableHandle()
                                                     .width(spacing.targetSize)
-                                                    .align(Alignment.CenterVertically),
+                                                    .align(Alignment.CenterVertically)
+                                                    .testTag("addAndEditRouteDragHandle"),
                                                 onClick = {}
                                             ) {
                                                 Icon(

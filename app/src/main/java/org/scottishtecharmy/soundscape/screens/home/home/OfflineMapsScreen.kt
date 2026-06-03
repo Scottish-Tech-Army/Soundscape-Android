@@ -246,6 +246,7 @@ fun OfflineExtract(
                 .clickable(role = Role.Button) {
                     extractSelected(details.localName, extract)
                 }
+                .testTag("offlineExtract$row")
                 .padding(spacing.extraSmall),
             horizontalArrangement = SpaceBetween,
         ) {

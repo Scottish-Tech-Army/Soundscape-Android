@@ -77,6 +77,9 @@ jobs:
             $HOME/.maestro/bin/maestro test --format=junit --output=report2.xml --test-output-dir=maestro_outputs --no-ansi maestro/HomePage.yaml
             $HOME/.maestro/bin/maestro test --format=junit --output=report3.xml --test-output-dir=maestro_outputs --no-ansi maestro/LocationDetails.yaml
             $HOME/.maestro/bin/maestro test --format=junit --output=report4.xml --test-output-dir=maestro_outputs --no-ansi maestro/PlacesNearby.yaml
+            $HOME/.maestro/bin/maestro test --format=junit --output=report5.xml --test-output-dir=maestro_outputs --no-ansi maestro/MarkersAndRoutes.yaml
+            $HOME/.maestro/bin/maestro test --format=junit --output=report6.xml --test-output-dir=maestro_outputs --no-ansi maestro/RouteCreation.yaml
+            $HOME/.maestro/bin/maestro test --format=junit --output=report7.xml --test-output-dir=maestro_outputs --no-ansi maestro/FullScreenMap.yaml
 
       - name: Upload maestro reports
         uses: actions/upload-artifact@v6

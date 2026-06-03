@@ -10,6 +10,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.core.content.edit
 import androidx.core.os.LocaleListCompat
@@ -50,7 +51,8 @@ fun LanguageMismatchDialog(
                         "${phoneLanguage.code}-${phoneLanguage.region}"
                     )
                     AppCompatDelegate.setApplicationLocales(list)
-                }
+                },
+                modifier = Modifier.testTag("languageMismatchSwitch")
             ) {
                 Text(text = stringResource(R.string.language_mismatch_switch, phoneLanguage.name))
             }
@@ -62,7 +64,8 @@ fun LanguageMismatchDialog(
                         putBoolean(LANGUAGE_SUPPORTED_PROMPTED_KEY, true)
                     }
                     showDialog.value = false
-                }
+                },
+                modifier = Modifier.testTag("languageMismatchKeep")
             ) {
                 Text(text = stringResource(R.string.language_mismatch_keep))
             }

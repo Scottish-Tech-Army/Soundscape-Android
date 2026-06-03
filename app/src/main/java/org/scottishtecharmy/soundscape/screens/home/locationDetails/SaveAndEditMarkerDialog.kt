@@ -101,7 +101,8 @@ fun SaveAndEditMarkerDialog(
                         },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .mediumPadding(),
+                            .mediumPadding()
+                            .testTag("saveMarkerDeleteButton"),
                         buttonColor = MaterialTheme.colorScheme.errorContainer,
                         contentColor = MaterialTheme.colorScheme.onErrorContainer,
                         shape = RoundedCornerShape(spacing.small),
@@ -115,6 +116,7 @@ fun SaveAndEditMarkerDialog(
         floatingActionButton = {
             if(showMap) FullScreenMapFab(
                 fullscreenMap = fullscreenMap,
+                modifier = Modifier.testTag("saveMarkerFullScreenMapFab"),
                 openMapHint = R.string.location_detail_full_screen_for_edit_hint,
                 closeMapHint = R.string.location_detail_exit_full_screen_for_edit_hint
             )

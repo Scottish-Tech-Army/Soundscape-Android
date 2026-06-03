@@ -389,6 +389,7 @@ fun HomeContent(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .mediumPadding()
+                                .testTag("homeAppSettings")
                         )
                     }
                 }

@@ -34,6 +34,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.preference.PreferenceManager
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -135,10 +136,11 @@ fun ExpandableSectionHeader(
     title: String,
     expanded: Boolean,
     onToggle: () -> Unit,
-    textColor: androidx.compose.ui.graphics.Color
+    textColor: androidx.compose.ui.graphics.Color,
+    modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .clickable(
                 role = Role.Button,
@@ -255,7 +257,7 @@ fun BeaconStylePreference(
     val idx = beaconValues.indexOf(savedValue).coerceAtLeast(0)
     val label = beaconDescriptions.getOrNull(idx) ?: savedValue
     Preference(
-        modifier = modifier,
+        modifier = modifier.testTag("settingsBeaconStyleRow"),
         title = {
             SettingDetails(
                 R.string.beacon_settings_style,
@@ -317,18 +319,24 @@ fun BeaconStylePreference(
                 }
             },
             confirmButton = {
-                TextButton(onClick = {
-                    onPreviewStop(true, selectedInDialog)
-                    showDialog = false
-                }) {
+                TextButton(
+                    modifier = Modifier.testTag("settingsBeaconStyleConfirm"),
+                    onClick = {
+                        onPreviewStop(true, selectedInDialog)
+                        showDialog = false
+                    }
+                ) {
                     Text(stringResource(R.string.ui_continue))
                 }
             },
             dismissButton = {
-                TextButton(onClick = {
-                    onPreviewStop(false, null)
-                    showDialog = false
-                }) {
+                TextButton(
+                    modifier = Modifier.testTag("settingsBeaconStyleCancel"),
+                    onClick = {
+                        onPreviewStop(false, null)
+                        showDialog = false
+                    }
+                ) {
                     Text(stringResource(R.string.general_alert_cancel))
                 }
             },
@@ -453,6 +461,7 @@ fun Settings(
             text = { Text(stringResource(R.string.settings_reset_dialog_message)) },
             confirmButton = {
                 TextButton(
+                    modifier = Modifier.testTag("settingsResetConfirm"),
                     onClick = {
                         resetSettings()
                         showConfirmationDialog.value = false
@@ -467,6 +476,7 @@ fun Settings(
             },
             dismissButton = {
                 TextButton(
+                    modifier = Modifier.testTag("settingsResetCancel"),
                     onClick = { showConfirmationDialog.value = false }
                 ) {
                     Text(stringResource(R.string.general_alert_cancel))
@@ -519,7 +529,8 @@ fun Settings(
                     title = stringResource(R.string.menu_manage_callouts),
                     expanded = expandedSection.value == "callouts",
                     onToggle = { expandedSection.value = if (expandedSection.value == "callouts") null else "callouts" },
-                    textColor = textColor
+                    textColor = textColor,
+                    modifier = Modifier.testTag("settingsSectionCallouts")
                 )
             }
             if (expandedSection.value == "callouts") {
@@ -630,7 +641,8 @@ fun Settings(
                     title = stringResource(R.string.menu_manage_search),
                     expanded = expandedSection.value == "search",
                     onToggle = { expandedSection.value = if (expandedSection.value == "search") null else "search" },
-                    textColor = textColor
+                    textColor = textColor,
+                    modifier = Modifier.testTag("settingsSectionSearch")
                 )
             }
             if (expandedSection.value == "search") {
@@ -681,7 +693,8 @@ fun Settings(
                     title = stringResource(R.string.menu_manage_accessibility),
                     expanded = expandedSection.value == "accessibility",
                     onToggle = { expandedSection.value = if (expandedSection.value == "accessibility") null else "accessibility" },
-                    textColor = textColor
+                    textColor = textColor,
+                    modifier = Modifier.testTag("settingsSectionAccessibility")
                 )
             }
             if (expandedSection.value == "accessibility") {
@@ -740,7 +753,8 @@ fun Settings(
                     title = stringResource(R.string.offline_map_storage_title),
                     expanded = expandedSection.value == "storage",
                     onToggle = { expandedSection.value = if (expandedSection.value == "storage") null else "storage" },
-                    textColor = textColor
+                    textColor = textColor,
+                    modifier = Modifier.testTag("settingsSectionStorage")
                 )
             }
             if (expandedSection.value == "storage") {
@@ -771,7 +785,8 @@ fun Settings(
                     title = stringResource(R.string.menu_manage_audio),
                     expanded = expandedSection.value == "audio",
                     onToggle = { expandedSection.value = if (expandedSection.value == "audio") null else "audio" },
-                    textColor = textColor
+                    textColor = textColor,
+                    modifier = Modifier.testTag("settingsSectionAudio")
                 )
             }
             if (expandedSection.value == "audio") {
@@ -849,7 +864,8 @@ fun Settings(
                     title = stringResource(R.string.menu_manage_language),
                     expanded = expandedSection.value == "language",
                     onToggle = { expandedSection.value = if (expandedSection.value == "language") null else "language" },
-                    textColor = textColor
+                    textColor = textColor,
+                    modifier = Modifier.testTag("settingsSectionLanguage")
                 )
             }
             if (expandedSection.value == "language") {
@@ -902,7 +918,8 @@ fun Settings(
                     title = stringResource(R.string.menu_media_controls),
                     expanded = expandedSection.value == "media_controls",
                     onToggle = { expandedSection.value = if (expandedSection.value == "media_controls") null else "media_controls" },
-                    textColor = textColor
+                    textColor = textColor,
+                    modifier = Modifier.testTag("settingsSectionMediaControls")
                 )
             }
             if (expandedSection.value == "media_controls") {
@@ -973,7 +990,8 @@ fun Settings(
                     title = stringResource(R.string.settings_debug_heading),
                     expanded = expandedSection.value == "debug",
                     onToggle = { expandedSection.value = if (expandedSection.value == "debug") null else "debug" },
-                    textColor = textColor
+                    textColor = textColor,
+                    modifier = Modifier.testTag("settingsSectionDebug")
                 )
             }
             if (expandedSection.value == "debug") {
@@ -1008,7 +1026,8 @@ fun Settings(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .background(MaterialTheme.colorScheme.surface)
-                                .mediumPadding(),
+                                .mediumPadding()
+                                .testTag("settingsAdvancedMarkersAndRoutes"),
                             shape = RoundedCornerShape(spacing.extraSmall),
                             text = stringResource(R.string.menu_advanced_markers_and_routes),
                             textStyle = MaterialTheme.typography.bodyLarge,
@@ -1021,7 +1040,8 @@ fun Settings(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .mediumPadding()
-                                .talkbackHint(stringResource(R.string.settings_reset_button_hint)),
+                                .talkbackHint(stringResource(R.string.settings_reset_button_hint))
+                                .testTag("settingsResetButton"),
                             buttonColor = MaterialTheme.colorScheme.errorContainer,
                             contentColor = MaterialTheme.colorScheme.onErrorContainer,
                             shape = RoundedCornerShape(spacing.small),
