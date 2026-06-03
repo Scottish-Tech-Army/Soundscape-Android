@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
+import android.os.Build
 import android.os.Bundle
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
@@ -18,7 +19,16 @@ fun rememberMapViewWithLifecycle(disposeCode : (map : MapView) -> Unit): MapView
     val context = LocalContext.current
     val mapView = remember {
         MapLibre.getInstance(context)
-        val options = createFromAttributes(context)
+        // On Android <= 11 (API < 31) render into a TextureView rather than the default
+        // SurfaceView. The map is shown in two places (embedded in HomeContent and full screen) and
+        // toggling fullscreenMap disposes one MapView and creates another in the same window/frame.
+        // On those older versions a freshly created SurfaceView in that situation comes up blank and
+        // never redraws - the surface lifecycle was reworked in Android 12. A TextureView composites
+        // as a normal view in the hierarchy and so survives the swap. It is marginally less
+        // performant than a SurfaceView, so we only use it where the blank-map bug occurs and keep
+        // the faster SurfaceView on Android 12+.
+        val useTextureMode = Build.VERSION.SDK_INT < Build.VERSION_CODES.S
+        val options = createFromAttributes(context).textureMode(useTextureMode)
         val view = MapView(context, options)
         return@remember view
     }
