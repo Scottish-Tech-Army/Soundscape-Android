@@ -68,6 +68,8 @@ data class Extract(
         ?.trimEnd(']')
         ?.split(", ") ?: emptyList()
 
+    val cities = localCities.ifEmpty { alternateCities }
+
     val hasCityCluster: Boolean = feature.properties?.get("feature_type") == "city_cluster"
 
     val filename = feature.properties?.get("filename")

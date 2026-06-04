@@ -180,7 +180,7 @@ private fun MapExtractTextsSection(
         }
 
         extract.hasCityCluster.takeIf { it }?.let {
-            val cities = extract.localCities.ifEmpty { extract.alternateCities }
+            val cities = extract.cities
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(spacing.small),
