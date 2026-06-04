@@ -34,6 +34,14 @@ android {
 
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
+    testOptions {
+        unitTests {
+            // Let JVM unit tests touch android.util.Log (etc.) without mocking - they
+            // return default values instead of throwing "not mocked".
+            isReturnDefaultValues = true
+        }
+    }
+
     signingConfigs {
         create("release") {
             storeFile = file("keystore.jks")

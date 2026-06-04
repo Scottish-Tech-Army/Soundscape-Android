@@ -15,6 +15,14 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import org.scottishtecharmy.soundscape.utils.StorageUtils.StorageSpace
 import java.io.File
+import java.io.FileInputStream
+import java.io.IOException
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
+import java.nio.channels.FileChannel
+import java.util.concurrent.ConcurrentHashMap
+import java.util.zip.GZIPInputStream
+import java.util.zip.InflaterInputStream
 import kotlin.text.isEmpty
 
 object StorageUtils {
@@ -180,30 +188,233 @@ fun findExtracts(path: String) : FeatureCollection? {
 /**
  * Check that a .pmtiles extract is safe to hand to MapLibre as a tile source.
  *
- * MapLibre's native PMTilesFileSource decompresses the gzip-compressed JSON metadata
- * section as soon as it opens the source. That decompress call
- * (mbgl::util::decompress, compression.cpp:98) is NOT wrapped in a try/catch in
- * PMTilesFileSource::Impl::getMetadata (pmtiles_file_source.cpp:389), so a corrupt or
- * truncated extract makes it throw std::runtime_error. The exception escapes MapLibre's
- * file-source worker thread, reaches std::terminate and aborts the whole process - a
- * native crash we cannot catch from Kotlin.
+ * MapLibre's native PMTilesFileSource gzip-decompresses sections of the extract as it
+ * renders. That decompress call (mbgl::util::decompress, compression.cpp:98) is NOT
+ * wrapped in a try/catch in PMTilesFileSource (pmtiles_file_source.cpp), so a corrupt or
+ * truncated extract makes it throw std::runtime_error ("unknown compression method"). The
+ * exception escapes MapLibre's file-source worker thread, reaches std::terminate and
+ * aborts the whole process - a native crash we cannot catch from Kotlin.
  *
- * To avoid that we open the file with the same Reader we already depend on and force the
- * identical metadata decompression here, where the exception IS catchable. If it throws,
- * the extract is corrupt and must not be used.
+ * The decompressible sections are spread across the whole file: header, root directory and
+ * JSON metadata live at the FRONT, but the leaf directories and per-tile gzip data live at
+ * the TAIL. An interrupted/truncated download keeps the front intact, so checking only the
+ * metadata (as we used to) is not enough - MapLibre still crashes on the damaged tail. So
+ * we validate three things here, where any exception IS catchable:
+ *  1. the header-declared layout fits within the actual file (catches truncation cheaply),
+ *  2. the root directory + JSON metadata decompress (front of file),
+ *  3. the physically-last tile decompresses (tail of file, where truncation/padding lands).
+ *
+ * This does file I/O, so callers should run it off the main thread.
+ *
+ * getSourceUri() re-runs this for every extract every time a map is created, so the result is
+ * cached per path and only recomputed when the file changes (its length or last-modified time).
+ * A re-downloaded or deleted-and-replaced extract therefore gets re-validated automatically.
  */
+private class PmtilesValidation(
+    val length: Long,
+    val lastModified: Long,
+    val usable: Boolean,
+)
+
+private val pmtilesUsableCache = ConcurrentHashMap<String, PmtilesValidation>()
+
 fun isPmtilesUsable(path: String): Boolean {
+    val file = File(path)
+    val length = file.length()
+    val lastModified = file.lastModified()
+
+    pmtilesUsableCache[path]?.let { cached ->
+        if (cached.length == length && cached.lastModified == lastModified) {
+            return cached.usable
+        }
+    }
+
+    val usable = validatePmtilesExtract(file)
+    pmtilesUsableCache[path] = PmtilesValidation(length, lastModified, usable)
+    return usable
+}
+
+/** The actual (uncached) validation - see [isPmtilesUsable] for what each step guards against. */
+private fun validatePmtilesExtract(file: File): Boolean {
     return try {
-        ch.poole.geo.pmtiles.Reader(File(path)).use { reader ->
-            // Forces decompression of the gzip metadata - the exact operation that
-            // crashes MapLibre natively when the file is corrupt or truncated.
-            reader.metadata
+        FileInputStream(file).channel.use { channel ->
+            val header = readPmtilesHeader(channel)
+            // 1. Every declared section must lie within the file - catches a short/truncated
+            //    download (file.length() < tileDataOffset + tileDataLength) with no decompression.
+            validatePmtilesLayout(header, file.length())
+            // 2. Force decompression of the root directory (in the Reader constructor) and the
+            //    gzip metadata - the front-of-file sections MapLibre touches first.
+            ch.poole.geo.pmtiles.Reader(file).use { reader -> reader.metadata }
+            // 3. Decompress the very last tile in the file. It sits at the physical end of the
+            //    tile-data section, exactly where truncation or zero-padding corruption lands, so
+            //    a clean decompress here is strong evidence the tail MapLibre will read is intact.
+            //    (Only meaningful for a clustered archive, where the last directory entry is the
+            //    highest tile-data offset; our extracts are always clustered.)
+            if (header.clustered == PMTILES_CLUSTERED &&
+                header.tileEntries > 0 &&
+                header.tileDataLength > 0
+            ) {
+                checkLastPmtilesTileDecompresses(channel, header)
+            }
         }
         true
     } catch (e: Exception) {
-        Log.e(StorageUtils.TAG, "Rejecting unusable pmtiles extract $path: ${e.message}")
+        Log.e(StorageUtils.TAG, "Rejecting unusable pmtiles extract ${file.path}: ${e.message}")
         false
     }
+}
+
+private const val PMTILES_HEADER_LENGTH = 127
+private const val PMTILES_VERSION: Byte = 3
+private const val PMTILES_CLUSTERED: Byte = 1
+private const val PMTILES_COMPRESSION_NONE: Byte = 1
+private const val PMTILES_COMPRESSION_GZIP: Byte = 2
+private val PMTILES_MAGIC = byteArrayOf(0x50, 0x4D, 0x54, 0x69, 0x6C, 0x65, 0x73) // "PMTiles"
+
+/**
+ * The subset of the fixed 127-byte little-endian PMTiles v3 header we need. The reader
+ * library keeps these fields private, so we parse the well-known byte offsets ourselves
+ * (see ch.poole.geo.pmtiles.Reader.Header for the layout).
+ */
+private class PmtilesHeader(
+    val rootDirOffset: Long,
+    val rootDirLength: Long,
+    val metadataOffset: Long,
+    val metadataLength: Long,
+    val leafDirOffset: Long,
+    val leafDirLength: Long,
+    val tileDataOffset: Long,
+    val tileDataLength: Long,
+    val tileEntries: Long,
+    val clustered: Byte,
+    val internalCompression: Byte,
+    val tileCompression: Byte,
+)
+
+private fun readPmtilesHeader(channel: FileChannel): PmtilesHeader {
+    val buffer = ByteBuffer.allocate(PMTILES_HEADER_LENGTH).order(ByteOrder.LITTLE_ENDIAN)
+    var read = 0
+    while (buffer.hasRemaining()) {
+        val count = channel.read(buffer, read.toLong())
+        if (count < 0) break
+        read += count
+    }
+    if (read != PMTILES_HEADER_LENGTH) throw IOException("Incomplete PMTiles header: $read bytes")
+
+    val magic = ByteArray(PMTILES_MAGIC.size)
+    buffer.position(0)
+    buffer.get(magic)
+    if (!magic.contentEquals(PMTILES_MAGIC)) throw IOException("Bad PMTiles magic number")
+    val version = buffer.get(7)
+    if (version != PMTILES_VERSION) throw IOException("Unsupported PMTiles version $version")
+
+    return PmtilesHeader(
+        rootDirOffset = buffer.getLong(8),
+        rootDirLength = buffer.getLong(16),
+        metadataOffset = buffer.getLong(24),
+        metadataLength = buffer.getLong(32),
+        leafDirOffset = buffer.getLong(40),
+        leafDirLength = buffer.getLong(48),
+        tileDataOffset = buffer.getLong(56),
+        tileDataLength = buffer.getLong(64),
+        tileEntries = buffer.getLong(80),
+        clustered = buffer.get(96),
+        internalCompression = buffer.get(97),
+        tileCompression = buffer.get(98),
+    )
+}
+
+/** Reject the extract unless every header-declared section lies within the file. */
+private fun validatePmtilesLayout(header: PmtilesHeader, fileLength: Long) {
+    fun requireInBounds(offset: Long, length: Long, name: String) {
+        if (offset < 0 || length < 0 || offset + length > fileLength) {
+            throw IOException(
+                "PMTiles $name section out of bounds (offset=$offset length=$length fileLength=$fileLength)"
+            )
+        }
+    }
+    requireInBounds(header.rootDirOffset, header.rootDirLength, "root directory")
+    requireInBounds(header.metadataOffset, header.metadataLength, "metadata")
+    requireInBounds(header.leafDirOffset, header.leafDirLength, "leaf directory")
+    requireInBounds(header.tileDataOffset, header.tileDataLength, "tile data")
+}
+
+/**
+ * Locate the physically-last tile by descending the last entry of each directory (root ->
+ * last leaf -> ... -> last tile), then read and decompress it. Throws if any read or
+ * decompress fails, which is what we want - that is the exact failure that would abort
+ * MapLibre natively. The directory binary format mirrors ch.poole.geo.pmtiles.Reader.Directory.
+ */
+private fun checkLastPmtilesTileDecompresses(channel: FileChannel, header: PmtilesHeader) {
+    var dirOffset = header.rootDirOffset
+    var dirLength = header.rootDirLength
+    var depth = 0
+    while (true) {
+        if (depth++ > 100) throw IOException("PMTiles leaf directory nesting too deep")
+
+        val raw = readPmtilesSection(channel, dirOffset, dirLength)
+        val dir = ByteBuffer.wrap(decompressPmtiles(raw, header.internalCompression))
+        val entries = readVarLong(dir).toInt()
+        if (entries <= 0) return // empty directory - nothing more to validate
+
+        // Four delta/value-coded arrays in order: ids, runLengths, lengths, offsets.
+        for (i in 0 until entries) readVarLong(dir) // ids - we only need to advance past them
+        val runLengths = LongArray(entries) { readVarLong(dir) }
+        val lengths = LongArray(entries) { readVarLong(dir) }
+        val offsets = LongArray(entries)
+        for (i in 0 until entries) {
+            val value = readVarLong(dir)
+            offsets[i] = if (value == 0L && i > 0) offsets[i - 1] + lengths[i - 1] else value - 1
+        }
+
+        val last = entries - 1
+        if (runLengths[last] == 0L) {
+            // Leaf-directory pointer: descend into it.
+            dirOffset = header.leafDirOffset + offsets[last]
+            dirLength = lengths[last]
+        } else {
+            // Tile entry: read and decompress its bytes.
+            val tile = readPmtilesSection(channel, header.tileDataOffset + offsets[last], lengths[last])
+            decompressPmtiles(tile, header.tileCompression)
+            return
+        }
+    }
+}
+
+/** Read exactly [length] bytes at [offset], throwing if the file is too short. */
+private fun readPmtilesSection(channel: FileChannel, offset: Long, length: Long): ByteArray {
+    if (length < 0 || length > Int.MAX_VALUE) throw IOException("Bad PMTiles section length $length")
+    val buffer = ByteBuffer.allocate(length.toInt())
+    var read = 0
+    while (buffer.hasRemaining()) {
+        val count = channel.read(buffer, offset + read)
+        if (count < 0) break
+        read += count
+    }
+    if (read.toLong() != length) throw IOException("Incomplete PMTiles read: $read of $length at $offset")
+    return buffer.array()
+}
+
+/** Decompress a section the same way the reader/MapLibre do, per the PMTiles compression byte. */
+private fun decompressPmtiles(data: ByteArray, compression: Byte): ByteArray {
+    return when (compression) {
+        PMTILES_COMPRESSION_NONE -> data
+        PMTILES_COMPRESSION_GZIP -> GZIPInputStream(data.inputStream()).use { it.readBytes() }
+        else -> InflaterInputStream(data.inputStream()).use { it.readBytes() }
+    }
+}
+
+/** Read one base-128 varint (little-endian groups) and advance the buffer. */
+private fun readVarLong(buffer: ByteBuffer): Long {
+    var result = 0L
+    var shift = 0
+    while (true) {
+        val b = buffer.get().toLong() and 0xff
+        result = result or ((b and 0x7f) shl shift)
+        if (b and 0x80L == 0L) break
+        shift += 7
+    }
+    return result
 }
 
 fun findExtractPaths(path: String) : List<String> {
