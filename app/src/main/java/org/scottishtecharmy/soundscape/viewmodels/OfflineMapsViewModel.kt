@@ -48,41 +48,30 @@ data class Extract(
         get() {
             return feature.properties?.get("extract-size-string")?.toString() ?: ""
         }
-    val namePropLocal = feature.properties?.get("name_local")
-    val nameProp = feature.properties?.get("name")
+    private val namePropLocal = feature.properties?.get("name_local")
+    private val nameProp = feature.properties?.get("name")
     val localName = namePropLocal?.toString() ?: nameProp.toString()
     val alternateName = namePropLocal?.let {
         nameProp.toString()
     }
 
-    val localCitiesProps = feature.properties?.get("city_local_names")
-    val localCitiesBuilder = with(StringBuilder()) {
-        if (localCitiesProps != null) {
-            for (city in localCitiesProps as List<*>) {
-                if (city != localCitiesProps.first())
-                    this.append(", ")
-                this.append(city)
-            }
-        }
-    }
+    val localCities: List<String> =
+        feature.properties?.get("city_local_names")
+            ?.toString()
+            ?.trimStart('[')
+            ?.trimEnd(']')
+            ?.split(", ") ?: emptyList()
 
-    val localCities = localCitiesBuilder.toString()
-    val cities = feature.properties?.get("city_names")
-    val citiesBuilder = with(StringBuilder()) {
-        if (cities != null) {
-            for (city in cities as List<*>) {
-                if (city != cities.first())
-                    this.append(", ")
-                this.append(city)
-            }
-        }
-    }
-    val alternateCities = citiesBuilder.toString()
+    val alternateCities = feature.properties?.get("city_names")
+        ?.toString()
+        ?.trimStart('[')
+        ?.trimEnd(']')
+        ?.split(", ") ?: emptyList()
 
     val hasCityCluster: Boolean = feature.properties?.get("feature_type") == "city_cluster"
 
     val filename = feature.properties?.get("filename")
-    val properties = feature.properties
+    private val properties = feature.properties
 }
 
 sealed class NearbyExtractsState {
