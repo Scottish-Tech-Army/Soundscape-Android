@@ -183,49 +183,6 @@ fun OfflineMapsScreenVM(
     )
 }
 
-class ExtractDetails(
-    extract: Feature
-) {
-    var localName = ""
-    var alternateName = ""
-
-    var localCities = ""
-    var alternateCities = ""
-
-    init {
-        val namePropLocal = extract.properties?.get("name_local")
-        val nameProp = extract.properties?.get("name")
-        if (namePropLocal != null) {
-            localName = namePropLocal.toString()
-            alternateName = nameProp.toString()
-        } else
-            localName = nameProp.toString()
-
-        val localCitiesProps = extract.properties?.get("city_local_names")
-        val localCitiesBuilder = StringBuilder()
-        if (localCitiesProps != null) {
-            for (city in localCitiesProps as List<*>) {
-                if (city != localCitiesProps.first())
-                    localCitiesBuilder.append(", ")
-                localCitiesBuilder.append(city)
-            }
-            localCities = localCitiesBuilder.toString()
-        }
-
-        val cities = extract.properties?.get("city_names")
-        val citiesBuilder = StringBuilder()
-        if (cities != null) {
-            for (city in cities as List<*>) {
-                if (city != cities.first())
-                    citiesBuilder.append(", ")
-                citiesBuilder.append(city)
-            }
-            alternateCities = citiesBuilder.toString()
-        }
-    }
-}
-
-
 @Composable
 fun OfflineExtract(
     extract: Extract,
