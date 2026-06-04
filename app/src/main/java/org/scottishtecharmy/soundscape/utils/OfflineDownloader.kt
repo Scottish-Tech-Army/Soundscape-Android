@@ -68,7 +68,7 @@ sealed class DownloadState {
     object Canceled : DownloadState()
 }
 
-class OfflineDownloader {
+class OfflineDownloader(injectedDownloadService: IDownloadService? = null) {
 
     companion object {
         const val TAG = "OfflineDownloader"
@@ -78,9 +78,11 @@ class OfflineDownloader {
     private val _downloadState = MutableStateFlow<DownloadState>(DownloadState.Idle)
     val downloadState: StateFlow<DownloadState> = _downloadState.asStateFlow()
 
-    private val downloadService: IDownloadService
+    // Injectable so tests can drive crafted responses; production builds the real service.
+    private val downloadService: IDownloadService =
+        injectedDownloadService ?: createDefaultDownloadService()
 
-    init {
+    private fun createDefaultDownloadService(): IDownloadService {
         // We want a long timeout here to allow for network caching to happen behind the scenes
         val okHttpClient = OkHttpClient.Builder()
             .addInterceptor(UserAgentInterceptor())
@@ -93,7 +95,7 @@ class OfflineDownloader {
             .client(okHttpClient)
             .build()
 
-        downloadService = retrofit.create(IDownloadService::class.java)
+        return retrofit.create(IDownloadService::class.java)
     }
 
     fun startDownload(
@@ -123,53 +125,61 @@ class OfflineDownloader {
                     _downloadState.value = DownloadState.Caching
                     val response = downloadService.downloadFile(fileUrl)
                     if (response.isSuccessful) {
-                        response.body()?.let { body ->
-                            saveFile(this, body, tempFile.path) { progress ->
-                                _downloadState.value = DownloadState.Downloading(progress)
-                            }
-                            // Verify the download is intact before publishing it. A
-                            // truncated or corrupt .pmtiles extract crashes MapLibre
-                            // natively when opened, so reject it here and let the user
-                            // retry rather than persisting a file that will abort the app.
-                            if (finalFile.name.endsWith(".pmtiles") &&
-                                !isPmtilesUsable(tempFile.path)) {
-                                throw Exception("Downloaded extract failed validation (corrupt or truncated)")
-                            }
-                            retries = 0
-                            // Delete any file that already exists
-                            finalFile.delete()
-                            // Rename the file on successful completion
-                            if (tempFile.renameTo(finalFile)) {
-                                _downloadState.value = DownloadState.Success
-                                Log.i(TAG, "Download successful. File saved to: ${finalFile.path}")
-                            } else {
-                                throw Exception("Failed to rename file from ${tempFile.name} to ${finalFile.name}")
-                            }
-                        } ?: throw Exception("Response body was null.")
+                        val body = response.body() ?: throw Exception("Response body was null.")
+
+                        // The server caches extracts lazily and can answer a 200 with only the
+                        // part of the file it has copied so far. If the advertised Content-Length
+                        // is smaller than the extract size we expect from the manifest, the file
+                        // isn't ready yet - so back off and retry exactly as we do for a 503,
+                        // rather than downloading and saving a truncated extract.
+                        val contentLength = body.contentLength()
+                        if (extractSize != null && contentLength in 0 until extractSize.toLong()) {
+                            Log.d(TAG, "Extract not fully cached yet ($contentLength of ${extractSize.toLong()} bytes), retrying")
+                            body.close()
+                            waitBeforeRetry(this, firstAttempt = retries == maxRetries, extractSize = extractSize)
+                            --retries
+                            continue
+                        }
+
+                        saveFile(this, body, tempFile.path) { progress ->
+                            _downloadState.value = DownloadState.Downloading(progress)
+                        }
+                        // Verify the download is intact before publishing it. A
+                        // truncated or corrupt .pmtiles extract crashes MapLibre
+                        // natively when opened, so reject it here and let the user
+                        // retry rather than persisting a file that will abort the app.
+                        if (finalFile.name.endsWith(".pmtiles") &&
+                            !isPmtilesUsable(tempFile.path)) {
+                            throw Exception("Downloaded extract failed validation (corrupt or truncated)")
+                        }
+                        retries = 0
+                        // Delete any file that already exists
+                        finalFile.delete()
+                        // Rename the file on successful completion
+                        if (tempFile.renameTo(finalFile)) {
+                            _downloadState.value = DownloadState.Success
+                            Log.i(TAG, "Download successful. File saved to: ${finalFile.path}")
+                        } else {
+                            throw Exception("Failed to rename file from ${tempFile.name} to ${finalFile.name}")
+                        }
                     } else {
                         if(response.code() == 503) {
                             // The server is likely copying the extract into it's cache and is
-                            // asking that we try again a little later. We're going to guess that
-                            // the caching runs at around 10MB/sec and as we know the size of the
-                            // extract, we can back off appropriately.
-                            var cachingDuration = 15
-                            if(retries == maxRetries) {
-                                if(extractSize != null) {
-                                    cachingDuration = (extractSize / 10000000.0).toInt()
-                                }
-                            }
-                            Log.d(TAG, "Wait for $cachingDuration seconds before retrying.")
-                            _downloadState.value = DownloadState.Caching
-                            while(cachingDuration > 0) {
-                                ensureActive()
-                                sleep(1000)
-                                --cachingDuration
-                            }
+                            // asking that we try again a little later.
+                            waitBeforeRetry(this, firstAttempt = retries == maxRetries, extractSize = extractSize)
                             --retries
                         } else {
                             throw Exception("Download failed with code: ${response.code()} and message: ${response.message()}")
                         }
                     }
+                }
+
+                // We exhausted every retry without ever publishing the file (e.g. the server
+                // kept returning a partial extract), so surface that rather than leaving the UI
+                // stuck on "Caching".
+                if (_downloadState.value !is DownloadState.Success) {
+                    tempFile.delete()
+                    throw Exception("Extract was not ready after $maxRetries attempts")
                 }
             } catch (e: CancellationException) {
                 // Handle coroutine cancellation
@@ -183,6 +193,26 @@ class OfflineDownloader {
                 tempFile.delete() // Clean up partial file
                 Log.e(TAG, "Download failed", e)
             }
+        }
+    }
+
+    /**
+     * Back off before retrying a download, the same way we do when the server returns a 503 to
+     * say it is still copying the extract into its cache. We guess that the caching runs at around
+     * 10MB/sec, so on the first attempt we wait for an estimate based on the extract size; on later
+     * attempts we just poll every 15 seconds.
+     */
+    private fun waitBeforeRetry(scope: CoroutineScope, firstAttempt: Boolean, extractSize: Double?) {
+        var cachingDuration = 15
+        if (firstAttempt && extractSize != null) {
+            cachingDuration = (extractSize / 10000000.0).toInt()
+        }
+        Log.d(TAG, "Wait for $cachingDuration seconds before retrying.")
+        _downloadState.value = DownloadState.Caching
+        while (cachingDuration > 0) {
+            scope.ensureActive()
+            sleep(1000)
+            --cachingDuration
         }
     }
 
