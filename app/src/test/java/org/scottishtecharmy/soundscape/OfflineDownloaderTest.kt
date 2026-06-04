@@ -52,6 +52,19 @@ class OfflineDownloaderTest {
             override fun source(): BufferedSource = Buffer().apply { write(data) }
         }
 
+    /**
+     * A body that advertises [advertised] bytes via Content-Length but whose stream ends cleanly
+     * after only [actual] bytes - the silent-truncation case an intermediary can produce, or that
+     * HTTP/2 would surface as a clean EOF short of Content-Length.
+     */
+    private fun truncatedBody(advertised: Long, actual: Int): ResponseBody =
+        object : ResponseBody() {
+            private val data = ByteArray(actual) { 'A'.code.toByte() }
+            override fun contentType() = "application/octet-stream".toMediaType()
+            override fun contentLength() = advertised
+            override fun source(): BufferedSource = Buffer().apply { write(data) }
+        }
+
     /** Run a download against [service] and block until it reaches a terminal state. */
     private fun runDownload(service: FakeDownloadService, extractSize: Double?): Pair<DownloadState, File> {
         val tempDir = File(System.getProperty("java.io.tmpdir"), "offline-dl-${System.nanoTime()}")
@@ -99,6 +112,23 @@ class OfflineDownloaderTest {
             assertTrue("expected Success but was $state", state is DownloadState.Success)
             assertEquals("a full-size response must not retry", 1, service.callCount)
             assertEquals(1000L, file.length())
+        } finally {
+            file.parentFile?.deleteRecursively()
+        }
+    }
+
+    @Test
+    fun truncatedBodyFailsAndIsNotPublished() {
+        // Content-Length advertises the full extract size (so it passes the partial-cache pre-check),
+        // but the stream ends after only half the bytes. The downloader must reject this rather than
+        // publishing a truncated file.
+        val service = FakeDownloadService(
+            listOf(Response.success(truncatedBody(advertised = 1000L, actual = 500))),
+        )
+        val (state, file) = runDownload(service, extractSize = 1000.0)
+        try {
+            assertTrue("expected Error but was $state", state is DownloadState.Error)
+            assertTrue("a truncated download must not be left on disk", !file.exists())
         } finally {
             file.parentFile?.deleteRecursively()
         }

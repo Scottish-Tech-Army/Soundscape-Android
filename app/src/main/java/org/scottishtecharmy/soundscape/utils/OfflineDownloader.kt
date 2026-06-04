@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
+import okhttp3.Protocol
 import org.scottishtecharmy.soundscape.network.UserAgentInterceptor
 import okhttp3.ResponseBody
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -25,6 +26,7 @@ import retrofit2.Retrofit
 import retrofit2.awaitResponse
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
 import java.io.InputStream
 import java.lang.Thread.sleep
 import java.util.concurrent.TimeUnit
@@ -88,6 +90,10 @@ class OfflineDownloader(injectedDownloadService: IDownloadService? = null) {
             .addInterceptor(UserAgentInterceptor())
             .connectTimeout(3, TimeUnit.MINUTES)
             .readTimeout(3, TimeUnit.MINUTES)
+            // Pin to HTTP/1.1. OkHttp only enforces Content-Length on HTTP/1.1 (a short
+            // body throws "unexpected end of stream"); over HTTP/2 a premature END_STREAM
+            // returns a clean EOF, which would let us save a silently truncated extract.
+            .protocols(listOf(Protocol.HTTP_1_1))
             .build()
 
         val retrofit = Retrofit.Builder()
@@ -247,6 +253,14 @@ class OfflineDownloader(injectedDownloadService: IDownloadService? = null) {
                 onProgress(progress)
             }
             outputStream.flush()
+
+            // EOF is not the same as "got everything". If the stream ends short of the
+            // advertised Content-Length (e.g. an intermediary truncates the response with
+            // a clean close), reject it here so the caller retries rather than publishing a
+            // truncated extract.
+            if (fileSize >= 0 && fileSizeDownloaded != fileSize) {
+                throw IOException("Truncated download: $fileSizeDownloaded of $fileSize bytes")
+            }
         } finally {
             inputStream?.close()
             outputStream?.close()
