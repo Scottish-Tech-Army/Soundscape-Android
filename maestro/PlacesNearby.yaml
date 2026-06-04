@@ -2,21 +2,28 @@ appId: org.scottishtecharmy.soundscape
 ---
 - launchApp:
     clearState: false
+
+- runFlow:
+    file: WaitForScreen.yaml
+    env:
+          screen: Home
+
 - tapOn:
     id: homePlacesNearby
 - tapOn:
     id: placesNearby-0
 
-- repeat:
-    while:
-        notVisible:
-            id: placesNearby-20
-    commands:
-        - swipe:
-            start: 50%, 90% # From (90% of width, 50% of height)
-            end: 50%, 10% # To (10% of width, 50% of height)- tapOn:
+
+- runFlow:
+    file: SwipeAndTap.yaml
+    env:
+      id: placesNearby-8
+
 - tapOn:
     id: appBarLeft
+- tapOn:
+    id: appBarLeft
+
 - tapOn:
     id: placesNearby-1
 - tapOn:

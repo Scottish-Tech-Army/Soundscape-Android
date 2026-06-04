@@ -1,0 +1,40 @@
+appId: org.scottishtecharmy.soundscape
+# Reusable subflow: blocks until a named screen has fully rendered, then
+# returns. Each screen is identified by an "anchor" testTag that is only present
+# once that screen has finished composing; extendedWaitUntil waits for it.
+#
+# Call it with the screen env set to one of the supported names. timeout (ms) is
+# optional and defaults to 20000:
+#
+#   - runFlow:
+#       file: WaitForScreen.yaml
+#       env:
+#         screen: Home
+#
+# Supported screens: Home, LocationDetails, PlacesNearby, MarkersAndRoutes,
+# RouteDetails, Settings. Add a new entry to the map below to support another.
+---
+# Map the requested screen name to its anchor testTag, failing fast with a clear
+# message if an unknown (or missing) name is passed.
+- evalScript: |
+    ${
+      const requested = typeof screen === 'undefined' ? '' : screen;
+      const anchors = {
+        Home: 'mainSearchBarCollapsed',
+        LocationDetails: 'locationDetailsStartBeacon',
+        PlacesNearby: 'placesNearby-0',
+        MarkersAndRoutes: 'RoutesTab',
+        RouteDetails: 'routeDetailsStartButton',
+        Settings: 'settingsSectionAudio',
+        Welcome: 'welcomeScreenContinueButton'
+      };
+      if (!anchors[requested]) {
+        throw 'WaitForScreen: unknown screen "' + requested + '". Supported: ' + Object.keys(anchors).join(', ');
+      }
+      output.anchor = anchors[requested];
+    }
+
+- extendedWaitUntil:
+    visible:
+      id: ${output.anchor}
+    timeout: ${timeout || 20000}

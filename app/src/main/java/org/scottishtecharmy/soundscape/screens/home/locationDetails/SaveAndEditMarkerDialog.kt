@@ -153,7 +153,8 @@ fun SaveAndEditMarkerDialog(
                         value = name,
                         onValueChange = {
                             name = it
-                        }
+                        },
+                        testTagPreFix = "name"
                     )
                     Spacer(modifier = Modifier.height(spacing.medium))
                     CustomTextField(
@@ -165,7 +166,8 @@ fun SaveAndEditMarkerDialog(
                         value = annotation,
                         onValueChange = {
                             annotation = it
-                        }
+                        },
+                        testTagPreFix = "notes"
                     )
                     Spacer(modifier = Modifier.height(spacing.medium))
 

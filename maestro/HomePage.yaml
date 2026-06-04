@@ -2,31 +2,34 @@ appId: org.scottishtecharmy.soundscape
 ---
 - launchApp:
     clearState: false
-
+- runFlow:
+    file: WaitForScreen.yaml
+    env:
+            screen: Home
 - tapOn:
     id: homeMyLocation
 - runFlow:
     file: Wait.yaml
     env:
-      TIMEOUT: 10000
+      timeout: 10000
 - tapOn:
     id: homeAroundMe
 - runFlow:
     file: Wait.yaml
     env:
-      TIMEOUT: 30000
+      timeout: 30000
 - tapOn:
     id: homeAheadOfMe
 - runFlow:
     file: Wait.yaml
     env:
-      TIMEOUT: 30000
+      timeout: 30000
 - tapOn:
     id: homeNearbyMarkers
 - runFlow:
     file: Wait.yaml
     env:
-      TIMEOUT: 10000
+      timeout: 10000
 - tapOn:
     id: topBarSleep
 - tapOn:

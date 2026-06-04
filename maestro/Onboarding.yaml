@@ -9,33 +9,38 @@ appId: org.scottishtecharmy.soundscape
         microphone: allow
 
 - runFlow:
-    file: SwipeUpAndTap.yaml
+    file: WaitForScreen.yaml
     env:
-      ID: "welcomeScreenContinueButton"
+      screen: Welcome
 
 - runFlow:
-    file: SwipeUpAndTap.yaml
+    file: SwipeAndTap.yaml
     env:
-      ID: "languageScreenContinueButton"
+      id: "welcomeScreenContinueButton"
 
 - runFlow:
-    file: SwipeUpAndTap.yaml
+    file: SwipeAndTap.yaml
     env:
-      ID: "navigatingScreenContinueButton"
+      id: "languageScreenContinueButton"
+
+- runFlow:
+    file: SwipeAndTap.yaml
+    env:
+      id: "navigatingScreenContinueButton"
 
 # Battery optimization screen. Tapping "Grant permission" launches a system
 # dialog (ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS) which is not a runtime
 # permission, so it is not handled by the launchApp permissions block. We wait
 # for the system dialog's positive button and tap it, then continue.
 - runFlow:
-    file: SwipeUpAndTap.yaml
+    file: SwipeAndTap.yaml
     env:
-      ID: "batteryOptimizationGrantPermissionButton"
+      id: "batteryOptimizationGrantPermissionButton"
 
 - runFlow:
     file: Wait.yaml
     env:
-      TIMEOUT: 3000
+      timeout: 3000
 
 # The system battery-optimisation dialog only appears if the app isn't already
 # exempt. Dismiss its "Allow" button if it shows; if it never appears, optional
@@ -45,59 +50,59 @@ appId: org.scottishtecharmy.soundscape
     optional: true
 
 - runFlow:
-    file: SwipeUpAndTap.yaml
+    file: SwipeAndTap.yaml
     env:
-      ID: "batteryOptimizationContinueButton"
+      id: "batteryOptimizationContinueButton"
 
 - runFlow:
-    file: SwipeUpAndTap.yaml
+    file: SwipeAndTap.yaml
     env:
-      ID: "listeningScreenContinueButton"
+      id: "listeningScreenContinueButton"
 
 - runFlow:
-    file: SwipeUpAndTap.yaml
+    file: SwipeAndTap.yaml
     env:
-      ID: "hearingScreenContinueButton"
+      id: "hearingScreenContinueButton"
 
 - runFlow:
-    file: SwipeUpAndTap.yaml
+    file: SwipeAndTap.yaml
     env:
-      ID: "CurrentButton"
+      id: "CurrentButton"
 
 - runFlow:
-    file: SwipeUpAndTap.yaml
+    file: SwipeAndTap.yaml
     env:
-      ID: "audioBeaconsContinueButton"
+      id: "audioBeaconsContinueButton"
 
 - runFlow:
-    file: SwipeUpAndTap.yaml
+    file: SwipeAndTap.yaml
     env:
-      ID: "offlineStorageOnboardingScreenContinueButton"
+      id: "offlineStorageOnboardingScreenContinueButton"
 
 - runFlow:
-    file: SwipeUpAndTap.yaml
+    file: SwipeAndTap.yaml
     env:
-      ID: "accessibilityOnboardingScreenShowMapToggle"
+      id: "accessibilityOnboardingScreenShowMapToggle"
 
 - runFlow:
-    file: SwipeUpAndTap.yaml
+    file: SwipeAndTap.yaml
     env:
-      ID: "accessibilityOnboardingScreenContinueButton"
+      id: "accessibilityOnboardingScreenContinueButton"
 
 - runFlow:
-    file: SwipeUpAndTap.yaml
+    file: SwipeAndTap.yaml
     env:
-      ID: "termsScreenAgree"
+      id: "termsScreenAgree"
 
 - runFlow:
-    file: SwipeUpAndTap.yaml
+    file: SwipeAndTap.yaml
     env:
-      ID: "termsScreenContinueButton"
+      id: "termsScreenContinueButton"
 
 - runFlow:
-    file: SwipeUpAndTap.yaml
+    file: SwipeAndTap.yaml
     env:
-      ID: "finishScreenContinueButton"
+      id: "finishScreenContinueButton"
 
 # The "new release" dialog only appears for certain version/build states.
 # Dismiss it if present; optional means the flow still passes if it never shows.

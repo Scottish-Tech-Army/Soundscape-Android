@@ -379,7 +379,8 @@ fun AddAndEditRouteScreen(
                                 .fillMaxWidth()
                                 .testTag("routeName"),
                             value = uiState.name,
-                            onValueChange = onNameChange
+                            onValueChange = onNameChange,
+                            testTagPreFix = "name"
                         )
                         Spacer(modifier = Modifier.height(spacing.medium))
                         CustomTextField(
@@ -387,7 +388,8 @@ fun AddAndEditRouteScreen(
                             fieldHint = stringResource(R.string.route_description_description_hint),
                             modifier = Modifier.fillMaxWidth(),
                             value = uiState.description,
-                            onValueChange = onDescriptionChange
+                            onValueChange = onDescriptionChange,
+                            testTagPreFix = "description"
                         )
 
                         HorizontalDivider(

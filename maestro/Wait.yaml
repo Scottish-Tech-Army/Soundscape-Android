@@ -2,10 +2,10 @@ appId: org.scottishtecharmy.soundscape
 ---
 # A fixed pause that never fails the flow. extendedWaitUntil controls the
 # duration (assertVisible cannot take a timeout - it only has a fixed 7s
-# auto-retry). The element never exists, so it waits the full ${TIMEOUT}ms;
+# auto-retry). The element never exists, so it waits the full ${timeout}ms;
 # `optional: true` suppresses the timeout failure so the flow simply carries on.
 - extendedWaitUntil:
     visible:
       id: "NON-EXISTANT-TEST-TAG"
-    timeout: ${TIMEOUT}
+    timeout: ${timeout || 5000}
     optional: true

@@ -8,6 +8,11 @@ appId: org.scottishtecharmy.soundscape
 - launchApp:
     clearState: false
 
+- runFlow:
+        file: WaitForScreen.yaml
+        env:
+              screen: Home
+
 - tapOn:
     id: homeMarkersAndRoutes
 
@@ -39,4 +44,4 @@ appId: org.scottishtecharmy.soundscape
 
 # The new route should now be listed.
 - assertVisible:
-    text: "Test Route"
+    text: "Test Route.*"

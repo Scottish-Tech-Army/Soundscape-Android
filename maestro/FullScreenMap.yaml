@@ -6,6 +6,11 @@ appId: org.scottishtecharmy.soundscape
 - launchApp:
     clearState: false
 
+- runFlow:
+        file: WaitForScreen.yaml
+        env:
+              screen: Home
+
 # Normal (non-full-screen) home layout: bottom controls and the map FAB are visible.
 - assertVisible:
     id: homeFullScreenMap

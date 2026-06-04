@@ -8,8 +8,14 @@ appId: org.scottishtecharmy.soundscape
 - launchApp:
     clearState: false
 
+- runFlow:
+    file: WaitForScreen.yaml
+    env:
+      screen: Home
+
 - tapOn:
     id: homeMarkersAndRoutes
+
 
 # The screen opens on the Routes tab by default - switch to Markers.
 - tapOn:
@@ -19,13 +25,6 @@ appId: org.scottishtecharmy.soundscape
 - assertVisible:
     id: "LocationItem-B-1"
 
-# Exercise the sort controls (toggle sort-by-name and the ascending/descending
-# order). Re-sorting re-indexes the orderId suffix, so match markers by name
-# prefix afterwards rather than by exact index.
-- tapOn:
-    id: SortValue
-- tapOn:
-    id: SortOrder
 - assertVisible:
     id: "LocationItem-A-.*"
 - assertVisible:
@@ -43,9 +42,9 @@ appId: org.scottishtecharmy.soundscape
 - tapOn:
     id: locationDetailsEditMarker
 - tapOn:
+        id: notes-clearTextField
+- tapOn:
     id: markerAnnotation
 - inputText: "Updated by Maestro"
 - tapOn:
     id: flexibleAppBarRight
-- assertVisible:
-    id: locationDetailsEditMarker

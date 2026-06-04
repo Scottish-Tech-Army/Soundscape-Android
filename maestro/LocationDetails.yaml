@@ -3,35 +3,48 @@ appId: org.scottishtecharmy.soundscape
 - launchApp:
         clearState: false
 
+# This test assumes that there are no markers initially present in the database
+
 - runFlow:
-        file: SwipeUpAndTap.yaml
+        file: WaitForScreen.yaml
         env:
-              ID: 'homeCurrentLocation'
+              screen: Home
+- runFlow:
+        file: SwipeAndTap.yaml
+        env:
+              id: homeCurrentLocation
 - tapOn:
         id: locationDetailsStartBeacon
+
+
 - runFlow:
-        file: SwipeUpAndTap.yaml
+        file: WaitForScreen.yaml
         env:
-              ID: 'routeStopOrDetails'
+              screen: Home
+
 - runFlow:
-        file: SwipeUpAndTap.yaml
+        file: SwipeAndTap.yaml
         env:
-              ID: 'homeCurrentLocation'
+              id: routeStop
+- runFlow:
+        file: SwipeAndTap.yaml
+        env:
+              id: homeCurrentLocation
 - tapOn:
         id: locationDetailsSaveAsMarker
 - tapOn:
-        id: clearTextField
+        id: name-clearTextField
 - tapOn:
         id: markerName
 - tapOn: A
 - tapOn:
         id: flexibleAppBarRight
-- tapOn:
-        id: appBarLeft
+
 - runFlow:
-        file: SwipeDownAndTap.yaml
+        file: SwipeAndTap.yaml
         env:
-              ID: 'homePlacesNearby'
+              id: 'homePlacesNearby'
+              direction: down
 - tapOn:
         id: placesNearby-0
 - tapOn:
@@ -39,18 +52,13 @@ appId: org.scottishtecharmy.soundscape
 - tapOn:
         id: locationDetailsSaveAsMarker
 - tapOn:
-        id: clearTextField
+        id: name-clearTextField
 - tapOn:
         id: markerName
 - tapOn: B
 - tapOn:
         id: flexibleAppBarRight
-- tapOn:
-        id: appBarLeft
-- tapOn:
-        id: appBarLeft
-- tapOn:
-        id: appBarLeft
+
 - tapOn:
         id: homeMarkersAndRoutes
 - tapOn:

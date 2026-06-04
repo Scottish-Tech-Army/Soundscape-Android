@@ -9,43 +9,81 @@ env:
 
 on:
 
-  # Allows you to run this workflow manually from the Actions tab
+  # Allows you to run this workflow manually from the Actions tab. With no
+  # inputs it downloads and tests the latest GitHub release. An optional tag
+  # can be given to test an older release instead.
   workflow_dispatch:
-    branches: [ "main", "test-tags" ]
+    inputs:
+      release_tag:
+        description: 'Release tag to test (e.g. soundscape-1.0.12). Leave empty for the latest release.'
+        required: false
+        type: string
+
+  # Allows another workflow (e.g. run-tests) to call this as a follow-on job,
+  # passing the name of an APK artifact it uploaded earlier in the same run.
+  workflow_call:
+    inputs:
+      apk_artifact:
+        description: 'Name of an APK artifact uploaded earlier in the same run to install and test.'
+        required: false
+        type: string
+      fail_on_error:
+        description: 'Fail the run if any Maestro flow fails. Callers can set this false to keep Maestro non-blocking.'
+        required: false
+        type: boolean
+        default: true
 
 jobs:
   maestro-test:
     runs-on: ubuntu-latest
     environment: development
+    permissions:
+      contents: read
 
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v5
-
-      - name: Set Up JDK
-        uses: actions/setup-java@v5
+      # When called from another workflow, grab the APK that workflow built and
+      # uploaded earlier in the same run.
+      - name: Download APK from calling workflow
+        if: ${{ inputs.apk_artifact != '' }}
+        uses: actions/download-artifact@v8
         with:
-          distribution: 'zulu' # See 'Supported distributions' for available options
-          java-version: '19'
+          name: ${{ inputs.apk_artifact }}
+          path: apk
 
-      - name: Setup tile and search providers
+      # When run standalone, download the APK from a GitHub release. Defaults to
+      # the latest release unless a tag was supplied.
+      - name: Download APK from release
+        if: ${{ inputs.apk_artifact == '' }}
         env:
-          TILE_PROVIDER_API_KEY: ${{ secrets.TILE_PROVIDER_API_KEY }}
-          TILE_PROVIDER_URL: ${{ secrets.TILE_PROVIDER_URL }}
-          SEARCH_PROVIDER_API_KEY: ${{ secrets.SEARCH_PROVIDER_API_KEY }}
-          SEARCH_PROVIDER_URL: ${{ secrets.SEARCH_PROVIDER_URL }}
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.release_tag }}
         run: |
-          echo tileProviderUrl="$TILE_PROVIDER_URL" > local.properties
-          echo tileProviderApiKey="$TILE_PROVIDER_API_KEY" >> local.properties
-          echo searchProviderUrl="$SEARCH_PROVIDER_URL" >> local.properties
-          echo searchProviderApiKey="$SEARCH_PROVIDER_API_KEY" >> local.properties
+          mkdir -p apk
+          if [ -z "$RELEASE_TAG" ]; then
+            RELEASE_TAG=$(gh release view --json tagName -q .tagName)
+            echo "No tag supplied, using latest release: $RELEASE_TAG"
+          else
+            echo "Using requested release: $RELEASE_TAG"
+          fi
+          gh release download "$RELEASE_TAG" --pattern 'release-apk-*.zip' --dir apk
+          unzip -o apk/release-apk-*.zip -d apk
 
-      - name: Build debug version
-        run: ./gradlew assembleDebug
+      # The artifact (debug build) and the release zip (release build) put the
+      # APK at different paths, so locate it rather than hard-coding the name.
+      - name: Locate APK
+        id: find-apk
+        run: |
+          apk_path=$(find apk -name '*.apk' | head -n1)
+          if [ -z "$apk_path" ]; then
+            echo "No APK found to test" >&2
+            exit 1
+          fi
+          echo "Found APK: $apk_path"
+          echo "apk_path=$apk_path" >> "$GITHUB_OUTPUT"
 
       - name: Enable KVM
         run: |
@@ -54,7 +92,7 @@ jobs:
           sudo udevadm trigger --name-match=kvm
 
       - name: Install Maestro
-        run: MAESTRO_VERSION=1.40.3 curl -Ls 'https://get.maestro.mobile.dev' | bash
+        run: MAESTRO_VERSION=2.6.0 curl -Ls 'https://get.maestro.mobile.dev' | bash
 
       - name: Maestro Tests
         id: maestro-tests
@@ -71,15 +109,18 @@ jobs:
             touch app/emulator.log                    # create log file
             chmod 777 app/emulator.log                # allow writing to log file
             adb logcat >> app/emulator.log &          # pipe all logcat messages into log file as a background process
-            adb install app/build/outputs/apk/debug/app-debug.apk
+            adb install ${{ steps.find-apk.outputs.apk_path }}
             mkdir maestro_outputs
-            $HOME/.maestro/bin/maestro test --format=junit --output=report1.xml --test-output-dir=maestro_outputs --no-ansi maestro/Onboarding.yaml
-            $HOME/.maestro/bin/maestro test --format=junit --output=report2.xml --test-output-dir=maestro_outputs --no-ansi maestro/HomePage.yaml
-            $HOME/.maestro/bin/maestro test --format=junit --output=report3.xml --test-output-dir=maestro_outputs --no-ansi maestro/LocationDetails.yaml
-            $HOME/.maestro/bin/maestro test --format=junit --output=report4.xml --test-output-dir=maestro_outputs --no-ansi maestro/PlacesNearby.yaml
-            $HOME/.maestro/bin/maestro test --format=junit --output=report5.xml --test-output-dir=maestro_outputs --no-ansi maestro/MarkersAndRoutes.yaml
-            $HOME/.maestro/bin/maestro test --format=junit --output=report6.xml --test-output-dir=maestro_outputs --no-ansi maestro/RouteCreation.yaml
-            $HOME/.maestro/bin/maestro test --format=junit --output=report7.xml --test-output-dir=maestro_outputs --no-ansi maestro/FullScreenMap.yaml
+            # Run every flow even if an earlier one fails, then fail the step at
+            # the end if any of them failed.
+            status=0
+            $HOME/.maestro/bin/maestro test --format=junit --output=report1.xml --test-output-dir=maestro_outputs --no-ansi maestro/Onboarding.yaml || status=1
+            $HOME/.maestro/bin/maestro test --format=junit --output=report2.xml --test-output-dir=maestro_outputs --no-ansi maestro/HomePage.yaml || status=1
+            $HOME/.maestro/bin/maestro test --format=junit --output=report3.xml --test-output-dir=maestro_outputs --no-ansi maestro/LocationDetails.yaml || status=1
+            $HOME/.maestro/bin/maestro test --format=junit --output=report4.xml --test-output-dir=maestro_outputs --no-ansi maestro/PlacesNearby.yaml || status=1
+            $HOME/.maestro/bin/maestro test --format=junit --output=report5.xml --test-output-dir=maestro_outputs --no-ansi maestro/MarkersAndRoutes.yaml || status=1
+            $HOME/.maestro/bin/maestro test --format=junit --output=report6.xml --test-output-dir=maestro_outputs --no-ansi maestro/RouteCreation.yaml || status=1
+            exit $status
 
       - name: Upload maestro reports
         uses: actions/upload-artifact@v6
@@ -95,5 +136,7 @@ jobs:
           path: app/emulator.log # path to where the log is
 
       - name: Raise error on test fail # set a red tick on the workflow run if the tests failed
-        if: steps.maestro-tests.outcome != 'success'
+        # inputs.fail_on_error is unset for a manual (workflow_dispatch) run, in
+        # which case we still want to fail; a caller can pass false to suppress.
+        if: steps.maestro-tests.outcome != 'success' && inputs.fail_on_error != false
         run: exit 1

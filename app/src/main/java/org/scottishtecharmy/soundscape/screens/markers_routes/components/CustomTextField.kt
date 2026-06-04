@@ -38,6 +38,7 @@ fun CustomTextField(
     modifier: Modifier = Modifier,
     textStyle: TextStyle = MaterialTheme.typography.bodyMedium,
     shape: Shape = RoundedCornerShape(spacing.extraSmall),
+    testTagPreFix: String,
     isSingleLine: Boolean = true  // Optional single-line behavior
 ) {
     OutlinedTextField(
@@ -59,7 +60,7 @@ fun CustomTextField(
             if (value.isNotEmpty()) {
                 IconButton(
                     onClick = { onValueChange("") },
-                    modifier = Modifier.testTag("clearTextField")
+                    modifier = Modifier.testTag("$testTagPreFix-clearTextField")
                 ) {
                     Icon(
                         Icons.Filled.Clear,
@@ -92,7 +93,8 @@ fun CustomTextFieldPreview() {
             onValueChange = { },
             textStyle = TextStyle(fontSize = 18.sp),
             shape = RoundedCornerShape(spacing.extraSmall),
-            isSingleLine = true
+            isSingleLine = true,
+            testTagPreFix = ""
         )
         HorizontalDivider(thickness = 50.dp)
         CustomTextField(
@@ -102,7 +104,8 @@ fun CustomTextFieldPreview() {
             onValueChange = { },
             textStyle = TextStyle(fontSize = 18.sp),
             shape = RoundedCornerShape(spacing.extraSmall),
-            isSingleLine = true
+            isSingleLine = true,
+            testTagPreFix = ""
         )
     }
 }

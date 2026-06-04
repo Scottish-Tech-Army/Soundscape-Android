@@ -11,8 +11,10 @@ has_toc: true
 to drive the app through real user flows on an emulator or device — onboarding,
 creating markers and routes, browsing places nearby, and so on. The flows live
 in the [`maestro/`](https://github.com/Scottish-Tech-Army/Soundscape-Android/tree/main/maestro)
-directory at the root of the repository and run in CI on every manual workflow
-dispatch (see [Running in CI](#running-in-ci)).
+directory at the root of the repository and run in CI both as a follow-on to
+the [`Run tests`](https://github.com/Scottish-Tech-Army/Soundscape-Android/blob/main/.github/workflows/run-tests.yaml)
+workflow and standalone against a published release (see
+[Running in CI](#running-in-ci)).
 
 These are end-to-end tests that exercise the real UI. For host-side logic tests
 see the [unit test example]({% link developers/unit-test-example.md %}); for the
@@ -31,7 +33,7 @@ a control.
 Installing Maestro Studio and the Maestro CLI, and setting up an emulator or
 simulator, is covered by the official
 [Maestro quickstart](https://docs.maestro.dev/get-started/quickstart) — follow
-that to get set up. (CI currently pins Maestro `1.40.3`; using a matching
+that to get set up. (CI currently pins Maestro `2.6.0`; using a matching
 version locally avoids surprises.)
 
 ## Running tests locally
@@ -94,33 +96,65 @@ appId: org.scottishtecharmy.soundscape
 A few small reusable flows take parameters via `env:` and are called with
 `runFlow`. Prefer these over copy-pasting the same command sequences:
 
-- **`SwipeUpAndTap.yaml`** — scrolls **down** until an element with the given
-  `ID` is visible, then taps it. The standard way to reach and press a button
-  that may be below the fold:
+- **`SwipeAndTap.yaml`** — scrolls a possibly off-screen or partially-visible
+  element into view, then taps it. Pass the `id` and a `direction` (`up`, the
+  default, reveals items below the fold; `down` reveals items above). The
+  standard way to reach and press a button that may be off-screen:
 
   ```yaml
   - runFlow:
-      file: SwipeUpAndTap.yaml
+      file: SwipeAndTap.yaml
       env:
-        ID: "welcomeScreenContinueButton"
+        id: "welcomeScreenContinueButton"
+        direction: up
   ```
 
-- **`SwipeDownAndTap.yaml`** — same, but scrolls **up**.
+  It deliberately avoids `scrollUntilVisible`: that command swipes from the
+  screen centre (the non-scrollable map on the home screen) and Maestro treats a
+  partially-visible element as fully visible, so it would stop before the element
+  is tappable. Instead `SwipeAndTap` swipes the scrollable region in small steps
+  until the element appears, then nudges it clear of the edge so it's not clipped
+  when tapped.
 - **`Wait.yaml`** — a fixed pause that never fails the flow. It waits for an
   element that intentionally never exists, with `optional: true`, so it simply
-  burns the `TIMEOUT` (in ms) and carries on. Used to let map tiles or network
+  burns the `timeout` (in ms) and carries on. Used to let map tiles or network
   calls settle:
 
   ```yaml
   - runFlow:
       file: Wait.yaml
       env:
-        TIMEOUT: 10000
+        timeout: 10000
   ```
 
   We use this because `assertVisible` cannot take a custom timeout (it has a
   fixed 7s auto-retry); `extendedWaitUntil` is what lets us control the
   duration.
+
+- **`WaitForScreen.yaml`** — blocks until a named screen has fully rendered,
+  then returns. It maps the `screen` name to an "anchor" `testTag` that is only
+  present once that screen has finished composing, and waits for it with
+  `extendedWaitUntil` (up to `timeout` ms, default 20000):
+
+  ```yaml
+  - runFlow:
+      file: WaitForScreen.yaml
+      env:
+        screen: Home
+  ```
+
+  Supported screens are `Home`, `LocationDetails`, `PlacesNearby`,
+  `MarkersAndRoutes`, `RouteDetails` and `Settings`; an unknown name fails the
+  flow with a clear message. Add a new entry to the `anchors` map in the file to
+  support another screen.
+
+  **Why it's needed:** the app does not draw instantly — the initial screen and
+  navigation between screens both take a moment to compose, and tapping a
+  control before its screen has rendered is a common source of flaky failures.
+  Rather than hand-rolling an `extendedWaitUntil` on a different element in every
+  flow (and getting the right "this screen is ready" element each time),
+  `WaitForScreen.yaml` centralises that anchor per screen so flows just say which
+  screen they're waiting for.
 
 ## testTags: how elements are matched
 
@@ -195,7 +229,8 @@ existing flows in `maestro/` give plenty of in-repo examples to point at. A
 useful prompt is to describe the user journey in plain English, name the
 `testTag`s the relevant controls already have, and ask for a flow that follows
 the conventions of the existing files (the `appId` header, `clearState: false`,
-the shared `SwipeUpAndTap`/`Wait` sub-flows, regex matching for dynamic ids).
+the shared `SwipeAndTap`/`Wait`/`WaitForScreen` sub-flows, regex matching for
+dynamic ids).
 
 Treat the result as a draft, not finished work: AI will happily invent
 `testTag`s or selectors that don't exist, so verify every `id:` against the
@@ -220,26 +255,73 @@ states, tap it with `optional: true` so the flow doesn't fail when it's absent:
 The same `optional: true` pattern is used to dismiss the "new release" dialog,
 which only appears for certain version/build states.
 
+## Making tests robust
+
+One of the most important things with maestro tests is that they are made as robus as possible against
+running on small/large screens and in different languages. The first two is why we use a lot of calls
+to `SwipeAndTap` as with small screens the target may be offscreen. For
+multiple languages to work we need to use the target id rather than the text it contains.
+
+We also want to deal with different versions of Android, and as much as possible with different
+configuration options. We do insist on onboarding being run first, but some thought must be taken
+not to make too many dependencies on further tests e.g. an empty markers database. Lots of
+dependencies is fine for CI, but for developers it can be annoying trying to figure out what's
+required.
+
+The delay whilst the app initial screen draws can cause problems and adding in an initial wait helps
+with that. Use the [`WaitForScreen.yaml`](#shared-sub-flows) sub-flow after `launchApp` (and after
+any navigation that changes screen) so the flow blocks until the screen has actually rendered, e.g.
+
+```yaml
+# Wait for the app to start and the home screen to render
+- runFlow:
+    file: WaitForScreen.yaml
+    env:
+      screen: Home
+```
+
 ## Running in CI
 
 The [`Run Maestro tests`](https://github.com/Scottish-Tech-Army/Soundscape-Android/blob/main/.github/workflows/run-maestro-tests.yaml)
-workflow is triggered manually from the **Actions** tab (`workflow_dispatch`).
-It:
+workflow **does not build the app** — it tests an APK produced elsewhere. It can
+get that APK in two ways:
 
-1. Builds the debug APK with the tile/search provider secrets written into
-   `local.properties`.
+- **As a follow-on to `Run tests`** (`workflow_call`). `run-tests.yaml` builds
+  the debug APK, uploads it as the `debug-apk` artifact, and then calls this
+  workflow as a `maestro` job (`needs: test`) passing `apk_artifact: debug-apk`.
+  This job is marked `continue-on-error: true` in `run-tests.yaml`, so for now a
+  Maestro failure does **not** fail the `Run tests` run.
+- **Standalone** from the **Actions** tab (`workflow_dispatch`). With no inputs
+  it downloads the **latest GitHub release**'s `release-apk-*.zip` and tests
+  that; an optional `release_tag` input (e.g. `soundscape-1.0.12`) tests an older
+  release instead. Note this exercises the minified, signed `release` build
+  rather than a debug build — `testTag`s survive R8 because they are string
+  literals, and the app id is the same, so the flows are unchanged.
+
+In both cases it then:
+
+1. Locates the downloaded APK (the debug artifact and the release zip put it at
+   different paths, so it is found by glob rather than a fixed name).
 2. Boots an API 34 x86_64 emulator via
    `reactivecircus/android-emulator-runner`.
 3. Installs the APK and runs each flow **individually, in suite order**, each
-   producing a JUnit report:
+   producing a JUnit report. Each flow runs even if an earlier one fails (`||
+   status=1`), and the step fails at the end if any flow failed:
 
    ```bash
+   status=0
    maestro test --format=junit --output=report1.xml \
-       --test-output-dir=maestro_outputs --no-ansi maestro/Onboarding.yaml
+       --test-output-dir=maestro_outputs --no-ansi maestro/Onboarding.yaml || status=1
    maestro test --format=junit --output=report2.xml \
-       --test-output-dir=maestro_outputs --no-ansi maestro/HomePage.yaml
+       --test-output-dir=maestro_outputs --no-ansi maestro/HomePage.yaml || status=1
    # ... and so on through FullScreenMap.yaml
+   exit $status
    ```
+
+   Running every flow regardless of earlier failures means one broken flow no
+   longer hides the results of the flows after it — but note the suite is still
+   [stateful and ordered](#the-suite-is-stateful-and-ordered), so a flow that
+   fails part-way can still leave later flows without the state they expect.
 
 4. Uploads the `maestro_outputs` reports as an artifact, and on failure also
    uploads `app/emulator.log` (a full `logcat` capture) to help diagnose what
@@ -248,5 +330,5 @@ It:
 The Maestro step uses `continue-on-error: true` so the report-upload steps
 always run; a final step re-raises the failure to mark the workflow red.
 
-When you add a new flow, add a matching `maestro test ...` line in the correct
-position so CI runs it.
+When you add a new flow, add a matching `maestro test ... || status=1` line in
+the correct position so CI runs it.
