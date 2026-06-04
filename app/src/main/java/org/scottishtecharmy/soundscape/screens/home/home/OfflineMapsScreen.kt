@@ -224,7 +224,7 @@ fun OfflineExtract(
                 }
             }
             Text(
-                text = size.toString(),
+                text = size,
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.align(Alignment.CenterVertically)
