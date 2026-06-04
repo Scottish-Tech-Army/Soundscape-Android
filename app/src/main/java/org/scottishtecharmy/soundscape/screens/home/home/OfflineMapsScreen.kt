@@ -59,9 +59,11 @@ import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 import org.scottishtecharmy.soundscape.utils.DownloadState
 import org.scottishtecharmy.soundscape.utils.StorageUtils
+import org.scottishtecharmy.soundscape.viewmodels.Extract
 import org.scottishtecharmy.soundscape.viewmodels.NearbyExtractsState
 import org.scottishtecharmy.soundscape.viewmodels.OfflineMapsUiState
 import org.scottishtecharmy.soundscape.viewmodels.OfflineMapsViewModel
+import org.scottishtecharmy.soundscape.viewmodels.asExtracts
 import java.net.URLEncoder
 import java.nio.charset.StandardCharsets
 import kotlin.time.Duration.Companion.seconds
@@ -175,7 +177,7 @@ fun OfflineMapsScreenVM(
         downloading = downloading.value,
         caching = caching.value,
         modifier = modifier,
-        downloadExtract = { name, feature -> viewModel.download(name, feature) },
+        downloadExtract = { name, extract -> viewModel.download(name, extract) },
         deleteExtract = { feature -> viewModel.delete(feature) },
         cancelDownload = { viewModel.cancelDownload() }
     )
@@ -226,13 +228,13 @@ class ExtractDetails(
 
 @Composable
 fun OfflineExtract(
-    extract: Feature,
-    extractSelected: (String, Feature) -> Unit,
+    extract: Extract,
+    extractSelected: (String, Extract) -> Unit,
     row: Int
 ) {
-    val details = remember(extract) { ExtractDetails(extract) }
-    val size = extract.properties?.get("extract-size-string")
-    if (size != null) {
+    val details = remember(extract) { extract }
+    val size = extract.sizeReadable
+    if (size.isNotEmpty()) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -256,7 +258,7 @@ fun OfflineExtract(
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurface,
                 )
-                if (details.alternateName.isNotEmpty()) {
+                details.alternateName?.let {
                     Text(
                         text = details.alternateName,
                         style = MaterialTheme.typography.bodySmall,
@@ -283,11 +285,11 @@ fun OfflineMapsScreen(
     progressForBar: Int,
     downloading: Boolean,
     caching: Boolean,
-    downloadExtract: (String, Feature) -> Unit,
-    deleteExtract: (Feature) -> Unit,
+    downloadExtract: (String, Extract) -> Unit,
+    deleteExtract: (Extract) -> Unit,
     cancelDownload: () -> Unit
 ) {
-    val extractDetailsFeature = remember { mutableStateOf(null as Feature?) }
+    val extractDetailsFeature = remember { mutableStateOf(null as Extract?) }
     val localExtractDetails = remember { mutableStateOf(false) }
 
     BackHandler(enabled = true) {
@@ -409,7 +411,7 @@ fun OfflineMapsScreen(
                         }
                     }
 
-                    if ((uiState.downloadedExtracts != null) && (uiState.downloadedExtracts.features.isNotEmpty())) {
+                    if (uiState.downloadedExtracts.isNotEmpty()) {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -431,12 +433,12 @@ fun OfflineMapsScreen(
                             modifier = Modifier.semantics {
                                 collectionInfo =
                                     CollectionInfo(
-                                        rowCount = uiState.downloadedExtracts.features.size,
+                                        rowCount = uiState.downloadedExtracts.size,
                                         columnCount = 1
                                     )
                             }
                         ) {
-                            for ((index, extract) in uiState.downloadedExtracts.features.withIndex()) {
+                            for ((index, extract) in uiState.downloadedExtracts.withIndex()) {
                                 OfflineExtract(
                                     extract,
                                     { _, extract ->
@@ -504,12 +506,12 @@ fun OfflineMapsScreen(
                                 modifier = Modifier.semantics {
                                     collectionInfo =
                                         CollectionInfo(
-                                            rowCount = uiState.nearbyExtractsState.nearbyExtracts.features.size,
+                                            rowCount = uiState.nearbyExtractsState.extracts.size,
                                             columnCount = 1
                                         )
                                 }
                             ) {
-                                for ((index, extract) in uiState.nearbyExtractsState.nearbyExtracts.features.withIndex()) {
+                                for ((index, extract) in uiState.nearbyExtractsState.extracts.withIndex()) {
                                     OfflineExtract(
                                         extract,
                                         { _, extract ->
@@ -606,8 +608,8 @@ fun OfflineMapsScreenPreview() {
 
     val uiState = OfflineMapsUiState(
         downloadingExtractName = "",
-        nearbyExtractsState = NearbyExtractsState.Loaded(fc),
-        downloadedExtracts = fc,
+        nearbyExtractsState = NearbyExtractsState.Loaded(fc.asExtracts()),
+        downloadedExtracts = fc.asExtracts(),
         currentPath = "/path/to/internal",
         storages = listOf(internalStorage, externalStorage),
     )
@@ -633,7 +635,7 @@ fun OfflineMapsScreenDownloadingPreview() {
     OfflineMapsScreen(
         rememberNavController(),
         OfflineMapsUiState(
-            nearbyExtractsState = NearbyExtractsState.Loaded(FeatureCollection()),
+            nearbyExtractsState = NearbyExtractsState.Loaded(emptyList()),
             storages = emptyList(),
             downloadingExtractName = "United Kingdom"
         ),

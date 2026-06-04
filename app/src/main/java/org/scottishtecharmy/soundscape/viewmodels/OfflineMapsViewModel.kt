@@ -3,7 +3,6 @@ package org.scottishtecharmy.soundscape.viewmodels
 import android.content.Context
 import android.os.Environment
 import android.text.format.Formatter
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.preference.PreferenceManager
@@ -33,9 +32,62 @@ import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
 import java.io.File
 import java.io.FileOutputStream
 
+internal fun FeatureCollection?.asExtracts(): List<Extract> =
+    this?.features?.map { Extract(it) } ?: emptyList()
+
+data class Extract(
+    val feature: Feature
+) {
+    val size: Double =
+        feature.properties?.get("extract-size")?.toString()?.toDouble() ?: 0.toDouble()
+
+    var sizeReadable: String
+        set(value) {
+            properties?.set("extract-size-string", value)
+        }
+        get() {
+            return feature.properties?.get("extract-size-string")?.toString() ?: ""
+        }
+    val namePropLocal = feature.properties?.get("name_local")
+    val nameProp = feature.properties?.get("name")
+    val localName = namePropLocal?.toString() ?: nameProp.toString()
+    val alternateName = namePropLocal?.let {
+        nameProp.toString()
+    }
+
+    val localCitiesProps = feature.properties?.get("city_local_names")
+    val localCitiesBuilder = with(StringBuilder()) {
+        if (localCitiesProps != null) {
+            for (city in localCitiesProps as List<*>) {
+                if (city != localCitiesProps.first())
+                    this.append(", ")
+                this.append(city)
+            }
+        }
+    }
+
+    val localCities = localCitiesBuilder.toString()
+    val cities = feature.properties?.get("city_names")
+    val citiesBuilder = with(StringBuilder()) {
+        if (cities != null) {
+            for (city in cities as List<*>) {
+                if (city != cities.first())
+                    this.append(", ")
+                this.append(city)
+            }
+        }
+    }
+    val alternateCities = citiesBuilder.toString()
+
+    val hasCityCluster: Boolean = feature.properties?.get("feature_type") == "city_cluster"
+
+    val filename = feature.properties?.get("filename")
+    val properties = feature.properties
+}
+
 sealed class NearbyExtractsState {
     object Loading : NearbyExtractsState()
-    data class Loaded(val nearbyExtracts: FeatureCollection) : NearbyExtractsState()
+    data class Loaded(val extracts: List<Extract>) : NearbyExtractsState()
     object Error : NearbyExtractsState()
 }
 
@@ -46,7 +98,7 @@ data class OfflineMapsUiState(
     val nearbyExtractsState: NearbyExtractsState = NearbyExtractsState.Loading,
 
     // Offline extracts in storage
-    val downloadedExtracts: FeatureCollection? = null,
+    val downloadedExtracts: List<Extract> = emptyList(),
 
     // Storage status
     val currentPath: String = "",
@@ -94,8 +146,12 @@ class OfflineMapsViewModel @AssistedInject constructor(
                 MainActivity.SELECTED_STORAGE_DEFAULT
             )!!
             val extractCollection = findExtracts(File(path, Environment.DIRECTORY_DOWNLOADS).path)
+            val extracts = extractCollection?.features?.map {
+                Extract(it)
+            } ?: emptyList()
+
             _uiState.value = _uiState.value.copy(
-                downloadedExtracts = extractCollection,
+                downloadedExtracts = extracts,
                 storages = storages,
                 currentPath = path,
                 markerLocation = locationDescription.location
@@ -108,18 +164,11 @@ class OfflineMapsViewModel @AssistedInject constructor(
                 val location = locationDescription.location
                 println("Location $location")
                 // Containing polygons gives offline maps that include the current location
-                val extracts = tree.getContainingPolygons(location)
-
-                println("Extracts ${extracts.features.size}")
-                for (extract in extracts.features) {
-                    val size = extract.properties?.get("extract-size") as Double
-                    val properties: HashMap<String, Any?> = extract.properties!!
-                    properties["extract-size-string"] =
-                        Formatter.formatFileSize(appContext, size.toLong())
-                    extract.properties = properties
-
-                    Log.d(TAG, "extract: ${extract.properties}")
+                val extracts = tree.getContainingPolygons(location).asExtracts().onEach {
+                    it.sizeReadable = Formatter.formatFileSize(appContext, it.size.toLong())
                 }
+
+                println("Extracts ${extracts.size}")
                 _uiState.value = _uiState.value.copy(
                     nearbyExtractsState = NearbyExtractsState.Loaded(extracts)
                 )
@@ -154,8 +203,8 @@ class OfflineMapsViewModel @AssistedInject constructor(
         return filename.substringAfter("-").substringAfter("-")
     }
 
-    fun delete(feature: Feature) {
-        val filename = feature.properties?.get("filename")
+    fun delete(extract: Extract) {
+        val filename = extract.filename
         if (filename != null) {
             val localFilename = translateToLocalFilenameFrom(filename as String)
             val extractsDir = File(_uiState.value.currentPath, Environment.DIRECTORY_DOWNLOADS)
@@ -173,8 +222,8 @@ class OfflineMapsViewModel @AssistedInject constructor(
         }
     }
 
-    fun download(name: String, feature: Feature) {
-        val filename = feature.properties?.get("filename")
+    fun download(name: String, extract: Extract) {
+        val filename = extract.filename
         if (filename != null) {
             val localFilename = translateToLocalFilenameFrom(filename as String)
             val path =
@@ -183,10 +232,10 @@ class OfflineMapsViewModel @AssistedInject constructor(
             // Write out the feature metadata to a file
             val adapter = GeoJsonObjectMoshiAdapter()
             val metadataOutputFile = FileOutputStream("$path.geojson")
-            metadataOutputFile.write(adapter.toJson(feature).toByteArray())
+            metadataOutputFile.write(adapter.toJson(extract.feature).toByteArray())
             metadataOutputFile.close()
 
-            val extractSize = feature.properties?.get("extract-size") as Double?
+            val extractSize = extract.size
             val fileUrl = "${BuildConfig.EXTRACT_PROVIDER_URL}$filename"
             offlineDownloader.startDownload(
                 fileUrl,
@@ -207,8 +256,11 @@ class OfflineMapsViewModel @AssistedInject constructor(
         // Update the UI to reflect the deletions
         val extractsDir = File(_uiState.value.currentPath, Environment.DIRECTORY_DOWNLOADS)
         val extractCollection = findExtracts(extractsDir.path)
+        val extracts = extractCollection?.features?.map {
+            Extract(it)
+        } ?: emptyList()
         _uiState.value = _uiState.value.copy(
-            downloadedExtracts = extractCollection
+            downloadedExtracts = extracts
         )
     }
 
