@@ -42,7 +42,8 @@ appId: org.scottishtecharmy.soundscape
 - tapOn:
     id: locationDetailsEditMarker
 - tapOn:
-        id: notes-clearTextField
+    id: notes-clearTextField
+    optional: true      # If the notes are empty, then there's no clear text button
 - tapOn:
     id: markerAnnotation
 - inputText: "Updated by Maestro"
