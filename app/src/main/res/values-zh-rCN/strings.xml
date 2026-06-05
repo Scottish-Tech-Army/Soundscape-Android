@@ -1367,4 +1367,5 @@
     <string name="trademark_disclaimer">所有第三方产品、公司名称和徽标均为其各自所有者的商标或注册商标，且仍归其各自所有者所有。</string>
     <string name="loading_indicator_content_description">加载中</string>
     <string name="offline_maps_extract_damaged">已损坏 - 删除后重新下载</string>
+    <string name="offline_map_details_update">更新离线地图</string>
 </resources>
