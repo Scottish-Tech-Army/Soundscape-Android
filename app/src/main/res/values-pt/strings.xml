@@ -1367,4 +1367,5 @@
     <string name="trademark_disclaimer">Todos os nomes de produtos e empresas de terceiros, bem como os respetivos logótipos, são marcas comerciais ou marcas registadas e continuam a ser propriedade dos respetivos titulares.</string>
     <string name="loading_indicator_content_description">A carregar</string>
     <string name="offline_maps_extract_damaged">Danificado - eliminar e transferir novamente</string>
+    <string name="offline_map_details_update">Atualizar mapa offline</string>
 </resources>
