@@ -1367,4 +1367,5 @@
     <string name="trademark_disclaimer">Alle tredjeparts produktnavn, firmanavn og logoer er varemerker eller registrerte varemerker og tilhører sine respektive eiere.</string>
     <string name="loading_indicator_content_description">Laster</string>
     <string name="offline_maps_extract_damaged">Skadet - slett og last ned på nytt</string>
+    <string name="offline_map_details_update">Oppdater offlinekart</string>
 </resources>
