@@ -1367,4 +1367,5 @@
     <string name="trademark_disclaimer">Tous les noms de produits, noms de sociétés et logos de tiers sont des marques commerciales ou des marques déposées et restent la propriété de leurs titulaires respectifs.</string>
     <string name="loading_indicator_content_description">Chargement</string>
     <string name="offline_maps_extract_damaged">Endommagée — supprimer et retélécharger</string>
+    <string name="offline_map_details_update">Mettre à jour la carte hors ligne</string>
 </resources>
