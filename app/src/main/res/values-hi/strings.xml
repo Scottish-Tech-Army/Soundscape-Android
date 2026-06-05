@@ -1367,4 +1367,5 @@
     <string name="trademark_disclaimer">सभी तृतीय‑पक्ष उत्पादों, कंपनी नामों और लोगो ट्रेडमार्क या पंजीकृत ट्रेडमार्क हैं और अपने‑अपने धारकों की संपत्ति बने रहते हैं।</string>
     <string name="loading_indicator_content_description">लोड हो रहा है</string>
     <string name="offline_maps_extract_damaged">क्षतिग्रस्त - हटाएँ और फिर से डाउनलोड करें</string>
+    <string name="offline_map_details_update">ऑफ़लाइन मानचित्र अपडेट करें</string>
 </resources>
