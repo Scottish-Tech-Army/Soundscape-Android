@@ -1367,4 +1367,5 @@
     <string name="trademark_disclaimer">Tutti i nomi e i loghi di prodotti e aziende di terze parti sono marchi commerciali o marchi registrati e restano di proprietà dei rispettivi titolari.</string>
     <string name="loading_indicator_content_description">Caricamento</string>
     <string name="offline_maps_extract_damaged">Danneggiata - elimina e scarica di nuovo</string>
+    <string name="offline_map_details_update">Aggiorna la mappa offline</string>
 </resources>
