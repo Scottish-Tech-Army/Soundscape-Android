@@ -990,6 +990,8 @@
 <string name="offline_map_details_delete">"Delete offline map"</string>
 <!-- Offscreen map details screen download map from cloud -->
 <string name="offline_map_details_download">"Download offline map"</string>
+<!-- Offscreen map details screen re-download an already downloaded map -->
+<string name="offline_map_details_update">"Update offline map"</string>
 <!-- Offscreen map details screen size of map on phone, %s is size e.g. 1.3GB -->
 <string name="offline_map_details_size_on_phone">"Size on phone: %s"</string>
 <!-- Offscreen map details screen size of map on server, %s is size e.g. 1.3GB -->
