@@ -1367,4 +1367,5 @@
     <string name="trademark_disclaimer">Alle Produkt‑ und Firmennamen Dritter sowie deren Logos sind Marken oder eingetragene Marken und bleiben Eigentum ihrer jeweiligen Inhaber.</string>
     <string name="loading_indicator_content_description">Laden…</string>
     <string name="offline_maps_extract_damaged">Beschädigt – löschen und erneut herunterladen</string>
+    <string name="offline_map_details_update">Offline-Karte aktualisieren</string>
 </resources>
