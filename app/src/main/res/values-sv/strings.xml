@@ -1367,4 +1367,5 @@
     <string name="trademark_disclaimer">Alla tredjepartsproduktnamn, företagsnamn och logotyper är varumärken eller registrerade varumärken och tillhör sina respektive innehavare.</string>
     <string name="loading_indicator_content_description">Laddar…</string>
     <string name="offline_maps_extract_damaged">Skadad – ta bort och ladda ned igen</string>
+    <string name="offline_map_details_update">Uppdatera offlinekarta</string>
 </resources>
