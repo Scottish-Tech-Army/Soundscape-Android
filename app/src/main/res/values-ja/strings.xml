@@ -1367,4 +1367,5 @@
     <string name="trademark_disclaimer">第三者の製品名、会社名およびロゴは各社の商標または登録商標であり、それぞれの権利所有者に帰属します。</string>
     <string name="loading_indicator_content_description">読み込み中</string>
     <string name="offline_maps_extract_damaged">破損しています — 削除して再ダウンロードしてください</string>
+    <string name="offline_map_details_update">オフラインマップを更新する</string>
 </resources>
