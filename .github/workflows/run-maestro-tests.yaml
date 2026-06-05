@@ -125,15 +125,20 @@ jobs:
             # dir + "/Download" (see GeoEngine.offlineExtractPath); scoped storage
             # blocks writes there even for the shell user, so we use root - the
             # emulator runs a userdebug image, so "adb root" is available.
+            #
+            # The android-emulator-runner runs each script line in its own
+            # "sh -c", so a shell variable assigned on one line is empty by the
+            # next; the extract directory path is therefore inlined rather than
+            # held in a variable. It is the app-specific external files dir +
+            # "/Download" (see GeoEngine.offlineExtractPath).
             adb root
             adb wait-for-device
-            extract_dir=/storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download
-            adb shell mkdir -p "$extract_dir"
-            adb push glasgow-gb.pmtiles "$extract_dir/"
+            adb shell mkdir -p /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download
+            adb push glasgow-gb.pmtiles /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/
             # The .geojson metadata sidecar (findExtracts reads "<pmtiles>.geojson")
             # is committed under .github/fixtures as it is too small to be worth a
             # download, unlike the pmtiles itself.
-            adb push .github/fixtures/glasgow-gb.pmtiles.geojson "$extract_dir/"
+            adb push .github/fixtures/glasgow-gb.pmtiles.geojson /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/
             # adb emu geo fix takes longitude then latitude.
             adb emu geo fix -3.223538 55.955360
 
