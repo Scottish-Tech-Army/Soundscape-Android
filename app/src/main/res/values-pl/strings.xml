@@ -1367,4 +1367,5 @@
     <string name="trademark_disclaimer">Wszystkie nazwy produktów i firm oraz logotypy stron trzecich są znakami towarowymi lub zarejestrowanymi znakami towarowymi i pozostają własnością ich odpowiednich właścicieli.</string>
     <string name="loading_indicator_content_description">Wczytywanie</string>
     <string name="offline_maps_extract_damaged">Uszkodzona — usuń i pobierz ponownie</string>
+    <string name="offline_map_details_update">Zaktualizuj mapę offline</string>
 </resources>
