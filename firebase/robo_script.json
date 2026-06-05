@@ -1,0 +1,199 @@
+[
+  {
+    "eventType": "ELEMENT_IGNORED",
+    "elementDescriptors": [
+      {
+        "resourceId": "menuHelpAndTutorials"
+      }
+    ]
+  },
+  {
+    "eventType": "ELEMENT_IGNORED",
+    "elementDescriptors": [
+      {
+        "resourceId": "menuAudioTutorial"
+      }
+    ]
+  },
+  {
+    "eventType": "ELEMENT_IGNORED",
+    "elementDescriptors": [
+      {
+        "resourceId": "menuAboutSoundscape"
+      }
+    ]
+  },
+
+  {
+    "eventType": "ELEMENT_IGNORED",
+    "elementDescriptors": [
+      {
+        "resourceId": "menuContactSupport"
+      }
+    ]
+  },
+  {
+    "eventType": "ELEMENT_IGNORED",
+    "elementDescriptors": [
+      {
+        "resourceId": "menuShareRecording"
+      }
+    ]
+  },
+  {
+    "eventType": "ELEMENT_IGNORED",
+    "elementDescriptors": [
+      {
+        "resourceId": "locationDetailsShare"
+      }
+    ]
+  },
+  {
+    "eventType": "ELEMENT_IGNORED",
+    "elementDescriptors": [
+      {
+        "text": "Export markers and routes database"
+      }
+    ]
+  },
+  {
+    "eventType": "ELEMENT_IGNORED",
+    "elementDescriptors": [
+      {
+        "text": "Import markers and routes database"
+      }
+    ]
+  },
+
+  {
+    "eventType": "VIEW_CLICKED",
+    "elementDescriptors": [
+      {
+        "resourceId": "welcomeScreenContinueButton"
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "elementDescriptors": [
+      {
+        "resourceId": "languageScreenContinueButton"
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "elementDescriptors": [
+      {
+        "resourceId": "navigatingScreenContinueButton"
+      }
+    ]
+  },
+
+  {
+    "eventType": "VIEW_CLICKED",
+    "elementDescriptors": [
+      {
+        "resourceId": "batteryOptimizationGrantPermissionButton"
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "delayTime": 2000,
+    "elementDescriptors": [
+      {
+        "resourceId": "android:id/button1"
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "delayTime": 1000,
+    "elementDescriptors": [
+      {
+        "resourceId": "batteryOptimizationContinueButton"
+      }
+    ]
+  },
+
+  {
+    "eventType": "VIEW_CLICKED",
+    "elementDescriptors": [
+      {
+        "resourceId": "listeningScreenContinueButton"
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "elementDescriptors": [
+      {
+        "resourceId": "hearingScreenContinueButton"
+      }
+    ]
+  },
+
+  {
+    "eventType": "VIEW_CLICKED",
+    "elementDescriptors": [
+      {
+        "resourceId": "OriginalButton"
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "delayTime": 1000,
+    "elementDescriptors": [
+      {
+        "resourceId": "audioBeaconsContinueButton"
+      }
+    ]
+  },
+
+  {
+    "eventType": "VIEW_CLICKED",
+    "elementDescriptors": [
+      {
+        "resourceId": "offlineStorageOnboardingScreenContinueButton"
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "elementDescriptors": [
+      {
+        "resourceId": "accessibilityOnboardingScreenContinueButton"
+      }
+    ]
+  },
+
+  {
+    "eventType": "VIEW_CLICKED",
+    "elementDescriptors": [
+      {
+        "resourceId": "termsScreenAgree"
+      }
+    ]
+  },
+  {
+    "eventType": "VIEW_CLICKED",
+    "delayTime": 500,
+    "elementDescriptors": [
+      {
+        "resourceId": "termsScreenContinueButton"
+      }
+    ]
+  },
+
+  {
+    "eventType": "VIEW_CLICKED",
+    "delayTime": 500,
+    "elementDescriptors": [
+      {
+        "resourceId": "finishScreenContinueButton"
+      }
+    ]
+  }
+]

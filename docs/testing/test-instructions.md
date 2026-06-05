@@ -36,7 +36,7 @@ Please report any of these issues via the Help Desk.
 Now that you're past the onboarding screens, you shouldn't see them again and you should be on 
 the main screen:
 
-<img src="../documentationScreens/homeScreen.png" width="200" alt="Screenshot of the Soundscape home screen">
+<img src="{{ "/documentationScreens/homeScreen.png" | relative_url }}" width="200" alt="Screenshot of the Soundscape home screen">
 
 Soundscape will now continue to run in the background. To exit it, click on the top right corner 
 to put the app to sleep, and then close the app (swipe up etc.).

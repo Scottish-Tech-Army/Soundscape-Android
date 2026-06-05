@@ -192,6 +192,10 @@ jobs:
         ref: [main, v1.0, multiplatform]
 
     steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
       - name: Download app APK
         uses: actions/download-artifact@v8
         with:
@@ -218,4 +222,4 @@ jobs:
 #        run: gcloud firebase test android run --type instrumentation --use-orchestrator --app app-release.apk --test app-release-androidTest.apk --device model=shiba,version=34,locale=en,orientation=portrait
 
       - name: Run Robo test in Firebase Test Lab
-        run: gcloud firebase test android run --type robo --app=app-releaseTest.apk --timeout=1800s --device model=shiba,version=34,locale=en,orientation=portrait
+        run: gcloud firebase test android run --type robo --app=app-releaseTest.apk --robo-script firebase/robo_script.json --timeout=1800s --device model=shiba,version=34,locale=en,orientation=portrait

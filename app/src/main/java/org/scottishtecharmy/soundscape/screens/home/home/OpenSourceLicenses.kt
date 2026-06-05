@@ -76,11 +76,12 @@ fun OpenSourceLicenses(
 
         content = { padding ->
             LazyColumn(modifier = Modifier.padding(padding)) {
-                itemsIndexed(licenses) { _, license ->
+                itemsIndexed(licenses) { index, license ->
                     HorizontalDivider()
                     Column(
                         modifier = Modifier
                             .clickable { onLicenseClick(license) }
+                            .testTag("openSourceLicense$index")
                             .defaultMinSize(minHeight = spacing.targetSize)
                             .smallPadding(),
                         verticalArrangement = Arrangement.Center

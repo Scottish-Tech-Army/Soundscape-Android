@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.invisibleToUser
@@ -436,7 +437,8 @@ fun HelpScreen(
                                         }
                                     },
                                     modifier = Modifier
-                                        .fillMaxWidth(),
+                                        .fillMaxWidth()
+                                        .testTag("helpScreenTopic${section.textId}"),
                                     shape = RoundedCornerShape(spacing.extraSmall),
                                     colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
                                 ) {
@@ -470,7 +472,8 @@ fun HelpScreen(
                                 text = stringResource(R.string.menu_open_source_licenses),
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .smallPadding(),
+                                    .smallPadding()
+                                    .testTag("helpScreenOpenSourceLicenses"),
                                 shape = RoundedCornerShape(spacing.extraSmall),
                                 textStyle = MaterialTheme.typography.bodyLarge,
                                 fontWeight = FontWeight.Bold,

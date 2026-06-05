@@ -36,6 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
@@ -113,7 +114,9 @@ fun StorageDropDownMenu(
                 onClick = {
                     expanded = !expanded
                 },
-                modifier = Modifier.semantics {
+                modifier = Modifier
+                    .testTag("storageDropDownMenuToggleButton")
+                    .semantics {
                     if (storageSelected) {
                         selected = true
                     }
@@ -167,6 +170,7 @@ fun StorageDropDownMenu(
                                 onStorageSelected(storage.path)
                             }
                         )
+                        .testTag("storageDropDownItem${storage.description}")
                     ,
                     onClick = {
                         expanded = false

@@ -1366,4 +1366,5 @@
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) é usado para gerar o áudio 3D e encontra‑se disponível para utilização ao abrigo da [licença Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">Todos os nomes de produtos e empresas de terceiros, bem como os respetivos logótipos, são marcas comerciais ou marcas registadas e continuam a ser propriedade dos respetivos titulares.</string>
     <string name="loading_indicator_content_description">A carregar</string>
+    <string name="offline_maps_extract_damaged">Danificado - eliminar e transferir novamente</string>
 </resources>

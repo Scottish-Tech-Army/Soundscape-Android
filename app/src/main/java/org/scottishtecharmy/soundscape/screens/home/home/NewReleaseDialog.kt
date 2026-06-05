@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -75,6 +76,7 @@ fun NewReleaseDialog(
         confirmButton = { },
         dismissButton = {
             TextButton(
+                modifier = Modifier.testTag("newReleaseDialogDismiss"),
                 onClick = {
                     newReleaseDialog.value = false
 //

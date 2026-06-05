@@ -1837,4 +1837,5 @@
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) برای تولید صدای سه‌بعدی استفاده می‌شود و تحت [مجوز Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) برای استفاده در دسترس قرار گرفته است.</string>
     <string name="trademark_disclaimer">تمامی نام‌ها، لوگوها و نشان‌های تجاری محصولات و شرکت‌های شخص ثالث علامت تجاری یا علامت تجاری ثبت‌شده هستند و مالکیت آنها برای دارندگان مربوطه محفوظ است.</string>
     <string name="loading_indicator_content_description">در حال بارگذاری</string>
+    <string name="offline_maps_extract_damaged">خراب — حذف کنید و دوباره دانلود نمایید</string>
 </resources>

@@ -1,0 +1,30 @@
+# Display names for the header language switcher, keyed by the web/BCP-47 code
+# used in _config.yml `languages`. Native names (autonyms) match the app's
+# language picker — see supportedLanguages in
+# app/src/main/java/org/scottishtecharmy/soundscape/utils/Locale.kt.
+en: English
+arz: العربية المصرية
+zh-CN: 中文 (简体)
+da: Dansk
+de: Deutsch
+el: Ελληνικά
+en-GB: English (UK)
+es: Español
+fa: فارسی
+fi: Suomi
+fr: Français (France)
+fr-CA: Français (Canada)
+hi: हिंदी
+is: Íslenska
+it: Italiano
+ja: 日本語
+nb: Norsk
+nl: Nederlands
+pl: Polski
+pt: Português (Portugal)
+pt-BR: Português (Brasil)
+ro: Română
+ru: Русский
+sv: Svenska
+tr: Türkçe
+uk: Українська

@@ -106,6 +106,8 @@ fun AccessibilityOnboardingScreen(
                 switchPreference(
                     key = MainActivity.SHOW_MAP_KEY,
                     defaultValue = MainActivity.SHOW_MAP_DEFAULT,
+                    modifier = Modifier
+                        .testTag("accessibilityOnboardingScreenShowMapToggle"),
                     title = {
                         Text(
                             text = stringResource(R.string.settings_show_map),

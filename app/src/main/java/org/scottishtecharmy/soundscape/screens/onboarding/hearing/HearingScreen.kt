@@ -167,7 +167,8 @@ fun Hearing(
                         },
                         modifier = Modifier
                             .fillMaxWidth()
-                            .focusable(),
+                            .focusable()
+                            .testTag("hearingScreenPlayExampleButton"),
                         shape = RoundedCornerShape(spacing.tiny),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = MaterialTheme.colorScheme.surfaceContainer,

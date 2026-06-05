@@ -212,14 +212,14 @@ fun LocationItem(
                     checkedThumbColor = Color.Green,
                     uncheckedThumbColor = Color.Red,
                 ),
-                modifier = Modifier.extraSmallPadding()
+                modifier = Modifier.extraSmallPadding().testTag("locationItemEditRouteSwitch")
             )
         } else if(decoration.details.enabled) {
             Icon(
                 Icons.Rounded.ChevronRight,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurface,
-                modifier = Modifier.width(spacing.icon)
+                modifier = Modifier.width(spacing.icon).testTag("locationItemDetailsIcon")
             )
         }
     }
@@ -246,7 +246,8 @@ fun FolderItem(
             .fillMaxWidth()
             .clickable(role = Role.Button) {
                 onClick()
-            },
+            }
+            .testTag("folderItem-$name"),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(

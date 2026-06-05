@@ -1,7 +1,7 @@
 ---
 title: Using Media Controls
 layout: page
-parent: Using Soundscape
+parent: "Using Soundscape"
 has_toc: false
 ---
 

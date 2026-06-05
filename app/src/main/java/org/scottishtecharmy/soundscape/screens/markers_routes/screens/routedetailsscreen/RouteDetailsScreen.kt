@@ -34,6 +34,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -205,7 +206,7 @@ fun RouteDetailsScreen(
                             Column(modifier = Modifier.smallPadding()) {
                                 if (thisRoutePlaying) {
                                     IconWithTextButton(
-                                        modifier = Modifier.fillMaxWidth(),
+                                        modifier = Modifier.fillMaxWidth().testTag("routeDetailsStopButton"),
                                         icon = Icons.Default.Stop,
                                         textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                         text = stringResource(R.string.route_detail_action_stop_route),
@@ -218,7 +219,7 @@ fun RouteDetailsScreen(
 
                                 } else {
                                     IconWithTextButton(
-                                        modifier = Modifier.fillMaxWidth(),
+                                        modifier = Modifier.fillMaxWidth().testTag("routeDetailsStartButton"),
                                         icon = Icons.Default.PlayArrow,
                                         textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                         talkbackHint = stringResource(R.string.route_detail_action_start_route_hint),
@@ -235,7 +236,7 @@ fun RouteDetailsScreen(
                                         }
                                     }
                                     IconWithTextButton(
-                                        modifier = Modifier.fillMaxWidth(),
+                                        modifier = Modifier.fillMaxWidth().testTag("routeDetailsStartReverseButton"),
                                         icon = Icons.Default.SwapVert,
                                         textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                         talkbackHint = stringResource(R.string.route_detail_action_start_route_reverse_hint),
@@ -253,7 +254,8 @@ fun RouteDetailsScreen(
                                 }
                                 IconWithTextButton(
                                     modifier = Modifier.fillMaxWidth()
-                                        .defaultMinSize(minHeight = spacing.targetSize),
+                                        .defaultMinSize(minHeight = spacing.targetSize)
+                                        .testTag("routeDetailsEditButton"),
                                     icon = Icons.Default.Edit,
                                     textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                     text = stringResource(R.string.route_detail_action_edit),
@@ -263,7 +265,7 @@ fun RouteDetailsScreen(
                                     navController.navigate("${HomeRoutes.AddAndEditRoute.route}?command=edit&data=${uiState.route.route.routeId}")
                                 }
                                 IconWithTextButton(
-                                    modifier = Modifier.fillMaxWidth(),
+                                    modifier = Modifier.fillMaxWidth().testTag("routeDetailsShareButton"),
                                     icon = Icons.Default.Share,
                                     textModifier = Modifier.padding(horizontal = spacing.extraSmall),
                                     text = stringResource(R.string.share_title),

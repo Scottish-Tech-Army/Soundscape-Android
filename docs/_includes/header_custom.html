@@ -1,0 +1,25 @@
+{%- comment -%}
+  Language switcher, rendered by just-the-docs in components/header.html.
+  Uses jekyll-polyglot variables (site.languages, site.default_lang,
+  site.active_lang). During a language render pass page.url is the unprefixed
+  page path, so we build the target URL by prefixing the language code (except
+  for the default language, which lives at the site root). Untranslated pages
+  fall back to the default-language content at the same URL, so every option
+  resolves to a valid page.
+{%- endcomment -%}
+{%- if site.languages.size > 1 -%}
+<div class="lang-switcher" style="display:flex;align-items:center;padding:0 0.75rem;">
+  <select aria-label="Language"
+          onchange="if(this.value){window.location.href=this.value;}"
+          style="max-width:14rem;">
+    {%- for lang in site.languages -%}
+      {%- if lang == site.default_lang -%}
+        {%- assign lang_path = page.url -%}
+      {%- else -%}
+        {%- capture lang_path -%}/{{ lang }}{{ page.url }}{%- endcapture -%}
+      {%- endif -%}
+      <option value="{{ lang_path | relative_url }}"{% if lang == site.active_lang %} selected{% endif %}>{{ site.data.languages[lang] | default: lang }}</option>
+    {%- endfor -%}
+  </select>
+</div>
+{%- endif -%}

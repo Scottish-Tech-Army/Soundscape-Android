@@ -1366,4 +1366,5 @@
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) er notað til að búa til þrívíddarhljóð og er aðgengilegt til notkunar undir [Apache 2.0 leyfinu](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">Öll vörumerki, fyrirtækjanöfn og lógó þriðja aðila eru vörumerki eða skráð vörumerki og eru áfram eign þeirra sem eiga þau.</string>
     <string name="loading_indicator_content_description">Hleður</string>
+    <string name="offline_maps_extract_damaged">Skemmd - eyða og hlaða niður aftur</string>
 </resources>

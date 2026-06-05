@@ -42,7 +42,7 @@ enum class AudioType(val type: Int) {
 @Singleton
 class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = null): AudioEngine {
 
-    private var engineHandle : Long = 0
+    @Volatile private var engineHandle : Long = 0
     private val engineMutex = Object()
     private var beaconType = BEACON_TYPE_DEFAULT
 
@@ -316,17 +316,21 @@ class NativeAudioEngine @Inject constructor(val service: SoundscapeService? = nu
     }
 
     override fun clearTextToSpeechQueue() {
+        if(engineHandle == 0L)
+            return
+
+        if (!ttsEngine.checkTextToSpeechInitialization(true))
+            return
+
+        // Stop the Text to Speech engine. This makes a blocking binder call to the system TTS
+        // service, so it MUST NOT be held inside engineMutex: a slow or wedged TTS service would
+        // otherwise freeze the whole audio engine (geometry updates, beacons, ...) behind the lock.
+        ttsEngine.stop()
+
+        // Clear the queue in the engine. This is a native call that does need the engine mutex.
         synchronized(engineMutex) {
-            if(engineHandle != 0L) {
-                if (!ttsEngine.checkTextToSpeechInitialization(true))
-                    return
-
-                // Stop the Text to Speech engine
-                ttsEngine.stop()
-
-                // Clear the queue in the engine
+            if(engineHandle != 0L)
                 clearNativeTextToSpeechQueue(engineHandle)
-            }
         }
     }
 

@@ -1,0 +1,51 @@
+appId: org.scottishtecharmy.soundscape
+# Exercises the Markers & Routes management screen: tab switching, the sort
+# controls, and editing an existing marker.
+#
+# Depends on markers "A" and "B" having been created by LocationDetails.yaml, so
+# this flow must run after it in the suite.
+---
+- launchApp:
+    clearState: false
+
+- tapOn:
+    id: homeMarkersAndRoutes
+
+# The screen opens on the Routes tab by default - switch to Markers.
+- tapOn:
+    id: MarkersTab
+- assertVisible:
+    id: "LocationItem-A-0"
+- assertVisible:
+    id: "LocationItem-B-1"
+
+# Exercise the sort controls (toggle sort-by-name and the ascending/descending
+# order). Re-sorting re-indexes the orderId suffix, so match markers by name
+# prefix afterwards rather than by exact index.
+- tapOn:
+    id: SortValue
+- tapOn:
+    id: SortOrder
+- assertVisible:
+    id: "LocationItem-A-.*"
+- assertVisible:
+    id: "LocationItem-B-.*"
+
+# Confirm tab navigation works in both directions.
+- tapOn:
+    id: RoutesTab
+- tapOn:
+    id: MarkersTab
+
+# Open marker A and edit its annotation, then save.
+- tapOn:
+    id: "LocationItem-A-.*"
+- tapOn:
+    id: locationDetailsEditMarker
+- tapOn:
+    id: markerAnnotation
+- inputText: "Updated by Maestro"
+- tapOn:
+    id: flexibleAppBarRight
+- assertVisible:
+    id: locationDetailsEditMarker

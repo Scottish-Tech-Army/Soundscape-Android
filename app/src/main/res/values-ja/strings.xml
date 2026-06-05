@@ -1366,4 +1366,5 @@
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) は 3D オーディオの生成に使用されており、[Apache 2.0 ライセンス](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) のもとで利用可能です。</string>
     <string name="trademark_disclaimer">第三者の製品名、会社名およびロゴは各社の商標または登録商標であり、それぞれの権利所有者に帰属します。</string>
     <string name="loading_indicator_content_description">読み込み中</string>
+    <string name="offline_maps_extract_damaged">破損しています — 削除して再ダウンロードしてください</string>
 </resources>

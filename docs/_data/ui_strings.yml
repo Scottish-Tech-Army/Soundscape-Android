@@ -1,0 +1,74 @@
+# Translations for the docs website's UI chrome (the search box placeholder and
+# the GitHub auxiliary link at the top of every page). Keyed by the web/BCP-47
+# code used in _config.yml `languages`.
+#
+# Unlike the app's user-facing text, these strings are website-only: they are
+# NOT part of the Weblate-managed Android string resources, so they cannot come
+# through the normal translation loop. They are machine-translated here instead,
+# mirroring how the localized homepage (index.<lang>.md) is produced. Native
+# speakers are very welcome to refine any of them.
+#
+# "Soundscape" and "GitHub" are brand names and are left untranslated.
+# Any language without an entry falls back to English (see the consuming
+# includes: _includes/search_placeholder_custom.html and
+# _includes/components/aux_nav.html).
+
+# Search box placeholder — "Search Soundscape"
+search:
+  en: "Search Soundscape"
+  en-GB: "Search Soundscape"
+  arz: "ابحث في Soundscape"
+  da: "Søg i Soundscape"
+  de: "Soundscape durchsuchen"
+  el: "Αναζήτηση στο Soundscape"
+  es: "Buscar en Soundscape"
+  fa: "جستجو در Soundscape"
+  fi: "Hae Soundscapesta"
+  fr: "Rechercher dans Soundscape"
+  fr-CA: "Rechercher dans Soundscape"
+  hi: "Soundscape में खोजें"
+  is: "Leita í Soundscape"
+  it: "Cerca in Soundscape"
+  ja: "Soundscape を検索"
+  nb: "Søk i Soundscape"
+  nl: "Zoeken in Soundscape"
+  pl: "Szukaj w Soundscape"
+  pt: "Pesquisar no Soundscape"
+  pt-BR: "Pesquisar no Soundscape"
+  ro: "Caută în Soundscape"
+  ru: "Поиск по Soundscape"
+  sv: "Sök i Soundscape"
+  tr: "Soundscape'te ara"
+  uk: "Пошук у Soundscape"
+  zh-CN: "搜索 Soundscape"
+
+# Auxiliary nav link — keyed by the English label used in _config.yml aux_links,
+# so the lookup degrades gracefully to that label if a translation is missing.
+aux_links:
+  "Soundscape on GitHub":
+    en: "Soundscape on GitHub"
+    en-GB: "Soundscape on GitHub"
+    arz: "Soundscape على GitHub"
+    da: "Soundscape på GitHub"
+    de: "Soundscape auf GitHub"
+    el: "Το Soundscape στο GitHub"
+    es: "Soundscape en GitHub"
+    fa: "Soundscape در GitHub"
+    fi: "Soundscape GitHubissa"
+    fr: "Soundscape sur GitHub"
+    fr-CA: "Soundscape sur GitHub"
+    hi: "GitHub पर Soundscape"
+    is: "Soundscape á GitHub"
+    it: "Soundscape su GitHub"
+    ja: "GitHub の Soundscape"
+    nb: "Soundscape på GitHub"
+    nl: "Soundscape op GitHub"
+    pl: "Soundscape na GitHubie"
+    pt: "Soundscape no GitHub"
+    pt-BR: "Soundscape no GitHub"
+    ro: "Soundscape pe GitHub"
+    ru: "Soundscape на GitHub"
+    sv: "Soundscape på GitHub"
+    tr: "GitHub'da Soundscape"
+    uk: "Soundscape на GitHub"
+    zh-CN: "GitHub 上的 Soundscape"

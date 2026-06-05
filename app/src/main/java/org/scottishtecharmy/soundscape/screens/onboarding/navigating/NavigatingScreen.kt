@@ -222,7 +222,8 @@ fun Navigating(
                             granted,
                             onClick = {
                                 launcher.launch(permission.manifestIdentifier)
-                            }
+                            },
+                            clickableTestTag = "navigatingScreenPermissionRow${permission.name}"
                         )
                     }
                 }
@@ -271,6 +272,7 @@ fun PermissionRationale(
     granted: Boolean,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
+    clickableTestTag: String = "",
 ) {
     Row(
         modifier = modifier
@@ -289,6 +291,7 @@ fun PermissionRationale(
                 .weight(1f)
                 .focusable()
                 .semantics(mergeDescendants = true) {}
+                .testTag(clickableTestTag)
                 .clickable {
                     onClick()
                 }

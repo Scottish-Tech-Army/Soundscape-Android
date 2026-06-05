@@ -1,6 +1,9 @@
 package org.scottishtecharmy.soundscape
 
+import android.content.Context
+import android.content.res.Configuration
 import android.os.Environment
+import android.os.LocaleList
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
@@ -37,6 +40,7 @@ import org.scottishtecharmy.soundscape.utils.processMaps
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 import java.io.File
 import java.io.FileOutputStream
+import java.util.Locale
 
 fun String.toSafeFilename(replacement: String = "-"): String {
     val illegalCharsRegex = """[/:\\?*"<>|#%&{}^`~ ]""".toRegex()
@@ -284,63 +288,183 @@ class DocumentationScreens {
         }
     }
 
+    // Maps each Android resource qualifier to its web / BCP-47 (jekyll-polyglot)
+    // language code. The default language "en" is emitted with no filename suffix.
+    // Source of truth for the supported set: app/build.gradle.kts resourceConfigurations.
+    // Keep this in sync with the `languages` list in docs/_config.yml.
+    private val localeMap: Map<String, String> = mapOf(
+        "en" to "en",          // default -> no suffix, no `lang:` front matter
+        "arz" to "arz",
+        "zh-rCN" to "zh-CN",
+        "da" to "da",
+        "de" to "de",
+        "el" to "el",
+        "en-rGB" to "en-GB",
+        "es" to "es",
+        "fa" to "fa",
+        "fi" to "fi",
+        "fr" to "fr",
+        "fr-rCA" to "fr-CA",
+        "hi" to "hi",
+        "is" to "is",
+        "it" to "it",
+        "ja" to "ja",
+        "nb" to "nb",
+        "nl" to "nl",
+        "pl" to "pl",
+        "pt" to "pt",
+        "pt-rBR" to "pt-BR",
+        "ro" to "ro",
+        "ru" to "ru",
+        "sv" to "sv",
+        "tr" to "tr",
+        "uk" to "uk",
+    )
+
+    // Localized "Using Soundscape" — the nav parent/section title. Keyed by web language
+    // code. just-the-docs matches a child page's `parent:` to the parent page's `title:`
+    // within each language, so the value here must exactly match the title of the
+    // corresponding docs/users/user.<lang>.md. English (and en-GB) keep the English label.
+    private val parentLabels: Map<String, String> = mapOf(
+        "en" to "Using Soundscape",
+        "en-GB" to "Using Soundscape",
+        "arz" to "استخدام ساوندسكيب",
+        "zh-CN" to "使用 Soundscape",
+        "da" to "Brug af Soundscape",
+        "de" to "Soundscape verwenden",
+        "el" to "Χρήση του Soundscape",
+        "es" to "Usar Soundscape",
+        "fa" to "استفاده از ساند‌اسکیپ",
+        "fi" to "Soundscapen käyttö",
+        "fr" to "Utiliser Soundscape",
+        "fr-CA" to "Utiliser Soundscape",
+        "hi" to "Soundscape का उपयोग",
+        "is" to "Að nota Soundscape",
+        "it" to "Usare Soundscape",
+        "ja" to "Soundscape を使う",
+        "nb" to "Bruke Soundscape",
+        "nl" to "Soundscape gebruiken",
+        "pl" to "Korzystanie z Soundscape",
+        "pt" to "Utilizar o Soundscape",
+        "pt-BR" to "Usando o Soundscape",
+        "ro" to "Utilizarea Soundscape",
+        "ru" to "Использование Soundscape",
+        "sv" to "Använda Soundscape",
+        "tr" to "Soundscape Kullanımı",
+        "uk" to "Використання Soundscape",
+    )
+
+    /** Returns a Context whose getString() resolves strings in [webLang]. */
+    private fun localizedContext(base: Context, webLang: String): Context {
+        val locale = Locale.forLanguageTag(webLang)   // "fr-CA", "pt-BR", "zh-CN" all resolve
+        val config = Configuration(base.resources.configuration).apply {
+            setLocales(LocaleList(locale))
+        }
+        return base.createConfigurationContext(config)
+    }
+
+    /**
+     * Builds the markdown for a single help page rendered in [ctx]'s locale.
+     * [parentLabel] is the localized "Using Soundscape" nav parent for [webLang].
+     */
+    private fun buildPageMarkdown(
+        ctx: Context,
+        page: org.scottishtecharmy.soundscape.screens.home.home.Sections,
+        webLang: String,
+        slug: String,
+        parentLabel: String
+    ): String {
+        fun localized(resId: Int): String = ctx.getString(resId)
+
+        val pageTitle = localized(page.titleId)
+
+        val sb = StringBuilder()
+        sb.append("---\n")
+        sb.append("title: $pageTitle\n")
+        sb.append("layout: page\n")
+        // Parent must match the title of docs/users/user.<lang>.md in the same language so
+        // just-the-docs nests this page under the localized "Using Soundscape" section.
+        sb.append("parent: \"$parentLabel\"\n")
+        sb.append("has_toc: false\n")
+        if (webLang != "en") {
+            sb.append("lang: $webLang\n")
+            // Pin the permalink to the English page's URL so jekyll-polyglot matches this
+            // file (by page_id, which it derives from the URL) to its English sibling and
+            // serves it at /<lang>/users/help-<slug>.html instead of a separate URL.
+            sb.append("permalink: /users/help-$slug.html\n")
+        }
+        sb.append("---\n\n")
+
+        sb.append("# ")
+        sb.append(pageTitle)
+        sb.append("\n")
+        for (section in page.sections) {
+            when (section.type) {
+                SectionType.Faq -> {
+                    sb.append("\n")
+                    sb.append("### ")
+                    sb.append(localized(section.textId))
+                    sb.append("\n")
+                    sb.append(localized(section.faqAnswer))
+                }
+                SectionType.Title -> {
+                    sb.append("\n")
+                    sb.append("## ")
+                    sb.append(localized(section.textId))
+                }
+                else -> {
+                    sb.append("\n")
+                    sb.append(localized(section.textId))
+                }
+            }
+            sb.append("\n")
+        }
+        sb.append("\n")
+
+        return sb.toString()
+    }
+
     @Test
     fun getHelp() {
 
-        val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
+        val base = InstrumentationRegistry.getInstrumentation().targetContext
 
         val helpDir = File(
-            targetContext.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),
+            base.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS),
             "help"
         )
         if (!helpDir.exists()) {
             helpDir.mkdirs()
         }
 
-        for (page in helpPages) {
+        for ((_, webLang) in localeMap) {
+            val ctx = if (webLang == "en") base else localizedContext(base, webLang)
+            // Fall back to the English label if a language is somehow missing from the map.
+            val parentLabel = parentLabels[webLang] ?: "Using Soundscape"
 
-            if(page.titleId == R.string.menu_help)
-                continue
-            val pageTitle = targetContext.getString(page.titleId)
+            for (page in helpPages) {
 
-            val markdownOutput = StringBuilder()
-            markdownOutput.append("---\n")
-            markdownOutput.append("title: $pageTitle\n")
-            markdownOutput.append("layout: page\n")
-            markdownOutput.append("parent: Using Soundscape\n")
-            markdownOutput.append("has_toc: false\n")
-            markdownOutput.append("---\n\n")
+                if (page.titleId == R.string.menu_help)
+                    continue
 
-            markdownOutput.append("# ")
-            markdownOutput.append(pageTitle)
-            markdownOutput.append("\n")
-            for(section in page.sections) {
-                when (section.type) {
-                    SectionType.Faq -> {
-                        markdownOutput.append("\n")
-                        markdownOutput.append("### ")
-                        markdownOutput.append(targetContext.getString(section.textId))
-                        markdownOutput.append("\n")
-                        markdownOutput.append(targetContext.getString(section.faqAnswer))
-                    }
-                    SectionType.Title -> {
-                        markdownOutput.append("\n")
-                        markdownOutput.append("## ")
-                        markdownOutput.append(targetContext.getString(section.textId))
-                    }
-                    else -> {
-                        markdownOutput.append("\n")
-                        markdownOutput.append(targetContext.getString(section.textId))
-                    }
-                }
-                markdownOutput.append("\n")
+                // Slug always comes from the English title so all languages of one page
+                // share a base name (help-routes.md / help-routes.de.md) and the same
+                // permalink, which is how polyglot pairs them.
+                val slug = base.getString(page.titleId).toSafeFilename()
+
+                // Emit a file for every language even when a page is untranslated (its
+                // strings fall back to English). The localized `parent:` keeps it nested
+                // under the language's "Using Soundscape" section instead of orphaning a
+                // fallback page whose English parent wouldn't match.
+                val markdown = buildPageMarkdown(ctx, page, webLang, slug, parentLabel)
+
+                val suffix = if (webLang == "en") "" else ".$webLang"
+
+                val file = File(helpDir, "help-$slug$suffix.md")
+                val outputFile = FileOutputStream(file)
+                outputFile.write(markdown.toByteArray())
+                outputFile.close()
             }
-            markdownOutput.append("\n")
-
-            val file = File(helpDir, "help-${pageTitle.toSafeFilename()}.md")
-            val outputFile = FileOutputStream(file)
-            outputFile.write(markdownOutput.toString().toByteArray())
-            outputFile.close()
         }
     }
 }

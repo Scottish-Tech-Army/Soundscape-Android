@@ -34,6 +34,14 @@ android {
 
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
+    testOptions {
+        unitTests {
+            // Let JVM unit tests touch android.util.Log (etc.) without mocking - they
+            // return default values instead of throwing "not mocked".
+            isReturnDefaultValues = true
+        }
+    }
+
     signingConfigs {
         create("release") {
             storeFile = file("keystore.jks")
@@ -47,8 +55,8 @@ android {
         applicationId = "org.scottishtecharmy.soundscape"
         minSdk = 30
         targetSdk = 35
-        versionCode = 197
-        versionName = "1.0.9"
+        versionCode = 201
+        versionName = "1.0.13"
 
         // Maintaining this list means that we can exclude translations that aren't complete yet
         resourceConfigurations.addAll(listOf(
@@ -142,6 +150,14 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            // Embed native debug symbols in the App Bundle so native (NDK) crashes
+            // symbolicate in Play Console / Crashlytics. Note: this can only extract
+            // symbols from libraries that still contain them - prebuilt third party
+            // libs that ship stripped (e.g. libmaplibre.so) must be symbolicated
+            // manually using their BuildId and the matching debug-symbols package.
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
             signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),

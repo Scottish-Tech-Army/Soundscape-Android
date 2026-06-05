@@ -1,0 +1,42 @@
+appId: org.scottishtecharmy.soundscape
+# Creates a new route from the Routes tab, adds two existing markers as
+# waypoints, saves it, and verifies it appears in the routes list.
+#
+# Depends on markers "A" and "B" having been created by LocationDetails.yaml, so
+# this flow must run after it in the suite.
+---
+- launchApp:
+    clearState: false
+
+- tapOn:
+    id: homeMarkersAndRoutes
+
+# The screen opens on the Routes tab, where the "+" create-route button lives.
+- tapOn:
+    id: addRoute
+
+# Name the route.
+- tapOn:
+    id: routeName
+- inputText: "Test Route"
+- hideKeyboard
+
+# Add the existing markers A and B as waypoints. They are listed by name; the
+# orderId suffix is unknown here so match by name prefix.
+- tapOn:
+    id: addWaypointsButton
+- tapOn:
+    id: "LocationItem-A-.*"
+- tapOn:
+    id: "LocationItem-B-.*"
+# "Done" in the waypoints dialog (reuses the shared app-bar right button).
+- tapOn:
+    id: flexibleAppBarRight
+
+# "Done" on the route screen saves the route and returns to the Routes tab.
+- tapOn:
+    id: flexibleAppBarRight
+
+# The new route should now be listed.
+- assertVisible:
+    text: "Test Route"

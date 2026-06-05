@@ -118,7 +118,8 @@ fun AdvancedMarkersAndRoutesSettingsScreen(
                     onClick = {
                         clearMarkersAndRoutes()
                         showConfirmationDialog.value = false
-                    }
+                    },
+                    modifier = Modifier.testTag("advancedMarkersClearAllConfirm")
                 ) {
                     Text(
                         text = stringResource(R.string.ui_continue),
@@ -129,7 +130,8 @@ fun AdvancedMarkersAndRoutesSettingsScreen(
             },
             dismissButton = {
                 TextButton(
-                    onClick = { showConfirmationDialog.value = false }
+                    onClick = { showConfirmationDialog.value = false },
+                    modifier = Modifier.testTag("advancedMarkersClearAllCancel")
                 ) {
                     Text(stringResource(R.string.general_alert_cancel))
                 }
@@ -179,7 +181,8 @@ fun AdvancedMarkersAndRoutesSettingsScreen(
                     text = stringResource(R.string.advanced_markers_and_routes_clear_all_button),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .smallPadding(),
+                        .smallPadding()
+                        .testTag("advancedMarkersClearAllButton"),
                     shape = RoundedCornerShape(spacing.extraSmall),
                     textStyle = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold,
@@ -191,7 +194,8 @@ fun AdvancedMarkersAndRoutesSettingsScreen(
                     text = stringResource(R.string.advanced_markers_and_routes_export_button),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .smallPadding(),
+                        .smallPadding()
+                        .testTag("advancedMarkersExportButton"),
                     shape = RoundedCornerShape(spacing.extraSmall),
                     textStyle = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold,
@@ -203,7 +207,8 @@ fun AdvancedMarkersAndRoutesSettingsScreen(
                     text = stringResource(R.string.advanced_markers_and_routes_import_button),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .smallPadding(),
+                        .smallPadding()
+                        .testTag("advancedMarkersImportButton"),
                     shape = RoundedCornerShape(spacing.extraSmall),
                     textStyle = MaterialTheme.typography.bodyLarge,
                     fontWeight = FontWeight.Bold,

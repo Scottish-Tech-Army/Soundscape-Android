@@ -5,6 +5,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.paneTitle
 import androidx.compose.ui.semantics.semantics
@@ -28,7 +29,9 @@ fun AudioTourInstructionDialog(
         confirmButton = {
             TextButton(
                 onClick = onContinue,
-                modifier = Modifier.talkbackHint(stringResource(R.string.tour_continue_hint))
+                modifier = Modifier
+                    .talkbackHint(stringResource(R.string.tour_continue_hint))
+                    .testTag("audioTourInstructionContinue")
             ) {
                 Text(text = stringResource(R.string.tour_continue_button))
             }

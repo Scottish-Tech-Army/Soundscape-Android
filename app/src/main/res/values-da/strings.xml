@@ -1366,4 +1366,5 @@
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) bruges til at generere 3D-lyden og stilles til rådighed under [Apache 2.0-licensen](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">Alle tredjeparts produkt- og firmanavne samt logoer er varemærker eller registrerede varemærker og forbliver deres respektive ejeres ejendom.</string>
     <string name="loading_indicator_content_description">Indlæser</string>
+    <string name="offline_maps_extract_damaged">Beskadiget - slet og hent igen</string>
 </resources>

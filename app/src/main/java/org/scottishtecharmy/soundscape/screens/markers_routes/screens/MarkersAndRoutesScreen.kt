@@ -13,6 +13,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -60,6 +61,7 @@ fun MarkersAndRoutesScreen(
                     title = stringResource(R.string.search_view_markers),
                     leftSide = {
                         IconWithTextButton(
+                            modifier = Modifier.testTag("markersAndRoutesBackButton"),
                             text = stringResource(R.string.ui_back_button_title),
                             color = MaterialTheme.colorScheme.onSurface
                         ) {
@@ -69,6 +71,7 @@ fun MarkersAndRoutesScreen(
                     rightSide = {
                         if (routesTabSelected) {
                             IconWithTextButton(
+                                modifier = Modifier.testTag("addRoute"),
                                 text = "",
                                 icon = Icons.Default.Add,
                                 iconModifier = Modifier.size(spacing.targetSize),

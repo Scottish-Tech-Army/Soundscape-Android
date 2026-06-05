@@ -22,7 +22,7 @@ fun getCurrentLocale() : Locale {
  */
 val supportedLanguages = listOf(
     Language("العربية المصرية", "arz", "EG"),
-    Language("中国人", "zh", "CN"),
+    Language("中文 (简体)", "zh", "CN"),
     Language("Dansk", "da", "DK"),
     Language("Deutsch", "de", "DE"),
     Language("Ελληνικά", "el", "GR"),

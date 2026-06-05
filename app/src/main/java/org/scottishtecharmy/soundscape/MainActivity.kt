@@ -2,6 +2,9 @@ package org.scottishtecharmy.soundscape
 
 import android.Manifest
 import android.accessibilityservice.AccessibilityServiceInfo
+import android.app.ForegroundServiceStartNotAllowedException
+import android.content.ActivityNotFoundException
+import android.content.ComponentName
 import android.content.Context
 import android.media.AudioDeviceInfo
 import android.media.AudioManager
@@ -139,6 +142,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sharedPreferences : SharedPreferences
     private lateinit var sharedPreferencesListener : SharedPreferences.OnSharedPreferenceChangeListener
 
+    // Strong reference to the splash sound player. MediaPlayer delivers its completion callback
+    // through a WeakReference to this object, so a local-only reference can be garbage collected
+    // mid-playback (the splash sound is ~5s long and onCreate has returned by then). If that
+    // happens the OnCompletionListener never fires, the splash gate below never opens and the
+    // splash screen hangs forever. Holding the reference here keeps it alive until playback ends.
+    private var splashPlayer: android.media.MediaPlayer? = null
+
     private val _themeStateFlow = MutableStateFlow(ThemeState())
     private var themeStateFlow: StateFlow<ThemeState> = _themeStateFlow
 
@@ -186,6 +196,13 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         Log.d(TAG, "onResume")
+
+        // If a foreground service start was deferred because the app wasn't yet in the foreground
+        // (e.g. a permission result delivered before onResume), retry it now that we're resumed.
+        if (pendingServiceStart) {
+            pendingServiceStart = false
+            startSoundscapeService()
+        }
 
         val locationPermission = when (ContextCompat.checkSelfPermission(
             this,
@@ -294,39 +311,53 @@ class MainActivity : AppCompatActivity() {
             val timeNow = System.currentTimeMillis()
             installSplashScreen()
 
+            // Keep the splash screen visible until the sound has finished playing, with a minimum
+            // delay for attribution acknowledgements and a hard upper bound so that it can never
+            // hang if the sound never reports completion.
+            val attributionDelay = 1500L
+            val maxSplashDelay = 7000L
+            val content: View = findViewById(android.R.id.content)
+
             var splashSoundFinished = false
+            // Open the splash gate, release the player and nudge a redraw so the
+            // OnPreDrawListener below re-evaluates its conditions.
+            val finishSplashSound = {
+                splashSoundFinished = true
+                splashPlayer?.release()
+                splashPlayer = null
+                content.invalidate()
+            }
+
             if (splashPlayed) {
                 splashSoundFinished = true
             } else {
                 // We have a splash sound, so play it and keep the splash screen visible until the
-                // playback has finished
-                val splashPlayer = android.media.MediaPlayer()
+                // playback has finished.
                 try {
+                    val player = android.media.MediaPlayer()
+                    splashPlayer = player
                     val afd = assets.openFd("DoubleTap/dt_soundscape.mp3")
-                    splashPlayer.setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
+                    player.setDataSource(afd.fileDescriptor, afd.startOffset, afd.length)
                     afd.close()
-                    splashPlayer.prepare()
-                    splashPlayer.setVolume(0.7f, 0.7f)
-                    splashPlayer.start()
-                    splashPlayer.setOnCompletionListener {
-                        it.release()
-                        splashSoundFinished = true
-                    }
+                    player.prepare()
+                    player.setVolume(0.7f, 0.7f)
+                    player.setOnCompletionListener { finishSplashSound() }
+                    player.setOnErrorListener { _, _, _ -> finishSplashSound(); true }
+                    player.start()
                 } catch (e: Exception) {
                     Log.e(TAG, "Failed to play splash sound: $e")
-                    splashPlayer.release()
-                    splashSoundFinished = true
+                    finishSplashSound()
                 }
                 sharedPreferences.edit(commit = true) {
                     putString(LAST_SPLASH_RELEASE_KEY, BuildConfig.VERSION_NAME.substringBeforeLast("."))
                 }
             }
 
-            // Keep the splash screen visible until the sound has finished playing,
-            // with a minimum delay for attribution acknowledgements.
-            val attributionDelay = 1500
-            val content: View = findViewById(android.R.id.content)
-            val context = this
+            // Safety net: never let the splash hang. If the sound hasn't reported completion by
+            // maxSplashDelay (e.g. the MediaPlayer was reclaimed before its callback could fire)
+            // open the gate anyway.
+            content.postDelayed({ if (!splashSoundFinished) finishSplashSound() }, maxSplashDelay)
+
             content.viewTreeObserver.addOnPreDrawListener(
                 object : ViewTreeObserver.OnPreDrawListener {
                     override fun onPreDraw(): Boolean {
@@ -467,6 +498,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferencesListener)
+        // Release the splash sound player if it's still playing (e.g. the activity is recreated
+        // before playback finishes) so it doesn't leak or overlap with a fresh instance.
+        splashPlayer?.release()
+        splashPlayer = null
         super.onDestroy()
     }
 
@@ -652,9 +687,10 @@ class MainActivity : AppCompatActivity() {
         unknownOsmKeys.forEach { bodyText.append("\t$it<br/>") }
         bodyText.append("-----------------------------<br/><br/>")
 
+        val supportEmail = "soundscapeAndroid@scottishtecharmy.support"
         val intent = Intent(Intent.ACTION_SEND).apply {
             type = "message/rfc822"
-            putExtra(Intent.EXTRA_EMAIL, arrayOf("soundscapeAndroid@scottishtecharmy.support"))
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(supportEmail))
             putExtra(Intent.EXTRA_SUBJECT, subjectText)
             putExtra(Intent.EXTRA_TEXT, Html.fromHtml(bodyText.toString(), 0))
         }
@@ -679,11 +715,39 @@ class MainActivity : AppCompatActivity() {
         }
 
         Log.e(TAG, Html.fromHtml(bodyText.toString(), 0).toString())
-        if (intent.resolveActivity(packageManager) != null) {
-            startActivity(intent)
+
+        // Send straight to the user's email app (no chooser) with the recipient,
+        // subject, body and log attachment all pre-filled. A selector or a plain
+        // ACTION_SEND chooser proved unreliable here: ACTION_SEND/message-rfc822
+        // also matches non-email share targets, and an ACTION_SENDTO selector
+        // fails to resolve under package-visibility filtering. We instead resolve
+        // the activity that handles mailto: (declared in <queries> in the manifest)
+        // and target the ACTION_SEND intent at that exact component. Targeting the
+        // package alone is not enough: the Gmail package also contains a Google
+        // Chat (Dynamite) ACTION_SEND handler, so setPackage() still shows a chooser.
+        val mailtoProbe = Intent(Intent.ACTION_SENDTO, "mailto:".toUri())
+        val emailActivity = packageManager.resolveActivity(mailtoProbe, 0)?.activityInfo
+        // resolveActivity returns the system "resolver/chooser" component when there
+        // are multiple email apps with no default - in that case leave it unset so the
+        // user picks among email apps rather than targeting the resolver itself.
+        val emailPackage = emailActivity?.packageName
+        val isSystemResolver = emailPackage == "android" || emailPackage == "com.android.intentresolver"
+        if (emailActivity != null && emailPackage != null && !isSystemResolver) {
+            Log.d(TAG, "Sending support email via $emailPackage/${emailActivity.name}")
+            intent.component = ComponentName(emailPackage, emailActivity.name)
         } else {
-            val alternativeIntent = Intent.createChooser(intent, "")
-            startActivity(alternativeIntent)
+            Log.d(TAG, "No single email app resolved (got $emailPackage), using chooser")
+        }
+        try {
+            startActivity(intent)
+        } catch (e: ActivityNotFoundException) {
+            Log.w(TAG, "Targeted email launch failed, falling back to chooser", e)
+            intent.component = null
+            try {
+                startActivity(Intent.createChooser(intent, null))
+            } catch (e: ActivityNotFoundException) {
+                Log.e(TAG, "No app available to contact support", e)
+            }
         }
     }
 
@@ -773,6 +837,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Set when startForegroundService() was blocked because the app wasn't yet in the foreground.
+    // onResume() retries the start once the activity is genuinely resumed.
+    private var pendingServiceStart = false
+
     var serviceSleeping = false
     fun setServiceState(newServiceState: Boolean, sleeping: Boolean? = null) {
         Log.d(TAG, "setServiceState $newServiceState, sleeping = $sleeping, serviceSleeping = $serviceSleeping")
@@ -803,7 +871,25 @@ class MainActivity : AppCompatActivity() {
     private fun startSoundscapeService() {
         Log.e(TAG, "startSoundscapeService")
         val serviceIntent = Intent(this, SoundscapeService::class.java)
-        startForegroundService(serviceIntent)
+        try {
+            startForegroundService(serviceIntent)
+            pendingServiceStart = false
+        } catch (e: Exception) {
+            // On Android 12+ startForegroundService() throws ForegroundServiceStartNotAllowedException
+            // when the app isn't considered to be in the foreground. This happens when a permission
+            // result is delivered during performResumeActivity() *before* onResume() runs, so the
+            // FGS-while-in-use allowance isn't active yet. Defer the start and retry from onResume(),
+            // by which point the activity is genuinely resumed and the start is permitted.
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
+                e is ForegroundServiceStartNotAllowedException
+            ) {
+                Log.w(TAG, "startForegroundService not allowed yet; deferring to onResume")
+                Analytics.getInstance().crashLogNotes("startForegroundService not allowed; deferring to onResume")
+                pendingServiceStart = true
+                return
+            }
+            throw e
+        }
         // Request microphone permission for voice commands (best-effort)
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
             != android.content.pm.PackageManager.PERMISSION_GRANTED) {
