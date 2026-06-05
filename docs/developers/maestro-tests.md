@@ -56,6 +56,40 @@ which is also what CI uses.
    maestro test maestro/Onboarding.yaml
    ```
 
+### Offline map data and a fixed GPS location
+
+CI seeds the emulator with a local map extract and pins the GPS to a known
+location (the STA office) so the location-dependent flows are deterministic. To
+match that locally, push the Glasgow extract and its metadata sidecar into the
+app's offline-extracts directory and set the GPS before running the flows:
+
+```bash
+# The app reads extracts from its external files dir + "/Download". That dir is
+# created when the app first runs, and on Android 11+ scoped storage blocks
+# writes there even for the shell user — so launch the app once, then use
+# "adb root" (the emulator is a userdebug image) before pushing.
+adb root
+dest=/storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download
+adb shell mkdir -p "$dest"
+
+adb push app/src/test/res/org/scottishtecharmy/soundscape/20260118-1505-glasgow-gb.pmtiles \
+    "$dest/glasgow-gb.pmtiles"
+adb push .github/fixtures/glasgow-gb.pmtiles.geojson \
+    "$dest/glasgow-gb.pmtiles.geojson"
+
+# adb emu geo fix takes longitude then latitude (here, the STA office).
+adb emu geo fix -3.223538 55.955360
+```
+
+The `.pmtiles` is the map data the geo engine renders; the matching
+`.pmtiles.geojson` is the metadata sidecar (`findExtracts` looks for
+`<pmtiles>.geojson`) that makes the extract appear in the app's Offline Maps
+list. The `.pmtiles` is large (~168 MB) so it is not committed — CI downloads it
+from R2 and locally it comes from `app/src/test/res/...`, which you populate by
+following the same download step the unit tests use (see
+[The boilerplate required]({% link developers/unit-test-example.md %}#the-boilerplate-required)) —
+but the small sidecar is committed under `.github/fixtures/`.
+
 ### The suite is stateful and ordered
 
 The flows are **not** independent — several depend on state created by earlier
@@ -304,7 +338,11 @@ In both cases it then:
    different paths, so it is found by glob rather than a fixed name).
 2. Boots an API 34 x86_64 emulator via
    `reactivecircus/android-emulator-runner`.
-3. Installs the APK and runs each flow **individually, in suite order**, each
+3. Installs the APK, seeds the
+   [offline map extract and a fixed GPS location](#offline-map-data-and-a-fixed-gps-location)
+   (it downloads the Glasgow `.pmtiles`, pushes it plus its committed `.geojson`
+   sidecar into the app's offline-extracts directory, and `adb emu geo fix`es to
+   the STA office), then runs each flow **individually, in suite order**, each
    producing a JUnit report. Each flow runs even if an earlier one fails (`||
    status=1`), and the step fails at the end if any flow failed:
 

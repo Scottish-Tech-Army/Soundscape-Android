@@ -94,6 +94,13 @@ jobs:
       - name: Install Maestro
         run: MAESTRO_VERSION=2.6.0 curl -Ls 'https://get.maestro.mobile.dev' | bash
 
+      # Fetch the Glasgow offline map extract on the runner host; it is pushed
+      # onto the emulator in the Maestro Tests step below.
+      - name: Download offline map extract
+        run: |
+          curl -Lsf -o glasgow-gb.pmtiles \
+            'https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/glasgow-gb.pmtiles'
+
       - name: Maestro Tests
         id: maestro-tests
         uses: reactivecircus/android-emulator-runner@v2
@@ -110,6 +117,26 @@ jobs:
             chmod 777 app/emulator.log                # allow writing to log file
             adb logcat >> app/emulator.log &          # pipe all logcat messages into log file as a background process
             adb install ${{ steps.find-apk.outputs.apk_path }}
+
+            # Push the Glasgow offline map extract into the app's offline-extracts
+            # directory and pin the emulator GPS to the STA office, so the
+            # location-dependent flows run against known map data and a fixed
+            # location. The extracts directory is the app-specific external files
+            # dir + "/Download" (see GeoEngine.offlineExtractPath); scoped storage
+            # blocks writes there even for the shell user, so we use root - the
+            # emulator runs a userdebug image, so "adb root" is available.
+            adb root
+            adb wait-for-device
+            extract_dir=/storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download
+            adb shell mkdir -p "$extract_dir"
+            adb push glasgow-gb.pmtiles "$extract_dir/"
+            # The .geojson metadata sidecar (findExtracts reads "<pmtiles>.geojson")
+            # is committed under .github/fixtures as it is too small to be worth a
+            # download, unlike the pmtiles itself.
+            adb push .github/fixtures/glasgow-gb.pmtiles.geojson "$extract_dir/"
+            # adb emu geo fix takes longitude then latitude.
+            adb emu geo fix -3.223538 55.955360
+
             mkdir maestro_outputs
             # Run every flow even if an earlier one fails, then fail the step at
             # the end if any of them failed.

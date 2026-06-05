@@ -36,7 +36,7 @@ appId: org.scottishtecharmy.soundscape
         id: name-clearTextField
 - tapOn:
         id: markerName
-- tapOn: A
+- inputText: "A"
 - tapOn:
         id: flexibleAppBarRight
 
@@ -55,7 +55,7 @@ appId: org.scottishtecharmy.soundscape
         id: name-clearTextField
 - tapOn:
         id: markerName
-- tapOn: B
+- inputText: "B"
 - tapOn:
         id: flexibleAppBarRight
 
