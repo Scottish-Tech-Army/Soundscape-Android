@@ -107,6 +107,15 @@ private fun MapExtractButtonsSection(
     ) {
         if(local) {
             IconWithTextButton(
+                icon = Icons.Filled.Download,
+                text = stringResource(R.string.offline_map_details_update),
+                color = MaterialTheme.colorScheme.onSurface,
+                modifier = Modifier
+                    .defaultMinSize(minHeight = spacing.targetSize)
+                    .testTag("offlineMapUpdate"),
+                onClick = downloadExtract
+            )
+            IconWithTextButton(
                 icon = Icons.Filled.Delete,
                 text = stringResource(R.string.offline_map_details_delete),
                 color = MaterialTheme.colorScheme.onSurface,
