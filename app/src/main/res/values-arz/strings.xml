@@ -1367,4 +1367,5 @@
     <string name="trademark_disclaimer">جميع أسماء المنتجات والشركات والشعارات الخاصة بأطراف ثالثة هي علامات تجارية أو علامات تجارية مسجلة وتظل ملكًا لأصحابها.</string>
     <string name="loading_indicator_content_description">تحميل</string>
     <string name="offline_maps_extract_damaged">تالف - احذف وأعد تنزيله</string>
+    <string name="offline_map_details_update">تحديث الخريطة غير المتصلة بالإنترنت</string>
 </resources>
