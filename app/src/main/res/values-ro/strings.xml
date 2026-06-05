@@ -1367,4 +1367,5 @@
     <string name="trademark_disclaimer">Toate denumirile și logourile produselor și companiilor terțe sunt mărci comerciale sau mărci înregistrate și rămân proprietatea titularilor lor.</string>
     <string name="loading_indicator_content_description">Se încarcă…</string>
     <string name="offline_maps_extract_damaged">Deteriorat - șterge și descarcă din nou</string>
+    <string name="offline_map_details_update">Actualizează harta offline</string>
 </resources>
