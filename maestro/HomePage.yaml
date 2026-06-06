@@ -42,5 +42,3 @@ appId: org.scottishtecharmy.soundscape
     id: appBarLeft
 - tapOn:
     id: topBarMenu
-- tapOn:
-    id: menuSettings
