@@ -151,6 +151,17 @@ A few small reusable flows take parameters via `env:` and are called with
   is tappable. Instead `SwipeAndTap` swipes the scrollable region in small steps
   until the element appears, then nudges it clear of the edge so it's not clipped
   when tapped.
+
+  The nudge swipe can accidentally land on an **inner scrollable list** (rather
+  than the outer page) and scroll a fully-visible target back out of view — this
+  is what happened with the audio-beacon list in `Onboarding.yaml`: the nudge
+  scrolled "Current" out from under the tap, so no beacon was selected and the
+  continue button stayed disabled. To handle this generically, after nudging,
+  `SwipeAndTap` re-checks that the target is still visible and, if it is not,
+  reverses the nudge (the opposite swipe) to restore it. A normally
+  partially-clipped target stays visible after the nudge, so the reverse is
+  skipped for it and the behaviour is unchanged — no per-call configuration is
+  needed.
 - **`Wait.yaml`** — a fixed pause that never fails the flow. It waits for an
   element that intentionally never exists, with `optional: true`, so it simply
   burns the `timeout` (in ms) and carries on. Used to let map tiles or network
@@ -385,19 +396,26 @@ For each matrix combination it then:
    status=1`), and the step fails at the end if any flow failed:
 
    ```bash
-   status=0
-   maestro test --format=junit --output=report1.xml \
-       --test-output-dir=maestro_outputs --no-ansi maestro/Onboarding.yaml || status=1
-   maestro test --format=junit --output=report2.xml \
-       --test-output-dir=maestro_outputs --no-ansi maestro/HomePage.yaml || status=1
-   # ... and so on through FullScreenMap.yaml
-   exit $status
+   status=0; for flow in Onboarding HomePage LocationDetails PlacesNearby MarkersAndRoutes RouteCreation; do \
+       maestro test --format=junit --output="maestro_outputs/report-$flow.xml" \
+           --test-output-dir=maestro_outputs --no-ansi "maestro/$flow.yaml" || status=1; \
+   done; exit $status
    ```
+
+   This is deliberately a **single shell line**: `android-emulator-runner` runs
+   each line of the `script` in its own `sh -c`, so a `status` variable spread
+   across separate lines (with a trailing `exit $status`) is lost — every line
+   gets a fresh shell, the `|| status=1` makes the failing line exit 0 anyway,
+   and the final `exit` sees an empty variable and exits 0. That previously left
+   the step — and the whole run — **green even when every flow failed**. Keeping
+   the loop and the `exit` in one shell makes the non-zero status stick.
 
    Running every flow regardless of earlier failures means one broken flow no
    longer hides the results of the flows after it — but note the suite is still
    [stateful and ordered](#the-suite-is-stateful-and-ordered), so a flow that
-   fails part-way can still leave later flows without the state they expect.
+   fails part-way can still leave later flows without the state they expect (as
+   happens when `Onboarding` fails: every later flow then fails too because the
+   app never reaches the onboarded home screen).
 
 4. Uploads the `maestro_outputs` reports as an artifact, and on failure also
    uploads `app/emulator.log` (a full `logcat` capture) to help diagnose what
@@ -406,5 +424,5 @@ For each matrix combination it then:
 The Maestro step uses `continue-on-error: true` so the report-upload steps
 always run; a final step re-raises the failure to mark the workflow red.
 
-When you add a new flow, add a matching `maestro test ... || status=1` line in
-the correct position so CI runs it.
+When you add a new flow, add its name (without the `.yaml` extension) to the
+`for flow in …` list in the correct position so CI runs it.

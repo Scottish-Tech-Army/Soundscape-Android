@@ -16,6 +16,12 @@ appId: org.scottishtecharmy.soundscape
 # scrollable part of the screen in small steps until the element appears, nudge
 # it clear of the edge, then tap.
 #
+# The nudge swipe can land on an inner scrollable list (e.g. the audio beacon
+# list) rather than the outer page; that scrolls a fully-visible target back out
+# of view. So after nudging we check the target is still visible and, if not,
+# reverse the nudge to put it back - a partially-clipped target stays visible and
+# is left as nudged.
+#
 # Note: swipe start/end coordinates can't be supplied via ${} variables (Maestro
 # parses them as literals and throws a number-format error), so the per-direction
 # coordinates are hard-coded below and selected with `when` conditions.
@@ -88,6 +94,29 @@ appId: org.scottishtecharmy.soundscape
       - swipe:
           start: 50%, 60%
           end: 50%, 75%
+
+# If the nudge landed on an inner scrollable list it can scroll a fully-visible
+# target back out of view. If the target is no longer visible, reverse the nudge
+# (the opposite swipe) to restore it. A normally partially-clipped target stays
+# visible after the nudge, so this reverse is skipped for it.
+- runFlow:
+    when:
+      true: "${output.swipeFound == 1 && output.swipeDir == 'up'}"
+      notVisible:
+        id: ${id}
+    commands:
+      - swipe:
+          start: 50%, 60%
+          end: 50%, 75%
+- runFlow:
+    when:
+      true: "${output.swipeFound == 1 && output.swipeDir == 'down'}"
+      notVisible:
+        id: ${id}
+    commands:
+      - swipe:
+          start: 50%, 75%
+          end: 50%, 60%
 
 - tapOn:
     id: ${id}

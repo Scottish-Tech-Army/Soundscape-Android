@@ -199,14 +199,17 @@ jobs:
             mkdir maestro_outputs
             # Run every flow even if an earlier one fails, then fail the step at
             # the end if any of them failed.
-            status=0
-            $HOME/.maestro/bin/maestro test --format=junit --output=report1.xml --test-output-dir=maestro_outputs --no-ansi maestro/Onboarding.yaml || status=1
-            $HOME/.maestro/bin/maestro test --format=junit --output=report2.xml --test-output-dir=maestro_outputs --no-ansi maestro/HomePage.yaml || status=1
-            $HOME/.maestro/bin/maestro test --format=junit --output=report3.xml --test-output-dir=maestro_outputs --no-ansi maestro/LocationDetails.yaml || status=1
-            $HOME/.maestro/bin/maestro test --format=junit --output=report4.xml --test-output-dir=maestro_outputs --no-ansi maestro/PlacesNearby.yaml || status=1
-            $HOME/.maestro/bin/maestro test --format=junit --output=report5.xml --test-output-dir=maestro_outputs --no-ansi maestro/MarkersAndRoutes.yaml || status=1
-            $HOME/.maestro/bin/maestro test --format=junit --output=report6.xml --test-output-dir=maestro_outputs --no-ansi maestro/RouteCreation.yaml || status=1
-            exit $status
+            #
+            # This MUST stay a single line. android-emulator-runner runs each
+            # script line in its own "sh -c" (see the comment above), so a
+            # "status" variable accumulated across separate lines, with a trailing
+            # "exit $status", does not work: each line gets a fresh shell, the
+            # "|| status=1" makes the failing line still exit 0, and the final
+            # "exit $status" sees an empty variable and exits 0 - which left the
+            # step (and the whole run) green even when every flow failed. Keeping
+            # the loop and the exit in one shell makes the non-zero status stick.
+            # To add a flow, add its name (without .yaml) to the list below.
+            status=0; for flow in Onboarding HomePage LocationDetails PlacesNearby MarkersAndRoutes RouteCreation; do $HOME/.maestro/bin/maestro test --format=junit --output="maestro_outputs/report-$flow.xml" --test-output-dir=maestro_outputs --no-ansi "maestro/$flow.yaml" || status=1; done; exit $status
 
       # Artifact names must be unique across the matrix, so suffix them with the
       # combination (e.g. maestro-reports-35-large-ja-JP).
