@@ -1,0 +1,56 @@
+name: Maestro-only PR tests
+
+# When a PR changes only files under maestro/, there is no app code to rebuild,
+# so skip the full build/test pipeline and instead run the Maestro UI flows
+# against the latest GitHub release. This lets Maestro flows be iterated on
+# without waiting for an app build.
+
+on:
+  pull_request:
+    branches: [ "v1.0" ]
+    paths:
+      - 'maestro/**'
+
+jobs:
+  # The paths filter above triggers the workflow if ANY changed file is under
+  # maestro/, but the PR could also touch files elsewhere. This job confirms the
+  # PR touches ONLY maestro/ files before the Maestro run is gated on it.
+  check-paths:
+    runs-on: ubuntu-latest
+    outputs:
+      only_maestro: ${{ steps.check.outputs.only_maestro }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Check only maestro files changed
+        id: check
+        env:
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          # Three-dot diff compares HEAD against the merge-base, i.e. exactly the
+          # files this PR changes relative to where it branched.
+          changed=$(git diff --name-only "$BASE_SHA"..."$HEAD_SHA")
+          echo "Changed files:"
+          echo "$changed"
+          only=true
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            case "$f" in
+              maestro/*) ;;
+              *) only=false ;;
+            esac
+          done <<< "$changed"
+          echo "Only maestro files changed: $only"
+          echo "only_maestro=$only" >> "$GITHUB_OUTPUT"
+
+  # Run the Maestro UI tests against the latest GitHub release. Calling the
+  # reusable workflow with no apk_artifact makes it download and install the
+  # latest release APK (see run-maestro-tests.yaml).
+  maestro:
+    needs: check-paths
+    if: needs.check-paths.outputs.only_maestro == 'true'
+    uses: ./.github/workflows/run-maestro-tests.yaml
+    secrets: inherit

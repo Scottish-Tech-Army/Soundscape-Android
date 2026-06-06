@@ -40,6 +40,38 @@ jobs:
     permissions:
       contents: read
 
+    # Run the suite across a matrix of API levels, screen sizes and languages so
+    # the flows are exercised on small and large screens, on API 31 and 35, and
+    # in both English and Japanese. Four combinations: small and large each run
+    # on API 31 and 35, and the API 35 large run is done in Japanese. fail-fast
+    # is off so one failing combination doesn't cancel the others.
+    strategy:
+      fail-fast: false
+      matrix:
+        # target is per-leg: API 31 has a "default" x86_64 system image, but API
+        # 35 doesn't reliably, so it uses "google_apis" instead.
+        include:
+          - api-level: 31
+            target: default
+            screen: small
+            profile: small_phone
+            locale: en-US
+          - api-level: 31
+            target: default
+            screen: large
+            profile: pixel_6
+            locale: en-US
+          - api-level: 35
+            target: google_apis
+            screen: small
+            profile: small_phone
+            locale: en-US
+          - api-level: 35
+            target: google_apis
+            screen: large
+            profile: pixel_6
+            locale: ja-JP
+
     steps:
       - uses: actions/checkout@v6
         with:
@@ -106,12 +138,36 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         continue-on-error: true # IMPORTANT: allow pipeline to continue to Android Test Report step
         with:
-          api-level: 34
+          api-level: ${{ matrix.api-level }}
           arch: x86_64
           ram-size: 2048M
           enable-hw-keyboard: false
-          target: default
+          target: ${{ matrix.target }}
+          # Screen-size dimension: the AVD is created as this hardware device
+          # (small_phone for "small", pixel_6 for "large"), so the resolution and
+          # density are baked in rather than resized at runtime.
+          profile: ${{ matrix.profile }}
           script: |
+            # The emulator runs a userdebug image, so "adb root" is available;
+            # we need it for scoped-storage writes and to set the system locale.
+            adb root
+            adb wait-for-device
+
+            # Language dimension: set the system locale and restart the Android
+            # framework so the entire UI (including onboarding) comes up in the
+            # matrix language. matrix.locale is a BCP-47 tag, e.g. en-US / ja-JP.
+            # The flows select controls by testTag, so they are language-agnostic;
+            # this exercises layout/wrapping under a different language.
+            #
+            # Only restart when the locale actually differs from the current one
+            # (the emulator already boots en-US, so the English legs skip this).
+            # sys.boot_completed is NOT reset by a framework restart, so we clear
+            # it before "stop; start" and then wait for the framework to set it
+            # back to "1" - otherwise the next steps race a half-restarted system.
+            adb shell 'want='"${{ matrix.locale }}"'; have=$(getprop persist.sys.locale); [ -z "$have" ] && have=$(getprop ro.product.locale); if [ "$have" != "$want" ]; then setprop persist.sys.locale "$want"; setprop sys.boot_completed 0; stop; start; fi'
+            adb wait-for-device
+            adb shell 'while [ "$(getprop sys.boot_completed)" != "1" ]; do sleep 2; done'
+
             adb logcat -c                             # clear logs
             touch app/emulator.log                    # create log file
             chmod 777 app/emulator.log                # allow writing to log file
@@ -123,16 +179,14 @@ jobs:
             # location-dependent flows run against known map data and a fixed
             # location. The extracts directory is the app-specific external files
             # dir + "/Download" (see GeoEngine.offlineExtractPath); scoped storage
-            # blocks writes there even for the shell user, so we use root - the
-            # emulator runs a userdebug image, so "adb root" is available.
+            # blocks writes there even for the shell user, which is why we took
+            # root above.
             #
             # The android-emulator-runner runs each script line in its own
             # "sh -c", so a shell variable assigned on one line is empty by the
             # next; the extract directory path is therefore inlined rather than
             # held in a variable. It is the app-specific external files dir +
             # "/Download" (see GeoEngine.offlineExtractPath).
-            adb root
-            adb wait-for-device
             adb shell mkdir -p /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download
             adb push glasgow-gb.pmtiles /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/
             # The .geojson metadata sidecar (findExtracts reads "<pmtiles>.geojson")
@@ -154,17 +208,19 @@ jobs:
             $HOME/.maestro/bin/maestro test --format=junit --output=report6.xml --test-output-dir=maestro_outputs --no-ansi maestro/RouteCreation.yaml || status=1
             exit $status
 
+      # Artifact names must be unique across the matrix, so suffix them with the
+      # combination (e.g. maestro-reports-35-large-ja-JP).
       - name: Upload maestro reports
         uses: actions/upload-artifact@v6
         with:
-          name: maestro-reports
+          name: maestro-reports-${{ matrix.api-level }}-${{ matrix.screen }}-${{ matrix.locale }}
           path: maestro_outputs
 
       - name: Upload Failing Test Report Log
         if: steps.maestro-tests.outcome != 'success'        # upload the generated log on failure of the tests job
         uses: actions/upload-artifact@v6
         with:
-          name: logs
+          name: logs-${{ matrix.api-level }}-${{ matrix.screen }}-${{ matrix.locale }}
           path: app/emulator.log # path to where the log is
 
       - name: Raise error on test fail # set a red tick on the workflow run if the tests failed

@@ -129,9 +129,7 @@ jobs:
   maestro:
     needs: test
     uses: ./.github/workflows/run-maestro-tests.yaml
-    # fail_on_error: false keeps a Maestro failure from failing the run-tests run
-    # (continue-on-error isn't allowed on a job that calls a reusable workflow).
+    # fail_on_error defaults to true, so a Maestro flow failure fails this run.
     with:
       apk_artifact: debug-apk
-      fail_on_error: false
     secrets: inherit

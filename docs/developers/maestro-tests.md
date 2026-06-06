@@ -11,9 +11,10 @@ has_toc: true
 to drive the app through real user flows on an emulator or device — onboarding,
 creating markers and routes, browsing places nearby, and so on. The flows live
 in the [`maestro/`](https://github.com/Scottish-Tech-Army/Soundscape-Android/tree/main/maestro)
-directory at the root of the repository and run in CI both as a follow-on to
+directory at the root of the repository and run in CI as a follow-on to
 the [`Run tests`](https://github.com/Scottish-Tech-Army/Soundscape-Android/blob/main/.github/workflows/run-tests.yaml)
-workflow and standalone against a published release (see
+workflow, standalone against a published release, and automatically against the
+latest release on PRs that change only flows (see
 [Running in CI](#running-in-ci)).
 
 These are end-to-end tests that exercise the real UI. For host-side logic tests
@@ -41,8 +42,9 @@ version locally avoids surprises.)
 Studio is for authoring; once a flow is saved you run it from the Maestro CLI,
 which is also what CI uses.
 
-1. Start an emulator (or plug in a device). The CI uses API level 34, x86_64,
-   so an emulator of that level is the closest match to what CI runs.
+1. Start an emulator (or plug in a device). CI runs the suite across a matrix of
+   API 31 and 35, x86_64 (see [Running in CI](#running-in-ci)), so an emulator at
+   one of those levels is the closest match to what CI runs.
 2. Build and install the debug APK:
 
    ```bash
@@ -323,21 +325,57 @@ get that APK in two ways:
 - **As a follow-on to `Run tests`** (`workflow_call`). `run-tests.yaml` builds
   the debug APK, uploads it as the `debug-apk` artifact, and then calls this
   workflow as a `maestro` job (`needs: test`) passing `apk_artifact: debug-apk`.
-  This job is marked `continue-on-error: true` in `run-tests.yaml`, so for now a
-  Maestro failure does **not** fail the `Run tests` run.
+  A Maestro flow failure fails the `Run tests` run (`fail_on_error` defaults to
+  `true`).
 - **Standalone** from the **Actions** tab (`workflow_dispatch`). With no inputs
   it downloads the **latest GitHub release**'s `release-apk-*.zip` and tests
   that; an optional `release_tag` input (e.g. `soundscape-1.0.12`) tests an older
   release instead. Note this exercises the minified, signed `release` build
   rather than a debug build — `testTag`s survive R8 because they are string
   literals, and the app id is the same, so the flows are unchanged.
+- **Automatically on a maestro-only PR.** The
+  [`Maestro-only PR tests`](https://github.com/Scottish-Tech-Army/Soundscape-Android/blob/main/.github/workflows/maestro-only-pr.yaml)
+  workflow triggers on a pull request that changes **only** files under
+  `maestro/`. There is no app code to rebuild in that case, so rather than run
+  the full `Run tests` pipeline it calls `run-maestro-tests.yaml` with no APK
+  input — which, as in the standalone case, tests the **latest GitHub release**.
+  This gives fast feedback when iterating on flows. A `paths:` filter limits the
+  trigger to PRs that touch `maestro/`, and a `check-paths` guard job confirms
+  the PR touches *only* `maestro/` files (via a `base...head` diff) before the
+  Maestro job runs — a PR that also changes app code falls through to the normal
+  `Run tests` pipeline instead.
 
-In both cases it then:
+In every case the whole suite runs across a **matrix** of four emulator
+configurations, so the flows are exercised on different API levels, screen sizes
+and languages. `fail-fast: false`, so one failing combination does not cancel the
+others:
+
+| API level | Screen | Device profile | Language |
+|-----------|--------|----------------|----------|
+| 31 | small | `small_phone` | English (`en-US`) |
+| 31 | large | `pixel_6` | English (`en-US`) |
+| 35 | small | `small_phone` | English (`en-US`) |
+| 35 | large | `pixel_6` | Japanese (`ja-JP`) |
+
+Screen size comes from the runner's `profile` input, which creates the AVD as
+that hardware device (`small_phone` for "small", `pixel_6` for "large"), so the
+resolution and density are baked in rather than resized at runtime. Language is
+set by writing `persist.sys.locale` and restarting the framework (`adb root` is
+available because the emulator is a userdebug image) so the whole UI — including
+onboarding — comes up in that language; the restart is skipped on the English
+legs because the emulator already boots `en-US`. Because the flows select
+controls by `testTag` rather than visible text, they are language-agnostic; the
+Japanese run exercises layout and text-wrapping rather than asserting on
+translated strings. Each matrix leg uploads its own
+`maestro-reports-<api>-<screen>-<locale>` artifact (and `logs-…` on failure).
+
+For each matrix combination it then:
 
 1. Locates the downloaded APK (the debug artifact and the release zip put it at
    different paths, so it is found by glob rather than a fixed name).
-2. Boots an API 34 x86_64 emulator via
-   `reactivecircus/android-emulator-runner`.
+2. Boots the matrix API level (31 or 35), x86_64, emulator created with the
+   matrix device `profile` via `reactivecircus/android-emulator-runner`, and
+   applies the matrix locale before installing the app.
 3. Installs the APK, seeds the
    [offline map extract and a fixed GPS location](#offline-map-data-and-a-fixed-gps-location)
    (it downloads the Glasgow `.pmtiles`, pushes it plus its committed `.geojson`
