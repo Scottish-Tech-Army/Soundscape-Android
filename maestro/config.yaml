@@ -1,0 +1,9 @@
+# Maestro Device Cloud bills per flow, so we run the whole suite as a single
+# master flow. Restricting the workspace `flows` to Master.yaml means only that
+# one flow is discovered and billed; Master.yaml then invokes each suite flow in
+# order via runFlow (which is why the old executionOrder.flowsOrder lives inside
+# the master now). The suite flows and the internalFlow subflows stay on disk and
+# remain reachable from the master via runFlow - they just aren't run as
+# top-level flows here.
+flows:
+  - Master.yaml
