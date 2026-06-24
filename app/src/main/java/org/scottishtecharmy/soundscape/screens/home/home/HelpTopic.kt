@@ -75,8 +75,9 @@ sealed class HelpTopic(protected val context: Context) {
             val candidatePaths = listOf(
                 "help/$localeTag/$fileName",
                 "help/$lang/$fileName",
-                "help/$fileName"
-            ).distinct() // in case $localTag and $lang are the same
+                "help/en-GB/$fileName",
+                "help/en/$fileName",
+            ).distinct() // in case $localTag and $lang are the same, or are "en[-GB]".
 
             for (path in candidatePaths) {
                 try {
