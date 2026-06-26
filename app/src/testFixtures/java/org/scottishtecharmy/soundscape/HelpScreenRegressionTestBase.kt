@@ -2,14 +2,19 @@
 
 package org.scottishtecharmy.soundscape
 
+import android.content.Context
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.preference.PreferenceManager
 import androidx.test.platform.app.InstrumentationRegistry
@@ -47,18 +52,34 @@ abstract class HelpScreenRegressionTestBase(protected val testTopic: String) {
         val structureLog = makeStructureLog()
         composeTestRule.setContent {
             SoundscapeTheme {
-                MarkdownHelpScreen(
-                    topic = topic,
-                    navController = NavHostController(targetContext),
-                    modifier = Modifier
-                        .windowInsetsPadding(WindowInsets.safeDrawing)
-                        .semantics { testTagsAsResourceId = true },
-                    structureLog = structureLog
-                )
+                if (topic == "page:faq:help-frequently-asked-questions.md:When%20should%20I%20use%20Soundscape%3F") {
+                    // Wrap in a tall Box to ensure LazyColumn renders this entire long page.
+                    Box(modifier = Modifier.requiredHeight(5000.dp)) {
+                        HelpScreen(topic, targetContext, structureLog)
+                    }
+                } else {
+                    HelpScreen(topic, targetContext, structureLog)
+                }
             }
         }
 
         compareAgainstBaseline(structureLog)
+    }
+
+    @Composable
+    private fun HelpScreen(
+        topic: String,
+        targetContext: Context,
+        structureLog: StructureLog
+    ) {
+        MarkdownHelpScreen(
+            topic = topic,
+            navController = NavHostController(targetContext),
+            modifier = Modifier
+                .windowInsetsPadding(WindowInsets.safeDrawing)
+                .semantics { testTagsAsResourceId = true },
+            structureLog = structureLog
+        )
     }
 
     protected abstract fun makeStructureLog(): StructureLog
