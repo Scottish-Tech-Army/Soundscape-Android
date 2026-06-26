@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ChevronRight
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -18,6 +19,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
@@ -26,6 +28,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextLinkStyles
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
@@ -38,9 +41,12 @@ import org.commonmark.renderer.html.HtmlRenderer
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
+import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+
 
 enum class SectionType{
     Title,          // A non-clickable title of a group of other text
@@ -52,7 +58,6 @@ data class Section(
     val textId: Int,                      // There's always text, this is the resource id for it
     val type: SectionType,
     val skipTalkback: Boolean = false,
-    val markdown: Boolean = false,
     val faqAnswer: Int = -1             // The resource id of the answer to a FAQ question
 )
 data class Sections(
@@ -67,22 +72,22 @@ val helpPages = listOf(
         R.string.beacon_audio_beacon,
         listOf(
             Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_destination_beacons_what, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_destination_beacons_what, SectionType.Paragraph),
 
             Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_destination_beacons_when, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_destination_beacons_when, SectionType.Paragraph),
 
             Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_destination_beacons_how_1, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_destination_beacons_how_2, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_destination_beacons_how_3, SectionType.Paragraph, markdown = true)
+            Section(R.string.help_text_destination_beacons_how_1, SectionType.Paragraph),
+            Section(R.string.help_text_destination_beacons_how_2, SectionType.Paragraph),
+            Section(R.string.help_text_destination_beacons_how_3, SectionType.Paragraph)
         )
     ),
 
     Sections(
         R.string.voice_voices,
         listOf(
-            Section(R.string.help_config_voices_content, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_config_voices_content, SectionType.Paragraph),
         )
     ),
 
@@ -90,13 +95,13 @@ val helpPages = listOf(
         R.string.help_remote_page_title,
         listOf(
             Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_remote_control_what, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_remote_control_what, SectionType.Paragraph),
 
             Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_remote_control_when, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_remote_control_when, SectionType.Paragraph),
 
             Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_remote_control_how, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_remote_control_how, SectionType.Paragraph),
         )
     ),
 
@@ -104,13 +109,13 @@ val helpPages = listOf(
         R.string.help_explore_page_title,
         listOf(
             Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_ahead_of_me_what, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_ahead_of_me_what, SectionType.Paragraph),
 
             Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_ahead_of_me_when, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_ahead_of_me_when, SectionType.Paragraph),
 
             Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_ahead_of_me_how, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_ahead_of_me_how, SectionType.Paragraph),
         )
     ),
 
@@ -118,13 +123,13 @@ val helpPages = listOf(
         R.string.help_orient_page_title,
         listOf(
             Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_around_me_what, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_around_me_what, SectionType.Paragraph),
 
             Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_around_me_when, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_around_me_when, SectionType.Paragraph),
 
             Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_around_me_how, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_around_me_how, SectionType.Paragraph),
         )
     ),
 
@@ -132,16 +137,16 @@ val helpPages = listOf(
         R.string.callouts_automatic_callouts,
         listOf(
             Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_automatic_callouts_what, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_automatic_callouts_what, SectionType.Paragraph),
 
             Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_automatic_callouts_when_1, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_automatic_callouts_when_2, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_automatic_callouts_when_3, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_automatic_callouts_when_1, SectionType.Paragraph),
+            Section(R.string.help_text_automatic_callouts_when_2, SectionType.Paragraph),
+            Section(R.string.help_text_automatic_callouts_when_3, SectionType.Paragraph),
 
             Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_automatic_callouts_how_1, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_automatic_callouts_how_2, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_automatic_callouts_how_1, SectionType.Paragraph),
+            Section(R.string.help_text_automatic_callouts_how_2, SectionType.Paragraph),
         )
     ),
 
@@ -149,13 +154,13 @@ val helpPages = listOf(
         R.string.directions_my_location,
         listOf(
             Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_my_location_what, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_my_location_what, SectionType.Paragraph),
 
             Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_my_location_when, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_my_location_when, SectionType.Paragraph),
 
             Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_my_location_how, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_my_location_how, SectionType.Paragraph),
         )
     ),
 
@@ -163,15 +168,15 @@ val helpPages = listOf(
         R.string.routes_title,
         listOf(
             Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_routes_content_what, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_routes_content_what, SectionType.Paragraph),
 
             Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_routes_content_when, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_routes_content_when, SectionType.Paragraph),
 
             Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_routes_content_how_1, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_routes_content_how_2, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_routes_content_how_3, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_routes_content_how_1, SectionType.Paragraph),
+            Section(R.string.help_text_routes_content_how_2, SectionType.Paragraph),
+            Section(R.string.help_text_routes_content_how_3, SectionType.Paragraph),
         )
     ),
 
@@ -179,51 +184,51 @@ val helpPages = listOf(
         R.string.callouts_nearby_markers,
         listOf(
             Section(R.string.help_text_section_title_what, SectionType.Title),
-            Section(R.string.help_text_nearby_markers_what, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_nearby_markers_what, SectionType.Paragraph),
 
             Section(R.string.help_text_section_title_when, SectionType.Title),
-            Section(R.string.help_text_nearby_markers_when, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_nearby_markers_when, SectionType.Paragraph),
 
             Section(R.string.help_text_section_title_how, SectionType.Title),
-            Section(R.string.help_text_nearby_markers_how, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_nearby_markers_how, SectionType.Paragraph),
         )
     ),
 
     Sections(
         R.string.markers_title,
         listOf(
-            Section(R.string.help_text_markers_content_1, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_markers_content_2, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_markers_content_3, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_markers_content_1, SectionType.Paragraph),
+            Section(R.string.help_text_markers_content_2, SectionType.Paragraph),
+            Section(R.string.help_text_markers_content_3, SectionType.Paragraph),
         )
     ),
 
     Sections(
         R.string.help_creating_markers_page_title,
         listOf(
-            Section(R.string.help_text_creating_markers_content_1, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_creating_markers_content_2, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_creating_markers_content_1, SectionType.Paragraph),
+            Section(R.string.help_text_creating_markers_content_2, SectionType.Paragraph),
         )
     ),
 
     Sections(
         R.string.help_edit_markers_page_title,
         listOf(
-            Section(R.string.help_text_customizing_markers_content_1, SectionType.Paragraph, markdown = true),
-            Section(R.string.help_text_customizing_markers_content_2, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_text_customizing_markers_content_1, SectionType.Paragraph),
+            Section(R.string.help_text_customizing_markers_content_2, SectionType.Paragraph),
         )
     ),
 
     Sections(
         R.string.faq_tips_title,
         listOf(
-            Section(R.string.faq_tip_finding_bus_stops, SectionType.Paragraph, markdown = true),
-            Section(R.string.faq_tip_setting_beacon_on_address, SectionType.Paragraph, markdown = true),
-            Section(R.string.faq_tip_create_marker_at_bus_stop, SectionType.Paragraph, markdown = true),
-            Section(R.string.faq_tip_beacon_quiet, SectionType.Paragraph, markdown = true),
-            Section(R.string.faq_tip_hold_phone_flat, SectionType.Paragraph, markdown = true),
-            Section(R.string.faq_tip_turning_beacon_off, SectionType.Paragraph, markdown = true),
-            Section(R.string.faq_tip_turning_off_auto_callouts, SectionType.Paragraph, markdown = true),
+            Section(R.string.faq_tip_finding_bus_stops, SectionType.Paragraph),
+            Section(R.string.faq_tip_setting_beacon_on_address, SectionType.Paragraph),
+            Section(R.string.faq_tip_create_marker_at_bus_stop, SectionType.Paragraph),
+            Section(R.string.faq_tip_beacon_quiet, SectionType.Paragraph),
+            Section(R.string.faq_tip_hold_phone_flat, SectionType.Paragraph),
+            Section(R.string.faq_tip_turning_beacon_off, SectionType.Paragraph),
+            Section(R.string.faq_tip_turning_off_auto_callouts, SectionType.Paragraph),
             //Section(R.string.faq_tip_two_finger_double_tap, SectionType.Paragraph), Currently unsupported on Android
         )
     ),
@@ -232,16 +237,16 @@ val helpPages = listOf(
         R.string.help_offline_page_title,
         listOf(
             Section(R.string.help_offline_page_title, SectionType.Title),
-            Section(R.string.help_offline_description, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_offline_description, SectionType.Paragraph),
             Section(R.string.help_offline_limitations_heading, SectionType.Title),
-            Section(R.string.help_offline_limitations_description, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_offline_limitations_description, SectionType.Paragraph),
             Section(R.string.help_offline_troubleshooting_heading, SectionType.Title),
-            Section(R.string.help_offline_troubleshooting_description, SectionType.Paragraph, markdown = true),
+            Section(R.string.help_offline_troubleshooting_description, SectionType.Paragraph),
         )
     ),
 
     Sections(
-        R.string.menu_help_and_tutorials,
+        R.string.menu_help,
         listOf(
             Section(R.string.help_configuration_section_title, SectionType.Title),
             Section(R.string.voice_voices, SectionType.Link),
@@ -309,25 +314,12 @@ val helpPages = listOf(
     Sections(
         R.string.settings_about_app,
         listOf(
-            Section(R.string.about_soundscape, SectionType.Paragraph, skipTalkback = false, markdown = true),
-            Section(R.string.copyright_notices, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.osm_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.openmaptiles_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.fmod_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.maplibre_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.junit_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-
-            Section(R.string.apache_notices, SectionType.Title, skipTalkback = true),
-            Section(R.string.rtree_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.realm_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.moshi_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.retrofit_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.okhttp_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.otto_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.leak_canary_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.gpx_parser_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.preferences_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
-            Section(R.string.dokka_mermaid_copyright, SectionType.Paragraph, skipTalkback = true, markdown = true),
+            Section(R.string.about_soundscape, SectionType.Paragraph),
+            Section(R.string.copyright_notices, SectionType.Paragraph),
+            Section(R.string.osm_copyright, SectionType.Paragraph),
+            Section(R.string.openmaptiles_copyright, SectionType.Paragraph),
+            Section(R.string.steam_copyright, SectionType.Paragraph),
+            Section(R.string.trademark_disclaimer, SectionType.Paragraph),
         )
     )
 )
@@ -336,6 +328,7 @@ val helpPages = listOf(
 fun HelpScreen(
     topic: String,
     navController: NavHostController,
+    modifier: Modifier
     modifier: Modifier,
     structureLog: StructureLog = StructureLog {}
 ) {
@@ -368,9 +361,8 @@ fun HelpScreen(
         else -> {
             // Default to home
             for (page in helpPages) {
-                if (page.titleId == R.string.menu_help_and_tutorials) {
-                    sections = page
-                }
+            if (page.titleId == R.string.menu_help) {
+                sections = page
             }
         }
     }
@@ -401,21 +393,23 @@ fun HelpScreen(
                         .mediumPadding(),
                     verticalArrangement = Arrangement.spacedBy(spacing.small),
                 ) {
-                    structureLog.start("LazyColumn")
-                    items(sections.sections) {
+                    items(sections.sections) { section ->
                         structureLog.start("LazyColumn item")
-                        when (it.type) {
+                        Box(
+                            modifier = Modifier.semantics(mergeDescendants = true) {}
+                        ) {
+                        when (section.type) {
                             SectionType.Title -> {
                                 val text = stringResource(it.textId)
                                 structureLog.unstructured("Text for Title: '${text}'")
                                 Text(
-                                    text = text,
+                                    text = stringResource(section.textId),
                                     style = MaterialTheme.typography.titleMedium,
                                     modifier = Modifier
                                         .padding(top = spacing.medium)
                                         .semantics {
                                             heading()
-                                            if (it.skipTalkback)
+                                            if (section.skipTalkback)
                                                 invisibleToUser()
                                         },
                                     color = MaterialTheme.colorScheme.onSurface,
@@ -423,14 +417,21 @@ fun HelpScreen(
                             }
 
                             SectionType.Paragraph -> {
-                                var htmlText = stringResource(it.textId)
-                                if (it.markdown) {
-                                    val parser: Parser = Parser.builder().build()
-                                    val document: Node? = parser.parse(htmlText)
-                                    val renderer = HtmlRenderer.builder().build()
-                                    htmlText = renderer.render(document)
-                                }
-                                 val text = AnnotatedString.fromHtml(
+                                var htmlText = stringResource(section.textId)
+                                val parser: Parser = Parser.builder().build()
+                                val document: Node? = parser.parse(htmlText)
+                                val renderer = HtmlRenderer.builder().build()
+                                htmlText = renderer.render(document)
+
+                                Text(
+                                    text = AnnotatedString.fromHtml(
+                                        htmlString = htmlText,
+                                        linkStyles = TextLinkStyles(
+                                            style = SpanStyle(
+                                                textDecoration = TextDecoration.Underline,
+                                            )
+                                        )
+                                    ),
                                      htmlString = htmlText,
                                      linkStyles = TextLinkStyles(
                                          style = SpanStyle(
@@ -447,7 +448,7 @@ fun HelpScreen(
                                     color = MaterialTheme.colorScheme.onSurface,
                                     modifier = Modifier
                                         .semantics {
-                                            if (it.skipTalkback)
+                                            if(section.skipTalkback)
                                                 invisibleToUser()
                                         }
                                 )
@@ -466,7 +467,7 @@ fun HelpScreen(
                                     modifier = Modifier
                                         .fillMaxWidth(),
                                     shape = RoundedCornerShape(spacing.extraSmall),
-                                    colors = currentAppButtonColors
+                                    colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
                                 ) {
                                     structureLog.start("Button")
                                     Box(
@@ -476,7 +477,7 @@ fun HelpScreen(
                                         val text = stringResource(it.textId)
                                         structureLog.unstructured("Text for Button: '${text}'")
                                         Text(
-                                            text = text,
+                                            text = stringResource(section.textId),
                                             textAlign = TextAlign.Start,
                                             style = MaterialTheme.typography.titleMedium,
                                         )
@@ -497,11 +498,28 @@ fun HelpScreen(
                                 }
                             }
                         }
+                      }
+                    }
                         structureLog.end("LazyColumn item")
                     }
                     structureLog.end("LazyColumn")
                 }
                 structureLog.end("Box")
+                    item {
+                        if (sections.titleId == R.string.settings_about_app) {
+                            CustomButton(
+                                onClick = { navController.navigate(HomeRoutes.OpenSourceLicense.route) },
+                                text = stringResource(R.string.menu_open_source_licenses),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .smallPadding(),
+                                shape = RoundedCornerShape(spacing.extraSmall),
+                                textStyle = MaterialTheme.typography.bodyLarge,
+                                fontWeight = FontWeight.Bold,
+                            )
+                        }
+                    }
+                }
             }
             structureLog.end("Scaffold content")
         }
@@ -513,7 +531,7 @@ fun HelpScreen(
 @Composable
 fun HomeHelpPreview() {
     HelpScreen(
-        topic = "page${R.string.menu_help_and_tutorials}",
+        topic = "page${R.string.menu_help}",
         navController = rememberNavController(),
         modifier = Modifier,
         structureLog = StructureLog {}

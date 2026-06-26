@@ -9,12 +9,6 @@ const double DEGREES_TO_RADIANS = 2.0 * M_PI / 360.0;
 const double RADIANS_TO_DEGREES = 1.0 / DEGREES_TO_RADIANS;
 const double EARTH_RADIUS_METERS = 6378137.0;   //  Original Soundscape uses 6378137.0 not 6371000.0
 
-// We use this for FMOD coordinates so that we can just pass in straight GPS values as if they
-// were X/Y coordinates. We can only do this because we're always close enough to our beacons to
-// consider the earth as flat. FMOD_DISTANCE_FACTOR is set to the number of metres per degree of
-// longitude/latitude.
-const float FMOD_DISTANCE_FACTOR = static_cast<float>((2.0 * M_PI * EARTH_RADIUS_METERS) / 360.0);
-
 inline double toRadians(double degrees)
 {
     return degrees * DEGREES_TO_RADIANS;
@@ -77,37 +71,4 @@ inline double distance(double lat1, double long1, double lat2, double long2)
     auto c = 2 * asin(sqrt(a));
 
     return (EARTH_RADIUS_METERS * c);
-}
-
-/**
- * The initial audio engine code made the assumption that the latitude and longitude could be used
- * directly as coordinates in the FMOD audio engine. These coordinates are used for positioning the
- * audio which affects where the audio sounds like it's coming from when it's played. However, FMOD
- * rightly assumes that 1 unit on the x-axis is the same distance as 1 unit on the y-axis, and this
- * isn't true for longitude and latitude and becomes less true further from the equator. This
- * function simply maps longitude and latitude so that x and y are the same.
- * Note that the change in beacon sound is done based on actual longitude and latitude and is
- * already calculated correctly. Prior to this function this meant there was a discrepancy between
- * the beacon tone changing and where it was positioned in the FMOD engine.
- *
- * @param latitude Location for the audio to sound from
- * @param longitude
- * @param fmod_x Location mapped to within the FMOD coordinate system
- * @param fmod_y
- */
-inline void translateLocationForFmod(double latitude, double longitude,
-                                     double origin_latitude, double origin_longitude,
-                                     double &fmod_x, double &fmod_y)
-{
-    auto latRad = toRadians(latitude);
-    auto lonRad = toRadians(longitude);
-    auto originLatRad = toRadians(origin_latitude);
-    auto originLonRad = toRadians(origin_longitude);
-
-    // Calculate the difference in longitude
-    double deltaLng = lonRad - originLonRad;
-
-    // Calculate x and y coordinates using the Equirectangular projection
-    fmod_x = EARTH_RADIUS_METERS * deltaLng * cos(originLatRad);
-    fmod_y = EARTH_RADIUS_METERS * (latRad - originLatRad);
 }

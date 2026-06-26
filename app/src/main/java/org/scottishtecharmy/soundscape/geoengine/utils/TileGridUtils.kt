@@ -55,11 +55,21 @@ class TileGrid(newTiles : MutableList<Tile>,
                 }
             }
 
+            val gridNorthWest = pixelXYToLatLon(
+                (xValues[0] * 256).toDouble(),
+                (yValues[0] * 256).toDouble(),
+                zoomLevel
+            )
+            val gridSouthEast = pixelXYToLatLon(
+                ((xValues[2] + 1).mod(maxCoordinate) * 256).toDouble(),
+                ((yValues[2] + 1).mod(maxCoordinate) * 256).toDouble(),
+                zoomLevel
+            )
             val totalBoundingBox = BoundingBox(
-                southWest.second,
-                southWest.first,
-                northEast.second,
-                northEast.first
+                gridNorthWest.second,
+                gridSouthEast.first,
+                gridSouthEast.second,
+                gridNorthWest.first
             )
 
             return TileGrid(tiles, centralBoundingBox, totalBoundingBox)

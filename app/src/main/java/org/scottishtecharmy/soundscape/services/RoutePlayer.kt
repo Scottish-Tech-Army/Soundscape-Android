@@ -3,8 +3,6 @@ package org.scottishtecharmy.soundscape.services
 import android.content.Context
 import android.content.res.Configuration
 import android.util.Log
-import com.google.firebase.Firebase
-import com.google.firebase.analytics.analytics
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,6 +18,7 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 
 data class RoutePlayerState(val routeData: RouteWithMarkers? = null, val currentWaypoint: Int = 0, val beaconOnly: Boolean = false)
@@ -27,7 +26,6 @@ data class RoutePlayerState(val routeData: RouteWithMarkers? = null, val current
 class RoutePlayer(val service: SoundscapeService, context: Context) {
     private var currentRouteData: RouteWithMarkers? = null
     private var currentMarker = -1
-    private var standaloneBeacon = true
     private val coroutineScope = CoroutineScope(Job())
     private var localizedContext: Context
     private var locationMonitoringJob: Job? = null
@@ -52,6 +50,21 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         Log.e(TAG, "startBeacon")
         currentMarker = 0
 
+        Analytics.getInstance().logEvent("startBeacon", null)
+
+        // If the beacon start point is more than 30m away, then we can have it as a destination
+        val currentLocation = service.locationProvider.filteredLocationFlow.value
+        var beaconOnly = true
+        if(currentLocation != null) {
+            val distance =
+                beaconLocation.createCheapRuler().distance(
+                    LngLatAlt(currentLocation.longitude, currentLocation.latitude),
+                    beaconLocation
+                )
+            if(distance > 30.0)
+                beaconOnly = false
+        }
+
         val marker = MarkerEntity(
             name = beaconName,
             longitude = beaconLocation.longitude,
@@ -63,7 +76,6 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             RouteEntity(0, beaconName, ""),
             waypoints
         )
-        standaloneBeacon = true
         _currentRouteFlow.update {
             it.copy(
                 routeData = currentRouteData,
@@ -73,23 +85,36 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         }
         play()
         Log.d(TAG, toString())
+
+        if(!beaconOnly) {
+            // We want to describe how far we are and a route completion
+            startMonitoringLocation()
+        }
     }
 
     /** startRoute starts playback of a route from the database.
      * @param routeId The id of the route to play
+     * @param reverse If true, play the route in reverse order (from last waypoint to first)
      */
-    fun startRoute(routeId: Long) {
+    fun startRoute(routeId: Long, reverse: Boolean = false) {
         val realm = MarkersAndRoutesDatabase.getMarkersInstance(localizedContext)
         val routeDao = realm.routeDao()
 
-        Firebase.analytics.logEvent("startRoute", null)
+        Analytics.getInstance().logEvent(if (reverse) "startRouteReverse" else "startRoute", null)
 
-        Log.e(TAG, "startRoute")
+        Log.e(TAG, "startRoute reverse=$reverse")
         coroutineScope.launch {
-            val route = routeDao.getRouteWithMarkers(routeId)
+            val route = routeDao.getRouteWithMarkers(routeId) ?: return@launch
             currentMarker = 0
-            currentRouteData = route
-            standaloneBeacon = false
+            currentRouteData = if (reverse) {
+                val reverseName = localizedContext.getString(R.string.route_reverse_name, route.route.name)
+                RouteWithMarkers(
+                    RouteEntity(route.route.routeId, reverseName, route.route.description),
+                    route.markers.reversed()
+                )
+            } else {
+                route
+            }
             _currentRouteFlow.update {
                 it.copy(
                     routeData = currentRouteData,
@@ -115,39 +140,37 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
             service.locationProvider.filteredLocationFlow.collect { value ->
                 if (value != null) {
                     currentRouteData?.let { route ->
-                        if(!standaloneBeacon) {
-                            if(currentMarker < route.markers.size) {
-                                val location = route.markers[currentMarker].getLngLatAlt()
-                                val distanceToWaypoint = distance(
-                                    location.latitude,
-                                    location.longitude,
-                                    value.latitude,
-                                    value.longitude
-                                )
-                                if (distanceToWaypoint < 12.0) {
-                                    if ((currentMarker + 1) < route.markers.size) {
-                                        // We're within 12m of the marker, move on to the next one
-                                        Log.d(TAG, "Moving to next waypoint ${coroutineContext[Job]}")
-                                        moveToNext()
-                                    } else {
-                                        // We've reached the end of the route
-                                        // Announce the end of the route
-                                        Log.d(TAG, "End of route ${coroutineContext[Job]}")
-                                        val endOfRouteText = localizedContext.getString(
-                                            R.string.route_end_completed_accessibility,
-                                            route.route.name
-                                        )
-                                        service.speakText(
-                                            endOfRouteText,
-                                            AudioType.STANDARD
-                                        )
-
-                                        // Stop the beacon
-                                        stopRoute()
-                                    }
+                        if(currentMarker < route.markers.size) {
+                            val location = route.markers[currentMarker].getLngLatAlt()
+                            val distanceToWaypoint = distance(
+                                location.latitude,
+                                location.longitude,
+                                value.latitude,
+                                value.longitude
+                            )
+                            if (distanceToWaypoint < 12.0) {
+                                if ((currentMarker + 1) < route.markers.size) {
+                                    // We're within 12m of the marker, move on to the next one
+                                    Log.d(TAG, "Moving to next waypoint ${coroutineContext[Job]}")
+                                    moveToNext(false)
                                 } else {
-                                    Log.d(TAG, "Waypoint $distanceToWaypoint away")
+                                    // We've reached the end of the route
+                                    // Announce the end of the route
+                                    Log.d(TAG, "End of route ${coroutineContext[Job]}")
+                                    val endOfRouteText = localizedContext.getString(
+                                        R.string.route_end_completed_accessibility,
+                                        route.route.name
+                                    )
+                                    service.speakText(
+                                        endOfRouteText,
+                                        AudioType.STANDARD
+                                    )
+
+                                    // Stop the beacon
+                                    stopRoute()
                                 }
+                            } else {
+                                Log.d(TAG, "Waypoint $distanceToWaypoint away")
                             }
                         }
                     }
@@ -156,7 +179,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         }
     }
 
-    private fun createBeaconAtWaypoint(index: Int) {
+    private fun createBeaconAtWaypoint(index: Int, userInitiated: Boolean) {
         currentRouteData?.let { route ->
             if (index < route.markers.size) {
                 val location = route.markers[index].getLngLatAlt()
@@ -168,21 +191,29 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
                             LngLatAlt(currentLocation.longitude, currentLocation.latitude),
                             location
                         )
-                    val beaconSetText = localizedContext.getString(
-                        R.string.behavior_scavenger_hunt_callout_next_flag,
-                        route.markers[index].name,
-                        formatDistanceAndDirection(distance, null, localizedContext),
-                        (index + 1).toString(),
-                        (route.markers.size).toString()
-                    )
-
+                    val beaconSetText =
+                        if(route.markers.size > 1) {
+                            localizedContext.getString(
+                                R.string.behavior_scavenger_hunt_callout_next_flag,
+                                route.markers[index].name,
+                                formatDistanceAndDirection(distance, null, localizedContext),
+                                (index + 1).toString(),
+                                (route.markers.size).toString()
+                            )
+                        } else {
+                            localizedContext.getString(
+                                R.string.behavior_scavenger_hunt_callout_next_flag_short_route,
+                                route.markers[index].name,
+                                formatDistanceAndDirection(distance, null, localizedContext))
+                        }
+                    if(userInitiated) service.audioEngine.clearTextToSpeechQueue()
                     service.speakText(
                         beaconSetText,
                         AudioType.LOCALIZED, location.latitude, location.longitude, 0.0
                     )
                 }
 
-                service.createBeacon(location, standaloneBeacon)
+                service.createBeacon(location, false)
             }
         }
     }
@@ -198,18 +229,18 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
     }
 
     fun play() {
-        createBeaconAtWaypoint(currentMarker)
+        createBeaconAtWaypoint(currentMarker, true)
         Log.d(TAG, toString())
     }
 
-    fun moveToNext() : Boolean {
+    fun moveToNext(userInitiated: Boolean) : Boolean {
         currentRouteData?.let { route ->
             if(route.markers.size > 1) {
                 if ((currentMarker + 1) < route.markers.size) {
                     currentMarker++
                     _currentRouteFlow.update { it.copy(currentWaypoint = currentMarker) }
 
-                    createBeaconAtWaypoint(currentMarker)
+                    createBeaconAtWaypoint(currentMarker, userInitiated)
                 }
                 return true
             }
@@ -218,13 +249,13 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         return false
     }
 
-    fun moveToPrevious() : Boolean{
+    fun moveToPrevious(userInitiated: Boolean) : Boolean{
         currentRouteData?.let { route ->
             if(route.markers.size > 1) {
                 if (currentMarker > 0) {
                     currentMarker--
                     _currentRouteFlow.update { it.copy(currentWaypoint = currentMarker) }
-                    createBeaconAtWaypoint(currentMarker)
+                    createBeaconAtWaypoint(currentMarker, userInitiated)
                     return true
                 }
             }

@@ -1,18 +1,21 @@
 [versions]
-agp = "8.11.1"
+agp = "9.0.1"
+androidaddressformatter = "8f279fecd4"
 commonmark = "0.25.1"
-kotlin = "2.2.0"
-protobuf-plugin = "0.9.5"
+json = "20240303"
+kotlin = "2.2.10"
+protobuf-plugin = "0.9.6"
 dagger-hilt = "2.57"
-devtools-ksp = "2.2.0-2.0.2"
+devtools-ksp = "2.3.2"
 google-services = "4.4.3"
-jetbrains-dokka = "2.0.0"
+jetbrains-dokka = "2.2.0-Beta"
 firebase-crashlytics = "3.0.6"
 accompanistPermissions = "0.37.3"
 androidGpxParser = "2.3.1"
 composePreferenceLibrary = "1.1.1"
 converterMoshi = "3.0.0"
 converterProtobuf = "3.0.0"
+coreGoogleShortcuts = "1.1.0"
 htmlMermaidDokkaPlugin = "0.6.0"
 jtsCore = "1.20.0"
 leakcanaryAndroid = "2.14"
@@ -59,12 +62,13 @@ robolectric = "4.14.1"
 roomCompiler = "2.7.2"
 roomRuntime = "2.7.2"
 rtree2 = "0.9.3"
-screenshot = "0.0.1-alpha11"
-screenshotValidationApi = "0.0.1-alpha11"
+screenshot = "0.0.1-alpha14"
+screenshotValidationApi = "0.0.1-alpha14"
 benchmarkCommon = "1.4.0"
 lifecycleRuntimeComposeAndroid = "2.9.2"
 lifecycleProcess = "2.9.2"
 uiautomator = "2.3.0"
+jaredsburrows-license = "0.9.8"
 
 # These libraries can't go any higher without breaking map zooming
 composeBom = "2025.04.00"
@@ -73,6 +77,7 @@ composeBom = "2025.04.00"
 [libraries]
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanistPermissions" }
 android-gpx-parser = { module = "com.github.ticofab:android-gpx-parser", version.ref = "androidGpxParser" }
+androidaddressformatter = { module = "com.github.woheller69:AndroidAddressFormatter", version.ref = "androidaddressformatter" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
 androidx-core-testing = { module = "androidx.arch.core:core-testing", version.ref = "coreTesting" }
@@ -94,12 +99,14 @@ commonmark = { module = "org.commonmark:commonmark", version.ref = "commonmark" 
 converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "converterMoshi" }
 converter-protobuf = { module = "com.squareup.retrofit2:converter-protobuf", version.ref = "converterProtobuf" }
 converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "converterScalars" }
+core-google-shortcuts = { module = "androidx.core:core-google-shortcuts", version.ref = "coreGoogleShortcuts" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hiltCompiler" }
 html-mermaid-dokka-plugin = { module = "com.glureau:html-mermaid-dokka-plugin", version.ref = "htmlMermaidDokkaPlugin" }
+json = { module = "org.json:json", version.ref = "json" }
 jts-core = { module = "org.locationtech.jts:jts-core", version.ref = "jtsCore" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
@@ -158,3 +165,4 @@ devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "devtools-ksp" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics"}
 jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "jetbrains-dokka" }
+jaredsburrows-license = { id = "com.jaredsburrows.license", version.ref = "jaredsburrows-license" }

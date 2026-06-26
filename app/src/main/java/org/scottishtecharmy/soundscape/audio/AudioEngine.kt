@@ -14,6 +14,7 @@ interface AudioEngine {
     fun createEarcon(asset: String, type: AudioType, latitude: Double = Double.NaN, longitude: Double = Double.NaN, heading: Double = Double.NaN) : Long
     fun clearTextToSpeechQueue()
     fun getQueueDepth() : Long
+    fun isHandleActive(handle: Long) : Boolean
     fun updateGeometry(listenerLatitude: Double, listenerLongitude: Double, listenerHeading: Double?, focusGained: Boolean, duckingAllowed: Boolean, proximityNear: Double)
     fun setBeaconType(beaconType: String)
     fun getListOfBeaconTypes() : Array<String>
@@ -24,4 +25,5 @@ interface AudioEngine {
     fun updateBeaconType(sharedPreferences: SharedPreferences): Boolean
     fun onAllBeaconsCleared()
     fun textToSpeechAudioConfigCallback(id : String, sampleRateInHz: Int, format: Int, channelCount: Int)
+    fun setHrtfEnabled(enabled: Boolean)
 }

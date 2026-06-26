@@ -31,6 +31,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
@@ -47,7 +48,8 @@ fun LanguageDropDownMenu(
     allLanguages: List<Language>,
     onLanguageSelected : (Language) -> Unit,
     selectedLanguageIndex: Int,
-    modifier : Modifier = Modifier
+    modifier : Modifier = Modifier,
+    backgroundColor: Color = MaterialTheme.colorScheme.surfaceContainer
 ){
     var expanded by rememberSaveable { mutableStateOf(false) }
     val languageSelected by remember(selectedLanguageIndex) {
@@ -62,7 +64,7 @@ fun LanguageDropDownMenu(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(
-                    color = MaterialTheme.colorScheme.surfaceContainer,
+                    color = backgroundColor,
                     shape = RoundedCornerShape(spacing.extraSmall)
                 ),
             verticalAlignment = Alignment.CenterVertically,

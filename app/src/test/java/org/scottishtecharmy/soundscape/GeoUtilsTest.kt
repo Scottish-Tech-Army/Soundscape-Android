@@ -26,6 +26,8 @@ import org.scottishtecharmy.soundscape.geoengine.utils.pixelXYToLatLon
 import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
 import org.junit.Assert
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.Triangle
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateCenterOfCircle
@@ -538,12 +540,12 @@ class GeoUtilsTest {
     fun cheapTestPoint(ruler: CheapRuler, point: LngLatAlt, line: LineString, fc: FeatureCollection) {
         val pdh = ruler.distanceToLineString(point, line)
         val pointFeature1 = Feature()
-        pointFeature1.geometry = Point(point.longitude, point.latitude)
+        pointFeature1.geometry = Point(point)
         pointFeature1.properties = hashMapOf()
         fc.addFeature(pointFeature1)
 
         val pointFeature2 = Feature()
-        pointFeature2.geometry = Point(pdh.point.longitude, pdh.point.latitude)
+        pointFeature2.geometry = Point(pdh.point)
         pointFeature2.properties = hashMapOf()
         fc.addFeature(pointFeature2)
     }
@@ -582,6 +584,40 @@ class GeoUtilsTest {
 
         val adapter = GeoJsonObjectMoshiAdapter()
         val mapMatchingOutput = FileOutputStream("cheap-ruler.geojson")
+        mapMatchingOutput.write(adapter.toJson(fc).toByteArray())
+        mapMatchingOutput.close()
+    }
+
+    @Test
+    fun relativeLeftRightTest() {
+        // Create circle
+        val center = LngLatAlt(-2.653228, 51.431658)
+        val circle = circleToPolygon(
+            32,
+            center.latitude,
+            center.longitude,
+            200.0
+        )
+        // Turn the circle into a line
+        val line = LineString()
+        line.coordinates.addAll(circle.coordinates[0])
+
+        val fc = FeatureCollection()
+
+        val ruler = CheapRuler(center.latitude)
+        for(point in circle.coordinates[0]) {
+            val distance = ruler.distance(center, point)
+            val heading = ruler.bearing(center, point)
+            val text = formatDistanceAndDirection(distance, heading, null, 270.0, "LeftRight")
+
+            val pointFeature1 = Feature()
+            pointFeature1.geometry = Point(point)
+            pointFeature1.properties = hashMapOf("direction" to text)
+            fc.addFeature(pointFeature1)
+        }
+
+        val adapter = GeoJsonObjectMoshiAdapter()
+        val mapMatchingOutput = FileOutputStream("relative-left-right.geojson")
         mapMatchingOutput.write(adapter.toJson(fc).toByteArray())
         mapMatchingOutput.close()
     }
@@ -886,8 +922,8 @@ class GeoUtilsTest {
             )
         }
 
-        val feature1 = Feature()
-        val feature2 = Feature()
+        val feature1 = MvtFeature()
+        val feature2 = MvtFeature()
         feature1.geometry = polygon1
         feature2.geometry = polygon2
 
@@ -956,8 +992,8 @@ class GeoUtilsTest {
             )
         }
 
-        val feature1 = Feature()
-        val feature2 = Feature()
+        val feature1 = MvtFeature()
+        val feature2 = MvtFeature()
         feature1.geometry = polygon1
         feature2.geometry = polygon2
 
@@ -968,8 +1004,8 @@ class GeoUtilsTest {
    }
     @Test
     fun cheapRulerWrapTest(){
-        var a = LngLatAlt(0.0, 0.0)
-        var b = LngLatAlt(0.0, 0.0)
+        val a = LngLatAlt(0.0, 0.0)
+        val b = LngLatAlt(0.0, 0.0)
         a.createCheapRuler().distance(b, a)
 
         a.longitude = -181.0

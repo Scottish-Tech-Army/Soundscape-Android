@@ -7,10 +7,53 @@ has_toc: false
 
 # Release notes
 
-# 0.0.118
-We keep track of issues in GitHub [here](https://github.com/Scottish-Tech-Army/Soundscape-Android/milestones).
+# 0.4.x
+0.4 releases add some new means of controlling the app remotely through using headphone media controls and speech recognition. For more information see [Help using Media Controls]({% link users/help-using-media-controls.md %}).
+Smaller fixes include:
+* Add an onboarding screen to give the user the ability to allow the app to run unhindered when the phone is locked. This is important for phone manufacturers which run more aggressive battery optimization which can stop Soundscape running.
+* Tapping any of the Hear My Surroundings buttons will cancel any which were already in progress. For example, tapping My Location and then tapping it again will stop the speech.
+* Bug fix for some media controls which were causing crash when using audio menu.
 
-## New changes since 0.0.116
+# 0.3.x
+The main change in 0.3 is a switch in how the 3D audio is created. This should give a more distinct positioning of the app sounds.
+
+# 0.2.x
+We've bumped the minor release number and aim to update release notes each time we do this instead of on each minor build.
+
+## Changes since 0.1.8
+The main focus has been on improving Search and My Location. We now have offline search which uses downloaded offline maps and allows search without any Internet connection. The Search UI has changed in that it requires the user to tap on the Search key to trigger a search, and the results displayed now include street address where possible. Searching on street addresses should work much better and uses a combination of Android system and our own search server. Offline search will find street addresses if the Open Street Map data includes them.
+
+Where searches returns points of interest they now include the type of the place e.g. restaurant, bakery, convenience store. This also appears in Places Nearby and hopefully helps clear up an problems telling businesses apart.
+
+In Settings, there's a new option to only use offline search which won't search using the Internet.
+
+Other changes include:
+
+* Cyclepaths are treated the same as sidewalks for describing surroundings so that the street name is used instead of any cyclepath name. This is useful for heavily mapped areas which have cyclepaths running along side roads.
+* Talkback editing of the query text within the Search text field should now work.
+
+
+## Changes since 0.0.118
+
+Offline map support has been added and this has involved a large number of changes. When offline maps are downloaded to the app it means that Soundscape can run the majority of its features without any network access. In this initial release, Search still requires network support, but Places Nearby, the audio callouts and the graphical map will all use the downloaded offline maps where present.
+  
+There are a large number of pre-built map regions which cover everywhere on the planet. Many locations will be within more than one offline map region and so the user can choose which one they would like to download and use. More than one offline map can be downloaded and Soundscape will switch between them automatically as the user moves around.
+
+Map regions can be whole countries, states or clusters of larger towns and cities. They vary in size depending on how well mapped a region is as well as the physical size of the region. If you are the first user to download a region, there will be a short delay before the download starts. This can be up to a few minutes during which the server processes the map to make it available for download.
+
+The currently downloaded offline maps can be seen by going to Menu/Offline maps. That screen also shows the nearby maps that can be downloaded. The Location Details screen also has a link to offline maps so if you want to download maps for somewhere you are travelling to you can Search for that location and then tap on the "Nearby offline maps" button to see which maps are available at that location. Maps which are no longer required can be deleted by selecting one of the "Maps already downloaded" and then selecting "Delete offline map".
+
+Other changes include:
+
+* All map tiles used for the audio and graphical maps are a four times greater area than previous releases. This change was made for two reasons. Firstly, so that Places Nearby list covers a much larger area, and secondly so that the new offline maps are half the size they would have been as we no longer generate zoom level 15 map tiles.
+* Various small improvements to the UI to make it more accessible.
+* Added use of mapped Entrances within Places Nearby list. This means that for buildings and point of interest which have mapped entrances the entrances are used as the location to navigate to. If no entrance is mapped, then it's the nearest point on the building/POI to the user that will be used.
+* Added Russian and Icelandic translations - these were largely done by native speakers, but finished off by AI.
+* Updated all of the translations, largely using AI translations. These can be imperfect, but are likely better than no translation. All feedback on translations is welcome and can be done on a per-string basis at <https://hosted.weblate.org/projects/soundscape-android/android-app/>
+* Settings now contains "Reset to defaults" button at bottom. The current Settings are also now included in the Contact Support email, so if you think there's a problem with the settings then use Contact Support prior to resetting so that we can try and reproduce the issue.
+* Clearing, Exporting and Importing Markers and Routes has been added in "Advanced Markers and Routes" at the bottom of the Settings screen. Routes are exported (and imported) as GPX files within a Zip file. Markers not within a route are put in a separate GPX within the Zip. This allows for backup of the database along with sharing of sets of routes and markers.
+
+## Changes between 0.0.116 and 0.0.118
 * Fixed race when announcing "Route completed".
 * Included direction in UI everywhere that there's a distance.
 * Callout marker annotations when they are present.

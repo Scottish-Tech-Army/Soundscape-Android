@@ -1,0 +1,886 @@
+
+Callout
+	Approaching intersection
+		Path to Mosswell Road continues ahead
+		Roselea Drive goes right
+
+Callout
+	Ahead Roselea Drive
+
+Callout
+	Ahead Path to Mosswell Road
+
+Callout
+	Ahead Path to Mosswell Road
+
+Callout
+	Ahead Mosswell Road
+
+Callout
+	Approaching intersection
+		Strathblane Road goes left
+		Strathblane Road goes right
+
+Callout
+	Ahead Strathblane Road
+
+Callout
+	Ahead Strathblane Road
+
+Callout
+	Ahead Strathblane Road
+
+Callout
+	Approaching intersection
+		Strathblane Road continues ahead
+		Moor Road goes right
+
+Callout
+	post
+
+Callout
+	Approaching intersection
+		Moor Road goes left
+		Moor Road goes right
+
+Callout
+	Approaching intersection
+		Moor Road continues ahead
+		Tannoch Drive goes right
+
+Callout
+	Ahead Moor Road
+
+Callout
+	Approaching intersection
+		Ladywood to dead end goes left
+		Moor Road continues ahead
+
+Callout
+	Approaching intersection
+		Moor Road continues ahead
+		Craigmillar Avenue goes right
+
+Callout
+	Ahead Moor Road
+
+Callout
+	Approaching intersection
+		Buchanan Street goes left
+		Buchanan Street goes right
+
+Callout
+	Ahead Moor Road
+
+Callout
+	Ahead Buchanan Street
+
+Callout
+	Barloch Moor
+
+Callout
+	Approaching intersection
+		Path to Barloch Moor goes left
+		Buchanan Street continues ahead
+
+Callout
+	Ahead Buchanan Street
+
+Callout
+	Ahead Path to Barloch Moor
+
+Callout
+	Approaching intersection
+		Path continues ahead
+		Path goes right
+
+Callout
+	Approaching intersection
+		Path to Mugdock Road via bridge continues ahead
+		Path continues ahead
+
+Callout
+	At Barloch Moor
+
+Callout
+	Ahead Path
+
+Callout
+	Ahead Path to Mugdock Road via bridge
+
+Callout
+	Ahead Path to Mugdock Road via bridge
+
+Callout
+	At Barloch Moor
+
+Callout
+	Ahead Path to Mugdock Road via bridge
+
+Callout
+	Approaching intersection
+		Mugdock Road goes left
+		Mugdock Road goes right
+
+Callout
+	Approaching intersection
+		Sinclair Street continues ahead
+		Service to Woodlands Street goes right
+
+Callout
+	Barloch Moor
+
+Callout
+	Ahead Sinclair Street
+
+Callout
+	post
+
+Callout
+	Approaching intersection
+		Sinclair Street continues ahead
+		Woodlands Street goes right
+
+Callout
+	Ahead Sinclair Street
+
+Callout
+	Ahead Sinclair Street
+
+Callout
+	Milngavie Library & Community Education Centre
+
+Callout
+	Ahead Path
+
+Callout
+	Approaching intersection
+		Path to West Highland Way via steps goes left
+		Path continues ahead
+
+Callout
+	Approaching intersection
+		West Highland Way goes left
+		West Highland Way continues ahead
+		Path goes right
+
+Callout
+	Ahead Path
+
+Callout
+	Approaching intersection
+		Path via tunnel goes left
+		West Highland Way goes right
+
+Callout
+	Ahead Path to West Highland Way
+
+Callout
+	Milngavie Library & Community Education Centre
+
+Callout
+	Ahead West Highland Way
+
+Callout
+	Ahead West Highland Way
+
+Callout
+	Approaching intersection
+		Allander Road goes left
+		Allander Road goes right
+
+Callout
+	Milngavie Library & Community Education Centre
+
+Callout
+	Approaching intersection
+		West Highland Way continues ahead
+		Path to Allander Road goes right
+
+Callout
+	Ahead West Highland Way
+
+Callout
+	Ahead West Highland Way
+
+Callout
+	Milngavie Enterprise Centre
+
+Callout
+	Ahead West Highland Way
+
+Callout
+	memorial
+
+Callout
+	Approaching intersection
+		Path continues ahead
+		Path goes right
+
+Callout
+	Approaching intersection
+		Path to Milngavie Youth Centre goes left
+		West Highland Way goes left
+		Path goes right
+
+Callout
+	Approaching intersection
+		Path to Milngavie Youth Centre goes left
+		West Highland Way continues ahead
+
+Callout
+	Ahead West Highland Way
+
+Callout
+	memorial
+
+Callout
+	Approaching intersection
+		Ellangowan Road goes left
+		Ellangowan Road goes right
+
+Callout
+	Approaching intersection
+		Riverside goes left
+		Riverside goes right
+
+Callout
+	Approaching intersection
+		West Highland Way goes left
+		Riverside continues ahead
+
+Callout
+	bridge
+
+Callout
+	Approaching intersection
+		Douglas Street goes left
+		Douglas Street goes right
+
+Callout
+	Approaching intersection
+		Douglas Street continues ahead
+		Path to Ellangowan Car Park goes right
+
+Callout
+	Greggs
+
+Callout
+	Costa
+
+Callout
+	Approaching intersection
+		Path to The Fraser Centre goes left
+		Douglas Street continues ahead
+
+Callout
+	Top Up Tap
+
+Callout
+	Ahead Douglas Street
+
+Callout
+	Spar
+
+Callout
+	playground
+
+Callout
+	Approaching intersection
+		Main Street goes left
+		Douglas Street goes right
+
+Callout
+	Milngavie Pharmacy
+
+Callout
+	Specsavers
+
+Callout
+	RBS
+
+Callout
+	Approaching intersection
+		Douglas Street continues ahead
+		Path to Claremont Drive goes right
+
+Callout
+	clock
+
+Callout
+	Allander Evangelical
+
+Callout
+	Ahead Path to Claremont Drive
+
+Callout
+	Approaching intersection
+		South Claremont Lane goes left
+		Claremont Drive continues ahead
+
+Callout
+	Approaching intersection
+		Claremont Gardens goes left
+		Claremont Drive continues ahead
+
+Callout
+	Approaching intersection
+		Claremont Drive continues ahead
+		Path to Riverside goes right
+
+Callout
+	Ahead Claremont Gardens
+
+Callout
+	Approaching intersection
+		Clober Road goes left
+		Clober Road goes right
+
+Callout
+	Approaching intersection
+		South Claremont Lane goes left
+		Clober Road continues ahead
+
+Callout
+	Ahead Clober Road
+
+Callout
+	Ahead South Claremont Lane
+
+Callout
+	Ahead Clober Road
+
+Callout
+	Approaching intersection
+		Douglas Street goes left
+		Park Road continues ahead
+		Craigdhu Road goes right
+
+Callout
+	crossing
+
+Callout
+	Ahead Craigdhu Road
+
+Callout
+	Approaching intersection
+		Lennox Avenue goes left
+		Craigdhu Road continues ahead
+		Ferguson Avenue goes right
+
+Callout
+	Milngavie United Free Church
+
+Callout
+	crossing
+
+Callout
+	Ahead Craigdhu Road
+
+Callout
+	Ahead Craigdhu Road
+
+Callout
+	Approaching intersection
+		Campbell Avenue goes left
+		Craigdhu Road continues ahead
+
+Callout
+	Milngavie, Campbell Avenue (before)
+
+Callout
+	Milngavie Clinic
+
+Callout
+	crossing
+
+Callout
+	Ahead Campbell Avenue
+
+Callout
+	Ahead Campbell Avenue
+
+Callout
+	Ahead Campbell Avenue
+
+Callout
+	Ahead Campbell Avenue
+
+Callout
+	Approaching intersection
+		Braehead Avenue goes left
+		Braehead Avenue goes right
+
+Callout
+	Ahead Braehead Avenue
+
+Callout
+	Ahead Braehead Avenue
+
+Callout
+	Ahead Braehead Avenue
+
+Callout
+	Ahead Braehead Avenue
+
+Callout
+	Approaching intersection
+		South Mains Road goes left
+		Braefoot Avenue continues ahead
+		South Mains Road goes right
+
+Callout
+	Ahead South Mains Road
+
+Callout
+	Approaching intersection
+		Path goes left
+		South Mains Road continues ahead
+
+Callout
+	Approaching intersection
+		South Mains Road continues ahead
+		Service to Main Street goes right
+
+Callout
+	Approaching intersection
+		South Mains Road continues ahead
+		Service to Main Street goes right
+
+Callout
+	Lennox Park
+
+Callout
+	Approaching intersection
+		Main Street goes left
+		Path to Lennox Park goes left
+		Keystone Avenue continues ahead
+		Main Street goes right
+
+Callout
+	Approaching intersection
+		Path to Pavement next to Main Street goes left
+		Main Street continues ahead
+
+Callout
+	Approaching intersection
+		Main Street goes left
+		Path to Lennox Park goes left
+		Keystone Avenue continues ahead
+		Main Street goes right
+
+Callout
+	Ahead Keystone Avenue
+
+Callout
+	At Lennox Park
+
+Callout
+	Approaching intersection
+		Path to Christine's on the Green goes left
+		Path continues ahead
+		Path goes right
+
+Callout
+	pitch
+
+Callout
+	Ahead Path
+
+Callout
+	playground
+
+Callout
+	pitch
+
+Callout
+	Ahead Path
+
+Callout
+	At Lennox Park
+
+Callout
+	Ahead Path
+
+Callout
+	Ahead Path
+
+Callout
+	At Lennox Park
+
+Callout
+	Ahead Path
+
+Callout
+	Approaching intersection
+		Keystone Road goes left
+		Keystone Avenue continues ahead
+
+Callout
+	Approaching intersection
+		Keystone Avenue goes left
+		Keystone Avenue goes right
+
+Callout
+	Approaching intersection
+		Keystone Avenue goes left
+		Keystone Avenue continues ahead
+
+Callout
+	Ahead Path via bridge
+
+Callout
+	At Lennox Park
+
+Callout
+	Ahead Path via bridge
+
+Callout
+	Approaching intersection
+		Path goes left
+		Path via steps continues ahead
+
+Callout
+	Ahead Path via steps
+
+Callout
+	At Lennox Park
+
+Callout
+	Ahead Path via steps
+
+Callout
+	pitch
+
+Callout
+	Approaching intersection
+		Path continues ahead
+		Service to Crossveggate via bridge goes right
+
+Callout
+	pitch
+
+Callout
+	At Lennox Park
+
+Callout
+	Ahead Path via steps
+
+Callout
+	Ahead Path
+
+Callout
+	pitch
+
+Callout
+	pitch
+
+Callout
+	Approaching intersection
+		Path to Tesco goes left
+		Path continues ahead
+
+Callout
+	pitch
+
+Callout
+	Tesco
+
+Callout
+	Ahead Path
+
+Callout
+	At Lennox Park
+
+Callout
+	Ahead Path
+
+Callout
+	shelter
+
+Callout
+	Tesco
+
+Callout
+	Ahead Path
+
+Callout
+	Pod Point
+
+Callout
+	Milngavie
+
+Callout
+	Ahead Path
+
+Callout
+	Milngavie Station
+
+Callout
+	Prego
+
+Callout
+	Approaching intersection
+		Path goes left
+		Path goes right
+
+Callout
+	Approaching intersection
+		Path via tunnel goes left
+		Path goes right
+
+Callout
+	Kwik Fit
+
+Callout
+	Milngavie
+
+Callout
+	Milngavie Station
+
+Callout
+	Ahead Path to Milngavie Station
+
+Callout
+	Approaching intersection
+		Path to Station Road goes left
+		Path to Station Road via steps continues ahead
+
+Callout
+	Ahead Path via tunnel
+
+Callout
+	Approaching intersection
+		Station Road goes left
+		Path to Woodburn Way Car Park goes left
+		Path goes left
+		Station Road goes right
+
+Callout
+	The Honeybee Bakery
+
+Callout
+	Approaching intersection
+		Station Road continues ahead
+		Hillhead Street goes right
+
+Callout
+	Kersland House Surgery
+
+Callout
+	Approaching intersection
+		Path via tunnel continues ahead
+		Path to Station Road goes right
+
+Callout
+	Ahead Station Road
+
+Callout
+	Ahead Station Road
+
+Callout
+	St Joseph's RC Church
+
+Callout
+	Approaching intersection
+		Station Road goes left
+		Woodburn Way goes right
+
+Callout
+	crossing
+
+Callout
+	Milngavie Town Hall
+
+Callout
+	Approaching intersection
+		Buchanan Street goes left
+		Station Road continues ahead
+		Path goes right
+
+Callout
+	Approaching intersection
+		Station Road continues ahead
+		Fulton Road goes right
+
+Callout
+	Ahead Station Road
+
+Callout
+	St Joseph's RC Church
+
+Callout
+	Approaching intersection
+		Service to Kersland Drive goes left
+		Station Road continues ahead
+		Path goes right
+
+Callout
+	The Lillie Art Gallery
+
+Callout
+	Ahead Station Road
+
+Callout
+	Milngavie Town Hall
+
+Callout
+	Approaching intersection
+		Strathblane Road goes left
+		Baldernock Road continues ahead
+		Glasgow Road goes right
+
+Callout
+	St Pauls Milngavie
+
+Callout
+	crossing
+
+Callout
+	Approaching intersection
+		Service to The Lillie Art Gallery goes left
+		Strathblane Road continues ahead
+
+Callout
+	Milngavie, Station Road (before)
+
+Callout
+	Milngavie, Kersland Lane (before)
+
+Callout
+	Ahead Strathblane Road
+
+Callout
+	Approaching intersection
+		Kersland Lane goes left
+		Strathblane Road continues ahead
+
+Callout
+	St Pauls Milngavie
+
+Callout
+	Ahead Strathblane Road
+
+Callout
+	Approaching intersection
+		Strathblane Road continues ahead
+		Service to dead-end goes right
+
+Callout
+	Robert Hill
+
+Callout
+	Ahead Strathblane Road
+
+Callout
+	Milngavie Mini Market
+
+Callout
+	Milngavie, Strathblane Road (at 70)
+
+Callout
+	Approaching intersection
+		Strathblane Road continues ahead
+		Service goes right
+
+Callout
+	Approaching intersection
+		Path to Campsie Drive via steps goes left
+		Service to Milngavie Mini Market continues ahead
+
+Callout
+	Ahead Path to Campsie Drive via steps
+
+Callout
+	Approaching intersection
+		Campsie Drive goes left
+		Campsie Drive goes right
+
+Callout
+	Approaching intersection
+		Campsie Drive goes left
+		Campsie Drive goes right
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Approaching intersection
+		Path to Strathblane Road via steps goes left
+		Campsie Drive continues ahead
+		Path to Tower Place goes right
+
+Callout
+	playground
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Ahead Campsie Drive
+
+Callout
+	Approaching intersection
+		Campsie Drive continues ahead
+		Middleton Drive goes right
+
+Callout
+	post
+
+Callout
+	Approaching intersection
+		Lynn Drive goes left
+		Lynn Drive continues ahead
+
+Callout
+	Ahead Lynn Drive
+
+Callout
+	Approaching intersection
+		Strathblane Road goes left
+		Strathblane Road goes right
+
+Callout
+	Milngavie, Lynn Drive (after)
+
+Callout
+	Ahead Strathblane Road
+
+Callout
+	Approaching intersection
+		Strathblane Road continues ahead
+		Roselea Drive goes right
+
+Callout
+	Ahead Roselea Drive
+
+Callout
+	Ahead Roselea Drive
+
+Callout
+	Approaching intersection
+		Roselea Drive continues ahead
+		Service goes right
+
+Callout
+	Ahead Service
+
+Callout
+	Approaching intersection
+		Service goes left
+		Roselea Drive continues ahead

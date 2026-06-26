@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.language
 
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -12,11 +13,14 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
@@ -30,6 +34,7 @@ import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.utils.supportedLanguages
 
 @Composable
 fun LanguageScreen(
@@ -59,6 +64,7 @@ fun LanguageComposable(
     selectedLanguageIndex: Int,
     modifier : Modifier = Modifier
 ){
+    val focusRequester = remember { FocusRequester() }
 
     /*TODO move to the test if(mockData != null) {
         supportedLanguages = MockLanguagePreviewData.languages
@@ -84,14 +90,15 @@ fun LanguageComposable(
                 textAlign = TextAlign.Center,
                 modifier = Modifier.semantics {
                     heading()
-                },
+                }.focusRequester(focusRequester).focusable(),
             )
             Spacer(modifier = Modifier.height(spacing.small))
             Text(
                 text = stringResource(R.string.first_launch_soundscape_language_text),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                modifier = Modifier.focusable()
             )
 
             Spacer(modifier = Modifier.height(spacing.large))
@@ -99,7 +106,7 @@ fun LanguageComposable(
             LanguageDropDownMenu(
                 allLanguages = supportedLanguages,
                 onLanguageSelected = onLanguageSelected,
-                selectedLanguageIndex = selectedLanguageIndex
+                selectedLanguageIndex = selectedLanguageIndex,
             )
 
             Spacer(modifier = Modifier.height(spacing.large))
@@ -121,6 +128,7 @@ fun LanguageComposable(
                     },
                     modifier = Modifier
                         .fillMaxWidth()
+                        .focusable()
                         .testTag("languageScreenContinueButton"),
                     enabled = isContinueEnabled
                 )
@@ -128,32 +136,15 @@ fun LanguageComposable(
 
         }
     }
+
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
+    }
 }
 
 // Data used by preview
 data object MockLanguagePreviewData {
-    val languages = listOf(
-        Language("العربية المصرية", "arz", "EG"),
-        Language("Dansk", "da", "DK"),
-        Language("Deutsch", "de", "DE"),
-        Language("Ελληνικά", "el", "GR"),
-        Language("English", "en", "US"),
-        Language("English (UK)", "en", "GB"),
-        Language("Español", "es", "ES"),
-        Language("فارسی", "fa", "IR"),
-        Language("Suomi", "fi", "FI"),
-        Language("Français", "fr", "FR"),
-        Language("Français (Canada)", "fr", "CA"),
-        Language("Italiano", "it", "IT"),
-        Language("日本語", "ja", "JP"),
-        Language("Norsk", "nb", "NO"),
-        Language("Nederlands", "nl", "NL"),
-        Language("Polski", "pl", "PL"),
-        Language("Português (Brasil)", "pt", "BR"),
-        Language("Português (Portugal)", "pt", "PT"),
-        Language("Svenska", "sv", "SE"),
-        Language("українська", "uk", "UK")
-    )
+    val languages = supportedLanguages
 }
 
 @Preview(device = "spec:parent=pixel_5,orientation=landscape")

@@ -6,8 +6,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -71,7 +73,7 @@ private data class SimpleMarkerData(
 private data class SimpleRouteData(
     var name: String = "",
     var description: String = "",
-    var waypoints: MutableList<SimpleMarkerData> = emptyList<SimpleMarkerData>().toMutableList()
+    var waypoints: MutableList<SimpleMarkerData> = mutableListOf()
 )
 
 fun generateRouteDetailsRoute(routeData: RouteWithMarkers): String {
@@ -145,7 +147,7 @@ fun AddAndEditRouteScreenVM(
         onNameChange = { viewModel.onNameChange(it) },
         onDescriptionChange = { viewModel.onDescriptionChange(it) },
         onDeleteRoute = { viewModel.deleteRoute(it) },
-        onEditComplete = { viewModel.editComplete() },
+        onEditComplete = { viewModel.editComplete(it) },
         onClickFolder = { folder, title ->
             viewModel.onClickFolder(folder, title)
         },
@@ -153,8 +155,13 @@ fun AddAndEditRouteScreenVM(
         userLocation = userLocation,
         heading = heading,
         onSelectLocation = { location -> viewModel.onSelectLocation(location) },
-        createAndAddMarker = { location, successMessage, failureMessage ->
-            viewModel.createAndAddMarker(location, successMessage, failureMessage)
+        onToggleMember = { location -> viewModel.toggleMember(location) },
+        createAndAddMarker = { location, successMessage, failureMessage, duplicateMessage ->
+            viewModel.createAndAddMarker(
+                location,
+                successMessage,
+                failureMessage,
+                duplicateMessage)
         },
         getCurrentLocationDescription = getCurrentLocationDescription
     )
@@ -175,11 +182,12 @@ fun AddAndEditRouteScreen(
     onNameChange: (newText: String) -> Unit,
     onDescriptionChange: (newText: String) -> Unit,
     onDeleteRoute: (objectId: Long) -> Unit,
-    onEditComplete: () -> Unit,
+    onEditComplete: (List<LocationDescription>) -> Unit,
     onClickFolder: (String, String) -> Unit,
     onClickBack: () -> Unit,
     onSelectLocation: (LocationDescription) -> Unit,
-    createAndAddMarker: (LocationDescription, String, String) -> Unit,
+    onToggleMember: (LocationDescription) -> Unit,
+    createAndAddMarker: (LocationDescription, String, String, String) -> Unit,
     getCurrentLocationDescription: () -> LocationDescription,
     heading: Float,
 ) {
@@ -191,9 +199,6 @@ fun AddAndEditRouteScreen(
             marker.orderId = index.toLong()
         }
         mutableStateOf(members)
-    }
-    val editableRouteList = remember(routeMembers) {
-        routeMembers.toMutableList()
     }
 
     val lazyListState = rememberLazyListState()
@@ -223,7 +228,13 @@ fun AddAndEditRouteScreen(
                     navController.popBackStack()
                 }
                 ActionType.DELETE -> {
-                    navController.popBackStack(HomeRoutes.MarkersAndRoutes.route, false)
+                    // The route has been deleted, so navigate directly to the routes tab.
+                    // Use popUpTo(home) so AddAndEditRouteScreen (and anything above MarkersAndRoutes)
+                    // is removed from the back stack before navigating, preventing back-swipe
+                    // from landing on AddAndEditRouteScreen.
+                    navController.navigate(HomeRoutes.MarkersAndRoutes.route + "?tab=routes") {
+                        popUpTo(HomeRoutes.Home.route) { inclusive = false }
+                    }
                 }
                 else -> {
                     assert(false)
@@ -243,23 +254,50 @@ fun AddAndEditRouteScreen(
         AddWaypointsDialog(
             uiState = uiState,
             placesNearbyUiState = placesNearbyUiState,
-            routeList = editableRouteList,
             onAddWaypointComplete = {
-                // Update indices
-                for((index, marker) in editableRouteList.withIndex()) {
+                // Create the final list of markers within the route
+
+                // Determine which ids to keep (from uiState, not toggled out)
+                val keepIds = uiState.routeMembers
+                    .filter { marker -> !uiState.toggledMembers.any { it.databaseId == marker.databaseId } }
+                    .map { it.databaseId }
+                    .toSet()
+
+                // Filter routeMembers (preserving user's reordering) to keep only those ids in order
+                val routeMemberIds = routeMembers.map { it.databaseId }.toSet()
+                val members = routeMembers
+                    .filter { it.databaseId in keepIds }
+                    .toMutableList()
+
+                // Add entries that are in keepIds but weren't in routeMembers (added while dialog open)
+                val missingFromReorder = uiState.routeMembers
+                    .filter { it.databaseId in keepIds && it.databaseId !in routeMemberIds }
+                members.addAll(missingFromReorder)
+
+                // Add toggled members that weren't already in the route
+                for(marker in uiState.toggledMembers) {
+                    if(!uiState.routeMembers.any { it.databaseId == marker.databaseId }) {
+                        members.add(marker)
+                    }
+                }
+                // Reset orderId values
+                for((index, marker) in members.withIndex()) {
                     marker.orderId = index.toLong()
                 }
-                routeMembers = editableRouteList
+
+                routeMembers = members
                 addWaypointDialog = false
             },
             onClickFolder = onClickFolder,
             onClickBack = {
-                if(placesNearbyUiState.level == 0)
+                if(placesNearbyUiState.level == 0) {
                     addWaypointDialog = false
+                }
                 else
                     onClickBack()
             },
             onSelectLocation = onSelectLocation,
+            onToggleMember = onToggleMember,
             createAndAddMarker = createAndAddMarker,
             modifier = modifier,
             userLocation = location,
@@ -280,8 +318,7 @@ fun AddAndEditRouteScreen(
                     navigationButtonTitle = stringResource(R.string.general_alert_cancel),
                     onRightButton = {
                         // Update the route
-                        uiState.routeMembers = routeMembers
-                        onEditComplete()
+                        onEditComplete(routeMembers)
                     },
                     rightButtonTitle = stringResource(R.string.general_alert_done)
                 )
@@ -310,7 +347,9 @@ fun AddAndEditRouteScreen(
                         Modifier
                             .fillMaxWidth()
                             .smallPadding(),
-                        onClick = { addWaypointDialog = true },
+                        onClick = {
+                            addWaypointDialog = true
+                        },
                         shape = RoundedCornerShape(spacing.small),
                         text = stringResource(R.string.route_detail_edit_waypoints_button),
                         textStyle = MaterialTheme.typography.bodyLarge,
@@ -330,27 +369,18 @@ fun AddAndEditRouteScreen(
                             .padding(padding)
                             .extraSmallPadding()
                     ) {
-                        Text(
-                            modifier = Modifier.padding(top = spacing.small, bottom = spacing.extraSmall),
-                            text = stringResource(R.string.markers_sort_button_sort_by_name),
-                            style = MaterialTheme.typography.bodyMedium,
-                        )
                         CustomTextField(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .extraSmallPadding(),
+                            fieldName = stringResource(R.string.markers_sort_button_sort_by_name),
+                            fieldHint = stringResource(R.string.route_name_description_hint),
+                            modifier = Modifier.fillMaxWidth(),
                             value = uiState.name,
                             onValueChange = onNameChange
                         )
-                        Text(
-                            modifier = Modifier.padding(top = spacing.medium, bottom = spacing.extraSmall),
-                            text = stringResource(R.string.route_detail_edit_description),
-                            style = MaterialTheme.typography.bodyMedium,
-                        )
+                        Spacer(modifier = Modifier.height(spacing.medium))
                         CustomTextField(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .extraSmallPadding(),
+                            fieldName = stringResource(R.string.route_detail_edit_description),
+                            fieldHint = stringResource(R.string.route_description_description_hint),
+                            modifier = Modifier.fillMaxWidth(),
                             value = uiState.description,
                             onValueChange = onDescriptionChange
                         )
@@ -359,7 +389,7 @@ fun AddAndEditRouteScreen(
                             thickness = spacing.tiny,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .smallPadding(),
+                                .mediumPadding(),
                         )
                         // Display the list of markers in the route
                         if(routeMembers.isEmpty()) {
@@ -460,11 +490,12 @@ fun NewRouteScreenPreview() {
         onNameChange = {},
         onDescriptionChange = {},
         onDeleteRoute = {},
-        onEditComplete = {},
+        onEditComplete = {_ -> },
         onClickFolder = {_,_ ->},
         onClickBack = {},
         onSelectLocation = {_ ->},
-        createAndAddMarker = {_,_,_ ->},
+        onToggleMember = {_ ->},
+        createAndAddMarker = {_,_,_,_ ->},
         getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
     )
 }
@@ -488,11 +519,12 @@ fun EditRouteScreenPreview() {
         onNameChange = {},
         onDescriptionChange = {},
         onDeleteRoute = {},
-        onEditComplete = {},
+        onEditComplete = {_ -> },
         onClickFolder = {_,_ ->},
         onClickBack = {},
         onSelectLocation = {_ ->},
-        createAndAddMarker = {_,_,_ ->},
+        onToggleMember = {_ ->},
+        createAndAddMarker = {_,_,_,_ ->},
         getCurrentLocationDescription = { LocationDescription("Location", LngLatAlt()) },
     )
 }

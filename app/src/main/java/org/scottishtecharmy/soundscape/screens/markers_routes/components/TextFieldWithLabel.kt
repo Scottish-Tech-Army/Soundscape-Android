@@ -48,7 +48,7 @@ fun TextFieldWithLabelPreview() {
     TextFieldWithLabel(
         label = "Name",
         value = textValue,
-        onValueChange = { textValue = it },
+        onValueChange = { },
         textStyle = MaterialTheme.typography.bodyLarge,
         shape = RoundedCornerShape(spacing.extraSmall),
         isSingleLine = true

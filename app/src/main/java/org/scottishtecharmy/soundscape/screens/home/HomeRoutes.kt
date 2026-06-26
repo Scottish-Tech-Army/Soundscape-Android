@@ -44,4 +44,16 @@ sealed class HomeRoutes(
         route = "language_screen",
         title = "LanguageScreen",
     )
+    data object OfflineMaps : HomeRoutes(
+        route = "offline_maps",
+        title = "OfflineMaps",
+    )
+    data object AdvancedMarkersAndRoutesSettings : HomeRoutes(
+        route = "advanced_markers_and_routes_settings",
+        title = "AdvancedMarkersAndRoutesSettings",
+    )
+    data object OpenSourceLicense : HomeRoutes(
+        route = "open_source_licenses",
+        title = "OpenSourceLicenses",
+    )
 }

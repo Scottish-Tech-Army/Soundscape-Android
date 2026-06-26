@@ -7,10 +7,9 @@
 name: Deploy Jekyll site to Pages
 
 on:
-  push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
+  # Auto-deploy from this branch is disabled while v1.0 is the docs source.
+  # The v1.0 branch's copy of this workflow handles scheduled deploys.
+  # This workflow can still be run manually from the Actions tab.
   workflow_dispatch:
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
@@ -30,13 +29,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
 
       - name: Set Up JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '19'
@@ -45,7 +44,7 @@ jobs:
         run: ./gradlew dokkaGenerate
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: dokka
           path: app/build/dokka/html/
@@ -59,7 +58,7 @@ jobs:
         working-directory: docs
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
@@ -69,14 +68,29 @@ jobs:
           cache-version: 0 # Increment this number if you need to re-download cached gems
           working-directory: '${{ github.workspace }}/docs'
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install beacon generator dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y vorbis-tools
+          python3 -m pip install --upgrade pip
+          python3 -m pip install numpy scipy matplotlib
+
+      - name: Generate beacon audio samples and spectrum plots
+        run: python3 generate-beacons.py
+
       - name: Setup Pages
         id: pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
       - name: Download all workflow run artifacts in order to get Dokka docs
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
-          path: docs
+          path: docs/dokka
 
       - name: Sync assets to docs
         run: |
@@ -93,7 +107,7 @@ jobs:
 
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: docs/_site/
 
@@ -107,4 +121,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

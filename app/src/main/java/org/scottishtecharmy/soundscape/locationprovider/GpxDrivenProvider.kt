@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.locationprovider
 
 import android.content.Context
 import android.util.Log
-import com.google.android.gms.location.DeviceOrientation
 import io.ticofab.androidgpxparser.parser.GPXParser
 import io.ticofab.androidgpxparser.parser.domain.Gpx
 import kotlinx.coroutines.CoroutineScope
@@ -30,11 +29,11 @@ class GpxDrivenProvider  {
     private var latStep = 0.0
     private var lngStep = 0.0
 
-    private val msWait = 100.0
-    private val walkingSpeed = 10.0
+    private val msWait = 1000.0
+    private val walkingSpeed = 1.0
 
     fun start(context : Context) {
-        val input = context.assets.open("gpx/rideWithGps.gpx")
+        val input = context.assets.open("gpx/milngavie-centre.gpx")
         parseGpx(input)
 
         coroutineScope.launch {
@@ -43,7 +42,7 @@ class GpxDrivenProvider  {
                 val point = parsedGpx?.tracks?.get(0)?.trackSegments?.get(0)?.trackPoints?.get(trackPointIndex)
 
                 var heading = 0.0
-                point?.let { it ->
+                point?.let {
                     if(stepsInPoint == 0) {
                         val pointLngLatAlt = LngLatAlt(it.longitude, it.latitude)
                         val nextPoint =
@@ -63,10 +62,12 @@ class GpxDrivenProvider  {
                                 LngLatAlt(point.longitude, point.latitude),
                                 LngLatAlt(nextPoint.longitude, nextPoint.latitude))
 
-                            val orientation = DeviceOrientation.Builder(FloatArray(4),
-                                heading.toFloat(),
-                                0.0F,
-                                1000000).build()
+                            val orientation = DeviceDirection(
+                                attitude = FloatArray(4),
+                                headingDegrees = heading.toFloat(),
+                                headingAccuracyDegrees = 0.0F,
+                                elapsedRealtimeNanos = 1000000
+                            )
                             directionProvider.mutableOrientationFlow.value = orientation
                         }
                     }

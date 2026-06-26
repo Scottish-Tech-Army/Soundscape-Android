@@ -1,7 +1,9 @@
 package org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons
 
 import android.util.Log
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,20 +21,24 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.OnboardButton
+import org.scottishtecharmy.soundscape.screens.onboarding.AudioOnboardingViewModel
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
@@ -58,11 +64,22 @@ fun getBeaconResourceId(beaconName: String) : Int {
 
 @Composable
 fun AudioBeaconsScreen(
+    onBack: () -> Unit,
     onNavigate: () -> Unit,
     modifier: Modifier = Modifier,
-    viewModel: AudioBeaconsViewModel = hiltViewModel()
+    viewModel: AudioOnboardingViewModel
 ) {
-    val uiState: AudioBeaconsViewModel.AudioBeaconsUiState by viewModel.state.collectAsStateWithLifecycle()
+    val uiState: AudioOnboardingViewModel.AudioBeaconsUiState by viewModel.state.collectAsStateWithLifecycle()
+    LaunchedEffect(uiState) {
+        uiState.selectedBeacon?.let { beacon ->
+            viewModel.setAudioBeaconType(beacon)
+        }
+    }
+    BackHandler(enabled = true) {
+        // If the user presses the back button silence the audio
+        viewModel.silenceBeacon()
+        onBack()
+    }
 
     AudioBeacons(
         beacons = uiState.beaconTypes,
@@ -91,6 +108,8 @@ fun AudioBeacons(
     onContinue: () -> Unit,
     modifier: Modifier = Modifier
 ) {
+    val focusRequester = remember { FocusRequester() }
+
     BoxWithGradientBackground(
         modifier = modifier,
         color = MaterialTheme.colorScheme.surface
@@ -105,7 +124,6 @@ fun AudioBeacons(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Top
         ) {
-            // TODO translations
             Text(
                 text = stringResource(R.string.first_launch_beacon_title),
                 style = MaterialTheme.typography.titleLarge,
@@ -113,28 +131,31 @@ fun AudioBeacons(
                 textAlign = TextAlign.Center,
                 modifier = Modifier.semantics {
                     heading()
-                }
+                }.focusRequester(focusRequester).focusable()
             )
             Spacer(modifier = Modifier.height(spacing.large))
             Text(
                 text = stringResource(R.string.first_launch_beacon_message_1),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                modifier = Modifier.focusable()
             )
             Spacer(modifier = Modifier.height(spacing.large))
             Text(
                 text = stringResource(R.string.first_launch_beacon_message_2),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                modifier = Modifier.focusable(),
             )
             Spacer(modifier = Modifier.height(spacing.large))
             Text(
                 text = stringResource(R.string.first_launch_beacon_message_3),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center
+                textAlign = TextAlign.Center,
+                modifier = Modifier.focusable()
             )
             Spacer(modifier = Modifier.height(spacing.large))
 
@@ -153,7 +174,8 @@ fun AudioBeacons(
                         onSelect = {
                             onBeaconSelected(beacon)
                         },
-                        modifier = Modifier.testTag("${beacon}Button"),
+                        modifier = Modifier.testTag("${beacon}Button")
+                            .focusable(),
                     )
                 }
             }
@@ -170,12 +192,17 @@ fun AudioBeacons(
                     },
                     modifier = Modifier
                         .fillMaxWidth()
+                        .focusable()
                         .testTag("audioBeaconsContinueButton"),
                     enabled = selectedBeacon != null,
                 )
             }
 
         }
+    }
+
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
     }
 }
 

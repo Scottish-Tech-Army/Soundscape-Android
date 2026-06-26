@@ -1,0 +1,119 @@
+
+Callout
+	Approaching intersection
+		Service goes left
+		Service to Sports Direct continues ahead
+
+Callout
+	Approaching intersection
+		Service goes left
+		Service to Nike goes right
+
+Callout
+	crossing
+
+Callout
+	Ahead Service to Sports Direct
+
+Callout
+	Sports Direct
+
+Callout
+	Nike
+
+Callout
+	Currys
+
+Callout
+	Approaching intersection
+		Service to Currys continues ahead
+		Service goes right
+
+Callout
+	Approaching intersection
+		Service continues ahead
+		Service goes right
+
+Callout
+	Poundland
+
+Callout
+	Nike
+
+Callout
+	At Currys
+
+Callout
+	Poundland
+
+Callout
+	At Currys
+
+Callout
+	Nike
+
+Callout
+	At Currys
+
+Callout
+	At Currys
+
+Callout
+	At Currys
+
+Callout
+	Nike
+
+Callout
+	At Currys
+
+Callout
+	Nike
+
+Callout
+	At Currys
+
+Callout
+	Poundland
+
+Callout
+	Nike
+
+Callout
+	crossing
+
+Callout
+	Approaching intersection
+		Service to Poundland continues ahead
+		Path goes right
+
+Callout
+	Ahead Service
+
+Callout
+	Ahead Path
+
+Callout
+	Approaching intersection
+		Service goes left
+		Service goes right
+
+Callout
+	Approaching intersection
+		Service goes left
+		Service continues ahead
+
+Callout
+	Approaching intersection
+		Service continues ahead
+		Service to Nike goes right
+
+Callout
+	Approaching intersection
+		Service goes left
+		Service goes right
+
+Callout
+	Approaching intersection
+		Service continues ahead
+		Service goes right

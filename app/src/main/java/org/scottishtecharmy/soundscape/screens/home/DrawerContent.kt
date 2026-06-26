@@ -6,18 +6,20 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
+import androidx.compose.material.icons.automirrored.rounded.Comment
 import androidx.compose.material.icons.automirrored.rounded.HelpOutline
+import androidx.compose.material.icons.rounded.Headphones
 import androidx.compose.material.icons.rounded.Markunread
+import androidx.compose.material.icons.rounded.Download
 import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material.icons.rounded.Share
 import androidx.compose.material.icons.rounded.Star
-import androidx.compose.material3.DrawerState
-import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -25,51 +27,49 @@ import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import kotlinx.coroutines.launch
+import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.BuildConfig
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MARKDOWN_HELP_DEFAULT
-import org.scottishtecharmy.soundscape.MainActivity.Companion.MARKDOWN_HELP_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
-import org.scottishtecharmy.soundscape.screens.home.home.HelpTopic
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
 fun DrawerContent(
-    drawerState: DrawerState,
+    onClose: () -> Unit,
     onNavigate: (String) -> Unit,
     rateSoundscape: () -> Unit,
     contactSupport: () -> Unit,
     shareRecording: () -> Unit,
-    preferences: SharedPreferences?
+    offlineMaps: () -> Unit,
+    toggleTutorial: () -> Unit,
+    tutorialRunning: Boolean,
+    preferences: SharedPreferences?,
+    newReleaseDialog: MutableState<Boolean>?
 ) {
-    val scope = rememberCoroutineScope()
     val recordingEnabled = preferences?.getBoolean(RECORD_TRAVEL_KEY, RECORD_TRAVEL_DEFAULT) == true
+    val running = remember(tutorialRunning) { mutableStateOf(tutorialRunning) }
+    val screenWidth = LocalConfiguration.current.screenWidthDp.dp
     val useMarkdownHelp = preferences?.getBoolean(MARKDOWN_HELP_KEY, MARKDOWN_HELP_DEFAULT) == true
 
     ModalDrawerSheet(
+        modifier = Modifier.requiredWidth(screenWidth),
         drawerContainerColor = MaterialTheme.colorScheme.background,
         drawerContentColor = MaterialTheme.colorScheme.onBackground,
     ) {
         Scaffold (
             topBar = {
                 IconButton(
-                    onClick = {
-                        scope.launch {
-                            if (drawerState.isClosed) {
-                                drawerState.open()
-                            } else {
-                                drawerState.close()
-                            }
-                        }
-                    },
+                    onClick = onClose,
                     modifier = Modifier.testTag("menuDrawerBack")
                 ) {
                     Icon(
@@ -119,21 +119,25 @@ fun DrawerContent(
                 DrawerMenuItem(
                     onClick = {
                         val route =
-                            if (useMarkdownHelp) "page:${HelpTopic.HELP_AND_TUTORIALS_FILENAME}"
-                            else "page${R.string.menu_help_and_tutorials}"
+                            if (useMarkdownHelp) "page:${HelpTopic.HELP_FILENAME}"
+                            else "page${R.string.menu_help}"
                         onNavigate(HomeRoutes.Help.route + "/$route")
                     },
-                    label = stringResource(R.string.menu_help_and_tutorials),
+                    label = stringResource(R.string.menu_help),
                     Icons.AutoMirrored.Rounded.HelpOutline,
                     modifier = Modifier.testTag("menuHelpAndTutorials")
                 )
 
-// Not implemented yet
-//                DrawerMenuItem(
-//                    onClick = { notAvailableToast() },
-//                    label = stringResource(R.string.menu_send_feedback),
-//                    icon = Icons.Rounded.MailOutline,
-//                )
+                DrawerMenuItem(
+                    onClick = {
+                        onClose()
+                        toggleTutorial()
+                    },
+                    label = if(running.value) stringResource(R.string.menu_audio_tutorial_cancel) else stringResource(R.string.menu_audio_tutorial),
+                    Icons.Rounded.Headphones,
+                    modifier = Modifier.testTag("menuAudioTutorial")
+                )
+
                 DrawerMenuItem(
                     onClick = { rateSoundscape() },
                     label = stringResource(R.string.menu_rate),
@@ -156,6 +160,13 @@ fun DrawerContent(
 //                )
 
                 DrawerMenuItem(
+                    onClick = { offlineMaps() },
+                    label = stringResource(R.string.offline_maps_title),
+                    Icons.Rounded.Download,
+                    modifier = Modifier.testTag("menuOfflineMaps")
+                )
+
+                DrawerMenuItem(
                     onClick = {
                         val route =
                             if (useMarkdownHelp) "page:${HelpTopic.ABOUT_SOUNDSCAPE_FILENAME}"
@@ -165,6 +176,15 @@ fun DrawerContent(
                     label = stringResource(R.string.settings_about_app),
                     Icons.AutoMirrored.Rounded.HelpOutline,
                     modifier = Modifier.testTag("menuAboutSoundscape")
+                )
+
+                DrawerMenuItem(
+                    onClick = {
+                        newReleaseDialog?.value = true
+                    },
+                    label = stringResource(R.string.new_version_info_text),
+                    Icons.AutoMirrored.Rounded.Comment,
+                    modifier = Modifier.testTag("newReleaseInfo")
                 )
 
                 if (recordingEnabled) {
@@ -183,11 +203,15 @@ fun DrawerContent(
 @Composable
 fun PreviewDrawerContent() {
     DrawerContent(
-        DrawerState(DrawerValue.Open) { true },
-        { },
-        { },
-        { },
-        { },
-        null
+        onClose = { },
+        onNavigate = { },
+        rateSoundscape = { },
+        contactSupport = { },
+        shareRecording = { },
+        offlineMaps = { },
+        toggleTutorial = { },
+        tutorialRunning = false,
+        preferences = null,
+        newReleaseDialog = null
     )
 }

@@ -1,0 +1,53 @@
+
+Callout
+	Ahead Milngavie Road
+
+Callout
+	Hillfoot, Kilmardinny Avenue (opp)
+
+Callout
+	Approaching intersection
+		Milngavie Road continues ahead
+		Kilmardinny Avenue goes right
+
+Callout
+	Hillfoot, Kilmardinny Avenue (before)
+
+Callout
+	Ahead Milngavie Road
+
+Callout
+	Approaching intersection
+		Service to Bears Way goes left
+		Milngavie Road continues ahead
+
+Callout
+	Ahead Milngavie Road
+
+Callout
+	Hillfoot, Reid Avenue (opp)
+
+Callout
+	Approaching intersection
+		Milngavie Road continues ahead
+		Reid Avenue goes right
+
+Callout
+	Hillfoot, Reid Avenue (before)
+
+Callout
+	Ahead Milngavie Road
+
+Callout
+	Hillfoot, Manse Road (after)
+
+Callout
+	Approaching intersection
+		Milngavie Road continues ahead
+		Manse Road goes right
+
+Callout
+	Rainbow Room International
+
+Callout
+	Hillfoot, Manse Road (opp)

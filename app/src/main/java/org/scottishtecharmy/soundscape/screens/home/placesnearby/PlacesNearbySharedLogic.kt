@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home.placesnearby
 
+import android.content.Context
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
@@ -11,10 +12,19 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
+import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.featureHasEntrances
+import org.scottishtecharmy.soundscape.geoengine.utils.featureIsInFilterGroup
+import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.utils.deferredToLocationDescription
 
 class PlacesNearbySharedLogic(
     private val soundscapeServiceConnection: SoundscapeServiceConnection,
@@ -22,6 +32,10 @@ class PlacesNearbySharedLogic(
 ) {
     internal val internalUiState = MutableStateFlow(PlacesNearbyUiState())
     val uiState: StateFlow<PlacesNearbyUiState> = internalUiState
+
+    fun startBeacon(location: LngLatAlt, name: String) {
+        soundscapeServiceConnection.startBeacon(location, name)
+    }
 
     init {
         // Collect the flow for the service connection and use it to start and stop collecting the
@@ -91,6 +105,43 @@ class PlacesNearbySharedLogic(
                     )
                 }
             }
+        }
+    }
+}
+
+fun filterLocations(uiState: PlacesNearbyUiState, context: Context): List<LocationDescription> {
+    val location = uiState.userLocation ?: LngLatAlt()
+    val ruler = CheapRuler(location.latitude)
+    return if (uiState.filter == "intersections") {
+        uiState.nearbyIntersections.features.filter { feature ->
+            // Filter out un-named intersections
+            (feature as MvtFeature).name.toString().isNotEmpty()
+        }.map { feature ->
+            LocationDescription(
+                name = (feature as MvtFeature).name.toString(),
+                location = getDistanceToFeature(location, feature, ruler).point
+            )
+        }.sortedBy {
+            uiState.userLocation?.let { location ->
+                ruler.distance(location, it.location)
+            } ?: 0.0
+        }
+    } else {
+        uiState.nearbyPlaces.features.filter { feature ->
+            // Filter based on any folder selected and filter out POIs with entrances
+            !featureHasEntrances(feature) &&
+            featureIsInFilterGroup(feature, uiState.filter) &&
+                    getTextForFeature(context, feature as MvtFeature).text.isNotEmpty()
+        }.map { feature ->
+            feature.deferredToLocationDescription(
+                LocationSource.OfflineGeocoder,
+                getDistanceToFeature(location, feature, ruler).point,
+                getTextForFeature(context, feature as MvtFeature)
+            )
+        }.sortedBy {
+            uiState.userLocation?.let { location ->
+                ruler.distance(location, it.location)
+            } ?: 0.0
         }
     }
 }

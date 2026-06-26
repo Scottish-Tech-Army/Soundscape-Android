@@ -15,38 +15,30 @@ on:
     - cron:  '30 5 * * *'
 
 jobs:
-  check_date:
-    name: Check latest commit
-    runs-on: ubuntu-latest
-    environment: development
-    permissions:
-      contents: write
-    outputs:
-      should_run: ${{ steps.should_run.outputs.should_run }}
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Check latest commit is less than a day
-        id: should_run
-        continue-on-error: true
-        #if: ${{ github.event_name == 'schedule' }}
-        run: test -z $(git rev-list  --after="24 hours" HEAD) && echo "should_run=false" >> $GITHUB_OUTPUT
-
   build:
-    name: Build debug package
+    name: Build package (${{ matrix.ref }})
     runs-on: ubuntu-latest
     environment: development
-    needs: check_date
-    if: ${{ needs.check_date.outputs.should_run != 'false' }}
     permissions:
       contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        ref: [main, v1.0, multiplatform]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
+          ref: ${{ matrix.ref }}
           fetch-depth: 0
+
+      - name: Setup offline maps for tests
+        run: |
+          pwd
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/bristol-gb.pmtiles  -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/bristol-gb.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/glasgow-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/glasgow-gb.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/liverpool-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/liverpool-gb.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/manifest.geojson.gz -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/manifest.geojson.gz
 
       - name: Setup tile and search providers
         env:
@@ -54,11 +46,13 @@ jobs:
           TILE_PROVIDER_URL: ${{ secrets.TILE_PROVIDER_URL }}
           SEARCH_PROVIDER_API_KEY: ${{ secrets.SEARCH_PROVIDER_API_KEY }}
           SEARCH_PROVIDER_URL: ${{ secrets.SEARCH_PROVIDER_URL }}
+          EXTRACT_PROVIDER_URL: ${{ secrets.EXTRACT_PROVIDER_URL }}
         run: |
           echo tileProviderUrl="$TILE_PROVIDER_URL" > local.properties
           echo tileProviderApiKey="$TILE_PROVIDER_API_KEY" >> local.properties
           echo searchProviderUrl="$SEARCH_PROVIDER_URL" >> local.properties
           echo searchProviderApiKey="$SEARCH_PROVIDER_API_KEY" >> local.properties
+          echo extractProviderUrl="$EXTRACT_PROVIDER_URL" >> local.properties
 
       - name: Decode Google services
         env:
@@ -70,22 +64,13 @@ jobs:
           base64 -d google-services-b64.txt > ${{ env.main_project_module }}/$GOOGLE_SERVICES_PATH
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
 
       - name: Set Up JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '19'
-
-      - name: Setup offline maps for tests
-        run: |
-          pwd 
-          ls -l ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape
-          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/cardiff-united-kingdom.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/cardiff-united-kingdom.pmtiles
-          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/glasgow-united-kingdom.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/glasgow-united-kingdom.pmtiles
-          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/manchester-united-kingdom.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/manchester-united-kingdom.pmtiles
-          ls -l ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape
 
       - name: Run lint over the repo
         run: ./gradlew lint
@@ -94,40 +79,47 @@ jobs:
       - name: Run gradle tests
         run: ./gradlew test
 
-      # Generate the screenshots from the Preview code
-      - name: Generate screenshots
-        continue-on-error: true # The screenshots are unreliable, awaiting Google fix
-        run : ./gradlew  updateDebugScreenshotTest
+      # Setup release build keys
+      - name: Decode Keystore
+        env:
+          ENCODED_STRING: ${{ secrets.SIGNING_KEY_STORE_BASE64 }}
+          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
 
-      # Upload screenshots as an artifact
-      # Noted For Output [main_project_module]/build/outputs/apk/debug/
-      - name: Upload screenshots
-        uses: actions/upload-artifact@v4
-        with:
-          name: screenshot-previews
-          path: ${{ env.main_project_module }}/src/screenshotTestDebug/reference/org/scottishtecharmy/soundscape/
-
-      # Create APK Debug
-      - name: Build apk debug project (APK)
         run: |
-          ./gradlew assembleDebug
+          echo $ENCODED_STRING > keystore-b64.txt
+          base64 -d keystore-b64.txt > ${{ env.main_project_module }}/$SIGNING_KEY_STORE_PATH
+
+      # Create APK Release
+      - name: Build apk project (APK)
+        env:
+          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+        run: |
+          ./gradlew assemble
 
       # Upload Artifact Build
-      # Noted For Output [main_project_module]/build/outputs/apk/debug/
-      - name: Upload APK Debug
-        uses: actions/upload-artifact@v4
+      # Noted For Output [main_project_module]/build/outputs/apk/release/
+      - name: Upload APK Release
+        uses: actions/upload-artifact@v6
         with:
-          name: debug-apk
-          path: ${{ env.main_project_module }}/build/outputs/apk/debug/
+          name: release-apk-${{ matrix.ref }}
+          path: ${{ env.main_project_module }}/build/outputs/apk/releaseTest/
 
       # Generate android instrumentation tests APK
-      - name: Assemble Android Instrumentation Tests
-        run: ./gradlew assembleDebugAndroidTest
-      - name: Upload Android Test APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: debug-androidTest
-          path: ${{ env.main_project_module }}/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
+#      - name: Assemble Android Instrumentation Tests
+#        env:
+#          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
+#          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+#          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+#          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+#        run: ./gradlew assembleAndroidTest -DtestBuildType=debug
+#      - name: Upload Android Test APK
+#        uses: actions/upload-artifact@v6
+#        with:
+#          name: release-androidTest
+#          path: ${{ env.main_project_module }}/build/outputs/apk/androidTest/debug/app-release-androidTest.apk
 
 #  instrumentation-tests:
 #    name: Run matrix of instrumentation tests
@@ -139,7 +131,7 @@ jobs:
 #        api-level: [30, 31, 34]
 #      fail-fast: false
 #    steps:
-#      - uses: actions/checkout@v4
+#      - uses: actions/checkout@v6
 #        with:
 #          fetch-depth: 0
 #
@@ -161,10 +153,10 @@ jobs:
 #          base64 -d google-services-b64.txt > ${{ env.main_project_module }}/$GOOGLE_SERVICES_PATH
 #
 #      - name: Setup Gradle
-#        uses: gradle/actions/setup-gradle@v4
+#        uses: gradle/actions/setup-gradle@v5
 #
 #      - name: Set Up JDK
-#        uses: actions/setup-java@v4
+#        uses: actions/setup-java@v5
 #        with:
 #          distribution: 'zulu' # See 'Supported distributions' for available options
 #          java-version: '19'
@@ -190,36 +182,40 @@ jobs:
 #            ./gradlew connectedCheck
 
   firebase:
-    name: Run UI tests with Firebase Test Lab
+    name: Run UI tests with Firebase Test Lab (${{ matrix.ref }})
     needs: build
     environment: development
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        ref: [main, v1.0, multiplatform]
 
     steps:
       - name: Download app APK
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
-          name: debug-apk
+          name: release-apk-${{ matrix.ref }}
 
-      - name: Download Android test APK
-        uses: actions/download-artifact@v4
-        with:
-          name: debug-androidTest
+#      - name: Download Android test APK
+#        uses: actions/download-artifact@v8
+#        with:
+#          name: release-androidTest
 
       - name: Auth
-        uses: google-github-actions/auth@v2
+        uses: google-github-actions/auth@v3
         with:
           credentials_json: ${{ secrets.GCLOUD_CREDENTIALS_JSON }}
 
       - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
+        uses: google-github-actions/setup-gcloud@v3
 
       - name: Set current project
         run: gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID }}
 
 # These tests now need the pmtiles file, skip for now as we already test locally
 #      - name: Run Instrumentation Tests in Firebase Test Lab
-#        run: gcloud firebase test android run --type instrumentation --use-orchestrator --app app-debug.apk --test app-debug-androidTest.apk --device model=shiba,version=34,locale=en,orientation=portrait
+#        run: gcloud firebase test android run --type instrumentation --use-orchestrator --app app-release.apk --test app-release-androidTest.apk --device model=shiba,version=34,locale=en,orientation=portrait
 
       - name: Run Robo test in Firebase Test Lab
-        run: gcloud firebase test android run --type robo --app=app-debug.apk --timeout=1800s --device model=shiba,version=34,locale=en,orientation=portrait
+        run: gcloud firebase test android run --type robo --app=app-releaseTest.apk --timeout=1800s --device model=shiba,version=34,locale=en,orientation=portrait

@@ -8,15 +8,19 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import org.scottishtecharmy.soundscape.screens.onboarding.accessibility.AccessibilityOnboardingScreenVM
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.AudioBeaconsScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.finish.FinishScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.hearing.HearingScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.listening.ListeningScreen
+import org.scottishtecharmy.soundscape.screens.onboarding.battery.BatteryOptimizationScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.navigating.NavigatingScreen
+import org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage.OfflineStorageOnboardingScreenVM
 import org.scottishtecharmy.soundscape.screens.onboarding.terms.TermsScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 
@@ -26,6 +30,7 @@ fun SetUpOnboardingNavGraph(
     navController: NavHostController,
     onFinish: () -> Unit,
 ) {
+    val audioViewModel: AudioOnboardingViewModel = hiltViewModel()
     NavHost(
         navController = navController,
         startDestination = OnboardingScreens.Welcome.route
@@ -56,14 +61,24 @@ fun SetUpOnboardingNavGraph(
         }
         composable(OnboardingScreens.Hearing.route) {
             HearingScreen(
+                onBack = { navController.popBackStack() },
                 onNavigate = { navController.navigate( OnboardingScreens.AudioBeacons.route) },
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true },
+                audioViewModel
+            )
+        }
+        composable(OnboardingScreens.Navigating.route) {
+            NavigatingScreen(
+                onNavigate = { navController.navigate(OnboardingScreens.BatteryOptimization.route) },
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
                     .semantics { testTagsAsResourceId = true }
             )
         }
-        composable(OnboardingScreens.Navigating.route) {
-            NavigatingScreen(
+        composable(OnboardingScreens.BatteryOptimization.route) {
+            BatteryOptimizationScreen(
                 onNavigate = { navController.navigate(OnboardingScreens.Listening.route) },
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
@@ -72,12 +87,32 @@ fun SetUpOnboardingNavGraph(
         }
         composable(OnboardingScreens.AudioBeacons.route) {
             AudioBeaconsScreen(
+                onBack = { navController.popBackStack() },
+                onNavigate = { navController.navigate(OnboardingScreens.OfflineStorage.route) },
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true },
+                audioViewModel
+            )
+        }
+        composable(OnboardingScreens.OfflineStorage.route) {
+            OfflineStorageOnboardingScreenVM(
+                onNavigate = { navController.navigate(OnboardingScreens.Accessibility.route) },
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
+            )
+        }
+
+        composable(OnboardingScreens.Accessibility.route) {
+            AccessibilityOnboardingScreenVM(
                 onNavigate = { navController.navigate(OnboardingScreens.Terms.route) },
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
                     .semantics { testTagsAsResourceId = true }
             )
         }
+
         composable(OnboardingScreens.Terms.route) {
             TermsScreen(onNavigate = {
                 navController.navigate(OnboardingScreens.Finish.route)

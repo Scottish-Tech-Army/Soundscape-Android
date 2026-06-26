@@ -69,7 +69,7 @@ class DijkstraTest {
 
         val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), MAX_ZOOM_LEVEL, 2)
 
-        val roadTree = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+        val roadTree = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
 
         // dijkstraOnWaysWithLoops works from intersection to intersection as those are the nodes
         // in our graph. The original dijkstraWithLoops split the ways of the graph into separate
@@ -110,7 +110,7 @@ class DijkstraTest {
 
         val gridState = getGridStateForLocation(LngLatAlt(-4.317357, 55.942527), MAX_ZOOM_LEVEL, 2)
 
-        val roadTree = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+        val roadTree = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
 
         val startLocation = LngLatAlt(-4.3187203, 55.9425631)
 //        val startLocation = LngLatAlt(-4.3173752, 55.9402158)

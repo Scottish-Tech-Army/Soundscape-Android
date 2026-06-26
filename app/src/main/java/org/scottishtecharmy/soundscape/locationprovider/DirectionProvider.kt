@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.locationprovider
 
-import com.google.android.gms.location.DeviceOrientation
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
@@ -16,15 +15,15 @@ open class DirectionProvider {
     open fun destroy() {}
 
     // Flow to return DeviceOrientation objects
-    val mutableOrientationFlow = MutableStateFlow<DeviceOrientation?>(null)
-    var orientationFlow: StateFlow<DeviceOrientation?> = mutableOrientationFlow
+    val mutableOrientationFlow = MutableStateFlow<DeviceDirection?>(null)
+    var orientationFlow: StateFlow<DeviceDirection?> = mutableOrientationFlow
 }
 
 // Extension function to convert radians to degrees
 private fun Float.toDegrees(): Float {
     return (this * 180 / Math.PI).toFloat()
 }
-fun phoneHeldFlat(deviceOrientation: DeviceOrientation?) : Boolean {
+fun phoneHeldFlat(deviceOrientation: DeviceDirection?) : Boolean {
 
     if(deviceOrientation == null) return false
 

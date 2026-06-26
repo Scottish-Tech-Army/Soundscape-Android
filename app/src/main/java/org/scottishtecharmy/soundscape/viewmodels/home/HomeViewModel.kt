@@ -14,15 +14,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.debounce
-import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
+import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
-import org.scottishtecharmy.soundscape.utils.blankOrEmpty
-import org.scottishtecharmy.soundscape.utils.toLocationDescriptions
+import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
 import javax.inject.Inject
 
 @HiltViewModel
@@ -31,18 +29,16 @@ class HomeViewModel
     @Inject
     constructor(
         private val soundscapeServiceConnection: SoundscapeServiceConnection,
+        val audioTour: AudioTour
     ) : ViewModel() {
     private val _state: MutableStateFlow<HomeState> = MutableStateFlow(HomeState())
     val state: StateFlow<HomeState> = _state.asStateFlow()
-    private val _searchText: MutableStateFlow<String> = MutableStateFlow("")
-    val searchText: StateFlow<String> = _searchText.asStateFlow()
 
     private var job : Job? = null
     private var spJob : Job? = null
 
     init {
         handleMonitoring()
-        fetchSearchResult()
     }
 
     private fun handleMonitoring() {
@@ -109,6 +105,12 @@ class HomeViewModel
             // Observe current route from the service so we can show it on the map
             soundscapeServiceConnection.getCurrentRouteFlow()?.collectLatest { value ->
                 _state.update { it.copy(currentRouteData = value) }
+            }
+        }
+        viewModelScope.launch(job!!) {
+            // Observe voice command listening state
+            soundscapeServiceConnection.getVoiceCommandStateFlow()?.collectLatest { voiceState ->
+                _state.update { it.copy(voiceCommandListening = voiceState is VoiceCommandState.Listening) }
             }
         }
     }
@@ -224,6 +226,7 @@ class HomeViewModel
     fun routeStop() {
         viewModelScope.launch {
             soundscapeServiceConnection.routeStop()
+            audioTour.onBeaconStopped()
         }
     }
 
@@ -231,37 +234,12 @@ class HomeViewModel
         return soundscapeServiceConnection.soundscapeService?.getLocationDescription(location)
     }
 
-    fun onSearchTextChange(text: String) {
-        _searchText.value = text
-    }
-
-    private fun fetchSearchResult() {
+    fun onTriggerSearch(text: String) {
         viewModelScope.launch {
-            _searchText
-                .debounce(500)
-                .distinctUntilChanged()
-                .collectLatest { searchText ->
-                    if (searchText.blankOrEmpty()) {
-                        _state.update { it.copy(searchItems = emptyList()) }
-                    } else {
-                        val result =
-                            soundscapeServiceConnection.soundscapeService?.searchResult(searchText)
-
-                        _state.update {
-                            it.copy(
-                                searchItems = result?.toLocationDescriptions(),
-                            )
-                        }
-                    }
-                }
-        }
-    }
-
-    fun onToggleSearch() {
-        _state.update { it.copy(isSearching = !it.isSearching) }
-
-        if (!state.value.isSearching) {
-            onSearchTextChange("")
+            _state.update { it.copy(searchInProgress = true) }
+            val result =
+                soundscapeServiceConnection.soundscapeService?.searchResult(text)
+            _state.update { it.copy(searchItems = result,searchInProgress = false) }
         }
     }
 

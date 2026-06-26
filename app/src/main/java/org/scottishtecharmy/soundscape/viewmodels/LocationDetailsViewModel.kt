@@ -9,6 +9,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
+import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
@@ -17,16 +18,24 @@ import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import java.net.URLEncoder
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
 class LocationDetailsViewModel @Inject constructor(
     private val soundscapeServiceConnection : SoundscapeServiceConnection,
-    private val routeDao: RouteDao
+    private val routeDao: RouteDao,
+    private val audioTour: AudioTour
 ): ViewModel() {
+
+    init {
+        // Notify audio tour that a place has been selected
+        audioTour.onPlaceSelected()
+    }
 
     fun startBeacon(location: LngLatAlt, name: String) {
         soundscapeServiceConnection.soundscapeService?.startBeacon(location, name)
+        audioTour.onBeaconStarted()
     }
 
     fun enableStreetPreview(location: LngLatAlt) {
@@ -36,7 +45,8 @@ class LocationDetailsViewModel @Inject constructor(
     fun createMarker(
         locationDescription: LocationDescription,
         successMessage: String,
-        failureMessage: String
+        failureMessage: String,
+        duplicateMessage: String
     ) {
         createMarker(
             locationDescription = locationDescription,
@@ -53,6 +63,7 @@ class LocationDetailsViewModel @Inject constructor(
                     ),
                     false
                 )
+                audioTour.onMarkerCreateDone()
             },
             onFailure = {
                 Log.e("LocationDetailsViewModel", failureMessage)
@@ -92,11 +103,21 @@ class LocationDetailsViewModel @Inject constructor(
             Intent().apply {
                 action = Intent.ACTION_SEND
                 putExtra(Intent.EXTRA_TITLE, locationDescription.name)
-                val latitude = location.latitude
-                val longitude = location.longitude
-                val uriData: String =
-                    URLEncoder.encode("$latitude,$longitude", Charsets.UTF_8.name())
-                putExtra(Intent.EXTRA_TEXT, "${message.format(locationDescription.name)}:\n geo://$uriData")
+                val latitude = "%.5f".format(Locale.ROOT, location.latitude)
+                val longitude = "%.5f".format(Locale.ROOT, location.longitude)
+
+                val soundscapeUrl =
+                    "https://links.soundscape.scottishtecharmy.org/v1/sharemarker?" +
+                    "lat=$latitude&lon=$longitude&name=${URLEncoder.encode(locationDescription.name, Charsets.UTF_8.name())}"
+                val googleMapsUrl =
+                    "https://www.google.com/maps/?q=$latitude,$longitude"
+                putExtra(Intent.EXTRA_TEXT,
+                    message.format(
+                        locationDescription.name,
+                        soundscapeUrl,
+                        googleMapsUrl
+                    )
+                )
                 type = "text/plain"
             }
 
@@ -114,6 +135,14 @@ class LocationDetailsViewModel @Inject constructor(
 
     fun getLocationDescription(location: LngLatAlt) : LocationDescription? {
         return soundscapeServiceConnection.soundscapeService?.getLocationDescription(location)
+    }
+
+    fun getMarkerAtLocation(location: LngLatAlt): MarkerEntity? {
+        return routeDao.getMarkerByLocation(location.longitude, location.latitude)
+    }
+
+    fun showDialog() {
+        audioTour.onMarkerCreateStarted()
     }
 
     companion object {

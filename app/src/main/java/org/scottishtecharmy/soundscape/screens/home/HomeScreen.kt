@@ -3,7 +3,9 @@ package org.scottishtecharmy.soundscape.screens.home
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.activity.compose.LocalActivity
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
@@ -25,16 +27,19 @@ import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.MainActivity
-import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.home.AudioTourInstructionDialog
 import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.MarkdownHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.HelpTopic
 
 
 import org.scottishtecharmy.soundscape.screens.home.home.Home
+import org.scottishtecharmy.soundscape.screens.home.home.OfflineMapsScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenVM
+import org.scottishtecharmy.soundscape.screens.home.home.AdvancedMarkersAndRoutesSettingsScreenVM
+import org.scottishtecharmy.soundscape.screens.home.home.OpenSourceLicensesVM
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyScreenVM
@@ -46,7 +51,9 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandedit
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.RouteDetailsScreenVM
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageViewModel
+import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
+import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
 import java.net.URLDecoder
@@ -63,11 +70,26 @@ class Navigator {
 
 // To reduce the number of viewmodel functions passed around, use these data classes instead. They
 // still provide insulation from the viewmodel so that they can be used in Preview.
-data class BottomButtonFunctions(val viewModel: HomeViewModel?) {
-    val myLocation = { viewModel?.myLocation() }
-    val aheadOfMe = { viewModel?.aheadOfMe() }
-    val aroundMe = { viewModel?.whatsAroundMe() }
-    val nearbyMarkers = { viewModel?.nearbyMarkers() }
+data class BottomButtonFunctions(
+    val viewModel: HomeViewModel?,
+    private val audioTour: AudioTour? = null
+) {
+    val myLocation = {
+        viewModel?.myLocation()
+        audioTour?.onButtonPressed(org.scottishtecharmy.soundscape.audio.TourButton.MY_LOCATION)
+    }
+    val aheadOfMe = {
+        viewModel?.aheadOfMe()
+        audioTour?.onButtonPressed(org.scottishtecharmy.soundscape.audio.TourButton.AHEAD_OF_ME)
+    }
+    val aroundMe = {
+        viewModel?.whatsAroundMe()
+        audioTour?.onButtonPressed(org.scottishtecharmy.soundscape.audio.TourButton.AROUND_ME)
+    }
+    val nearbyMarkers = {
+        viewModel?.nearbyMarkers()
+        audioTour?.onButtonPressed(org.scottishtecharmy.soundscape.audio.TourButton.NEARBY_MARKERS)
+    }
 }
 
 data class RouteFunctions(val viewModel: HomeViewModel?) {
@@ -75,6 +97,10 @@ data class RouteFunctions(val viewModel: HomeViewModel?) {
     val skipNext = { viewModel?.routeSkipNext() }
     val mute = { viewModel?.routeMute() }
     val stop =  { viewModel?.routeStop() }
+}
+
+data class SearchFunctions(val viewModel: HomeViewModel?) {
+    val onTriggerSearch: (String) -> Unit = { viewModel?.onTriggerSearch(it) }
 }
 
 data class StreetPreviewFunctions(val viewModel: HomeViewModel?) {
@@ -101,52 +127,57 @@ fun HomeScreen(
     navController: NavHostController,
     preferences: SharedPreferences,
     viewModel: HomeViewModel = hiltViewModel(),
+    audioTour: AudioTour,
     rateSoundscape: () -> Unit,
     contactSupport: () -> Unit,
     permissionsRequired: Boolean
 ) {
     val state = viewModel.state.collectAsStateWithLifecycle()
-    val searchText = viewModel.searchText.collectAsStateWithLifecycle()
+    val audioTourInstruction by audioTour.currentInstruction.collectAsStateWithLifecycle()
     val routeFunctions = remember(viewModel) { RouteFunctions(viewModel) }
+    val searchFunctions = remember(viewModel) { SearchFunctions(viewModel) }
     val streetPreviewFunctions = remember(viewModel) { StreetPreviewFunctions(viewModel) }
-    val bottomButtonFunctions = remember(viewModel) { BottomButtonFunctions(viewModel) }
+    val bottomButtonFunctions = remember(viewModel, audioTour) { BottomButtonFunctions(viewModel, audioTour) }
     val onMapLongClickListener = remember(viewModel) {
         OnMapLongClickListener { latLong ->
             val location = LngLatAlt(latLong.longitude, latLong.latitude)
             val ld = viewModel.getLocationDescription(location) ?: LocationDescription("", location)
             navController.navigate(generateLocationDetailsRoute(ld))
+
+            Analytics.getInstance().logEvent("longPressOnMap", null)
             true
         }
     }
 
 
-    NavHost(
-        navController = navController,
-        startDestination = HomeRoutes.Home.route,
-    ) {
-        // Main navigation
-        composable(HomeRoutes.Home.route) {
-            Home(
-                state = state.value,
-                onNavigate = { dest -> navController.navigate(dest) },
-                preferences = preferences,
-                onMapLongClick = onMapLongClickListener,
-                bottomButtonFunctions = bottomButtonFunctions,
-                getCurrentLocationDescription = { getCurrentLocationDescription(viewModel, state.value) },
-                searchText = searchText.value,
-                onToggleSearch = viewModel::onToggleSearch,
-                onSearchTextChange = viewModel::onSearchTextChange,
-                rateSoundscape = rateSoundscape,
-                contactSupport = contactSupport,
-                routeFunctions = routeFunctions,
-                streetPreviewFunctions = streetPreviewFunctions,
-                goToAppSettings = viewModel::goToAppSettings,
-                modifier = Modifier
-                    .windowInsetsPadding(WindowInsets.safeDrawing)
-                    .semantics { testTagsAsResourceId = true },
-                permissionsRequired = permissionsRequired
-            )
-        }
+    Box(modifier = Modifier.fillMaxSize()) {
+        NavHost(
+            navController = navController,
+            startDestination = HomeRoutes.Home.route,
+        ) {
+            // Main navigation
+            composable(HomeRoutes.Home.route) {
+                Home(
+                    state = state.value,
+                    onNavigate = { dest -> navController.navigate(dest) },
+                    preferences = preferences,
+                    onMapLongClick = onMapLongClickListener,
+                    bottomButtonFunctions = bottomButtonFunctions,
+                    getCurrentLocationDescription = { getCurrentLocationDescription(viewModel, state.value) },
+                    searchFunctions = searchFunctions,
+                    rateSoundscape = rateSoundscape,
+                    contactSupport = contactSupport,
+                    toggleTutorial = { audioTour.toggleState() },
+                    tutorialRunning = audioTour.isRunning(),
+                    routeFunctions = routeFunctions,
+                    streetPreviewFunctions = streetPreviewFunctions,
+                    goToAppSettings = viewModel::goToAppSettings,
+                    modifier = Modifier
+                        .windowInsetsPadding(WindowInsets.safeDrawing)
+                        .semantics { testTagsAsResourceId = true },
+                    permissionsRequired = permissionsRequired
+                )
+            }
 
         // Settings screen
         composable(HomeRoutes.Settings.route) {
@@ -156,8 +187,15 @@ fun HomeScreen(
             val languageViewModel: LanguageViewModel = hiltViewModel()
             val languageUiState = languageViewModel.state.collectAsStateWithLifecycle()
             val localActivity = LocalActivity.current as MainActivity
+
+            LaunchedEffect(Unit) {
+                settingsViewModel.restartAppEvent.collect {
+                    localActivity.recreate()
+                }
+            }
+
             Settings(
-                onNavigateUp = { navController.navigateUp() },
+                navController = navController,
                 uiState = uiState.value,
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
@@ -165,9 +203,18 @@ fun HomeScreen(
                 supportedLanguages = languageUiState.value.supportedLanguages,
                 onLanguageSelected = { selectedLanguage ->
                     languageViewModel.updateLanguage(selectedLanguage)
-                    settingsViewModel.updateLanguage(localActivity)
+                    settingsViewModel.updateLanguage()
                  },
-                selectedLanguageIndex = languageUiState.value.selectedLanguageIndex
+                selectedLanguageIndex = languageUiState.value.selectedLanguageIndex,
+                storages = uiState.value.storages,
+                onStorageSelected = { path ->
+                    settingsViewModel.selectStorage(path)
+                },
+                selectedStorageIndex = uiState.value.selectedStorageIndex,
+                resetSettings = { settingsViewModel.resetToDefaults() },
+                onBeaconPreviewStart = { type -> settingsViewModel.startBeaconPreview(type) },
+                onBeaconPreviewUpdate = { type -> settingsViewModel.updateBeaconPreviewType(type) },
+                onBeaconPreviewStop = { commit, chosen -> settingsViewModel.stopBeaconPreview(commit, chosen) },
             )
         }
 
@@ -184,12 +231,14 @@ fun HomeScreen(
 
         // Location details screen
         composable(HomeRoutes.LocationDetails.route + "/{json}") { navBackStackEntry ->
-
-            // Parse the LocationDescription out of the json provided by the caller
-            val gson = GsonBuilder().create()
             val urlEncodedJson = navBackStackEntry.arguments?.getString("json")
-            val json = URLDecoder.decode(urlEncodedJson, StandardCharsets.UTF_8.toString())
-            val locationDescription = gson.fromJson(json, LocationDescription::class.java)
+
+            // Parse the LocationDescription only once, not on every recomposition
+            val locationDescription = remember(urlEncodedJson) {
+                val gson = GsonBuilder().create()
+                val json = URLDecoder.decode(urlEncodedJson, StandardCharsets.UTF_8.toString())
+                gson.fromJson(json, LocationDescription::class.java)
+            }
 
             LocationDetailsScreen(
                 locationDescription = locationDescription,
@@ -203,7 +252,21 @@ fun HomeScreen(
         }
 
         // MarkersAndRoutesScreen with tab selection
-        composable(HomeRoutes.MarkersAndRoutes.route) {
+        composable(
+            HomeRoutes.MarkersAndRoutes.route + "?tab={tab}",
+            arguments = listOf(navArgument("tab") {
+                type = NavType.StringType
+                defaultValue = ""
+            })
+        ) { backStackEntry ->
+            val tab = backStackEntry.arguments?.getString("tab") ?: ""
+            LaunchedEffect(tab) {
+                if (tab == "markers") {
+                    viewModel.setRoutesAndMarkersTab(false)
+                } else if (tab == "routes") {
+                    viewModel.setRoutesAndMarkersTab(true)
+                }
+            }
             MarkersAndRoutesScreen(
                 navController = navController,
                 viewModel = viewModel,
@@ -242,15 +305,19 @@ fun HomeScreen(
             val command = backStackEntry.arguments?.getString("command") ?: ""
             val data = backStackEntry.arguments?.getString("data") ?: ""
 
-            var routeData : RouteWithMarkers? = null
-            when(command) {
-                "import" -> {
-                    try {
-                        val json = URLDecoder.decode(data, StandardCharsets.UTF_8.toString())
-                        routeData = parseSimpleRouteData(json)
-                    } catch(e: Exception) {
-                        Log.e("RouteDetailsScreen", "Error parsing route data: $e")
+            // Parse route data only once, not on every recomposition
+            val routeData = remember(command, data) {
+                when (command) {
+                    "import" -> {
+                        try {
+                            val json = URLDecoder.decode(data, StandardCharsets.UTF_8.toString())
+                            parseSimpleRouteData(json)
+                        } catch (e: Exception) {
+                            Log.e("RouteDetailsScreen", "Error parsing route data: $e")
+                            null
+                        }
                     }
+                    else -> null
                 }
             }
 
@@ -326,6 +393,52 @@ fun HomeScreen(
                 modifier = Modifier
                     .windowInsetsPadding(WindowInsets.safeDrawing)
                     .semantics { testTagsAsResourceId = true }
+            )
+        }
+
+        composable(HomeRoutes.AdvancedMarkersAndRoutesSettings.route) {
+            AdvancedMarkersAndRoutesSettingsScreenVM(
+                navController = navController,
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
+            )
+        }
+
+        composable(HomeRoutes.OpenSourceLicense.route) {
+            OpenSourceLicensesVM(
+                navController = navController,
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
+            )
+        }
+
+        composable(HomeRoutes.OfflineMaps.route + "/{json}") { navBackStackEntry ->
+            val urlEncodedJson = navBackStackEntry.arguments?.getString("json")
+
+            // Parse the LocationDescription only once, not on every recomposition
+            val locationDescription = remember(urlEncodedJson) {
+                val gson = GsonBuilder().create()
+                val json = URLDecoder.decode(urlEncodedJson, StandardCharsets.UTF_8.toString())
+                gson.fromJson(json, LocationDescription::class.java)
+            }
+
+            OfflineMapsScreenVM(
+                navController = navController,
+                locationDescription = locationDescription,
+                modifier = Modifier
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
+            )
+        }
+    }
+
+        // Show tutorial dialog on top of all screens
+        audioTourInstruction?.let { instruction ->
+            AudioTourInstructionDialog(
+                instruction = instruction,
+                onContinue = { audioTour.onInstructionAcknowledged() }
             )
         }
     }

@@ -8,9 +8,9 @@ open class Segment(heading: Double, width: Double) {
     fun contains(headingToCheck: Double): Boolean {
         val wrappedHeading = headingToCheck % 360.0
 
-        return if (wrappedHeading >= left && wrappedHeading < right) {
+        return if (wrappedHeading in left..<right) {
             true
-        } else right < left && (wrappedHeading >= left || wrappedHeading < right)
+        } else right < left && (wrappedHeading !in right..<left)
     }
 }
 

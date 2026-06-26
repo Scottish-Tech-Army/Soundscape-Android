@@ -6,6 +6,7 @@ import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -48,10 +49,10 @@ class CrossingTest {
         val distanceToCrossing = userGeometry.ruler.distance(userGeometry.location, crossingLocation.coordinates)
 
         // Confirm which road the crossing is on
-        val nearestRoadToCrossing = roadsTree.getNearestFeature(crossingLocation.coordinates, userGeometry.ruler)
+        val nearestRoadToCrossing = roadsTree.getNearestFeature(crossingLocation.coordinates, userGeometry.ruler) as MvtFeature?
 
         Assert.assertEquals(24.58, distanceToCrossing, 0.2)
-        Assert.assertEquals("Belmont Drive", nearestRoadToCrossing!!.properties?.get("name"))
+        Assert.assertEquals("Belmont Drive", nearestRoadToCrossing?.name)
         Assert.assertEquals("yes", nearestCrossing.properties?.get("tactile_paving"))
 
     }

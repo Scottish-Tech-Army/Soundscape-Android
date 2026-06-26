@@ -49,9 +49,10 @@ fun RoutesScreenVM(
         homeNavController,
         uiState,
         userLocation,
-    clearErrorMessage = { viewModel.clearErrorMessage()},
+        clearErrorMessage = { viewModel.clearErrorMessage()},
         onToggleSortOrder = { viewModel.toggleSortOrder() },
-        onToggleSortByName = { viewModel.toggleSortByName() }
+        onToggleSortByName = { viewModel.toggleSortByName() },
+        onStartPlayback = { routeId -> viewModel.startRoute(routeId) }
     )
 }
 
@@ -63,7 +64,8 @@ fun RoutesScreen(
     userLocation: LngLatAlt?,
     clearErrorMessage: () -> Unit,
     onToggleSortOrder: () -> Unit,
-    onToggleSortByName: () -> Unit
+    onToggleSortByName: () -> Unit,
+    onStartPlayback: (Long) -> Unit = {}
 ) {
     val context = LocalContext.current
 
@@ -150,6 +152,9 @@ fun RoutesScreen(
                         modifier = Modifier.weight(1f),
                         onSelect = { desc ->
                             homeNavController.navigate("${HomeRoutes.RouteDetails.route}/${desc.databaseId}")
+                        },
+                        onStartPlayback = { desc ->
+                            onStartPlayback(desc.databaseId)
                         }
                     )
                 }

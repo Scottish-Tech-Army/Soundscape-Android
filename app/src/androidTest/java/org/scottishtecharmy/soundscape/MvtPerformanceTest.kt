@@ -15,14 +15,19 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import vector_tile.VectorTile
 import kotlin.time.measureTime
 import android.os.Debug
+import android.os.Environment
+import androidx.preference.PreferenceManager
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
+import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
 
 class MvtPerformanceTest {
 
@@ -31,14 +36,15 @@ class MvtPerformanceTest {
         tileY: Int,
         filename: String,
         cropPoints: Boolean = true
-    ): FeatureCollection {
+    ): Array<FeatureCollection> {
 
         val context = InstrumentationRegistry.getInstrumentation().targetContext
         val remoteTile = context.assets.open(filename)
         val tile: VectorTile.Tile = VectorTile.Tile.parseFrom(remoteTile)
         val intersectionMap:  HashMap<LngLatAlt, Intersection> = hashMapOf()
+        val streetNumberMap:  HashMap<String, FeatureCollection> = hashMapOf()
 
-        return vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, 15)
+        return vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, streetNumberMap, cropPoints, 15)
     }
 
     @Test
@@ -48,9 +54,9 @@ class MvtPerformanceTest {
         val featureCollection = FeatureCollection()
         for (x in 15990..15992) {
             for (y in 10212..10213) {
-                val geojson = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt")
-                for (feature in geojson) {
-                    featureCollection.addFeature(feature)
+                val geojsonArray = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt")
+                for (fc in geojsonArray!!) {
+                    featureCollection += fc
                 }
             }
         }
@@ -69,7 +75,7 @@ class MvtPerformanceTest {
         end = System.currentTimeMillis()
         println("Search result in ${end-start}ms")
         for(dResult in distanceResults) {
-            println(dResult.properties?.get("name"))
+            println((dResult as MvtFeature).name)
         }
     }
 
@@ -78,7 +84,8 @@ class MvtPerformanceTest {
         runBlocking {
             val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
             val intersectionMap:  HashMap<LngLatAlt, Intersection> = hashMapOf()
-            gridState.updateTile(x, y, featureCollections, intersectionMap)
+            val streetNumberMap:  HashMap<String, FeatureCollection> = hashMapOf()
+            gridState.updateTile(x, y, 0, featureCollections, intersectionMap, streetNumberMap)
         }
     }
     fun tileProviderAvailable(): Boolean {
@@ -105,8 +112,8 @@ class MvtPerformanceTest {
 
         // Test the capital of Cameroon because it's dense
         println("Test Yaoundé")
-        for(x in 17430 until 17437) {
-            for(y in 16029 until 16034) {
+        for(x in 17430/2 until 17437/2) {
+            for(y in 16029/2 until 16034/2) {
                 downloadAndParseTile(x, y, gridState)
             }
         }
@@ -129,12 +136,11 @@ class MvtPerformanceTest {
         runBlocking {
             gridState.locationUpdate(
                 LngLatAlt(location.longitude, location.latitude),
-                emptySet(),
-                true
+                emptySet()
             )
         }
 
-        val roadTree = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+        val roadTree = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
         val startLocation = LngLatAlt(-4.317351, 55.939856)
         val endLocation = LngLatAlt(-4.316699, 55.939225)
 
@@ -176,11 +182,21 @@ class MvtPerformanceTest {
         val directory = InstrumentationRegistry.getInstrumentation().targetContext.getExternalFilesDir(null)
         println(directory)
         gridState.validateContext = false
-        gridState.start(ApplicationProvider.getApplicationContext())
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        getOfflineMapStorage(context)
+
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val path = sharedPreferences.getString(MainActivity.SELECTED_STORAGE_KEY, MainActivity.SELECTED_STORAGE_DEFAULT)
+        val offlineExtractPath =  path + "/" + Environment.DIRECTORY_DOWNLOADS
+        gridState.start(
+            ApplicationProvider.getApplicationContext(),
+            offlineExtractPath
+        )
 
         val (minX, minY) = getXYTile(LngLatAlt(boundingBox.westLongitude, boundingBox.northLatitude), MAX_ZOOM_LEVEL)
         val (maxX, maxY) = getXYTile(LngLatAlt(boundingBox.eastLongitude, boundingBox.southLatitude), MAX_ZOOM_LEVEL)
 
+        var longestDuration = measureTime {}
         for(i in 0 until count) {
             for (x in minX until maxX) {
                 for (y in minY until maxY) {
@@ -191,12 +207,19 @@ class MvtPerformanceTest {
                     println("Moving grid to $location")
 
                     runBlocking {
-                        // Update the grid state
-                        gridState.locationUpdate(
-                            LngLatAlt(location.longitude, location.latitude),
-                            emptySet(),
-                            true
-                        )
+                        val duration = measureTime {
+                            // Update the grid state
+                            gridState.locationUpdate(
+                                LngLatAlt(location.longitude, location.latitude),
+                                emptySet()
+                            )
+                        }
+                        if(duration > longestDuration) {
+                            longestDuration = duration
+                            println("Total time to move grid $duration LONGEST")
+                        }
+                        else
+                            println("Total time to move grid $duration")
                     }
                 }
             }
@@ -230,8 +253,7 @@ class MvtPerformanceTest {
             // Update the grid state
             gridState.locationUpdate(
                 LngLatAlt(location.longitude, location.latitude),
-                emptySet(),
-                true
+                emptySet()
             )
         }
 
@@ -246,10 +268,10 @@ class MvtPerformanceTest {
         if(!tileProviderAvailable())
             return
 
-        val newYork = BoundingBox(-74.0231755, 40.7120699, -73.9197845, 40.8303351)
-        testGridCache(newYork)
-        val yaounde = BoundingBox(11.4402869, 3.7493240, 11.6208422, 3.9353452)
-        testGridCache(yaounde)
+//        val newYork = BoundingBox(-74.0231755, 40.7120699, -73.9197845, 40.8303351)
+//        testGridCache(newYork)
+//        val yaounde = BoundingBox(11.4402869, 3.7493240, 11.6208422, 3.9353452)
+//        testGridCache(yaounde)
         val edinburgh = BoundingBox(-3.3568399, 55.9005448, -3.0921694, 55.9919155)
         testGridCache(edinburgh, 1)
 

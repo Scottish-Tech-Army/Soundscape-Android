@@ -29,6 +29,7 @@ fun parseGpxFile(input : InputStream) : RouteWithMarkers? {
                     waypoints.add(
                         MarkerEntity(
                             name = waypoint.name,
+                            fullAddress = waypoint.desc ?: "",
                             longitude = waypoint.longitude,
                             latitude = waypoint.latitude
                         )
@@ -41,6 +42,7 @@ fun parseGpxFile(input : InputStream) : RouteWithMarkers? {
                     waypoints.add(
                         MarkerEntity(
                             name = waypoint.name,
+                            fullAddress = waypoint.desc ?: "",
                             longitude = waypoint.longitude,
                             latitude = waypoint.latitude
                         )

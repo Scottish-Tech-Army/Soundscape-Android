@@ -1,8 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine
 
 import android.util.Log
-import com.google.firebase.Firebase
-import com.google.firebase.analytics.analytics
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
@@ -10,6 +8,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.utils.Analytics
 
 data class StreetPreviewChoice(
     val heading: Double,
@@ -22,7 +21,8 @@ enum class StreetPreviewEnabled {
 }
 data class StreetPreviewState(
     val enabled: StreetPreviewEnabled = StreetPreviewEnabled.OFF,
-    val choices: List<StreetPreviewChoice> = emptyList()
+    val choices: List<StreetPreviewChoice> = emptyList(),
+    val bestChoice: StreetPreviewChoice? = null
 )
 
 class StreetPreview {
@@ -36,9 +36,11 @@ class StreetPreview {
     private var previewRoad: StreetPreviewChoice? = null
 
     private var lastHeading = Double.NaN
+    private var currentBestChoice: StreetPreviewChoice? = null
     var running = false
     fun start() {
         previewState = PreviewState.INITIAL
+        currentBestChoice = null
         running = true
     }
 
@@ -48,14 +50,17 @@ class StreetPreview {
 
     fun go(userGeometry: UserGeometry, engine: GeoEngine) : LngLatAlt? {
 
-        Firebase.analytics.logEvent("streetPreviewGo", null)
+        Analytics.getInstance().logEvent("streetPreviewGo", null)
         when (previewState) {
 
             PreviewState.INITIAL -> {
                 // Jump to an intersection on the nearest road or path
-                val road : Way? = engine.gridState.getNearestFeature(TreeId.ROADS_AND_PATHS, userGeometry.ruler, userGeometry.location, Double.POSITIVE_INFINITY) as Way?
-                if(road == null)
-                    return null
+                val road: Way = engine.gridState.getNearestFeature(
+                    TreeId.WAYS_SELECTION,
+                    userGeometry.ruler,
+                    userGeometry.location,
+                    Double.POSITIVE_INFINITY
+                ) as Way? ?: return null
                 var nearestDistance = Double.POSITIVE_INFINITY
                 var nearestIntersection : Intersection? = null
                 for(intersection in road.intersections) {
@@ -111,8 +116,7 @@ class StreetPreview {
                         if(thisIntersection != null) {
                             // Now follow the road out of our current intersection, and find the
                             // next intersection.
-                            val ways: MutableList<Pair<Boolean, Way>> =
-                                emptyList<Pair<Boolean, Way>>().toMutableList()
+                            val ways = mutableListOf<Pair<Boolean, Way>>()
                             road.way.followWays(thisIntersection, ways) { way, previousWay ->
                                 if(previousWay != null) {
                                     if((way.wayType == WayType.JOINER) ||
@@ -123,11 +127,11 @@ class StreetPreview {
                                             way.properties?.get("brunnel") !=
                                             previousWay.properties?.get("brunnel")
                                         ) or (
-                                            way.properties?.get("name") !=
-                                            previousWay.properties?.get("name")
+                                            way.name !=
+                                            previousWay.name
                                         ) or (
-                                            way.properties?.get("class") !=
-                                            previousWay.properties?.get("class")
+                                            way.featureClass !=
+                                            previousWay.featureClass
                                         )
                                     }
                                 } else
@@ -187,6 +191,27 @@ class StreetPreview {
 
     fun getLastHeading() : Double {
         return lastHeading
+    }
+
+    /**
+     * updateBestChoice computes the best direction choice for the given heading.
+     * Returns the new best choice only if it changed from the previous one, null otherwise.
+     */
+    fun updateBestChoice(
+        choices: List<StreetPreviewChoice>,
+        heading: Double
+    ): StreetPreviewChoice? {
+        val best = choices.minByOrNull { calculateHeadingOffset(it.heading, heading) }
+            ?: return null
+        if (best.name == currentBestChoice?.name && best.heading == currentBestChoice?.heading) {
+            return null
+        }
+        currentBestChoice = best
+        return best
+    }
+
+    fun resetBestChoice() {
+        currentBestChoice = null
     }
 
     companion object {

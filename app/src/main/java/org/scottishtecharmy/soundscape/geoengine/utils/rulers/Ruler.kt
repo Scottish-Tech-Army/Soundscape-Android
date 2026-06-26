@@ -12,4 +12,5 @@ abstract class Ruler() {
     abstract fun along(line: LineString, dist: Double) : LngLatAlt
     abstract fun pointToSegmentDistance(p: LngLatAlt, a: LngLatAlt, b: LngLatAlt) : Double
     abstract fun distanceToLineString(p: LngLatAlt, line: LineString) : PointAndDistanceAndHeading
+    abstract fun lineLength(line: LineString) : Double
 }

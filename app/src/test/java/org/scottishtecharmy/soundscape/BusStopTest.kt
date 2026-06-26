@@ -25,7 +25,7 @@ class BusStopTest {
         val busStopTree = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
 
         // There are four bus stops in this tile
-        Assert.assertEquals(4, busStopTree.tree!!.size())
+        Assert.assertEquals(if(MAX_ZOOM_LEVEL == 15) 4 else 8, busStopTree.tree!!.size())
 
         // Bus stops are tricky as they can be mapped very badly and there isn't much we can do
         // about it apart from correcting them individually in OSM and then hoping the backend picks it up correctly.

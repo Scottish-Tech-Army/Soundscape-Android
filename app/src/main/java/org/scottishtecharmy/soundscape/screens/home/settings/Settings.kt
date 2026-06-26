@@ -4,68 +4,74 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckBox
 import androidx.compose.material.icons.filled.CheckBoxOutlineBlank
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.KeyboardArrowDown
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
+import androidx.preference.PreferenceManager
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import me.zhanghai.compose.preference.Preference
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
 import me.zhanghai.compose.preference.listPreference
 import me.zhanghai.compose.preference.sliderPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
+import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
 import org.scottishtecharmy.soundscape.screens.onboarding.language.Language
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageDropDownMenu
 import org.scottishtecharmy.soundscape.screens.onboarding.language.MockLanguagePreviewData
+import org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage.MockStoragePreviewData
+import org.scottishtecharmy.soundscape.screens.onboarding.offlinestorage.StorageDropDownMenu
 import org.scottishtecharmy.soundscape.screens.talkbackHint
+import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
+import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
+import org.scottishtecharmy.soundscape.utils.StorageUtils
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 
 // This code uses the library https://github.com/zhanghai/ComposePreference
 // The UI changes the SharedPreference reference by the `key` which can then be accessed
 // anywhere else in the app.
-
-@Preview(device = "spec:parent=pixel_5,orientation=landscape")
-@Preview
-@Composable
-fun SettingsPreview() {
-    Settings(
-        {},
-        SettingsViewModel.SettingsUiState(),
-        modifier = Modifier,
-        MockLanguagePreviewData.languages,
-        {},
-        4,
-    )
-}
-
-@Preview(fontScale = 2f)
-@Composable
-fun ListItemPreview() {
-    ListPreferenceItem(
-        "Speech synthesis and recognition by Google",
-        value = 2,
-        currentValue = 2,
-        { },
-        2,
-        3
-    )
-}
 
 /**
  * ListPreferenceItem is an attempt to make a more accessible list entry for the user.
@@ -81,8 +87,9 @@ fun ListPreferenceItem(description: String,
     Row(
         modifier = Modifier
             .background(MaterialTheme.colorScheme.surfaceContainer)
-            .smallPadding()
-            .clickable {
+            .extraSmallPadding()
+            .defaultMinSize(minHeight = spacing.targetSize)
+            .clickable(role = Role.RadioButton) {
                 onClick()
             }
             .talkbackHint(
@@ -110,7 +117,7 @@ fun ListPreferenceItem(description: String,
         Icon(
             modifier = Modifier
                 .align(Alignment.CenterVertically)
-                .width(spacing.icon),
+                .width(spacing.targetSize),
             imageVector =
                 if(value == currentValue) Icons.Filled.CheckBox
                 else Icons.Filled.CheckBoxOutlineBlank,
@@ -120,23 +127,245 @@ fun ListPreferenceItem(description: String,
     }
 }
 
+/**
+ * A clickable header that expands/collapses a section
+ */
+@Composable
+fun ExpandableSectionHeader(
+    title: String,
+    expanded: Boolean,
+    onToggle: () -> Unit,
+    textColor: androidx.compose.ui.graphics.Color
+) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(
+                role = Role.Button,
+                onClickLabel = if (expanded) stringResource(R.string.settings_collapse_section) else stringResource(R.string.settings_expand_section)
+            ) { onToggle() }
+            .extraSmallPadding()
+            .defaultMinSize(minHeight = spacing.targetSize),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Text(
+            text = title,
+            color = textColor,
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier
+                .semantics { heading() }
+                .weight(1f)
+        )
+        Icon(
+            imageVector = if (expanded) Icons.Filled.KeyboardArrowDown else Icons.AutoMirrored.Filled.KeyboardArrowRight,
+            contentDescription = if (expanded) stringResource(R.string.settings_expanded) else stringResource(R.string.settings_collapsed),
+            tint = textColor
+        )
+    }
+}
+@Composable
+fun SettingDetails(title: Int, description: Int, textColor: Color) {
+    Column {
+        Text(
+            text = stringResource(title),
+            color = textColor,
+            style = MaterialTheme.typography.headlineSmall,
+            modifier = Modifier.padding(spacing.extraSmall)
+        )
+        Text(
+            text = stringResource(description),
+            color = textColor,
+            style = MaterialTheme.typography.bodyMedium,
+            modifier = Modifier.padding(spacing.extraSmall)
+        )
+    }
+}
+@Composable
+fun ClickableOption(text: String, textColor: Color) {
+    Row(modifier = Modifier
+        .fillMaxSize()
+        .background(MaterialTheme.colorScheme.surface)
+        .padding(spacing.small)
+    ) {
+        Text(
+            text = text,
+            color = textColor,
+            style = MaterialTheme.typography.bodyLarge,
+            modifier = Modifier.weight(1f)
+        )
+        Icon(
+            Icons.Default.Edit,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurface
+        )
+    }
+}
+
+/**
+ * Beacon style preference with an inline audio preview.
+ *
+ * Tapping the row opens a dialog that:
+ *  - on open, asks the service to stop any running beacon and start a preview beacon
+ *    directly north of the listener using the currently saved style;
+ *  - on each option tap, swaps the preview beacon to the tapped style without
+ *    persisting the choice yet (so a Cancel cleanly reverts);
+ *  - on OK, persists the selected style and tells the service to restore the
+ *    previously-running beacon (now using the new style);
+ *  - on Cancel/back, reverts the engine to the original style and restores the
+ *    previously-running beacon.
+ */
+@Composable
+fun BeaconStylePreference(
+    beaconValues: List<String>,
+    beaconDescriptions: List<String>,
+    modifier: Modifier,
+    textColor: Color,
+    onPreviewStart: (String) -> Unit,
+    onPreviewUpdate: (String) -> Unit,
+    onPreviewStop: (Boolean, String?) -> Unit,
+) {
+    val context = LocalContext.current
+    val sharedPreferences = remember { PreferenceManager.getDefaultSharedPreferences(context) }
+
+    var savedValue by remember {
+        mutableStateOf(
+            sharedPreferences.getString(
+                MainActivity.BEACON_TYPE_KEY,
+                MainActivity.BEACON_TYPE_DEFAULT
+            ) ?: MainActivity.BEACON_TYPE_DEFAULT
+        )
+    }
+    DisposableEffect(sharedPreferences) {
+        val listener = android.content.SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+            if (key == MainActivity.BEACON_TYPE_KEY) {
+                savedValue = sharedPreferences.getString(
+                    MainActivity.BEACON_TYPE_KEY,
+                    MainActivity.BEACON_TYPE_DEFAULT
+                ) ?: MainActivity.BEACON_TYPE_DEFAULT
+            }
+        }
+        sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
+        onDispose { sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener) }
+    }
+
+    var showDialog by rememberSaveable { mutableStateOf(false) }
+    var selectedInDialog by rememberSaveable { mutableStateOf(savedValue) }
+
+    val idx = beaconValues.indexOf(savedValue).coerceAtLeast(0)
+    val label = beaconDescriptions.getOrNull(idx) ?: savedValue
+    Preference(
+        modifier = modifier,
+        title = {
+            SettingDetails(
+                R.string.beacon_settings_style,
+                R.string.beacon_settings_style_description,
+                textColor
+            )
+        },
+        summary = { ClickableOption(label, textColor) },
+        onClick = {
+            selectedInDialog = savedValue
+            showDialog = true
+        },
+    )
+
+    if (showDialog) {
+        // Start the preview once when the dialog opens. Using selectedInDialog
+        // (which is rememberSaveable) means that if the dialog is recreated
+        // — e.g. after a configuration change — the preview resumes on
+        // whichever style the user had last tapped, not on the persisted
+        // value. Service-side state is idempotently reset, so a re-fire here
+        // is safe.
+        DisposableEffect(Unit) {
+            onPreviewStart(selectedInDialog)
+            // Explicit cancel/commit paths run onPreviewStop synchronously
+            // before dismissing the dialog; service-side state is idempotent
+            // so we don't need to call it again from onDispose.
+            onDispose { }
+        }
+
+        AlertDialog(
+            onDismissRequest = {
+                onPreviewStop(false, null)
+                showDialog = false
+            },
+            title = {
+                Text(
+                    text = stringResource(R.string.beacon_settings_style),
+                    color = MaterialTheme.colorScheme.onSurface,
+                )
+            },
+            text = {
+                LazyColumn(modifier = Modifier.fillMaxWidth()) {
+                    items(beaconValues.size) { index ->
+                        val value = beaconValues[index]
+                        ListPreferenceItem(
+                            description = beaconDescriptions[index],
+                            value = value,
+                            currentValue = selectedInDialog,
+                            onClick = {
+                                if (selectedInDialog != value) {
+                                    selectedInDialog = value
+                                    onPreviewUpdate(value)
+                                }
+                            },
+                            index = index,
+                            listSize = beaconValues.size,
+                        )
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    onPreviewStop(true, selectedInDialog)
+                    showDialog = false
+                }) {
+                    Text(stringResource(R.string.ui_continue))
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = {
+                    onPreviewStop(false, null)
+                    showDialog = false
+                }) {
+                    Text(stringResource(R.string.general_alert_cancel))
+                }
+            },
+        )
+    }
+}
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Settings(
-    onNavigateUp: () -> Unit,
+    navController: NavHostController,
     uiState: SettingsViewModel.SettingsUiState,
     modifier: Modifier = Modifier,
     supportedLanguages: List<Language>,
     onLanguageSelected: (Language) -> Unit,
     selectedLanguageIndex: Int,
+    storages: List<StorageUtils.StorageSpace>,
+    onStorageSelected: (String) -> Unit,
+    selectedStorageIndex: Int,
+    resetSettings: () -> Unit,
+    onBeaconPreviewStart: (String) -> Unit = {},
+    onBeaconPreviewUpdate: (String) -> Unit = {},
+    onBeaconPreviewStop: (Boolean, String?) -> Unit = { _, _ -> },
+    previewExpandedSection: String? = null
 )
 {
+    val showConfirmationDialog = remember { mutableStateOf(false) }
+
+    // Track which section is expanded (null = none, only one can be expanded at a time)
+    val expandedSection = rememberSaveable { mutableStateOf(previewExpandedSection) }
+
     val beaconValues = uiState.beaconValues
     val beaconDescriptions = uiState.beaconDescriptions.map { stringResource(it) }
 
     val backgroundColor = MaterialTheme.colorScheme.background
     val textColor = MaterialTheme.colorScheme.onBackground
+    val expandedSectionModifier = Modifier.background(MaterialTheme.colorScheme.surfaceVariant)
     val themeContrastDescriptions = listOf(
         stringResource(R.string.settings_theme_contrast_regular),
         stringResource(R.string.settings_theme_contrast_medium),
@@ -183,300 +412,708 @@ fun Settings(
         "de"
     )
 
+    val geocoderDescriptions = listOf(
+        stringResource(R.string.settings_search_auto),
+        stringResource(R.string.settings_search_offline),
+    )
+    val geocoderValues = listOf(
+        "Auto",
+        "Offline"
+    )
+
+    val mediaControlsDescriptions = listOf(
+        stringResource(R.string.settings_media_controls_original),
+        stringResource(R.string.settings_media_controls_voice_command),
+        stringResource(R.string.settings_media_controls_audio_menu),
+    )
+    val mediaControlsValues = listOf(
+        "Original",
+        "VoiceControl",
+        "AudioMenu",
+    )
+
+    val relativeDirectionDescriptions = listOf(
+        stringResource(R.string.settings_relative_directions_clockface),
+        stringResource(R.string.settings_relative_directions_degrees),
+        stringResource(R.string.settings_relative_directions_left_right),
+    )
+    val relativeDirectionValues = listOf(
+        "ClockFace",
+        "Degrees",
+        "LeftRight",
+    )
+
+    val microphoneDescriptions = uiState.microphoneDescriptions
+    val microphoneValues = uiState.microphoneValues
+
+    if (showConfirmationDialog.value) {
+        AlertDialog(
+            onDismissRequest = { showConfirmationDialog.value = false },
+            title = { Text(stringResource(R.string.settings_reset_dialog_title)) },
+            text = { Text(stringResource(R.string.settings_reset_dialog_message)) },
+            confirmButton = {
+                TextButton(
+                    onClick = {
+                        resetSettings()
+                        showConfirmationDialog.value = false
+                    }
+                ) {
+                    Text(
+                        text = stringResource(R.string.ui_continue),
+                        modifier = Modifier
+                            .talkbackHint(stringResource(R.string.settings_reset_button_hint))
+                    )
+                }
+            },
+            dismissButton = {
+                TextButton(
+                    onClick = { showConfirmationDialog.value = false }
+                ) {
+                    Text(stringResource(R.string.general_alert_cancel))
+                }
+            }
+        )
+    }
     ProvidePreferenceLocals {
-        LazyColumn (modifier = modifier.background(backgroundColor)){
+        // Track the ALLOW_CALLOUTS preference to enable/disable child switches
+        val context = LocalContext.current
+        val sharedPreferences = remember { PreferenceManager.getDefaultSharedPreferences(context) }
+        val allowCallouts = remember {
+            mutableStateOf(sharedPreferences.getBoolean(MainActivity.ALLOW_CALLOUTS_KEY, MainActivity.ALLOW_CALLOUTS_DEFAULT))
+        }
+        DisposableEffect(sharedPreferences) {
+            val listener = android.content.SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
+                if (key == MainActivity.ALLOW_CALLOUTS_KEY) {
+                    allowCallouts.value = sharedPreferences.getBoolean(MainActivity.ALLOW_CALLOUTS_KEY, MainActivity.ALLOW_CALLOUTS_DEFAULT)
+                }
+            }
+            sharedPreferences.registerOnSharedPreferenceChangeListener(listener)
+            onDispose {
+                sharedPreferences.unregisterOnSharedPreferenceChangeListener(listener)
+            }
+        }
+
+        LazyColumn(modifier = modifier.background(backgroundColor).fillMaxSize()) {
             stickyHeader {
                 Surface {
-                    CustomAppBar(stringResource(R.string.settings_screen_title),
-                        onNavigateUp = onNavigateUp,
+                    CustomAppBar(
+                        stringResource(R.string.settings_screen_title),
+                        onNavigateUp =  { navController.navigateUp() },
                         navigationButtonTitle = stringResource(R.string.ui_back_button_title)
                     )
                 }
             }
 
-            item {
+            item(key = "header_explanation") {
                 Text(
-                    text = stringResource(R.string.menu_manage_callouts),
+                    text = stringResource(R.string.settings_explanation),
                     color = textColor,
-                    style = MaterialTheme.typography.headlineSmall,
-                    modifier = Modifier.semantics { heading() },
-                )
-            }
-            switchPreference(
-                key = MainActivity.ALLOW_CALLOUTS_KEY,
-                defaultValue = MainActivity.ALLOW_CALLOUTS_DEFAULT,
-                title = {
-                    Text(
-                        text = stringResource(R.string.callouts_allow_callouts),
-                        color = textColor
-                    )
-                },
-            )
-            switchPreference(
-                key = MainActivity.PLACES_AND_LANDMARKS_KEY,
-                defaultValue = MainActivity.PLACES_AND_LANDMARKS_DEFAULT,
-                title = {
-                    Text(
-                        text = stringResource(R.string.callouts_places_and_landmarks),
-                        color = textColor
-                    )
-                },
-            )
-            switchPreference(
-                key = MainActivity.MOBILITY_KEY,
-                defaultValue = MainActivity.MOBILITY_DEFAULT,
-                title = {
-                    Text(text = stringResource(R.string.callouts_mobility),
-                    color = textColor
-                    )
-                },
-            )
-            switchPreference(
-                key = MainActivity.DISTANCE_TO_BEACON_KEY,
-                defaultValue = MainActivity.DISTANCE_TO_BEACON_DEFAULT,
-                title = {
-                    Text(
-                        text = stringResource(R.string.callouts_audio_beacon),
-                        color = textColor
-                    )
-                },
-            )
-            switchPreference(
-                key = MainActivity.UNNAMED_ROADS_KEY,
-                defaultValue = MainActivity.UNNAMED_ROADS_DEFAULT,
-                title = {
-                    Text(
-                        text = stringResource(R.string.preview_include_unnamed_roads_title),
-                        color = textColor
-                    )
-                },
-            )
-
-            listPreference(
-                key = MainActivity.MEASUREMENT_UNITS_KEY,
-                defaultValue = MainActivity.MEASUREMENT_UNITS_DEFAULT,
-                values = unitsValues,
-                title = {
-                    Text(
-                        text = stringResource(R.string.settings_section_units),
-                        color = textColor
-                    )
-                },
-                item = { value, currentValue, onClick ->
-                    ListPreferenceItem(unitsDescriptions[unitsValues.indexOf(value)], value, currentValue, onClick, unitsValues.indexOf(value), unitsValues.size)
-                },
-                summary = { Text(text = unitsDescriptions[unitsValues.indexOf(it)], color = textColor) },
-            )
-
-            item {
-                Text(
-                    text = stringResource(R.string.menu_manage_accessibility),
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = textColor,
-                    modifier = Modifier.semantics { heading() },
+                    style = MaterialTheme.typography.bodyLarge,
+                    modifier = Modifier.padding(spacing.small)
                 )
             }
 
-            listPreference(
-                key = MainActivity.THEME_LIGHTNESS_KEY,
-                defaultValue = MainActivity.THEME_LIGHTNESS_DEFAULT,
-                values = themeLightnessValues,
-                title = {
-                    Text(
-                        text = stringResource(R.string.settings_theme_light_dark),
-                        color = textColor
-                    )
-                },
-                item = { value, currentValue, onClick ->
-                    ListPreferenceItem(themeLightnessDescriptions[themeLightnessValues.indexOf(value)], value, currentValue, onClick, themeLightnessValues.indexOf(value), themeLightnessValues.size)
-                },
-                summary = { Text(text = themeLightnessDescriptions[themeLightnessValues.indexOf(it)], color = textColor) },
-            )
-
-            listPreference(
-                key = MainActivity.THEME_CONTRAST_KEY,
-                defaultValue = MainActivity.THEME_CONTRAST_DEFAULT,
-                values = themeContrastValues,
-                title = {
-                    Text(
-                        text = stringResource(R.string.settings_theme_contrast),
-                        color = textColor
-                    )
-                },
-                item = { value, currentValue, onClick ->
-                    ListPreferenceItem(themeContrastDescriptions[themeContrastValues.indexOf(value)], value, currentValue, onClick, themeContrastValues.indexOf(value), themeContrastValues.size)
-                },
-                summary = { Text(text = themeContrastDescriptions[themeContrastValues.indexOf(it)], color = textColor) },
-            )
-
-            switchPreference(
-                key = MainActivity.SHOW_MAP_KEY,
-                defaultValue = MainActivity.SHOW_MAP_DEFAULT,
-                title = {
-                    Text(
-                        text = stringResource(R.string.settings_show_map),
-                        color = textColor
-                    )
-                },
-            )
-
-//          Disabling hints just results in the Android default "Double tap to Activate" being read
-//          out instead. Our hints are better, so don't allow disabling them.
-//            switchPreference(
-//                key = MainActivity.HINTS_KEY,
-//                defaultValue = MainActivity.HINTS_DEFAULT,
-//                title = {
-//                    Text(
-//                        text = stringResource(R.string.settings_hints),
-//                        color = textColor
-//                    )
-//                },
-//            )
-
-            item {
-                Text(
-                    text = stringResource(R.string.menu_manage_audio),
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = textColor,
-                    modifier = Modifier.semantics { heading() },
+            // Callouts Section
+            item(key = "header_callouts") {
+                ExpandableSectionHeader(
+                    title = stringResource(R.string.menu_manage_callouts),
+                    expanded = expandedSection.value == "callouts",
+                    onToggle = { expandedSection.value = if (expandedSection.value == "callouts") null else "callouts" },
+                    textColor = textColor
                 )
             }
-            listPreference(
-                key = MainActivity.BEACON_TYPE_KEY,
-                defaultValue = MainActivity.BEACON_TYPE_DEFAULT,
-                values = beaconValues,
-                title = {
-                    Text(
-                        text = stringResource(R.string.beacon_settings_style),
-                        color = textColor
-                    )
-                },
-                item = { value, currentValue, onClick ->
-                    ListPreferenceItem(beaconDescriptions[beaconValues.indexOf(value)], value, currentValue, onClick, beaconValues.indexOf(value), beaconValues.size)
-                },
-                summary = { Text(text = it, color = textColor) },
-            )
-
-            listPreference(
-                key = MainActivity.SPEECH_ENGINE_KEY,
-                defaultValue = MainActivity.SPEECH_ENGINE_DEFAULT,
-                values = uiState.engineTypes,
-                title = {
-                    Text(
-                        text = stringResource(R.string.voice_engine),
-                        color = textColor
-                    )
-                },
-                item = { value, currentValue, onClick ->
-                    ListPreferenceItem(
-                        value.substringBefore(":::"),
-                        value,
-                        currentValue,
-                        onClick,
-                        uiState.engineTypes.indexOf(value),
-                        uiState.engineTypes.size)
-                },
-                summary = { Text(text = it.substringBefore(":::"), color = textColor) },
-            )
-
-            listPreference(
-                key = MainActivity.VOICE_TYPE_KEY,
-                defaultValue = MainActivity.VOICE_TYPE_DEFAULT,
-                values = uiState.voiceTypes,
-                title = {
-                    Text(
-                        text = stringResource(R.string.voice_voices),
-                        color = textColor
-                    )
-                },
-                item = { value, currentValue, onClick ->
-                    ListPreferenceItem(value, value, currentValue, onClick, uiState.voiceTypes.indexOf(value), uiState.voiceTypes.size)
-                },
-                summary = { Text(text = it, color = textColor) },
-            )
-
-            sliderPreference(
-                key = MainActivity.SPEECH_RATE_KEY,
-                defaultValue = MainActivity.SPEECH_RATE_DEFAULT,
-                title = {
-                    Text(
-                        text = stringResource(R.string.voice_settings_speaking_rate),
-                        color = textColor
-                    )
-                },
-                valueRange = 0.5f..2.0f,
-                valueSteps = 10,
-                valueText = { Text(text = "%.1fx".format(it), color = textColor) },
-            )
-
-            item {
-                Text(
-                    text = stringResource(R.string.first_launch_change_language),
-                    color = textColor,
-                    style = MaterialTheme.typography.headlineSmall,
-                    modifier = Modifier.semantics { heading() },
+            if (expandedSection.value == "callouts") {
+                switchPreference(
+                    key = MainActivity.ALLOW_CALLOUTS_KEY,
+                    defaultValue = MainActivity.ALLOW_CALLOUTS_DEFAULT,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.callouts_allow_callouts,
+                            R.string.callouts_allow_callouts_description,
+                            textColor
+                        )
+                    },
                 )
-                LanguageDropDownMenu(
-                    allLanguages = supportedLanguages,
-                    onLanguageSelected = onLanguageSelected,
-                    selectedLanguageIndex = selectedLanguageIndex,
-                    modifier = Modifier.smallPadding()
+                switchPreference(
+                    key = MainActivity.PLACES_AND_LANDMARKS_KEY,
+                    defaultValue = MainActivity.PLACES_AND_LANDMARKS_DEFAULT,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.callouts_places_and_landmarks,
+                            R.string.callouts_places_and_landmarks_description,
+                            textColor
+                        )
+                    },
+                    enabled = { allowCallouts.value },
+                )
+                switchPreference(
+                    key = MainActivity.MOBILITY_KEY,
+                    defaultValue = MainActivity.MOBILITY_DEFAULT,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.callouts_mobility,
+                            R.string.callouts_mobility_description,
+                            textColor
+                        )
+                    },
+                    enabled = { allowCallouts.value },
+                )
+                switchPreference(
+                    key = MainActivity.DISTANCE_TO_BEACON_KEY,
+                    defaultValue = MainActivity.DISTANCE_TO_BEACON_DEFAULT,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.callouts_audio_beacon,
+                            R.string.callouts_audio_beacon_description,
+                            textColor
+                        )
+                    },
+                    enabled = { allowCallouts.value },
+                )
+                switchPreference(
+                    key = MainActivity.POSITION_INCLUDES_HEADING_AND_DISTANCE_KEY,
+                    defaultValue = MainActivity.POSITION_INCLUDES_HEADING_AND_DISTANCE_DEFAULT,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.callout_settings_position_text,
+                            R.string.callout_settings_position_description,
+                            textColor
+                        )
+                    },
+                    enabled = { allowCallouts.value },
+                )
+                listPreference(
+                    key = MainActivity.RELATIVE_DIRECTION_KEY,
+                    defaultValue = MainActivity.RELATIVE_DIRECTION_DEFAULT,
+                    values = relativeDirectionValues,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.settings_relative_directions_text,
+                            R.string.settings_relative_directions_description,
+                            textColor
+                        )
+                    },
+                    item = { value, currentValue, onClick ->
+                        ListPreferenceItem(relativeDirectionDescriptions[relativeDirectionValues.indexOf(value)], value, currentValue, onClick, relativeDirectionValues.indexOf(value), relativeDirectionValues.size)
+                    },
+                    summary = {
+                        ClickableOption(
+                            relativeDirectionDescriptions[relativeDirectionValues.indexOf(it)],
+                            textColor
+                        )
+                    },
+                )
+
+//                switchPreference(
+//                    key = MainActivity.UNNAMED_ROADS_KEY,
+//                    defaultValue = MainActivity.UNNAMED_ROADS_DEFAULT,
+//                    title = {
+//                        SettingDetails(
+//                            R.string.preview_include_unnamed_roads_title,
+//                            R.string.preview_include_unnamed_roads_title_description,
+//                            textColor
+//                        )
+//                    },
+//                    enabled = { allowCallouts.value },
+//                )
+            }
+
+            // Search Section
+            item(key = "header_search") {
+                ExpandableSectionHeader(
+                    title = stringResource(R.string.menu_manage_search),
+                    expanded = expandedSection.value == "search",
+                    onToggle = { expandedSection.value = if (expandedSection.value == "search") null else "search" },
+                    textColor = textColor
                 )
             }
-            listPreference(
-                key = MainActivity.SEARCH_LANGUAGE_KEY,
-                defaultValue = MainActivity.SEARCH_LANGUAGE_DEFAULT,
-                values = searchLanguageValues,
-                title = {
-                    Text(
-                        text = stringResource(R.string.settings_search_results_language),
-                        color = textColor
-                    )
-                },
-                item = { value, currentValue, onClick ->
-                    ListPreferenceItem(searchLanguageDescriptions[searchLanguageValues.indexOf(value)], value, currentValue, onClick, searchLanguageValues.indexOf(value), searchLanguageValues.size)
-                },
-                summary = { Text(text = searchLanguageDescriptions[searchLanguageValues.indexOf(it)], color = textColor) },
-            )
+            if (expandedSection.value == "search") {
+                listPreference(
+                    key = MainActivity.GEOCODER_MODE_KEY,
+                    defaultValue = MainActivity.GEOCODER_MODE_DEFAULT,
+                    values = geocoderValues,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.settings_section_search_network,
+                            R.string.settings_section_search_network_description,
+                            textColor
+                        )
+                    },
+                    item = { value, currentValue, onClick ->
+                        ListPreferenceItem(geocoderDescriptions[geocoderValues.indexOf(value)], value, currentValue, onClick, geocoderValues.indexOf(value), geocoderValues.size)
+                    },
+                    summary = {
+                        ClickableOption(geocoderDescriptions[geocoderValues.indexOf(it)], textColor)
+                    }
+                )
 
-            item {
-                Text(
-                    text = stringResource(R.string.settings_debug_heading),
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = textColor,
-                    modifier = Modifier.semantics { heading() },
-                    )
+                listPreference(
+                    key = MainActivity.SEARCH_LANGUAGE_KEY,
+                    defaultValue = MainActivity.SEARCH_LANGUAGE_DEFAULT,
+                    values = searchLanguageValues,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.settings_search_results_language,
+                            R.string.settings_search_results_language_description,
+                            textColor
+                        )
+                    },
+                    item = { value, currentValue, onClick ->
+                        ListPreferenceItem(searchLanguageDescriptions[searchLanguageValues.indexOf(value)], value, currentValue, onClick, searchLanguageValues.indexOf(value), searchLanguageValues.size)
+                    },
+                    summary = {
+                        ClickableOption(searchLanguageDescriptions[searchLanguageValues.indexOf(it)], textColor)
+                    },
+                )
             }
-            switchPreference(
-                key = MainActivity.RECORD_TRAVEL_KEY,
-                defaultValue = MainActivity.RECORD_TRAVEL_DEFAULT,
-                title = {
-                    Text(
-                        text = stringResource(R.string.settings_travel_recording),
-                        color = textColor
+
+            // Accessibility Section
+            item(key = "header_accessibility") {
+                ExpandableSectionHeader(
+                    title = stringResource(R.string.menu_manage_accessibility),
+                    expanded = expandedSection.value == "accessibility",
+                    onToggle = { expandedSection.value = if (expandedSection.value == "accessibility") null else "accessibility" },
+                    textColor = textColor
+                )
+            }
+            if (expandedSection.value == "accessibility") {
+                listPreference(
+                    key = MainActivity.THEME_LIGHTNESS_KEY,
+                    defaultValue = MainActivity.THEME_LIGHTNESS_DEFAULT,
+                    values = themeLightnessValues,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        Text(
+                            text = stringResource(R.string.settings_theme_light_dark),
+                            color = textColor
+                        )
+                    },
+                    item = { value, currentValue, onClick ->
+                        ListPreferenceItem(themeLightnessDescriptions[themeLightnessValues.indexOf(value)], value, currentValue, onClick, themeLightnessValues.indexOf(value), themeLightnessValues.size)
+                    },
+                    summary = {
+                        ClickableOption(themeLightnessDescriptions[themeLightnessValues.indexOf(it)], textColor)
+                    },
+                )
+
+                listPreference(
+                    key = MainActivity.THEME_CONTRAST_KEY,
+                    defaultValue = MainActivity.THEME_CONTRAST_DEFAULT,
+                    values = themeContrastValues,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        Text(
+                            text = stringResource(R.string.settings_theme_contrast),
+                            color = textColor
+                        )
+                    },
+                    item = { value, currentValue, onClick ->
+                        ListPreferenceItem(themeContrastDescriptions[themeContrastValues.indexOf(value)], value, currentValue, onClick, themeContrastValues.indexOf(value), themeContrastValues.size)
+                    },
+                    summary = { ClickableOption(themeContrastDescriptions[themeContrastValues.indexOf(it)], textColor) },
+                )
+
+                switchPreference(
+                    key = MainActivity.SHOW_MAP_KEY,
+                    defaultValue = MainActivity.SHOW_MAP_DEFAULT,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        Text(
+                            text = stringResource(R.string.settings_show_map),
+                            color = textColor
+                        )
+                    },
+                )
+            }
+
+            // Storage Section
+            item(key = "header_storage") {
+                ExpandableSectionHeader(
+                    title = stringResource(R.string.offline_map_storage_title),
+                    expanded = expandedSection.value == "storage",
+                    onToggle = { expandedSection.value = if (expandedSection.value == "storage") null else "storage" },
+                    textColor = textColor
+                )
+            }
+            if (expandedSection.value == "storage") {
+                item {
+                    Column(
+                        modifier = expandedSectionModifier.fillMaxWidth()
+                    ) {
+                        Text(
+                            text = stringResource(R.string.offline_map_storage_description),
+                            color = textColor,
+                            style = MaterialTheme.typography.bodyLarge,
+                            modifier = Modifier.padding(spacing.small)
+                        )
+                        StorageDropDownMenu(
+                            storages = storages,
+                            onStorageSelected = onStorageSelected,
+                            selectedStorageIndex = selectedStorageIndex,
+                            modifier = Modifier.smallPadding(),
+                            backgroundColor = MaterialTheme.colorScheme.surface
+                        )
+                    }
+                }
+            }
+
+            // Audio Section
+            item(key = "header_audio") {
+                ExpandableSectionHeader(
+                    title = stringResource(R.string.menu_manage_audio),
+                    expanded = expandedSection.value == "audio",
+                    onToggle = { expandedSection.value = if (expandedSection.value == "audio") null else "audio" },
+                    textColor = textColor
+                )
+            }
+            if (expandedSection.value == "audio") {
+                item(key = "beacon_style_preview") {
+                    BeaconStylePreference(
+                        beaconValues = beaconValues,
+                        beaconDescriptions = beaconDescriptions,
+                        modifier = expandedSectionModifier,
+                        textColor = textColor,
+                        onPreviewStart = onBeaconPreviewStart,
+                        onPreviewUpdate = onBeaconPreviewUpdate,
+                        onPreviewStop = onBeaconPreviewStop,
                     )
-                },
-            )
-            switchPreference(
-                key = MainActivity.ACCESSIBLE_MAP_KEY,
-                defaultValue = MainActivity.ACCESSIBLE_MAP_DEFAULT,
-                title = {
-                    Text(
-                        text = stringResource(R.string.settings_accessible_map),
-                        color = textColor
-                    )
-                },
-            )
-            switchPreference(
-                key = MainActivity.MARKDOWN_HELP_KEY,
-                defaultValue = MainActivity.MARKDOWN_HELP_DEFAULT,
-                title = {
-                    Text(
-                        text = "Enable new Help screens",
-                        color = textColor
-                    )
-                },
-            )
+                }
+
+                listPreference(
+                    key = MainActivity.SPEECH_ENGINE_KEY,
+                    defaultValue = MainActivity.SPEECH_ENGINE_DEFAULT,
+                    values = uiState.engineTypes,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        Text(
+                            text = stringResource(R.string.voice_engine),
+                            color = textColor
+                        )
+                    },
+                    item = { value, currentValue, onClick ->
+                        ListPreferenceItem(
+                            value.substringBefore(":::"),
+                            value,
+                            currentValue,
+                            onClick,
+                            uiState.engineTypes.indexOf(value),
+                            uiState.engineTypes.size)
+                    },
+                    summary = { ClickableOption(it.substringBefore(":::"), textColor) },
+                )
+
+                listPreference(
+                    key = MainActivity.VOICE_TYPE_KEY,
+                    defaultValue = MainActivity.VOICE_TYPE_DEFAULT,
+                    values = uiState.voiceTypes,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        Text(
+                            text = stringResource(R.string.voice_voices),
+                            color = textColor
+                        )
+                    },
+                    item = { value, currentValue, onClick ->
+                        ListPreferenceItem(value, value, currentValue, onClick, uiState.voiceTypes.indexOf(value), uiState.voiceTypes.size)
+                    },
+                    summary = { ClickableOption(it, textColor) },
+                )
+
+                sliderPreference(
+                    key = MainActivity.SPEECH_RATE_KEY,
+                    defaultValue = MainActivity.SPEECH_RATE_DEFAULT,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        Text(
+                            text = stringResource(R.string.voice_settings_speaking_rate),
+                            color = textColor
+                        )
+                    },
+                    valueRange = 0.5f..2.0f,
+                    valueSteps = 10,
+                    valueText = { Text(text = "%.1fx".format(it), color = textColor) },
+                )
+            }
+
+            // Language Section
+            item(key = "header_language") {
+                ExpandableSectionHeader(
+                    title = stringResource(R.string.menu_manage_language),
+                    expanded = expandedSection.value == "language",
+                    onToggle = { expandedSection.value = if (expandedSection.value == "language") null else "language" },
+                    textColor = textColor
+                )
+            }
+            if (expandedSection.value == "language") {
+                listPreference(
+                    key = MainActivity.MEASUREMENT_UNITS_KEY,
+                    defaultValue = MainActivity.MEASUREMENT_UNITS_DEFAULT,
+                    values = unitsValues,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.settings_section_units,
+                            R.string.settings_section_units_description,
+                            textColor
+                        )
+                    },
+                    item = { value, currentValue, onClick ->
+                        ListPreferenceItem(unitsDescriptions[unitsValues.indexOf(value)], value, currentValue, onClick, unitsValues.indexOf(value), unitsValues.size)
+                    },
+                    summary = {
+                        ClickableOption(
+                            unitsDescriptions[unitsValues.indexOf(it)],
+                            textColor,
+                        )
+                    },
+                )
+
+                item {
+                    Column(
+                        modifier = expandedSectionModifier.fillMaxWidth()
+                    ) {
+                        Text(
+                            text = stringResource(R.string.first_launch_change_language),
+                            color = textColor,
+                            style = MaterialTheme.typography.headlineSmall
+                        )
+                        LanguageDropDownMenu(
+                            allLanguages = supportedLanguages,
+                            onLanguageSelected = onLanguageSelected,
+                            selectedLanguageIndex = selectedLanguageIndex,
+                            modifier = Modifier.smallPadding(),
+                            backgroundColor = MaterialTheme.colorScheme.surface
+                        )
+                    }
+                }
+            }
+
+            // Media control section
+            item(key = "header_media_control") {
+                ExpandableSectionHeader(
+                    title = stringResource(R.string.menu_media_controls),
+                    expanded = expandedSection.value == "media_controls",
+                    onToggle = { expandedSection.value = if (expandedSection.value == "media_controls") null else "media_controls" },
+                    textColor = textColor
+                )
+            }
+            if (expandedSection.value == "media_controls") {
+                listPreference(
+                    key = MainActivity.MEDIA_CONTROLS_MODE_KEY,
+                    defaultValue = MainActivity.MEDIA_CONTROLS_MODE_DEFAULT,
+                    values = mediaControlsValues,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.settings_section_media_controls,
+                            R.string.settings_section_media_controls_description,
+                            textColor
+                        )
+                    },
+                    item = { value, currentValue, onClick ->
+                        ListPreferenceItem(mediaControlsDescriptions[mediaControlsValues.indexOf(value)], value, currentValue, onClick, mediaControlsValues.indexOf(value), mediaControlsValues.size)
+                    },
+                    summary = {
+                        ClickableOption(
+                            mediaControlsDescriptions[mediaControlsValues.indexOf(it)],
+                            textColor
+                        )
+                    },
+                )
+
+                switchPreference(
+                    key = MainActivity.VOICE_COMMAND_LISTENING_PROMPT_KEY,
+                    defaultValue = MainActivity.VOICE_COMMAND_LISTENING_PROMPT_DEFAULT,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.settings_voice_command_listening_prompt,
+                            R.string.settings_voice_command_listening_prompt_description,
+                            textColor
+                        )
+                    },
+                )
+
+                listPreference(
+                    key = MainActivity.VOICE_COMMAND_MICROPHONE_KEY,
+                    defaultValue = MainActivity.VOICE_COMMAND_MICROPHONE_DEFAULT,
+                    values = microphoneValues,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            R.string.settings_voice_command_microphone,
+                            R.string.settings_voice_command_microphone_description,
+                            textColor
+                        )
+                    },
+                    item = { value, currentValue, onClick ->
+                        val idx = microphoneValues.indexOf(value).coerceAtLeast(0)
+                        ListPreferenceItem(microphoneDescriptions[idx], value, currentValue, onClick, idx, microphoneValues.size)
+                    },
+                    summary = {
+                        val idx = microphoneValues.indexOf(it)
+                        val label = if (idx >= 0) microphoneDescriptions[idx] else it
+                        ClickableOption(label, textColor)
+                    },
+                )
+            }
+
+
+            // Debug Section
+            item(key = "header_debug") {
+                ExpandableSectionHeader(
+                    title = stringResource(R.string.settings_debug_heading),
+                    expanded = expandedSection.value == "debug",
+                    onToggle = { expandedSection.value = if (expandedSection.value == "debug") null else "debug" },
+                    textColor = textColor
+                )
+            }
+            if (expandedSection.value == "debug") {
+                switchPreference(
+                    key = MainActivity.RECORD_TRAVEL_KEY,
+                    defaultValue = MainActivity.RECORD_TRAVEL_DEFAULT,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        Text(
+                            text = stringResource(R.string.settings_travel_recording),
+                            color = textColor
+                        )
+                    },
+                )
+                switchPreference(
+                    key = MainActivity.ACCESSIBLE_MAP_KEY,
+                    defaultValue = MainActivity.ACCESSIBLE_MAP_DEFAULT,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        Text(
+                            text = stringResource(R.string.settings_accessible_map),
+                            color = textColor
+                        )
+                    },
+                )
+                switchPreference(
+                    key = MainActivity.MARKDOWN_HELP_KEY,
+                    defaultValue = MainActivity.MARKDOWN_HELP_DEFAULT,
+                    title = {
+                        Text(
+                            text = "Enable new Help screens",
+                            color = textColor
+                        }
+                    }
+                }
+                item {
+                    Column(
+                        modifier = expandedSectionModifier.fillMaxWidth()
+                    ) {
+                        CustomButton(
+                            onClick = { navController.navigate(HomeRoutes.AdvancedMarkersAndRoutesSettings.route) },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .background(MaterialTheme.colorScheme.surface)
+                                .mediumPadding(),
+                            shape = RoundedCornerShape(spacing.extraSmall),
+                            text = stringResource(R.string.menu_advanced_markers_and_routes),
+                            textStyle = MaterialTheme.typography.bodyLarge,
+                            fontWeight = FontWeight.Bold,
+                        )
+                        CustomButton(
+                            onClick = {
+                                showConfirmationDialog.value = true
+                            },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .mediumPadding()
+                                .talkbackHint(stringResource(R.string.settings_reset_button_hint)),
+                            buttonColor = MaterialTheme.colorScheme.errorContainer,
+                            contentColor = MaterialTheme.colorScheme.onErrorContainer,
+                            shape = RoundedCornerShape(spacing.small),
+                            text = stringResource(R.string.settings_reset_button),
+                            textStyle = MaterialTheme.typography.bodyLarge,
+                            fontWeight = FontWeight.Bold,
+                        )
+                    }
+                }
+            }
         }
     }
+}
+
+@Composable
+fun SettingsPreview(expandedSection: String) {
+    Settings(
+        rememberNavController(),
+        SettingsViewModel.SettingsUiState(),
+        modifier = Modifier,
+        MockLanguagePreviewData.languages,
+        {},
+        4,
+        MockStoragePreviewData.storages,
+        {},
+        0,
+        resetSettings = {},
+        previewExpandedSection = expandedSection
+    )
+}
+
+@Preview
+@Composable
+fun SettingsPreviewCallouts() {
+    SettingsPreview("callouts")
+}
+@Preview
+@Composable
+fun SettingsPreviewSearch() {
+    SettingsPreview("search")
+}
+@Preview
+@Composable
+fun SettingsPreviewAccessibility() {
+    SettingsPreview("accessibility")
+}
+@Preview
+@Composable
+fun SettingsPreviewOfflineMaps() {
+    SettingsPreview("storage")
+}
+@Preview
+@Composable
+fun SettingsPreviewAudio() {
+    SettingsPreview("audio")
+}
+@Preview
+@Composable
+fun SettingsPreviewLanguage() {
+    SettingsPreview("language")
+}
+@Preview
+@Composable
+fun SettingsPreviewMediaControls() {
+    SettingsPreview("media_controls")
+}
+@Preview
+@Composable
+fun SettingsPreviewDebug() {
+    SettingsPreview("debug")
+}
+
+
+@Preview(fontScale = 2f)
+@Composable
+fun ListItemPreview() {
+    ListPreferenceItem(
+        "Speech synthesis and recognition by Google",
+        value = 2,
+        currentValue = 2,
+        { },
+        2,
+        3
+    )
 }

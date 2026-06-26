@@ -19,10 +19,18 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
           token: ${{ secrets.PAT_TOKEN }}
+
+      - name: Setup offline maps for tests
+        run: |
+          pwd
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/bristol-gb.pmtiles  -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/bristol-gb.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/glasgow-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/glasgow-gb.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/liverpool-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/liverpool-gb.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/manifest.geojson.gz -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/manifest.geojson.gz
 
       - name: Extract existing version code from build.gradle
         id: current-version
@@ -60,7 +68,7 @@ jobs:
         env:
           VERSION_CODE: ${{ steps.current-version.outputs.VERSION_CODE }}
           VERSION_NAME: ${{ steps.current-version.outputs.VERSION_NAME }}
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "Bump version to ${{ env.VERSION_NAME }}, version code ${{ env.VERSION_CODE }}"
           tagging_message: "soundscape-${{ env.VERSION_NAME }}"
@@ -76,11 +84,13 @@ jobs:
           TILE_PROVIDER_URL: ${{ secrets.TILE_PROVIDER_URL }}
           SEARCH_PROVIDER_API_KEY: ${{ secrets.SEARCH_PROVIDER_API_KEY }}
           SEARCH_PROVIDER_URL: ${{ secrets.SEARCH_PROVIDER_URL }}
+          EXTRACT_PROVIDER_URL: ${{ secrets.EXTRACT_PROVIDER_URL }}
         run: |
           echo tileProviderUrl="$TILE_PROVIDER_URL" > local.properties
           echo tileProviderApiKey="$TILE_PROVIDER_API_KEY" >> local.properties
           echo searchProviderUrl="$SEARCH_PROVIDER_URL" >> local.properties
           echo searchProviderApiKey="$SEARCH_PROVIDER_API_KEY" >> local.properties
+          echo extractProviderUrl="$EXTRACT_PROVIDER_URL" >> local.properties
 
       - name: Decode Google services
         env:
@@ -92,22 +102,13 @@ jobs:
           base64 -d google-services-b64.txt > ${{ env.main_project_module }}/$GOOGLE_SERVICES_PATH
 
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
 
       - name: Set Up JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '19'
-
-      - name: Setup offline maps for tests
-        run: |
-          pwd 
-          ls -l ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape
-          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/cardiff-united-kingdom.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/cardiff-united-kingdom.pmtiles
-          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/glasgow-united-kingdom.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/glasgow-united-kingdom.pmtiles
-          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/manchester-united-kingdom.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/manchester-united-kingdom.pmtiles
-          ls -l ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape
 
       - name: Run lint over the repo
         run: ./gradlew lint
@@ -126,18 +127,21 @@ jobs:
       - name: Run gradle tests
         run: ./gradlew test
 
-      # Generate the screenshots from the Preview code
-      - name: Generate screenshots
-        continue-on-error: true # The screenshots are unreliable, awaiting Google fix
-        run : ./gradlew  updateDebugScreenshotTest
-
-      # Upload screenshots as an artifact
-      # Noted For Output [main_project_module]/build/outputs/apk/debug/
-      - name: Upload screenshots
-        uses: actions/upload-artifact@v4
-        with:
-          name: screenshot-previews
-          path: ${{ env.main_project_module }}/src/screenshotTestDebug/reference/org/scottishtecharmy/soundscape/
+#
+# This is fragile with small changes causing it to run out of memory. Comment out until Google fixes it
+#
+#      - name: Generate test screenshots
+#        run: |
+#          ./gradlew updateDebugScreenshotTest
+#          ./categorise.sh app/src/screenshotTestDebug/reference/org/scottishtecharmy/soundscape/ThemeTestClass/
+#          cd app/src/screenshotTestDebug/reference/org/scottishtecharmy/soundscape/ThemeTestClass/
+#          zip -r screenshots.zip .
+#
+#      - name: Upload screenshots
+#        uses: actions/upload-artifact@v6
+#        with:
+#          name: test-screenshots
+#          path: app/src/screenshotTestDebug/reference/org/scottishtecharmy/soundscape/ThemeTestClass/screenshots.zip
 
       - name: Enable KVM
         run: |
@@ -177,7 +181,7 @@ jobs:
           command: mogrify -path docs/documentationScreens -crop 1080x2130+0+140 docs/documentationScreens/*.*
 
       - name: Commit new screenshots
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v7
         with:
           commit_message: "New documentation screenshots"
           file_pattern: 'docs/documentationScreens/*.png docs/users/help-*.md'
@@ -191,11 +195,6 @@ jobs:
           SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
         run: |
           ./gradlew build
-
-      # Create APK Debug
-      - name: Build apk debug project (APK)
-        run: |
-          ./gradlew assembleDebug
 
       # Create APK Release
       - name: Build apk release project (APK)
@@ -217,39 +216,30 @@ jobs:
         run: ./gradlew ${{ env.main_project_module }}:bundleRelease
 
       # Upload Artifact Build
-      # Noted For Output [main_project_module]/build/outputs/apk/debug/
-      - name: Upload APK Debug
-        uses: actions/upload-artifact@v4
+      # Noted For Output [main_project_module]/build/outputs/apk/releaseTest/
+      - name: Upload APK ReleaseTest
+        uses: actions/upload-artifact@v6
         with:
-          name: debug-apk
-          path: ${{ env.main_project_module }}/build/outputs/apk/debug/
+          name: releaseTest-apk
+          path: |
+            ${{ env.main_project_module }}/build/outputs/apk/releaseTest/
 
       # Noted For Output [main_project_module]/build/outputs/apk/release/
       - name: Upload APK Release
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: release-apk
           path: |
             ${{ env.main_project_module }}/build/outputs/apk/release/
-            ${{ env.main_project_module }}/build/outputs/mapping/release/
 
       # Noted For Output [main_project_module]/build/outputs/bundle/release/
       - name: Upload AAB (App Bundle) Release
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: release-aab
           path: |
             ${{ env.main_project_module }}/build/outputs/bundle/release/
             ${{ env.main_project_module }}/build/outputs/mapping/release/
-
-      # Generate android instrumentation tests APK
-      - name: Assemble Android Instrumentation Tests
-        run: ./gradlew assembleDebugAndroidTest
-      - name: Upload Android Test APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: debug-androidTest
-          path: ${{ env.main_project_module }}/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk
 
   firebase:
     name: Run UI tests with Firebase Test Lab
@@ -258,30 +248,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Download app APK
-        uses: actions/download-artifact@v4
+      - name: Download app releaseTest APK
+        uses: actions/download-artifact@v8
         with:
-          name: debug-apk
-
-      - name: Download Android test APK
-        uses: actions/download-artifact@v4
-        with:
-          name: debug-androidTest
+          name: releaseTest-apk
 
       - name: Auth
-        uses: google-github-actions/auth@v2
+        uses: google-github-actions/auth@v3
         with:
           credentials_json: ${{ secrets.GCLOUD_CREDENTIALS_JSON }}
 
       - name: Set up Cloud SDK
-        uses: google-github-actions/setup-gcloud@v2
+        uses: google-github-actions/setup-gcloud@v3
 
       - name: Set current project
         run: gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID }}
 
-# These tests now need the pmtiles file, skip for now as we already test locally
-#      - name: Run Instrumentation Tests in Firebase Test Lab
-#        run: gcloud firebase test android run --type instrumentation --use-orchestrator --app app-debug.apk --test app-debug-androidTest.apk --device model=shiba,version=34,locale=en,orientation=portrait
-
       - name: Run Robo test in Firebase Test Lab
-        run: gcloud firebase test android run --type robo --app=app-debug.apk --timeout=300s --device model=shiba,version=34,locale=en,orientation=portrait
+        run: gcloud firebase test android run --type robo --app=app-releaseTest.apk --timeout=300s --device model=shiba,version=34,locale=en,orientation=portrait

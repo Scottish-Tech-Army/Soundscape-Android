@@ -18,6 +18,7 @@ import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.Navigation
 import androidx.compose.material.icons.filled.ShareLocation
+import androidx.compose.material.icons.rounded.Download
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -48,6 +49,7 @@ import org.commonmark.renderer.html.HtmlRenderer
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SHOW_MAP_KEY
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.geoengine.TextForFeature
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.fromLatLng
@@ -55,6 +57,7 @@ import org.scottishtecharmy.soundscape.screens.home.HomeRoutes
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.FullScreenMapFab
 import org.scottishtecharmy.soundscape.screens.home.home.MapContainerLibre
+import org.scottishtecharmy.soundscape.screens.home.home.generateOfflineMapScreenRoute
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.IconWithTextButton
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -79,18 +82,38 @@ fun LocationDetailsScreen(
 ) {
     val context = LocalContext.current
 
+    // Check if this location already exists as a marker in the database
+    val finalLocationDescription = remember(locationDescription) {
+        if (locationDescription.databaseId == 0L) {
+            val existingMarker = viewModel.getMarkerAtLocation(locationDescription.location)
+            if (existingMarker != null) {
+                locationDescription.copy(
+                    databaseId = existingMarker.markerId,
+                    name = existingMarker.name,
+                    description = existingMarker.fullAddress
+                )
+            } else {
+                locationDescription
+            }
+        } else {
+            locationDescription
+        }
+    }
+
     LocationDetails(
         navController = navController,
-        locationDescription = locationDescription,
+        locationDescription = finalLocationDescription,
         createBeacon = { loc ->
-            viewModel.startBeacon(loc, locationDescription.name)
+            viewModel.startBeacon(loc, finalLocationDescription.name)
             navController.popBackStack(HomeRoutes.Home.route, false)
         },
-        saveMarker = { description, successMessage, failureMessage ->
+        saveMarker = { description, successMessage, failureMessage, duplicateMessage ->
             viewModel.createMarker(
                 description,
                 successMessage,
-                failureMessage)
+                failureMessage,
+                duplicateMessage)
+            navController.popBackStack(HomeRoutes.Home.route, false)
         },
         deleteMarker = { id ->
             viewModel.deleteMarker(id)
@@ -98,6 +121,7 @@ fun LocationDetailsScreen(
         },
         enableStreetPreview = { loc ->
             viewModel.enableStreetPreview(loc)
+            navController.popBackStack(HomeRoutes.Home.route, false)
         },
         getLocationDescription = { locationForDescription ->
             viewModel.getLocationDescription(locationForDescription) ?:
@@ -108,6 +132,13 @@ fun LocationDetailsScreen(
         },
         shareLocation = { message, description ->
             viewModel.shareLocation(context, message, description)
+            navController.popBackStack(HomeRoutes.Home.route, false)
+        },
+        offlineMaps = { locationDescription ->
+            navController.navigate(generateOfflineMapScreenRoute(locationDescription))
+        },
+        showDialog = {
+            viewModel.showDialog()
         },
         location = location,
         heading = heading,
@@ -125,10 +156,13 @@ fun LocationDetails(
     saveMarker: (
         description: LocationDescription,
         successMessage: String,
-        failureMessage: String) -> Unit,
+        failureMessage: String,
+        duplicateMessage: String) -> Unit,
     deleteMarker: (objectId: Long) -> Unit,
     enableStreetPreview: (location: LngLatAlt) -> Unit,
     shareLocation: (message: String, description : LocationDescription) -> Unit,
+    offlineMaps: (locationDescription: LocationDescription) -> Unit,
+    showDialog: () -> Unit,
     getLocationDescription: (location: LngLatAlt) -> LocationDescription,
     modifier: Modifier = Modifier) {
 
@@ -153,7 +187,9 @@ fun LocationDetails(
             topBar = {
                 CustomAppBar(
                     title = stringResource(R.string.location_detail_title_default),
-                    onNavigateUp = { navController.popBackStack() },
+                    onNavigateUp = {
+                        navController.popBackStack()
+                   },
                 )
             },
             content = { padding ->
@@ -205,8 +241,9 @@ fun LocationDetails(
                             locationDescription = description.value,
                             enableStreetPreview = enableStreetPreview,
                             shareLocation = shareLocation,
-                            onNavigateUp = { navController.popBackStack() },
-                            dialogState = dialogState
+                            offlineMaps = offlineMaps,
+                            dialogState = dialogState,
+                            showDialog = showDialog
                         )
 
                         MapContainerLibre(
@@ -253,23 +290,29 @@ private fun LocationDescriptionButtonsSection(
     locationDescription: LocationDescription,
     enableStreetPreview: (location: LngLatAlt) -> Unit,
     shareLocation: (message: String, locationDescription : LocationDescription) -> Unit,
-    onNavigateUp: () -> Unit,
-    dialogState: MutableState<Boolean>
+    offlineMaps: (locationDescription: LocationDescription) -> Unit,
+    dialogState: MutableState<Boolean>,
+    showDialog: () -> Unit
 ) {
-    val parser: Parser = Parser.builder().build()
-    val document: Node? = parser.parse(stringResource(R.string.universal_links_marker_share_message))
-    val renderer = HtmlRenderer.builder().build()
-    val shareMessage = AnnotatedString.fromHtml(
-        htmlString = renderer.render(document),
-        linkStyles = TextLinkStyles(
-            style = SpanStyle(
-                textDecoration = TextDecoration.Underline,
+    // Parse markdown only once, not on every recomposition
+    val shareMessageResource = stringResource(R.string.universal_links_marker_share_message)
+    val shareMessage = remember(shareMessageResource) {
+        val parser: Parser = Parser.builder().build()
+        val document: Node? = parser.parse(shareMessageResource)
+        val renderer = HtmlRenderer.builder().build()
+        AnnotatedString.fromHtml(
+            htmlString = renderer.render(document),
+            linkStyles = TextLinkStyles(
+                style = SpanStyle(
+                    textDecoration = TextDecoration.Underline,
+                )
             )
-        )
-    ).text
+        ).text
+    }
 
     Column(
         verticalArrangement = Arrangement.spacedBy(spacing.none),
+        modifier = Modifier.fillMaxWidth()
     ) {
         IconWithTextButton(
             icon = Icons.Filled.LocationOn,
@@ -278,6 +321,7 @@ private fun LocationDescriptionButtonsSection(
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .defaultMinSize(minHeight = spacing.targetSize)
+                .fillMaxWidth()
                 .testTag("locationDetailsStartBeacon")
         ) {
             createBeacon(locationDescription.location)
@@ -291,6 +335,7 @@ private fun LocationDescriptionButtonsSection(
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .defaultMinSize(minHeight = spacing.targetSize)
+                    .fillMaxWidth()
                     .testTag("locationDetailsEditMarker")
             ) {
                 dialogState.value = true
@@ -303,8 +348,10 @@ private fun LocationDescriptionButtonsSection(
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier
                     .defaultMinSize(minHeight = spacing.targetSize)
+                    .fillMaxWidth()
                     .testTag("locationDetailsSaveAsMarker")
             ) {
+                showDialog()
                 dialogState.value = true
             }
         }
@@ -316,10 +363,10 @@ private fun LocationDescriptionButtonsSection(
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .defaultMinSize(minHeight = spacing.targetSize)
+                .fillMaxWidth()
                 .testTag("locationDetailsStreetPreview")
         ) {
             enableStreetPreview(locationDescription.location)
-            onNavigateUp()
         }
 
         IconWithTextButton(
@@ -329,10 +376,22 @@ private fun LocationDescriptionButtonsSection(
             color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier
                 .defaultMinSize(minHeight = spacing.targetSize)
+                .fillMaxWidth()
                 .testTag("locationDetailsShare")
         ) {
             shareLocation(shareMessage, locationDescription)
-            onNavigateUp()
+        }
+
+        IconWithTextButton(
+            icon = Icons.Rounded.Download,
+            text = stringResource(R.string.offline_maps_nearby),
+            color = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier
+                .defaultMinSize(minHeight = spacing.targetSize)
+                .fillMaxWidth()
+                .testTag("locationDetailsOfflineMaps")
+        ) {
+            offlineMaps(locationDescription)
         }
     }
 }
@@ -360,12 +419,29 @@ private fun LocationDescriptionTextsSection(
             text = locationDescription.name,
             style = MaterialTheme.typography.titleLarge,
             color = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier.fillMaxWidth()
         )
 
+        locationDescription.typeDescription?.let {
+            if(it.additionalText?.isNotEmpty() == true) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(spacing.small),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(
+                        text = it.additionalText,
+                        style = MaterialTheme.typography.bodyMedium,
+                        color = MaterialTheme.colorScheme.onSurface
+                    )
+                }
+            }
+        }
         if(distanceString.isNotEmpty()) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(spacing.small),
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Icon(
                     imageVector = Icons.Filled.Map,
@@ -376,6 +452,7 @@ private fun LocationDescriptionTextsSection(
                     text = distanceString,
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
         }
@@ -383,6 +460,7 @@ private fun LocationDescriptionTextsSection(
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(spacing.small),
+                modifier = Modifier.fillMaxWidth()
             ) {
                 Icon(
                     imageVector = Icons.Filled.LocationOn,
@@ -392,7 +470,8 @@ private fun LocationDescriptionTextsSection(
                 Text(
                     text = it,
                     style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = MaterialTheme.colorScheme.onSurface,
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
         }
@@ -407,6 +486,7 @@ fun LocationDetailsPreview() {
             name = "Pizza hut",
             location = LngLatAlt(),
             description = "139 boulevard gambetta \n59000 Lille\nFrance",
+            typeDescription = TextForFeature("Blah", false,"Restaurant")
         ),
         createBeacon = { _ ->
         },
@@ -418,8 +498,10 @@ fun LocationDetailsPreview() {
         navController = NavHostController(LocalContext.current),
         location = null,
         heading = 45.0F,
-        saveMarker = {_,_,_ ->},
+        saveMarker = {_,_,_,_ ->},
         deleteMarker = {},
-        shareLocation = {_,_ ->}
+        shareLocation = {_,_ ->},
+        offlineMaps = {_ ->},
+        showDialog = {}
     )
 }

@@ -3,8 +3,8 @@
 
     <style name="SplashTheme.Soundscape" parent="Theme.SplashScreen">
         <item name="android:windowSplashScreenBackground">#604696</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_skyscrapers</item>
-        <item name="android:windowSplashScreenBrandingImage">@drawable/ic_licenses</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/round_licenses</item>
+        <item name="android:windowSplashScreenBrandingImage">@drawable/box_double_tap</item>
         <item name="android:windowSplashScreenBehavior">icon_preferred</item>
         <item name="postSplashScreenTheme">@style/Theme.SoundscapeAlpha</item>
     </style>

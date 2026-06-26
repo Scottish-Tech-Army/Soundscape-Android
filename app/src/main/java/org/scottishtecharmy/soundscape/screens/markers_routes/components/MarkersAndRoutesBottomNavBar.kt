@@ -8,12 +8,15 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 import org.scottishtecharmy.soundscape.screens.markers_routes.navigation.ScreensForMarkersAndRoutes
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -26,9 +29,11 @@ val items = listOf(
 
 @Composable
 fun MarkersAndRoutesTabsVM(viewModel: HomeViewModel) {
-    val state by viewModel.state.collectAsStateWithLifecycle()
+    val routesTabSelected by remember {
+        viewModel.state.map { it.routesTabSelected }.distinctUntilChanged()
+    }.collectAsStateWithLifecycle(initialValue = true)
     MarkersAndRoutesTabs(
-        state.routesTabSelected,
+        routesTabSelected,
         setRoutesAndMarkersTab = { viewModel.setRoutesAndMarkersTab(it) })
 }
 

@@ -1,0 +1,70 @@
+
+Callout
+	Ahead Roselea Drive
+
+Callout
+	Ahead Roselea Drive
+
+Callout
+	Ahead Roselea Drive
+
+Callout
+	Approaching intersection
+		Path to Mosswell Road continues ahead
+		Roselea Drive goes right
+
+Callout
+	Ahead Roselea Drive
+
+Callout
+	Ahead Path to Mosswell Road
+
+Callout
+	Ahead Path to Mosswell Road
+
+Callout
+	Ahead Mosswell Road
+
+Callout
+	Approaching intersection
+		Strathblane Road goes left
+		Strathblane Road goes right
+
+Callout
+	Ahead Strathblane Road
+
+Callout
+	Approaching intersection
+		Strathblane Road continues ahead
+		Path to Campsie Drive via steps goes right
+
+Callout
+	Milngavie, Strathblane Road (at 110)
+
+Callout
+	Ahead Strathblane Road
+
+Callout
+	Ahead Strathblane Road
+
+Callout
+	Milngavie, Roselea Drive (before)
+
+Callout
+	Approaching intersection
+		Roselea Drive goes left
+		Strathblane Road continues ahead
+
+Callout
+	Ahead Roselea Drive
+
+Callout
+	Approaching intersection
+		Roselea Drive continues ahead
+		Service goes right
+
+Callout
+	Ahead Roselea Drive
+
+Callout
+	Ahead Service

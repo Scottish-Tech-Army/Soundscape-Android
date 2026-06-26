@@ -21,6 +21,7 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.BottomButtonFunctions
 import org.scottishtecharmy.soundscape.screens.home.RouteFunctions
+import org.scottishtecharmy.soundscape.screens.home.SearchFunctions
 import org.scottishtecharmy.soundscape.screens.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.Home
@@ -145,11 +146,11 @@ class DocumentationScreens {
                         location = location
                     )
                 },
-                searchText = "",
-                onToggleSearch = { },
-                onSearchTextChange = { },
+                searchFunctions = SearchFunctions(null),
                 rateSoundscape = { },
                 contactSupport = { },
+                toggleTutorial = {},
+                tutorialRunning = false,
                 routeFunctions = RouteFunctions(viewModel = null),
                 streetPreviewFunctions = StreetPreviewFunctions(viewModel = null),
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
@@ -189,11 +190,11 @@ class DocumentationScreens {
                         location = location
                     )
                 },
-                searchText = "",
-                onToggleSearch = { },
-                onSearchTextChange = { },
+                searchFunctions = SearchFunctions(null),
                 rateSoundscape = { },
                 contactSupport = {},
+                toggleTutorial = {},
+                tutorialRunning = false,
                 routeFunctions = RouteFunctions(viewModel = null),
                 streetPreviewFunctions = StreetPreviewFunctions(viewModel = null),
                 modifier = Modifier.windowInsetsPadding(WindowInsets.safeDrawing),
@@ -221,6 +222,7 @@ class DocumentationScreens {
                 ),
                 getRouteById = { },
                 startRoute = { },
+                startRouteInReverse = { },
                 stopRoute = { },
                 shareRoute = { },
                 clearErrorMessage = { },
@@ -234,8 +236,7 @@ class DocumentationScreens {
         val targetContext = InstrumentationRegistry.getInstrumentation().targetContext
 
         val route = routeToShops
-        val members: MutableList<LocationDescription> =
-            emptyList<LocationDescription>().toMutableList()
+        val members = mutableListOf<LocationDescription>()
         for ((index, marker) in route.markers.withIndex()) {
             members.add(
                 LocationDescription(
@@ -271,8 +272,14 @@ class DocumentationScreens {
                 onClickFolder = { _, _ -> },
                 onClickBack = { },
                 onSelectLocation = { },
-                createAndAddMarker = { _, _, _ -> },
-                getCurrentLocationDescription = { LocationDescription("Current Location", location) },
+                createAndAddMarker = { _, _, _, _ -> },
+                getCurrentLocationDescription = {
+                    LocationDescription(
+                        "Current Location",
+                        location
+                    )
+                },
+                onToggleMember = {},
             )
         }
     }
@@ -292,7 +299,7 @@ class DocumentationScreens {
 
         for (page in helpPages) {
 
-            if(page.titleId == R.string.menu_help_and_tutorials)
+            if(page.titleId == R.string.menu_help)
                 continue
             val pageTitle = targetContext.getString(page.titleId)
 

@@ -7,10 +7,12 @@ import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geoengine.callouts.getRoadsDescriptionFromFov
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.utils.Direction
+import kotlin.test.Test
 
 class ComplexIntersections {
 
-    //@Test
+    @Test
     fun complexIntersections1Test(){
         //https://geojson.io/#map=18.61/51.4439294/-2.6974316
         // this is probably the simplest example of a complex intersection where we have
@@ -34,28 +36,28 @@ class ComplexIntersections {
 
         Assert.assertEquals(3, intersection!!.members.size)
 
-        val indexFBR = 1
-        val indexCR = 0
+        val indexFBR = 0
+        val indexCR = 1
         val indexCR2 = 2
-        Assert.assertEquals(1, intersection.members[indexFBR].direction(intersection, userGeometry.heading()!!))
+        Assert.assertEquals(Direction.BEHIND_LEFT, intersection.members[indexFBR].direction(intersection, userGeometry.heading()!!))
         Assert.assertEquals(
             "Flax Bourton Road",
-            intersection.members[indexFBR].properties!!["name"]
+            intersection.members[indexFBR].name
         )
 
-        Assert.assertEquals(3, intersection.members[indexCR].direction(intersection, userGeometry.heading()!!))
+        Assert.assertEquals(Direction.AHEAD, intersection.members[indexCR].direction(intersection, userGeometry.heading()!!))
         Assert.assertEquals(
             "Clevedon Road",
-            intersection.members[indexCR].properties!!["name"]
+            intersection.members[indexCR].name
         )
-        Assert.assertEquals(7, intersection.members[indexCR2].direction(intersection, userGeometry.heading()!!))
+        Assert.assertEquals(Direction.BEHIND, intersection.members[indexCR2].direction(intersection, userGeometry.heading()!!))
         Assert.assertEquals(
             "Clevedon Road",
-            intersection.members[indexCR2].properties!!["name"]
+            intersection.members[indexCR2].name
         )
     }
 
-    //@Test
+    @Test
     fun complexIntersections2Test() {
         // This is a more complex junction than the above test.
         // There are multiple gd_intersections detected in the FoV so we need to determine which ones to ignore
@@ -78,31 +80,31 @@ class ComplexIntersections {
 
         Assert.assertEquals(4, intersection!!.members.size)
 
-        val indexWR1 = 0
+        val indexWR1 = 2
         val indexWR2 = 1
         val indexCR = 3
-        val indexCR2 = 2
-        Assert.assertEquals(1, intersection.members[indexCR].direction(intersection, userGeometry.heading()!!))
+        val indexCR2 = 0
+        Assert.assertEquals(Direction.LEFT, intersection.members[indexCR].direction(intersection, userGeometry.heading()!!))
         Assert.assertEquals(
             "Clevedon Road",
-            intersection.members[indexCR].properties!!["name"]
+            intersection.members[indexCR].name
         )
 
-        Assert.assertEquals(4, intersection.members[indexWR2].direction(intersection, userGeometry.heading()!!))
+        Assert.assertEquals(Direction.AHEAD, intersection.members[indexWR2].direction(intersection, userGeometry.heading()!!))
         Assert.assertEquals(
             "Weston Road",
-            intersection.members[indexWR2].properties!!["name"]
+            intersection.members[indexWR2].name
         )
 
-        Assert.assertEquals(5, intersection.members[indexCR2].direction(intersection, userGeometry.heading()!!))
+        Assert.assertEquals(Direction.RIGHT, intersection.members[indexCR2].direction(intersection, userGeometry.heading()!!))
         Assert.assertEquals(
             "Clevedon Road",
-            intersection.members[indexCR2].properties!!["name"]
+            intersection.members[indexCR2].name
         )
-        Assert.assertEquals(0, intersection.members[indexWR1].direction(intersection, userGeometry.heading()!!))
+        Assert.assertEquals(Direction.BEHIND, intersection.members[indexWR1].direction(intersection, userGeometry.heading()!!))
         Assert.assertEquals(
             "Weston Road",
-            intersection.members[indexWR1].properties!!["name"]
+            intersection.members[indexWR1].name
         )
     }
 }

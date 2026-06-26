@@ -98,24 +98,23 @@ class GpxTest {
                 Log.d("gpxTest", "Delete route")
                 routesDao.removeRoute(routeData!!.route.routeId)
 
-// Deleting the route no longer deletes the waypoints
-//              waypointCount -= routeData.waypoints.size
-
                 waypoints = routesDao.getAllMarkers()
                 Log.d("gpxTest", "Post delete waypoints: " + waypoints.size)
                 Assert.assertEquals(waypointCount, waypoints.size)
 
-                // We allow "double insertion" it should update the old route
+                // We allow "double insertion"
                 Log.d("gpxTest", "Attempt inserting duplicate route")
                 routesDao.insertRouteWithNewMarkers(
                     routeData.route,
                     routeData.markers
                 )
+                // Test double insertion to ensure that it hasn't impacted the number of waypoints
+                // or the number of routes
+                routesDao.insertRouteWithNewMarkers(
+                    routeData.route,
+                    routeData.markers
+                )
 
-//              Re-inserting the same route shouldn't change the number of waypoints, as they
-//              should still be present after the first insert/delete
-//              waypointCount += routeData.waypoints.size
-                //assert(routesDao.insert(routeData))
                 waypoints = routesDao.getAllMarkers()
                 Assert.assertEquals(waypointCount, waypoints.size)
 
@@ -176,15 +175,15 @@ class GpxTest {
     }
 
     private fun expectedRideWithGpsValues(): List<MarkerEntity> {
-        val waypoint1 = MarkerEntity(0, "Slight Left", -4.30844, 55.94722)
-        val waypoint2 = MarkerEntity(0, "Right", -4.30901, 55.94628)
-        val waypoint3 = MarkerEntity(0, "Right", -4.31081, 55.9442)
-        val waypoint4 = MarkerEntity(0, "Left", -4.31335, 55.94245)
-        val waypoint5 = MarkerEntity(0, "Right", -4.31338, 55.94181)
-        val waypoint6 = MarkerEntity(0, "Right", -4.31358, 55.94182)
-        val waypoint7 = MarkerEntity(0, "Right", -4.31612, 55.94198)
-        val waypoint8 = MarkerEntity(0, "Left", -4.31637, 55.94229)
-        val waypoint9 = MarkerEntity(0, "Right", -4.31735, 55.94218)
+        val waypoint1 = MarkerEntity(0, "Slight Left",-4.30844, 55.94722, "Turn slight left")
+        val waypoint2 = MarkerEntity(0, "Right", -4.30901, 55.94628, "Turn right onto Strathblane Road, A81")
+        val waypoint3 = MarkerEntity(0, "Right", -4.31081, 55.9442, "Turn right")
+        val waypoint4 = MarkerEntity(0, "Left", -4.31335, 55.94245, "Turn left onto Buchanan Street")
+        val waypoint5 = MarkerEntity(0, "Right", -4.31338, 55.94181, "Turn right onto Station Road, B8030")
+        val waypoint6 = MarkerEntity(0, "Right", -4.31358, 55.94182, "Turn right onto Station Road")
+        val waypoint7 = MarkerEntity(0, "Right", -4.31612, 55.94198, "Turn right")
+        val waypoint8 = MarkerEntity(0, "Left", -4.31637, 55.94229, "Turn left")
+        val waypoint9 = MarkerEntity(0, "Right", -4.31735, 55.94218, "Turn right onto Mugdock Road")
 
         return listOf(
             waypoint1,
@@ -241,6 +240,18 @@ class GpxTest {
         val expectedValues = expectedSoundscapeValues()
         val id = testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description")
         testDatabase(id, expectedValues)
+    }
+
+    @Test
+    fun soundscapeDuplicateAttempt() {
+        val expectedValues = expectedSoundscapeValues()
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        val roomDb = MarkersAndRoutesDatabase.getMarkersInstance(context)
+        roomDb.clearAllTables()
+
+        val id1 = testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description")
+        val idFail = testParsing("gpx/soundscape.gpx", expectedValues, "Soundscape", "Soundscape description")
+        testDatabase(id1, expectedValues)
     }
 
     @Test

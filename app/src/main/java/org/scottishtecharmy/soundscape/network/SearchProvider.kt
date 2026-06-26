@@ -12,7 +12,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.Query
-import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 /**
@@ -63,8 +62,9 @@ interface PhotonSearchProvider {
             }
         }
         private val logging = OkHttpClient.Builder()
+            .addInterceptor(UserAgentInterceptor())
             .addInterceptor(loggingInterceptor)
-            .callTimeout(20, TimeUnit.SECONDS)
+            .callTimeout(5, TimeUnit.SECONDS)
             .build()
 
         fun getInstance(): PhotonSearchProvider {

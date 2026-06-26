@@ -6,6 +6,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity.Companion.ALLOW_CALLOUTS_KEY
+import org.scottishtecharmy.soundscape.MainActivity.Companion.POSITION_INCLUDES_HEADING_AND_DISTANCE_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
@@ -13,12 +14,14 @@ import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.TreeId
+import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
-import org.scottishtecharmy.soundscape.geoengine.reverseGeocode
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -70,7 +73,8 @@ class AutoCallout(
 
     private fun buildCalloutForRoadSense(userGeometry: UserGeometry,
                                          gridState: GridState,
-                                         settlementGrid: GridState): TrackedCallout? {
+                                         settlementState: GridState,
+                                         localizedContext: Context?): TrackedCallout? {
 
         // Check that our location/time has changed enough to generate this callout
         if (!locationFilter.shouldUpdate(userGeometry)) {
@@ -89,20 +93,20 @@ class AutoCallout(
         locationFilter.update(userGeometry)
 
         // Reverse geocode the current location (this is the iOS name for the function)
-        val geocode = reverseGeocode(userGeometry, gridState, settlementGrid, localizedContext)
-        if(geocode != null) {
+        val result = describeReverseGeocode(userGeometry, gridState, settlementState, localizedContext)
+        if(result != null) {
             val callout = TrackedCallout(
                 userGeometry,
-                trackedText = geocode.text,
-                location =geocode.location!!,
-                positionedStrings = listOf(geocode),
+                trackedText = result.text,
+                location =result.location!!,
+                positionedStrings = listOf(result),
                 isPoint = false,
                 isGeneric = false,
                 calloutHistory = roadSenseCalloutHistory
             )
 
             if (roadSenseCalloutHistory.find(callout)) {
-                println("Discard ${callout.trackedText}")
+                //println("Discard ${callout.trackedText}")
                 // Filter out
                 return null
             }
@@ -175,11 +179,14 @@ class AutoCallout(
             markers
         )
 
-        val uniquelyNamedPOIs = emptyMap<String,Feature>().toMutableMap()
+        val uniquelyNamedPOIs = mutableMapOf<String, Feature>()
         pois.features.filter { feature ->
 
-            val name = getTextForFeature(localizedContext, feature)
+            val name = getTextForFeature(localizedContext, feature as MvtFeature)
             val nearestPoint = getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
+
+            if(name.text.isEmpty())
+                return@filter true
 
             val callout = TrackedCallout(
                 userGeometry,
@@ -201,27 +208,26 @@ class AutoCallout(
                 }
             }
 
-            val category = feature.foreign?.get("category") as String?
-            if(category == null) {
+            if(feature.superCategory == SuperCategoryId.UNCATEGORIZED) {
                 true
             } else {
-                if (nearestPoint.distance > userGeometry.getTriggerRange(category)) {
+                if (nearestPoint.distance > userGeometry.getTriggerRange(feature.superCategory)) {
                     // The POI is farther away than the category allows
                     true
                 } else {
                     // Check the history and if the POI has been called out recently then we skip it
                     if (poiCalloutHistory.find(callout)) {
-                        println("Discard ${callout.trackedText}")
+                        //println("Discard ${callout.trackedText}")
                         // Filter out
                         true
                     } else {
                         if (!uniquelyNamedPOIs.containsKey(name.text)) {
                             // Don't filter out
                             uniquelyNamedPOIs[name.text] = feature
-                            val earcon = when(feature.foreign?.get("category")) {
-                                "information" -> NativeAudioEngine.EARCON_INFORMATION_ALERT
-                                "safety" -> NativeAudioEngine.EARCON_SENSE_SAFETY
-                                "mobility" -> NativeAudioEngine.EARCON_SENSE_MOBILITY
+                            val earcon = when(feature.superCategory) {
+                                SuperCategoryId.INFORMATION -> NativeAudioEngine.EARCON_INFORMATION_ALERT
+                                SuperCategoryId.SAFETY -> NativeAudioEngine.EARCON_SENSE_SAFETY
+                                SuperCategoryId.MOBILITY -> NativeAudioEngine.EARCON_SENSE_MOBILITY
                                 else -> NativeAudioEngine.EARCON_SENSE_POI
                             }
                             if(nearestPoint.distance == 0.0) {
@@ -241,7 +247,8 @@ class AutoCallout(
                                         text = name.text,
                                         location = nearestPoint.point,
                                         earcon = earcon,
-                                        type = AudioType.LOCALIZED
+                                        type = AudioType.LOCALIZED,
+                                        addDistanceAndHeading = sharedPreferences?.getBoolean(POSITION_INCLUDES_HEADING_AND_DISTANCE_KEY, false) ?: false
                                     )
                                 }
                             }
@@ -266,9 +273,11 @@ class AutoCallout(
      * @return A list of PositionedString callouts to be spoken
      */
     @OptIn(ExperimentalCoroutinesApi::class)
-    fun updateLocation(userGeometry: UserGeometry,
-                       gridState: GridState,
-                       settlementGrid: GridState) : TrackedCallout? {
+    fun updateLocation(
+        userGeometry: UserGeometry,
+        gridState: GridState,
+        settlementGrid: GridState
+    ) : TrackedCallout? {
 
         // Run the code within the treeContext to protect it from changes to the trees whilst it's
         // running.
@@ -285,7 +294,7 @@ class AutoCallout(
                     // buildCalloutForRoadSense builds a callout for travel that's faster than
                     // walking
                     val roadSenseCallout =
-                        buildCalloutForRoadSense(userGeometry, gridState, settlementGrid)
+                        buildCalloutForRoadSense(userGeometry, gridState, settlementGrid, localizedContext)
                     if (roadSenseCallout != null) {
                         trackedCallout = roadSenseCallout
                     } else {

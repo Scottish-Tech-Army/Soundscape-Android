@@ -1,10 +1,7 @@
-import com.android.build.gradle.internal.tasks.AndroidTestTask
 import com.google.protobuf.gradle.id
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.FileInputStream
 import java.util.Properties
-import kotlin.io.path.Path
-import kotlin.io.path.createDirectories
 
 plugins {
     alias(libs.plugins.android.application)
@@ -17,15 +14,17 @@ plugins {
     alias(libs.plugins.google.services)
     alias(libs.plugins.firebase.crashlytics)
     alias(libs.plugins.jetbrains.dokka)
+    alias(libs.plugins.jaredsburrows.license)
 }
 
 android {
     namespace = "org.scottishtecharmy.soundscape"
-    compileSdk = 35
+    compileSdk = 36
 
     buildFeatures {
         buildConfig = true
         compose = true
+        prefab = true
     }
 
     @Suppress("UnstableApiUsage")
@@ -39,7 +38,6 @@ android {
         }
     }
 
-    @Suppress("UnstableApiUsage")
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
     signingConfigs {
@@ -55,12 +53,13 @@ android {
         applicationId = "org.scottishtecharmy.soundscape"
         minSdk = 30
         targetSdk = 35
-        versionCode = 120
-        versionName = "0.0.119"
+        versionCode = 197
+        versionName = "1.0.9"
 
         // Maintaining this list means that we can exclude translations that aren't complete yet
         resourceConfigurations.addAll(listOf(
             "arz",
+            "zh-rCN",
             "da",
             "de",
             "el",
@@ -71,6 +70,8 @@ android {
             "fi",
             "fr",
             "fr-rCA",
+            "hi",
+            "is",
             "it",
             "ja",
             "nb",
@@ -78,8 +79,10 @@ android {
             "pl",
             "pt",
             "pt-rBR",
-            //"ru", in progress
+            "ro",
+            "ru",
             "sv",
+            "tr",
             "uk"
         ))
 
@@ -90,6 +93,7 @@ android {
         var tileProviderApiKey = ""
         var searchProviderUrl = ""
         var searchProviderApiKey = ""
+        var extractProviderUrl = ""
         try {
             val localProperties = Properties()
             localProperties.load(FileInputStream(rootProject.file("local.properties")))
@@ -97,6 +101,7 @@ android {
             tileProviderApiKey = localProperties["tileProviderApiKey"].toString()
             searchProviderUrl = localProperties["searchProviderUrl"].toString()
             searchProviderApiKey = localProperties["searchProviderApiKey"].toString()
+            extractProviderUrl = localProperties["extractProviderUrl"].toString()
         } catch (e: Exception) {
             println("Failed to load local.properties for tile and search providers: $e")
         }
@@ -104,9 +109,9 @@ android {
         buildConfigField("String", "TILE_PROVIDER_API_KEY", "\"${tileProviderApiKey}\"")
         buildConfigField("String", "SEARCH_PROVIDER_URL", "\"${searchProviderUrl}\"")
         buildConfigField("String", "SEARCH_PROVIDER_API_KEY", "\"${searchProviderApiKey}\"")
+        buildConfigField("String", "EXTRACT_PROVIDER_URL", "\"${extractProviderUrl}\"")
 
         buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
-        buildConfigField("String", "FMOD_LIB", "\"fmod\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -116,6 +121,10 @@ android {
         externalNativeBuild {
             cmake {
                 cppFlags += ""
+                arguments += listOf(
+                    "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON",
+                    "-DANDROID_STL=c++_shared"
+                )
                 arguments += listOf("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
             }
         }
@@ -144,6 +153,10 @@ android {
 //            )
 //        }
 
+        debug {
+            buildConfigField("Boolean", "DUMMY_ANALYTICS", "true")
+        }
+
         release {
             isMinifyEnabled = true
             isShrinkResources = true
@@ -152,8 +165,15 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            buildConfigField("Boolean", "DUMMY_ANALYTICS", "false")
+        }
+
+        create("releaseTest") {
+            initWith(getByName("release"))
+            buildConfigField("Boolean", "DUMMY_ANALYTICS", "true")
         }
     }
+
     testOptions {
         unitTests {
             isIncludeAndroidResources = true
@@ -184,6 +204,9 @@ android {
             version = "3.22.1"
         }
     }
+    lint {
+        warning += "MissingTranslation"
+    }
 }
 
 composeCompiler {
@@ -208,6 +231,27 @@ protobuf {
             }
         }
     }
+}
+
+licenseReport {
+    // Generate reports
+    generateCsvReport = false
+    generateHtmlReport = false
+    generateJsonReport = true
+    generateTextReport = false
+
+    // Copy reports - These options are ignored for Java projects
+    copyCsvReportToAssets = false
+    copyHtmlReportToAssets = false
+    copyJsonReportToAssets = true
+    copyTextReportToAssets = false
+    useVariantSpecificAssetDirs = false
+
+    // Ignore licenses for certain artifact patterns
+    ignoredPatterns = emptySet()
+
+    // Show versions in the report - default is false
+    showVersions = true
 }
 
 dependencies {
@@ -235,13 +279,10 @@ dependencies {
     implementation(libs.androidx.media3.session)
     implementation(libs.androidx.lifecycle.process)
     implementation(libs.screenshot.validation.api)
-
+    implementation(libs.core.google.shortcuts)
 
     testImplementation(libs.junit)
-    testImplementation(libs.robolectric)
-    testImplementation(libs.ui.test.junit4)
     testImplementation(libs.androidx.core.testing)
-    testImplementation(testFixtures(project(":app")))
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation (libs.kotlin.test.junit)
     testImplementation(libs.junit.jupiter)
@@ -250,7 +291,6 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core.v351)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
-    androidTestImplementation(testFixtures(project(":app")))
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
@@ -295,7 +335,7 @@ dependencies {
     implementation(libs.androidx.datastore)
 
     // Audio engine
-    implementation(files("libs/fmod.jar"))
+    implementation("com.google.oboe:oboe:1.9.3")
 
     // Firebase
     implementation(platform(libs.firebase.bom))
@@ -310,13 +350,7 @@ dependencies {
     implementation (libs.maplibre.annotations)
 //    implementation (libs.maplibre.compose.material3)
 
-    // Screenshots for tests
-    //screenshotTestImplementation(libs.androidx.compose.ui.tooling)
     androidTestImplementation(libs.androidx.uiautomator)
-
-    // Regression file handling for tests
-    androidTestImplementation(libs.androidx.media3.common)
-//    androidTestImplementation(libs.androidx.media3.common.ktx)
 
     // Protobuf
     implementation(libs.protobuf.kotlin.lite)
@@ -356,6 +390,11 @@ dependencies {
     // PMTiles reading libraries
     implementation(libs.pmtilesreader)
 
+    // Address formatting library
+    implementation(libs.androidaddressformatter)
+
+    testImplementation(libs.json)
+
     testFixturesImplementation(platform(libs.androidx.compose.bom))
     testFixturesImplementation(libs.ui.test.junit4)
     testFixturesImplementation(libs.androidx.media3.common)
@@ -364,6 +403,15 @@ dependencies {
     testFixturesImplementation(libs.material3)
     testFixturesImplementation(libs.androidx.navigation.compose)
     testFixturesImplementation(libs.junit)
+}
+
+
+dokka {
+    dokkaSourceSets.configureEach {
+        if (name == "main") {
+            suppress.set(true)
+        }
+    }
 }
 
 fun adbPath(): String {

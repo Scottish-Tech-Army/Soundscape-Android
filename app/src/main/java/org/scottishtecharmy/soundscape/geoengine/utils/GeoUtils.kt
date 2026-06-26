@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.geoengine.utils
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.dto.BoundingBoxCorners
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -66,6 +67,63 @@ fun distance(lat1: Double, long1: Double, lat2: Double, long2: Double): Double {
 
     return (EARTH_RADIUS_METERS * c)//.round(2)
 }
+
+/**
+ * Calculates the centroid of a polygon.
+ *
+ * This function works for both convex and non-convex (concave) simple polygons.
+ * It assumes the polygon is not self-intersecting.
+ * * @param polygon The polygon for which to calculate the centroid. It is assumed the first
+ *                and last points of the polygon's outer ring are the same (closed).
+ * @return The centroid coordinate as a LngLatAlt object, or null if the polygon is invalid.
+ */
+fun getCentroidOfPolygon(polygon: Polygon): LngLatAlt? {
+    val ring = polygon.coordinates.firstOrNull() ?: return null
+    if (ring.size < 4) {
+        return null
+    }
+
+    var signedArea = 0.0
+    var centroidX = 0.0
+    var centroidY = 0.0
+
+    // Iterate over the edges of the polygon's outer ring.
+    for (i in 0 until ring.size - 1) {
+        val p1 = ring[i]
+        val p2 = ring[i + 1]
+
+        // Use the Shoelace formula component to calculate the signed area of the
+        // triangle formed by the current segment and the origin (0,0).
+        val areaComponent = (p1.longitude * p2.latitude) - (p2.longitude * p1.latitude)
+        signedArea += areaComponent
+
+        // Sum the centroids of these triangles, weighted by the area component.
+        centroidX += (p1.longitude + p2.longitude) * areaComponent
+        centroidY += (p1.latitude + p2.latitude) * areaComponent
+    }
+
+    // The total signed area of the polygon is half the accumulated value.
+    signedArea *= 0.5
+
+    // Avoid division by zero for invalid or zero-area polygons.
+    if (signedArea == 0.0) {
+        return null
+    }
+
+    // The centroid's coordinates are the weighted sums divided by 6 times the signed area.
+    val finalCentroidX = centroidX / (6.0 * signedArea)
+    val finalCentroidY = centroidY / (6.0 * signedArea)
+
+    return LngLatAlt(finalCentroidX, finalCentroidY)
+}
+fun getCentralPointForFeature(feature: Feature) : LngLatAlt? {
+    return when(feature.geometry.type) {
+        "Point" -> (feature.geometry as Point).coordinates
+        "Polygon" -> getCentroidOfPolygon(feature.geometry as Polygon)
+        else -> null
+    }
+}
+
 
 /**
  * The size of the map in pixels for the given zoom level assuming the base is 256 pixels.
@@ -377,8 +435,8 @@ fun bearingFromTwoPoints(
  * Determine if a coordinate is contained within a polygon.
  * @param lngLatAlt
  * Coordinates to test as LngLatAlt.
- * @param polygon
- * The Polygon to test.
+ * @param regionCoordinates
+ * An ArrayList of the points of the polygon to test.
  * @return If coordinate is in polygon.
  */
 fun regionContainsCoordinates(lngLatAlt: LngLatAlt, regionCoordinates: ArrayList<LngLatAlt>): Boolean {
@@ -688,28 +746,21 @@ fun circleToPolygon(segments: Int, centerLat: Double, centerLon: Double, radius:
     return polygonObject
 }
 
-fun lineStringIsCircular(path: LineString): Boolean {
-    if (path.coordinates.size <= 2) return false
-    val first = path.coordinates.first()
-    val last = path.coordinates.last()
-    return first == last
-}
-
 /**
  * Distance to a Polygon from current location.
  * @param pointCoordinates
  * LngLatAlt of current location
- * @param polygon
- * Polygon that we are working out the distance from
+ * @param outerRing
+ * The outerRing of the Polygon that we are working out the distance from
  * @return The closest distance of the point to the Polygon
  */
 fun distanceToRegion(
     pointCoordinates: LngLatAlt,
-    lineString: LineString,
+    outerRing: LineString,
     ruler: Ruler,
     nearestPoint: LngLatAlt? = null) : Double
 {
-    val pdh = ruler.distanceToLineString(pointCoordinates, lineString)
+    val pdh = ruler.distanceToLineString(pointCoordinates, outerRing)
     if(nearestPoint != null) {
         nearestPoint.latitude = pdh.point.latitude
         nearestPoint.longitude = pdh.point.longitude
@@ -727,8 +778,11 @@ fun distanceToPolygon(
     // We're only looking at the outer ring, which is really just a LineString
     val lineString = LineString()
     lineString.coordinates = polygon.coordinates[0]
-    return if(polygonContainsCoordinates(pointCoordinates, polygon))
+    return if(polygonContainsCoordinates(pointCoordinates, polygon)) {
+        nearestPoint?.latitude = pointCoordinates.latitude
+        nearestPoint?.longitude = pointCoordinates.longitude
         0.0
+    }
     else
         distanceToRegion(pointCoordinates, lineString, ruler, nearestPoint)
 }
@@ -1286,3 +1340,28 @@ fun calculateSmallestAngleBetweenLines(heading1: Double, heading2: Double): Doub
         innerAngle = 180.0 - innerAngle
     return innerAngle
 }
+
+enum class Side {
+    LEFT, RIGHT, INLINE
+}
+
+/**
+ * Determines which side of a line segment (from p1 to p2) a point (h) is on.
+ *
+ * @param p1 The starting point of the line segment (e.g., first vertex of a street Way).
+ * @param p2 The ending point of the line segment (e.g., second vertex of a street Way).
+ * @param h The point to check (e.g., the house's location).
+ * @return The Side (LEFT, RIGHT, or INLINE) the house is on relative to the direction from p1 to p2.
+ */
+fun getSideOfLine(p1: LngLatAlt, p2: LngLatAlt, h: LngLatAlt): Side {
+    // Using longitude as x and latitude as y
+    val crossProduct = (p2.longitude - p1.longitude) * (h.latitude - p1.latitude) -
+            (p2.latitude - p1.latitude) * (h.longitude - p1.longitude)
+
+    return when {
+        crossProduct > 0 -> Side.LEFT
+        crossProduct < 0 -> Side.RIGHT
+        else -> Side.INLINE
+    }
+}
+

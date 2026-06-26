@@ -12,7 +12,7 @@ import com.squareup.moshi.Json
 
 open class FeatureCollection : GeoJsonObject(), Iterable<Feature> {
     @field:Json(name = "features")
-    var features: ArrayList<Feature> = arrayListOf<Feature>()
+    var features: ArrayList<Feature> = arrayListOf()
 
     init {
         type = "FeatureCollection"
@@ -31,5 +31,12 @@ open class FeatureCollection : GeoJsonObject(), Iterable<Feature> {
 
     operator fun plusAssign(rhs: FeatureCollection) {
         features.addAll(rhs)
+    }
+
+    fun plusAssignDeduplicate(rhs: FeatureCollection) {
+        for(feature in rhs) {
+            if(!features.contains(feature))
+                features.add(feature)
+        }
     }
 }

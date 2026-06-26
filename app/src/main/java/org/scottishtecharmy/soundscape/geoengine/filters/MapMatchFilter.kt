@@ -294,7 +294,7 @@ class RoadFollower(val parent: MapMatchFilter,
                                newWay: Way,
                                colorIndexOffset: Int) : RoadFollower {
         // Create a new follower which is a copy of this one, but with an extended route
-        val newRoute = emptyList<Way>().toMutableList()
+        val newRoute = mutableListOf<Way>()
 
         val (minIndex, maxIndex) = getRouteIntersectionIndices(newWay)
         if(minIndex != maxIndex) {
@@ -344,7 +344,7 @@ class RoadFollower(val parent: MapMatchFilter,
             return false
         }
 
-        val newRoute = emptyList<Way>().toMutableList()
+        val newRoute = mutableListOf<Way>()
         if(route.first().doesIntersect(newWay).first != null) {
             if(!route.first().intersections.contains(null)) {
                 newRoute.add(newWay)
@@ -502,10 +502,11 @@ class RoadFollower(val parent: MapMatchFilter,
                     val circle = Feature()
                     circle.geometry =
                         circleToPolygon(32, lastCenter.latitude, lastCenter.longitude, radius)
-                    circle.properties = hashMapOf()
-                    circle.properties?.set("fill-opacity", 0.0)
-                    circle.properties?.set("stroke", color)
-                    circle.properties?.set("radius", radius)
+                    circle.properties = HashMap<String,Any?>().apply {
+                        set("fill-opacity", 0.0)
+                        set("stroke", color)
+                        set("radius", radius)
+                    }
                     collection.addFeature(circle)
                 }
 
@@ -586,7 +587,7 @@ class MapMatchFilter {
     //
 
 
-    val followerList: MutableList<RoadFollower> = emptyList<RoadFollower>().toMutableList()
+    val followerList: MutableList<RoadFollower> = mutableListOf()
     var matchedLocation: PointAndDistanceAndHeading? = null
     var matchedWay: Way? = null
     var matchedFollower: RoadFollower? = null
@@ -630,7 +631,7 @@ class MapMatchFilter {
      * combination.
      */
     fun extendFollowerList(location: LngLatAlt, gridState: GridState) {
-        val roadTree = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
+        val roadTree = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
 
         val roads = roadTree.getNearestCollection(location, 20.0, 8, gridState.ruler)
 
@@ -720,7 +721,7 @@ class MapMatchFilter {
 
         var lowestFrechet = Double.MAX_VALUE
         var lowestFollower: RoadFollower? = null
-        val freshetList = emptyList<Pair<RoadFollowerStatus, String>>().toMutableList()
+        val freshetList = mutableListOf<Pair<RoadFollowerStatus, String>>()
         val followerIterator = followerList.listIterator()
         while(followerIterator.hasNext()) {
             val follower = followerIterator.next()
@@ -756,14 +757,14 @@ class MapMatchFilter {
                         if(matched.isSidewalkOrCrossing() || way.isSidewalkOrCrossing()) {
                             // We're matching on a sidewalk, see if the other way is either the
                             // associated way or another sidewalk for the associated way
-                            val roadTree = gridState.featureTrees[TreeId.ROADS_AND_PATHS.id]
+                            val roadTree = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
                             addSidewalk(matched, roadTree, gridState.ruler)
                             addSidewalk(way, roadTree, gridState.ruler)
 
                             val matchedPavement = matched.properties?.get("pavement")
-                            val matchedName = matched.properties?.get("name")
+                            val matchedName = matched.name
                             val wayPavement = way.properties?.get("pavement")
-                            val wayName = way.properties?.get("name")
+                            val wayName = way.name
 
                             if((matchedPavement != null) &&
                                ((matchedPavement == wayName) || (matchedPavement == wayPavement))) {
@@ -813,11 +814,12 @@ class MapMatchFilter {
                             matchedLocation!!.point.longitude,
                             matchedLocation!!.point.latitude
                         )
-                    choiceFeature.properties = hashMapOf()
-                    choiceFeature.properties?.set("marker-size", "large")
-                    choiceFeature.properties?.set("marker-color", "#000000")
-                    for (choices in freshetList) {
-                        choiceFeature.properties?.set(choices.second, choices.first.toString())
+                    choiceFeature.properties = HashMap<String,Any?>().apply {
+                        set("marker-size", "large")
+                        set("marker-color", "#000000")
+                        for (choices in freshetList) {
+                            set(choices.second, choices.first.toString())
+                        }
                     }
                     collection.addFeature(choiceFeature)
                 }

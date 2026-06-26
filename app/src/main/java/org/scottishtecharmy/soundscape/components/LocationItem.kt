@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.ChevronRight
+import androidx.compose.material.icons.rounded.LocationOff
 import androidx.compose.material.icons.rounded.LocationOn
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
@@ -25,12 +26,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.CustomAccessibilityAction
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.customActions
 import androidx.compose.ui.semantics.onClick
 import androidx.compose.ui.tooling.preview.Preview
+import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -44,17 +48,27 @@ data class EnabledFunction(
     var functionBoolean: (Boolean) -> Unit = {},
     var value: Boolean = false,
     var hintWhenOn: String = "",
-    var hintWhenOff: String = ""
+    var hintWhenOff: String = "",
+    var hint: String = ""
 )
+enum class LocationSource {
+    AndroidGeocoder,
+    PhotonGeocoder,
+    OfflineGeocoder,
+    UnknownSource
+}
+
 data class LocationItemDecoration(
     val location: Boolean = false,
+    val source: LocationSource = LocationSource.UnknownSource,
     val index: Int = -1,
     val editRoute: EnabledFunction = EnabledFunction(),
     val details: EnabledFunction = EnabledFunction(),
     var indexDescription: String = "",
     var reorderable: Boolean = false,
     var moveUp: (Int) -> Boolean = { false },
-    var moveDown: (Int) -> Boolean = { false }
+    var moveDown: (Int) -> Boolean = { false },
+    var startPlayback: EnabledFunction = EnabledFunction()
 )
 
 @Composable
@@ -66,6 +80,11 @@ fun LocationItem(
 ) {
     val context = LocalContext.current
     var distanceString = ""
+    val selectionText = if (decoration.editRoute.value) stringResource(R.string.location_item_selected) else stringResource(R.string.location_item_not_selected)
+    val moveUpLabel = stringResource(R.string.location_item_move_up)
+    val moveUpDown = stringResource(R.string.location_item_move_down)
+    val defaultStartPlaybackLabel = stringResource(R.string.route_detail_action_start_route_hint)
+    val startPlaybackLabel = decoration.startPlayback.hint.ifEmpty { defaultStartPlaybackLabel }
     if(userLocation != null) {
         val ruler = item.location.createCheapRuler()
         distanceString = formatDistanceAndDirection(
@@ -80,7 +99,7 @@ fun LocationItem(
             .background(MaterialTheme.colorScheme.surface)
             .smallPadding()
             .fillMaxWidth()
-            .clickable{
+            .clickable(role = Role.Button) {
                 if (decoration.details.enabled) {
                     decoration.details.functionLocation(item)
                 } else if (decoration.editRoute.enabled) {
@@ -89,35 +108,43 @@ fun LocationItem(
             }
             .testTag("LocationItem-${item.name}-${item.orderId}")
             .clearAndSetSemantics {
+                contentDescription = when {
+                    decoration.editRoute.enabled ->
+                        "$selectionText. ${item.name}"
+
+                    decoration.index != -1 ->
+                        "${decoration.indexDescription} ${decoration.index + 1}. ${item.name}"
+
+                    else -> item.description?.takeIf { it.startsWith(item.name) }
+                        ?: listOfNotNull(item.name, item.typeDescription?.additionalText, item.description, distanceString).joinToString(", ")
+                }
+
                 if (decoration.editRoute.enabled) {
-                    // Provide a clearer description of the current state and what
-                    // happens when the user double taps.
-                    contentDescription = if (decoration.editRoute.value)
-                       "Selected. ${item.name}"
-                    else
-                       "Not selected. ${item.name}"
                     onClick(
-                        label =
-                            if(decoration.editRoute.value) decoration.editRoute.hintWhenOn
-                            else decoration.editRoute.hintWhenOff,
+                        label = if (decoration.editRoute.value) decoration.editRoute.hintWhenOn else decoration.editRoute.hintWhenOff,
                         action = { false }
                     )
-                } else {
-                    contentDescription = if(decoration.index != -1) {
-                        "${decoration.indexDescription} ${decoration.index + 1}. ${item.name}"
-                    } else {
-                        item.name
-                    }
                 }
                 if(decoration.reorderable) {
                     customActions = listOf(
                         CustomAccessibilityAction(
-                            label = "Move Up",
+                            label = moveUpLabel,
                             action = { decoration.moveUp(decoration.index) }
                         ),
                         CustomAccessibilityAction(
-                            label = "Move Down",
+                            label = moveUpDown,
                             action = { decoration.moveDown(decoration.index) }
+                        ),
+                    )
+                }
+                if(decoration.startPlayback.enabled) {
+                    customActions = listOf(
+                        CustomAccessibilityAction(
+                            label = startPlaybackLabel,
+                            action = {
+                                decoration.startPlayback.functionLocation(item)
+                                true
+                            }
                         ),
                     )
                 }
@@ -125,8 +152,12 @@ fun LocationItem(
         verticalAlignment = Alignment.CenterVertically
     ) {
         if(decoration.location) {
+            val icon = when(decoration.source) {
+                LocationSource.OfflineGeocoder -> Icons.Rounded.LocationOff
+                else -> Icons.Rounded.LocationOn
+            }
             Icon(
-                Icons.Rounded.LocationOn,
+                icon,
                 contentDescription = null,
                 tint = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.width(spacing.icon)
@@ -160,6 +191,15 @@ fun LocationItem(
                         text = it,
                         color = MaterialTheme.colorScheme.onSurface,
                         style = MaterialTheme.typography.bodyMedium,
+                    )
+                }
+            }
+            if(item.typeDescription?.generic != true) {
+                item.typeDescription?.additionalText?.let { text ->
+                    Text(
+                        text = text,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        style = MaterialTheme.typography.bodySmall,
                     )
                 }
             }
@@ -204,7 +244,7 @@ fun FolderItem(
             .background(MaterialTheme.colorScheme.surface)
             .smallPadding()
             .fillMaxWidth()
-            .clickable{
+            .clickable(role = Role.Button) {
                 onClick()
             },
         verticalAlignment = Alignment.CenterVertically
@@ -288,6 +328,27 @@ fun PreviewCompactSearchItemButton() {
                 location = true,
                 editRoute = EnabledFunction(false),
                 details = EnabledFunction(true),
+                source = LocationSource.OfflineGeocoder
+            ),
+            userLocation = LngLatAlt(8.00, 10.55)
+        )
+        LocationItem(
+            item = test,
+            decoration = LocationItemDecoration(
+                location = true,
+                editRoute = EnabledFunction(false),
+                details = EnabledFunction(true),
+                source = LocationSource.AndroidGeocoder
+            ),
+            userLocation = LngLatAlt(8.00, 10.55)
+        )
+        LocationItem(
+            item = test,
+            decoration = LocationItemDecoration(
+                location = true,
+                editRoute = EnabledFunction(false),
+                details = EnabledFunction(true),
+                source = LocationSource.PhotonGeocoder
             ),
             userLocation = LngLatAlt(8.00, 10.55)
         )

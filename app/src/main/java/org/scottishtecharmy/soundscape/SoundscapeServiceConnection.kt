@@ -6,8 +6,8 @@ import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
 import android.util.Log
-import com.google.android.gms.location.DeviceOrientation
 import dagger.hilt.android.scopes.ActivityRetainedScoped
+import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.services.SoundscapeBinder
 import org.scottishtecharmy.soundscape.services.SoundscapeService
+import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
 import javax.inject.Inject
 
 @ActivityRetainedScoped
@@ -31,7 +32,7 @@ class SoundscapeServiceConnection @Inject constructor() {
     fun getLocationFlow() : StateFlow<android.location.Location?>? {
         return soundscapeService?.locationProvider?.locationFlow
     }
-    fun getOrientationFlow() : StateFlow<DeviceOrientation?>? {
+    fun getOrientationFlow() : StateFlow<DeviceDirection?>? {
         return soundscapeService?.directionProvider?.orientationFlow
     }
     fun getBeaconFlow(): StateFlow<BeaconState>? {
@@ -48,13 +49,25 @@ class SoundscapeServiceConnection @Inject constructor() {
         return soundscapeService?.gridStateFlow
     }
 
+    fun getVoiceCommandStateFlow(): StateFlow<VoiceCommandState>? {
+        return soundscapeService?.voiceCommandStateFlow
+    }
+
     fun setStreetPreviewMode(on : Boolean, location: LngLatAlt? = null) {
         Log.d(TAG, "setStreetPreviewMode $on")
         soundscapeService?.setStreetPreviewMode(on, location)
     }
 
     fun routeStart(routeId: Long) {
-        soundscapeService?.routeStart(routeId)
+        soundscapeService?.routeStartById(routeId)
+    }
+
+    fun routeStartReverse(routeId: Long) {
+        soundscapeService?.routeStartReverse(routeId)
+    }
+
+    fun startBeacon(location: LngLatAlt, name: String) {
+        soundscapeService?.startBeacon(location, name)
     }
 
     fun routeSkipPrevious() {
@@ -107,6 +120,18 @@ class SoundscapeServiceConnection @Inject constructor() {
 
     fun streetPreviewGo() {
         soundscapeService?.streetPreviewGo()
+    }
+
+    fun startBeaconPreview(beaconType: String) {
+        soundscapeService?.startBeaconPreview(beaconType)
+    }
+
+    fun updateBeaconPreviewType(beaconType: String) {
+        soundscapeService?.updateBeaconPreviewType(beaconType)
+    }
+
+    fun stopBeaconPreview(commit: Boolean, chosenBeaconType: String?) {
+        soundscapeService?.stopBeaconPreview(commit, chosenBeaconType)
     }
 
     companion object {

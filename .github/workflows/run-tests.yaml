@@ -21,27 +21,26 @@ jobs:
     environment: development
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
+      - name: Setup offline maps for tests
+        run: |
+          pwd
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/bristol-gb.pmtiles  -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/bristol-gb.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/glasgow-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/glasgow-gb.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/liverpool-gb.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/liverpool-gb.pmtiles
+          wget --no-verbose --show-progress --progress=dot:giga https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/manifest.geojson.gz -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/manifest.geojson.gz
+
       - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
+        uses: gradle/actions/setup-gradle@v5
 
       - name: Set Up JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           distribution: 'zulu' # See 'Supported distributions' for available options
           java-version: '19'
-
-      - name: Setup offline maps for tests
-        run: |
-          pwd 
-          ls -l ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape
-          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/cardiff-united-kingdom.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/cardiff-united-kingdom.pmtiles
-          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/glasgow-united-kingdom.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/glasgow-united-kingdom.pmtiles
-          wget --no-verbose --show-progress --progress=dot:giga https://commcouncil.scot/manchester-united-kingdom.pmtiles -O ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/manchester-united-kingdom.pmtiles
-          ls -l ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape
 
 #      Setting up the tile and search providers from secrets won't work for runners which are
 #      triggered from forks e.g. to test a pull request. The tests that require tiles check if the
@@ -54,21 +53,32 @@ jobs:
           TILE_PROVIDER_URL: ${{ secrets.TILE_PROVIDER_URL }}
           SEARCH_PROVIDER_API_KEY: ${{ secrets.SEARCH_PROVIDER_API_KEY }}
           SEARCH_PROVIDER_URL: ${{ secrets.SEARCH_PROVIDER_URL }}
+          EXTRACT_PROVIDER_URL: ${{ secrets.EXTRACT_PROVIDER_URL }}
         run: |
           echo tileProviderUrl="$TILE_PROVIDER_URL" > local.properties
           echo tileProviderApiKey="$TILE_PROVIDER_API_KEY" >> local.properties
           echo searchProviderUrl="$SEARCH_PROVIDER_URL" >> local.properties
           echo searchProviderApiKey="$SEARCH_PROVIDER_API_KEY" >> local.properties
+          echo extractProviderUrl="$EXTRACT_PROVIDER_URL" >> local.properties
+
+      - name: Generate test screenshots
+        run: |
+          ./gradlew updateDebugScreenshotTest
+          ./categorise.sh app/src/screenshotTestDebug/reference/org/scottishtecharmy/soundscape/ThemeTestClass/
+          cd app/src/screenshotTestDebug/reference/org/scottishtecharmy/soundscape/ThemeTestClass/
+          zip -r screenshots.zip .
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v6
+        with:
+          name: test-screenshots
+          path: app/src/screenshotTestDebug/reference/org/scottishtecharmy/soundscape/ThemeTestClass/screenshots.zip
 
       - name: Run lint over the repo
         run: ./gradlew lint
 
       - name: Run tests
         run: ./gradlew test
-
-      - name: Generate screenshots
-        continue-on-error: true # The screenshots are unreliable, awaiting Google fix
-        run : ./gradlew  updateDebugScreenshotTest
 
       - name: Build debug version
         run: ./gradlew assembleDebug
@@ -88,6 +98,9 @@ jobs:
           target: default
           arch: x86_64
           script: |
+            adb root
+            adb shell mkdir -p /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download
+            adb push ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/glasgow-gb.pmtiles /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/
             adb logcat -c                             # clear logs
             touch app/emulator.log                    # create log file
             chmod 777 app/emulator.log                # allow writing to log file
@@ -96,7 +109,7 @@ jobs:
 
       - name: Upload Failing Test Report Log
         if: steps.instrumentation-tests.outcome != 'success'        # upload the generated log on failure of the tests job
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: logs
           path: app/emulator.log # path to where the log is

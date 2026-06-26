@@ -24,4 +24,8 @@ open class Point() : GeoJsonObject() {
     constructor(lng: Double, lat: Double, alt: Double? = null) : this() {
         coordinates = LngLatAlt(lng, lat, alt)
     }
+
+    constructor(location: LngLatAlt) : this() {
+        coordinates = location
+    }
 }

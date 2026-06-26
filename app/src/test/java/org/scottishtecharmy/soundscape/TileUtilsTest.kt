@@ -16,7 +16,11 @@ import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
+import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
@@ -28,13 +32,12 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getGpsFromNormalizedMapCoordinates
-import org.scottishtecharmy.soundscape.geoengine.utils.getIntersectionRoadNames
 import org.scottishtecharmy.soundscape.geoengine.utils.getNormalizedFromGpsMapCoordinates
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeDirectionsPolygons
-import org.scottishtecharmy.soundscape.geoengine.utils.getSuperCategoryElements
 import org.scottishtecharmy.soundscape.geoengine.utils.removeDuplicateOsmIds
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.sortedByDistanceTo
+import org.scottishtecharmy.soundscape.geoengine.utils.superCategoryMap
 
 class TileUtilsTest {
     private val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
@@ -52,10 +55,11 @@ class TileUtilsTest {
         val testRoadsCollectionFromTileFeatureCollection =
             gridState.getFeatureCollection(TreeId.ROADS)
         for (feature in testRoadsCollectionFromTileFeatureCollection) {
-            Assert.assertEquals("highway", feature.foreign!!["feature_type"])
+            Assert.assertTrue("Feature should be of type Way", feature is Way)
+            val way = feature as Way
+            Assert.assertEquals("highway", way.featureType)
         }
-        // The tile contains 37 road segments
-        Assert.assertEquals(38, testRoadsCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(136, testRoadsCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
@@ -65,9 +69,10 @@ class TileUtilsTest {
             gridState.getFeatureCollection(TreeId.TRANSIT_STOPS)
 
         for (feature in testBusStopFeatureCollectionFromTileFeatureCollection) {
-            Assert.assertEquals("bus_stop", feature.foreign!!["feature_value"])
+            val mvtFeature = feature as MvtFeature
+            Assert.assertEquals("bus_stop", mvtFeature.featureValue)
         }
-        Assert.assertEquals(4, testBusStopFeatureCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(8, testBusStopFeatureCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
@@ -75,9 +80,10 @@ class TileUtilsTest {
         val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testCrossingsFeatureCollection = gridState.getFeatureCollection(TreeId.CROSSINGS)
         for (feature in testCrossingsFeatureCollection) {
-            Assert.assertEquals("crossing", feature.foreign!!["feature_value"])
+            val mvtFeature = feature as MvtFeature
+            Assert.assertEquals("crossing", mvtFeature.featureValue)
         }
-        Assert.assertEquals(103, testCrossingsFeatureCollection.features.size)
+        Assert.assertEquals(337, testCrossingsFeatureCollection.features.size)
     }
 
     @Test
@@ -88,11 +94,13 @@ class TileUtilsTest {
         val testRoadsCollectionFromTileFeatureCollection =
             gridState.getFeatureCollection(TreeId.ROADS)
         for (feature in testPathsCollectionFromTileFeatureCollection) {
-            Assert.assertEquals("highway", feature.foreign!!["feature_type"])
+            val mvtFeature = feature as MvtFeature
+            Assert.assertEquals("highway", mvtFeature.featureType)
+            Assert.assertTrue("Feature should be of type Way", feature is Way)
         }
         // Check that the number of path segments (road_and_paths - roads) is correct
         Assert.assertEquals(
-            1283,
+            4522,
             testPathsCollectionFromTileFeatureCollection.features.size - testRoadsCollectionFromTileFeatureCollection.features.size
         )
     }
@@ -103,10 +111,9 @@ class TileUtilsTest {
         val testIntersectionsCollectionFromTileFeatureCollection =
             gridState.getFeatureCollection(TreeId.INTERSECTIONS)
         for (feature in testIntersectionsCollectionFromTileFeatureCollection) {
-            Assert.assertEquals("gd_intersection", feature.foreign!!["feature_value"])
+            Assert.assertTrue("Feature should be of type Intersection", feature is Intersection)
         }
-        Assert.assertEquals(1489, testIntersectionsCollectionFromTileFeatureCollection.features.size)
-
+        Assert.assertEquals(5265, testIntersectionsCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
@@ -115,9 +122,9 @@ class TileUtilsTest {
         val testEntrancesCollectionFromTileFeatureCollection =
             gridState.getFeatureCollection(TreeId.ENTRANCES)
         for (feature in testEntrancesCollectionFromTileFeatureCollection) {
-            Assert.assertEquals("entrance", feature.foreign!!["feature_type"])
+            Assert.assertEquals(true, feature.properties!!.contains("entrance"))
         }
-        Assert.assertEquals(38, testEntrancesCollectionFromTileFeatureCollection.features.size)
+        Assert.assertEquals(139, testEntrancesCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
@@ -125,8 +132,7 @@ class TileUtilsTest {
         val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
-        Assert.assertEquals(1103, testPoiCollection.features.size)
-
+        Assert.assertEquals(2706, testPoiCollection.features.size)
     }
 
     @Test
@@ -136,8 +142,8 @@ class TileUtilsTest {
 
         // select "mobility" super category
         val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory("mobility", testPoiCollection)
-        Assert.assertEquals(275, testSuperCategoryPoiCollection.features.size)
+            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.MOBILITY, testPoiCollection)
+        Assert.assertEquals(581, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
@@ -147,11 +153,13 @@ class TileUtilsTest {
 
         // select "object" super category
         val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory("object", testPoiCollection)
-        Assert.assertEquals(83, testSuperCategoryPoiCollection.features.size)
+            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.OBJECT, testPoiCollection)
+        Assert.assertEquals(101, testSuperCategoryPoiCollection.features.size)
 
-        for(feature in testSuperCategoryPoiCollection)
-            println("${feature.foreign?.get("feature_type")} - ${feature.foreign?.get("feature_value")}")
+        for(feature in testSuperCategoryPoiCollection) {
+            val mvtFeature = feature as MvtFeature
+            println("${mvtFeature.featureType} - ${mvtFeature.featureValue}")
+        }
     }
 
     @Test
@@ -161,8 +169,8 @@ class TileUtilsTest {
 
         // select "information" super category
         val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory("information", testPoiCollection)
-        Assert.assertEquals(4, testSuperCategoryPoiCollection.features.size)
+            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.INFORMATION, testPoiCollection)
+        Assert.assertEquals(7, testSuperCategoryPoiCollection.features.size)
 
     }
 
@@ -173,9 +181,8 @@ class TileUtilsTest {
 
         // select "place" super category
         val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory("place", testPoiCollection)
-        Assert.assertEquals(452, testSuperCategoryPoiCollection.features.size)
-
+            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.PLACE, testPoiCollection)
+        Assert.assertEquals(1356, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
@@ -185,8 +192,8 @@ class TileUtilsTest {
 
         // select "landmark" super category
         val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory("landmark", testPoiCollection)
-        Assert.assertEquals(69, testSuperCategoryPoiCollection.features.size)
+            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.LANDMARK, testPoiCollection)
+        Assert.assertEquals(220, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
@@ -196,8 +203,8 @@ class TileUtilsTest {
 
         // select "safety" super category
         val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory("safety", testPoiCollection)
-        Assert.assertEquals(48, testSuperCategoryPoiCollection.features.size)
+            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.SAFETY, testPoiCollection)
+        Assert.assertEquals(256, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
@@ -215,13 +222,13 @@ class TileUtilsTest {
         // This is the distance from the current location to a Point of longitude(0.5) and latitude(0.5)
         Assert.assertEquals(
             55659.75,
-            distanceToFeatureCollection.features[0].foreign?.get("distance_to") as Double,
+            distanceToFeatureCollection.features[0].properties?.get("distance_to") as Double,
             500.0 // CheapRuler is very inaccurate at these distances
         )
         // Current location is on the boundary of the Polygon so distance should be 0.0
         Assert.assertEquals(
             0.0,
-            distanceToFeatureCollection.features[1].foreign?.get("distance_to")
+            distanceToFeatureCollection.features[1].properties?.get("distance_to")
         )
 
     }
@@ -241,15 +248,15 @@ class TileUtilsTest {
         if (placesAndLandmarks) {
             if (mobility) {
                 val placeSuperCategory =
-                    getPoiFeatureCollectionBySuperCategory("place", poiCollection)
+                    getPoiFeatureCollectionBySuperCategory(SuperCategoryId.PLACE, poiCollection)
 
                 val tempFeatureCollection = FeatureCollection()
                 for (feature in placeSuperCategory.features) {
-                    if (feature.foreign?.get("feature_value") != "house") {
-                        if (feature.properties?.get("name") != null) {
-                            val superCategorySet = getSuperCategoryElements("place")
+                    val mvtFeature = feature as MvtFeature
+                    if (mvtFeature.featureValue != "house") {
+                        if (mvtFeature.name != null) {
                             for (property in feature.properties!!) {
-                                if (superCategorySet.contains(property.value)) {
+                                if (superCategoryMap[property.value] == SuperCategoryId.PLACE) {
                                     tempFeatureCollection.features.add(feature)
                                 }
                             }
@@ -265,12 +272,12 @@ class TileUtilsTest {
                 //println(cleanedPlaceString)
 
                 val landmarkSuperCategory =
-                    getPoiFeatureCollectionBySuperCategory("landmark", poiCollection)
+                    getPoiFeatureCollectionBySuperCategory(SuperCategoryId.LANDMARK, poiCollection)
                 for (feature in landmarkSuperCategory.features) {
                     settingsFeatureCollection.features.add(feature)
                 }
                 val mobilitySuperCategory =
-                    getPoiFeatureCollectionBySuperCategory("mobility", poiCollection)
+                    getPoiFeatureCollectionBySuperCategory(SuperCategoryId.MOBILITY, poiCollection)
                 for (feature in mobilitySuperCategory.features) {
                     settingsFeatureCollection.features.add(feature)
                 }
@@ -282,13 +289,14 @@ class TileUtilsTest {
                     LngLatAlt(currentLon, currentLat),
                     settingsFeatureCollection
                 ).sortedBy { feature ->
-                    feature.foreign?.get("distance_to") as? Double ?: Double.MAX_VALUE
+                    feature.properties?.get("distance_to") as? Double ?: Double.MAX_VALUE
                 }
                 for (feature in distanceToFeatureCollection) {
-                    if (feature.properties?.get("name") != null) {
+                    val mvtFeature = feature as MvtFeature
+                    if (mvtFeature.name != null) {
                         println(
-                            "Feature: ${feature.properties?.get("name")} " +
-                                    "distance to feature: ${feature.foreign?.get("distance_to")}"
+                            "Feature: ${mvtFeature.name} " +
+                                    "distance to feature: ${feature.properties?.get("distance_to")}"
                         )
                     }
                 }
@@ -299,14 +307,15 @@ class TileUtilsTest {
                 // and returns that as the nearest POI which isn't what original Soundscape does
                 // so I need to throw away houses
                 val placeSuperCategory =
-                    getPoiFeatureCollectionBySuperCategory("place", poiCollection)
+                    getPoiFeatureCollectionBySuperCategory(SuperCategoryId.PLACE, poiCollection)
                 for (feature in placeSuperCategory.features) {
-                    if (feature.foreign?.get("feature_type") != "building" && feature.foreign?.get("feature_value") != "house") {
+                    val mvtFeature = feature as MvtFeature
+                    if (mvtFeature.featureType != "building" && mvtFeature.featureValue != "house") {
                         settingsFeatureCollection.features.add(feature)
                     }
                 }
                 val landmarkSuperCategory =
-                    getPoiFeatureCollectionBySuperCategory("landmark", poiCollection)
+                    getPoiFeatureCollectionBySuperCategory(SuperCategoryId.LANDMARK, poiCollection)
                 for (feature in landmarkSuperCategory.features) {
                     settingsFeatureCollection.features.add(feature)
                 }
@@ -315,7 +324,7 @@ class TileUtilsTest {
             if (mobility) {
                 //Log.d(TAG, "placesAndLandmarks is false and mobility is true")
                 val mobilitySuperCategory =
-                    getPoiFeatureCollectionBySuperCategory("mobility", poiCollection)
+                    getPoiFeatureCollectionBySuperCategory(SuperCategoryId.MOBILITY, poiCollection)
                 for (feature in mobilitySuperCategory.features) {
                     settingsFeatureCollection.features.add(feature)
                 }
@@ -426,14 +435,15 @@ class TileUtilsTest {
             90.0,
             50.0
         )
-        val expectedNearestPoint = LngLatAlt(-2.6492421, 51.4306040)
+        val expectedNearestPoint = LngLatAlt(-2.6504250, 51.4304580)
         val ruler = CheapRuler(userGeometry.location.latitude)
         val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
         val poiTree = gridState.getFeatureTree(TreeId.POIS)
         val fc = poiTree.getAllCollection()
         for(feature in fc) {
             if(feature.geometry.type == "Polygon") {
-                println("${feature.properties?.get("name")}")
+                val mvtFeature = feature as MvtFeature
+                println("${mvtFeature.name}")
                 val nearestPoint = getDistanceToFeature(userGeometry.location, feature, ruler).point
                 val offset = ruler.distance(nearestPoint, expectedNearestPoint)
                 assert(offset < 1.0)
@@ -467,8 +477,8 @@ class TileUtilsTest {
             userGeometry.location,
             fovIntersectionsFeatureCollection
         )
-        Assert.assertEquals(5.97, sortedByDistanceToTest.features[0].foreign?.get("distance_to") as Double, 0.1)
-        Assert.assertEquals(36.8, sortedByDistanceToTest.features[1].foreign?.get("distance_to") as Double, 0.1)
+        Assert.assertEquals(6.24, sortedByDistanceToTest.features[0].properties?.get("distance_to") as Double, 0.1)
+        Assert.assertEquals(36.8, sortedByDistanceToTest.features[1].properties?.get("distance_to") as Double, 0.1)
 
     }
 
@@ -491,11 +501,11 @@ class TileUtilsTest {
         // This should pick up four road segments in the FoV
         Assert.assertEquals(4, fovRoadsFeatureCollection.features.size)
         val nearestRoad = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
-            .getNearestFeature(userGeometry.location, userGeometry.ruler)
+            .getNearestFeature(userGeometry.location, userGeometry.ruler) as MvtFeature?
         // Should only be the nearest road in this Feature Collection
         assert(nearestRoad != null)
         // The nearest road to the current location should be Weston Road
-        Assert.assertEquals("Weston Road", nearestRoad!!.properties!!["name"])
+        Assert.assertEquals("Weston Road", nearestRoad?.name)
     }
 
     @Test
@@ -504,7 +514,7 @@ class TileUtilsTest {
         val userGeometry = UserGeometry(
             longAshtonRoadTestLocation,
             90.0,
-            100.0
+            150.0
         )
 
         val gridState = getGridStateForLocation(longAshtonRoadTestLocation, MAX_ZOOM_LEVEL, 1)
@@ -515,11 +525,9 @@ class TileUtilsTest {
         val nearestPoiFeature =
             poiTree.getNearestFeatureWithinTriangle(triangle, userGeometry.ruler)
 
-        // It's a grit-bin - not the most useful, but the original Soundscape used to find houses
-        // which was even less useful. Measure distance to it.
         val distance = getDistanceToFeature(userGeometry.location, nearestPoiFeature!!, userGeometry.ruler)
 
-        Assert.assertEquals(46.82, distance.distance, 0.1) //  CheapRuler is slightly inaccurate at these distances
+        Assert.assertEquals(101.68, distance.distance, 0.1)
 
     }
 
@@ -690,21 +698,22 @@ class TileUtilsTest {
         val nearestIntersectionPoint = nearestIntersection!!.geometry as Point
         val distanceToNearestIntersection =
             userGeometry.ruler.distance(userGeometry.location, nearestIntersectionPoint.coordinates)
-        Assert.assertEquals(6.0, distanceToNearestIntersection, 0.1)
+        Assert.assertEquals(6.24, distanceToNearestIntersection, 0.1)
 
         // get the roads that make up the intersection based on the osm_ids
-        val nearestIntersectionRoadNames = getIntersectionRoadNames(
-            nearestIntersection,
-            fovRoadsFeatureCollection
-        )
-        Assert.assertEquals(
-            "Long Ashton Road",
-            nearestIntersectionRoadNames.features[0].properties!!["name"]
-        )
-        Assert.assertEquals(
-            "Weston Road",
-            nearestIntersectionRoadNames.features[2].properties!!["name"]
-        )
+        // TODO: This should be implemented using the Way grap
+//        val nearestIntersectionRoadNames = getIntersectionRoadNames(
+//            nearestIntersection,
+//            fovRoadsFeatureCollection
+//        )
+//        Assert.assertEquals(
+//            "Long Ashton Road",
+//            nearestIntersectionRoadNames.features[0].properties!!["name"]
+//        )
+//        Assert.assertEquals(
+//            "Weston Road",
+//            nearestIntersectionRoadNames.features[2].properties!!["name"]
+//        )
     }
 
     private fun roundtripGpsLocation(latitude: Double, longitude: Double) {

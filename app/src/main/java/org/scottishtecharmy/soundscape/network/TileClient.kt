@@ -1,11 +1,10 @@
 package org.scottishtecharmy.soundscape.network
 
 import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import okhttp3.Cache
 import okhttp3.CacheControl
 import okhttp3.OkHttpClient
+import org.scottishtecharmy.soundscape.utils.NetworkUtils
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 
@@ -16,21 +15,21 @@ import java.util.concurrent.TimeUnit
 // https://stackoverflow.com/questions/23429046/can-retrofit-with-okhttp-use-cache-data-when-offline?noredirect=1&lq=1
 abstract class TileClient(val applicationContext: Context) {
 
-    private val connectivityManager: ConnectivityManager = applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-
     private var retrofit : Retrofit? = null
+    val networkUtils = NetworkUtils(applicationContext)
 
     private val cacheSize = (100 * 1024 * 1024).toLong() //100MB cache size
     private val myCache = Cache(applicationContext.cacheDir, cacheSize)
 
     protected val okHttpClient = OkHttpClient.Builder()
         .cache(myCache)
+        .addInterceptor(UserAgentInterceptor())
         .addInterceptor { chain ->
 
         // Get the request from the chain.
         var request = chain.request()
 
-        request = if (hasNetwork()){
+        request = if (networkUtils.hasNetwork()){
             val onlineCacheControl = CacheControl.Builder()
                 .maxAge(1, TimeUnit.DAYS)
                 .build()
@@ -76,17 +75,4 @@ abstract class TileClient(val applicationContext: Context) {
             }
             return retrofit
         }
-
-    private fun hasNetwork(): Boolean {
-        val activeNetwork = connectivityManager.activeNetwork ?: return false
-        val activeNetworkCapabilities =
-            connectivityManager.getNetworkCapabilities(activeNetwork) ?: return false
-        return when {
-            activeNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-            activeNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-            activeNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
-            activeNetworkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_BLUETOOTH) -> true
-            else -> false
-        }
-    }
 }

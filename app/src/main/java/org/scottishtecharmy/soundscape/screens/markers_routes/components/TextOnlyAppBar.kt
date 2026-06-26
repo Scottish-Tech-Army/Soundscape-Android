@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.ui.theme.extraSmallPadding
@@ -23,7 +24,7 @@ fun TextOnlyAppBar(title : String = "",
         leftSide = {
             Text(
                 modifier = Modifier
-                    .clickable { onNavigateUp() }
+                    .clickable(role = Role.Button) { onNavigateUp() }
                     .extraSmallPadding()
                     .testTag("flexibleAppBarLeft"),
                 text = navigationButtonTitle,
@@ -34,7 +35,7 @@ fun TextOnlyAppBar(title : String = "",
         rightSide = {
             Text(
                 modifier = Modifier
-                    .clickable { onRightButton() }
+                    .clickable(role = Role.Button) { onRightButton() }
                     .extraSmallPadding()
                     .testTag("flexibleAppBarRight"),
                 text = rightButtonTitle,

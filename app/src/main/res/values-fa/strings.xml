@@ -29,7 +29,7 @@
     <!-- Title for option to select the text-to-speech voice to use. -->
 <string name="voice_voices">صدای موتور صوتی</string>
     <!-- Title of a section in the beacon settings page where the user can select which style of beacon that they want. -->
-<string name="beacon_settings_style">صدای جهت‌نمای صوتی</string>
+<string name="beacon_settings_style">سبک‌های جهت‌نمای صوتی</string>
     <!-- Name of a beacon style. This is the name of the most recent version of the beacon audio we had in Soundscape as of the v4.1 release, so we refer to it as the "current" beacon. -->
 <string name="beacon_styles_current">جدید</string>
     <!-- Name of a beacon style. This is the name of the first style of beacon audio we had in Soundscape, so we refer to it as "Original" -->
@@ -61,13 +61,13 @@
     <!-- Mute Beacon text description -->
 <string name="beacon_action_mute_beacon">بستن صدای جهت‌نما</string>
     <!-- Talkback hint for the mute button which sets the volume on the audio beacon to zero. -->
-<string name="beacon_action_mute_beacon_acc_hint">صدای جهت‌نمای صوتی را قطع کنید.</string>
+<string name="beacon_action_mute_beacon_acc_hint">صدای جهت‌نمای صوتی را قطع کنید</string>
     <!-- Unmute Beacon text description -->
 <string name="beacon_action_unmute_beacon">باز کردن صدای جهت‌نما</string>
     <!-- Talkback hint for the mute button which sets the volume on the audio beacon to 100%. -->
-<string name="beacon_action_unmute_beacon_acc_hint">صدای جهت‌نمای صوتی را متصل کنید.</string>
+<string name="beacon_action_unmute_beacon_acc_hint">صدای جهت‌نمای صوتی را باز کنید</string>
     <!-- Street Preview is functionality that allows the user to select any location in the world to preview the area at street level in order to familiarise and build a mental map of the space. -->
-<string name="preview_title">آشنایی با محل</string>
+<string name="preview_title">شبیه‌سازی موقعیت مکانی</string>
     <!-- Text for button to go to the next intersection -->
 <string name="preview_go_title">حرکت</string>
     <!-- Initial street preview state for Go button which is indicating that pressing the button will take the user to the nearest intersection -->
@@ -81,19 +81,19 @@
     <!-- Title for the action to start playing an audio beacon -->
 <string name="location_detail_action_beacon">فعال‌سازی جهت‌نمای صوتی</string>
     <!-- Talkback hint for the action to set an audio beacon at this location -->
-<string name="location_detail_action_beacon_hint">جهت‌نمای صوتی را روی این مکان تنظیم کنید</string>
+<string name="location_detail_action_beacon_hint">شما را با صدا به این مکان هدایت کنید</string>
     <!-- Talkback hint for the action to save marker -->
-<string name="location_detail_action_save_hint">این مکان را نشانه‌گذاری و ذخیره کنید</string>
+<string name="location_detail_action_save_hint">این مکان را ذخیره کنید تا بعداً از آن استفاده کنید</string>
     <!-- Talkback hint for the action to edit marker -->
-<string name="location_detail_action_edit_hint">نشانه را ویرایش کنید</string>
+<string name="location_detail_action_edit_hint">نام نشانه را تغییر دهید یا یادداشت‌های اضافی اضافه کنید</string>
     <!-- Talkback hint for the action to share -->
-<string name="location_detail_action_share_hint">این مکان را به اشتراک بگذارید</string>
+<string name="location_detail_action_share_hint">این مکان را با یک اپلیکیشن دیگر به اشتراک بگذارید</string>
     <!-- Talkback hint for the action to preview -->
-<string name="location_detail_action_preview_hint">با محدوده‌ی اطراف این مکان آشنا شوید</string>
+<string name="location_detail_action_preview_hint">پیش‌نمایش این مکان را شروع کنید</string>
     <!-- Accessibility hint for markers in a list which could be removed from the list -->
-<string name="location_detail_add_waypoint_existing_hint">این نشانه را از مسیر خود حذف کنید.</string>
+<string name="location_detail_add_waypoint_existing_hint">این نشانه را از مسیر خود حذف کنید</string>
     <!-- Accessibility hint for markers in a list that can be added to a list -->
-<string name="location_detail_add_waypoint_new_hint">این نشانه را به مسیر خود اضافه کنید.</string>
+<string name="location_detail_add_waypoint_new_hint">این نشانه را به‌عنوان نقطه‌ی بین‌راهی به مسیر خود اضافه کنید</string>
     <!-- Talkback hint for button that makes map full screen -->
 <string name="location_detail_full_screen_hint" tools:ignore="MissingTranslation">نقشه را در حالت تمام‌صفحه قرار دهید</string>
     <!-- Talkback hint for button that stops map being full screen -->
@@ -105,15 +105,15 @@
     <!-- Text for the action to start editing a route -->
 <string name="route_detail_action_edit">ویرایش مسیر</string>
     <!-- Talkback hint for the action to start the route -->
-<string name="route_detail_action_start_route_hint">این مسیر را فعال کنید</string>
+<string name="route_detail_action_start_route_hint">پخش این مسیر را شروع کنید</string>
     <!-- Talkback hint for the action to start the route when the action is disabled. This action is only disabled when no waypoints have been added to a route yet. -->
-<string name="route_detail_action_start_route_disabled_hint">پیش از شروع مسیر نقاط بین‌راهی را اضافه کنید</string>
+<string name="route_detail_action_start_route_disabled_hint">قبل از شروع مسیر نقاط بین‌راهی اضافه کنید</string>
     <!-- Talkback hint for the action to stop the route -->
-<string name="route_detail_action_stop_route_hint">این مسیر را متوقف کنید</string>
+<string name="route_detail_action_stop_route_hint">پخش این مسیر را متوقف کنید</string>
     <!-- Talkback hint for the action to share -->
-<string name="route_detail_action_share_hint">این مسیر را به اشتراک بگذارید</string>
+<string name="route_detail_action_share_hint">این مسیر را با یک اپلیکیشن دیگر به اشتراک بگذارید</string>
     <!-- Accessibility hint for the edit button on the Route Detail screen -->
-<string name="route_detail_action_edit_hint">این مسیر را ویرایش کنید</string>
+<string name="route_detail_action_edit_hint">نقاط بین‌راهی مسیر را تغییر دهید یا ترتیب آنها را عوض کنید</string>
     <!-- Add button on the Route list screen -->
 <string name="route_detail_action_create">مسیر جدید</string>
     <!-- Talkback hint for the add button on the Route list screen -->
@@ -123,11 +123,11 @@
     <!-- Title text of the button used to move to the previous waypoint -->
 <string name="route_detail_action_previous">نقطه‌ی بین‌راهی قبلی</string>
     <!-- Hint text of the button used to move to the previous waypoint -->
-<string name="route_detail_action_previous_hint">دو ضربه بزنید تا جهت‌نمای صوتی روی نقطه‌ی بین‌راهی قبلی تنظیم شود</string>
+<string name="route_detail_action_previous_hint">جهت‌نما را به نقطه‌ی بین‌راهی قبلی منتقل کنید</string>
     <!-- Title text of the button used to move to the next waypoint -->
 <string name="route_detail_action_next">نقطه‌ی بین‌راهی بعدی</string>
     <!-- Hint text of the button used to move to the next waypoint -->
-<string name="route_detail_action_next_hint">دو ضربه بزنید تا جهت‌نمای صوتی روی نقطه‌ی بین‌راهی بعدی تنظیم شود</string>
+<string name="route_detail_action_next_hint">جهت‌نما را به نقطه‌ی بین‌راهی بعدی منتقل کنید</string>
     <!-- Label for the description field of a route -->
 <string name="route_detail_edit_description">توضیحات</string>
     <!-- Label for the button used to add waypoints to a route -->
@@ -141,7 +141,7 @@
     <!-- Alert action to save as marker -->
 <string name="universal_links_alert_action_marker">نشانه‌گذاری و ذخیره</string>
     <!-- Message to display alongside a URL that can be used to import a marker. Quotes written as \" -->
-<string name="universal_links_marker_share_message">یک نشانه‌ی ساند‌اسکیپ را با شما به اشتراک گذاشته‌ام! *\"%s\"*</string>
+<string name="universal_links_marker_share_message">یک نشانهٔ ساند‌اسکیپ را با شما به اشتراک گذاشتم: «%1$s».\n\nبرای باز کردن در ساند‌اسکیپ از %2$s استفاده کنید.\n\nبرای باز کردن در Google Maps از %3$s استفاده کنید.</string>
     <!-- Title for button to save the location from the location details page as a marker. -->
 <string name="user_activity_save_marker_title">ذخیره‌ی نشانه</string>
     <!-- Title of the option for displaying a the user's list of saved routes -->
@@ -185,7 +185,7 @@
     <!-- Notification when a marker is created -->
 <string name="markers_marker_created">نشانه ایجاد شد</string>
     <!-- A marker property that allows users to leave a custom explanation or comment on the marker -->
-<string name="markers_annotation">توضیحات</string>
+<string name="markers_annotation">یادداشت‌های اضافی</string>
     <!-- Description text for the search field, "destination" should be translated the same as it is in "first_launch.prompt.message" -->
 <string name="search_choose_destination">انتخاب مقصد</string>
     <!-- Search using current location -->
@@ -195,11 +195,11 @@
     <!-- Markers and routes screen titles -->
 <string name="search_view_markers">نشانه‌ها و مسیرها</string>
     <!-- Accessibility hint when the user selects the markers button on the home screen -->
-<string name="search_button_markers_accessibility_hint">نشانه‌هایی را که ذخیره کرده‌اید انتخاب یا ویرایش کنید</string>
+<string name="search_button_markers_accessibility_hint">نشانه‌ها و مسیرهای ذخیره‌شده‌تان را انتخاب یا ویرایش کنید</string>
     <!-- Accessibility hint when the user selects the nearby places button on the home screen -->
-<string name="search_button_nearby_accessibility_hint">مکان‌های مختلف اطرافتان را مشاهده نمایید</string>
+<string name="search_button_nearby_accessibility_hint">رستوران‌ها، ایستگاه‌های حمل‌و‌نقل و موارد دیگر نزدیک را کاوش کنید</string>
     <!-- Accessibility hint when the user selects the current location button on the home screen -->
-<string name="search_button_current_location_accessibility_hint">جزئیات موقعیت مکانی فعلی خود را مشاهده نمایید، آن را نشانه‌گذاری کنید یا با دوستانتان به اشتراک بگذارید</string>
+<string name="search_button_current_location_accessibility_hint">موقعیت فعلی خود را پیش‌نمایش، نشانه‌گذاری یا با یک دوست به اشتراک بگذارید</string>
     <!-- Places nearby that shows all of the places -->
 <string name="filter_all">همه‌ی مکان‌ها</string>
     <!-- Places nearby filter that shows public transport relates places e.g. bus stops and railway stations -->
@@ -393,19 +393,19 @@
     <!-- Similar to `directions.my_location`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
 <string name="ui_action_button_my_location">موقعیت\nمکانی من</string>
     <!-- Accessibility Notification, ...hear about your current location. -->
-<string name="ui_action_button_my_location_acc_hint">درباره‌ی موقعیت مکانی فعلی خود بدانید</string>
+<string name="ui_action_button_my_location_acc_hint">دربارهٔ موقعیت مکانی فعلی خود بشنوید</string>
     <!-- Similar to `callouts.nearby_markers`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
 <string name="ui_action_button_nearby_markers">نشانههای\nنزدیک</string>
     <!-- Accessibility Notification, ...hear about nearby places that you have marked -->
-<string name="ui_action_button_nearby_markers_acc_hint">درباره‌ی مکان‌های نزدیکی که نشانه‌گذاری کرده‌اید بدانید</string>
+<string name="ui_action_button_nearby_markers_acc_hint">دربارهٔ مکان‌های نزدیک که نشانه‌گذاری کرده‌اید بشنوید</string>
     <!-- Similar to `help.orient.page_title`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
 <string name="ui_action_button_around_me">اطراف\nمن</string>
     <!-- Accessibility Notification, ...hear about places in the four quadrants around you -->
-<string name="ui_action_button_around_me_acc_hint">درباره‌ی مکان‌هایی که در چهار طرفتان قرار دارد بدانید</string>
+<string name="ui_action_button_around_me_acc_hint">دربارهٔ مکان‌ها در چهار جهت اطراف‌تان بشنوید</string>
     <!-- Similar to `help.explore.page_title`. Text that is shown in a small square button. It should be constrained to two lines with up to 8 characters each. Use "\n" to represent a new line character. -->
 <string name="ui_action_button_ahead_of_me">مقابل\nمن</string>
     <!-- Accessibility Notification, ...hear about places in front of you -->
-<string name="ui_action_button_ahead_of_me_acc_hint">درباره‌ی مکان‌هایی که در مقابلتان قرار دارد بدانید</string>
+<string name="ui_action_button_ahead_of_me_acc_hint">دربارهٔ مکان‌هایی که در جلوی شما قرار دارند بشنوید</string>
     <!-- Title for menu -->
 <string name="ui_menu">منو</string>
     <!-- Talkback hint for the menu button -->
@@ -433,7 +433,7 @@
     <!-- Help section title -->
 <string name="settings_help_section_home_screen_buttons">دکمه‌های صفحه‌ی اصلی</string>
     <!-- Help content describing how user can choose a voice and download additional voices -->
-<string name="help_config_voices_content">ساند‌اسکیپ می‌تواند از هر صدایی که شما در قسمت تنظیمات خروجی موتور صوتی روی گوشی اندرویدی خود دانلود کرده‌اید استفاده کند. شما می‌توانید در اپلیکیشن ساند‌اسکیپ از صدایی غیر از صدای پیش‌فرض اندروید استفاده نمایید. برای این کار، از منوی اصلی گزینه‌ی تنظیمات و سپس *«صدای موتور صوتی»* را انتخاب کنید.</string>
+<string name="help_config_voices_content">ساند‌اسکیپ می‌تواند از هر یک از صداهایی که در تنظیمات خروجی تبدیل متن به گفتار (Text-to-speech) روی گوشی اندروید خود دانلود کرده‌اید استفاده کند. در اپلیکیشن ساند‌اسکیپ، برای انتخاب صدایی به‌جز صدای پیش‌فرض اندروید، از منوی اصلی به *«تنظیمات»* بروید، بخش *«صدا»* را باز کنید، و سپس *«صدای موتور صوتی»* را انتخاب نمایید.</string>
     <!-- Help Page Title, Offline -->
 <string name="help_offline_page_title">چرا ساند‌اسکیپ آفلاین کار می‌کند؟</string>
     <!-- Help Description, Offline -->
@@ -480,7 +480,7 @@
     <!-- Title text for the welcome screen in the first launch experience -->
 <string name="first_launch_welcome_title">خوش آمدید!</string>
     <!-- Short description included in the welcome screen in the first launch experience -->
-<string name="first_launch_welcome_description">با بهره‌گیری از فن‌آوری صوتی سه‌بعدی در ساند‌اسکیپ، مسیر خود را با اطمینان بپیمایید!</string>
+<string name="first_launch_welcome_description">با بهره‌گیری از فن‌آوری صوتی سه‌بعدی در ساند‌اسکیپ، مسیر خود را با اطمینان بپیمایید</string>
     <!-- Button text to get started with app setup -->
 <string name="first_launch_welcome_button">شروع</string>
     <!-- Title text for the screen that tells users how they can listen to Soundscape audio -->
@@ -504,9 +504,9 @@
     <!-- Example callout for a generic street name. In the US, a generic street name is "Main Street" but this might vary by locale -->
 <string name="first_launch_callouts_example_4">خیابان بهار به راست می‌رود</string>
     <!-- Title text for screen that asks for location permissions -->
-<string name="first_launch_permissions_title">مسیریابی با ساند‌اسکیپ</string>
+<string name="first_launch_permissions_title">مجوزهای اپلیکیشن</string>
     <!-- Message text for screen that asks for location permissions -->
-<string name="first_launch_permissions_message">هنگام مسیریابی با ساند‌اسکیپ، هدایت شما به‌وسیله‌ی یک جهت‌نمای صوتی صورت خواهد پذیرفت. برای این کار، لازم است مجوز‌های زیر را در اختیار ساند‌اسکیپ قرار دهید:</string>
+<string name="first_launch_permissions_message">برای اجرای ساند‌اسکیپ لازم است چند مجوز به اپلیکیشن داده شود. این مجوزها به آن اجازه می‌دهند تا حتی زمانی که گوشی قفل است، موقعیت مکانی گوشی را دریافت و به‌روزرسانی کند. لطفاً روی هر یک از مجوزهای زیر ضربه بزنید و هنگام درخواست، آنها را فعال کنید:</string>
     <!-- Title text for permission to use iOS Location Services -->
 <string name="first_launch_permissions_location">خدمات مکان‌یابی با دقت بالا</string>
     <!-- Title text for permission to use iOS Motion and Fitness data -->
@@ -530,19 +530,19 @@
     <!-- Button to change the configured language for the UI -->
 <string name="first_launch_change_language" tools:ignore="MissingTranslation">تغییر زبان</string>
     <!-- Hint for configuring the language -->
-<string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">زبان اپلیکیشن را تغییر دهید</string>
+<string name="first_launch_change_language_hint" tools:ignore="MissingTranslation">زبان مورد استفادهٔ اپ را تغییر دهید</string>
     <!-- Notification, Information on what a beacon is used for -->
 <string name="help_text_destination_beacons_what">هنگامی که جهت‌نمای صوتی را روی یک مکان معین در نزدیکی خود تنظیم می‌کنید، ساند‌اسکیپ با پخش یک علامت صوتی خاص به شما اطلاع می‌دهد که آن مکان در کدام جهت قرار دارد. شما می‌توانید صدای جهت‌نما را در صفحه‌ی اصلی اپلیکیشن قطع یا وصل نمایید. به‌علاوه، ساند‌اسکیپ اطلاعاتی همچون فاصله‌ی شما تا مقصد و در صورت امکان نام خیابانی که مقصد در آن واقع شده است را نیز در صفحه‌ی اصلی نمایش می‌دهد.</string>
     <!-- Notification, Information on when to use a beacon -->
 <string name="help_text_destination_beacons_when">استفاده از جهت‌نمای صوتی هنگامی مفید است که شما در یک محیط نا‌آشنا قرار داشته باشید و بخواهید به‌طور مداوم از موقعیت خود نسبت به یک نقطه‌ی مشخص در آن محدوده مطلع شوید. شما همچنین می‌توانید از این قابلیت در طول مسیرتان به‌سمت مقصد استفاده نمایید تا در ارتباط با آنچه در اطرافتان قرار دارد آگاهی کسب کنید. جهت‌نمای صوتی به شما دستور‌العمل‌های مسیریابی گام‌به‌گام نمی‌دهد؛ اما برای شما یک علامت صوتی ممتد پخش می‌کند تا به‌کمک آن بتوانید موقعیت خود نسبت به مکانی که جهت‌نما روی آن تنظیم شده است را تشخیص دهید. شما می‌توانید با استفاده از جهت‌نمای صوتی در ساند‌اسکیپ و با اتکا به مهارت‌های جهت‌یابیتان تصمیم بگیرید که چگونه می‌خواهید خود را به مقصدتان برسانید. همچنین این امکان برای شما فراهم است که همزمان با ساند‌اسکیپ از یک اپلیکیشن مسیریابی دیگر نیز استفاده نمایید.</string>
     <!-- Notification, Information how to set a beacon. Ensure that "Set a Beacon" is translated the same as `universal_links.alert.action.beacon`. Quotes written as \" -->
-<string name="help_text_destination_beacons_how_1">**برای تنظیم جهت‌نمای صوتی:**\n\nابتدا یک مکان معین را با استفاده از نوار جستجو یا با ضربه زدن روی یکی از گزینه‌های *«مکان‌های نزدیک»*، *«نشانه‌های ذخیره‌شده»* یا *«موقعیت مکانی فعلی»* انتخاب نموده و وارد صفحه‌ی جزئیات آن شوید. سپس روی دکمه‌ی *«فعال‌سازی جهت‌نمای صوتی»* ضربه بزنید تا جهت‌نما روی مکان مورد نظر شما تنظیم شود. پس از انجام این کار، شما به صفحه‌ی اصلی اپلیکیشن بازگردانده خواهید شد و یک علامت صوتی ممتد در جهت مکانی که انتخاب کرده‌اید برایتان پخش می‌گردد. اکنون نام مکان انتخابی شما به‌همراه فاصله و آدرس آن (در صورتی که موجود باشد) روی صفحه‌ی اصلی نمایش داده می‌شود.</string>
+<string name="help_text_destination_beacons_how_1">**برای تنظیم جهت‌نما:**\n\nابتدا جزئیات یک مکان را مشاهده کنید؛ این کار را می‌توانید با استفاده از نوار جستجو یا با ضربه زدن روی یکی از دکمه‌های *«مکان‌های نزدیک»*، *«نشانه‌ها و مسیرها»* یا *«موقعیت مکانی فعلی»* و انتخاب یک مکان انجام دهید. در صفحه‌ی *«جزئیات موقعیت مکانی»*، دکمه‌ی *«فعال‌سازی جهت‌نمای صوتی»* را انتخاب کنید. با ضربه زدن روی این دکمه، شما به صفحه‌ی اصلی باز‌می‌گردید و جهت‌نمای صوتی قابل شنیدنی که از سمت مکانی که انتخاب کرده‌اید پخش می‌شود روشن خواهد شد. نام مکانی که انتخاب کرده‌اید همراه با فاصلهٔ آن و آدرس فیزیکی‌اش (در صورت در دسترس بودن) اکنون در صفحهٔ اصلی برنامه نمایش داده خواهد شد.</string>
     <!-- Notification, Information how to set a beacon continued. Ensure that "Remove Beacon" is translated the same as `beacon.action.remove_beacon`. Quotes written as \" -->
-<string name="help_text_destination_beacons_how_2">**برای حذف جهت‌نمای صوتی فعلی:**\n\nتنها کافیست روی دکمه‌ی *«توقف جهت‌نما»* در صفحه‌ی اصلی ضربه بزنید.</string>
+<string name="help_text_destination_beacons_how_2">**برای حذف جهت‌نمای فعلی:**\n\nبه‌سادگی روی دکمه‌ی *«توقف مسیر»* در صفحه‌ی اصلی ضربه بزنید.</string>
     <!-- Notification, Information how to set a beacon continued. Ensure that "Mute Beacon" is translated the same as `beacon.action.mute_beacon` and "Remove Beacon" is translated the same as `beacon.action.remove_beacon`. Quotes written as \" -->
-<string name="help_text_destination_beacons_how_3">**برای بستن صدای جهت‌نمای صوتی:**\n\nروی دکمه‌ی *«بستن صدای جهت‌نما»* کنار دکمه‌ی *«توقف جهت‌نما»* در صفحه‌ی اصلی ضربه بزنید.</string>
+<string name="help_text_destination_beacons_how_3">**برای قطع صدای جهت‌نمای صوتی:**\n\nروی دکمه‌ی *«بستن صدای جهت‌نما»* در کنار دکمه‌ی *«توقف مسیر»* در صفحه‌ی اصلی ضربه بزنید.</string>
     <!-- Notification, Information about what a callout is. Ensure that "Manage Callouts" is translated the same as `menu.manage_callouts`. Quotes written as \" -->
-<string name="help_text_automatic_callouts_what">ساند‌اسکیپ می‌تواند هنگامی که شما به مکان‌های مختلف در محیط اطرافتان نزدیک می‌شوید، نام آنها را در قالب یک اعلان از همان جهتی که این مکان‌ها در آن واقع شده‌اند به شما اطلاع دهد تا به این ترتیب شما از آنچه در پیرامونتان قرار دارد آگاهی داشته باشید. این اپلیکیشن این کار را به‌طور خودکار برای انواع مکان‌ها از قبیل کسب‌وکار‌ها، ایستگاه‌های اتوبوس و حتی تقاطع‌ها انجام می‌دهد. شما می‌توانید در قسمت *«مدیریت اعلان‌ها»* در صفحه‌ی *«تنظیمات»* مشخص کنید که چه اعلان‌هایی به‌طور خودکار در اختیارتان قرار گیرد. همچنین هر زمان بخواهید اپلیکیشن کاملاً ساکت شود، می‌توانید همه‌ی اعلان‌ها را خاموش کنید.</string>
+<string name="help_text_automatic_callouts_what">ساند‌اسکیپ می‌تواند هنگام نزدیک شدن به اشیاء پیرامون شما، نام آنها را از جهتی که قرار دارند اعلام کند. اپ این کار را به‌طور خودکار برای انواع مواردی مانند کسب‌وکارها، ایستگاه‌های اتوبوس و حتی تقاطع‌ها انجام می‌دهد. می‌توانید تعیین کنید اپ به‌طور خودکار چه مواردی را اعلام کند در بخش *«مدیریت اعلان‌ها»* در صفحه‌ی *«تنظیمات»*، و هر زمان که بخواهید اپ ساکت باشد می‌توانید همهٔ اعلان‌ها را خاموش کنید.</string>
     <!-- Notification, Information on when you will hear callouts. -->
 <string name="help_text_automatic_callouts_when_1">**آشنایی با یک محل جدید:**\n\nاعلان‌های خودکار را فعال کرده و شروع به حرکت نمایید تا از فروشگاه‌ها، رستوران‌ها و موارد مشابه که از کنارشان عبور می‌کنید مطلع شوید.</string>
     <!-- Notification, Information on when you will hear callouts continued. -->
@@ -550,9 +550,9 @@
     <!-- Notification, Information on when you will hear callouts continued. Ensure that "My Location" is translated the same as `directions.my_location` and "Nearby Markers" is translated the same as `callouts.nearby_markers` and "Around Me" is translated the same as `help.orient.page_title` and "Ahead of Me" is translated the same as `help.explore.page_title`. Quotes written as \" -->
 <string name="help_text_automatic_callouts_when_3">**وقتی به سکوت نیاز دارید:**\n\nهنگامی که قصد دارید از خیابان عبور کنید یا به هر دلیلی می‌خواهید اپلیکیشن ساکت شود، می‌توانید اعلان‌ها را خاموش نمایید. وقتی اعلان‌ها خاموش باشد، اپلیکیشن تنها زمانی به شما اطلاعات می‌دهد که خودتان روی یکی از دکمه‌های *«موقعیت مکانی من»*، *«نشانه‌های نزدیک»*، *«اطراف من»* یا *«مقابل من»* ضربه بزنید.</string>
     <!-- Notification, Information how to turn on callouts. Ensure that "Manage Callouts" is translated the same as `menu.manage_callouts` and "Callouts Off" is translated the same as `callouts.callouts_off` and "Allow callouts" is translated the same as `callouts.allow_callouts`. Quotes written as \" -->
-<string name="help_text_automatic_callouts_how_1">**روشن یا خاموش کردن اعلان‌ها:**\n\nبا خاموش کردن اعلان‌ها، اپلیکیشن ساکت خواهد شد. اعلان‌ها را می‌توان با ضربه زدن روی دکمه‌ی *«اجازه به اعلان‌ها»* در قسمت *«مدیریت اعلان‌ها»* در صفحه‌ی *«تنظیمات»* روشن یا خاموش کرد. شما همچنین می‌توانید اعلان‌ها را با استفاده از دکمه‌های روی هندزفری خود روشن یا خاموش نمایید. برای این کار، دکمه‌ی *«پرش به جلو»* را روی هندزفری خود دو بار فشار داده و نگه دارید. یک روش دیگر برای خاموش کردن اعلان‌ها استفاده از گزینه‌ی *«حالت خواب»* در صفحه‌ی اصلی اپلیکیشن می‌باشد.</string>
+<string name="help_text_automatic_callouts_how_1">**روشن یا خاموش کردن اعلان‌ها:**\n\nخاموش کردن اعلان‌ها باعث بی‌صدا شدن اپلیکیشن می‌شود. برای روشن یا خاموش کردن اعلان‌ها به بخش *«مدیریت اعلان‌ها»* در صفحه‌ی *«تنظیمات»* مراجعه کنید و با زدن کلید تغییر وضعیت *«اجازه به اعلان‌ها»* آنها را روشن یا خاموش نمایید. اگر هدفون شما دکمه‌های کنترل رسانه‌ای دارد، می‌توانید با استفاده از فرمان *«پرش به جلو»* (دو بار ضربه و نگه‌داشتن) نیز اعلان‌ها را روشن یا خاموش کنید. همچنین، می‌توانید با استفاده از دکمه‌ی *«حالت خواب»* در گوشهٔ بالای سمت چپ صفحه‌ی اصلی، از پخش اعلان‌ها جلوگیری کنید تا زمانی که خودتان اپ را دوباره بیدار نمایید.</string>
     <!-- Notification, Information how to turn on callouts continued. Ensure that "Manage Callouts" is translated the same as `menu.manage_callouts` and "Allow callouts" is translated the same as `callouts.allow_callouts`. Quotes written as \" -->
-<string name="help_text_automatic_callouts_how_2">**مدیریت نوع اعلان‌ها:**\n\nاگر می‌خواهید برای ساند‌اسکیپ مشخص کنید که چه نوع مکان‌هایی را در قالب اعلان‌های خودکار به شما اطلاع دهد، از طریق گزینه‌ی منو در صفحه‌ی اصلی وارد صفحه‌ی *«تنظیمات»* شوید. بخش *«مدیریت اعلان‌ها»* در صفحه‌ی *«تنظیمات»* حاوی فهرستی از انواع مکان‌های مختلف می‌باشد که ساند‌اسکیپ می‌تواند آنها را به شما اعلام کند. برای هر مورد دکمه‌ای تعبیه شده که شما می‌توانید آن را روشن یا خاموش نمایید. در صورتی که تمایل دارید همه‌ی اعلان‌ها را خاموش کنید، روی دکمه‌ی *«اجازه به اعلان‌ها»* در بالای فهرست ضربه بزنید.</string>
+<string name="help_text_automatic_callouts_how_2">**مدیریت اعلان‌هایی که می‌شنوید:**\n\nبرای انتخاب نوع مواردی که ساند‌اسکیپ به‌صورت خودکار اعلام می‌کند، از منوی صفحهٔ اصلی وارد صفحهٔ *«تنظیمات»* شوید. بخش *«مدیریت اعلان‌ها»* در صفحهٔ *«تنظیمات»* فهرستی از انواع مواردی را که اپ می‌تواند اعلام کند در خود دارد. هر مورد دارای یک دکمهٔ تغییر وضعیت است که می‌توانید آن را روشن یا خاموش کنید. اگر می‌خواهید همهٔ اعلان‌ها را خاموش نمایید، روی کلید تغییر وضعیت *«اجازه به اعلان‌ها»* در بالای فهرست ضربه بزنید.</string>
     <!-- Notification, Information about what My Location does. Ensure that "My Location" is translated the same as `directions.my_location`. Quotes written as \" -->
 <string name="help_text_my_location_what">دکمه‌ی *«موقعیت مکانی من»* به‌سرعت اطلاعاتی را در اختیار شما قرار می‌دهد که می‌توانید به‌کمک آن متوجه شوید در حال حاضر در چه نقطه‌ای قرار دارید. شما می‌توانید با استفاده از این قابلیت به اطلاعاتی از قبیل جهتی که رو به آن ایستاده‌اید، خیابان‌ها و تقاطع‌هایی که در نزدیکی شما واقع شده‌اند و نقاط شاخصی که در اطرافتان قرار دارد دست پیدا کنید.</string>
     <!-- Notification, Information on when you would need to use My Location. Ensure that "My Location" is translated the same as `directions.my_location`. Quotes written as \" -->
@@ -572,7 +572,7 @@
     <!-- Notification, Information about how to use Around Me. Ensure that "Around Me" is translated the same as `help.orient.page_title`. Quotes written as \" -->
 <string name="help_text_around_me_how">پیش از آنکه روی دکمه‌ی *«اطراف من»* ضربه بزنید، گوشی خود را به حالت افقی نگه دارید؛ به‌گونه‌ای که صفحه‌ی نمایش گوشی رو به آسمان و جلوی آن در جهتی باشد که رو به آن ایستاده‌اید. این کار را هنگام استفاده از هر چهار دکمه‌ی پایین صفحه‌ی اصلی انجام دهید. در این حالت، گوشی شما مانند یک قطب‌نما عمل کرده و به اپلیکیشن می‌گوید که شما رو به کدام جهت ایستاده‌اید. حالا کافیست روی دکمه‌ی *«اطراف من»* ضربه بزنید تا ساند‌اسکیپ چهار مورد از نقاط شاخصی که پیرامونتان قرار گرفته‌اند را به شما اعلام کند.</string>
     <!-- Notification, Information about what Ahead of Me does. Ensure that "Ahead of Me" is translated the same as `help.explore.page_title`. Quotes written as \" -->
-<string name="help_text_ahead_of_me_what">دکمه‌ی *«مقابل من»* چهار مکان پیش روی شما را اعلام می‌کند. هدف از این قابلیت آن است که به شما کمک شود تا هنگام آشنا شدن با یک محیط جدید، محدوده‌ای که در امتداد مسیر حرکتتان قرار دارد را بهتر بشناسید.</string>
+<string name="help_text_ahead_of_me_what">دکمه‌ی *«مقابل من»* تا حداکثر پنج مورد را که در جلوی شما قرار دارند اعلام می‌کند. هدف از *«مقابل من»* کمک به شما در آشنایی با آنچه پیش‌رو دارید هنگام یادگیری یک منطقهٔ جدید است.</string>
     <!-- Notification, Information about when to use Ahead of Me. Ensure that "Ahead of Me" is translated the same as `help.explore.page_title`. Quotes written as \" -->
 <string name="help_text_ahead_of_me_when">هنگامی که در خیابان راه می‌روید، از قابلیت *«مقابل من»* استفاده کنید تا از مکان‌هایی که در امتداد مسیر حرکتتان در دو سمت خیابان قرار دارد مطلع شوید.</string>
     <!-- Notification, Information about how to use Ahead of Me. Ensure that "Ahead of Me" is translated the same as `help.explore.page_title`. Quotes written as \" -->
@@ -582,21 +582,21 @@
     <!-- Notification, Information about when to use media controls on headphones. -->
 <string name="help_text_remote_control_when">می‌توان از دکمه‌های کنترل پخش صوت و تصویر روی هندزفری زمانی که ساند‌اسکیپ در حال اجراست استفاده کرد. این امر چه موقعی که شما داخل ساند‌اسکیپ باشید و چه موقعی که ساند‌اسکیپ در پس‌زمینه در حال اجرا باشد و حتی هنگامی که گوشی شما قفل است میسر می‌باشد. اما توجه داشته باشید زمانی که شما مشغول کار با یک اپلیکیشن دیگر برای پخش صدا یا ویدئو هستید، امکان استفاده از دکمه‌های کنترل پخش صوت و تصویر برای فعال کردن قابلیت‌های ساند‌اسکیپ وجود ندارد.</string>
     <!-- Notification, Information about how to use media controls on headphones. Ensure that "My Location" is translated the same as `directions.my_location` and "Around Me" is translated the same as `help.orient.page_title`. Quotes written as \" -->
-<string name="help_text_remote_control_how">شما می‌توانید به‌کمک دکمه‌های کنترل پخش صوت و تصویر روی هندزفری خود از قابلیت‌های زیر در ساند‌اسکیپ استفاده نمایید:\n\n⏯ پلی/پاز: قطع صدای اعلانی که در حال پخش است یا قطع و وصل صدای جهت‌نمای صوتی.\n\n⏭ ترک بعد: اعلام *«موقعیت مکانی من»*.\n\n⏮ ترک قبل: تکرار آخرین اعلان.\n\n⏩ پرش به جلو: روشن و خاموش کردن اعلان‌ها.\n\n⏪ پرش به عقب: اعلام *«اطراف من»*.</string>
+<string name="help_text_remote_control_how">سه حالت عملکردی برای دکمه‌های کنترل رسانه وجود دارد. حالت مورد نظر را می‌توانید از بخش *«تنظیمات»* &gt; *«کنترل‌های رسانه‌ای»* انتخاب کنید. حالت‌ها عبارت‌اند از:\n\nحالت اصلی.\n\n⏯ پخش/مکث: صدای جهت‌نمای صوتی را روشن یا خاموش می‌کند.\n\n⏭ بعدی: اگر مسیری در حال پخش باشد، جهت‌نمای صوتی را به نقطه‌ی بین‌راهی بعدی در مسیر منتقل می‌کند. اگر هیچ مسیری در حال پخش نباشد، گزینه‌ی *«موقعیت مکانی من»* را اعلام می‌کند.\n\n⏮ قبلی: اگر مسیری در حال پخش باشد، جهت‌نمای صوتی را به نقطه‌ی بین‌راهی قبلی در مسیر منتقل می‌کند. اگر هیچ مسیری در حال پخش نباشد، گزینه‌ی *«اطراف من»* را اعلام می‌کند.\n\n\nحالت فرمان صوتی.\n\n⏯ پخش/مکث: باعث می‌شود اپ برای دریافت فرمان‌های صوتی گوش دهد.\n\n\nمنوی صوتی.\n\n⏭ بعدی و ⏮ قبلی از میان گزینه‌های منو که اپ از طریق تبدیل متن به گفتار برایتان می‌خواند جلو و عقب می‌روند. سپس با فشردن ⏯ پخش/مکث، اپ گزینه‌ی فعلی را اجرا می‌کند. یک منوی سطح بالا وجود دارد که فقط زیرمنوها را به‌عنوان گزینه دربردارد و هر زیرمنو گروهی از اقدامات مشابه را شامل می‌شود.</string>
     <!-- Notification, Markers content -->
-<string name="help_text_markers_content_1">با ساند‌اسکیپ، می‌توانید دنیای خود و هر چیزی که برایتان مهم است را نشانه‌گذاری کنید.</string>
+<string name="help_text_markers_content_1">با ساند‌اسکیپ می‌توانید دنیای خود و هر آنچه که برایتان اهمیت دارد را نشانه‌گذاری کنید، همچون علامت‌های روی نقشه.</string>
     <!-- Notification, Markers content continued -->
 <string name="help_text_markers_content_2">شما می‌توانید مکان‌هایی که برایتان اهمیت دارد را نشانه‌گذاری نمایید؛ مکان‌هایی مانند خانه، محل کار یا مغازه‌ی بقالی که معمولاً از آن خرید می‌کنید. می‌توانید هر مکان یا آدرسی را نشانه‌گذاری کنید؛ اما علاوه بر این، ساند‌اسکیپ به شما این امکان را می‌دهد که چیزهایی که ممکن است در نقشه وجود نداشته باشد را نیز نشانه‌گذاری نمایید؛ جاهایی از قبیل ورودی ساختمان‌ها یا پارک‌ها، خطوط یا پل‌های عابر پیاده و ایستگاه‌های اتوبوس. شما بعداً می‌توانید هنگام راه رفتن در خیابان، از این نشانه‌ها برای تشخیص موقعیت خود استفاده کنید.</string>
     <!-- Notification, Markers content continued -->
-<string name="help_text_markers_content_3">وقتی به مکان‌هایی که قبلاً آنها را نشانه‌گذاری کرده‌اید نزدیک می‌شوید، ساند‌اسکیپ به‌طور خودکار این موضوع را به شما اعلام می‌کند. شما همچنین می‌توانید با ضربه زدن روی دکمه‌ی نشانه‌های نزدیک در پایین صفحه‌ی اصلی ساند‌اسکیپ، از وجود مکان‌های نشانه‌گذاری‌شده در اطراف خود مطلع شوید. ضمناً این امکان برای شما فراهم است که جهت‌نمای صوتی را روی هر مکانی که نشانه‌گذاری کرده‌اید تنظیم نمایید. با انجام این کار، صدای آشنای جهت‌نمای صوتی را خواهید شنید و می‌توانید از آن به‌شکل معمول برای مسیریابی استفاده کنید.</string>
+<string name="help_text_markers_content_3">برای تجربهٔ مکان‌های نشانه‌گذاری‌شده، ساند‌اسکیپ هنگام عبور یا نزدیک شدن شما به آن‌ها به‌طور خودکار آن‌ها را اعلام می‌کند، یا می‌توانید از دکمهٔ *«نشانه‌های نزدیک»* در پایین صفحهٔ اصلی ساند‌اسکیپ استفاده کنید تا یک اعلام فضایی از نشانه‌های اطراف خود بشنوید. علاوه بر این، می‌توانید برای هر مکان نشانه‌گذاری‌شده‌ای یک جهت‌نمای صوتی تنظیم کنید. در این حالت، جهت‌نمای صوتی ساند‌اسکیپ که با آن آشنا هستید پخش خواهد شد و می‌توانید همان‌طور که معمول است از آن استفاده کنید.</string>
     <!-- Notification, Creating Markers help content, Quotation marks are written as \" -->
-<string name="help_text_creating_markers_content_1">شما می‌توانید به سه روش نشانه ایجاد کنید: یافتن یک مکان معین برای نشانه‌گذاری با استفاده از نوار جستجو، انتخاب یکی از مکان‌های نزدیکتان از طریق دکمه‌ی *«مکان‌های نزدیک»* یا مشخص کردن محلی که در آن قرار دارید به‌عنوان مکان منتخب از طریق دکمه‌ی *«استفاده از موقعیت مکانی فعلی»*. همه‌ی این گزینه‌ها در صفحه‌ی اصلی ساند‌اسکیپ قرار گرفته‌اند. هنگامی که مکان مورد نظرتان را انتخاب کردید، به صفحه‌ی *«جزئیات موقعیت مکانی»* هدایت می‌شوید. در این صفحه، روی دکمه‌ی *«نشانه‌گذاری و ذخیره»* ضربه بزنید.</string>
+<string name="help_text_creating_markers_content_1">شما می‌توانید نشانه‌ها را به سه روش ایجاد کنید: جستجوی مکانی که می‌خواهید ذخیره کنید از طریق نوار جستجو، یافتن مکان با استفاده از دکمهٔ *«مکان‌های نزدیک»*، یا استفاده از دکمهٔ *«موقعیت مکانی فعلی»*؛ همهٔ این گزینه‌ها در صفحهٔ اصلی ساند‌اسکیپ موجودند. پس از یافتن مکانی که می‌خواهید، انتخاب آن شما را به صفحهٔ *«جزئیات موقعیت مکانی»* می‌برد. در این صفحه دکمهٔ *«نشانه‌گذاری و ذخیره»* را انتخاب کنید.</string>
     <!-- Notification, Creating Markers help content continued, Quotation marks are written as \" -->
 <string name="help_text_creating_markers_content_2">شما اکنون می‌توانید نشانه‌ای که ایجاد کرده‌اید را شخصی‌سازی نمایید. البته این مرحله اختیاریست. شما می‌توانید در این مرحله نام نشانه‌ای که ایجاد نموده‌اید را تغییر داده و پاره‌ای توضیحات نیز به آن اضافه کنید. زمانی که کارتان در این مرحله تکمیل شد، دکمه‌ی *«تمام»* را بزنید تا نشانه ذخیره گردد.</string>
     <!-- Notification, Customizing Markers help content. "Markers and Routes" should be translated the same as the string with key 'search.view_markers'. Quotes written as \" -->
-<string name="help_text_customizing_markers_content_1">در صورتی که می‌خواهید نام نشانه‌ای که قبلاً ایجاد کرده‌اید را تغییر داده یا توضیحی به آن اضافه کنید، می‌توانید این کار را با انتخاب نشانه‌ی مورد نظرتان از سربرگ *«نشانه‌ها»* در صفحه‌ی *«نشانه‌ها و مسیرها»* و سپس ضربه زدن روی دکمه‌ی *«ویرایش نشانه»* انجام دهید.</string>
+<string name="help_text_customizing_markers_content_1">اگر می‌خواهید نام نشانه‌ای را که قبلاً ایجاد کرده‌اید تغییر دهید یا برای آن یادداشتی اضافه کنید، نشانه را از سربرگ *«نشانه‌ها»* در صفحهٔ *«نشانه‌ها و مسیرها»* انتخاب نموده و سپس دکمهٔ *«ویرایش نشانه»* را بزنید. می‌توانید از این قابلیت برای دادن نام‌های توصیفی یا مفید به نشانه‌ها استفاده کنید و در فیلد یادداشت، توضیح طولانی‌تری نیز برای آن‌ها وارد نمایید.</string>
     <!-- Notification, Customizing Markers help content continued -->
-<string name="help_text_customizing_markers_content_2">در این صفحه‌ی ویرایش، شما همچنین می‌توانید نشانه‌ای که دیگر به آن نیاز ندارید را حذف نمایید.</string>
+<string name="help_text_customizing_markers_content_2">از صفحه‌ی *«ویرایش»* می‌توانید در صورتی که دیگر به آن نیاز ندارید، نشانه را حذف کنید.</string>
     <!-- Help content explaining what the "routes" feature is -->
 <string name="help_text_routes_content_what">هر مسیر از یک رشته نقطه‌ی بین‌راهی تشکیل می‌گردد. هنگامی که در امتداد مسیر به هر یک از نقاط بین‌راهی می‌رسید، ساند‌اسکیپ شما را از این موضوع مطلع خواهد ساخت و جهت‌نمای صوتی به‌طور خودکار روی نقطه‌ی بین‌راهی بعدی تنظیم می‌شود.</string>
     <!-- Help content explaining when a user might choose to use the routes feature -->
@@ -604,133 +604,133 @@
     <!-- Help content explaining how a user can create a route. Quotes written as \" -->
 <string name="help_text_routes_content_how_1">**ایجاد یک مسیر جدید:**\n\nابتدا به صفحه‌ی *«نشانه‌ها و مسیرها»* بروید. در این صفحه، سربرگ *«مسیرها»* را انتخاب نموده و سپس روی دکمه‌ی *«مسیر جدید»* ضربه بزنید. مسیر جدید را نام‌گذاری کنید و در صورت تمایل برای آن توضیحی نیز بنویسید. سپس نقاط بین‌راهی را هنگام حرکت در امتداد مسیر به آن اضافه کنید یا از نشانه‌هایی که قبلاً ایجاد کرده‌اید برای این منظور استفاده نمایید. شما همواره می‌توانید با استفاده از گزینه‌ی ویرایش مسیر ترتیب نقاط بین‌راهی را تغییر دهید.</string>
     <!-- Help content explaining how a user can edit a route. Quotes written as \" -->
-<string name="help_text_routes_content_how_2">**ویرایش یک مسیر:**\n\nمسیر خود را در صفحه‌ی *«نشانه‌ها و مسیرها»* انتخاب کرده و سپس گزینه‌ی *«ویرایش مسیر»* را فعال نمایید. در این قسمت می‌توانید نقاط بین‌راهی را اضافه یا حذف نموده و نیز نام و توضیحات مسیر را ویرایش کنید.</string>
+<string name="help_text_routes_content_how_2">**ویرایش یک مسیر:**\n\nمسیر خود را در صفحهٔ *«نشانه‌ها و مسیرها»* انتخاب کرده و سپس *«ویرایش مسیر»* را انتخاب کنید. از اینجا می‌توانید نقطه‌های بین‌راهی را اضافه یا حذف نموده و همچنین نام و توضیحات مسیر را ویرایش کنید.</string>
     <!-- Help content explaining how a user can share a route. "Share" should be translated in the same way as it is for the key `share.title`. Quotes written as \" -->
-<string name="help_text_routes_content_how_3">**اشتراک‌گذاری یک مسیر:**\n\nمسیر خود را در صفحه‌ی *«نشانه‌ها و مسیرها»* مشخص نموده و سپس گزینه‌ی *«اشتراک‌گذاری»* را با استفاده از تمام گزینه‌های اشتراک‌گذاری معمول که در دسترس شماست انتخاب کنید.</string>
+<string name="help_text_routes_content_how_3">**اشتراک‌گذاری یک مسیر:**\n\nمسیر خود را در صفحه‌ی *«نشانه‌ها و مسیرها»* مشخص نموده و سپس گزینه‌ی *«اشتراک‌گذاری»* را با استفاده از تمام گزینه‌های اشتراک‌گذاری معمول که در اختیار شما قرار دارد انتخاب کنید.</string>
     <!-- Open Street Map term. Pedestrians can cross a street here; e.g., zebra crossing. Known as crosswalks in American English, and crossings in British English. -->
-<string name="osm_tag_crossing">خط عابر پیاده</string>
+<string name="osm_crossing">خط عابر پیاده</string>
     <!-- Open Street Map term. Used to describe the type of the feature which is currently under construction. -->
-<string name="osm_tag_construction">عملیات ساختمانی</string>
+<string name="osm_construction">عملیات ساختمانی</string>
     <!-- Open Street Map term. NOT DEFINED IN OSM -->
-<string name="osm_tag_dangerous_area">محدوده‌ی پرخطر</string>
+<string name="osm_dangerous_area">محدوده‌ی پرخطر</string>
     <!-- Open Street Map term. This refers to a village, town or city townhall, which is often the seat of the mayor, or may be merely a community meeting place. -->
-<string name="osm_tag_townhall">ساختمان شهرداری</string>
+<string name="osm_townhall">ساختمان شهرداری</string>
     <!-- Open Street Map term. For flights of steps on footways and paths.. -->
-<string name="osm_tag_steps">پله</string>
+<string name="osm_steps">پله</string>
     <!-- Open Street Map term. An elevator (or lift) is used to travel vertically, providing passenger and freight access between pathways at different floor levels. -->
-<string name="osm_tag_elevator">آسانسور</string>
+<string name="osm_elevator">آسانسور</string>
     <!-- Open Street Map term. A walking path is is a generic path, either multi-use or unspecified usage, open to all pedestrians and not intended for motorized vehicles. -->
-<string name="osm_tag_walking_path">مسیر پیاده</string>
+<string name="osm_walking_path">مسیر پیاده</string>
     <!-- Open Street Map term. Is a road or an area mainly or exclusively for pedestrians in which some vehicle traffic may be authorized (e.g. emergency, taxi, delivery, ...). Typically found in shopping areas, town centres, places with tourism attractions and recreation/civic areas, where wide expanses of hard surface are provided for pedestrians to walk. -->
-<string name="osm_tag_pedestrian_street">خیابان ویژه‌ی عابرین پیاده</string>
+<string name="osm_pedestrian_street">خیابان ویژه‌ی عابرین پیاده</string>
     <!-- Open Street Map term. A bicycle path is is a generic path, either multi-use or unspecified usage, open to all cyclists and not intended for motorized vehicles. May be shared with pedestrians. -->
-<string name="osm_tag_bicycle_path">مسیر ویژه‌ی دوچرخه</string>
+<string name="osm_bicycle_path">مسیر ویژه‌ی دوچرخه</string>
     <!-- Open Street Map term. Used for roads that are used for accessing residential areas and in residential areas but which are not normally used as through routes. -->
-<string name="osm_tag_residential_street">خیابان مسکونی</string>
+<string name="osm_residential_street">خیابان مسکونی</string>
     <!-- Open Street Map term. Used in two senses: 1. As a service way for access to buildings or places 2. Frontage road parallel to a major road. -->
-<string name="osm_tag_service_road">کنار‌گذر</string>
+<string name="osm_service_road">کنار‌گذر</string>
     <!-- Open Street Map term. Any highway, route, way, or thoroughfare on land which connects one location to another and has been paved or otherwise improved to allow travel by some conveyance, including motorised vehicles, cyclists, pedestrians, horse riders, and others (but not trains). -->
-<string name="osm_tag_road">جاده</string>
+<string name="osm_road">جاده</string>
     <!-- Open Street Map term. Any road, route, way, or thoroughfare on land which connects one location to another and has been paved or otherwise improved to allow travel by some conveyance, including motorised vehicles, cyclists, pedestrians, horse riders, and others (but not trains). -->
-<string name="osm_tag_highway">بزرگراه</string>
+<string name="osm_highway">بزرگراه</string>
     <!-- Open Street Map term. Any highway that has a given name. Used as a display name for place or a location. %s is an highway name, such as "London Highway". -->
-<string name="osm_tag_highway_named">بزرگراه %s</string>
+<string name="osm_highway_named">بزرگراه %s</string>
     <!-- Open Street Map term. Any highway that has a reference number or name. Used as a display name for place or a location. %s is an highway id, such as "Highway 520" or "Highway B". -->
-<string name="osm_tag_highway_refed">بزرگراه %s</string>
+<string name="osm_highway_refed">بزرگراه %s</string>
     <!-- Open Street Map term. An intersection is a junction where two or more roads meet or cross. -->
-<string name="osm_tag_intersection">تقاطع</string>
+<string name="osm_intersection">تقاطع</string>
     <!-- Open Street Map term. A roundabout is a type of circular intersection or junction in which road traffic is permitted to flow in one direction around a central island. -->
-<string name="osm_tag_roundabout">فلکه</string>
+<string name="osm_roundabout">فلکه</string>
     <!-- Open Street Map term. Used to describe a road or highway leading to and from a major highway e.g., a freeway or motorway. -->
-<string name="osm_tag_highway_ramp">رمپ بزرگراه</string>
+<string name="osm_highway_ramp">رمپ بزرگراه</string>
     <!-- Open Street Map term. Used as to describe the section of highway where two or more roads or highways merge with one another. -->
-<string name="osm_tag_merging_lane">لاین ادغام</string>
+<string name="osm_merging_lane">لاین ادغام</string>
     <!-- Open Street Map term. Used to describe a block or building typically housing companies, but offices may be also used by any other kind of organization like charities, government, any NGO etc.. -->
-<string name="osm_tag_office_building">ساختمان اداری</string>
+<string name="osm_office_building">ساختمان اداری</string>
     <!-- Open Street Map term. Used for any generic building that is used as a school. -->
-<string name="osm_tag_school_building">مدرسه</string>
+<string name="osm_school_building">مدرسه</string>
     <!-- Open Street Map term. Used as a display name for place or a location. -->
-<string name="osm_tag_covered_pavilion">آلاچیق سرپوشیده</string>
+<string name="osm_covered_pavilion">آلاچیق سرپوشیده</string>
     <!-- Open Street Map term. A small local shop carrying a variety of everyday products, mostly including single-serving food items such as milk, bread, snacks, groceries to over-the-counter medications, household items, stationery, and small auto supplies such as fuses. -->
-<string name="osm_tag_convenience_store">بقالی</string>
+<string name="osm_convenience_store">بقالی</string>
     <!-- Open Street Map term. A doorway through which people can enter or exit a building. -->
-<string name="osm_tag_building_entrance">ورودی ساختمان</string>
+<string name="osm_building_entrance">ورودی ساختمان</string>
     <!-- Open Street Map term. Used to designate a place or an area where all employees, passengers or a large crowd assemble in case of an emergency in an installation, building or a public place. -->
-<string name="osm_tag_assembly_point">نقطه‌ی تجمع</string>
+<string name="osm_assembly_point">نقطه‌ی تجمع</string>
     <!-- Open Street Map term. Used to describe fence-like barriers positioned along paths, footways, cycleways or tracks which serve to either slow cycle access or prevent it entirely depending on spacing and layout. -->
-<string name="osm_tag_cycle_barrier">مانع دوچرخه</string>
+<string name="osm_cycle_barrier">مانع دوچرخه</string>
     <!-- Open Street Map term. Used to describe a barrier to allow one person at a time to pass. Use this for small turnstiles like the ones in supermarkets or some subways. -->
-<string name="osm_tag_turnstile">گیت گردان</string>
+<string name="osm_turnstile">گیت گردان</string>
     <!-- Open Street Map term. Used to describe a hole in the road surface which is covered with a series of bars that allow wheeled vehicles but not animals to cross. -->
-<string name="osm_tag_cattle_grid">مانع عبور دام</string>
+<string name="osm_cattle_grid">محافظ میله‌ای جلوگیری از عبور دام</string>
     <!-- Open Street Map term. A gate is a section in a wall or fence which can be opened to allow or restrict access. They are usually made of wood or metal. -->
-<string name="osm_tag_gate">گیت</string>
+<string name="osm_gate">گیت</string>
     <!-- Open Street Map term. Used to refer to a public toilet. -->
-<string name="osm_tag_restroom">توالت عمومی</string>
+<string name="osm_restroom">توالت عمومی</string>
     <!-- Open Street Map term. Used to describe a facility used by the public, customers, or other authorised users for parking motor vehicles, such as cars and trucks, commonly known as a car park (British English) or parking lot (American English). -->
-<string name="osm_tag_parking_lot">پارکینگ</string>
+<string name="osm_parking_lot">پارکینگ</string>
     <!-- Open Street Map term. Used to describe the entry/exit point to a parking area. -->
-<string name="osm_tag_parking_entrance">ورودی پارکینگ</string>
+<string name="osm_parking_entrance">ورودی پارکینگ</string>
     <!-- Open Street Map term. A place for people to sit. -->
-<string name="osm_tag_bench">نیمکت</string>
+<string name="osm_bench">نیمکت</string>
     <!-- Open Street Map term. Used for the locating the point where taxis wait, not the point where passengers wait. -->
-<string name="osm_tag_taxi_waiting_area">ایستگاه تاکسی</string>
+<string name="osm_taxi_waiting_area">ایستگاه تاکسی</string>
     <!-- Open Street Map term. A place where letters and parcels may be sent or collected.. -->
-<string name="osm_tag_post_office">اداره‌ی پست</string>
+<string name="osm_post_office">اداره‌ی پست</string>
     <!-- Open Street Map term. A physical box used as a facility for the public to deposit outgoing postal items, such as letters and other small goods, intended for collection by the operator.. -->
-<string name="osm_tag_post_box">صندوق پست</string>
+<string name="osm_post_box">صندوق پست</string>
     <!-- Open Street Map term. A single small container for depositing garbage that is easily accessible for pedestrians. -->
-<string name="osm_tag_waste_basket">سطل زباله</string>
+<string name="osm_waste_basket">سطل زباله</string>
     <!-- Open Street Map term. A place where people can bathe under water sprays. May be run as a local amenity by the government, or part of commercial provisions. -->
-<string name="osm_tag_shower">دوش آب</string>
+<string name="osm_shower">دوش آب</string>
     <!-- Open Street Map term. Refers to any parking space designed for bicycles, where one can leave a pedal cycle unattended in reasonable security. -->
-<string name="osm_tag_bike_parking">پارکینگ دوچرخه</string>
+<string name="osm_bike_parking">پارکینگ دوچرخه</string>
     <!-- Open Street Map term. An informal place with sit-down facilities selling beverages and light meals and/or snacks. -->
-<string name="osm_tag_cafe">کافه</string>
+<string name="osm_cafe">کافه</string>
     <!-- Open Street Map term. Generally a formal eating places with sit-down facilities selling full meals served by waiters and often licensed (where allowed) to sell alcoholic drinks. -->
-<string name="osm_tag_restaurant">رستوران</string>
+<string name="osm_restaurant">رستوران</string>
     <!-- Open Street Map term. A public telephone, phone box, or telephone on a stand or wall. Usually you pay to use them, often only via a pre-pay card. -->
-<string name="osm_tag_telephone">تلفن</string>
+<string name="osm_telephone">تلفن</string>
     <!-- Open Street Map term. Used to map a fuel station, also known as a filling station, petrol station, gas station and petrol garage. It is the retail-type facility where motor vehicles can be refueled. -->
-<string name="osm_tag_gas_station">پمپ بنزین</string>
+<string name="osm_gas_station">پمپ بنزین</string>
     <!-- Open Street Map term. A financial establishment where customers can, among other services, deposit and withdraw money, take loans, make investments and transfer funds. This definition encompasses banks, credit unions, building societies, and other similar establishments. It does not include money lenders or financial offices that are not banks -->
-<string name="osm_tag_bank">بانک</string>
+<string name="osm_bank">بانک</string>
     <!-- Open Street Map term. An automated teller machine (ATM), or automatic banking machine (ABM), or "cash machine", is a computerised telecommunications device that provides the clients of a financial institution with access to financial transactions in a public space without the need for a cashier, human clerk or bank teller. -->
-<string name="osm_tag_atm">دستگاه خودپرداز</string>
+<string name="osm_atm">دستگاه خودپرداز</string>
     <!-- Open Street Map term. Used as a display name for place or a location. %s is a bank name, such as "Chase ATM". -->
-<string name="osm_tag_atm_named">خودپرداز %s</string>
+<string name="osm_atm_named">خودپرداز %s</string>
     <!-- Open Street Map term. Used as a display name for place or a location. %s is an ATM id, such as "ATM 7" or "ATM B". -->
-<string name="osm_tag_atm_refed">خودپرداز %s</string>
+<string name="osm_atm_refed">خودپرداز %s</string>
     <!-- Open Street Map term. A bus stop is a place where passengers can board or alight from a bus. Its position may be marked by a shelter, pole, bus lay-by, or road markings. -->
-<string name="osm_tag_bus_stop">ایستگاه اتوبوس</string>
+<string name="osm_bus_stop">ایستگاه اتوبوس</string>
     <!-- Open Street Map term. Used as a display name for place or a location. %s is a bus stop name, such as "London Bus Stop". -->
-<string name="osm_tag_bus_stop_named">ایستگاه اتوبوس %s</string>
+<string name="osm_bus_stop_named">ایستگاه اتوبوس %s</string>
     <!-- Open Street Map term. Used for a container or centre that accepts waste for recycling, and donations of used goods. -->
-<string name="osm_tag_recycling_bin">سطل بازیافت</string>
+<string name="osm_recycling_bin">سطل بازیافت</string>
     <!-- Open Street Map term. A water feature with cultural, decorational or historical significance or which serves a recreational purpose. -->
-<string name="osm_tag_fountain">فواره</string>
+<string name="osm_fountain">فواره</string>
     <!-- Open Street Map term. This covers places such as mosques, churches, cathedrals, synagogues, temples, etc. -->
-<string name="osm_tag_place_of_worship">عبادتگاه</string>
+<string name="osm_place_of_worship">عبادتگاه</string>
     <!-- Open Street Map term. Used for places where humans can obtain potable water for consumption. -->
-<string name="osm_tag_water_fountain">آب‌خوری</string>
+<string name="osm_water_fountain">آب‌خوری</string>
     <!-- Open Street Map term. A facility used to clean the exterior and, in some cases, the interior of motor vehicles. -->
-<string name="osm_tag_car_wash">کارواش</string>
+<string name="osm_car_wash">کارواش</string>
     <!-- Open Street Map term. A machine which dispenses items such as snacks, beverages, alcohol, cigarettes, lottery tickets, cologne, consumer products and even gold and gems to customers automatically, after the customer inserts currency or credit into the machine. -->
-<string name="osm_tag_vending_machine">دستگاه فروش خودکار</string>
+<string name="osm_vending_machine">دستگاه فروش خودکار</string>
     <!-- Open Street Map term. Outdoor (sometimes indoor) areas specifically designed for children to play. -->
-<string name="osm_tag_playground">زمین بازی</string>
+<string name="osm_playground">زمین بازی</string>
     <!-- Open Street Map term. An area designed for practising a particular sport, normally designated with appropriate markings. Examples include tennis courts, basketball courts, soccer pitches, and riding arenas. -->
-<string name="osm_tag_sports_field">زمین ورزش</string>
+<string name="osm_sports_field">زمین ورزش</string>
     <!-- Open Street Map term. A place built for swimming as a recreational activity or sport. -->
-<string name="osm_tag_swimming_pool">استخر شنا</string>
+<string name="osm_swimming_pool">استخر شنا</string>
     <!-- Open Street Map term. A distinguishable planned space, usually outdoors, set aside for the display, cultivation, and enjoyment of plants and other forms of nature. -->
-<string name="osm_tag_garden">باغ</string>
+<string name="osm_garden">باغ</string>
     <!-- Open Street Map term. An area of open space for recreational use, usually designed and in semi-natural state with grassy areas, trees and bushes. Parks are usually urban, but not always. -->
-<string name="osm_tag_park">پارک</string>
+<string name="osm_park">پارک</string>
     <!-- Open Street Map term. A table with benches, ideal for food and rest. -->
-<string name="osm_tag_picnic_table">میز پیکنیک</string>
+<string name="osm_picnic_table">میز پیکنیک</string>
     <!-- Open Street Map term. A locality that is suitable for outdoors eating and may have any of a number of facilities to aid a picnic. -->
-<string name="osm_tag_picnic_area">محوطه‌ی پیکنیک</string>
+<string name="osm_picnic_area">محوطه‌ی پیکنیک</string>
     <!-- Title in menu of button to share the app with others -->
 <string name="share_title">اشتراک‌گذاری</string>
     <!-- Title of the Frequently Asked Questions page -->
@@ -748,17 +748,17 @@
     <!-- Marker - A location that has been marked as important by the user or application. This can be an address, a business or a custom place such as an entrance, a bus stop or a bench. -->
 <string name="faq_markers_function_question">نشانه‌ها چه هستند و چگونه می‌توانم بیشترین بهره را از آنها ببرم؟</string>
     <!-- Marker - A location that has been marked as important by the user or application. This can be an address, a business or a custom place such as an entrance, a bus stop or a bench. 'The list' is referring to the list of places that appears when you add a new Marker. Quotes written as \" -->
-<string name="faq_markers_function_answer">نشانه‌ها مکان‌هایی هستند که شما آنها را ذخیره کرده‌اید. این هم شامل مواردی می‌شود که می‌توان آنها را در داخل اپلیکیشن جستجو و پیدا کرد و هم مواردی که شما خودتان آنها را در اپلیکیشن اضافه می‌کنید. شما می‌توانید موقعیت مکانی خود را به‌کمک دکمه‌ی *«استفاده از موقعیت مکانی فعلی»* در صفحه‌ی اصلی و سپس دکمه‌ی *«نشانه‌گذاری و ذخیره»* به‌عنوان یک نشانه ذخیره نمایید. شما همچنین می‌توانید مکان مورد نظرتان را با استفاده از نوار جستجو یا دکمه‌ی *«مکان‌های نزدیک»* در صفحه‌ی اصلی پیدا کرده و آن را نشانه‌گذاری و ذخیره کنید. پس از انتخاب مکان مورد نظر، به صفحه‌ی *«جزئیات موقعیت مکانی»* هدایت می‌شوید. در این صفحه، روی دکمه‌ی *«نشانه‌گذاری و ذخیره»* ضربه بزنید.</string>
+<string name="faq_markers_function_answer">نشانه‌ها مکان‌هایی هستند که شما ذخیره کرده‌اید. این مکان‌ها می‌توانند مواردی باشند که داخل اپ قابل یافتنند یا مکان‌های کاملاً جدیدی که خودتان اضافه کرده‌اید. می‌توانید موقعیت مکانی فعلی خود را با زدن دکمهٔ *«موقعیت مکانی فعلی»* در صفحهٔ اصلی و سپس انتخاب *«نشانه‌گذاری و ذخیره»* به‌عنوان نشانه ذخیره کنید. برای ذخیرهٔ سایر مکان‌ها به‌صورت نشانه، می‌توانید از نوار جستجو برای یافتن مکان مورد نظر استفاده کنید یا از دکمهٔ *«مکان‌های نزدیک»* مکان مورد نظر را بیابید؛ هر دو گزینه در صفحهٔ اصلی ساند‌اسکیپ موجودند. پس از یافتن مکان دلخواه، با انتخاب آن به صفحهٔ *«جزئیات موقعیت مکانی»* منتقل می‌شوید. در آن صفحه، دکمهٔ *«نشانه‌گذاری و ذخیره»* را انتخاب کنید.</string>
     <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_section_getting_the_best_experience">چگونه از ساند‌اسکیپ حد‌اکثر استفاده را ببرم؟</string>
     <!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
 <string name="faq_what_can_I_set_question">نشانه‌ی صوتی را می‌توانم روی چه چیزی تنظیم کنم؟</string>
     <!-- An 'audio beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Intersection - A junction where two or more roads meet or cross., Marker - A location that has been marked as important by the user or application. This can be an address, a business or a custom place such as an entrance, a bus stop or a bench. Point of interest - A specific location that someone may find useful or interesting. Quotation marks are written as \" -->
-<string name="faq_what_can_I_set_answer">شما می‌توانید جهت‌نمای صوتی را روی هر کسب‌وکار، آدرس، تقاطع یا نقطه‌ی شاخصی تنظیم نمایید. این کار به چند روش قابل انجام می‌باشد. ابتدا با استفاده از نوار جستجو یا یکی از دکمه‌های *«مکان‌های نزدیک»*، *«نشانه‌های ذخیره‌شده»* یا *«موقعیت مکانی فعلی»* یک مکان معین را انتخاب کرده و وارد صفحه‌ی جزئیات مربوط به آن شوید. سپس در این صفحه روی دکمه‌ی *«فعال‌سازی جهت‌نمای صوتی»* ضربه بزنید. با انجام این کار، به صفحه‌ی اصلی بازگردانده شده و صدای جهت‌نمای صوتی را از سمت مکانی که انتخاب کرده‌اید خواهید شنید. حالا نام مکان انتخابی شما به‌همراه فاصله و آدرس آن، در صورتی که موجود باشد، روی صفحه‌ی اصلی اپلیکیشن نمایش داده خواهد شد.</string>
+<string name="faq_what_can_I_set_answer">می‌توانید جهت‌نمای صوتی را روی هر کسب‌وکار، مکان، نقطهٔ شاخص، آدرس یا تقاطع تنظیم کنید. چند روش برای افزودن جهت‌نما روی یک مکان وجود دارد. ابتدا جزئیات یک مکان را مشاهده کنید؛ این کار را می‌توانید با استفاده از نوار جستجو یا با ضربه زدن روی یکی از دکمه‌های *«مکان‌های نزدیک»*، *«نشانه‌ها و مسیرها»* یا *«موقعیت مکانی فعلی»* و انتخاب یک مکان انجام دهید. در صفحهٔ *«جزئیات موقعیت مکانی»*، دکمهٔ *«فعال‌سازی جهت‌نمای صوتی»* را انتخاب کنید. با ضربه زدن روی این دکمه به صفحهٔ اصلی بازخواهید گشت و جهت‌نمای صوتی قابل شنیدنی که از سمت مکانی که انتخاب کرده‌اید پخش می‌شود روشن خواهد شد. نام مکانی که انتخاب کرده‌اید همراه با فاصلهٔ آن و آدرس فیزیکی‌اش (در صورت در دسترس بودن) اکنون در صفحهٔ اصلی برنامه نمایش داده می‌شود.</string>
     <!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
 <string name="faq_how_to_use_beacon_question">چگونه از جهت‌نمای صوتی به بهترین شکل ممکن استفاده کنم؟</string>
     <!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. 'As the crow flies' is as expression which means roughly 'in a straight line'.'Spatilized' is referring to 'spatial audio' or '3D audio' which is where the audio through your headphones sounds as though it is coming from a given direction, as if it was actually coming from a speaker. 'Sweep the phone' is referring to rotating the phone around to point it in different directions. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Quotes written as \" -->
-<string name="faq_how_to_use_beacon_answer">شما می‌توانید جهت‌نمای صوتی را به‌مثابه یک *«فانوس دریایی شنیداری»* در نظر بگیرید که به شما نشان می‌دهد مقصد مورد نظرتان نسبت به نقطه‌ای که در آن قرار دارید، در امتداد یک خط مستقیم کجا واقع شده است. همان‌طور که فانوس دریایی برای کشتی‌ها دستور‌العمل‌های ناوبری صادر نمی‌کند، جهت‌نمای صوتی نیز به شما نمی‌گوید از کدام کوچه و خیابان بروید تا به مقصدتان برسید. تصمیم‌گیری برای انتخاب مسیر کاملاً بر عهده‌ی شماست. صدای ممتد و ریتمیک جهت‌نمای صوتی از همان سمتی به گوش شما می‌رسد که مقصد مورد نظرتان در آن قرار گرفته است. هنگامی که مستقیماً به‌سمت مقصدتان حرکت می‌کنید یا گوشی خود را رو به مقصدتان می‌گیرید، یک علامت صوتی شبیه به *«زنگ»* با صدای زیر می‌شنوید. این ویژگی به شما امکان می‌دهد تا جهت مقصد خود را به‌دقت تشخیص دهید چرا که تشخیص جهت صدای ریتمیک جهت‌نما در محیط‌های پر‌سر و‌صدا برخی اوقات می‌تواند دشوار باشد. هنگام جستجو برای یافتن صدای *«زنگ»*، گوشی را به‌حالت افقی در دست خود نگه داشته و آن را به‌آرامی از یک سمت به سمت دیگر حرکت دهید. برای داشتن تجربه‌ای بهتر از قابلیت صدای سه‌بعدی ساند‌اسکیپ، سرتان را در همان جهتی که گوشی را حرکت می‌دهید بچرخانید.\n\nاستفاده از استعاره‌ی فانوس دریایی برای جهت‌نمای صوتی چند نتیجه‌ی طبیعی به‌دنبال دارد:\n\n۱- هنگام استفاده از جهت‌نمای صوتی در ساند‌اسکیپ، هیچ مسیر خاصی به‌عنوان مسیر صحیح به شما معرفی نمی‌شود. در عوض، این شما هستید که تصمیم می‌گیرید از کدام راه خود را به مقصد برسانید؛\n\n۲- صدای زنگ جهت‌نمای صوتی به شما کمک می‌کند جهت صحیح مقصدتان را تشخیص دهید اما به شما نمی‌گوید از کدام مسیر خود را به آنجا برسانید؛\n\n۳- اگر به‌طور کلی می‌دانید چگونه خود را به مقصدتان برسانید، شاید بهتر باشد که صدای جهت‌نما را در طول مسیر ببندید و تنها هنگام نزدیک شدن به مقصد آن را روشن نمایید.</string>
+<string name="faq_how_to_use_beacon_answer">می‌توانید جهت‌نمای صوتی قابل شنیدن را مانند یک *«فانوس دریایی برای گوش‌ها»* تصور کنید؛ این جهت‌نما به شما می‌گوید مقصدتان نسبت به موقعیت شما در چه جهتی قرار دارد (به‌صورت خط مستقیم). مانند یک فانوس دریایی، جهت‌نما به شما نمی‌گوید چگونه دقیقاً به مقصد برسید — ممکن است در طول مسیر نیاز به اتخاذ تصمیمات مسیریابی متعددی داشته باشید، درست همان‌طور که یک قایق بادبانی برای نزدیک‌تر شدن به فانوس دریایی باید چندین بار «دورتاب» بزند. صدای ریتمیک و ممتد جهت‌نمای صوتی از جهت مقصد سه‌بعدی‌سازی می‌شود و به شما کمک می‌کند تا هنگام راه رفتن، مکان مقصد را نسبت به خودتان درک کنید. وقتی مستقیماً به‌سمت مقصد راه می‌روید یا گوشی را به‌سمت مقصد می‌گیرید، صدای «زنگ» با زیرتر (بالاتر) شنیده می‌شود. این ویژگی به شما امکان می‌دهد جهت مقصد را دقیق‌تر مشخص کنید، زیرا در محیط‌های پر‌صدا گاهی جهت‌گیری صدای ریتمیک دشوار است. هنگام جستجوی صدای «زنگ» با زیرتر، گوشی را به‌حالت افقی نگه دارید و آن را به‌آهستگی جاروب کنید؛ هم‌چنین چرخاندن سر تا در همان جهتی که گوشی را گرفته‌اید، بهترین تجربهٔ صوتی فضایی را فراهم می‌آورد.\n\nاستفاده از استعارهٔ فانوس دریایی برای طراحی جهت‌نما پیامدهای طبیعی زیر را دارد:\n\n1. هنگام استفاده از جهت‌نما هیچ جهت «صحیح» واحدی برای حرکت وجود ندارد؛ با ساند‌اسکیپ این شما هستید که انتخاب می‌کنید چگونه به مقصد برسید؛\n\n2. صدای «زنگ» با زیرتر صرفاً به شما در مشخص کردن جهت مقصد کمک می‌کند — این صدا راهنمایی دربارهٔ نحوهٔ رسیدن به مقصد نیست؛\n\n3. اگر عموماً می‌دانید چگونه به مقصد برسید، ممکن است بخواهید جهت‌نما را در بخش اعظم مسیر بی‌صدا کنید و تنها در هنگام نزدیک شدن به مقصد آن را روشن نمایید.</string>
     <!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
 <string name="faq_why_does_beacon_disappear_question">چرا صدای جهت‌نمای صوتی گاهی قطع می‌شود؟</string>
     <!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
@@ -766,7 +766,7 @@
     <!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
 <string name="faq_beacon_on_address_question">آیا می‌توانم جهت‌نمای صوتی را روی یک آدرس تنظیم کنم؟</string>
     <!-- Marker - A location that has been marked as important by the user or application. This can be an address, a business or a custom place such as an entrance, a bus stop or a bench., A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. 'Talkback' is an Android feature to help people who are visually impaired use the phone. Quotes written as \" -->
-<string name="faq_beacon_on_address_answer">بله می‌توانید. آدرس‌ها به‌طور پیش‌فرض فهرست نشده‌اند ولی شما می‌توانید با استفاده از کادر جستجو آنها را پیدا کنید. ضمناً شما می‌توانید آدرس مورد نظرتان را ذخیره نمایید تا دیگر مجبور نباشید هر بار آن را جستجو کنید. برای این کار، پس از مشخص کردن آدرس مورد نظر خود در صفحه‌ی اصلی، روی دکمه‌ی *«نشانه‌گذاری و ذخیره»* ضربه بزنید.</string>
+<string name="faq_beacon_on_address_answer">بله می‌توانید. آدرس‌ها به‌صورت پیش‌فرض فهرست نمی‌شوند اما از طریق فیلد جستجو قابل یافتنند. برای اینکه نیازی به جستجوی مجدد نداشته باشید، می‌توانید این آدرس را از صفحهٔ *«جزئیات موقعیت مکانی»* به‌عنوان یک نشانه ذخیره کنید؛ کافیست دکمهٔ *«نشانه‌گذاری و ذخیره»* را انتخاب نمایید.</string>
     <!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
 <string name="faq_beacon_on_home_question">چگونه جهت‌نمای صوتی را روی خانه‌ام تنظیم کنم؟</string>
     <!-- A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Marker - A location that has been marked as important by the user or application; this can be an address, a business or a custom place such as an entrance, a bus stop or a bench. "Start Audio Beacon" should be translated the same as "location_detail.action.beacon". Quotes written as \" -->
@@ -808,15 +808,15 @@
     <!-- Soundscape frequently asked questions -->
 <string name="faq_battery_impact_question">استفاده از ساند‌اسکیپ چه تأثیری روی باتری گوشی من دارد؟</string>
     <!-- Sleep - To put the app in an idle state for a period of time. Snooze - To put the app in an idle state that is interrupted by user movement. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
-<string name="faq_battery_impact_answer">عمر باتری به‌میزان زیادی به نوع و عمر گوشی شما بستگی دارد. مهم‌ترین عامل تأثیرگذار روی عمر باتری روشن بودن صفحه‌ی نمایش است. بنابراین، برای افزایش عمر باتری گوشی خود، باید صفحه‌ی نمایش آن را تا جای ممکن خاموش نگه دارید. به‌منظور کمک به‌کاهش تأثیر ساند‌اسکیپ روی باتری گوشی شما، این اپلیکیشن به قابلیت حالت خواب مجهز شده است. برای کاهش بیشتر در میزان مصرف باتری، هر زمان از ساند‌اسکیپ استفاده نمی‌کنید، باید آن را ببندید.</string>
+<string name="faq_battery_impact_answer">عمر باتری به‌طور قابل‌توجهی بستگی به نوع و سن گوشی شما دارد. بزرگ‌ترین مصرف‌کنندهٔ باتری روشن بودن صفحه‌نمایش است؛ بنابراین برای بیشینه کردن عمر باتری گوشی‌تان تا حد امکان صفحه را قفل نگه دارید. برای کمک به کاهش تأثیر بر باتری، ساند‌اسکیپ اکنون دارای «حالت خواب» است. برای کاهش بیشتر مصرف باتری، هنگامی که از ساند‌اسکیپ استفاده نمی‌کنید، آن را از طریق سوئیچر برنامه‌های گوشی‌تان به‌صورت کامل ببندید.</string>
     <!-- Sleep - To put the app in an idle state for a period of time. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_sleep_mode_battery_question">چگونه از حالت خواب برای به حد‌اقل رساندن تأثیر ساند‌اسکیپ روی باتری گوشی خود استفاده کنم؟</string>
     <!-- Sleep - To put the app in an idle state for a period of time. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. "Location Services" refers to the feature of the same name in iOS. It should be translated in the same manner that it is in the Settings app under Settings > Privacy > Location Services. Quotes written as \" -->
-<string name="faq_sleep_mode_battery_answer">برای قرار دادن ساند‌اسکیپ در حالت خواب، روی دکمه‌ی *«حالت خواب»* در گوشه‌ی سمت راست بالای صفحه ضربه بزنید. با انجام این کار، استفاده‌ی ساند‌اسکیپ از خدمات مکان‌یابی و داده‌ی تلفن همراه تا زمان خروج از حالت خواب متوقف خواهد شد.</string>
+<string name="faq_sleep_mode_battery_answer">برای قرار دادن ساند‌اسکیپ در حالت خواب، روی دکمهٔ *«حالت خواب»* در گوشهٔ بالای سمت چپ صفحه ضربه بزنید. با انتخاب این گزینه، ساند‌اسکیپ تا زمانی که خودتان آن را دوباره بیدار نکنید از خدمات مکان‌یابی و دادهٔ تلفن همراه استفاده نخواهد کرد.\n</string>
     <!-- Snooze - To put the app in an idle state that is interrupted by user movement. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_snooze_mode_battery_question">چگونه از حالت چرت برای به حد‌اقل رساندن تأثیر ساند‌اسکیپ روی باتری گوشی خود استفاده کنم؟</string>
     <!-- Snooze - To put the app in an idle state that is interrupted by user movement. Sleep - To put the app in an idle state for a period of time. Wake Up - To restore the app from a sleep (idle) state. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Quotes written as \" -->
-<string name="faq_snooze_mode_battery_answer">برای قرار دادن ساند‌اسکیپ در حالت چرت، روی دکمه‌ی *«حالت خواب»* در گوشه‌ی سمت راست بالای صفحه ضربه بزنید. وقتی ساند‌اسکیپ در حالت خواب قرار گرفت، گزینه‌ی *«خروج از حالت خواب هنگام ترک این مکان»* را فعال نمایید. با انجام این کار، ساند‌اسکیپ تا زمانی که شما موقعیت مکانی فعلی خود را ترک کنید در حالت کم‌مصرف قرار می‌گیرد.</string>
+<string name="faq_snooze_mode_battery_answer">برای قرار دادن ساند‌اسکیپ در حالت چرت، روی دکمهٔ *«حالت خواب»* در گوشهٔ بالای سمت چپ صفحه ضربه بزنید. پس از قرار گرفتن ساند‌اسکیپ در حالت خواب، دکمهٔ *«بیدار شدن هنگام ترک محل»* را انتخاب کنید؛ در این صورت ساند‌اسکیپ در حالت کم‌مصرف قرار می‌گیرد تا زمانی که محل فعلی خود را ترک کنید.\n</string>
     <!-- A question about how different headsets affect the phone's battery consumption -->
 <string name="faq_headset_battery_impact_question">انتخاب نوع هندزفری چه تأثیری روی عمر باتری گوشی من دارد؟</string>
     <!-- An answer to the question about how different headsets affect the phone's battery consumption. -->
@@ -832,7 +832,7 @@
     <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_difference_from_map_apps_question">ساند‌اسکیپ چه تفاوتی با سایر اپلیکیشن‌های مسیریابی دارد؟</string>
     <!-- Wayfinding - The process or activity of ascertaining one’s position and planning and following a route. 3D sound is where the audio through your headphones sounds as though it is coming from a given direction, as if it was actually coming from a speaker. Intersection - A junction where two or more roads meet or cross. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using spatial audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
-<string name="faq_difference_from_map_apps_answer">ساند‌اسکیپ یک اپلیکیشن مسیریابیست که محیط اطراف را برای شما توصیف می‌کند. هنگامی که در خیابان راه می‌روید، ساند‌اسکیپ با بهره‌گیری از فن‌آوری صوتی سه‌بعدی نقاط شاخص، پارک‌ها، خیابان‌ها و تقاطع‌های نزدیک را از همان جهتی که در آن قرار دارند به شما اعلام می‌کند. مثلاً اگر از کنار یک فروشگاه در سمت راستتان عبور کنید، نام آن فروشگاه را از سمت راست در هندزفری خود خواهید شنید. وقتی به یک تقاطع نزدیک می‌شوید، نام خیابان‌های منتهی به آن تقاطع از جهتی که در امتداد آن قرار دارند به شما اعلام می‌گردد؛ ابتدا خیابانی که به سمت چپ می‌رود، سپس آن که مستقیم ادامه می‌یابد و در آخر، خیابانی که در سمت راست امتداد پیدا می‌کند.\n\nبه‌جای استفاده از دستور‌العمل‌های مسیریابی گام‌به‌گام که در اپلیکیشن‌های دیگر معمول است، ساند‌اسکیپ یک علامت مسیریابی صوتی برای شما پخش می‌کند که با جهت مقصد مورد نظرتان تطابق دارد. این امر شما را قادر می‌سازد تا به صلاح‌دید خود مسیرتان به سمت مقصد را انتخاب نمایید. ساند‌اسکیپ به‌گونه‌ای طراحی شده است که قابلیت اجرا در پس‌زمینه را نیز داشته باشد. به این ترتیب، شما می‌توانید همزمان با ساند‌اسکیپ از یک اپلیکیشن مسیریابی گام‌به‌گام نیز استفاده نمایید.</string>
+<string name="faq_difference_from_map_apps_answer">ساند‌اسکیپ توضیحاتی محیطی دربارهٔ پیرامون شما ارائه می‌دهد تا در کاوش و جهت‌یابی به شما کمک کند. با استفاده از صدای سه‌بعدی، ساند‌اسکیپ نقاط شاخص، پارک‌ها، خیابان‌ها و تقاطع‌ها را از جهتی که آن‌ها به‌طور فیزیکی در محیط اطراف شما قرار دارند اعلام می‌کند. برای مثال، اگر از کنار یک فروشگاه در سمت راست خود عبور کنید، نام فروشگاه را از سمت راست خواهید شنید. هنگامی که به یک تقاطع نزدیک می‌شوید، نام هر خیابان را از جهتی که آن خیابان می‌رود خواهید شنید؛ به ترتیب از چپ، روبه‌رو و راست.\n\nبه‌جای دستورالعمل‌های مسیریابی گام‌به‌گام که اغلب در سایر برنامه‌های نقشه ارائه می‌شوند، ساند‌اسکیپ یک جهت‌نمای صوتی را در جهت مقصد شما پخش می‌کند تا شما را قادر سازد با تکیه بر آگاهی بیشتر از محیط و موقعیت مقصد، خودتان تصمیم بگیرید چگونه به آنجا برسید. ساند‌اسکیپ طوری طراحی شده که در پس‌زمینه اجرا شود و به شما اجازه دهد هم‌زمان از یک اپلیکیشن مسیریابی گام‌به‌گام استفاده کنید، در حالی که همچنان هنگام حرکت به‌سمت مقصدتان آگاهی‌های محیطی را در اختیار شما قرار می‌دهد.</string>
     <!-- Wayfinding - The process or activity of ascertaining one’s position and planning and following a route. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_use_with_wayfinding_apps_question">چگونه به‌طور همزمان از ساند‌اسکیپ با یک اپلیکیشن مسیریابی دیگر استفاده کنم؟</string>
     <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Intersection - A junction where two or more roads meet or cross. -->
@@ -840,11 +840,11 @@
     <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_controlling_what_you_hear_question">چگونه محتوا و زمان پیام‌های ساند‌اسکیپ را مدیریت کنم؟</string>
     <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. A 'beacon' or 'audio beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Intersection - A junction where two or more roads meet or cross. Point of interest - A specific location that someone may find useful or interesting. Snooze - To put the app in an idle state that is interrupted by user movement. Sleep - To put the app in an idle state for a period of time. Quotes written as \" -->
-<string name="faq_controlling_what_you_hear_answer">ساند‌اسکیپ چند راه را برای مدیریت محتوا و زمان اعلان‌های مسیریابی در اختیار شما قرار می‌دهد:\n\n۱- توقف فوری تمامی اعلان‌ها و علائم صوتی: شما می‌توانید با دو بار ضربه زدن روی صفحه‌ی گوشی با دو انگشت، کلیه‌ی اعلان‌ها و صدای جهت‌نمای صوتی را فوراً متوقف نمایید. هنگامی که به نقطه‌ی شاخص یا تقاطع بعدی نزدیک شوید، اعلان‌ها به‌طور خودکار مجدداً فعال می‌شوند اما جهت‌نمای صوتی همچنان در حالت بی‌صدا باقی می‌ماند. برای خروج از این حالت، روی دکمه‌ی *«باز کردن صدای جهت‌نما»* در صفحه‌ی اصلی ضربه بزنید.\n\n۲- توقف اعلان‌های خودکار: هنگامی که شما در حال پیمایش مسیر نیستید یا اینکه به مقصدتان رسیده‌اید، احتمالاً دیگر نیازی به شنیدن اعلان‌های مسیریابی ساند‌اسکیپ ندارید. در این صورت، می‌توانید به جای خروج از اپلیکیشن، آن را در یکی از دو حالت خواب یا چرت قرار دهید. اگر از حالت خواب استفاده کنید، اعلان‌های ساند‌اسکیپ تا زمانی که شما خودتان مجدداً آنها را روشن نکنید، غیرفعال باقی می‌مانند. اما اگر حالت چرت را انتخاب کنید، اعلان‌های ساند‌اسکیپ هنگامی که شما موقعیت مکانی فعلی خود را ترک نمایید، به‌طور خودکار دوباره فعال خواهند شد. یک راه دیگر برای متوقف کردن اعلان‌ها این است که آنها را در قسمت *«مدیریت اعلان‌ها»* از منوی *«تنظیمات»* خاموش کنید.\n\n۳- توقف جهت‌نمای صوتی: موقعیت‌های مختلفی را می‌توان تصور کرد که در آن شما ممکن است بخواهید مقصدی را مشخص کنید اما نیازی به استفاده از جهت‌نمای صوتی نداشته باشید. برای مثال، ممکن است شما بدانید که دقیقاً چگونه باید خود را به مقصدتان برسانید ولی بخواهید به‌طور مستمر در ارتباط با فاصله‌ی خود تا مقصدتان از ساند‌اسکیپ به‌روزرسانی دریافت نمایید. یا فرض کنید که به‌طور تقریبی با مسیر منتهی به مقصدتان آشنایی دارید و می‌خواهید تنها زمانی که به مقصد نزدیک می‌شوید از جهت‌نمای صوتی استفاده کنید. در هر صورت، شما می‌توانید با استفاده از دکمه‌ی مربوط به باز و بسته کردن صدای جهت‌نمای صوتی در صفحه‌ی اصلی، آن را روشن یا خاموش نمایید.</string>
+<string name="faq_controlling_what_you_hear_answer">ساند‌اسکیپ چند روش برای کنترل اینکه چه صداهایی را کی می‌شنوید در اختیار شما می‌گذارد:\n\n۱. توقف فوری همهٔ صداها: دو بار با دو انگشت روی صفحه ضربه بزنید تا فوراً تمام صداها قطع شوند، از جمله هر اعلانِ در حال پخش و جهت‌نمای صوتی (در صورت روشن بودن). اعلان‌ها به‌طور خودکار وقتی به تقاطع یا نقطهٔ شاخص بعدی نزدیک می‌شوید از سر گرفته می‌شوند، اما جهت‌نمای صوتی به‌طور خودکار بازنمی‌گردد. برای شنیدن دوبارهٔ جهت‌نما، دکمهٔ *«باز کردن صدای جهت‌نما»* در صفحهٔ اصلی را انتخاب کنید.\n\n۲. توقف اعلان‌های خودکار: وقتی در حال حرکت نیستید یا به مقصد رسیده‌اید، احتمالاً نیازی به ادامهٔ اعلان‌های خودکار ندارید. به‌جای خروج از اپ، می‌توانید ساند‌اسکیپ را در *حالت چرت* قرار دهید تا هنگام ترک محل فعلی دوباره فعال شود، یا آن را در *حالت خواب* قرار دهید تا تا زمانی که خودتان آن را روشن نکنید خاموش بماند. همچنین می‌توانید از منو *«تنظیمات»* را انتخاب کرده و در بخش *«مدیریت اعلان‌ها»* همهٔ اعلان‌ها را خاموش کنید.\n\n۳. متوقف کردن جهت‌نما: در برخی شرایط ممکن است مقصد را بدانید اما به جهت‌نمای صوتی نیاز نداشته باشید؛ برای مثال ممکن است دقیقاً بدانید چگونه به مقصد برسید اما همچنان بخواهید به‌روزرسانی خودکار دربارهٔ فاصله تا مقصد را دریافت کنید، یا تنها هنگام نزدیک‌شدن به مقصد به جهت‌نما نیاز داشته باشید. در هر حال می‌توانید با استفاده از دکمهٔ *«بستن صدای جهت‌نما»* / *«باز کردن صدای جهت‌نما»* در صفحهٔ اصلی پخش جهت‌نما را خاموش یا روشن کنید.\n\nاگر همچنان می‌خواهید با ساند‌اسکیپ تعامل داشته باشید اما اعلان‌های خودکار را نشنوید، می‌توانید از منو وارد بخش *«تنظیمات»* شوید و در قسمت *«مدیریت اعلان‌ها»* اعلان‌ها را خاموش کنید. یا اگر قرار نیست از ساند‌اسکیپ استفاده کنید، می‌توانید با دکمهٔ *«حالت خواب»* در صفحهٔ اصلی آن را در *حالت خواب* یا *حالت چرت* قرار دهید.</string>
     <!-- A frequently asked question about how the user should hold their phone -->
 <string name="faq_holding_phone_flat_question">آیا باید همیشه گوشی را در دست بگیرم؟</string>
     <!-- Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. A 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Quotes written as \" -->
-<string name="faq_holding_phone_flat_answer">خیر! هنگام راه رفتن می‌توانید گوشی را در جیب یا کیف خود یا هر جایی که راحت هستید قرار دهید. ساند‌اسکیپ با استفاده از جهت حرکت شما متوجه می‌شود که باید کدام اعلان‌ها را از سمت چپ و کدام اعلان‌ها را از سمت راست به شما اعلام کند. وقتی از حرکت باز می‌ایستید، ساند‌اسکیپ نمی‌تواند جهت شما را تشخیص دهد. اگر در این حالت جهت‌نمای صوتی روشن باشد، صدای آن ضعیف می‌شود تا زمانی که شما مجدداً شروع به حرکت کنید. شما می‌توانید در حال سکون، گوشی را از جیب یا کیف خود خارج کرده و از دکمه‌های مربوط به تشخیص موقعیت مکانی و محیط پیرامونی در پایین صفحه‌ی اصلی استفاده نمایید. فقط توجه داشته باشید که باید گوشی را به حالت افقی نگه دارید؛ به‌طوری که صفحه‌ی نمایش آن رو به آسمان و جلوی آن در امتداد جهتی باشد که شما رو به آن ایستاده‌اید. در این حالت، ساند‌اسکیپ از قطب‌نمای گوشی استفاده خواهد کرد تا جهت شما را تشخیص داده و اعلان‌ها را از سمت مناسب به گوش شما برساند. در صورتی که جهت‌نمای صوتی فعال باشد، صدای آن دوباره زیاد خواهد شد.</string>
+<string name="faq_holding_phone_flat_answer">خیر! هنگام راه رفتن می‌توانید گوشی را در کیف یا جیبتان یا هرجای مناسب قرار دهید. ساند‌اسکیپ جهت حرکت شما را مبنای تعیین اینکه چه اعلان‌هایی از سمت چپ و راست پخش شود قرار می‌دهد. وقتی حرکت نمی‌کنید، ساند‌اسکیپ نمی‌داند به کدام جهت نگاه می‌کنید. اگر جهت‌نمای صوتی روشن باشد، خواهید دید که صدا کاهش می‌یابد تا زمانی که دوباره شروع به حرکت کنید. هر زمان می‌توانید گوشی را بیرون آورده و دکمه‌های موقعیت و کاوش در پایین صفحه را فشار دهید، اما مطمئن شوید گوشی را طوری نگه داشته‌اید که جلوی گوشی (بالای آن) به سمت جهتی باشد که شما رو به آن ایستاده‌اید و صفحهٔ نمایش رو به آسمان باشد. در این وضعیت *افقی*، ساند‌اسکیپ از قطب‌نما (کامپاس) گوشی برای تعیین جهت دقیق شما استفاده کند و اعلان‌های فضایی دقیقی ارائه دهد. اگر جهت‌نما روشن باشد، همچنین خواهید دید که صدا به حجم کامل برمی‌گردد.</string>
     <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_what_is_osm_question">اوپن‌استریت‌مپ چیست و چرا از آن در ساند‌اسکیپ استفاده می‌کنیم؟</string>
     <!-- Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment.  -->
@@ -852,45 +852,45 @@
     <!-- The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_tip_beacon_quiet">اگر گوشی خود را در جیبتان گذاشته و از حرکت باز ایستید، صدای جهت‌نمای صوتی کاهش می‌یابد زیرا ساند‌اسکیپ نمی‌تواند جهت شما را تشخیص دهد. برای حل این مشکل، دوباره شروع به حرکت نمایید یا گوشی را از جیبتان خارج کرده و آن را به حالت افقی نگه دارید.</string>
     <!-- The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. "Start Audio Beacon" should be translated the same as "location_detail.action.beacon" Quotes written as \" -->
-<string name="faq_tip_setting_beacon_on_address">شما می‌توانید جهت‌نمای صوتی را روی هر آدرسی تنظیم کنید. آدرس مورد نظر خود را در صفحه‌ی اصلی ساند‌اسکیپ جستجو نمایید. پس از مشخص کردن آدرس دل‌خواهتان از میان نتایج جستجو، یک صفحه‌ی *«جزئیات موقعیت مکانی»* برای شما نمایش داده خواهد شد که حاوی یک گزینه‌ی *«فعال‌سازی جهت‌نمای صوتی»* برای مقصد انتخابی شما می‌باشد. به این ترتیب، شما می‌توانید جهت‌نمای صوتی را روی کسب‌وکار‌ها، نقاط شاخص، منازل مسکونی یا مکان‌های دیگری که در نقشه‌های اوپن‌استریت‌مپ وجود ندارند تنظیم نمایید.</string>
+<string name="faq_tip_setting_beacon_on_address">می‌توانید جهت‌نمای صوتی را روی هر آدرسی تنظیم کنید. از صفحهٔ اصلی ساند‌اسکیپ برای جستجوی آدرس استفاده کنید. پس از انتخاب آدرس از نتایج جستجو، صفحهٔ *«جزئیات موقعیت مکانی»* نمایش داده می‌شود و در آن گزینهٔ *«فعال‌سازی جهت‌نمای صوتی»* برای آدرس موجود است. به این ترتیب می‌توانید برای کسب‌وکارها، مکان‌ها، نقاط شاخص و محل‌های مسکونی که در اوپن‌استریت‌مپ ثبت نشده‌اند نیز جهت‌نما تنظیم کنید.</string>
     <!-- 'Nearby Places' is a screen in the app that shows a list of places that are close to the user. Quotes written as \" -->
-<string name="faq_tip_finding_bus_stops">شما می‌توانید ایستگاه‌های اتوبوس نزدیک خود را با استفاده از فیلتر *«حمل‌و‌نقل عمومی»* در فهرست مکان‌های نزدیک پیدا کنید.</string>
+<string name="faq_tip_finding_bus_stops">می‌توانید ایستگاه‌های اتوبوس نزدیک را با انتخاب فیلتر *«حمل‌و‌نقل عمومی»* در فهرست *«مکان‌های نزدیک»* بیابید.</string>
     <!-- Preserve meters unit - Do not convert. The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. -->
 <string name="faq_tip_turning_beacon_off">شما می‌توانید صدای ریتمیک جهت‌نمای صوتی را با استفاده از دکمه‌ی بستن صدای جهت‌نما در صفحه‌ی اصلی خاموش و روشن کنید. حتی اگر صدای جهت‌نما بسته باشد، شما همچنان در ارتباط با فاصله‌تان تا مقصد حدوداً هر ۵۰ متر یک بار به‌روزرسانی دریافت خواهید کرد.</string>
     <!-- 'Manage Callouts' is the name of one of the sections on the Soundscape Settings screen. Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. Callout - a short audio clip with speech and/or sound effect serving as a piece of information. For example, the application can output an audio callout to notify the user that the battery is low. Snooze - To put the app in an idle state that is interrupted by user movement. Sleep - To put the app in an idle state for a period of time. Quotes written as \" -->
-<string name="faq_tip_turning_off_auto_callouts">اگر می‌خواهید همچنان از ساند‌اسکیپ استفاده نمایید اما نیازی به شنیدن اعلان‌های خودکار ندارید، می‌توانید آنها را در قسمت *«مدیریت اعلان‌ها»* از منوی *«تنظیمات»* خاموش کنید. همچنین، در صورت عدم نیاز به استفاده از ساند‌اسکیپ، می‌توانید آن را با ضربه زدن روی دکمه‌ی *«حالت خواب»* در صفحه‌ی اصلی، در یکی از دو وضعیت خواب یا چرت قرار دهید.</string>
+<string name="faq_tip_turning_off_auto_callouts">اگر می‌خواهید همچنان با ساند‌اسکیپ تعامل داشته باشید اما صدای اعلان‌های خودکار را نشنوید، می‌توانید از منو به بخش *«مدیریت اعلان‌ها»* در صفحهٔ *«تنظیمات»* رفته و اعلان‌ها را خاموش کنید. یا اگر قرار نیست از ساند‌اسکیپ استفاده کنید، می‌توانید با دکمهٔ *«حالت خواب»* در صفحهٔ اصلی آن را در حالت خواب یا حالت چرت قرار دهید.</string>
     <!-- Soundscape - The app that explores the use of innovative audio-based technology to enable people, particularly those with blindness or low vision, to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around by using 3D audio cues to enrich ambient awareness and provide a new way to relate to the environment. -->
 <string name="faq_tip_hold_phone_flat">برای داشتن تجربه‌ی بهتر هنگام استفاده از ساند‌اسکیپ، گوشی خود را به حالت افقی نگه دارید؛ به‌گونه‌ای که صفحه‌ی نمایش گوشی رو به آسمان و جلوی آن در امتداد جهتی باشد که شما رو به آن ایستاده‌اید.</string>
     <!-- Marker - A location that has been marked as important by the user or application. This can be an address, a business or a custom place such as an entrance, a bus stop or a bench. The 'beacon' is an audio signal that helps fix the position of a location - the audio signal is played from the direction of a location which helps navigating towards that direction. 'Manage Markers' is the name of one of the options in the Soundscape menu. Quotes written as \" -->
-<string name="faq_tip_create_marker_at_bus_stop">اگر یک مسیر خاص را با اتوبوس مرتباً طی می‌کنید، ایستگاه‌هایی را که در آن سوار و پیاده می‌شوید نشانه‌گذاری و ذخیره نمایید. به این ترتیب، می‌توانید دوباره آنها را به‌راحتی پیدا کنید. فقط کافیست به قسمت *«مدیریت نشانه‌ها»* در منو مراجعه کرده و آنها را در فهرست بیابید. شما همچنین می‌توانید جهت‌نمای صوتی را روی نشانه‌هایی که ایجاد می‌کنید تنظیم نموده و به این روش از فاصله‌ی خود تا ایستگاه مورد نظرتان به‌طور منظم مطلع شوید. توجه داشته باشید که شما می‌توانید در صورت تمایل صدای ریتمیک جهت‌نمای صوتی را خاموش کرده و همچنان به‌روزرسانی‌های فاصله تا مقصد را در طول مسیر دریافت نمایید.</string>
+<string name="faq_tip_create_marker_at_bus_stop">اگر یک خط اتوبوس را به‌طور مرتب استفاده می‌کنید، ایستگاه‌های سوار شدن و پیاده شدن خود را به‌عنوان نشانه ذخیره کنید. به این ترتیب آن‌ها ذخیره می‌شوند و می‌توانید به‌سادگی دوباره آن‌ها را پیدا کنید؛ کافیست از صفحهٔ اصلی به *«نشانه‌ها و مسیرها»* بروید و در صفحهٔ *«نشانه‌ها»* آن‌ها را بیابید. می‌توانید روی آن‌ها جهت‌نمای صوتی تنظیم کنید و به‌روزرسانی‌های دوره‌ای دربارهٔ فاصله‌تان تا ایستگاه خروج دریافت خواهید کرد. نکته: می‌توانید صدای ریتمیک را خاموش کنید و همچنان در طول مسیر به‌روزرسانی‌های فاصله را دریافت خواهید کرد.</string>
     <!-- No language has been selected by the user, shown in the onboarding screens if the system language isn't supported by the app -->
 <string name="no_language_selected">هیچ زبانی انتخاب نشده است</string>
     <!-- Notifications are a type of Android permission required to run the app -->
 <string name="first_launch_permissions_notification">اعلان‌ها</string>
     <!-- Message appears as notification when app is running -->
-<string name="notification_text" tools:ignore="MissingTranslation">در حال اجرای این سرویس مکان‌یابی در پیش‌زمینه هستیم</string>
+<string name="notification_text" tools:ignore="MissingTranslation">سرویس مکان‌یابی ساند‌اسکیپ حتی زمانی که گوشی قفل است، فعال می‌ماند.</string>
     <!-- Option to cancel searching for a location -->
 <string name="cancel_search_contentDescription" tools:ignore="MissingTranslation">لغو جستجو</string>
     <!-- OSM tag for train station -->
-<string name="osm_tag_train_station" tools:ignore="MissingTranslation">ایستگاه قطار</string>
+<string name="osm_train_station" tools:ignore="MissingTranslation">ایستگاه قطار</string>
     <!-- OSM tag for train station preceded by its name e.g. "Milngavie Train station" -->
-<string name="osm_tag_train_station_named" tools:ignore="MissingTranslation">ایستگاه قطار %s</string>
+<string name="osm_train_station_named" tools:ignore="MissingTranslation">ایستگاه قطار %s</string>
     <!-- OSM tag for tram stop -->
-<string name="osm_tag_tram_stop" tools:ignore="MissingTranslation">ایستگاه تراموا</string>
+<string name="osm_tram_stop" tools:ignore="MissingTranslation">ایستگاه تراموا</string>
     <!-- OSM tag for tram stop preceded by its name e.g. "Moor Road tram stop" -->
-<string name="osm_tag_tram_stop_named" tools:ignore="MissingTranslation">ایستگاه تراموا %s</string>
+<string name="osm_tram_stop_named" tools:ignore="MissingTranslation">ایستگاه تراموا %s</string>
     <!-- OSM tag for subway station (underground trains) -->
-<string name="osm_tag_subway" tools:ignore="MissingTranslation">ایستگاه مترو</string>
+<string name="osm_subway" tools:ignore="MissingTranslation">ایستگاه مترو</string>
     <!-- OSM tag for named subway station (underground trains) e.g. "Kings Cross underground station -->
-<string name="osm_tag_subway_named" tools:ignore="MissingTranslation">ایستگاه مترو %s</string>
+<string name="osm_subway_named" tools:ignore="MissingTranslation">ایستگاه مترو %s</string>
     <!-- OSM tag for ferry terminal -->
-<string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">اسکله</string>
+<string name="osm_ferry_terminal" tools:ignore="MissingTranslation">اسکله</string>
     <!-- OSM tag for named ferry terminal e.g. "Oban Ferry Terminal" -->
-<string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">اسکله‌ی %s</string>
+<string name="osm_ferry_terminal_named" tools:ignore="MissingTranslation">اسکله‌ی %s</string>
     <!-- Title for settings page group of audio settings -->
-<string name="menu_manage_audio" tools:ignore="MissingTranslation">مدیریت صدا</string>
+<string name="menu_manage_audio" tools:ignore="MissingTranslation">صدا</string>
     <!-- Title for settings page group of audio settings -->
-<string name="menu_manage_accessibility" tools:ignore="MissingTranslation">مدیریت دسترسی‌پذیری</string>
+<string name="menu_manage_accessibility" tools:ignore="MissingTranslation">دسترسی‌پذیری</string>
     <!-- App theme light/dark description -->
 <string name="settings_theme_light_dark" tools:ignore="MissingTranslation">پوسته‌ی روشن یا تیره</string>
     <!-- App theme setting for automatic light/dark based on system -->
@@ -915,13 +915,13 @@
 <string name="settings_keep_value" tools:ignore="MissingTranslation">این گزینه را نگه دارید</string>
     <string name="settings_use_value" tools:ignore="MissingTranslation">از این گزینه استفاده کنید</string>
     <!-- Button text for exiting Street Preview mode -->
-<string name="street_preview_exit" tools:ignore="MissingTranslation">خروج از حالت آشنایی با محل</string>
+<string name="street_preview_exit" tools:ignore="MissingTranslation">خروج از شبیه‌سازی موقعیت مکانی</string>
     <!-- Settings option for enabling recording of travel locations -->
 <string name="settings_travel_recording" tools:ignore="MissingTranslation">فعال‌سازی ضبط سفر</string>
     <!-- Settings option for enabling a map styling which has improved accessibility -->
 <string name="settings_accessible_map" tools:ignore="MissingTranslation">نمایش نقشه‌ی دسترسی‌پذیر</string>
     <!-- Settings title for various debugging options to aid developers -->
-<string name="settings_debug_heading" tools:ignore="MissingTranslation">تنظیمات رفع اشکال</string>
+<string name="settings_debug_heading" tools:ignore="MissingTranslation">گزینه‌های اشکال‌زدایی</string>
     <!-- Menu option for sharing the recorded travel route via another app -->
 <string name="menu_share_recorded_route" tools:ignore="MissingTranslation">اشتراک‌گذاری سفر ضبط‌شده</string>
     <!-- Description of path to another road that passes steps/tunnel/bridge e.g. "Path to Moor Road via steps" -->
@@ -945,4 +945,896 @@
     <string name="menu_contact_support" tools:ignore="MissingTranslation">تماس با پشتیبانی</string>
     <string name="settings_show_map" tools:ignore="MissingTranslation">نمایش نقشه روی صفحه</string>
     <string name="settings_search_results_language" tools:ignore="MissingTranslation">جستجوی زبان</string>
+    <string name="route_detail_action_previous_disabled_hint" tools:ignore="MissingTranslation">غیرفعال است زیرا مسیر هم‌اکنون در ابتدا قرار دارد</string>
+    <string name="route_detail_action_next_disabled_hint" tools:ignore="MissingTranslation">غیرفعال است زیرا مسیر هم‌اکنون در انتها قرار دارد</string>
+    <string name="osm_entrance" tools:ignore="MissingTranslation">ورودی</string>
+    <string name="osm_main_entrance" tools:ignore="MissingTranslation">ورودی اصلی</string>
+    <string name="osm_entrance_named_with_destination" tools:ignore="MissingTranslation">%2$s %1$s از %3$s</string>
+    <string name="osm_entrance_with_destination" tools:ignore="MissingTranslation">%2$s %1$s</string>
+    <string name="offline_maps_title" tools:ignore="MissingTranslation">نقشه‌های آفلاین</string>
+    <string name="offline_map_details_title" tools:ignore="MissingTranslation">جزئیات نقشه‌ی آفلاین</string>
+    <string name="offline_maps_loading" tools:ignore="MissingTranslation">در حال بارگذاری…</string>
+    <string name="offline_maps_downloading" tools:ignore="MissingTranslation">در حال دانلود %s</string>
+    <string name="offline_maps_caching" tools:ignore="MissingTranslation">سرور در حال آماده‌سازی %s برای دانلود است. این کار ممکن است چند دقیقه طول بکشد و سپس دانلود به‌صورت خودکار آغاز خواهد شد.</string>
+    <string name="offline_maps_free_space" tools:ignore="MissingTranslation">%s فضای آزاد</string>
+    <string name="offline_maps_storage" tools:ignore="MissingTranslation">نقشه‌ها در %1$s ذخیره می‌شوند که %2$s فضای آزاد دارد</string>
+    <string name="offline_maps_already_downloaded" tools:ignore="MissingTranslation">نقشه‌های دانلودشده</string>
+    <string name="offline_maps_nearby" tools:ignore="MissingTranslation">نقشه‌های آفلاین نزدیک</string>
+    <string name="offline_maps_loading_manifest" tools:ignore="MissingTranslation">در حال بارگذاری فهرست نقشه‌های آفلاین</string>
+    <string name="offline_map_details_delete" tools:ignore="MissingTranslation">حذف نقشه‌ی آفلاین</string>
+    <string name="offline_map_details_download" tools:ignore="MissingTranslation">دانلود نقشه‌ی آفلاین</string>
+    <string name="offline_map_details_size_on_phone" tools:ignore="MissingTranslation">حجم روی گوشی: %s</string>
+    <string name="offline_map_details_size_on_server" tools:ignore="MissingTranslation">حجم دانلود: %s</string>
+    <string name="offline_map_details_name" tools:ignore="MissingTranslation">نام نقشه: %s</string>
+    <string name="offline_map_details_city_list" tools:ignore="MissingTranslation">نقشه شامل این مکان‌ها است: %s</string>
+    <string name="offline_map_details_alternate_city_list" tools:ignore="MissingTranslation">این مکان‌ها همچنین با نام‌های زیر شناخته می‌شوند: %s</string>
+    <string name="offline_map_storage_title" tools:ignore="MissingTranslation">ذخیره‌ی نقشه‌ی آفلاین</string>
+    <string name="offline_map_storage_description" tools:ignore="MissingTranslation">برای اینکه بتوان از ساند‌اسکیپ بدون اتصال به اینترنت استفاده نمود، می‌توان نقشه‌ها را دانلود و روی تلفن ذخیره کرد. محل پیش‌فرض ذخیره‌سازی هر حافظه‌ی خارجی موجود در گوشی شما است، اما می‌توانید در اینجا یک مقصد دیگر انتخاب کنید.</string>
+    <string name="offline_map_wifi_only" tools:ignore="MissingTranslation">فقط از وای‌فای برای دانلود نقشه استفاده شود</string>
+    <string name="text_field_clear_text" tools:ignore="MissingTranslation">پاک کردن متن</string>
+    <string name="marker_name_description_hint" tools:ignore="MissingTranslation">نام نشانه را ویرایش کنید</string>
+    <string name="annotation_description_hint" tools:ignore="MissingTranslation">یک یادداشت اختیاری اضافه کنید تا بعداً این نشانه را راحت‌تر بشناسید</string>
+    <string name="route_name_description_hint" tools:ignore="MissingTranslation">نام مسیر را ویرایش کنید</string>
+    <string name="route_description_description_hint" tools:ignore="MissingTranslation">یک توضیح اختیاری برای این مسیر اضافه کنید</string>
+    <string name="fab_add_item" tools:ignore="MissingTranslation">افزودن مورد</string>
+    <string name="fab_add_route" tools:ignore="MissingTranslation">افزودن مسیر</string>
+    <string name="route_waypoint_progress" tools:ignore="MissingTranslation">در مسیر %1$s، نقطه‌ی بین‌راهی %2$s از %3$s</string>
+    <string name="home_screen_title" tools:ignore="MissingTranslation">صفحه‌ی اصلی ساند‌اسکیپ</string>
+    <string name="offline_maps_manifest_failed" tools:ignore="MissingTranslation">دانلود داده‌های نقشه‌ی آفلاین با شکست مواجه شد</string>
+    <string name="settings_reset_button" tools:ignore="MissingTranslation">بازنشانی تنظیمات به حالت پیش‌فرض</string>
+    <string name="settings_reset_button_hint" tools:ignore="MissingTranslation">تنظیمات را به حالت پیش‌فرض بازنشانی کرده و سپس اپلیکیشن را مجدداً راه‌اندازی کنید.</string>
+    <string name="settings_reset_dialog_title" tools:ignore="MissingTranslation">آیا مطمئن هستید؟</string>
+    <string name="settings_reset_dialog_message" tools:ignore="MissingTranslation">بازنشانی تنظیمات، تمام تنظیمات پیکربندی‌شده در اپلیکیشن را حذف خواهد کرد. آیا می‌خواهید ادامه دهید؟</string>
+    <string name="menu_advanced_markers_and_routes" tools:ignore="MissingTranslation">نشانه‌ها و مسیرها (پیشرفته)</string>
+    <string name="advanced_markers_and_routes_description" tools:ignore="MissingTranslation">این صفحه به شما امکان می‌دهد نشانه‌ها و مسیرها را خروجی بگیرید و وارد کنید، و همچنین همه‌ی نشانه‌ها و مسیرهای موجود را حذف نمایید.</string>
+    <string name="advanced_markers_and_routes_export_button" tools:ignore="MissingTranslation">خروجی‌گیری از پایگاه داده‌ی نشانه‌ها و مسیرها</string>
+    <string name="advanced_markers_and_routes_import_button" tools:ignore="MissingTranslation">وارد کردن پایگاه داده‌ی نشانه‌ها و مسیرها</string>
+    <string name="markers_and_routes_import_success" tools:ignore="MissingTranslation">وارد کردن نشانه‌ها و مسیرها انجام شد.</string>
+    <string name="markers_and_routes_import_failure" tools:ignore="MissingTranslation">وارد کردن نشانه‌ها و مسیرها با شکست مواجه شد.</string>
+    <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">حذف همه‌ی نشانه‌ها و مسیرها</string>
+    <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">حذف همه‌ی نشانه‌ها و مسیرها قابل بازگرداندن نیست. آیا می‌خواهید ادامه دهید؟</string>
+    <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">نشانه‌ها و مسیرها حذف شدند</string>
+    <string name="new_version_info_text" tools:ignore="MissingTranslation">اطلاعات نسخه‌ی جدید</string>
+    <string name="new_version_info_completed" tools:ignore="MissingTranslation">بستن پنجره‌ی اطلاعات نسخه‌ی جدید</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nاین اولین نسخهٔ تولیدی ساند‌اسکیپ است. اگر با اپ تازه‌کار هستید، می‌توانید اطلاعات بیشتری دربارهٔ آن در صفحه‌های *«راهنما»* بیابید یا از *«آموزش راهنمایی‌شده»* استفاده کنید. هر دوی این گزینه‌ها در منوی اصلی در دسترس هستند.\n\nما همچنان برای بهبود اپ سخت کار می‌کنیم؛ بنابراین لطفاً هر مشکلی را که با آن مواجه می‌شوید، هرچند کوچک باشد، از طریق گزینهٔ *«تماس با پشتیبانی»* در منوی اصلی گزارش دهید.\n</string>
+    <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">مجوزهای متن‌باز</string>
+    <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">پایانه کشتی</string>
+    <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s پایانه کشتی</string>
+    <string name="osm_office" tools:ignore="MissingTranslation">دفتر</string>
+    <string name="osm_school" tools:ignore="MissingTranslation">مدرسه</string>
+    <string name="osm_roof" tools:ignore="MissingTranslation">بام</string>
+    <string name="osm_convenience" tools:ignore="MissingTranslation">فروشگاه محلی</string>
+    <string name="osm_lift_gate" tools:ignore="MissingTranslation">دروازه بالابر</string>
+    <string name="osm_toilets" tools:ignore="MissingTranslation">توالت</string>
+    <string name="osm_parking" tools:ignore="MissingTranslation">پارکینگ</string>
+    <string name="osm_taxi" tools:ignore="MissingTranslation">ایستگاه تاکسی</string>
+    <string name="osm_bicycle_parking" tools:ignore="MissingTranslation">پارکینگ دوچرخه</string>
+    <string name="osm_fuel" tools:ignore="MissingTranslation">پمپ بنزین</string>
+    <string name="osm_recycling" tools:ignore="MissingTranslation">محل بازیافت</string>
+    <string name="osm_drinking_water" tools:ignore="MissingTranslation">آب آشامیدنی</string>
+    <string name="osm_pitch" tools:ignore="MissingTranslation">زمین ورزشی</string>
+    <string name="osm_picnic_site" tools:ignore="MissingTranslation">محل پیک‌نیک</string>
+    <string name="osm_information" tools:ignore="MissingTranslation">اطلاعات</string>
+    <string name="osm_fire_extinguisher" tools:ignore="MissingTranslation">کپسول آتش‌نشانی</string>
+    <string name="osm_defibrillator" tools:ignore="MissingTranslation">دفیبریلاتور</string>
+    <string name="osm_guide" tools:ignore="MissingTranslation">راهنمای مسیر</string>
+    <string name="osm_water" tools:ignore="MissingTranslation">آب</string>
+    <string name="osm_fire_hose" tools:ignore="MissingTranslation">شلنگ آتش‌نشانی</string>
+    <string name="osm_fire_flapper" tools:ignore="MissingTranslation">ابزار دستی برای خفه کردن آتش</string>
+    <string name="osm_information_point" tools:ignore="MissingTranslation">پایگاه اطلاعات</string>
+    <string name="osm_wetland" tools:ignore="MissingTranslation">تالاب</string>
+    <string name="osm_mud" tools:ignore="MissingTranslation">گل‌ولای</string>
+    <string name="osm_access_point" tools:ignore="MissingTranslation">نقطه دسترسی</string>
+    <string name="osm_life_ring" tools:ignore="MissingTranslation">حلقه نجات</string>
+    <string name="osm_generic_info" tools:ignore="MissingTranslation">اطلاعات عمومی</string>
+    <string name="osm_turntable" tools:ignore="MissingTranslation">صفحه گردان</string>
+    <string name="osm_survey_point" tools:ignore="MissingTranslation">نقطه نقشه‌برداری</string>
+    <string name="osm_snow_net" tools:ignore="MissingTranslation">تور مهار برف</string>
+    <string name="osm_silo" tools:ignore="MissingTranslation">سیلو</string>
+    <string name="osm_mast" tools:ignore="MissingTranslation">دکل</string>
+    <string name="osm_bird_hide" tools:ignore="MissingTranslation">پناهگاه پرنده‌نگری</string>
+    <string name="osm_transformer_tower" tools:ignore="MissingTranslation">برج ترانسفورماتور</string>
+    <string name="osm_generic_object" tools:ignore="MissingTranslation">شیء عمومی</string>
+    <string name="osm_signal" tools:ignore="MissingTranslation">علائم راهنمایی</string>
+    <string name="osm_rock" tools:ignore="MissingTranslation">سنگ</string>
+    <string name="osm_kiln" tools:ignore="MissingTranslation">کوره</string>
+    <string name="osm_crane" tools:ignore="MissingTranslation">جرثقیل</string>
+    <string name="osm_rune_stone" tools:ignore="MissingTranslation">سنگ تاریخی با نوشته‌های رونی</string>
+    <string name="osm_milestone" tools:ignore="MissingTranslation">نشانگر فاصله</string>
+    <string name="osm_lifeguard_platform" tools:ignore="MissingTranslation">سکوی غریق‌نجات</string>
+    <string name="osm_water_tank" tools:ignore="MissingTranslation">مخزن آب</string>
+    <string name="osm_sty" tools:ignore="MissingTranslation">محل نگهداری خوک</string>
+    <string name="osm_navigationaid" tools:ignore="MissingTranslation">وسیله کمک ناوبری</string>
+    <string name="osm_terminal" tools:ignore="MissingTranslation">پایانه</string>
+    <string name="osm_water_tap" tools:ignore="MissingTranslation">شیر آب</string>
+    <string name="osm_water_well" tools:ignore="MissingTranslation">چاه آب</string>
+    <string name="osm_petroleum_well" tools:ignore="MissingTranslation">چاه نفت</string>
+    <string name="osm_cross" tools:ignore="MissingTranslation">صلیب</string>
+    <string name="osm_gallows" tools:ignore="MissingTranslation">چوبهٔ دار</string>
+    <string name="osm_speed_camera" tools:ignore="MissingTranslation">دوربین کنترل سرعت</string>
+    <string name="osm_siren" tools:ignore="MissingTranslation">آژیر</string>
+    <string name="osm_pylon" tools:ignore="MissingTranslation">پایلون</string>
+    <string name="osm_mineshaft" tools:ignore="MissingTranslation">شفت معدن</string>
+    <string name="osm_flagpole" tools:ignore="MissingTranslation">میلهٔ پرچم</string>
+    <string name="osm_optical_telegraph" tools:ignore="MissingTranslation">تلگراف نوری</string>
+    <string name="osm_cannon" tools:ignore="MissingTranslation">توپ تاریخی</string>
+    <string name="osm_boundary_stone" tools:ignore="MissingTranslation">سنگ مرزی</string>
+    <string name="osm_shed" tools:ignore="MissingTranslation">آلونک</string>
+    <string name="osm_traffic_cones" tools:ignore="MissingTranslation">مخروط‌های ترافیکی</string>
+    <string name="osm_firepit" tools:ignore="MissingTranslation">آتشدان</string>
+    <string name="osm_stone" tools:ignore="MissingTranslation">سنگ ایستاده</string>
+    <string name="osm_surveillance" tools:ignore="MissingTranslation">سیستم نظارتی</string>
+    <string name="osm_monitoring_station" tools:ignore="MissingTranslation">ایستگاه پایش</string>
+    <string name="osm_wayside_shrine" tools:ignore="MissingTranslation">زیارتگاه کنار راه</string>
+    <string name="osm_wayside_cross" tools:ignore="MissingTranslation">صلیب کنار راه</string>
+    <string name="osm_tomb" tools:ignore="MissingTranslation">مقبره</string>
+    <string name="osm_traffic_signals" tools:ignore="MissingTranslation">چراغ راهنمایی و رانندگی</string>
+    <string name="osm_hut" tools:ignore="MissingTranslation">کلبه</string>
+    <string name="osm_static_caravan" tools:ignore="MissingTranslation">کاروان ثابت</string>
+    <string name="osm_bollard" tools:ignore="MissingTranslation">ستونک</string>
+    <string name="osm_block" tools:ignore="MissingTranslation">بلوک</string>
+    <string name="osm_waste_disposal" tools:ignore="MissingTranslation">محل دفع زباله</string>
+    <string name="osm_photo_booth" tools:ignore="MissingTranslation">غرفهٔ عکاسی</string>
+    <string name="osm_bbq" tools:ignore="MissingTranslation">باربیکیو</string>
+    <string name="osm_shop" tools:ignore="MissingTranslation">فروشگاه</string>
+    <string name="osm_newsagent" tools:ignore="MissingTranslation">روزنامه‌فروشی</string>
+    <string name="osm_anime" tools:ignore="MissingTranslation">فروشگاه انیمه</string>
+    <string name="osm_musical_instrument" tools:ignore="MissingTranslation">فروشگاه آلات موسیقی</string>
+    <string name="osm_vacuum_cleaner" tools:ignore="MissingTranslation">فروشگاه جاروبرقی</string>
+    <string name="osm_mobile_phone" tools:ignore="MissingTranslation">فروشگاه موبایل</string>
+    <string name="osm_carpet" tools:ignore="MissingTranslation">فروشگاه فرش</string>
+    <string name="osm_trade" tools:ignore="MissingTranslation">فروشگاه تجاری</string>
+    <string name="osm_garden_centre" tools:ignore="MissingTranslation">مرکز باغبانی</string>
+    <string name="osm_florist" tools:ignore="MissingTranslation">گل‌فروشی</string>
+    <string name="osm_fireplace" tools:ignore="MissingTranslation">شومینه</string>
+    <string name="osm_massage" tools:ignore="MissingTranslation">ماساژ</string>
+    <string name="osm_herbalist" tools:ignore="MissingTranslation">عطاری</string>
+    <string name="osm_bag" tools:ignore="MissingTranslation">کیف‌فروشی</string>
+    <string name="osm_pastry" tools:ignore="MissingTranslation">قنادی</string>
+    <string name="osm_deli" tools:ignore="MissingTranslation">فروشگاه غذاهای آماده</string>
+    <string name="osm_beverages" tools:ignore="MissingTranslation">نوشیدنی‌فروشی</string>
+    <string name="osm_alcohol" tools:ignore="MissingTranslation">فروشگاه مشروبات الکلی</string>
+    <string name="osm_substation" tools:ignore="MissingTranslation">پست برق</string>
+    <string name="osm_travel_agent" tools:ignore="MissingTranslation">آژانس مسافرتی</string>
+    <string name="osm_research" tools:ignore="MissingTranslation">مرکز پژوهشی</string>
+    <string name="osm_newspaper" tools:ignore="MissingTranslation">روزنامه‌فروشی</string>
+    <string name="osm_ammunition" tools:ignore="MissingTranslation">فروشگاه مهمات</string>
+    <string name="osm_wildlife_hide" tools:ignore="MissingTranslation">پناهگاه مشاهده حیات‌وحش</string>
+    <string name="osm_watchmaker" tools:ignore="MissingTranslation">ساعت‌فروشی و تعمیرات</string>
+    <string name="osm_tinsmith" tools:ignore="MissingTranslation">کارگاه ساخت ظروف فلزی</string>
+    <string name="osm_sun_protection" tools:ignore="MissingTranslation">فروشگاه محصولات ضدآفتاب</string>
+    <string name="osm_sculptor" tools:ignore="MissingTranslation">آتلیه مجسمه‌سازی</string>
+    <string name="osm_metal_construction" tools:ignore="MissingTranslation">کارگاه ساخت سازه‌های فلزی</string>
+    <string name="osm_handicraft" tools:ignore="MissingTranslation">فروشگاه صنایع دستی</string>
+    <string name="osm_cowshed" tools:ignore="MissingTranslation">طویله</string>
+    <string name="osm_cabin" tools:ignore="MissingTranslation">کلبه</string>
+    <string name="osm_barn" tools:ignore="MissingTranslation">انبار مزرعه</string>
+    <string name="osm_warehouse" tools:ignore="MissingTranslation">انبار</string>
+    <string name="osm_houseboat" tools:ignore="MissingTranslation">قایق مسکونی</string>
+    <string name="osm_book_store" tools:ignore="MissingTranslation">کتابفروشی</string>
+    <string name="osm_generic_place" tools:ignore="MissingTranslation">محل</string>
+    <string name="osm_hunting_stand" tools:ignore="MissingTranslation">سکوی شکار</string>
+    <string name="osm_game_feeding" tools:ignore="MissingTranslation">محل تغذیه حیات‌وحش</string>
+    <string name="osm_crypt" tools:ignore="MissingTranslation">آرامگاه زیرزمینی</string>
+    <string name="osm_animal_shelter" tools:ignore="MissingTranslation">پناهگاه حیوانات</string>
+    <string name="osm_animal_boarding" tools:ignore="MissingTranslation">پانسیون حیوانات</string>
+    <string name="osm_blood_donation" tools:ignore="MissingTranslation">مرکز اهدای خون</string>
+    <string name="osm_nursing_home" tools:ignore="MissingTranslation">خانه سالمندان</string>
+    <string name="osm_dentist" tools:ignore="MissingTranslation">دندان‌پزشک</string>
+    <string name="osm_baby_hatch" tools:ignore="MissingTranslation">محفظه تحویل ایمن نوزاد</string>
+    <string name="osm_language_school" tools:ignore="MissingTranslation">موسسه آموزش زبان</string>
+    <string name="osm_public_bookcase" tools:ignore="MissingTranslation">قفسه کتاب عمومی</string>
+    <string name="osm_biergarten" tools:ignore="MissingTranslation">بیرگارتن (باغ آبجو)</string>
+    <string name="osm_running" tools:ignore="MissingTranslation">مسیر دویدن</string>
+    <string name="osm_glaziery" tools:ignore="MissingTranslation">کارگاه شیشه‌گری</string>
+    <string name="osm_garages" tools:ignore="MissingTranslation">گاراژها</string>
+    <string name="osm_retail" tools:ignore="MissingTranslation">فروشگاه خرده‌فروشی</string>
+    <string name="osm_hotel" tools:ignore="MissingTranslation">هتل</string>
+    <string name="osm_camp_site" tools:ignore="MissingTranslation">محل کمپ</string>
+    <string name="osm_rugby_league" tools:ignore="MissingTranslation">زمین راگبی</string>
+    <string name="osm_roller_skating" tools:ignore="MissingTranslation">پیست رولر اسکیت</string>
+    <string name="osm_multi" tools:ignore="MissingTranslation">چندمنظوره</string>
+    <string name="osm_ice_hockey" tools:ignore="MissingTranslation">هاکی روی یخ</string>
+    <string name="osm_hapkido" tools:ignore="MissingTranslation">هاپکیدو</string>
+    <string name="osm_croquet" tools:ignore="MissingTranslation">کروکه</string>
+    <string name="osm_cricket" tools:ignore="MissingTranslation">کریکت</string>
+    <string name="osm_cockfighting" tools:ignore="MissingTranslation">مبارزه خروس‌ها</string>
+    <string name="osm_boxing" tools:ignore="MissingTranslation">بوکس</string>
+    <string name="osm_bmx" tools:ignore="MissingTranslation">پیست بی‌ام‌ایکس</string>
+    <string name="osm_billiards" tools:ignore="MissingTranslation">بیلیارد</string>
+    <string name="osm_toys" tools:ignore="MissingTranslation">فروشگاه اسباب‌بازی</string>
+    <string name="osm_pyrotechnics" tools:ignore="MissingTranslation">فروشگاه آتش‌بازی</string>
+    <string name="osm_laundry" tools:ignore="MissingTranslation">لاندری</string>
+    <string name="osm_funeral_directors" tools:ignore="MissingTranslation">دفتر خدمات تشییع جنازه</string>
+    <string name="osm_dry_cleaning" tools:ignore="MissingTranslation">خشکشویی</string>
+    <string name="osm_copyshop" tools:ignore="MissingTranslation">مرکز تکثیر و چاپ</string>
+    <string name="osm_chalet" tools:ignore="MissingTranslation">کلبهٔ کوهستانی</string>
+    <string name="osm_apartment" tools:ignore="MissingTranslation">آپارتمان</string>
+    <string name="osm_water_ski" tools:ignore="MissingTranslation">اسکی روی آب</string>
+    <string name="osm_water_polo" tools:ignore="MissingTranslation">واترپلو</string>
+    <string name="osm_table_soccer" tools:ignore="MissingTranslation">فوتبال دستی</string>
+    <string name="osm_table_tennis" tools:ignore="MissingTranslation">تنیس روی میز</string>
+    <string name="osm_skateboard" tools:ignore="MissingTranslation">اسکیت‌برد</string>
+    <string name="osm_sailing" tools:ignore="MissingTranslation">قایق‌رانی بادبانی</string>
+    <string name="osm_safety_training" tools:ignore="MissingTranslation">آموزش ایمنی</string>
+    <string name="osm_rowing" tools:ignore="MissingTranslation">قایق‌رانی پارویی</string>
+    <string name="osm_model_aerodrome" tools:ignore="MissingTranslation">محل پرواز هواپیماهای مدل</string>
+    <string name="osm_korfball" tools:ignore="MissingTranslation">کورف‌بال</string>
+    <string name="osm_ice_stock" tools:ignore="MissingTranslation">آیس‌استاک</string>
+    <string name="osm_gymnastics" tools:ignore="MissingTranslation">ژیمناستیک</string>
+    <string name="osm_football" tools:ignore="MissingTranslation">فوتبال</string>
+    <string name="osm_field_hockey" tools:ignore="MissingTranslation">هاکی روی چمن</string>
+    <string name="osm_equestrian" tools:ignore="MissingTranslation">سوارکاری</string>
+    <string name="osm_cycling" tools:ignore="MissingTranslation">دوچرخه‌سواری</string>
+    <string name="osm_curling" tools:ignore="MissingTranslation">کرلینگ</string>
+    <string name="osm_cricket_nets" tools:ignore="MissingTranslation">تورهای تمرینی کریکت</string>
+    <string name="osm_cliff_diving" tools:ignore="MissingTranslation">پرش از صخره</string>
+    <string name="osm_boules" tools:ignore="MissingTranslation">پتانک (بُولز)</string>
+    <string name="osm_bobsleigh" tools:ignore="MissingTranslation">بوبسلی (سرسرهٔ یخی)</string>
+    <string name="osm_baseball" tools:ignore="MissingTranslation">بیسبال</string>
+    <string name="osm_aikido" tools:ignore="MissingTranslation">آیکیدو</string>
+    <string name="osm_10pin" tools:ignore="MissingTranslation">بولینگ ده‌پین</string>
+    <string name="osm_weapons" tools:ignore="MissingTranslation">فروشگاه اسلحه و مهمات</string>
+    <string name="osm_pet" tools:ignore="MissingTranslation">فروشگاه حیوانات خانگی</string>
+    <string name="osm_money_lender" tools:ignore="MissingTranslation">موسسه وام‌دهی</string>
+    <string name="osm_gift" tools:ignore="MissingTranslation">فروشگاه هدایا و سوغات</string>
+    <string name="osm_books" tools:ignore="MissingTranslation">کتاب‌فروشی</string>
+    <string name="osm_bookmaker" tools:ignore="MissingTranslation">دفتر شرط‌بندی</string>
+    <string name="osm_photo" tools:ignore="MissingTranslation">آتلیه عکاسی</string>
+    <string name="osm_craft" tools:ignore="MissingTranslation">فروشگاه صنایع‌دستی</string>
+    <string name="osm_motorcycle" tools:ignore="MissingTranslation">فروشگاه موتورسیکلت</string>
+    <string name="osm_hunting" tools:ignore="MissingTranslation">فروشگاه تجهیزات شکار</string>
+    <string name="osm_window_blind" tools:ignore="MissingTranslation">فروشگاه کرکره‌های پنجره</string>
+    <string name="osm_curtain" tools:ignore="MissingTranslation">فروشگاه پرده</string>
+    <string name="osm_antiques" tools:ignore="MissingTranslation">فروشگاه عتیقه‌جات</string>
+    <string name="osm_paint" tools:ignore="MissingTranslation">فروشگاه رنگ</string>
+    <string name="osm_tattoo" tools:ignore="MissingTranslation">استودیو تتو</string>
+    <string name="osm_nutrition_supplements" tools:ignore="MissingTranslation">فروشگاه مکمل‌های تغذیه‌ای</string>
+    <string name="osm_hearing_aids" tools:ignore="MissingTranslation">فروشگاه سمعک</string>
+    <string name="osm_cosmetics" tools:ignore="MissingTranslation">فروشگاه لوازم آرایشی</string>
+    <string name="osm_watches" tools:ignore="MissingTranslation">فروشگاه ساعت</string>
+    <string name="osm_jewelry" tools:ignore="MissingTranslation">فروشگاه جواهرات</string>
+    <string name="osm_boutique" tools:ignore="MissingTranslation">بوتیک</string>
+    <string name="osm_baby_goods" tools:ignore="MissingTranslation">فروشگاه لوازم نوزاد و کودک</string>
+    <string name="osm_tea" tools:ignore="MissingTranslation">چای‌فروشی</string>
+    <string name="osm_pasta" tools:ignore="MissingTranslation">فروشگاه پاستا</string>
+    <string name="osm_coffee" tools:ignore="MissingTranslation">کافه</string>
+    <string name="osm_quango" tools:ignore="MissingTranslation">نهاد شبه‌دولتی</string>
+    <string name="osm_political_party" tools:ignore="MissingTranslation">حزب سیاسی</string>
+    <string name="osm_association" tools:ignore="MissingTranslation">انجمن</string>
+    <string name="osm_architect" tools:ignore="MissingTranslation">دفتر معماری</string>
+    <string name="osm_advertising_agency" tools:ignore="MissingTranslation">آژانس تبلیغاتی</string>
+    <string name="osm_summer_camp" tools:ignore="MissingTranslation">اردوگاه تابستانی</string>
+    <string name="osm_dance" tools:ignore="MissingTranslation">استودیو رقص</string>
+    <string name="osm_amusement_arcade" tools:ignore="MissingTranslation">سالن بازی (آرکید)</string>
+    <string name="osm_adult_gaming_centre" tools:ignore="MissingTranslation">مرکز بازی مخصوص بزرگسالان</string>
+    <string name="osm_window_construction" tools:ignore="MissingTranslation">کارگاه ساخت و نصب پنجره</string>
+    <string name="osm_upholsterer" tools:ignore="MissingTranslation">روکش‌کار مبلمان</string>
+    <string name="osm_shoemaker" tools:ignore="MissingTranslation">کفاش</string>
+    <string name="osm_sawmill" tools:ignore="MissingTranslation">کارگاه چوب‌بری</string>
+    <string name="osm_pottery" tools:ignore="MissingTranslation">کارگاه سفالگری</string>
+    <string name="osm_key_cutter" tools:ignore="MissingTranslation">کلیدسازی</string>
+    <string name="osm_hvac" tools:ignore="MissingTranslation">پیمانکار تهویه مطبوع (HVAC)</string>
+    <string name="osm_clockmaker" tools:ignore="MissingTranslation">ساعت‌ساز</string>
+    <string name="osm_carpenter" tools:ignore="MissingTranslation">نجار</string>
+    <string name="osm_builder" tools:ignore="MissingTranslation">پیمانکار ساختمان</string>
+    <string name="osm_bookbinder" tools:ignore="MissingTranslation">صحاف</string>
+    <string name="osm_boatbuilder" tools:ignore="MissingTranslation">قایق‌ساز</string>
+    <string name="osm_brewery" tools:ignore="MissingTranslation">کارخانه آبجوسازی</string>
+    <string name="osm_blacksmith" tools:ignore="MissingTranslation">آهنگر</string>
+    <string name="osm_basket_maker" tools:ignore="MissingTranslation">سازنده سبد</string>
+    <string name="osm_greenhouse" tools:ignore="MissingTranslation">گلخانه</string>
+    <string name="osm_farm_auxiliary" tools:ignore="MissingTranslation">ساختمان جانبی مزرعه</string>
+    <string name="osm_civic" tools:ignore="MissingTranslation">ساختمان عمومی</string>
+    <string name="osm_bungalow" tools:ignore="MissingTranslation">بنگالو</string>
+    <string name="osm_detached" tools:ignore="MissingTranslation">خانه مستقل</string>
+    <string name="osm_hair_dresser" tools:ignore="MissingTranslation">آرایشگاه</string>
+    <string name="osm_clothing_store" tools:ignore="MissingTranslation">فروشگاه لباس</string>
+    <string name="osm_user" tools:ignore="MissingTranslation">کاربر</string>
+    <string name="osm_dojo" tools:ignore="MissingTranslation">دوجو (باشگاه رزمی)</string>
+    <string name="osm_nightclub" tools:ignore="MissingTranslation">کلوپ شبانه</string>
+    <string name="osm_community_centre" tools:ignore="MissingTranslation">مرکز اجتماعی محلی</string>
+    <string name="osm_brothel" tools:ignore="MissingTranslation">خانه فحشا</string>
+    <string name="osm_veterinary" tools:ignore="MissingTranslation">کلینیک دامپزشکی</string>
+    <string name="osm_social_facility" tools:ignore="MissingTranslation">مرکز خدمات اجتماعی</string>
+    <string name="osm_clinic" tools:ignore="MissingTranslation">کلینیک</string>
+    <string name="osm_charging_station" tools:ignore="MissingTranslation">ایستگاه شارژ خودروهای برقی</string>
+    <string name="osm_kindergarten" tools:ignore="MissingTranslation">مهدکودک</string>
+    <string name="osm_ice_cream" tools:ignore="MissingTranslation">بستنی‌فروشی</string>
+    <string name="osm_fast_food" tools:ignore="MissingTranslation">فست‌فود</string>
+    <string name="osm_commercial" tools:ignore="MissingTranslation">ساختمان تجاری</string>
+    <string name="osm_canoe" tools:ignore="MissingTranslation">قایقرانی با کانو</string>
+    <string name="osm_scuba_diving" tools:ignore="MissingTranslation">غواصی اسکوبا</string>
+    <string name="osm_fishing" tools:ignore="MissingTranslation">ماهیگیری</string>
+    <string name="osm_optician" tools:ignore="MissingTranslation">فروشگاه عینک</string>
+    <string name="osm_confectionery" tools:ignore="MissingTranslation">فروشگاه شیرینی و شکلات</string>
+    <string name="osm_bunker" tools:ignore="MissingTranslation">پناهگاه زیرزمینی</string>
+    <string name="osm_sleeping_pods" tools:ignore="MissingTranslation">کپسول خواب</string>
+    <string name="osm_motel" tools:ignore="MissingTranslation">موتل (مسافرخانه کنار جاده)</string>
+    <string name="osm_guest_house" tools:ignore="MissingTranslation">مهمان‌خانه</string>
+    <string name="osm_wrestling" tools:ignore="MissingTranslation">کشتی</string>
+    <string name="osm_toboggan" tools:ignore="MissingTranslation">مسیر سورتمه‌سواری</string>
+    <string name="osm_skiing" tools:ignore="MissingTranslation">پیست اسکی</string>
+    <string name="osm_rc_car" tools:ignore="MissingTranslation">مسیر ماشین‌های کنترلی (RC)</string>
+    <string name="osm_paddle_tennis" tools:ignore="MissingTranslation">پدل (تنیس پدل)</string>
+    <string name="osm_hockey" tools:ignore="MissingTranslation">هاکی</string>
+    <string name="osm_fencing" tools:ignore="MissingTranslation">شمشیربازی</string>
+    <string name="osm_bowls" tools:ignore="MissingTranslation">بولز (بازی چمن)</string>
+    <string name="osm_badminton" tools:ignore="MissingTranslation">بدمینتون</string>
+    <string name="osm_archery" tools:ignore="MissingTranslation">تیراندازی با کمان</string>
+    <string name="osm_american_football" tools:ignore="MissingTranslation">فوتبال آمریکایی</string>
+    <string name="osm_travel_agency" tools:ignore="MissingTranslation">آژانس مسافرتی</string>
+    <string name="osm_tobacco" tools:ignore="MissingTranslation">فروشگاه دخانیات</string>
+    <string name="osm_e_cigarette" tools:ignore="MissingTranslation">فروشگاه سیگار الکترونیکی (ویپ)</string>
+    <string name="osm_video" tools:ignore="MissingTranslation">فروشگاه ویدئو و فیلم</string>
+    <string name="osm_car_repair" tools:ignore="MissingTranslation">تعمیرگاه خودرو</string>
+    <string name="osm_hifi" tools:ignore="MissingTranslation">فروشگاه های‌فای</string>
+    <string name="osm_lamps" tools:ignore="MissingTranslation">فروشگاه لوازم روشنایی</string>
+    <string name="osm_kitchen" tools:ignore="MissingTranslation">فروشگاه لوازم آشپزخانه</string>
+    <string name="osm_interior_decoration" tools:ignore="MissingTranslation">فروشگاه دکوراسیون داخلی</string>
+    <string name="osm_houseware" tools:ignore="MissingTranslation">فروشگاه لوازم خانه</string>
+    <string name="osm_erotic" tools:ignore="MissingTranslation">فروشگاه محصولات بزرگسالان (اروتیک)</string>
+    <string name="osm_beauty" tools:ignore="MissingTranslation">فروشگاه زیبایی و آرایشی</string>
+    <string name="osm_wine" tools:ignore="MissingTranslation">فروشگاه شراب</string>
+    <string name="osm_dairy" tools:ignore="MissingTranslation">فروشگاه لبنیات</string>
+    <string name="osm_cheese" tools:ignore="MissingTranslation">فروشگاه پنیر</string>
+    <string name="osm_bakery" tools:ignore="MissingTranslation">نانوایی و قنادی</string>
+    <string name="osm_telecommunication" tools:ignore="MissingTranslation">فروشگاه مخابرات و تلفن</string>
+    <string name="osm_tax" tools:ignore="MissingTranslation">اداره مالیات</string>
+    <string name="osm_real_estate_agent" tools:ignore="MissingTranslation">مشاور املاک</string>
+    <string name="osm_notary" tools:ignore="MissingTranslation">دفتر اسناد رسمی</string>
+    <string name="osm_ngo" tools:ignore="MissingTranslation">دفتر سازمان غیردولتی (NGO)</string>
+    <string name="osm_lawyer" tools:ignore="MissingTranslation">دفتر وکالت</string>
+    <string name="osm_it" tools:ignore="MissingTranslation">خدمات فناوری اطلاعات</string>
+    <string name="osm_foundation" tools:ignore="MissingTranslation">بنیاد</string>
+    <string name="osm_employment_agency" tools:ignore="MissingTranslation">دفتر کاریابی</string>
+    <string name="osm_educational_institution" tools:ignore="MissingTranslation">مؤسسه آموزشی</string>
+    <string name="osm_adoption_agency" tools:ignore="MissingTranslation">آژانس فرزندخواندگی</string>
+    <string name="osm_miniature_golf" tools:ignore="MissingTranslation">مینی‌گلف</string>
+    <string name="osm_building" tools:ignore="MissingTranslation">ساختمان</string>
+    <string name="osm_winery" tools:ignore="MissingTranslation">شراب‌سازی (کارگاه تولید شراب)</string>
+    <string name="osm_tiler" tools:ignore="MissingTranslation">کاشی‌کار</string>
+    <string name="osm_chimney_sweeper" tools:ignore="MissingTranslation">پاک‌کننده دودکش</string>
+    <string name="osm_stand_builder" tools:ignore="MissingTranslation">غرفه‌ساز</string>
+    <string name="osm_saddler" tools:ignore="MissingTranslation">زین‌دوز</string>
+    <string name="osm_plumber" tools:ignore="MissingTranslation">لوله‌کش</string>
+    <string name="osm_plasterer" tools:ignore="MissingTranslation">گچ‌کار</string>
+    <string name="osm_painter" tools:ignore="MissingTranslation">نقاش ساختمان</string>
+    <string name="osm_jeweller" tools:ignore="MissingTranslation">جواهرفروشی</string>
+    <string name="osm_floorer" tools:ignore="MissingTranslation">نصاب کف</string>
+    <string name="osm_distillery" tools:ignore="MissingTranslation">کارخانه تقطیر</string>
+    <string name="osm_carpet_layer" tools:ignore="MissingTranslation">نصاب فرش</string>
+    <string name="osm_beekeeper" tools:ignore="MissingTranslation">زنبوردار</string>
+    <string name="osm_public" tools:ignore="MissingTranslation">عمومی</string>
+    <string name="osm_dormitory" tools:ignore="MissingTranslation">خوابگاه</string>
+    <string name="osm_apartments" tools:ignore="MissingTranslation">آپارتمان‌ها</string>
+    <string name="osm_internet_cafe" tools:ignore="MissingTranslation">کافه اینترنت</string>
+    <string name="osm_shoe_shop" tools:ignore="MissingTranslation">کفش‌فروشی</string>
+    <string name="osm_generic_shop" tools:ignore="MissingTranslation">فروشگاه</string>
+    <string name="osm_coffee_shop" tools:ignore="MissingTranslation">کافه</string>
+    <string name="osm_coworking_space" tools:ignore="MissingTranslation">فضای کار اشتراکی</string>
+    <string name="osm_stripclub" tools:ignore="MissingTranslation">باشگاه رقص برهنه (نمایش بزرگسالان)</string>
+    <string name="osm_ev_charging" tools:ignore="MissingTranslation">ایستگاه شارژ خودرو برقی</string>
+    <string name="osm_pub" tools:ignore="MissingTranslation">پاب</string>
+    <string name="osm_obstacle_course" tools:ignore="MissingTranslation">مسیر موانع</string>
+    <string name="osm_volleyball" tools:ignore="MissingTranslation">زمین والیبال</string>
+    <string name="osm_tennis" tools:ignore="MissingTranslation">زمین تنیس</string>
+    <string name="osm_soccer" tools:ignore="MissingTranslation">زمین فوتبال</string>
+    <string name="osm_shooting" tools:ignore="MissingTranslation">محل تیراندازی</string>
+    <string name="osm_rugby_union" tools:ignore="MissingTranslation">زمین راگبی</string>
+    <string name="osm_orienteering" tools:ignore="MissingTranslation">اورینتیرینگ (جهت‌یابی ورزشی)</string>
+    <string name="osm_netball" tools:ignore="MissingTranslation">زمین نت‌بال</string>
+    <string name="osm_motor" tools:ignore="MissingTranslation">فروشگاه خودرو</string>
+    <string name="osm_kitesurfing" tools:ignore="MissingTranslation">کایت‌سواری</string>
+    <string name="osm_karting" tools:ignore="MissingTranslation">پیست کارتینگ</string>
+    <string name="osm_judo" tools:ignore="MissingTranslation">جودو</string>
+    <string name="osm_horseshoes" tools:ignore="MissingTranslation">محل بازی نعل‌اسب</string>
+    <string name="osm_handball" tools:ignore="MissingTranslation">زمین هندبال</string>
+    <string name="osm_golf" tools:ignore="MissingTranslation">زمین گلف</string>
+    <string name="osm_gaelic_games" tools:ignore="MissingTranslation">بازی‌های گِلیک</string>
+    <string name="osm_diving" tools:ignore="MissingTranslation">غواصی</string>
+    <string name="osm_darts" tools:ignore="MissingTranslation">دارت</string>
+    <string name="osm_climbing_adventure" tools:ignore="MissingTranslation">سالن صعود ماجراجویانه</string>
+    <string name="osm_basketball" tools:ignore="MissingTranslation">زمین بسکتبال</string>
+    <string name="osm_bandy" tools:ignore="MissingTranslation">زمین بَندی (ورزش روی یخ)</string>
+    <string name="osm_australian_football" tools:ignore="MissingTranslation">زمین فوتبال استرالیایی</string>
+    <string name="osm_9pin" tools:ignore="MissingTranslation">بولینگ ۹ میخی</string>
+    <string name="osm_vacant" tools:ignore="MissingTranslation">خالی</string>
+    <string name="osm_lottery" tools:ignore="MissingTranslation">فروشگاه بخت‌آزمایی</string>
+    <string name="osm_trophy" tools:ignore="MissingTranslation">فروشگاه کاپ و مدال</string>
+    <string name="osm_music" tools:ignore="MissingTranslation">فروشگاه موسیقی</string>
+    <string name="osm_games" tools:ignore="MissingTranslation">فروشگاه بازی</string>
+    <string name="osm_tyres" tools:ignore="MissingTranslation">فروشگاه لاستیک</string>
+    <string name="osm_sports" tools:ignore="MissingTranslation">فروشگاه لوازم ورزشی</string>
+    <string name="osm_outdoor" tools:ignore="MissingTranslation">فروشگاه تجهیزات فضای باز</string>
+    <string name="osm_car" tools:ignore="MissingTranslation">نمایندگی خودرو</string>
+    <string name="osm_electronics" tools:ignore="MissingTranslation">فروشگاه لوازم الکترونیکی</string>
+    <string name="osm_computer" tools:ignore="MissingTranslation">فروشگاه کامپیوتر</string>
+    <string name="osm_furniture" tools:ignore="MissingTranslation">فروشگاه مبلمان</string>
+    <string name="osm_candles" tools:ignore="MissingTranslation">فروشگاه شمع</string>
+    <string name="osm_hardware" tools:ignore="MissingTranslation">فروشگاه ابزارآلات</string>
+    <string name="osm_gas" tools:ignore="MissingTranslation">ایستگاه سوخت</string>
+    <string name="osm_energy" tools:ignore="MissingTranslation">شرکت انرژی</string>
+    <string name="osm_doityourself" tools:ignore="MissingTranslation">فروشگاه ابزار و لوازم تعمیرات خانگی</string>
+    <string name="osm_bathroom_furnishing" tools:ignore="MissingTranslation">فروشگاه لوازم سرویس بهداشتی</string>
+    <string name="osm_medical_supply" tools:ignore="MissingTranslation">فروشگاه تجهیزات پزشکی</string>
+    <string name="osm_variety_store" tools:ignore="MissingTranslation">فروشگاه همه‌چیزفروش</string>
+    <string name="osm_second_hand" tools:ignore="MissingTranslation">فروشگاه کالای دست‌دوم</string>
+    <string name="osm_charity" tools:ignore="MissingTranslation">فروشگاه خیریه</string>
+    <string name="osm_fashion" tools:ignore="MissingTranslation">فروشگاه مد</string>
+    <string name="osm_fabric" tools:ignore="MissingTranslation">فروشگاه پارچه</string>
+    <string name="osm_clothes" tools:ignore="MissingTranslation">فروشگاه پوشاک</string>
+    <string name="osm_butcher" tools:ignore="MissingTranslation">قصابی</string>
+    <string name="osm_water_utility" tools:ignore="MissingTranslation">شرکت تأمین آب</string>
+    <string name="osm_realtor" tools:ignore="MissingTranslation">مشاور املاک</string>
+    <string name="osm_company" tools:ignore="MissingTranslation">شرکت</string>
+    <string name="osm_accountant" tools:ignore="MissingTranslation">حسابدار</string>
+    <string name="osm_bunker_silo" tools:ignore="MissingTranslation">سیلوی انباری</string>
+    <string name="osm_hackerspace" tools:ignore="MissingTranslation">فضای کار اشتراکی فناوری</string>
+    <string name="osm_lifeguard_base" tools:ignore="MissingTranslation">پایگاه غریق‌نجات</string>
+    <string name="osm_roofer" tools:ignore="MissingTranslation">سقف‌کار</string>
+    <string name="osm_rigger" tools:ignore="MissingTranslation">ریگر (نصاب تجهیزات بالابری)</string>
+    <string name="osm_parquet_layer" tools:ignore="MissingTranslation">نصاب پارکت</string>
+    <string name="osm_gardener" tools:ignore="MissingTranslation">باغبان</string>
+    <string name="osm_stable" tools:ignore="MissingTranslation">اصطبل</string>
+    <string name="osm_garage" tools:ignore="MissingTranslation">گاراژ</string>
+    <string name="osm_transportation" tools:ignore="MissingTranslation">تأسیسات حمل‌و‌نقل</string>
+    <string name="osm_house" tools:ignore="MissingTranslation">خانه</string>
+    <string name="osm_helipad" tools:ignore="MissingTranslation">هلی‌پد</string>
+    <string name="osm_apron" tools:ignore="MissingTranslation">اپرون (محوطه پارک و بارگیری هواپیما)</string>
+    <string name="osm_consumer_electronics_store" tools:ignore="MissingTranslation">فروشگاه لوازم الکترونیکی</string>
+    <string name="osm_speciality_store" tools:ignore="MissingTranslation">فروشگاه تخصصی</string>
+    <string name="osm_defined" tools:ignore="MissingTranslation">تعریف‌شده</string>
+    <string name="osm_sauna" tools:ignore="MissingTranslation">سونا</string>
+    <string name="osm_gym" tools:ignore="MissingTranslation">باشگاه ورزشی</string>
+    <string name="osm_crematorium" tools:ignore="MissingTranslation">کرماتوریوم</string>
+    <string name="osm_gambling" tools:ignore="MissingTranslation">قمارخانه</string>
+    <string name="osm_music_school" tools:ignore="MissingTranslation">مدرسه موسیقی</string>
+    <string name="osm_bar" tools:ignore="MissingTranslation">بار</string>
+    <string name="osm_farm" tools:ignore="MissingTranslation">مزرعه</string>
+    <string name="osm_bicycle" tools:ignore="MissingTranslation">فروشگاه دوچرخه</string>
+    <string name="osm_tailor" tools:ignore="MissingTranslation">خیاط</string>
+    <string name="osm_locksmith" tools:ignore="MissingTranslation">کلیدساز</string>
+    <string name="osm_industrial" tools:ignore="MissingTranslation">صنعتی</string>
+    <string name="osm_wilderness_hut" tools:ignore="MissingTranslation">پناهگاه دورافتاده</string>
+    <string name="osm_hostel" tools:ignore="MissingTranslation">هاستل</string>
+    <string name="osm_caravan_site" tools:ignore="MissingTranslation">محل توقف کاروان</string>
+    <string name="osm_weightlifting" tools:ignore="MissingTranslation">سالن وزنه‌برداری</string>
+    <string name="osm_taekwondo" tools:ignore="MissingTranslation">باشگاه تکواندو</string>
+    <string name="osm_swimming" tools:ignore="MissingTranslation">استخر شنا</string>
+    <string name="osm_surfing" tools:ignore="MissingTranslation">محل موج‌سواری</string>
+    <string name="osm_skating" tools:ignore="MissingTranslation">پیست اسکیت</string>
+    <string name="osm_racquet" tools:ignore="MissingTranslation">تسهیلات ورزش‌های راکتی</string>
+    <string name="osm_pelota" tools:ignore="MissingTranslation">زمین پِلوتا (بسک پِلوتا)</string>
+    <string name="osm_paragliding" tools:ignore="MissingTranslation">محل پاراگلایدر</string>
+    <string name="osm_parachuting" tools:ignore="MissingTranslation">محل چتربازی</string>
+    <string name="osm_motocross" tools:ignore="MissingTranslation">پیست موتوکراس</string>
+    <string name="osm_ice_skating" tools:ignore="MissingTranslation">پیست اسکیت روی یخ</string>
+    <string name="osm_horse_racing" tools:ignore="MissingTranslation">پیست اسب‌دوانی</string>
+    <string name="osm_dog_racing" tools:ignore="MissingTranslation">پیست مسابقه سگ‌ها</string>
+    <string name="osm_climbing" tools:ignore="MissingTranslation">محل صخره‌نوردی</string>
+    <string name="osm_chess" tools:ignore="MissingTranslation">باشگاه شطرنج</string>
+    <string name="osm_canadian_football" tools:ignore="MissingTranslation">زمین فوتبال کانادایی</string>
+    <string name="osm_beachvolleyball" tools:ignore="MissingTranslation">زمین والیبال ساحلی</string>
+    <string name="osm_base" tools:ignore="MissingTranslation">پایگاه</string>
+    <string name="osm_athletics" tools:ignore="MissingTranslation">پیست دو و میدانی</string>
+    <string name="osm_pawnbroker" tools:ignore="MissingTranslation">مغازه رهن‌کالا</string>
+    <string name="osm_ticket" tools:ignore="MissingTranslation">گیشه بلیت</string>
+    <string name="osm_stationery" tools:ignore="MissingTranslation">فروشگاه لوازم‌التحریر</string>
+    <string name="osm_video_games" tools:ignore="MissingTranslation">فروشگاه بازی‌های ویدیویی</string>
+    <string name="osm_model" tools:ignore="MissingTranslation">فروشگاه ماکت و مدل</string>
+    <string name="osm_frame" tools:ignore="MissingTranslation">فروشگاه قاب</string>
+    <string name="osm_art" tools:ignore="MissingTranslation">گالری و فروشگاه آثار هنری</string>
+    <string name="osm_car_parts" tools:ignore="MissingTranslation">فروشگاه قطعات خودرو</string>
+    <string name="osm_radiotechnics" tools:ignore="MissingTranslation">فروشگاه تجهیزات رادیویی</string>
+    <string name="osm_bed" tools:ignore="MissingTranslation">فروشگاه تخت و سرویس خواب</string>
+    <string name="osm_garden_furniture" tools:ignore="MissingTranslation">فروشگاه مبلمان باغی</string>
+    <string name="osm_electrical" tools:ignore="MissingTranslation">فروشگاه تجهیزات برقی</string>
+    <string name="osm_perfumery" tools:ignore="MissingTranslation">عطرفروشی</string>
+    <string name="osm_hairdresser" tools:ignore="MissingTranslation">آرایشگاه</string>
+    <string name="osm_drugstore" tools:ignore="MissingTranslation">فروشگاه دارویی و بهداشتی</string>
+    <string name="osm_shoes" tools:ignore="MissingTranslation">فروشگاه کفش</string>
+    <string name="osm_leather" tools:ignore="MissingTranslation">فروشگاه محصولات چرمی</string>
+    <string name="osm_general" tools:ignore="MissingTranslation">فروشگاه عمومی</string>
+    <string name="osm_seafood" tools:ignore="MissingTranslation">ماهی‌فروشی</string>
+    <string name="osm_organic" tools:ignore="MissingTranslation">فروشگاه ارگانیک</string>
+    <string name="osm_greengrocer" tools:ignore="MissingTranslation">میوه و سبزی‌فروشی</string>
+    <string name="osm_chocolate" tools:ignore="MissingTranslation">شکلات‌فروشی</string>
+    <string name="osm_brewing_supplies" tools:ignore="MissingTranslation">فروشگاه لوازم آبجوسازی</string>
+    <string name="osm_tax_advisor" tools:ignore="MissingTranslation">مشاور مالیاتی</string>
+    <string name="osm_private_investigator" tools:ignore="MissingTranslation">کارآگاه خصوصی</string>
+    <string name="osm_government" tools:ignore="MissingTranslation">اداره دولتی</string>
+    <string name="osm_forestry" tools:ignore="MissingTranslation">جنگلداری</string>
+    <string name="osm_estate_agent" tools:ignore="MissingTranslation">مشاور املاک</string>
+    <string name="osm_spring" tools:ignore="MissingTranslation">چشمه</string>
+    <string name="osm_golf_course" tools:ignore="MissingTranslation">زمین گلف</string>
+    <string name="osm_ses_station" tools:ignore="MissingTranslation">ایستگاه خدمات اضطراری</string>
+    <string name="osm_lifeguard_place" tools:ignore="MissingTranslation">پست نجات‌غریق</string>
+    <string name="osm_stonemason" tools:ignore="MissingTranslation">سنگ‌تراش</string>
+    <string name="osm_scaffolder" tools:ignore="MissingTranslation">نصاب داربست</string>
+    <string name="osm_sailmaker" tools:ignore="MissingTranslation">سازنده بادبان</string>
+    <string name="osm_photographic_laboratory" tools:ignore="MissingTranslation">آزمایشگاه عکاسی</string>
+    <string name="osm_photographer" tools:ignore="MissingTranslation">عکاس</string>
+    <string name="osm_insulation" tools:ignore="MissingTranslation">عایق</string>
+    <string name="osm_electrician" tools:ignore="MissingTranslation">برق‌کار</string>
+    <string name="osm_dressmaker" tools:ignore="MissingTranslation">خیاط</string>
+    <string name="osm_caterer" tools:ignore="MissingTranslation">خدمات پذیرایی (کترینگ)</string>
+    <string name="osm_terrace" tools:ignore="MissingTranslation">تراس</string>
+    <string name="osm_toy_shop" tools:ignore="MissingTranslation">فروشگاه اسباب‌بازی</string>
+    <string name="osm_dive_centre" tools:ignore="MissingTranslation">مرکز غواصی</string>
+    <string name="osm_swingerclub" tools:ignore="MissingTranslation">باشگاه روابط جنسی (ویژهٔ بزرگسالان)</string>
+    <string name="osm_doctors" tools:ignore="MissingTranslation">مطب پزشکان</string>
+    <string name="osm_driving_school" tools:ignore="MissingTranslation">آموزشگاه رانندگی</string>
+    <string name="osm_free_flying" tools:ignore="MissingTranslation">منطقه پرواز آزاد (پرواز بدون موتور)</string>
+    <string name="osm_religion" tools:ignore="MissingTranslation">دین / مذهب</string>
+    <string name="osm_kiosk" tools:ignore="MissingTranslation">دکه</string>
+    <string name="osm_residential" tools:ignore="MissingTranslation">منطقه مسکونی</string>
+    <string name="osm_food" tools:ignore="MissingTranslation">محل عرضه غذا</string>
+    <string name="osm_waterfall" tools:ignore="MissingTranslation">آبشار</string>
+    <string name="osm_boatyard" tools:ignore="MissingTranslation">کارگاه کشتی‌سازی و تعمیر قایق</string>
+    <string name="osm_theme_park" tools:ignore="MissingTranslation">پارک موضوعی</string>
+    <string name="osm_roundhouse" tools:ignore="MissingTranslation">آشیانهٔ گردان لوکوموتیو</string>
+    <string name="osm_generator" tools:ignore="MissingTranslation">مولد برق</string>
+    <string name="osm_beach" tools:ignore="MissingTranslation">ساحل</string>
+    <string name="osm_naval_base" tools:ignore="MissingTranslation">پایگاه نیروی دریایی</string>
+    <string name="osm_works" tools:ignore="MissingTranslation">کارگاه صنعتی</string>
+    <string name="osm_water_works" tools:ignore="MissingTranslation">تأسیسات آب</string>
+    <string name="osm_telescope" tools:ignore="MissingTranslation">تلسکوپ</string>
+    <string name="osm_pier" tools:ignore="MissingTranslation">اسکله</string>
+    <string name="osm_observatory" tools:ignore="MissingTranslation">رصدخانه</string>
+    <string name="osm_reservoir" tools:ignore="MissingTranslation">مخزن آب</string>
+    <string name="osm_monument" tools:ignore="MissingTranslation">بنای یادبود</string>
+    <string name="osm_battlefield" tools:ignore="MissingTranslation">محل نبرد (تاریخی)</string>
+    <string name="osm_planetarium" tools:ignore="MissingTranslation">پلنتاریوم</string>
+    <string name="osm_social_centre" tools:ignore="MissingTranslation">مرکز اجتماعی</string>
+    <string name="osm_prison" tools:ignore="MissingTranslation">زندان</string>
+    <string name="osm_courthouse" tools:ignore="MissingTranslation">ساختمان دادگاه</string>
+    <string name="osm_bridge" tools:ignore="MissingTranslation">پل</string>
+    <string name="osm_hangar" tools:ignore="MissingTranslation">هَنگَر (آشیانهٔ هواپیما)</string>
+    <string name="osm_tower" tools:ignore="MissingTranslation">برج</string>
+    <string name="osm_attraction" tools:ignore="MissingTranslation">جاذبه</string>
+    <string name="osm_zoo" tools:ignore="MissingTranslation">باغ‌وحش</string>
+    <string name="osm_gallery" tools:ignore="MissingTranslation">نگارخانه</string>
+    <string name="osm_artwork" tools:ignore="MissingTranslation">اثر هنری</string>
+    <string name="osm_alpine_hut" tools:ignore="MissingTranslation">پناهگاه کوهستانی</string>
+    <string name="osm_plant" tools:ignore="MissingTranslation">کارخانهٔ صنعتی</string>
+    <string name="osm_insurance" tools:ignore="MissingTranslation">دفتر بیمه</string>
+    <string name="osm_airfield" tools:ignore="MissingTranslation">فرودگاه کوچک</string>
+    <string name="osm_water_tower" tools:ignore="MissingTranslation">برج آب</string>
+    <string name="osm_pumping_station" tools:ignore="MissingTranslation">ایستگاه پمپاژ</string>
+    <string name="osm_hot_water_tank" tools:ignore="MissingTranslation">مخزن آب گرم</string>
+    <string name="osm_campanile" tools:ignore="MissingTranslation">برج ناقوس</string>
+    <string name="osm_sports_centre" tools:ignore="MissingTranslation">مرکز ورزشی</string>
+    <string name="osm_fitness_centre" tools:ignore="MissingTranslation">باشگاه ورزشی</string>
+    <string name="osm_beach_resort" tools:ignore="MissingTranslation">استراحتگاه ساحلی</string>
+    <string name="osm_village_green" tools:ignore="MissingTranslation">فضای سبز روستا</string>
+    <string name="osm_ship" tools:ignore="MissingTranslation">کشتی</string>
+    <string name="osm_memorial" tools:ignore="MissingTranslation">یادمان</string>
+    <string name="osm_synagogue" tools:ignore="MissingTranslation">کنیسه</string>
+    <string name="osm_mosque" tools:ignore="MissingTranslation">مسجد</string>
+    <string name="osm_chapel" tools:ignore="MissingTranslation">کلیسای کوچک</string>
+    <string name="osm_cathedral" tools:ignore="MissingTranslation">کلیسای جامع</string>
+    <string name="osm_train_terminal" tools:ignore="MissingTranslation">ترمینال قطار</string>
+    <string name="osm_college" tools:ignore="MissingTranslation">کالج</string>
+    <string name="osm_arts_centre" tools:ignore="MissingTranslation">مرکز هنری</string>
+    <string name="osm_ranger_station" tools:ignore="MissingTranslation">ایستگاه محیط‌بانی</string>
+    <string name="osm_hospital" tools:ignore="MissingTranslation">بیمارستان</string>
+    <string name="osm_track" tools:ignore="MissingTranslation">پیست</string>
+    <string name="osm_conference_centre" tools:ignore="MissingTranslation">مرکز کنفرانس</string>
+    <string name="osm_viewpoint" tools:ignore="MissingTranslation">منظره‌گاه</string>
+    <string name="osm_supermarket" tools:ignore="MissingTranslation">سوپرمارکت</string>
+    <string name="osm_peak" tools:ignore="MissingTranslation">قله</string>
+    <string name="osm_storage_tank" tools:ignore="MissingTranslation">مخزن ذخیره</string>
+    <string name="osm_lighthouse" tools:ignore="MissingTranslation">فانوس دریایی</string>
+    <string name="osm_beacon" tools:ignore="MissingTranslation">چراغ نشانگر</string>
+    <string name="osm_port" tools:ignore="MissingTranslation">بندر</string>
+    <string name="osm_archaeological_site" tools:ignore="MissingTranslation">محوطهٔ باستانی</string>
+    <string name="osm_shrine" tools:ignore="MissingTranslation">زیارتگاه</string>
+    <string name="osm_church" tools:ignore="MissingTranslation">کلیسا</string>
+    <string name="osm_historic_monument" tools:ignore="MissingTranslation">اثر تاریخی</string>
+    <string name="osm_generic_landmark" tools:ignore="MissingTranslation">نقطهٔ شاخص</string>
+    <string name="osm_tourism_museum" tools:ignore="MissingTranslation">موزه</string>
+    <string name="osm_register_office" tools:ignore="MissingTranslation">ادارهٔ ثبت احوال</string>
+    <string name="osm_grave_yard" tools:ignore="MissingTranslation">گورستان</string>
+    <string name="osm_marketplace" tools:ignore="MissingTranslation">بازار</string>
+    <string name="osm_fire_station" tools:ignore="MissingTranslation">ایستگاه آتش‌نشانی</string>
+    <string name="osm_ruins" tools:ignore="MissingTranslation">ویرانه‌ها</string>
+    <string name="osm_weir" tools:ignore="MissingTranslation">بند (سد کوچک)</string>
+    <string name="osm_museum" tools:ignore="MissingTranslation">موزه</string>
+    <string name="osm_mall" tools:ignore="MissingTranslation">مرکز خرید</string>
+    <string name="osm_volcano" tools:ignore="MissingTranslation">آتشفشان</string>
+    <string name="osm_hot_spring" tools:ignore="MissingTranslation">چشمهٔ آب گرم</string>
+    <string name="osm_glacier" tools:ignore="MissingTranslation">یخچال طبیعی</string>
+    <string name="osm_wastewater_plant" tools:ignore="MissingTranslation">تصفیه‌خانهٔ فاضلاب</string>
+    <string name="osm_offshore_platform" tools:ignore="MissingTranslation">سکوی فراساحلی</string>
+    <string name="osm_gasometer" tools:ignore="MissingTranslation">مخزن گاز</string>
+    <string name="osm_water_park" tools:ignore="MissingTranslation">پارک آبی</string>
+    <string name="osm_bandstand" tools:ignore="MissingTranslation">سکوی اجرای موسیقی</string>
+    <string name="osm_wreck" tools:ignore="MissingTranslation">لاشه</string>
+    <string name="osm_pillory" tools:ignore="MissingTranslation">ستون رسوایی (دستگاه تنبیه عمومی تاریخی)</string>
+    <string name="osm_monastery" tools:ignore="MissingTranslation">صومعه</string>
+    <string name="osm_locomotive" tools:ignore="MissingTranslation">لوکوموتیو</string>
+    <string name="osm_fort" tools:ignore="MissingTranslation">دژ</string>
+    <string name="osm_services" tools:ignore="MissingTranslation">ایستگاه خدمات بین‌راهی</string>
+    <string name="osm_lifeguard_tower" tools:ignore="MissingTranslation">برج نجات‌غریق</string>
+    <string name="osm_temple" tools:ignore="MissingTranslation">معبد</string>
+    <string name="osm_national_park" tools:ignore="MissingTranslation">پارک ملی</string>
+    <string name="osm_heliport" tools:ignore="MissingTranslation">هلی‌پورت</string>
+    <string name="osm_public_park" tools:ignore="MissingTranslation">پارک عمومی</string>
+    <string name="osm_department_store" tools:ignore="MissingTranslation">فروشگاه بزرگ</string>
+    <string name="osm_studio" tools:ignore="MissingTranslation">استودیو</string>
+    <string name="osm_public_building" tools:ignore="MissingTranslation">ساختمان عمومی</string>
+    <string name="osm_clock" tools:ignore="MissingTranslation">ساعت عمومی</string>
+    <string name="osm_casino" tools:ignore="MissingTranslation">کازینو</string>
+    <string name="osm_stadium" tools:ignore="MissingTranslation">ورزشگاه</string>
+    <string name="osm_dam" tools:ignore="MissingTranslation">سد</string>
+    <string name="osm_dock" tools:ignore="MissingTranslation">اسکله</string>
+    <string name="osm_geyser" tools:ignore="MissingTranslation">آبفشان</string>
+    <string name="osm_bay" tools:ignore="MissingTranslation">خلیج</string>
+    <string name="osm_barracks" tools:ignore="MissingTranslation">پادگان</string>
+    <string name="osm_windmill" tools:ignore="MissingTranslation">آسیاب بادی</string>
+    <string name="osm_watermill" tools:ignore="MissingTranslation">آسیاب آبی</string>
+    <string name="osm_communications_tower" tools:ignore="MissingTranslation">برج مخابراتی</string>
+    <string name="osm_swimming_area" tools:ignore="MissingTranslation">منطقهٔ شنا</string>
+    <string name="osm_slipway" tools:ignore="MissingTranslation">سلیپ‌وی (رامپ راه‌اندازی قایق)</string>
+    <string name="osm_nature_reserve" tools:ignore="MissingTranslation">ذخیره‌گاه طبیعی</string>
+    <string name="osm_marina" tools:ignore="MissingTranslation">بندرگاه تفریحی</string>
+    <string name="osm_ice_rink" tools:ignore="MissingTranslation">پیست یخ</string>
+    <string name="osm_manor" tools:ignore="MissingTranslation">عمارت</string>
+    <string name="osm_city_gate" tools:ignore="MissingTranslation">دروازهٔ شهر</string>
+    <string name="osm_castle" tools:ignore="MissingTranslation">قلعهٔ تاریخی</string>
+    <string name="osm_aircraft" tools:ignore="MissingTranslation">هواپیما</string>
+    <string name="osm_digester" tools:ignore="MissingTranslation">تانک هاضم</string>
+    <string name="osm_sally_port" tools:ignore="MissingTranslation">ورودی محافظت‌شده</string>
+    <string name="osm_aerodrome" tools:ignore="MissingTranslation">هواپیماگاه</string>
+    <string name="osm_shopping_mall" tools:ignore="MissingTranslation">مرکز خرید</string>
+    <string name="osm_cinema" tools:ignore="MissingTranslation">سینما</string>
+    <string name="osm_rescue_station" tools:ignore="MissingTranslation">ایستگاه نجات</string>
+    <string name="osm_airport" tools:ignore="MissingTranslation">فرودگاه</string>
+    <string name="osm_theatre" tools:ignore="MissingTranslation">تئاتر</string>
+    <string name="osm_library" tools:ignore="MissingTranslation">کتابخانه</string>
+    <string name="osm_university" tools:ignore="MissingTranslation">دانشگاه</string>
+    <string name="osm_police" tools:ignore="MissingTranslation">ایستگاه پلیس</string>
+    <string name="osm_embassy" tools:ignore="MissingTranslation">سفارت</string>
+    <string name="osm_bus_station" tools:ignore="MissingTranslation">پایانهٔ اتوبوس</string>
+    <string name="osm_station" tools:ignore="MissingTranslation">ایستگاه</string>
+    <string name="osm_toll_booth" tools:ignore="MissingTranslation">گیشه عوارض</string>
+    <string name="osm_lift" tools:ignore="MissingTranslation">آسانسور</string>
+    <string name="osm_unmanaged_crossing" tools:ignore="MissingTranslation">عبورگاه بدون کنترل</string>
+    <string name="osm_pharmacy" tools:ignore="MissingTranslation">داروخانه</string>
+    <string name="osm_kneipp_water_cure" tools:ignore="MissingTranslation">آب‌درمانی کنایپ</string>
+    <string name="osm_food_court" tools:ignore="MissingTranslation">سالن غذاخوری</string>
+    <string name="osm_chemist" tools:ignore="MissingTranslation">داروخانه</string>
+    <string name="osm_checkpoint" tools:ignore="MissingTranslation">ایست بازرسی</string>
+    <string name="osm_dog_park" tools:ignore="MissingTranslation">پارک مخصوص سگ‌ها</string>
+    <string name="osm_kissing_gate" tools:ignore="MissingTranslation">دروازهٔ کیسینگ (گذرگاه پیاده؛ مانع عبور دام)</string>
+    <string name="osm_car_rental" tools:ignore="MissingTranslation">اجاره خودرو</string>
+    <string name="osm_pedestrianised_area" tools:ignore="MissingTranslation">منطقهٔ عابران پیاده</string>
+    <string name="osm_escalator" tools:ignore="MissingTranslation">پله برقی</string>
+    <string name="osm_shelter" tools:ignore="MissingTranslation">سرپناه</string>
+    <string name="osm_water_point" tools:ignore="MissingTranslation">نقطهٔ آب (شیر آب عمومی)</string>
+    <string name="osm_subway_entrance" tools:ignore="MissingTranslation">ورودی مترو</string>
+    <string name="osm_cave_entrance" tools:ignore="MissingTranslation">ورودی غار</string>
+    <string name="osm_swing_gate" tools:ignore="MissingTranslation">درب لولایی</string>
+    <string name="osm_stile" tools:ignore="MissingTranslation">پله‌گذر (برای عبور از حصار)</string>
+    <string name="osm_car_sharing" tools:ignore="MissingTranslation">خودروی اشتراکی</string>
+    <string name="osm_customer_service" tools:ignore="MissingTranslation">خدمات مشتریان</string>
+    <string name="osm_watering_place" tools:ignore="MissingTranslation">محل آب‌خوری دام</string>
+    <string name="osm_platform" tools:ignore="MissingTranslation">سکو</string>
+    <string name="osm_horse_stile" tools:ignore="MissingTranslation">گذرگاه مخصوص اسب</string>
+    <string name="osm_bureau_de_change" tools:ignore="MissingTranslation">صرافی</string>
+    <string name="osm_stairs" tools:ignore="MissingTranslation">پله‌ها</string>
+    <string name="osm_bicycle_rental" tools:ignore="MissingTranslation">اجاره دوچرخه</string>
+    <string name="osm_hampshire_gate" tools:ignore="MissingTranslation">دروازهٔ همپشر (نوعی دروازهٔ پیاده‌رو بریتانیا)</string>
+    <string name="osm_full_height_turnstile" tools:ignore="MissingTranslation">گیت گردان تمام‌قد</string>
+    <string name="osm_boat_sharing" tools:ignore="MissingTranslation">قایق اشتراکی</string>
+    <string name="osm_help_point" tools:ignore="MissingTranslation">نقطهٔ کمک</string>
+    <string name="osm_open_space" tools:ignore="MissingTranslation">فضای باز</string>
+    <string name="osm_spending_area" tools:ignore="MissingTranslation">منطقهٔ توقف کوتاه‌مدت</string>
+    <string name="osm_bicycle_repair_station" tools:ignore="MissingTranslation">ایستگاه تعمیر دوچرخه</string>
+    <string name="osm_motorcycle_barrier" tools:ignore="MissingTranslation">مانع ورود موتورسیکلت</string>
+    <string name="osm_kent_carriage_gap" tools:ignore="MissingTranslation">شکاف عبور کالسکه (کِنت)</string>
+    <string name="osm_shared_space" tools:ignore="MissingTranslation">فضای مشترک</string>
+    <string name="osm_cliff" tools:ignore="MissingTranslation">پرتگاه</string>
+    <string name="osm_training_area" tools:ignore="MissingTranslation">منطقهٔ تمرین</string>
+    <string name="osm_log" tools:ignore="MissingTranslation">کندهٔ درخت</string>
+    <string name="osm_jersey_barrier" tools:ignore="MissingTranslation">جداساز بتنی (جِرسی)</string>
+    <string name="osm_construction_site" tools:ignore="MissingTranslation">محل ساخت‌وساز</string>
+    <string name="osm_ridge" tools:ignore="MissingTranslation">خط‌الراس</string>
+    <string name="osm_nuclear_explosion_site" tools:ignore="MissingTranslation">محل انفجار هسته‌ای</string>
+    <string name="osm_dyke" tools:ignore="MissingTranslation">سد خاکی (دایک)</string>
+    <string name="osm_sump_buster" tools:ignore="MissingTranslation">مانع عبور خودروهای کم‌ارتفاع</string>
+    <string name="osm_rope" tools:ignore="MissingTranslation">طناب</string>
+    <string name="osm_debris" tools:ignore="MissingTranslation">آوار</string>
+    <string name="osm_road_works" tools:ignore="MissingTranslation">کارهای جاده‌ای</string>
+    <string name="osm_lock_gate" tools:ignore="MissingTranslation">دریچهٔ قفل کانال</string>
+    <string name="osm_sinkhole" tools:ignore="MissingTranslation">گودال فرونشست</string>
+    <string name="osm_range" tools:ignore="MissingTranslation">میدان تیراندازی</string>
+    <string name="osm_ambulance_station" tools:ignore="MissingTranslation">ایستگاه آمبولانس</string>
+    <string name="osm_spikes" tools:ignore="MissingTranslation">نوار میخ‌دار</string>
+    <string name="osm_generic_hazard" tools:ignore="MissingTranslation">خطر عمومی</string>
+    <string name="osm_contact_line" tools:ignore="MissingTranslation">سیم بالاسری</string>
+    <string name="osm_danger_area" tools:ignore="MissingTranslation">منطقهٔ خطر</string>
+    <string name="osm_chain" tools:ignore="MissingTranslation">مانع زنجیری</string>
+    <string name="osm_parking_space" tools:ignore="MissingTranslation">جای پارک</string>
+    <string name="osm_motorcycle_parking" tools:ignore="MissingTranslation">پارکینگ موتورسیکلت</string>
+    <string name="settings_section_search" tools:ignore="MissingTranslation">جستجو</string>
+    <string name="settings_search_online" tools:ignore="MissingTranslation">آنلاین</string>
+    <string name="settings_search_offline" tools:ignore="MissingTranslation">آفلاین</string>
+    <string name="settings_search_auto" tools:ignore="MissingTranslation">خودکار</string>
+    <string name="search_no_results" tools:ignore="MissingTranslation">هیچ نتیجه‌ای برای جستجو یافت نشد</string>
+    <string name="search_searching" tools:ignore="MissingTranslation">در حال جستجو…</string>
+    <string name="menu_manage_search" tools:ignore="MissingTranslation">جستجو</string>
+    <string name="route_not_found" tools:ignore="MissingTranslation">مسیر یافت نشد</string>
+    <string name="advanced_markers_and_routes_export" tools:ignore="MissingTranslation">خروجی‌گیری</string>
+    <string name="location_item_selected" tools:ignore="MissingTranslation">انتخاب شده</string>
+    <string name="location_item_not_selected" tools:ignore="MissingTranslation">انتخاب نشده</string>
+    <string name="location_item_move_up" tools:ignore="MissingTranslation">انتقال به بالا در فهرست</string>
+    <string name="location_item_move_down" tools:ignore="MissingTranslation">انتقال به پایین در فهرست</string>
+    <string name="street_description_between" tools:ignore="MissingTranslation">در %1$s بین %2$s و %3$s</string>
+    <string name="street_description_until" tools:ignore="MissingTranslation">در %1$s، %2$s تا %3$s</string>
+    <string name="street_description_since" tools:ignore="MissingTranslation">در %1$s، %2$s از %3$s گذشته</string>
+    <string name="osm_city" tools:ignore="MissingTranslation">شهر</string>
+    <string name="osm_town" tools:ignore="MissingTranslation">شهر</string>
+    <string name="osm_neighbourhood" tools:ignore="MissingTranslation">محله</string>
+    <string name="osm_village" tools:ignore="MissingTranslation">روستا</string>
+    <string name="osm_hamlet" tools:ignore="MissingTranslation">آبادی</string>
+    <string name="osm_recreation_ground" tools:ignore="MissingTranslation">زمین تفریحی</string>
+    <string name="osm_river" tools:ignore="MissingTranslation">رودخانه</string>
+    <string name="osm_railway" tools:ignore="MissingTranslation">راه‌آهن</string>
+    <string name="osm_wood" tools:ignore="MissingTranslation">جنگل</string>
+    <string name="osm_pavillion" tools:ignore="MissingTranslation">پاویلیون</string>
+    <string name="osm_sport" tools:ignore="MissingTranslation">ورزش</string>
+    <string name="osm_health_food" tools:ignore="MissingTranslation">فروشگاه غذاهای سالم</string>
+    <string name="osm_events_venue" tools:ignore="MissingTranslation">محل برگزاری رویداد</string>
+    <string name="menu_help" tools:ignore="MissingTranslation">راهنما</string>
+    <string name="tour_welcome" tools:ignore="MissingTranslation">به آموزش راهنمایی‌شده خوش آمدید. این آموزش شما را در استفاده از ویژگی‌های اصلی اپ راهنمایی می‌کند. شما می‌توانید در هر زمان آموزش را متوقف کنید؛ برای این کار از منوی اصلی گزینهٔ *«لغو آموزش راهنمایی‌شده»* را انتخاب نمایید. بیایید با *«مکان‌های نزدیک»* شروع کنیم که به شما امکان می‌دهد مکان‌های مورد علاقه را پیدا کنید. دکمهٔ *«مکان‌های نزدیک»* در صفحهٔ اصلی درست زیر نوار جستجو قرار دارد. اکنون روی آن ضربه بزنید تا آن را امتحان کنید.</string>
+    <string name="tour_select_place" tools:ignore="MissingTranslation">«مکان‌های نزدیک» نقاط مورد توجه را بر اساس نوع دسته‌بندی می‌کند. فهرست‌ها را مرور کنید و یکی را انتخاب نمایید.</string>
+    <string name="tour_create_marker_started" tools:ignore="MissingTranslation">عالی! اکنون در صفحه‌ی جزئیات موقعیت مکانی هستید. این صفحه به شما امکان انجام اقدامات مختلفی را می‌دهد، از جمله ذخیره‌ی مکان به‌عنوان یک نشانه. با ساند‌اسکیپ می‌توانید هر چیزی را که برایتان اهمیت دارد نشانه‌گذاری کنید؛ مثلاً منزل، ایستگاه اتوبوس یا حتی همان نقطه‌ای که اکنون در آن قرار دارید. بیایید امتحانش کنیم. این مکان را با ضربه زدن روی *«نشانه‌گذاری و ذخیره»* ذخیره کنید.</string>
+    <string name="tour_create_marker_done" tools:ignore="MissingTranslation">عالی! هنگام ایجاد نشانه می‌توانید نام آن را ویرایش کرده و یادداشت‌های اضافی اضافه کنید. اکنون این کار را انجام دهید و وقتی آماده بودید، روی *«تمام»* ضربه بزنید.</string>
+    <string name="tour_my_location" tools:ignore="MissingTranslation">حالا که نحوه‌ی استفاده از نشانه‌ها را یاد گرفتید، بیایید چند قابلیت دیگر را بررسی کنیم. در پایین صفحه چهار دکمه وجود دارد که به ترتیب آنها را امتحان خواهیم کرد. دکمه‌ی سمت چپ *«موقعیت مکانی من»* است که موقعیت فعلی شما را توصیف می‌کند. هم‌اکنون روی آن ضربه بزنید.</string>
+    <string name="tour_around_me" tools:ignore="MissingTranslation">دکمه‌ی بعدی *«اطراف من»* است. این گزینه به شما می‌گوید در هر جهت چه چیزهایی در نزدیکی شما قرار دارد. روی *«اطراف من»* ضربه بزنید.</string>
+    <string name="tour_ahead" tools:ignore="MissingTranslation">دکمه‌ی بعدی *«مقابل من»* است. این گزینه به شما می‌گوید چه چیزهایی دقیقاً در جلوی شما قرار دارد. روی *«مقابل من»* ضربه بزنید.</string>
+    <string name="tour_nearby_markers" tools:ignore="MissingTranslation">دکمه‌ی آخر *«نشانه‌های نزدیک»* است که مکان‌های ذخیره‌شده در اطراف شما را اعلام می‌کند. برای امتحان، روی *«نشانه‌های نزدیک»* ضربه بزنید.</string>
+    <string name="tour_markers_and_routes" tools:ignore="MissingTranslation">شما اکنون با موفقیت یک نشانه ایجاد کرده‌اید. بیایید یک جهت‌نمای صوتی پخش کنیم تا ما را به آن مکان هدایت کند. روی *«نشانه‌ها و مسیرها»* ضربه بزنید که درست زیر *«مکان‌های نزدیک»* قرار دارد.</string>
+    <string name="tour_markers" tools:ignore="MissingTranslation">صفحه‌ی *«نشانه‌ها و مسیرها»* دو سربرگ دارد: یکی فهرست مسیرها که لیست پخشِ نشانه‌ها است و دیگری نشانه‌های جداگانه را نمایش می‌دهد. برای رفتن به سربرگ نشانه‌ها، روی *«نشانه‌ها»* ضربه بزنید تا نشانه‌ای را که ایجاد کرده‌اید بیابید.</string>
+    <string name="tour_start_beacon" tools:ignore="MissingTranslation">شما اکنون در سربرگ نشانه‌ها هستید که همه‌ی نشانه‌های ذخیره‌شده‌ی شما را فهرست می‌کند. یک نشانه را انتخاب کنید و وقتی صفحه‌ی جزئیات موقعیت مکانی ظاهر شد، روی *«فعال‌سازی جهت‌نمای صوتی»* ضربه بزنید.</string>
+    <string name="tour_beacon_demo" tools:ignore="MissingTranslation">اکنون می‌توانید جهت‌نمای صوتی را بشنوید. این صدا از جهت مقصد شما پخش می‌شود. هرگاه جهت گوشی را تغییر دهید، می‌توانید حرکت صدا و تغییر نحوه‌ی شنیده شدن آن را احساس کنید. هم‌اکنون آن را امتحان کنید.</string>
+    <string name="tour_beacon_demo_locked" tools:ignore="MissingTranslation">وقتی گوشی شما قفل است، جهت‌نما همچنان پخش می‌شود. اگر در حال راه رفتن یا سوار وسیله نقلیه باشید، اپلیکیشن هنگام پخش جهت‌نما از جهت حرکت شما استفاده می‌کند. با این حال حتی در حالت قفل نیز می‌توانید گوشی را مانند یک قطب‌نما به‌صورت افقی جلوی خود نگه دارید تا جهت گوشی مبنای جهت‌یابی قرار گیرد. امتحانش کنید.</string>
+    <string name="tour_stop_beacon" tools:ignore="MissingTranslation">وقتی آماده‌اید جهت‌نما را متوقف کنید، روی دکمه‌ی *«توقف مسیر»* ضربه بزنید.</string>
+    <string name="tour_finish" tools:ignore="MissingTranslation">این آموزش تکمیل شد. می‌توانید آن را هر زمان از منوی اصلی دوباره اجرا کنید. امیدواریم اپلیکیشن برایتان مفید باشد!</string>
+    <string name="tour_cancel" tools:ignore="MissingTranslation">آموزش راهنمایی‌شده لغو شد. در صورت تمایل می‌توانید آن را دوباره از منوی اصلی اجرا کنید.</string>
+    <string name="menu_audio_tutorial" tools:ignore="MissingTranslation">آموزش راهنمایی‌شده</string>
+    <string name="menu_audio_tutorial_cancel" tools:ignore="MissingTranslation">لغو آموزش راهنمایی‌شده</string>
+    <string name="search_bar_hint" tools:ignore="MissingTranslation">نام مقصد یا آدرس را تایپ کنید</string>
+    <string name="all_places_nearby_description" tools:ignore="MissingTranslation">فهرستی کامل و بدون فیلتر از همه‌ی مکان‌های نزدیک را ببینید</string>
+    <string name="public_transit_places_nearby_description" tools:ignore="MissingTranslation">فهرستی از ایستگاه‌های حمل‌و‌نقل عمومی نزدیک را ببینید</string>
+    <string name="food_drink_places_nearby_description" tools:ignore="MissingTranslation">فهرستی از رستوران‌ها و بارهای نزدیک را ببینید</string>
+    <string name="groceries_places_nearby_description" tools:ignore="MissingTranslation">فهرستی از بقالی‌ها و سوپرمارکت‌های نزدیک را ببینید</string>
+    <string name="banks_places_nearby_description" tools:ignore="MissingTranslation">فهرستی از بانک‌ها و دستگاه‌های خودپرداز نزدیک را ببینید</string>
+    <string name="intersections_places_nearby_description" tools:ignore="MissingTranslation">فهرستی از تقاطع‌های نزدیک را ببینید</string>
+    <string name="places_nearby_selection_description" tools:ignore="MissingTranslation">از فهرست مکان‌های نزدیک انتخاب کنید</string>
+    <string name="accessibility_title" tools:ignore="MissingTranslation">دسترسی‌پذیری</string>
+    <string name="accessibility_screen_reader_enabled" tools:ignore="MissingTranslation">از آنجا که یک خوانندهٔ صفحه فعال دارید، پیشنهاد می‌کنیم اپ را با خاموش بودن نقشه‌های گرافیکی رابط کاربری اجرا کنید. می‌توانید این تنظیم را در اینجا تغییر دهید یا به‌سادگی ادامه دهید.</string>
+    <string name="accessibility_screen_reader_disabled" tools:ignore="MissingTranslation">از آنجا که خوانندهٔ صفحه فعال ندارید، فرض می‌کنیم می‌خواهید نقشه‌های گرافیکی در رابط کاربری نمایش داده شوند. می‌توانید این تنظیم را در اینجا تغییر دهید یا به‌سادگی ادامه دهید.</string>
+    <string name="tour_continue_button" tools:ignore="MissingTranslation">ادامه</string>
+    <string name="tour_continue_hint" tools:ignore="MissingTranslation">پنجرهٔ پاپ‌آپ را ببندید و آموزش را ادامه دهید</string>
+    <string name="location_detail_action_beacon_from_markers" tools:ignore="MissingTranslation">فعال‌سازی جهت‌نمای صوتی روی این نشانه</string>
+    <string name="location_detail_full_screen_for_edit_hint" tools:ignore="MissingTranslation">نقشه را در حالت تمام‌صفحه قرار دهید و مکان نشانه را ویرایش کنید</string>
+    <string name="location_detail_exit_full_screen_for_edit_hint" tools:ignore="MissingTranslation">از حالت ویرایش مکان نشانه خارج شوید</string>
+    <string name="street_description_relative_before" tools:ignore="MissingTranslation">در %1$s درست قبل از %2$s</string>
+    <string name="street_description_relative_after" tools:ignore="MissingTranslation">در %1$s درست بعد از %2$s</string>
+    <string name="street_description_intersection" tools:ignore="MissingTranslation">نزدیک تقاطع %s</string>
+    <string name="general_error_add_marker_duplicate" tools:ignore="MissingTranslation">در این مکان در مسیر از پیش نشانه‌ای وجود دارد؛ نمی‌توان آن را دوباره اضافه کرد.</string>
+    <string name="settings_explanation" tools:ignore="MissingTranslation">تنظیمات مختلف اپ در گروه‌هایی در پایین سازماندهی شده‌اند. برای باز شدن یک گروه و دیدن گزینه‌های در دسترس روی آن ضربه بزنید.</string>
+    <string name="settings_section_units_description" tools:ignore="MissingTranslation">واحد اندازه‌گیری مورد استفاده برای نمایش فواصل را انتخاب کنید</string>
+    <string name="settings_section_search_network" tools:ignore="MissingTranslation">حالت جستجو</string>
+    <string name="settings_section_search_network_description" tools:ignore="MissingTranslation">تعیین کنید آیا جستجو تنها از داده‌های آفلاین استفاده کند</string>
+    <string name="beacon_settings_style_description" tools:ignore="MissingTranslation">سبک جهت‌نمای صوتی مورد نظر خود را انتخاب کنید</string>
+    <string name="preview_include_unnamed_roads_title_description" tools:ignore="MissingTranslation">در شبیه‌سازی موقعیت مکانی، خیابان‌های بدون نام را شامل کنید</string>
+    <string name="callouts_allow_callouts_description" tools:ignore="MissingTranslation">همهٔ اعلان‌ها را روشن یا خاموش کنید</string>
+    <string name="callouts_places_and_landmarks_description" tools:ignore="MissingTranslation">مکان‌های نزدیک مانند فروشگاه‌ها و رستوران‌ها</string>
+    <string name="callouts_mobility_description" tools:ignore="MissingTranslation">اطلاعات مربوط به تقاطع‌ها و حمل‌و‌نقل</string>
+    <string name="callouts_audio_beacon_description" tools:ignore="MissingTranslation">به‌روزرسانی‌هایی دربارهٔ فاصله تا جهت‌نمای صوتی هنگام فعال‌بودن آن</string>
+    <string name="menu_manage_language" tools:ignore="MissingTranslation">"زبان و منطقه "</string>
+    <string name="settings_search_results_language_description" tools:ignore="MissingTranslation">جستجوی آنلاین می‌تواند نتایج را به زبان محلی نمایش دهد، یا می‌توان آن را طوری تنظیم کرد که نتایج فقط به انگلیسی، فرانسوی یا آلمانی بازگردانده شوند.</string>
+    <string name="language_mismatch_title" tools:ignore="MissingTranslation">زبان جدید در دسترس است</string>
+    <string name="language_mismatch_message" tools:ignore="MissingTranslation">گوشی شما به زبان %1$s تنظیم شده و این زبان اکنون در ساند‌اسکیپ موجود است. آیا مایلید ساند‌اسکیپ از زبان %1$s استفاده کند؟</string>
+    <string name="language_mismatch_switch" tools:ignore="MissingTranslation">تغییر به %1$s</string>
+    <string name="language_mismatch_keep" tools:ignore="MissingTranslation">حفظ زبان فعلی</string>
+    <string name="preview_go_hint" tools:ignore="MissingTranslation">در این جهت حرکت کنید تا به تقاطع بعدی برسید</string>
+    <string name="error_message_route_not_found" tools:ignore="MissingTranslation">یافتن مسیر در پایگاه داده با شکست مواجه شد.</string>
+    <string name="error_message_deleting_route" tools:ignore="MissingTranslation">حذف مسیر با شکست مواجه شد.</string>
+    <string name="error_message_saving_route" tools:ignore="MissingTranslation">ذخیره‌ی مسیر با شکست مواجه شد.</string>
+    <string name="service_still_running" tools:ignore="MissingTranslation">سرویس مکان‌یابی ساند‌اسکیپ همچنان در حال اجراست.</string>
+    <string name="offline_map_download_complete" tools:ignore="MissingTranslation">دانلود کامل شد</string>
+    <string name="offline_map_download_cancelled" tools:ignore="MissingTranslation">دانلود لغو شد</string>
+    <string name="offline_map_download_error" tools:ignore="MissingTranslation">خطا در دانلود</string>
+    <string name="behavior_scavenger_hunt_callout_next_flag_short_route" tools:ignore="MissingTranslation">جهت‌نمای صوتی روی %1$s تنظیم شد، %2$s فاصله</string>
+    <string name="route_beacon_progress" tools:ignore="MissingTranslation">جهت‌نمای صوتی در %1$s</string>
+    <string name="menu_route" tools:ignore="MissingTranslation">کنترل مسیر</string>
+    <string name="menu_route_next_waypoint" tools:ignore="MissingTranslation">نقطه‌ی بین‌راهی بعدی</string>
+    <string name="menu_route_previous_waypoint" tools:ignore="MissingTranslation">نقطه‌ی بین‌راهی قبلی</string>
+    <string name="menu_no_routes" tools:ignore="MissingTranslation">هیچ مسیری ذخیره نشده است</string>
+    <string name="menu_main_menu" tools:ignore="MissingTranslation">منوی اصلی</string>
+    <string name="first_launch_permissions_record_audio" tools:ignore="MissingTranslation">ضبط صدا</string>
+    <string name="first_launch_permissions_required_for_voice_control" tools:ignore="MissingTranslation">این مجوز اختیاری است، اما در صورتی که مایل باشید از فرمان‌های صوتی برای کنترل اپلیکیشن استفاده کنید، لازم است.</string>
+    <string name="menu_media_controls" tools:ignore="MissingTranslation">کنترل‌های رسانه‌ای</string>
+    <string name="settings_section_media_controls" tools:ignore="MissingTranslation">حالت کنترل‌های رسانه‌ای</string>
+    <string name="settings_section_media_controls_description" tools:ignore="MissingTranslation">دکمه‌های کنترل رسانه‌ای روی هدفون یا کنترل از راه دور شما می‌توانند بر پایهٔ این گزینه به روش‌های مختلفی پیکربندی شوند.</string>
+    <string name="settings_media_controls_original" tools:ignore="MissingTranslation">حالت اصلی</string>
+    <string name="settings_media_controls_voice_command" tools:ignore="MissingTranslation">فرمان صوتی</string>
+    <string name="settings_media_controls_audio_menu" tools:ignore="MissingTranslation">منوی صوتی</string>
+    <string name="voice_cmd_help_response" tools:ignore="MissingTranslation">دستورات صوتی موجود:</string>
+    <string name="voice_cmd_listening" tools:ignore="MissingTranslation">در حال گوش دادن…</string>
+    <string name="voice_cmd_not_recognized" tools:ignore="MissingTranslation">متأسفم، نمی‌توانم فرمان «%1$s» را پیدا کنم. فرمان صوتی «%2$s» فهرست دستورات موجود را اعلام می‌کند.</string>
+    <string name="voice_cmd_list_routes" tools:ignore="MissingTranslation">فهرست مسیرها</string>
+    <string name="voice_cmd_routes_list" tools:ignore="MissingTranslation">مسیرهای موجود عبارتند از:</string>
+    <string name="voice_cmd_list_markers" tools:ignore="MissingTranslation">فهرست نشانه‌ها</string>
+    <string name="voice_cmd_markers_list" tools:ignore="MissingTranslation">نشانه‌های موجود عبارتند از:</string>
+    <string name="voice_cmd_no_routes" tools:ignore="MissingTranslation">هیچ مسیری ذخیره نشده است</string>
+    <string name="voice_cmd_no_markers" tools:ignore="MissingTranslation">هیچ نشانه‌ای ذخیره نشده است</string>
+    <string name="voice_cmd_route_not_found" tools:ignore="MissingTranslation">مسیر یافت نشد: %s</string>
+    <string name="voice_cmd_starting_route" tools:ignore="MissingTranslation">در حال شروع مسیر %s</string>
+    <string name="voice_cmd_start_route" tools:ignore="MissingTranslation">شروع مسیر %s</string>
+    <string name="voice_cmd_start_beacon_at_marker_with_name" tools:ignore="MissingTranslation">فعال‌سازی جهت‌نمای صوتی روی %s</string>
+    <string name="voice_cmd_starting_beacon_at_marker" tools:ignore="MissingTranslation">در حال فعال‌سازی جهت‌نمای صوتی روی %s</string>
+    <string name="voice_cmd_marker_not_found" tools:ignore="MissingTranslation">نشانه پیدا نشد: %s</string>
+    <string name="voice_cmd_explain_dynamic_markers" tools:ignore="MissingTranslation">همچنین می‌توانید مسیرها و نشانه‌ها را با نام‌شان نیز شروع کنید، برای مثال.</string>
+    <string name="voice_cmd_speech_recognition_error_network_timeout" tools:ignore="MissingTranslation">خطای تایم‌اوت شبکه در تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_network" tools:ignore="MissingTranslation">خطای شبکه در تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_audio" tools:ignore="MissingTranslation">خطا در ضبط صدا برای تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_server" tools:ignore="MissingTranslation">خطای سرور تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_client" tools:ignore="MissingTranslation">خطای کلاینت تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_speech_timeout" tools:ignore="MissingTranslation">زمان انتظار برای شنیدن گفتار به پایان رسید و گوش دادن متوقف شد. لطفاً دوباره تلاش کنید.</string>
+    <string name="voice_cmd_speech_recognition_not_match" tools:ignore="MissingTranslation">هیچ گفتاری شنیده نشد و گوش دادن متوقف شد. لطفاً دوباره تلاش کنید.</string>
+    <string name="voice_cmd_speech_recognition_busy" tools:ignore="MissingTranslation">سرویس تشخیص گفتار در حال حاضر مشغول است.</string>
+    <string name="voice_cmd_speech_recognition_error_permissions" tools:ignore="MissingTranslation">مجوزهای کافی برای اجرای تشخیص گفتار وجود نداشت.</string>
+    <string name="voice_cmd_speech_recognition_error_too_many_requests" tools:ignore="MissingTranslation">خطای ارسال درخواست‌های زیاد به سرویس تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_server_disconnected" tools:ignore="MissingTranslation">خطای قطع اتصال سرور تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_language_not_supported" tools:ignore="MissingTranslation">زبان فعلی توسط اندروید برای تشخیص گفتار پشتیبانی نمی‌شود.</string>
+    <string name="voice_cmd_speech_recognition_error_language_unavailable" tools:ignore="MissingTranslation">زبان فعلی پشتیبانی می‌شود، اما هنوز روی این گوشی دانلود نشده است.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_check_support" tools:ignore="MissingTranslation">خطا در بررسی پشتیبانی تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events" tools:ignore="MissingTranslation">خطا در گوش دادن به رویدادهای دانلود تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_unknown" tools:ignore="MissingTranslation">خطای ناشناخته در تشخیص گفتار.</string>
+    <string name="voice_cmd_speech_recognition_error_unsupported" tools:ignore="MissingTranslation">تشخیص گفتار روی این گوشی پشتیبانی نمی‌شود.</string>
+    <string name="settings_voice_command_listening_prompt" tools:ignore="MissingTranslation">اعلام شروع گوش دادن</string>
+    <string name="settings_voice_command_listening_prompt_description" tools:ignore="MissingTranslation">قبل از شروع تشخیص گفتار، یک پیام شنیداری پخش کنید تا اعلام شود که اپ در حالت گوش دادن قرار دارد.</string>
+    <string name="settings_voice_command_microphone" tools:ignore="MissingTranslation">میکروفون</string>
+    <string name="settings_voice_command_microphone_description" tools:ignore="MissingTranslation">میکروفونی را که برای فرمان‌های صوتی استفاده می‌شود انتخاب کنید.</string>
+    <string name="battery_optimization_title">مصرف باتری در پس‌زمینه</string>
+    <string name="battery_optimization_message">ساند‌اسکیپ برای ادامهٔ ارائهٔ ناوبری صوتی هنگام قفل بودن گوشی شما نیاز به استفادهٔ بدون محدودیت از باتری دارد. لطفاً در پنجرهٔ بعدی این اجازه را صادر کنید. اگر ساند‌اسکیپ را ببندید، همهٔ سرویس‌ها متوقف می‌شوند و اپ دیگر باتری مصرف نخواهد کرد.</string>
+    <string name="route_detail_action_start_route_reverse">شروع مسیر به‌صورت معکوس</string>
+    <string name="route_detail_action_start_route_reverse_hint">شروع پخش معکوس این مسیر</string>
+    <string name="route_reverse_name">%s به‌صورت معکوس</string>
+    <string name="callouts_no_nearby_markers">در نزدیکی شما هیچ نشانه‌ای وجود ندارد</string>
+    <string name="stationary_on_way">در %s ایستاده‌اید</string>
+    <string name="settings_relative_directions_text">حالت جهت‌های نسبی</string>
+    <string name="settings_relative_directions_description">نحوهٔ توصیف جهت‌های نسبی را تغییر دهید.</string>
+    <string name="settings_relative_directions_clockface">نمای ساعت</string>
+    <string name="settings_relative_directions_degrees">درجه</string>
+    <string name="settings_relative_directions_left_right">چپ/راست</string>
+    <string name="callout_settings_position_text">هنگام اعلام نقاط شاخص، فاصله و جهت آنها را نیز اعلام کنید</string>
+    <string name="callout_settings_position_description">به‌صورت پیش‌فرض هنگام اعلام مکان‌ها، فاصله و جهت ذکر نمی‌شود. با فعال کردن این گزینه، این اطلاعات به اعلان‌ها اضافه می‌شوند.</string>
+    <string name="relative_clock_direction">در ساعت %s</string>
+    <string name="relative_degrees_direction">در %s درجه</string>
+    <string name="relative_left_right_direction_ahead">جلو</string>
+    <string name="relative_left_right_direction_ahead_left">جلو-چپ</string>
+    <string name="relative_left_right_direction_ahead_right">جلو-راست</string>
+    <string name="relative_left_right_direction_left">چپ</string>
+    <string name="relative_left_right_direction_right">راست</string>
+    <string name="relative_left_right_direction_behind_left">پشت-چپ</string>
+    <string name="relative_left_right_direction_behind_right">پشت-راست</string>
+    <string name="relative_left_right_direction_behind">پشت</string>
+    <string name="settings_collapse_section">جمع‌کردن بخش</string>
+    <string name="settings_expand_section">باز کردن بخش</string>
+    <string name="settings_collapsed">جمع‌شده</string>
+    <string name="settings_expanded">بازشده</string>
+    <string name="ui_grant_permission">دادن مجوز</string>
+    <string name="copyright_notices">بدون این کتابخانه‌ها و داده‌های فوق‌العادهٔ شخص ثالث، توسعهٔ ساند‌اسکیپ ممکن نبود. برای مشاهدهٔ مجوزهای آنها روی پیوندها کلیک کنید:</string>
+    <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) کلیهٔ داده‌های جغرافیایی مورد استفاده برای نقشه‌برداری و تولید صدا در ساند‌اسکیپ را فراهم می‌کنند.</string>
+    <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) برای تولید کاشی‌های نقشه‌ای که ما از آنها استفاده می‌کنیم به‌کار می‌رود.</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) برای تولید صدای سه‌بعدی استفاده می‌شود و تحت [مجوز Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) برای استفاده در دسترس قرار گرفته است.</string>
+    <string name="trademark_disclaimer">تمامی نام‌ها، لوگوها و نشان‌های تجاری محصولات و شرکت‌های شخص ثالث علامت تجاری یا علامت تجاری ثبت‌شده هستند و مالکیت آنها برای دارندگان مربوطه محفوظ است.</string>
+    <string name="loading_indicator_content_description">در حال بارگذاری</string>
 </resources>

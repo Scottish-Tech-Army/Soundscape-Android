@@ -10,6 +10,8 @@ A new feature for Android Soundscape is support for using offline maps. These ma
 ## Generating extracts
 The `pmtiles` tool <https://github.com/protomaps/PMTiles> is very efficient at creating extracts either from a bounding box, or from a GeoJSON region. We've now got a couple of Python scripts to automate the process.
 
+Both scripts, the canonical `world_countries_and_city_groups.geojson` they consume, and the supporting build shell scripts live in the `soundscape-maps/` directory of our planetiler fork: <https://github.com/davecraig/planetiler-openmaptiles/tree/main/soundscape-maps>. The same repo is described in more detail in [Mapping data]({% link developers/mapping.md %}); the offline-maps pipeline runs on top of the same planet-wide `.pmtiles` file that the online tile server uses.
+
 ### step1-generate-geojson-for-extracts.py
 This script generates a GeoJSON file with a `Feature` for each extract that we want to generate. At it's simplest it generates a `Feature` for every country in the world using data from GeoNames <https://download.geonames.org/export/dump/>. However, it can also be configured to output a `Feature` for each of the states or provinces for specific countries, and even to generate a coalesced `Feature` for every city in the world. The country and state `Feature` (known in geonames as admin1) are expanded so that there is a large overlap between adjacent `Feature` and also simplified so that the polygons contain fewer corners. That's important as we want to keep the size of the GeoJSON down because it forms the basis of what ends up being parsed when choosing extracts from within the app.
 The countries that are split up are currently:

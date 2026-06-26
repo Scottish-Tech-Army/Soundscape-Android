@@ -1,12 +1,13 @@
 package org.scottishtecharmy.soundscape
 
 import com.squareup.moshi.Moshi
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
-import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.isDuplicateByOsmId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -17,8 +18,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
-import vector_tile.VectorTile
-import java.io.FileInputStream
 import java.io.FileOutputStream
 
 class MergePolygonsTest {
@@ -90,7 +89,7 @@ class MergePolygonsTest {
         val duplicateFeaturesFeatureCollection = FeatureCollection()
 
         for (feature in getGeoJsonForLocationFeatureCollection.features) {
-            if (!isDuplicateByOsmId(processOsmIds, feature)) {
+            if (!isDuplicateByOsmId(processOsmIds, feature as MvtFeature)) {
                 notDuplicateFeaturesFeatureCollection.features.add(feature)
             } else {
                 duplicateFeaturesFeatureCollection.features.add(feature)
@@ -104,16 +103,16 @@ class MergePolygonsTest {
         for (duplicate in duplicateFeaturesFeatureCollection) {
             // Find the original Feature
             val originalFeature = notDuplicateFeaturesFeatureCollection.features.find {
-                it.foreign?.get("osm_ids") == duplicate.foreign?.get("osm_ids")
+                it.properties?.get("osm_ids") == duplicate.properties?.get("osm_ids")
             }
 
             // Merge duplicate polygons
             if (originalFeature != null && originalFeature.geometry.type == "Polygon" && duplicate.geometry.type == "Polygon") {
                 mergedPolygonsFeatureCollection.features.add(mergePolygons(originalFeature, duplicate))
                 // Add to the set
-                originalFeature.foreign?.get("osm_ids")?.let { originalPolygonsUsedInMerge.add(it) }
+                originalFeature.properties?.get("osm_ids")?.let { originalPolygonsUsedInMerge.add(it) }
                 // Add to the set
-                duplicate.foreign?.get("osm_ids")?.let { originalPolygonsUsedInMerge.add(it) }
+                duplicate.properties?.get("osm_ids")?.let { originalPolygonsUsedInMerge.add(it) }
             } else {
                 // TODO Merge the linestrings so we get a contiguous road/path
                 if (duplicate.geometry.type == "LineString" || duplicate.geometry.type == "Point"){
@@ -130,7 +129,7 @@ class MergePolygonsTest {
 
         // Add original Features but excluding the Polygons that were merged
         for (feature in notDuplicateFeaturesFeatureCollection.features) {
-            if (!isDuplicateByOsmId(originalPolygonsUsedInMerge, feature)) { // Check object identity
+            if (!isDuplicateByOsmId(originalPolygonsUsedInMerge, feature as MvtFeature)) { // Check object identity
                 finalFeatureCollection.features.add(feature)
             }
         }
@@ -184,7 +183,6 @@ class MergePolygonsTest {
         // create a new Polygon with a single outer ring using the coordinates from the JTS merged geometry
         val mergedPolygon = Feature().also { feature ->
             feature.properties = polygon1.properties
-            feature.foreign = polygon1.foreign
             feature.type = "Feature"
             feature.geometry = Polygon().also { polygon ->
                 //Convert JTS to GeoJSON coordinates
@@ -234,16 +232,19 @@ class MergePolygonsTest {
 
         // Read in the files
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+        val streetNumberMap:  HashMap<String, FeatureCollection> = hashMapOf()
         val featureCollection = FeatureCollection()
         for (tile in grid.tiles) {
             val geojson = vectorTileToGeoJsonFromFile(
                 tile.tileX,
                 tile.tileY,
-                "${tile.tileX}x${tile.tileY}x${MAX_ZOOM_LEVEL}.mvt",
-                intersectionMap
+                intersectionMap,
+                streetNumberMap
             )
-            for (feature in geojson) {
-                featureCollection.addFeature(feature)
+            for(collection in geojson) {
+                for (feature in collection) {
+                    featureCollection.addFeature(feature)
+                }
             }
         }
         val adapter = GeoJsonObjectMoshiAdapter()
@@ -257,15 +258,18 @@ class MergePolygonsTest {
     private fun vectorTileToGeoJsonFromFile(
         tileX: Int,
         tileY: Int,
-        filename: String,
         intersectionMap:  HashMap<LngLatAlt, Intersection>,
-        cropPoints: Boolean = true
-    ): FeatureCollection {
+        streetNumberMap:  HashMap<String, FeatureCollection>
+    ): Array<FeatureCollection> {
 
         val gridState = FileGridState()
-        gridState.start(null, offlineExtracts)
-        val tile = gridState.getTile(tileX, tileY, MAX_ZOOM_LEVEL)!!
-        val featureCollection = vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, cropPoints, 15)
+        val result: Array<FeatureCollection> = emptyArray()
+
+        gridState.start(null, offlineExtractPath)
+
+        runBlocking {
+            gridState.updateTile(tileX, tileY, 0, result, intersectionMap, streetNumberMap)
+        }
 
 //            // We want to check that all of the coordinates generated are within the buffered
 //            // bounds of the tile. The tile edges are 4/256 further out, so we adjust for that.
@@ -293,6 +297,7 @@ class MergePolygonsTest {
 //                assert(box.southLatitude >= sePoint.latitude) { "${box.southLatitude} vs. ${sePoint.latitude}" }
 //                assert(box.northLatitude <= nwPoint.latitude) { "${box.northLatitude} vs. ${nwPoint.latitude}" }
 //            }
-        return featureCollection
+
+        return result
     }
 }

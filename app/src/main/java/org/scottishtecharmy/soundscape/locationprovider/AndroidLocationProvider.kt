@@ -5,39 +5,49 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
+import android.location.LocationListener
+import android.location.LocationManager
+import android.os.Bundle
 import android.os.Looper
 import androidx.core.app.ActivityCompat
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.Granularity
-import com.google.android.gms.location.LocationCallback
-import com.google.android.gms.location.LocationRequest
-import com.google.android.gms.location.LocationResult
-import com.google.android.gms.location.LocationServices
-import com.google.android.gms.location.Priority
 import org.scottishtecharmy.soundscape.geoengine.filters.KalmanLocationFilter
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import kotlin.time.Duration.Companion.seconds
 
-class AndroidLocationProvider(context : Context) :
-    LocationProvider() {
+/**
+ * Location provider that uses Android's native LocationManager instead of
+ * Google Play Services' FusedLocationProviderClient.
+ *
+ * This allows the app to run on devices without Google Play Services.
+ */
+class AndroidLocationProvider(context: Context) : LocationProvider() {
 
-    private val fusedLocationClient: FusedLocationProviderClient =
-        LocationServices.getFusedLocationProviderClient(context)
-    private var locationCallback: LocationCallback
+    private val locationManager: LocationManager =
+        context.getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
     private val filter = KalmanLocationFilter()
 
-    fun filterLocation(location: Location) : Location {
-        // Filter the location through the Kalman filter
-        val filteredLocation = filter.process(
-            LngLatAlt(location.longitude, location.latitude),
-            System.currentTimeMillis(),
-            location.accuracy.toDouble()
-        )
-        location.latitude = filteredLocation.latitude
-        location.longitude = filteredLocation.longitude
+    private val locationListener = object : LocationListener {
+        override fun onLocationChanged(location: Location) {
+            mutableLocationFlow.value = location
+            mutableFilteredLocationFlow.value = filterLocation(location)
+        }
 
-        return location
+        override fun onLocationChanged(locations: MutableList<Location>) {
+            for (location in locations) {
+                mutableLocationFlow.value = location
+                mutableFilteredLocationFlow.value = filterLocation(location)
+            }
+        }
+
+        @Deprecated("Deprecated in API level 29")
+        override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
+            // Deprecated but required for older API levels
+        }
+
+        override fun onProviderEnabled(provider: String) {}
+
+        override fun onProviderDisabled(provider: String) {}
     }
 
     init {
@@ -46,51 +56,74 @@ class AndroidLocationProvider(context : Context) :
                 Manifest.permission.ACCESS_FINE_LOCATION
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            // Faster startup for obtaining initial location
-            fusedLocationClient.lastLocation
-                .addOnSuccessListener { location: Location? ->
-                    // Handle the retrieved location here
-                    if (location != null) {
-                        mutableLocationFlow.value = location
-                        mutableFilteredLocationFlow.value = filterLocation(location)
-                    }
+            // Try to get last known location for faster startup
+            val lastGpsLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER)
+            val lastNetworkLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER)
+
+            // Use the most recent location
+            val lastLocation = when {
+                lastGpsLocation != null && lastNetworkLocation != null -> {
+                    if (lastGpsLocation.time > lastNetworkLocation.time) lastGpsLocation else lastNetworkLocation
                 }
-                .addOnFailureListener { _: Exception ->
-                }
-        }
-        locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult) {
-                for (location in locationResult.locations) {
-                    mutableLocationFlow.value = location
-                    mutableFilteredLocationFlow.value = filterLocation(location)
-                }
+                lastGpsLocation != null -> lastGpsLocation
+                lastNetworkLocation != null -> lastNetworkLocation
+                else -> null
+            }
+
+            lastLocation?.let { location ->
+                mutableLocationFlow.value = location
+                mutableFilteredLocationFlow.value = filterLocation(location)
             }
         }
     }
 
+    fun filterLocation(location: Location): Location {
+        // Create a copy to avoid modifying the original
+        val filteredLocation = Location(location)
+
+        val filtered = filter.process(
+            LngLatAlt(location.longitude, location.latitude),
+            System.currentTimeMillis(),
+            location.accuracy.toDouble()
+        )
+        filteredLocation.latitude = filtered.latitude
+        filteredLocation.longitude = filtered.longitude
+
+        return filteredLocation
+    }
+
     override fun destroy() {
-        fusedLocationClient.removeLocationUpdates(locationCallback)
+        locationManager.removeUpdates(locationListener)
     }
 
     @SuppressLint("MissingPermission")
-    override fun start(context : Context){
+    override fun start(context: Context) {
+        // Request updates from GPS provider (high accuracy)
+        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            locationManager.requestLocationUpdates(
+                LocationManager.GPS_PROVIDER,
+                LOCATION_UPDATES_INTERVAL_MS,
+                MIN_DISTANCE_METERS,
+                locationListener,
+                Looper.getMainLooper()
+            )
+        }
 
-        fusedLocationClient.requestLocationUpdates(
-            LocationRequest.Builder(
-                Priority.PRIORITY_HIGH_ACCURACY,
-                LOCATION_UPDATES_INTERVAL_MS
-            ).apply {
-                setMinUpdateDistanceMeters(1f)
-                setGranularity(Granularity.GRANULARITY_PERMISSION_LEVEL)
-                setWaitForAccurateLocation(true)
-            }.build(),
-            locationCallback,
-            Looper.getMainLooper(),
-        )
+        // Also request from network provider as backup
+        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+            locationManager.requestLocationUpdates(
+                LocationManager.NETWORK_PROVIDER,
+                LOCATION_UPDATES_INTERVAL_MS,
+                MIN_DISTANCE_METERS,
+                locationListener,
+                Looper.getMainLooper()
+            )
+        }
     }
 
     companion object {
         // Check for GPS every n seconds
         private val LOCATION_UPDATES_INTERVAL_MS = 1.seconds.inWholeMilliseconds
+        private const val MIN_DISTANCE_METERS = 1f
     }
 }

@@ -6,6 +6,8 @@ import com.squareup.moshi.JsonDataException
 import com.squareup.moshi.JsonReader
 import com.squareup.moshi.JsonWriter
 import com.squareup.moshi.ToJson
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter.Companion.OPTIONS
 
@@ -57,6 +59,35 @@ class FeatureJsonAdapter : JsonAdapter<Feature>() {
     override fun toJson(writer: JsonWriter, value: Feature?) {
         if (value == null) {
             throw NullPointerException("Feature was null! Wrap in .nullSafe() to write nullable values.")
+        }
+
+        if(value is MvtFeature) {
+            // We're going to populate the properties with the values that we have stored.
+            (value.properties ?: HashMap()).also { properties ->
+                properties["name"] = value.name
+                properties["osm_id"] = value.osmId
+                properties["class"] = value.featureClass
+                properties["subclass"] = value.featureSubClass
+                properties["feature_type"] = value.featureType
+                properties["category"] = when(value.superCategory) {
+                    SuperCategoryId.UNCATEGORIZED -> ""
+                    SuperCategoryId.SETTLEMENT_CITY -> "city"
+                    SuperCategoryId.SETTLEMENT_TOWN -> "town"
+                    SuperCategoryId.SETTLEMENT_VILLAGE -> "village"
+                    SuperCategoryId.SETTLEMENT_HAMLET -> "hamlet"
+                    SuperCategoryId.OBJECT -> "object"
+                    SuperCategoryId.PLACE -> "place"
+                    SuperCategoryId.INFORMATION -> "information"
+                    SuperCategoryId.MOBILITY -> "mobility"
+                    SuperCategoryId.SAFETY -> "safety"
+                    SuperCategoryId.LANDMARK -> "landmark"
+                    SuperCategoryId.MARKER -> "marker"
+                    SuperCategoryId.HOUSENUMBER -> "housenumber"
+                }
+                properties["feature_value"] = value.featureValue
+
+                value.properties = properties
+            }
         }
 
         writer.beginObject()

@@ -1,7 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine
 
 import android.content.Context
-import android.util.Log
 import ch.poole.geo.pmtiles.Reader
 import kotlinx.coroutines.CloseableCoroutineDispatcher
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -12,17 +11,16 @@ import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.mergeAllPolygonsInFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.network.ITileDAO
 import org.scottishtecharmy.soundscape.network.ProtomapsTileClient
+import org.scottishtecharmy.soundscape.utils.Analytics
+import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import retrofit2.awaitResponse
 import vector_tile.VectorTile
-import java.io.ByteArrayInputStream
-import java.io.ByteArrayOutputStream
 import java.io.File
-import java.io.IOException
-import java.util.zip.GZIPInputStream
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.system.measureTimeMillis
 
@@ -33,98 +31,100 @@ open class ProtomapsGridState(
     passedInTreeContext: CloseableCoroutineDispatcher? = null
 ) : GridState(zoomLevel, gridSize, passedInTreeContext) {
 
-    var fileTileReaders: MutableList<Reader> = mutableListOf<Reader>()
+    // We need an array of pmtile readers, one for each tile in the grid.
+    var fileTileReaders = arrayOfNulls<Reader?>(gridSize * gridSize)
+    var currentExtracts: MutableList<String> = mutableListOf()
+    var extractPath: String = ""
 
-    override fun start(applicationContext: Context?, offlineExtractPaths: List<String>) {
-        if(applicationContext != null)
+    override fun start(applicationContext: Context?,
+                       offlineExtractPath: String) {
+        if((tileClient == null) && (applicationContext != null))
             tileClient = ProtomapsTileClient(applicationContext)
 
-        // Create a range reader for the local file
-        for(extract in offlineExtractPaths)
-            fileTileReaders.add(Reader(File(extract)))
+        extractPath = offlineExtractPath
+        currentExtracts = mutableListOf()
+    }
+
+    override fun stop() {
+        super.stop()
+        for(reader in fileTileReaders) {
+            try { reader?.close() } catch (_: Exception) {}
+        }
+        fileTileReaders = arrayOfNulls<Reader?>(gridSize * gridSize)
+    }
+
+    override fun checkOfflineMaps() {
+        // Check for change in offline map extracts and update our file readers if there's a change
+        val extracts = findExtractPaths(extractPath).toMutableList()
+        if (extracts != currentExtracts) {
+            println("Change in offline extracts")
+            currentExtracts = extracts
+            // These events don't really tell us very much, so mark them as costly
+            if (currentExtracts.isEmpty())
+                Analytics.getInstance().logCostlyEvent("GridNoOfflineMap", null)
+            else
+                Analytics.getInstance().logCostlyEvent("GridWithOfflineMap", null)
+
+            // Close old file readers
+            for (reader in fileTileReaders) {
+                try { reader?.close() } catch (_: Exception) {}
+            }
+            fileTileReaders = arrayOfNulls<Reader?>(gridSize * gridSize)
+        }
     }
 
     /**
      * updateTile is responsible for getting data from the protomaps server and translating it from
      * MVT format into a set of FeatureCollections.
      */
-    fun decompressGzip(compressedData: ByteArray): ByteArray? {
-        // Create a ByteArrayInputStream from the compressed data
-        val byteArrayInputStream = ByteArrayInputStream(compressedData)
-        var gzipInputStream: GZIPInputStream? = null
-        val outputStream = ByteArrayOutputStream()
-
-        try {
-            // Wrap the ByteArrayInputStream with GZIPInputStream
-            gzipInputStream = GZIPInputStream(byteArrayInputStream)
-
-            // Buffer for reading decompressed data
-            val buffer = ByteArray(1024) // Adjust buffer size as needed
-            var len: Int
-
-            // Read from GZIPInputStream and write to ByteArrayOutputStream
-            while (gzipInputStream.read(buffer).also { len = it } > 0) {
-                outputStream.write(buffer, 0, len)
-            }
-
-            return outputStream.toByteArray()
-
-        } catch (e: IOException) {
-            // Handle potential IOExceptions during decompression
-            e.printStackTrace() // Log the error or handle it appropriately
-            return null
-        } finally {
-            // Ensure streams are closed
-            try {
-                gzipInputStream?.close()
-                outputStream.close()
-                byteArrayInputStream.close()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        }
-    }
-
     override suspend fun updateTile(
         x: Int,
         y: Int,
+        workerIndex: Int,
         featureCollections: Array<FeatureCollection>,
-        intersectionMap: HashMap<LngLatAlt, Intersection>
+        intersectionMap: HashMap<LngLatAlt, Intersection>,
+        streetNumberMap: HashMap<String, FeatureCollection>
     ): Boolean {
         var ret = false
+
         withContext(Dispatchers.IO) {
             try {
                 val startTime = System.currentTimeMillis()
 
-                // Try getting the tile from each file in turn
                 var result : VectorTile.Tile? = null
-                for(reader in fileTileReaders) {
-                    var fileTile: ByteArray? = null
-                    fileTile = reader.getTile(zoomLevel, x, y)
 
-                    // Turn the byte array into a VectorTile
-                    when (reader.tileCompression.toInt()) {
-                        1 -> {
-                            // No compression
-                            result = VectorTile.Tile.parseFrom(fileTile)
+                // Try the reader that we are currently using first
+                var reader = fileTileReaders[workerIndex]
+                var fileTile: ByteArray? = reader?.getTile(zoomLevel, x, y)
+
+                if(fileTile == null)
+                {
+                    // We failed to get a tile from the current reader, so we need to find one that
+                    // does work. Reset it, and then see if we can find an extract that does work.
+                    fileTileReaders[workerIndex]?.close()
+                    fileTileReaders[workerIndex] = null
+                    for(extract in currentExtracts) {
+                        println("Try $extract for worker $workerIndex")
+                        reader = Reader(File(extract))
+                        fileTile = reader.getTile(zoomLevel, x, y)
+                        if(fileTile != null) {
+                            // We've found an extract that works, so use that
+                            fileTileReaders[workerIndex] = reader
+                            break
                         }
-
-                        2 -> {
-                            // Gzip compression
-                            val decompressedTile = decompressGzip(fileTile)
-                            result = VectorTile.Tile.parseFrom(decompressedTile)
-                        }
-
-                        else -> assert(false)
+                        reader.close()
                     }
-                    if(result != null)
-                        break
+                }
+                if(fileTile != null) {
+                    // Turn the byte array into a VectorTile
+                    result = decompressTile(reader?.tileCompression, fileTile)
                 }
 
                 // Fallback to network
                 if(result == null) {
+                    //println("Network tile request for worker $workerIndex")
                     val service =
-                        tileClient.retrofitInstance?.create(ITileDAO::class.java)
+                        tileClient?.retrofitInstance?.create(ITileDAO::class.java)
                     val tileReq =
                         async {
                             service?.getVectorTileWithCache(x, y, zoomLevel)
@@ -134,40 +134,38 @@ open class ProtomapsGridState(
 
                 if (result != null) {
                     val requestTime = System.currentTimeMillis() - startTime
-                    Log.e(TAG, "Tile size ${result.serializedSize}")
-                    var tileFeatureCollection: FeatureCollection?
+                    println("Tile size ${result.serializedSize}")
+                    var collections: Array<FeatureCollection>?
                     val mvtParseTime = measureTimeMillis {
-                        tileFeatureCollection = vectorTileToGeoJson(
+                        collections = vectorTileToGeoJson(
                             tileX = x,
                             tileY = y,
                             mvt = result,
                             intersectionMap = intersectionMap,
+                            streetNumberMap = streetNumberMap,
                             tileZoom = zoomLevel)
                     }
-                    var collections: Array<FeatureCollection>?
-                    val processTime = measureTimeMillis {
-                        collections = processTileFeatureCollection(tileFeatureCollection!!)
-                    }
                     val addTime = measureTimeMillis {
-                        for ((index, collection) in collections!!.withIndex()) {
-                            featureCollections[index].plusAssign(collection)
+                        if(collections != null) {
+                            for ((index, collection) in collections.withIndex()) {
+                                featureCollections[index] += collection
+                            }
                         }
                     }
 
-                    Log.e(TAG, "Request time $requestTime")
-                    Log.e(TAG, "MVT parse time $mvtParseTime")
-                    Log.e(TAG, "processTileFeatureCollection $processTime")
-                    Log.e(TAG, "Add to FeatureCollection time $addTime")
+                    println("Request time $requestTime")
+                    println("MVT parse time $mvtParseTime")
+                    println("Add to FeatureCollection time $addTime")
 
                     ret = true
                 } else {
-                    Log.e(TAG, "No response for protomaps tile")
+                    println("No response for protomaps tile")
                 }
             } catch (ce: CancellationException) {
                 // We have to rethrow cancellation exceptions
                 throw ce
             } catch (e: Exception) {
-                Log.e(TAG, "Exception getting protomaps tile $e")
+                println("Exception getting protomaps tile $e")
             }
         }
         return ret
