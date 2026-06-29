@@ -135,11 +135,13 @@
 <!-- Location Details page title. This page shows information about the location including the address and a map. -->
 <string name="location_detail_title_default">"Location Details"</string>
 <!-- Title for the action to start playing an audio beacon -->
-<string name="location_detail_action_beacon">"Start Audio Beacon"</string>
-<!-- Title for the action to start playing an audio beacon from the markers list -->
-<string name="location_detail_action_beacon_from_markers">"Start audio beacon at this marker"</string>
-<!-- Talkback hint for the action to set an audio beacon at this location. This is always preceded by "Double tap to " -->
-<string name="location_detail_action_beacon_hint">"guide you towards this location with sound"</string>
+  <string name="location_detail_action_beacon">"Start Audio Beacon"</string>
+  <string name="location_detail_action_directions">"Start Directions"</string>
+  <!-- Title for the action to start playing an audio beacon from the markers list -->
+  <string name="location_detail_action_beacon_from_markers">"Start audio beacon at this marker"</string>
+  <!-- Talkback hint for the action to set an audio beacon at this location. This is always preceded by "Double tap to " -->
+  <string name="location_detail_action_beacon_hint">"guide you towards this location with sound"</string>
+  <string name="location_detail_action_directions_hint">"start turn by turn walking directions to this location"</string>
 <!-- Talkback hint for the action to save marker. This is always preceded by "Double tap to " -->
 <string name="location_detail_action_save_hint">"save this location to use later"</string>
 <!-- Talkback hint for the action to edit marker. This is always preceded by "Double tap to " -->
@@ -177,9 +179,13 @@
 <!-- Talkback hint for the action to start the route when the action is disabled. This action is only disabled when no waypoints have been added to a route yet. This is always preceded by "Double tap to " -->
 <string name="route_detail_action_start_route_disabled_hint">"add waypoints before starting the route"</string>
 <!-- Talkback hint for the action to stop the route. This is always preceded by "Double tap to " -->
-<string name="route_detail_action_stop_route_hint">"stop playback of this route"</string>
-<!-- Talkback hint for the action to share. This is always preceded by "Double tap to " -->
-<string name="route_detail_action_share_hint">"share this route with another app"</string>
+  <string name="route_detail_action_stop_route_hint">"stop playback of this route"</string>
+  <string name="turn_by_turn_route_calculating">"Calculating walking directions to %s."</string>
+  <string name="turn_by_turn_route_started">"Starting walking directions to %s."</string>
+  <string name="turn_by_turn_route_failed">"We could not calculate walking directions."</string>
+  <string name="turn_by_turn_route_not_configured">"Turn by turn routing is not configured."</string>
+  <!-- Talkback hint for the action to share. This is always preceded by "Double tap to " -->
+  <string name="route_detail_action_share_hint">"share this route with another app"</string>
 <!-- Accessibility hint for the edit button on the Route Detail screen . This is always preceded by "Double tap to " -->
 <string name="route_detail_action_edit_hint">"change or reorder the waypoints in the route"</string>
 <!-- Add button on the Route list screen -->

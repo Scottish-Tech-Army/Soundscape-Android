@@ -13,6 +13,7 @@ import android.app.PendingIntent
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.ServiceInfo
+import android.location.Location
 import android.media.AudioAttributes
 import android.media.AudioFocusRequest
 import android.media.AudioManager
@@ -34,6 +35,7 @@ import androidx.media3.session.MediaSessionService
 import androidx.preference.PreferenceManager
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelChildren
@@ -50,6 +52,7 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MOD
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MEDIA_CONTROLS_MODE_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RELATIVE_DIRECTION_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RELATIVE_DIRECTION_KEY
+import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
@@ -79,6 +82,12 @@ import org.scottishtecharmy.soundscape.locationprovider.DirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.GpxDrivenProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
+import org.scottishtecharmy.soundscape.navigation.GraphHopperRouteProvider
+import org.scottishtecharmy.soundscape.navigation.GraphHopperRouteRequest
+import org.scottishtecharmy.soundscape.navigation.NavigationPoint
+import org.scottishtecharmy.soundscape.navigation.RouteGuidanceAnnouncementFormatter
+import org.scottishtecharmy.soundscape.navigation.RouteGuidanceEvent
+import org.scottishtecharmy.soundscape.navigation.TurnByTurnNavigationSession
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenu
 import org.scottishtecharmy.soundscape.services.mediacontrol.AudioMenuMediaControls
@@ -109,6 +118,8 @@ class SoundscapeService : MediaSessionService() {
     lateinit var locationProvider: LocationProvider
     lateinit var directionProvider: DirectionProvider
     lateinit var routePlayer: RoutePlayer
+    private var turnByTurnNavigationSession: TurnByTurnNavigationSession? = null
+    private var turnByTurnNavigationJob: Job? = null
 
     // secondary service
     private var timerJob: Job? = null
@@ -258,6 +269,8 @@ class SoundscapeService : MediaSessionService() {
         mediaSession
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        setDebugStaticLocation(intent)
+
         if (!running) {
             if(startAsForegroundService()) {
                 // Reminds the user every hour that the Soundscape service is still running in the background
@@ -280,6 +293,30 @@ class SoundscapeService : MediaSessionService() {
         }
 
         return super.onStartCommand(intent, flags, startId)
+    }
+
+    private fun setDebugStaticLocation(intent: Intent?) {
+        if (!BuildConfig.DEBUG || intent?.action != DEBUG_SET_LOCATION_ACTION) {
+            return
+        }
+
+        val latitude = intent.getDoubleExtra(DEBUG_LOCATION_LATITUDE_EXTRA, Double.NaN)
+        val longitude = intent.getDoubleExtra(DEBUG_LOCATION_LONGITUDE_EXTRA, Double.NaN)
+        if (latitude.isNaN() || longitude.isNaN()) {
+            Log.e(TAG, "Debug location intent missing latitude or longitude.")
+            return
+        }
+
+        val location = LngLatAlt(longitude, latitude)
+        val currentProvider = locationProvider
+        if (currentProvider is StaticLocationProvider) {
+            currentProvider.updateLocation(location, heading = 0.0F, speed = 0.0F)
+        } else {
+            currentProvider.destroy()
+            locationProvider = StaticLocationProvider(location)
+            locationProvider.start(this)
+        }
+        Log.d(TAG, "Debug static location set: $latitude,$longitude")
     }
 
     lateinit var sharedPreferences : SharedPreferences
@@ -774,6 +811,89 @@ class SoundscapeService : MediaSessionService() {
     fun startBeacon(location: LngLatAlt, name: String) {
         routePlayer.startBeacon(location, name)
     }
+
+    fun startTurnByTurnNavigation(destination: LngLatAlt, name: String) {
+        val ctx = if (::localizedContext.isInitialized) localizedContext else this@SoundscapeService
+        val currentLocation = locationProvider.filteredLocationFlow.value
+        if (currentLocation == null) {
+            speak2dText(ctx.getString(R.string.general_error_location_services_find_location_error))
+            return
+        }
+        if (BuildConfig.ROUTING_PROVIDER_URL.isBlank()) {
+            speak2dText(ctx.getString(R.string.turn_by_turn_route_not_configured))
+            return
+        }
+
+        stopTurnByTurnNavigation(stopRoutePlayer = false)
+        routePlayer.startBeacon(destination, name, monitorArrival = false)
+        speak2dText(ctx.getString(R.string.turn_by_turn_route_calculating).format(name), clearQueue = true)
+
+        turnByTurnNavigationJob = coroutineScope.launch(Dispatchers.IO) {
+            try {
+                val session = TurnByTurnNavigationSession(
+                    GraphHopperRouteProvider(BuildConfig.ROUTING_PROVIDER_URL)
+                )
+                turnByTurnNavigationSession = session
+                val route = session.start(
+                    GraphHopperRouteRequest(
+                        start = currentLocation.toNavigationPoint(),
+                        destination = NavigationPoint(
+                            latitude = destination.latitude,
+                            longitude = destination.longitude
+                        )
+                    )
+                )
+                Log.d(
+                    TAG,
+                    "Turn-by-turn route ready: ${route.instructions.size} instructions, " +
+                        "${route.distanceMeters.toInt()} meters"
+                )
+
+                speak2dText(ctx.getString(R.string.turn_by_turn_route_started).format(name), clearQueue = true)
+                session.updateLocation(currentLocation.toNavigationPoint())?.let { event ->
+                    speakTurnByTurnEvent(event)
+                }
+
+                locationProvider.filteredLocationFlow.collectLatest { location ->
+                    location ?: return@collectLatest
+                    session.updateLocation(location.toNavigationPoint())?.let { event ->
+                        speakTurnByTurnEvent(event)
+                        if (event is RouteGuidanceEvent.Arrived) {
+                            stopTurnByTurnNavigation()
+                        }
+                    }
+                }
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to start turn-by-turn navigation", e)
+                speak2dText(ctx.getString(R.string.turn_by_turn_route_failed), clearQueue = true)
+                stopTurnByTurnNavigation()
+            }
+        }
+    }
+
+    private fun speakTurnByTurnEvent(event: RouteGuidanceEvent) {
+        Log.d(TAG, "Turn-by-turn event: $event")
+        speak2dText(RouteGuidanceAnnouncementFormatter.format(event))
+    }
+
+    private fun Location.toNavigationPoint(): NavigationPoint {
+        return NavigationPoint(
+            latitude = latitude,
+            longitude = longitude
+        )
+    }
+
+    private fun stopTurnByTurnNavigation(stopRoutePlayer: Boolean = true) {
+        turnByTurnNavigationJob?.cancel()
+        turnByTurnNavigationJob = null
+        turnByTurnNavigationSession = null
+        if (stopRoutePlayer) {
+            routePlayer.stopRoute()
+        }
+    }
+
     fun routeStartById(routeId: Long) {
         routePlayer.startRoute(routeId)
     }
@@ -782,6 +902,7 @@ class SoundscapeService : MediaSessionService() {
         routePlayer.startRoute(routeId, reverse = true)
     }
     fun routeStop() {
+        stopTurnByTurnNavigation(stopRoutePlayer = false)
         routePlayer.stopRoute()
     }
     fun routeSkipPrevious(): Boolean {
@@ -1085,6 +1206,10 @@ class SoundscapeService : MediaSessionService() {
         private const val CHANNEL_ID = "SoundscapeService_channel_01"
         private const val NOTIFICATION_CHANNEL_NAME = "Soundscape_SoundscapeService"
         private const val NOTIFICATION_ID = 100000
+
+        const val DEBUG_SET_LOCATION_ACTION = "org.scottishtecharmy.soundscape.DEBUG_SET_LOCATION"
+        const val DEBUG_LOCATION_LATITUDE_EXTRA = "latitude"
+        const val DEBUG_LOCATION_LONGITUDE_EXTRA = "longitude"
 
 //      Variable used when simulating startForeground failure - only for debug usage
         private var startForegroundShouldFail = false

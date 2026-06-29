@@ -38,6 +38,11 @@ class LocationDetailsViewModel @Inject constructor(
         audioTour.onBeaconStarted()
     }
 
+    fun startTurnByTurnNavigation(location: LngLatAlt, name: String) {
+        soundscapeServiceConnection.startTurnByTurnNavigation(location, name)
+        audioTour.onBeaconStarted()
+    }
+
     fun enableStreetPreview(location: LngLatAlt) {
         soundscapeServiceConnection.setStreetPreviewMode(true, location)
     }
