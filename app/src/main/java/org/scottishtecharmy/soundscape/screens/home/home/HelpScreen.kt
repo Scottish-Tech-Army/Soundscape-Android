@@ -393,6 +393,7 @@ fun HelpScreen(
                         .mediumPadding(),
                     verticalArrangement = Arrangement.spacedBy(spacing.small),
                 ) {
+                    structureLog.start("LazyColumn")
                     items(sections.sections) { section ->
                         structureLog.start("LazyColumn item")
                         Box(
