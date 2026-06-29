@@ -88,14 +88,16 @@ android {
         var searchProviderUrl = ""
         var searchProviderApiKey = ""
         var extractProviderUrl = ""
+        var routingProviderUrl = ""
         try {
             val localProperties = Properties()
             localProperties.load(FileInputStream(rootProject.file("local.properties")))
-            tileProviderUrl = localProperties["tileProviderUrl"].toString()
-            tileProviderApiKey = localProperties["tileProviderApiKey"].toString()
-            searchProviderUrl = localProperties["searchProviderUrl"].toString()
-            searchProviderApiKey = localProperties["searchProviderApiKey"].toString()
-            extractProviderUrl = localProperties["extractProviderUrl"].toString()
+            tileProviderUrl = localProperties.getProperty("tileProviderUrl", "")
+            tileProviderApiKey = localProperties.getProperty("tileProviderApiKey", "")
+            searchProviderUrl = localProperties.getProperty("searchProviderUrl", "")
+            searchProviderApiKey = localProperties.getProperty("searchProviderApiKey", "")
+            extractProviderUrl = localProperties.getProperty("extractProviderUrl", "")
+            routingProviderUrl = localProperties.getProperty("routingProviderUrl", "")
         } catch (e: Exception) {
             println("Failed to load local.properties for tile and search providers: $e")
         }
@@ -104,6 +106,7 @@ android {
         buildConfigField("String", "SEARCH_PROVIDER_URL", "\"${searchProviderUrl}\"")
         buildConfigField("String", "SEARCH_PROVIDER_API_KEY", "\"${searchProviderApiKey}\"")
         buildConfigField("String", "EXTRACT_PROVIDER_URL", "\"${extractProviderUrl}\"")
+        buildConfigField("String", "ROUTING_PROVIDER_URL", "\"${routingProviderUrl}\"")
 
         buildConfigField("String", "VERSION_NAME", "\"${versionName}\"")
 
