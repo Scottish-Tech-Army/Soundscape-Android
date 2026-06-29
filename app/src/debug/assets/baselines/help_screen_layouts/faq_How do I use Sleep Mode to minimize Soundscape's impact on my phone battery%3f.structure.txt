@@ -12,5 +12,5 @@
   Text for Title: 'How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?'
 'LazyColumn item' end
 'LazyColumn item' start
-  Text for HTML section: 'To put Soundscape in to Sleep Mode select the *"Sleep"* button in the top right hand corner of the screen. When you select this Soundscape will stop using Location Services and mobile data until you choose to wake it up again.'
+  Text for HTML section: 'To put Soundscape in to Sleep Mode, select the *"Sleep"* button in the top-right corner of the screen. When you select this, Soundscape will stop using Location Services and mobile data until you choose to wake it up again.'
 'LazyColumn item' end

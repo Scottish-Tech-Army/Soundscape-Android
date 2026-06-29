@@ -24,10 +24,17 @@
   Text for Title: 'How does it work?'
 'LazyColumn item' end
 'LazyColumn item' start
-  Text for HTML section: 'You can access the following features in Soundscape using your the media control buttons on your headphones:
-⏯ Play/Pause: Mute any current callouts and if the audio beacon is set, toggle the beacon audio.
-⏭ Next: Callout *"My Location"*.
-⏮ Previous: Repeat last callout.
-⏩ Skip Forward: Toggle callouts On and Off.
-⏪ Skip Backward: Callout *"Around Me"*.'
+  Text for HTML section: 'There are 3 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
+Original mode.
+⏯ Play/Pause: Toggles the beacon audio on and off.
+⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
+⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.'
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for HTML section: 'Voice command.
+⏯ Play/Pause: This triggers the app to listen for voice commands.'
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for HTML section: 'Audio menu.
+⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.'
 'LazyColumn item' end

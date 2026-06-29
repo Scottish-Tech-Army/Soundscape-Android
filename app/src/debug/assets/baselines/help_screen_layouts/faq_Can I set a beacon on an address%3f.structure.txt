@@ -12,5 +12,5 @@
   Text for Title: 'Can I set a beacon on an address?'
 'LazyColumn item' end
 'LazyColumn item' start
-  Text for HTML section: 'Yes you can. Addresses are not listed by default but can be found using the search field. To save this address so you don’t need to search for it again, you can add it as a marker from the home screen by selecting the *"Save as Marker"* button.'
+  Text for HTML section: 'Yes you can. Addresses are not listed by default but can be found using the search field. To save this address so you don’t need to search for it again, you can add it as a marker from the *"Location Details"* screen by selecting the *"Save as Marker"* button.'
 'LazyColumn item' end

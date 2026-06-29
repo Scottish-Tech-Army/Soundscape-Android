@@ -12,7 +12,7 @@
   Text for Title: 'What is it?'
 'LazyColumn item' end
 'LazyColumn item' start
-  Text for HTML section: 'The *"Ahead of Me"* button tells you about four things ahead of you. *"Ahead of Me"* is intended to help you explore the way ahead of yourself when you are learning about a new area.'
+  Text for HTML section: 'The *"Ahead of Me"* button tells you about up to five things ahead of you. *"Ahead of Me"* is intended to help you explore the way ahead of yourself when you are learning about a new area.'
 'LazyColumn item' end
 'LazyColumn item' start
   Text for Title: 'When would I use it?'
