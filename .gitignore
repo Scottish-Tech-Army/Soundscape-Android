@@ -1,5 +1,6 @@
 
 .gradle
+.serena/
 /local.properties
 /.idea/caches
 /.idea/libraries
@@ -15,6 +16,7 @@
 app/gpxFiles/*
 app/*.geojson
 app/src/screenshotTestDebug/*
+tools/routing/.local/
 
 # Gradle files
 .gradle/
