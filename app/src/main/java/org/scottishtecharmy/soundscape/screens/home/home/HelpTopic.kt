@@ -24,8 +24,8 @@ sealed class HelpTopic(protected val context: Context) {
     abstract fun getDisplayTitle(): String
 
     class Home(context: Context) : HelpTopic(context) {
-        override fun toRouteParam(): String = "page${R.string.menu_help_and_tutorials}"
-        override fun getDisplayTitle(): String = context.getString(R.string.menu_help_and_tutorials)
+        override fun toRouteParam(): String = "page${R.string.menu_help}"
+        override fun getDisplayTitle(): String = context.getString(R.string.menu_help)
     }
 
     class ResourcePage(context: Context, val titleId: Int) : HelpTopic(context) {
@@ -146,7 +146,7 @@ sealed class HelpTopic(protected val context: Context) {
                 }
             }
 
-            if (param == "page:${HELP_AND_TUTORIALS_FILENAME}" || param == "page${R.string.menu_help_and_tutorials}" || param.isEmpty()) {
+            if (param == "page:${HELP_AND_TUTORIALS_FILENAME}" || param == "page${R.string.menu_help}" || param.isEmpty()) {
                 return getHome()
             }
 
@@ -182,7 +182,7 @@ sealed class HelpTopic(protected val context: Context) {
                     val rest = Uri.decode(param.substring(4))
                     val id = rest.toIntOrNull()
                     if (id != null) {
-                        if (id == R.string.menu_help_and_tutorials) {
+                        if (id == R.string.menu_help) {
                             Home(context)
                         } else {
                             ResourcePage(context, id)

@@ -37,10 +37,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.BuildConfig
+import org.scottishtecharmy.soundscape.MainActivity.Companion.MARKDOWN_HELP_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.MARKDOWN_HELP_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
+import org.scottishtecharmy.soundscape.screens.home.home.HelpTopic
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -119,7 +122,7 @@ fun DrawerContent(
                 DrawerMenuItem(
                     onClick = {
                         val route =
-                            if (useMarkdownHelp) "page:${HelpTopic.HELP_FILENAME}"
+                            if (useMarkdownHelp) "page:${HelpTopic.HELP_AND_TUTORIALS_FILENAME}"
                             else "page${R.string.menu_help}"
                         onNavigate(HomeRoutes.Help.route + "/$route")
                     },

@@ -1006,9 +1006,9 @@ fun Settings(
                         Text(
                             text = "Enable new Help screens",
                             color = textColor
-                        }
+                        )
                     }
-                }
+                )
                 item {
                     Column(
                         modifier = expandedSectionModifier.fillMaxWidth()

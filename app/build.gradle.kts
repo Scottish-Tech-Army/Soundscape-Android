@@ -1,7 +1,10 @@
+import com.android.build.gradle.internal.tasks.AndroidTestTask
 import com.google.protobuf.gradle.id
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.FileInputStream
 import java.util.Properties
+import kotlin.io.path.Path
+import kotlin.io.path.createDirectories
 
 plugins {
     alias(libs.plugins.android.application)
@@ -38,6 +41,7 @@ android {
         }
     }
 
+    @Suppress("UnstableApiUsage")
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
     signingConfigs {
@@ -282,15 +286,19 @@ dependencies {
     implementation(libs.core.google.shortcuts)
 
     testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.ui.test.junit4)
     testImplementation(libs.androidx.core.testing)
+    testImplementation(testFixtures(project(":app")))
     testImplementation(libs.kotlinx.coroutines.test)
-    testImplementation (libs.kotlin.test.junit)
+    testImplementation(libs.kotlin.test.junit)
     testImplementation(libs.junit.jupiter)
 
     androidTestImplementation(libs.androidx.junit.v121)
     androidTestImplementation(libs.androidx.espresso.core.v351)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
+    androidTestImplementation(testFixtures(project(":app")))
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
@@ -354,6 +362,10 @@ dependencies {
 
     // Protobuf
     implementation(libs.protobuf.kotlin.lite)
+
+    // Regression file handling for tests
+    androidTestImplementation(libs.androidx.media3.common)
+//    androidTestImplementation(libs.androidx.media3.common.ktx)
 
     // In app review
     implementation(libs.review)
@@ -451,7 +463,7 @@ tasks.register<Exec>("pullComposeBaselines") {
     // Use adb to pull the whole folder as a TAR file.
     commandLine(adbPath(), "exec-out",
         "run-as",
-        project.android.namespace,
+        project.android.namespace!!,
         "tar",
         "-C",
         "files",

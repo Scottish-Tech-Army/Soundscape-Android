@@ -328,7 +328,6 @@ val helpPages = listOf(
 fun HelpScreen(
     topic: String,
     navController: NavHostController,
-    modifier: Modifier
     modifier: Modifier,
     structureLog: StructureLog = StructureLog {}
 ) {
@@ -361,8 +360,9 @@ fun HelpScreen(
         else -> {
             // Default to home
             for (page in helpPages) {
-            if (page.titleId == R.string.menu_help) {
-                sections = page
+                if (page.titleId == R.string.menu_help) {
+                    sections = page
+                }
             }
         }
     }
@@ -398,113 +398,104 @@ fun HelpScreen(
                         Box(
                             modifier = Modifier.semantics(mergeDescendants = true) {}
                         ) {
-                        when (section.type) {
-                            SectionType.Title -> {
-                                val text = stringResource(it.textId)
-                                structureLog.unstructured("Text for Title: '${text}'")
-                                Text(
-                                    text = stringResource(section.textId),
-                                    style = MaterialTheme.typography.titleMedium,
-                                    modifier = Modifier
-                                        .padding(top = spacing.medium)
-                                        .semantics {
-                                            heading()
-                                            if (section.skipTalkback)
-                                                invisibleToUser()
-                                        },
-                                    color = MaterialTheme.colorScheme.onSurface,
-                                )
-                            }
+                            when (section.type) {
+                                SectionType.Title -> {
+                                    val text = stringResource(section.textId)
+                                    structureLog.unstructured("Text for Title: '${text}'")
+                                    Text(
+                                        text = text,
+                                        style = MaterialTheme.typography.titleMedium,
+                                        modifier = Modifier
+                                            .padding(top = spacing.medium)
+                                            .semantics {
+                                                heading()
+                                                if (section.skipTalkback)
+                                                    invisibleToUser()
+                                            },
+                                        color = MaterialTheme.colorScheme.onSurface,
+                                    )
+                                }
 
-                            SectionType.Paragraph -> {
-                                var htmlText = stringResource(section.textId)
-                                val parser: Parser = Parser.builder().build()
-                                val document: Node? = parser.parse(htmlText)
-                                val renderer = HtmlRenderer.builder().build()
-                                htmlText = renderer.render(document)
-
-                                Text(
-                                    text = AnnotatedString.fromHtml(
+                                SectionType.Paragraph -> {
+                                    var htmlText = stringResource(section.textId)
+                                    val parser: Parser = Parser.builder().build()
+                                    val document: Node? = parser.parse(htmlText)
+                                    val renderer = HtmlRenderer.builder().build()
+                                    htmlText = renderer.render(document)
+                                    val text = AnnotatedString.fromHtml(
                                         htmlString = htmlText,
                                         linkStyles = TextLinkStyles(
                                             style = SpanStyle(
                                                 textDecoration = TextDecoration.Underline,
                                             )
                                         )
-                                    ),
-                                     htmlString = htmlText,
-                                     linkStyles = TextLinkStyles(
-                                         style = SpanStyle(
-                                             color = MaterialTheme.colorScheme.primary,
-                                             textDecoration = TextDecoration.Underline,
-                                         )
-                                     )
-                                 )
+                                    )
 
-                                structureLog.unstructured("Text for HTML section: '${text}'")
-                                Text(
-                                    text = text,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = MaterialTheme.colorScheme.onSurface,
-                                    modifier = Modifier
-                                        .semantics {
-                                            if(section.skipTalkback)
-                                                invisibleToUser()
-                                        }
-                                )
-                            }
+                                    structureLog.unstructured("Text for HTML section: '${text}'")
+                                    Text(
+                                        text = text,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onSurface,
+                                        modifier = Modifier
+                                            .semantics {
+                                                if (section.skipTalkback)
+                                                    invisibleToUser()
+                                            }
+                                    )
+                                }
 
-                            SectionType.Link, SectionType.Faq -> {
-                                Button(
-                                    onClick = {
-                                        val routeParam = if (it.type == SectionType.Faq) {
-                                            HelpTopic.ResourceFaq(context, it.textId, it.faqAnswer).toRouteParam()
-                                        } else {
-                                            HelpTopic.ResourcePage(context, it.textId).toRouteParam()
+                                SectionType.Link, SectionType.Faq -> {
+                                    Button(
+                                        onClick = {
+                                            val routeParam = if (section.type == SectionType.Faq) {
+                                                HelpTopic.ResourceFaq(
+                                                    context,
+                                                    section.textId,
+                                                    section.faqAnswer
+                                                ).toRouteParam()
+                                            } else {
+                                                HelpTopic.ResourcePage(context, section.textId)
+                                                    .toRouteParam()
+                                            }
+                                            navController.navigate("${HomeRoutes.Help.route}/$routeParam")
+                                        },
+                                        modifier = Modifier
+                                            .fillMaxWidth(),
+                                        shape = RoundedCornerShape(spacing.extraSmall),
+                                        colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
+                                    ) {
+                                        structureLog.start("Button")
+                                        Box(
+                                            Modifier.weight(6f)
+                                        ) {
+                                            structureLog.start("Box for text")
+                                            val text = stringResource(section.textId)
+                                            structureLog.unstructured("Text for Button: '${text}'")
+                                            Text(
+                                                text = text,
+                                                textAlign = TextAlign.Start,
+                                                style = MaterialTheme.typography.titleMedium,
+                                            )
+                                            structureLog.end("Box for text")
                                         }
-                                        navController.navigate("${HomeRoutes.Help.route}/$routeParam")
-                                    },
-                                    modifier = Modifier
-                                        .fillMaxWidth(),
-                                    shape = RoundedCornerShape(spacing.extraSmall),
-                                    colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
-                                ) {
-                                    structureLog.start("Button")
-                                    Box(
-                                        Modifier.weight(6f)
-                                    ) {
-                                        structureLog.start("Box for text")
-                                        val text = stringResource(it.textId)
-                                        structureLog.unstructured("Text for Button: '${text}'")
-                                        Text(
-                                            text = stringResource(section.textId),
-                                            textAlign = TextAlign.Start,
-                                            style = MaterialTheme.typography.titleMedium,
-                                        )
-                                        structureLog.end("Box for text")
+                                        Box(
+                                            Modifier.weight(1f)
+                                        ) {
+                                            structureLog.start("Box for icon")
+                                            Icon(
+                                                Icons.Rounded.ChevronRight,
+                                                null,
+                                                modifier = Modifier.align(Alignment.CenterEnd)
+                                            )
+                                            structureLog.end("Box for icon")
+                                        }
+                                        structureLog.end("Button")
                                     }
-                                    Box(
-                                        Modifier.weight(1f)
-                                    ) {
-                                        structureLog.start("Box for icon")
-                                        Icon(
-                                            Icons.Rounded.ChevronRight,
-                                            null,
-                                            modifier = Modifier.align(Alignment.CenterEnd)
-                                        )
-                                        structureLog.end("Box for icon")
-                                    }
-                                    structureLog.end("Button")
                                 }
                             }
                         }
-                      }
-                    }
                         structureLog.end("LazyColumn item")
                     }
-                    structureLog.end("LazyColumn")
-                }
-                structureLog.end("Box")
                     item {
                         if (sections.titleId == R.string.settings_about_app) {
                             CustomButton(
@@ -519,7 +510,9 @@ fun HelpScreen(
                             )
                         }
                     }
+                    structureLog.end("LazyColumn")
                 }
+                structureLog.end("Box")
             }
             structureLog.end("Scaffold content")
         }

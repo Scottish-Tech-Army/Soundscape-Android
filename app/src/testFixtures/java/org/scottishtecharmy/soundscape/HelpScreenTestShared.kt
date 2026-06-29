@@ -6,8 +6,6 @@ import androidx.media3.common.util.UnstableApi
 import androidx.test.platform.app.InstrumentationRegistry
 import org.junit.Assert.fail
 import org.scottishtecharmy.soundscape.screens.home.home.HelpTopic
-import org.scottishtecharmy.soundscape.screens.home.home.Section
-import org.scottishtecharmy.soundscape.screens.home.home.SectionType
 import org.scottishtecharmy.soundscape.screens.home.home.Sections
 import org.scottishtecharmy.soundscape.screens.home.home.helpPages
 import java.util.Locale
@@ -16,12 +14,6 @@ object HelpScreenTestShared {
     private val helpPagesByTitleString: Map<String, Sections> by lazy {
         helpPages.associateBy { getDefaultString(it.titleId) }
     }
-
-//    private val faqPagesByTitleString: Map<String, Section> by lazy {
-//        val faqPage = helpPages.find { it.titleId == R.string.faq_title }!!
-//        val individualFaqTopics = faqPage.sections.filter { it.type == SectionType.Faq }
-//        individualFaqTopics.associateBy { getDefaultString(it.textId) }
-//    }
 
     /**
      * Maps resource titleId to markdown filenames for help pages.
@@ -43,7 +35,7 @@ object HelpScreenTestShared {
         R.string.faq_title to "help-frequently-asked-questions.md",
         R.string.faq_tips_title to "help-tips.md",
         R.string.help_offline_page_title to "help-why-is-soundscape-working-offline-.md",
-        R.string.menu_help_and_tutorials to HelpTopic.HELP_AND_TUTORIALS_FILENAME,
+        R.string.menu_help to HelpTopic.HELP_AND_TUTORIALS_FILENAME,
         R.string.settings_about_app to HelpTopic.ABOUT_SOUNDSCAPE_FILENAME,
     )
 
@@ -78,8 +70,6 @@ object HelpScreenTestShared {
             }
             testTopic.startsWith("faq_") -> {
                 val title = Uri.decode(testTopic.substring(4))
-//                val section = faqPagesByTitleString[title]
-//                    ?: _fail("Failed to find FAQ entry with title '${title}'")
                 val faqFileName = titleIdToMarkdownFilename[R.string.faq_title]
                     ?: _fail("Failed to find markdown filename for FAQ page")
                 "page:faq:${Uri.encode(faqFileName)}:${Uri.encode(title)}"
