@@ -1103,7 +1103,13 @@
 <string name="menu_open_source_licenses">"Open source licenses"</string>
 <!-- Text for dialog which explains what is new in the current release. This is in markdown format. -->
 <string name="new_version_info_details">"
-This is the first production release of Soundscape. If you are new to the app, then you can find out more about it from the *Help* screens or by taking the *Guided Tutorial*. These are both options in the main menu.
+This is a new minor release of Soundscape. Here are the changes that have been made.
+
+We\'ve fixed support for ASHA hearing aids, if you are a hearing aid user and Soundscape isn\'t working for you, please let us know.
+
+There\'s a new Exit Soundscape option at the top of the main menu. Tapping on this is an easy way to close the app fully.
+
+The offline maps details screen now has a button to re-download maps which have already been downloaded. Maps are updated once a month from OpenStreetMap and so re-downloading offline maps every so often is worth doing. There\'s also code which improves the validation of downloaded maps to prevent any corrupted maps being used.
 
 We\'re still working hard on improving the app, so please report any problems that you have, however small they may be via the *Contact Support* option in the main menu.
 "</string>
