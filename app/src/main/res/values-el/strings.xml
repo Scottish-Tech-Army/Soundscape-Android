@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Οι δείκτες και οι διαδρομές διαγράφηκαν</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Πληροφορίες νέας έκδοσης</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Κλείσιμο διαλόγου νέας έκδοσης</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nΑυτή είναι η πρώτη επίσημη έκδοση παραγωγής του Soundscape. Εάν δεν έχετε χρησιμοποιήσει προηγουμένως την εφαρμογή, μπορείτε να μάθετε περισσότερα από τις οθόνες *\"Βοήθεια\"* ή εκτελώντας τον *\"Καθοδηγούμενο οδηγό\"*. Και οι δύο επιλογές βρίσκονται στο κύριο μενού.\n\nΣυνεχίζουμε να εργαζόμαστε σκληρά για τη βελτίωση της εφαρμογής, οπότε παρακαλούμε αναφέρετε οποιοδήποτε πρόβλημα αντιμετωπίζετε, όσο μικρό κι αν είναι, μέσω της επιλογής *\"Επικοινωνία με την υποστήριξη\"* στο κύριο μενού.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nΠρόκειται για μια νέα, μικρή έκδοση του Soundscape. Ακολουθούν οι αλλαγές που έγιναν.\n\nΔιορθώσαμε την υποστήριξη για τα βοηθήματα ακοής ASHA. Εάν χρησιμοποιείτε ακουστικό βαρηκοΐας και το Soundscape δεν λειτουργεί για εσάς, παρακαλούμε ενημερώστε μας.\n\nΠροστέθηκε μια νέα επιλογή «Έξοδος από το Soundscape» στην κορυφή του κύριου μενού. Το πάτημα αυτής της επιλογής είναι ένας εύκολος τρόπος για να κλείσετε πλήρως την εφαρμογή.\n\nΗ οθόνη λεπτομερειών των χαρτών εκτός σύνδεσης διαθέτει πλέον κουμπί για να κατεβάσετε ξανά χάρτες που έχουν ήδη ληφθεί. Οι χάρτες ενημερώνονται μία φορά το μήνα από το OpenStreetMap, οπότε αξίζει να τους κατεβάζετε ξανά περιοδικά. Επιπλέον, υπάρχει κώδικας που βελτιώνει την επικύρωση των ληφθέντων χαρτών για να αποτρέπει τη χρήση κατεστραμμένων αρχείων χάρτη.\n\nΣυνεχίζουμε να εργαζόμαστε σκληρά για τη βελτίωση της εφαρμογής, γι\' αυτό παρακαλούμε να αναφέρετε τυχόν προβλήματα που αντιμετωπίζετε, όσο μικρά κι αν είναι, μέσω της επιλογής *Επικοινωνία με την υποστήριξη* στο κύριο μενού.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Άδειες ανοιχτού κώδικα</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Τερματικός Σταθμός Φεριμπότ</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Τερματικός Σταθμός Φεριμπότ</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">Φόρτωση</string>
     <string name="offline_maps_extract_damaged">Κατεστραμμένο - διαγράψτε και κατεβάστε ξανά</string>
     <string name="offline_map_details_update">Ενημέρωση χάρτη εκτός σύνδεσης</string>
+    <string name="menu_exit_app">Έξοδος από το Soundscape</string>
 </resources>
