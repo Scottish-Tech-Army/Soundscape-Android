@@ -23,6 +23,7 @@ namespace soundscape {
                 ->setSharingMode(oboe::SharingMode::Shared)
                 ->setFormat(oboe::AudioFormat::Float)
                 ->setChannelCount(oboe::ChannelCount::Stereo)
+                ->setSampleRate(48000)
                 ->setFramesPerDataCallback(FRAME_SIZE)
                 ->setUsage(oboe::Usage::Media)
                 ->setContentType(oboe::ContentType::Music)

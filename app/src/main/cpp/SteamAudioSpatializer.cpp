@@ -27,7 +27,7 @@ namespace soundscape {
         hrtfSettings.normType = IPL_HRTFNORMTYPE_NONE;
         err = iplHRTFCreate(m_Context, &m_AudioSettings, &hrtfSettings, &m_Hrtf);
         if (err != IPL_STATUS_SUCCESS) {
-            TRACE("SteamAudio: iplHRTFCreate failed: %d", err);
+            TRACE("SteamAudio: iplHRTFCreate failed: %d, sample rate %d, frameSize %d", err, sampleRate, frameSize);
             iplContextRelease(&m_Context);
             m_Context = nullptr;
             return;
