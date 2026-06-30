@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Znaczniki i trasy usunięte</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informacje o nowej wersji</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Zamknij okno informacji o nowej wersji</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nTo jest pierwsze produkcyjne wydanie Soundscape. Jeśli jesteś nowym użytkownikiem aplikacji, możesz dowiedzieć się o niej więcej w sekcji *Pomoc* lub wykonując *Samouczek prowadzony*. Obie opcje są dostępne w menu głównym.\n\nWciąż intensywnie pracujemy nad ulepszeniami aplikacji, więc prosimy zgłaszaj wszelkie problemy, nawet drobne, korzystając z opcji *Kontakt z pomocą techniczną* w menu głównym.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nTo jest nowe drobne wydanie Soundscape. Oto wprowadzone zmiany.\n\nNaprawiliśmy obsługę aparatów słuchowych ASHA. Jeśli używasz aparatu słuchowego i Soundscape nie działa u Ciebie poprawnie, prosimy daj nam znać.\n\nW menu głównym u góry pojawiła się nowa opcja *Zamknij Soundscape*. Stuknięcie w nią to prosty sposób na całkowite zamknięcie aplikacji.\n\nNa ekranie szczegółów map offline dodano przycisk umożliwiający ponowne pobranie map, które zostały wcześniej pobrane. Mapy są aktualizowane raz w miesiącu z OpenStreetMap, więc od czasu do czasu warto je ponownie pobrać. Dodaliśmy także mechanizmy poprawiające walidację pobranych map, aby zapobiec użyciu uszkodzonych plików map.\n\nWciąż intensywnie pracujemy nad ulepszaniem aplikacji, więc prosimy o zgłaszanie wszelkich problemów, nawet drobnych, za pomocą opcji *Kontakt z pomocą techniczną* w menu głównym.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licencje open source</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal promowy</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Terminal promowy</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">Wczytywanie</string>
     <string name="offline_maps_extract_damaged">Uszkodzona — usuń i pobierz ponownie</string>
     <string name="offline_map_details_update">Zaktualizuj mapę offline</string>
+    <string name="menu_exit_app">Zamknij Soundscape</string>
 </resources>
