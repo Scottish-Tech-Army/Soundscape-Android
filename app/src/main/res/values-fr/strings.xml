@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Marqueurs et itinéraires supprimés</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informations sur la nouvelle version</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Fermer les informations sur la nouvelle version</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nCeci est la première version de production de Soundscape. Si vous découvrez l’application, vous pouvez en apprendre davantage depuis les écrans *Aide* ou en suivant le *Tutoriel guidé*. Ces deux options se trouvent dans le menu principal.\n\nNous travaillons toujours activement à l’amélioration de l’application ; merci de signaler tout problème, même mineur, via l’option *Contacter le support* du menu principal.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nIl s’agit d’une nouvelle version mineure de Soundscape. Voici les modifications apportées.\n\nNous avons rétabli la prise en charge des aides auditives ASHA. Si vous utilisez un appareil auditif et que Soundscape ne fonctionne pas pour vous, veuillez nous le faire savoir.\n\nUne nouvelle option « Quitter Soundscape » a été ajoutée en haut du menu principal. Appuyer dessus permet de fermer complètement l’application.\n\nL’écran des détails des cartes hors ligne dispose désormais d’un bouton permettant de retélécharger les cartes déjà téléchargées. Les cartes sont mises à jour une fois par mois depuis OpenStreetMap ; il est donc utile de retélécharger périodiquement les cartes hors ligne. Nous avons aussi ajouté du code améliorant la validation des cartes téléchargées afin d’éviter l’utilisation de cartes corrompues.\n\nNous continuons de travailler assidûment à l’amélioration de l’application. Veuillez signaler tout problème, même minime, via l’option *Contacter le support* du menu principal.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licences open source</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal de ferry</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Terminal de ferry</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">Chargement</string>
     <string name="offline_maps_extract_damaged">Endommagée — supprimer et retélécharger</string>
     <string name="offline_map_details_update">Mettre à jour la carte hors ligne</string>
+    <string name="menu_exit_app">Quitter Soundscape</string>
 </resources>
