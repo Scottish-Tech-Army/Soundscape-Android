@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Merkinnät ja reitit poistettu</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Uuden julkaisun tiedot</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Sulje uuden julkaisun valintaikkuna</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nTämä on Soundscapen ensimmäinen tuotantojulkaisu. Jos olet uusi sovelluksen käyttäjä, voit lukea lisää *\"Ohjeet\"*‑näytöiltä tai suorittaa *\"Opastetun tutoriaalin\"*. Molemmat löytyvät päävalikosta.\n\nTyöskentelemme edelleen ahkerasti sovelluksen parantamiseksi, joten ilmoitathan mahdollisista ongelmista — vaikka ne olisivat kuinka pieniä — käyttämällä päävalikon *\"Ota yhteyttä tukeen\"* -vaihtoehtoa.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nTämä on uusi pieni Soundscape-julkaisu. Tässä ovat tehdyt muutokset.\n\nOlemme korjanneet ASHA‑kuulolaitteiden tuen. Jos käytät kuulolaitetta eikä Soundscape toimi sinulle, ilmoitathan siitä meille.\n\nPäävalikon yläosaan on lisätty uusi *Sulje Soundscape* -vaihtoehto. Sen napauttaminen on helppo tapa sulkea sovellus kokonaan.\n\nOffline-karttojen tiedot -näytölle on nyt lisätty painike aiemmin ladattujen karttojen uudelleenlatausta varten. Karttoja päivitetään OpenStreetMapista kerran kuukaudessa, joten offline-karttojen aika ajoin uudelleenlataaminen kannattaa. Lisäksi olemme parantaneet ladattujen karttojen tarkistusta, jotta korruptoituneita karttoja ei käytetä.\n\nTeemme edelleen kovasti töitä sovelluksen parantamiseksi, joten ilmoita meille kaikista ongelmista, vaikka ne olisivatkin pieniä, käyttämällä päävalikon *Ota yhteyttä tukeen* -vaihtoehtoa.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Avoimen lähdekoodin lisenssit</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Lauttaterminaali</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s lauttaterminaali</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">Ladataan</string>
     <string name="offline_maps_extract_damaged">Viallinen - poista ja lataa uudelleen</string>
     <string name="offline_map_details_update">Päivitä offline-kartta</string>
+    <string name="menu_exit_app">Sulje Soundscape</string>
 </resources>
