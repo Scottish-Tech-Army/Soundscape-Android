@@ -512,7 +512,7 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Yeni sürüm bilgileri</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Yeni sürüm iletişim kutusunu kapat</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Açık kaynak lisansları</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nBu, Soundscape\'in ilk üretim sürümüdür. Uygulamaya yeniyseniz, uygulama hakkında daha fazla bilgiye *\"Yardım\"* ekranlarından veya *\"Kılavuzlu Eğitim\"*\'i alarak ulaşabilirsiniz. Her ikisi de ana menüde bulunan seçeneklerdir.\n\nUygulamayı geliştirmek için hâlâ yoğun şekilde çalışıyoruz; bu nedenle karşılaştığınız her türlü sorunu, ne kadar küçük olursa olsun lütfen ana menüdeki *\"Destek ile iletişime geç\"* seçeneği aracılığıyla bildirin.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nBu, Soundscape için yeni bir küçük sürümdür. Yapılan değişiklikler aşağıdadır.\n\nASHA işitme cihazları desteğini düzelttik. Eğer işitme cihazı kullanıyorsanız ve Soundscape sizin için çalışmıyorsa, lütfen bize bildirin.\n\nAna menünün en üstüne yeni bir Soundscape\'ten Çık seçeneği eklendi. Buna dokunmak uygulamayı tamamen kapatmanın kolay bir yoludur.\n\nÇevrimdışı harita ayrıntıları ekranına, zaten indirilmiş haritaları yeniden indirmek için bir düğme eklendi. Haritalar Open Street Map\'ten aylık olarak güncellenir; bu nedenle çevrimdışı haritaları zaman zaman yeniden indirmek faydalıdır. Ayrıca indirilen haritaların doğrulamasını iyileştirerek bozuk haritaların kullanılmasını önleyen kod ekledik.\n\nUygulamayı geliştirmek için çalışmaya devam ediyoruz; bu nedenle, ne kadar küçük olursa olsun, yaşadığınız herhangi bir sorunu ana menüdeki *Destek ile iletişime geç* seçeneği aracılığıyla lütfen bildirin.\n</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape, insanların çevrelerini daha zengin biçimde kavramalarını sağlamak ve böylece dolaşma konusunda daha özgüvenli ve güçlü hissettirmek için yenilikçi ses tabanlı teknolojinin kullanımını araştırmaktadır.</string>
     <string name="osm_office_building" tools:ignore="MissingTranslation">Ofis Binası</string>
     <string name="osm_school_building" tools:ignore="MissingTranslation">Okul Binası</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">Yükleniyor</string>
     <string name="offline_maps_extract_damaged">Hasarlı — silip yeniden indirin</string>
     <string name="offline_map_details_update">Çevrimdışı haritayı güncelle</string>
+    <string name="menu_exit_app">Soundscape\'ten Çık</string>
 </resources>
