@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Indicatori e percorsi eliminati</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informazioni sulla nuova versione</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Chiudi il dialogo delle novità</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nQuesta è la prima release di produzione di Soundscape. Se sei nuovo all\'app, puoi saperne di più dalle schermate *\"Guida\"* oppure seguendo il *\"Tutorial guidato\"*. Entrambe le opzioni si trovano nel menu principale.\n\nStiamo ancora lavorando sodo per migliorare l\'app, quindi ti preghiamo di segnalare qualsiasi problema, anche se minimo, tramite l\'opzione *\"Contatta l’assistenza\"* nel menu principale.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nQuesta è una nuova versione minore di Soundscape. Ecco le modifiche apportate.\n\nAbbiamo risolto il supporto per gli apparecchi acustici ASHA: se usi apparecchi acustici e Soundscape non funziona per te, facci sapere.\n\nÈ stata aggiunta una nuova opzione \"Esci da Soundscape\" in cima al menu principale. Toccarla è un modo semplice per chiudere completamente l\'app.\n\nLa schermata dei dettagli delle mappe offline ora include un pulsante per riscaricare le mappe già scaricate. Le mappe vengono aggiornate una volta al mese da OpenStreetMap, quindi vale la pena riscaricarle di tanto in tanto. Abbiamo inoltre introdotto codice che migliora la verifica delle mappe scaricate per evitare l\'uso di mappe corrotte.\n\nStiamo continuando a lavorare sodo per migliorare l\'app, quindi segnala eventuali problemi, anche minimi, tramite l\'opzione *Contatta l’assistenza* nel menu principale.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licenze open source</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal dei traghetti</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Terminal dei traghetti</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">Caricamento</string>
     <string name="offline_maps_extract_damaged">Danneggiata - elimina e scarica di nuovo</string>
     <string name="offline_map_details_update">Aggiorna la mappa offline</string>
+    <string name="menu_exit_app">Esci da Soundscape</string>
 </resources>
