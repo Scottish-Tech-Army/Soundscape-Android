@@ -120,6 +120,7 @@ fun Home(
 
     // Memoize drawer callbacks to avoid recreating on every recomposition
     val shareRecording = remember { { (context as MainActivity).shareRecording() } }
+    val exitApp = remember { { (context as MainActivity).exitApp() } }
     // Use rememberUpdatedState so the lambda is stable but always uses current location
     val currentLocation by rememberUpdatedState(state.location)
     val offlineMaps = remember(onNavigate) {
@@ -233,7 +234,8 @@ fun Home(
                 toggleTutorial = toggleTutorial,
                 tutorialRunning = tutorialRunning,
                 preferences = preferences,
-                newReleaseDialog = newReleaseDialog
+                newReleaseDialog = newReleaseDialog,
+                exitApp = exitApp
             )
         }
 

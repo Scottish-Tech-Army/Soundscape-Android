@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material.icons.automirrored.rounded.Comment
 import androidx.compose.material.icons.automirrored.rounded.HelpOutline
+import androidx.compose.material.icons.automirrored.rounded.ExitToApp
 import androidx.compose.material.icons.rounded.Headphones
 import androidx.compose.material.icons.rounded.Markunread
 import androidx.compose.material.icons.rounded.Download
@@ -54,7 +55,8 @@ fun DrawerContent(
     toggleTutorial: () -> Unit,
     tutorialRunning: Boolean,
     preferences: SharedPreferences?,
-    newReleaseDialog: MutableState<Boolean>?
+    newReleaseDialog: MutableState<Boolean>?,
+    exitApp: () -> Unit
 ) {
     val recordingEnabled = preferences?.getBoolean(RECORD_TRAVEL_KEY, RECORD_TRAVEL_DEFAULT) == true
     val running = remember(tutorialRunning) { mutableStateOf(tutorialRunning) }
@@ -103,6 +105,13 @@ fun DrawerContent(
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState()),
             ) {
+                DrawerMenuItem(
+                    onClick = { exitApp() },
+                    label = stringResource(R.string.menu_exit_app),
+                    icon = Icons.AutoMirrored.Rounded.ExitToApp,
+                    modifier = Modifier.testTag("menuExitApp")
+                )
+
 // Not implemented yet
 //                DrawerMenuItem(
 //                    onClick = { notAvailableToast() },
@@ -201,6 +210,7 @@ fun PreviewDrawerContent() {
         toggleTutorial = { },
         tutorialRunning = false,
         preferences = null,
-        newReleaseDialog = null
+        newReleaseDialog = null,
+        exitApp = { }
     )
 }

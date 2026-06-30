@@ -538,6 +538,8 @@
 <string name="menu_rate">"Rate"</string>
 <!-- Title for menu option to contact support by email -->
 <string name="menu_contact_support">"Contact support"</string>
+<!-- Title for menu option to exit the app completely -->
+<string name="menu_exit_app">"Exit Soundscape"</string>
 <!-- Title for menu option to go to markers and routes advanced settings screen -->
 <string name="menu_advanced_markers_and_routes">"Advanced Markers and Routes"</string>
 <!-- Text for main markers and routes advanced settings screen to explain what it's for -->

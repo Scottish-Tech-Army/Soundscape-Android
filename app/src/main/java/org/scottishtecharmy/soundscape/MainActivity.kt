@@ -751,6 +751,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun exitApp() {
+        soundscapeServiceConnection.stopService()
+        finishAndRemoveTask()
+    }
+
     fun shareRecording() {
         val shareUri = soundscapeServiceConnection.soundscapeService?.getRecordingShareUri(applicationContext)
         if(shareUri != null) {
