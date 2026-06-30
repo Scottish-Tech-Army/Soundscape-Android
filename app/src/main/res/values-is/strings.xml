@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Merki og leiðir eytt</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Upplýsingar um nýja útgáfu</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Loka útgáfuupplýsingum</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nÞetta er fyrsta opinbera útgáfan af Soundscape. Ef þú ert nýr/ný við forritið getur þú fengið nánari upplýsingar í *\"Hjálp\"* skjám eða með því að taka *\"Leiðsögunámskeiðið\"*. Báðar þessar aðgerðir finnur þú í aðalvalmyndinni.\n\nVið erum enn að vinna að því að bæta forritið, svo vinsamlegast tilkynndu öll vandamál sem þú rekst á, þó þau séu smávægileg, í gegnum valkostinn *\"Hafa samband við stuðning\"* í aðalvalmyndinni.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nÞetta er ný smávægileg uppfærsla á Soundscape. Hér eru breytingarnar sem hafa verið gerðar.\n\nVið höfum lagað stuðning við ASHA-heyrnartæki. Ef þú notar heyrnartæki og Soundscape virkar ekki fyrir þig, vinsamlegast láttu okkur vita.\n\nNýr valkostur „Loka Soundscape“ er nú efst í aðalvalmyndinni. Með því að ýta á hann er auðvelt að loka forritinu alveg.\n\nSkjárinn með upplýsingum um ónettengd kort hefur nú hnapp til að hlaða niður aftur kortum sem þegar hafa verið niðurhlaðin. Kort eru uppfærð einu sinni í mánuði úr OpenStreetMap, svo það er þess virði að endurhlaða ónettengd kort af og til. Einnig hefur verið bætt við kóða sem eykur sannprófun niðurhlaðinna korta til að koma í veg fyrir að gölluð kort séu notuð.\n\nVið erum ennþá að vinna hörðum höndum að því að bæta forritið, svo vinsamlegast tilkynnið okkur um öll vandamál sem þið rekst á, hversu smávægileg sem þau kunna að vera, með valkostinum *hafa samband, stuðningur* í aðalvalmyndinni.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Leyfi opins hugbúnaðar</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Ferjuhöfn</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s ferjuhöfn</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">Hleður</string>
     <string name="offline_maps_extract_damaged">Skemmd - eyða og hlaða niður aftur</string>
     <string name="offline_map_details_update">Uppfæra ónettengt kort</string>
+    <string name="menu_exit_app">Loka Soundscape</string>
 </resources>
