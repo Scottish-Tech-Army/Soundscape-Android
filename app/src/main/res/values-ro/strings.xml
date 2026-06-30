@@ -498,7 +498,7 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informații despre noua versiune</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Închide dialogul noii versiuni</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licențe open source</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nAceasta este prima versiune de producție a Soundscape. Dacă ești nou în aplicație, poți afla mai multe din ecranele *Ajutor* sau parcurgând *Tutorialul ghidat*. Ambele sunt opțiuni din meniul principal.\n\nÎncă lucrăm din greu la îmbunătățirea aplicației, așa că te rugăm să raportezi orice problemă pe care o întâmpini, oricât de mică ar fi, prin opțiunea *Contactează asistența* din meniul principal.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nAceasta este o nouă lansare minoră a Soundscape. Iată modificările efectuate.\n\nAm remediat suportul pentru aparatele auditive ASHA; dacă folosești un aparat auditiv și Soundscape nu funcționează pentru tine, te rugăm să ne anunți.\n\nExistă o nouă opțiune „Ieși din Soundscape” în partea de sus a meniului principal. Atingerea ei este o modalitate simplă de a închide complet aplicația.\n\nEcranul cu detalii despre hărțile offline are acum un buton pentru re-descărcarea hărților care au fost deja descărcate. Hărțile sunt actualizate o dată pe lună din OpenStreetMap, așa că merită să re-descărci din când în când hărțile offline. De asemenea, am introdus cod care îmbunătățește validarea hărților descărcate pentru a preveni utilizarea unor hărți corupte.\n\nContinuăm să lucrăm din greu pentru a îmbunătăți aplicația, așa că te rugăm să ne raportezi orice problemă, oricât de mică ar fi, prin opțiunea *Contactează asistența* din meniul principal.\n</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape explorează utilizarea tehnologiei audio inovatoare pentru a permite oamenilor să își dezvolte o conștientizare mai bogată a împrejurimilor, devenind astfel mai încrezători și mai autonomi în deplasări.</string>
     <string name="osm_office_building" tools:ignore="MissingTranslation">Clădire de birouri</string>
     <string name="osm_school_building" tools:ignore="MissingTranslation">Clădire de școală</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">Se încarcă…</string>
     <string name="offline_maps_extract_damaged">Deteriorat - șterge și descarcă din nou</string>
     <string name="offline_map_details_update">Actualizează harta offline</string>
+    <string name="menu_exit_app">Ieși din Soundscape</string>
 </resources>
