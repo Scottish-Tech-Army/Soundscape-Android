@@ -498,7 +498,7 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">नई रिलीज़ की जानकारी</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">नई रिलीज़ डायलॉग बंद करें</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">ओपन सोर्स लाइसेंस</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nयह Soundscape का पहला प्रोडक्शन रिलीज़ है। यदि आप ऐप के नए उपयोगकर्ता हैं, तो आप इसके बारे में और जानने के लिए *\"सहायता\"* स्क्रीन देख सकते हैं या *\"मार्गदर्शित ट्यूटोरियल\"* ले सकते हैं। ये दोनों विकल्प मुख्य मेनू में उपलब्ध हैं।\n\nहम अभी भी ऐप में सुधार पर काम कर रहे हैं, इसलिए कृपया किसी भी समस्या की रिपोर्ट करें—भले ही वह कितनी ही छोटी क्यों न हो—यह करने के लिए मुख्य मेनू में मौजूद *\"सहायता से संपर्क करें\"* विकल्प का उपयोग करें।\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nयह Soundscape का एक नया माइनर रिलीज़ है। यहाँ किए गए परिवर्तन नीचे दिए गए हैं:\n\nहमने ASHA हियरिंग एड्स के लिए समर्थन ठीक कर दिया है। यदि आप हियरिंग‑एड उपयोगकर्ता हैं और Soundscape आपके लिए काम नहीं कर रहा है, तो कृपया हमें बताएँ।\n\nमुख्य मेनू के शीर्ष पर अब *Soundscape से बाहर निकलें* विकल्प है। इसे टैप करना ऐप को पूरी तरह बंद करने का एक आसान तरीका है।\n\nऑफ़लाइन मानचित्र विवरण स्क्रीन में अब पहले से डाउनलोड किए गए मानचित्रों को पुनः डाउनलोड करने के लिए एक बटन है। मानचित्र OpenStreetMap से महीने में एक बार अपडेट होते हैं, इसलिए समय‑समय पर ऑफ़लाइन मानचित्रों को फिर से डाउनलोड करना उपयोगी है। इसके अलावा डाउनलोड किए गए मानचित्रों के सत्यापन को बेहतर बनाने वाला कोड जोड़ा गया है ताकि किसी भी क्षतिग्रस्त मानचित्र के उपयोग को रोका जा सके।\n\nहम अभी भी ऐप में सुधार के लिए कड़ी मेहनत कर रहे हैं, इसलिए कृपया किसी भी समस्या की रिपोर्ट ज़रूर करें, चाहे वह कितनी भी छोटी क्यों न हो — मुख्य मेनू में मौजूद *सहायता से संपर्क करें* विकल्प के माध्यम से।\n</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape नवीन ऑडियो-आधारित तकनीक के उपयोग की खोज करता है ताकि लोगों को अपने आसपास की बेहतर जागरूकता बनाने में सक्षम बनाया जा सके, जिससे वे अधिक आत्मविश्वासी और सशक्त होकर घूम-फिर सकें।</string>
     <string name="osm_office_building" tools:ignore="MissingTranslation">कार्यालय भवन</string>
     <string name="osm_school_building" tools:ignore="MissingTranslation">विद्यालय भवन</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">लोड हो रहा है</string>
     <string name="offline_maps_extract_damaged">क्षतिग्रस्त - हटाएँ और फिर से डाउनलोड करें</string>
     <string name="offline_map_details_update">ऑफ़लाइन मानचित्र अपडेट करें</string>
+    <string name="menu_exit_app">Soundscape से बाहर निकलें</string>
 </resources>
