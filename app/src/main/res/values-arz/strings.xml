@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">تم حذف العلامات والطرق</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">معلومات الإصدار الجديد</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">إغلاق مربع حوار الإصدار الجديد</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nهذا هو الإصدار الإنتاجي الأول من Soundscape. إذا كنت جديدًا على التطبيق، يمكنك معرفة المزيد عنه من شاشات *\"المساعدة\"* أو من خلال أخذ *\"الدرس التعليمي\"*. كلا الخيارين متاحان في القائمة الرئيسية.\n\nنحن لا نزال نعمل جاهدين على تحسين التطبيق، لذا نرجو منك الإبلاغ عن أي مشكلات تواجهها، مهما كانت صغيرة، عبر خيار *\"الاتصال للدعم\"* في القائمة الرئيسية.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nهذه نسخة صغيرة جديدة من Soundscape. فيما يلي التغييرات التي أُجريت.\n\nقمنا بإصلاح دعم سماعات المساعدة السمعية التي تعمل بتقنية ASHA. إذا كنت من مستخدمي أجهزة مساعدة السمع وSoundscape لا يعمل معك، فالرجاء إبلاغنا.\n\nأُضيف خيار جديد \"الخروج من Soundscape\" في أعلى القائمة الرئيسية. الضغط عليه طريقة سهلة لإغلاق التطبيق بالكامل.\n\nتحتوي شاشة تفاصيل الخرائط غير المتصلة الآن على زر لإعادة تنزيل الخرائط التي تم تنزيلها بالفعل. تُحدَّث الخرائط مرة كل شهر من OpenStreetMap، لذا فإن إعادة تنزيل الخرائط غير المتصلة من وقت لآخر مفيد. كما أضفنا كودًا يُحسّن التحقق من صحة الخرائط المُحمّلة لمنع استخدام أي خرائط تالفة.\n\nما زلنا نعمل بجد على تحسين التطبيق، لذا يرجى الإبلاغ عن أي مشكلات تواجهها، مهما كانت صغيرة، عبر خيار *الاتصال للدعم* في القائمة الرئيسية.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">تراخيص المصادر المفتوحة</string>
     <string name="osm_office" tools:ignore="MissingTranslation">مكتب</string>
     <string name="osm_school" tools:ignore="MissingTranslation">مدرسة</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">تحميل</string>
     <string name="offline_maps_extract_damaged">تالف - احذف وأعد تنزيله</string>
     <string name="offline_map_details_update">تحديث الخريطة غير المتصلة بالإنترنت</string>
+    <string name="menu_exit_app">الخروج من Soundscape</string>
 </resources>
