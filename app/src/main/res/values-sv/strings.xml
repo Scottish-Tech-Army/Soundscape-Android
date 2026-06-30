@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Platsmarkörer och rutter har tagits bort</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Information om ny version</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Stäng dialogrutan om ny version</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDetta är den första produktionsutgåvan av Soundscape. Om du är ny i appen kan du läsa mer i *Hjälp*-skärmarna eller genom att köra *Guidad självstudie*. Båda finns som alternativ i huvudmenyn.\n\nVi jobbar fortfarande hårt med att förbättra appen, så rapportera gärna eventuella problem du stöter på, hur små de än är, via alternativet *Kontakta supporten* i huvudmenyn.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDetta är en mindre uppdatering av Soundscape. Här är ändringarna som har gjorts.\n\nVi har åtgärdat stödet för ASHA-hörapparater. Om du använder hörapparat och Soundscape inte fungerar för dig, vänligen meddela oss.\n\nDet finns nu ett nytt alternativ, \"Avsluta Soundscape\", högst upp i huvudmenyn. Genom att trycka på det stänger du appen helt.\n\nSkärmen med detaljer för offlinekartor har nu en knapp för att ladda ner kartor på nytt som redan har laddats ned. Kartorna uppdateras en gång i månaden från OpenStreetMap, så det kan vara bra att ladda ner offlinekartor om ibland. Det finns också kod som förbättrar valideringen av nedladdade kartor för att förhindra att skadade kartor används.\n\nVi arbetar fortfarande hårt med att förbättra appen, så anmäl gärna eventuella problem, hur små de än är, via alternativet *Kontakta supporten* i huvudmenyn.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licenser för öppen källkod</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Färjeterminal</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s Färjeterminal</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">Laddar…</string>
     <string name="offline_maps_extract_damaged">Skadad – ta bort och ladda ned igen</string>
     <string name="offline_map_details_update">Uppdatera offlinekarta</string>
+    <string name="menu_exit_app">Avsluta Soundscape</string>
 </resources>
