@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Mærker og ruter er slettet</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Oplysninger om ny udgivelse</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Luk dialog om ny udgivelse</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDette er den første produktionsudgivelse af Soundscape. Hvis du er ny i appen, kan du læse mere om den på *\"Hjælp\"*-skærmene eller tage *\"Guidet tutorial\"*. Begge dele findes i hovedmenuen.\n\nVi arbejder stadig hårdt på at forbedre appen, så rapportér venligst eventuelle problemer — også små — via indstillingen *\"Kontakt support\"* i hovedmenuen.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDette er en ny mindre udgivelse af Soundscape. Her er de ændringer, der er foretaget.\n\nVi har forbedret understøttelsen af ASHA-høreapparater. Hvis du er høreapparatbruger, og Soundscape ikke virker for dig, så giv os venligst besked.\n\nDer er en ny mulighed Afslut Soundscape øverst i hovedmenuen. Ved at trykke på den kan du nemt lukke appen helt.\n\nSkærmen *Detaljer om offline-kort* har nu en knap til at hente kort på ny, som allerede er blevet downloadet. Kortene opdateres én gang om måneden fra Open Street Map, så det kan betale sig jævnligt at hente offline-kortene igen. Der er også kode, som forbedrer valideringen af downloadede kort for at forhindre, at beskadigede kort tages i brug.\n\nVi arbejder stadig hårdt på at forbedre appen, så rapporter gerne eventuelle problemer — også små — via *Kontakt support* i hovedmenuen.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Open source-licenser</string>
     <string name="osm_office" tools:ignore="MissingTranslation">Kontor</string>
     <string name="osm_school" tools:ignore="MissingTranslation">Skole</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">Indlæser</string>
     <string name="offline_maps_extract_damaged">Beskadiget - slet og hent igen</string>
     <string name="offline_map_details_update">Opdater offline-kort</string>
+    <string name="menu_exit_app">Afslut Soundscape</string>
 </resources>
