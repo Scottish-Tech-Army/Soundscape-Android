@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">マーカーおよびルートを削除しました</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">新しいリリース情報</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">新しいリリース情報を閉じる</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nこれは Soundscape の最初の製品版リリースです。アプリを初めて使う場合は、メインメニューの *ヘルプ* 画面や *ガイド付きチュートリアル* で詳しく確認できます。\n\n今後もアプリの改善に努めておりますので、どんなに小さな問題でも、メインメニューの *サポートに連絡* オプションからご報告ください。\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nこれは Soundscape の小規模な新しいリリースです。変更点は以下のとおりです。\n\nASHA 補聴器のサポートを修正しました。補聴器をお使いで Soundscape が正常に動作しない場合は、ぜひご連絡ください。\n\nメインメニューの上部に「Soundscape を終了する」オプションを追加しました。これをタップするとアプリを完全に終了させることができます。\n\nオフライン地図の詳細画面には、既にダウンロード済みのマップを再ダウンロードするためのボタンを追加しました。マップは OpenStreetMap から月に一度更新されるため、定期的にオフラインマップを再ダウンロードすることをおすすめします。また、ダウンロードしたマップの検証を改善するコードを導入し、破損したマップが使用されるのを防ぐようにしました。\n\n引き続きアプリの改良に取り組んでいます。どんなに小さな問題でも、メインメニューの *「サポートに連絡」* オプションからお知らせください。\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">オープンソースライセンス</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">フェリーターミナル</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s フェリーターミナル</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">読み込み中</string>
     <string name="offline_maps_extract_damaged">破損しています — 削除して再ダウンロードしてください</string>
     <string name="offline_map_details_update">オフラインマップを更新する</string>
+    <string name="menu_exit_app">Soundscape を終了する</string>
 </resources>
