@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markører og ruter er slettet</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Informasjon om ny versjon</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Lukk dialog for ny versjon</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDette er den første produksjonsutgivelsen av Soundscape. Hvis du er ny i appen, kan du finne mer informasjon på *Hjelp*-skjermene eller ved å ta den *Veiledede gjennomgangen*. Begge disse finnes i hovedmenyen.\n\nVi jobber fortsatt hardt med å forbedre appen, så vennligst rapporter eventuelle problemer du opplever, uansett hvor små de måtte være, via alternativet *Kontakt brukerstøtte* i hovedmenyen.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nDette er en ny, mindre utgivelse av Soundscape. Her er endringene som er gjort.\n\nVi har fikset støtte for ASHA-høreapparater. Hvis du bruker høreapparat og Soundscape ikke fungerer for deg, vennligst gi oss beskjed.\n\nDet finnes et nytt alternativ «Avslutt Soundscape» øverst i hovedmenyen. Trykk på dette for å lukke appen helt.\n\nDetaljsiden for offlinekart har nå en knapp for å laste ned kart på nytt som allerede er lastet ned. Kart oppdateres én gang i måneden fra OpenStreetMap, så det kan lønne seg å laste ned offlinekart på nytt av og til. Det er også lagt inn kode som forbedrer valideringen av nedlastede kart for å forhindre at korrupte kart tas i bruk.\n\nVi jobber fortsatt hardt med å forbedre appen, så vennligst rapporter eventuelle problemer du opplever, uansett hvor små de måtte være, via menyvalget *Kontakt brukerstøtte* i hovedmenyen.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Åpne kildekodelisenser</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Fergeterminal</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s fergeterminal</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">Laster</string>
     <string name="offline_maps_extract_damaged">Skadet - slett og last ned på nytt</string>
     <string name="offline_map_details_update">Oppdater offlinekart</string>
+    <string name="menu_exit_app">Avslutt Soundscape</string>
 </resources>
