@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Мітки та маршрути видалено</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Інформація про нове оновлення</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Закрити вікно про нове оновлення</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nЦе перший виробничий реліз Soundscape. Якщо ви новачок у додатку, дізнатися більше про нього можна на екранах *\"Довідка\"* або пройшовши *\"Керований навчальний посібник\"*. Обидві опції доступні в головному меню.\n\nМи й надалі активно працюємо над удосконаленням програми, тож, будь ласка, повідомляйте про будь‑які проблеми, навіть найменші, через опцію *\"Звернутися до служби підтримки\"* у головному меню.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nЦе невелике оновлення Soundscape. Ось зміни, які були внесені.\n\nМи виправили підтримку слухових апаратів ASHA. Якщо ви користуєтеся слуховим апаратом і Soundscape у вас не працює, будь ласка, повідомте нам про це.\n\nУ верхній частині головного меню з’явилася нова опція «Вийти з Soundscape». Торкнувшись її, ви легко повністю закриєте додаток.\n\nНа екрані деталей офлайн‑карт тепер є кнопка для повторного завантаження карт, які вже були завантажені. Карти оновлюються раз на місяць з OpenStreetMap, тож іноді варто повторно завантажувати офлайн‑карти. Також додано код, який покращує перевірку коректності завантажених карт, щоб запобігти використанню пошкоджених файлів.\n\nМи й надалі наполегливо працюємо над покращенням додатка, тому, будь ласка, повідомляйте про будь‑які проблеми, навіть незначні, через опцію *Звернутися до служби підтримки* у головному меню.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Ліцензії з відкритим кодом</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Поромний термінал</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s поромний термінал</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">Завантаження</string>
     <string name="offline_maps_extract_damaged">Пошкоджено — видаліть і завантажте знову</string>
     <string name="offline_map_details_update">Оновити офлайн‑карту</string>
+    <string name="menu_exit_app">Вийти з Soundscape</string>
 </resources>
