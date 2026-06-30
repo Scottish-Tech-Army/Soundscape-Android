@@ -523,7 +523,7 @@
     <string name="advanced_markers_and_routes_clear_all_button" tools:ignore="MissingTranslation">Delete all markers and routes</string>
     <string name="advanced_markers_and_routes_clear_all_alert_message" tools:ignore="MissingTranslation">Deleting all of the markers and routes cannot be undone, do you want to continue?</string>
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Markers and routes deleted</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nThis is the first production release of Soundscape. If you are new to the app, you can find out more about it from the *Help* screens or by taking the *Guided Tutorial*. These are both options in the main menu.\n\nWe’re still working hard on improving the app, so please report any problems you have, however small, via the *Contact support* option in the main menu.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nThis is a new minor release of Soundscape. Here are the changes that have been made.\n\nWe\'ve fixed support for ASHA hearing aids. If you are a hearing-aid user and Soundscape isn\'t working for you, please let us know.\n\nThere\'s a new Exit Soundscape option at the top of the main menu. Tapping this is an easy way to close the app fully.\n\nThe offline maps details screen now has a button to re-download maps that have already been downloaded. Maps are updated monthly from OpenStreetMap, so it\'s worth re-downloading offline maps occasionally. We\'ve also added code to improve validation of downloaded maps to prevent corrupted maps being used.\n\nWe\'re still working hard on improving the app, so please report any problems you have, however small, via the *Contact support* option in the main menu.\n</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Release Notes</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Close Release Notes</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Open-source Licences</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">Loading…</string>
     <string name="offline_maps_extract_damaged">Damaged - delete and re-download</string>
     <string name="offline_map_details_update">Re-download offline map</string>
+    <string name="menu_exit_app">Exit Soundscape</string>
 </resources>
