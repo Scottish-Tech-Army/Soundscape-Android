@@ -1045,7 +1045,7 @@
     <string name="new_version_info_text" tools:ignore="MissingTranslation">新版本信息</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">关闭新版本对话框</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">开源许可证</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\n这是 Soundscape 的第一个正式发布版本。如果您是新用户，可以通过主菜单中的*\"帮助\"*页面或参加*\"引导教程\"*来了解更多。两者均可在主菜单中找到。\n\n我们仍在不断努力改进应用，因此无论问题多么轻微，都请通过主菜单中的*\"联系支持\"*选项向我们反馈。\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\n这是 Soundscape 的一个小版本更新。以下是本次更改内容：\n\n我们已修复对 ASHA 助听器的支持。如果您是助听器用户且 Soundscape 无法为您正常工作，请告知我们。\n\n主菜单顶部新增“退出 Soundscape”选项。点击此项可以方便地将应用完全关闭。\n\n离线地图详情页面现在增加了一个重新下载已下载地图的按钮。地图每月会从 OpenStreetMap 更新一次，因此不时重新下载离线地图是值得的。我们还加入了改进的下载地图校验代码，以防止使用任何损坏的地图。\n\n我们仍在努力改进应用，因此无论问题大小，请通过主菜单中的*联系支持*选项向我们反馈。\n</string>
     <string name="about_soundscape" tools:ignore="MissingTranslation">Soundscape 探索使用创新的音频技术，帮助人们更好地感知周围环境，从而更加自信、自主地出行。</string>
     <string name="osm_office_building" tools:ignore="MissingTranslation">办公楼</string>
     <string name="osm_school_building" tools:ignore="MissingTranslation">教学楼</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">加载中</string>
     <string name="offline_maps_extract_damaged">已损坏 - 删除后重新下载</string>
     <string name="offline_map_details_update">更新离线地图</string>
+    <string name="menu_exit_app">退出 Soundscape</string>
 </resources>
