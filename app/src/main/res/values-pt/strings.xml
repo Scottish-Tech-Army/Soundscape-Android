@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success" tools:ignore="MissingTranslation">Marcos e rotas eliminados</string>
     <string name="new_version_info_text" tools:ignore="MissingTranslation">Novidades desta versão</string>
     <string name="new_version_info_completed" tools:ignore="MissingTranslation">Fechar o diálogo da nova versão</string>
-    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nEsta é a primeira versão de produção do Soundscape. Se é novo na aplicação, pode saber mais através dos ecrãs *\"Ajuda\"* ou seguindo o *\"Tutorial Guiado\"*. Ambas as opções estão disponíveis no menu principal.\n\nContinuamos a trabalhar arduamente para melhorar a aplicação, por isso reporte quaisquer problemas que encontrar, por mais pequenos que sejam, através da opção *\"Contactar o apoio ao cliente\"* no menu principal.\n</string>
+    <string name="new_version_info_details" tools:ignore="MissingTranslation">\nEsta é uma nova versão menor do Soundscape. Aqui estão as alterações que foram realizadas.\n\nCorrigimos o suporte para aparelhos auditivos ASHA; se utilizar um aparelho auditivo e o Soundscape não estiver a funcionar para si, por favor informe‑nos.\n\nExiste uma nova opção Sair do Soundscape no topo do menu principal. Tocar nessa opção é uma forma simples de fechar completamente a aplicação.\n\nO ecrã de detalhes dos mapas offline passa a ter um botão para voltar a transferir mapas que já foram transferidos. Os mapas são atualizados uma vez por mês a partir do OpenStreetMap, pelo que vale a pena voltar a transferi‑los de vez em quando. Inclui‑se também código que melhora a validação dos mapas transferidos para evitar a utilização de mapas corrompidos.\n\nContinuamos a trabalhar arduamente na melhoria da aplicação, pelo que, por favor, reporte quaisquer problemas que tenha, por menores que sejam, através da opção *Contactar o apoio ao cliente* no menu principal.\n</string>
     <string name="menu_open_source_licenses" tools:ignore="MissingTranslation">Licenças de código aberto</string>
     <string name="osm_tag_ferry_terminal" tools:ignore="MissingTranslation">Terminal de balsas</string>
     <string name="osm_tag_ferry_terminal_named" tools:ignore="MissingTranslation">%s - Terminal de balsas</string>
@@ -1368,4 +1368,5 @@
     <string name="loading_indicator_content_description">A carregar</string>
     <string name="offline_maps_extract_damaged">Danificado - eliminar e transferir novamente</string>
     <string name="offline_map_details_update">Atualizar mapa offline</string>
+    <string name="menu_exit_app">Sair do Soundscape</string>
 </resources>
