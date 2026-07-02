@@ -2721,5 +2721,10 @@ We\'re still working hard on improving the app, so please report any problems th
 <string name="relative_left_right_direction_behind_left">"Behind left"</string>
 <string name="relative_left_right_direction_behind_right">"Behind right"</string>
 <string name="relative_left_right_direction_behind">"Behind"</string>
-    <string name="loading_indicator_content_description">Loading</string>
+<string name="loading_indicator_content_description">Loading</string>
+<!-- Initial Tutorial Dialog -->
+<string name="initial_tutorial_dialog_yes">Yes</string>
+<string name="initial_tutorial_dialog_no">No</string>
+<string name="intial_tutorial_dialog_title">Guided Tutorial?</string>
+<string name="initial_tutorial_dialog_content">It looks like this is your first time using Soundscape, would you like a guided tutorial to guide you through the features?</string>
 </resources>
