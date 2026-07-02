@@ -8,14 +8,20 @@ import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.windowInsetsPadding
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.testTagsAsResourceId
+import androidx.core.content.edit
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -23,19 +29,23 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import androidx.preference.PreferenceManager
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.flow.MutableStateFlow
 import org.maplibre.android.maps.MapLibreMap.OnMapLongClickListener
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.audio.AudioTour
+import org.scottishtecharmy.soundscape.audio.TourButton
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.home.home.AdvancedMarkersAndRoutesSettingsScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.AudioTourInstructionDialog
 import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.Home
 import org.scottishtecharmy.soundscape.screens.home.home.OfflineMapsScreenVM
-import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenVM
-import org.scottishtecharmy.soundscape.screens.home.home.AdvancedMarkersAndRoutesSettingsScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.OpenSourceLicensesVM
+import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenVM
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.LocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.generateLocationDetailsRoute
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyScreenVM
@@ -49,9 +59,10 @@ import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageScree
 import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageViewModel
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
-import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeState
 import org.scottishtecharmy.soundscape.viewmodels.home.HomeViewModel
+import org.scottishtecharmy.soundscape.viewmodels.home.InitialTutorialState
+import org.scottishtecharmy.soundscape.viewmodels.home.shouldShowInitialTutorialDialog
 import java.net.URLDecoder
 import java.nio.charset.StandardCharsets
 
@@ -117,6 +128,16 @@ fun getCurrentLocationDescription(viewModel: HomeViewModel, state: HomeState): L
     }
 }
 
+fun SharedPreferences.getInitialTutorialState(): InitialTutorialState {
+    return getInt("INITIAL_TUTORIAL_STATE", InitialTutorialState.INCOMPLETE.ordinal).let {
+        InitialTutorialState.entries[it]
+    }
+}
+
+fun SharedPreferences.setInitialTutorialState(state: InitialTutorialState) {
+    this.edit(commit = true) { putInt("INITIAL_TUTORIAL_STATE", state.ordinal) }
+}
+
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun HomeScreen(
@@ -145,6 +166,13 @@ fun HomeScreen(
         }
     }
 
+    val context = LocalContext.current
+    LaunchedEffect(viewModel) {
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val initialTutorialState = sharedPreferences.getInitialTutorialState()
+        viewModel.setInitialTutorialState(initialTutorialState)
+    }
+    val shouldShowInitialTutorialDialog = state.value.shouldShowInitialTutorialDialog()
 
     Box(modifier = Modifier.fillMaxSize()) {
         NavHost(
@@ -400,15 +428,31 @@ fun HomeScreen(
                 gson.fromJson(json, LocationDescription::class.java)
             }
 
-            OfflineMapsScreenVM(
-                navController = navController,
-                locationDescription = locationDescription,
-                modifier = Modifier
-                    .windowInsetsPadding(WindowInsets.safeDrawing)
-                    .semantics { testTagsAsResourceId = true }
+                OfflineMapsScreenVM(
+                    navController = navController,
+                    locationDescription = locationDescription,
+                    modifier = Modifier
+                        .windowInsetsPadding(WindowInsets.safeDrawing)
+                        .semantics { testTagsAsResourceId = true }
+                )
+            }
+        }
+
+        if (shouldShowInitialTutorialDialog) {
+            InitialTutorialDialog(
+                onDismiss = {
+                    PreferenceManager.getDefaultSharedPreferences(context)
+                        .setInitialTutorialState(InitialTutorialState.DISMISSED)
+                    viewModel.setInitialTutorialState(InitialTutorialState.DISMISSED)
+                },
+                onConfirmation = {
+                    audioTour.start()
+                    PreferenceManager.getDefaultSharedPreferences(context)
+                        .setInitialTutorialState(InitialTutorialState.COMPLETED)
+                    viewModel.setInitialTutorialState(InitialTutorialState.COMPLETED)
+                }
             )
         }
-    }
 
         // Show tutorial dialog on top of all screens
         audioTourInstruction?.let { instruction ->
@@ -418,5 +462,35 @@ fun HomeScreen(
             )
         }
     }
+}
+
+@Composable
+fun InitialTutorialDialog(
+    onDismiss: () -> Unit,
+    onConfirmation: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    AlertDialog(
+        onDismissRequest = onDismiss,
+        confirmButton = {
+            TextButton(
+                onClick = onConfirmation
+            ) {
+                Text(stringResource(R.string.initial_tutorial_dialog_yes))
+            }
+        },
+        dismissButton = {
+            TextButton(
+                onClick = onDismiss
+            ) {
+                Text(stringResource(R.string.initial_tutorial_dialog_no))
+            }
+        },
+        title = {
+            Text(stringResource(R.string.intial_tutorial_dialog_title))
+        },
+        text = { Text(stringResource(R.string.initial_tutorial_dialog_content)) },
+        modifier = modifier,
+    )
 }
 
