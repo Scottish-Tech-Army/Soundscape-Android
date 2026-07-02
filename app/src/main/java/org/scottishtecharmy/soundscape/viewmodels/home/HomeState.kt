@@ -17,6 +17,15 @@ data class HomeState(
     var searchItems: List<LocationDescription>? = null,
     var routesTabSelected: Boolean = true,
     var currentRouteData: RoutePlayerState = RoutePlayerState(),
-    var permissionsRequired: Boolean = false,
     var voiceCommandListening: Boolean = false,
+    val initialTutorialState: InitialTutorialState = InitialTutorialState.INCOMPLETE,
 )
+
+fun HomeState.shouldShowInitialTutorialDialog() =
+    initialTutorialState == InitialTutorialState.INCOMPLETE
+
+enum class InitialTutorialState {
+    INCOMPLETE,
+    DISMISSED,
+    COMPLETED,
+}

@@ -254,6 +254,10 @@ class HomeViewModel
         context.startActivity(intent)
     }
 
+    fun setInitialTutorialState(initialTutorialState: InitialTutorialState) {
+        _state.update { it.copy(initialTutorialState = initialTutorialState) }
+    }
+
 companion object {
         private const val TAG = "HomeViewModel"
     }
