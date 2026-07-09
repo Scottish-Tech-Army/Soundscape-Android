@@ -24,6 +24,7 @@ import javax.inject.Inject
 @ActivityRetainedScoped
 class SoundscapeServiceConnection @Inject constructor() {
     var soundscapeService: SoundscapeService? = null
+    private var pendingTurnByTurnNavigation: PendingTurnByTurnNavigation? = null
 
     private var _serviceBoundState = MutableStateFlow(false)
     val serviceBoundState = _serviceBoundState.asStateFlow()
@@ -70,6 +71,24 @@ class SoundscapeServiceConnection @Inject constructor() {
         soundscapeService?.startBeacon(location, name)
     }
 
+    fun startTurnByTurnNavigation(location: LngLatAlt, name: String) {
+        val boundService = soundscapeService
+        if(boundService != null) {
+            boundService.startTurnByTurnNavigation(location, name)
+        } else {
+            pendingTurnByTurnNavigation = PendingTurnByTurnNavigation(location, name)
+        }
+    }
+
+    internal fun drainPendingTurnByTurnNavigation(
+        onStart: (location: LngLatAlt, name: String) -> Unit
+    ): Boolean {
+        val pendingNavigation = pendingTurnByTurnNavigation ?: return false
+        pendingTurnByTurnNavigation = null
+        onStart(pendingNavigation.location, pendingNavigation.name)
+        return true
+    }
+
     fun routeSkipPrevious() {
         soundscapeService?.routeSkipPrevious()
     }
@@ -93,6 +112,9 @@ class SoundscapeServiceConnection @Inject constructor() {
             val binder = service as SoundscapeBinder
             soundscapeService = binder.getSoundscapeService()
             _serviceBoundState.value = true
+            drainPendingTurnByTurnNavigation { location, name ->
+                soundscapeService?.startTurnByTurnNavigation(location, name)
+            }
         }
 
         override fun onServiceDisconnected(arg0: ComponentName) {
@@ -137,4 +159,9 @@ class SoundscapeServiceConnection @Inject constructor() {
     companion object {
         private const val TAG = "SoundscapeServiceConnection"
     }
+
+    private data class PendingTurnByTurnNavigation(
+        val location: LngLatAlt,
+        val name: String
+    )
 }

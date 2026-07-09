@@ -46,7 +46,11 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
      * @param beaconLocation The location to place the beacon at
      * @param beaconName The name of the beacon
      */
-    fun startBeacon(beaconLocation: LngLatAlt, beaconName: String) {
+    fun startBeacon(
+        beaconLocation: LngLatAlt,
+        beaconName: String,
+        monitorArrival: Boolean = true
+    ) {
         Log.e(TAG, "startBeacon")
         currentMarker = 0
 
@@ -86,7 +90,7 @@ class RoutePlayer(val service: SoundscapeService, context: Context) {
         play()
         Log.d(TAG, toString())
 
-        if(!beaconOnly) {
+        if(monitorArrival && !beaconOnly) {
             // We want to describe how far we are and a route completion
             startMonitoringLocation()
         }

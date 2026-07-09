@@ -107,6 +107,10 @@ fun LocationDetailsScreen(
             viewModel.startBeacon(loc, finalLocationDescription.name)
             navController.popBackStack(HomeRoutes.Home.route, false)
         },
+        startTurnByTurn = { loc ->
+            viewModel.startTurnByTurnNavigation(loc, finalLocationDescription.name)
+            navController.popBackStack(HomeRoutes.Home.route, false)
+        },
         saveMarker = { description, successMessage, failureMessage, duplicateMessage ->
             viewModel.createMarker(
                 description,
@@ -153,6 +157,7 @@ fun LocationDetails(
     location: LngLatAlt?,
     heading: Float,
     createBeacon: (location: LngLatAlt) -> Unit,
+    startTurnByTurn: (location: LngLatAlt) -> Unit,
     saveMarker: (
         description: LocationDescription,
         successMessage: String,
@@ -238,6 +243,7 @@ fun LocationDetails(
                         HorizontalDivider()
                         LocationDescriptionButtonsSection(
                             createBeacon = createBeacon,
+                            startTurnByTurn = startTurnByTurn,
                             locationDescription = description.value,
                             enableStreetPreview = enableStreetPreview,
                             shareLocation = shareLocation,
@@ -287,6 +293,7 @@ fun LocationDetails(
 @Composable
 private fun LocationDescriptionButtonsSection(
     createBeacon: (location: LngLatAlt) -> Unit,
+    startTurnByTurn: (location: LngLatAlt) -> Unit,
     locationDescription: LocationDescription,
     enableStreetPreview: (location: LngLatAlt) -> Unit,
     shareLocation: (message: String, locationDescription : LocationDescription) -> Unit,
@@ -325,6 +332,19 @@ private fun LocationDescriptionButtonsSection(
                 .testTag("locationDetailsStartBeacon")
         ) {
             createBeacon(locationDescription.location)
+        }
+
+        IconWithTextButton(
+            icon = Icons.Filled.Navigation,
+            text = stringResource(R.string.location_detail_action_directions),
+            talkbackHint = stringResource(R.string.location_detail_action_directions_hint),
+            color = MaterialTheme.colorScheme.onSurface,
+            modifier = Modifier
+                .defaultMinSize(minHeight = spacing.targetSize)
+                .fillMaxWidth()
+                .testTag("locationDetailsStartDirections")
+        ) {
+            startTurnByTurn(locationDescription.location)
         }
 
         if(locationDescription.databaseId != 0L) {
@@ -489,6 +509,8 @@ fun LocationDetailsPreview() {
             typeDescription = TextForFeature("Blah", false,"Restaurant")
         ),
         createBeacon = { _ ->
+        },
+        startTurnByTurn = { _ ->
         },
         enableStreetPreview = { _ ->
         },

@@ -33,7 +33,9 @@
     <string name="preview_include_unnamed_roads_title">Unnamed Roads</string>
     <string name="location_detail_title_default">Location Details</string>
     <string name="location_detail_action_beacon">Start Audio Beacon</string>
+    <string name="location_detail_action_directions">Start Directions</string>
     <string name="location_detail_action_beacon_hint">guide you towards this location with sound</string>
+    <string name="location_detail_action_directions_hint">start turn by turn walking directions to this location</string>
     <string name="location_detail_action_save_hint">save this location to use later</string>
     <string name="location_detail_action_edit_hint">change the marker name or add additional notes</string>
     <string name="location_detail_action_share_hint">share this location with another app</string>
@@ -46,6 +48,10 @@
     <string name="route_detail_action_start_route_hint">start playback of this route</string>
     <string name="route_detail_action_start_route_disabled_hint">add waypoints before starting the route</string>
     <string name="route_detail_action_stop_route_hint">stop playback of this route</string>
+    <string name="turn_by_turn_route_calculating">Calculating walking directions to %s.</string>
+    <string name="turn_by_turn_route_started">Starting walking directions to %s.</string>
+    <string name="turn_by_turn_route_failed">We could not calculate walking directions.</string>
+    <string name="turn_by_turn_route_not_configured">Turn by turn routing is not configured.</string>
     <string name="route_detail_action_share_hint">share this route with another app</string>
     <string name="route_detail_action_edit_hint">change or reorder the waypoints in the route</string>
     <string name="route_detail_action_create">New Route</string>
