@@ -7,7 +7,7 @@ has_toc: false
 
 # Branch strategy
 
-This page describes which branches are active, what each is for, and how the CI workflows are wired to them. It also describes the upcoming switch to Kotlin Multiplatform (KMP) on `main`.
+This page describes which branches are active, what each is for, and how the CI workflows are wired to them.
 
 ## Today
 
