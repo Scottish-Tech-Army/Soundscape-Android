@@ -20,6 +20,7 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
@@ -104,6 +105,15 @@ fun MainSearchBar(
             // Get keyboard controller inside Popup since it has its own window
             val keyboardController = LocalSoftwareKeyboardController.current
 
+            val triggerSearch = {
+                val trimmed = query.trim()
+                if (trimmed.isNotEmpty()) {
+                    searchLocation.value = userLocation
+                    keyboardController?.hide()
+                    searchFunctions.onTriggerSearch(trimmed)
+                }
+            }
+
             // Request focus on the text field when the search overlay opens
             LaunchedEffect(expanded) {
                 if (expanded) {
@@ -148,14 +158,7 @@ fun MainSearchBar(
                                 textStyle = textStyle,
                                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Search),
                                 keyboardActions = KeyboardActions(
-                                    onSearch = {
-                                        val trimmed = query.trim()
-                                        if (trimmed.isNotEmpty()) {
-                                            searchLocation.value = userLocation
-                                            keyboardController?.hide()
-                                            searchFunctions.onTriggerSearch(trimmed)
-                                        }
-                                    }
+                                    onSearch = { triggerSearch() }
                                 ),
                                 modifier = Modifier
                                     .weight(1f)
@@ -174,6 +177,12 @@ fun MainSearchBar(
                             )
 
                             if (query.isNotEmpty()) {
+                                TextButton(onClick = { triggerSearch() }) {
+                                    Text(
+                                        text = stringResource(R.string.search_button_label),
+                                        color = colors.primary
+                                    )
+                                }
                                 IconButton(
                                     onClick = { query = "" }
                                 ) {
