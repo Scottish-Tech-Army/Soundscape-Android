@@ -37,10 +37,13 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.scottishtecharmy.soundscape.BuildConfig
+import org.scottishtecharmy.soundscape.MainActivity.Companion.MARKDOWN_HELP_DEFAULT
+import org.scottishtecharmy.soundscape.MainActivity.Companion.MARKDOWN_HELP_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.RECORD_TRAVEL_KEY
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.components.DrawerMenuItem
+import org.scottishtecharmy.soundscape.screens.home.home.HelpTopic
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
 @Composable
@@ -59,6 +62,7 @@ fun DrawerContent(
     val recordingEnabled = preferences?.getBoolean(RECORD_TRAVEL_KEY, RECORD_TRAVEL_DEFAULT) == true
     val running = remember(tutorialRunning) { mutableStateOf(tutorialRunning) }
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
+    val useMarkdownHelp = preferences?.getBoolean(MARKDOWN_HELP_KEY, MARKDOWN_HELP_DEFAULT) == true
 
     ModalDrawerSheet(
         modifier = Modifier.requiredWidth(screenWidth),
@@ -116,7 +120,12 @@ fun DrawerContent(
                     modifier = Modifier.testTag("menuSettings")
                 )
                 DrawerMenuItem(
-                    onClick = { onNavigate(HomeRoutes.Help.route + "/page${R.string.menu_help}") },
+                    onClick = {
+                        val route =
+                            if (useMarkdownHelp) "page:${HelpTopic.HELP_AND_TUTORIALS_FILENAME}"
+                            else "page${R.string.menu_help}"
+                        onNavigate(HomeRoutes.Help.route + "/$route")
+                    },
                     label = stringResource(R.string.menu_help),
                     Icons.AutoMirrored.Rounded.HelpOutline,
                     modifier = Modifier.testTag("menuHelpAndTutorials")
@@ -161,7 +170,12 @@ fun DrawerContent(
                 )
 
                 DrawerMenuItem(
-                    onClick = { onNavigate(HomeRoutes.Help.route + "/page${R.string.settings_about_app}") },
+                    onClick = {
+                        val route =
+                            if (useMarkdownHelp) "page:${HelpTopic.ABOUT_SOUNDSCAPE_FILENAME}"
+                            else "page${R.string.settings_about_app}"
+                        onNavigate(HomeRoutes.Help.route + "/$route")
+                    },
                     label = stringResource(R.string.settings_about_app),
                     Icons.AutoMirrored.Rounded.HelpOutline,
                     modifier = Modifier.testTag("menuAboutSoundscape")

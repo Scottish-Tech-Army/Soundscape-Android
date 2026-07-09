@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.invisibleToUser
@@ -327,33 +328,41 @@ val helpPages = listOf(
 fun HelpScreen(
     topic: String,
     navController: NavHostController,
-    modifier: Modifier
+    modifier: Modifier,
+    structureLog: StructureLog = StructureLog {}
 ) {
+    structureLog.start("HelpScreen")
+    val context = LocalContext.current
+
     // Find our page
     var sections = Sections(0, emptyList())
-    if (topic.startsWith("page")) {
-        // Parse page title id from route
-        val id = topic.substring(4).toInt()
-        for (page in helpPages) {
-            if(page.titleId == id) {
-                sections = page
+    val helpTopic = HelpTopic.fromRouteParam(topic)
+    when (helpTopic) {
+        is HelpTopic.ResourcePage -> {
+            for (page in helpPages) {
+                if (page.titleId == helpTopic.titleId) {
+                    sections = page
+                }
             }
         }
-    } else if(topic.startsWith("faq")) {
-        // Parse faq ids from route
-        val ids = topic.substring(3).split(".")
-        // We want to display the question and answer
-        sections = Sections(R.string.faq_title_abbreviated,
-            listOf(
-                Section(ids[0].toInt(), SectionType.Title),
-                Section(ids[1].toInt(), SectionType.Paragraph)
+
+        is HelpTopic.ResourceFaq -> {
+            // We want to display the question and answer
+            sections = Sections(
+                R.string.faq_title_abbreviated,
+                listOf(
+                    Section(helpTopic.questionId, SectionType.Title),
+                    Section(helpTopic.answerId, SectionType.Paragraph)
+                )
             )
-        )
-    } else {
-        // Default to home
-        for (page in helpPages) {
-            if(page.titleId == R.string.menu_help) {
-                sections = page
+        }
+
+        else -> {
+            // Default to home
+            for (page in helpPages) {
+                if (page.titleId == R.string.menu_help) {
+                    sections = page
+                }
             }
         }
     }
@@ -361,17 +370,21 @@ fun HelpScreen(
     Scaffold(
         modifier = modifier,
         topBar = {
+            structureLog.start("Scaffold topBar")
             CustomAppBar(
                 title = stringResource(sections.titleId),
                 navigationButtonTitle = stringResource(R.string.ui_back_button_title),
                 onNavigateUp = { navController.popBackStack() },
             )
+            structureLog.end("Scaffold topBar")
         },
         content = { padding ->
+            structureLog.start("Scaffold content")
             Box(
                 modifier = Modifier
                     .padding(padding)
             ) {
+                structureLog.start("Box")
                 // Help topic page
                 LazyColumn(
                     modifier = modifier
@@ -380,88 +393,109 @@ fun HelpScreen(
                         .mediumPadding(),
                     verticalArrangement = Arrangement.spacedBy(spacing.small),
                 ) {
+                    structureLog.start("LazyColumn")
                     items(sections.sections) { section ->
-                      Box(
-                          modifier = Modifier.semantics(mergeDescendants = true) {}
-                      ) {
-                        when (section.type) {
-                            SectionType.Title -> {
-                                Text(
-                                    text = stringResource(section.textId),
-                                    style = MaterialTheme.typography.titleMedium,
-                                    modifier = Modifier
-                                        .padding(top = spacing.medium)
-                                        .semantics {
-                                            heading()
-                                            if (section.skipTalkback)
-                                                invisibleToUser()
-                                        },
-                                    color = MaterialTheme.colorScheme.onSurface,
-                                )
-                            }
+                        structureLog.start("LazyColumn item")
+                        Box(
+                            modifier = Modifier.semantics(mergeDescendants = true) {}
+                        ) {
+                            when (section.type) {
+                                SectionType.Title -> {
+                                    val text = stringResource(section.textId)
+                                    structureLog.unstructured("Text for Title: '${text}'")
+                                    Text(
+                                        text = text,
+                                        style = MaterialTheme.typography.titleMedium,
+                                        modifier = Modifier
+                                            .padding(top = spacing.medium)
+                                            .semantics {
+                                                heading()
+                                                if (section.skipTalkback)
+                                                    invisibleToUser()
+                                            },
+                                        color = MaterialTheme.colorScheme.onSurface,
+                                    )
+                                }
 
-                            SectionType.Paragraph -> {
-                                var htmlText = stringResource(section.textId)
-                                val parser: Parser = Parser.builder().build()
-                                val document: Node? = parser.parse(htmlText)
-                                val renderer = HtmlRenderer.builder().build()
-                                htmlText = renderer.render(document)
-
-                                Text(
-                                    text = AnnotatedString.fromHtml(
+                                SectionType.Paragraph -> {
+                                    var htmlText = stringResource(section.textId)
+                                    val parser: Parser = Parser.builder().build()
+                                    val document: Node? = parser.parse(htmlText)
+                                    val renderer = HtmlRenderer.builder().build()
+                                    htmlText = renderer.render(document)
+                                    val text = AnnotatedString.fromHtml(
                                         htmlString = htmlText,
                                         linkStyles = TextLinkStyles(
                                             style = SpanStyle(
                                                 textDecoration = TextDecoration.Underline,
                                             )
                                         )
-                                    ),
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    color = MaterialTheme.colorScheme.onSurface,
-                                    modifier = Modifier
-                                        .semantics {
-                                            if(section.skipTalkback)
-                                                invisibleToUser()
-                                        }
-                                )
-                            }
+                                    )
 
-                            SectionType.Link, SectionType.Faq -> {
-                                Button(
-                                    onClick = {
-                                        if (section.type == SectionType.Faq) {
-                                            navController.navigate("${HomeRoutes.Help.route}/faq${section.textId}.${section.faqAnswer}")
-                                        } else {
-                                            navController.navigate("${HomeRoutes.Help.route}/page${section.textId}")
+                                    structureLog.unstructured("Text for HTML section: '${text}'")
+                                    Text(
+                                        text = text,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        color = MaterialTheme.colorScheme.onSurface,
+                                        modifier = Modifier
+                                            .semantics {
+                                                if (section.skipTalkback)
+                                                    invisibleToUser()
+                                            }
+                                    )
+                                }
+
+                                SectionType.Link, SectionType.Faq -> {
+                                    Button(
+                                        onClick = {
+                                            val routeParam = if (section.type == SectionType.Faq) {
+                                                HelpTopic.ResourceFaq(
+                                                    context,
+                                                    section.textId,
+                                                    section.faqAnswer
+                                                ).toRouteParam()
+                                            } else {
+                                                HelpTopic.ResourcePage(context, section.textId)
+                                                    .toRouteParam()
+                                            }
+                                            navController.navigate("${HomeRoutes.Help.route}/$routeParam")
+                                        },
+                                        modifier = Modifier
+                                            .fillMaxWidth(),
+                                        shape = RoundedCornerShape(spacing.extraSmall),
+                                        colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
+                                    ) {
+                                        structureLog.start("Button")
+                                        Box(
+                                            Modifier.weight(6f)
+                                        ) {
+                                            structureLog.start("Box for text")
+                                            val text = stringResource(section.textId)
+                                            structureLog.unstructured("Text for Button: '${text}'")
+                                            Text(
+                                                text = text,
+                                                textAlign = TextAlign.Start,
+                                                style = MaterialTheme.typography.titleMedium,
+                                            )
+                                            structureLog.end("Box for text")
                                         }
-                                    },
-                                    modifier = Modifier
-                                        .fillMaxWidth(),
-                                    shape = RoundedCornerShape(spacing.extraSmall),
-                                    colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
-                                ) {
-                                    Box(
-                                        Modifier.weight(6f)
-                                    ) {
-                                        Text(
-                                            text = stringResource(section.textId),
-                                            textAlign = TextAlign.Start,
-                                            style = MaterialTheme.typography.titleMedium,
-                                        )
-                                    }
-                                    Box(
-                                        Modifier.weight(1f)
-                                    ) {
-                                        Icon(
-                                            Icons.Rounded.ChevronRight,
-                                            null,
-                                            modifier = Modifier.align(Alignment.CenterEnd)
-                                        )
+                                        Box(
+                                            Modifier.weight(1f)
+                                        ) {
+                                            structureLog.start("Box for icon")
+                                            Icon(
+                                                Icons.Rounded.ChevronRight,
+                                                null,
+                                                modifier = Modifier.align(Alignment.CenterEnd)
+                                            )
+                                            structureLog.end("Box for icon")
+                                        }
+                                        structureLog.end("Button")
                                     }
                                 }
                             }
                         }
-                      }
+                        structureLog.end("LazyColumn item")
                     }
                     item {
                         if (sections.titleId == R.string.settings_about_app) {
@@ -477,10 +511,14 @@ fun HelpScreen(
                             )
                         }
                     }
+                    structureLog.end("LazyColumn")
                 }
+                structureLog.end("Box")
             }
+            structureLog.end("Scaffold content")
         }
     )
+    structureLog.end("HelpScreen")
 }
 
 @Preview(showBackground = true)
@@ -489,7 +527,8 @@ fun HomeHelpPreview() {
     HelpScreen(
         topic = "page${R.string.menu_help}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -499,7 +538,8 @@ fun BeaconHelpPreview() {
     HelpScreen(
         topic = "page${R.string.beacon_audio_beacon}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -509,7 +549,8 @@ fun VoicesHelpPreview() {
     HelpScreen(
         topic = "page${R.string.voice_voices}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -519,7 +560,8 @@ fun RemoteHelpPreview() {
     HelpScreen(
         topic = "page${R.string.help_remote_page_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -529,7 +571,8 @@ fun AheadOfMeHelpPreview() {
     HelpScreen(
         topic = "page${R.string.help_explore_page_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -539,7 +582,8 @@ fun AroundMeHelpPreview() {
     HelpScreen(
         topic = "page${R.string.help_orient_page_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -549,7 +593,8 @@ fun AutomaticCalloutsHelpPreview() {
     HelpScreen(
         topic = "page${R.string.callouts_automatic_callouts}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -559,7 +604,8 @@ fun MyLocationHelpPreview() {
     HelpScreen(
         topic = "page${R.string.directions_my_location}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -569,7 +615,8 @@ fun RoutesContentHelpPreview() {
     HelpScreen(
         topic = "page${R.string.routes_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -579,7 +626,8 @@ fun MarkersHelpPreview() {
     HelpScreen(
         topic = "page${R.string.markers_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -589,7 +637,8 @@ fun CreatingMarkersHelpPreview() {
     HelpScreen(
         topic = "page${R.string.help_creating_markers_page_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -599,7 +648,8 @@ fun NearbyMarkersHelpPreview() {
     HelpScreen(
         topic = "page${R.string.callouts_nearby_markers}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -609,7 +659,8 @@ fun EditingMarkersHelpPreview() {
     HelpScreen(
         topic = "page${R.string.help_edit_markers_page_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -619,7 +670,8 @@ fun FaqHelpPreview() {
     HelpScreen(
         topic = "page${R.string.faq_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -629,7 +681,8 @@ fun FaqAnswerHelpPreview() {
     HelpScreen(
         topic = "faq${R.string.faq_when_to_use_soundscape_answer}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -639,7 +692,8 @@ fun TipsHelpPreview() {
     HelpScreen(
         topic = "page${R.string.faq_tips_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -649,7 +703,8 @@ fun OfflineHelpPreview() {
     HelpScreen(
         topic = "page${R.string.help_offline_page_title}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }
 
@@ -659,6 +714,7 @@ fun AboutHelpPreview() {
     HelpScreen(
         topic = "page${R.string.settings_about_app}",
         navController = rememberNavController(),
-        modifier = Modifier
+        modifier = Modifier,
+        structureLog = StructureLog {}
     )
 }

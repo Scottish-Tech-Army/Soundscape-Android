@@ -42,6 +42,7 @@ lifecycleRuntimeKtx = "2.9.2"
 activityCompose = "1.10.1"
 lifecycleService = "2.9.2"
 appcompat = "1.7.1"
+androidxNavigationCompose = "2.8.5"
 coreKtxVersion = "1.7.0"
 lifecycleViewmodelCompose = "2.9.2"
 loggingInterceptor = "5.1.0"
@@ -56,7 +57,8 @@ reorderable = "2.5.1"
 retrofit = "3.0.0"
 review = "2.0.2"
 reviewKtx = "2.0.2"
-media3Session = "1.8.0"
+media3 = "1.8.0"
+robolectric = "4.14.1"
 roomCompiler = "2.7.2"
 roomRuntime = "2.7.2"
 rtree2 = "0.9.3"
@@ -86,6 +88,7 @@ androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-com
 androidx-junit-v121 = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
+androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigationCompose" }
 androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
@@ -131,6 +134,7 @@ play-services-location = { module = "com.google.android.gms:play-services-locati
 protobuf-kotlin-lite = { module = "com.google.protobuf:protobuf-kotlin-lite", version.ref = "protobufKotlinLite" }
 pmtilesreader = { module = "ch.poole.geo.pmtiles-reader:Reader", version.ref = "pmtilesreader" }
 reorderable = { module = "sh.calvin.reorderable:reorderable", version.ref = "reorderable" }
+robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 review = { module = "com.google.android.play:review", version.ref = "review" }
 review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "reviewKtx" }
@@ -143,7 +147,9 @@ ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 maplibre = { module = "org.maplibre.gl:android-sdk", version.ref = "mapLibre" }
-androidx-media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "media3Session" }
+androidx-media3-common = { group = "androidx.media3", name = "media3-common", version.ref = "media3" }
+androidx-media3-common-ktx = { group = "androidx.media3", name = "media3-common-ktx", version.ref = "media3" }
+androidx-media3-session = { group = "androidx.media3", name = "media3-session", version.ref = "media3" }
 maplibre-annotations = { module = "org.maplibre.gl:android-plugin-annotation-v9", version.ref = "mapLibreAnnotation" }
 androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycleProcess" }
 screenshot-validation-api = { group = "com.android.tools.screenshot", name = "screenshot-validation-api", version.ref = "screenshotValidationApi" }

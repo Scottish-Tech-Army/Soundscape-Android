@@ -1,0 +1,253 @@
+'HelpScreen' start
+'HelpScreen' end
+'Scaffold topBar' start
+'Scaffold topBar' end
+'Scaffold content' start
+  'Box' start
+  'Box' end
+'Scaffold content' end
+'LazyColumn' start
+'LazyColumn' end
+'LazyColumn item' start
+  Text for Title: 'What is Soundscape and how should I use it?'
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'When should I use Soundscape?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'What are Markers and how do I get the most out of them?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for Title: 'How do I get the best out of Soundscape?'
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'What can I set as a beacon?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How do I use a beacon like a pro?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Why does the audible beacon disappear sometimes?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Can I set a beacon on an address?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How do I set a beacon on my home?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'When I set a beacon on a destination, how close will Soundscape get me to the destination?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Can I turn the beacon back on when I am close to my destination?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Why does Soundscape call out road names twice when I approach an intersection?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Why doesn’t Soundscape announce every business that I pass?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Why do some callouts stop when I'm in a vehicle?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'What if I don't understand a callout or miss it because of ambient noise?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  Text for Title: 'How does Soundscape work?'
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'What phone does Soundscape run on?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'What headphones should I use with Soundscape?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How does Soundscape impact my phone’s battery?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How does my choice of headphones affect the battery life of my phone?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How does running Soundscape in the background impact battery life of my phone?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How much mobile data does Soundscape use?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How is Soundscape different from other map apps?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How do I use Soundscape with a wayfinding app?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'How do I control what I hear and when I hear it in Soundscape?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'Do I need to hold the phone in my hand all the time?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end
+'LazyColumn item' start
+  'Button' start
+    'Box for text' start
+      Text for Button: 'What is Open Street Map and why do we use it for Soundscape?'
+    'Box for text' end
+    'Box for icon' start
+    'Box for icon' end
+  'Button' end
+'LazyColumn item' end

@@ -42,6 +42,10 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.home.AdvancedMarkersAndRoutesSettingsScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.AudioTourInstructionDialog
 import org.scottishtecharmy.soundscape.screens.home.home.HelpScreen
+import org.scottishtecharmy.soundscape.screens.home.home.MarkdownHelpScreen
+import org.scottishtecharmy.soundscape.screens.home.home.HelpTopic
+
+
 import org.scottishtecharmy.soundscape.screens.home.home.Home
 import org.scottishtecharmy.soundscape.screens.home.home.OfflineMapsScreenVM
 import org.scottishtecharmy.soundscape.screens.home.home.OpenSourceLicensesVM
@@ -374,15 +378,35 @@ fun HomeScreen(
         }
 
         composable(HomeRoutes.Help.route + "/{topic}") { backStackEntry ->
-            val topic = backStackEntry.arguments?.getString("topic") ?: ""
-            HelpScreen(
-                topic = topic,
-                navController = navController,
-                modifier = Modifier
-                    .windowInsetsPadding(WindowInsets.safeDrawing)
-                    .semantics { testTagsAsResourceId = true }
+            val topicParam = backStackEntry.arguments?.getString("topic") ?: ""
+            val helpTopic = HelpTopic.fromRouteParam(topicParam)
+            val useMarkdownHelp = preferences.getBoolean(
+                MainActivity.MARKDOWN_HELP_KEY,
+                MainActivity.MARKDOWN_HELP_DEFAULT
             )
+            val showMarkdown = useMarkdownHelp
+                    || helpTopic is HelpTopic.MarkdownPage
+                    || helpTopic is HelpTopic.MarkdownFaq
+
+            if (showMarkdown) {
+                MarkdownHelpScreen(
+                    topic = topicParam,
+                    navController = navController,
+                    modifier = Modifier
+                        .windowInsetsPadding(WindowInsets.safeDrawing)
+                        .semantics { testTagsAsResourceId = true }
+                )
+            } else {
+                HelpScreen(
+                    topic = topicParam,
+                    navController = navController,
+                    modifier = Modifier
+                        .windowInsetsPadding(WindowInsets.safeDrawing)
+                        .semantics { testTagsAsResourceId = true }
+                )
+            }
         }
+
         composable(HomeRoutes.Sleep.route) {
             SleepScreenVM(
                 navController = navController,

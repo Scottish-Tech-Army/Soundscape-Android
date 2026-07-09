@@ -1,7 +1,10 @@
+import com.android.build.gradle.internal.tasks.AndroidTestTask
 import com.google.protobuf.gradle.id
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.FileInputStream
 import java.util.Properties
+import kotlin.io.path.Path
+import kotlin.io.path.createDirectories
 
 plugins {
     alias(libs.plugins.android.application)
@@ -23,7 +26,13 @@ android {
 
     buildFeatures {
         buildConfig = true
+        compose = true
         prefab = true
+    }
+
+    @Suppress("UnstableApiUsage")
+    testFixtures {
+        enable = true
     }
 
     bundle {
@@ -32,6 +41,7 @@ android {
         }
     }
 
+    @Suppress("UnstableApiUsage")
     experimentalProperties["android.experimental.enableScreenshotTest"] = true
 
     signingConfigs {
@@ -119,7 +129,19 @@ android {
                     "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON",
                     "-DANDROID_STL=c++_shared"
                 )
+                arguments += listOf("-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON")
             }
+        }
+    }
+
+    sourceSets {
+        getByName("test") {
+            java.srcDirs("src/test/java", "src/testFixtures/java")
+            assets.srcDirs("src/debug/assets")
+        }
+        getByName("androidTest") {
+            java.srcDirs("src/androidTest/java", "src/testFixtures/java")
+            assets.srcDirs("src/androidTest/assets", "src/debug/assets")
         }
     }
 
@@ -155,6 +177,13 @@ android {
             buildConfigField("Boolean", "DUMMY_ANALYTICS", "true")
         }
     }
+
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_19
         targetCompatibility = JavaVersion.VERSION_19
@@ -257,15 +286,19 @@ dependencies {
     implementation(libs.core.google.shortcuts)
 
     testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.ui.test.junit4)
     testImplementation(libs.androidx.core.testing)
+    testImplementation(testFixtures(project(":app")))
     testImplementation(libs.kotlinx.coroutines.test)
-    testImplementation (libs.kotlin.test.junit)
+    testImplementation(libs.kotlin.test.junit)
     testImplementation(libs.junit.jupiter)
 
     androidTestImplementation(libs.androidx.junit.v121)
     androidTestImplementation(libs.androidx.espresso.core.v351)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
+    androidTestImplementation(testFixtures(project(":app")))
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 
@@ -330,6 +363,10 @@ dependencies {
     // Protobuf
     implementation(libs.protobuf.kotlin.lite)
 
+    // Regression file handling for tests
+    androidTestImplementation(libs.androidx.media3.common)
+//    androidTestImplementation(libs.androidx.media3.common.ktx)
+
     // In app review
     implementation(libs.review)
     implementation(libs.review.ktx)
@@ -369,7 +406,17 @@ dependencies {
     implementation(libs.androidaddressformatter)
 
     testImplementation(libs.json)
+
+    testFixturesImplementation(platform(libs.androidx.compose.bom))
+    testFixturesImplementation(libs.ui.test.junit4)
+    testFixturesImplementation(libs.androidx.media3.common)
+    testFixturesImplementation(libs.androidx.junit.v121)
+    testFixturesImplementation(libs.ui)
+    testFixturesImplementation(libs.material3)
+    testFixturesImplementation(libs.androidx.navigation.compose)
+    testFixturesImplementation(libs.junit)
 }
+
 
 dokka {
     dokkaSourceSets.configureEach {
@@ -378,3 +425,103 @@ dokka {
         }
     }
 }
+
+fun adbPath(): String {
+    // Get the Android SDK path directly from Gradle
+    val sdkDir = project.extensions
+        .getByType<com.android.build.gradle.BaseExtension>()
+        .sdkDirectory
+        .absolutePath
+    val adbExtension = if (org.gradle.internal.os.OperatingSystem.current().isWindows) {
+        ".exe"
+    } else {
+        ""
+    }
+    return "$sdkDir/platform-tools/adb$adbExtension"
+}
+
+// NOTE 2025-11-18 Hugh Greene: It's hacky to hard-code the "androidTest" source set name here, but
+// there's no easy way to get it.
+val composeBaselinesTempTargetDir = "${project.layout.buildDirectory.get()}/tmp/androidTest-baselines"
+
+// We deliberately do not declare this as a Task output, otherwise the Gradle may hold the file
+// open for monitoring, preventing it from being deleted.
+val composeBaselinesTarFile = File(composeBaselinesTempTargetDir, "baselines.tar")
+
+tasks.register<Exec>("pullComposeBaselines") {
+
+    // Need to create these at configuration time, not execution time, so we can set standardOutput.
+    Path(composeBaselinesTempTargetDir).createDirectories()
+    composeBaselinesTarFile.createNewFile()
+
+    doFirst {
+        println("Pulling Compose baseline snapshots from emulator to '$composeBaselinesTarFile'")
+    }
+
+    isIgnoreExitValue = false
+    standardOutput = composeBaselinesTarFile.outputStream()
+    // Use adb to pull the whole folder as a TAR file.
+    commandLine(adbPath(), "exec-out",
+        "run-as",
+        project.android.namespace!!,
+        "tar",
+        "-C",
+        "files",
+        "-cf",
+        "-",
+        "baselines"
+    )
+}
+
+tasks.register<Copy>("extractComposeBaselines") {
+    val pullTask = tasks.findByName("pullComposeBaselines")!!
+    dependsOn(pullTask)
+
+    doFirst {
+        println(this.taskDependencies.toString())
+    }
+
+    from(tarTree(composeBaselinesTarFile))
+    // NOTE 2025-11-18 Hugh Greene: It's hacky to hard-code the path here, but I don't know of a
+    // better way to get it.
+    val localTargetDir = "$projectDir/src/debug/assets/baselines"
+    into(localTargetDir)
+    // Remove leading 'baselines/' from entries if desired
+    eachFile {
+        // Strip the top-level "baselines" folder
+        if (relativePath.segments.firstOrNull() == "baselines") {
+            relativePath = RelativePath(
+                relativePath.isFile,
+                *relativePath.segments.drop(1).toTypedArray()
+            )
+        }
+    }
+    // Normalise line-endings of expected text files on Windows.
+    if (org.gradle.internal.os.OperatingSystem.current().isWindows) {
+        filesMatching(listOf("**/*.txt")) {
+            // The filter closure is called with the line contents stripped of any platform's line
+            // endings, and the return value has local line endings added, so we just return "it".
+            filter { it }
+        }
+    }
+    includeEmptyDirs = false
+
+    doLast {
+        if (composeBaselinesTarFile.exists()) {
+            composeBaselinesTarFile.delete()
+        }
+        println("Baselines moved from emulator to '$localTargetDir'. " +
+                "You can now review the changes and commit them.")
+    }
+}
+
+tasks.configureEach {
+    if (this is AndroidTestTask) {
+       finalizedBy("extractComposeBaselines")
+    }
+}
+
+tasks.withType<Test> {
+    systemProperty("test.baselineOutputDir", layout.buildDirectory.dir("outputs/robolectric-baselines").get().asFile.absolutePath)
+}
+
