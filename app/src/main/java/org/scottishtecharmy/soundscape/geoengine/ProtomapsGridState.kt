@@ -18,11 +18,28 @@ import org.scottishtecharmy.soundscape.network.ITileDAO
 import org.scottishtecharmy.soundscape.network.ProtomapsTileClient
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.findExtractPaths
+import retrofit2.Response
 import retrofit2.awaitResponse
 import vector_tile.VectorTile
 import java.io.File
 import kotlin.coroutines.cancellation.CancellationException
 import kotlin.system.measureTimeMillis
+
+/**
+ * The protomaps tile server responds with an HTTP 204 (No Content), and no body, for tiles that
+ * have no data at all, e.g. remote areas with no OSM features nearby. Note this is not the same
+ * as a tile that's entirely open sea, or one with a layer present but no features in it - those
+ * are still served normally with an HTTP 200. Retrofit special cases a 204/205 response and
+ * always returns a null body for it, even though the tile request itself succeeded, so that has
+ * to be turned back into an empty VectorTile here rather than being treated as a failed request
+ * that's worth retrying.
+ */
+fun tileFromNetworkResponse(response: Response<VectorTile.Tile>?): VectorTile.Tile? {
+    if (response?.code() == 204) {
+        return VectorTile.Tile.getDefaultInstance()
+    }
+    return response?.body()
+}
 
 @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
 open class ProtomapsGridState(
@@ -129,7 +146,7 @@ open class ProtomapsGridState(
                         async {
                             service?.getVectorTileWithCache(x, y, zoomLevel)
                         }
-                    result = tileReq.await()?.awaitResponse()?.body()
+                    result = tileFromNetworkResponse(tileReq.await()?.awaitResponse())
                 }
 
                 if (result != null) {

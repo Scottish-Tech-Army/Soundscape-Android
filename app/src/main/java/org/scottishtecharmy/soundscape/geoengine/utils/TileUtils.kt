@@ -1285,7 +1285,7 @@ fun decompressTile(compressionType: Byte?, rawTileData: ByteArray) : VectorTile.
 
         2.toByte() -> {
             // Gzip compression
-            val decompressedTile = decompressGzip(rawTileData)
+            val decompressedTile = decompressGzip(rawTileData) ?: return null
             return VectorTile.Tile.parseFrom(decompressedTile)
         }
 
