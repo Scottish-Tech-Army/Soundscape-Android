@@ -19,7 +19,7 @@ appId: org.scottishtecharmy.soundscape
 
 # The screen opens on the Routes tab by default - switch to Markers.
 - tapOn:
-    id: MarkersTab
+    id: markersTab
 - assertVisible:
     id: "LocationItem-A-0"
 - assertVisible:
@@ -32,9 +32,9 @@ appId: org.scottishtecharmy.soundscape
 
 # Confirm tab navigation works in both directions.
 - tapOn:
-    id: RoutesTab
+    id: routesTab
 - tapOn:
-    id: MarkersTab
+    id: markersTab
 
 # Open marker A and edit its annotation, then save.
 - tapOn:

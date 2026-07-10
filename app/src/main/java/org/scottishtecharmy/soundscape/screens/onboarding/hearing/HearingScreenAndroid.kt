@@ -17,7 +17,6 @@ import org.scottishtecharmy.soundscape.screens.onboarding.AudioOnboardingViewMod
 fun HearingScreen(
     onBack: () -> Unit,
     onNavigate: () -> Unit,
-    modifier: Modifier = Modifier,
     viewModel: AudioOnboardingViewModel
 ) {
     val speechText = buildString {
@@ -38,8 +37,7 @@ fun HearingScreen(
         },
         onPlaySpeech = {
             viewModel.playSpeech(speechText)
-        },
-        modifier = modifier,
+        }
     )
 }
 

@@ -16,7 +16,6 @@ import org.scottishtecharmy.soundscape.screens.onboarding.AudioOnboardingViewMod
 fun AudioBeaconsScreen(
     onBack: () -> Unit,
     onNavigate: () -> Unit,
-    modifier: Modifier = Modifier,
     viewModel: AudioOnboardingViewModel
 ) {
     val uiState: AudioOnboardingViewModel.AudioBeaconsUiState by viewModel.state.collectAsStateWithLifecycle()
@@ -41,7 +40,6 @@ fun AudioBeaconsScreen(
             viewModel.setAudioBeaconType(beacon)
             Log.d("AudioBeacon", "Audio beacon category changed to $beacon")
         },
-        modifier = modifier
     )
 }
 

@@ -1,5 +1,10 @@
 package org.scottishtecharmy.soundscape.ui.theme
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
@@ -8,7 +13,11 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.ExperimentalComposeUiApi
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.testTagsAsResourceId
 import kotlinx.coroutines.flow.StateFlow
 import org.scottishtecharmy.soundscape.ThemeState
 
@@ -288,6 +297,7 @@ var LocalHintsEnabled = compositionLocalOf { true }
 // LocalAppButtonColors, currentAppButtonColors, and defaultAppButtonColors
 // are now in the shared module (ui.theme.AppButtonColors)
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SoundscapeTheme(
     themeStateFlow: StateFlow<ThemeState>? = null,
@@ -327,8 +337,20 @@ fun SoundscapeTheme(
         MaterialTheme(
             colorScheme = currentColorScheme,
             typography = Typography,
-            content = content
-        )
+        ) {
+            // Set once at the root so every screen's testTags are exposed as
+            // resource-ids for UiAutomator-based tools (e.g. Maestro) and every
+            // screen avoids the status/nav bars, instead of relying on each
+            // screen to opt in individually.
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .windowInsetsPadding(WindowInsets.safeDrawing)
+                    .semantics { testTagsAsResourceId = true }
+            ) {
+                content()
+            }
+        }
     }
 }
 

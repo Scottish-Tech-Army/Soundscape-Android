@@ -5,18 +5,12 @@ import android.content.SharedPreferences
 import android.os.Process
 import android.util.Log
 import androidx.activity.compose.LocalActivity
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.safeDrawing
-import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.semantics.testTagsAsResourceId
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -56,7 +50,6 @@ class Navigator {
     }
 }
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun HomeScreen(
     navController: NavHostController,
@@ -345,9 +338,6 @@ fun HomeScreen(
             Settings(
                 navController = navCtrl,
                 uiState = uiState,
-                modifier = Modifier
-                    .windowInsetsPadding(WindowInsets.safeDrawing)
-                    .semantics { testTagsAsResourceId = true },
                 storages = uiState.storages,
                 onStorageSelected = { path -> settingsViewModel.selectStorage(path) },
                 selectedStorageIndex = uiState.selectedStorageIndex,

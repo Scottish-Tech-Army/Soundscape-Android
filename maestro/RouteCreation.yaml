@@ -18,13 +18,13 @@ appId: org.scottishtecharmy.soundscape
 
 # The screen opens on the Routes tab, where the "+" create-route button lives.
 - tapOn:
-    id: addRoute
+    id: appBarRight
 
 # Name the route.
 - tapOn:
     id: routeName
 - inputText: "Test Route"
-- hideKeyboard
+- pressKey: Enter
 
 # Add the existing markers A and B as waypoints. They are listed by name; the
 # orderId suffix is unknown here so match by name prefix.

@@ -23,7 +23,7 @@ appId: org.scottishtecharmy.soundscape
         Home: 'mainSearchBarCollapsed',
         LocationDetails: 'locationDetailsStartBeacon',
         PlacesNearby: 'placesNearby-0',
-        MarkersAndRoutes: 'RoutesTab',
+        MarkersAndRoutes: 'routesTab',
         RouteDetails: 'routeDetailsStartButton',
         Settings: 'settingsSectionAudio',
         Welcome: 'welcomeScreenContinueButton'

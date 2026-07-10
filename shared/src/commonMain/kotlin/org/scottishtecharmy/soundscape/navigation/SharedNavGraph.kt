@@ -16,6 +16,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -681,12 +682,14 @@ private fun MarkersAndRoutesContainer(
                     Tab(
                         selected = selectedTab == 0,
                         onClick = { selectedTab = 0 },
-                        text = { Text("Markers") }
+                        text = { Text("Markers") },
+                        modifier = Modifier.testTag("markersTab")
                     )
                     Tab(
                         selected = selectedTab == 1,
                         onClick = { selectedTab = 1 },
-                        text = { Text("Routes") }
+                        text = { Text("Routes") },
+                        modifier = Modifier.testTag("routesTab")
                     )
                 }
             }

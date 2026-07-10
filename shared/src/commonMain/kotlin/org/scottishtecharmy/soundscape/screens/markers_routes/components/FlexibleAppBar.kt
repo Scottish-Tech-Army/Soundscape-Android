@@ -6,6 +6,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -28,7 +29,8 @@ fun FlexibleAppBar(
                 modifier = Modifier
                     .semantics { heading() }
                     .talkbackLive()
-                    .talkbackDescription(title),
+                    .talkbackDescription(title)
+                    .testTag("appBarTitle"),
                 text = title,
                 color = MaterialTheme.colorScheme.onSurface,
                 style = MaterialTheme.typography.headlineSmall,

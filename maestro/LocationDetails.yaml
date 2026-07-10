@@ -62,7 +62,7 @@ appId: org.scottishtecharmy.soundscape
 - tapOn:
         id: homeMarkersAndRoutes
 - tapOn:
-        id: MarkersTab
+        id: markersTab
 # We should have two markers, A which is closest and B which is farther away
 - assertVisible:
         id: 'LocationItem-A-0'
