@@ -211,3 +211,173 @@ jobs:
       - name: Raise error on test fail
         if: steps.xctest.outcome != 'success'
         run: exit 1
+
+  # Run the Maestro UI suite against the iOS simulator build. Mirrors the
+  # Android `maestro` job: builds the app, boots a sim, installs, pushes the
+  # Glasgow offline map extract, pins the location, and runs the flows.
+  ios-maestro:
+    name: iOS Maestro flows
+    needs: ios-test
+    runs-on: [self-hosted, macOS, ARM64]
+    environment: development
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup iOS toolchain
+        uses: ./.github/actions/setup-ios-toolchain
+
+      - name: Setup tile and search providers
+        uses: ./.github/actions/write-provider-config
+        with:
+          platform: ios
+          tile_provider_url: ${{ secrets.TILE_PROVIDER_URL }}
+          search_provider_url: ${{ secrets.SEARCH_PROVIDER_URL }}
+          extract_provider_url: ${{ secrets.EXTRACT_PROVIDER_URL }}
+
+      - name: Generate Xcode project
+        working-directory: iosApp
+        run: xcodegen generate
+
+      # Maestro 2.x ships its own XCUITest-based iOS driver, so no separate
+      # idb_companion install is needed. The self-hosted mac already has
+      # Maestro installed via Homebrew; the installer script refuses to
+      # overwrite a brew-managed install, so only fetch it if missing.
+      - name: Install Maestro
+        run: |
+          if command -v maestro >/dev/null 2>&1; then
+            echo "Using existing maestro: $(command -v maestro) ($(maestro --version 2>/dev/null || echo 'version unknown'))"
+          else
+            MAESTRO_VERSION=2.6.0 curl -Ls 'https://get.maestro.mobile.dev' | bash
+            echo "$HOME/.maestro/bin" >> "$GITHUB_PATH"
+          fi
+
+      # Same simulator-picking logic as the ios-test job: the runner image does
+      # not always pre-register a concrete device, so resolve a UDID at runtime.
+      - name: Pick iOS simulator
+        run: |
+          UDID=$(xcrun simctl list devices available --json \
+            | jq -r '[.devices | to_entries[] | select(.key | test("iOS")) | .value[] | select(.isAvailable and (.name | startswith("iPhone")))][0].udid // empty')
+          if [ -z "$UDID" ]; then
+            echo "No iPhone simulator pre-registered; creating one."
+            RUNTIME=$(xcrun simctl list runtimes available -j \
+              | jq -r '[.runtimes[] | select(.isAvailable and .platform == "iOS")] | sort_by(.version) | reverse | .[0].identifier')
+            DEVICETYPE=$(xcrun simctl list devicetypes -j \
+              | jq -r '[.devicetypes[] | select(.productFamily == "iPhone")] | sort_by(.name) | reverse | .[0].identifier')
+            UDID=$(xcrun simctl create "CI iPhone" "$DEVICETYPE" "$RUNTIME")
+          fi
+          echo "Using simulator $UDID"
+          echo "SIMULATOR_UDID=$UDID" >> "$GITHUB_ENV"
+          echo "SIMULATOR_DESTINATION=platform=iOS Simulator,id=$UDID" >> "$GITHUB_ENV"
+
+      - name: Boot simulator
+        run: |
+          xcrun simctl boot "$SIMULATOR_UDID" || true
+          xcrun simctl bootstatus "$SIMULATOR_UDID" -b
+
+      - name: Build iOS app for simulator
+        run: |
+          xcodebuild build \
+            -project iosApp/iosApp.xcodeproj \
+            -scheme iosApp \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination "$SIMULATOR_DESTINATION" \
+            -derivedDataPath iosApp/build/DerivedData \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Install app on simulator
+        run: |
+          # The scheme is `iosApp` but PRODUCT_NAME is `Soundscape`, and this
+          # runner has Xcode configured with a custom global Derived Data path
+          # that overrides -derivedDataPath for build products. Ask xcodebuild
+          # for the resolved BUILT_PRODUCTS_DIR / FULL_PRODUCT_NAME instead of
+          # guessing.
+          settings=$(xcodebuild \
+            -project iosApp/iosApp.xcodeproj \
+            -scheme iosApp \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination "$SIMULATOR_DESTINATION" \
+            -derivedDataPath iosApp/build/DerivedData \
+            -showBuildSettings 2>/dev/null)
+          BUILT_PRODUCTS_DIR=$(echo "$settings" | awk -F' = ' '/^ *BUILT_PRODUCTS_DIR = /{print $2; exit}')
+          FULL_PRODUCT_NAME=$(echo "$settings" | awk -F' = ' '/^ *FULL_PRODUCT_NAME = /{print $2; exit}')
+          APP_PATH="$BUILT_PRODUCTS_DIR/$FULL_PRODUCT_NAME"
+          if [ ! -d "$APP_PATH" ]; then
+            echo "App not found at $APP_PATH" >&2
+            exit 1
+          fi
+          echo "Installing $APP_PATH"
+          xcrun simctl install "$SIMULATOR_UDID" "$APP_PATH"
+
+      # Same extract the Android maestro job pulls, cached alongside the .geojson
+      # sidecar that ships in the repo under .github/fixtures.
+      - name: Download offline map extract
+        run: |
+          curl -Lsf -o glasgow-gb.pmtiles \
+            'https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/street-metadata/glasgow-gb.pmtiles'
+
+      # Emulator GPS equivalent: pin the simulator to Edinburgh so the
+      # location-dependent flows run against the Glasgow extract's coverage.
+      - name: Set simulator location (Edinburgh)
+        run: xcrun simctl location "$SIMULATOR_UDID" set 55.955360,-3.223538
+
+      - name: Maestro Tests
+        id: maestro-tests
+        continue-on-error: true
+        run: |
+          # Onboarding uses "launchApp: clearState: true", which on iOS wipes
+          # the app sandbox - so we must run Onboarding FIRST and only then
+          # push the Glasgow extract into the app's Documents dir (that path
+          # is where IosSoundscapeService reads extracts from). The subsequent
+          # flows do not clearState, so the pushed files stick around.
+          #
+          # rf() retries a flow ONCE when its JUnit report shows the specific
+          # "Unable to launch app" launch-timeout failure; a blind retry would
+          # re-apply stateful flows (e.g. LocationDetails' marker creation).
+          mkdir -p maestro_outputs
+          status=0
+          rf() {
+            maestro test --format=junit \
+              --output="maestro_outputs/report-$1.xml" \
+              --test-output-dir=maestro_outputs \
+              --no-ansi "maestro/$1.yaml"
+            r=$?
+            if [ "$r" -ne 0 ] && grep -q "Unable to launch app" "maestro_outputs/report-$1.xml" 2>/dev/null; then
+              echo "::warning::launch of $1 failed; retrying once"
+              maestro test --format=junit \
+                --output="maestro_outputs/report-$1.xml" \
+                --test-output-dir=maestro_outputs \
+                --no-ansi "maestro/$1.yaml"
+              r=$?
+            fi
+            return "$r"
+          }
+
+          rf Onboarding || status=1
+
+          # After Onboarding the sandbox exists; copy the extract + geojson into
+          # Documents where the app looks for them.
+          DATA_CONTAINER=$(xcrun simctl get_app_container "$SIMULATOR_UDID" org.scottishtecharmy.soundscape data)
+          echo "App data container: $DATA_CONTAINER"
+          mkdir -p "$DATA_CONTAINER/Documents"
+          cp glasgow-gb.pmtiles "$DATA_CONTAINER/Documents/"
+          cp .github/fixtures/glasgow-gb.pmtiles.geojson "$DATA_CONTAINER/Documents/"
+
+          for flow in HomePage LocationDetails PlacesNearby MarkersAndRoutes RouteCreation; do
+            rf "$flow" || status=1
+          done
+          exit $status
+
+      - name: Upload maestro reports
+        uses: actions/upload-artifact@v6
+        with:
+          name: ios-maestro-reports
+          path: maestro_outputs
+
+      - name: Raise error on test fail
+        if: steps.maestro-tests.outcome != 'success'
+        run: exit 1

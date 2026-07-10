@@ -5,6 +5,17 @@ appId: org.scottishtecharmy.soundscape
     permissions:
         all: allow
 
+# iOS 26 sims show a system-level "Allow widgets from Maps to use your
+# location" dialog on fresh boots. It floats above our app and blocks Maestro
+# from reaching the Welcome screen. permissions.all: allow on launchApp only
+# covers our own app's runtime prompts, not Springboard widget prompts, so we
+# dismiss it explicitly here. optional: true means the flow still passes if
+# the dialog never appears (Android, warm sims). It should only fire once per
+# sim session, so subsequent flows don't need the same guard.
+- tapOn:
+    text: "Don.t Allow"
+    optional: true
+
 - runFlow:
     file: WaitForScreen.yaml
     env:
