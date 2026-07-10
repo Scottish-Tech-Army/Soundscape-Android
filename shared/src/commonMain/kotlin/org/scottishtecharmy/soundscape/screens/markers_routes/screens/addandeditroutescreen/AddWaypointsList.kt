@@ -71,7 +71,7 @@ fun AddWaypointsList(
     onSelectLocation: (LocationDescription) -> Unit,
     onToggleMember: (LocationDescription) -> Unit,
     getCurrentLocationDescription: () -> LocationDescription,
-    addWaypointsListViewModel: AddWaypointsListViewModel = viewModel()
+    addWaypointsListViewModel: AddWaypointsListViewModel = viewModel { AddWaypointsListViewModel() }
 ) {
     // Create our list of locations, with those already in the route first
     val locations = remember(uiState.routeMembers, uiState.markers) {
@@ -185,6 +185,7 @@ fun AddWaypointsList(
                             kotlinx.coroutines.delay(1500)
                             announceLoading = true
                         }
+                        val loadingLabel = stringResource(Res.string.general_loading_start)
                         Box(
                             contentAlignment = Alignment.Center,
                             modifier = Modifier
@@ -192,9 +193,7 @@ fun AddWaypointsList(
                                 .defaultMinSize(minHeight = 48.dp)
                                 .then(
                                     if (announceLoading) Modifier.semantics {
-                                        contentDescription = kotlinx.coroutines.runBlocking {
-                                            org.jetbrains.compose.resources.getString(Res.string.general_loading_start)
-                                        }
+                                        contentDescription = loadingLabel
                                         liveRegion = LiveRegionMode.Polite
                                     } else Modifier
                                 )

@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geoengine.GridState
@@ -86,15 +85,20 @@ open class PlacesNearbyViewModel(
                     internalUiState.update { it.copy(userLocation = locationAndGrid.location) }
                 }
                 if (locationAndGrid.gridState != null) {
-                    val pois = runBlocking {
-                        withContext(locationAndGrid.gridState.treeContext) {
+                    val (pois, intersections) = withContext(locationAndGrid.gridState.treeContext) {
+                        val p = runCatching {
                             locationAndGrid.gridState.getFeatureCollection(TreeId.POIS)
+                        }.getOrElse {
+                            println("PlacesNearbyViewModel: POIS lookup failed: ${it.message}")
+                            FeatureCollection()
                         }
-                    }
-                    val intersections = runBlocking {
-                        withContext(locationAndGrid.gridState.treeContext) {
+                        val i = runCatching {
                             locationAndGrid.gridState.getFeatureCollection(TreeId.INTERSECTIONS)
+                        }.getOrElse {
+                            println("PlacesNearbyViewModel: INTERSECTIONS lookup failed: ${it.message}")
+                            FeatureCollection()
                         }
+                        p to i
                     }
                     internalUiState.value = internalUiState.value.copy(
                         nearbyPlaces = pois,

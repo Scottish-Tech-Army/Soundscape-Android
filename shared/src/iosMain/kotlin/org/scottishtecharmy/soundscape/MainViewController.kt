@@ -40,6 +40,7 @@ import platform.UIKit.UIViewController
 import platform.UIKit.UIWindow
 
 fun MainViewController() = ComposeUIViewController {
+    installUnhandledExceptionLogger()
     val service = remember { IosSoundscapeService.getInstance() }
     val mgr = service.offlineMapManager
     val prefs = service.preferencesProvider
