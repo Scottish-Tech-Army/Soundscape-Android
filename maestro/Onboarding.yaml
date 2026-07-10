@@ -3,10 +3,7 @@ appId: org.scottishtecharmy.soundscape
 - launchApp:
     clearState: true
     permissions:
-        all: deny
-        notifications: allow
-        location: allow
-        microphone: allow
+        all: allow
 
 - runFlow:
     file: WaitForScreen.yaml
@@ -24,6 +21,8 @@ appId: org.scottishtecharmy.soundscape
       id: "languageScreenContinueButton"
 
 - runFlow:
+    when:
+      platform: Android
     file: SwipeAndTap.yaml
     env:
       id: "navigatingScreenContinueButton"
@@ -33,11 +32,15 @@ appId: org.scottishtecharmy.soundscape
 # permission, so it is not handled by the launchApp permissions block. We wait
 # for the system dialog's positive button and tap it, then continue.
 - runFlow:
+    when:
+      platform: Android
     file: SwipeAndTap.yaml
     env:
       id: "batteryOptimizationGrantPermissionButton"
 
 - runFlow:
+    when:
+      platform: Android
     file: Wait.yaml
     env:
       timeout: 3000
@@ -50,6 +53,8 @@ appId: org.scottishtecharmy.soundscape
     optional: true
 
 - runFlow:
+    when:
+      platform: Android
     file: SwipeAndTap.yaml
     env:
       id: "batteryOptimizationContinueButton"
@@ -65,6 +70,13 @@ appId: org.scottishtecharmy.soundscape
       id: "hearingScreenContinueButton"
 
 - runFlow:
+    when:
+      platform: iOS
+    file: SwipeAndTap.yaml
+    env:
+      id: "permissionsScreenContinueButton"
+
+- runFlow:
     file: SwipeAndTap.yaml
     env:
       id: "CurrentButton"
@@ -75,6 +87,8 @@ appId: org.scottishtecharmy.soundscape
       id: "audioBeaconsContinueButton"
 
 - runFlow:
+    when:
+      platform: Android
     file: SwipeAndTap.yaml
     env:
       id: "offlineStorageOnboardingScreenContinueButton"
