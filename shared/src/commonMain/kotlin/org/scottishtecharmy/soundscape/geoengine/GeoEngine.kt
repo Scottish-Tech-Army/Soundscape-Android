@@ -124,6 +124,21 @@ class GeoEngine {
     private lateinit var listener: GeoEngineListener
     private var hasNetwork: () -> Boolean = { false }
 
+    private fun speedFromLocation(location: SoundscapeLocation?): Double {
+        var speed = 0.0
+        if (location?.hasSpeed == true) {
+            if (location.hasSpeedAccuracy) {
+                val lowestSpeed = location.speed - location.speedAccuracyMetersPerSecond
+                if (lowestSpeed > 0.1) {
+                    speed = location.speed.toDouble()
+                }
+            } else {
+                speed = location.speed.toDouble()
+            }
+        }
+        return speed
+    }
+
     private fun createUserGeometry(
         location: SoundscapeLocation?,
         orientation: DeviceDirection?,
@@ -162,17 +177,7 @@ class GeoEngine {
             }
         }
 
-        var speed = 0.0
-        if (location?.hasSpeed == true) {
-            if (location.hasSpeedAccuracy) {
-                val lowestSpeed = location.speed - location.speedAccuracyMetersPerSecond
-                if (lowestSpeed > 0.1) {
-                    speed = location.speed.toDouble()
-                }
-            } else {
-                speed = location.speed.toDouble()
-            }
-        }
+        val speed = speedFromLocation(location)
 
         return UserGeometry(
             location = latLng,
@@ -395,7 +400,8 @@ class GeoEngine {
                                         gridState,
                                         FeatureCollection(),
                                         false,
-                                        localizedStrings
+                                        localizedStrings,
+                                        speedFromLocation(unfilteredLocation) > UserGeometry.VEHICLE_SPEED_THRESHOLD_MPS
                                     )
                                 }
                                 val matchedWay = mapMatchFilter.matchedWay
