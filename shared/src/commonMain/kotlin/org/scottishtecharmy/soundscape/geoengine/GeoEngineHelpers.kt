@@ -163,6 +163,15 @@ private fun travellingReverseGeocodeName(
         }
     }
 
+    // Prefer the map-matched way (the road we're actually confirmed to be on) over an independent
+    // nearest-feature search, which can pick the wrong road at junctions or parallel carriageways.
+    // Since we're confirmed to be on it (rather than merely near it), phrase it as "On X" rather
+    // than "Near X".
+    val nearestRoad = userGeometry.mapMatchedWay ?: gridState.getNearestFeature(
+        TreeId.ROADS_AND_PATHS, gridState.ruler, location, 100.0
+    ) as Way?
+    val roadName = nearestRoad?.getName(null, gridState, localized, true)?.takeIf { it.isNotEmpty() }
+
     // Check if we're near a highway junction (motorway exit, interchange etc.)
     val junctionTree = gridState.getFeatureTree(TreeId.HIGHWAY_JUNCTIONS)
     val nearestJunction = junctionTree.getNearestFeature(location, gridState.ruler, 500.0)
@@ -181,8 +190,13 @@ private fun travellingReverseGeocodeName(
             name
         }
         if (junctionText != null) {
-            return localized?.get(StringKey.DirectionsNearName, junctionText)
-                ?: "Near $junctionText"
+            return if (roadName != null) {
+                localized?.get(StringKey.DirectionsOnRoadAtJunction, roadName, junctionText)
+                    ?: "On $roadName at $junctionText"
+            } else {
+                localized?.get(StringKey.DirectionsNearName, junctionText)
+                    ?: "Near $junctionText"
+            }
         }
     }
 
@@ -217,21 +231,13 @@ private fun travellingReverseGeocodeName(
         }
     }
 
-    // Prefer the map-matched way (the road we're actually confirmed to be on) over an independent
-    // nearest-feature search, which can pick the wrong road at junctions or parallel carriageways.
-    val nearestRoad = userGeometry.mapMatchedWay ?: gridState.getNearestFeature(
-        TreeId.ROADS_AND_PATHS, gridState.ruler, location, 100.0
-    ) as Way?
-    if (nearestRoad != null) {
-        val roadName = nearestRoad.getName(null, gridState, localized, true)
-        if (roadName.isNotEmpty()) {
-            return if (nearestSettlementName != null) {
-                localized?.get(
-                    StringKey.DirectionsNearRoadAndSettlement, roadName, nearestSettlementName
-                ) ?: "Near $roadName and close to $nearestSettlementName"
-            } else {
-                localized?.get(StringKey.DirectionsNearName, roadName) ?: "Near $roadName"
-            }
+    if (roadName != null) {
+        return if (nearestSettlementName != null) {
+            localized?.get(
+                StringKey.DirectionsOnRoadAndSettlement, roadName, nearestSettlementName
+            ) ?: "On $roadName and close to $nearestSettlementName"
+        } else {
+            localized?.get(StringKey.DirectionsOnRoad, roadName) ?: "On $roadName"
         }
     }
 

@@ -188,7 +188,8 @@ class MvtTileTest {
      * The M8 motorway through central Glasgow carries `ref=M8` but no `name` tag (found by
      * scanning TreeId.ROADS_AND_PATHS around [glasgowTestLocation] for Ways with a ref and no
      * name). This is an end-to-end check that travel-mode reverse geocoding falls back to the
-     * ref ("M8") instead of the generic class-based description ("Motorway") it used to produce.
+     * ref ("M8") instead of the generic class-based description ("Motorway") it used to produce,
+     * phrased as "On M8" since we're confirmed to be on the road, not just near it.
      */
     @Test
     fun testTravelCalloutForUnnamedRefRoad() {
@@ -200,10 +201,7 @@ class MvtTileTest {
         val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
 
         assertNotNull(result)
-        assertTrue(
-            "Expected callout to mention M8, got: ${result!!.text}",
-            result.text.contains("M8")
-        )
+        assertEquals("On M8 and close to Cowcaddens", result!!.text)
     }
 
     /**
@@ -232,9 +230,9 @@ class MvtTileTest {
     }
 
     /**
-     * End-to-end check that travel-mode reverse geocoding calls out a nearby highway junction
-     * ahead of the generic road-name fallback, e.g. "Near Junction 2, Robroyston" instead of
-     * "Near M8".
+     * End-to-end check that travel-mode reverse geocoding combines the current road with a
+     * nearby highway junction, e.g. "On M80 at Junction 2, Robroyston" rather than just naming
+     * the road or the junction alone.
      */
     @Test
     fun testTravelCalloutForHighwayJunction() {
@@ -251,10 +249,7 @@ class MvtTileTest {
         val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
 
         assertNotNull(result)
-        assertTrue(
-            "Expected callout to mention Junction 2, Robroyston, got: ${result!!.text}",
-            result.text.contains("Junction 2, Robroyston")
-        )
+        assertEquals("On M80 at Junction 2, Robroyston", result!!.text)
     }
 
     /**
