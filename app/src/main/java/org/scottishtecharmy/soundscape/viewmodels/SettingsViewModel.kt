@@ -10,6 +10,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.preference.PreferenceManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,6 +19,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.screens.onboarding.audiobeacons.getBeaconResourceId
@@ -90,9 +92,16 @@ class SettingsViewModel @Inject constructor(
                             if (initialized) {
                                 // Only once the TextToSpeech engine is initialized can we populate the
                                 // members of these lists.
-                                val audioEngineTypes = audioEngine.getAvailableSpeechEngines()
-
-                                val audioEngineVoiceTypes = audioEngine.getAvailableSpeechVoices()
+                                // getAvailableSpeechEngines/getAvailableSpeechVoices end up making a
+                                // synchronous Binder call into the system TTS service
+                                // (ITextToSpeechService.getVoices), which can block for a long time on
+                                // some OEM builds. Run them off the main thread to avoid ANRs.
+                                val (audioEngineTypes, audioEngineVoiceTypes) = withContext(Dispatchers.IO) {
+                                    Pair(
+                                        audioEngine.getAvailableSpeechEngines(),
+                                        audioEngine.getAvailableSpeechVoices()
+                                    )
+                                }
                                 val voiceTypes = mutableListOf<String>()
 
                                 // The list of voices will start of with those in the current locale
