@@ -1,6 +1,8 @@
 package org.scottishtecharmy.soundscape
 
 import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase.assertNotNull
+import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
@@ -13,6 +15,7 @@ import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
+import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.EntranceDetails
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.EntranceMatching
@@ -21,6 +24,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertBackToTileCoordinates
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.sampleToFractionOfTile
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.processTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
@@ -50,6 +54,7 @@ import kotlin.io.path.nameWithoutExtension
 import kotlin.math.abs
 import kotlin.system.measureTimeMillis
 import kotlin.time.measureTime
+import vector_tile.Tile
 
 /**
  * FileGridState overrides ProtomapsGridState updateTile to set validateContext to false as it
@@ -147,6 +152,58 @@ class MvtTileTest {
         println("tileOrigin2 " + tileOrigin2.latitude + "," + tileOrigin2.longitude)
         assert(tileOrigin2.latitude == 55.94919982336745)
         assert(tileOrigin2.longitude == -4.306640625)
+    }
+
+    /**
+     * Prototype test for reading OSM `ref` (route number, e.g. "B8050") out of the
+     * `transportation_name` layer and attaching it to the corresponding `transportation` Way, for
+     * use in travel-mode callouts like "On the A81" for roads that only carry a route number and
+     * no common name.
+     */
+    @Test
+    fun testTransportationNameRef() {
+        val tileX = 15990
+        val tileY = 10213
+        val tileFile = File("src/main/assets/${tileX}x${tileY}.mvt")
+        val tile = Tile.ADAPTER.decode(tileFile.readBytes())
+
+        val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+        val streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
+        val geojson = vectorTileToGeoJson(
+            tileX,
+            tileY,
+            tile,
+            intersectionMap,
+            streetNumberMap,
+            true,
+            15
+        )
+
+        val roads = geojson[TreeId.ROADS_AND_PATHS.id]
+        val parkRoad = roads.features.find { (it as? MvtFeature)?.name == "Park Road" }
+        assertEquals("B8050", (parkRoad as? MvtFeature)?.properties?.get("ref"))
+    }
+
+    /**
+     * The M8 motorway through central Glasgow carries `ref=M8` but no `name` tag (found by
+     * scanning TreeId.ROADS_AND_PATHS around [glasgowTestLocation] for Ways with a ref and no
+     * name). This is an end-to-end check that travel-mode reverse geocoding falls back to the
+     * ref ("M8") instead of the generic class-based description ("Motorway") it used to produce.
+     */
+    @Test
+    fun testTravelCalloutForUnnamedRefRoad() {
+        val location = LngLatAlt(-4.222513139247894, 55.8660422338109)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val userGeometry = UserGeometry(location = location, speed = 15.0)
+        val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
+
+        assertNotNull(result)
+        assertTrue(
+            "Expected callout to mention M8, got: ${result!!.text}",
+            result.text.contains("M8")
+        )
     }
 
     @Test
