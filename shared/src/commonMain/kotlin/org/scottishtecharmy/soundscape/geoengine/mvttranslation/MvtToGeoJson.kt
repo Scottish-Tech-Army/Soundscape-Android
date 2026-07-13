@@ -33,6 +33,37 @@ private fun addToStreetNumberMap(
 }
 
 /**
+ * The `transportation_name` layer (see https://openmaptiles.org/schema/#transportation_name)
+ * carries the OSM `ref` tag (e.g. "A81", "M8") for routes, joined by OSM id to the corresponding
+ * `transportation` line. We otherwise leave this layer unused (see note in [vectorTileToGeoJson]),
+ * so this just pulls out `ref` values keyed by id for reuse when building `transportation`
+ * Features - it lets us call out roads that only carry a route number and no common name.
+ */
+private fun extractRefsByOsmId(mvt: Tile): HashMap<Long, String> {
+    val refByOsmId = HashMap<Long, String>()
+    for (layer in mvt.layers) {
+        if (layer.name != "transportation_name") continue
+        for (feature in layer.features) {
+            val id = feature.id ?: continue
+            var firstInPair = true
+            var key = ""
+            for (tag in feature.tags) {
+                if (firstInPair) {
+                    key = layer.keys[tag]
+                } else if (key == "ref") {
+                    val ref = layer.values[tag].string_value
+                    if (!ref.isNullOrEmpty()) {
+                        refByOsmId[id] = ref
+                    }
+                }
+                firstInPair = !firstInPair
+            }
+        }
+    }
+    return refByOsmId
+}
+
+/**
  * vectorTileToGeoJson generates a GeoJSON FeatureCollection from a Mapbox Vector Tile.
  * @param tileX is the x coordinate of the tile
  * @param tileY is the y coordinate of the tile
@@ -202,6 +233,8 @@ fun vectorTileToGeoJson(
     } else {
         arrayOf("place")
     }
+
+    val refByOsmId = if (tileZoom >= MIN_MAX_ZOOM_LEVEL) extractRefsByOsmId(mvt) else hashMapOf()
 
     // POI can have duplicate entries for polygons and points and also duplicates in the Buildings
     // layer we de-duplicate them with these maps.
@@ -484,6 +517,9 @@ fun vectorTileToGeoJson(
                     geoFeature.featureClass = featureClass
                     geoFeature.featureSubClass = featureSubClass
                     geoFeature.properties = properties
+                    if (layer.name == "transportation") {
+                        refByOsmId[id]?.let { geoFeature.setProperty("ref", it) }
+                    }
                     if (translateProperties(geoFeature)) {
                         // Categorise as we go, picking the highest ranking category
                         val ft = superCategoryMap[geoFeature.featureType]
