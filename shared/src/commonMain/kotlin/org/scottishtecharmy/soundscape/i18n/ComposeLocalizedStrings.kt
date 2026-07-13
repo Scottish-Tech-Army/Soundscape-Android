@@ -75,6 +75,8 @@ import org.scottishtecharmy.soundscape.resources.directions_heading_s
 import org.scottishtecharmy.soundscape.resources.directions_heading_se
 import org.scottishtecharmy.soundscape.resources.directions_heading_sw
 import org.scottishtecharmy.soundscape.resources.directions_heading_w
+import org.scottishtecharmy.soundscape.resources.directions_junction_with_ref
+import org.scottishtecharmy.soundscape.resources.directions_junction_with_ref_and_name
 import org.scottishtecharmy.soundscape.resources.directions_name_continues_ahead
 import org.scottishtecharmy.soundscape.resources.directions_name_goes_left
 import org.scottishtecharmy.soundscape.resources.directions_name_goes_right
@@ -211,6 +213,8 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.OsmEntranceWithDestination -> Res.string.osm_entrance_with_destination
         StringKey.DirectionsNearName -> Res.string.directions_near_name
         StringKey.DirectionsNearRoadAndSettlement -> Res.string.directions_near_road_and_settlement
+        StringKey.DirectionsJunctionWithRef -> Res.string.directions_junction_with_ref
+        StringKey.DirectionsJunctionWithRefAndName -> Res.string.directions_junction_with_ref_and_name
         StringKey.StreetDescriptionIntersection -> Res.string.street_description_intersection
         StringKey.StreetDescriptionRelativeBefore -> Res.string.street_description_relative_before
         StringKey.StreetDescriptionRelativeAfter -> Res.string.street_description_relative_after

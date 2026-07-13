@@ -74,6 +74,8 @@ enum class StringKey {
     OsmEntranceWithDestination,
     DirectionsNearName,
     DirectionsNearRoadAndSettlement,
+    DirectionsJunctionWithRef,
+    DirectionsJunctionWithRefAndName,
     StreetDescriptionIntersection,
     StreetDescriptionRelativeBefore,
     StreetDescriptionRelativeAfter,

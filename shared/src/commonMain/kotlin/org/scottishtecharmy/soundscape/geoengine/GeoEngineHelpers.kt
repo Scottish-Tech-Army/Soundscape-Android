@@ -162,6 +162,29 @@ private fun travellingReverseGeocodeName(
         }
     }
 
+    // Check if we're near a highway junction (motorway exit, interchange etc.)
+    val junctionTree = gridState.getFeatureTree(TreeId.HIGHWAY_JUNCTIONS)
+    val nearestJunction = junctionTree.getNearestFeature(location, gridState.ruler, 500.0)
+    if (nearestJunction != null) {
+        val junction = nearestJunction as MvtFeature
+        val ref = junction.properties?.get("ref") as? String
+        val name = junction.name
+        val junctionText = if (ref != null) {
+            if (name != null) {
+                localized?.get(StringKey.DirectionsJunctionWithRefAndName, ref, name)
+                    ?: "Junction $ref, $name"
+            } else {
+                localized?.get(StringKey.DirectionsJunctionWithRef, ref) ?: "Junction $ref"
+            }
+        } else {
+            name
+        }
+        if (junctionText != null) {
+            return localized?.get(StringKey.DirectionsNearName, junctionText)
+                ?: "Near $junctionText"
+        }
+    }
+
     // Check if we're inside a POI
     val gridPoiTree = gridState.getFeatureTree(TreeId.POIS)
     val insidePois = gridPoiTree.getContainingPolygons(location)
