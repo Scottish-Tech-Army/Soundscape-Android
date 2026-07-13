@@ -366,6 +366,10 @@
     <string name="directions_direction_ahead">ahead</string>
     <!-- Notification announced to the user that they are near a location that is near a settlement. The settlement is the nearest by distance, but isn't necessarily the one that the road is actually in. %1$@ is a road name and %2$@ is a settlement name, example: "Near Glasgow Road and close to Milngavie" -->
     <string name="directions_near_road_and_settlement">Near %1$s and close to %2$s</string>
+    <!-- Travelling in a vehicle, describes a numbered road junction with no separate interchange name, %1$s is the junction number, example: "Junction 15" -->
+    <string name="directions_junction_with_ref">Junction %1$s</string>
+    <!-- Travelling in a vehicle, describes a numbered road junction that also has an interchange name, %1$s is the junction number and %2$s is the interchange name, example: "Junction 2, Robroyston" -->
+    <string name="directions_junction_with_ref_and_name">Junction %1$s, %2$s</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
     <string name="directions_traveling_n">Traveling north</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->

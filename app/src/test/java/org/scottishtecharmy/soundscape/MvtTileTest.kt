@@ -192,7 +192,7 @@ class MvtTileTest {
      */
     @Test
     fun testTravelCalloutForUnnamedRefRoad() {
-        val location = LngLatAlt(-4.222513139247894, 55.8660422338109)
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
         val settlementGrid = getGridStateForLocation(location, 12, 3)
 
@@ -229,6 +229,32 @@ class MvtTileTest {
         val cousland = primaryJunctions.features.find { (it as? MvtFeature)?.name == "Cousland Interchange" }
         assertNotNull(cousland)
         assertEquals("primary", (cousland as MvtFeature).properties?.get("class"))
+    }
+
+    /**
+     * End-to-end check that travel-mode reverse geocoding calls out a nearby highway junction
+     * ahead of the generic road-name fallback, e.g. "Near Junction 2, Robroyston" instead of
+     * "Near M8".
+     */
+    @Test
+    fun testTravelCalloutForHighwayJunction() {
+        val location = LngLatAlt(-4.1848, 55.8854)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val junctions = gridState.getFeatureTree(TreeId.HIGHWAY_JUNCTIONS).getAllCollection()
+        val robroyston =
+            junctions.features.find { (it as? MvtFeature)?.name == "Robroyston" } as MvtFeature
+        val junctionLocation = (robroyston.geometry as Point).coordinates
+
+        val userGeometry = UserGeometry(location = junctionLocation, speed = 15.0)
+        val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
+
+        assertNotNull(result)
+        assertTrue(
+            "Expected callout to mention Junction 2, Robroyston, got: ${result!!.text}",
+            result.text.contains("Junction 2, Robroyston")
+        )
     }
 
     @Test
