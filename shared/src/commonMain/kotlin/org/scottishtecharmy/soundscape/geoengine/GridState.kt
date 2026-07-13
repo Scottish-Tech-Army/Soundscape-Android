@@ -62,8 +62,9 @@ enum class TreeId(
     SETTLEMENT_HAMLET(19, "Hamlets"),
     TRANSIT(20, "Transit"),
     HOUSENUMBER(21, "House numbers"),
-    MAX_COLLECTION_ID(22, ""),
-    WAYS_SELECTION(id = 22, "Either Roads OR Roads and Paths")
+    HIGHWAY_JUNCTIONS(22, "Highway Junctions"),
+    MAX_COLLECTION_ID(23, ""),
+    WAYS_SELECTION(id = 23, "Either Roads OR Roads and Paths")
 }
 
 fun treeIdToIndex(id: TreeId): TreeId {
@@ -589,6 +590,25 @@ private fun getInterpolationPointsFromTileFeatureCollection(tileFeatureCollectio
 }
 
 /**
+ * Given a valid Tile feature collection this will parse the collection and return a highway
+ * junction feature collection. Uses the "highway_junction" feature_value to extract junctions
+ * from GeoJSON - see [org.scottishtecharmy.soundscape.geoengine.mvttranslation.extractHighwayJunctions].
+ * @param tileFeatureCollection
+ * A FeatureCollection object.
+ * @return A FeatureCollection object that contains only highway junctions.
+ */
+private fun getHighwayJunctionsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection {
+    val junctionsFeatureCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        val mvtFeature = feature as MvtFeature
+        if (mvtFeature.featureType == "highway" && mvtFeature.featureValue == "highway_junction") {
+            junctionsFeatureCollection.addFeature(feature)
+        }
+    }
+    return junctionsFeatureCollection
+}
+
+/**
  * Parses out all the Entrances in a tile FeatureCollection using the "gd_entrance_list" feature_type.
  * @param tileFeatureCollection
  * A FeatureCollection object.
@@ -654,6 +674,9 @@ fun processTileFeatureCollection(
         tileFeatureCollection
     )
     initialFeatureCollections[TreeId.INTERPOLATIONS.id] += getInterpolationPointsFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    initialFeatureCollections[TreeId.HIGHWAY_JUNCTIONS.id] += getHighwayJunctionsFromTileFeatureCollection(
         tileFeatureCollection
     )
 

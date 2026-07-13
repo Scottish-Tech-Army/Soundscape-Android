@@ -206,6 +206,31 @@ class MvtTileTest {
         )
     }
 
+    /**
+     * Junction (exit/interchange) nodes are carried as `subclass=junction` POINT features in
+     * `transportation_name`, on motorways (numbered, e.g. "Robroyston" M8 Junction 2) as well as
+     * primary/trunk/tertiary roads (often named but unnumbered, e.g. "Cousland Interchange" on
+     * the A899/A705 near Edinburgh). This checks both are parsed into TreeId.HIGHWAY_JUNCTIONS,
+     * with `ref` attached where the road is numbered, ready for "at Junction 2" or "at Cousland
+     * Interchange" style callouts.
+     */
+    @Test
+    fun testHighwayJunctionParsing() {
+        val motorwayGridState = getGridStateForLocation(LngLatAlt(-4.1848, 55.8854), MAX_ZOOM_LEVEL, 3)
+        val motorwayJunctions =
+            motorwayGridState.getFeatureTree(TreeId.HIGHWAY_JUNCTIONS).getAllCollection()
+        val robroyston = motorwayJunctions.features.find { (it as? MvtFeature)?.name == "Robroyston" }
+        assertNotNull(robroyston)
+        assertEquals("2", (robroyston as MvtFeature).properties?.get("ref"))
+
+        val primaryGridState = getGridStateForLocation(LngLatAlt(-3.5084, 55.8980), MAX_ZOOM_LEVEL, 3)
+        val primaryJunctions =
+            primaryGridState.getFeatureTree(TreeId.HIGHWAY_JUNCTIONS).getAllCollection()
+        val cousland = primaryJunctions.features.find { (it as? MvtFeature)?.name == "Cousland Interchange" }
+        assertNotNull(cousland)
+        assertEquals("primary", (cousland as MvtFeature).properties?.get("class"))
+    }
+
     @Test
     fun testVectorToGeoJsonGreggs() {
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
