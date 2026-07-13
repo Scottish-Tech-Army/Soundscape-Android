@@ -64,6 +64,69 @@ private fun extractRefsByOsmId(mvt: Tile): HashMap<Long, String> {
 }
 
 /**
+ * The `transportation_name` layer also carries road junction (exit/interchange) nodes as POINT
+ * features tagged `subclass=junction`, with `ref` as the junction number where the road is
+ * numbered (e.g. motorway junction "2") and `name` as the interchange name (e.g. "Robroyston",
+ * "Cousland Interchange"). These aren't just on motorways - primary/trunk/tertiary roads carry
+ * named interchanges too - and they aren't duplicated anywhere else in the tile, so - unlike the
+ * rest of `transportation_name` - we do need to turn them into proper Features here, for
+ * travel-mode callouts like "at Junction 2" or "at Cousland Interchange".
+ */
+private fun extractHighwayJunctions(
+    mvt: Tile,
+    tileX: Int,
+    tileY: Int,
+    tileZoom: Int
+): List<MvtFeature> {
+    val junctions = mutableListOf<MvtFeature>()
+    for (layer in mvt.layers) {
+        if (layer.name != "transportation_name") continue
+        for (feature in layer.features) {
+            if (feature.type != Tile.GeomType.POINT) continue
+
+            var firstInPair = true
+            var key = ""
+            var name: String? = null
+            var ref: String? = null
+            var featureClass: String? = null
+            var featureSubClass: String? = null
+            for (tag in feature.tags) {
+                if (firstInPair) {
+                    key = layer.keys[tag]
+                } else {
+                    val value = layer.values[tag].string_value
+                    when (key) {
+                        "name" -> name = value
+                        "ref" -> ref = value
+                        "class" -> featureClass = value
+                        "subclass" -> featureSubClass = value
+                    }
+                }
+                firstInPair = !firstInPair
+            }
+
+            if (featureSubClass != "junction") continue
+
+            for (point in parseGeometry(true, feature.geometry)) {
+                if (point.isEmpty()) continue
+                for (coordinate in convertGeometry(tileX, tileY, tileZoom, point)) {
+                    val junction = MvtFeature()
+                    junction.geometry = Point(coordinate)
+                    junction.osmId = feature.id ?: 0L
+                    junction.name = name
+                    junction.featureType = "highway"
+                    junction.featureValue = "highway_junction"
+                    if (ref != null) junction.setProperty("ref", ref)
+                    if (featureClass != null) junction.setProperty("class", featureClass)
+                    junctions.add(junction)
+                }
+            }
+        }
+    }
+    return junctions
+}
+
+/**
  * vectorTileToGeoJson generates a GeoJSON FeatureCollection from a Mapbox Vector Tile.
  * @param tileX is the x coordinate of the tile
  * @param tileY is the y coordinate of the tile
@@ -235,6 +298,11 @@ fun vectorTileToGeoJson(
     }
 
     val refByOsmId = if (tileZoom >= MIN_MAX_ZOOM_LEVEL) extractRefsByOsmId(mvt) else hashMapOf()
+    if (tileZoom >= MIN_MAX_ZOOM_LEVEL) {
+        for (junction in extractHighwayJunctions(mvt, tileX, tileY, tileZoom)) {
+            collection.addFeature(junction)
+        }
+    }
 
     // POI can have duplicate entries for polygons and points and also duplicates in the Buildings
     // layer we de-duplicate them with these maps.
