@@ -61,7 +61,7 @@ class UserGeometry(
         // The Activity Recognition seemed unreliable, and so we use the current speed instead.
         // Travelling at over 5m/s (10mph) assumes we're in a vehicle. When the vehicle stops at
         // junctions it will switch to non-vehicle mode.
-        return speed > 5.0
+        return speed > VEHICLE_SPEED_THRESHOLD_MPS
     }
 
     fun inMotion(): Boolean {
@@ -191,5 +191,9 @@ class UserGeometry(
         HeadAuto,
         Phone,
         Travel
+    }
+
+    companion object {
+        const val VEHICLE_SPEED_THRESHOLD_MPS = 5.0
     }
 }

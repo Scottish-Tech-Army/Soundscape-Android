@@ -257,6 +257,31 @@ class MvtTileTest {
         )
     }
 
+    /**
+     * Travel-mode reverse geocoding should prefer the map-matched way (the road we're confirmed
+     * to be on) over its own independent nearest-road search, which can pick the wrong road at
+     * junctions or parallel carriageways. Uses a fabricated Way with a name that doesn't exist in
+     * the tile data, so the only way it can appear in the callout is via
+     * userGeometry.mapMatchedWay.
+     */
+    @Test
+    fun testTravelCalloutPrefersMapMatchedWay() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val fakeMatchedWay = Way().apply { name = "Fake Matched Road" }
+        val userGeometry =
+            UserGeometry(location = location, speed = 15.0, mapMatchedWay = fakeMatchedWay)
+        val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
+
+        assertNotNull(result)
+        assertTrue(
+            "Expected callout to use the map-matched way's name, got: ${result!!.text}",
+            result.text.contains("Fake Matched Road")
+        )
+    }
+
     @Test
     fun testVectorToGeoJsonGreggs() {
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
