@@ -4,6 +4,7 @@ import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
+import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
@@ -19,12 +20,27 @@ import kotlin.math.abs
 /**
  * There is no real recorded vehicle-speed GPX in the repo - the existing "travel*.gpx" fixtures
  * are all walking pace (max ~2m/s, see conversation history). This builds a synthetic one by
- * following a real stretch of the M8 through several junctions and resampling it at motorway
+ * following a real stretch of the M8/M80 through a junction fork and resampling it at motorway
  * speed with a realistic (1Hz) GPS sample rate, to check whether map matching can hold a lock on
  * the correct road at vehicle speed rather than the dense pedestrian-rate samples it was
  * originally tuned against.
+ *
+ * The grid is recentred on the traversal frontier every step (like the real app does as a user
+ * moves) rather than snapshotted once, in case moving out of the loaded tile window is what's
+ * limiting how far the route can be traced. In practice this made no difference here -
+ * `locationUpdate` never reported a grid change (checked via its Boolean return value) before the
+ * traversal ran out of connected "highway" Ways, so the ~1.3km cap on this particular route is a
+ * genuine property of this OSM extract's parsed road graph at that spot (e.g. a `brunnel` bridge
+ * gap, or how the custom planetiler build split/joined this stretch), not a testing-tool
+ * limitation. The recentring is kept anyway since it costs nothing and is the more correct thing
+ * to do for a route long enough to actually leave the initial tile window.
  */
-private fun buildContinuousRoute(startWay: Way, ruler: Ruler, targetDistance: Double): List<LngLatAlt> {
+private fun buildContinuousRoute(
+    gridState: GridState,
+    startWay: Way,
+    targetDistance: Double
+): List<LngLatAlt> {
+    val ruler = gridState.ruler
     val visited = mutableSetOf<Way>()
     val orderedCoords = mutableListOf<LngLatAlt>()
     var totalDistance = 0.0
@@ -45,6 +61,11 @@ private fun buildContinuousRoute(startWay: Way, ruler: Ruler, targetDistance: Do
     println("  way: ref=${currentWay.properties?.get("ref")} name=${currentWay.name} class=${currentWay.featureValue} length=${currentWay.length}")
 
     while (totalDistance < targetDistance) {
+        // Recentre the grid on where we've got to, so the tiles ahead of us are loaded before we
+        // reach their edge - mirroring how the real app follows a moving user.
+        val gridChanged = runBlocking { gridState.locationUpdate(orderedCoords.last(), emptySet()) }
+        println("  locationUpdate at totalDistance=$totalDistance gridChanged=$gridChanged")
+
         val endIntersection = currentWay.intersections[WayEnd.END.id]
         if (endIntersection == null) {
             println("  stopped: no END intersection (dead end / tile edge)")
@@ -153,8 +174,8 @@ class TravelModeMapMatchTest {
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun generateAndValidateVehicleGpx() {
-        // Near the Robroyston/Provan/Cumbernauld Road cluster of M8 junctions (see the
-        // TreeId.HIGHWAY_JUNCTIONS work), so the route crosses several junctions.
+        // Near the Robroyston/Provan/Cumbernauld Road cluster of M8/M80 junctions (see the
+        // TreeId.HIGHWAY_JUNCTIONS work), so the route crosses a real junction fork.
         val startLocation = LngLatAlt(-4.1848, 55.8854)
 
         val gridState = FileGridState(MAX_ZOOM_LEVEL, 3)
@@ -167,7 +188,7 @@ class TravelModeMapMatchTest {
             .getNearestFeature(startLocation, gridState.ruler, 50.0) as? Way
         assertTrue("Expected to find a road near the start location", startWay != null)
 
-        val routeCoords = buildContinuousRoute(startWay!!, gridState.ruler, targetDistance = 5000.0)
+        val routeCoords = buildContinuousRoute(gridState, startWay!!, targetDistance = 10000.0)
         println("Route: ${routeCoords.size} coordinates")
         assertTrue("Route too short to be useful", routeCoords.size > 10)
 
