@@ -376,6 +376,10 @@
     <string name="directions_on_road_and_settlement">On %1$s and close to %2$s</string>
     <!-- Travelling in a vehicle, on a road approaching/at a junction, %1$s is a road name and %2$s is the junction description (see directions_junction_with_ref/directions_junction_with_ref_and_name), example: "On the M8 at Junction 2, Robroyston" -->
     <string name="directions_on_road_at_junction">On %1$s at %2$s</string>
+    <!-- Travelling by train, close to a settlement and with a distance since the last station tracked, %1$s is the line name, %2$s is a settlement name, %3$s is a distance, %4$s is a station name, example: "On train and close to Partick, 1.6 km since Westerton" -->
+    <string name="directions_on_road_and_settlement_since">On %1$s and close to %2$s, %3$s since %4$s</string>
+    <!-- Travelling on an unnamed railway line - used in place of a line name (e.g. "Argyle Line") when the line's name isn't available in the map data, combined with the "On %s" style templates, example: "On train" -->
+    <string name="directions_generic_train">train</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
     <string name="directions_traveling_n">Traveling north</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
