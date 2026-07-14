@@ -161,6 +161,39 @@ class LastStationTracker {
 }
 
 /**
+ * Tracks how recently something notable (a major road junction, or a passed large POI) was last
+ * announced while travelling by car/bus, so a quiet stretch with nothing major nearby can still
+ * fall back to mentioning a minor road junction instead of staying silent indefinitely. A single
+ * reverse-geocode call has no memory of previous ones, so this is held by the caller (AutoCallout)
+ * and passed in/updated each time - see the junction selection in [travellingReverseGeocodeName]
+ * and AutoCallout.buildCalloutForVehicleLandmark.
+ */
+class NotableVehicleEventTracker {
+    private var lastEventTimestampMs: Long? = null
+
+    fun recordEvent(timestampMilliseconds: Long) {
+        lastEventTimestampMs = timestampMilliseconds
+    }
+
+    fun quietFor(timestampMilliseconds: Long, thresholdMilliseconds: Long): Boolean {
+        val last = lastEventTimestampMs ?: return true
+        return (timestampMilliseconds - last) > thresholdMilliseconds
+    }
+}
+
+// How long nothing notable (major junction/large POI) needs to have been announced before a minor
+// road junction becomes eligible for a callout too - see NotableVehicleEventTracker.
+private const val MINOR_JUNCTION_QUIET_THRESHOLD_MS = 90_000L
+
+// Highway junction "class" tiers (from the junction feature's "class" property - see
+// extractHighwayJunctions), used to prefer major junctions and only fall back to minor ones after
+// a quiet spell. Deliberately excludes paths/tracks/service roads and anything with no known class
+// - a junction with an unrecognised or missing class is never called out.
+private val majorHighwayJunctionClasses = setOf("motorway", "trunk", "primary")
+private val minorHighwayJunctionClasses =
+    setOf("secondary", "tertiary", "residential", "unclassified", "living_street")
+
+/**
  * @param text the text to actually speak.
  * @param dedupText the text to use for callout-history comparison - defaults to [text], but for
  * callouts that embed an ever-changing value (e.g. a live "distance since X") this should be the
@@ -175,6 +208,7 @@ private fun travellingReverseGeocodeName(
     settlementGrid: GridState,
     localized: LocalizedStrings?,
     lastStationTracker: LastStationTracker? = null,
+    notableEventTracker: NotableVehicleEventTracker? = null,
 ): ReverseGeocodeText? {
     val location = userGeometry.location
     if (!gridState.isLocationWithinGrid(location)) return null
@@ -231,12 +265,26 @@ private fun travellingReverseGeocodeName(
     val roadName = nearestRoad?.getName(null, gridState, localized, true)?.takeIf { it.isNotEmpty() }
 
     // Check if we're near a highway junction (motorway exit, interchange etc.) - not relevant
-    // when travelling by train.
+    // when travelling by train. Major junctions (motorway/trunk/primary) are always eligible;
+    // minor ones only become eligible once nothing notable has been announced for a while, so a
+    // quiet residential junction doesn't compete with a nearby motorway interchange. Junctions
+    // with an unrecognised/missing class (this also covers paths/tracks/service roads, which
+    // should never be called out) are never eligible.
     if (!probablyOnTrain) {
         val junctionTree = gridState.getFeatureTree(TreeId.HIGHWAY_JUNCTIONS)
-        val nearestJunction = junctionTree.getNearestFeature(location, gridState.ruler, 500.0)
+        val nearbyJunctions = junctionTree.getNearestCollection(location, 500.0, 5, gridState.ruler)
+        val allowMinorJunctions = notableEventTracker?.quietFor(
+            userGeometry.timestampMilliseconds, MINOR_JUNCTION_QUIET_THRESHOLD_MS
+        ) ?: true
+        val nearestJunction = nearbyJunctions.features.firstOrNull { feature ->
+            when ((feature as MvtFeature).properties?.get("class") as? String) {
+                in majorHighwayJunctionClasses -> true
+                in minorHighwayJunctionClasses -> allowMinorJunctions
+                else -> false
+            }
+        } as MvtFeature?
         if (nearestJunction != null) {
-            val junction = nearestJunction as MvtFeature
+            val junction = nearestJunction
             val ref = junction.properties?.get("ref") as? String
             val name = junction.name
             val junctionText = if (ref != null) {
@@ -250,6 +298,7 @@ private fun travellingReverseGeocodeName(
                 name
             }
             if (junctionText != null) {
+                notableEventTracker?.recordEvent(userGeometry.timestampMilliseconds)
                 return ReverseGeocodeText(
                     if (roadName != null) {
                         localized?.get(StringKey.DirectionsOnRoadAtJunction, roadName, junctionText)
@@ -357,10 +406,12 @@ fun describeReverseGeocode(
     settlementGrid: GridState,
     localized: LocalizedStrings?,
     lastStationTracker: LastStationTracker? = null,
+    notableEventTracker: NotableVehicleEventTracker? = null,
 ): PositionedString? {
     val description =
         travellingReverseGeocodeName(
-            userGeometry, gridState, settlementGrid, localized, lastStationTracker
+            userGeometry, gridState, settlementGrid, localized, lastStationTracker,
+            notableEventTracker
         ) ?: return null
     return PositionedString(
         text = description.text,

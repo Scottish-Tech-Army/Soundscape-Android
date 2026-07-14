@@ -10,6 +10,7 @@ import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.LastStationTracker
+import org.scottishtecharmy.soundscape.geoengine.NotableVehicleEventTracker
 import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
@@ -36,8 +37,17 @@ class AutoCallout(
     private val intersectionCalloutHistory = CalloutHistory(30000)
     private val poiCalloutHistory = CalloutHistory()
     private val roadSenseCalloutHistory = CalloutHistory()
+    private val vehicleLandmarkFilter = LocationUpdateFilter(10000, 50.0)
+    private val vehicleLandmarkCalloutHistory = CalloutHistory()
     private val lastStationTracker = LastStationTracker()
+    private val notableVehicleEventTracker = NotableVehicleEventTracker()
     private var lastTrainTimestampMs: Long? = null
+    private var lastVehicleTimestampMs: Long? = null
+
+    // How close a large POI (see TreeId.LANDMARK_POIS) needs to be to be called out as "passed"
+    // while travelling by car/bus - bigger than a pedestrian trigger range since landmarks are
+    // large and travel is fast.
+    private val vehicleLandmarkPassingDistanceMetres = 150.0
 
     /**
      * How long after last confidently detecting a train (see UserGeometry.probablyOnTrain) we
@@ -50,6 +60,21 @@ class AutoCallout(
     private fun recentlyOnTrain(userGeometry: UserGeometry): Boolean {
         val last = lastTrainTimestampMs ?: return false
         return (userGeometry.timestampMilliseconds - last) < trainStickyWindowMs
+    }
+
+    /**
+     * How long after last being in any vehicle (car/bus/train - see UserGeometry.inVehicle) we
+     * keep suppressing pedestrian-style callouts. UserGeometry.inVehicle() is a raw instantaneous
+     * speed check with no hysteresis, so without this a car/bus briefly stopped at a red light or
+     * in traffic would immediately expose pedestrian-style intersection/POI callouts, then flip
+     * back a moment later as it moves off - this smooths that out, same as the train-specific
+     * window above but for any vehicle stop, not just a train dwell stop.
+     */
+    private val vehicleStickyWindowMs = 60_000L
+
+    private fun recentlyInVehicle(userGeometry: UserGeometry): Boolean {
+        val last = lastVehicleTimestampMs ?: return false
+        return (userGeometry.timestampMilliseconds - last) < vehicleStickyWindowMs
     }
 
     private fun buildCalloutForDestination(userGeometry: UserGeometry): TrackedCallout? {
@@ -90,6 +115,16 @@ class AutoCallout(
         settlementState: GridState
     ): TrackedCallout? {
 
+        // Recorded on every call (ahead of the throttled checks below) so the sticky windows
+        // above track actual vehicle presence as closely as the location updates allow, rather
+        // than only being refreshed whenever this callout's own throttle happens to fire.
+        if (userGeometry.inVehicle()) {
+            lastVehicleTimestampMs = userGeometry.timestampMilliseconds
+            if (userGeometry.probablyOnTrain()) {
+                lastTrainTimestampMs = userGeometry.timestampMilliseconds
+            }
+        }
+
         // Check that our location/time has changed enough to generate this callout
         if (!locationFilter.shouldUpdate(userGeometry)) {
             return null
@@ -103,16 +138,13 @@ class AutoCallout(
             return null
         }
 
-        if (userGeometry.probablyOnTrain()) {
-            lastTrainTimestampMs = userGeometry.timestampMilliseconds
-        }
-
         // Update time/location filter for our new position
         locationFilter.update(userGeometry)
 
         // Reverse geocode the current location (this is the iOS name for the function)
         val result = describeReverseGeocode(
-            userGeometry, gridState, settlementState, localized, lastStationTracker
+            userGeometry, gridState, settlementState, localized, lastStationTracker,
+            notableVehicleEventTracker
         )
         if (result != null) {
             val callout = TrackedCallout(
@@ -139,6 +171,74 @@ class AutoCallout(
         return null
     }
 
+    /**
+     * Announces large points of interest (see TreeId.LANDMARK_POIS - stadiums, parks, hospitals,
+     * malls etc.) as they're passed while travelling by car/bus. This is layered on top of, not
+     * instead of, buildCalloutForRoadSense's periodic road/settlement description - see also the
+     * major/minor junction selection in travellingReverseGeocodeName, which shares
+     * notableVehicleEventTracker with this so a quiet stretch of neither can fall back to
+     * mentioning a minor junction.
+     */
+    private fun buildCalloutForVehicleLandmark(
+        userGeometry: UserGeometry,
+        gridState: GridState
+    ): TrackedCallout? {
+        if (!vehicleLandmarkFilter.shouldUpdate(userGeometry)) {
+            return null
+        }
+
+        vehicleLandmarkCalloutHistory.trim(userGeometry)
+
+        // Also suppress shortly after losing rail lock (not just while it's held) - real
+        // recordings show probablyOnTrain() can flicker false for an instant mid-journey (a brief
+        // map-match gap) while still genuinely on the train, which would otherwise cause a
+        // trackside POI to get announced as if passed by car/bus.
+        if (!userGeometry.inVehicle() || userGeometry.probablyOnTrain() || recentlyOnTrain(userGeometry)) {
+            return null
+        }
+
+        vehicleLandmarkFilter.update(userGeometry)
+
+        val nearestLandmark = gridState.getFeatureTree(TreeId.LANDMARK_POIS).getNearestFeature(
+            userGeometry.location, gridState.ruler, vehicleLandmarkPassingDistanceMetres
+        ) as? MvtFeature ?: return null
+
+        val name = getTextForFeature(localized, nearestLandmark)
+        if (name.generic || name.text.isEmpty()) {
+            // Not worth calling out a large POI with no real name.
+            return null
+        }
+
+        val nearestPoint = getDistanceToFeature(userGeometry.location, nearestLandmark, userGeometry.ruler)
+        val callout = TrackedCallout(
+            userGeometry,
+            trackedText = name.text,
+            location = nearestPoint.point,
+            positionedStrings = listOf(
+                PositionedString(
+                    text = localized?.get(StringKey.DirectionsPassingPoi, name.text)
+                        ?: "Passing ${name.text}",
+                    location = nearestPoint.point,
+                    type = AudioType.LOCALIZED
+                )
+            ),
+            isPoint = nearestLandmark.geometry.type == "Point",
+            isGeneric = false,
+        )
+
+        if (vehicleLandmarkCalloutHistory.find(callout)) {
+            return null
+        }
+
+        // Added eagerly here (rather than via the callout's calloutHistory field, which
+        // updateLocation's generic speak-path would only process if this callout ends up being
+        // returned standalone) since this callout may instead be merged into roadSenseCallout's
+        // positionedStrings when both fire on the same update - see updateLocation.
+        vehicleLandmarkCalloutHistory.add(callout)
+        notableVehicleEventTracker.recordEvent(userGeometry.timestampMilliseconds)
+        return callout
+    }
+
     fun buildCalloutForIntersections(
         userGeometry: UserGeometry,
         gridState: GridState
@@ -156,11 +256,11 @@ class AutoCallout(
             return null
         }
 
-        // Check that we're not in a vehicle - and not recently on a train, so a real station
-        // dwell stop (speed briefly drops below the vehicle threshold, e.g. 12-19s in real
-        // recordings) doesn't fall through to pedestrian-style intersection callouts, which read
-        // oddly for someone sitting on a stopped train rather than walking around.
-        if (userGeometry.inVehicle() || recentlyOnTrain(userGeometry)) {
+        // Check that we're not in a vehicle - and not recently in one, so a brief stop (a red
+        // light, traffic, a station dwell stop) doesn't fall through to pedestrian-style
+        // intersection callouts, which read oddly for someone still sitting in/on a car, bus or
+        // train rather than out walking around.
+        if (userGeometry.inVehicle() || recentlyInVehicle(userGeometry)) {
             return null
         }
 
@@ -186,6 +286,13 @@ class AutoCallout(
         userGeometry: UserGeometry,
         gridState: GridState
     ): TrackedCallout? {
+        // This FOV/trigger-range based POI search is tuned for walking pace - vehicles get their
+        // own equivalent, buildCalloutForVehicleLandmark. Also suppressed shortly after being in
+        // a vehicle, for the same reason as buildCalloutForIntersections above.
+        if (userGeometry.inVehicle() || recentlyInVehicle(userGeometry)) {
+            return null
+        }
+
         if (!poiFilter.shouldUpdateActivity(userGeometry)) {
             return null
         }
@@ -334,8 +441,18 @@ class AutoCallout(
                     // walking
                     val roadSenseCallout =
                         buildCalloutForRoadSense(userGeometry, gridState, settlementGrid)
-                    if (roadSenseCallout != null) {
+                    // Large POIs passed while driving/riding are announced independently of, and
+                    // potentially alongside, the road/settlement description above.
+                    val vehicleLandmarkCallout =
+                        buildCalloutForVehicleLandmark(userGeometry, gridState)
+                    if ((roadSenseCallout != null) && (vehicleLandmarkCallout != null)) {
+                        roadSenseCallout.positionedStrings +=
+                            vehicleLandmarkCallout.positionedStrings
                         trackedCallout = roadSenseCallout
+                    } else if (roadSenseCallout != null) {
+                        trackedCallout = roadSenseCallout
+                    } else if (vehicleLandmarkCallout != null) {
+                        trackedCallout = vehicleLandmarkCallout
                     } else {
                         val intersectionCallout =
                             buildCalloutForIntersections(userGeometry, gridState)
