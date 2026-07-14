@@ -255,11 +255,14 @@ private fun travellingReverseGeocodeName(
     // line is much less useful than one for a road (you can't be "near" a railway in the way you
     // can be near a road, e.g. on a parallel street - either the matcher has locked onto the line
     // you're travelling on, or it hasn't).
+    // This whole function only ever runs while in a vehicle (see AutoCallout.buildCalloutForRoadSense),
+    // so the fallback search is restricted to TreeId.ROADS - a car/bus can't be on a footway/cycleway,
+    // and TreeId.ROADS_AND_PATHS would otherwise let one get picked as the nearest "road".
     val nearestRoad = if (probablyOnTrain) {
         userGeometry.mapMatchedRailway
     } else {
         userGeometry.mapMatchedWay ?: gridState.getNearestFeature(
-            TreeId.ROADS_AND_PATHS, gridState.ruler, location, 100.0
+            TreeId.ROADS, gridState.ruler, location, 100.0
         ) as Way?
     }
     val roadName = nearestRoad?.getName(null, gridState, localized, true)?.takeIf { it.isNotEmpty() }

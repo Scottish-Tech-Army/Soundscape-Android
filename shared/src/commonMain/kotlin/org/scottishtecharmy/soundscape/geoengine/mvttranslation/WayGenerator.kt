@@ -284,6 +284,18 @@ class Way : MvtFeature() {
                 ((featureType == "highway") && (featureValue == "cycleway")))
     }
 
+    /**
+     * True for footways/paths/bridleways/cycleways - the same classification used to keep these
+     * out of TreeId.ROADS (see generateWays' roadsOnlyWaysCollection split below). A car/bus can
+     * never legitimately be on one of these, so map-matching should never select one as the
+     * matched way while in vehicle mode, even if it's still being tracked as a follower (e.g.
+     * because it was extended into during a momentary low-speed reading).
+     */
+    fun isPath(): Boolean {
+        return (featureType == "highway") &&
+                (featureValue in setOf("footway", "path", "bridleway", "cycleway"))
+    }
+
     fun endsAtTileEdge(): Boolean {
         return (intersections[WayEnd.START.id]?.intersectionType == IntersectionType.TILE_EDGE) ||
                 (intersections[WayEnd.END.id]?.intersectionType == IntersectionType.TILE_EDGE)
