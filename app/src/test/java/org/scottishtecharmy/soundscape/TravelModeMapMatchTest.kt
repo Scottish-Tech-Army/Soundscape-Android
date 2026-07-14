@@ -38,7 +38,8 @@ import kotlin.math.abs
 private fun buildContinuousRoute(
     gridState: GridState,
     startWay: Way,
-    targetDistance: Double
+    targetDistance: Double,
+    isValidWay: (Way) -> Boolean = { it.featureType == "highway" }
 ): List<LngLatAlt> {
     val ruler = gridState.ruler
     val visited = mutableSetOf<Way>()
@@ -72,13 +73,13 @@ private fun buildContinuousRoute(
             break
         }
         val candidates = endIntersection.members.filter {
-            (it != currentWay) && !visited.contains(it) && (it.featureType == "highway")
+            (it != currentWay) && !visited.contains(it) && isValidWay(it)
         }
         if (candidates.isEmpty()) {
-            println("  stopped: no unvisited highway candidates at intersection (${endIntersection.members.size} members)")
+            println("  stopped: no unvisited candidates at intersection (${endIntersection.members.size} members)")
             break
         }
-        println("  intersection has ${endIntersection.members.size} members, ${candidates.size} unvisited highway candidates")
+        println("  intersection has ${endIntersection.members.size} members, ${candidates.size} unvisited candidates")
 
         val lastCoords = (currentWay.geometry as LineString).coordinates
         val approachHeading = ruler.bearing(lastCoords[lastCoords.size - 2], lastCoords.last())
@@ -149,11 +150,17 @@ private fun resampleAtSpeed(
     return samples
 }
 
-private fun writeGpx(file: File, samples: List<VehicleSample>, speedMps: Double, startTimeMillis: Long) {
+private fun writeGpx(
+    file: File,
+    samples: List<VehicleSample>,
+    speedMps: Double,
+    startTimeMillis: Long,
+    trackName: String = "Synthetic vehicle route"
+) {
     val sb = StringBuilder()
     sb.append("<?xml version='1.0' encoding='utf-8'?>\n")
     sb.append("<gpx xmlns=\"http://www.topografix.com/GPX/1/0\" version=\"1.0\" creator=\"Soundscape\">\n")
-    sb.append("<trk>\n<name>Synthetic vehicle route</name>\n<number>0</number>\n<trkseg>\n")
+    sb.append("<trk>\n<name>$trackName</name>\n<number>0</number>\n<trkseg>\n")
     for ((index, sample) in samples.withIndex()) {
         sb.append("<trkpt lat=\"${sample.location.latitude}\" lon=\"${sample.location.longitude}\">\n")
         sb.append("<ele>0.0</ele>\n")
@@ -227,6 +234,86 @@ class TravelModeMapMatchTest {
         assertTrue(
             "Too many unmatched samples ($unmatchedCount/${samples.size}) - map matching lost lock",
             unmatchedCount < samples.size / 5
+        )
+    }
+
+    /**
+     * Same idea as generateAndValidateVehicleGpx, but for the railway network: builds a synthetic
+     * GPX by following a real railway line and resampling it at a plausible train speed with a
+     * realistic (1Hz) GPS sample rate, to check whether the rail MapMatchFilter (networkTree =
+     * TreeId.TRANSIT, added for train detection) can hold a lock the same way the road one does.
+     */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun generateAndValidateTrainGpx() {
+        val startLocation = glasgowTestLocation
+
+        val gridState = FileGridState(MAX_ZOOM_LEVEL, 3)
+        gridState.start(offlineExtractPath)
+        runBlocking {
+            gridState.locationUpdate(startLocation, emptySet())
+        }
+
+        val startWay = gridState.getFeatureTree(TreeId.TRANSIT)
+            .getNearestFeature(startLocation, gridState.ruler, 2000.0) as? Way
+        assertTrue("Expected to find a railway near the start location", startWay != null)
+
+        val isRailway: (Way) -> Boolean = { it.featureType == "rail" || it.featureType == "transit" }
+        val routeCoords = buildContinuousRoute(
+            gridState,
+            startWay!!,
+            targetDistance = 5000.0,
+            isValidWay = isRailway
+        )
+        println("Route: ${routeCoords.size} coordinates")
+        assertTrue("Route too short to be useful", routeCoords.size > 10)
+
+        val speedMps = 20.0 // ~72km/h, a plausible local/commuter train speed
+        val samples = resampleAtSpeed(routeCoords, gridState.ruler, speedMps, sampleIntervalSeconds = 1.0)
+        println("Resampled to ${samples.size} points at ${speedMps}m/s, 1Hz")
+
+        val gpxFile = File("$offlineExtractPath/gpxFiles/synthetic-train-line.gpx")
+        writeGpx(gpxFile, samples, speedMps, startTimeMillis = 1744373562419, trackName = "Synthetic train route")
+
+        val railMapMatchFilter = MapMatchFilter(networkTree = TreeId.TRANSIT)
+        val namesSeen = mutableListOf<String?>()
+        var unmatchedCount = 0
+        for (sample in samples) {
+            runBlocking {
+                gridState.locationUpdate(sample.location, emptySet())
+            }
+            railMapMatchFilter.filter(sample.location, gridState, FeatureCollection(), false)
+            val matched = railMapMatchFilter.matchedWay
+            if (matched == null) {
+                unmatchedCount++
+                namesSeen.add(null)
+            } else {
+                namesSeen.add(matched.name ?: matched.featureValue)
+            }
+        }
+
+        println("Per-sample trace (index: matched):")
+        for ((index, name) in namesSeen.withIndex()) {
+            println("  $index: $name")
+        }
+        println("Distinct railways matched along route: ${namesSeen.distinct()}")
+        println("Unmatched samples: $unmatchedCount / ${samples.size}")
+
+        // MapMatchFilter needs more than FRECHET_QUEUE_SIZE/2 (6) samples in its rolling window
+        // before it will report a lock at all (see the earlier cold-start investigation), so a
+        // few unmatched samples at the very start of a short route are expected regardless of how
+        // good the match is. What actually matters is that the lock is stable once acquired - no
+        // drops later in the route.
+        val warmupWindow = 8
+        assertTrue(
+            "Expected route to be long enough to test post-warmup stability",
+            samples.size > warmupWindow
+        )
+        val unmatchedAfterWarmup = namesSeen.drop(warmupWindow).count { it == null }
+        assertTrue(
+            "Expected rail map matching to hold a stable lock after the first $warmupWindow " +
+                "samples, but saw $unmatchedAfterWarmup unmatched sample(s) after that",
+            unmatchedAfterWarmup == 0
         )
     }
 }
