@@ -380,6 +380,8 @@
     <string name="directions_on_road_and_settlement_since">On %1$s and close to %2$s, %3$s since %4$s</string>
     <!-- Travelling on an unnamed railway line - used in place of a line name (e.g. "Argyle Line") when the line's name isn't available in the map data, combined with the "On %s" style templates, example: "On train" -->
     <string name="directions_generic_train">train</string>
+    <!-- Travelling in a car or bus, called out as a large point of interest (e.g. a stadium, park or hospital) is passed, %1$s is the POI's name, example: "Passing Ibrox Stadium" -->
+    <string name="directions_passing_poi">Passing %1$s</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
     <string name="directions_traveling_n">Traveling north</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->

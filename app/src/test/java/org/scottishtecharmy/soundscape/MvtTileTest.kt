@@ -16,6 +16,7 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
 import org.scottishtecharmy.soundscape.geoengine.LastStationTracker
+import org.scottishtecharmy.soundscape.geoengine.NotableVehicleEventTracker
 import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.EntranceDetails
@@ -254,6 +255,205 @@ class MvtTileTest {
 
         assertNotNull(result)
         assertEquals("On M80 at Junction 2, Robroyston", result!!.text)
+    }
+
+    /**
+     * Minor road junctions (secondary/tertiary/residential/unclassified) shouldn't compete with
+     * major ones (motorway/trunk/primary) for attention while driving - they're only called out
+     * once nothing notable (a major junction or a passed landmark - see
+     * NotableVehicleEventTracker) has been announced for a while. This synthesizes a minor
+     * junction via direct FeatureTree injection (real tile data doesn't reliably offer minor
+     * junctions at a stable test location) and checks it's suppressed shortly after a notable
+     * event.
+     */
+    @Test
+    fun testMinorJunctionSuppressedWhenRecentlyNotable() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val junctionLocation = gridState.ruler.offset(location, 0.0, 50.0)
+        val minorJunction = MvtFeature().apply {
+            geometry = Point(junctionLocation)
+            name = "Minor Junction"
+            featureType = "highway"
+            featureValue = "highway_junction"
+            setProperty("class", "residential")
+        }
+        gridState.featureTrees[TreeId.HIGHWAY_JUNCTIONS.id] =
+            FeatureTree(FeatureCollection().apply { addFeature(minorJunction) })
+
+        val tracker = NotableVehicleEventTracker()
+        tracker.recordEvent(99_000L)
+        val userGeometry =
+            UserGeometry(location = location, speed = 15.0, timestampMilliseconds = 100_000L)
+        val result = describeReverseGeocode(
+            userGeometry, gridState, settlementGrid, null, notableEventTracker = tracker
+        )
+
+        assertNotNull(result)
+        assertTrue(
+            "Expected the minor junction to be suppressed so soon after a notable event: ${result!!.text}",
+            !result.text.contains("Minor Junction")
+        )
+    }
+
+    /** Same minor junction as above, but with nothing notable recorded - it should be eligible. */
+    @Test
+    fun testMinorJunctionAnnouncedWhenQuiet() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val junctionLocation = gridState.ruler.offset(location, 0.0, 50.0)
+        val minorJunction = MvtFeature().apply {
+            geometry = Point(junctionLocation)
+            name = "Minor Junction"
+            featureType = "highway"
+            featureValue = "highway_junction"
+            setProperty("class", "residential")
+        }
+        gridState.featureTrees[TreeId.HIGHWAY_JUNCTIONS.id] =
+            FeatureTree(FeatureCollection().apply { addFeature(minorJunction) })
+
+        val tracker = NotableVehicleEventTracker()
+        val userGeometry =
+            UserGeometry(location = location, speed = 15.0, timestampMilliseconds = 100_000L)
+        val result = describeReverseGeocode(
+            userGeometry, gridState, settlementGrid, null, notableEventTracker = tracker
+        )
+
+        assertNotNull(result)
+        assertTrue(
+            "Expected the minor junction to be announced once quiet: ${result!!.text}",
+            result.text.contains("Minor Junction")
+        )
+    }
+
+    /** Major junctions are always eligible, even shortly after another notable event. */
+    @Test
+    fun testMajorJunctionAnnouncedEvenWhenNotQuiet() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val junctionLocation = gridState.ruler.offset(location, 0.0, 50.0)
+        val majorJunction = MvtFeature().apply {
+            geometry = Point(junctionLocation)
+            name = "Major Junction"
+            featureType = "highway"
+            featureValue = "highway_junction"
+            setProperty("class", "primary")
+        }
+        gridState.featureTrees[TreeId.HIGHWAY_JUNCTIONS.id] =
+            FeatureTree(FeatureCollection().apply { addFeature(majorJunction) })
+
+        val tracker = NotableVehicleEventTracker()
+        tracker.recordEvent(99_000L)
+        val userGeometry =
+            UserGeometry(location = location, speed = 15.0, timestampMilliseconds = 100_000L)
+        val result = describeReverseGeocode(
+            userGeometry, gridState, settlementGrid, null, notableEventTracker = tracker
+        )
+
+        assertNotNull(result)
+        assertTrue(
+            "Expected the major junction to be announced regardless: ${result!!.text}",
+            result.text.contains("Major Junction")
+        )
+    }
+
+    /**
+     * A junction whose highway class isn't recognised as major or minor (this also covers paths,
+     * tracks, cycleways and service roads, which should never be called out) is never eligible,
+     * even with nothing else to announce.
+     */
+    @Test
+    fun testJunctionWithUnrecognisedClassNeverAnnounced() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val junctionLocation = gridState.ruler.offset(location, 0.0, 50.0)
+        val pathJunction = MvtFeature().apply {
+            geometry = Point(junctionLocation)
+            name = "Path Junction"
+            featureType = "highway"
+            featureValue = "highway_junction"
+            setProperty("class", "footway")
+        }
+        gridState.featureTrees[TreeId.HIGHWAY_JUNCTIONS.id] =
+            FeatureTree(FeatureCollection().apply { addFeature(pathJunction) })
+
+        val userGeometry = UserGeometry(location = location, speed = 15.0)
+        val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
+
+        assertNotNull(result)
+        assertTrue(
+            "Expected the path junction to never be announced: ${result!!.text}",
+            !result.text.contains("Path Junction")
+        )
+    }
+
+    /**
+     * Large POIs (see TreeId.LANDMARK_POIS) should be called out as they're passed while
+     * travelling by car/bus, layered alongside AutoCallout's regular road/settlement description
+     * - see AutoCallout.buildCalloutForVehicleLandmark.
+     */
+    @Test
+    fun testVehicleLandmarkPassingCallout() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val landmarkLocation = gridState.ruler.offset(location, 0.0, 50.0)
+        val landmark = MvtFeature().apply {
+            geometry = Point(landmarkLocation)
+            name = "Ibrox Stadium"
+            featureType = "poi"
+            featureValue = "stadium"
+        }
+        gridState.featureTrees[TreeId.LANDMARK_POIS.id] =
+            FeatureTree(FeatureCollection().apply { addFeature(landmark) })
+
+        val autoCallout = AutoCallout(null, null)
+        val userGeometry =
+            UserGeometry(location = location, speed = 15.0, timestampMilliseconds = 1000L)
+        val callout = autoCallout.updateLocation(userGeometry, gridState, settlementGrid)
+
+        assertNotNull(callout)
+        assertTrue(
+            "Expected a callout mentioning Ibrox Stadium, got: ${callout!!.positionedStrings.map { it.text }}",
+            callout.positionedStrings.any { it.text.contains("Ibrox Stadium") }
+        )
+    }
+
+    /** A large POI with no real name isn't worth calling out. */
+    @Test
+    fun testVehicleLandmarkSkippedWhenUnnamed() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val landmarkLocation = gridState.ruler.offset(location, 0.0, 50.0)
+        val landmark = MvtFeature().apply {
+            geometry = Point(landmarkLocation)
+            featureType = "poi"
+            featureValue = "stadium"
+        }
+        gridState.featureTrees[TreeId.LANDMARK_POIS.id] =
+            FeatureTree(FeatureCollection().apply { addFeature(landmark) })
+
+        val autoCallout = AutoCallout(null, null)
+        val userGeometry =
+            UserGeometry(location = location, speed = 15.0, timestampMilliseconds = 1000L)
+        val callout = autoCallout.updateLocation(userGeometry, gridState, settlementGrid)
+
+        assertNotNull(callout)
+        assertTrue(
+            "Expected no callout text derived from the unnamed landmark: ${callout!!.positionedStrings.map { it.text }}",
+            callout.positionedStrings.none { it.text.contains("Passing") }
+        )
     }
 
     /**
