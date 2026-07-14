@@ -14,10 +14,15 @@ class TrackedCallout(
     private val isGeneric: Boolean = false,
     private val filter: Boolean = true,
     var calloutHistory: CalloutHistory? = null,
-    var locationFilter: LocationUpdateFilter? = null
+    var locationFilter: LocationUpdateFilter? = null,
+    // Overrides trackedText for equality/hashCode comparison only. Lets a callout whose spoken
+    // text embeds an ever-changing value (e.g. a live "distance since X") still dedup against
+    // an earlier callout that differs only in that value.
+    private val dedupText: String? = null,
 ) {
     val time = userGeometry?.timestampMilliseconds ?: 0L
     val ruler = location.createCheapRuler()
+    private val comparableText = dedupText ?: trackedText
 
     override fun equals(other: Any?): Boolean {
         if (!filter) return false
@@ -32,14 +37,14 @@ class TrackedCallout(
             }
             // If the TrackedCallout isn't for a point i.e. it's a Polygon, then we can't compare
             // it's location, as the nearest point on a Polygon changes as we move.
-            return (other.trackedText == trackedText)
+            return (other.comparableText == comparableText)
                     && (!isPoint || ruler.distance(location, other.location) < 10.0)
         }
         return false
     }
 
     override fun hashCode(): Int {
-        var result = trackedText.hashCode()
+        var result = comparableText.hashCode()
         result = 31 * result + location.hashCode()
         return result
     }

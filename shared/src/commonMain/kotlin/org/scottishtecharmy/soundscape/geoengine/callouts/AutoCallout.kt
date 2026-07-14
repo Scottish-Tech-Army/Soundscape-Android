@@ -9,6 +9,7 @@ import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.PositionedString
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.LastStationTracker
 import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
@@ -35,6 +36,21 @@ class AutoCallout(
     private val intersectionCalloutHistory = CalloutHistory(30000)
     private val poiCalloutHistory = CalloutHistory()
     private val roadSenseCalloutHistory = CalloutHistory()
+    private val lastStationTracker = LastStationTracker()
+    private var lastTrainTimestampMs: Long? = null
+
+    /**
+     * How long after last confidently detecting a train (see UserGeometry.probablyOnTrain) we
+     * keep suppressing pedestrian-style intersection callouts. Real recorded journeys show
+     * station dwell stops of ~12-19 seconds, so this gives generous margin for a real stop
+     * without permanently blocking pedestrian callouts once someone has actually got off.
+     */
+    private val trainStickyWindowMs = 60_000L
+
+    private fun recentlyOnTrain(userGeometry: UserGeometry): Boolean {
+        val last = lastTrainTimestampMs ?: return false
+        return (userGeometry.timestampMilliseconds - last) < trainStickyWindowMs
+    }
 
     private fun buildCalloutForDestination(userGeometry: UserGeometry): TrackedCallout? {
 
@@ -87,15 +103,22 @@ class AutoCallout(
             return null
         }
 
+        if (userGeometry.probablyOnTrain()) {
+            lastTrainTimestampMs = userGeometry.timestampMilliseconds
+        }
+
         // Update time/location filter for our new position
         locationFilter.update(userGeometry)
 
         // Reverse geocode the current location (this is the iOS name for the function)
-        val result = describeReverseGeocode(userGeometry, gridState, settlementState, localized)
+        val result = describeReverseGeocode(
+            userGeometry, gridState, settlementState, localized, lastStationTracker
+        )
         if (result != null) {
             val callout = TrackedCallout(
                 userGeometry,
                 trackedText = result.text,
+                dedupText = result.dedupText,
                 location = result.location ?: userGeometry.location,
                 positionedStrings = listOf(result),
                 isPoint = false,
@@ -133,8 +156,11 @@ class AutoCallout(
             return null
         }
 
-        // Check that we're not in a vehicle
-        if (userGeometry.inVehicle()) {
+        // Check that we're not in a vehicle - and not recently on a train, so a real station
+        // dwell stop (speed briefly drops below the vehicle threshold, e.g. 12-19s in real
+        // recordings) doesn't fall through to pedestrian-style intersection callouts, which read
+        // oddly for someone sitting on a stopped train rather than walking around.
+        if (userGeometry.inVehicle() || recentlyOnTrain(userGeometry)) {
             return null
         }
 

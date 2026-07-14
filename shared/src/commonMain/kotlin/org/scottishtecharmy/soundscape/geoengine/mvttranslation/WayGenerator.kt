@@ -116,6 +116,16 @@ class Way : MvtFeature() {
         var result = name
         var genericName = (result == null)
         var passesString = ""
+        val isRailway = (featureType == "rail") || (featureType == "transit")
+
+        if ((result == null) && isRailway) {
+            // Rail ways rarely carry a "ref", and the destination/dead-end confection below is a
+            // road/pedestrian-path concept that reads oddly for a railway line ("Train that joins
+            // Lennox Park and Milngavie Station"). OSM route-relation line names (e.g. "Argyle
+            // Line") aren't in this tile schema yet, so fall back to a plain "train" rather than
+            // confecting a name - use the real name above once the tile data has one.
+            return strings?.getOrNull(StringKey.DirectionsGenericTrain) ?: "train"
+        }
 
         if (result == null) {
             // Un-named way, so use "ref" (a route number e.g. "A81"/"M8") if we have one, since

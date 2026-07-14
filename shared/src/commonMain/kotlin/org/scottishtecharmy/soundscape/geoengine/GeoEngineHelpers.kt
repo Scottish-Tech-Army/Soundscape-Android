@@ -9,6 +9,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeClockTime
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeLeftRightLabel
 import org.scottishtecharmy.soundscape.geoengine.utils.normalizeHeading
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.StringKey
 import kotlin.math.abs
@@ -143,12 +144,38 @@ internal fun formatDecimal(
     return "$sign$whole$separator$fracOut"
 }
 
+/**
+ * Tracks the last railway station passed while travelling by train, so travel-mode reverse
+ * geocoding can describe progress along the line as "distance since {station}" rather than just
+ * naming the line - see [UserGeometry.probablyOnTrain]. A single reverse-geocode call has no
+ * memory of previous ones, so this is held by the caller (AutoCallout) and passed in each time.
+ */
+class LastStationTracker {
+    var name: String? = null
+    var location: LngLatAlt? = null
+
+    fun updateStation(newName: String, newLocation: LngLatAlt?) {
+        name = newName
+        location = newLocation
+    }
+}
+
+/**
+ * @param text the text to actually speak.
+ * @param dedupText the text to use for callout-history comparison - defaults to [text], but for
+ * callouts that embed an ever-changing value (e.g. a live "distance since X") this should be the
+ * same text with that value left out, so the callout can still dedup against an earlier one that
+ * differs only in that value. See [PositionedString.dedupText].
+ */
+private data class ReverseGeocodeText(val text: String, val dedupText: String = text)
+
 private fun travellingReverseGeocodeName(
     userGeometry: UserGeometry,
     gridState: GridState,
     settlementGrid: GridState,
     localized: LocalizedStrings?,
-): String? {
+    lastStationTracker: LastStationTracker? = null,
+): ReverseGeocodeText? {
     val location = userGeometry.location
     if (!gridState.isLocationWithinGrid(location)) return null
 
@@ -158,12 +185,33 @@ private fun travellingReverseGeocodeName(
     if (nearestBusStop != null) {
         val busStopText = (nearestBusStop as MvtFeature).getText(localized)
         if (!busStopText.generic) {
-            return localized?.get(StringKey.DirectionsNearName, busStopText.text)
-                ?: "Near ${busStopText.text}"
+            return ReverseGeocodeText(
+                localized?.get(StringKey.DirectionsNearName, busStopText.text)
+                    ?: "Near ${busStopText.text}"
+            )
         }
     }
 
     val probablyOnTrain = userGeometry.probablyOnTrain()
+
+    // Note the most recent railway station we've passed close to, so progress along the line can
+    // be described as "distance since {station}" further down. A station is commonly two
+    // separate features in this tile schema: a bare railway=station point (often just named after
+    // the settlement, e.g. "Milngavie") and a building=train_station footprint with the fuller
+    // name commuters would recognise (e.g. "Milngavie Station") - we want either.
+    if (probablyOnTrain && (lastStationTracker != null)) {
+        val nearestStation = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
+            .getNearestFeature(location, gridState.ruler, 50.0) as? MvtFeature
+        val isStation = (nearestStation?.featureValue == "station") ||
+            (nearestStation?.featureValue == "train_station")
+        if (isStation && (nearestStation?.name != null) &&
+            (nearestStation.name != lastStationTracker.name)
+        ) {
+            lastStationTracker.updateStation(
+                nearestStation.name!!, (nearestStation.geometry as? Point)?.coordinates
+            )
+        }
+    }
 
     // Prefer the map-matched way (the road/railway we're actually confirmed to be on) over an
     // independent nearest-feature search, which can pick the wrong road at junctions or parallel
@@ -202,13 +250,15 @@ private fun travellingReverseGeocodeName(
                 name
             }
             if (junctionText != null) {
-                return if (roadName != null) {
-                    localized?.get(StringKey.DirectionsOnRoadAtJunction, roadName, junctionText)
-                        ?: "On $roadName at $junctionText"
-                } else {
-                    localized?.get(StringKey.DirectionsNearName, junctionText)
-                        ?: "Near $junctionText"
-                }
+                return ReverseGeocodeText(
+                    if (roadName != null) {
+                        localized?.get(StringKey.DirectionsOnRoadAtJunction, roadName, junctionText)
+                            ?: "On $roadName at $junctionText"
+                    } else {
+                        localized?.get(StringKey.DirectionsNearName, junctionText)
+                            ?: "Near $junctionText"
+                    }
+                )
             }
         }
     }
@@ -220,7 +270,9 @@ private fun travellingReverseGeocodeName(
         val mvtPoi = poi as MvtFeature
         val poiName = mvtPoi.name
         if (poiName != null) {
-            return localized?.get(StringKey.DirectionsAtPoi, poiName) ?: "At $poiName"
+            return ReverseGeocodeText(
+                localized?.get(StringKey.DirectionsAtPoi, poiName) ?: "At $poiName"
+            )
         }
     }
 
@@ -245,18 +297,49 @@ private fun travellingReverseGeocodeName(
     }
 
     if (roadName != null) {
-        return if (nearestSettlementName != null) {
-            localized?.get(
-                StringKey.DirectionsOnRoadAndSettlement, roadName, nearestSettlementName
-            ) ?: "On $roadName and close to $nearestSettlementName"
-        } else {
-            localized?.get(StringKey.DirectionsOnRoad, roadName) ?: "On $roadName"
+        // Distance since the last station is only worth mentioning alongside something else worth
+        // describing (a nearby settlement) - otherwise it ends up as a standalone callout that
+        // fires on every location update as the distance keeps climbing, which is far too
+        // frequent on its own (see real train-1/train-2.gpx replays).
+        val sinceStationName = lastStationTracker?.name
+        val sinceStationLocation = lastStationTracker?.location
+        if (probablyOnTrain && (nearestSettlementName != null) &&
+            (sinceStationName != null) && (sinceStationLocation != null)
+        ) {
+            // The distance climbs on every call, so it's never suppressed as a duplicate if it
+            // were included in the dedup comparison - dedupText leaves it out, so this only
+            // re-announces when the road/settlement/station combination actually changes.
+            val distanceText = formatDistanceAndDirection(
+                gridState.ruler.distance(location, sinceStationLocation), null, localized
+            )
+            return ReverseGeocodeText(
+                text = localized?.get(
+                    StringKey.DirectionsOnRoadAndSettlementSince,
+                    roadName, nearestSettlementName, distanceText, sinceStationName
+                ) ?: "On $roadName and close to $nearestSettlementName, $distanceText since $sinceStationName",
+                // Keep the station in the dedup key (unlike the distance, which is never
+                // included) - a genuinely new "since {station}" is worth a fresh announcement,
+                // only the ever-climbing distance number itself shouldn't defeat deduping. This
+                // key is never spoken, so it doesn't need localizing.
+                dedupText = "On $roadName and close to $nearestSettlementName since $sinceStationName"
+            )
         }
+        return ReverseGeocodeText(
+            if (nearestSettlementName != null) {
+                localized?.get(
+                    StringKey.DirectionsOnRoadAndSettlement, roadName, nearestSettlementName
+                ) ?: "On $roadName and close to $nearestSettlementName"
+            } else {
+                localized?.get(StringKey.DirectionsOnRoad, roadName) ?: "On $roadName"
+            }
+        )
     }
 
     if (nearestSettlementName != null) {
-        return localized?.get(StringKey.DirectionsNearName, nearestSettlementName)
-            ?: "Near $nearestSettlementName"
+        return ReverseGeocodeText(
+            localized?.get(StringKey.DirectionsNearName, nearestSettlementName)
+                ?: "Near $nearestSettlementName"
+        )
     }
 
     return null
@@ -273,12 +356,15 @@ fun describeReverseGeocode(
     gridState: GridState,
     settlementGrid: GridState,
     localized: LocalizedStrings?,
+    lastStationTracker: LastStationTracker? = null,
 ): PositionedString? {
-    val name =
-        travellingReverseGeocodeName(userGeometry, gridState, settlementGrid, localized)
-            ?: return null
+    val description =
+        travellingReverseGeocodeName(
+            userGeometry, gridState, settlementGrid, localized, lastStationTracker
+        ) ?: return null
     return PositionedString(
-        text = name,
+        text = description.text,
+        dedupText = description.dedupText,
         location = userGeometry.location,
         type = AudioType.LOCALIZED,
     )

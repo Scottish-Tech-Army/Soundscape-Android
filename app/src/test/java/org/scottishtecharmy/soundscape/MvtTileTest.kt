@@ -15,6 +15,7 @@ import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.callouts.AutoCallout
+import org.scottishtecharmy.soundscape.geoengine.LastStationTracker
 import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.EntranceDetails
@@ -281,6 +282,84 @@ class MvtTileTest {
     }
 
     /**
+     * Once probablyOnTrain() detects a nearby real station (via TreeId.TRANSIT_STOPS), it should
+     * be tracked in a LastStationTracker so a later call can describe progress as "distance since
+     * {station}" - but only combined with a nearby settlement, e.g. "On the line and close to
+     * Merchant City, 200 metres since Argyle Street" - a standalone since-distance with nothing
+     * else to describe would fire on every location update as the distance keeps climbing, which
+     * is too frequent on its own (see real train-1/train-2.gpx replays). See LastStationTracker.
+     *
+     * The distance is always computed live (never repeats exactly), so PositionedString.dedupText
+     * deliberately excludes it - roadSenseCalloutHistory dedups on that instead of the spoken
+     * text, so two calls describing progress since the same station still count as a duplicate
+     * even though the exact metres differ.
+     */
+    @Test
+    fun testTravelCalloutTracksStationForSinceDistance() {
+        val argyleStreetStation = LngLatAlt(-4.25057977437973, 55.85762197620575)
+        val gridState = getGridStateForLocation(argyleStreetStation, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(argyleStreetStation, 12, 3)
+
+        val fakeMatchedRailway = Way().apply { name = "Fake Railway Line" }
+        val tracker = LastStationTracker()
+
+        // Just past the station - outside the 20m "at a stop" radius (which would otherwise name
+        // the stop directly and never reach the station-tracking logic), but inside the 50m
+        // station-tracking radius.
+        val justPastStation = gridState.ruler.offset(argyleStreetStation, 0.0, 30.0)
+        val userGeometryNearStation = UserGeometry(
+            location = justPastStation,
+            speed = 15.0,
+            mapMatchedRailway = fakeMatchedRailway,
+            timestampMilliseconds = 0L
+        )
+        describeReverseGeocode(userGeometryNearStation, gridState, settlementGrid, null, tracker)
+
+        assertEquals("Argyle Street", tracker.name)
+        assertNotNull(tracker.location)
+
+        // Further down the line - the callout should describe the live distance since Argyle
+        // Street. 200m north keeps us well clear of Glasgow Queen Street station, which real data
+        // has ~500m further north again - close enough that a bigger offset would hit its 20m
+        // "at a stop" radius instead.
+        val furtherAlong = gridState.ruler.offset(argyleStreetStation, 0.0, 200.0)
+        val userGeometryFurtherAlong = UserGeometry(
+            location = furtherAlong,
+            speed = 15.0,
+            mapMatchedRailway = fakeMatchedRailway,
+            timestampMilliseconds = 1_000L
+        )
+        val result =
+            describeReverseGeocode(userGeometryFurtherAlong, gridState, settlementGrid, null, tracker)
+
+        assertNotNull(result)
+        assertEquals(
+            "On Fake Railway Line and close to Merchant City, 200 metres since Argyle Street",
+            result!!.text
+        )
+
+        // A little further still - the spoken distance moves on, but the dedup key (road,
+        // settlement, station - no distance) stays identical so history can suppress the repeat.
+        val evenFurtherAlong = gridState.ruler.offset(argyleStreetStation, 0.0, 250.0)
+        val userGeometryEvenFurtherAlong = UserGeometry(
+            location = evenFurtherAlong,
+            speed = 15.0,
+            mapMatchedRailway = fakeMatchedRailway,
+            timestampMilliseconds = 2_000L
+        )
+        val secondResult = describeReverseGeocode(
+            userGeometryEvenFurtherAlong, gridState, settlementGrid, null, tracker
+        )
+
+        assertNotNull(secondResult)
+        assertTrue(
+            "Expected the spoken distance to differ: ${result.text} vs ${secondResult!!.text}",
+            result.text != secondResult!!.text
+        )
+        assertEquals(result.dedupText, secondResult.dedupText)
+    }
+
+    /**
      * When userGeometry.probablyOnTrain() is true (vehicle speed + a confident railway match),
      * travel-mode reverse geocoding should use the railway's name instead of doing a road search
      * or looking for a highway junction, and should still combine it with a nearby settlement,
@@ -305,6 +384,32 @@ class MvtTileTest {
 
         assertNotNull(result)
         assertEquals("On Fake Railway Line and close to Cowcaddens", result!!.text)
+    }
+
+    /**
+     * A real line name (e.g. "Argyle Line") is an OSM route-relation concept this tile schema
+     * doesn't extract onto individual rail Ways yet, so an unnamed rail Way used to fall through
+     * to the same destination-confection logic used for unnamed footpaths, producing an odd
+     * "Train that joins X and Y" description (see real train-1/train-2.gpx replays). It should
+     * just say "train" instead - Way.getName() will use a real name once the tile data has one.
+     */
+    @Test
+    fun testUnnamedRailwayFallsBackToGenericTrain() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val unnamedRailway = Way().apply { featureType = "rail" }
+        val userGeometry = UserGeometry(
+            location = location,
+            speed = 15.0,
+            mapMatchedRailway = unnamedRailway
+        )
+
+        val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
+
+        assertNotNull(result)
+        assertEquals("On train and close to Cowcaddens", result!!.text)
     }
 
     /**
@@ -944,6 +1049,7 @@ class MvtTileTest {
         val settlementGrid = FileGridState(12, 3)
         settlementGrid.start(offlineExtractPath)
         val mapMatchFilter = MapMatchFilter()
+        val railMapMatchFilter = MapMatchFilter(networkTree = TreeId.TRANSIT)
         val gps = parseGpxFromFile(gpxFilename)
         val collection = FeatureCollection()
         val startIndex = 0
@@ -1016,6 +1122,29 @@ class MvtTileTest {
                     }
                     collection.addFeature(newFeature)
                 }
+
+                // Update the rail filter too, so GPX files that include a railway journey (see
+                // UserGeometry.probablyOnTrain) are matched against the transit network the same
+                // way the real app does in GeoEngine.kt.
+                val railMapMatchedResult = railMapMatchFilter.filter(
+                    LngLatAlt(location.longitude, location.latitude),
+                    gridState,
+                    collection,
+                    false
+                )
+
+                if (railMapMatchedResult.first != null) {
+                    val newFeature = Feature()
+                    newFeature.geometry = Point(railMapMatchedResult.first!!)
+                    newFeature.properties = HashMap<String, Any?>().apply {
+                        set("marker-color", railMapMatchedResult.third)
+                        set("color", railMapMatchedResult.third)
+                        set("index", index + startIndex)
+                        set("network", "rail")
+                    }
+                    collection.addFeature(newFeature)
+                }
+
                 // Add raw GPS too
                 position.properties?.set("index", index + startIndex)
                 collection.addFeature(position)
@@ -1030,6 +1159,7 @@ class MvtTileTest {
                     speed = position.properties?.get("speed") as? Double? ?: 1.0,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
+                    mapMatchedRailway = railMapMatchFilter.matchedWay,
                     timestampMilliseconds = (position.properties?.get("time") as? Double?)?.toLong()
                         ?: time
                 )
@@ -1066,6 +1196,18 @@ class MvtTileTest {
         val mapMatchingOutput = FileOutputStream(geojsonFilename)
         mapMatchingOutput.write(adapter.toJson(collection).toByteArray())
         mapMatchingOutput.close()
+    }
+
+    @OptIn(ExperimentalCoroutinesApi::class)
+    @Test
+    fun testCalloutsTrain1Only() {
+        val resultsStorageDir = File("gpxFiles/")
+        if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
+        testMovingGrid(
+            "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/train-1.gpx",
+            "gpxFiles/train-1-debug.txt",
+            "gpxFiles/train-1-debug.geojson"
+        )
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
