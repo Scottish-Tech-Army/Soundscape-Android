@@ -22,6 +22,8 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.EntranceMatching
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertBackToTileCoordinates
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.sampleToFractionOfTile
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
@@ -41,6 +43,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
 import org.scottishtecharmy.soundscape.geoengine.utils.traverseIntersectionsConfectingNames
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
@@ -274,6 +277,161 @@ class MvtTileTest {
         assertTrue(
             "Expected callout to use the map-matched way's name, got: ${result!!.text}",
             result.text.contains("Fake Matched Road")
+        )
+    }
+
+    /**
+     * When userGeometry.probablyOnTrain() is true (vehicle speed + a confident railway match),
+     * travel-mode reverse geocoding should use the railway's name instead of doing a road search
+     * or looking for a highway junction, and should still combine it with a nearby settlement,
+     * e.g. "On the Argyle Line and close to Bearsden" - matching the "On X" phrasing already used
+     * for roads.
+     */
+    @Test
+    fun testTravelCalloutForTrain() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val fakeMatchedRailway = Way().apply { name = "Fake Railway Line" }
+        val userGeometry = UserGeometry(
+            location = location,
+            speed = 15.0,
+            mapMatchedRailway = fakeMatchedRailway
+        )
+        assertTrue(userGeometry.probablyOnTrain())
+
+        val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
+
+        assertNotNull(result)
+        assertEquals("On Fake Railway Line and close to Cowcaddens", result!!.text)
+    }
+
+    /**
+     * Measures the actual CPU cost of running the new rail MapMatchFilter alongside the existing
+     * road one, since running map matching twice per location update is a real concern. Compares:
+     *  1. Road matching alone over a real road route (existing behaviour).
+     *  2. Rail matching alone over a real rail route (worst case for the new filter - actively
+     *     matching, not just querying an empty area).
+     *  3. Both filters together over the same combined step count (what GeoEngine.kt now does).
+     */
+    @Test
+    fun benchmarkRailMapMatchingOverhead() {
+        val gridState = getGridStateForLocation(glasgowTestLocation, MAX_ZOOM_LEVEL, 3)
+
+        val roads = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection()
+        val roadWay = roads.features
+            .filterIsInstance<Way>()
+            .filter { (it.geometry as LineString).coordinates.size > 20 }
+            .maxByOrNull { it.length }!!
+        val roadCoordinates = (roadWay.geometry as LineString).coordinates
+
+        val railways = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection()
+        val railWay = railways.features
+            .filterIsInstance<Way>()
+            .filter { (it.geometry as LineString).coordinates.size > 20 }
+            .maxByOrNull { it.length }!!
+        val railCoordinates = (railWay.geometry as LineString).coordinates
+
+        // Warm up (JIT, first-call allocation costs) before timing.
+        repeat(2) {
+            val warmup = MapMatchFilter()
+            for (c in roadCoordinates) warmup.filter(c, gridState, FeatureCollection(), false)
+        }
+
+        val roadOnlyTime = measureTime {
+            val filter = MapMatchFilter()
+            for (c in roadCoordinates) filter.filter(c, gridState, FeatureCollection(), false)
+        }
+
+        val railOnlyTime = measureTime {
+            val filter = MapMatchFilter(networkTree = TreeId.TRANSIT)
+            for (c in railCoordinates) filter.filter(c, gridState, FeatureCollection(), false)
+        }
+
+        val bothTime = measureTime {
+            val roadFilter = MapMatchFilter()
+            val railFilter = MapMatchFilter(networkTree = TreeId.TRANSIT)
+            for (i in 0 until minOf(roadCoordinates.size, railCoordinates.size)) {
+                roadFilter.filter(roadCoordinates[i], gridState, FeatureCollection(), false)
+                railFilter.filter(railCoordinates[i], gridState, FeatureCollection(), false)
+            }
+        }
+
+        println("Road-only: $roadOnlyTime for ${roadCoordinates.size} points")
+        println("Rail-only: $railOnlyTime for ${railCoordinates.size} points")
+        println("Both together: $bothTime for ${minOf(roadCoordinates.size, railCoordinates.size)} paired points")
+        println("Per-point road-only: ${roadOnlyTime / roadCoordinates.size}")
+        println("Per-point rail-only: ${railOnlyTime / railCoordinates.size}")
+        println("Per-point both: ${bothTime / minOf(roadCoordinates.size, railCoordinates.size)}")
+    }
+
+    /**
+     * WayGenerator.generateWays used to unconditionally skip populating the intersection map for
+     * transit ways (`if (!transit) { ... intersectionMap[...] = ... }`), so no TILE_EDGE
+     * intersections ever reached GridState's tile-stitching pass and every railway Way stopped
+     * dead at a tile boundary, regardless of what was passed in at the call site. This confirms a
+     * real railway line in the Glasgow extract now gets stitched into a single connected Way
+     * graph across tile boundaries, the same way roads already were.
+     */
+    @Test
+    fun testRailwayStitchingAcrossTileBoundaries() {
+        val gridState = getGridStateForLocation(glasgowTestLocation, MAX_ZOOM_LEVEL, 3)
+        val railways = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection()
+
+        var joiner: Way? = null
+        outer@ for (feature in railways) {
+            val way = feature as? Way ?: continue
+            for (intersection in way.intersections) {
+                if (intersection == null) continue
+                val found = intersection.members.find { it.wayType == WayType.JOINER }
+                if (found != null) {
+                    joiner = found
+                    break@outer
+                }
+            }
+        }
+        assertNotNull("Expected at least one JOINER way stitching railway tiles together", joiner)
+
+        // A JOINER connects two TILE_EDGE intersections, each belonging to a real railway Way
+        // from a different tile. Confirm both sides are real, distinct Ways.
+        val startIntersection = joiner!!.intersections[WayEnd.START.id]!!
+        val endIntersection = joiner.intersections[WayEnd.END.id]!!
+        val wayBeforeJoin = startIntersection.members.first { it != joiner }
+        val wayAfterJoin = endIntersection.members.first { it != joiner }
+
+        assertTrue("Joiner should connect two different railway Ways", wayBeforeJoin != wayAfterJoin)
+    }
+
+    /**
+     * MapMatchFilter can now be configured to match against a network other than roads, via
+     * `MapMatchFilter(networkTree = TreeId.TRANSIT)`. This feeds a real railway Way's own
+     * geometry through such a filter and checks it locks onto a Way from the railway network,
+     * as groundwork for train detection.
+     */
+    @Test
+    fun testMapMatchFilterLocksOntoRailway() {
+        val gridState = getGridStateForLocation(glasgowTestLocation, MAX_ZOOM_LEVEL, 3)
+        val railways = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection()
+
+        val targetWay = railways.features
+            .filterIsInstance<Way>()
+            .filter { (it.geometry as LineString).coordinates.size > 20 }
+            .maxByOrNull { it.length }
+        assertNotNull("Expected a reasonably long railway Way in the test data", targetWay)
+
+        val coordinates = (targetWay!!.geometry as LineString).coordinates
+        val railMapMatchFilter = MapMatchFilter(networkTree = TreeId.TRANSIT)
+        for (coordinate in coordinates) {
+            runBlocking { gridState.locationUpdate(coordinate, emptySet()) }
+            railMapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false)
+        }
+
+        val matched = railMapMatchFilter.matchedWay
+        assertNotNull("Expected map matching to lock onto a railway Way", matched)
+        assertTrue(
+            "Expected the matched Way to be part of the railway network, got featureType=${matched!!.featureType}",
+            matched.featureType == "rail" || matched.featureType == "transit"
         )
     }
 
@@ -1320,7 +1478,8 @@ class MvtTileTest {
             workerIndex: Int,
             featureCollections: Array<FeatureCollection>,
             intersectionMap: HashMap<LngLatAlt, Intersection>,
-            streetNumberMap: HashMap<String, FeatureCollection>
+            streetNumberMap: HashMap<String, FeatureCollection>,
+            transitIntersectionMap: HashMap<LngLatAlt, Intersection>
         ): Boolean {
 
             // We're not parsing a tile here, just creating some data using the entrance matcher

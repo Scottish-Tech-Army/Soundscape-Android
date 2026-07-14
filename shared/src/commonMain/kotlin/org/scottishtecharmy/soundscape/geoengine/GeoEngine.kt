@@ -89,6 +89,7 @@ class GeoEngine {
     private lateinit var directionProvider: DirectionProvider
     private var headTrackingProvider: HeadTrackingProvider? = null
     private var mapMatchFilter = MapMatchFilter()
+    private var railMapMatchFilter = MapMatchFilter(networkTree = TreeId.TRANSIT)
 
     fun setHeadTrackingProvider(provider: HeadTrackingProvider?) {
         headTrackingProvider = provider
@@ -192,6 +193,7 @@ class GeoEngine {
             headHeading = headHeading,
             mapMatchedWay = mapMatchFilter?.matchedWay,
             mapMatchedLocation = mapMatchFilter?.matchedLocation,
+            mapMatchedRailway = railMapMatchFilter.matchedWay,
             currentBeacon = beaconLocation,
             inStreetPreview = streetPreview.running,
             timestampMilliseconds = currentTimeMillis()
@@ -406,6 +408,17 @@ class GeoEngine {
                                 }
                                 val matchedWay = mapMatchFilter.matchedWay
                                 println("MapMatch: $mapMatchTime to get ${matchedWay?.getName(strings = localizedStrings)}")
+
+                                railMapMatchFilter.filter(
+                                    LngLatAlt(
+                                        unfilteredLocation.longitude,
+                                        unfilteredLocation.latitude
+                                    ),
+                                    gridState,
+                                    FeatureCollection(),
+                                    false,
+                                    localizedStrings
+                                )
                             }
                         }
                     }

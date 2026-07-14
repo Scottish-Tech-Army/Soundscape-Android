@@ -280,7 +280,8 @@ fun vectorTileToGeoJson(
     intersectionMap: HashMap<LngLatAlt, Intersection>,
     streetNumberMap: HashMap<String, FeatureCollection>,
     cropPoints: Boolean = true,
-    tileZoom: Int = MAX_ZOOM_LEVEL
+    tileZoom: Int = MAX_ZOOM_LEVEL,
+    transitIntersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
 ): Array<FeatureCollection> {
 
     val collection = FeatureCollection()
@@ -684,13 +685,15 @@ fun vectorTileToGeoJson(
         tileX, tileY, tileZoom
     )
 
-    // We're currently throwing away intersections for transit lines
+    // We don't need an INTERSECTIONS-style output collection or a roads-only split for transit,
+    // but we do collect the per-tile intersection map so that GridState can stitch railway Ways
+    // across tile boundaries the same way it does for roads.
     transitGenerator.generateWays(
         null,
         tileData[TreeId.TRANSIT.id],
         null,
         collection,
-        null,
+        transitIntersectionMap,
         tileX, tileY, tileZoom
     )
 

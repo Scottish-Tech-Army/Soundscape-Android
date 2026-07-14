@@ -22,6 +22,8 @@ import kotlin.math.abs
  * @param mapMatchedWay is the Way that has been map matched to the location
  * @param mapMatchedLocation os the location that has been map matched to the location, it will be a
  * point on the mapMatchedWay
+ * @param mapMatchedRailway is the railway Way that has been map matched to the location, from a
+ * separate matcher against the transit network - see [probablyOnTrain]
  * @param currentBeacon is the location of any current audio beacon. This affects various callouts
  * which is why it's a property of the UserGeometry class.
  * @param headingMode is the method used to calculate the heading
@@ -44,6 +46,7 @@ class UserGeometry(
     val speed: Double = 0.0,
     val mapMatchedWay: Way? = null,
     val mapMatchedLocation: PointAndDistanceAndHeading? = null,
+    val mapMatchedRailway: Way? = null,
     val currentBeacon: LngLatAlt? = null,
     val ruler: Ruler = CheapRuler(location.latitude),
     val timestampMilliseconds: Long = 0L,
@@ -66,6 +69,17 @@ class UserGeometry(
 
     fun inMotion(): Boolean {
         return speed > 0.2
+    }
+
+    /**
+     * Roads and railways are matched independently (see MapMatchFilter's networkTree), since
+     * they're separate connectivity graphs. A confident lock onto a railway Way while travelling
+     * at vehicle speed is a reasonable proxy for "on a train" - the two networks essentially never
+     * physically overlap except very briefly at level crossings, so this shouldn't be confused
+     * with driving alongside a railway line.
+     */
+    fun probablyOnTrain(): Boolean {
+        return inVehicle() && (mapMatchedRailway != null)
     }
 
     private fun transform(distance: Double): Double {

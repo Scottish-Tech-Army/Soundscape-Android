@@ -74,7 +74,8 @@ open class ProtomapsGridState(
         workerIndex: Int,
         featureCollections: Array<FeatureCollection>,
         intersectionMap: HashMap<LngLatAlt, Intersection>,
-        streetNumberMap: HashMap<String, FeatureCollection>
+        streetNumberMap: HashMap<String, FeatureCollection>,
+        transitIntersectionMap: HashMap<LngLatAlt, Intersection>
     ): Boolean {
         var ret = false
 
@@ -127,7 +128,8 @@ open class ProtomapsGridState(
                             mvt = result,
                             intersectionMap = intersectionMap,
                             streetNumberMap = streetNumberMap,
-                            tileZoom = zoomLevel
+                            tileZoom = zoomLevel,
+                            transitIntersectionMap = transitIntersectionMap
                         )
                     }
                     val addTime = measureTime {

@@ -557,7 +557,14 @@ class RoadFollower(
     }
 }
 
-class MapMatchFilter {
+/**
+ * @param networkTree overrides the vehicleMode-based road/path tree selection below, e.g. pass
+ * TreeId.TRANSIT to get a filter that matches against the railway network instead of roads. A
+ * given instance's followerList only ever holds Ways from one network at a time - a road and a
+ * railway are different connectivity graphs, so mixing them in one follower list wouldn't make
+ * sense. Create a separate MapMatchFilter instance for each network you want to track.
+ */
+class MapMatchFilter(private val networkTree: TreeId? = null) {
 
     //
     // This filter is partially based on the following paper:
@@ -570,6 +577,10 @@ class MapMatchFilter {
     // The search radius value is calculated to try and keep an open free space path along the
     // current nearest road.
     //
+
+    private fun matchTree(vehicleMode: Boolean): TreeId {
+        return networkTree ?: if (vehicleMode) TreeId.ROADS else TreeId.WAYS_SELECTION
+    }
 
 
     val followerList: MutableList<RoadFollower> = mutableListOf()
@@ -618,9 +629,7 @@ class MapMatchFilter {
      * combination.
      */
     fun extendFollowerList(location: LngLatAlt, gridState: GridState, vehicleMode: Boolean) {
-        val roadTree = gridState.getFeatureTree(
-            if (vehicleMode) TreeId.ROADS else TreeId.WAYS_SELECTION
-        )
+        val roadTree = gridState.getFeatureTree(matchTree(vehicleMode))
 
         val roads = roadTree.getNearestCollection(location, 20.0, 8, gridState.ruler)
 
@@ -765,9 +774,7 @@ class MapMatchFilter {
                         if (matched.isSidewalkOrCrossing() || way.isSidewalkOrCrossing()) {
                             // We're matching on a sidewalk, see if the other way is either the
                             // associated way or another sidewalk for the associated way
-                            val roadTree = gridState.getFeatureTree(
-                                if (vehicleMode) TreeId.ROADS else TreeId.WAYS_SELECTION
-                            )
+                            val roadTree = gridState.getFeatureTree(matchTree(vehicleMode))
                             addSidewalk(matched, roadTree, gridState.ruler)
                             addSidewalk(way, roadTree, gridState.ruler)
 
