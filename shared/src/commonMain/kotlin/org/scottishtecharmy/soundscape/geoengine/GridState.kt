@@ -94,6 +94,7 @@ open class GridState(
     var ruler = CheapRuler(0.0)
     var featureTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
     var gridIntersections = hashMapOf<LngLatAlt, Intersection>()
+    var gridTransitIntersections = hashMapOf<LngLatAlt, Intersection>()
     var gridStreetNumberTreeMap = hashMapOf<String, FeatureTree>()
 
     val treeContext = passedInTreeContext ?: newSingleThreadContext("TreeContext")
@@ -132,6 +133,79 @@ open class GridState(
     }
 
     /**
+     * We want to join up Ways that cross tile boundaries.
+     *
+     * In our initial parsing we created Intersections at every line ending that is at the
+     * tile boundary. Now that we have our grid, we can match up pairs of these intersections
+     * in the same way that the InterpolatedPointsJoiner does - searching by distance. We add
+     * a Way between each pair which is marked as a 'Tile Joiner'. These Ways can be followed
+     * between the tiles, but are otherwise transparent. We should make it easy to dispose of
+     * them when a new grid is made so that we can reuse the Tiles themselves for the new grid.
+     *
+     * This is generic across the road and transit (railway) intersection graphs - it just joins
+     * whatever Intersections it's given, so the same logic works for either as long as they're
+     * kept in separate lists (a road and a railway can share an exact coordinate at a level
+     * crossing, and we don't want those two unrelated networks joined together).
+     */
+    private fun joinTileEdgeIntersections(
+        grid: TileGrid,
+        newGridIntersections: List<HashMap<LngLatAlt, Intersection>>
+    ) {
+        if (grid.tiles.size <= 1) return
+
+        // Center of grid is bottom right of first tile
+        val gridCenter = getLatLonTileWithOffset(
+            grid.tiles[0].tileX,
+            grid.tiles[0].tileY,
+            zoomLevel,
+            1.0, 1.0
+        )
+
+        val tileEdgeList = mutableListOf<Intersection>()
+        for (intersectionList in newGridIntersections) {
+            for (intersection in intersectionList) {
+                if (intersection.value.intersectionType == IntersectionType.TILE_EDGE) {
+                    // We have an edge - check if it's an internal edge to the grid
+                    if (
+                        (intersection.value.location.longitude == gridCenter.longitude) or
+                        (intersection.value.location.latitude == gridCenter.latitude)
+                    ) {
+                        // This intersection needs joining, so put add it to our list
+                        tileEdgeList.add(intersection.value)
+                    }
+                }
+            }
+        }
+
+        // We have our list of intersections to join, so join them
+        for (intersection1 in tileEdgeList) {
+            for (intersection2 in tileEdgeList) {
+                // Don't join to ourselves
+                if (intersection1 != intersection2) {
+                    // Don't join if already joined
+                    if (intersection1.members.size < 2) {
+                        // Join if within 1.0m
+                        val distance =
+                            ruler.distance(intersection1.location, intersection2.location)
+                        if (distance < 1.0) {
+                            // Join the intersections together
+                            val way = Way()
+                            way.geometry =
+                                LineString(intersection1.location, intersection2.location)
+                            way.wayType = WayType.JOINER
+                            way.intersections[WayEnd.START.id] = intersection1
+                            way.intersections[WayEnd.END.id] = intersection2
+                            intersection1.members.add(way)
+                            intersection2.members.add(way)
+                            break
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
      * processGridState is now called from within the single thread that can access the tile grid.
      * This makes it somewhat performance critical. However, by doing this it allows us to
      * disconnect and reconnect the tile grid
@@ -140,8 +214,10 @@ open class GridState(
         featureCollections: Array<FeatureCollection>,
         enabledCategories: Set<String>,
         newGridIntersections: List<HashMap<LngLatAlt, Intersection>>,
+        newGridTransitIntersections: List<HashMap<LngLatAlt, Intersection>>,
         localTrees: Array<FeatureTree>,
         intersectionAccumulator: HashMap<LngLatAlt, Intersection>,
+        transitIntersectionAccumulator: HashMap<LngLatAlt, Intersection>,
         grid: TileGrid,
         strings: LocalizedStrings?,
     ) {
@@ -162,68 +238,7 @@ open class GridState(
         println("R-Trees took $rtreeTiming")
 
         if (featureCollections[TreeId.ROADS_AND_PATHS.id].features.isNotEmpty()) {
-            // We want to join up Ways that cross tile boundaries
-            //
-            // In our initial parsing we created Intersections at every line ending that is at the
-            // tile boundary. Now that we have our grid, we can match up pairs of these intersections
-            // in the same way that the InterpolatedPointsJoiner does - searching by distance. We add
-            // a Way between each pair which is marked as a 'Tile Joiner'. These Ways can be followed
-            // between the tiles, but are otherwise transparent. We should make it easy to dispose of
-            // them when a new grid is made so that we can reuse the Tiles themselves for the new grid.
-
-            // Make list of intersections to join
-            if (grid.tiles.size > 1) {
-                // Center of grid is bottom right of first tile
-                val gridCenter = getLatLonTileWithOffset(
-                    grid.tiles[0].tileX,
-                    grid.tiles[0].tileY,
-                    zoomLevel,
-                    1.0, 1.0
-                )
-
-                val tileEdgeList = mutableListOf<Intersection>()
-                for (intersectionList in newGridIntersections) {
-                    for (intersection in intersectionList) {
-                        if (intersection.value.intersectionType == IntersectionType.TILE_EDGE) {
-                            // We have an edge - check if it's an internal edge to the grid
-                            if (
-                                (intersection.value.location.longitude == gridCenter.longitude) or
-                                (intersection.value.location.latitude == gridCenter.latitude)
-                            ) {
-                                // This intersection needs joining, so put add it to our list
-                                tileEdgeList.add(intersection.value)
-                            }
-                        }
-                    }
-                }
-
-                // We have our list of intersections to join, so join them
-                for (intersection1 in tileEdgeList) {
-                    for (intersection2 in tileEdgeList) {
-                        // Don't join to ourselves
-                        if (intersection1 != intersection2) {
-                            // Don't join if already joined
-                            if (intersection1.members.size < 2) {
-                                // Join if within 1.0m
-                                val distance =
-                                    ruler.distance(intersection1.location, intersection2.location)
-                                if (distance < 1.0) {
-                                    // Join the intersections together
-                                    val way = Way()
-                                    way.geometry =
-                                        LineString(intersection1.location, intersection2.location)
-                                    way.wayType = WayType.JOINER
-                                    way.intersections[WayEnd.START.id] = intersection1
-                                    way.intersections[WayEnd.END.id] = intersection2
-                                    intersection1.members.add(way)
-                                    intersection2.members.add(way)
-                                    break
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+            joinTileEdgeIntersections(grid, newGridIntersections)
 
             //
             // Confect names for un-named ways
@@ -245,6 +260,18 @@ open class GridState(
 //            for (road in featureCollections[TreeId.ROADS_AND_PATHS.id]) {
 //                confectNamesForRoad(road, this)
 //          }
+        }
+
+        if (featureCollections[TreeId.TRANSIT.id].features.isNotEmpty()) {
+            // Rail lines are normally already named, so unlike roads there's no name confection
+            // step needed here - just stitch the Ways across tile boundaries and keep a merged,
+            // location-keyed map of the intersections for lookup (mirroring gridIntersections).
+            joinTileEdgeIntersections(grid, newGridTransitIntersections)
+            for (hashmap in newGridTransitIntersections) {
+                for (intersection in hashmap) {
+                    transitIntersectionAccumulator[intersection.key] = intersection.value
+                }
+            }
         }
     }
 
@@ -268,12 +295,14 @@ open class GridState(
             // We have a new centralBoundingBox, so update the tiles
             val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
             val newGridIntersections = mutableListOf<HashMap<LngLatAlt, Intersection>>()
+            val newGridTransitIntersections = mutableListOf<HashMap<LngLatAlt, Intersection>>()
             val newGridStreetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
             if (updateTileGrid(
                     tileGrid,
                     featureCollections,
                     newGridIntersections,
-                    newGridStreetNumberMap
+                    newGridStreetNumberMap,
+                    newGridTransitIntersections
                 )
             ) {
                 // We have got a new grid, so create our new central region
@@ -289,12 +318,15 @@ open class GridState(
                         val duration = measureTime {
                             ruler = CheapRuler(location.latitude)
                             gridIntersections.clear()
+                            gridTransitIntersections.clear()
                             processGridState(
                                 featureCollections,
                                 enabledCategories,
                                 newGridIntersections,
+                                newGridTransitIntersections,
                                 featureTrees,
                                 gridIntersections,
+                                gridTransitIntersections,
                                 tileGrid,
                                 strings
                             )
@@ -321,14 +353,16 @@ open class GridState(
         val tile: Tile,
         var collections: Array<FeatureCollection>?,
         var intersections: HashMap<LngLatAlt, Intersection>?,
-        var streetNumberMap: HashMap<String, FeatureCollection>?
+        var streetNumberMap: HashMap<String, FeatureCollection>?,
+        var transitIntersections: HashMap<LngLatAlt, Intersection>? = null
     )
 
     private suspend fun updateTileGrid(
         tileGrid: TileGrid,
         featureCollections: Array<FeatureCollection>,
         gridIntersections: MutableList<HashMap<LngLatAlt, Intersection>>,
-        gridStreetNumberMap: HashMap<String, FeatureCollection>
+        gridStreetNumberMap: HashMap<String, FeatureCollection>,
+        gridTransitIntersections: MutableList<HashMap<LngLatAlt, Intersection>>
     ): Boolean = withContext(ioDispatcher) {
 
         // Check for an updated list of offline maps
@@ -343,6 +377,7 @@ open class GridState(
                 var ret = false
                 val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
                 val streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
+                val transitIntersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
                 val tileCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
                 analytics.logCostlyEvent("updateTile")
                 for (retry in 1..5) {
@@ -352,15 +387,23 @@ open class GridState(
                         tile.workerIndex,
                         tileCollections,
                         intersectionMap,
-                        streetNumberMap
+                        streetNumberMap,
+                        transitIntersectionMap
                     )
                     if (ret)
                         break
                 }
                 if (ret) {
-                    TileUpdateResult(true, tile, tileCollections, intersectionMap, streetNumberMap)
+                    TileUpdateResult(
+                        true,
+                        tile,
+                        tileCollections,
+                        intersectionMap,
+                        streetNumberMap,
+                        transitIntersectionMap
+                    )
                 } else {
-                    TileUpdateResult(false, tile, null, null, null)
+                    TileUpdateResult(false, tile, null, null, null, null)
                 }
             }
         }
@@ -379,6 +422,9 @@ open class GridState(
             }
             result.intersections?.let { intersections ->
                 gridIntersections.add(intersections)
+            }
+            result.transitIntersections?.let { transitIntersections ->
+                gridTransitIntersections.add(transitIntersections)
             }
             result.streetNumberMap?.let { streetNumberMap ->
                 // Go through each street in the map and either add it to an existing map for the
@@ -401,7 +447,8 @@ open class GridState(
         workerIndex: Int,
         featureCollections: Array<FeatureCollection>,
         intersectionMap: HashMap<LngLatAlt, Intersection>,
-        streetNumberMap: HashMap<String, FeatureCollection>
+        streetNumberMap: HashMap<String, FeatureCollection>,
+        transitIntersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
     ): Boolean {
         return false
     }

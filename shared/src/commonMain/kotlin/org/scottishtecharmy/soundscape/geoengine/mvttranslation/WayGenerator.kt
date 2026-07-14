@@ -780,9 +780,11 @@ class WayGenerator(val transit: Boolean = false) {
                     if (intersection.value.intersectionType != IntersectionType.TILE_EDGE)
                         intersectionCollection.addFeature(intersection.value)
                 }
-                if (intersectionMap != null)
-                    intersectionMap[intersection.key] = intersection.value
             }
+            // The map is needed regardless of transit/road, so that GridState can stitch Ways
+            // across tile boundaries for both networks.
+            if (intersectionMap != null)
+                intersectionMap[intersection.key] = intersection.value
         }
     }
 }

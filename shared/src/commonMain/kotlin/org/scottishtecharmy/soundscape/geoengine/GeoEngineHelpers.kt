@@ -163,39 +163,52 @@ private fun travellingReverseGeocodeName(
         }
     }
 
-    // Prefer the map-matched way (the road we're actually confirmed to be on) over an independent
-    // nearest-feature search, which can pick the wrong road at junctions or parallel carriageways.
-    // Since we're confirmed to be on it (rather than merely near it), phrase it as "On X" rather
-    // than "Near X".
-    val nearestRoad = userGeometry.mapMatchedWay ?: gridState.getNearestFeature(
-        TreeId.ROADS_AND_PATHS, gridState.ruler, location, 100.0
-    ) as Way?
+    val probablyOnTrain = userGeometry.probablyOnTrain()
+
+    // Prefer the map-matched way (the road/railway we're actually confirmed to be on) over an
+    // independent nearest-feature search, which can pick the wrong road at junctions or parallel
+    // carriageways. Since we're confirmed to be on it (rather than merely near it), phrase it as
+    // "On X" rather than "Near X". A train is matched against the separate railway network -
+    // there's no independent-search fallback for it, since a lower-confidence guess at a railway
+    // line is much less useful than one for a road (you can't be "near" a railway in the way you
+    // can be near a road, e.g. on a parallel street - either the matcher has locked onto the line
+    // you're travelling on, or it hasn't).
+    val nearestRoad = if (probablyOnTrain) {
+        userGeometry.mapMatchedRailway
+    } else {
+        userGeometry.mapMatchedWay ?: gridState.getNearestFeature(
+            TreeId.ROADS_AND_PATHS, gridState.ruler, location, 100.0
+        ) as Way?
+    }
     val roadName = nearestRoad?.getName(null, gridState, localized, true)?.takeIf { it.isNotEmpty() }
 
-    // Check if we're near a highway junction (motorway exit, interchange etc.)
-    val junctionTree = gridState.getFeatureTree(TreeId.HIGHWAY_JUNCTIONS)
-    val nearestJunction = junctionTree.getNearestFeature(location, gridState.ruler, 500.0)
-    if (nearestJunction != null) {
-        val junction = nearestJunction as MvtFeature
-        val ref = junction.properties?.get("ref") as? String
-        val name = junction.name
-        val junctionText = if (ref != null) {
-            if (name != null) {
-                localized?.get(StringKey.DirectionsJunctionWithRefAndName, ref, name)
-                    ?: "Junction $ref, $name"
+    // Check if we're near a highway junction (motorway exit, interchange etc.) - not relevant
+    // when travelling by train.
+    if (!probablyOnTrain) {
+        val junctionTree = gridState.getFeatureTree(TreeId.HIGHWAY_JUNCTIONS)
+        val nearestJunction = junctionTree.getNearestFeature(location, gridState.ruler, 500.0)
+        if (nearestJunction != null) {
+            val junction = nearestJunction as MvtFeature
+            val ref = junction.properties?.get("ref") as? String
+            val name = junction.name
+            val junctionText = if (ref != null) {
+                if (name != null) {
+                    localized?.get(StringKey.DirectionsJunctionWithRefAndName, ref, name)
+                        ?: "Junction $ref, $name"
+                } else {
+                    localized?.get(StringKey.DirectionsJunctionWithRef, ref) ?: "Junction $ref"
+                }
             } else {
-                localized?.get(StringKey.DirectionsJunctionWithRef, ref) ?: "Junction $ref"
+                name
             }
-        } else {
-            name
-        }
-        if (junctionText != null) {
-            return if (roadName != null) {
-                localized?.get(StringKey.DirectionsOnRoadAtJunction, roadName, junctionText)
-                    ?: "On $roadName at $junctionText"
-            } else {
-                localized?.get(StringKey.DirectionsNearName, junctionText)
-                    ?: "Near $junctionText"
+            if (junctionText != null) {
+                return if (roadName != null) {
+                    localized?.get(StringKey.DirectionsOnRoadAtJunction, roadName, junctionText)
+                        ?: "On $roadName at $junctionText"
+                } else {
+                    localized?.get(StringKey.DirectionsNearName, junctionText)
+                        ?: "Near $junctionText"
+                }
             }
         }
     }
