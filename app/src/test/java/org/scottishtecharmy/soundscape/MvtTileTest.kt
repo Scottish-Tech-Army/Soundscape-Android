@@ -1303,13 +1303,22 @@ class MvtTileTest {
                     }
                 }
 
+                // Computed ahead of the map-match filter call (rather than down at UserGeometry
+                // construction below) since GeoEngine.kt's production location-update loop uses
+                // this same speed check to decide whether the filter should be restricted to
+                // TreeId.ROADS - without it here, this replay would always let the matcher lock
+                // onto a footway/cycleway alongside the road, regardless of how fast the GPX
+                // sample is actually travelling.
+                val speed = position.properties?.get("speed") as? Double? ?: 1.0
+
                 // Update the nearest road filter with our new location
                 val mapMatchedResult = mapMatchFilter.filter(
                     LngLatAlt(location.longitude, location.latitude),
                     gridState,
                     collection,
                     false,
-                    null
+                    null,
+                    speed > UserGeometry.VEHICLE_SPEED_THRESHOLD_MPS
                 )
 
                 if (mapMatchedResult.first != null) {
@@ -1356,7 +1365,7 @@ class MvtTileTest {
                     location = LngLatAlt(location.longitude, location.latitude),
                     travelHeading = position.properties?.get("heading") as? Double?
                         ?: travelHeading,
-                    speed = position.properties?.get("speed") as? Double? ?: 1.0,
+                    speed = speed,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
                     mapMatchedRailway = railMapMatchFilter.matchedWay,
@@ -1400,13 +1409,13 @@ class MvtTileTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun testCalloutsTrain1Only() {
+    fun testCalloutsTrain1Only  () {
         val resultsStorageDir = File("gpxFiles/")
         if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
         testMovingGrid(
-            "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/train-1.gpx",
-            "gpxFiles/train-1-debug.txt",
-            "gpxFiles/train-1-debug.geojson"
+            "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/ToAllander.gpx",
+            "gpxFiles/ToAllander.txt",
+            "gpxFiles/ToAllander.geojson"
         )
     }
 
@@ -1498,20 +1507,25 @@ class MvtTileTest {
                     }
                 }
 
+                // Computed ahead of the map-match filter call - see the equivalent comment in
+                // testMovingGrid.
+                val speed = position.properties?.get("speed") as? Double? ?: 1.0
+
                 // Update the nearest road filter with our new location
                 mapMatchFilter.filter(
                     LngLatAlt(location.longitude, location.latitude),
                     gridState,
                     collection,
                     false,
-                    null
+                    null,
+                    speed > UserGeometry.VEHICLE_SPEED_THRESHOLD_MPS
                 )
 
                 val userGeometry = UserGeometry(
                     location = LngLatAlt(location.longitude, location.latitude),
                     travelHeading = position.properties?.get("heading") as? Double?
                         ?: travelHeading,
-                    speed = position.properties?.get("speed") as? Double? ?: 1.0,
+                    speed = speed,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
                     timestampMilliseconds = (position.properties?.get("time") as? Double?)?.toLong()
