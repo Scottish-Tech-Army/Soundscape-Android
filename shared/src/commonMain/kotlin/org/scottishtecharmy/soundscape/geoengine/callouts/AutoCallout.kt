@@ -17,14 +17,21 @@ import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.CountryBoundaries
+import org.scottishtecharmy.soundscape.geoengine.utils.DrivingSide
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
+import org.scottishtecharmy.soundscape.geoengine.utils.normalizeHeading
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
+import kotlin.math.roundToInt
 
 class AutoCallout(
     private val localized: LocalizedStrings?,
@@ -39,6 +46,8 @@ class AutoCallout(
     private val roadSenseCalloutHistory = CalloutHistory()
     private val vehicleLandmarkFilter = LocationUpdateFilter(10000, 50.0)
     private val vehicleLandmarkCalloutHistory = CalloutHistory()
+    private val vehicleTransitStopCalloutHistory = CalloutHistory()
+    private var lastTransitStopSweepLocation: LngLatAlt? = null
     private val lastStationTracker = LastStationTracker()
     private val notableVehicleEventTracker = NotableVehicleEventTracker()
     private var lastTrainTimestampMs: Long? = null
@@ -235,6 +244,102 @@ class AutoCallout(
         // returned standalone) since this callout may instead be merged into roadSenseCallout's
         // positionedStrings when both fire on the same update - see updateLocation.
         vehicleLandmarkCalloutHistory.add(callout)
+        notableVehicleEventTracker.recordEvent(userGeometry.timestampMilliseconds)
+        return callout
+    }
+
+    /**
+     * Announces a bus/tram/train stop as it's passed while travelling by car/bus/train. Checking
+     * only the current location against a fixed radius (as buildCalloutForRoadSense/
+     * describeReverseGeocode used to) misses most stops at driving speed: this callout only runs
+     * every ~10s/50m, but a stop's ~20m detection radius is crossed in a couple of seconds, so the
+     * odds of a periodic check landing inside that narrow window are poor. Instead this sweeps the
+     * path travelled since the last location update (FeatureTree.getNearbyLine) and checks the
+     * whole segment against the stop radius, so a stop can't be skipped over between updates
+     * regardless of speed.
+     */
+    private fun buildCalloutForVehicleTransitStop(
+        userGeometry: UserGeometry,
+        gridState: GridState
+    ): TrackedCallout? {
+        // Also covers a brief stop (red light, station dwell) via recentlyInVehicle, so the sweep
+        // anchor isn't lost (and a stop right at that moment isn't missed) - only reset once
+        // genuinely no longer in a vehicle, e.g. actually got out and started walking.
+        if (!userGeometry.inVehicle() && !recentlyInVehicle(userGeometry)) {
+            lastTransitStopSweepLocation = null
+            return null
+        }
+
+        val previousLocation = lastTransitStopSweepLocation
+        lastTransitStopSweepLocation = userGeometry.location
+        if (previousLocation == null) {
+            // Nothing to sweep yet - this is the first update since entering vehicle mode.
+            return null
+        }
+
+        vehicleTransitStopCalloutHistory.trim(userGeometry)
+
+        val sweep = LineString(previousLocation, userGeometry.location)
+        val nearbyStops = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
+            .getNearbyLine(sweep, 20.0, gridState.ruler)
+
+        // A stop on the far side of the road serves the opposite direction of travel and isn't
+        // relevant to us - both directions' stops are easily within the 20m sweep radius of an
+        // ordinary two-way street, so distance alone can't tell them apart. The near-side kerb
+        // (stops serving our direction) is to the left of the direction of travel in a left-hand
+        // traffic country, or the right in a right-hand traffic one - see CountryBoundaries. If
+        // the country can't be determined (e.g. no bundled boundary covers this location), don't
+        // filter at all rather than guess.
+        val drivingSide = CountryBoundaries.drivingSide(userGeometry.location)
+        val travelBearing = gridState.ruler.bearing(previousLocation, userGeometry.location)
+        val candidate = nearbyStops.features
+            .mapNotNull { feature ->
+                val mvtFeature = feature as? MvtFeature ?: return@mapNotNull null
+                val text = getTextForFeature(localized, mvtFeature)
+                if (text.generic) return@mapNotNull null
+                if (drivingSide != null) {
+                    val stopLocation = (mvtFeature.geometry as? Point)?.coordinates
+                        ?: return@mapNotNull null
+                    val stopBearing = gridState.ruler.bearing(userGeometry.location, stopLocation)
+                    val relativeAngle = normalizeHeading((stopBearing - travelBearing).roundToInt())
+                    // relativeAngle in 1..179 is to the right of travel, 180..359 to the left.
+                    val isFarSide = if (drivingSide == DrivingSide.LEFT) {
+                        relativeAngle in 1..179
+                    } else {
+                        relativeAngle in 180..359
+                    }
+                    if (isFarSide) return@mapNotNull null
+                }
+                Pair(mvtFeature, text)
+            }
+            .minByOrNull {
+                getDistanceToFeature(userGeometry.location, it.first, userGeometry.ruler).distance
+            } ?: return null
+
+        val (stopFeature, stopText) = candidate
+        val nearestPoint = getDistanceToFeature(userGeometry.location, stopFeature, userGeometry.ruler)
+        val callout = TrackedCallout(
+            userGeometry,
+            trackedText = stopText.text,
+            location = nearestPoint.point,
+            positionedStrings = listOf(
+                PositionedString(
+                    text = localized?.get(StringKey.DirectionsNearName, stopText.text)
+                        ?: "Near ${stopText.text}",
+                    location = nearestPoint.point,
+                    type = AudioType.LOCALIZED
+                )
+            ),
+            isPoint = stopFeature.geometry.type == "Point",
+            isGeneric = false,
+        )
+
+        if (vehicleTransitStopCalloutHistory.find(callout)) {
+            return null
+        }
+
+        // Added eagerly - see the equivalent comment in buildCalloutForVehicleLandmark.
+        vehicleTransitStopCalloutHistory.add(callout)
         notableVehicleEventTracker.recordEvent(userGeometry.timestampMilliseconds)
         return callout
     }
@@ -441,18 +546,21 @@ class AutoCallout(
                     // walking
                     val roadSenseCallout =
                         buildCalloutForRoadSense(userGeometry, gridState, settlementGrid)
-                    // Large POIs passed while driving/riding are announced independently of, and
-                    // potentially alongside, the road/settlement description above.
+                    // Large POIs and transit stops passed while driving/riding are announced
+                    // independently of, and potentially alongside, the road/settlement
+                    // description above.
                     val vehicleLandmarkCallout =
                         buildCalloutForVehicleLandmark(userGeometry, gridState)
-                    if ((roadSenseCallout != null) && (vehicleLandmarkCallout != null)) {
-                        roadSenseCallout.positionedStrings +=
-                            vehicleLandmarkCallout.positionedStrings
-                        trackedCallout = roadSenseCallout
-                    } else if (roadSenseCallout != null) {
-                        trackedCallout = roadSenseCallout
-                    } else if (vehicleLandmarkCallout != null) {
-                        trackedCallout = vehicleLandmarkCallout
+                    val vehicleTransitStopCallout =
+                        buildCalloutForVehicleTransitStop(userGeometry, gridState)
+                    val vehicleCallouts = listOfNotNull(
+                        roadSenseCallout, vehicleLandmarkCallout, vehicleTransitStopCallout
+                    )
+                    if (vehicleCallouts.isNotEmpty()) {
+                        val primary = vehicleCallouts.first()
+                        primary.positionedStrings +=
+                            vehicleCallouts.drop(1).flatMap { it.positionedStrings }
+                        trackedCallout = primary
                     } else {
                         val intersectionCallout =
                             buildCalloutForIntersections(userGeometry, gridState)
