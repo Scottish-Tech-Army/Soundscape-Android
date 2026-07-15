@@ -30,6 +30,8 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertBackToTil
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.sampleToFractionOfTile
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.processTileFeatureCollection
+import org.scottishtecharmy.soundscape.geoengine.utils.CountryBoundaries
+import org.scottishtecharmy.soundscape.geoengine.utils.DrivingSide
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
@@ -157,6 +159,36 @@ class MvtTileTest {
         println("tileOrigin2 " + tileOrigin2.latitude + "," + tileOrigin2.longitude)
         assert(tileOrigin2.latitude == 55.94919982336745)
         assert(tileOrigin2.longitude == -4.306640625)
+    }
+
+    /**
+     * CountryBoundaries loads a bundled, simplified world country-boundaries GeoJSON to look up
+     * which country (and so which side of the road traffic drives on) a location falls within -
+     * see AutoCallout.buildCalloutForVehicleTransitStop, which uses this to exclude far-side
+     * transit stops regardless of the country's driving convention.
+     */
+    @Test
+    fun testCountryBoundariesDrivingSide() {
+        val glasgow = LngLatAlt(-4.2518, 55.8642)
+        assertEquals("GB", CountryBoundaries.countryCode(glasgow))
+        assertEquals(DrivingSide.LEFT, CountryBoundaries.drivingSide(glasgow))
+
+        val paris = LngLatAlt(2.3522, 48.8566)
+        assertEquals("FR", CountryBoundaries.countryCode(paris))
+        assertEquals(DrivingSide.RIGHT, CountryBoundaries.drivingSide(paris))
+
+        val newYork = LngLatAlt(-74.0060, 40.7128)
+        assertEquals("US", CountryBoundaries.countryCode(newYork))
+        assertEquals(DrivingSide.RIGHT, CountryBoundaries.drivingSide(newYork))
+
+        val sydney = LngLatAlt(151.2093, -33.8688)
+        assertEquals("AU", CountryBoundaries.countryCode(sydney))
+        assertEquals(DrivingSide.LEFT, CountryBoundaries.drivingSide(sydney))
+
+        // Middle of the Atlantic - no country.
+        val ocean = LngLatAlt(-40.0, 30.0)
+        assertEquals(null, CountryBoundaries.countryCode(ocean))
+        assertEquals(null, CountryBoundaries.drivingSide(ocean))
     }
 
     /**

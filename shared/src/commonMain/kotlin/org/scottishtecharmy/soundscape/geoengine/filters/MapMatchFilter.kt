@@ -16,14 +16,12 @@ import org.scottishtecharmy.soundscape.geoengine.utils.fromRadians
 import org.scottishtecharmy.soundscape.geoengine.utils.getDestinationCoordinate
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
-import org.scottishtecharmy.soundscape.geoengine.utils.toRadians
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import kotlin.math.asin
-import kotlin.math.cos
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.pow
@@ -227,17 +225,20 @@ class RoadFollower(
     }
 
     /**
-     * If a Way in a route is more than 60m away, then trim it off. If we get close to it again, we
-     * can add it back in.
+     * If a Way in a route is more than 60m away (further, if GPS updates are more widely spaced
+     * than that - see [averagePointGap] - since driving covers much more ground between updates
+     * than the walking pace this was originally tuned for), then trim it off. If we get close to
+     * it again, we can add it back in.
      */
     fun trimRoute(location: LngLatAlt, ruler: CheapRuler): Boolean {
         var trimmed = false
+        val trimDistance = max(60.0, averagePointGap * 2.0)
 
         // Trim start
         val iterator = route.listIterator()
         while (iterator.hasNext()) {
             val way = iterator.next()
-            if (ruler.distanceToLineString(location, way.geometry as LineString).distance > 60.0) {
+            if (ruler.distanceToLineString(location, way.geometry as LineString).distance > trimDistance) {
                 iterator.remove()
                 trimmed = true
             } else {
@@ -253,7 +254,7 @@ class RoadFollower(
         // Trim end
         while (iterator.hasPrevious()) {
             val way = iterator.previous()
-            if (ruler.distanceToLineString(location, way.geometry as LineString).distance > 60.0) {
+            if (ruler.distanceToLineString(location, way.geometry as LineString).distance > trimDistance) {
                 iterator.remove()
                 trimmed = true
             } else {
@@ -436,13 +437,20 @@ class RoadFollower(
                 ) {
                     val delta = nearestPoint.positionAlongLine - lastNearestPoint.positionAlongLine
                     if ((directionOnLine != 0.0) && ((sign(delta) != sign(directionOnLine)) || (delta == 0.0))) {
-                        // Change of direction?
+                        // Change of direction? Only report it once the sign mismatch has been
+                        // sustained for several ticks in a row (the hysteresis counter reaching
+                        // zero), not on every individual tick leading up to that - a single
+                        // transient sign flip (GPS noise, or a duplicated coordinate at a junction
+                        // node where this concatenated LineString has a kink - see
+                        // IndexedLineString) shouldn't exclude an otherwise well-tracked follower
+                        // from being selected for that one tick, before the hysteresis has even
+                        // decided anything really changed.
                         --directionHysteresis
                         if (directionHysteresis == 0) {
                             directionHysteresis = 5
                             directionOnLine = delta
+                            directionChange = true
                         }
-                        directionChange = true
                     } else {
                         directionHysteresis = 5
                         directionOnLine = delta
@@ -461,8 +469,12 @@ class RoadFollower(
                     }
                 }
 
-                // Dispose of this if we're a long way away
-                if (nearestPoint.distance > 30.0) {
+                // Dispose of this if we're a long way away. 30m is generous for the dense GPS
+                // samples typical of walking pace, but driving can easily produce an occasional
+                // much larger gap between samples (e.g. a brief signal gap, or just a lower
+                // sampling rate relative to speed) without actually having lost the road - so
+                // this scales with how far apart consecutive samples actually are.
+                if (nearestPoint.distance > max(30.0, pointGap * 1.5)) {
                     return RoadFollowerStatus(Double.MAX_VALUE, RoadFollowerState.DISTANT)
                 }
 
@@ -488,7 +500,15 @@ class RoadFollower(
                 if (matchedPoint.distance > radius)
                     radius = matchedPoint.distance * 1.2
 
-                if (radius > 30.0) {
+                // radius is a carried-over field, not recalculated from scratch each tick - after
+                // a single large gap inflates it, it takes a few ticks to settle back down even
+                // once samples return to their normal spacing. Comparing it against a threshold
+                // scaled by the instantaneous pointGap (which snaps back immediately) would then
+                // reject it as anomalous right as it's in the middle of legitimately catching up.
+                // averagePointGap decays slowly, on the same sort of timescale as radius itself,
+                // so it stays elevated for a few ticks after a big gap and gives radius room to
+                // settle before this starts tightening again.
+                if (radius > max(30.0, averagePointGap * 5.0)) {
                     return RoadFollowerStatus(Double.MAX_VALUE, RoadFollowerState.DISTANT)
                 }
 
@@ -529,8 +549,16 @@ class RoadFollower(
         val roadHeading = nearestPoint?.heading
         if (!gpsHeading.isNaN() && roadHeading != null) {
             val headingDifference = calculateSmallestAngleBetweenLines(gpsHeading, roadHeading)
-            val cosHeadingDifference = cos(toRadians(headingDifference))
-            if (cosHeadingDifference < 0.703) {
+            // gpsHeading is the straight-line bearing of the chord between this and the last GPS
+            // fix, compared against the road's local tangent heading at the matched point. For
+            // widely-spaced samples (e.g. driving), that chord can cut across a bend in the road,
+            // so it legitimately differs more from the local tangent than it would for the dense,
+            // closely-spaced samples this 45 degree tolerance was originally tuned for - widen it
+            // in proportion to how much bigger than usual this particular gap is, capped at 90
+            // degrees so a genuine reversal/wrong-way reading is still always rejected.
+            val gapRatio = if (averagePointGap > 0.0) (pointGap / averagePointGap) else 1.0
+            val toleranceDegrees = min(90.0, 45.0 * max(1.0, gapRatio))
+            if (headingDifference > toleranceDegrees) {
                 // Unreliable GPS heading - the GPS is moving in a very different direction
                 // to the road.
                 if (frechetQueue.size > (FRECHET_QUEUE_SIZE / 2))
@@ -631,7 +659,12 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
     fun extendFollowerList(location: LngLatAlt, gridState: GridState, vehicleMode: Boolean) {
         val roadTree = gridState.getFeatureTree(matchTree(vehicleMode))
 
-        val roads = roadTree.getNearestCollection(location, 20.0, 8, gridState.ruler)
+        // 20m is generous for the dense GPS samples typical of walking pace, but at driving speed
+        // a new road/intersection can easily be more than 20m from any single sample - see the
+        // equivalent scaling in RoadFollower.update/trimRoute.
+        val searchRadius = lastLocation?.let { max(20.0, gridState.ruler.distance(location, it) * 1.5) }
+            ?: 20.0
+        val roads = roadTree.getNearestCollection(location, searchRadius, 8, gridState.ruler)
 
         if (followerList.isEmpty()) {
             if (roads.features.isNotEmpty()) {

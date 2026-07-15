@@ -213,18 +213,11 @@ private fun travellingReverseGeocodeName(
     val location = userGeometry.location
     if (!gridState.isLocationWithinGrid(location)) return null
 
-    // Check if we're near a bus/tram/train stop.
-    val busStopTree = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
-    val nearestBusStop = busStopTree.getNearestFeature(location, gridState.ruler, 20.0)
-    if (nearestBusStop != null) {
-        val busStopText = (nearestBusStop as MvtFeature).getText(localized)
-        if (!busStopText.generic) {
-            return ReverseGeocodeText(
-                localized?.get(StringKey.DirectionsNearName, busStopText.text)
-                    ?: "Near ${busStopText.text}"
-            )
-        }
-    }
+    // Passing a bus/tram/train stop is announced separately - see
+    // AutoCallout.buildCalloutForVehicleTransitStop - since it needs to sweep the path travelled
+    // since the last location update (a point-radius check here would miss most stops, as this
+    // function is only checked periodically and a stop's detection radius is easily crossed
+    // between checks at driving speed).
 
     val probablyOnTrain = userGeometry.probablyOnTrain()
 
