@@ -280,6 +280,7 @@ class MergePolygonsTest {
         val result: Array<FeatureCollection> = emptyArray()
 
         gridState.start(offlineExtractPath)
+        gridState.checkOfflineMaps()
 
         runBlocking {
             gridState.updateTile(tileX, tileY, 0, result, intersectionMap, streetNumberMap)
