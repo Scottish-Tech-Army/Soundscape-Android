@@ -86,7 +86,6 @@ enum class StringKey {
     DirectionsNearSettlementInline,
     DirectionsCloseToSettlementInline,
     DirectionsGenericTrain,
-    DirectionsPassingPoi,
     StreetDescriptionIntersection,
     StreetDescriptionRelativeBefore,
     StreetDescriptionRelativeAfter,
