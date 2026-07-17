@@ -19,20 +19,35 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
+import kotlinx.coroutines.flow.StateFlow
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.sleep_sleeping
 import org.scottishtecharmy.soundscape.resources.sleep_sleeping_message
+import org.scottishtecharmy.soundscape.resources.sleep_sleeping_wake_on_leave_message
 import org.scottishtecharmy.soundscape.resources.sleep_wake_on_leave
 import org.scottishtecharmy.soundscape.resources.sleep_wake_up_now
 import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.largePadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
+data class SleepScreenState(
+    val wakeOnLeaveEnabled: Boolean = false,
+)
+
+interface ISleepScreenViewModel {
+    val state: StateFlow<SleepScreenState>
+    fun onWakeOnLeaveClicked()
+}
+
+expect fun provideSleepScreenViewModel(): ISleepScreenViewModel
+
 @Composable
 fun SharedSleepScreen(
     onWakeUp: () -> Unit,
     onExit: () -> Unit,
+    onWakeOnLeaveClicked: () -> Unit,
+    wakeOnLeaveEnabled: Boolean,
     modifier: Modifier = Modifier,
 ) {
     DisposableEffect(Unit) {
@@ -56,25 +71,42 @@ fun SharedSleepScreen(
         }
         Row {
             Text(
-                text = stringResource(Res.string.sleep_sleeping_message),
+                text = stringResource(
+                    if (wakeOnLeaveEnabled)
+                        Res.string.sleep_sleeping_wake_on_leave_message else
+                        Res.string.sleep_sleeping_message
+                ),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface,
                 modifier = Modifier.largePadding(),
             )
         }
-        Row(
+        WakeButtons(
+            wakeUpNowOnClick = onExit,
+            wakeOnLeaveOnClick = onWakeOnLeaveClicked,
+            showWakeOnLeave = wakeOnLeaveEnabled,
             modifier = Modifier.fillMaxWidth()
-        ) {
-            WakeButton(
-                text = stringResource(Res.string.sleep_wake_up_now),
-                onClick = onExit,
-                modifier = Modifier.fillMaxWidth(0.5f),
-            )
+        )
+    }
+}
+
+@Composable
+fun WakeButtons(
+    wakeUpNowOnClick: () -> Unit,
+    wakeOnLeaveOnClick: () -> Unit,
+    showWakeOnLeave: Boolean,
+    modifier: Modifier = Modifier,
+) {
+    Row(modifier = modifier) {
+        WakeButton(
+            text = stringResource(Res.string.sleep_wake_up_now),
+            onClick = wakeUpNowOnClick,
+            modifier = Modifier.fillMaxWidth(if (showWakeOnLeave) 0.5f else 1.0f),
+        )
+        if (showWakeOnLeave) {
             WakeButton(
                 text = stringResource(Res.string.sleep_wake_on_leave),
-                onClick = {
-                    // TODO
-                },
+                onClick = wakeOnLeaveOnClick,
                 modifier = Modifier,
             )
         }

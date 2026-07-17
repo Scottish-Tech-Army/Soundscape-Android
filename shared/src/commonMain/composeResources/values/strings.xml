@@ -338,6 +338,8 @@
     <string name="sleep_sleeping">Sleeping</string>
     <!-- Text for sleep page explaining what it does -->
     <string name="sleep_sleeping_message">Soundscape is currently sleeping. This prevents Soundscape from using Location Services or downloading data. This conserves battery when you are not using Soundscape. Tap the button below to wake up Soundscape.</string>
+    <!-- Text for sleep page explaining what Wake On Leave does -->
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape is currently snoozing. When you leave your current location, Soundscape will automatically wake up. This uses Location Services in a low power mode to conserve your phone's battery. Tap the button below to wake up now.</string>
     <!-- Talkback hint for the sleep button to indicate what it does. This is always preceded by "Double tap to " -->
     <string name="sleep_sleep_acc_hint">put Soundscape to sleep</string>
     <!-- Text for large button on sleep screen which wakes the app up -->
