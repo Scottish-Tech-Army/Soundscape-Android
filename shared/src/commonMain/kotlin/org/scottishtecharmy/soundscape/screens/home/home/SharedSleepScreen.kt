@@ -19,9 +19,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.StateFlow
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.sleep_sleeping
 import org.scottishtecharmy.soundscape.resources.sleep_sleeping_message
@@ -42,7 +44,13 @@ interface ISleepScreenViewModel {
     fun onWakeOnLeaveClicked()
 }
 
-expect fun provideSleepScreenViewModel(): ISleepScreenViewModel
+@Composable
+expect fun provideLocationProvider(): LocationProvider
+
+expect fun provideSleepScreenViewModel(
+    locationProvider: LocationProvider,
+    coroutineScope: CoroutineScope,
+): ISleepScreenViewModel
 
 @Composable
 fun SharedSleepScreen(

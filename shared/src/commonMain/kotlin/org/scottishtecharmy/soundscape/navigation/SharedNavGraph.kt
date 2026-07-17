@@ -14,6 +14,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -45,6 +46,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.SharedHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedOpenSourceLicensesScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedSleepScreen
+import org.scottishtecharmy.soundscape.screens.home.home.provideLocationProvider
 import org.scottishtecharmy.soundscape.screens.home.home.provideSleepScreenViewModel
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedLocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedSaveAndEditMarkerScreen
@@ -571,7 +573,11 @@ fun SharedNavHost(
             }
 
             composable(SharedRoutes.SLEEP) {
-                val viewModel = provideSleepScreenViewModel()
+                val locationProvider = provideLocationProvider()
+                val scope = rememberCoroutineScope()
+                val viewModel = remember(locationProvider, scope) {
+                    provideSleepScreenViewModel(locationProvider, scope)
+                }
                 val state = viewModel.state.collectAsState()
 
                 SharedSleepScreen(

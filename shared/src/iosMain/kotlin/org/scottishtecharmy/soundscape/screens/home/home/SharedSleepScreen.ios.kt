@@ -1,15 +1,27 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenState.Sleeping
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenState.Snoozing
 
-actual fun provideSleepScreenViewModel(): ISleepScreenViewModel {
+actual fun provideSleepScreenViewModel(
+    locationProvider: LocationProvider,
+    coroutineScope: CoroutineScope,
+): ISleepScreenViewModel {
     return SleepScreenViewModel()
+}
+
+@Composable
+actual fun provideLocationProvider(): LocationProvider {
+    return remember { org.scottishtecharmy.soundscape.locationprovider.IosLocationProvider() }
 }
 
 class SleepScreenViewModel : ISleepScreenViewModel {
