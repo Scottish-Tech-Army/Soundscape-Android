@@ -48,6 +48,8 @@ class AutoCallout(
     private val vehicleLandmarkCalloutHistory = CalloutHistory()
     private val vehicleTransitStopCalloutHistory = CalloutHistory()
     private var lastTransitStopSweepLocation: LngLatAlt? = null
+    private val vehicleWaterwayCrossingCalloutHistory = CalloutHistory()
+    private var lastWaterwayCrossingSweepLocation: LngLatAlt? = null
     private val lastStationTracker = LastStationTracker()
     private val notableVehicleEventTracker = NotableVehicleEventTracker()
     private var lastTrainTimestampMs: Long? = null
@@ -343,6 +345,72 @@ class AutoCallout(
         return callout
     }
 
+    /**
+     * Announces a river/stream crossing (see TreeId.WATERWAY_CROSSINGS) as it's passed while
+     * travelling by car/bus - these are major navigation points ("Crossing Allander Water") worth
+     * calling out on their own, not just as part of a "via a bridge" road name. Sweeps the path
+     * travelled since the last location update rather than checking only the current point - see
+     * buildCalloutForVehicleTransitStop for why that matters at driving speed. Unlike a transit
+     * stop, a crossing has no "far side" to filter out - the road crosses the water regardless of
+     * direction of travel.
+     */
+    private fun buildCalloutForVehicleWaterwayCrossing(
+        userGeometry: UserGeometry,
+        gridState: GridState
+    ): TrackedCallout? {
+        if (!userGeometry.inVehicle() && !recentlyInVehicle(userGeometry)) {
+            lastWaterwayCrossingSweepLocation = null
+            return null
+        }
+
+        val previousLocation = lastWaterwayCrossingSweepLocation
+        lastWaterwayCrossingSweepLocation = userGeometry.location
+        if (previousLocation == null) {
+            // Nothing to sweep yet - this is the first update since entering vehicle mode.
+            return null
+        }
+
+        vehicleWaterwayCrossingCalloutHistory.trim(userGeometry)
+
+        val sweep = LineString(previousLocation, userGeometry.location)
+        val nearbyCrossings = gridState.getFeatureTree(TreeId.WATERWAY_CROSSINGS)
+            .getNearbyLine(sweep, 20.0, gridState.ruler)
+
+        val crossingFeature = nearbyCrossings.features
+            .filterIsInstance<MvtFeature>()
+            .filter { !it.name.isNullOrEmpty() }
+            .minByOrNull {
+                getDistanceToFeature(userGeometry.location, it, userGeometry.ruler).distance
+            } ?: return null
+
+        val name = crossingFeature.name!!
+        val nearestPoint = getDistanceToFeature(userGeometry.location, crossingFeature, userGeometry.ruler)
+        val callout = TrackedCallout(
+            userGeometry,
+            trackedText = name,
+            location = nearestPoint.point,
+            positionedStrings = listOf(
+                PositionedString(
+                    text = localized?.get(StringKey.DirectionsCrossingWaterway, name)
+                        ?: "Crossing $name",
+                    location = nearestPoint.point,
+                    type = AudioType.LOCALIZED
+                )
+            ),
+            isPoint = true,
+            isGeneric = false,
+        )
+
+        if (vehicleWaterwayCrossingCalloutHistory.find(callout)) {
+            return null
+        }
+
+        // Added eagerly - see the equivalent comment in buildCalloutForVehicleLandmark.
+        vehicleWaterwayCrossingCalloutHistory.add(callout)
+        notableVehicleEventTracker.recordEvent(userGeometry.timestampMilliseconds)
+        return callout
+    }
+
     fun buildCalloutForIntersections(
         userGeometry: UserGeometry,
         gridState: GridState
@@ -552,8 +620,11 @@ class AutoCallout(
                         buildCalloutForVehicleLandmark(userGeometry, gridState)
                     val vehicleTransitStopCallout =
                         buildCalloutForVehicleTransitStop(userGeometry, gridState)
+                    val vehicleWaterwayCrossingCallout =
+                        buildCalloutForVehicleWaterwayCrossing(userGeometry, gridState)
                     val vehicleCallouts = listOfNotNull(
-                        roadSenseCallout, vehicleLandmarkCallout, vehicleTransitStopCallout
+                        roadSenseCallout, vehicleLandmarkCallout, vehicleTransitStopCallout,
+                        vehicleWaterwayCrossingCallout
                     )
                     if (vehicleCallouts.isNotEmpty()) {
                         val primary = vehicleCallouts.first()
