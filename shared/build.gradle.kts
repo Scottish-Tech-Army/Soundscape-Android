@@ -1,3 +1,5 @@
+import org.gradle.kotlin.dsl.implementation
+
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.android.library)
@@ -58,8 +60,11 @@ kotlin {
             implementation(libs.kotlinx.coroutines.test)
         }
         androidMain.dependencies {
+            implementation(project.dependencies.platform(libs.androidx.compose.bom))
             implementation(libs.jts.core)
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.ui.tooling.preview)
+            implementation(libs.ui.tooling)
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
@@ -76,6 +81,9 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+    }
+    buildFeatures {
+        compose = true
     }
     // Reuse shared resources for the Android target so JSON data files live
     // in a single canonical location consumed by both platforms.
