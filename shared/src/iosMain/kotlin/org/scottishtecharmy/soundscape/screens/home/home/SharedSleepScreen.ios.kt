@@ -1,7 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,11 +15,6 @@ actual fun provideSleepScreenViewModel(
     coroutineScope: CoroutineScope,
 ): ISleepScreenViewModel {
     return SleepScreenViewModel()
-}
-
-@Composable
-actual fun provideLocationProvider(): LocationProvider {
-    return remember { org.scottishtecharmy.soundscape.locationprovider.IosLocationProvider() }
 }
 
 class SleepScreenViewModel : ISleepScreenViewModel {

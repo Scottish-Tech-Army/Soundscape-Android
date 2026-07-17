@@ -336,6 +336,8 @@
     <string name="sleep_sleep">Sleep</string>
     <!-- App is currently Sleeping. Putting the app in an idle state for a period of time. -->
     <string name="sleep_sleeping">Sleeping</string>
+    <!-- App is currently Snoozing. Putting the app in a state that waits for the user to manually exit the state or leave their current location. -->
+    <string name="sleep_snoozing">Snoozing</string>
     <!-- Text for sleep page explaining what it does -->
     <string name="sleep_sleeping_message">Soundscape is currently sleeping. This prevents Soundscape from using Location Services or downloading data. This conserves battery when you are not using Soundscape. Tap the button below to wake up Soundscape.</string>
     <!-- Text for sleep page explaining what Wake On Leave does -->

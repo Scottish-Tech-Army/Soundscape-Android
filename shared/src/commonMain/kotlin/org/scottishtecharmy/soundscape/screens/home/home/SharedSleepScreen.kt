@@ -28,6 +28,7 @@ import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.sleep_sleeping
 import org.scottishtecharmy.soundscape.resources.sleep_sleeping_message
 import org.scottishtecharmy.soundscape.resources.sleep_sleeping_wake_on_leave_message
+import org.scottishtecharmy.soundscape.resources.sleep_snoozing
 import org.scottishtecharmy.soundscape.resources.sleep_wake_on_leave
 import org.scottishtecharmy.soundscape.resources.sleep_wake_up_now
 import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
@@ -43,9 +44,6 @@ interface ISleepScreenViewModel {
     val state: StateFlow<SleepScreenState>
     fun onWakeOnLeaveClicked()
 }
-
-@Composable
-expect fun provideLocationProvider(): LocationProvider
 
 expect fun provideSleepScreenViewModel(
     locationProvider: LocationProvider,
@@ -73,7 +71,12 @@ fun SharedSleepScreen(
     ) {
         Row {
             Text(
-                text = stringResource(Res.string.sleep_sleeping),
+                text = stringResource(
+                    when (state) {
+                        SleepScreenState.Sleeping -> Res.string.sleep_sleeping
+                        is SleepScreenState.Snoozing -> Res.string.sleep_snoozing
+                    }
+                ),
                 style = MaterialTheme.typography.titleLarge,
                 modifier = Modifier.largePadding(),
                 color = MaterialTheme.colorScheme.onSurface,

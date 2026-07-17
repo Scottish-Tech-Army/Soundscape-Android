@@ -27,7 +27,7 @@ class IosLocationProvider : LocationProvider() {
         locationManager.requestAlwaysAuthorization()
     }
 
-    fun start() {
+    override fun start() {
         locationManager.delegate = delegate
         locationManager.startUpdatingLocation()
     }

@@ -9,7 +9,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
@@ -222,6 +221,16 @@ fun HomeScreen(
                 activity.setServiceState(false)
             },
             onGetLanguageMismatch = { getLanguageMismatch() },
+            provideLocationProvider = {
+                if (org.scottishtecharmy.soundscape.hasPlayServices(context)) {
+                    org.scottishtecharmy.soundscape.locationprovider.GooglePlayLocationProvider(
+                        context
+                    ).apply { start() }
+                } else {
+                    org.scottishtecharmy.soundscape.locationprovider.AndroidLocationProvider(context)
+                        .apply { start() }
+                }
+            },
             getOpenSourceLicensesJson = {
                 context.assets.open("open_source_licenses.json")
                     .bufferedReader()

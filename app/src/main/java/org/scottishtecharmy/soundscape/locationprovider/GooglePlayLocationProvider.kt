@@ -72,7 +72,7 @@ class GooglePlayLocationProvider(context: Context) :
     }
 
     @SuppressLint("MissingPermission")
-    fun start(context: Context) {
+    override fun start() {
 
         fusedLocationClient.requestLocationUpdates(
             LocationRequest.Builder(

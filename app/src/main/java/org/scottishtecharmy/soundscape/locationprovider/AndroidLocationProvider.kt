@@ -88,7 +88,7 @@ class AndroidLocationProvider(context: Context) : LocationProvider() {
     }
 
     @SuppressLint("MissingPermission")
-    fun start(context: Context) {
+    override fun start() {
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
             locationManager.requestLocationUpdates(
                 LocationManager.GPS_PROVIDER,

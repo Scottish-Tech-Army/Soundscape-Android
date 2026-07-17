@@ -4,6 +4,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 abstract class LocationProvider {
+
+    abstract fun start()
     abstract fun destroy()
     open fun updateLocation(newLocation: SoundscapeLocation) {}
 

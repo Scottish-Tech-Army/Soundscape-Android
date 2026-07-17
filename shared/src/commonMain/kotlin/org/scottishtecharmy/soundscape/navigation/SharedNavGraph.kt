@@ -46,7 +46,6 @@ import org.scottishtecharmy.soundscape.screens.home.home.SharedHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedOpenSourceLicensesScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedSleepScreen
-import org.scottishtecharmy.soundscape.screens.home.home.provideLocationProvider
 import org.scottishtecharmy.soundscape.screens.home.home.provideSleepScreenViewModel
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedLocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedSaveAndEditMarkerScreen
@@ -573,7 +572,12 @@ fun SharedNavHost(
             }
 
             composable(SharedRoutes.SLEEP) {
-                val locationProvider = provideLocationProvider()
+                val locationProvider = remember {
+                    callbacks.provideLocationProvider?.invoke()
+                        ?: org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider(
+                            LngLatAlt()
+                        )
+                }
                 val scope = rememberCoroutineScope()
                 val viewModel = remember(locationProvider, scope) {
                     provideSleepScreenViewModel(locationProvider, scope)
