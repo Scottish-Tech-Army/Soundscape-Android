@@ -4,7 +4,9 @@ import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
+import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
+import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabelFacingDirectionAlong
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeClockTime
 import org.scottishtecharmy.soundscape.geoengine.utils.getRelativeLeftRightLabel
 import org.scottishtecharmy.soundscape.geoengine.utils.normalizeHeading
@@ -260,6 +262,21 @@ private fun travellingReverseGeocodeName(
     }
     val roadName = nearestRoad?.getName(null, gridState, localized, true)?.takeIf { it.isNotEmpty() }
 
+    // The direction of travel along a road (e.g. "Traveling north along M8") - using the
+    // map-matched heading, which snaps to the road's own tangent (see UserGeometry.snappedHeading)
+    // - is only meaningful for an actual road, not a railway line. Every road callout below goes
+    // through roadPhrase() so they read consistently, rather than some saying "On M8" and others
+    // "Traveling north along M8"; it only falls back to the bare "On M8" form when there's no
+    // heading to work with (getCompassLabelFacingDirectionAlong has its own English fallback text
+    // for a null localized, e.g. in tests, so this doesn't need to check for that separately).
+    val travelHeadingDegrees = if (!probablyOnTrain) userGeometry.snappedHeading()?.toInt() else null
+    fun roadPhrase(name: String): String =
+        if (travelHeadingDegrees != null) {
+            getCompassLabelFacingDirectionAlong(localized, travelHeadingDegrees, name, true, true)
+        } else {
+            localized?.get(StringKey.DirectionsOnRoad, name) ?: "On $name"
+        }
+
     // Check if we're near a highway junction (motorway exit, interchange etc.) - not relevant
     // when travelling by train. Major junctions (motorway/trunk/primary) are always eligible;
     // minor ones only become eligible once nothing notable has been announced for a while, so a
@@ -280,9 +297,8 @@ private fun travellingReverseGeocodeName(
             }
         } as MvtFeature?
         if (nearestJunction != null) {
-            val junction = nearestJunction
-            val ref = junction.properties?.get("ref") as? String
-            val name = junction.name
+            val ref = nearestJunction.properties?.get("ref") as? String
+            val name = nearestJunction.name
             val junctionText = if (ref != null) {
                 if (name != null) {
                     localized?.get(StringKey.DirectionsJunctionWithRefAndName, ref, name)
@@ -297,8 +313,15 @@ private fun travellingReverseGeocodeName(
                 notableEventTracker?.recordEvent(userGeometry.timestampMilliseconds)
                 return ReverseGeocodeText(
                     if (roadName != null) {
-                        localized?.get(StringKey.DirectionsOnRoadAtJunction, roadName, junctionText)
-                            ?: "On $roadName at $junctionText"
+                        if (travelHeadingDegrees != null) {
+                            "${roadPhrase(roadName)} " + (
+                                localized?.get(StringKey.DirectionsAtJunctionInline, junctionText)
+                                    ?: "at $junctionText"
+                                )
+                        } else {
+                            localized?.get(StringKey.DirectionsOnRoadAtJunction, roadName, junctionText)
+                                ?: "On $roadName at $junctionText"
+                        }
                     } else {
                         localized?.get(StringKey.DirectionsNearName, junctionText)
                             ?: "Near $junctionText"
@@ -321,10 +344,15 @@ private fun travellingReverseGeocodeName(
         }
     }
 
-    // Nearest settlements with Nominatim-style proximities.
+    // Nearest settlements with Nominatim-style proximities. Hamlet/village/town are discrete
+    // points a road passes near or through, so they're eligible for directional "towards X"/
+    // "away from X"/"near X" phrasing below (see nearestSettlementIsCity). A city is a large,
+    // often-merged conurbation where that phrasing would be misleading - you can't be "towards
+    // Glasgow" while already inside its urban area - so it keeps the vaguer "close to" instead.
     var nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_HAMLET)
         .getNearestFeature(location, settlementGrid.ruler, 1000.0) as MvtFeature?
     var nearestSettlementName = nearestSettlement?.name
+    var nearestSettlementIsCity = false
     if (nearestSettlementName == null) {
         nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_VILLAGE)
             .getNearestFeature(location, settlementGrid.ruler, 2000.0) as MvtFeature?
@@ -337,11 +365,14 @@ private fun travellingReverseGeocodeName(
                 nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_CITY)
                     .getNearestFeature(location, settlementGrid.ruler, 15000.0) as MvtFeature?
                 nearestSettlementName = nearestSettlement?.name
+                nearestSettlementIsCity = nearestSettlementName != null
             }
         }
     }
 
     if (roadName != null) {
+        val phrase = roadPhrase(roadName)
+
         // Distance since the last station is only worth mentioning alongside something else worth
         // describing (a nearby settlement) - otherwise it ends up as a standalone callout that
         // fires on every location update as the distance keeps climbing, which is far too
@@ -369,13 +400,87 @@ private fun travellingReverseGeocodeName(
                 dedupText = "On $roadName and close to $nearestSettlementName since $sinceStationName"
             )
         }
+
+        // Trains don't get the directional towards/away from/near settlement phrasing below
+        // (travelHeadingDegrees is always null for a train - see roadPhrase above), just a plain
+        // settlement mention.
+        if (probablyOnTrain) {
+            return ReverseGeocodeText(
+                if (nearestSettlementName != null) {
+                    localized?.get(
+                        StringKey.DirectionsOnRoadAndSettlement, roadName, nearestSettlementName
+                    ) ?: "On $roadName and close to $nearestSettlementName"
+                } else {
+                    phrase
+                }
+            )
+        }
+
+        // A discrete settlement (hamlet/village/town) the road runs towards, away from, or past
+        // gets phrased relative to the direction of travel; a city keeps the vaguer "close to"
+        // (see nearestSettlementIsCity above). Both need a heading to work out the relative
+        // bearing, so without one this falls through to the plain road/settlement mention below.
+        val settlementLocation = (nearestSettlement?.geometry as? Point)?.coordinates
+        if ((nearestSettlementName != null) && (travelHeadingDegrees != null) &&
+            (settlementLocation != null)
+        ) {
+            if (nearestSettlementIsCity) {
+                return ReverseGeocodeText(
+                    "$phrase " + (
+                        localized?.get(StringKey.DirectionsCloseToSettlementInline, nearestSettlementName)
+                            ?: "close to $nearestSettlementName"
+                        )
+                )
+            }
+
+            val headingOffset = calculateHeadingOffset(
+                travelHeadingDegrees.toDouble(), gridState.ruler.bearing(location, settlementLocation)
+            )
+            val (settlementPhrase, dedupSuffix) = when {
+                headingOffset <= 45.0 -> {
+                    val distanceText = formatDistanceAndDirection(
+                        gridState.ruler.distance(location, settlementLocation), null, localized
+                    )
+                    Pair(
+                        localized?.get(
+                            StringKey.DirectionsTowardsSettlement, nearestSettlementName, distanceText
+                        ) ?: "towards $nearestSettlementName, $distanceText away",
+                        "towards $nearestSettlementName"
+                    )
+                }
+                headingOffset >= 135.0 -> {
+                    val distanceText = formatDistanceAndDirection(
+                        gridState.ruler.distance(location, settlementLocation), null, localized
+                    )
+                    Pair(
+                        localized?.get(
+                            StringKey.DirectionsAwayFromSettlement, nearestSettlementName, distanceText
+                        ) ?: "away from $nearestSettlementName, $distanceText away",
+                        "away from $nearestSettlementName"
+                    )
+                }
+                else -> Pair(
+                    localized?.get(StringKey.DirectionsNearSettlementInline, nearestSettlementName)
+                        ?: "near $nearestSettlementName",
+                    "near $nearestSettlementName"
+                )
+            }
+            return ReverseGeocodeText(
+                text = "$phrase $settlementPhrase",
+                // The distance climbs/falls on every call, so it's never included in the dedup
+                // comparison (see the "since station" case above) - only a genuinely new
+                // towards/away/near relationship is worth a fresh announcement.
+                dedupText = "$phrase $dedupSuffix"
+            )
+        }
+
         return ReverseGeocodeText(
             if (nearestSettlementName != null) {
                 localized?.get(
                     StringKey.DirectionsOnRoadAndSettlement, roadName, nearestSettlementName
                 ) ?: "On $roadName and close to $nearestSettlementName"
             } else {
-                localized?.get(StringKey.DirectionsOnRoad, roadName) ?: "On $roadName"
+                phrase
             }
         )
     }

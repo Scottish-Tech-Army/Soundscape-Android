@@ -374,10 +374,20 @@
     <string name="directions_on_road">On %1$s</string>
     <!-- Travelling in a vehicle, on a road that's also close to a settlement, %1$s is a road name and %2$s is a settlement name, example: "On Glasgow Road and close to Milngavie" -->
     <string name="directions_on_road_and_settlement">On %1$s and close to %2$s</string>
-    <!-- Travelling in a vehicle, on a road approaching/at a junction, %1$s is a road name and %2$s is the junction description (see directions_junction_with_ref/directions_junction_with_ref_and_name), example: "On the M8 at Junction 2, Robroyston" -->
+    <!-- Travelling in a vehicle, on a road approaching/at a junction, %1$s is a road name and %2$s is the junction description (see directions_junction_with_ref/directions_junction_with_ref_and_name), example: "On the M8 at Junction 2, Robroyston" - only used as a fallback when no direction of travel is available (see directions_at_junction_inline for the normal case) -->
     <string name="directions_on_road_at_junction">On %1$s at %2$s</string>
+    <!-- Travelling in a vehicle, appended after a "Traveling north along %s" style phrase when approaching/at a junction, %1$s is the junction description (see directions_junction_with_ref/directions_junction_with_ref_and_name), example: "Traveling north along the M8 at Junction 2, Robroyston" -->
+    <string name="directions_at_junction_inline">at %1$s</string>
     <!-- Travelling by train, close to a settlement and with a distance since the last station tracked, %1$s is the line name, %2$s is a settlement name, %3$s is a distance, %4$s is a station name, example: "On train and close to Partick, 1.6 km since Westerton" -->
     <string name="directions_on_road_and_settlement_since">On %1$s and close to %2$s, %3$s since %4$s</string>
+    <!-- Travelling in a vehicle, appended after a "Traveling north along %s" style phrase when a discrete settlement (hamlet/village/town) is roughly ahead in the direction of travel, %1$s is the settlement name and %2$s is a distance, example: "Traveling north along the A81 towards Strathblane, 5.0 km away" -->
+    <string name="directions_towards_settlement">towards %1$s, %2$s away</string>
+    <!-- Travelling in a vehicle, appended after a "Traveling north along %s" style phrase when a discrete settlement (hamlet/village/town) is roughly behind the direction of travel, %1$s is the settlement name and %2$s is a distance, example: "Traveling south along the A81 away from Strathblane, 5.0 km away" -->
+    <string name="directions_away_from_settlement">away from %1$s, %2$s away</string>
+    <!-- Travelling in a vehicle, appended after a "Traveling north along %s" style phrase when a discrete settlement (hamlet/village/town) is roughly to the side of the direction of travel rather than ahead or behind, %1$s is the settlement name, example: "Traveling north along the A81 near Strathblane" -->
+    <string name="directions_near_settlement_inline">near %1$s</string>
+    <!-- Travelling in a vehicle, appended after a "Traveling north along %s" style phrase when close to a city/large conurbation, where a directional "towards"/"away from" wouldn't be meaningful, %1$s is the settlement name, example: "Traveling north along the A81 close to Glasgow" -->
+    <string name="directions_close_to_settlement_inline">close to %1$s</string>
     <!-- Travelling on an unnamed railway line - used in place of a line name (e.g. "Argyle Line") when the line's name isn't available in the map data, combined with the "On %s" style templates, example: "On train" -->
     <string name="directions_generic_train">train</string>
     <!-- Travelling in a car or bus, called out as a large point of interest (e.g. a stadium, park or hospital) is passed, %1$s is the POI's name, example: "Passing Ibrox Stadium" -->
