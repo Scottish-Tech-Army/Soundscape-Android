@@ -30,6 +30,25 @@ import kotlin.math.sqrt
 
 private const val FRECHET_QUEUE_SIZE = 12
 
+// See MapMatchFilter.filter's follower-selection hysteresis - a challenger follower must beat the
+// currently-matched one's frechetAverage by at least this fraction (i.e. be at least 25% lower)
+// before the match is allowed to switch to it.
+private const val FOLLOWER_SWITCH_HYSTERESIS_FACTOR = 0.75
+
+// See MapMatchFilter.filter's raw-distance override of the hysteresis above - the incumbent's raw
+// nearestPoint.distance must already be at least this far off for the override to be considered.
+private const val RAW_DISTANCE_OVERRIDE_MINIMUM_METRES = 10.0
+
+// See MapMatchFilter.filter's raw-distance override - the challenger's raw nearestPoint.distance
+// must be under this fraction of the incumbent's (i.e. well under a third of it) for the override
+// to kick in and bypass the frechetAverage hysteresis.
+private const val RAW_DISTANCE_OVERRIDE_RATIO = 0.3
+
+// See MapMatchFilter.isMatchConfident/updateMatchConfidence - how many ticks matchedWay can stay
+// non-null without matchedFollower itself individually reaching LOCKED-level confidence (e.g.
+// while its route is being handed off to a freshly-extended follower) before confidence is lost.
+private const val GRACE_TICKS_AFTER_LOSING_CONFIDENCE = 5
+
 enum class RoadFollowerState {
     LOCKED,
     UNLOCKED,
@@ -147,6 +166,25 @@ class RoadFollower(
     var lastMatchedLocation: PointAndDistanceAndHeading? = null
     var lastCenter = LngLatAlt()
     val frechetQueue = ArrayDeque<Double>(FRECHET_QUEUE_SIZE)
+
+    /**
+     * The LOCKED/UNLOCKED distinction (frechetQueue.size > FRECHET_QUEUE_SIZE/2) exists to avoid
+     * treating a follower that's only had a couple of ticks to prove itself as being as
+     * trustworthy as one with a full queue of consistent history. But a follower that's only just
+     * been created (e.g. for a road discovered at a junction) still has SOME evidence the moment
+     * it's within striking distance of the GPS track - and at driving speed, a well-established
+     * LOCKED follower that's actually drifted away from the true road (e.g. the outer edge of a
+     * bend, where matchedPoint.distance and radius are both still large) shouldn't beat a
+     * brand-new follower whose very first sample landed almost exactly on the road, just because
+     * the new one hasn't accumulated a big queue yet. So this is used for the actual competitive
+     * frechetAverage instead of unconditionally disqualifying with Double.MAX_VALUE whenever the
+     * queue isn't yet half full - only a follower with literally zero history (still
+     * Double.MAX_VALUE here) can't win.
+     */
+    fun frechetAverageOrMax(): Double {
+        if (frechetQueue.isEmpty()) return Double.MAX_VALUE
+        return frechetQueue.average()
+    }
 
     val k = 0.2
     var averagePointGap: Double = 0.0
@@ -397,10 +435,14 @@ class RoadFollower(
         lastGpsLocation?.let { lastLocation ->
 
             if (lastLocation == gpsLocation) {
-                if (frechetQueue.size > FRECHET_QUEUE_SIZE / 2) {
-                    return RoadFollowerStatus(frechetQueue.average(), RoadFollowerState.LOCKED)
-                }
-                return RoadFollowerStatus(Double.MAX_VALUE, RoadFollowerState.UNLOCKED)
+                return RoadFollowerStatus(
+                    frechetAverageOrMax(),
+                    if (frechetQueue.size > FRECHET_QUEUE_SIZE / 2) {
+                        RoadFollowerState.LOCKED
+                    } else {
+                        RoadFollowerState.UNLOCKED
+                    }
+                )
             }
 
             // Get the shortest D min value (distance from new location to previous chord ends)
@@ -517,13 +559,14 @@ class RoadFollower(
                     (radius * radius) - (matchedPoint.distance * matchedPoint.distance)
                 ) * 2
 
-                //
-                // TODO: There's a problem with the chordLength on far away roads, where it's
-                //  sometimes zero which messes the area calculation up. If it's zero, then there's
-                //  no free space, and so it's not a valid path at all.
-                if (chordLength == 0.0)
-                    frechetQueue.clear()
-                else
+                // A chordLength of exactly zero is a degenerate numeric edge case (matchedPoint.
+                // distance landing right at radius, e.g. from floating-point rounding) rather than
+                // a sign the follower is genuinely a bad match - it can happen on an otherwise
+                // well-tracked follower for one tick. Skip adding it rather than clearing the whole
+                // queue, which would needlessly throw away an established, accumulated lock (this
+                // used to matter less before frechetAverageOrMax/isMatchConfident started relying
+                // on queue size/contents as a genuine confidence signal).
+                if (chordLength != 0.0)
                     frechetQueue.addLast(chordLength)
 
                 if (frechetQueue.size > FRECHET_QUEUE_SIZE)
@@ -567,14 +610,14 @@ class RoadFollower(
                 return RoadFollowerStatus(Double.MAX_VALUE, RoadFollowerState.ANGLED_AWAY)
             }
         }
-        if (frechetQueue.size > (FRECHET_QUEUE_SIZE / 2)) {
-            return RoadFollowerStatus(
-                frechetQueue.average(),
-                if (directionChange) RoadFollowerState.DIRECTION_CHANGED else RoadFollowerState.LOCKED
-            )
-        }
-
-        return RoadFollowerStatus(Double.MAX_VALUE, RoadFollowerState.UNLOCKED)
+        return RoadFollowerStatus(
+            frechetAverageOrMax(),
+            when {
+                directionChange -> RoadFollowerState.DIRECTION_CHANGED
+                frechetQueue.size > (FRECHET_QUEUE_SIZE / 2) -> RoadFollowerState.LOCKED
+                else -> RoadFollowerState.UNLOCKED
+            }
+        )
     }
 
     fun chosen(): PointAndDistanceAndHeading? {
@@ -616,6 +659,45 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
     var matchedWay: Way? = null
     var matchedFollower: RoadFollower? = null
     var lastLocation: LngLatAlt? = null
+
+    /**
+     * True once [matchedWay] has been tracked consistently for a real stretch, rather than just
+     * this one tick - see RoadFollower's LOCKED state, which uses the same frechetQueue-size bar.
+     * A momentary, coincidental proximity (e.g. a road crossing a railway line at a level
+     * crossing, briefly pulling in a rail-network match) never builds up this kind of sustained
+     * history before the two lines diverge again, whereas a genuine, continuous match - like
+     * actually riding a train - holds it easily. Used to gate UserGeometry.probablyOnTrain so a
+     * momentary rail-network coincidence isn't mistaken for genuinely being on a train.
+     *
+     * Backed by a grace window (see [updateMatchConfidence]), not just the current tick's
+     * follower - colorIndex isn't a stable identity across ticks (an extended follower computes
+     * its own colorIndex arithmetically from its parent's, so two unrelated followers can share
+     * one), and the follower object actually selected as matchedFollower routinely gets replaced
+     * by a fresh one - sometimes via a brief tick where there's no candidate at all - as its route
+     * is extended onto a new Way, even mid-journey on a real, continuously-held train lock. The
+     * fresh follower starts with an empty frechetQueue and has to rebuild it from scratch, which
+     * would otherwise cost several ticks of lost confidence on every such handoff. A genuinely
+     * sustained loss (no confident match for many ticks in a row) still falls out of the grace
+     * window regardless, since the counter climbs continuously throughout it.
+     */
+    var isMatchConfident: Boolean = false
+        private set
+    private var ticksSinceConfidentMatch = GRACE_TICKS_AFTER_LOSING_CONFIDENCE + 1
+
+    private fun updateMatchConfidence() {
+        val individuallyConfident = (matchedFollower?.frechetQueue?.size ?: 0) > (FRECHET_QUEUE_SIZE / 2)
+        // Also grace a tick where matchedWay itself goes null (not just a low-confidence
+        // follower) - a real, continuous train journey can briefly lose every candidate for a
+        // single tick (e.g. approaching points/a junction) and immediately reacquire one, and
+        // that reacquired follower still has to rebuild its own frechetQueue from scratch. Without
+        // grace here, that one-tick full loss would otherwise reset the count and force the whole
+        // rebuild (several ticks) to run with no grace at all. A genuinely sustained loss (no
+        // candidate for many ticks in a row) still correctly falls out of the grace window either
+        // way, since the counter keeps climbing throughout it.
+        ticksSinceConfidentMatch = if (individuallyConfident) 0 else ticksSinceConfidentMatch + 1
+        isMatchConfident = individuallyConfident ||
+            (ticksSinceConfidentMatch <= GRACE_TICKS_AFTER_LOSING_CONFIDENCE)
+    }
 
     fun addWaysToFollowers(
         intersection: Intersection,
@@ -772,6 +854,16 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
 
         var lowestFrechet = Double.MAX_VALUE
         var lowestFollower: RoadFollower? = null
+        val previouslyMatchedFollower = matchedFollower
+        var previousMatchFrechet: Double? = null
+        // The follower whose raw (unsmoothed) GPS-to-road distance is the smallest this tick,
+        // regardless of its frechetAverage - see the raw-distance override below, which needs
+        // this rather than just lowestFollower, since a follower that's clearly the best
+        // positional match isn't always the frechetAverage-argmin (e.g. it may still be building
+        // up its own history after just being created at a junction).
+        var closestByRawDistance: RoadFollower? = null
+        var closestRawDistance = Double.MAX_VALUE
+        var closestByRawDistanceFrechet = Double.MAX_VALUE
         val followerIterator = followerList.listIterator()
         while (followerIterator.hasNext()) {
             val follower = followerIterator.next()
@@ -795,6 +887,19 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
                 // as the match, even though it's still tracked here in the follower list.
                 continue
             }
+
+            if (follower === previouslyMatchedFollower) {
+                previousMatchFrechet = frechetStatus.frechetAverage
+            }
+
+            follower.nearestPoint?.distance?.let { rawDistance ->
+                if (rawDistance < closestRawDistance) {
+                    closestRawDistance = rawDistance
+                    closestByRawDistance = follower
+                    closestByRawDistanceFrechet = frechetStatus.frechetAverage
+                }
+            }
+
             if (frechetStatus.frechetAverage < lowestFrechet) {
                 var skip = false
                 matchedWay?.let { matched ->
@@ -870,6 +975,48 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
             }
         }
 
+        // Prefer sticking with the previously-matched follower unless a challenger clearly beats
+        // it. At driving speed, radius (see RoadFollower.update) has to grow large enough to
+        // tolerate the bigger gap between GPS fixes, and a large enough radius can end up
+        // containing a nearby parallel/service road as well as the true road - at which point
+        // their frechetAverage values are within noise of each other, and the bare "lowest wins"
+        // comparison above would flip the match between them on essentially a coin toss from one
+        // tick to the next (see e.g. a service road to a fire station right next to the real
+        // road). Only switch away from the current match once a challenger beats it by a real
+        // margin, not by an arbitrarily small amount - a genuine transition (the vehicle actually
+        // turning off) shows up as a much bigger gap than that, or as the old follower going
+        // DISTANT/ANGLED_AWAY/DIRECTION_CHANGED (and so having no previousMatchFrechet to compare
+        // against) rather than merely being a fraction worse.
+        //
+        // But frechetAverage (a chordLength derived from radius) isn't a reliable proxy for raw
+        // proximity - two followers can end up with similar-looking frechetAverage values even
+        // though one's actual GPS-to-road distance is a metre and the other's is 40 (e.g. right
+        // after a junction, where an initial ambiguous tick locks onto the wrong branch, and the
+        // wrong follower's radius/chordLength then look "reasonable" for a long stretch even as
+        // every subsequent fix lands almost exactly on the real road). So the hysteresis above is
+        // overridden in favour of closestByRawDistance (not necessarily lowestFollower - the
+        // clearly-best positional match is often a follower that's still building up its own
+        // frechetAverage history, e.g. one created moments earlier at a junction, so it isn't
+        // always the frechetAverage-argmin either) when its raw nearestPoint.distance is
+        // overwhelmingly better than the incumbent's. This only kicks in once the incumbent is
+        // already a long way off (RAW_DISTANCE_OVERRIDE_MINIMUM_METRES), so it doesn't reopen the
+        // original close-parallel-road ambiguity this hysteresis exists to prevent, where both
+        // roads' raw distances are small.
+        val previousMatchDistance = previouslyMatchedFollower?.nearestPoint?.distance
+        val challengerRawDistanceWins = (previousMatchDistance != null) &&
+            (closestByRawDistance != null) && (closestByRawDistance !== previouslyMatchedFollower) &&
+            (previousMatchDistance > RAW_DISTANCE_OVERRIDE_MINIMUM_METRES) &&
+            (closestRawDistance < previousMatchDistance * RAW_DISTANCE_OVERRIDE_RATIO)
+        if (challengerRawDistanceWins) {
+            lowestFollower = closestByRawDistance
+            lowestFrechet = closestByRawDistanceFrechet
+        } else if ((previousMatchFrechet != null) && (lowestFollower !== previouslyMatchedFollower) &&
+            (lowestFrechet >= previousMatchFrechet * FOLLOWER_SWITCH_HYSTERESIS_FACTOR)
+        ) {
+            lowestFollower = previouslyMatchedFollower
+            lowestFrechet = previousMatchFrechet
+        }
+
         lastLocation = location
         if (lowestFollower != null) {
             matchedLocation = lowestFollower.chosen()
@@ -877,6 +1024,7 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
             matchedWay = lowestFollower.currentNearestRoad
             val color = lowestFollower.color
             matchedLocation?.let { matchedLocation ->
+                updateMatchConfidence()
                 return Triple(matchedLocation.point, matchedWay, color)
             }
         }
@@ -884,6 +1032,7 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
         matchedFollower = null
         matchedWay = null
 
+        updateMatchConfidence()
         return Triple(null, null, "")
     }
 }
