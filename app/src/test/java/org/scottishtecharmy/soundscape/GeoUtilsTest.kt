@@ -11,6 +11,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import org.scottishtecharmy.soundscape.geoengine.utils.distanceToPolygon
+import org.scottishtecharmy.soundscape.geoengine.utils.extrapolatePositionForward
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxCorners
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxOfLineString
 import org.scottishtecharmy.soundscape.geoengine.utils.getBoundingBoxOfMultiLineString
@@ -1149,5 +1150,68 @@ class GeoUtilsTest {
         a.longitude = 181.0
         b.longitude = -181.0
         a.createCheapRuler().distance(b, a)
+    }
+
+    /**
+     * At 60mph (~26.82 m/s) heading 190 degrees, after 1 second the dead-reckoned position
+     * should be ~26.82m away from the origin at a bearing of 190 degrees - see
+     * GeoEngine.createUserGeometry, which uses this to keep spatialized audio from snapping to a
+     * new azimuth every time a ~once/second GPS fix lands.
+     */
+    @Test
+    fun extrapolatePositionForwardMovesAlongHeading() {
+        val origin = LngLatAlt(-4.25, 55.87)
+        val ruler = origin.createCheapRuler()
+        val speedMetersPerSecond = 60.0 * 1609.344 / 3600.0
+
+        val result = extrapolatePositionForward(
+            location = origin,
+            ruler = ruler,
+            speed = speedMetersPerSecond,
+            heading = 190.0,
+            fixTimestampMilliseconds = 1_000L,
+            nowMilliseconds = 2_000L,
+        )
+
+        Assert.assertEquals(speedMetersPerSecond, ruler.distance(origin, result), 0.01)
+        // ruler.bearing() returns -180..180 rather than 0..360, so normalize before comparing.
+        val bearing = (ruler.bearing(origin, result) + 360.0) % 360.0
+        Assert.assertEquals(190.0, bearing, 0.01)
+    }
+
+    /** A fix more than extrapolationLimitSeconds old is stale (e.g. signal loss) and shouldn't keep being projected forward indefinitely. */
+    @Test
+    fun extrapolatePositionForwardIgnoresStaleFix() {
+        val origin = LngLatAlt(-4.25, 55.87)
+        val ruler = origin.createCheapRuler()
+
+        val result = extrapolatePositionForward(
+            location = origin,
+            ruler = ruler,
+            speed = 10.0,
+            heading = 90.0,
+            fixTimestampMilliseconds = 1_000L,
+            nowMilliseconds = 10_000L,
+            extrapolationLimitSeconds = 3.0,
+        )
+
+        Assert.assertEquals(origin.longitude, result.longitude, 0.0)
+        Assert.assertEquals(origin.latitude, result.latitude, 0.0)
+    }
+
+    /** No heading, no speed, or no known fix timestamp - can't extrapolate, so returns the location unchanged. */
+    @Test
+    fun extrapolatePositionForwardReturnsUnchangedWithoutEnoughData() {
+        val origin = LngLatAlt(-4.25, 55.87)
+        val ruler = origin.createCheapRuler()
+
+        val noHeading = extrapolatePositionForward(origin, ruler, 10.0, null, 1_000L, 2_000L)
+        val noSpeed = extrapolatePositionForward(origin, ruler, 0.0, 90.0, 1_000L, 2_000L)
+        val noTimestamp = extrapolatePositionForward(origin, ruler, 10.0, 90.0, 0L, 2_000L)
+
+        for (result in listOf(noHeading, noSpeed, noTimestamp)) {
+            Assert.assertEquals(origin.longitude, result.longitude, 0.0)
+            Assert.assertEquals(origin.latitude, result.latitude, 0.0)
+        }
     }
 }

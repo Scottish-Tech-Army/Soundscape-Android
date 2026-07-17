@@ -13,4 +13,9 @@ data class SoundscapeLocation(
     val hasBearingAccuracy: Boolean = false,
     val hasSpeed: Boolean = false,
     val hasSpeedAccuracy: Boolean = false,
+    // Wall-clock time (epoch millis) this fix was captured at - 0 means unknown (e.g. a
+    // synthesized/debug location that was never a real fix). Used by GeoEngine to dead-reckon
+    // the position forward from this fix using its speed/bearing when audio geometry is updated
+    // between location updates - see GeoEngine.createUserGeometry.
+    val timestampMilliseconds: Long = 0L,
 )

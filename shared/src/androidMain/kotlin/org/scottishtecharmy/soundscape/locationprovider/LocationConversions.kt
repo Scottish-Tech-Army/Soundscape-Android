@@ -16,5 +16,6 @@ fun Location.toSoundscapeLocation(): SoundscapeLocation {
         hasBearingAccuracy = hasBearingAccuracy(),
         hasSpeed = hasSpeed(),
         hasSpeedAccuracy = hasSpeedAccuracy(),
+        timestampMilliseconds = time,
     )
 }
