@@ -202,7 +202,11 @@ class GeoEngine {
             headHeading = headHeading,
             mapMatchedWay = mapMatchFilter?.matchedWay,
             mapMatchedLocation = mapMatchFilter?.matchedLocation,
-            mapMatchedRailway = railMapMatchFilter.matchedWay,
+            // Only trust the rail match once it's been sustained for a real stretch, not just
+            // this one tick - see MapMatchFilter.isMatchConfident, which stops a road crossing a
+            // railway at a level crossing from being briefly mistaken for actually being on a
+            // train.
+            mapMatchedRailway = railMapMatchFilter.matchedWay.takeIf { railMapMatchFilter.isMatchConfident },
             currentBeacon = beaconLocation,
             inStreetPreview = streetPreview.running,
             timestampMilliseconds = currentTimeMillis()

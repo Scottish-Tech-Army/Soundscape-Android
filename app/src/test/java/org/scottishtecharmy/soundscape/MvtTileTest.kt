@@ -1459,7 +1459,9 @@ class MvtTileTest {
                     speed = speed,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
-                    mapMatchedRailway = railMapMatchFilter.matchedWay,
+                    mapMatchedRailway = railMapMatchFilter.matchedWay.takeIf {
+                        railMapMatchFilter.isMatchConfident
+                    },
                     timestampMilliseconds = (position.properties?.get("time") as? Double?)?.toLong()
                         ?: time
                 )
