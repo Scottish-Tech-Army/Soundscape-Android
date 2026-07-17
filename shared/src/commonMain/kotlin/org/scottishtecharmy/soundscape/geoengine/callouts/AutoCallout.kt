@@ -48,8 +48,8 @@ class AutoCallout(
     private val vehicleLandmarkCalloutHistory = CalloutHistory()
     private val vehicleTransitStopCalloutHistory = CalloutHistory()
     private var lastTransitStopSweepLocation: LngLatAlt? = null
-    private val vehicleWaterwayCrossingCalloutHistory = CalloutHistory()
-    private var lastWaterwayCrossingSweepLocation: LngLatAlt? = null
+    private val vehicleCrossingCalloutHistory = CalloutHistory()
+    private var lastCrossingSweepLocation: LngLatAlt? = null
     private val lastStationTracker = LastStationTracker()
     private val notableVehicleEventTracker = NotableVehicleEventTracker()
     private var lastTrainTimestampMs: Long? = null
@@ -346,53 +346,71 @@ class AutoCallout(
     }
 
     /**
-     * Announces a river/stream crossing (see TreeId.WATERWAY_CROSSINGS) as it's passed while
-     * travelling by car/bus - these are major navigation points ("Crossing Allander Water") worth
-     * calling out on their own, not just as part of a "via a bridge" road name. Sweeps the path
-     * travelled since the last location update rather than checking only the current point - see
-     * buildCalloutForVehicleTransitStop for why that matters at driving speed. Unlike a transit
-     * stop, a crossing has no "far side" to filter out - the road crosses the water regardless of
-     * direction of travel.
+     * Announces a river/canal or railway crossing (see TreeId.WATER_AND_RAIL_CROSSINGS) as it's
+     * passed while travelling by car/bus - these are major navigation points ("Crossing Allander
+     * Water", "Crossing the railway") worth calling out on their own, not just as part of a "via a
+     * bridge" road name. Sweeps the path travelled since the last location update rather than
+     * checking only the current point - see buildCalloutForVehicleTransitStop for why that matters
+     * at driving speed. Unlike a transit stop, a crossing has no "far side" to filter out - the
+     * road crosses the water/railway regardless of direction of travel.
      */
-    private fun buildCalloutForVehicleWaterwayCrossing(
+    private fun buildCalloutForVehicleCrossing(
         userGeometry: UserGeometry,
         gridState: GridState
     ): TrackedCallout? {
         if (!userGeometry.inVehicle() && !recentlyInVehicle(userGeometry)) {
-            lastWaterwayCrossingSweepLocation = null
+            lastCrossingSweepLocation = null
             return null
         }
 
-        val previousLocation = lastWaterwayCrossingSweepLocation
-        lastWaterwayCrossingSweepLocation = userGeometry.location
+        val previousLocation = lastCrossingSweepLocation
+        lastCrossingSweepLocation = userGeometry.location
         if (previousLocation == null) {
             // Nothing to sweep yet - this is the first update since entering vehicle mode.
             return null
         }
 
-        vehicleWaterwayCrossingCalloutHistory.trim(userGeometry)
+        vehicleCrossingCalloutHistory.trim(userGeometry)
 
         val sweep = LineString(previousLocation, userGeometry.location)
-        val nearbyCrossings = gridState.getFeatureTree(TreeId.WATERWAY_CROSSINGS)
+        val nearbyCrossings = gridState.getFeatureTree(TreeId.WATER_AND_RAIL_CROSSINGS)
             .getNearbyLine(sweep, 20.0, gridState.ruler)
 
+        // An unnamed waterway crossing isn't worth announcing - there's nothing useful to say
+        // beyond "Crossing" nothing - but an unnamed railway still is, since "Crossing the
+        // railway" is meaningful on its own even without a line name.
         val crossingFeature = nearbyCrossings.features
             .filterIsInstance<MvtFeature>()
-            .filter { !it.name.isNullOrEmpty() }
+            .filter { !it.name.isNullOrEmpty() || it.featureType == "railway" }
             .minByOrNull {
                 getDistanceToFeature(userGeometry.location, it, userGeometry.ruler).distance
             } ?: return null
 
-        val name = crossingFeature.name!!
+        val name = crossingFeature.name
+        // For a railway (unlike a waterway), the road's own brunnel tells us whether we're going
+        // over it (bridge) or under it (tunnel) - worth distinguishing, since "going under" reads
+        // oddly for a bridge and vice versa.
+        val goingUnder = (crossingFeature.featureType == "railway") &&
+            (crossingFeature.properties?.get("brunnel") == "tunnel")
+        val text = if (name != null) {
+            if (goingUnder) {
+                localized?.get(StringKey.DirectionsGoingUnderRailway, name) ?: "Going under $name"
+            } else {
+                localized?.get(StringKey.DirectionsCrossingWaterway, name) ?: "Crossing $name"
+            }
+        } else if (goingUnder) {
+            localized?.get(StringKey.DirectionsGoingUnderRailwayGeneric) ?: "Going under the railway"
+        } else {
+            localized?.get(StringKey.DirectionsCrossingRailwayGeneric) ?: "Crossing the railway"
+        }
         val nearestPoint = getDistanceToFeature(userGeometry.location, crossingFeature, userGeometry.ruler)
         val callout = TrackedCallout(
             userGeometry,
-            trackedText = name,
+            trackedText = name ?: "railway",
             location = nearestPoint.point,
             positionedStrings = listOf(
                 PositionedString(
-                    text = localized?.get(StringKey.DirectionsCrossingWaterway, name)
-                        ?: "Crossing $name",
+                    text = text,
                     location = nearestPoint.point,
                     type = AudioType.LOCALIZED
                 )
@@ -401,12 +419,12 @@ class AutoCallout(
             isGeneric = false,
         )
 
-        if (vehicleWaterwayCrossingCalloutHistory.find(callout)) {
+        if (vehicleCrossingCalloutHistory.find(callout)) {
             return null
         }
 
         // Added eagerly - see the equivalent comment in buildCalloutForVehicleLandmark.
-        vehicleWaterwayCrossingCalloutHistory.add(callout)
+        vehicleCrossingCalloutHistory.add(callout)
         notableVehicleEventTracker.recordEvent(userGeometry.timestampMilliseconds)
         return callout
     }
@@ -621,7 +639,7 @@ class AutoCallout(
                     val vehicleTransitStopCallout =
                         buildCalloutForVehicleTransitStop(userGeometry, gridState)
                     val vehicleWaterwayCrossingCallout =
-                        buildCalloutForVehicleWaterwayCrossing(userGeometry, gridState)
+                        buildCalloutForVehicleCrossing(userGeometry, gridState)
                     val vehicleCallouts = listOfNotNull(
                         roadSenseCallout, vehicleLandmarkCallout, vehicleTransitStopCallout,
                         vehicleWaterwayCrossingCallout

@@ -127,8 +127,9 @@ private fun extractHighwayJunctions(
     return junctions
 }
 
-// Non-vehicle highway classes - see Way.isPath() - excluded when looking for a road bridge over a
-// river (a footbridge crossing the same river shouldn't be called out as a car/bus crossing).
+// Non-vehicle highway classes - see Way.isPath() - excluded when looking for a road bridge/tunnel
+// crossing a river or railway (a footbridge/foot tunnel shouldn't be called out as a car/bus
+// crossing).
 private val nonVehicleHighwayClasses = setOf("footway", "path", "bridleway", "cycleway", "steps")
 
 // OpenMapTiles waterway `class` values, in roughly descending size/significance: river, canal,
@@ -138,28 +139,45 @@ private val nonVehicleHighwayClasses = setOf("footway", "path", "bridleway", "cy
 // culvert), so it's judged on the waterway's own class rather than its brunnel value.
 private val significantWaterwayClasses = setOf("river", "canal")
 
-private class NamedWaterway(val name: String, val featureClass: String?, val coordinates: List<LngLatAlt>)
+// OpenMapTiles `transportation` classes that are a railway rather than a road - see the equivalent
+// check in MvtToGeoJson's main Way-building loop.
+private val railwayClasses = setOf("rail", "transit")
+
+private class NamedLine(val name: String?, val featureClass: String?, val coordinates: List<LngLatAlt>)
+private class BrunnelRoad(val brunnel: String, val coordinates: List<LngLatAlt>)
 
 /**
- * The `waterway` layer (see https://openmaptiles.org/schema/#waterway) carries river/stream
- * LineStrings. A small stream culverted under a road is already split at the crossing point and
- * tagged there (`brunnel=tunnel`, occasionally `bridge`/`ford`) - the tagged segment itself IS the
- * crossing, with its own `name`/`class` (river, stream etc.) already attached, no line-to-line
- * intersection needed. A major river crossed by a real bridge is different: the river's own
- * LineString is never split or tagged at the crossing, only the road carries `brunnel=bridge` -
- * so those need genuine geometric intersection between a bridge-tagged `transportation` LineString
- * and a named waterway LineString within the tile. Used for travel-mode callouts like "Crossing
- * Allander Water"/"Crossing the River Leven". Only named waterways are worth a callout.
+ * Crossings of a named river/canal, or of a railway (bridge or tunnel), while travelling by
+ * car/bus - both are major navigation points worth a callout in their own right, e.g. "Crossing
+ * Allander Water"/"Crossing the River Leven"/"Crossing the railway".
+ *
+ * Waterways (see https://openmaptiles.org/schema/#waterway): a small stream culverted under a
+ * road is already split at the crossing point and tagged there (`brunnel=tunnel`, occasionally
+ * `bridge`/`ford`) - the tagged segment itself IS the crossing, with its own `name`/`class`
+ * already attached, no line-to-line intersection needed. A major river crossed by a real bridge
+ * is different: the river's own LineString is never split or tagged at the crossing, only the
+ * road carries `brunnel=bridge` - only "river"/"canal" class waterways are worth a callout (see
+ * significantWaterwayClasses).
+ *
+ * Railways don't get an equivalent self-tagged crossing segment at all - a road crossing one
+ * always needs genuine geometric intersection between a brunnel-tagged `transportation` road
+ * LineString and a railway LineString within the tile. Railway LineStrings that are themselves
+ * tagged `brunnel=tunnel` are excluded from this - a long, buried railway tunnel would otherwise
+ * spuriously "intersect" every road running over ground above it for its whole length, none of
+ * which are meaningfully "crossing" anything at that point. Since only non-railway roads are
+ * checked against railway lines (and vice versa), a railway crossing another railway is never
+ * reported either.
  */
-private fun extractWaterwayCrossings(
+private fun extractCrossings(
     mvt: Tile,
     tileX: Int,
     tileY: Int,
     tileZoom: Int
 ): List<MvtFeature> {
     val crossings = mutableListOf<MvtFeature>()
-    val namedWaterways = mutableListOf<NamedWaterway>()
-    val bridgedRoads = mutableListOf<List<LngLatAlt>>()
+    val namedWaterways = mutableListOf<NamedLine>()
+    val railwayLines = mutableListOf<NamedLine>()
+    val brunnelRoads = mutableListOf<BrunnelRoad>()
 
     for (layer in mvt.layers) {
         if (layer.name != "waterway" && layer.name != "transportation") continue
@@ -213,16 +231,30 @@ private fun extractWaterwayCrossings(
                         if (line.isEmpty()) continue
                         val coordinates = convertGeometry(tileX, tileY, tileZoom, line)
                         if (coordinates.size >= 2) {
-                            namedWaterways.add(NamedWaterway(name, featureClass, coordinates))
+                            namedWaterways.add(NamedLine(name, featureClass, coordinates))
                         }
                     }
                 }
-            } else if (brunnel == "bridge" && featureClass !in nonVehicleHighwayClasses) {
+            } else if (featureClass in railwayClasses) {
+                // Excludes a railway segment that's itself a long buried tunnel - see the class
+                // doc comment above.
+                if (brunnel != "tunnel") {
+                    for (line in parseGeometry(true, feature.geometry)) {
+                        if (line.isEmpty()) continue
+                        val coordinates = convertGeometry(tileX, tileY, tileZoom, line)
+                        if (coordinates.size >= 2) {
+                            railwayLines.add(NamedLine(name, featureClass, coordinates))
+                        }
+                    }
+                }
+            } else if ((brunnel == "bridge" || brunnel == "tunnel") &&
+                featureClass !in nonVehicleHighwayClasses
+            ) {
                 for (line in parseGeometry(true, feature.geometry)) {
                     if (line.isEmpty()) continue
                     val coordinates = convertGeometry(tileX, tileY, tileZoom, line)
                     if (coordinates.size >= 2) {
-                        bridgedRoads.add(coordinates)
+                        brunnelRoads.add(BrunnelRoad(brunnel, coordinates))
                     }
                 }
             }
@@ -230,8 +262,9 @@ private fun extractWaterwayCrossings(
     }
 
     for (waterway in namedWaterways) {
-        for (road in bridgedRoads) {
-            val intersection = findLineIntersectionPoint(waterway.coordinates, road) ?: continue
+        for (road in brunnelRoads) {
+            if (road.brunnel != "bridge") continue
+            val intersection = findLineIntersectionPoint(waterway.coordinates, road.coordinates) ?: continue
             val crossing = MvtFeature()
             crossing.geometry = Point(intersection)
             crossing.name = waterway.name
@@ -239,6 +272,19 @@ private fun extractWaterwayCrossings(
             crossing.featureValue = "waterway_crossing"
             crossing.setProperty("brunnel", "bridge")
             if (waterway.featureClass != null) crossing.setProperty("class", waterway.featureClass)
+            crossings.add(crossing)
+        }
+    }
+
+    for (railway in railwayLines) {
+        for (road in brunnelRoads) {
+            val intersection = findLineIntersectionPoint(railway.coordinates, road.coordinates) ?: continue
+            val crossing = MvtFeature()
+            crossing.geometry = Point(intersection)
+            crossing.name = railway.name
+            crossing.featureType = "railway"
+            crossing.featureValue = "railway_crossing"
+            crossing.setProperty("brunnel", road.brunnel)
             crossings.add(crossing)
         }
     }
@@ -432,7 +478,7 @@ fun vectorTileToGeoJson(
         for (junction in extractHighwayJunctions(mvt, tileX, tileY, tileZoom)) {
             collection.addFeature(junction)
         }
-        for (crossing in extractWaterwayCrossings(mvt, tileX, tileY, tileZoom)) {
+        for (crossing in extractCrossings(mvt, tileX, tileY, tileZoom)) {
             collection.addFeature(crossing)
         }
     }
