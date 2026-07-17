@@ -225,8 +225,7 @@ class AutoCallout(
             location = nearestPoint.point,
             positionedStrings = listOf(
                 PositionedString(
-                    text = localized?.get(StringKey.DirectionsPassingPoi, name.text)
-                        ?: "Passing ${name.text}",
+                    text = name.text,
                     location = nearestPoint.point,
                     type = AudioType.LOCALIZED
                 )
