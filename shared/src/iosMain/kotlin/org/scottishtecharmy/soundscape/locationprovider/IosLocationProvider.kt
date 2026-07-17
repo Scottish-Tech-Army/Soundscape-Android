@@ -70,6 +70,7 @@ class IosLocationProvider : LocationProvider() {
                 hasAccuracy = location.horizontalAccuracy >= 0,
                 hasBearing = location.course >= 0,
                 hasSpeed = location.speed >= 0,
+                timestampMilliseconds = (location.timestamp.timeIntervalSince1970 * 1000).toLong(),
             )
         }
         mutableLocationFlow.value = coordinate

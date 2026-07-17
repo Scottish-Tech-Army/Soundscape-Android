@@ -21,6 +21,7 @@ import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
+import org.scottishtecharmy.soundscape.geoengine.utils.extrapolatePositionForward
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.MultiGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.PhotonGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SoundscapeGeocoder
@@ -179,6 +180,14 @@ class GeoEngine {
         }
 
         val speed = speedFromLocation(location)
+
+        // See extrapolatePositionForward - keeps spatialized audio from snapping to a new azimuth
+        // every time a fresh fix lands, by projecting this fix forward using its speed/heading.
+        if (location != null) {
+            latLng = extrapolatePositionForward(
+                latLng, ruler, speed, travelHeading, location.timestampMilliseconds, currentTimeMillis()
+            )
+        }
 
         return UserGeometry(
             location = latLng,

@@ -1422,3 +1422,39 @@ fun getSideOfLine(p1: LngLatAlt, p2: LngLatAlt, h: LngLatAlt): Side {
     }
 }
 
+/**
+ * Dead-reckons [location] forward from a GPS/location-provider fix using its speed and heading,
+ * so spatialized audio (AudioType.LOCALIZED) doesn't visibly snap to a new azimuth every time a
+ * fresh fix lands - the location provider typically only updates ~once/second, but a vehicle at
+ * speed can cover tens of metres in that gap. Called continuously (every orientation-sensor tick,
+ * not just on a new fix) so it keeps projecting the last fix forward smoothly in between.
+ *
+ * @param location the last known fix location.
+ * @param ruler used to offset [location] by the extrapolated distance.
+ * @param speed the fix's speed in metres/second (0.0 if unknown/not moving).
+ * @param heading the fix's direction of travel in degrees, or null if unknown.
+ * @param fixTimestampMilliseconds wall-clock time [location] was captured at, or <= 0 if unknown
+ * (e.g. a synthesized/debug location that was never a real fix) - returns [location] unchanged.
+ * @param nowMilliseconds the current wall-clock time.
+ * @param extrapolationLimitSeconds caps how long a stale/stalled fix (signal loss) can keep being
+ * extrapolated forward before it's no longer trusted and [location] is returned unchanged.
+ */
+fun extrapolatePositionForward(
+    location: LngLatAlt,
+    ruler: Ruler,
+    speed: Double,
+    heading: Double?,
+    fixTimestampMilliseconds: Long,
+    nowMilliseconds: Long,
+    extrapolationLimitSeconds: Double = 3.0,
+): LngLatAlt {
+    if ((heading == null) || (speed <= 0.0) || (fixTimestampMilliseconds <= 0L)) {
+        return location
+    }
+    val elapsedSeconds = (nowMilliseconds - fixTimestampMilliseconds) / 1000.0
+    if (elapsedSeconds !in 0.0..extrapolationLimitSeconds) {
+        return location
+    }
+    return ruler.destination(location, speed * elapsedSeconds, heading)
+}
+
