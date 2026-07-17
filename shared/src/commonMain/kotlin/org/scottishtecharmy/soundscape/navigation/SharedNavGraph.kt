@@ -580,7 +580,7 @@ fun SharedNavHost(
                         navController.popBackStack(SharedRoutes.HOME, inclusive = false)
                     },
                     onWakeOnLeaveClicked = { viewModel.onWakeOnLeaveClicked() },
-                    wakeOnLeaveEnabled = state.value.wakeOnLeaveEnabled,
+                    state = state.value,
                 )
             }
 

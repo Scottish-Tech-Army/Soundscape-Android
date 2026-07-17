@@ -10,7 +10,7 @@ fun SharedSleepScreenPreview() {
         onWakeUp = {},
         onExit = {},
         onWakeOnLeaveClicked = { },
-        wakeOnLeaveEnabled = false,
+        state = SleepScreenState.Sleeping,
     )
 }
 
@@ -21,7 +21,7 @@ fun SharedSleepScreenWakeOnLeaveEnabledPreview() {
         onWakeUp = {},
         onExit = {},
         onWakeOnLeaveClicked = { },
-        wakeOnLeaveEnabled = true,
+        state = SleepScreenState.Snoozing()
     )
 }
 
@@ -40,7 +40,7 @@ fun WakeButtonsWakeOnLeaveVisiblePreview() {
     WakeButtons(
         wakeUpNowOnClick = {},
         wakeOnLeaveOnClick = {},
-        showWakeOnLeave = true,
+        sleepScreenState = SleepScreenState.Sleeping,
     )
 }
 
@@ -50,6 +50,6 @@ fun WakeButtonsWakeOnLeaveNotVisiblePreview() {
     WakeButtons(
         wakeUpNowOnClick = {},
         wakeOnLeaveOnClick = {},
-        showWakeOnLeave = false,
+        sleepScreenState = SleepScreenState.Snoozing(),
     )
 }

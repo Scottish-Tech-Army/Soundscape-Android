@@ -21,6 +21,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import kotlinx.coroutines.flow.StateFlow
 import org.jetbrains.compose.resources.stringResource
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.sleep_sleeping
 import org.scottishtecharmy.soundscape.resources.sleep_sleeping_message
@@ -31,9 +32,10 @@ import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.largePadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
 
-data class SleepScreenState(
-    val wakeOnLeaveEnabled: Boolean = false,
-)
+sealed class SleepScreenState {
+    object Sleeping : SleepScreenState()
+    data class Snoozing(val userLocation: LngLatAlt? = LngLatAlt()) : SleepScreenState()
+}
 
 interface ISleepScreenViewModel {
     val state: StateFlow<SleepScreenState>
@@ -47,7 +49,7 @@ fun SharedSleepScreen(
     onWakeUp: () -> Unit,
     onExit: () -> Unit,
     onWakeOnLeaveClicked: () -> Unit,
-    wakeOnLeaveEnabled: Boolean,
+    state: SleepScreenState,
     modifier: Modifier = Modifier,
 ) {
     DisposableEffect(Unit) {
@@ -72,9 +74,10 @@ fun SharedSleepScreen(
         Row {
             Text(
                 text = stringResource(
-                    if (wakeOnLeaveEnabled)
-                        Res.string.sleep_sleeping_wake_on_leave_message else
-                        Res.string.sleep_sleeping_message
+                    when (state) {
+                        SleepScreenState.Sleeping -> Res.string.sleep_sleeping_message
+                        is SleepScreenState.Snoozing -> Res.string.sleep_sleeping_wake_on_leave_message
+                    }
                 ),
                 style = MaterialTheme.typography.titleMedium,
                 color = MaterialTheme.colorScheme.onSurface,
@@ -84,7 +87,7 @@ fun SharedSleepScreen(
         WakeButtons(
             wakeUpNowOnClick = onExit,
             wakeOnLeaveOnClick = onWakeOnLeaveClicked,
-            showWakeOnLeave = wakeOnLeaveEnabled,
+            sleepScreenState = state,
             modifier = Modifier.fillMaxWidth()
         )
     }
@@ -94,16 +97,21 @@ fun SharedSleepScreen(
 fun WakeButtons(
     wakeUpNowOnClick: () -> Unit,
     wakeOnLeaveOnClick: () -> Unit,
-    showWakeOnLeave: Boolean,
+    sleepScreenState: SleepScreenState,
     modifier: Modifier = Modifier,
 ) {
     Row(modifier = modifier) {
         WakeButton(
             text = stringResource(Res.string.sleep_wake_up_now),
             onClick = wakeUpNowOnClick,
-            modifier = Modifier.fillMaxWidth(if (showWakeOnLeave) 0.5f else 1.0f),
+            modifier = Modifier.fillMaxWidth(
+                when (sleepScreenState) {
+                    SleepScreenState.Sleeping -> 0.5f
+                    is SleepScreenState.Snoozing -> 1.0f
+                }
+            )
         )
-        if (showWakeOnLeave) {
+        if (sleepScreenState is SleepScreenState.Sleeping) {
             WakeButton(
                 text = stringResource(Res.string.sleep_wake_on_leave),
                 onClick = wakeOnLeaveOnClick,
