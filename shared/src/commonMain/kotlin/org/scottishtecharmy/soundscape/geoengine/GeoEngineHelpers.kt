@@ -311,9 +311,13 @@ private fun travellingReverseGeocodeName(
             }
             if (junctionText != null) {
                 notableEventTracker?.recordEvent(userGeometry.timestampMilliseconds)
-                return ReverseGeocodeText(
-                    if (roadName != null) {
-                        if (travelHeadingDegrees != null) {
+                // dedupText excludes the direction of travel (unlike the spoken text) - on a
+                // winding road, the compass direction can shift tick to tick while the road and
+                // junction stay the same, and that shouldn't be treated as a new thing to
+                // announce (see the equivalent reasoning below for the plain "on road" callouts).
+                if (roadName != null) {
+                    return ReverseGeocodeText(
+                        text = if (travelHeadingDegrees != null) {
                             "${roadPhrase(roadName)} " + (
                                 localized?.get(StringKey.DirectionsAtJunctionInline, junctionText)
                                     ?: "at $junctionText"
@@ -321,11 +325,12 @@ private fun travellingReverseGeocodeName(
                         } else {
                             localized?.get(StringKey.DirectionsOnRoadAtJunction, roadName, junctionText)
                                 ?: "On $roadName at $junctionText"
-                        }
-                    } else {
-                        localized?.get(StringKey.DirectionsNearName, junctionText)
-                            ?: "Near $junctionText"
-                    }
+                        },
+                        dedupText = "On $roadName at $junctionText"
+                    )
+                }
+                return ReverseGeocodeText(
+                    localized?.get(StringKey.DirectionsNearName, junctionText) ?: "Near $junctionText"
                 )
             }
         }
@@ -426,10 +431,12 @@ private fun travellingReverseGeocodeName(
         ) {
             if (nearestSettlementIsCity) {
                 return ReverseGeocodeText(
-                    "$phrase " + (
+                    text = "$phrase " + (
                         localized?.get(StringKey.DirectionsCloseToSettlementInline, nearestSettlementName)
                             ?: "close to $nearestSettlementName"
-                        )
+                        ),
+                    // Excludes the direction of travel - see the dedupText comment further below.
+                    dedupText = "On $roadName close to $nearestSettlementName"
                 )
             }
 
@@ -467,20 +474,29 @@ private fun travellingReverseGeocodeName(
             }
             return ReverseGeocodeText(
                 text = "$phrase $settlementPhrase",
-                // The distance climbs/falls on every call, so it's never included in the dedup
-                // comparison (see the "since station" case above) - only a genuinely new
-                // towards/away/near relationship is worth a fresh announcement.
-                dedupText = "$phrase $dedupSuffix"
+                // Excludes both the ever-changing distance (see the "since station" case above)
+                // and the direction of travel - on a winding road the compass direction can shift
+                // tick to tick while the road and the towards/away/near relationship stay the
+                // same, and that alone shouldn't trigger a fresh announcement.
+                dedupText = "On $roadName $dedupSuffix"
             )
         }
 
         return ReverseGeocodeText(
-            if (nearestSettlementName != null) {
+            text = if (nearestSettlementName != null) {
                 localized?.get(
                     StringKey.DirectionsOnRoadAndSettlement, roadName, nearestSettlementName
                 ) ?: "On $roadName and close to $nearestSettlementName"
             } else {
                 phrase
+            },
+            // Excludes the direction of travel (see the equivalent dedupText comments above) - on
+            // a winding road, phrase's compass direction can shift tick to tick purely from the
+            // road's own bends, well before the road or settlement actually changes.
+            dedupText = if (nearestSettlementName != null) {
+                "On $roadName and close to $nearestSettlementName"
+            } else {
+                roadName
             }
         )
     }
