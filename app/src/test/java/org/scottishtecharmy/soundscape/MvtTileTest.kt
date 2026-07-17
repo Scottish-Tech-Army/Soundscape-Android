@@ -329,13 +329,13 @@ class MvtTileTest {
     /**
      * The `waterway` layer (near Milngavie) carries "Tannoch Burn" as a stream split into
      * segments, with the segment that passes under a road tagged `brunnel=tunnel` (a culvert).
-     * Checks that segment is parsed into TreeId.WATERWAY_CROSSINGS with its name and brunnel value
+     * Checks that segment is parsed into TreeId.WATER_AND_RAIL_CROSSINGS with its name and brunnel value
      * attached, ready for travel-mode callouts like "Crossing Tannoch Burn".
      */
     @Test
     fun testWaterwayCrossingParsing() {
         val gridState = getGridStateForLocation(LngLatAlt(-4.3231, 55.9461), MAX_ZOOM_LEVEL, 3)
-        val crossings = gridState.getFeatureTree(TreeId.WATERWAY_CROSSINGS).getAllCollection()
+        val crossings = gridState.getFeatureTree(TreeId.WATER_AND_RAIL_CROSSINGS).getAllCollection()
 
         // Tannoch Burn is a class=stream crossing - too minor a landmark to be worth a callout,
         // so it should be filtered out (see significantWaterwayClasses).
@@ -347,6 +347,24 @@ class MvtTileTest {
         val allanderWater = crossings.features.find { (it as? MvtFeature)?.name == "Allander Water" }
         assertNotNull("Expected an Allander Water crossing", allanderWater)
         assertEquals("river", (allanderWater as MvtFeature).properties?.get("class"))
+    }
+
+    /**
+     * The A82 crosses the West Highland railway line near Renton via a real bridge - unlike a
+     * waterway, a railway is never split/tagged at the crossing point itself, so this needs the
+     * geometric road/rail intersection strategy in extractCrossings, found via a real GPX replay
+     * (see ToBalloch.gpx) landing on "Crossing the railway" there.
+     */
+    @Test
+    fun testRailwayCrossingParsing() {
+        val gridState = getGridStateForLocation(LngLatAlt(-4.5864, 55.9628), MAX_ZOOM_LEVEL, 3)
+        val crossings = gridState.getFeatureTree(TreeId.WATER_AND_RAIL_CROSSINGS).getAllCollection()
+
+        val railwayCrossing = crossings.features
+            .filterIsInstance<MvtFeature>()
+            .find { it.featureType == "railway" }
+        assertNotNull("Expected a railway crossing near Renton", railwayCrossing)
+        assertEquals("railway_crossing", railwayCrossing!!.featureValue)
     }
 
     /**
