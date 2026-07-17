@@ -23,6 +23,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.sleep_sleeping
 import org.scottishtecharmy.soundscape.resources.sleep_sleeping_message
+import org.scottishtecharmy.soundscape.resources.sleep_wake_on_leave
 import org.scottishtecharmy.soundscape.resources.sleep_wake_up_now
 import org.scottishtecharmy.soundscape.ui.theme.currentAppButtonColors
 import org.scottishtecharmy.soundscape.ui.theme.largePadding
@@ -61,22 +62,43 @@ fun SharedSleepScreen(
                 modifier = Modifier.largePadding(),
             )
         }
-        Row {
-            Button(
+        Row(
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            WakeButton(
+                text = stringResource(Res.string.sleep_wake_up_now),
                 onClick = onExit,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(spacing.targetSize * 4)
-                    .testTag("sleepWakeUpNow"),
-                shape = RoundedCornerShape(spacing.tiny),
-                colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
-            ) {
-                Text(
-                    text = stringResource(Res.string.sleep_wake_up_now),
-                    textAlign = TextAlign.Start,
-                    style = MaterialTheme.typography.displaySmall,
-                )
-            }
+                modifier = Modifier.fillMaxWidth(0.5f),
+            )
+            WakeButton(
+                text = stringResource(Res.string.sleep_wake_on_leave),
+                onClick = {
+                    // TODO
+                },
+                modifier = Modifier,
+            )
         }
+    }
+}
+
+@Composable
+fun WakeButton(
+    text: String,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Button(
+        onClick = onClick,
+        modifier = modifier
+            .height(spacing.targetSize * 4)
+            .testTag("sleepWakeUpNow"),
+        shape = RoundedCornerShape(spacing.tiny),
+        colors = if (!LocalInspectionMode.current) currentAppButtonColors else ButtonDefaults.buttonColors(),
+    ) {
+        Text(
+            text = text,
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.displaySmall,
+        )
     }
 }

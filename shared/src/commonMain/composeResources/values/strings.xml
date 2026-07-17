@@ -342,6 +342,8 @@
     <string name="sleep_sleep_acc_hint">put Soundscape to sleep</string>
     <!-- Text for large button on sleep screen which wakes the app up -->
     <string name="sleep_wake_up_now">Wake Up Now</string>
+    <!-- Text for large button on sleep screen which wakes the app on leaving geofence -->
+    <string name="sleep_wake_on_leave">Wake On Leave</string>
     <!-- Callout that a road junction is getting near -->
     <string name="intersection_approaching_intersection">Approaching intersection</string>
     <!-- Notification, %s is a point of interest, "At Starbucks" -->
