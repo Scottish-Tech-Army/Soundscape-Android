@@ -88,6 +88,11 @@ import org.scottishtecharmy.soundscape.resources.directions_on_road
 import org.scottishtecharmy.soundscape.resources.directions_on_road_and_settlement
 import org.scottishtecharmy.soundscape.resources.directions_on_road_and_settlement_since
 import org.scottishtecharmy.soundscape.resources.directions_on_road_at_junction
+import org.scottishtecharmy.soundscape.resources.directions_at_junction_inline
+import org.scottishtecharmy.soundscape.resources.directions_towards_settlement
+import org.scottishtecharmy.soundscape.resources.directions_away_from_settlement
+import org.scottishtecharmy.soundscape.resources.directions_near_settlement_inline
+import org.scottishtecharmy.soundscape.resources.directions_close_to_settlement_inline
 import org.scottishtecharmy.soundscape.resources.directions_traveling_e
 import org.scottishtecharmy.soundscape.resources.directions_traveling_n
 import org.scottishtecharmy.soundscape.resources.directions_traveling_ne
@@ -224,7 +229,12 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.DirectionsOnRoad -> Res.string.directions_on_road
         StringKey.DirectionsOnRoadAndSettlement -> Res.string.directions_on_road_and_settlement
         StringKey.DirectionsOnRoadAtJunction -> Res.string.directions_on_road_at_junction
+        StringKey.DirectionsAtJunctionInline -> Res.string.directions_at_junction_inline
         StringKey.DirectionsOnRoadAndSettlementSince -> Res.string.directions_on_road_and_settlement_since
+        StringKey.DirectionsTowardsSettlement -> Res.string.directions_towards_settlement
+        StringKey.DirectionsAwayFromSettlement -> Res.string.directions_away_from_settlement
+        StringKey.DirectionsNearSettlementInline -> Res.string.directions_near_settlement_inline
+        StringKey.DirectionsCloseToSettlementInline -> Res.string.directions_close_to_settlement_inline
         StringKey.DirectionsGenericTrain -> Res.string.directions_generic_train
         StringKey.DirectionsPassingPoi -> Res.string.directions_passing_poi
         StringKey.StreetDescriptionIntersection -> Res.string.street_description_intersection

@@ -51,6 +51,8 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.process
 import java.io.File
@@ -77,6 +79,19 @@ class FileGridState(
     init {
         validateContext = false
     }
+}
+
+/**
+ * Minimal [LocalizedStrings] stub for tests that need to check *which* string key and arguments
+ * a callout resolves to, without pulling in the real Compose resource-bundle string lookup.
+ */
+private class FakeLocalizedStrings : LocalizedStrings {
+    override fun get(key: StringKey, vararg args: Any?): String =
+        "$key(${args.joinToString(", ")})"
+
+    override fun getOrNull(key: StringKey, vararg args: Any?): String? = get(key, *args)
+
+    override fun resolveFeatureClass(key: String): String? = null
 }
 
 private fun vectorTileToGeoJsonFromFile(
@@ -239,6 +254,50 @@ class MvtTileTest {
 
         assertNotNull(result)
         assertEquals("On M8 and close to Cowcaddens", result!!.text)
+    }
+
+    /**
+     * When a travel heading is available, travel-mode reverse geocoding for a road (not a
+     * railway) should announce the direction of travel along it, e.g. "Traveling north along M8",
+     * instead of just naming the road - using the existing DirectionsAlongTraveling* string keys.
+     * Cowcaddens (a discrete, non-city settlement here) is roughly behind the direction of travel
+     * (north), so it's phrased as "away from Cowcaddens" rather than the vaguer "close to".
+     */
+    @Test
+    fun testTravelCalloutForRoadIncludesDirection() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val userGeometry = UserGeometry(location = location, speed = 15.0, travelHeading = 0.0)
+        val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, FakeLocalizedStrings())
+
+        assertNotNull(result)
+        assertEquals(
+            "DirectionsAlongTravelingN(M8) DirectionsAwayFromSettlement(Cowcaddens, DistanceFormatMeters(155))",
+            result!!.text
+        )
+    }
+
+    /**
+     * Same location as [testTravelCalloutForRoadIncludesDirection] but travelling the opposite
+     * way (south instead of north) - Cowcaddens is now roughly ahead of the direction of travel,
+     * so it should flip from "away from" to "towards".
+     */
+    @Test
+    fun testTravelCalloutForRoadTowardsSettlement() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val userGeometry = UserGeometry(location = location, speed = 15.0, travelHeading = 180.0)
+        val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, FakeLocalizedStrings())
+
+        assertNotNull(result)
+        assertEquals(
+            "DirectionsAlongTravelingS(M8) DirectionsTowardsSettlement(Cowcaddens, DistanceFormatMeters(155))",
+            result!!.text
+        )
     }
 
     /**
@@ -1441,13 +1500,14 @@ class MvtTileTest {
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @Test
-    fun testCalloutsTrain1Only  () {
+    fun testCalloutsSingleTest  () {
         val resultsStorageDir = File("gpxFiles/")
         if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
+        val testFile = "ToBalloch"
         testMovingGrid(
-            "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/ToAllander.gpx",
-            "gpxFiles/ToAllander.txt",
-            "gpxFiles/ToAllander.geojson"
+            "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$testFile.gpx",
+            "gpxFiles/$testFile.txt",
+            "gpxFiles/$testFile.geojson"
         )
     }
 
