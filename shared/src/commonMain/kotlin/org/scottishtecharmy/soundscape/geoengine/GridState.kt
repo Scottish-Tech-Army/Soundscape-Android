@@ -63,8 +63,9 @@ enum class TreeId(
     TRANSIT(20, "Transit"),
     HOUSENUMBER(21, "House numbers"),
     HIGHWAY_JUNCTIONS(22, "Highway Junctions"),
-    MAX_COLLECTION_ID(23, ""),
-    WAYS_SELECTION(id = 23, "Either Roads OR Roads and Paths")
+    WATERWAY_CROSSINGS(23, "Waterway Crossings"),
+    MAX_COLLECTION_ID(24, ""),
+    WAYS_SELECTION(id = 24, "Either Roads OR Roads and Paths")
 }
 
 fun treeIdToIndex(id: TreeId): TreeId {
@@ -656,6 +657,25 @@ private fun getHighwayJunctionsFromTileFeatureCollection(tileFeatureCollection: 
 }
 
 /**
+ * Given a valid Tile feature collection this will parse the collection and return a waterway
+ * crossing feature collection. Uses the "waterway" feature_type to extract crossings from GeoJSON
+ * - see [org.scottishtecharmy.soundscape.geoengine.mvttranslation.extractWaterwayCrossings].
+ * @param tileFeatureCollection
+ * A FeatureCollection object.
+ * @return A FeatureCollection object that contains only waterway crossings.
+ */
+private fun getWaterwayCrossingsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection {
+    val crossingsFeatureCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        val mvtFeature = feature as MvtFeature
+        if (mvtFeature.featureType == "waterway") {
+            crossingsFeatureCollection.addFeature(feature)
+        }
+    }
+    return crossingsFeatureCollection
+}
+
+/**
  * Parses out all the Entrances in a tile FeatureCollection using the "gd_entrance_list" feature_type.
  * @param tileFeatureCollection
  * A FeatureCollection object.
@@ -724,6 +744,9 @@ fun processTileFeatureCollection(
         tileFeatureCollection
     )
     initialFeatureCollections[TreeId.HIGHWAY_JUNCTIONS.id] += getHighwayJunctionsFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    initialFeatureCollections[TreeId.WATERWAY_CROSSINGS.id] += getWaterwayCrossingsFromTileFeatureCollection(
         tileFeatureCollection
     )
 

@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape
 
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNotNull
+import junit.framework.TestCase.assertNull
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -323,6 +324,29 @@ class MvtTileTest {
         val cousland = primaryJunctions.features.find { (it as? MvtFeature)?.name == "Cousland Interchange" }
         assertNotNull(cousland)
         assertEquals("primary", (cousland as MvtFeature).properties?.get("class"))
+    }
+
+    /**
+     * The `waterway` layer (near Milngavie) carries "Tannoch Burn" as a stream split into
+     * segments, with the segment that passes under a road tagged `brunnel=tunnel` (a culvert).
+     * Checks that segment is parsed into TreeId.WATERWAY_CROSSINGS with its name and brunnel value
+     * attached, ready for travel-mode callouts like "Crossing Tannoch Burn".
+     */
+    @Test
+    fun testWaterwayCrossingParsing() {
+        val gridState = getGridStateForLocation(LngLatAlt(-4.3231, 55.9461), MAX_ZOOM_LEVEL, 3)
+        val crossings = gridState.getFeatureTree(TreeId.WATERWAY_CROSSINGS).getAllCollection()
+
+        // Tannoch Burn is a class=stream crossing - too minor a landmark to be worth a callout,
+        // so it should be filtered out (see significantWaterwayClasses).
+        val tannochBurn = crossings.features.find { (it as? MvtFeature)?.name == "Tannoch Burn" }
+        assertNull("Expected Tannoch Burn (a stream) to be filtered out", tannochBurn)
+
+        // Allander Water is class=river, and passes through a culvert further downstream, so it
+        // should still be found via its own brunnel=tunnel tag.
+        val allanderWater = crossings.features.find { (it as? MvtFeature)?.name == "Allander Water" }
+        assertNotNull("Expected an Allander Water crossing", allanderWater)
+        assertEquals("river", (allanderWater as MvtFeature).properties?.get("class"))
     }
 
     /**
