@@ -91,10 +91,21 @@ open class MvtFeature : Feature() {
         }
         if (namedTransit != null) {
             osmFeatureKey = namedTransit.second
+            // English fallback text (used when localized == null, e.g. GPX-replay test tooling) needs
+            // to match the specific transit type, not a bare "Transit" - a station/subway/ferry
+            // terminal isn't a "stop", and a rider needs to know which kind of stop to look for.
+            val genericFallback = when (featureValue) {
+                "bus_stop" -> "Bus Stop"
+                "station" -> "Train Station"
+                "tram_stop" -> "Tram Stop"
+                "subway" -> "Subway Station"
+                "ferry_terminal" -> "Ferry Terminal"
+                else -> "Transit"
+            }
             text = if (name != null)
-                localized?.get(namedTransit.first, name) ?: "$name Transit Stop"
+                localized?.get(namedTransit.first, name) ?: "$name $genericFallback"
             else
-                localized?.get(namedTransit.second) ?: "Transit"
+                localized?.get(namedTransit.second) ?: genericFallback
         }
 
         if (entranceType != null) {
