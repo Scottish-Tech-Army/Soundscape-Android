@@ -340,8 +340,13 @@ class MainActivity : AppCompatActivity() {
                     afd.close()
                     player.prepare()
                     player.setVolume(0.7f, 0.7f)
-                    player.setOnCompletionListener { finishSplashSound() }
-                    player.setOnErrorListener { _, _, _ -> finishSplashSound(); true }
+                    // Posted rather than called inline - MediaPlayer.release() called
+                    // synchronously from within its own completion/error callback (still
+                    // dispatching on this same EventHandler) can hang the main thread waiting on
+                    // native teardown, causing an ANR. Posting breaks that reentrancy by letting
+                    // the callback dispatch return first.
+                    player.setOnCompletionListener { content.post { finishSplashSound() } }
+                    player.setOnErrorListener { _, _, _ -> content.post { finishSplashSound() }; true }
                     player.start()
                 } catch (e: Exception) {
                     Log.e(TAG, "Failed to play splash sound: $e")
