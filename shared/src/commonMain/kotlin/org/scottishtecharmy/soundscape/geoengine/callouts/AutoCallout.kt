@@ -50,6 +50,8 @@ class AutoCallout(
     private var lastTransitStopSweepLocation: LngLatAlt? = null
     private val vehicleCrossingCalloutHistory = CalloutHistory()
     private var lastCrossingSweepLocation: LngLatAlt? = null
+    private val walkingCrossingCalloutHistory = CalloutHistory()
+    private var lastWalkingCrossingSweepLocation: LngLatAlt? = null
     private val lastStationTracker = LastStationTracker()
     private val notableVehicleEventTracker = NotableVehicleEventTracker()
     private var lastTrainTimestampMs: Long? = null
@@ -386,27 +388,11 @@ class AutoCallout(
                 getDistanceToFeature(userGeometry.location, it, userGeometry.ruler).distance
             } ?: return null
 
-        val name = crossingFeature.name
-        // For a railway (unlike a waterway), the road's own brunnel tells us whether we're going
-        // over it (bridge) or under it (tunnel) - worth distinguishing, since "going under" reads
-        // oddly for a bridge and vice versa.
-        val goingUnder = (crossingFeature.featureType == "railway") &&
-            (crossingFeature.properties?.get("brunnel") == "tunnel")
-        val text = if (name != null) {
-            if (goingUnder) {
-                localized?.get(StringKey.DirectionsGoingUnderRailway, name) ?: "Going under $name"
-            } else {
-                localized?.get(StringKey.DirectionsCrossingWaterway, name) ?: "Crossing $name"
-            }
-        } else if (goingUnder) {
-            localized?.get(StringKey.DirectionsGoingUnderRailwayGeneric) ?: "Going under the railway"
-        } else {
-            localized?.get(StringKey.DirectionsCrossingRailwayGeneric) ?: "Crossing the railway"
-        }
+        val text = crossingCalloutText(crossingFeature)
         val nearestPoint = getDistanceToFeature(userGeometry.location, crossingFeature, userGeometry.ruler)
         val callout = TrackedCallout(
             userGeometry,
-            trackedText = name ?: "railway",
+            trackedText = crossingFeature.name ?: "railway",
             location = nearestPoint.point,
             positionedStrings = listOf(
                 PositionedString(
@@ -426,6 +412,96 @@ class AutoCallout(
         // Added eagerly - see the equivalent comment in buildCalloutForVehicleLandmark.
         vehicleCrossingCalloutHistory.add(callout)
         notableVehicleEventTracker.recordEvent(userGeometry.timestampMilliseconds)
+        return callout
+    }
+
+    /**
+     * Builds the spoken text for a river/canal or railway crossing (see
+     * TreeId.WATER_AND_RAIL_CROSSINGS), shared between the vehicle and walking crossing callouts
+     * below - the wording doesn't depend on how the crossing is being travelled.
+     */
+    private fun crossingCalloutText(crossingFeature: MvtFeature): String {
+        val name = crossingFeature.name
+        // For a railway (unlike a waterway), the road's own brunnel tells us whether we're going
+        // over it (bridge) or under it (tunnel) - worth distinguishing, since "going under" reads
+        // oddly for a bridge and vice versa.
+        val goingUnder = (crossingFeature.featureType == "railway") &&
+            (crossingFeature.properties?.get("brunnel") == "tunnel")
+        return if (name != null) {
+            if (goingUnder) {
+                localized?.get(StringKey.DirectionsGoingUnderRailway, name) ?: "Going under $name"
+            } else {
+                localized?.get(StringKey.DirectionsCrossingWaterway, name) ?: "Crossing $name"
+            }
+        } else if (goingUnder) {
+            localized?.get(StringKey.DirectionsGoingUnderRailwayGeneric) ?: "Going under the railway"
+        } else {
+            localized?.get(StringKey.DirectionsCrossingRailwayGeneric) ?: "Crossing the railway"
+        }
+    }
+
+    /**
+     * Announces a river/canal or railway crossing (see TreeId.WATER_AND_RAIL_CROSSINGS) as it's
+     * passed while walking - the same landmark buildCalloutForVehicleCrossing announces for
+     * car/bus travel, using the same tree, since extractCrossings detects a crossing for any
+     * highway class (including footway/path), not just vehicle roads. Sweeps the path travelled
+     * since the last location update for the same reason as the vehicle version - see
+     * buildCalloutForVehicleTransitStop - even though pedestrian speed makes skipping over the
+     * ~20m detection radius between updates less likely than at driving speed.
+     */
+    private fun buildCalloutForWalkingCrossing(
+        userGeometry: UserGeometry,
+        gridState: GridState
+    ): TrackedCallout? {
+        if (userGeometry.inVehicle() || recentlyInVehicle(userGeometry)) {
+            lastWalkingCrossingSweepLocation = null
+            return null
+        }
+
+        val previousLocation = lastWalkingCrossingSweepLocation
+        lastWalkingCrossingSweepLocation = userGeometry.location
+        if (previousLocation == null) {
+            // Nothing to sweep yet - this is the first update since we started walking.
+            return null
+        }
+
+        walkingCrossingCalloutHistory.trim(userGeometry)
+
+        val sweep = LineString(previousLocation, userGeometry.location)
+        val nearbyCrossings = gridState.getFeatureTree(TreeId.WATER_AND_RAIL_CROSSINGS)
+            .getNearbyLine(sweep, 20.0, gridState.ruler)
+
+        // See the equivalent filter in buildCalloutForVehicleCrossing - an unnamed waterway isn't
+        // worth announcing, but an unnamed railway still is.
+        val crossingFeature = nearbyCrossings.features
+            .filterIsInstance<MvtFeature>()
+            .filter { !it.name.isNullOrEmpty() || it.featureType == "railway" }
+            .minByOrNull {
+                getDistanceToFeature(userGeometry.location, it, userGeometry.ruler).distance
+            } ?: return null
+
+        val text = crossingCalloutText(crossingFeature)
+        val nearestPoint = getDistanceToFeature(userGeometry.location, crossingFeature, userGeometry.ruler)
+        val callout = TrackedCallout(
+            userGeometry,
+            trackedText = crossingFeature.name ?: "railway",
+            location = nearestPoint.point,
+            positionedStrings = listOf(
+                PositionedString(
+                    text = text,
+                    location = nearestPoint.point,
+                    type = AudioType.LOCALIZED
+                )
+            ),
+            isPoint = true,
+            isGeneric = false,
+        )
+
+        if (walkingCrossingCalloutHistory.find(callout)) {
+            return null
+        }
+
+        walkingCrossingCalloutHistory.add(callout)
         return callout
     }
 
@@ -640,6 +716,12 @@ class AutoCallout(
                         buildCalloutForVehicleTransitStop(userGeometry, gridState)
                     val vehicleWaterwayCrossingCallout =
                         buildCalloutForVehicleCrossing(userGeometry, gridState)
+                    // Always run alongside its vehicle equivalent above (rather than only in the
+                    // pedestrian branch below) so its own GPS sweep anchor resets correctly the
+                    // moment vehicle travel starts - the same reason buildCalloutForVehicleCrossing
+                    // itself needs to run on every update rather than only while driving.
+                    val walkingCrossingCallout =
+                        buildCalloutForWalkingCrossing(userGeometry, gridState)
                     val vehicleCallouts = listOfNotNull(
                         roadSenseCallout, vehicleLandmarkCallout, vehicleTransitStopCallout,
                         vehicleWaterwayCrossingCallout
@@ -656,6 +738,15 @@ class AutoCallout(
                             intersectionCallout.locationFilter = intersectionFilter
                             trackedCallout = intersectionCallout
                         }
+                        if (walkingCrossingCallout != null) {
+                            // Merge onto any intersection callout for the same update, the same
+                            // way the Street Preview POI callout below merges rather than replaces.
+                            if (trackedCallout != null) {
+                                trackedCallout.positionedStrings += walkingCrossingCallout.positionedStrings
+                            } else {
+                                trackedCallout = walkingCrossingCallout
+                            }
+                        }
                         if ((intersectionCallout == null) || userGeometry.inStreetPreview) {
                             // Get normal callouts for nearby POIs, for the destination, and for beacons
                             val poiCallout = buildCalloutForNearbyPOI(userGeometry, gridState)
@@ -663,13 +754,11 @@ class AutoCallout(
                             // Update time/location filter for our new position
                             if (poiCallout != null) {
                                 poiCallout.locationFilter = poiFilter
-                                if (userGeometry.inStreetPreview) {
-                                    // In Street Preview we want to add the call outs on to any intersection that
-                                    // is being called out.
-                                    if (trackedCallout != null) {
-                                        trackedCallout.positionedStrings += poiCallout.positionedStrings
-                                    } else
-                                        trackedCallout = poiCallout
+                                // Merge onto any callout already queued for this update (an
+                                // intersection in Street Preview, or a walking crossing - see
+                                // above) rather than replacing it outright.
+                                if (trackedCallout != null) {
+                                    trackedCallout.positionedStrings += poiCallout.positionedStrings
                                 } else
                                     trackedCallout = poiCallout
                             }
