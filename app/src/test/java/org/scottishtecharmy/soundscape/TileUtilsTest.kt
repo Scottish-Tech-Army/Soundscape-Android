@@ -135,7 +135,7 @@ class TileUtilsTest {
         val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
-        Assert.assertEquals(2706, testPoiCollection.features.size)
+        Assert.assertEquals(2922, testPoiCollection.features.size)
     }
 
     @Test

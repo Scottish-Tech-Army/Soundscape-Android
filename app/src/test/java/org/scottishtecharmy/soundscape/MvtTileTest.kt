@@ -368,13 +368,57 @@ class MvtTileTest {
     }
 
     /**
+     * A river/canal or railway crossing (see TreeId.WATER_AND_RAIL_CROSSINGS) should be announced
+     * while walking too, not just while travelling by car/bus - see
+     * AutoCallout.buildCalloutForWalkingCrossing. Uses a fabricated crossing feature roughly on
+     * the line between two consecutive locations, since the callout sweeps the path travelled
+     * since the previous location update (so the first updateLocation call just establishes the
+     * sweep anchor and is expected to produce no crossing callout).
+     */
+    @Test
+    fun testWalkingCrossingCallout() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val endLocation = gridState.ruler.offset(location, 0.0, 30.0)
+        val crossingLocation = gridState.ruler.offset(location, 0.0, 15.0)
+        val crossing = MvtFeature().apply {
+            geometry = Point(crossingLocation)
+            name = "Test River"
+            featureType = "waterway"
+            featureValue = "waterway_crossing"
+        }
+        gridState.featureTrees[TreeId.WATER_AND_RAIL_CROSSINGS.id] =
+            FeatureTree(FeatureCollection().apply { addFeature(crossing) })
+
+        val autoCallout = AutoCallout(null, null)
+        val firstUpdate = UserGeometry(location = location, speed = 1.4, timestampMilliseconds = 1000L)
+        val firstCallout = autoCallout.updateLocation(firstUpdate, gridState, settlementGrid)
+        assertTrue(
+            "Expected no crossing callout on the first update (no sweep yet), got: " +
+                "${firstCallout?.positionedStrings?.map { it.text }}",
+            firstCallout?.positionedStrings?.none { it.text.contains("Test River") } != false
+        )
+
+        val secondUpdate = UserGeometry(location = endLocation, speed = 1.4, timestampMilliseconds = 6000L)
+        val secondCallout = autoCallout.updateLocation(secondUpdate, gridState, settlementGrid)
+
+        assertNotNull(secondCallout)
+        assertTrue(
+            "Expected a callout mentioning Test River, got: ${secondCallout!!.positionedStrings.map { it.text }}",
+            secondCallout.positionedStrings.any { it.text.contains("Test River") }
+        )
+    }
+
+    /**
      * End-to-end check that travel-mode reverse geocoding combines the current road with a
      * nearby highway junction, e.g. "On M80 at Junction 2, Robroyston" rather than just naming
      * the road or the junction alone.
      */
     @Test
     fun testTravelCalloutForHighwayJunction() {
-        val location = LngLatAlt(-4.1848, 55.8854)
+        val location = LngLatAlt(-4.185480, 55.884504)
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
         val settlementGrid = getGridStateForLocation(location, 12, 3)
 
@@ -387,7 +431,7 @@ class MvtTileTest {
         val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
 
         assertNotNull(result)
-        assertEquals("On M80 at Junction 2, Robroyston", result!!.text)
+        assertEquals("Near Junction 2, Robroyston", result!!.text)
     }
 
     /**

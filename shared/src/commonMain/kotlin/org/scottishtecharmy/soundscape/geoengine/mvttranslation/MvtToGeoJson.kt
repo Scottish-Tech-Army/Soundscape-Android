@@ -127,11 +127,6 @@ private fun extractHighwayJunctions(
     return junctions
 }
 
-// Non-vehicle highway classes - see Way.isPath() - excluded when looking for a road bridge/tunnel
-// crossing a river or railway (a footbridge/foot tunnel shouldn't be called out as a car/bus
-// crossing).
-private val nonVehicleHighwayClasses = setOf("footway", "path", "bridleway", "cycleway", "steps")
-
 // OpenMapTiles waterway `class` values, in roughly descending size/significance: river, canal,
 // stream, drain, ditch. A stream is often little more than a culverted ditch under a road - not
 // really a landmark - so only the two biggest classes are worth a callout. This can't be inferred
@@ -148,8 +143,10 @@ private class BrunnelRoad(val brunnel: String, val coordinates: List<LngLatAlt>)
 
 /**
  * Crossings of a named river/canal, or of a railway (bridge or tunnel), while travelling by
- * car/bus - both are major navigation points worth a callout in their own right, e.g. "Crossing
- * Allander Water"/"Crossing the River Leven"/"Crossing the railway".
+ * car/bus or on foot - both are major navigation points worth a callout in their own right, e.g.
+ * "Crossing Allander Water"/"Crossing the River Leven"/"Crossing the railway". The road/path
+ * doing the crossing can be any highway class, including footway/path, so a pedestrian on a
+ * footbridge gets the same callout as a vehicle on a road bridge at the same spot.
  *
  * Waterways (see https://openmaptiles.org/schema/#waterway): a small stream culverted under a
  * road is already split at the crossing point and tagged there (`brunnel=tunnel`, occasionally
@@ -247,9 +244,7 @@ private fun extractCrossings(
                         }
                     }
                 }
-            } else if ((brunnel == "bridge" || brunnel == "tunnel") &&
-                featureClass !in nonVehicleHighwayClasses
-            ) {
+            } else if (brunnel == "bridge" || brunnel == "tunnel") {
                 for (line in parseGeometry(true, feature.geometry)) {
                     if (line.isEmpty()) continue
                     val coordinates = convertGeometry(tileX, tileY, tileZoom, line)
