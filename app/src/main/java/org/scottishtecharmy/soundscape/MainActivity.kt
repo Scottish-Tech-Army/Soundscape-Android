@@ -14,12 +14,13 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
+import android.os.Looper
 import android.os.StrictMode
 import android.provider.Settings
 import android.text.Html
 import android.util.Log
 import android.view.View
-import android.view.ViewTreeObserver
 import android.view.accessibility.AccessibilityManager
 import android.widget.Toast
 import androidx.activity.compose.setContent
@@ -308,23 +309,50 @@ class MainActivity : AppCompatActivity() {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             val timeNow = System.currentTimeMillis()
-            installSplashScreen()
+            val splashScreen = installSplashScreen()
 
             // Keep the splash screen visible until the sound has finished playing, with a minimum
             // delay for attribution acknowledgements and a hard upper bound so that it can never
-            // hang if the sound never reports completion.
+            // hang if the sound never reports completion. maxSplashDelay must stay comfortably
+            // under Android's 5s "Input dispatching timed out (No focused window)" ANR timeout -
+            // holding the splash open (and so the real window un-drawn/unfocused) for longer than
+            // that risks that exact ANR if the user taps the screen during the hold.
             val attributionDelay = 1500L
-            val maxSplashDelay = 7000L
+            val maxSplashDelay = 3500L
             val content: View = findViewById(android.R.id.content)
 
             var splashSoundFinished = false
-            // Open the splash gate, release the player and nudge a redraw so the
-            // OnPreDrawListener below re-evaluates its conditions.
+            var contentLaunched = false
+            // Set the real content as soon as the hold condition is met, rather than waiting for
+            // the splash exit animation - setOnExitAnimationListener only fires once the DecorView
+            // has already drawn a frame, and at that point nothing would be composed yet if we
+            // waited until then to call continueLaunch(), leaving a black screen once the splash
+            // view is removed.
+            val tryLaunchContent = {
+                val minDelayPassed = (System.currentTimeMillis() - timeNow) > attributionDelay
+                if (!contentLaunched && minDelayPassed && splashSoundFinished) {
+                    contentLaunched = true
+                    continueLaunch(isFirstLaunch)
+                }
+            }
+            // Open the splash gate and nudge a redraw so setKeepOnScreenCondition below
+            // re-evaluates its condition. Deliberately doesn't touch splashPlayer - the gate can
+            // open (via the maxSplashDelay safety net) before the sound has actually finished, and
+            // we want playback to carry on uninterrupted in the background rather than being cut
+            // off, so the player is only ever released once it reports real completion/error.
+            val openSplashGate = {
+                if (!splashSoundFinished) {
+                    splashSoundFinished = true
+                    content.invalidate()
+                    tryLaunchContent()
+                }
+            }
+
+            // The sound has actually finished (or errored) - release the player and open the gate.
             val finishSplashSound = {
-                splashSoundFinished = true
                 splashPlayer?.release()
                 splashPlayer = null
-                content.invalidate()
+                openSplashGate()
             }
 
             if (splashPlayed) {
@@ -344,9 +372,13 @@ class MainActivity : AppCompatActivity() {
                     // synchronously from within its own completion/error callback (still
                     // dispatching on this same EventHandler) can hang the main thread waiting on
                     // native teardown, causing an ANR. Posting breaks that reentrancy by letting
-                    // the callback dispatch return first.
-                    player.setOnCompletionListener { content.post { finishSplashSound() } }
-                    player.setOnErrorListener { _, _, _ -> content.post { finishSplashSound() }; true }
+                    // the callback dispatch return first. Uses a plain main-looper Handler rather
+                    // than content.post {} - the sound is allowed to keep playing after MainActivity
+                    // hands off to OnboardingActivity on first launch, and by then content's window
+                    // is gone, so a post to it would silently never run.
+                    val mainHandler = Handler(Looper.getMainLooper())
+                    player.setOnCompletionListener { mainHandler.post { finishSplashSound() } }
+                    player.setOnErrorListener { _, _, _ -> mainHandler.post { finishSplashSound() }; true }
                     player.start()
                 } catch (e: Exception) {
                     Log.e(TAG, "Failed to play splash sound: $e")
@@ -359,24 +391,25 @@ class MainActivity : AppCompatActivity() {
 
             // Safety net: never let the splash hang. If the sound hasn't reported completion by
             // maxSplashDelay (e.g. the MediaPlayer was reclaimed before its callback could fire)
-            // open the gate anyway.
-            content.postDelayed({ if (!splashSoundFinished) finishSplashSound() }, maxSplashDelay)
+            // open the gate anyway - the sound (if still playing) carries on regardless.
+            content.postDelayed({ openSplashGate() }, maxSplashDelay)
 
-            content.viewTreeObserver.addOnPreDrawListener(
-                object : ViewTreeObserver.OnPreDrawListener {
-                    override fun onPreDraw(): Boolean {
-                        val minDelayPassed =
-                            (System.currentTimeMillis() - timeNow) > attributionDelay
-                        return if (minDelayPassed && splashSoundFinished) {
-                            content.viewTreeObserver.removeOnPreDrawListener(this)
-                            continueLaunch(isFirstLaunch)
-                            true
-                        } else {
-                            false
-                        }
-                    }
-                }
-            )
+            // Covers the case where the sound finishes (or was never played) before
+            // attributionDelay has elapsed - tryLaunchContent() re-checks the delay itself.
+            content.postDelayed({ tryLaunchContent() }, attributionDelay)
+
+            // Uses the platform's own splash/focus handshake (androidx.core.splashscreen) rather
+            // than a hand-rolled ViewTreeObserver.OnPreDrawListener that suppresses the content
+            // view's first draw directly - the latter isn't coordinated with WindowManagerService's
+            // bookkeeping for when the window becomes focusable, which risks the same "No focused
+            // window" ANR mentioned above.
+            splashScreen.setKeepOnScreenCondition {
+                val minDelayPassed = (System.currentTimeMillis() - timeNow) > attributionDelay
+                !(minDelayPassed && splashSoundFinished)
+            }
+            splashScreen.setOnExitAnimationListener { splashScreenView ->
+                splashScreenView.remove()
+            }
         }
 
         // The remaining code in this function can be run whilst the splash screen is visible.
@@ -499,10 +532,12 @@ class MainActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferencesListener)
-        // Release the splash sound player if it's still playing (e.g. the activity is recreated
-        // before playback finishes) so it doesn't leak or overlap with a fresh instance.
-        splashPlayer?.release()
-        splashPlayer = null
+        // Deliberately don't release a still-playing splashPlayer here: on first launch,
+        // continueLaunch() finishes this activity to hand off to OnboardingActivity while the
+        // splash sound may still be playing, and we want that playback to carry on rather than
+        // being cut short. It self-releases via its own completion/error listener (posted through
+        // a main-looper Handler, so it still fires after this activity is gone). LAST_SPLASH_RELEASE_KEY
+        // is committed before playback starts, so a recreated MainActivity won't start a second player.
         super.onDestroy()
     }
 
