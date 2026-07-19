@@ -138,6 +138,27 @@ private val significantWaterwayClasses = setOf("river", "canal")
 // check in MvtToGeoJson's main Way-building loop.
 private val railwayClasses = setOf("rail", "transit")
 
+/**
+ * A railway/transit line that's permanently underground - either a `subclass=subway` line (the
+ * whole Glasgow Subway, for example) or any segment tagged `brunnel=tunnel` - is excluded from
+ * TreeId.TRANSIT, the network railMapMatchFilter matches GPS fixes against (see GeoEngine.kt).
+ *
+ * GPS is 2D: it can't tell a road apart from a railway tunnel running directly beneath it. Where
+ * a road sits right above a rail tunnel for a sustained stretch - e.g. Byres Road above the
+ * Glasgow Subway, around 55.872965,-4.296419 - the tunnel's horizontal projection would otherwise
+ * coincide with the road closely enough, for long enough, to build up the same kind of sustained
+ * frechetQueue history as a genuine train ride (see MapMatchFilter.isMatchConfident), wrongly
+ * flipping UserGeometry.probablyOnTrain for a driver or pedestrian who was never anywhere near a
+ * train. A brief level crossing is already handled by isMatchConfident's history requirement; a
+ * tunnel/subway running underneath for hundreds of metres is not "brief", so it needs excluding
+ * at the source instead. There's no matching value in keeping these matchable in the first place:
+ * a phone actually underground on a real subway/tunnel journey rarely has a usable GPS fix to
+ * match with anyway.
+ */
+private fun isUnmatchableRailway(subClass: String?, brunnel: Any?): Boolean {
+    return (subClass == "subway") || (brunnel == "tunnel")
+}
+
 private class NamedLine(val name: String?, val featureClass: String?, val coordinates: List<LngLatAlt>)
 private class BrunnelRoad(val brunnel: String, val coordinates: List<LngLatAlt>)
 
@@ -682,10 +703,13 @@ fun vectorTileToGeoJson(
                             if (id == 0L) {
                                 println("Feature ID is zero for $name")
                             }
-                            if ((featureClass == "transit") || (featureClass == "rail"))
-                                transitGenerator.addLine(line)
-                            else
+                            if ((featureClass == "transit") || (featureClass == "rail")) {
+                                if (!isUnmatchableRailway(featureSubClass, properties?.get("brunnel"))) {
+                                    transitGenerator.addLine(line)
+                                }
+                            } else {
                                 wayGenerator.addLine(line)
+                            }
                             val interpolatedNodes: MutableList<LngLatAlt> = mutableListOf()
                             val clippedLines = convertGeometryAndClipLineToTile(
                                 tileX,
@@ -788,10 +812,13 @@ fun vectorTileToGeoJson(
                             if (geoFeature.geometry.type != "LineString") {
                                 collection.addFeature(geoFeature)
                             } else {
-                                if ((featureClass == "transit") || (featureClass == "rail"))
-                                    transitGenerator.addFeature(geoFeature)
-                                else
+                                if ((featureClass == "transit") || (featureClass == "rail")) {
+                                    if (!isUnmatchableRailway(featureSubClass, properties?.get("brunnel"))) {
+                                        transitGenerator.addFeature(geoFeature)
+                                    }
+                                } else {
                                     wayGenerator.addFeature(geoFeature)
+                                }
 
                                 if (geoFeature.superCategory != SuperCategoryId.UNCATEGORIZED) {
                                     // Features like Piers and steps are POIs as well as ways, so ensure
