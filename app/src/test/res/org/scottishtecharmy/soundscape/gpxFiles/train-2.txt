@@ -1,0 +1,1221 @@
+
+Callout
+	At Glasgow Green
+
+Callout
+	Approaching intersection
+		Greendyke Street goes left
+		Greendyke Street goes right
+
+Callout
+	Approaching intersection
+		Greendyke Street continues ahead
+		Path via steps goes right
+
+Callout
+	Ahead Greendyke Street
+
+Callout
+	Glasgow Green
+
+Callout
+	Ahead Greendyke Street
+
+Callout
+	Approaching intersection
+		Path goes left
+		Greendyke Street continues ahead
+		Turnbull Street goes right
+
+Callout
+	GAMH
+
+Callout
+	Approaching intersection
+		Steel Street goes left
+		Turnbull Street continues ahead
+
+Callout
+	Approaching intersection
+		Service goes left
+		Steel Street continues ahead
+
+Callout
+	Ahead Steel Street
+
+Callout
+	Study of a Woman in Black
+
+Callout
+	Approaching intersection
+		Saltmarket goes left
+		Bridgegate continues ahead
+		Saltmarket goes right
+
+Callout
+	Approaching intersection
+		Path to Bridgegate Path via tunnel goes left
+		Saltmarket continues ahead
+
+Callout
+	R-cade
+
+Callout
+	Approaching intersection
+		Saltmarket continues ahead
+		Path to dead-end via tunnel goes right
+
+Callout
+	Merchant Gate Gallery
+
+Callout
+	Hairstyle Zone
+
+Callout
+	Approaching intersection
+		Path to The Wine & Whisky Shop via tunnel goes left
+		Saltmarket continues ahead
+
+Callout
+	Shopsmart
+
+Callout
+	Approaching intersection
+		Path to The Wine & Whisky Shop via tunnel goes left
+		Saltmarket continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead Saltmarket
+
+Callout
+	Java the Hut
+
+Callout
+	MellowDee Bar
+
+Callout
+	Approaching intersection
+		Saltmarket continues ahead
+		Service to St Andrew's Court Student Accommodation goes right
+		St Andrew's Street goes right
+
+Callout
+	Glasgow Music Studios
+
+Callout
+	Empire Bar
+
+Callout
+	Approaching intersection
+		Saltmarket continues ahead
+
+Callout
+	Trongate Cycle Hire Station (8431)
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead Saltmarket
+
+Callout
+	Mr Jim's
+
+Callout
+	Believer Tattoo
+
+Callout
+	Caza Barbers
+
+Callout
+	Approaching intersection
+		Saltmarket continues ahead
+		Saltmarket continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Trongate goes left
+		High Street continues ahead
+		London Road goes right
+
+Callout
+	Glasgow Pawnbroking
+
+Callout
+	Ahead Trongate
+
+Callout
+	Carriage and Castles
+
+Callout
+	Beit Zaman
+
+Callout
+	Nails and Beauty Supplies
+
+Callout
+	Trongate / Chisholm Street Transit Stop
+
+Callout
+	Rose & Grants
+
+Callout
+	Approaching intersection
+		Chisholm Street goes left
+		Trongate continues ahead
+		Albion Street goes right
+
+Callout
+	Cherub
+
+Callout
+	Guitar Guitar
+
+Callout
+	Principal Apartments
+
+Callout
+	Maggie's
+
+Callout
+	Ahead Trongate
+
+Callout
+	Charcoals Peri Peri
+
+Callout
+	Approaching intersection
+		King Street goes left
+		Trongate continues ahead
+		Candleriggs goes right
+
+Callout
+	Trongate Gallery
+
+Callout
+	Approaching intersection
+		New Wynd goes left
+		Trongate continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	Mitchell's
+
+Callout
+	Spaceman
+
+Callout
+	Approaching intersection
+		Trongate continues ahead
+		Brunswick Lane goes right
+
+Callout
+	McDonald's Bakers
+
+Callout
+	Britannia Panopticon
+
+Callout
+	Jimboree
+
+Callout
+	Approaching intersection
+		Old Wynd goes left
+		Trongate continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	Trongate Pharmacy
+
+Callout
+	Ahead Trongate
+
+Callout
+	British Heart Foundation
+
+Callout
+	Approaching intersection
+		Trongate continues ahead
+		Hutcheson Street goes right
+
+Callout
+	Dee
+
+Callout
+	Mobile technicians
+
+Callout
+	Trongate / Stockwell Street; Transit Stop
+
+Callout
+	Tesco Express
+
+Callout
+	Approaching intersection
+		Stockwell Street goes left
+		Argyle Street continues ahead
+		Glassford Street goes right
+
+Callout
+	Specsavers
+
+Callout
+	Ahead Trongate
+
+Callout
+	Marks & Spencer
+
+Callout
+	Ahead Argyle Street
+
+Callout
+	Sainsbury's Local
+
+Callout
+	Approaching intersection
+		Argyle Street continues ahead
+		Virginia Street goes right
+
+Callout
+	Argyle Street Railway Station Cycle Hire Station (8411)
+
+Callout
+	Pound & Beyond
+
+Callout
+	Approaching intersection
+		Path to Italian Couture via tunnel goes left
+		Argyle Street continues ahead
+
+Callout
+	Jackson the Tailor
+
+Callout
+	Italian Couture
+
+Callout
+	WHSmith
+
+Callout
+	Approaching intersection
+		Dunlop Street goes left
+		Argyle Street continues ahead
+
+Callout
+	Caffè Nero
+
+Callout
+	Former Lewis's Department Store
+
+Callout
+	Approaching intersection
+		Argyle Street continues ahead
+		Miller Street goes right
+
+Callout
+	Former Lewis's Department Store Entrance
+
+Callout
+	Ahead Argyle Street
+
+Callout
+	OSM Feature
+
+Callout
+	Next
+
+Callout
+	HMV
+
+Callout
+	Primark
+
+Callout
+	Superdrug
+
+Callout
+	Barclays
+
+Callout
+	Approaching intersection
+		Argyle Street continues ahead
+		Queen Street goes right
+
+Callout
+	Deichmann
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Maxwell Street goes left
+		Argyle Street continues ahead
+
+Callout
+	Foot Locker
+
+Callout
+	Premier
+
+Callout
+	Santander
+
+Callout
+	Approaching intersection
+		Argyle Street continues ahead
+		Path to Argyll Arcade goes right
+
+Callout
+	Argyle Street / Argyll Arcade Transit Stop
+
+Callout
+	Approaching intersection
+		Argyle Street continues ahead
+		Morrison Court goes right
+
+Callout
+	The Phone Warehouse
+
+Callout
+	Approaching intersection
+		Argyle Street continues ahead
+
+Callout
+	Schuh
+
+Callout
+	FootAsylum
+
+Callout
+	HSBC UK
+
+Callout
+	Ahead Argyle Street
+
+Callout
+	OSM Feature
+
+Callout
+	OSM Feature
+
+Callout
+	Argyle Street / St. Enoch Square Transit Stop
+
+Callout
+	Timpson
+
+Callout
+	Approaching intersection
+		Argyle Street continues ahead
+		Mitchell Street goes right
+
+Callout
+	Celtic Store
+
+Callout
+	MERKUR Slots
+
+Callout
+	Ahead Argyle Street
+
+Callout
+	Subway
+
+Callout
+	Greggs
+
+Callout
+	Approaching intersection
+		Jamaica Street goes left
+		Argyle Street continues ahead
+		Union Street goes right
+
+Callout
+	Waterstones
+
+Callout
+	KFC
+
+Callout
+	OSM Feature
+
+Callout
+	Tim Hortons
+
+Callout
+	Ahead Argyle Street
+
+Callout
+	Grant Arms
+
+Callout
+	Glasgow Central
+
+Callout
+	At OSM Feature
+
+Callout
+	John Stewart Jewellers
+
+Callout
+	Approaching intersection
+		Argyle Street continues ahead
+		Path to dead-end goes right
+
+Callout
+	At OSM Feature
+
+Callout
+	Ahead Path to Starbucks
+
+Callout
+	Tickets Scotland
+
+Callout
+	Blue Lagoon
+
+Callout
+	Approaching intersection
+		Path to dead-end goes left
+		Argyle Street continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead Argyle Street
+
+Callout
+	At OSM Feature
+
+Callout
+	Motel One Glasgow
+
+Callout
+	Glasgow Central West Station (8216)
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead Oswald Street
+
+Callout
+	Oswald Street / Radisson Hotel Transit Stop
+
+Callout
+	ICareRepair
+
+Callout
+	Oswald Street Tattoo Club
+
+Callout
+	Oswald Street / Argyle Street Transit Stop
+
+Callout
+	Approaching intersection
+		Midland Street goes left
+		Oswald Street continues ahead
+
+Callout
+	Rock and Rolls
+
+Callout
+	Men international
+
+Callout
+	Oswald Street Book Shop
+
+Callout
+	Approaching intersection
+		Oswald Street continues ahead
+		Path to Robertson Street via tunnel goes right
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead Oswald Street
+
+Callout
+	Enterprise
+
+Callout
+	Oswald Street / Argyle Street Transit Stop
+
+Callout
+	Approaching intersection
+		Oswald Street continues ahead
+		Service to Clydeport Ltd goes right
+
+Callout
+	Glasgow Central
+
+Callout
+	Approaching intersection
+		Service to Oswald Street Car Park goes left
+		Oswald Street continues ahead
+
+Callout
+	Clydeport Ltd
+
+Callout
+	Approaching intersection
+		Broomielaw goes left
+		George V Bridge continues ahead
+		Broomielaw goes right
+
+Callout
+	Sally Salon
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Broomielaw goes left
+		George V Bridge continues ahead
+		Broomielaw goes right
+
+Callout
+	Grosvenor Casino Glasgow Riverboat
+
+Callout
+	Approaching intersection
+		George V Bridge continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead Broomielaw
+
+Callout
+	OSM Feature
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead Broomielaw
+
+Callout
+	OSM Feature
+
+Callout
+	Grosvenor Casino Glasgow Riverboat
+
+Callout
+	1 Atlantic Quay
+
+Callout
+	Ahead Broomielaw
+
+Callout
+	Broomielaw pontoon
+
+Callout
+	Approaching intersection
+		Fastlink busway continues ahead
+		Broomielaw continues ahead
+
+Callout
+	Clydeside Containers
+
+Callout
+	Approaching intersection
+		Broomielaw goes left
+		Broomielaw goes right
+
+Callout
+	Broomielaw/ York Street Transit Stop
+
+Callout
+	Approaching intersection
+		Broomielaw continues ahead
+		York Street goes right
+
+Callout
+	3 Atlantic Quay
+
+Callout
+	Approaching intersection
+		Fastlink busway continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Path continues ahead
+
+Callout
+	Broomielaw Cycle Hire Station (8413)
+
+Callout
+	OSM Feature
+
+Callout
+	James Watt Street Transit Stop
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead Fastlink busway
+
+Callout
+	Ahead Fastlink busway
+
+Callout
+	Ahead Fastlink busway
+
+Callout
+	Broomielaw / Kingston Bridge Transit Stop
+
+Callout
+	Ahead Fastlink busway
+
+Callout
+	Ahead Fastlink busway
+
+Callout
+	Approaching intersection
+		Path to Fastlink Busway goes left
+		Fastlink busway continues ahead
+
+Callout
+	Renfrew Ferry
+
+Callout
+	Broomielaw West Station (8217)
+
+Callout
+	Approaching intersection
+		Path to Mosaic continues ahead
+		Path via steps goes right
+
+Callout
+	Mosaic
+
+Callout
+	OSM Feature
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead Path to Mosaic
+
+Callout
+	At OSM Feature
+
+Callout
+	Anderson Quay / Central Quay Transit Stop
+
+Callout
+	OSM Feature
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Lancefield Quay continues ahead
+		Elliot Street goes right
+
+Callout
+	Approaching intersection
+		Lancefield Quay continues ahead
+
+Callout
+	Ahead Lancefield Quay
+
+Callout
+	Lancefield Quay / Clyde Arc Bridge Transit Stop
+
+Callout
+	Ahead Lancefield Quay
+
+Callout
+	Ahead Lancefield Quay
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Lancefield Quay continues ahead
+		Path to Finnieston Street goes right
+
+Callout
+	India Quay
+
+Callout
+	Approaching intersection
+		Clyde Arc goes left
+		Finnieston Street goes left
+		Finnieston Quay continues ahead
+		Finnieston Street goes right
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead Finnieston Street
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Tunnel Street goes left
+		Finnieston Street continues ahead
+
+Callout
+	Nuffield Health Fitness & Wellbeing
+
+Callout
+	Approaching intersection
+		Stobcross Road continues ahead
+		Finnieston Street continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Stobcross Road continues ahead
+		Stobcross Road goes right
+
+Callout
+	Ahead Finnieston Street
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Finnieston Street continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Finnieston Street continues ahead
+		Service goes right
+
+Callout
+	Ahead Finnieston Street
+
+Callout
+	Moxy Glasgow SEC
+
+Callout
+	Approaching intersection
+		Finnieston Street continues ahead
+		Service to Serial Affinity goes right
+
+Callout
+	Serial Affinity
+
+Callout
+	Nuffield Health Fitness & Wellbeing
+
+Callout
+	Approaching intersection
+		Tertiary continues ahead
+		Finnieston Street continues ahead
+
+Callout
+	Approaching intersection
+		Tertiary to Stobcross Road continues ahead
+		Path goes right
+
+Callout
+	Approaching intersection
+		Path goes left
+		Finnieston Street continues ahead
+		Path via tunnel goes right
+		Primary goes right
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Tertiary to Stobcross Road goes left
+		Tertiary continues ahead
+
+Callout
+	Approaching intersection
+		Stobcross Street goes left
+		Finnieston Street continues ahead
+		Primary to Clydeside Expressway goes right
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Tertiary goes left
+		Stobcross Street continues ahead
+		Tertiary goes right
+
+Callout
+	Skypark
+
+Callout
+	Approaching intersection
+		Finnieston Street continues ahead
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Path goes left
+		Finnieston Street continues ahead
+
+Callout
+	Music Broth - Scotland's Loudest Library
+
+Callout
+	Approaching intersection
+		Tertiary continues ahead
+		Stobcross Street goes right
+
+Callout
+	Exhibition Centre Transit Stop
+
+Callout
+	Exhibition Centre Railway Station
+
+Callout
+	Approaching intersection
+		Minerva Street continues ahead
+
+Callout
+	Exhibition Centre Railway Station Main entrance
+
+Callout
+	Approaching intersection
+		Minerva Street goes left
+		Minerva Street goes right
+
+Callout
+	Ahead Minerva Street
+
+Callout
+	Approaching intersection
+		Minerva Street continues ahead
+		West Greenhill Place goes right
+
+Callout
+	Approaching intersection
+		Path to dead-end goes left
+		Path to Exhibition Centre Railway Station goes right
+
+Callout
+	Ahead Path to Exhibition Centre Railway Station via steps
+
+Callout
+	Exhibition Centre Transit Stop
+
+Callout
+	Exhibition Centre Railway Station
+
+Callout
+	Exhibition Centre Railway Station Main entrance
+
+Callout
+	Near Finnieston
+
+Callout
+	On Primary that joins Clydeside Expressway and Stobcross Street and close to Finnieston
+
+Callout
+	On Clydeside Expressway and close to Kelvinhaugh
+
+Callout
+	Near Kelvinhaugh
+
+Callout
+	On Pavement next to Clydeside Expressway and close to Yorkhill
+
+Callout
+	Near Yorkhill
+
+Callout
+	On Pavement next to Clydeside Expressway and close to Partick
+
+Callout
+	Near Partick
+
+Callout
+	Near Partick Interchange Transit Stop
+
+Callout
+	Ahead Path
+
+Callout
+	Partick (Rail) Transit Stop
+
+Callout
+	On Burgh Hall Street and close to Partick
+
+Callout
+	On Service that joins Sainsbury's and M&S Simply Food and close to Partick
+
+Callout
+	Near Partick
+
+Callout
+	On Blairatholl Avenue and close to Hyndland
+
+Callout
+	Near Hyndland
+
+Callout
+	Near Hyndland Transit Stop
+
+Callout
+	Approaching intersection
+		Path to dead-end continues ahead
+		Path to Gartnavel General Hospital via bridge goes right
+
+Callout
+	OSM Feature
+
+Callout
+	Gartnavel General Hospital
+
+Callout
+	Ahead Path to dead-end
+
+Callout
+	Ahead Path to Gartnavel General Hospital
+
+Callout
+	Near Broomhill
+
+Callout
+	Gartnavel Royal Hospital
+
+Callout
+	Cuthbertson Ward
+
+Callout
+	Ahead Service
+
+Callout
+	Near Broomhill
+
+Callout
+	On Whittingehame Lane and close to Broomhill
+
+Callout
+	Near Temple
+
+Callout
+	On Great Western Road and close to Temple
+
+Callout
+	Anniesland Transit Stop
+
+Callout
+	Ahead Track to dead-end
+
+Callout
+	Near Temple
+
+Callout
+	On Strathcona Drive and close to Temple
+
+Callout
+	On Temple Road and close to Temple
+
+Callout
+	On Bearsden Road and close to Temple
+
+Callout
+	On Westerton Avenue and close to Temple
+
+Callout
+	On Old Farm Road and close to Temple
+
+Callout
+	On Maxwell Avenue and close to Netherton
+
+Callout
+	Near Netherton
+
+Callout
+	On Forth and Clyde Canal Towpath and close to Netherton
+
+Callout
+	Near Westerton Transit Stop
+
+Callout
+	Approaching intersection
+		Path via bridge goes left
+		Path to dead-end via bridge continues ahead
+
+Callout
+	Westerton Transit Stop
+
+Callout
+	Ahead Path to Westerton car park
+
+Callout
+	Near Netherton
+
+Callout
+	Near Knightswood
+
+Callout
+	On Path that joins Canniesburn Road and Canniesburn Road and close to Knightswood
+
+Callout
+	On Conon Avenue and close to Bearsden
+
+Callout
+	Near Bearsden
+
+Callout
+	On Station Road and close to Bearsden
+
+Callout
+	Approaching intersection
+		Service goes left
+		Station Road continues ahead
+
+Callout
+	Co-op Food
+
+Callout
+	Approaching intersection
+		Ledcameroch Road goes left
+		Ledcameroch Road goes right
+
+Callout
+	OSM Feature
+
+Callout
+	On Jubilee Path and close to Bearsden
+
+Callout
+	On Hillfoot Court and close to Bearsden
+
+Callout
+	Near Bearsden
+
+Callout
+	Near Hillfoot Transit Stop
+
+Callout
+	OSM Feature
+
+Callout
+	Hillfoot Transit Stop
+
+Callout
+	Ahead Birch View to dead end
+
+Callout
+	On Birch View and close to Bearsden
+
+Callout
+	Near Milngavie
+
+Callout
+	On Dalgleish Drive and close to Milngavie
+
+Callout
+	On Cobden Crescent and close to Milngavie
+
+Callout
+	On Glasgow Road and close to Milngavie
+
+Callout
+	On Pavement next to Keystone Avenue and close to Milngavie
+
+Callout
+	Near Milngavie
+
+Callout
+	On Service that joins Lennox Park and Crossveggate and close to Milngavie
+
+Callout
+	Ahead Path
+
+Callout
+	OSM Feature
+
+Callout
+	Milngavie Station
+
+Callout
+	Milngavie Transit Stop
+
+Callout
+	OSM Feature
+
+Callout
+	Prego
+
+Callout
+	Approaching intersection
+		Path goes left
+		Path goes right
+
+Callout
+	Milngavie, Milngavie Railway Station (at) Transit Stop
+
+Callout
+	Milngavie Station Entrance
+
+Callout
+	Milngavie Station Main entrance
+
+Callout
+	Approaching intersection
+		Path goes left
+		Path goes right
+
+Callout
+	Approaching intersection
+		Path to Station Road goes left
+		Path to Station Road via steps continues ahead
+
+Callout
+	Ahead Path
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Path to Station Road continues ahead
+		Path to Milngavie Station goes right
+
+Callout
+	St Joseph's RC Church
+
+Callout
+	Ahead Path to Station Road
+
+Callout
+	OSM Feature

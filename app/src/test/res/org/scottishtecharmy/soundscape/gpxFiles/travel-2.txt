@@ -12,13 +12,13 @@ Callout
 		Path to Strathblane Road via steps goes right
 
 Callout
-	playground
+	OSM Feature
 
 Callout
 	Ahead Campsie Drive
 
 Callout
-	playground
+	OSM Feature
 
 Callout
 	Ahead Campsie Drive
@@ -98,7 +98,7 @@ Callout
 		Glassford Street to dead end goes right
 
 Callout
-	post
+	OSM Feature
 
 Callout
 	Ahead Baldernock Road
@@ -118,16 +118,16 @@ Callout
 		Path goes right
 
 Callout
+	OSM Feature
+
+Callout
 	Approaching intersection
 		Glasgow Road goes left
 		Station Road continues ahead
 		Strathblane Road goes right
 
 Callout
-	crossing
-
-Callout
-	crossing
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -135,12 +135,7 @@ Callout
 		Path goes right
 
 Callout
-	St Pauls Milngavie
-
-Callout
-	Approaching intersection
-		Glasgow Road continues ahead
-		Victoria Place goes right
+	Ahead Glasgow Road
 
 Callout
 	Milngavie Bowling Club
@@ -149,18 +144,15 @@ Callout
 	Ahead Glasgow Road
 
 Callout
-	Ahead Glasgow Road
-
-Callout
 	Approaching intersection
 		Glasgow Road continues ahead
-		Service to Milngavie Bowling Club goes right
+		Service to dead-end goes right
+
+Callout
+	Ahead Glasgow Road
 
 Callout
 	Milngavie Bowling Club
-
-Callout
-	Ahead Glasgow Road
 
 Callout
 	Approaching intersection
@@ -175,13 +167,10 @@ Callout
 Callout
 	Approaching intersection
 		Crossveggate continues ahead
-		Service to Milngavie Bowling Club goes right
+		Service to dead-end goes right
 
 Callout
 	Ahead Crossveggate
-
-Callout
-	Milngavie Bowling Club
 
 Callout
 	Approaching intersection
@@ -207,27 +196,30 @@ Callout
 	Lennox Park
 
 Callout
-	Ahead Service to Lennox Park via bridge
-
-Callout
 	Approaching intersection
 		Path via steps goes left
 		Path goes right
 
 Callout
-	pitch
+	Ahead Service to Lennox Park via bridge
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead Path
 
 Callout
 	Ahead Path via steps
 
 Callout
-	pitch
+	OSM Feature
+
+Callout
+	Ahead Path via steps
 
 Callout
 	At Lennox Park
-
-Callout
-	Ahead Path via steps
 
 Callout
 	Approaching intersection
@@ -236,6 +228,9 @@ Callout
 
 Callout
 	Ahead Path via steps
+
+Callout
+	Ahead Path via bridge
 
 Callout
 	At Lennox Park
@@ -254,12 +249,6 @@ Callout
 		Keystone Avenue continues ahead
 
 Callout
-	At Lennox Park
-
-Callout
-	Ahead Path
-
-Callout
 	Ahead Path
 
 Callout
@@ -275,10 +264,10 @@ Callout
 	At Lennox Park
 
 Callout
-	pitch
+	Ahead Path
 
 Callout
-	Ahead Path
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -287,7 +276,7 @@ Callout
 		Path goes right
 
 Callout
-	pitch
+	OSM Feature
 
 Callout
 	YogaJo's
@@ -296,7 +285,7 @@ Callout
 	Ahead Path to Christine's on the Green
 
 Callout
-	playground
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -311,7 +300,7 @@ Callout
 
 Callout
 	Approaching intersection
-		Path to Pavement next to Park Road goes left
+		Path goes left
 		Path to Main Street continues ahead
 
 Callout
@@ -320,35 +309,31 @@ Callout
 		Main Street continues ahead
 
 Callout
-	crossing
+	OSM Feature
 
 Callout
 	Approaching intersection
-		Main Street continues ahead
+		Main Street goes left
 		Main Street goes right
+
+Callout
+	Ahead Path
+
+Callout
+	OSM Feature
+
+Callout
+	Approaching intersection
+		Southgate continues ahead
+		Path goes right
 
 Callout
 	YogaJo's
 
 Callout
 	Approaching intersection
-		Park Road goes left
-		Main Street continues ahead
-		Park Road goes right
-
-Callout
-	Ahead Park Road
-
-Callout
-	Lennox Park
-
-Callout
-	Approaching intersection
+		Southgate goes left
 		Park Road continues ahead
-		Southgate goes right
-
-Callout
-	crossing
 
 Callout
 	Ahead Park Road
@@ -356,7 +341,7 @@ Callout
 Callout
 	Approaching intersection
 		Park Road continues ahead
-		Service to Pavement next to Park Road goes right
+		Service goes right
 
 Callout
 	Approaching intersection
@@ -368,19 +353,33 @@ Callout
 
 Callout
 	Approaching intersection
+		Path goes left
+		Park Road continues ahead
+
+Callout
+	Approaching intersection
 		Park Road continues ahead
 		Ashfield Road goes right
 
 Callout
 	Approaching intersection
+		Path to Ashfield Road continues ahead
+
+Callout
+	Approaching intersection
 		Park Road continues ahead
-		Path to Pavement next to Park Road goes right
+		Path goes right
 
 Callout
 	Ahead Park Road
 
 Callout
-	Milngavie, Ashfield Road (before)
+	Milngavie, Ashfield Road (before) Transit Stop
+
+Callout
+	Approaching intersection
+		Path goes left
+		Park Road continues ahead
 
 Callout
 	St Andrew's Church
@@ -391,12 +390,20 @@ Callout
 		Stewart Street goes right
 
 Callout
+	St Andrew's Church Main entrance
+
+Callout
 	Approaching intersection
 		Path goes left
 		Park Road continues ahead
 
 Callout
-	Milngavie, Stewart Street (opp)
+	Milngavie, Stewart Street (opp) Transit Stop
+
+Callout
+	Approaching intersection
+		Park Road continues ahead
+		Service goes right
 
 Callout
 	Friendship House and Café
@@ -405,25 +412,18 @@ Callout
 	Ahead Park Road
 
 Callout
-	Ahead Path to Pavement next to Park Road
-
-Callout
 	Milngavie's Local Mart
 
 Callout
 	Approaching intersection
-		Craigdhu Road goes left
-		Clober Road continues ahead
-		Douglas Street goes right
+		Park Road continues ahead
 
 Callout
-	crossing
+	OSM Feature
 
 Callout
-	St Andrew's Church
-
-Callout
-	Ahead Park Road
+	Approaching intersection
+		Craigdhu Road continues ahead
 
 Callout
 	Ahead Clober Road
@@ -433,8 +433,7 @@ Callout
 
 Callout
 	Approaching intersection
-		Clober Road continues ahead
-		South Claremont Lane goes right
+		South Claremont Lane continues ahead
 
 Callout
 	Approaching intersection
@@ -443,12 +442,15 @@ Callout
 
 Callout
 	Approaching intersection
-		Clober Road goes left
-		Clober Road continues ahead
+		North Claremont Lane goes left
 		North Claremont Lane goes right
 
 Callout
 	Ahead Clober Road
+
+Callout
+	Approaching intersection
+		Clober Road continues ahead
 
 Callout
 	Ahead Clober Road
@@ -486,6 +488,9 @@ Callout
 		Path continues ahead
 
 Callout
+	Ahead Path
+
+Callout
 	Approaching intersection
 		Path goes left
 		Path goes right
@@ -507,29 +512,26 @@ Callout
 	Ahead Path
 
 Callout
-	memorial
+	OSM Feature
 
 Callout
 	Approaching intersection
 		Path goes left
-		Path to West Highland Way continues ahead
+		Path to West Highland Way - Slighe Taobh an Iar na Gàidhealtachd continues ahead
 
 Callout
 	Approaching intersection
-		West Highland Way goes left
-		Path to Milngavie Youth Centre continues ahead
-		West Highland Way goes right
+		West Highland Way - Slighe Taobh an Iar na Gàidhealtachd goes left
+		Path to Milngavie Youth Centre goes right
+		West Highland Way - Slighe Taobh an Iar na Gàidhealtachd goes right
 
 Callout
 	Approaching intersection
 		Path to Milngavie Youth Centre goes left
-		West Highland Way continues ahead
+		West Highland Way - Slighe Taobh an Iar na Gàidhealtachd continues ahead
 
 Callout
-	Ahead West Highland Way
-
-Callout
-	memorial
+	Ahead West Highland Way - Slighe Taobh an Iar na Gàidhealtachd
 
 Callout
 	Approaching intersection
@@ -543,11 +545,20 @@ Callout
 
 Callout
 	Approaching intersection
-		West Highland Way goes left
+		West Highland Way - Slighe Taobh an Iar na Gàidhealtachd goes left
 		Riverside continues ahead
 
 Callout
-	bridge
+	Ahead Riverside
+
+Callout
+	OSM Feature
+
+Callout
+	Ahead West Highland Way - Slighe Taobh an Iar na Gàidhealtachd
+
+Callout
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -566,27 +577,35 @@ Callout
 	Timpson
 
 Callout
-	Costa
-
-Callout
 	Approaching intersection
 		Path to The Fraser Centre goes left
 		Douglas Street continues ahead
 
 Callout
+	Costa
+
+Callout
 	Lodge Ellangowan No. 716
 
 Callout
-	Ahead West Highland Way
+	Ahead West Highland Way - Slighe Taobh an Iar na Gàidhealtachd
 
 Callout
 	Subway
 
 Callout
+	Ahead Douglas Street
+
+Callout
 	John Amabile Design
 
 Callout
-	bridge
+	Approaching intersection
+		Douglas Street continues ahead
+		Path to Woodburn Way Car Park goes right
+
+Callout
+	Hair by Rachel
 
 Callout
 	Approaching intersection
@@ -594,35 +613,16 @@ Callout
 		Station Road continues ahead
 
 Callout
-	bridge
+	No. 1 Boutique
 
 Callout
-	At bridge
-
-Callout
-	Bank of Scotland
-
-Callout
-	Ahead Douglas Street
-
-Callout
-	R & G Financial
+	OSM Feature
 
 Callout
 	Ahead Station Road
 
 Callout
-	Approaching intersection
-		Path to Kirk Wynd goes left
-		Station Road continues ahead
-
-Callout
-	Approaching intersection
-		Hillhead Street goes left
-		Station Road continues ahead
-
-Callout
-	Graeme Pharmacy
+	Body & Mind Salon
 
 Callout
 	Approaching intersection
@@ -630,11 +630,6 @@ Callout
 		Path via steps goes right
 		Path to Woodburn Way Car Park goes right
 		Path goes right
-
-Callout
-	Approaching intersection
-		Service to Woodburn Way continues ahead
-		Service goes right
 
 Callout
 	The Honeybee Bakery
@@ -662,12 +657,7 @@ Callout
 	Ahead Station Road
 
 Callout
-	Approaching intersection
-		Station Road goes left
-		Woodburn Way goes right
-
-Callout
-	crossing
+	OSM Feature
 
 Callout
 	Milngavie Town Hall
@@ -685,12 +675,12 @@ Callout
 	The Lillie Art Gallery
 
 Callout
-	St Joseph's RC Church
-
-Callout
 	Approaching intersection
 		Buchanan Street continues ahead
 		Kersland Drive goes right
+
+Callout
+	St Joseph's RC Church
 
 Callout
 	Approaching intersection
@@ -698,13 +688,10 @@ Callout
 		Buchanan Street continues ahead
 
 Callout
+	Ahead Buchanan Street
+
+Callout
 	Milngavie Town Hall
-
-Callout
-	Ahead Buchanan Street
-
-Callout
-	Ahead Buchanan Street
 
 Callout
 	Ahead Buchanan Street
@@ -715,12 +702,6 @@ Callout
 		Buchanan Street continues ahead
 
 Callout
-	Cairns Church
-
-Callout
-	Ahead Buchanan Street
-
-Callout
 	Ahead Buchanan Street
 
 Callout
@@ -730,9 +711,13 @@ Callout
 	Ahead Buchanan Street
 
 Callout
-	Approaching intersection
-		Buchanan Street continues ahead
-		Moor Road goes right
+	Ahead Buchanan Street
+
+Callout
+	Cairns Church
+
+Callout
+	Ahead Buchanan Street
 
 Callout
 	Ahead Moor Road
@@ -808,7 +793,7 @@ Callout
 		Service goes right
 
 Callout
-	lift_gate
+	OSM Feature
 
 Callout
 	Approaching intersection
@@ -819,7 +804,7 @@ Callout
 	Ahead Service
 
 Callout
-	toilets
+	OSM Feature
 
 Callout
 	Ahead Service
