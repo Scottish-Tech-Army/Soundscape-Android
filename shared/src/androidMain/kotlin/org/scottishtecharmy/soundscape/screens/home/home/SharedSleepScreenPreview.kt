@@ -2,13 +2,12 @@ package org.scottishtecharmy.soundscape.screens.home.home
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 @Preview(showBackground = true)
 @Composable
 fun SharedSleepScreenPreview() {
     SharedSleepScreen(
-        onWakeUp = {},
-        onExit = {},
         onWakeUpNowClicked = {},
         onWakeOnLeaveClicked = { },
         state = SleepScreenState.Sleeping,
@@ -19,11 +18,12 @@ fun SharedSleepScreenPreview() {
 @Composable
 fun SharedSleepScreenWakeOnLeaveEnabledPreview() {
     SharedSleepScreen(
-        onWakeUp = {},
-        onExit = {},
         onWakeUpNowClicked = {},
         onWakeOnLeaveClicked = {},
-        state = SleepScreenState.Snoozing()
+        state = SleepScreenState.Snoozing(
+            userLocation = LngLatAlt(),
+            startLocation = LngLatAlt()
+        )
     )
 }
 
@@ -52,6 +52,9 @@ fun WakeButtonsWakeOnLeaveNotVisiblePreview() {
     WakeButtons(
         wakeUpNowOnClick = {},
         wakeOnLeaveOnClick = {},
-        sleepScreenState = SleepScreenState.Snoozing(),
+        sleepScreenState = SleepScreenState.Snoozing(
+            userLocation = LngLatAlt(),
+            startLocation = LngLatAlt()
+        ),
     )
 }

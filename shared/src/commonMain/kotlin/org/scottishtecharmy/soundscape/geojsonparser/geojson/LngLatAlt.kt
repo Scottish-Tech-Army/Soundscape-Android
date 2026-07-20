@@ -1,5 +1,7 @@
 package org.scottishtecharmy.soundscape.geojsonparser.geojson
 
+import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
+
 open class LngLatAlt(
     var longitude: Double = 0.toDouble(),
     var latitude: Double = 0.toDouble(),
@@ -30,4 +32,11 @@ open class LngLatAlt(
     override fun toString(): String {
         return "$longitude,$latitude"
     }
+}
+
+fun SoundscapeLocation.asLngLatAlt(): LngLatAlt {
+    return LngLatAlt(
+        longitude = longitude,
+        latitude = latitude,
+    )
 }

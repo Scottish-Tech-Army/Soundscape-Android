@@ -14,7 +14,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -24,6 +23,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.savedstate.read
+import kotlinx.coroutines.flow.receiveAsFlow
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.AppCallbacks
 import org.scottishtecharmy.soundscape.AppFlows
@@ -47,8 +47,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.SharedHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedOpenSourceLicensesScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedSleepScreen
-import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenState
-import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenState.Exiting
+import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenEffect
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenViewModel
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedLocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedSaveAndEditMarkerScreen
@@ -98,7 +97,7 @@ fun SharedNavHost(
                 navStateHolder.navigateWithLocation(
                     navController,
                     SharedRoutes.LOCATION_DETAILS,
-                    org.scottishtecharmy.soundscape.screens.home.data.LocationDescription(
+                    LocationDescription(
                         name = displayName,
                         location = LngLatAlt(intent.longitude, intent.latitude),
                     ),
@@ -579,16 +578,23 @@ fun SharedNavHost(
                     callbacks.provideLocationProvider?.invoke()
                         ?: StaticLocationProvider(LngLatAlt())
                 }
-                val scope = rememberCoroutineScope()
-                val viewModel = remember(locationProvider, scope) {
-                    SleepScreenViewModel(locationProvider, scope)
+                val viewModel = viewModel {
+                    SleepScreenViewModel(locationProvider, callbacks.onWakeUp)
                 }
 
                 val state = viewModel.state.collectAsState()
 
+                LaunchedEffect(viewModel) {
+                    viewModel.effects.receiveAsFlow().collect {
+                        when (it) {
+                            SleepScreenEffect.WakeUpNow -> {
+                                navController.popBackStack(SharedRoutes.HOME, inclusive = false)
+                            }
+                        }
+                    }
+                }
+
                 SharedSleepScreen(
-                    onWakeUp = callbacks.onWakeUp,
-                    onExit = { navController.popBackStack(SharedRoutes.HOME, inclusive = false) },
                     onWakeUpNowClicked = { viewModel.onWakeUpNowClicked() },
                     onWakeOnLeaveClicked = { viewModel.onWakeOnLeaveClicked() },
                     state = state.value,
