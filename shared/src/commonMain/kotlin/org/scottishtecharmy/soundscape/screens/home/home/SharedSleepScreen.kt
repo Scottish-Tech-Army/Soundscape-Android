@@ -223,7 +223,7 @@ fun WakeButtons(
                 when (sleepScreenState) {
                     SleepScreenState.Sleeping -> 0.5f
                     is SleepScreenState.Snoozing -> 1.0f
-                    else -> 0.5f
+                    else -> 1.0f
                 }
             )
         )
