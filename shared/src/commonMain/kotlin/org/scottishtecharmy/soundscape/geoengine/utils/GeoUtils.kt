@@ -1341,6 +1341,23 @@ fun straightLinesIntersectLngLatAlt(
     }
 }
 
+/**
+ * Finds the first point at which two multi-segment lines (as coordinate lists, not LineString
+ * objects, since callers often work with raw MVT-tile-space or otherwise pre-parsed coordinate
+ * lists) geometrically cross, checking every segment pair. Used for detecting where a road/path
+ * crosses a railway or waterway - see extractCrossings (MvtToGeoJson.kt) and
+ * GridState.attachRailwayCrossings.
+ */
+fun findLineIntersectionPoint(line1: List<LngLatAlt>, line2: List<LngLatAlt>): LngLatAlt? {
+    for (i in 0 until line1.size - 1) {
+        for (j in 0 until line2.size - 1) {
+            straightLinesIntersectLngLatAlt(line1[i], line1[i + 1], line2[j], line2[j + 1])
+                ?.let { return it }
+        }
+    }
+    return null
+}
+
 fun isLineHorizontal(lineStart: LngLatAlt, lineEnd: LngLatAlt, tolerance: Double = 1e-6): Boolean {
     return abs(lineStart.latitude - lineEnd.latitude) < tolerance
 }

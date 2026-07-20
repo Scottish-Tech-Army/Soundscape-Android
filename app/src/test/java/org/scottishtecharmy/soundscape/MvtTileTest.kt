@@ -330,24 +330,26 @@ class MvtTileTest {
     /**
      * The `waterway` layer (near Milngavie) carries "Tannoch Burn" as a stream split into
      * segments, with the segment that passes under a road tagged `brunnel=tunnel` (a culvert).
-     * Checks that segment is parsed into TreeId.WATER_AND_RAIL_CROSSINGS with its name and brunnel value
-     * attached, ready for travel-mode callouts like "Crossing Tannoch Burn".
+     * Checks that the crossing road's Way ends up with crossing_name/crossing_type properties
+     * attached directly to it (see extractCrossings), ready for travel-mode callouts like
+     * "Crossing Allander Water" - no separate search tree needed.
      */
     @Test
     fun testWaterwayCrossingParsing() {
         val gridState = getGridStateForLocation(LngLatAlt(-4.3231, 55.9461), MAX_ZOOM_LEVEL, 3)
-        val crossings = gridState.getFeatureTree(TreeId.WATER_AND_RAIL_CROSSINGS).getAllCollection()
+        val ways = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection().features
+            .filterIsInstance<Way>()
 
         // Tannoch Burn is a class=stream crossing - too minor a landmark to be worth a callout,
-        // so it should be filtered out (see significantWaterwayClasses).
-        val tannochBurn = crossings.features.find { (it as? MvtFeature)?.name == "Tannoch Burn" }
+        // so it should be filtered out (see significantWaterwayClasses) and no Way should carry it.
+        val tannochBurn = ways.find { it.properties?.get("crossing_name") == "Tannoch Burn" }
         assertNull("Expected Tannoch Burn (a stream) to be filtered out", tannochBurn)
 
-        // Allander Water is class=river, and passes through a culvert further downstream, so it
-        // should still be found via its own brunnel=tunnel tag.
-        val allanderWater = crossings.features.find { (it as? MvtFeature)?.name == "Allander Water" }
+        // Allander Water is class=river, and passes through a culvert further downstream, so the
+        // road above it should carry the crossing via its own brunnel=tunnel tag.
+        val allanderWater = ways.find { it.properties?.get("crossing_name") == "Allander Water" }
         assertNotNull("Expected an Allander Water crossing", allanderWater)
-        assertEquals("river", (allanderWater as MvtFeature).properties?.get("class"))
+        assertEquals("waterway", allanderWater!!.properties?.get("crossing_type"))
     }
 
     /**
@@ -359,22 +361,19 @@ class MvtTileTest {
     @Test
     fun testRailwayCrossingParsing() {
         val gridState = getGridStateForLocation(LngLatAlt(-4.5864, 55.9628), MAX_ZOOM_LEVEL, 3)
-        val crossings = gridState.getFeatureTree(TreeId.WATER_AND_RAIL_CROSSINGS).getAllCollection()
+        val ways = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection().features
+            .filterIsInstance<Way>()
 
-        val railwayCrossing = crossings.features
-            .filterIsInstance<MvtFeature>()
-            .find { it.featureType == "railway" }
+        val railwayCrossing = ways.find { it.properties?.get("crossing_type") == "railway" }
         assertNotNull("Expected a railway crossing near Renton", railwayCrossing)
-        assertEquals("railway_crossing", railwayCrossing!!.featureValue)
+        assertEquals("bridge", railwayCrossing!!.properties?.get("crossing_brunnel"))
     }
 
     /**
-     * A river/canal or railway crossing (see TreeId.WATER_AND_RAIL_CROSSINGS) should be announced
-     * while walking too, not just while travelling by car/bus - see
-     * AutoCallout.buildCalloutForWalkingCrossing. Uses a fabricated crossing feature roughly on
-     * the line between two consecutive locations, since the callout sweeps the path travelled
-     * since the previous location update (so the first updateLocation call just establishes the
-     * sweep anchor and is expected to produce no crossing callout).
+     * A river/canal or railway crossing should be announced while walking too, not just while
+     * travelling by car/bus - see AutoCallout.buildCalloutForWalkingCrossing. Fires as an edge:
+     * once when userGeometry.mapMatchedWay transitions onto a Way carrying crossing properties,
+     * not again while staying on that Way, but again if the user leaves and later returns to it.
      */
     @Test
     fun testWalkingCrossingCallout() {
@@ -382,33 +381,78 @@ class MvtTileTest {
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
         val settlementGrid = getGridStateForLocation(location, 12, 3)
 
+        // Real geometry (not just fabricated properties) so that other AutoCallout logic which
+        // reads mapMatchedWay.geometry - e.g. buildCalloutForIntersections, which also runs on
+        // every update - doesn't choke on an empty/default GeoJsonObject.
         val endLocation = gridState.ruler.offset(location, 0.0, 30.0)
-        val crossingLocation = gridState.ruler.offset(location, 0.0, 15.0)
-        val crossing = MvtFeature().apply {
-            geometry = Point(crossingLocation)
-            name = "Test River"
-            featureType = "waterway"
-            featureValue = "waterway_crossing"
+        val approachWay = Way().apply {
+            osmId = 1L
+            name = "Approach Path"
+            geometry = LineString(location, endLocation)
         }
-        gridState.featureTrees[TreeId.WATER_AND_RAIL_CROSSINGS.id] =
-            FeatureTree(FeatureCollection().apply { addFeature(crossing) })
+        val crossingWay = Way().apply {
+            osmId = 2L
+            name = "Bridge"
+            geometry = LineString(location, endLocation)
+            setProperty("crossing_type", "waterway")
+            setProperty("crossing_name", "Test River")
+        }
 
         val autoCallout = AutoCallout(null, null)
-        val firstUpdate = UserGeometry(location = location, speed = 1.4, timestampMilliseconds = 1000L)
+
+        // First update establishes the baseline (osmId 1) - no callout expected yet.
+        val firstUpdate = UserGeometry(
+            location = location, speed = 1.4, mapMatchedWay = approachWay, timestampMilliseconds = 1000L
+        )
         val firstCallout = autoCallout.updateLocation(firstUpdate, gridState, settlementGrid)
         assertTrue(
-            "Expected no crossing callout on the first update (no sweep yet), got: " +
+            "Expected no crossing callout on the first update (no baseline yet), got: " +
                 "${firstCallout?.positionedStrings?.map { it.text }}",
             firstCallout?.positionedStrings?.none { it.text.contains("Test River") } != false
         )
 
-        val secondUpdate = UserGeometry(location = endLocation, speed = 1.4, timestampMilliseconds = 6000L)
+        // Second update: mapMatchedWay transitions from osmId 1 to osmId 2, which carries
+        // crossing properties - this is the edge that should fire the callout.
+        val secondUpdate = UserGeometry(
+            location = gridState.ruler.offset(location, 0.0, 30.0), speed = 1.4,
+            mapMatchedWay = crossingWay, timestampMilliseconds = 6000L
+        )
         val secondCallout = autoCallout.updateLocation(secondUpdate, gridState, settlementGrid)
-
         assertNotNull(secondCallout)
         assertTrue(
             "Expected a callout mentioning Test River, got: ${secondCallout!!.positionedStrings.map { it.text }}",
             secondCallout.positionedStrings.any { it.text.contains("Test River") }
+        )
+
+        // Third update: still on the same Way (osmId 2 again) - must not repeat.
+        val thirdUpdate = UserGeometry(
+            location = gridState.ruler.offset(location, 0.0, 35.0), speed = 1.4,
+            mapMatchedWay = crossingWay, timestampMilliseconds = 8000L
+        )
+        val thirdCallout = autoCallout.updateLocation(thirdUpdate, gridState, settlementGrid)
+        assertTrue(
+            "Expected no repeat crossing callout while still on the same Way, got: " +
+                "${thirdCallout?.positionedStrings?.map { it.text }}",
+            thirdCallout?.positionedStrings?.none { it.text.contains("Test River") } != false
+        )
+
+        // Leave the bridge and come back - should re-announce, since the old sweep-based
+        // mechanism couldn't express "returned to the same crossing" at all.
+        val fourthUpdate = UserGeometry(
+            location = location, speed = 1.4, mapMatchedWay = approachWay, timestampMilliseconds = 10000L
+        )
+        autoCallout.updateLocation(fourthUpdate, gridState, settlementGrid)
+
+        val fifthUpdate = UserGeometry(
+            location = gridState.ruler.offset(location, 0.0, 30.0), speed = 1.4,
+            mapMatchedWay = crossingWay, timestampMilliseconds = 12000L
+        )
+        val fifthCallout = autoCallout.updateLocation(fifthUpdate, gridState, settlementGrid)
+        assertNotNull(fifthCallout)
+        assertTrue(
+            "Expected the crossing callout to re-announce after returning to the bridge, got: " +
+                "${fifthCallout!!.positionedStrings.map { it.text }}",
+            fifthCallout.positionedStrings.any { it.text.contains("Test River") }
         )
     }
 
@@ -1660,31 +1704,15 @@ class MvtTileTest {
 
         val directoryEntries = directoryPath.listDirectoryEntries("*.gpx")
         for (file in directoryEntries) {
+            // Reference-file comparison against gpxFiles/${file}.txt removed for now - the
+            // reference fixtures need regenerating to match the water/rail crossing rework (see
+            // extractCrossings/AutoCallout's Way-based crossing callouts) before this can compare
+            // meaningfully again.
             testMovingGrid(
                 file.toString(),
                 "gpxFiles/${file.nameWithoutExtension}.txt",
                 "gpxFiles/${file.nameWithoutExtension}.geojson"
             )
-            val referenceFile = File("$directoryPath/${file.nameWithoutExtension}.txt")
-            if (false) {//referenceFile.exists()) {
-                // Compare our new callout file with the reference one.
-                val generatedFile = File("gpxFiles/${file.nameWithoutExtension}.txt")
-
-                // Read all lines from both files
-                val generatedLines = generatedFile.readLines()
-                val referenceLines = referenceFile.readLines()
-
-                // Assert that the contents are identical.
-                println("Compare ${file.nameWithoutExtension} results to reference")
-
-                for ((index, line) in referenceLines.withIndex()) {
-                    assertEquals(
-                        "File content for ${file.nameWithoutExtension} does not match the reference file.",
-                        line,
-                        generatedLines[index]
-                    )
-                }
-            }
         }
     }
 

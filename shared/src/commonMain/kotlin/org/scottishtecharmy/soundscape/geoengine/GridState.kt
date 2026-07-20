@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
+import org.scottishtecharmy.soundscape.geoengine.utils.findLineIntersectionPoint
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
@@ -63,9 +64,8 @@ enum class TreeId(
     TRANSIT(20, "Transit"),
     HOUSENUMBER(21, "House numbers"),
     HIGHWAY_JUNCTIONS(22, "Highway Junctions"),
-    WATER_AND_RAIL_CROSSINGS(23, "Water and Rail Crossings"),
-    MAX_COLLECTION_ID(24, ""),
-    WAYS_SELECTION(id = 24, "Either Roads OR Roads and Paths")
+    MAX_COLLECTION_ID(23, ""),
+    WAYS_SELECTION(id = 23, "Either Roads OR Roads and Paths")
 }
 
 fun treeIdToIndex(id: TreeId): TreeId {
@@ -206,6 +206,69 @@ open class GridState(
         }
     }
 
+    // Candidate-gathering radius for attachRailwayCrossings - generous since it's only used to
+    // shortlist nearby road/path Ways from the rtree before the real geometric intersection test
+    // decides the match, not as a proximity threshold in its own right.
+    private val railwayCrossingSearchDistanceMetres = 20.0
+
+    /**
+     * Attaches crossing_type/crossing_name/crossing_brunnel properties directly onto the road/path
+     * Way(s) that geometrically cross a railway, mirroring what extractCrossings (MvtToGeoJson.kt)
+     * already does for waterway crossings at MVT-tile-parse time - see its class doc comment for
+     * why railway crossings specifically can't be resolved that early: a road and a railway can
+     * straddle an MVT tile boundary right at the point they cross, with each tile's raw geometry
+     * independently clipped there, so the two clipped pieces can fail to actually touch within
+     * either single tile even though the real-world crossing is genuine. Running here instead,
+     * against this whole grid's already-merged ROADS_AND_PATHS/TRANSIT Ways (localTrees, built
+     * just above), means a crossing near a tile edge has the full, unclipped-relative-to-each-
+     * other geometry available from both tiles at once.
+     *
+     * A genuine grade-separated crossing needs a brunnel tag on one side of the pair - either the
+     * road (`brunnel=bridge`/`tunnel`) or, just as commonly, the railway itself (`brunnel=bridge`
+     * for a viaduct, with the road/path running underneath left untagged, since OSM only tags the
+     * structure that's actually built). Either side supplies the "grade separated" evidence; when
+     * only the railway is tagged, the road is inferred to be going under it. A road with neither
+     * side tagged is a level crossing, handled separately (an explicit `railway=level_crossing`
+     * point), not by this geometric test. TreeId.TRANSIT already excludes subway/buried-tunnel
+     * railway lines (see isUnmatchableRailway in MvtToGeoJson.kt), so there's no need to repeat
+     * that exclusion here.
+     */
+    private fun attachRailwayCrossings(
+        featureCollections: Array<FeatureCollection>,
+        localTrees: Array<FeatureTree>
+    ) {
+        val railwayWays = featureCollections[TreeId.TRANSIT.id].features.filterIsInstance<Way>()
+        if (railwayWays.isEmpty()) return
+
+        val roadTree = localTrees[TreeId.ROADS_AND_PATHS.id]
+        for (railway in railwayWays) {
+            val railwayGeometry = railway.geometry as? LineString ?: continue
+            if (railwayGeometry.coordinates.size < 2) continue
+            val railwayBrunnel = railway.properties?.get("brunnel") as? String
+
+            // getNearbyLine only supports Point/Polygon tree entries, not the LineString Ways
+            // roadTree holds, so candidates are gathered by querying near each railway vertex
+            // instead (getNearbyCollection does support LineString entries).
+            val candidates = mutableSetOf<Way>()
+            for (point in railwayGeometry.coordinates) {
+                val nearby = roadTree.getNearbyCollection(point, railwayCrossingSearchDistanceMetres, ruler)
+                for (feature in nearby.features) {
+                    (feature as? Way)?.let { candidates.add(it) }
+                }
+            }
+
+            for (road in candidates) {
+                val roadGeometry = road.geometry as? LineString ?: continue
+                val roadBrunnel = road.properties?.get("brunnel") as? String
+                if (roadBrunnel == null && railwayBrunnel != "bridge") continue
+                findLineIntersectionPoint(railwayGeometry.coordinates, roadGeometry.coordinates) ?: continue
+                road.setProperty("crossing_type", "railway")
+                road.setProperty("crossing_brunnel", roadBrunnel ?: "tunnel")
+                railway.name?.let { road.setProperty("crossing_name", it) }
+            }
+        }
+    }
+
     /**
      * processGridState is now called from within the single thread that can access the tile grid.
      * This makes it somewhat performance critical. However, by doing this it allows us to
@@ -237,6 +300,10 @@ open class GridState(
             }
         }
         println("R-Trees took $rtreeTiming")
+
+        // Needs both the ROADS_AND_PATHS and TRANSIT rtrees built above, but nothing else from
+        // this function, so it can run before the tile-edge stitching below.
+        attachRailwayCrossings(featureCollections, localTrees)
 
         if (featureCollections[TreeId.ROADS_AND_PATHS.id].features.isNotEmpty()) {
             joinTileEdgeIntersections(grid, newGridIntersections)
@@ -657,26 +724,6 @@ private fun getHighwayJunctionsFromTileFeatureCollection(tileFeatureCollection: 
 }
 
 /**
- * Given a valid Tile feature collection this will parse the collection and return a water/rail
- * crossing feature collection - a road crossing a named river/canal, or crossing a railway via a
- * bridge or tunnel. Uses the "waterway"/"railway" feature_type to extract crossings from GeoJSON -
- * see [org.scottishtecharmy.soundscape.geoengine.mvttranslation.extractCrossings].
- * @param tileFeatureCollection
- * A FeatureCollection object.
- * @return A FeatureCollection object that contains only water/rail crossings.
- */
-private fun getWaterAndRailCrossingsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection {
-    val crossingsFeatureCollection = FeatureCollection()
-    for (feature in tileFeatureCollection) {
-        val mvtFeature = feature as MvtFeature
-        if (mvtFeature.featureType == "waterway" || mvtFeature.featureType == "railway") {
-            crossingsFeatureCollection.addFeature(feature)
-        }
-    }
-    return crossingsFeatureCollection
-}
-
-/**
  * Parses out all the Entrances in a tile FeatureCollection using the "gd_entrance_list" feature_type.
  * @param tileFeatureCollection
  * A FeatureCollection object.
@@ -745,9 +792,6 @@ fun processTileFeatureCollection(
         tileFeatureCollection
     )
     initialFeatureCollections[TreeId.HIGHWAY_JUNCTIONS.id] += getHighwayJunctionsFromTileFeatureCollection(
-        tileFeatureCollection
-    )
-    initialFeatureCollections[TreeId.WATER_AND_RAIL_CROSSINGS.id] += getWaterAndRailCrossingsFromTileFeatureCollection(
         tileFeatureCollection
     )
 
