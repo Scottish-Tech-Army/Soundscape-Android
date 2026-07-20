@@ -46,7 +46,8 @@ import org.scottishtecharmy.soundscape.screens.home.home.SharedHelpScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedOpenSourceLicensesScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedSleepScreen
-import org.scottishtecharmy.soundscape.screens.home.home.provideSleepScreenViewModel
+import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenState
+import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenViewModel
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedLocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedSaveAndEditMarkerScreen
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.NearbyExtractsState
@@ -580,18 +581,25 @@ fun SharedNavHost(
                 }
                 val scope = rememberCoroutineScope()
                 val viewModel = remember(locationProvider, scope) {
-                    provideSleepScreenViewModel(locationProvider, scope)
+                    SleepScreenViewModel(locationProvider, scope)
                 }
+
                 val state = viewModel.state.collectAsState()
 
-                SharedSleepScreen(
-                    onWakeUp = callbacks.onWakeUp,
-                    onExit = {
+                when (state.value) {
+                    SleepScreenState.Exiting -> {
                         navController.popBackStack(SharedRoutes.HOME, inclusive = false)
-                    },
-                    onWakeOnLeaveClicked = { viewModel.onWakeOnLeaveClicked() },
-                    state = state.value,
-                )
+                    }
+
+                    else -> {
+                        SharedSleepScreen(
+                            onWakeUp = callbacks.onWakeUp,
+                            onWakeUpNowClicked = { viewModel.onWakeUpNowClicked() },
+                            onWakeOnLeaveClicked = { viewModel.onWakeOnLeaveClicked() },
+                            state = state.value,
+                        )
+                    }
+                }
             }
 
             composable(SharedRoutes.SETTINGS) {
