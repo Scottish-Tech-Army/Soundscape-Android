@@ -151,6 +151,7 @@ class SleepScreenViewModel(
 @Composable
 fun SharedSleepScreen(
     onWakeUp: () -> Unit,
+    onExit: () -> Unit,
     onWakeUpNowClicked: () -> Unit,
     onWakeOnLeaveClicked: () -> Unit,
     state: SleepScreenState,
@@ -196,7 +197,10 @@ fun SharedSleepScreen(
             )
         }
         WakeButtons(
-            wakeUpNowOnClick = onWakeUpNowClicked,
+            wakeUpNowOnClick = {
+                onWakeUpNowClicked()
+                onExit()
+            },
             wakeOnLeaveOnClick = onWakeOnLeaveClicked,
             sleepScreenState = state,
             modifier = Modifier.fillMaxWidth()

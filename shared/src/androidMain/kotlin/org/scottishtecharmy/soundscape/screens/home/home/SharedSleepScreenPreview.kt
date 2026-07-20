@@ -8,6 +8,7 @@ import androidx.compose.ui.tooling.preview.Preview
 fun SharedSleepScreenPreview() {
     SharedSleepScreen(
         onWakeUp = {},
+        onExit = {},
         onWakeUpNowClicked = {},
         onWakeOnLeaveClicked = { },
         state = SleepScreenState.Sleeping,
@@ -19,8 +20,9 @@ fun SharedSleepScreenPreview() {
 fun SharedSleepScreenWakeOnLeaveEnabledPreview() {
     SharedSleepScreen(
         onWakeUp = {},
+        onExit = {},
         onWakeUpNowClicked = {},
-        onWakeOnLeaveClicked = { },
+        onWakeOnLeaveClicked = {},
         state = SleepScreenState.Snoozing()
     )
 }

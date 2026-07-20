@@ -31,6 +31,7 @@ import org.scottishtecharmy.soundscape.audio.AudioEngine
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.intents.IncomingIntent
+import org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider
 import org.scottishtecharmy.soundscape.network.DownloadStateCommon
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
@@ -47,6 +48,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.SharedHomeScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedOpenSourceLicensesScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedSleepScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenState
+import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenState.Exiting
 import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenViewModel
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedLocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedSaveAndEditMarkerScreen
@@ -575,9 +577,7 @@ fun SharedNavHost(
             composable(SharedRoutes.SLEEP) {
                 val locationProvider = remember {
                     callbacks.provideLocationProvider?.invoke()
-                        ?: org.scottishtecharmy.soundscape.locationprovider.StaticLocationProvider(
-                            LngLatAlt()
-                        )
+                        ?: StaticLocationProvider(LngLatAlt())
                 }
                 val scope = rememberCoroutineScope()
                 val viewModel = remember(locationProvider, scope) {
@@ -586,20 +586,13 @@ fun SharedNavHost(
 
                 val state = viewModel.state.collectAsState()
 
-                when (state.value) {
-                    SleepScreenState.Exiting -> {
-                        navController.popBackStack(SharedRoutes.HOME, inclusive = false)
-                    }
-
-                    else -> {
-                        SharedSleepScreen(
-                            onWakeUp = callbacks.onWakeUp,
-                            onWakeUpNowClicked = { viewModel.onWakeUpNowClicked() },
-                            onWakeOnLeaveClicked = { viewModel.onWakeOnLeaveClicked() },
-                            state = state.value,
-                        )
-                    }
-                }
+                SharedSleepScreen(
+                    onWakeUp = callbacks.onWakeUp,
+                    onExit = { navController.popBackStack(SharedRoutes.HOME, inclusive = false) },
+                    onWakeUpNowClicked = { viewModel.onWakeUpNowClicked() },
+                    onWakeOnLeaveClicked = { viewModel.onWakeOnLeaveClicked() },
+                    state = state.value,
+                )
             }
 
             composable(SharedRoutes.SETTINGS) {
