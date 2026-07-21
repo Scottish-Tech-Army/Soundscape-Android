@@ -496,4 +496,27 @@ class SearchTest {
             assertEquals("Эдинбург қамалы", results[0].name)
         }
     }
+
+    @Test
+    fun interpolatedAddressSearchWithPolygonHouseNumber() {
+        // Regression test for a real crash: "Carnoustie Library" (osm id 6068429362) is real
+        // data within glasgow-gb.pmtiles, tagged housenumber=21, street=High Street, but with
+        // Polygon (building outline) geometry rather than the Point geometry that
+        // StreetDescription.getInterpolateLocation used to assume every house number had.
+        // Resolving any house number on this street used to throw
+        // "ClassCastException: Polygon cannot be cast to Point".
+        runBlocking {
+            val currentLocation = LngLatAlt(-2.7080655097961426, 56.50118028013476)
+            val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
+
+            val tileSearch = TileSearch(offlineExtractPath, gridState, gridState)
+            val nearestWay = tileSearch.findNearestNamedWay(currentLocation, "High Street")!!
+
+            val streetDescription = StreetDescription("High Street", gridState)
+            streetDescription.createDescription(nearestWay, null)
+
+            val result = streetDescription.getLocationFromStreetNumber("21")
+            assertEquals("21", result?.second)
+        }
+    }
 }
