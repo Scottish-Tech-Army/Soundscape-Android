@@ -33,6 +33,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.SharedLanguageMismatchD
 import org.scottishtecharmy.soundscape.screens.home.home.SharedNewReleaseDialog
 import org.scottishtecharmy.soundscape.screens.home.home.SharedOpenSourceLicensesScreen
 import org.scottishtecharmy.soundscape.screens.home.home.SharedSleepScreen
+import org.scottishtecharmy.soundscape.screens.home.home.SleepScreenState
 import org.scottishtecharmy.soundscape.screens.home.home.StreetPreviewFunctions
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedLocationDetailsScreen
 import org.scottishtecharmy.soundscape.screens.home.locationDetails.SharedSaveAndEditMarkerScreen
@@ -416,7 +417,12 @@ fun HomeRoutePreview() {
 @Preview(showBackground = true)
 @Composable
 fun SleepScreenPreview() {
-    SharedSleepScreen(onWakeUp = {}, onExit = {}, modifier = Modifier)
+    SharedSleepScreen(
+        modifier = Modifier,
+        onWakeUpNowClicked = {},
+        onWakeOnLeaveClicked = {},
+        state = SleepScreenState.Sleeping
+    )
 }
 
 @Preview(showBackground = true)
