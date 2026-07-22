@@ -110,7 +110,7 @@ class AndroidLocationProvider(context: Context) : LocationProvider() {
                     locationManager.requestLocationUpdates(
                         LocationManager.NETWORK_PROVIDER,
                         accuracy.updateInterval.inWholeMilliseconds,
-                        MIN_DISTANCE_METERS,
+                        accuracy.minimumDistanceM,
                         locationListener,
                         Looper.getMainLooper()
                     )

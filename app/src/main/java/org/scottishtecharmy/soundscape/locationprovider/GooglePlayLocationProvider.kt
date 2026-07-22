@@ -85,7 +85,7 @@ class GooglePlayLocationProvider(context: Context) :
                 },
                 accuracy.updateInterval.inWholeMilliseconds
             ).apply {
-                setMinUpdateDistanceMeters(1f)
+                setMinUpdateDistanceMeters(accuracy.minimumDistanceM)
                 setGranularity(Granularity.GRANULARITY_PERMISSION_LEVEL)
                 setWaitForAccurateLocation(true)
             }.build(),

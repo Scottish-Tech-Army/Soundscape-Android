@@ -7,13 +7,17 @@ import kotlin.time.Duration.Companion.seconds
 
 sealed class Accuracy {
     abstract val updateInterval: Duration
+    abstract val minimumDistanceM: Float
 
     object High : Accuracy() {
         override val updateInterval: Duration = 1.seconds
+        override val minimumDistanceM: Float = 1.0f
+
     }
 
     object Balanced : Accuracy() {
         override val updateInterval: Duration = 30.seconds
+        override val minimumDistanceM: Float = 5.0f
     }
 }
 
