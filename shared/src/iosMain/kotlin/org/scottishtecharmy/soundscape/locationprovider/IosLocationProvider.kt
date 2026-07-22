@@ -28,6 +28,10 @@ class IosLocationProvider : LocationProvider() {
     }
 
     override fun start() {
+        start(Accuracy.High)
+    }
+
+    override fun start(accuracy: Accuracy) {
         locationManager.delegate = delegate
         locationManager.startUpdatingLocation()
     }

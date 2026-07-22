@@ -17,6 +17,10 @@ class StaticLocationProvider(private var location: LngLatAlt) : LocationProvider
         mutableFilteredLocationFlow.value = loc
     }
 
+    override fun start(accuracy: Accuracy) {
+        start()
+    }
+
     override fun updateLocation(newLocation: SoundscapeLocation) {
         mutableLocationFlow.value = newLocation
         mutableFilteredLocationFlow.value = newLocation

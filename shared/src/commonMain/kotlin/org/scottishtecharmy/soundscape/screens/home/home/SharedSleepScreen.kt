@@ -35,6 +35,7 @@ import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.asLngLatAlt
+import org.scottishtecharmy.soundscape.locationprovider.Accuracy
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.sleep_sleeping
@@ -157,7 +158,7 @@ class SleepScreenViewModel(
         // Start location job to update internal location sharedflow
         if (!this::_locationJob.isInitialized) {
             _locationJob = viewModelScope.launch {
-                locationProvider.start()
+                locationProvider.start(Accuracy.Balanced)
                 locationProvider.locationFlow.collect { loc ->
                     if (isActive) {
                         val lngLat = loc?.asLngLatAlt() ?: LngLatAlt()

@@ -12,7 +12,6 @@ import android.os.Looper
 import androidx.core.app.ActivityCompat
 import org.scottishtecharmy.soundscape.geoengine.filters.KalmanLocationFilter
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import kotlin.time.Duration.Companion.seconds
 
 class AndroidLocationProvider(context: Context) : LocationProvider() {
 
@@ -87,31 +86,40 @@ class AndroidLocationProvider(context: Context) : LocationProvider() {
         locationManager.removeUpdates(locationListener)
     }
 
-    @SuppressLint("MissingPermission")
     override fun start() {
-        if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-            locationManager.requestLocationUpdates(
-                LocationManager.GPS_PROVIDER,
-                LOCATION_UPDATES_INTERVAL_MS,
-                MIN_DISTANCE_METERS,
-                locationListener,
-                Looper.getMainLooper()
-            )
-        }
+        start(Accuracy.High)
+    }
 
-        if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
-            locationManager.requestLocationUpdates(
-                LocationManager.NETWORK_PROVIDER,
-                LOCATION_UPDATES_INTERVAL_MS,
-                MIN_DISTANCE_METERS,
-                locationListener,
-                Looper.getMainLooper()
-            )
+    @SuppressLint("MissingPermission")
+    override fun start(accuracy: Accuracy) {
+        when (accuracy) {
+            Accuracy.High -> {
+                if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    locationManager.requestLocationUpdates(
+                        LocationManager.GPS_PROVIDER,
+                        accuracy.updateInterval.inWholeMilliseconds,
+                        MIN_DISTANCE_METERS,
+                        locationListener,
+                        Looper.getMainLooper()
+                    )
+                }
+            }
+
+            Accuracy.Balanced -> {
+                if (locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)) {
+                    locationManager.requestLocationUpdates(
+                        LocationManager.NETWORK_PROVIDER,
+                        accuracy.updateInterval.inWholeMilliseconds,
+                        MIN_DISTANCE_METERS,
+                        locationListener,
+                        Looper.getMainLooper()
+                    )
+                }
+            }
         }
     }
 
     companion object {
-        private val LOCATION_UPDATES_INTERVAL_MS = 1.seconds.inWholeMilliseconds
         private const val MIN_DISTANCE_METERS = 1f
     }
 }
