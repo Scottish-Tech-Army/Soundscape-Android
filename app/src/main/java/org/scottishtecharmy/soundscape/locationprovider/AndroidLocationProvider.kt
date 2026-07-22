@@ -98,7 +98,7 @@ class AndroidLocationProvider(context: Context) : LocationProvider() {
                     locationManager.requestLocationUpdates(
                         LocationManager.GPS_PROVIDER,
                         accuracy.updateInterval.inWholeMilliseconds,
-                        MIN_DISTANCE_METERS,
+                        accuracy.minimumDistanceM,
                         locationListener,
                         Looper.getMainLooper()
                     )
@@ -117,9 +117,5 @@ class AndroidLocationProvider(context: Context) : LocationProvider() {
                 }
             }
         }
-    }
-
-    companion object {
-        private const val MIN_DISTANCE_METERS = 1f
     }
 }
