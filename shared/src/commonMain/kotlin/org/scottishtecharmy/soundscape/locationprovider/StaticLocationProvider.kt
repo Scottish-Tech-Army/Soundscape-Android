@@ -6,7 +6,7 @@ class StaticLocationProvider(private var location: LngLatAlt) : LocationProvider
 
     override fun destroy() {}
 
-    override fun start() {
+    override fun start(accuracy: Accuracy) {
         val loc = SoundscapeLocation(
             latitude = location.latitude,
             longitude = location.longitude,
@@ -15,10 +15,6 @@ class StaticLocationProvider(private var location: LngLatAlt) : LocationProvider
         )
         mutableLocationFlow.value = loc
         mutableFilteredLocationFlow.value = loc
-    }
-
-    override fun start(accuracy: Accuracy) {
-        start()
     }
 
     override fun updateLocation(newLocation: SoundscapeLocation) {

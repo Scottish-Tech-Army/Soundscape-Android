@@ -22,9 +22,7 @@ sealed class Accuracy {
 }
 
 abstract class LocationProvider {
-
-    abstract fun start()
-    abstract fun start(accuracy: Accuracy)
+    abstract fun start(accuracy: Accuracy = Accuracy.High)
     abstract fun destroy()
     open fun updateLocation(newLocation: SoundscapeLocation) {}
 

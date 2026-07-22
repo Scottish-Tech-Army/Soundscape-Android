@@ -70,10 +70,6 @@ class GooglePlayLocationProvider(context: Context) :
         fusedLocationClient.removeLocationUpdates(locationCallback)
     }
 
-    override fun start() {
-        start(Accuracy.High)
-    }
-
     @SuppressLint("MissingPermission")
     override fun start(accuracy: Accuracy) {
 

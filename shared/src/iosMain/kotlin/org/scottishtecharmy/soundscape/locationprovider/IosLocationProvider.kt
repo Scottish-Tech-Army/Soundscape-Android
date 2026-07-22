@@ -7,6 +7,7 @@ import platform.CoreLocation.CLLocationManager
 import platform.CoreLocation.CLLocationManagerDelegateProtocol
 import platform.CoreLocation.kCLDistanceFilterNone
 import platform.CoreLocation.kCLLocationAccuracyBest
+import platform.CoreLocation.kCLLocationAccuracyNearestTenMeters
 import platform.Foundation.NSError
 import platform.darwin.NSObject
 
@@ -16,8 +17,6 @@ class IosLocationProvider : LocationProvider() {
     private val delegate = LocationDelegate(this)
 
     init {
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.allowsBackgroundLocationUpdates = true
         locationManager.pausesLocationUpdatesAutomatically = false
         start()
@@ -27,11 +26,14 @@ class IosLocationProvider : LocationProvider() {
         locationManager.requestAlwaysAuthorization()
     }
 
-    override fun start() {
-        start(Accuracy.High)
-    }
-
     override fun start(accuracy: Accuracy) {
+        locationManager.desiredAccuracy = when(accuracy) {
+            Accuracy.High -> kCLLocationAccuracyBest
+            Accuracy.Balanced -> kCLLocationAccuracyNearestTenMeters
+        }
+
+        locationManager.distanceFilter = accuracy.minimumDistanceM.toDouble()
+
         locationManager.delegate = delegate
         locationManager.startUpdatingLocation()
     }

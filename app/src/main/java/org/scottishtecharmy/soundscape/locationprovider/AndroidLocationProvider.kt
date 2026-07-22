@@ -86,10 +86,6 @@ class AndroidLocationProvider(context: Context) : LocationProvider() {
         locationManager.removeUpdates(locationListener)
     }
 
-    override fun start() {
-        start(Accuracy.High)
-    }
-
     @SuppressLint("MissingPermission")
     override fun start(accuracy: Accuracy) {
         when (accuracy) {
