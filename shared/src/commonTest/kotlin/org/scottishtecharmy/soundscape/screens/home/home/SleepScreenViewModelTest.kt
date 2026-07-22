@@ -9,6 +9,7 @@ import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
+import org.scottishtecharmy.soundscape.locationprovider.Accuracy
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import kotlin.test.AfterTest
@@ -23,7 +24,7 @@ class SleepScreenViewModelTest {
     private val testDispatcher = StandardTestDispatcher()
 
     private val _mockLocationProvider = object : LocationProvider() {
-        override fun start() {
+        override fun start(accuracy: Accuracy) {
             mutableLocationFlow.value = SoundscapeLocation(47.872, 50.123)
         }
 
