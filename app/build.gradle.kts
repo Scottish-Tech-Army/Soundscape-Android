@@ -19,7 +19,7 @@ plugins {
 
 android {
     namespace = "org.scottishtecharmy.soundscape"
-    compileSdk = 36
+    compileSdk = 37
 
     buildFeatures {
         buildConfig = true
@@ -54,7 +54,7 @@ android {
     defaultConfig {
         applicationId = "org.scottishtecharmy.soundscape"
         minSdk = 30
-        targetSdk = 35
+        targetSdk = 37
         versionCode = 208
         versionName = "1.1.6"
 
