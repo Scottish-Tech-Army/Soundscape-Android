@@ -2,10 +2,11 @@ package org.scottishtecharmy.soundscape.locationprovider
 
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.useContents
+import platform.CoreLocation.CLActivityTypeOther
+import platform.CoreLocation.CLActivityTypeOtherNavigation
 import platform.CoreLocation.CLLocation
 import platform.CoreLocation.CLLocationManager
 import platform.CoreLocation.CLLocationManagerDelegateProtocol
-import platform.CoreLocation.kCLDistanceFilterNone
 import platform.CoreLocation.kCLLocationAccuracyBest
 import platform.CoreLocation.kCLLocationAccuracyNearestTenMeters
 import platform.Foundation.NSError
@@ -18,7 +19,6 @@ class IosLocationProvider : LocationProvider() {
 
     init {
         locationManager.allowsBackgroundLocationUpdates = true
-        locationManager.pausesLocationUpdatesAutomatically = false
         start()
     }
 
@@ -27,14 +27,25 @@ class IosLocationProvider : LocationProvider() {
     }
 
     override fun start(accuracy: Accuracy) {
-        locationManager.desiredAccuracy = when(accuracy) {
+        locationManager.delegate = delegate
+
+        locationManager.desiredAccuracy = when (accuracy) {
             Accuracy.High -> kCLLocationAccuracyBest
             Accuracy.Balanced -> kCLLocationAccuracyNearestTenMeters
         }
 
         locationManager.distanceFilter = accuracy.minimumDistanceM.toDouble()
 
-        locationManager.delegate = delegate
+        locationManager.pausesLocationUpdatesAutomatically = when (accuracy) {
+            Accuracy.Balanced -> true
+            Accuracy.High -> false
+        }
+
+        locationManager.activityType = when (accuracy) {
+            Accuracy.Balanced -> CLActivityTypeOther
+            Accuracy.High -> CLActivityTypeOtherNavigation
+        }
+
         locationManager.startUpdatingLocation()
     }
 
