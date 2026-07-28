@@ -158,14 +158,27 @@ class OfflineMapsViewModel @AssistedInject constructor(
         return filename.substringAfter("-").substringAfter("-")
     }
 
+    /**
+     * The stable identity for an extract's on-disk files, e.g. "glasgow-gb" - everything before
+     * the ".pmtiles" extension. Every physical file for this extract (the base .pmtiles name from
+     * before versioned downloads existed, any "<logicalBase>.v<version>.pmtiles" from [download],
+     * and their .geojson sidecars) starts with "$logicalBase.".
+     */
+    private fun logicalBaseNameFor(filename: String): String {
+        return translateToLocalFilenameFrom(filename).removeSuffix(".pmtiles")
+    }
+
     fun delete(feature: Feature) {
         val filename = feature.properties?.get("filename")
         if (filename != null) {
-            val localFilename = translateToLocalFilenameFrom(filename as String)
+            val logicalBase = logicalBaseNameFor(filename as String)
             val extractsDir = File(_uiState.value.currentPath, Environment.DIRECTORY_DOWNLOADS)
             if (extractsDir.exists() && extractsDir.isDirectory) {
+                // "$logicalBase." matches every version of this extract - the pre-versioning
+                // "glasgow-gb.pmtiles" as well as any "glasgow-gb.v<version>.pmtiles" - plus their
+                // .geojson sidecars, without matching an unrelated "glasgow-gbz.pmtiles".
                 val files = extractsDir.listFiles { file ->
-                    file.name.startsWith(localFilename)
+                    file.name.startsWith("$logicalBase.")
                 }?.toList() ?: emptyList()
 
                 // Delete whatever we find
@@ -180,9 +193,17 @@ class OfflineMapsViewModel @AssistedInject constructor(
     fun download(name: String, feature: Feature) {
         val filename = feature.properties?.get("filename")
         if (filename != null) {
-            val localFilename = translateToLocalFilenameFrom(filename as String)
+            val logicalBase = logicalBaseNameFor(filename as String)
+            // Never reuse a previous download's filename for a re-download/"Update": MapLibre's
+            // native PMTilesFileSource caches parsed header/directory data per pmtiles://file://
+            // URL forever, with no way for us to invalidate it, so overwriting an already-opened
+            // path leaves it reading new bytes through stale cached offsets - which can crash.
+            // Giving each download a unique, never-before-seen filename means MapLibre never
+            // revisits a URL it has cached anything for. OfflineDownloader deletes the previous
+            // version's files once this one is published (see logicalBaseName below).
+            val versionedFilename = "$logicalBase.v${System.currentTimeMillis()}.pmtiles"
             val path =
-                _uiState.value.currentPath + "/" + Environment.DIRECTORY_DOWNLOADS + "/" + localFilename
+                _uiState.value.currentPath + "/" + Environment.DIRECTORY_DOWNLOADS + "/" + versionedFilename
 
             // Write out the feature metadata to a file
             val adapter = GeoJsonObjectMoshiAdapter()
@@ -195,7 +216,8 @@ class OfflineMapsViewModel @AssistedInject constructor(
             offlineDownloader.startDownload(
                 fileUrl,
                 path,
-                extractSize
+                extractSize,
+                logicalBaseName = logicalBase,
             )
             _uiState.value = _uiState.value.copy(
                 downloadingExtractName = name

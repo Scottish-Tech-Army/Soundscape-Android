@@ -87,6 +87,99 @@ class OfflineDownloaderTest {
     }
 
     @Test
+    fun supersededVersionsAreDeletedAfterPublish() {
+        val tempDir = File(System.getProperty("java.io.tmpdir"), "offline-dl-${System.nanoTime()}")
+        tempDir.mkdirs()
+        try {
+            // Deliberately not .pmtiles, same as runDownload's outputFile: this test is about the
+            // cleanup logic, not pmtiles validation, so it avoids needing a valid pmtiles body.
+            // An old version of this extract, plus its metadata sidecar - both should be deleted
+            // once the new version publishes successfully.
+            val oldExtract = File(tempDir, "glasgow-gb.v1000.bin").apply { writeText("old") }
+            val oldSidecar = File(tempDir, "glasgow-gb.v1000.bin.geojson").apply { writeText("{}") }
+            // An unrelated extract sharing a name prefix - must survive the cleanup.
+            val unrelatedExtract = File(tempDir, "glasgow-gbx.bin").apply { writeText("unrelated") }
+
+            val newOutputFile = File(tempDir, "glasgow-gb.v2000.bin")
+            // OfflineMapsViewModel.download() writes this sidecar *before* calling startDownload -
+            // it must survive the post-publish cleanup, which previously deleted it (it starts
+            // with the logical prefix and its name isn't *exactly* newOutputFile.name), silently
+            // hiding every freshly downloaded extract from the offline-maps UI.
+            val newSidecar = File(tempDir, "glasgow-gb.v2000.bin.geojson").apply { writeText("{}") }
+
+            val service = FakeDownloadService(listOf(Response.success(body(1000))))
+            val downloader = OfflineDownloader(service)
+            downloader.startDownload(
+                "https://example.test/extract",
+                newOutputFile.path,
+                extractSize = 1000.0,
+                logicalBaseName = "glasgow-gb",
+            )
+
+            val state = runBlocking {
+                withTimeout(10_000) {
+                    downloader.downloadState.first {
+                        it is DownloadState.Success || it is DownloadState.Error
+                    }
+                }
+            }
+
+            assertTrue("expected Success but was $state", state is DownloadState.Success)
+            assertTrue("new version should exist", newOutputFile.exists())
+            assertTrue("new version's own sidecar must survive", newSidecar.exists())
+            assertTrue("old version should be deleted", !oldExtract.exists())
+            assertTrue("old sidecar should be deleted", !oldSidecar.exists())
+            assertTrue("unrelated extract must survive", unrelatedExtract.exists())
+        } finally {
+            tempDir.deleteRecursively()
+        }
+    }
+
+    /**
+     * The first "Update" of an extract downloaded by the previous, pre-versioning code must also
+     * retire it: its on-disk name has no ".vNNN" segment at all (just "<logicalBase>.<ext>"), not
+     * "<logicalBase>.v1000.<ext>" like a version this code produced itself.
+     */
+    @Test
+    fun legacyUnversionedExtractIsDeletedOnFirstUpdate() {
+        val tempDir = File(System.getProperty("java.io.tmpdir"), "offline-dl-${System.nanoTime()}")
+        tempDir.mkdirs()
+        try {
+            val legacyExtract = File(tempDir, "glasgow-gb.bin").apply { writeText("legacy") }
+            val legacySidecar = File(tempDir, "glasgow-gb.bin.geojson").apply { writeText("{}") }
+            val unrelatedExtract = File(tempDir, "glasgow-gbx.bin").apply { writeText("unrelated") }
+
+            val newOutputFile = File(tempDir, "glasgow-gb.v2000.bin")
+            val newSidecar = File(tempDir, "glasgow-gb.v2000.bin.geojson").apply { writeText("{}") }
+            val service = FakeDownloadService(listOf(Response.success(body(1000))))
+            val downloader = OfflineDownloader(service)
+            downloader.startDownload(
+                "https://example.test/extract",
+                newOutputFile.path,
+                extractSize = 1000.0,
+                logicalBaseName = "glasgow-gb",
+            )
+
+            val state = runBlocking {
+                withTimeout(10_000) {
+                    downloader.downloadState.first {
+                        it is DownloadState.Success || it is DownloadState.Error
+                    }
+                }
+            }
+
+            assertTrue("expected Success but was $state", state is DownloadState.Success)
+            assertTrue("new version should exist", newOutputFile.exists())
+            assertTrue("new version's own sidecar must survive", newSidecar.exists())
+            assertTrue("legacy unversioned extract should be deleted", !legacyExtract.exists())
+            assertTrue("legacy sidecar should be deleted", !legacySidecar.exists())
+            assertTrue("unrelated extract must survive", unrelatedExtract.exists())
+        } finally {
+            tempDir.deleteRecursively()
+        }
+    }
+
+    @Test
     fun partialContentIsRetriedUntilFullFileArrives() {
         val service = FakeDownloadService(
             listOf(
