@@ -104,10 +104,22 @@ class OfflineDownloader(injectedDownloadService: IDownloadService? = null) {
         return retrofit.create(IDownloadService::class.java)
     }
 
+    /**
+     * @param outputFilePath Where to publish the download. For a .pmtiles extract this should be
+     * a path unique to this download attempt (e.g. with a version/timestamp baked into the
+     * filename) - see [logicalBaseName].
+     * @param logicalBaseName If set, [outputFilePath]'s filename is expected to be of the form
+     * "<logicalBaseName>.<version-and-extension>", e.g. "glasgow-gb.v1699999999999.pmtiles" for a
+     * logicalBaseName of "glasgow-gb". Once the download is published, any other file in the same
+     * directory whose name starts with "<logicalBaseName>." is deleted - this is what actually
+     * retires a previous version of the same extract (see the comment above the rename below for
+     * why in-place replacement isn't safe for pmtiles extracts that MapLibre may have opened).
+     */
     fun startDownload(
         fileUrl: String,
         outputFilePath: String,
-        extractSize: Double?
+        extractSize: Double?,
+        logicalBaseName: String? = null,
     ) {
         if (downloadJob?.isActive == true) {
             Log.w(TAG, "Download is already in progress.")
@@ -159,12 +171,28 @@ class OfflineDownloader(injectedDownloadService: IDownloadService? = null) {
                             throw Exception("Downloaded extract failed validation (corrupt or truncated)")
                         }
                         retries = 0
-                        // Delete any file that already exists
-                        finalFile.delete()
-                        // Rename the file on successful completion
+                        // Rename straight to the destination - do NOT delete it first, and never
+                        // reuse an existing path for an "Update" re-download (see logicalBaseName
+                        // below). MapLibre's native PMTilesFileSource caches parsed header/
+                        // directory data per URL *forever*, with no invalidation hook - so once a
+                        // pmtiles://file://<path> URL has been opened once, silently swapping the
+                        // bytes at that same path (even atomically) leaves MapLibre reading brand
+                        // new file content through stale cached offsets, which can misread garbage
+                        // and crash with no try/catch on its worker thread. Publishing each
+                        // download under a unique path sidesteps that entirely: MapLibre never
+                        // sees a URL it has cached anything for. File.renameTo (no pre-delete)
+                        // still atomically replaces a destination that does exist - e.g. a retry
+                        // of this same attempt - via the rename(2) syscall, since tempFile and
+                        // finalFile are always in the same directory.
                         if (tempFile.renameTo(finalFile)) {
-                            _downloadState.value = DownloadState.Success
                             Log.i(TAG, "Download successful. File saved to: ${finalFile.path}")
+                            // Clean up old versions before publishing Success - an observer
+                            // reacting to Success (e.g. refreshing the extract list) should never
+                            // see a superseded version still on disk.
+                            if (logicalBaseName != null) {
+                                deleteSupersededVersions(finalFile, logicalBaseName)
+                            }
+                            _downloadState.value = DownloadState.Success
                         } else {
                             throw Exception("Failed to rename file from ${tempFile.name} to ${finalFile.name}")
                         }
@@ -198,6 +226,38 @@ class OfflineDownloader(injectedDownloadService: IDownloadService? = null) {
                     DownloadState.Error(e.message ?: "An unknown error occurred")
                 tempFile.delete() // Clean up partial file
                 Log.e(TAG, "Download failed", e)
+            }
+        }
+    }
+
+    /**
+     * Delete every other file in [finalFile]'s directory whose name starts with
+     * "$logicalBaseName." - i.e. every previous version of this extract (its old .pmtiles file(s)
+     * and their .geojson sidecars), now superseded by [finalFile]. The leading-dot anchor means
+     * "glasgow-gb." matches "glasgow-gb.pmtiles" and "glasgow-gb.v123.pmtiles" but not an unrelated
+     * "glasgow-gbz.pmtiles".
+     *
+     * This is safe to do immediately, unlike the old in-place overwrite: any reader still holding
+     * the old file open keeps reading it consistently (POSIX keeps a deleted-but-open file's data
+     * intact), and any reader that tries to open the old path fresh afterward gets a clean "not
+     * found" - which MapLibre's file source already treats as a normal, handled error - rather than
+     * reading wrong-but-present bytes that fail to decompress and crash.
+     */
+    private fun deleteSupersededVersions(finalFile: File, logicalBaseName: String) {
+        val prefix = "$logicalBaseName."
+        val siblings = finalFile.parentFile?.listFiles { file ->
+            // Exclude finalFile itself AND its own "<finalFile.name>.geojson" sidecar - a plain
+            // "!= finalFile.name" check only protects the .pmtiles file, not the sidecar, so this
+            // was deleting every download's own just-written metadata immediately after
+            // publishing it, silently hiding every new extract from the offline-maps UI (which
+            // requires that sidecar to list an extract at all).
+            file.name.startsWith(prefix) && !file.name.startsWith(finalFile.name)
+        } ?: return
+        for (sibling in siblings) {
+            if (sibling.delete()) {
+                Log.i(TAG, "Deleted superseded extract version: ${sibling.path}")
+            } else {
+                Log.w(TAG, "Failed to delete superseded extract version: ${sibling.path}")
             }
         }
     }
