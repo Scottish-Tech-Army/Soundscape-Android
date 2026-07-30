@@ -1165,6 +1165,10 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         geoEngine.toggleAutoCallouts()
     }
 
+    fun refreshOfflineMaps() {
+        geoEngine.refreshOfflineMaps()
+    }
+
     /**
      * streetPreviewGo is called when the 'GO' button is pressed when in StreetPreview mode.
      * It indicates that the user has selected the direction of travel in which they which to move.

@@ -64,6 +64,9 @@ class FileDownloader internal constructor(private val httpClient: HttpClient) {
     }
 }
 
+/** Wraps a caller-supplied [HttpClient] - e.g. one built on ktor's MockEngine for tests. */
+fun createFileDownloader(httpClient: HttpClient): FileDownloader = FileDownloader(httpClient)
+
 fun createAndroidFileDownloader(
     userAgent: String,
     connectTimeoutMinutes: Long = 3,

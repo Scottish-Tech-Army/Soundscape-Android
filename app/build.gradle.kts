@@ -17,7 +17,7 @@ plugins {
 
 android {
     namespace = "org.scottishtecharmy.soundscape"
-    compileSdk = 36
+    compileSdk = 37
 
     buildFeatures {
         buildConfig = true
@@ -52,7 +52,7 @@ android {
     defaultConfig {
         applicationId = "org.scottishtecharmy.soundscape"
         minSdk = 30
-        targetSdk = 35
+        targetSdk = 37
         versionCode = 1011
         versionName = "2.0.11"
 
@@ -352,6 +352,7 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation (libs.kotlin.test.junit)
     testImplementation(libs.junit.jupiter)
+    testImplementation(libs.ktor.client.mock)
 
     androidTestImplementation(libs.androidx.junit.v121)
     androidTestImplementation(libs.androidx.espresso.core.v351)

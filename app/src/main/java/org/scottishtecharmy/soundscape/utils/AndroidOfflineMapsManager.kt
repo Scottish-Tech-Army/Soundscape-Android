@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.SoundscapeServiceConnection
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -44,7 +45,10 @@ private fun DownloadState.toCommon(): DownloadStateCommon = when (this) {
  * downloaded extracts as a FeatureCollection, current download state, and
  * refresh / containing-query / start / cancel / delete operations.
  */
-class AndroidOfflineMapsManager(private val appContext: Context) {
+class AndroidOfflineMapsManager(
+    private val appContext: Context,
+    private val soundscapeServiceConnection: SoundscapeServiceConnection,
+) {
 
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
 
@@ -65,7 +69,13 @@ class AndroidOfflineMapsManager(private val appContext: Context) {
     init {
         scope.launch {
             downloader.downloadState.collect { state ->
-                if (state == DownloadState.Success) refreshDownloaded()
+                if (state == DownloadState.Success) {
+                    refreshDownloaded()
+                    // Make sure the geoengine starts using the newly published extract (and
+                    // stops using whatever it superseded) immediately, rather than waiting for
+                    // the user to happen to walk outside the current tile grid.
+                    soundscapeServiceConnection.refreshOfflineMaps()
+                }
             }
         }
     }
@@ -105,10 +115,29 @@ class AndroidOfflineMapsManager(private val appContext: Context) {
         return tree.getContainingPolygons(location).features
     }
 
+    /**
+     * The stable identity for an extract's on-disk files, e.g. "glasgow-gb" - everything before
+     * the ".pmtiles" extension. Every physical file for this extract (the base .pmtiles name from
+     * before versioned downloads existed, any "<logicalBase>.v<version>.pmtiles" from
+     * [startDownload], and their .geojson sidecars) starts with "$logicalBase.".
+     */
+    private fun logicalBaseNameFor(filename: String): String {
+        val localFilename = filename.substringAfter("-").substringAfter("-")
+        return localFilename.removeSuffix(".pmtiles")
+    }
+
     fun startDownload(name: String, feature: Feature) {
         val filename = feature.properties?.get("filename") as? String ?: return
-        val localFilename = filename.substringAfter("-").substringAfter("-")
-        val path = "${extractsDir().path}/$localFilename"
+        val logicalBase = logicalBaseNameFor(filename)
+        // Never reuse a previous download's filename for a re-download/"Update": MapLibre's
+        // native PMTilesFileSource caches parsed header/directory data per pmtiles://file://
+        // URL forever, with no way for us to invalidate it, so overwriting an already-opened
+        // path leaves it reading new bytes through stale cached offsets - which can crash.
+        // Giving each download a unique, never-before-seen filename means MapLibre never
+        // revisits a URL it has cached anything for. OfflineDownloader deletes the previous
+        // version's files once this one is published (see logicalBaseName below).
+        val versionedFilename = "$logicalBase.v${System.currentTimeMillis()}.pmtiles"
+        val path = "${extractsDir().path}/$versionedFilename"
         try {
             val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
             val adapter = moshi.adapter(Feature::class.java)
@@ -125,16 +154,23 @@ class AndroidOfflineMapsManager(private val appContext: Context) {
             "${BuildConfig.EXTRACT_PROVIDER_URL}$filename",
             path,
             extractSize,
+            logicalBaseName = logicalBase,
         )
     }
 
     fun deleteExtractByFeature(feature: Feature) {
         val filename = feature.properties?.get("filename") as? String ?: return
-        val localFilename = filename.substringAfter("-").substringAfter("-")
+        val logicalBase = logicalBaseNameFor(filename)
         val dir = extractsDir()
         if (dir.exists() && dir.isDirectory) {
-            dir.listFiles { f -> f.name.startsWith(localFilename) }?.forEach { it.delete() }
+            // "$logicalBase." matches every version of this extract - the pre-versioning
+            // "glasgow-gb.pmtiles" as well as any "glasgow-gb.v<version>.pmtiles" - plus their
+            // .geojson sidecars, without matching an unrelated "glasgow-gbz.pmtiles".
+            dir.listFiles { f -> f.name.startsWith("$logicalBase.") }?.forEach { it.delete() }
             refreshDownloaded()
+            // Stop the geoengine using the now-deleted extract immediately, rather than waiting
+            // for the user to happen to walk outside the current tile grid.
+            soundscapeServiceConnection.refreshOfflineMaps()
         }
     }
 
