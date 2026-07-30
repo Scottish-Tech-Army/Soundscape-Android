@@ -365,6 +365,7 @@ class GeoEngine {
     fun refreshOfflineMaps() {
         gridState.refreshOfflineMaps()
         settlementGrid.refreshOfflineMaps()
+        tileSearch.refreshOfflineMaps()
     }
 
     private var recordTravel = false
