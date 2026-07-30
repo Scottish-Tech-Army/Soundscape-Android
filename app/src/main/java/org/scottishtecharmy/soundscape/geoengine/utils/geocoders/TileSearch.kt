@@ -32,6 +32,7 @@ import vector_tile.VectorTile
 import java.io.File
 import java.text.Normalizer
 import java.util.Locale
+import java.util.concurrent.ConcurrentHashMap
 import kotlin.collections.isNotEmpty
 import kotlin.text.iterator
 
@@ -39,7 +40,21 @@ class TileSearch(val offlineExtractPath: String,
                  val gridState: GridState,
                  val settlementGrid: GridState) {
 
-    val stringCache = mutableMapOf<Long, List<String>>()
+    // Keyed only by tile (x, y), not by which extract the data came from, so this must be
+    // cleared whenever the on-disk offline extracts change - otherwise a search can keep
+    // returning strings from an extract that's since been replaced or deleted. Concurrent
+    // because refreshOfflineMaps() can be called from a different thread (e.g. a download
+    // completing) while a search() is in progress.
+    val stringCache = ConcurrentHashMap<Long, List<String>>()
+
+    /**
+     * Called when the on-disk offline map extracts have changed (a download completed, or an
+     * extract was deleted) so that the next search re-reads tile content from the current
+     * extracts instead of returning cached strings from a superseded one.
+     */
+    fun refreshOfflineMaps() {
+        stringCache.clear()
+    }
 
     private fun cacheIndex(x: Int, y: Int) : Long{
         return x.toLong() + (y.toLong().shl(32))
