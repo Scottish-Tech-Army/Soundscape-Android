@@ -150,7 +150,14 @@ jobs:
           script: |
             # The emulator runs a userdebug image, so "adb root" is available;
             # we need it for scoped-storage writes and to set the system locale.
-            adb root
+            # "adb root" restarts adbd and the connection briefly drops while it
+            # does; intermittently the client sees that drop as a hard failure
+            # ("adb: unable to connect for root: closed") instead of reconnecting,
+            # especially right after the adb daemon has just started. Each script
+            # line here runs in its own shell, so a non-zero exit is fatal to the
+            # whole run - retry a few times with a short backoff rather than
+            # failing the job on what is normally a transient race.
+            status=1; for i in $(seq 1 10); do if adb wait-for-device && adb root; then status=0; break; fi; echo "adb root attempt $i failed, retrying..."; sleep 3; done; if [ "$status" -ne 0 ]; then echo "::error::adb root did not succeed after retries"; exit 1; fi
             adb wait-for-device
 
             # Language dimension: set the system locale and restart the Android
