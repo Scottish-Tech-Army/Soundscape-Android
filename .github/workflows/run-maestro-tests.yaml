@@ -231,8 +231,13 @@ jobs:
             #
             # "Unable to launch app" launch timeouts are intermittent on the
             # heavier google_apis images - the app itself does not crash and the
-            # next flow launches fine. The rf() helper runs a flow and retries it
-            # ONCE, but ONLY when its JUnit report shows that exact launch failure.
+            # next flow launches fine. Also seen for the same reason: Maestro's
+            # launchApp issuing its own adb call right into the adbd-restart race
+            # described above (adb root, further up), surfacing as "Command failed
+            # (host:transport:...): device offline" instead of the launch-timeout
+            # message - same transient cause, different wording, so it needs the
+            # same retry. The rf() helper runs a flow and retries it ONCE, but ONLY
+            # when its JUnit report shows one of those exact launch failures.
             # launchApp is the first command, before a flow does any work, so a
             # retry then is safe. A blind retry-on-any-failure would NOT be: the
             # stateful flows (e.g. LocationDetails assumes an empty database and
@@ -240,7 +245,7 @@ jobs:
             # their changes if re-run after a mid-flow failure. The retry reuses the
             # same --output path so the report reflects the final attempt.
             # To add a flow, add its name (without .yaml) to the list below.
-            status=0; rf(){ $HOME/.maestro/bin/maestro test --format=junit --output="maestro_outputs/report-$1.xml" --test-output-dir=maestro_outputs --no-ansi "maestro/$1.yaml"; r=$?; if [ "$r" -ne 0 ] && grep -q "Unable to launch app" "maestro_outputs/report-$1.xml" 2>/dev/null; then echo "::warning::launch of $1 failed; retrying once"; $HOME/.maestro/bin/maestro test --format=junit --output="maestro_outputs/report-$1.xml" --test-output-dir=maestro_outputs --no-ansi "maestro/$1.yaml"; r=$?; fi; return "$r"; }; rf Onboarding || status=1; adb shell mkdir -p /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download; adb push glasgow-gb.pmtiles /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/; adb push .github/fixtures/glasgow-gb.pmtiles.geojson /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/; for flow in HomePage LocationDetails PlacesNearby MarkersAndRoutes RouteCreation; do rf "$flow" || status=1; done; exit $status
+            status=0; rf(){ $HOME/.maestro/bin/maestro test --format=junit --output="maestro_outputs/report-$1.xml" --test-output-dir=maestro_outputs --no-ansi "maestro/$1.yaml"; r=$?; if [ "$r" -ne 0 ] && grep -Eq "Unable to launch app|device offline" "maestro_outputs/report-$1.xml" 2>/dev/null; then echo "::warning::launch of $1 failed; retrying once"; $HOME/.maestro/bin/maestro test --format=junit --output="maestro_outputs/report-$1.xml" --test-output-dir=maestro_outputs --no-ansi "maestro/$1.yaml"; r=$?; fi; return "$r"; }; rf Onboarding || status=1; adb shell mkdir -p /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download; adb push glasgow-gb.pmtiles /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/; adb push .github/fixtures/glasgow-gb.pmtiles.geojson /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/; for flow in HomePage LocationDetails PlacesNearby MarkersAndRoutes RouteCreation; do rf "$flow" || status=1; done; exit $status
 
       # Artifact names must be unique across the matrix, so suffix them with the
       # combination (e.g. maestro-reports-35-large-ja-JP).
