@@ -88,6 +88,17 @@ class OfflineMapsViewModel @AssistedInject constructor(
             offlineDownloader = OfflineDownloader()
             downloadState = offlineDownloader.downloadState
 
+            viewModelScope.launch {
+                downloadState.collect { state ->
+                    if (state is DownloadState.Success) {
+                        // Make sure the geoengine starts using the newly published extract (and
+                        // stops using whatever it superseded) immediately, rather than waiting
+                        // for the user to happen to walk outside the current tile grid.
+                        soundscapeServiceConnection.refreshOfflineMaps()
+                    }
+                }
+            }
+
             val storages = getOfflineMapStorage(appContext)
 
             val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)
@@ -184,6 +195,10 @@ class OfflineMapsViewModel @AssistedInject constructor(
                 // Delete whatever we find
                 for (file in files)
                     file.delete()
+
+                // Stop the geoengine using the now-deleted extract immediately, rather than
+                // waiting for the user to happen to walk outside the current tile grid.
+                soundscapeServiceConnection.refreshOfflineMaps()
 
                 refreshExtracts()
             }

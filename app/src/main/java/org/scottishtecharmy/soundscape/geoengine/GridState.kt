@@ -86,6 +86,7 @@ open class GridState(
     // HTTP connection to tile server
     internal var tileClient: TileClient? = null
 
+    @Volatile
     private var centralBoundingBox = BoundingBox()
     private var totalBoundingBox = BoundingBox()
     internal var ruler = CheapRuler(0.0)
@@ -113,6 +114,16 @@ open class GridState(
     open fun fixupCollections(featureCollections: Array<FeatureCollection>) {}
 
     open fun checkOfflineMaps() {}
+
+    /**
+     * Forces the next locationUpdate() to recompute the grid from scratch, even if the location
+     * hasn't left the current central area. Used when the on-disk offline map extracts have
+     * changed (new download published, or an extract deleted) so the change is picked up on the
+     * very next location fix instead of waiting for the user to walk outside the current grid.
+     */
+    fun refreshOfflineMaps() {
+        centralBoundingBox = BoundingBox()
+    }
 
     fun isLocationWithinGrid(location: LngLatAlt): Boolean {
         return pointIsWithinBoundingBox(location, totalBoundingBox)
