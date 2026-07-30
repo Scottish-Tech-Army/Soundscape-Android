@@ -356,6 +356,17 @@ class GeoEngine {
         directionProvider.destroy()
         sharedPreferences.unregisterOnSharedPreferenceChangeListener(sharedPreferencesListener)
    }
+
+    /**
+     * Called when the on-disk offline map extracts have changed (a download completed, or an
+     * extract was deleted) so that both grids pick up the change on their next location update
+     * instead of only opportunistically the next time the user crosses a grid boundary.
+     */
+    fun refreshOfflineMaps() {
+        gridState.refreshOfflineMaps()
+        settlementGrid.refreshOfflineMaps()
+    }
+
     private var recordTravel = false
     private var gpxRecorder: GpxRecorder? = null
 
