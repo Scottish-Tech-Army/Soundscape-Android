@@ -80,8 +80,7 @@ class SettingsViewModel(
                 Log.d(TAG, "serviceBoundState $it")
                 if (it) {
                     val audioEngine = soundscapeServiceConnection.soundscapeService?.audioEngine!!
-                    serviceBoundJob = Job()
-                    viewModelScope.launch(serviceBoundJob!!) {
+                    serviceBoundJob = viewModelScope.launch {
                         audioEngine.ttsRunningStateChange.collectLatest { initialized ->
                             if (initialized) {
                                 // Only once the TextToSpeech engine is initialized can we populate the

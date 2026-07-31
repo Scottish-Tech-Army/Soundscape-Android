@@ -65,7 +65,7 @@ jobs:
         run: ./gradlew lint
 
       - name: Run tests
-        run: ./gradlew test
+        run: ./gradlew test :shared:testAndroidHostTest
 
       - name: Build debug version
         run: ./gradlew assembleDebug

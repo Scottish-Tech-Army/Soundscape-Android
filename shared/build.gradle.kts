@@ -9,7 +9,7 @@ plugins {
 }
 
 kotlin {
-    androidLibrary {
+    android {
         namespace = "org.scottishtecharmy.soundscape.shared"
         compileSdk = 37
         minSdk = 30
@@ -17,6 +17,9 @@ kotlin {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
         }
         androidResources.enable = true
+        // Run commonTest on the JVM too - previously it was only compiled (never executed)
+        // for iosSimulatorArm64Test on the macOS CI runner, and never run at all on Android.
+        withHostTest {}
     }
     listOf(
         iosArm64(),
@@ -30,13 +33,13 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.materialIconsExtended)
-            implementation(compose.ui)
+            implementation(libs.compose.multiplatform.runtime)
+            implementation(libs.compose.multiplatform.foundation)
+            implementation(libs.compose.multiplatform.material3)
+            implementation(libs.compose.multiplatform.material.icons.extended)
+            implementation(libs.compose.multiplatform.ui)
             implementation("org.jetbrains.compose.ui:ui-backhandler:1.10.3")
-            api(compose.components.resources)
+            api(libs.compose.multiplatform.components.resources)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)

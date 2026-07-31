@@ -5,6 +5,9 @@ intellijMarkdown = "0.7.8"
 json = "20260719"
 kotlin = "2.3.10" # 2.4.10 exists but kept back: dependent libs (e.g. kable) don't yet ship Kotlin-2.4-ABI builds
 maplibreCompose = "0.13.1"
+composeMultiplatform = "1.11.1"
+composeMaterial3 = "1.9.0"
+composeMaterialIconsExtended = "1.7.3"
 wire = "6.4.5"
 devtools-ksp = "2.3.10"
 koin = "4.2.2"
@@ -124,6 +127,15 @@ leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", ve
 #maplibre-compose-material3 = { module = "dev.sargunv.maplibre-compose:maplibre-compose-material3", version.ref = "maplibreComposeMaterial3" }
 maplibre-compose = { module = "org.maplibre.compose:maplibre-compose", version.ref = "maplibreCompose" }
 material3 = { module = "androidx.compose.material3:material3" }
+compose-multiplatform-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "composeMultiplatform" }
+compose-multiplatform-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "composeMultiplatform" }
+compose-multiplatform-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "composeMaterial3" }
+# Pinned at 1.7.3 by upstream and will not receive further updates - see
+# https://kotlinlang.org/docs/multiplatform/whats-new-compose-180.html. Migrating to Material
+# Symbols (vector resources) is a separate, larger effort not part of this warning cleanup.
+compose-multiplatform-material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "composeMaterialIconsExtended" }
+compose-multiplatform-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMultiplatform" }
+compose-multiplatform-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "composeMultiplatform" }
 moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshiKotlinCodegen" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }

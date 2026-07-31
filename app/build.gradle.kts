@@ -55,35 +55,6 @@ android {
         versionCode = 1011
         versionName = "2.0.11"
 
-        // Maintaining this list means that we can exclude translations that aren't complete yet
-        resourceConfigurations.addAll(listOf(
-            "arz",
-            "zh-rCN",
-            "da",
-            "de",
-            "el",
-            "en",
-            "en-rGB",
-            "es",
-            "fa",
-            "fi",
-            "fr",
-            "fr-rCA",
-            "hi",
-            "is",
-            "it",
-            "ja",
-            "nb",
-            "nl",
-            "pl",
-            "pt",
-            "pt-rBR",
-            "ro",
-            "ru",
-            "sv",
-            "tr",
-            "uk"
-        ))
 
         // Retrieve the tile provider URL and API key from local.properties. This is not under
         // version control and must be configured by each developer locally. GitHub actions fill in
@@ -190,6 +161,35 @@ android {
         }
     }
     androidResources {
+        // Maintaining this list means that we can exclude translations that aren't complete yet
+        localeFilters += listOf(
+            "arz",
+            "zh-rCN",
+            "da",
+            "de",
+            "el",
+            "en",
+            "en-rGB",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "fr-rCA",
+            "hi",
+            "is",
+            "it",
+            "ja",
+            "nb",
+            "nl",
+            "pl",
+            "pt",
+            "pt-rBR",
+            "ro",
+            "ru",
+            "sv",
+            "tr",
+            "uk"
+        )
         // Keep the map style assets stored uncompressed in the APK. "pbf" is unique to the
         // glyph fonts in this folder; the style JSON/sprite PNGs need exact paths since those
         // extensions are also used elsewhere in the app.
