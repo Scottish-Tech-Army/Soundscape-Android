@@ -189,6 +189,8 @@ fun SharedHomeContent(
 ) {
     val coroutineScope = rememberCoroutineScope()
     var fetchingLocation by remember { mutableStateOf(false) }
+    var mapInteracting by remember { mutableStateOf(false) }
+    val contentScrollState = rememberScrollState()
 
     Box(modifier = modifier.fillMaxSize()) {
         Column(
@@ -203,7 +205,7 @@ fun SharedHomeContent(
 
             Column(
                 verticalArrangement = Arrangement.spacedBy(spacing.small),
-                modifier = Modifier.verticalScroll(rememberScrollState()),
+                modifier = Modifier.verticalScroll(contentScrollState, enabled = !mapInteracting),
             ) {
                 NavigationButton(
                     onClick = { onNavigate(SharedRoutes.PLACES_NEARBY) },
@@ -303,6 +305,7 @@ fun SharedHomeContent(
                                         userLocation = location,
                                         userSymbolRotation = heading,
                                         modifier = Modifier.fillMaxWidth().extraSmallPadding(),
+                                        onInteractionChanged = { mapInteracting = it },
                                     )
                                 }
                             }
@@ -388,6 +391,7 @@ fun SharedHomeContent(
                                 .fillMaxWidth()
                                 .aspectRatio(1f)
                                 .mediumPadding(),
+                            onInteractionChanged = { mapInteracting = it },
                         )
                     }
                 } else {
