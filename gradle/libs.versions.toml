@@ -1,9 +1,9 @@
 [versions]
-agp = "9.0.1"
+agp = "9.3.0"
 commonmark = "0.25.1"
 intellijMarkdown = "0.7.3"
 json = "20240303"
-kotlin = "2.2.10"
+kotlin = "2.3.10"
 maplibreCompose = "0.12.1"
 protobuf-plugin = "0.9.6"
 wire = "5.5.1"
@@ -170,6 +170,7 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+android-kotlinMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 google-protobuf = { id = "com.google.protobuf", version.ref = "protobuf-plugin" }
 squareup-wire = { id = "com.squareup.wire", version.ref = "wire" }

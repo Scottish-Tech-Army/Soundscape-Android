@@ -1,6 +1,6 @@
 plugins {
+    alias(libs.plugins.android.kotlinMultiplatformLibrary)
     alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.squareup.wire)
@@ -9,14 +9,14 @@ plugins {
 }
 
 kotlin {
-    androidTarget {
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions {
-                    jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
-                }
-            }
+    androidLibrary {
+        namespace = "org.scottishtecharmy.soundscape.shared"
+        compileSdk = 36
+        minSdk = 30
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
         }
+        androidResources.enable = true
     }
     listOf(
         iosArm64(),
@@ -57,29 +57,19 @@ kotlin {
             implementation(kotlin("test"))
             implementation(libs.kotlinx.coroutines.test)
         }
-        androidMain.dependencies {
-            implementation(libs.jts.core)
-            implementation(libs.ktor.client.okhttp)
+        androidMain {
+            dependencies {
+                implementation(libs.jts.core)
+                implementation(libs.ktor.client.okhttp)
+            }
+            // Reuse shared resources for the Android target so JSON data files live
+            // in a single canonical location consumed by both platforms.
+            resources.srcDir("src/commonMain/resources")
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
     }
-}
-
-android {
-    namespace = "org.scottishtecharmy.soundscape.shared"
-    compileSdk = 36
-    defaultConfig {
-        minSdk = 30
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    // Reuse shared resources for the Android target so JSON data files live
-    // in a single canonical location consumed by both platforms.
-    sourceSets["main"].resources.srcDir("src/commonMain/resources")
 }
 
 wire {
