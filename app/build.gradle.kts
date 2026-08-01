@@ -4,7 +4,6 @@ import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
 
     alias(libs.plugins.screenshot)
@@ -17,7 +16,7 @@ plugins {
 
 android {
     namespace = "org.scottishtecharmy.soundscape"
-    compileSdk = 36
+    compileSdk = 37
 
     buildFeatures {
         buildConfig = true
@@ -52,39 +51,10 @@ android {
     defaultConfig {
         applicationId = "org.scottishtecharmy.soundscape"
         minSdk = 30
-        targetSdk = 35
-        versionCode = 1011
-        versionName = "2.0.11"
+        targetSdk = 37
+        versionCode = 1012
+        versionName = "2.0.12"
 
-        // Maintaining this list means that we can exclude translations that aren't complete yet
-        resourceConfigurations.addAll(listOf(
-            "arz",
-            "zh-rCN",
-            "da",
-            "de",
-            "el",
-            "en",
-            "en-rGB",
-            "es",
-            "fa",
-            "fi",
-            "fr",
-            "fr-rCA",
-            "hi",
-            "is",
-            "it",
-            "ja",
-            "nb",
-            "nl",
-            "pl",
-            "pt",
-            "pt-rBR",
-            "ro",
-            "ru",
-            "sv",
-            "tr",
-            "uk"
-        ))
 
         // Retrieve the tile provider URL and API key from local.properties. This is not under
         // version control and must be configured by each developer locally. GitHub actions fill in
@@ -191,6 +161,35 @@ android {
         }
     }
     androidResources {
+        // Maintaining this list means that we can exclude translations that aren't complete yet
+        localeFilters += listOf(
+            "arz",
+            "zh-rCN",
+            "da",
+            "de",
+            "el",
+            "en",
+            "en-rGB",
+            "es",
+            "fa",
+            "fi",
+            "fr",
+            "fr-rCA",
+            "hi",
+            "is",
+            "it",
+            "ja",
+            "nb",
+            "nl",
+            "pl",
+            "pt",
+            "pt-rBR",
+            "ro",
+            "ru",
+            "sv",
+            "tr",
+            "uk"
+        )
         // Keep the map style assets stored uncompressed in the APK. "pbf" is unique to the
         // glyph fonts in this folder; the style JSON/sprite PNGs need exact paths since those
         // extensions are also used elsewhere in the app.
@@ -352,6 +351,7 @@ dependencies {
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation (libs.kotlin.test.junit)
     testImplementation(libs.junit.jupiter)
+    testImplementation(libs.ktor.client.mock)
 
     androidTestImplementation(libs.androidx.junit.v121)
     androidTestImplementation(libs.androidx.espresso.core.v351)

@@ -20,7 +20,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -68,9 +70,11 @@ fun SharedOfflineMapExtractDetails(
     )
     val details = remember(extract) { ExtractDetails(extract) }
     val extractGeometry = remember(extract) { extract.toMaplibreGeometry() }
+    var mapInteracting by remember { mutableStateOf(false) }
+    val contentScrollState = rememberScrollState()
 
     Column(
-        modifier = modifier.verticalScroll(rememberScrollState()),
+        modifier = modifier.verticalScroll(contentScrollState, enabled = !mapInteracting),
         verticalArrangement = Arrangement.spacedBy(spacing.small),
     ) {
         MapExtractTextsSection(
@@ -88,7 +92,7 @@ fun SharedOfflineMapExtractDetails(
         if (showMap) {
             PlatformMapContainer(
                 beaconLocation = markerLocation,
-                allowScrolling = true,
+                allowScrolling = false,
                 routeData = null,
                 mapCenter = markerLocation ?: userLocation ?: LngLatAlt(),
                 userLocation = userLocation,
@@ -98,6 +102,7 @@ fun SharedOfflineMapExtractDetails(
                 modifier = Modifier
                     .fillMaxWidth()
                     .aspectRatio(1.0f),
+                onInteractionChanged = { mapInteracting = it },
             )
         }
     }

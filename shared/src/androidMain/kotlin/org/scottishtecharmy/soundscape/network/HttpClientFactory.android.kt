@@ -54,7 +54,8 @@ fun createAndroidManifestClient(
 fun createAndroidPhotonSearchClient(
     baseUrl: String,
     userAgent: String,
-    callTimeoutSeconds: Long = 5,
+    // Was 5 seconds - bumped to 10 after seeing search time out in the field at 5.
+    callTimeoutSeconds: Long = 10,
 ): PhotonSearchClient {
     val okHttpClient = OkHttpClient.Builder()
         .addInterceptor(userAgentInterceptor(userAgent))

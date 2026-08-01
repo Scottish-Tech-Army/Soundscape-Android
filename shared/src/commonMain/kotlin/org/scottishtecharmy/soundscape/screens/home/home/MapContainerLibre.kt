@@ -15,6 +15,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
@@ -95,6 +97,13 @@ fun FullScreenMapFab(
  * @param onMapLongClick Callback when the map is long-pressed, receives the location
  * @param styleUri The URI of the map style to use
  * @param routeMarkerImages Pre-rendered marker images for route waypoints
+ * @param onInteractionChanged Callback fired with true while a multi-touch (pinch) gesture is
+ * active over the map and false once it ends. Callers embedding the map inside a scrollable
+ * container should use this to disable that container's scrolling for the duration - see
+ * https://github.com/maplibre/maplibre-compose/issues/726. The underlying native map's pinch
+ * gesture detector and Compose's own scroll gesture detection both race for the same touch
+ * stream on Android, and without this, MotionEvents get dropped/misrouted between them, making
+ * pinch-to-zoom on the map unreliable.
  */
 @Composable
 fun MapContainerLibre(
@@ -111,6 +120,7 @@ fun MapContainerLibre(
     baseStyle: BaseStyle,
     routeMarkerImages: List<ImageBitmap>? = null,
     extractGeometry: Geometry? = null,
+    onInteractionChanged: (Boolean) -> Unit = {},
 ) {
     val extractBounds = remember(extractGeometry) { extractGeometry?.computeBounds() }
     val cameraState = rememberCameraState(
@@ -144,7 +154,23 @@ fun MapContainerLibre(
         beaconLocation.latitude = cameraState.position.target.latitude
     }
 
-    Box(modifier = modifier) {
+    Box(
+        modifier = modifier.pointerInput(Unit) {
+            // Only take over from the parent scroll on genuine multi-touch (pinch).
+            // MapLibre's native gesture detector for pinch/rotate/tilt requires 2+
+            // pointers by construction, so a single-finger drag here was never going
+            // to pan the map anyway (scroll is disabled via GestureOptions.ZoomOnly) -
+            // treating it as "interacting" too would just make single-finger swipes
+            // starting on the map do nothing instead of scrolling the page.
+            awaitPointerEventScope {
+                while (true) {
+                    val event = awaitPointerEvent()
+                    val pointerCount = event.changes.count { it.pressed }
+                    onInteractionChanged(pointerCount >= 2)
+                }
+            }
+        }
+    ) {
         MaplibreMap(
             baseStyle = baseStyle,
             cameraState = cameraState,
@@ -154,8 +180,11 @@ fun MapContainerLibre(
                 // for these option types in commonMain; per-ornament alignment
                 // customisation requires expect/actual code.
                 // RotationLocked = scroll + zoom on, rotation + tilt off.
+                // ZoomOnly = zoom (pinch/double-tap) on, scroll + rotation + tilt
+                // off - safe inside a scrollable parent since zoom gestures use
+                // two fingers or a tap, never a single-finger drag.
                 gestureOptions = if (allowScrolling) GestureOptions.RotationLocked
-                else GestureOptions.AllDisabled,
+                else GestureOptions.ZoomOnly,
                 ornamentOptions = OrnamentOptions.AllDisabled,
                 // Platform-specific render options: Android uses TextureView so
                 // the map participates in Compose's fade/slide nav transitions

@@ -28,6 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -100,6 +101,8 @@ fun SharedRouteDetailsScreen(
 
     val firstWaypoint = waypoints.firstOrNull()?.location ?: LngLatAlt()
     val fullscreenMap = remember { mutableStateOf(false) }
+    var mapInteracting by remember { mutableStateOf(false) }
+    val contentScrollState = rememberScrollState()
 
     Scaffold(
         topBar = {
@@ -141,7 +144,7 @@ fun SharedRouteDetailsScreen(
                             .fillMaxSize()
                             .background(MaterialTheme.colorScheme.surface)
                             .smallPadding()
-                            .verticalScroll(rememberScrollState())
+                            .verticalScroll(contentScrollState, enabled = !mapInteracting)
                     ) {
                         Row(
                             modifier = Modifier
@@ -229,11 +232,12 @@ fun SharedRouteDetailsScreen(
                             PlatformMapContainer(
                                 beaconLocation = null,
                                 routeData = routeWithMarkers,
-                                allowScrolling = true,
+                                allowScrolling = false,
                                 mapCenter = firstWaypoint,
                                 userLocation = userLocation,
                                 userSymbolRotation = heading,
                                 modifier = Modifier.fillMaxWidth().weight(1f).smallPadding(),
+                                onInteractionChanged = { mapInteracting = it },
                             )
                         }
                         Spacer(modifier = Modifier.size(spacing.medium))

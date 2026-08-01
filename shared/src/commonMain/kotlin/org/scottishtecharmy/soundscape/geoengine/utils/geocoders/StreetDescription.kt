@@ -18,7 +18,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getSideOfLine
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.StringKey
 import kotlin.math.round
@@ -544,10 +543,15 @@ class StreetDescription(val name: String, val gridState: GridState) {
             if (parsedHaystack == null)
                 continue
 
+            // The feature's geometry isn't always a Point - house numbers can also come from
+            // building or POI polygons that carry a housenumber tag, so use the same helper that
+            // addHouse uses to get a representative location for the feature.
+            val centralPoint = getCentralPointForFeature(number.value) ?: continue
+
             if (parsedHaystack == needle) {
                 // We've found an exact match
                 return Pair(
-                    (number.value.geometry as Point).coordinates,
+                    centralPoint,
                     number.value.housenumber ?: ""
                 )
             }
@@ -568,7 +572,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
 
             lastParsed = parsedHaystack
             lastKey = number.key
-            lastPoint = (number.value.geometry as Point).coordinates
+            lastPoint = centralPoint
         }
         return null
     }

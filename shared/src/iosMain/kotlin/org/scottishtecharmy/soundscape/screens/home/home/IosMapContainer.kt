@@ -84,6 +84,7 @@ fun IosMapContainerLibre(
     currentBeaconWaypointIndex: Int = 0,
     extractGeometry: Geometry? = null,
     forceOnlineTiles: Boolean = false,
+    onInteractionChanged: (Boolean) -> Unit = {},
 ) {
     val baseStyle =
         rememberIosMapBaseStyle(location = mapCenter, forceOnlineTiles = forceOnlineTiles)
@@ -99,5 +100,6 @@ fun IosMapContainerLibre(
         currentBeaconWaypointIndex = currentBeaconWaypointIndex,
         baseStyle = baseStyle,
         extractGeometry = extractGeometry,
+        onInteractionChanged = onInteractionChanged,
     )
 }

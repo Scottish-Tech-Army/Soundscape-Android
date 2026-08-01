@@ -12,7 +12,16 @@ fun normalizeForSearch(input: String): String {
     var lastWasSpace = false
 
     for (ch in nfkd) {
-        if (ch.category == CharCategory.NON_SPACING_MARK) continue
+        if (ch.category == CharCategory.NON_SPACING_MARK) {
+            // Only strip Latin/Greek/Cyrillic combining diacritics, which is what NFKD produces
+            // for accented letters (e.g. é -> e + U+0301). Combining marks from other scripts
+            // (Devanagari matras/virama, Arabic harakat, Hebrew niqqud, etc.) are semantically
+            // essential, not decorative, so keep them verbatim.
+            if (ch.code in 0x0300..0x036F) continue
+            sb.append(ch)
+            lastWasSpace = false
+            continue
+        }
         if (ch in apostrophes) continue
 
         val isLetterOrDigit = ch.isLetterOrDigit()

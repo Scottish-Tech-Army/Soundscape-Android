@@ -13,6 +13,8 @@ import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeoutOrNull
 import org.json.JSONObject
+import org.junit.Assert.assertNotNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.scottishtecharmy.soundscape.components.LocationSource
@@ -528,6 +530,35 @@ class GeocoderTest {
                 tarland,
                 appStrings
             )
+        }
+    }
+
+    /**
+     * The Photon search server is only built with English, French, German and each location's
+     * local language (see getPhotonLanguage()). A device whose default language is something
+     * else, e.g. Arabic, isn't one of those, so the language query param must be omitted rather
+     * than passed through - Photon then falls back to matching/returning the local language,
+     * which for this Egyptian POI is Arabic. This confirms that end-to-end against the real
+     * production Photon server, not just the language-selection logic in isolation.
+     */
+    //@Test
+    // This test requires the photon server to be available - but it's unknown here
+    fun arabicPhotonSearchTest() {
+        runBlocking {
+            val photonGeocoder = PhotonGeocoder(PhotonSearchProvider, processor = { it.process() })
+            val appStrings = ComposeLocalizedStrings()
+
+            // Tenth of Ramadan City, Egypt - location of a hospital named "الهلال الاخضر"
+            // (Al-Hilal Al-Akhdar / "The Green Crescent") in OSM.
+            val nearby = LngLatAlt(31.7357622, 30.2869636)
+            val results = photonGeocoder.getAddressFromLocationName(
+                "الهلال الاخضر",
+                nearby,
+                appStrings
+            )
+            assertNotNull(results)
+            assertTrue(results!!.isNotEmpty())
+            assertTrue(results.any { it.name.contains("الهلال") })
         }
     }
 

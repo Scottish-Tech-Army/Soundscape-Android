@@ -17,7 +17,6 @@ struct iOSApp: App {
         WindowGroup {
             ZStack {
                 ComposeView()
-                    .ignoresSafeArea(.all)
                     .onOpenURL { url in
                         IntentBridge.shared.handle(url: url)
                     }
