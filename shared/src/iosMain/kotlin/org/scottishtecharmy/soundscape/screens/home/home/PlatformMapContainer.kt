@@ -18,6 +18,7 @@ actual fun PlatformMapContainer(
     currentBeaconWaypointIndex: Int,
     extractGeometry: Geometry?,
     forceOnlineTiles: Boolean,
+    onInteractionChanged: (Boolean) -> Unit,
 ) {
     IosMapContainerLibre(
         mapCenter = mapCenter,
@@ -30,5 +31,6 @@ actual fun PlatformMapContainer(
         currentBeaconWaypointIndex = currentBeaconWaypointIndex,
         extractGeometry = extractGeometry,
         forceOnlineTiles = forceOnlineTiles,
+        onInteractionChanged = onInteractionChanged,
     )
 }

@@ -65,7 +65,7 @@ jobs:
         run: ./gradlew lint
 
       - name: Run tests
-        run: ./gradlew test
+        run: ./gradlew test :shared:testAndroidHostTest
 
       - name: Build debug version
         run: ./gradlew assembleDebug
@@ -87,7 +87,7 @@ jobs:
         uses: reactivecircus/android-emulator-runner@v2
         continue-on-error: true # IMPORTANT: allow pipeline to continue to Android Test Report step
         with:
-          api-level: 34
+          api-level: 36
           target: default
           arch: x86_64
           script: |
@@ -155,7 +155,7 @@ jobs:
       # test sources to catch Kotlin/iOS errors; the XCTest step below
       # exercises the linked code via xcodebuild.
       - name: Compile shared Kotlin/Native tests for iOS simulator
-        run: ./gradlew :shared:compileTestKotlinIosSimulatorArm64
+        run: ./gradlew --configure-on-demand :shared:compileTestKotlinIosSimulatorArm64
 
       # The runner image does not always pre-register a concrete simulator
       # device (xcodebuild only sees the "Any iOS Simulator" placeholder), so
@@ -274,7 +274,7 @@ jobs:
 
       - name: Boot simulator
         run: |
-          xcrun simctl boot "$SIMULATOR_UDID" || true
+          open -a Simulator --args -CurrentDeviceUDID "$SIMULATOR_UDID"
           xcrun simctl bootstatus "$SIMULATOR_UDID" -b
 
       - name: Build iOS app for simulator

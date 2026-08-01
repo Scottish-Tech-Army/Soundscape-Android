@@ -133,7 +133,7 @@ targets:
       - name: "Build Kotlin Framework"
         script: |
           cd "$SRCROOT/.."
-          ./gradlew :shared:embedAndSignAppleFrameworkForXcode
+          ./gradlew --configure-on-demand :shared:embedAndSignAppleFrameworkForXcode
         basedOnDependencyAnalysis: false
 
   iosAppTests:

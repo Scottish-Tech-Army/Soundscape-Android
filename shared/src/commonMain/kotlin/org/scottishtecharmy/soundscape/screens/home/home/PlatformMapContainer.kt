@@ -22,4 +22,5 @@ expect fun PlatformMapContainer(
     currentBeaconWaypointIndex: Int = 0,
     extractGeometry: Geometry? = null,
     forceOnlineTiles: Boolean = false,
+    onInteractionChanged: (Boolean) -> Unit = {},
 )

@@ -22,12 +22,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.heading
-import androidx.compose.ui.semantics.invisibleToUser
+import androidx.compose.ui.semantics.hideFromAccessibility
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import org.intellij.markdown.flavours.commonmark.CommonMarkFlavourDescriptor
 import org.intellij.markdown.html.HtmlGenerator
+import org.intellij.markdown.parser.CancellationToken
 import org.intellij.markdown.parser.MarkdownParser
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
@@ -219,7 +220,8 @@ fun findStringResourceByKey(key: String): StringResource? = stringResourceByKey[
 
 private fun markdownToHtml(markdown: String): String {
     val flavour = CommonMarkFlavourDescriptor()
-    val tree = MarkdownParser(flavour).buildMarkdownTreeFromString(markdown)
+    val tree = MarkdownParser(flavour, true, CancellationToken.NonCancellable)
+        .buildMarkdownTreeFromString(markdown as CharSequence)
     return HtmlGenerator(markdown, tree, flavour).generateHtml()
 }
 
@@ -663,7 +665,7 @@ fun SharedHelpScreen(
                                             .semantics {
                                                 heading()
                                                 if (section.skipTalkback)
-                                                    invisibleToUser()
+                                                    hideFromAccessibility()
                                             },
                                         color = MaterialTheme.colorScheme.onSurface,
                                     )
@@ -678,7 +680,7 @@ fun SharedHelpScreen(
                                         modifier = Modifier
                                             .semantics {
                                                 if (section.skipTalkback)
-                                                    invisibleToUser()
+                                                    hideFromAccessibility()
                                             }
                                     )
                                 }

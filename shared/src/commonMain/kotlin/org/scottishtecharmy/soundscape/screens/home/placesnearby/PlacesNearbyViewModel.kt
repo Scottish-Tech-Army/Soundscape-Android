@@ -71,10 +71,8 @@ open class PlacesNearbyViewModel(
     @OptIn(ExperimentalCoroutinesApi::class)
     private fun startMonitoring() {
         monitorJob?.cancel()
-        val job = Job()
-        monitorJob = job
         val service = connection.service ?: return
-        viewModelScope.launch(job) {
+        monitorJob = viewModelScope.launch {
             combine(service.gridStateFlow, service.locationFlow) { gridState, location ->
                 LocationAndGridState(
                     location = location?.let { LngLatAlt(it.longitude, it.latitude) },

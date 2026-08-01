@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performScrollTo
 import androidx.test.core.app.ApplicationProvider
 import org.junit.Rule
 import org.junit.Test
@@ -42,10 +43,14 @@ class ListeningScreenTest {
         val stringListeningContinue =
             kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(Res.string.ui_continue) }
 
-        composeTestRule.onNodeWithText(stringListeningTitle).assertIsDisplayed()
-        composeTestRule.onNodeWithText(stringListeningMessage1).assertIsDisplayed()
-        composeTestRule.onNodeWithText(stringListeningMessage2).assertIsDisplayed()
-        composeTestRule.onNodeWithText(stringListeningContinue).assertIsDisplayed()
+        // The content lives in a verticalScroll container that can be taller than the
+        // viewport on smaller screens/emulators, so scroll each node into view before
+        // asserting - otherwise "Continue" (at the bottom) can fail as "not displayed"
+        // purely because it's scrolled out of the visible area, not because it's missing.
+        composeTestRule.onNodeWithText(stringListeningTitle).performScrollTo().assertIsDisplayed()
+        composeTestRule.onNodeWithText(stringListeningMessage1).performScrollTo().assertIsDisplayed()
+        composeTestRule.onNodeWithText(stringListeningMessage2).performScrollTo().assertIsDisplayed()
+        composeTestRule.onNodeWithText(stringListeningContinue).performScrollTo().assertIsDisplayed()
 
         // Delay so I can see it appear on my device screen. Remove when using CI
         //Thread.sleep(5000)

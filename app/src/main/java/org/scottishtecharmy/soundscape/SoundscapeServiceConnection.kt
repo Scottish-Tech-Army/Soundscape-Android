@@ -144,6 +144,10 @@ class SoundscapeServiceConnection : ServiceConnection {
         soundscapeService?.stopBeaconPreview(commit, chosenBeaconType)
     }
 
+    fun refreshOfflineMaps() {
+        soundscapeService?.refreshOfflineMaps()
+    }
+
     companion object {
         private const val TAG = "SoundscapeServiceConnection"
     }

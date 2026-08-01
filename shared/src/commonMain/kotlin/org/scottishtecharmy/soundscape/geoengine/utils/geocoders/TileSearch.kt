@@ -37,7 +37,19 @@ class TileSearch(
     val settlementGrid: GridState
 ) : TileSearcher {
 
+    // Keyed only by tile (x, y), not by which extract the data came from, so this must be
+    // cleared whenever the on-disk offline extracts change - otherwise a search can keep
+    // returning strings from an extract that's since been replaced or deleted.
     val stringCache = mutableMapOf<Long, List<String>>()
+
+    /**
+     * Called when the on-disk offline map extracts have changed (a download completed, or an
+     * extract was deleted) so that the next search re-reads tile content from the current
+     * extracts instead of returning cached strings from a superseded one.
+     */
+    fun refreshOfflineMaps() {
+        stringCache.clear()
+    }
 
     private fun cacheIndex(x: Int, y: Int): Long {
         return x.toLong() + (y.toLong().shl(32))
@@ -326,13 +338,10 @@ class TileSearch(
                     for (layer in tile.layers) {
                         // Was the string found in transportation or POI? TODO: Or both?
                         if ((layer.name == "transportation") || (layer.name == "poi")) {
-                            var nameTag = -1
-                            for ((index, value) in layer.keys.withIndex()) {
-                                if (value == "name") {
-                                    nameTag = index
-                                    break
-                                }
-                            }
+                            val nameTagIndices = layer.keys.withIndex()
+                                .filter { (_, key) -> isNameKey(key) }
+                                .map { it.index }
+                                .toSet()
 
                             var stringKey = -1
                             for ((index, value) in layer.values.withIndex()) {
@@ -365,7 +374,7 @@ class TileSearch(
                                     var found = false
                                     for (tag in feature.tags) {
                                         if (firstInPair) {
-                                            skip = (tag != nameTag)
+                                            skip = (tag !in nameTagIndices)
                                         } else {
                                             if (!skip) {
                                                 val raw = layer.values[tag]
@@ -556,8 +565,10 @@ class TileSearch(
         val streetResults = whittledResults.map { result ->
             val mvt = MvtFeature()
 
-            // Copy in the MVT properties
-            mvt.name = result.properties.get("name") as? String?
+            // Copy in the MVT properties. Use the exact name variant that was actually matched
+            // during search (which may be a localized name:xx tag rather than plain "name"), so
+            // the result surfaces the name that matched rather than always the Latin "name" tag.
+            mvt.name = result.string
             mvt.featureClass = result.properties.get("class") as? String?
             mvt.featureSubClass = result.properties.get("subclass") as? String?
             mvt.properties = result.properties
@@ -677,3 +688,9 @@ class TileSearch(
     }
 }
 
+// OSM/OpenMapTiles tags a feature's name under several keys depending on script/language: plain
+// "name", BCP-47/ISO-639 language-tagged variants ("name:hi", "name:en", "name:pa", ...), and
+// OpenMapTiles-generated fallbacks ("name_int", "int_name"). All of these count as a name tag when
+// resolving a fuzzy search hit back to the feature that produced it.
+fun isNameKey(key: String): Boolean =
+    key == "name" || key.startsWith("name:") || key == "name_int" || key == "int_name"

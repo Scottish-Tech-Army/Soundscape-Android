@@ -73,6 +73,8 @@ fun SharedSaveAndEditMarkerScreen(
     var annotation by rememberSaveable { mutableStateOf(locationDescription.description ?: "") }
     val isEditing = locationDescription.databaseId != 0L
     val fullscreenMap = remember { mutableStateOf(false) }
+    var mapInteracting by remember { mutableStateOf(false) }
+    val contentScrollState = rememberScrollState()
 
     Scaffold(
         modifier = Modifier.imePadding(),
@@ -140,7 +142,7 @@ fun SharedSaveAndEditMarkerScreen(
                     .fillMaxSize()
                     .padding(padding)
                     .smallPadding()
-                    .verticalScroll(rememberScrollState())
+                    .verticalScroll(contentScrollState, enabled = !mapInteracting)
             ) {
                 CustomTextField(
                     fieldName = stringResource(Res.string.markers_sort_button_sort_by_name),
@@ -169,7 +171,7 @@ fun SharedSaveAndEditMarkerScreen(
                 if (showMap) {
                     PlatformMapContainer(
                         mapCenter = locationDescription.location,
-                        allowScrolling = true,
+                        allowScrolling = false,
                         userLocation = userLocation,
                         userSymbolRotation = heading,
                         beaconLocation = locationDescription.location,
@@ -177,6 +179,7 @@ fun SharedSaveAndEditMarkerScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .aspectRatio(1.0f),
+                        onInteractionChanged = { mapInteracting = it },
                     )
                 }
             }

@@ -152,7 +152,7 @@ class TtsEngine(
 
     fun setSpeechLanguage(language: String): Boolean {
         Log.d(TAG, "setSpeechLanguage to \"$language\"")
-        val result = textToSpeech.setLanguage(Locale(language))
+        val result = textToSpeech.setLanguage(Locale.forLanguageTag(language))
         if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
             Log.e(TAG, "The Language not supported!")
             return false

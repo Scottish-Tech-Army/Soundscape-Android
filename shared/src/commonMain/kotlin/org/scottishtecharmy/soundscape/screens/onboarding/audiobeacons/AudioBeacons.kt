@@ -8,11 +8,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -28,6 +25,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.CollectionInfo
+import androidx.compose.ui.semantics.CollectionItemInfo
+import androidx.compose.ui.semantics.collectionInfo
+import androidx.compose.ui.semantics.collectionItemInfo
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
@@ -133,21 +134,34 @@ fun AudioBeacons(
             )
             Spacer(modifier = Modifier.height(spacing.large))
 
-            LazyColumn(
+            Column(
                 modifier = Modifier
-                    .clip(RoundedCornerShape(spacing.extraSmall))
                     .fillMaxWidth()
-                    .heightIn(spacing.extraLarge, spacing.extraLarge * 5)
+                    .clip(RoundedCornerShape(spacing.extraSmall))
                     .background(MaterialTheme.colorScheme.surfaceContainer)
+                    .semantics {
+                        collectionInfo = CollectionInfo(rowCount = beacons.size, columnCount = 1)
+                    }
             ) {
-                items(beacons) { beacon ->
+                beacons.forEachIndexed { index, beacon ->
                     AudioBeaconItem(
                         text = stringResource(getBeaconResourceId(beacon)),
                         foregroundColor = MaterialTheme.colorScheme.onSurface,
                         isSelected = beacon == selectedBeacon,
-                        onSelect = { onBeaconSelected(beacon) },
-                        modifier = Modifier.testTag("${beacon}Button")
-                            .focusable(),
+                        onSelect = {
+                            onBeaconSelected(beacon)
+                        },
+                        modifier = Modifier
+                            .testTag("${beacon}Button")
+                            .focusable()
+                            .semantics {
+                                collectionItemInfo = CollectionItemInfo(
+                                    rowIndex = index,
+                                    rowSpan = 1,
+                                    columnIndex = 0,
+                                    columnSpan = 1
+                                )
+                            },
                     )
                 }
             }

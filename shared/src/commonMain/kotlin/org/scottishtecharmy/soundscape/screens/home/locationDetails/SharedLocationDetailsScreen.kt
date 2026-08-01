@@ -28,6 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
@@ -87,6 +88,8 @@ fun SharedLocationDetailsScreen(
         PreferenceDefaults.SHOW_MAP,
     )
     val fullscreenMap = remember { mutableStateOf(false) }
+    var mapInteracting by remember { mutableStateOf(false) }
+    val contentScrollState = rememberScrollState()
 
     Scaffold(
         topBar = {
@@ -116,7 +119,7 @@ fun SharedLocationDetailsScreen(
             Column(
                 modifier = Modifier
                     .padding(padding)
-                    .verticalScroll(rememberScrollState())
+                    .verticalScroll(contentScrollState, enabled = !mapInteracting)
                     .background(MaterialTheme.colorScheme.surface),
                 verticalArrangement = Arrangement.spacedBy(spacing.small),
             ) {
@@ -143,7 +146,7 @@ fun SharedLocationDetailsScreen(
                 if (showMap) {
                     PlatformMapContainer(
                         mapCenter = locationDescription.location,
-                        allowScrolling = true,
+                        allowScrolling = false,
                         userLocation = userLocation,
                         userSymbolRotation = heading,
                         beaconLocation = locationDescription.location,
@@ -151,6 +154,7 @@ fun SharedLocationDetailsScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                             .aspectRatio(1.0f),
+                        onInteractionChanged = { mapInteracting = it },
                     )
                 }
             }

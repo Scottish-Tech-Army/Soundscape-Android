@@ -1,79 +1,73 @@
 [versions]
-agp = "9.0.1"
-commonmark = "0.25.1"
-intellijMarkdown = "0.7.3"
-json = "20240303"
-kotlin = "2.2.10"
-maplibreCompose = "0.12.1"
-protobuf-plugin = "0.9.6"
-wire = "5.5.1"
-devtools-ksp = "2.3.2"
-koin = "4.0.4"
-google-services = "4.4.3"
-jetbrains-dokka = "2.2.0-Beta"
-firebase-crashlytics = "3.0.6"
+agp = "9.3.0" # 9.3.1 is out but untested against this project - just hasn't been picked up yet
+commonmark = "0.29.0"
+intellijMarkdown = "0.7.8"
+json = "20260719"
+kotlin = "2.3.10" # 2.4.10 exists but kept back: dependent libs (e.g. kable) don't yet ship Kotlin-2.4-ABI builds
+maplibreCompose = "0.13.1"
+composeMultiplatform = "1.11.1"
+composeMaterial3 = "1.9.0"
+composeMaterialIconsExtended = "1.7.3"
+wire = "6.4.5"
+devtools-ksp = "2.3.10"
+koin = "4.2.2"
+google-services = "4.5.0"
+jetbrains-dokka = "2.2.0"
+firebase-crashlytics = "3.0.7"
 accompanistPermissions = "0.37.3"
 composePreferenceLibrary = "2.2.0"
-converterMoshi = "3.0.0"
-converterProtobuf = "3.0.0"
 coreGoogleShortcuts = "1.1.0"
 htmlMermaidDokkaPlugin = "0.6.0"
 jtsCore = "1.20.0"
-ktor = "3.3.1"
+ktor = "3.5.1" # 3.5.2 is a partial release missing published iosSimulatorArm64 artifacts (POM 404s)
 leakcanaryAndroid = "2.14"
-mapLibre = "11.13.0"
+mapLibre = "13.3.1" # 13.4.0+ statically links its own STL, which conflicts with this app's native code
+                     # (Steam Audio/Oboe, built with -DANDROID_STL=c++_shared) - CMake fails with CXX1211
 mapLibreAnnotation = "3.0.2"
 androidxJunit = "1.3.0"
-converterScalars = "3.0.0"
-coreSplashscreen = "1.0.1"
+coreSplashscreen = "1.2.0"
 coreTesting = "2.2.0"
-datastorePreferences = "1.1.7"
+datastorePreferences = "1.2.1"
 espressoCoreVersion = "3.7.0"
-firebaseBom = "34.1.0"
-junitJupiter = "5.13.4"
-coreKtx = "1.16.0"
+firebaseBom = "34.17.0"
+junitJupiter = "6.1.2"
+coreKtx = "1.19.0"
 junit = "4.13.2"
-kotlinTestJunit = "1.9.10"
-kotlinxCoroutinesCore = "1.10.2"
-kotlinxCoroutinesTest = "1.10.2"
-kotlinxSerializationJson = "1.9.0"
-lifecycleRuntimeKtx = "2.9.2"
-activityCompose = "1.10.1"
-lifecycleService = "2.9.2"
+kotlinTestJunit = "2.3.10"
+kotlinxCoroutinesCore = "1.11.0"
+kotlinxCoroutinesTest = "1.11.0"
+lifecycleRuntimeKtx = "2.11.0"
+activityCompose = "1.13.0"
+lifecycleService = "2.11.0"
 appcompat = "1.7.1"
 coreKtxVersion = "1.7.0"
-lifecycleViewmodelCompose = "2.9.2"
-navigationCompose = "2.9.4"
+lifecycleViewmodelCompose = "2.11.0"
+navigationCompose = "2.9.8"
 navigationComposeMultiplatform = "2.9.2"
-lifecycleViewmodelMultiplatform = "2.9.6"
-loggingInterceptor = "5.1.0"
+lifecycleViewmodelMultiplatform = "2.11.0"
 moshi = "1.15.2"
 moshiKotlinCodegen = "1.15.2"
-okhttp = "5.1.0"
-okio = "3.10.2"
-playServicesLocation = "21.3.0"
+okio = "3.18.1"
+playServicesLocation = "21.4.0"
 preferenceKtx = "1.2.1"
-protobufKotlinLite = "4.31.1"
-reorderable = "2.5.1"
-retrofit = "3.0.0"
+reorderable = "3.1.0"
 review = "2.0.2"
 reviewKtx = "2.0.2"
-media3Session = "1.8.0"
-roomCompiler = "2.7.2"
-roomRuntime = "2.7.2"
-sqliteBundled = "2.5.2"
+media3Session = "1.10.1"
+roomCompiler = "2.8.4"
+roomRuntime = "2.8.4"
+sqliteBundled = "2.7.0"
 rtree2 = "0.9.3"
-screenshot = "0.0.1-alpha14"
-screenshotValidationApi = "0.0.1-alpha14"
-benchmarkCommon = "1.4.0"
-lifecycleRuntimeComposeAndroid = "2.9.2"
-lifecycleProcess = "2.9.2"
-uiautomator = "2.3.0"
-jaredsburrows-license = "0.9.8"
-kable = "0.40.2"
+screenshot = "0.0.1-alpha16"
+screenshotValidationApi = "0.0.1-alpha16"
+#benchmarkCommon = "1.4.0"
+lifecycleRuntimeComposeAndroid = "2.11.0"
+lifecycleProcess = "2.11.0"
+uiautomator = "2.4.0"
+jaredsburrows-license = "0.9.9"
+kable = "0.43.0" # 0.43.1+ is built with Kotlin compiler ABI 2.4.0, which our kotlin=2.3.10 can't consume
 
-# These libraries can't go any higher without breaking map zooming
-composeBom = "2025.04.00"
+composeBom = "2026.06.01"
 #maplibreComposeMaterial3 = "0.6.0"
 
 [libraries]
@@ -95,16 +89,12 @@ androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
-androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 androidx-sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqliteBundled" }
 androidx-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
 androidx-uiautomator = { module = "androidx.test.uiautomator:uiautomator", version.ref = "uiautomator" }
 commonmark = { module = "org.commonmark:commonmark", version.ref = "commonmark" }
 intellij-markdown = { module = "org.jetbrains:markdown", version.ref = "intellijMarkdown" }
-converter-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "converterMoshi" }
-converter-protobuf = { module = "com.squareup.retrofit2:converter-protobuf", version.ref = "converterProtobuf" }
-converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "converterScalars" }
 core-google-shortcuts = { module = "androidx.core:core-google-shortcuts", version.ref = "coreGoogleShortcuts" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
@@ -126,27 +116,31 @@ junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "jun
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlinTestJunit" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
 ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
+ktor-client-mock = { module = "io.ktor:ktor-client-mock", version.ref = "ktor" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor" }
 composepreferencelibrary = { module = "me.zhanghai.compose.preference:preference", version.ref = "composePreferenceLibrary" }
 leakcanary-android = { module = "com.squareup.leakcanary:leakcanary-android", version.ref = "leakcanaryAndroid" }
-logging-interceptor = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "loggingInterceptor" }
 #maplibre-compose-material3 = { module = "dev.sargunv.maplibre-compose:maplibre-compose-material3", version.ref = "maplibreComposeMaterial3" }
 maplibre-compose = { module = "org.maplibre.compose:maplibre-compose", version.ref = "maplibreCompose" }
 material3 = { module = "androidx.compose.material3:material3" }
+compose-multiplatform-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "composeMultiplatform" }
+compose-multiplatform-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "composeMultiplatform" }
+compose-multiplatform-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "composeMaterial3" }
+# Pinned at 1.7.3 by upstream and will not receive further updates - see
+# https://kotlinlang.org/docs/multiplatform/whats-new-compose-180.html. Migrating to Material
+# Symbols (vector resources) is a separate, larger effort not part of this warning cleanup.
+compose-multiplatform-material-icons-extended = { module = "org.jetbrains.compose.material:material-icons-extended", version.ref = "composeMaterialIconsExtended" }
+compose-multiplatform-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "composeMultiplatform" }
+compose-multiplatform-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "composeMultiplatform" }
 moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 moshi-kotlin-codegen = { module = "com.squareup.moshi:moshi-kotlin-codegen", version.ref = "moshiKotlinCodegen" }
-okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 play-services-location = { module = "com.google.android.gms:play-services-location", version.ref = "playServicesLocation" }
-protobuf-kotlin-lite = { module = "com.google.protobuf:protobuf-kotlin-lite", version.ref = "protobufKotlinLite" }
-wire-runtime = { module = "com.squareup.wire:wire-runtime", version.ref = "wire" }
 reorderable = { module = "sh.calvin.reorderable:reorderable", version.ref = "reorderable" }
 okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
-retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 review = { module = "com.google.android.play:review", version.ref = "review" }
 review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "reviewKtx" }
 rtree2 = { module = "com.github.davidmoten:rtree2", version.ref = "rtree2" }
@@ -169,14 +163,13 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }
+android-kotlinMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-google-protobuf = { id = "com.google.protobuf", version.ref = "protobuf-plugin" }
 squareup-wire = { id = "com.squareup.wire", version.ref = "wire" }
 devtools-ksp = { id = "com.google.devtools.ksp", version.ref = "devtools-ksp" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services" }
 firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "firebase-crashlytics"}
 jetbrains-dokka = { id = "org.jetbrains.dokka", version.ref = "jetbrains-dokka" }
 androidx-room = { id = "androidx.room", version.ref = "roomRuntime" }
-jetbrains-compose = { id = "org.jetbrains.compose", version = "1.10.3" }
-kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+jetbrains-compose = { id = "org.jetbrains.compose", version = "1.11.1" }
 jaredsburrows-license = { id = "com.jaredsburrows.license", version.ref = "jaredsburrows-license" }

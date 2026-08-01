@@ -1,6 +1,6 @@
 plugins {
+    alias(libs.plugins.android.kotlinMultiplatformLibrary)
     alias(libs.plugins.kotlin.multiplatform)
-    alias(libs.plugins.android.library)
     alias(libs.plugins.jetbrains.compose)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.squareup.wire)
@@ -9,14 +9,17 @@ plugins {
 }
 
 kotlin {
-    androidTarget {
-        compilations.all {
-            compileTaskProvider.configure {
-                compilerOptions {
-                    jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
-                }
-            }
+    android {
+        namespace = "org.scottishtecharmy.soundscape.shared"
+        compileSdk = 37
+        minSdk = 30
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
         }
+        androidResources.enable = true
+        // Run commonTest on the JVM too - previously it was only compiled (never executed)
+        // for iosSimulatorArm64Test on the macOS CI runner, and never run at all on Android.
+        withHostTest {}
     }
     listOf(
         iosArm64(),
@@ -30,13 +33,13 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
-            implementation(compose.runtime)
-            implementation(compose.foundation)
-            implementation(compose.material3)
-            implementation(compose.materialIconsExtended)
-            implementation(compose.ui)
+            implementation(libs.compose.multiplatform.runtime)
+            implementation(libs.compose.multiplatform.foundation)
+            implementation(libs.compose.multiplatform.material3)
+            implementation(libs.compose.multiplatform.material.icons.extended)
+            implementation(libs.compose.multiplatform.ui)
             implementation("org.jetbrains.compose.ui:ui-backhandler:1.10.3")
-            api(compose.components.resources)
+            api(libs.compose.multiplatform.components.resources)
             implementation(libs.kotlinx.coroutines.core)
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.client.content.negotiation)
@@ -57,29 +60,19 @@ kotlin {
             implementation(kotlin("test"))
             implementation(libs.kotlinx.coroutines.test)
         }
-        androidMain.dependencies {
-            implementation(libs.jts.core)
-            implementation(libs.ktor.client.okhttp)
+        androidMain {
+            dependencies {
+                implementation(libs.jts.core)
+                implementation(libs.ktor.client.okhttp)
+            }
+            // Reuse shared resources for the Android target so JSON data files live
+            // in a single canonical location consumed by both platforms.
+            resources.srcDir("src/commonMain/resources")
         }
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
         }
     }
-}
-
-android {
-    namespace = "org.scottishtecharmy.soundscape.shared"
-    compileSdk = 36
-    defaultConfig {
-        minSdk = 30
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    // Reuse shared resources for the Android target so JSON data files live
-    // in a single canonical location consumed by both platforms.
-    sourceSets["main"].resources.srcDir("src/commonMain/resources")
 }
 
 wire {

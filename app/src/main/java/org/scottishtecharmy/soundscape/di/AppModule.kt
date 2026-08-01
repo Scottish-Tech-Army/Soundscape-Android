@@ -72,7 +72,7 @@ val appModule = module {
     viewModelOf(::AudioOnboardingViewModel)
     viewModelOf(::OffscreenStorageOnboardingViewModel)
 
-    single { AndroidOfflineMapsManager(androidContext()) }
+    single { AndroidOfflineMapsManager(androidContext(), get()) }
 
     single { AndroidMarkersAndRoutesIo(androidContext()) }
     single<MarkersAndRoutesIo> { get<AndroidMarkersAndRoutesIo>() }
