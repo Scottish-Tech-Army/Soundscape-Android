@@ -13,7 +13,7 @@ runs:
     # Bump the `v` in the cache key below to force a refresh when the R2 fixtures change.
     - name: Restore cached pmtiles + manifest
       id: cache
-      uses: actions/cache@v4
+      uses: actions/cache@v6
       with:
         path: |
           ${{ inputs.output_dir }}/bristol-gb.pmtiles
