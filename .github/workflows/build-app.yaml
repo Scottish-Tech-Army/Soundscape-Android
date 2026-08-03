@@ -483,7 +483,7 @@ jobs:
     # the simulator in run-tests.yaml, so this job runs the same XCTest suite
     # against real devices via Test Lab as a release smoke test.
     name: Run iOS XCTest suite via Firebase Test Lab
-    needs: ios-build
+    needs: [ios-build, prepare-version]
     runs-on: [self-hosted, macOS, ARM64]
     environment: development
     # Same reasoning as ios-build: the Release framework link needs more heap
@@ -492,9 +492,20 @@ jobs:
       GRADLE_OPTS: -Xmx8192m
 
     steps:
+      # Pull the latest commit on the branch (including the version-bump
+      # commit produced by the Android `build` job).
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          ref: ${{ github.ref }}
+          token: ${{ secrets.PAT_TOKEN }}
+
+      # actions/checkout shortcuts to github.sha (the trigger SHA) when the
+      # given ref matches github.ref, so we'd otherwise miss the version-bump
+      # commit pushed by prepare-version. Fast-forward to the real remote tip
+      # so the later screenshot auto-commit can push without conflict.
+      - name: Fast-forward to remote tip
+        run: git pull --ff-only origin ${{ github.ref_name }}
 
       # See ios-build: linkReleaseFrameworkIosArm64 needs more heap than
       # gradle.properties' 4 GB default, and GRADLE_OPTS only sets the client
@@ -519,6 +530,12 @@ jobs:
         working-directory: iosApp
         run: xcodegen generate
 
+      # See run-tests.yaml: linking iosArm64Test fails because of
+      # maplibre-compose's embedded linker flags. xcodebuild below builds via
+      # the Xcode/SPM toolchain that resolves MapLibre.
+      - name: Compile shared Kotlin/Native tests for iOS device
+        run: ./gradlew :shared:compileTestKotlinIosArm64
+
       - name: Setup iOS signing
         uses: ./.github/actions/setup-ios-signing
         with:
@@ -529,7 +546,14 @@ jobs:
           keychain_password: ${{ secrets.IOS_KEYCHAIN_PASSWORD }}
 
       - name: Build XCTest bundle for device
+        env:
+          VERSION_CODE: ${{ needs.prepare-version.outputs.version_code }}
+          VERSION_NAME: ${{ needs.prepare-version.outputs.version_name }}
         run: |
+          # Strip the patch component so TestFlight groups all 2.0.x builds
+          # under one "2.0" train; uniqueness within the train comes from
+          # CURRENT_PROJECT_VERSION (the build number).
+          SHORT_VERSION=$(echo "$VERSION_NAME" | cut -d. -f1,2)
           xcodebuild build-for-testing \
             -project iosApp/iosApp.xcodeproj \
             -scheme iosApp \
@@ -538,6 +562,10 @@ jobs:
             -destination 'generic/platform=iOS' \
             -derivedDataPath build_for_testing \
             ENABLE_TESTABILITY=YES \
+            MARKETING_VERSION="$SHORT_VERSION" \
+            CURRENT_PROJECT_VERSION="$VERSION_CODE" \
+            APP_VERSION_NAME="$VERSION_NAME" \
+            DEVELOPMENT_TEAM=48N3J4V5KM \
             CODE_SIGN_IDENTITY="Apple Distribution" \
             PROFILE_NAME_APP="$IOS_PROFILE_NAME" \
             PROFILE_NAME_SHAREEXT="$IOS_SHAREEXT_PROFILE_NAME"

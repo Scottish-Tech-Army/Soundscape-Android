@@ -174,10 +174,6 @@ targets:
         Release:
           CODE_SIGN_STYLE: Manual
           CODE_SIGN_IDENTITY: "Apple Distribution"
-          # Skip signing for the test bundle; gcloud re-signs or allows it
-          # on Test Lab, but we must avoid the default "Apple Development"
-          # lookup that fails on CI.
-          CODE_SIGNING_ALLOWED: "NO"
 
   ShareExtension:
     type: app-extension
