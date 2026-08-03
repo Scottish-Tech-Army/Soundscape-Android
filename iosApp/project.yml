@@ -8,7 +8,6 @@ configFiles:
   Release: Local.xcconfig
 settings:
   ENABLE_BITCODE: "NO"
-  DEVELOPMENT_TEAM: 48N3J4V5KM
   # Defaults for local Xcode runs. CI overrides both via the xcodebuild
   # command line (see .github/workflows/build-app.yaml). Without defaults,
   # Info.plist substitution leaves CFBundleVersion empty and installd
@@ -125,6 +124,7 @@ targets:
     # config overrides.
     settings:
       base:
+        DEVELOPMENT_TEAM: 48N3J4V5KM
         PRODUCT_BUNDLE_IDENTIFIER: org.scottishtecharmy.soundscape
         PRODUCT_NAME: Soundscape
         FRAMEWORK_SEARCH_PATHS:
@@ -164,6 +164,7 @@ targets:
       - target: iosApp
     settings:
       base:
+        DEVELOPMENT_TEAM: 48N3J4V5KM
         # The host app's target is `iosApp` but PRODUCT_NAME is `Soundscape`,
         # so xcodegen's auto-derived TEST_HOST (based on target name) points
         # at a non-existent binary. Override it to the real product path.
@@ -193,6 +194,7 @@ targets:
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
     settings:
       base:
+        DEVELOPMENT_TEAM: 48N3J4V5KM
         PRODUCT_BUNDLE_IDENTIFIER: org.scottishtecharmy.soundscape.share
         SKIP_INSTALL: "YES"
       configs:
