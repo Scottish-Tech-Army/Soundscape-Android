@@ -549,7 +549,7 @@ jobs:
         uses: ./.github/actions/decode-base64-secret
         with:
           encoded: ${{ secrets.APPSTORE_CONNECT_API_KEY_BASE64 }}
-          output_path: ${{ runner.temp }}/private_keys/AuthKey_${{ secrets.APPSTORE_CONNECT_API_ID }}.p8
+          output_path: ${{ runner.temp }}/private_keys/AuthKey_${{ secrets.APPSTORE_CONNECT_API_KEY_ID }}.p8
 
       - name: Build XCTest bundle for device
         env:
