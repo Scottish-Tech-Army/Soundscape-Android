@@ -538,6 +538,7 @@ jobs:
             -destination 'generic/platform=iOS' \
             -derivedDataPath build_for_testing \
             ENABLE_TESTABILITY=YES \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
             PROFILE_NAME_APP="$IOS_PROFILE_NAME" \
             PROFILE_NAME_SHAREEXT="$IOS_SHAREEXT_PROFILE_NAME"
 
