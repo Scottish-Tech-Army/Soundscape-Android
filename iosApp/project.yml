@@ -170,10 +170,6 @@ targets:
         TEST_HOST: $(BUILT_PRODUCTS_DIR)/Soundscape.app/Soundscape
         BUNDLE_LOADER: $(TEST_HOST)
         GENERATE_INFOPLIST_FILE: "YES"
-      configs:
-        Release:
-          CODE_SIGN_STYLE: Manual
-          CODE_SIGN_IDENTITY: "Apple Distribution"
 
   ShareExtension:
     type: app-extension
