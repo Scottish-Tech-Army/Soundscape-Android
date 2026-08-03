@@ -285,6 +285,13 @@ jobs:
     environment: development
     permissions:
       contents: write
+    # Konan's devirtualization pass during linkReleaseFrameworkIosArm64 runs
+    # in-process in the Gradle daemon and OOMs at gradle.properties' 4 GB
+    # default with Realm + MapLibre + shared/. GRADLE_OPTS overrides the file
+    # setting for this job only; the Linux runners keep the 4 GB default so
+    # the Android emulator has room in its 16 GB budget.
+    env:
+      GRADLE_OPTS: -Xmx8192m
 
     steps:
       # Pull the latest commit on the branch (including the version-bump
@@ -468,6 +475,10 @@ jobs:
     needs: ios-build
     runs-on: [self-hosted, macOS, ARM64]
     environment: development
+    # Same reasoning as ios-build: the Release framework link needs more heap
+    # than the file default.
+    env:
+      GRADLE_OPTS: -Xmx8192m
 
     steps:
       - uses: actions/checkout@v6
