@@ -9,6 +9,13 @@ plugins {
 }
 
 kotlin {
+    // Suppress KT-61573 Beta warning for MarkersAndRoutesDatabase's
+    // expect/actual class pair (source + Room-generated constructor).
+    // Applied at the KMP-extension level so all target compilations pick it up.
+    compilerOptions {
+        freeCompilerArgs.add("-Xexpect-actual-classes")
+    }
+
     android {
         namespace = "org.scottishtecharmy.soundscape.shared"
         compileSdk = 37

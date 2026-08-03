@@ -452,7 +452,6 @@ fun vectorTileToGeoJson(
                 }
 
                 // Assert on all other geometry enum values
-                null,
                 Tile.GeomType.UNKNOWN -> {
                     check(false) { "Unexpected geometry type: ${feature.type}" }
                 }

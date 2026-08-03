@@ -124,7 +124,7 @@ fun findShortestDistance(
 
     val shortestDistance = dijkstraOnWaysWithLoops(
         newStartIntersection,
-        newEndIntersection!!,
+        newEndIntersection,
         ruler,
         maxDistance
     )
