@@ -590,13 +590,29 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCLOUD_CREDENTIALS_JSON }}
 
+      # The self-hosted mac-mini's system Python is 3.9, which gcloud dropped
+      # support for. setup-python installs a supported interpreter in the tool
+      # cache; CLOUDSDK_PYTHON pins gcloud to it without touching the runner's
+      # default python3.
+      - name: Set up Python for gcloud
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v3
+        env:
+          CLOUDSDK_PYTHON: ${{ steps.setup-python.outputs.python-path }}
 
       - name: Set current project
+        env:
+          CLOUDSDK_PYTHON: ${{ steps.setup-python.outputs.python-path }}
         run: gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID }}
 
       - name: Run XCTest in Firebase Test Lab
+        env:
+          CLOUDSDK_PYTHON: ${{ steps.setup-python.outputs.python-path }}
         run: |
           gcloud firebase test ios run \
             --type xctest \
