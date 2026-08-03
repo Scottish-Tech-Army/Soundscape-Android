@@ -163,12 +163,21 @@ targets:
     dependencies:
       - target: iosApp
     settings:
-      # The host app's target is `iosApp` but PRODUCT_NAME is `Soundscape`,
-      # so xcodegen's auto-derived TEST_HOST (based on target name) points
-      # at a non-existent binary. Override it to the real product path.
-      TEST_HOST: $(BUILT_PRODUCTS_DIR)/Soundscape.app/Soundscape
-      BUNDLE_LOADER: $(TEST_HOST)
-      GENERATE_INFOPLIST_FILE: "YES"
+      base:
+        # The host app's target is `iosApp` but PRODUCT_NAME is `Soundscape`,
+        # so xcodegen's auto-derived TEST_HOST (based on target name) points
+        # at a non-existent binary. Override it to the real product path.
+        TEST_HOST: $(BUILT_PRODUCTS_DIR)/Soundscape.app/Soundscape
+        BUNDLE_LOADER: $(TEST_HOST)
+        GENERATE_INFOPLIST_FILE: "YES"
+      configs:
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: "Apple Distribution"
+          # Skip signing for the test bundle; gcloud re-signs or allows it
+          # on Test Lab, but we must avoid the default "Apple Development"
+          # lookup that fails on CI.
+          CODE_SIGNING_ALLOWED: "NO"
 
   ShareExtension:
     type: app-extension
