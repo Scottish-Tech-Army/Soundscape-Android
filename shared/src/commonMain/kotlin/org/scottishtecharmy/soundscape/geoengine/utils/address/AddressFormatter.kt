@@ -189,7 +189,7 @@ class AddressFormatter(
                 selected = Templates.worldwide[ref]!!.jsonPrimitive.content
             }
         }
-        return selected!!
+        return selected
     }
 
     private fun cleanupInput(
