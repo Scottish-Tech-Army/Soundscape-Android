@@ -545,18 +545,10 @@ jobs:
           shareext_provisioning_profile_base64: ${{ secrets.IOS_SHAREEXT_PROVISIONING_PROFILE_BASE64 }}
           keychain_password: ${{ secrets.IOS_KEYCHAIN_PASSWORD }}
 
-      - name: Decode App Store Connect API key
-        uses: ./.github/actions/decode-base64-secret
-        with:
-          encoded: ${{ secrets.APPSTORE_CONNECT_API_KEY_BASE64 }}
-          output_path: ${{ runner.temp }}/private_keys/AuthKey_${{ secrets.APPSTORE_CONNECT_API_KEY_ID }}.p8
-
       - name: Build XCTest bundle for device
         env:
           VERSION_CODE: ${{ needs.prepare-version.outputs.version_code }}
           VERSION_NAME: ${{ needs.prepare-version.outputs.version_name }}
-          KEY_ID: ${{ secrets.APPSTORE_CONNECT_API_KEY_ID }}
-          ISSUER_ID: ${{ secrets.APPSTORE_CONNECT_API_ISSUER_ID }}
         run: |
           # Strip the patch component so TestFlight groups all 2.0.x builds
           # under one "2.0" train; uniqueness within the train comes from
@@ -569,10 +561,6 @@ jobs:
             -sdk iphoneos \
             -destination 'generic/platform=iOS' \
             -derivedDataPath build_for_testing \
-            -authenticationKeyPath "$RUNNER_TEMP/private_keys/AuthKey_$KEY_ID.p8" \
-            -authenticationKeyID "$KEY_ID" \
-            -authenticationKeyIssuerID "$ISSUER_ID" \
-            -allowProvisioningUpdates \
             ENABLE_TESTABILITY=YES \
             MARKETING_VERSION="$SHORT_VERSION" \
             CURRENT_PROJECT_VERSION="$VERSION_CODE" \
