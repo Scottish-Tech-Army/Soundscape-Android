@@ -110,11 +110,9 @@ private fun buildSupportHtmlBody(service: IosSoundscapeService): String = buildS
     }
 
     @Suppress("UNCHECKED_CAST")
-    val all = NSUserDefaults.standardUserDefaults.dictionaryRepresentation() as? Map<Any?, Any?>
-    if (all != null) {
-        for ((key, value) in all) {
-            append(tableRow(key.toString(), value.toString()))
-        }
+    val all = NSUserDefaults.standardUserDefaults.dictionaryRepresentation()
+    for ((key, value) in all) {
+        append(tableRow(key.toString(), value.toString()))
     }
     append("-----------------------------<br/><br/>")
 
