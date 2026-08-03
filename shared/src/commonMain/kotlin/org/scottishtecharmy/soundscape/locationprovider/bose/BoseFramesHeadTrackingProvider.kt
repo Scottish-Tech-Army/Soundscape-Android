@@ -85,7 +85,7 @@ class BoseFramesHeadTrackingProvider(
                 loc.hasSpeed &&
                 loc.speed >= COURSE_MIN_SPEED_MPS
             if (usable) {
-                lastCourseDegrees = loc!!.bearing.toDouble()
+                lastCourseDegrees = loc.bearing.toDouble()
                 lastCourseTimestampMillis = currentTimeMillis()
             } else {
                 lastCourseDegrees = null

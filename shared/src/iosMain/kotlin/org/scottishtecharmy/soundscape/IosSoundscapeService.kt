@@ -165,8 +165,8 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     }
 
     // Route player and audio menu
-    lateinit var routePlayer: RoutePlayer
-    lateinit var audioMenu: AudioMenu
+    val routePlayer: RoutePlayer = RoutePlayer(this, routeDao)
+    val audioMenu: AudioMenu = AudioMenu(this, routeDao)
 
     // Service bound state (always true on iOS)
     private val _serviceBoundState = MutableStateFlow(true)
@@ -264,8 +264,6 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     }
 
     init {
-        routePlayer = RoutePlayer(this, routeDao)
-        audioMenu = AudioMenu(this, routeDao)
         updateMediaControls(
             preferencesProvider.getString(
                 PreferenceKeys.MEDIA_CONTROLS_MODE,
