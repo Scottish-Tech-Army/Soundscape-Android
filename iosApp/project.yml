@@ -173,6 +173,18 @@ targets:
         TEST_HOST: $(BUILT_PRODUCTS_DIR)/Soundscape.app/Soundscape
         BUNDLE_LOADER: $(TEST_HOST)
         GENERATE_INFOPLIST_FILE: "YES"
+      configs:
+        # The Firebase Test Lab build-for-testing step signs with the same
+        # Apple Distribution cert used by the host app. XCTest bundles ride
+        # inside Soundscape.app/PlugIns/ and inherit the host's provisioning
+        # context, so an empty PROVISIONING_PROFILE_SPECIFIER stops xcodebuild
+        # from demanding a per-target profile that our distribution cert
+        # doesn't cover. Automatic signing would need an Apple Development
+        # cert, which no self-hosted CI runner has.
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: "Apple Distribution"
+          PROVISIONING_PROFILE_SPECIFIER: ""
 
   ShareExtension:
     type: app-extension
