@@ -338,12 +338,19 @@ jobs:
       # Reuse the version produced by the Android job. MARKETING_VERSION maps
       # to CFBundleShortVersionString and CURRENT_PROJECT_VERSION to
       # CFBundleVersion when passed as xcodebuild build settings.
+      #
+      # Manual signing: project.yml pins each Release target to the
+      # distribution cert and references PROFILE_NAME_APP /
+      # PROFILE_NAME_SHAREEXT as user-defined build settings. Passing them
+      # here lets each target pick up its own profile name (xcodebuild
+      # SETTING=VALUE overrides apply to all targets, but each target's
+      # PROVISIONING_PROFILE_SPECIFIER references a different var). No
+      # -allowProvisioningUpdates: the profiles were already imported by
+      # setup-ios-signing, so Apple doesn't need to mint fresh ones.
       - name: Archive iOS app
         env:
           VERSION_CODE: ${{ needs.prepare-version.outputs.version_code }}
           VERSION_NAME: ${{ needs.prepare-version.outputs.version_name }}
-          KEY_ID: ${{ secrets.APPSTORE_CONNECT_API_KEY_ID }}
-          ISSUER_ID: ${{ secrets.APPSTORE_CONNECT_API_ISSUER_ID }}
         run: |
           # Strip the patch component so TestFlight groups all 2.0.x builds
           # under one "2.0" train; uniqueness within the train comes from
@@ -356,13 +363,11 @@ jobs:
             -sdk iphoneos \
             -destination 'generic/platform=iOS' \
             -archivePath "$RUNNER_TEMP/Soundscape.xcarchive" \
-            -authenticationKeyPath "$RUNNER_TEMP/private_keys/AuthKey_$KEY_ID.p8" \
-            -authenticationKeyID "$KEY_ID" \
-            -authenticationKeyIssuerID "$ISSUER_ID" \
-            -allowProvisioningUpdates \
             MARKETING_VERSION="$SHORT_VERSION" \
             CURRENT_PROJECT_VERSION="$VERSION_CODE" \
-            APP_VERSION_NAME="$VERSION_NAME"
+            APP_VERSION_NAME="$VERSION_NAME" \
+            PROFILE_NAME_APP="$IOS_PROFILE_NAME" \
+            PROFILE_NAME_SHAREEXT="$IOS_SHAREEXT_PROFILE_NAME"
 
       # Manual signing during export so xcodebuild reuses the profile we
       # imported in setup-ios-signing instead of asking Apple to mint a fresh
@@ -493,16 +498,7 @@ jobs:
           shareext_provisioning_profile_base64: ${{ secrets.IOS_SHAREEXT_PROVISIONING_PROFILE_BASE64 }}
           keychain_password: ${{ secrets.IOS_KEYCHAIN_PASSWORD }}
 
-      - name: Decode App Store Connect API key
-        uses: ./.github/actions/decode-base64-secret
-        with:
-          encoded: ${{ secrets.APPSTORE_CONNECT_API_KEY_BASE64 }}
-          output_path: ${{ runner.temp }}/private_keys/AuthKey_${{ secrets.APPSTORE_CONNECT_API_KEY_ID }}.p8
-
       - name: Build XCTest bundle for device
-        env:
-          KEY_ID: ${{ secrets.APPSTORE_CONNECT_API_KEY_ID }}
-          ISSUER_ID: ${{ secrets.APPSTORE_CONNECT_API_ISSUER_ID }}
         run: |
           xcodebuild build-for-testing \
             -project iosApp/iosApp.xcodeproj \
@@ -511,11 +507,9 @@ jobs:
             -sdk iphoneos \
             -destination 'generic/platform=iOS' \
             -derivedDataPath build_for_testing \
-            -authenticationKeyPath "$RUNNER_TEMP/private_keys/AuthKey_$KEY_ID.p8" \
-            -authenticationKeyID "$KEY_ID" \
-            -authenticationKeyIssuerID "$ISSUER_ID" \
-            -allowProvisioningUpdates \
-            ENABLE_TESTABILITY=YES
+            ENABLE_TESTABILITY=YES \
+            PROFILE_NAME_APP="$IOS_PROFILE_NAME" \
+            PROFILE_NAME_SHAREEXT="$IOS_SHAREEXT_PROFILE_NAME"
 
       - name: Package test bundle for Test Lab
         run: |

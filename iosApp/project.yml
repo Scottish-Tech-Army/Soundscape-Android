@@ -118,17 +118,34 @@ targets:
             UTTypeTagSpecification:
               public.filename-extension:
                 - gpx
+    # xcodegen: mixing flat entries with a `configs:` key silently drops the
+    # flat entries, so wrap the shared settings in `base:` when adding per-
+    # config overrides.
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: org.scottishtecharmy.soundscape
-      PRODUCT_NAME: Soundscape
-      FRAMEWORK_SEARCH_PATHS:
-        - "$(inherited)"
-        - "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)"
-      OTHER_LINKER_FLAGS:
-        - "$(inherited)"
-        - "-framework"
-        - "Shared"
-      CODE_SIGN_ENTITLEMENTS: iosApp/iosApp.entitlements
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.scottishtecharmy.soundscape
+        PRODUCT_NAME: Soundscape
+        FRAMEWORK_SEARCH_PATHS:
+          - "$(inherited)"
+          - "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)"
+        OTHER_LINKER_FLAGS:
+          - "$(inherited)"
+          - "-framework"
+          - "Shared"
+        CODE_SIGN_ENTITLEMENTS: iosApp/iosApp.entitlements
+      configs:
+        # CI archives with manual signing so xcodebuild uses the
+        # distribution cert + profile imported by setup-ios-signing rather
+        # than asking Apple to mint a managed Apple Development profile
+        # (which fails when the App Store Connect API key can't manage
+        # the per-machine dev cert). The profile name is injected via a
+        # user-defined build setting so each target can get its own value
+        # from the xcodebuild command line. Debug is left on the default
+        # automatic signing so local runs from Xcode keep working.
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: "Apple Distribution"
+          PROVISIONING_PROFILE_SPECIFIER: "$(PROFILE_NAME_APP)"
     preBuildScripts:
       - name: "Build Kotlin Framework"
         script: |
@@ -172,8 +189,14 @@ targets:
           NSExtensionPointIdentifier: com.apple.share-services
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: org.scottishtecharmy.soundscape.share
-      SKIP_INSTALL: "YES"
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: org.scottishtecharmy.soundscape.share
+        SKIP_INSTALL: "YES"
+      configs:
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: "Apple Distribution"
+          PROVISIONING_PROFILE_SPECIFIER: "$(PROFILE_NAME_SHAREEXT)"
 
 schemes:
   iosApp:
