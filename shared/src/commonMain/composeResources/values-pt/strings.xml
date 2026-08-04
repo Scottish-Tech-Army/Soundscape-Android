@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Danificado - eliminar e transferir novamente</string>
     <string name="offline_map_details_update">Atualizar mapa offline</string>
     <string name="menu_exit_app">Sair do Soundscape</string>
+    <string name="talkback_double_tap_prefix">Toque duas vezes para</string>
+    <string name="talkback_default_activate">ativar</string>
+    <string name="distance_format_km_a11y">%1$s quilómetros</string>
+    <string name="number_decimal_separator">,</string>
+    <string name="number_decimal_separator_a11y">vírgula</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s bytes</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s quilobytes</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s megabytes</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s gigabytes</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s terabytes</string>
+    <string name="help_config_voices_content_ios">O Soundscape pode utilizar quaisquer vozes que tenha transferido nas Definições do iOS, exceto as vozes da Siri, que não estão disponíveis para o Soundscape. Recomendamos escolher uma das vozes *Enhanced* (Aprimoradas), pois têm qualidade vocal muito superior; para tal, terá primeiro de transferir uma voz aprimorada. Pode transferir vozes em Definições &gt; Acessibilidade &gt; Conteúdo Falado &gt; Vozes, tocando na voz que pretende. Dentro da aplicação Soundscape, selecione a voz que deseja usar acedendo a *Definições* no menu principal e depois a *Vozes*.</string>
+    <string name="settings_mix_audio">Misturar áudio com outras aplicações</string>
+    <string name="settings_mix_audio_description">Quando desativado, outras aplicações de áudio serão pausadas e os controlos multimédia do ecrã de bloqueio ficarão disponíveis</string>
+    <string name="settings_head_tracking">Ativar rastreamento da cabeça</string>
+    <string name="settings_head_tracking_description">Posiciona o áudio espacial relativamente à direção para a qual a sua cabeça está virada, usando dados de movimento dos AirPods suportados, dos Bose Frames ou de um IMU Bluetooth externo. Calibra automaticamente enquanto caminha.</string>
 </resources>
