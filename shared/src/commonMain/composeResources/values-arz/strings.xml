@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">تالف - احذف وأعد تنزيله</string>
     <string name="offline_map_details_update">تحديث الخريطة غير المتصلة بالإنترنت</string>
     <string name="menu_exit_app">الخروج من Soundscape</string>
+    <string name="talkback_double_tap_prefix">اضغط مرتين لـ</string>
+    <string name="talkback_default_activate">تفعيل</string>
+    <string name="distance_format_km_a11y">%1$s كيلو متر</string>
+    <string name="number_decimal_separator">.</string>
+    <string name="number_decimal_separator_a11y">نقطة</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s بايت</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s كيلوبايت</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s ميجابايت</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s جيجابايت</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s تيرابايت</string>
+    <string name="help_config_voices_content_ios">يمكن لتطبيق Soundscape استخدام أيٍّ من الأصوات التي قمت بتنزيلها في تطبيق إعدادات iOS، باستثناء أصوات Siri التي لا تتوفر لتطبيق Soundscape. نوصي باختيار أحد الأصوات *المحسّنة* لأنها تتمتع بجودة أعلى بكثير، لكن للقيام بذلك ستحتاج أولًا إلى تنزيل صوت محسّن. يمكنك تنزيل الأصوات من تطبيق الإعدادات على iOS بالذهاب إلى *\\"إمكانية الوصول\\"* &gt; *\\"المحتوى المنطوق\\"* &gt; *\\"الأصوات\\"* ثم النقر على الصوت المرغوب. داخل تطبيق Soundscape، يمكنك اختيار الصوت الذي تريد استخدامه بالذهاب إلى *\\"الإعدادات\\"* من القائمة الرئيسية ثم اختيار *\\"أصوات\\"*.</string>
+    <string name="settings_mix_audio">مزج الصوت مع التطبيقات الأخرى</string>
+    <string name="settings_mix_audio_description">عند تعطيله، سيتوقّف تشغيل تطبيقات الصوت الأخرى مؤقتًا وستتوفر عناصر تحكّم الوسائط على شاشة القفل.</string>
+    <string name="settings_head_tracking">تمكين تتبع الرأس</string>
+    <string name="settings_head_tracking_description">موضِع الصوت المكاني بالنسبة لاتجاه رأسك باستخدام بيانات الحركة من AirPods المدعومة أو Bose Frames أو وحدة IMU خارجية عبر البلوتوث. تتم المعايرة تلقائيًا أثناء المشي.</string>
 </resources>
