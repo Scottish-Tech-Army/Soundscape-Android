@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">क्षतिग्रस्त - हटाएँ और फिर से डाउनलोड करें</string>
     <string name="offline_map_details_update">ऑफ़लाइन मानचित्र अपडेट करें</string>
     <string name="menu_exit_app">Soundscape से बाहर निकलें</string>
+    <string name="talkback_double_tap_prefix">दो बार टैप करें</string>
+    <string name="talkback_default_activate">सक्रिय करें</string>
+    <string name="distance_format_km_a11y">%1$s किलोमीटर</string>
+    <string name="number_decimal_separator">।</string>
+    <string name="number_decimal_separator_a11y">दशमलव</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s बाइट</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s किलोबाइट</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s मेगाबाइट</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s गीगाबाइट</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s टेराबाइट</string>
+    <string name="help_config_voices_content_ios">Soundscape आपके iOS डिवाइस पर Settings ऐप में डाउनलोड की गई किसी भी आवाज़ का उपयोग कर सकता है, सिवाय Siri की आवाज़ों के, जो Soundscape के लिए उपलब्ध नहीं हैं। हम *Enhanced* आवाज़ों में से किसी एक को चुनने की सलाह देते हैं क्योंकि उनकी आवाज़ गुणवत्ता काफी बेहतर होती है; लेकिन ऐसा करने के लिए पहले आपको एक Enhanced आवाज़ डाउनलोड करनी होगी। आप iOS Settings ऐप में जाकर Accessibility &gt; Spoken Content &gt; Voices पर जाकर किसी आवाज़ पर टैप करके आवाज़ डाउनलोड कर सकते हैं। Soundscape ऐप के भीतर, आप वह आवाज़ चुनने के लिए मुख्य मेनू से *\\"सेटिंग्स\\"* पर जाएँ और फिर *\\"आवाज़ें\\"* चुनें।</string>
+    <string name="settings_mix_audio">अन्य ऐप्स के साथ ऑडियो मिलाएँ</string>
+    <string name="settings_mix_audio_description">यदि अक्षम किया गया है, तो अन्य ऑडियो ऐप्स पॉज़ हो जाएंगे और लॉक‑स्क्रीन मीडिया नियंत्रण उपलब्ध होंगे।</string>
+    <string name="settings_head_tracking">हेड ट्रैकिंग सक्षम करें</string>
+    <string name="settings_head_tracking_description">समर्थित AirPods, Bose Frames या बाहरी ब्लूटूथ IMU से प्राप्त मोशन डेटा का उपयोग करके स्थानिक ऑडियो को आपके सिर की दिशा के सापेक्ष व्यवस्थित करें। चलते समय यह स्वतः कैलिब्रेट हो जाता है।</string>
 </resources>
