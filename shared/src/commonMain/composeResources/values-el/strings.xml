@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Κατεστραμμένο - διαγράψτε και κατεβάστε ξανά</string>
     <string name="offline_map_details_update">Ενημέρωση χάρτη εκτός σύνδεσης</string>
     <string name="menu_exit_app">Έξοδος από το Soundscape</string>
+    <string name="talkback_double_tap_prefix">Πατήστε δύο φορές για να</string>
+    <string name="talkback_default_activate">ενεργοποιήσετε</string>
+    <string name="distance_format_km_a11y">%1$s χιλιόμετρα</string>
+    <string name="number_decimal_separator">,</string>
+    <string name="number_decimal_separator_a11y">κόμμα</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s μπάιτ</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s κιλομπάιτ</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s μεγαμπάιτ</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s γιγαμπάιτ</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s τεραμπάιτ</string>
+    <string name="help_config_voices_content_ios">Το Soundscape μπορεί να χρησιμοποιήσει οποιαδήποτε από τις φωνές που έχετε κατεβάσει στην εφαρμογή «Ρυθμίσεις» του iOS, εκτός από τις φωνές Siri, οι οποίες δεν είναι διαθέσιμες στο Soundscape. Συνιστούμε να επιλέξετε μία από τις φωνές *Enhanced* (Ενισχυμένης ποιότητας), καθώς έχουν σαφώς υψηλότερη ποιότητα, αλλά για να το κάνετε αυτό θα χρειαστεί πρώτα να κατεβάσετε μια τέτοια φωνή. Μπορείτε να κατεβάσετε φωνές στην εφαρμογή Ρυθμίσεις του iOS πηγαίνοντας στις Ρυθμίσεις προσβασιμότητας (Προσβασιμότητα) &gt; Ομιλούμενο περιεχόμενο (Spoken Content) &gt; Φωνές και πατώντας σε μια φωνή. Στην εφαρμογή Soundscape, μπορείτε να επιλέξετε τη φωνή που θέλετε πηγαίνοντας στις *Ρυθμίσεις* από το κύριο μενού και επιλέγοντας στη συνέχεια *Φωνές*.</string>
+    <string name="settings_mix_audio">Μείξη ήχου με άλλες εφαρμογές</string>
+    <string name="settings_mix_audio_description">Όταν είναι απενεργοποιημένη, άλλες εφαρμογές ήχου θα παύουν και θα είναι διαθέσιμοι οι έλεγχοι πολυμέσων στην οθόνη κλειδώματος.</string>
+    <string name="settings_head_tracking">Ενεργοποίηση παρακολούθησης κεφαλής</string>
+    <string name="settings_head_tracking_description">Τοποθετήστε τον χωρικό ήχο σε σχέση με την κατεύθυνση που κοιτάει το κεφάλι σας, χρησιμοποιώντας δεδομένα κίνησης από υποστηριζόμενα AirPods, Bose Frames ή εξωτερικό Bluetooth IMU. Η βαθμονόμηση γίνεται αυτόματα όσο περπατάτε.</string>
 </resources>
