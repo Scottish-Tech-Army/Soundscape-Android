@@ -524,7 +524,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Platsmarkörer och rutter har tagits bort</string>
     <string name="new_version_info_text">Information om ny version</string>
     <string name="new_version_info_completed">Stäng dialogrutan om ny version</string>
-    <string name="new_version_info_details">\nDetta är en mindre uppdatering av Soundscape. Här är ändringarna som har gjorts.\n\nVi har åtgärdat stödet för ASHA-hörapparater. Om du använder hörapparat och Soundscape inte fungerar för dig, vänligen meddela oss.\n\nDet finns nu ett nytt alternativ, \"Avsluta Soundscape\", högst upp i huvudmenyn. Genom att trycka på det stänger du appen helt.\n\nSkärmen med detaljer för offlinekartor har nu en knapp för att ladda ner kartor på nytt som redan har laddats ned. Kartorna uppdateras en gång i månaden från OpenStreetMap, så det kan vara bra att ladda ner offlinekartor om ibland. Det finns också kod som förbättrar valideringen av nedladdade kartor för att förhindra att skadade kartor används.\n\nVi arbetar fortfarande hårt med att förbättra appen, så anmäl gärna eventuella problem, hur små de än är, via alternativet *Kontakta supporten* i huvudmenyn.\n</string>
+    <string name="new_version_info_details">\nDetta är en mindre uppdatering av Soundscape. Här är ändringarna som har gjorts.\n\nVi har åtgärdat stödet för ASHA-hörapparater. Om du använder hörapparat och Soundscape inte fungerar för dig, vänligen meddela oss.\n\nDet finns nu ett nytt alternativ, \\"Avsluta Soundscape\\", högst upp i huvudmenyn. Genom att trycka på det stänger du appen helt.\n\nSkärmen med detaljer för offlinekartor har nu en knapp för att ladda ner kartor på nytt som redan har laddats ned. Kartorna uppdateras en gång i månaden från OpenStreetMap, så det kan vara bra att ladda ner offlinekartor om ibland. Det finns också kod som förbättrar valideringen av nedladdade kartor för att förhindra att skadade kartor används.\n\nVi arbetar fortfarande hårt med att förbättra appen, så anmäl gärna eventuella problem, hur små de än är, via alternativet *Kontakta supporten* i huvudmenyn.\n</string>
     <string name="menu_open_source_licenses">Licenser för öppen källkod</string>
     <string name="osm_tag_ferry_terminal">Färjeterminal</string>
     <string name="osm_tag_ferry_terminal_named">%1$s Färjeterminal</string>
@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Skadad – ta bort och ladda ned igen</string>
     <string name="offline_map_details_update">Uppdatera offlinekarta</string>
     <string name="menu_exit_app">Avsluta Soundscape</string>
+    <string name="talkback_double_tap_prefix">Dubbeltryck för att</string>
+    <string name="talkback_default_activate">aktivera</string>
+    <string name="distance_format_km_a11y">%1$s kilometer</string>
+    <string name="number_decimal_separator">,</string>
+    <string name="number_decimal_separator_a11y">komma</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s byte</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s kilobyte</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s megabyte</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s gigabyte</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s terabyte</string>
+    <string name="help_config_voices_content_ios">Soundscape kan använda de röster du har laddat ner i iOS‑appen Inställningar, förutom Siri‑rösterna som inte är tillgängliga för Soundscape. Vi rekommenderar att du väljer en av de *förbättrade* rösterna eftersom de har betydligt bättre röstkvalitet, men för att göra det måste du först ladda ner en förbättrad röst. Du kan ladda ner röster i iOS‑appen Inställningar genom att gå till Tillgänglighet &gt; Talat innehåll &gt; Röster och trycka på en röst. I Soundscape‑appen väljer du vilken röst du vill använda genom att gå till *\\"Inställningar\\"* i huvudmenyn och sedan välja *\\"Röster\\"*.</string>
+    <string name="settings_mix_audio">Blanda ljud med andra appar</string>
+    <string name="settings_mix_audio_description">När det är inaktiverat pausas andra ljudappar och mediereglagen på låsskärmen blir tillgängliga</string>
+    <string name="settings_head_tracking">Aktivera huvudspårning</string>
+    <string name="settings_head_tracking_description">Positionera det rumsbestämda ljudet i förhållande till vart ditt huvud pekar, med hjälp av rörelsedata från kompatibla AirPods, Bose Frames eller en extern Bluetooth‑IMU. Kalibreras automatiskt medan du går.</string>
 </resources>

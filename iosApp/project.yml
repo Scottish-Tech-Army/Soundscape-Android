@@ -9,6 +9,7 @@ configFiles:
 settings:
   ENABLE_BITCODE: "NO"
   DEVELOPMENT_TEAM: 48N3J4V5KM
+  CODE_SIGNING_ALLOWED: "NO"
   # Defaults for local Xcode runs. CI overrides both via the xcodebuild
   # command line (see .github/workflows/build-app.yaml). Without defaults,
   # Info.plist substitution leaves CFBundleVersion empty and installd
@@ -64,6 +65,8 @@ targets:
         NSLocationWhenInUseUsageDescription: "Soundscape needs your location to provide audio navigation and describe your surroundings."
         NSLocationAlwaysAndWhenInUseUsageDescription: "Soundscape needs your location to provide audio navigation even when the app is in the background."
         NSMotionUsageDescription: "Soundscape uses motion data to detect the direction you are facing and orient audio callouts to your surroundings."
+        NSBluetoothAlwaysUsageDescription: "Soundscape uses Bluetooth to discover and connect to head-tracking headphones and other audio devices."
+        NSBluetoothPeripheralUsageDescription: "Soundscape uses Bluetooth to discover and connect to head-tracking headphones and other audio devices."
         UIBackgroundModes:
           - audio
           - location
@@ -118,17 +121,35 @@ targets:
             UTTypeTagSpecification:
               public.filename-extension:
                 - gpx
+    # xcodegen: mixing flat entries with a `configs:` key silently drops the
+    # flat entries, so wrap the shared settings in `base:` when adding per-
+    # config overrides.
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: org.scottishtecharmy.soundscape
-      PRODUCT_NAME: Soundscape
-      FRAMEWORK_SEARCH_PATHS:
-        - "$(inherited)"
-        - "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)"
-      OTHER_LINKER_FLAGS:
-        - "$(inherited)"
-        - "-framework"
-        - "Shared"
-      CODE_SIGN_ENTITLEMENTS: iosApp/iosApp.entitlements
+      base:
+        CODE_SIGNING_ALLOWED: "YES"
+        PRODUCT_BUNDLE_IDENTIFIER: org.scottishtecharmy.soundscape
+        PRODUCT_NAME: Soundscape
+        FRAMEWORK_SEARCH_PATHS:
+          - "$(inherited)"
+          - "$(SRCROOT)/../shared/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)"
+        OTHER_LINKER_FLAGS:
+          - "$(inherited)"
+          - "-framework"
+          - "Shared"
+        CODE_SIGN_ENTITLEMENTS: iosApp/iosApp.entitlements
+      configs:
+        # CI archives with manual signing so xcodebuild uses the
+        # distribution cert + profile imported by setup-ios-signing rather
+        # than asking Apple to mint a managed Apple Development profile
+        # (which fails when the App Store Connect API key can't manage
+        # the per-machine dev cert). The profile name is injected via a
+        # user-defined build setting so each target can get its own value
+        # from the xcodebuild command line. Debug is left on the default
+        # automatic signing so local runs from Xcode keep working.
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: "Apple Distribution"
+          PROVISIONING_PROFILE_SPECIFIER: "$(PROFILE_NAME_APP)"
     preBuildScripts:
       - name: "Build Kotlin Framework"
         script: |
@@ -144,12 +165,26 @@ targets:
     dependencies:
       - target: iosApp
     settings:
-      # The host app's target is `iosApp` but PRODUCT_NAME is `Soundscape`,
-      # so xcodegen's auto-derived TEST_HOST (based on target name) points
-      # at a non-existent binary. Override it to the real product path.
-      TEST_HOST: $(BUILT_PRODUCTS_DIR)/Soundscape.app/Soundscape
-      BUNDLE_LOADER: $(TEST_HOST)
-      GENERATE_INFOPLIST_FILE: "YES"
+      base:
+        CODE_SIGNING_ALLOWED: "YES"
+        # The host app's target is `iosApp` but PRODUCT_NAME is `Soundscape`,
+        # so xcodegen's auto-derived TEST_HOST (based on target name) points
+        # at a non-existent binary. Override it to the real product path.
+        TEST_HOST: $(BUILT_PRODUCTS_DIR)/Soundscape.app/Soundscape
+        BUNDLE_LOADER: $(TEST_HOST)
+        GENERATE_INFOPLIST_FILE: "YES"
+      configs:
+        # The Firebase Test Lab build-for-testing step signs with the same
+        # Apple Distribution cert used by the host app. XCTest bundles ride
+        # inside Soundscape.app/PlugIns/ and inherit the host's provisioning
+        # context, so an empty PROVISIONING_PROFILE_SPECIFIER stops xcodebuild
+        # from demanding a per-target profile that our distribution cert
+        # doesn't cover. Automatic signing would need an Apple Development
+        # cert, which no self-hosted CI runner has.
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: "Apple Distribution"
+          PROVISIONING_PROFILE_SPECIFIER: ""
 
   ShareExtension:
     type: app-extension
@@ -172,8 +207,15 @@ targets:
           NSExtensionPointIdentifier: com.apple.share-services
           NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
     settings:
-      PRODUCT_BUNDLE_IDENTIFIER: org.scottishtecharmy.soundscape.share
-      SKIP_INSTALL: "YES"
+      base:
+        CODE_SIGNING_ALLOWED: "YES"
+        PRODUCT_BUNDLE_IDENTIFIER: org.scottishtecharmy.soundscape.share
+        SKIP_INSTALL: "YES"
+      configs:
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: "Apple Distribution"
+          PROVISIONING_PROFILE_SPECIFIER: "$(PROFILE_NAME_SHAREEXT)"
 
 schemes:
   iosApp:

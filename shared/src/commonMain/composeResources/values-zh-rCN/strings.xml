@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">已损坏 - 删除后重新下载</string>
     <string name="offline_map_details_update">更新离线地图</string>
     <string name="menu_exit_app">退出 Soundscape</string>
+    <string name="talkback_double_tap_prefix">双击以</string>
+    <string name="talkback_default_activate">激活</string>
+    <string name="distance_format_km_a11y">%1$s公里</string>
+    <string name="number_decimal_separator">.</string>
+    <string name="number_decimal_separator_a11y">点</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s 字节</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s 千字节</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s 兆字节</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s 吉字节</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s 太字节</string>
+    <string name="help_config_voices_content_ios">Soundscape 可以使用您在 iOS“设置”应用中下载的任意语音，但 Siri 语音无法用于 Soundscape。我们建议选择其中的*增强*语音，因为它们的音质更高；要使用增强语音，您需要先下载相应语音。您可以在 iOS 设置中前往“辅助功能 &gt; 朗读内容 &gt; 语音”并点击某个语音来下载。在 Soundscape 应用内，您可以从主菜单进入“设置”，然后选择*语音* 来选择要使用的语音。</string>
+    <string name="settings_mix_audio">与其他应用同时播放音频</string>
+    <string name="settings_mix_audio_description">禁用时，其他音频应用将被暂停，并且可使用锁屏媒体控制。</string>
+    <string name="settings_head_tracking">启用头部追踪</string>
+    <string name="settings_head_tracking_description">使用支持的 AirPods、Bose Frames 或外部蓝牙惯性测量单元（IMU）的运动数据，将空间音频相对于您头部的朝向定位。行走时会自动校准。</string>
 </resources>

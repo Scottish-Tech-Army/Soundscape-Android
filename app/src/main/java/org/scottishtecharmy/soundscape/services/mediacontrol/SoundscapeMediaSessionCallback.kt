@@ -54,7 +54,7 @@ class SoundscapeMediaSessionCallback(
         //  case the buttons map to next/previous waypoint and muting audio. This currently doesn't
         //  play nicely with the audioMenu, more work is required.
 
-        keyEvent?.let { event ->
+        keyEvent.let { event ->
             val decodedKey = when (event.keyCode) {
                 KeyEvent.KEYCODE_MEDIA_PLAY_PAUSE -> {
                     // ⏯ Play/Pause: Mute any current callouts and if the audio beacon is set, toggle the beacon audio.

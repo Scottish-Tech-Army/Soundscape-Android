@@ -285,6 +285,13 @@ jobs:
     environment: development
     permissions:
       contents: write
+    # Konan's devirtualization pass during linkReleaseFrameworkIosArm64 runs
+    # in-process in the Gradle daemon and OOMs at gradle.properties' 4 GB
+    # default with Realm + MapLibre + shared/. GRADLE_OPTS overrides the file
+    # setting for this job only; the Linux runners keep the 4 GB default so
+    # the Android emulator has room in its 16 GB budget.
+    env:
+      GRADLE_OPTS: -Xmx8192m
 
     steps:
       # Pull the latest commit on the branch (including the version-bump
@@ -294,6 +301,17 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.ref }}
           token: ${{ secrets.PAT_TOKEN }}
+
+      # Konan's devirtualization pass during linkReleaseFrameworkIosArm64
+      # runs in-process in the Gradle daemon and OOMs at gradle.properties'
+      # 4 GB default with Realm + MapLibre + shared/. GRADLE_OPTS only sets
+      # the client JVM, so patch the file for this checkout instead. Linux
+      # runners never run this step and keep the 4 GB default so the Android
+      # emulator has room in its 16 GB budget.
+      - name: Bump Gradle daemon heap for Kotlin/Native release link
+        run: |
+          sed -i.bak 's/^org\.gradle\.jvmargs=.*/org.gradle.jvmargs=-Xmx8192m -Dfile.encoding=UTF-8/' gradle.properties
+          grep '^org\.gradle\.jvmargs' gradle.properties
 
       - name: Setup iOS toolchain
         uses: ./.github/actions/setup-ios-toolchain
@@ -338,12 +356,19 @@ jobs:
       # Reuse the version produced by the Android job. MARKETING_VERSION maps
       # to CFBundleShortVersionString and CURRENT_PROJECT_VERSION to
       # CFBundleVersion when passed as xcodebuild build settings.
+      #
+      # Manual signing: project.yml pins each Release target to the
+      # distribution cert and references PROFILE_NAME_APP /
+      # PROFILE_NAME_SHAREEXT as user-defined build settings. Passing them
+      # here lets each target pick up its own profile name (xcodebuild
+      # SETTING=VALUE overrides apply to all targets, but each target's
+      # PROVISIONING_PROFILE_SPECIFIER references a different var). No
+      # -allowProvisioningUpdates: the profiles were already imported by
+      # setup-ios-signing, so Apple doesn't need to mint fresh ones.
       - name: Archive iOS app
         env:
           VERSION_CODE: ${{ needs.prepare-version.outputs.version_code }}
           VERSION_NAME: ${{ needs.prepare-version.outputs.version_name }}
-          KEY_ID: ${{ secrets.APPSTORE_CONNECT_API_KEY_ID }}
-          ISSUER_ID: ${{ secrets.APPSTORE_CONNECT_API_ISSUER_ID }}
         run: |
           # Strip the patch component so TestFlight groups all 2.0.x builds
           # under one "2.0" train; uniqueness within the train comes from
@@ -356,13 +381,11 @@ jobs:
             -sdk iphoneos \
             -destination 'generic/platform=iOS' \
             -archivePath "$RUNNER_TEMP/Soundscape.xcarchive" \
-            -authenticationKeyPath "$RUNNER_TEMP/private_keys/AuthKey_$KEY_ID.p8" \
-            -authenticationKeyID "$KEY_ID" \
-            -authenticationKeyIssuerID "$ISSUER_ID" \
-            -allowProvisioningUpdates \
             MARKETING_VERSION="$SHORT_VERSION" \
             CURRENT_PROJECT_VERSION="$VERSION_CODE" \
-            APP_VERSION_NAME="$VERSION_NAME"
+            APP_VERSION_NAME="$VERSION_NAME" \
+            PROFILE_NAME_APP="$IOS_PROFILE_NAME" \
+            PROFILE_NAME_SHAREEXT="$IOS_SHAREEXT_PROFILE_NAME"
 
       # Manual signing during export so xcodebuild reuses the profile we
       # imported in setup-ios-signing instead of asking Apple to mint a fresh
@@ -460,14 +483,37 @@ jobs:
     # the simulator in run-tests.yaml, so this job runs the same XCTest suite
     # against real devices via Test Lab as a release smoke test.
     name: Run iOS XCTest suite via Firebase Test Lab
-    needs: ios-build
+    needs: [ios-build, prepare-version]
     runs-on: [self-hosted, macOS, ARM64]
     environment: development
+    # Same reasoning as ios-build: the Release framework link needs more heap
+    # than the file default.
+    env:
+      GRADLE_OPTS: -Xmx8192m
 
     steps:
+      # Pull the latest commit on the branch (including the version-bump
+      # commit produced by the Android `build` job).
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
+          ref: ${{ github.ref }}
+          token: ${{ secrets.PAT_TOKEN }}
+
+      # actions/checkout shortcuts to github.sha (the trigger SHA) when the
+      # given ref matches github.ref, so we'd otherwise miss the version-bump
+      # commit pushed by prepare-version. Fast-forward to the real remote tip
+      # so the later screenshot auto-commit can push without conflict.
+      - name: Fast-forward to remote tip
+        run: git pull --ff-only origin ${{ github.ref_name }}
+
+      # See ios-build: linkReleaseFrameworkIosArm64 needs more heap than
+      # gradle.properties' 4 GB default, and GRADLE_OPTS only sets the client
+      # JVM. Patch the file for this checkout so the daemon picks it up.
+      - name: Bump Gradle daemon heap for Kotlin/Native release link
+        run: |
+          sed -i.bak 's/^org\.gradle\.jvmargs=.*/org.gradle.jvmargs=-Xmx8192m -Dfile.encoding=UTF-8/' gradle.properties
+          grep '^org\.gradle\.jvmargs' gradle.properties
 
       - name: Setup iOS toolchain
         uses: ./.github/actions/setup-ios-toolchain
@@ -483,6 +529,12 @@ jobs:
       - name: Generate Xcode project
         working-directory: iosApp
         run: xcodegen generate
+
+      # See run-tests.yaml: linking iosArm64Test fails because of
+      # maplibre-compose's embedded linker flags. xcodebuild below builds via
+      # the Xcode/SPM toolchain that resolves MapLibre.
+      - name: Compile shared Kotlin/Native tests for iOS device
+        run: ./gradlew :shared:compileTestKotlinIosArm64
 
       - name: Setup iOS signing
         uses: ./.github/actions/setup-ios-signing
@@ -501,9 +553,15 @@ jobs:
 
       - name: Build XCTest bundle for device
         env:
+          VERSION_CODE: ${{ needs.prepare-version.outputs.version_code }}
+          VERSION_NAME: ${{ needs.prepare-version.outputs.version_name }}
           KEY_ID: ${{ secrets.APPSTORE_CONNECT_API_KEY_ID }}
           ISSUER_ID: ${{ secrets.APPSTORE_CONNECT_API_ISSUER_ID }}
         run: |
+          # Strip the patch component so TestFlight groups all 2.0.x builds
+          # under one "2.0" train; uniqueness within the train comes from
+          # CURRENT_PROJECT_VERSION (the build number).
+          SHORT_VERSION=$(echo "$VERSION_NAME" | cut -d. -f1,2)
           xcodebuild build-for-testing \
             -project iosApp/iosApp.xcodeproj \
             -scheme iosApp \
@@ -515,7 +573,12 @@ jobs:
             -authenticationKeyID "$KEY_ID" \
             -authenticationKeyIssuerID "$ISSUER_ID" \
             -allowProvisioningUpdates \
-            ENABLE_TESTABILITY=YES
+            ENABLE_TESTABILITY=YES \
+            MARKETING_VERSION="$SHORT_VERSION" \
+            CURRENT_PROJECT_VERSION="$VERSION_CODE" \
+            APP_VERSION_NAME="$VERSION_NAME" \
+            PROFILE_NAME_APP="$IOS_PROFILE_NAME" \
+            PROFILE_NAME_SHAREEXT="$IOS_SHAREEXT_PROFILE_NAME"
 
       - name: Package test bundle for Test Lab
         run: |
@@ -527,13 +590,34 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCLOUD_CREDENTIALS_JSON }}
 
+      # The self-hosted mac-mini's system Python is 3.9, which gcloud dropped
+      # support for. actions/setup-python doesn't work here — its darwin
+      # install script hard-codes /Users/runner/hostedtoolcache and the
+      # runner user is gh-runner, so it errors with "mkdir: /Users/runner:
+      # Permission denied". Install via Homebrew instead (already present
+      # for xcodegen) and export the path for CLOUDSDK_PYTHON.
+      - name: Set up Python for gcloud
+        id: setup-python
+        shell: bash
+        run: |
+          brew list python@3.12 &>/dev/null || brew install python@3.12
+          PY="$(brew --prefix python@3.12)/bin/python3.12"
+          "$PY" --version
+          echo "python-path=$PY" >> "$GITHUB_OUTPUT"
+
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v3
+        env:
+          CLOUDSDK_PYTHON: ${{ steps.setup-python.outputs.python-path }}
 
       - name: Set current project
+        env:
+          CLOUDSDK_PYTHON: ${{ steps.setup-python.outputs.python-path }}
         run: gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID }}
 
       - name: Run XCTest in Firebase Test Lab
+        env:
+          CLOUDSDK_PYTHON: ${{ steps.setup-python.outputs.python-path }}
         run: |
           gcloud firebase test ios run \
             --type xctest \

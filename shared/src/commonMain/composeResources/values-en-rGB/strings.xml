@@ -226,7 +226,7 @@
     <string name="first_launch_callouts_example_3">Main Street goes left</string>
     <string name="first_launch_callouts_example_4">Main Street goes right</string>
     <string name="first_launch_permissions_title">App Permissions</string>
-    <string name="first_launch_permissions_message">In order for Soundscape to run, it needs certain permissions granted. These allow it to be updated with the phone\'s location, even when locked. Please tap each of the following permissions and enable them when prompted:</string>
+    <string name="first_launch_permissions_message">In order for Soundscape to run, it needs certain permissions granted. These allow it to be updated with the phone's location, even when locked. Please tap each of the following permissions and enable them when prompted:</string>
     <string name="first_launch_permissions_location">Location Services with Precise Location</string>
     <string name="first_launch_permissions_required">This permission is required</string>
     <string name="first_launch_beacon_title">Choose an Audio Beacon</string>
@@ -522,7 +522,7 @@
     <string name="advanced_markers_and_routes_clear_all_button">Delete all markers and routes</string>
     <string name="advanced_markers_and_routes_clear_all_alert_message">Deleting all of the markers and routes cannot be undone, do you want to continue?</string>
     <string name="menu_advanced_markers_and_routes_clear_all_success">Markers and routes deleted</string>
-    <string name="new_version_info_details">\nThis is a new minor release of Soundscape. Here are the changes that have been made.\n\nWe\'ve fixed support for ASHA hearing aids. If you are a hearing-aid user and Soundscape isn\'t working for you, please let us know.\n\nThere\'s a new Exit Soundscape option at the top of the main menu. Tapping this is an easy way to close the app fully.\n\nThe offline maps details screen now has a button to re-download maps that have already been downloaded. Maps are updated monthly from OpenStreetMap, so it\'s worth re-downloading offline maps occasionally. We\'ve also added code to improve validation of downloaded maps to prevent corrupted maps being used.\n\nWe\'re still working hard on improving the app, so please report any problems you have, however small, via the *Contact support* option in the main menu.\n</string>
+    <string name="new_version_info_details">\nThis is a new minor release of Soundscape. Here are the changes that have been made.\n\nWe've fixed support for ASHA hearing aids. If you are a hearing-aid user and Soundscape isn't working for you, please let us know.\n\nThere's a new Exit Soundscape option at the top of the main menu. Tapping this is an easy way to close the app fully.\n\nThe offline maps details screen now has a button to re-download maps that have already been downloaded. Maps are updated monthly from OpenStreetMap, so it's worth re-downloading offline maps occasionally. We've also added code to improve validation of downloaded maps to prevent corrupted maps being used.\n\nWe're still working hard on improving the app, so please report any problems you have, however small, via the *Contact support* option in the main menu.\n</string>
     <string name="new_version_info_text">Release Notes</string>
     <string name="new_version_info_completed">Close Release Notes</string>
     <string name="menu_open_source_licenses">Open-source Licences</string>
@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Damaged - delete and re-download</string>
     <string name="offline_map_details_update">Re-download offline map</string>
     <string name="menu_exit_app">Exit Soundscape</string>
+    <string name="talkback_double_tap_prefix">Double tap to</string>
+    <string name="talkback_default_activate">activate</string>
+    <string name="distance_format_km_a11y">%1$s kilometres</string>
+    <string name="number_decimal_separator">.</string>
+    <string name="number_decimal_separator_a11y">point</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s bytes</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s kilobytes</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s megabytes</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s gigabytes</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s terabytes</string>
+    <string name="help_config_voices_content_ios">Soundscape can use any of the voices you have downloaded in the iOS Settings app, except for the Siri voices, which are not available to Soundscape. We recommend choosing one of the *Enhanced* voices as they have much higher quality, but to do so you will first need to download an Enhanced voice. You can download voices in the iOS Settings app by going to Accessibility &gt; Spoken Content &gt; Voices and tapping on a voice. Within the Soundscape app, select the voice you want to use by going to *Settings* from the main menu and then choosing *Voices*.</string>
+    <string name="settings_mix_audio">Mix audio with other apps</string>
+    <string name="settings_mix_audio_description">When disabled, other audio apps will pause and lock screen media controls will be available</string>
+    <string name="settings_head_tracking">Enable head tracking</string>
+    <string name="settings_head_tracking_description">Position spatial audio relative to where your head is facing using motion data from supported AirPods, Bose Frames or an external Bluetooth IMU. Calibrates automatically while you walk.</string>
 </resources>

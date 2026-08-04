@@ -35,7 +35,7 @@ import java.util.Locale
 class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
 
     @Volatile private var engineHandle: Long = 0
-    private val engineMutex = Object()
+    private val engineMutex = Any()
     private var beaconType = BEACON_TYPE_DEFAULT
 
     lateinit var ttsEngine: TtsEngine

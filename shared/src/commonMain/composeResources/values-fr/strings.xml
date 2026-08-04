@@ -524,7 +524,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Marqueurs et itinéraires supprimés</string>
     <string name="new_version_info_text">Informations sur la nouvelle version</string>
     <string name="new_version_info_completed">Fermer les informations sur la nouvelle version</string>
-    <string name="new_version_info_details">\nIl s’agit d’une nouvelle version mineure de Soundscape. Voici les modifications apportées.\n\nNous avons rétabli la prise en charge des aides auditives ASHA. Si vous utilisez un appareil auditif et que Soundscape ne fonctionne pas pour vous, veuillez nous le faire savoir.\n\nUne nouvelle option « Quitter Soundscape » a été ajoutée en haut du menu principal. Appuyer dessus permet de fermer complètement l’application.\n\nL’écran des détails des cartes hors ligne dispose désormais d’un bouton permettant de retélécharger les cartes déjà téléchargées. Les cartes sont mises à jour une fois par mois depuis OpenStreetMap ; il est donc utile de retélécharger périodiquement les cartes hors ligne. Nous avons aussi ajouté du code améliorant la validation des cartes téléchargées afin d’éviter l’utilisation de cartes corrompues.\n\nNous continuons de travailler assidûment à l’amélioration de l’application. Veuillez signaler tout problème, même minime, via l’option *Contacter le support* du menu principal.\n</string>
+    <string name="new_version_info_details">\nIl s’agit d’une nouvelle version mineure de Soundscape. Voici les modifications apportées.\n\nNous avons rétabli la prise en charge des aides auditives ASHA. Si vous utilisez un appareil auditif et que Soundscape ne fonctionne pas pour vous, veuillez nous le faire savoir.\n\nUne nouvelle option « Quitter Soundscape » a été ajoutée en haut du menu principal. Appuyer dessus permet de fermer complètement l’application.\n\nL’écran des détails des cartes hors ligne dispose désormais d’un bouton permettant de retélécharger les cartes déjà téléchargées. Les cartes sont mises à jour une fois par mois depuis OpenStreetMap ; il est donc utile de retélécharger périodiquement les cartes hors ligne. Nous avons aussi ajouté du code améliorant la validation des cartes téléchargées afin d’éviter l’utilisation de cartes corrompues.\n\nNous continuons de travailler assidûment à l’amélioration de l’application. Veuillez signaler tout problème, même minime, via l’option *Contacter le support* du menu principal.\n</string>
     <string name="menu_open_source_licenses">Licences open source</string>
     <string name="osm_tag_ferry_terminal">Terminal de ferry</string>
     <string name="osm_tag_ferry_terminal_named">%1$s Terminal de ferry</string>
@@ -1359,7 +1359,7 @@
     <string name="settings_collapsed">Replié</string>
     <string name="settings_expanded">Déplié</string>
     <string name="ui_grant_permission">Accorder l’autorisation</string>
-    <string name="copyright_notices">Soundscape ne serait pas possible sans ces formidables bibliothèques et jeux de données tiers. Cliquez sur les liens pour consulter leurs licences :</string>
+    <string name="copyright_notices">Soundscape ne serait pas possible sans ces formidables bibliothèques et jeux de données tiers. Cliquez sur les liens pour consulter leurs licences :</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) fournissent toutes les données géographiques utilisées pour la cartographie et l’audio dans Soundscape.</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) est utilisé pour générer les tuiles cartographiques que nous utilisons.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) est utilisé pour générer l’audio 3D et est mis à disposition sous la licence [Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Endommagée — supprimer et retélécharger</string>
     <string name="offline_map_details_update">Mettre à jour la carte hors ligne</string>
     <string name="menu_exit_app">Quitter Soundscape</string>
+    <string name="talkback_double_tap_prefix">Appuyez deux fois pour</string>
+    <string name="talkback_default_activate">activer</string>
+    <string name="distance_format_km_a11y">%1$s kilomètres</string>
+    <string name="number_decimal_separator">,</string>
+    <string name="number_decimal_separator_a11y">virgule</string>
+    <string name="bytes_format_b">%1$s o</string>
+    <string name="bytes_format_b_a11y">%1$s octets</string>
+    <string name="bytes_format_kb">%1$s Ko</string>
+    <string name="bytes_format_kb_a11y">%1$s kilooctets</string>
+    <string name="bytes_format_mb">%1$s Mo</string>
+    <string name="bytes_format_mb_a11y">%1$s mégaoctets</string>
+    <string name="bytes_format_gb">%1$s Go</string>
+    <string name="bytes_format_gb_a11y">%1$s gigaoctets</string>
+    <string name="bytes_format_tb">%1$s To</string>
+    <string name="bytes_format_tb_a11y">%1$s téraoctets</string>
+    <string name="help_config_voices_content_ios">Soundscape peut utiliser toutes les voix que vous avez téléchargées dans l’app Réglages d’iOS, à l’exception des voix Siri qui ne sont pas disponibles pour Soundscape. Nous vous recommandons de choisir l’une des voix *Améliorées*, car elles offrent une bien meilleure qualité vocale ; pour cela, vous devrez d’abord télécharger une voix améliorée. Vous pouvez télécharger des voix dans l’app Réglages d’iOS en allant dans Accessibilité &gt; Contenu lu &gt; Voix et en appuyant sur une voix. Dans l’application Soundscape, vous pouvez sélectionner la voix à utiliser en allant dans Réglages depuis le menu principal, puis en choisissant *Voix*.</string>
+    <string name="settings_mix_audio">Mélanger l’audio avec d’autres applications</string>
+    <string name="settings_mix_audio_description">Lorsque cette option est désactivée, les autres applications audio seront mises en pause et les contrôles multimédias de l’écran de verrouillage seront disponibles.</string>
+    <string name="settings_head_tracking">Activer le suivi de la tête</string>
+    <string name="settings_head_tracking_description">Positionner l’audio spatial par rapport à l’orientation de votre tête en utilisant les données de mouvement des AirPods compatibles, des Bose Frames ou d’un IMU Bluetooth externe. Se calibre automatiquement pendant la marche.</string>
 </resources>

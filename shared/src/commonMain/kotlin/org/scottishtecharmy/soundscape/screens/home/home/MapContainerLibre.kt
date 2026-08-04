@@ -15,7 +15,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
-import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
@@ -105,6 +104,11 @@ fun FullScreenMapFab(
  * stream on Android, and without this, MotionEvents get dropped/misrouted between them, making
  * pinch-to-zoom on the map unreliable.
  */
+// The Kotlin/Native backend doesn't propagate maplibre-compose's @MaplibreComposable
+// applier-target metadata across the klib boundary the way the JVM backend does, so
+// this correctly-nested MaplibreMap/FillLayer/LineLayer/SymbolLayer usage spuriously
+// trips the applier check under iosArm64/iosSimulatorArm64 only.
+@Suppress("COMPOSE_APPLIER_CALL_MISMATCH")
 @Composable
 fun MapContainerLibre(
     mapCenter: LngLatAlt,
@@ -153,6 +157,9 @@ fun MapContainerLibre(
         beaconLocation.longitude = cameraState.position.target.longitude
         beaconLocation.latitude = cameraState.position.target.latitude
     }
+
+    val navigationMarker = painterResource(Res.drawable.navigation)
+    val locationMarker = painterResource(Res.drawable.location_marker)
 
     Box(
         modifier = modifier.pointerInput(Unit) {
@@ -212,8 +219,6 @@ fun MapContainerLibre(
                 )
             }
             if (userLocation != null) {
-                val marker = painterResource(Res.drawable.navigation)
-
                 val position = Position(
                     latitude = userLocation.latitude,
                     longitude = userLocation.longitude
@@ -226,15 +231,13 @@ fun MapContainerLibre(
                 SymbolLayer(
                     id = "user-location",
                     source = userLocationGeoJson,
-                    iconImage = image(marker),
+                    iconImage = image(navigationMarker),
                     iconSize = const(1.2F),
                     iconRotate = const(userSymbolRotation),
                     iconAllowOverlap = const(true)
                 )
             }
             if (beaconLocation != null) {
-                val marker = painterResource(Res.drawable.location_marker)
-
                 val position = Position(
                     latitude = beaconLocation.latitude,
                     longitude = beaconLocation.longitude
@@ -247,7 +250,7 @@ fun MapContainerLibre(
                 SymbolLayer(
                     id = "beacon-location",
                     source = beaconLocationGeoJson,
-                    iconImage = image(marker),
+                    iconImage = image(locationMarker),
                     iconSize = const(1.2F),
                     iconAllowOverlap = const(true),
                     iconAnchor = const(SymbolAnchor.Bottom),
@@ -265,7 +268,6 @@ fun MapContainerLibre(
             }
 
             if (routeData != null) {
-                val waypointMarker = painterResource(Res.drawable.location_marker)
                 for ((index, waypoint) in routeData.markers.withIndex()) {
                     val position = Position(
                         latitude = waypoint.latitude,
@@ -290,7 +292,7 @@ fun MapContainerLibre(
                         SymbolLayer(
                             id = "marker-$index",
                             source = markerLocationGeoJson,
-                            iconImage = image(waypointMarker),
+                            iconImage = image(locationMarker),
                             iconSize = const(1.2F),
                             iconAllowOverlap = const(true),
                             iconAnchor = const(SymbolAnchor.Bottom),

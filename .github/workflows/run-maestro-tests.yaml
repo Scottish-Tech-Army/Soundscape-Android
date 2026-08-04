@@ -236,16 +236,25 @@ jobs:
             # described above (adb root, further up), surfacing as "Command failed
             # (host:transport:...): device offline" instead of the launch-timeout
             # message - same transient cause, different wording, so it needs the
-            # same retry. The rf() helper runs a flow and retries it ONCE, but ONLY
-            # when its JUnit report shows one of those exact launch failures.
-            # launchApp is the first command, before a flow does any work, so a
-            # retry then is safe. A blind retry-on-any-failure would NOT be: the
-            # stateful flows (e.g. LocationDetails assumes an empty database and
-            # creates markers A and B, asserting their order) would double-apply
-            # their changes if re-run after a mid-flow failure. The retry reuses the
-            # same --output path so the report reflects the final attempt.
-            # To add a flow, add its name (without .yaml) to the list below.
-            status=0; rf(){ $HOME/.maestro/bin/maestro test --format=junit --output="maestro_outputs/report-$1.xml" --test-output-dir=maestro_outputs --no-ansi "maestro/$1.yaml"; r=$?; if [ "$r" -ne 0 ] && grep -Eq "Unable to launch app|device offline" "maestro_outputs/report-$1.xml" 2>/dev/null; then echo "::warning::launch of $1 failed; retrying once"; $HOME/.maestro/bin/maestro test --format=junit --output="maestro_outputs/report-$1.xml" --test-output-dir=maestro_outputs --no-ansi "maestro/$1.yaml"; r=$?; fi; return "$r"; }; rf Onboarding || status=1; adb shell mkdir -p /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download; adb push glasgow-gb.pmtiles /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/; adb push .github/fixtures/glasgow-gb.pmtiles.geojson /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/; for flow in HomePage LocationDetails PlacesNearby MarkersAndRoutes RouteCreation; do rf "$flow" || status=1; done; exit $status
+            # same retry. A third wording: when that same race throws inside
+            # Maestro's internal deviceInfo/viewHierarchy call as a
+            # DeviceServerDiedException, Maestro's JUnit writer collapses it to a
+            # bare "Unknown error" in the XML - the "device offline" text only
+            # shows up in the per-flow maestro.log, not the report this grep reads.
+            # Confirmed via a real run: Onboarding got status="ERROR" with
+            # <failure>Unknown error</failure> while every genuine UI-assertion
+            # failure in the same run had a specific message, so this is a safe,
+            # distinct signature to retry on too. The rf() helper runs a flow and
+            # retries it ONCE, but ONLY when its JUnit report shows one of these
+            # exact launch failures. launchApp is the first command, before a flow
+            # does any work, so a retry then is safe. A blind retry-on-any-failure
+            # would NOT be: the stateful flows (e.g. LocationDetails assumes an
+            # empty database and creates markers A and B, asserting their order)
+            # would double-apply their changes if re-run after a mid-flow failure.
+            # The retry reuses the same --output path so the report reflects the
+            # final attempt. To add a flow, add its name (without .yaml) to the
+            # list below.
+            status=0; rf(){ $HOME/.maestro/bin/maestro test --format=junit --output="maestro_outputs/report-$1.xml" --test-output-dir=maestro_outputs --no-ansi "maestro/$1.yaml"; r=$?; if [ "$r" -ne 0 ] && grep -Eq "Unable to launch app|device offline|Unknown error" "maestro_outputs/report-$1.xml" 2>/dev/null; then echo "::warning::launch of $1 failed; retrying once"; $HOME/.maestro/bin/maestro test --format=junit --output="maestro_outputs/report-$1.xml" --test-output-dir=maestro_outputs --no-ansi "maestro/$1.yaml"; r=$?; fi; return "$r"; }; rf Onboarding || status=1; adb shell mkdir -p /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download; adb push glasgow-gb.pmtiles /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/; adb push .github/fixtures/glasgow-gb.pmtiles.geojson /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/; for flow in HomePage LocationDetails PlacesNearby MarkersAndRoutes RouteCreation; do rf "$flow" || status=1; done; exit $status
 
       # Artifact names must be unique across the matrix, so suffix them with the
       # combination (e.g. maestro-reports-35-large-ja-JP).

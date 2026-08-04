@@ -61,7 +61,7 @@ class MvtPerformanceTest {
         for (x in 15990..15992) {
             for (y in 10212..10213) {
                 val geojsonArray = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt")
-                for (fc in geojsonArray!!) {
+                for (fc in geojsonArray) {
                     featureCollection += fc
                 }
             }

@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Uszkodzona — usuń i pobierz ponownie</string>
     <string name="offline_map_details_update">Zaktualizuj mapę offline</string>
     <string name="menu_exit_app">Zamknij Soundscape</string>
+    <string name="talkback_double_tap_prefix">Stuknij dwukrotnie, aby</string>
+    <string name="talkback_default_activate">aktywować</string>
+    <string name="distance_format_km_a11y">%1$s kilometrów</string>
+    <string name="number_decimal_separator">,</string>
+    <string name="number_decimal_separator_a11y">przecinek</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s bajtów</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s kilobajtów</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s megabajtów</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s gigabajtów</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s terabajtów</string>
+    <string name="help_config_voices_content_ios">Soundscape może korzystać z dowolnych głosów pobranych w aplikacji Ustawienia systemu iOS, z wyjątkiem głosów Siri, które nie są dostępne dla Soundscape. Zalecamy wybór jednego z głosów *Enhanced* (Ulepszonych), ponieważ mają znacząco lepszą jakość, jednak aby to zrobić, najpierw trzeba pobrać głos ulepszony. Głosy można pobrać w aplikacji Ustawienia iOS, przechodząc do Dostępność &gt; Mówiony tekst &gt; Głosy i stukając wybrany głos. W aplikacji Soundscape wybierz głos, którego chcesz używać, przechodząc z menu głównego do *Ustawienia*, a następnie wybierając *Wybór głosu TTS*.</string>
+    <string name="settings_mix_audio">Mieszaj dźwięk z innymi aplikacjami</string>
+    <string name="settings_mix_audio_description">Gdy wyłączone, inne aplikacje audio zostaną wstrzymane, a na ekranie blokady będą dostępne sterowanie mediami</string>
+    <string name="settings_head_tracking">Włącz śledzenie ruchu głowy</string>
+    <string name="settings_head_tracking_description">Ustawiaj dźwięk przestrzenny względem kierunku, w którym zwrócona jest Twoja głowa, korzystając z danych ruchu pochodzących z obsługiwanych słuchawek AirPods, okularów Bose Frames lub zewnętrznego modułu IMU przez Bluetooth. Kalibruje się automatycznie podczas marszu.</string>
 </resources>

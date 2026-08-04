@@ -1270,7 +1270,7 @@
     <string name="language_mismatch_message">La langue de votre téléphone est configurée en %1$s et cette langue est maintenant disponible dans Soundscape. Voulez‑vous que Soundscape passe à %1$s ?</string>
     <string name="language_mismatch_switch">Passer à %1$s</string>
     <string name="language_mismatch_keep">Conserver la langue actuelle</string>
-    <string name="preview_go_hint">aller dans cette direction jusqu\'à l\'intersection suivante</string>
+    <string name="preview_go_hint">aller dans cette direction jusqu'à l'intersection suivante</string>
     <string name="error_message_route_not_found">Échec de la recherche de l’itinéraire dans la base de données.</string>
     <string name="error_message_deleting_route">Échec de la suppression de l’itinéraire.</string>
     <string name="error_message_saving_route">Échec de l’enregistrement de l’itinéraire.</string>
@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Endommagée - supprimer et retélécharger</string>
     <string name="offline_map_details_update">Mettre à jour la carte hors ligne</string>
     <string name="menu_exit_app">Quitter Soundscape</string>
+    <string name="talkback_double_tap_prefix">Appuyez deux fois pour</string>
+    <string name="talkback_default_activate">activer</string>
+    <string name="distance_format_km_a11y">%1$s kilomètres</string>
+    <string name="number_decimal_separator">,</string>
+    <string name="number_decimal_separator_a11y">virgule</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s octets</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s kilooctets</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s mégaoctets</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s gigaoctets</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s téraoctets</string>
+    <string name="help_config_voices_content_ios">Soundscape peut utiliser n’importe quelle voix que vous avez téléchargée dans l’application Réglages d’iOS, à l’exception des voix Siri qui ne sont pas accessibles à Soundscape. Nous recommandons de choisir l’une des voix *Améliorées* car leur qualité est bien supérieure ; pour cela, vous devez d’abord télécharger une voix améliorée. Vous pouvez télécharger des voix dans l’app Réglages d’iOS en allant dans Accessibilité &gt; Contenu énoncé &gt; Voix, puis en appuyant sur une voix. Dans l’application Soundscape, vous pouvez sélectionner la voix à utiliser en allant dans *Réglages* depuis le menu principal, puis en sélectionnant *Voix*.</string>
+    <string name="settings_mix_audio">Mixer l’audio avec d’autres applications</string>
+    <string name="settings_mix_audio_description">Si désactivé, les autres applications audio seront mises en pause et les commandes multimédias de l’écran verrouillé seront disponibles</string>
+    <string name="settings_head_tracking">Activer le suivi de la tête</string>
+    <string name="settings_head_tracking_description">Positionner l’audio spatial en fonction de l’orientation de votre tête, en utilisant les données de mouvement des AirPods compatibles, des Bose Frames ou d’un IMU Bluetooth externe. Se calibre automatiquement pendant la marche.</string>
 </resources>
