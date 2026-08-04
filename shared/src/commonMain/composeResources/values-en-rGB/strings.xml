@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Damaged - delete and re-download</string>
     <string name="offline_map_details_update">Re-download offline map</string>
     <string name="menu_exit_app">Exit Soundscape</string>
+    <string name="talkback_double_tap_prefix">Double tap to</string>
+    <string name="talkback_default_activate">activate</string>
+    <string name="distance_format_km_a11y">%1$s kilometres</string>
+    <string name="number_decimal_separator">.</string>
+    <string name="number_decimal_separator_a11y">point</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s bytes</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s kilobytes</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s megabytes</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s gigabytes</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s terabytes</string>
+    <string name="help_config_voices_content_ios">Soundscape can use any of the voices you have downloaded in the iOS Settings app, except for the Siri voices, which are not available to Soundscape. We recommend choosing one of the *Enhanced* voices as they have much higher quality, but to do so you will first need to download an Enhanced voice. You can download voices in the iOS Settings app by going to Accessibility &gt; Spoken Content &gt; Voices and tapping on a voice. Within the Soundscape app, select the voice you want to use by going to *Settings* from the main menu and then choosing *Voices*.</string>
+    <string name="settings_mix_audio">Mix audio with other apps</string>
+    <string name="settings_mix_audio_description">When disabled, other audio apps will pause and lock screen media controls will be available</string>
+    <string name="settings_head_tracking">Enable head tracking</string>
+    <string name="settings_head_tracking_description">Position spatial audio relative to where your head is facing using motion data from supported AirPods, Bose Frames or an external Bluetooth IMU. Calibrates automatically while you walk.</string>
 </resources>
