@@ -901,7 +901,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         calloutJob = coroutineScope.launch {
             val wasActive = previousJob?.isActive == true
             if (wasActive)
-                previousJob?.cancel()
+                previousJob.cancel()
 
             // Always clear the TTS queue as there's been a user action that requires a response
             audioEngine.clearTextToSpeechQueue()

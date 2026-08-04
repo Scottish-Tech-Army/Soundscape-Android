@@ -180,7 +180,7 @@ class AndroidOfflineMapsManager(
 
     private fun annotateExtractSize(feature: Feature) {
         val size = (feature.properties?.get("extract-size") as? Number)?.toLong() ?: return
-        val props = feature.properties as? HashMap<String, Any?> ?: return
+        val props = feature.properties ?: return
         val localized = ComposeLocalizedStrings()
         props["extract-size-string"] = formatBytes(size, localized)
         props["extract-size-a11y-string"] = formatBytes(size, localized, forAccessibility = true)
