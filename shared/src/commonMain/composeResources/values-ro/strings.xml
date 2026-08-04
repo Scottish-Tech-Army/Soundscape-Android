@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Deteriorat - șterge și descarcă din nou</string>
     <string name="offline_map_details_update">Actualizează harta offline</string>
     <string name="menu_exit_app">Ieși din Soundscape</string>
+    <string name="talkback_double_tap_prefix">Atinge de două ori pentru</string>
+    <string name="talkback_default_activate">a activa</string>
+    <string name="distance_format_km_a11y">%1$s kilometri</string>
+    <string name="number_decimal_separator">,</string>
+    <string name="number_decimal_separator_a11y">virgulă</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s bytes</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s kilobytes</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s megabytes</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s gigabytes</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s terabytes</string>
+    <string name="help_config_voices_content_ios">Soundscape poate utiliza oricare dintre vocile pe care le-ai descărcat în aplicația Setări iOS, cu excepția vocilor Siri, care nu sunt disponibile pentru Soundscape. Recomandăm alegerea uneia dintre vocile *Îmbunătățite* deoarece au o calitate a vocii mult mai bună; pentru a face acest lucru va trebui mai întâi să descarci o voce îmbunătățită. Poți descărca voci din aplicația Setări iOS accesând Accesibilitate &gt; Conținut rostit &gt; Vocile și atingând o voce. În aplicația Soundscape, poți selecta vocea dorită din *Setări* din meniul principal, apoi alegând *Voci*.</string>
+    <string name="settings_mix_audio">Permite redarea audio împreună cu alte aplicații</string>
+    <string name="settings_mix_audio_description">Când este dezactivat, celelalte aplicații audio vor fi puse pe pauză, iar controalele media de pe ecranul blocat vor fi disponibile</string>
+    <string name="settings_head_tracking">Activează urmărirea capului</string>
+    <string name="settings_head_tracking_description">Poziționează audio spațial în raport cu direcția în care este îndreptat capul tău, folosind date de mișcare de la AirPods compatibile, Bose Frames sau un IMU Bluetooth extern. Se calibrează automat în timp ce mergi.</string>
 </resources>
