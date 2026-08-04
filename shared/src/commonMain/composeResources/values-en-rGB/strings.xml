@@ -226,7 +226,7 @@
     <string name="first_launch_callouts_example_3">Main Street goes left</string>
     <string name="first_launch_callouts_example_4">Main Street goes right</string>
     <string name="first_launch_permissions_title">App Permissions</string>
-    <string name="first_launch_permissions_message">In order for Soundscape to run, it needs certain permissions granted. These allow it to be updated with the phone\'s location, even when locked. Please tap each of the following permissions and enable them when prompted:</string>
+    <string name="first_launch_permissions_message">In order for Soundscape to run, it needs certain permissions granted. These allow it to be updated with the phone's location, even when locked. Please tap each of the following permissions and enable them when prompted:</string>
     <string name="first_launch_permissions_location">Location Services with Precise Location</string>
     <string name="first_launch_permissions_required">This permission is required</string>
     <string name="first_launch_beacon_title">Choose an Audio Beacon</string>
@@ -522,7 +522,7 @@
     <string name="advanced_markers_and_routes_clear_all_button">Delete all markers and routes</string>
     <string name="advanced_markers_and_routes_clear_all_alert_message">Deleting all of the markers and routes cannot be undone, do you want to continue?</string>
     <string name="menu_advanced_markers_and_routes_clear_all_success">Markers and routes deleted</string>
-    <string name="new_version_info_details">\nThis is a new minor release of Soundscape. Here are the changes that have been made.\n\nWe\'ve fixed support for ASHA hearing aids. If you are a hearing-aid user and Soundscape isn\'t working for you, please let us know.\n\nThere\'s a new Exit Soundscape option at the top of the main menu. Tapping this is an easy way to close the app fully.\n\nThe offline maps details screen now has a button to re-download maps that have already been downloaded. Maps are updated monthly from OpenStreetMap, so it\'s worth re-downloading offline maps occasionally. We\'ve also added code to improve validation of downloaded maps to prevent corrupted maps being used.\n\nWe\'re still working hard on improving the app, so please report any problems you have, however small, via the *Contact support* option in the main menu.\n</string>
+    <string name="new_version_info_details">\nThis is a new minor release of Soundscape. Here are the changes that have been made.\n\nWe've fixed support for ASHA hearing aids. If you are a hearing-aid user and Soundscape isn't working for you, please let us know.\n\nThere's a new Exit Soundscape option at the top of the main menu. Tapping this is an easy way to close the app fully.\n\nThe offline maps details screen now has a button to re-download maps that have already been downloaded. Maps are updated monthly from OpenStreetMap, so it's worth re-downloading offline maps occasionally. We've also added code to improve validation of downloaded maps to prevent corrupted maps being used.\n\nWe're still working hard on improving the app, so please report any problems you have, however small, via the *Contact support* option in the main menu.\n</string>
     <string name="new_version_info_text">Release Notes</string>
     <string name="new_version_info_completed">Close Release Notes</string>
     <string name="menu_open_source_licenses">Open-source Licences</string>
