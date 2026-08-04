@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">破損しています — 削除して再ダウンロードしてください</string>
     <string name="offline_map_details_update">オフラインマップを更新する</string>
     <string name="menu_exit_app">Soundscape を終了する</string>
+    <string name="talkback_double_tap_prefix">ダブルタップして</string>
+    <string name="talkback_default_activate">実行</string>
+    <string name="distance_format_km_a11y">%1$s キロメートル</string>
+    <string name="number_decimal_separator">.</string>
+    <string name="number_decimal_separator_a11y">点</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s バイト</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s キロバイト</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s メガバイト</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s ギガバイト</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s テラバイト</string>
+    <string name="help_config_voices_content_ios">Soundscape は、iOS の設定アプリでダウンロードした音声（Siri の音声は Soundscape では使用できません）を任意に使用できます。音声品質の高い *Enhanced* 音声を選択することをおすすめしますが、Enhanced 音声を使用するには事前にその音声をダウンロードする必要があります。iOS の設定アプリでは、[アクセシビリティ] &gt; [読み上げコンテンツ] &gt; [音声] と進み、音声をタップしてダウンロードできます。Soundscape アプリ内では、メインメニューから *「設定」* を開き、*「声」* を選択して使用する音声を指定できます。</string>
+    <string name="settings_mix_audio">他のアプリと音声を混合する</string>
+    <string name="settings_mix_audio_description">無効にすると、他のオーディオアプリは一時停止され、ロック画面のメディアコントロールが利用可能になります</string>
+    <string name="settings_head_tracking">ヘッドトラッキングを有効にする</string>
+    <string name="settings_head_tracking_description">対応する AirPods、Bose Frames、または外部の Bluetooth IMU からのモーションデータを使用して、頭の向きに合わせて空間オーディオの位置を調整します。歩行中に自動でキャリブレーションされます。</string>
 </resources>
