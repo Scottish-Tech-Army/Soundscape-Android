@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Skadet - slett og last ned på nytt</string>
     <string name="offline_map_details_update">Oppdater offlinekart</string>
     <string name="menu_exit_app">Avslutt Soundscape</string>
+    <string name="talkback_double_tap_prefix">Dobbelttrykk for å</string>
+    <string name="talkback_default_activate">aktivere</string>
+    <string name="distance_format_km_a11y">%1$s kilometer</string>
+    <string name="number_decimal_separator">,</string>
+    <string name="number_decimal_separator_a11y">komma</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s byte</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s kilobyte</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s megabyte</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s gigabyte</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s terabyte</string>
+    <string name="help_config_voices_content_ios">Soundscape kan bruke alle stemmene du har lastet ned i iOS‑appen Innstillinger, bortsett fra Siri‑stemmene som ikke er tilgjengelige for Soundscape. Vi anbefaler å velge en av de *Forbedrede* stemmene fordi de har mye bedre kvalitet, men for å gjøre dette må du først laste ned en forbedret stemme. Du kan laste ned stemmer i iOS‑appen Innstillinger ved å gå til Tilgjengelighet &gt; Taleinnhold &gt; Stemmer og trykke på en stemme. I Soundscape‑appen kan du velge hvilken stemme du vil bruke ved å gå til *Innstillinger* fra hovedmenyen og deretter velge *Stemmer*.</string>
+    <string name="settings_mix_audio">Blande lyd med andre apper</string>
+    <string name="settings_mix_audio_description">Når deaktivert, vil andre lydapper pause og mediekontroller på låseskjermen bli tilgjengelige</string>
+    <string name="settings_head_tracking">Aktiver hodetsporing</string>
+    <string name="settings_head_tracking_description">Posisjoner den romlige lyden i forhold til hvilken retning hodet ditt peker ved å bruke bevegelsesdata fra støttede AirPods, Bose Frames eller en ekstern Bluetooth‑IMU. Kalibreres automatisk mens du går.</string>
 </resources>
