@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Повреждена — удалите и загрузите заново</string>
     <string name="offline_map_details_update">Обновить офлайн-карту</string>
     <string name="menu_exit_app">Выйти из Soundscape</string>
+    <string name="talkback_double_tap_prefix">Дважды нажмите, чтобы</string>
+    <string name="talkback_default_activate">активировать</string>
+    <string name="distance_format_km_a11y">%1$s километров</string>
+    <string name="number_decimal_separator">,</string>
+    <string name="number_decimal_separator_a11y">запятая</string>
+    <string name="bytes_format_b">%1$s Б</string>
+    <string name="bytes_format_b_a11y">%1$s байт</string>
+    <string name="bytes_format_kb">%1$s кБ</string>
+    <string name="bytes_format_kb_a11y">%1$s килобайт</string>
+    <string name="bytes_format_mb">%1$s МБ</string>
+    <string name="bytes_format_mb_a11y">%1$s мегабайт</string>
+    <string name="bytes_format_gb">%1$s ГБ</string>
+    <string name="bytes_format_gb_a11y">%1$s гигабайт</string>
+    <string name="bytes_format_tb">%1$s ТБ</string>
+    <string name="bytes_format_tb_a11y">%1$s терабайт</string>
+    <string name="help_config_voices_content_ios">Soundscape может использовать любые голоса, которые вы загрузили в приложении «Настройки» iOS, за исключением голосов Siri, недоступных для Soundscape. Рекомендуется выбрать один из голосов *Enhanced*, поскольку у них существенно выше качество звучания, но для этого сначала потребуется скачать улучшенный голос. Загрузить голоса можно в приложении «Настройки» iOS: «Универсальный доступ» &gt; «Произносимое содержимое» &gt; «Голоса» — коснитесь нужного голоса для загрузки. В приложении Soundscape выбранный голос устанавливается через меню *Настройки* → *Голоса*.</string>
+    <string name="settings_mix_audio">Смешивать звук с другими приложениями</string>
+    <string name="settings_mix_audio_description">Если отключено, другие аудиоприложения будут приостановлены, а элементы управления медиа на экране блокировки станут доступны</string>
+    <string name="settings_head_tracking">Включить отслеживание головы</string>
+    <string name="settings_head_tracking_description">Располагать пространственное аудио относительно направления вашей головы, используя данные движения от поддерживаемых AirPods, Bose Frames или внешнего Bluetooth‑IMU. Калибруется автоматически во время прогулки.</string>
 </resources>
