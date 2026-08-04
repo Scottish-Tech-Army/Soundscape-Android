@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Viallinen - poista ja lataa uudelleen</string>
     <string name="offline_map_details_update">Päivitä offline-kartta</string>
     <string name="menu_exit_app">Sulje Soundscape</string>
+    <string name="talkback_double_tap_prefix">Kaksoisnapauta</string>
+    <string name="talkback_default_activate">aktivoi</string>
+    <string name="distance_format_km_a11y">%1$s kilometriä</string>
+    <string name="number_decimal_separator">,</string>
+    <string name="number_decimal_separator_a11y">pilkku</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s tavua</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s kilotavua</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s megatavua</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s gigatavua</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s teratavua</string>
+    <string name="help_config_voices_content_ios">Soundscape voi käyttää mitä tahansa iOS:n Asetukset‑sovellukseen lataamiasi puheääniä, mutta Siri‑äänet eivät ole Soundscapen käytettävissä. Suosittelemme valitsemaan jonkin *Enhanced*‑äänen, koska niiden äänenlaatu on merkittävästi parempi. Laajennetun äänen käyttämiseksi sinun täytyy kuitenkin ensin ladata kyseinen ääni. Voit ladata ääniä iOS:n Asetukset‑sovelluksessa siirtymällä kohtaan Esteettömyys &gt; Puhuttu sisältö &gt; Äänet ja napauttamalla haluamaasi ääntä. Soundscape‑sovelluksessa voit valita käyttämäsi äänen avaamalla päävalikon, siirtymällä *Asetukset*‑kohtaan ja valitsemalla sieltä *Äänet*.</string>
+    <string name="settings_mix_audio">Sekoita ääni muiden sovellusten kanssa</string>
+    <string name="settings_mix_audio_description">Kun tämä on pois päältä, muiden äänisovellusten toisto keskeytetään ja lukitusnäytön mediasäätimet ovat käytettävissä</string>
+    <string name="settings_head_tracking">Ota pään seuranta käyttöön</string>
+    <string name="settings_head_tracking_description">Aseta tilaääni suhteessa pään suuntaan käyttämällä liikedataa tuetuista AirPods‑kuulokkeista, Bose Frames ‑laseista tai ulkoisesta Bluetooth‑IMU:sta. Kalibroiutuu automaattisesti kävellessäsi.</string>
 </resources>
