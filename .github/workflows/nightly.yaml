@@ -223,11 +223,29 @@ jobs:
     environment: development
     needs: check_date
     if: ${{ needs.check_date.outputs.should_run != 'false' }}
+    # Konan's devirtualization pass during linkReleaseFrameworkIosArm64 runs
+    # in-process in the Gradle daemon and OOMs at gradle.properties' 4 GB
+    # default with Realm + MapLibre + shared/. GRADLE_OPTS overrides the file
+    # setting for this job only; the Linux runners keep the 4 GB default so
+    # the Android emulator has room in its 16 GB budget.
+    env:
+      GRADLE_OPTS: -Xmx8192m
 
     steps:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
+
+      # Konan's devirtualization pass during linkReleaseFrameworkIosArm64
+      # runs in-process in the Gradle daemon and OOMs at gradle.properties'
+      # 4 GB default with Realm + MapLibre + shared/. GRADLE_OPTS only sets
+      # the client JVM, so patch the file for this checkout instead. Linux
+      # runners never run this step and keep the 4 GB default so the Android
+      # emulator has room in its 16 GB budget.
+      - name: Bump Gradle daemon heap for Kotlin/Native release link
+        run: |
+          sed -i.bak 's/^org\.gradle\.jvmargs=.*/org.gradle.jvmargs=-Xmx8192m -Dfile.encoding=UTF-8/' gradle.properties
+          grep '^org\.gradle\.jvmargs' gradle.properties
 
       - name: Setup iOS toolchain
         uses: ./.github/actions/setup-ios-toolchain
