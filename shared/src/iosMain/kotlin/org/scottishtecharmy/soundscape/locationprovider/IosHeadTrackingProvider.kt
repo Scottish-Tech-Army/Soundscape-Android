@@ -87,7 +87,7 @@ class IosHeadTrackingProvider(
                         loc.hasSpeed &&
                         loc.speed >= COURSE_MIN_SPEED_MPS
                 if (usable) {
-                    lastCourseDegrees = loc!!.bearing.toDouble()
+                    lastCourseDegrees = loc.bearing.toDouble()
                     lastCourseTimestampMillis = uptimeMillis()
                 } else {
                     lastCourseDegrees = null
@@ -118,7 +118,7 @@ class IosHeadTrackingProvider(
     private var lastCourseTimestampMillis: Long = 0L
 
     private fun onDeviceMotion(motion: CMDeviceMotion) {
-        val attitude = motion.attitude ?: return
+        val attitude = motion.attitude
         val rawYawRadians = attitude.yaw
         // 180° flip so yaw increases clockwise from the AirPods origin (matches iOS reference).
         // This convention is load-bearing — flipping it requires inverting the offset sign.

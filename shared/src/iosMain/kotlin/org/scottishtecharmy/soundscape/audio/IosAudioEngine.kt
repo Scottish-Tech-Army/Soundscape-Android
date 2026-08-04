@@ -175,7 +175,16 @@ class IosAudioEngine : AudioEngine {
      * Creates a stereo format with a channel layout at the given sample rate.
      */
     private fun outputFormat(sampleRate: Double): AVAudioFormat? {
-        val layout = AVAudioChannelLayout(layoutTag = kAudioChannelLayoutTag_Stereo) ?: return null
+        // AVAudioChannelLayout's failable ObjC init is bridged to a Kotlin constructor, which
+        // throws on failure rather than returning null like the ObjC init can. kAudioChannelLayoutTag_Stereo
+        // is a well-known built-in tag so this shouldn't realistically fail, but catch it anyway
+        // to match this function's nullable-on-failure contract instead of crashing.
+        val layout = try {
+            AVAudioChannelLayout(layoutTag = kAudioChannelLayoutTag_Stereo)
+        } catch (e: Exception) {
+            println("IosAudioEngine: Failed to create stereo channel layout: ${e.message}")
+            return null
+        }
         return AVAudioFormat(standardFormatWithSampleRate = sampleRate, channelLayout = layout)
     }
 

@@ -32,7 +32,7 @@ private val DISALLOWED_VOICES = setOf(
  */
 @OptIn(ExperimentalForeignApi::class)
 fun availableTtsVoicesForCurrentLanguage(): List<IosTtsVoiceInfo> {
-    val currentLanguageCode = NSLocale.currentLocale.languageCode ?: return emptyList()
+    val currentLanguageCode = NSLocale.currentLocale.languageCode
 
     val rawVoices = AVSpeechSynthesisVoice.speechVoices()
         .filterIsInstance<AVSpeechSynthesisVoice>()

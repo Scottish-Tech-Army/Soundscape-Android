@@ -29,35 +29,43 @@ class BeaconPlayer(
     private var muted = false
 
     fun loadAssets(): Boolean {
-        for (assetName in beaconType.assets) {
-            val path = NSBundle.mainBundle.pathForResource(assetName, "wav", "Sounds")
-                ?: run {
-                    println("BeaconPlayer: WAV not found: $assetName")
-                    return false
-                }
+        // AVAudioFile/AVAudioPCMBuffer's failable ObjC initializers are bridged to Kotlin
+        // constructors, which can't return null on failure like the ObjC init can — Kotlin/Native
+        // throws instead. Catch that so a corrupt/unreadable bundled WAV degrades gracefully
+        // (matching the false-return contract below) instead of crashing the app.
+        try {
+            for (assetName in beaconType.assets) {
+                val path = NSBundle.mainBundle.pathForResource(assetName, "wav", "Sounds")
+                    ?: run {
+                        println("BeaconPlayer: WAV not found: $assetName")
+                        return false
+                    }
 
-            val url = NSURL.fileURLWithPath(path)
-            val audioFile = AVAudioFile(forReading = url, error = null) ?: return false
+                val url = NSURL.fileURLWithPath(path)
+                val audioFile = AVAudioFile(forReading = url, error = null)
 
-            val format = audioFile.processingFormat
-            val frameCount = audioFile.length().toUInt()
-            val buffer = AVAudioPCMBuffer(pCMFormat = format, frameCapacity = frameCount)
-                ?: return false
-            audioFile.readIntoBuffer(buffer, error = null)
-            buffer.frameLength = frameCount
-            buffers[assetName] = buffer
+                val format = audioFile.processingFormat
+                val frameCount = audioFile.length().toUInt()
+                val buffer = AVAudioPCMBuffer(pCMFormat = format, frameCapacity = frameCount)
+                audioFile.readIntoBuffer(buffer, error = null)
+                buffer.frameLength = frameCount
+                buffers[assetName] = buffer
+            }
+
+            val firstBuffer = buffers.values.firstOrNull() ?: return false
+            silentBuffer = AVAudioPCMBuffer(
+                pCMFormat = firstBuffer.format,
+                frameCapacity = firstBuffer.frameLength
+            ).also {
+                it.frameLength = firstBuffer.frameLength
+            }
+
+            layer.format = firstBuffer.format
+            return true
+        } catch (e: Exception) {
+            println("BeaconPlayer: Failed to load assets: ${e.message}")
+            return false
         }
-
-        val firstBuffer = buffers.values.firstOrNull() ?: return false
-        silentBuffer = AVAudioPCMBuffer(
-            pCMFormat = firstBuffer.format,
-            frameCapacity = firstBuffer.frameLength
-        )?.also {
-            it.frameLength = firstBuffer.frameLength
-        }
-
-        layer.format = firstBuffer.format
-        return true
     }
 
     fun startPlaying() {
@@ -194,10 +202,15 @@ class BeaconPlayer(
         if (fromFrame >= totalFrames || fromFrame < 0) return null
 
         val suffixLength = totalFrames - fromFrame
-        val result = AVAudioPCMBuffer(
-            pCMFormat = source.format,
-            frameCapacity = suffixLength.toUInt()
-        ) ?: return null
+        // See loadAssets(): the failable ObjC init behind this constructor throws on
+        // failure instead of returning null, so catch it to preserve this function's
+        // graceful-null-on-failure contract.
+        val result = try {
+            AVAudioPCMBuffer(pCMFormat = source.format, frameCapacity = suffixLength.toUInt())
+        } catch (e: Exception) {
+            println("BeaconPlayer: Failed to create buffer suffix: ${e.message}")
+            return null
+        }
 
         // Copy float channel data (mono)
         val srcChannels = source.floatChannelData ?: return null
