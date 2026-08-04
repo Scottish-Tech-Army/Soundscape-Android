@@ -59,7 +59,7 @@ private fun buildContinuousRoute(
     var currentWay = startWay
     visited.add(currentWay)
     appendCoords(currentWay, reversed = false, isFirst = true)
-    println("  way: ref=${currentWay.properties?.get("ref")} name=${currentWay.name} class=${currentWay.featureValue} length=${currentWay.length}")
+    println("  way: ref=${currentWay.ref} name=${currentWay.name} class=${currentWay.featureValue} length=${currentWay.length}")
 
     while (totalDistance < targetDistance) {
         // Recentre the grid on where we've got to, so the tiles ahead of us are loaded before we
@@ -107,7 +107,7 @@ private fun buildContinuousRoute(
         visited.add(next)
         appendCoords(next, bestReversed, isFirst = false)
         currentWay = next
-        println("  way: ref=${currentWay.properties?.get("ref")} name=${currentWay.name} class=${currentWay.featureValue} length=${currentWay.length} totalDistance=$totalDistance")
+        println("  way: ref=${currentWay.ref} name=${currentWay.name} class=${currentWay.featureValue} length=${currentWay.length} totalDistance=$totalDistance")
     }
 
     return orderedCoords
@@ -219,8 +219,7 @@ class TravelModeMapMatchTest {
                 unmatchedCount++
                 refsSeen.add(null)
             } else {
-                val ref = matched.properties?.get("ref") as? String
-                refsSeen.add(ref ?: matched.name ?: matched.featureValue)
+                refsSeen.add(matched.ref ?: matched.name ?: matched.featureValue)
             }
         }
 

@@ -36,37 +36,6 @@ private fun addToStreetNumberMap(
 }
 
 /**
- * The `transportation_name` layer (see https://openmaptiles.org/schema/#transportation_name)
- * carries the OSM `ref` tag (e.g. "A81", "M8") for routes, joined by OSM id to the corresponding
- * `transportation` line. We otherwise leave this layer unused (see note in [vectorTileToGeoJson]),
- * so this just pulls out `ref` values keyed by id for reuse when building `transportation`
- * Features - it lets us call out roads that only carry a route number and no common name.
- */
-private fun extractRefsByOsmId(mvt: Tile): HashMap<Long, String> {
-    val refByOsmId = HashMap<Long, String>()
-    for (layer in mvt.layers) {
-        if (layer.name != "transportation_name") continue
-        for (feature in layer.features) {
-            val id = feature.id ?: continue
-            var firstInPair = true
-            var key = ""
-            for (tag in feature.tags) {
-                if (firstInPair) {
-                    key = layer.keys[tag]
-                } else if (key == "ref") {
-                    val ref = layer.values[tag].string_value
-                    if (!ref.isNullOrEmpty()) {
-                        refByOsmId[id] = ref
-                    }
-                }
-                firstInPair = !firstInPair
-            }
-        }
-    }
-    return refByOsmId
-}
-
-/**
  * The `transportation_name` layer also carries road junction (exit/interchange) nodes as POINT
  * features tagged `subclass=junction`, with `ref` as the junction number where the road is
  * numbered (e.g. motorway junction "2") and `name` as the interchange name (e.g. "Robroyston",
@@ -117,9 +86,9 @@ private fun extractHighwayJunctions(
                     junction.geometry = Point(coordinate)
                     junction.osmId = feature.id ?: 0L
                     junction.name = name
+                    junction.ref = ref
                     junction.featureType = "highway"
                     junction.featureValue = "highway_junction"
-                    if (ref != null) junction.setProperty("ref", ref)
                     if (featureClass != null) junction.setProperty("class", featureClass)
                     junctions.add(junction)
                 }
@@ -185,9 +154,8 @@ private data class CrossingInfo(val type: String, val name: String?, val brunnel
  *
  * Returns the crossing info keyed by the OSM id of the crossing road/path, ready to be attached
  * directly to that road's Way(s) (see the `crossingsByOsmId[id]?.let { ... }` call in
- * vectorTileToGeoJson, which propagates it into Way.properties the same way extractRefsByOsmId's
- * result does for `ref`) - this lets travel-mode callouts read it straight off
- * userGeometry.mapMatchedWay with no further search needed.
+ * vectorTileToGeoJson, which propagates it into Way.properties) - this lets travel-mode callouts
+ * read it straight off userGeometry.mapMatchedWay with no further search needed.
  *
  * A small stream culverted under a road is already split at the crossing point and tagged there
  * (`brunnel=tunnel`, occasionally `bridge`/`ford`) - the tagged segment itself IS the crossing,
@@ -503,7 +471,6 @@ fun vectorTileToGeoJson(
         arrayOf("place")
     }
 
-    val refByOsmId = if (tileZoom >= MIN_MAX_ZOOM_LEVEL) extractRefsByOsmId(mvt) else hashMapOf()
     val crossingsByOsmId =
         if (tileZoom >= MIN_MAX_ZOOM_LEVEL) extractCrossings(mvt, tileX, tileY, tileZoom) else hashMapOf()
     if (tileZoom >= MIN_MAX_ZOOM_LEVEL) {
@@ -530,6 +497,7 @@ fun vectorTileToGeoJson(
             var entrance = false
             val id = feature.id ?: 0L
             var name: String? = null
+            var ref: String? = null
             var featureClass: String? = null
             var featureSubClass: String? = null
             var housenumber: String? = null
@@ -570,6 +538,7 @@ fun vectorTileToGeoJson(
                 if (!firstInPair) {
                     when (key) {
                         "name" -> name = value.toString()
+                        "ref" -> ref = value.toString()
                         "class" -> featureClass = value.toString()
                         "subclass" -> featureSubClass = value.toString()
                         "housenumber" -> housenumber = value.toString()
@@ -792,12 +761,12 @@ fun vectorTileToGeoJson(
                     streetNumberMap[street]?.addFeature(geoFeature)
                 } else {
                     geoFeature.name = name
+                    geoFeature.ref = ref
                     geoFeature.street = street
                     geoFeature.featureClass = featureClass
                     geoFeature.featureSubClass = featureSubClass
                     geoFeature.properties = properties
                     if (layer.name == "transportation") {
-                        refByOsmId[id]?.let { geoFeature.setProperty("ref", it) }
                         crossingsByOsmId[id]?.let { crossing ->
                             geoFeature.setProperty("crossing_type", crossing.type)
                             crossing.name?.let { geoFeature.setProperty("crossing_name", it) }
