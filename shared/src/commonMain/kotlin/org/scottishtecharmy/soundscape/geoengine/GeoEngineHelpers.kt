@@ -297,7 +297,7 @@ private fun travellingReverseGeocodeName(
             }
         } as MvtFeature?
         if (nearestJunction != null) {
-            val ref = nearestJunction.properties?.get("ref") as? String
+            val ref = nearestJunction.ref
             val name = nearestJunction.name
             val junctionText = if (ref != null) {
                 if (name != null) {

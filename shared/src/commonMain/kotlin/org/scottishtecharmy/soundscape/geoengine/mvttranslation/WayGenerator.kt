@@ -132,9 +132,9 @@ class Way : MvtFeature() {
             // that's how many trunk/motorway ways are actually signposted, otherwise fall back to
             // the "class" property. A ref identifies the road just as well as a name, so it isn't
             // a generic description.
-            val ref = properties?.get("ref") as? String
-            if (ref != null) {
-                result = ref
+            val wayRef = ref
+            if (wayRef != null) {
+                result = wayRef
                 genericName = false
             } else {
                 // Un-named way, so use "class" property

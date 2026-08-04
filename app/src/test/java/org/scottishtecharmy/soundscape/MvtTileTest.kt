@@ -209,15 +209,17 @@ class MvtTileTest {
     }
 
     /**
-     * Prototype test for reading OSM `ref` (route number, e.g. "B8050") out of the
-     * `transportation_name` layer and attaching it to the corresponding `transportation` Way, for
-     * use in travel-mode callouts like "On the A81" for roads that only carry a route number and
-     * no common name.
+     * Checks that OSM `ref` (route number, e.g. "B8050") is read directly off the
+     * `transportation` layer and attached to the Way, for use in travel-mode callouts like
+     * "On the A81" for roads that only carry a route number and no common name. The pmtiles
+     * pipeline now backfills `ref` onto every transportation line the same way it already does
+     * for `name` (see MvtFeature.ref/copyProperties), so this is a plain tag read - no join
+     * against `transportation_name` by OSM id needed, unlike the old prototype this replaced.
      */
     @Test
     fun testTransportationNameRef() {
-        val tileX = 15990
-        val tileY = 10213
+        val tileX = 7995
+        val tileY = 5106
         val tileFile = File("src/main/assets/${tileX}x${tileY}.mvt")
         val tile = Tile.ADAPTER.decode(tileFile.readBytes())
 
@@ -230,12 +232,12 @@ class MvtTileTest {
             intersectionMap,
             streetNumberMap,
             true,
-            15
+            14
         )
 
         val roads = geojson[TreeId.ROADS_AND_PATHS.id]
         val parkRoad = roads.features.find { (it as? MvtFeature)?.name == "Park Road" }
-        assertEquals("B8050", (parkRoad as? MvtFeature)?.properties?.get("ref"))
+        assertEquals("B8050", (parkRoad as? MvtFeature)?.ref)
     }
 
     /**
@@ -317,7 +319,7 @@ class MvtTileTest {
             motorwayGridState.getFeatureTree(TreeId.HIGHWAY_JUNCTIONS).getAllCollection()
         val robroyston = motorwayJunctions.features.find { (it as? MvtFeature)?.name == "Robroyston" }
         assertNotNull(robroyston)
-        assertEquals("2", (robroyston as MvtFeature).properties?.get("ref"))
+        assertEquals("2", (robroyston as MvtFeature).ref)
 
         val primaryGridState = getGridStateForLocation(LngLatAlt(-3.5084, 55.8980), MAX_ZOOM_LEVEL, 3)
         val primaryJunctions =
@@ -476,7 +478,7 @@ class MvtTileTest {
         val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
 
         assertNotNull(result)
-        assertEquals("Near Junction 2, Robroyston", result!!.text)
+        assertEquals("On M80 at Junction 2, Robroyston", result!!.text)
     }
 
     /**
@@ -1683,7 +1685,7 @@ class MvtTileTest {
     fun testCalloutsSingleTest  () {
         val resultsStorageDir = File("gpxFiles/")
         if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
-        val testFile = "ToBalloch"
+        val testFile = "Motorway"
         testMovingGrid(
             "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$testFile.gpx",
             "gpxFiles/$testFile.txt",
