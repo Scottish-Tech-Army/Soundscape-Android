@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Hasarlı — silip yeniden indirin</string>
     <string name="offline_map_details_update">Çevrimdışı haritayı güncelle</string>
     <string name="menu_exit_app">Soundscape\'ten Çık</string>
+    <string name="talkback_double_tap_prefix">Çift dokunun</string>
+    <string name="talkback_default_activate">etkinleştir</string>
+    <string name="distance_format_km_a11y">%1$s kilometre</string>
+    <string name="number_decimal_separator">,</string>
+    <string name="number_decimal_separator_a11y">virgül</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s bayt</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s kilobayt</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s megabayt</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s gigabayt</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s terabayt</string>
+    <string name="help_config_voices_content_ios">Soundscape, iOS Ayarlar uygulamasından indirdiğiniz seslerin herhangi birini kullanabilir; ancak Siri sesleri Soundscape tarafından kullanılamaz. Ses kalitesi çok daha yüksek olduğu için *Geliştirilmiş* seslerden birini seçmenizi öneririz; fakat bunun için önce bir geliştirilmiş ses indirmeniz gerekir. Sesleri indirmek için iOS Ayarlar uygulamasında Erişilebilirlik &gt; Konuşulan İçerik &gt; Sesler bölümüne gidip bir sesin üzerine dokunabilirsiniz. Soundscape uygulaması içinde kullanmak istediğiniz sesi seçmek için ana menüden Ayarlar'a gidip ardından *Ses Seçenekleri*'ni seçin.</string>
+    <string name="settings_mix_audio">Diğer uygulamalarla sesi karıştır</string>
+    <string name="settings_mix_audio_description">Devre dışı bırakıldığında diğer ses uygulamaları duraklatılır ve kilit ekranı medya kontrolleri kullanılabilir olur</string>
+    <string name="settings_head_tracking">Baş takibini etkinleştir</string>
+    <string name="settings_head_tracking_description">Desteklenen AirPods, Bose Frames veya harici bir Bluetooth IMU'dan gelen hareket verilerini kullanarak mekânsal sesi başınızın baktığı yöne göre konumlandırır. Yürürken otomatik olarak kalibre olur.</string>
 </resources>
