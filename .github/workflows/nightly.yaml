@@ -259,20 +259,25 @@ jobs:
           shareext_provisioning_profile_base64: ${{ secrets.IOS_SHAREEXT_PROVISIONING_PROFILE_BASE64 }}
           keychain_password: ${{ secrets.IOS_KEYCHAIN_PASSWORD }}
 
-      # `-allowProvisioningUpdates` lets xcodebuild fetch/update profiles
-      # automatically — but on a CI runner with no Apple ID logged in, it must
-      # authenticate via an App Store Connect API key instead, otherwise it
-      # fails with "No Accounts: Add a new account in Accounts settings."
+      # CI runners have no Apple ID logged in, so xcodebuild authenticates
+      # via the App Store Connect API key for any -allowProvisioningUpdates
+      # operation; otherwise it fails with "No Accounts: Add a new account
+      # in Accounts settings."
       - name: Decode App Store Connect API key
         uses: ./.github/actions/decode-base64-secret
         with:
           encoded: ${{ secrets.APPSTORE_CONNECT_API_KEY_BASE64 }}
           output_path: ${{ runner.temp }}/private_keys/AuthKey_${{ secrets.APPSTORE_CONNECT_API_KEY_ID }}.p8
 
+      # Manual signing: project.yml pins each Release target to the
+      # distribution cert and references PROFILE_NAME_APP /
+      # PROFILE_NAME_SHAREEXT as user-defined build settings. Passing them
+      # here lets each target pick up its own profile name (xcodebuild
+      # SETTING=VALUE overrides apply to all targets, but each target's
+      # PROVISIONING_PROFILE_SPECIFIER references a different var). No
+      # -allowProvisioningUpdates: the profiles were already imported by
+      # setup-ios-signing, so Apple doesn't need to mint fresh ones.
       - name: Archive iOS app
-        env:
-          KEY_ID: ${{ secrets.APPSTORE_CONNECT_API_KEY_ID }}
-          ISSUER_ID: ${{ secrets.APPSTORE_CONNECT_API_ISSUER_ID }}
         run: |
           xcodebuild archive \
             -project iosApp/iosApp.xcodeproj \
@@ -281,10 +286,8 @@ jobs:
             -sdk iphoneos \
             -destination 'generic/platform=iOS' \
             -archivePath "$RUNNER_TEMP/Soundscape.xcarchive" \
-            -authenticationKeyPath "$RUNNER_TEMP/private_keys/AuthKey_$KEY_ID.p8" \
-            -authenticationKeyID "$KEY_ID" \
-            -authenticationKeyIssuerID "$ISSUER_ID" \
-            -allowProvisioningUpdates
+            PROFILE_NAME_APP="$IOS_PROFILE_NAME" \
+            PROFILE_NAME_SHAREEXT="$IOS_SHAREEXT_PROFILE_NAME"
 
       # Manual signing during export so xcodebuild reuses the profile we
       # imported in setup-ios-signing instead of asking Apple to mint a fresh
