@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Danneggiata - elimina e scarica di nuovo</string>
     <string name="offline_map_details_update">Aggiorna la mappa offline</string>
     <string name="menu_exit_app">Esci da Soundscape</string>
+    <string name="talkback_double_tap_prefix">Tocca due volte per</string>
+    <string name="talkback_default_activate">attivare</string>
+    <string name="distance_format_km_a11y">%1$s chilometri</string>
+    <string name="number_decimal_separator">,</string>
+    <string name="number_decimal_separator_a11y">virgola</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s byte</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s kilobyte</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s megabyte</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s gigabyte</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s terabyte</string>
+    <string name="help_config_voices_content_ios">Soundscape può usare qualsiasi voce che hai scaricato nell'app Impostazioni di iOS, ad eccezione delle voci Siri che non sono disponibili per Soundscape. Ti consigliamo di scegliere una delle voci *Enhanced*, poiché hanno una qualità vocale molto più elevata; per farlo dovrai prima scaricare una voce enhanced. Puoi scaricare le voci nell'app Impostazioni di iOS andando su Accessibilità &gt; Contenuti parlati &gt; Voci e toccando una voce. Nell'app Soundscape puoi selezionare la voce da usare andando su Impostazioni dal menu principale e poi selezionando *Voci*.</string>
+    <string name="settings_mix_audio">Mescola l'audio con altre app</string>
+    <string name="settings_mix_audio_description">Se disattivato, le altre app audio verranno messe in pausa e saranno disponibili i controlli multimediali nella schermata di blocco</string>
+    <string name="settings_head_tracking">Abilitare il tracciamento della testa</string>
+    <string name="settings_head_tracking_description">Posiziona l'audio spaziale in base alla direzione della tua testa, utilizzando i dati di movimento provenienti da AirPods compatibili, Bose Frames o da un IMU Bluetooth esterno. Si calibra automaticamente mentre cammini.</string>
 </resources>
