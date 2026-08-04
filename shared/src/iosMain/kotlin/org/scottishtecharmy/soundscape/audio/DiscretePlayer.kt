@@ -30,23 +30,27 @@ class DiscretePlayer(
                 return false
             }
 
-        val url = NSURL.fileURLWithPath(path)
-        val audioFile = AVAudioFile(forReading = url, error = null)
-            ?: run {
-                println("DiscretePlayer: Failed to load audio file: $assetName")
-                return false
-            }
+        // AVAudioFile/AVAudioPCMBuffer's failable ObjC initializers are bridged to Kotlin
+        // constructors, which can't return null on failure like the ObjC init can — Kotlin/Native
+        // throws instead. Catch that so a corrupt/unreadable bundled WAV degrades gracefully
+        // (matching the false-return contract below) instead of crashing the app.
+        try {
+            val url = NSURL.fileURLWithPath(path)
+            val audioFile = AVAudioFile(forReading = url, error = null)
 
-        val processingFormat = audioFile.processingFormat
-        val frameCount = audioFile.length().toUInt()
-        val buffer = AVAudioPCMBuffer(pCMFormat = processingFormat, frameCapacity = frameCount)
-            ?: return false
+            val processingFormat = audioFile.processingFormat
+            val frameCount = audioFile.length().toUInt()
+            val buffer = AVAudioPCMBuffer(pCMFormat = processingFormat, frameCapacity = frameCount)
 
-        audioFile.readIntoBuffer(buffer, error = null)
+            audioFile.readIntoBuffer(buffer, error = null)
 
-        layer.format = processingFormat
-        earconBuffer = buffer
-        return true
+            layer.format = processingFormat
+            earconBuffer = buffer
+            return true
+        } catch (e: Exception) {
+            println("DiscretePlayer: Failed to load audio file: $assetName (${e.message})")
+            return false
+        }
     }
 
     /**

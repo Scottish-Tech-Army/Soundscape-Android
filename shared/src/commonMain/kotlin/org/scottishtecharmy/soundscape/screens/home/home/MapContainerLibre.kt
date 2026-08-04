@@ -104,6 +104,11 @@ fun FullScreenMapFab(
  * stream on Android, and without this, MotionEvents get dropped/misrouted between them, making
  * pinch-to-zoom on the map unreliable.
  */
+// The Kotlin/Native backend doesn't propagate maplibre-compose's @MaplibreComposable
+// applier-target metadata across the klib boundary the way the JVM backend does, so
+// this correctly-nested MaplibreMap/FillLayer/LineLayer/SymbolLayer usage spuriously
+// trips the applier check under iosArm64/iosSimulatorArm64 only.
+@Suppress("COMPOSE_APPLIER_CALL_MISMATCH")
 @Composable
 fun MapContainerLibre(
     mapCenter: LngLatAlt,
