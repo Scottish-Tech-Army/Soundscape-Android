@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Skemmd - eyða og hlaða niður aftur</string>
     <string name="offline_map_details_update">Uppfæra ónettengt kort</string>
     <string name="menu_exit_app">Loka Soundscape</string>
+    <string name="talkback_double_tap_prefix">Tvíbankaðu til að</string>
+    <string name="talkback_default_activate">virkja</string>
+    <string name="distance_format_km_a11y">%1$s kílómetrar</string>
+    <string name="number_decimal_separator">,</string>
+    <string name="number_decimal_separator_a11y">komma</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s bæti</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s kílóbæti</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s megabæti</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s gígabæti</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s terabæti</string>
+    <string name="help_config_voices_content_ios">Soundscape getur notað hvaða raddir sem þú hefur hlaðið niður í iOS‑stillingunum, nema Siri‑raddirnar sem Soundscape hefur ekki aðgang að. Við mælum með að velja eina af *Enhanced* röddunum þar sem þær bjóða upp á mun betri talgervilsgæði, en til þess þarftu fyrst að hlaða niður slífri röddu. Þú getur hlaðið niður raddum í iOS‑stillingunum undir Aðgengi &gt; Talað efni &gt; Raddir og bankað á þá rödd sem þú vilt. Í Soundscape velur þú raddina með því að fara í *Stillingar* úr aðalvalmyndinni og síðan velja *Raddir*.</string>
+    <string name="settings_mix_audio">Blanda hljóði með öðrum forritum</string>
+    <string name="settings_mix_audio_description">Ef þetta er óvirkt munu önnur hljóðforrit stöðvast og fjölmiðlahnappir á læstum skjá verða tiltækar</string>
+    <string name="settings_head_tracking">Virkja höfuðrakningu</string>
+    <string name="settings_head_tracking_description">Staðsettu rúmsnertilegt hljóð miðað við þá átt sem höfuðið snýr í, með því að nota hreyfigögn frá studdum AirPods, Bose Frames eða ytri Bluetooth IMU. Stillist sjálfkrafa meðan þú gengur.</string>
 </resources>
