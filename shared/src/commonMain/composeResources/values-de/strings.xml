@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Beschädigt – löschen und erneut herunterladen</string>
     <string name="offline_map_details_update">Offline-Karte aktualisieren</string>
     <string name="menu_exit_app">Soundscape beenden</string>
+    <string name="talkback_double_tap_prefix">Doppeltippen, um</string>
+    <string name="talkback_default_activate">aktivieren</string>
+    <string name="distance_format_km_a11y">%1$s Kilometer</string>
+    <string name="number_decimal_separator">,</string>
+    <string name="number_decimal_separator_a11y">Komma</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s Bytes</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s Kilobyte</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s Megabyte</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s Gigabyte</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s Terabyte</string>
+    <string name="help_config_voices_content_ios">Soundscape kann jede Stimme verwenden, die Sie in den iOS‑Einstellungen heruntergeladen haben, mit Ausnahme der Siri‑Stimmen, die Soundscape nicht zur Verfügung stehen. Wir empfehlen, eine der *Erweiterten* Stimmen zu wählen, da diese eine deutlich höhere Klangqualität bieten. Um dies zu tun, müssen Sie zunächst eine erweiterte Stimme herunterladen. Stimmen können Sie in den iOS‑Einstellungen herunterladen, indem Sie zu Bedienungshilfen &gt; Gesprochene Inhalte &gt; Stimmen gehen und dort auf eine Stimme tippen. In der Soundscape‑App können Sie die gewünschte Stimme auswählen, indem Sie im Hauptmenü auf *„Einstellungen“* gehen und dort *„Stimmen“* auswählen.</string>
+    <string name="settings_mix_audio">Audio mit anderen Apps mischen</string>
+    <string name="settings_mix_audio_description">Wenn deaktiviert, werden andere Audio‑Apps pausiert und die Mediensteuerung auf dem Sperrbildschirm ist verfügbar.</string>
+    <string name="settings_head_tracking">Head‑Tracking aktivieren</string>
+    <string name="settings_head_tracking_description">Positioniert das räumliche Audio relativ zur Blickrichtung Ihres Kopfes unter Verwendung von Bewegungsdaten unterstützter AirPods, Bose Frames oder eines externen Bluetooth‑IMU. Kalibriert automatisch, während Sie gehen.</string>
 </resources>
