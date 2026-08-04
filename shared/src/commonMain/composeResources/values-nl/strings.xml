@@ -1369,4 +1369,24 @@
     <string name="offline_maps_extract_damaged">Beschadigd - verwijderen en opnieuw downloaden</string>
     <string name="offline_map_details_update">Offline kaart bijwerken</string>
     <string name="menu_exit_app">Soundscape afsluiten</string>
+    <string name="talkback_double_tap_prefix">Dubbel tik om</string>
+    <string name="talkback_default_activate">activeren</string>
+    <string name="distance_format_km_a11y">%1$s kilometer</string>
+    <string name="number_decimal_separator">,</string>
+    <string name="number_decimal_separator_a11y">komma</string>
+    <string name="bytes_format_b">%1$s B</string>
+    <string name="bytes_format_b_a11y">%1$s bytes</string>
+    <string name="bytes_format_kb">%1$s kB</string>
+    <string name="bytes_format_kb_a11y">%1$s kilobytes</string>
+    <string name="bytes_format_mb">%1$s MB</string>
+    <string name="bytes_format_mb_a11y">%1$s megabytes</string>
+    <string name="bytes_format_gb">%1$s GB</string>
+    <string name="bytes_format_gb_a11y">%1$s gigabytes</string>
+    <string name="bytes_format_tb">%1$s TB</string>
+    <string name="bytes_format_tb_a11y">%1$s terabytes</string>
+    <string name="help_config_voices_content_ios">Soundscape kan alle stemmen gebruiken die u in de iOS‑instellingen hebt gedownload, behalve de Siri‑stemmen; die zijn niet beschikbaar voor Soundscape. We raden aan één van de *Enhanced*‑stemmen te kiezen omdat die een duidelijk betere kwaliteit hebben, maar u moet eerst een enhanced‑stem downloaden om die te kunnen gebruiken. U kunt stemmen downloaden in de iOS‑app Instellingen via Toegankelijkheid &gt; Gesproken inhoud &gt; Stemmen en tik vervolgens op een stem. Binnen de Soundscape‑app kiest u een stem via *Instellingen* in het hoofdmenu en vervolgens *Stemmen*.</string>
+    <string name="settings_mix_audio">Audio met andere apps mixen</string>
+    <string name="settings_mix_audio_description">Wanneer uitgeschakeld, worden andere audio‑apps gepauzeerd en zijn de mediacontroles op het vergrendelscherm beschikbaar</string>
+    <string name="settings_head_tracking">Hoofdtracking inschakelen</string>
+    <string name="settings_head_tracking_description">Plaats ruimtelijke audio ten opzichte van de richting waarin uw hoofd is gericht, met behulp van bewegingsgegevens van ondersteunde AirPods, Bose Frames of een externe Bluetooth‑IMU. Kalibreert automatisch terwijl u loopt.</string>
 </resources>
