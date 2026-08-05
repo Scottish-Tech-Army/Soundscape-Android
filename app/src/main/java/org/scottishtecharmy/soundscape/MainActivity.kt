@@ -332,7 +332,14 @@ class MainActivity : AppCompatActivity() {
                 val minDelayPassed = (System.currentTimeMillis() - timeNow) > attributionDelay
                 if (!contentLaunched && minDelayPassed && splashSoundFinished) {
                     contentLaunched = true
-                    continueLaunch(isFirstLaunch)
+                    // This runs off a Handler.postDelayed() callback, which can fire after the
+                    // activity has been destroyed (e.g. the !isTaskRoot branch below calls
+                    // finish() from onCreate, after these callbacks are already scheduled).
+                    // continueLaunch() can reach ActivityResultLauncher.launch() further down the
+                    // chain, which throws if the launcher was unregistered on ON_DESTROY.
+                    if (!isFinishing && !isDestroyed) {
+                        continueLaunch(isFirstLaunch)
+                    }
                 }
             }
             // Open the splash gate and nudge a redraw so setKeepOnScreenCondition below
