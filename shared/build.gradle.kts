@@ -69,11 +69,8 @@ kotlin {
         }
         androidMain {
             dependencies {
-                implementation(project.dependencies.platform(libs.androidx.compose.bom))
                 implementation(libs.jts.core)
                 implementation(libs.ktor.client.okhttp)
-                implementation(libs.ui.tooling.preview)
-                implementation(libs.ui.tooling)
             }
             // Reuse shared resources for the Android target so JSON data files live
             // in a single canonical location consumed by both platforms.
