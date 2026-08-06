@@ -356,6 +356,18 @@
     <string name="directions_my_location">My Location</string>
     <!-- Notification announced to the user that they are near a location, %s is a physical address or the name of a place, examples: "Near 123 Columbia Street", "Near Starbucks" -->
     <string name="directions_near_name">Near %1$s</string>
+    <!-- An unnamed transit stop (e.g. "Bus Stop") with a nearby small settlement added for context while travelling by vehicle, %1$s is the generic stop description, %2$s is the settlement name, example: "Bus Stop, Kingsbarns" -->
+    <string name="directions_transit_stop_near_settlement">%1$s, %2$s</string>
+    <!-- An unnamed transit stop (e.g. "Bus Stop") with a nearby landmark added for context while travelling by vehicle, %1$s is the generic stop description, %2$s is the landmark name, example: "Bus Stop near Craigtoun Country Park" -->
+    <string name="directions_transit_stop_near_poi">%1$s near %2$s</string>
+    <!-- A NaPTAN-imported bus stop's name reformatted from "Locality, Street (Indicator)" to "Street, Locality", %1$s is the street, %2$s is the locality, example: "Lynn Drive, Milngavie" -->
+    <string name="directions_transit_stop_street_locality">%1$s, %2$s</string>
+    <!-- Same as directions_transit_stop_street_locality but with the stop's direction of travel added, %1$s is the street, %2$s is the locality, %3$s is the direction, example: "Lynn Drive, Milngavie Westbound" -->
+    <string name="directions_transit_stop_street_locality_bound">%1$s, %2$s %3$s</string>
+    <!-- A NaPTAN-imported bus stop's CommonName with its direction of travel added but no locality (naptanLocalityName wasn't available for this stop), %1$s is the CommonName, %2$s is the direction, example: "Lynn Drive Westbound" -->
+    <string name="directions_transit_stop_common_name_bound">%1$s %2$s</string>
+    <!-- A transit stop's callout with a nearby NaPTAN landmark added, %1$s is the stop's own callout text, %2$s is the landmark, example: "Main Street, Milngavie Northeastbound Bus Stop for Marks & Spencer" -->
+    <string name="directions_transit_stop_with_landmark">%1$s for %2$s</string>
     <!-- Notification, %s street name, "<Pike Street>, goes left -->
     <string name="directions_name_goes_left">%1$s, goes left</string>
     <!-- Notification, %s street name, "<Pike Street>, goes right -->
@@ -526,6 +538,22 @@
     <string name="directions_cardinal_west_abb">W</string>
     <!-- Direction, Abbreviation for North West -->
     <string name="directions_cardinal_north_west_abb">NW</string>
+    <!-- Direction of travel served by a transit stop, e.g. a bus stop's NaPTAN bearing - "Northbound" -->
+    <string name="directions_cardinal_north_bound">Northbound</string>
+    <!-- Direction of travel served by a transit stop - "Northeastbound" -->
+    <string name="directions_cardinal_north_east_bound">Northeastbound</string>
+    <!-- Direction of travel served by a transit stop - "Eastbound" -->
+    <string name="directions_cardinal_east_bound">Eastbound</string>
+    <!-- Direction of travel served by a transit stop - "Southeastbound" -->
+    <string name="directions_cardinal_south_east_bound">Southeastbound</string>
+    <!-- Direction of travel served by a transit stop - "Southbound" -->
+    <string name="directions_cardinal_south_bound">Southbound</string>
+    <!-- Direction of travel served by a transit stop - "Southwestbound" -->
+    <string name="directions_cardinal_south_west_bound">Southwestbound</string>
+    <!-- Direction of travel served by a transit stop - "Westbound" -->
+    <string name="directions_cardinal_west_bound">Westbound</string>
+    <!-- Direction of travel served by a transit stop - "Northwestbound" -->
+    <string name="directions_cardinal_north_west_bound">Northwestbound</string>
     <!-- Standing still with no direction. %s is a road name -->
     <string name="stationary_on_way">Stationary on %1$s</string>
     <!-- Preserve meters unit - Do not convert but can translate. Distance string, plural. %s is a plural number, "15 meters" -->
