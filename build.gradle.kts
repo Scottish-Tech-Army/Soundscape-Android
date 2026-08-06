@@ -14,3 +14,11 @@ plugins {
     alias(libs.plugins.jetbrains.compose) apply false
     alias(libs.plugins.jaredsburrows.license) apply false
 }
+
+buildscript {
+    configurations.classpath {
+        resolutionStrategy {
+            force("org.jetbrains.kotlin:kotlin-daemon-client:2.3.10")
+        }
+    }
+}
