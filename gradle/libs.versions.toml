@@ -1,5 +1,5 @@
 [versions]
-agp = "9.1.0" # 9.3.1 is out but untested against this project - just hasn't been picked up yet
+agp = "9.3.0" # 9.3.1 is out but untested against this project - just hasn't been picked up yet
 commonmark = "0.29.0"
 intellijMarkdown = "0.7.8"
 json = "20260719"
