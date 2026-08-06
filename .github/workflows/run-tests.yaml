@@ -340,6 +340,8 @@ jobs:
       - name: Maestro Tests
         id: maestro-tests
         continue-on-error: true
+        env:
+          MAESTRO_DRIVER_STARTUP_TIMEOUT: ${{ vars.MAESTRO_DRIVER_STARTUP_TIMEOUT }}
         run: |
           # Onboarding uses "launchApp: clearState: true", which on iOS wipes
           # the app sandbox - so we must run Onboarding FIRST and only then
