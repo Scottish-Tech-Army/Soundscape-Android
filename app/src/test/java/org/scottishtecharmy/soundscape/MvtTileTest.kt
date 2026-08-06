@@ -355,6 +355,107 @@ class MvtTileTest {
     }
 
     /**
+     * `naptanLocalityName` isn't populated for every stop (e.g. missing for central Glasgow
+     * stops in practice) - when it's absent, the locality is simply left out of the description
+     * (CommonName and direction only) rather than falling back to anything parsed from `name`.
+     */
+    @Test
+    fun testNaptanBusStopOmitsMissingLocalityName() {
+        val location = LngLatAlt(-4.25, 55.87)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val stops = gridState.getFeatureTree(TreeId.TRANSIT_STOPS).getAllCollection().features
+            .filterIsInstance<MvtFeature>()
+
+        val stance2 = stops.find { it.name == "Buchanan Bus Station (Stance 2)" }
+        assertNotNull("Expected the Buchanan Bus Station Stance 2 stop", stance2)
+        assertNull(
+            "Expected this stop to have no naptanLocalityName",
+            stance2!!.properties?.get("naptanLocalityName")
+        )
+        assertEquals("Buchanan Bus Station", stance2.properties?.get("naptanCommonName"))
+        assertEquals("N", stance2.properties?.get("naptanBearing"))
+        assertEquals(
+            "Buchanan Bus Station Northbound Bus Stop",
+            stance2.getText(null).text
+        )
+    }
+
+    /**
+     * NaPTAN-imported bus stops carry a `name` assembled by the importer as "Locality,
+     * CommonName (Indicator)", e.g. "Milngavie, Lynn Drive (after)" - confusing read aloud, since
+     * the indicator describes the stop's position relative to a landmark, not a useful direction.
+     * MvtFeature.getText reformats this to "CommonName, Locality Directionbound" using the
+     * separate naptanCommonName/naptanBearing tags - see formatNaptanBusStopName.
+     */
+    @Test
+    fun testNaptanBusStopNameFormatting() {
+        val location = LngLatAlt(-4.3051871, 55.9463332)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val stops = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
+            .getNearestCollection(location, 100.0, 5, gridState.ruler).features
+            .filterIsInstance<MvtFeature>()
+
+        val lynnDrive = stops.find { it.name == "Milngavie, Lynn Drive (after)" }
+        assertNotNull("Expected the Lynn Drive stop", lynnDrive)
+        assertEquals("W", lynnDrive!!.properties?.get("naptanBearing"))
+        assertEquals(
+            "Lynn Drive, Milngavie Westbound Bus Stop",
+            lynnDrive.getText(null).text
+        )
+
+        val roseleaDrive = stops.find { it.name == "Milngavie, Roselea Drive (before)" }
+        assertNotNull("Expected the Roselea Drive stop", roseleaDrive)
+        assertEquals("E", roseleaDrive!!.properties?.get("naptanBearing"))
+        assertEquals(
+            "Roselea Drive, Milngavie Eastbound Bus Stop",
+            roseleaDrive.getText(null).text
+        )
+    }
+
+    /**
+     * NaPTAN's optional Landmark field names a notable nearby feature (e.g. a shop) the stop is
+     * positioned near - worth appending when it adds real information, e.g.
+     * "...Bus Stop for Marks & Spencer".
+     */
+    @Test
+    fun testNaptanBusStopLandmarkSuffix() {
+        val location = LngLatAlt(-4.3175268, 55.9397535)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val stops = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
+            .getNearestCollection(location, 100.0, 5, gridState.ruler).features
+            .filterIsInstance<MvtFeature>()
+
+        val mainStreet = stops.find { it.name == "Milngavie, Main Street (after)" }
+        assertNotNull("Expected the Main Street stop", mainStreet)
+        assertEquals("Marks & Spencer", mainStreet!!.properties?.get("naptanLandmark"))
+        assertEquals(
+            "Main Street, Milngavie Northeastbound Bus Stop for Marks & Spencer",
+            mainStreet.getText(null).text
+        )
+    }
+
+    /**
+     * `naptanLandmark` is very often just a copy of `naptanCommonName` (the identifying name
+     * already spoken) - appending it in that case would be pure noise, so it should be
+     * suppressed rather than producing something like "Ashfield Road ... for Ashfield Road".
+     */
+    @Test
+    fun testNaptanBusStopRedundantLandmarkSuppressed() {
+        val location = LngLatAlt(-4.3051871, 55.9463332)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val stops = gridState.getFeatureTree(TreeId.TRANSIT_STOPS).getAllCollection().features
+            .filterIsInstance<MvtFeature>()
+
+        val ashfieldRoad = stops.find { it.name == "Milngavie, Ashfield Road (before)" }
+        assertNotNull("Expected the Ashfield Road stop", ashfieldRoad)
+        assertEquals("Ashfield Road", ashfieldRoad!!.properties?.get("naptanLandmark"))
+        assertEquals(
+            "Ashfield Road, Milngavie Southeastbound Bus Stop",
+            ashfieldRoad.getText(null).text
+        )
+    }
+
+    /**
      * The Firth of Forth is a tidal inlet, tagged `natural=bay`/`natural=strait` in OSM rather
      * than as a `waterway` river/canal line, so extractCrossings never sees it and no Way gets a
      * crossing_* property for it at parse time (unlike testWaterwayCrossingParsing above). The
@@ -419,6 +520,56 @@ class MvtTileTest {
             "Expected a Firth of Forth crossing callout, got: " +
                 "${secondCallout!!.positionedStrings.map { it.text }}",
             secondCallout.positionedStrings.any { it.text.contains("Firth of Forth") }
+        )
+    }
+
+    /**
+     * An unnamed bus/tram/train stop's callout while travelling by car/bus is just its generic
+     * class ("Bus Stop") - unhelpful on its own, unlike walking mode where the stop is the
+     * destination. See AutoCallout.enrichUnnamedTransitStopText, which adds a nearby small
+     * settlement for context. This exercises it end-to-end against a real unnamed stop (the one
+     * originally reported: 56.2570679,-3.3503621, on StAndrews.gpx).
+     */
+    @Test
+    fun testVehicleTransitStopCalloutAddsSettlementContext() {
+        val location = LngLatAlt(-3.3503621, 56.2570679)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val stop = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
+            .getNearestFeature(location, gridState.ruler, 50.0) as? MvtFeature
+        assertNotNull("Expected a transit stop near the given location", stop)
+        assertNull("Expected this stop to be unnamed for the test to be meaningful", stop!!.name)
+        val stopLocation = (stop.geometry as Point).coordinates
+
+        val road = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+            .getNearestFeature(stopLocation, gridState.ruler, 30.0) as? Way
+        assertNotNull("Expected a road near the stop", road)
+        val roadCoordinates = (road!!.geometry as LineString).coordinates
+        assertTrue("Expected the road to have at least two points", roadCoordinates.size >= 2)
+
+        val autoCallout = AutoCallout(null, null)
+
+        // First update just establishes the sweep anchor - no callout expected yet.
+        val firstUpdate = UserGeometry(
+            location = roadCoordinates.first(), speed = 15.0, mapMatchedWay = road,
+            timestampMilliseconds = 1000L
+        )
+        autoCallout.updateLocation(firstUpdate, gridState, settlementGrid)
+
+        // Second update sweeps along the rest of the road, past the stop.
+        val secondUpdate = UserGeometry(
+            location = roadCoordinates.last(), speed = 15.0, mapMatchedWay = road,
+            timestampMilliseconds = 6000L
+        )
+        val secondCallout = autoCallout.updateLocation(secondUpdate, gridState, settlementGrid)
+        assertNotNull("Expected a transit stop callout", secondCallout)
+        assertTrue(
+            "Expected the callout to include both the generic stop text and settlement " +
+                "context, got: ${secondCallout!!.positionedStrings.map { it.text }}",
+            secondCallout.positionedStrings.any {
+                it.text.contains("Bus Stop") && it.text.contains(", ")
+            }
         )
     }
 

@@ -219,7 +219,7 @@ class AutoCallout(
             userGeometry.location, gridState.ruler, vehicleLandmarkPassingDistanceMetres
         ) as? MvtFeature ?: return null
 
-        val name = getTextForFeature(localized, nearestLandmark)
+        val name = nearestLandmark.getText(localized)
         if (name.generic || name.text.isEmpty()) {
             // Not worth calling out a large POI with no real name.
             return null
@@ -266,7 +266,8 @@ class AutoCallout(
      */
     private fun buildCalloutForVehicleTransitStop(
         userGeometry: UserGeometry,
-        gridState: GridState
+        gridState: GridState,
+        settlementGrid: GridState
     ): TrackedCallout? {
         // Also covers a brief stop (red light, station dwell) via recentlyInVehicle, so the sweep
         // anchor isn't lost (and a stop right at that moment isn't missed) - only reset once
@@ -301,7 +302,7 @@ class AutoCallout(
         val candidate = nearbyStops.features
             .mapNotNull { feature ->
                 val mvtFeature = feature as? MvtFeature ?: return@mapNotNull null
-                val text = getTextForFeature(localized, mvtFeature)
+                val text = mvtFeature.getText(localized)
                 if (text.generic) return@mapNotNull null
                 if (drivingSide != null) {
                     val stopLocation = (mvtFeature.geometry as? Point)?.coordinates
@@ -324,14 +325,19 @@ class AutoCallout(
 
         val (stopFeature, stopText) = candidate
         val nearestPoint = getDistanceToFeature(userGeometry.location, stopFeature, userGeometry.ruler)
+        val calloutText = if (stopFeature.name == null) {
+            enrichUnnamedTransitStopText(stopText.text, nearestPoint.point, gridState, settlementGrid)
+        } else {
+            stopText.text
+        }
         val callout = TrackedCallout(
             userGeometry,
-            trackedText = stopText.text,
+            trackedText = calloutText,
             location = nearestPoint.point,
             positionedStrings = listOf(
                 PositionedString(
-                    text = localized?.get(StringKey.DirectionsNearName, stopText.text)
-                        ?: "Near ${stopText.text}",
+                    text = localized?.get(StringKey.DirectionsNearName, calloutText)
+                        ?: "Near $calloutText",
                     location = nearestPoint.point,
                     type = AudioType.LOCALIZED
                 )
@@ -348,6 +354,42 @@ class AutoCallout(
         vehicleTransitStopCalloutHistory.add(callout)
         notableVehicleEventTracker.recordEvent(userGeometry.timestampMilliseconds)
         return callout
+    }
+
+    /**
+     * An unnamed transit stop's text is just its generic class ("Bus Stop", "Tram Stop"...) -
+     * indistinguishable from every other unnamed stop along a route while driving past dozens of
+     * them at speed. Unlike walking mode, where the stop itself is the destination and needs no
+     * further context, this adds whatever's available: a small nearby settlement (hamlet/village
+     * only - a town/city is usually already obvious from the surrounding road-sense callouts, so
+     * isn't repeated here), or failing that a notable nearby landmark.
+     */
+    private fun enrichUnnamedTransitStopText(
+        genericText: String,
+        location: LngLatAlt,
+        gridState: GridState,
+        settlementGrid: GridState
+    ): String {
+        val settlement = (
+            settlementGrid.getFeatureTree(TreeId.SETTLEMENT_HAMLET)
+                .getNearestFeature(location, settlementGrid.ruler, 1000.0) as? MvtFeature
+            ) ?: (
+            settlementGrid.getFeatureTree(TreeId.SETTLEMENT_VILLAGE)
+                .getNearestFeature(location, settlementGrid.ruler, 2000.0) as? MvtFeature
+            )
+        settlement?.name?.let { settlementName ->
+            return localized?.get(StringKey.DirectionsTransitStopNearSettlement, genericText, settlementName)
+                ?: "$genericText, $settlementName"
+        }
+
+        val landmark = gridState.getFeatureTree(TreeId.LANDMARK_POIS)
+            .getNearestFeature(location, gridState.ruler, 300.0) as? MvtFeature
+        landmark?.name?.let { landmarkName ->
+            return localized?.get(StringKey.DirectionsTransitStopNearPoi, genericText, landmarkName)
+                ?: "$genericText near $landmarkName"
+        }
+
+        return genericText
     }
 
     // How far from a bridge's current location to look for a named water polygon (see
@@ -709,7 +751,7 @@ class AutoCallout(
                     val vehicleLandmarkCallout =
                         buildCalloutForVehicleLandmark(userGeometry, gridState)
                     val vehicleTransitStopCallout =
-                        buildCalloutForVehicleTransitStop(userGeometry, gridState)
+                        buildCalloutForVehicleTransitStop(userGeometry, gridState, settlementGrid)
                     val vehicleWaterwayCrossingCallout =
                         buildCalloutForVehicleCrossing(userGeometry, gridState)
                     // Always run alongside its vehicle equivalent above (rather than only in the

@@ -58,6 +58,18 @@ import org.scottishtecharmy.soundscape.resources.directions_cardinal_south
 import org.scottishtecharmy.soundscape.resources.directions_cardinal_south_east
 import org.scottishtecharmy.soundscape.resources.directions_cardinal_south_west
 import org.scottishtecharmy.soundscape.resources.directions_cardinal_west
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_north_bound
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_north_east_bound
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_east_bound
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_south_east_bound
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_south_bound
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_south_west_bound
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_west_bound
+import org.scottishtecharmy.soundscape.resources.directions_cardinal_north_west_bound
+import org.scottishtecharmy.soundscape.resources.directions_transit_stop_street_locality
+import org.scottishtecharmy.soundscape.resources.directions_transit_stop_street_locality_bound
+import org.scottishtecharmy.soundscape.resources.directions_transit_stop_common_name_bound
+import org.scottishtecharmy.soundscape.resources.directions_transit_stop_with_landmark
 import org.scottishtecharmy.soundscape.resources.directions_direction_ahead
 import org.scottishtecharmy.soundscape.resources.directions_facing_e
 import org.scottishtecharmy.soundscape.resources.directions_facing_n
@@ -87,6 +99,8 @@ import org.scottishtecharmy.soundscape.resources.directions_name_goes_left
 import org.scottishtecharmy.soundscape.resources.directions_name_goes_right
 import org.scottishtecharmy.soundscape.resources.directions_near_name
 import org.scottishtecharmy.soundscape.resources.directions_near_road_and_settlement
+import org.scottishtecharmy.soundscape.resources.directions_transit_stop_near_settlement
+import org.scottishtecharmy.soundscape.resources.directions_transit_stop_near_poi
 import org.scottishtecharmy.soundscape.resources.directions_on_road
 import org.scottishtecharmy.soundscape.resources.directions_on_road_and_settlement
 import org.scottishtecharmy.soundscape.resources.directions_on_road_and_settlement_since
@@ -209,6 +223,14 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.DirectionsCardinalSouthWest -> Res.string.directions_cardinal_south_west
         StringKey.DirectionsCardinalWest -> Res.string.directions_cardinal_west
         StringKey.DirectionsCardinalNorthWest -> Res.string.directions_cardinal_north_west
+        StringKey.DirectionsCardinalNorthBound -> Res.string.directions_cardinal_north_bound
+        StringKey.DirectionsCardinalNorthEastBound -> Res.string.directions_cardinal_north_east_bound
+        StringKey.DirectionsCardinalEastBound -> Res.string.directions_cardinal_east_bound
+        StringKey.DirectionsCardinalSouthEastBound -> Res.string.directions_cardinal_south_east_bound
+        StringKey.DirectionsCardinalSouthBound -> Res.string.directions_cardinal_south_bound
+        StringKey.DirectionsCardinalSouthWestBound -> Res.string.directions_cardinal_south_west_bound
+        StringKey.DirectionsCardinalWestBound -> Res.string.directions_cardinal_west_bound
+        StringKey.DirectionsCardinalNorthWestBound -> Res.string.directions_cardinal_north_west_bound
         StringKey.MarkersMarkerWithName -> Res.string.markers_marker_with_name
         StringKey.MarkersGenericName -> Res.string.markers_generic_name
         StringKey.OsmBusStopNamed -> Res.string.osm_bus_stop_named
@@ -227,6 +249,12 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.OsmEntranceWithDestination -> Res.string.osm_entrance_with_destination
         StringKey.DirectionsNearName -> Res.string.directions_near_name
         StringKey.DirectionsNearRoadAndSettlement -> Res.string.directions_near_road_and_settlement
+        StringKey.DirectionsTransitStopNearSettlement -> Res.string.directions_transit_stop_near_settlement
+        StringKey.DirectionsTransitStopNearPoi -> Res.string.directions_transit_stop_near_poi
+        StringKey.DirectionsTransitStopStreetLocality -> Res.string.directions_transit_stop_street_locality
+        StringKey.DirectionsTransitStopStreetLocalityBound -> Res.string.directions_transit_stop_street_locality_bound
+        StringKey.DirectionsTransitStopCommonNameBound -> Res.string.directions_transit_stop_common_name_bound
+        StringKey.DirectionsTransitStopWithLandmark -> Res.string.directions_transit_stop_with_landmark
         StringKey.DirectionsJunctionWithRef -> Res.string.directions_junction_with_ref
         StringKey.DirectionsJunctionWithRefAndName -> Res.string.directions_junction_with_ref_and_name
         StringKey.DirectionsOnRoad -> Res.string.directions_on_road
