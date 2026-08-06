@@ -88,7 +88,7 @@ jobs:
         continue-on-error: true # IMPORTANT: allow pipeline to continue to Android Test Report step
         with:
           api-level: 35
-          target: default
+          target: google_apis
           arch: x86_64
           script: |
             adb root
