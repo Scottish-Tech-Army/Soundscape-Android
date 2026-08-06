@@ -350,6 +350,12 @@ class AutoCallout(
         return callout
     }
 
+    // How far from a bridge's current location to look for a named water polygon (see
+    // TreeId.NAMED_WATER_POLYGONS) that isn't literally containing it - digitisation of the
+    // bridge deck and the water polygon's coastline are independent, so they don't always overlap
+    // exactly, especially where a coastline is heavily simplified at max zoom.
+    private val waterCrossingSearchDistanceMetres = 50.0
+
     /**
      * Announces a river/canal or railway crossing while travelling by car/bus - these are major
      * navigation points ("Crossing Allander Water", "Crossing the railway") worth calling out on
@@ -361,7 +367,7 @@ class AutoCallout(
      * pieces of the same bridge/tunnel never re-fires; leaving and later returning to the same
      * crossing does re-fire, which is the desired behaviour.
      */
-    private fun buildCalloutForVehicleCrossing(userGeometry: UserGeometry): TrackedCallout? {
+    private fun buildCalloutForVehicleCrossing(userGeometry: UserGeometry, gridState: GridState): TrackedCallout? {
         if (!userGeometry.inVehicle() && !recentlyInVehicle(userGeometry)) {
             lastVehicleCrossingWayOsmId = null
             return null
@@ -377,7 +383,7 @@ class AutoCallout(
             return null
         }
 
-        val crossing = wayCrossingInfo(matchedWay) ?: return null
+        val crossing = wayCrossingInfo(matchedWay, gridState, userGeometry.location) ?: return null
         val text = crossingCalloutText(crossing)
         val callout = TrackedCallout(
             userGeometry,
@@ -406,13 +412,31 @@ class AutoCallout(
      * railway, if any. An unnamed waterway crossing isn't worth announcing - there's nothing
      * useful to say beyond "Crossing" nothing - but an unnamed railway still is, since "Crossing
      * the railway" is meaningful on its own even without a line name.
+     *
+     * extractCrossings only covers named river/canal `waterway` lines - a firth/bay/strait is
+     * tagged `natural=bay`/`natural=strait` in OSM, not as a waterway, so it never gets a
+     * crossing_* property attached at parse time. Rather than trying to compute a specific
+     * crossing point for those at parse time (unreliable - a firth is commonly wider than a
+     * single MVT tile, so a bridge across one can straddle several tiles), fall back to a live
+     * check here instead: if we're on a bridge with no pre-attached crossing info, look for a
+     * named water polygon (see TreeId.NAMED_WATER_POLYGONS) at/near the current location.
      */
-    private fun wayCrossingInfo(way: Way): WayCrossingInfo? {
-        val type = way.properties?.get("crossing_type") as? String ?: return null
-        val name = way.properties?.get("crossing_name") as? String
-        if (type == "waterway" && name.isNullOrEmpty()) return null
-        val brunnel = way.properties?.get("crossing_brunnel") as? String
-        return WayCrossingInfo(type, name, brunnel)
+    private fun wayCrossingInfo(way: Way, gridState: GridState, location: LngLatAlt): WayCrossingInfo? {
+        val type = way.properties?.get("crossing_type") as? String
+        if (type != null) {
+            val name = way.properties?.get("crossing_name") as? String
+            if (type == "waterway" && name.isNullOrEmpty()) return null
+            val brunnel = way.properties?.get("crossing_brunnel") as? String
+            return WayCrossingInfo(type, name, brunnel)
+        }
+
+        if (way.properties?.get("brunnel") != "bridge") return null
+        val waterTree = gridState.getFeatureTree(TreeId.NAMED_WATER_POLYGONS)
+        val containing = waterTree.getContainingPolygons(location).features.firstOrNull()
+        val nearby = containing
+            ?: waterTree.getNearestFeature(location, gridState.ruler, waterCrossingSearchDistanceMetres)
+        val waterName = (nearby as? MvtFeature)?.name ?: return null
+        return WayCrossingInfo("waterway", waterName, "bridge")
     }
 
     /**
@@ -445,7 +469,7 @@ class AutoCallout(
      * mapMatchedWay-based edge-trigger (see its doc comment), since extractCrossings detects a
      * crossing for any highway class (including footway/path), not just vehicle roads.
      */
-    private fun buildCalloutForWalkingCrossing(userGeometry: UserGeometry): TrackedCallout? {
+    private fun buildCalloutForWalkingCrossing(userGeometry: UserGeometry, gridState: GridState): TrackedCallout? {
         if (userGeometry.inVehicle() || recentlyInVehicle(userGeometry)) {
             lastWalkingCrossingWayOsmId = null
             return null
@@ -459,7 +483,7 @@ class AutoCallout(
             return null
         }
 
-        val crossing = wayCrossingInfo(matchedWay) ?: return null
+        val crossing = wayCrossingInfo(matchedWay, gridState, userGeometry.location) ?: return null
         val text = crossingCalloutText(crossing)
         return TrackedCallout(
             userGeometry,
@@ -687,13 +711,13 @@ class AutoCallout(
                     val vehicleTransitStopCallout =
                         buildCalloutForVehicleTransitStop(userGeometry, gridState)
                     val vehicleWaterwayCrossingCallout =
-                        buildCalloutForVehicleCrossing(userGeometry)
+                        buildCalloutForVehicleCrossing(userGeometry, gridState)
                     // Always run alongside its vehicle equivalent above (rather than only in the
                     // pedestrian branch below) so its own tracked Way osmId resets correctly the
                     // moment vehicle travel starts - the same reason buildCalloutForVehicleCrossing
                     // itself needs to run on every update rather than only while driving.
                     val walkingCrossingCallout =
-                        buildCalloutForWalkingCrossing(userGeometry)
+                        buildCalloutForWalkingCrossing(userGeometry, gridState)
                     val vehicleCallouts = listOfNotNull(
                         roadSenseCallout, vehicleLandmarkCallout, vehicleTransitStopCallout,
                         vehicleWaterwayCrossingCallout

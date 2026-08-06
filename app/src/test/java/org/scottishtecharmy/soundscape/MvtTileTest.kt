@@ -355,6 +355,74 @@ class MvtTileTest {
     }
 
     /**
+     * The Firth of Forth is a tidal inlet, tagged `natural=bay`/`natural=strait` in OSM rather
+     * than as a `waterway` river/canal line, so extractCrossings never sees it and no Way gets a
+     * crossing_* property for it at parse time (unlike testWaterwayCrossingParsing above). The
+     * Queensferry Crossing bridge over it is caught instead by AutoCallout's live water-polygon
+     * proximity check (see wayCrossingInfo's fallback) - this exercises that end-to-end via
+     * AutoCallout.updateLocation, using a real bridge Way and real Firth of Forth polygon from
+     * TreeId.NAMED_WATER_POLYGONS rather than fabricated properties.
+     */
+    @Test
+    fun testFirthOfForthCrossingCallout() {
+        val location = LngLatAlt(-3.3903, 55.9903)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val waterTree = gridState.getFeatureTree(TreeId.NAMED_WATER_POLYGONS)
+        val firth = waterTree.getAllCollection().features
+            .find { (it as? MvtFeature)?.name == "Firth of Forth" }
+        assertNotNull("Expected a Firth of Forth water polygon near Queensferry Crossing", firth)
+
+        val allWays = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection().features
+            .filterIsInstance<Way>()
+
+        var bridgeWay: Way? = null
+        var crossingPoint: LngLatAlt? = null
+        for (way in allWays) {
+            if (way.properties?.get("brunnel") != "bridge") continue
+            val coordinate = (way.geometry as? LineString)?.coordinates
+                ?.firstOrNull { waterTree.getContainingPolygons(it).features.isNotEmpty() }
+            if (coordinate != null) {
+                bridgeWay = way
+                crossingPoint = coordinate
+                break
+            }
+        }
+        assertNotNull("Expected to find a bridge Way crossing the Firth of Forth", bridgeWay)
+
+        val bridgeCoordinates = (bridgeWay!!.geometry as LineString).coordinates
+        val approachWay = Way().apply {
+            osmId = bridgeWay.osmId - 1
+            name = "Approach"
+            geometry = LineString(bridgeCoordinates.first(), bridgeCoordinates.first())
+        }
+
+        val autoCallout = AutoCallout(null, null)
+
+        // First update establishes the baseline (the approach) - no callout expected yet.
+        val firstUpdate = UserGeometry(
+            location = bridgeCoordinates.first(), speed = 15.0, mapMatchedWay = approachWay,
+            timestampMilliseconds = 1000L
+        )
+        autoCallout.updateLocation(firstUpdate, gridState, settlementGrid)
+
+        // Second update: mapMatchedWay transitions onto the bridge - this is the edge that should
+        // fire the callout.
+        val secondUpdate = UserGeometry(
+            location = crossingPoint!!, speed = 15.0, mapMatchedWay = bridgeWay,
+            timestampMilliseconds = 6000L
+        )
+        val secondCallout = autoCallout.updateLocation(secondUpdate, gridState, settlementGrid)
+        assertNotNull(secondCallout)
+        assertTrue(
+            "Expected a Firth of Forth crossing callout, got: " +
+                "${secondCallout!!.positionedStrings.map { it.text }}",
+            secondCallout.positionedStrings.any { it.text.contains("Firth of Forth") }
+        )
+    }
+
+    /**
      * The A82 crosses the West Highland railway line near Renton via a real bridge - unlike a
      * waterway, a railway is never split/tagged at the crossing point itself, so this needs the
      * geometric road/rail intersection strategy in extractCrossings, found via a real GPX replay

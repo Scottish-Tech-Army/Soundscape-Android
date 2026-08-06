@@ -98,6 +98,62 @@ private fun extractHighwayJunctions(
     return junctions
 }
 
+/**
+ * The `water` layer's named polygons - the pmtiles pipeline now passes every water polygon's OSM
+ * `name` through (previously only the separate `water_name` layer carried names). This is what
+ * makes a firth/bay/strait crossing detectable at all: OSM tags those as `natural=bay`/
+ * `natural=strait`, not as a `waterway` line, so extractCrossings' river/canal-only logic never
+ * sees them - see AutoCallout's water-crossing proximity check, which searches this collection
+ * for a containing/nearby named polygon while travelling on a `brunnel=bridge` way, instead of
+ * trying to compute a specific crossing point (unreliable for a body wider than an MVT tile -
+ * see the comment on TreeId.NAMED_WATER_POLYGONS).
+ */
+private fun extractNamedWaterPolygons(
+    mvt: Tile,
+    tileX: Int,
+    tileY: Int,
+    tileZoom: Int
+): List<MvtFeature> {
+    val polygons = mutableListOf<MvtFeature>()
+    for (layer in mvt.layers) {
+        if (layer.name != "water") continue
+        for (feature in layer.features) {
+            if (feature.type != Tile.GeomType.POLYGON) continue
+
+            var firstInPair = true
+            var key = ""
+            var name: String? = null
+            for (tag in feature.tags) {
+                if (firstInPair) {
+                    key = layer.keys[tag]
+                } else if (key == "name") {
+                    name = layer.values[tag].string_value
+                }
+                firstInPair = !firstInPair
+            }
+            if (name.isNullOrEmpty()) continue
+
+            var lastClockwisePolygon: Polygon? = null
+            for (ring in parseGeometry(false, feature.geometry)) {
+                if (ring.isEmpty()) continue
+                if (areCoordinatesClockwise(ring)) {
+                    lastClockwisePolygon = Polygon(convertGeometry(tileX, tileY, tileZoom, ring))
+                    val waterFeature = MvtFeature()
+                    waterFeature.geometry = lastClockwisePolygon
+                    waterFeature.osmId = feature.id ?: 0L
+                    waterFeature.name = name
+                    waterFeature.featureType = "water"
+                    waterFeature.featureValue = "named_water_polygon"
+                    polygons.add(waterFeature)
+                } else {
+                    lastClockwisePolygon?.addInteriorRing(convertGeometry(tileX, tileY, tileZoom, ring))
+                }
+            }
+        }
+    }
+    return polygons
+}
+
 // OpenMapTiles waterway `class` values, in roughly descending size/significance: river, canal,
 // stream, drain, ditch. A stream is often little more than a culverted ditch under a road - not
 // really a landmark - so only the two biggest classes are worth a callout. This can't be inferred
@@ -476,6 +532,9 @@ fun vectorTileToGeoJson(
     if (tileZoom >= MIN_MAX_ZOOM_LEVEL) {
         for (junction in extractHighwayJunctions(mvt, tileX, tileY, tileZoom)) {
             collection.addFeature(junction)
+        }
+        for (waterPolygon in extractNamedWaterPolygons(mvt, tileX, tileY, tileZoom)) {
+            collection.addFeature(waterPolygon)
         }
     }
 
