@@ -61,12 +61,12 @@ jobs:
             screen: large
             profile: pixel_6
             locale: en-US
-          - api-level: 36
+          - api-level: 35
             target: google_apis
             screen: small
             profile: small_phone
             locale: en-US
-          - api-level: 36
+          - api-level: 35
             target: google_apis
             screen: large
             profile: pixel_6
