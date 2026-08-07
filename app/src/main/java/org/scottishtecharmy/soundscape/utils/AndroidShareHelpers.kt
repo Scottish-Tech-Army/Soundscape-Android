@@ -11,6 +11,7 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.Locale
 
 fun goToAppSettings(context: Context) {
     val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
@@ -38,7 +39,7 @@ fun shareLocation(context: Context, message: String, locationDescription: Locati
 
 fun shareRoute(context: Context, route: RouteWithMarkers) {
     val routeStorageDir = File("${context.filesDir}/route/").apply { if (!exists()) mkdirs() }
-    val timeStamp = SimpleDateFormat("yyyyMMdd_HHmm").format(Date())
+    val timeStamp = SimpleDateFormat("yyyyMMdd_HHmm", Locale.US).format(Date())
     val safeName = route.route.name.replace(Regex("[/\\\\:*?\"<>|\\x00]"), "_").take(100)
     val outputFile = File(routeStorageDir, "soundscape-route-$safeName-$timeStamp.json")
     outputFile.writeText(routeToShareJson(route))

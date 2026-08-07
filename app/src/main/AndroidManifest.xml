@@ -33,6 +33,7 @@
         android:name=".SoundscapeApplication"
         android:allowBackup="true"
         android:fullBackupContent="@xml/backup_rules"
+        android:dataExtractionRules="@xml/data_extraction_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:localeConfig="@xml/locales_config"
@@ -45,12 +46,16 @@
             android:name=".OnboardingActivity"
             android:exported="false"
             android:theme="@style/Theme.SoundscapeAlpha" />
+        <!-- Portrait lock is intentional: this is an accessibility/screen-reader-focused
+             app, and an unexpected layout change from an in-pocket rotation is disruptive
+             for the target audience. -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="userPortrait"
             android:launchMode="singleTask"
-            android:theme="@style/SplashTheme.Soundscape">
+            android:theme="@style/SplashTheme.Soundscape"
+            tools:ignore="LockedOrientationActivity,DiscouragedApi">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

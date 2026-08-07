@@ -13,6 +13,9 @@ import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
+// Context here is always the DI-supplied application context (Koin's androidContext()),
+// never an Activity, so this doesn't leak.
+@SuppressLint("StaticFieldLeak")
 class AudioOnboardingViewModel(val context: Context, val audioEngine: NativeAudioEngine) :
     ViewModel() {
 
@@ -26,7 +29,6 @@ class AudioOnboardingViewModel(val context: Context, val audioEngine: NativeAudi
     private var currentType = ""
 
     override fun onCleared() {
-        super.onCleared()
         audioEngine.destroy()
     }
 

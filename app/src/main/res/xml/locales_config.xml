@@ -10,6 +10,7 @@
     <locale android:name="fi" /> <!-- Finnish -->
     <locale android:name="fr" /> <!-- French (France) -->
     <locale android:name="fr-CA" /> <!-- French (Canada) -->
+    <locale android:name="hi" /> <!-- Hindi -->
     <locale android:name="is" /> <!-- Icelandic -->
     <locale android:name="it" /> <!-- Italian -->
     <locale android:name="ja" /> <!-- Japanese -->
@@ -18,7 +19,10 @@
     <locale android:name="pl" /> <!-- Polish -->
     <locale android:name="pt" /> <!-- Portuguese (Portugal) -->
     <locale android:name="pt-BR" /> <!-- Portuguese (Brazil) -->
+    <locale android:name="ro" /> <!-- Romanian -->
     <locale android:name="ru" /> <!-- Russian -->
     <locale android:name="sv" /> <!-- Swedish -->
+    <locale android:name="tr" /> <!-- Turkish -->
     <locale android:name="uk" /> <!-- Ukrainian -->
+    <locale android:name="zh" /> <!-- Chinese -->
 </locale-config>
