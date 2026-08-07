@@ -122,7 +122,7 @@ open class GeoJsonObjectMoshiAdapter() : JsonAdapter<GeoJsonObject>() {
 
             -1 -> {
                 if (reader.peek() == JsonReader.Token.NAME) {
-                    reader.nextName()
+                    reader.skipName()
                     reader.readJsonValue()
                 } else {
                     reader.skipValue()

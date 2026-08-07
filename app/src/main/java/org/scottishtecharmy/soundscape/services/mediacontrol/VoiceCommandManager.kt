@@ -519,10 +519,12 @@ class VoiceCommandManager(
             // If BT audio capture is active, pipe our AudioRecord to the recognizer
             // instead of letting it open its own (which wouldn't see the BT mic).
             btPipeReadFd?.let {
-                putExtra(EXTRA_AUDIO_SOURCE, it)
-                putExtra(EXTRA_AUDIO_SOURCE_CHANNEL_COUNT, 1)
-                //putExtra(EXTRA_AUDIO_SOURCE_ENCODING, )
-                putExtra(EXTRA_AUDIO_SOURCE_SAMPLING_RATE, 16000)
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                    putExtra(EXTRA_AUDIO_SOURCE, it)
+                    putExtra(EXTRA_AUDIO_SOURCE_CHANNEL_COUNT, 1)
+                    //putExtra(EXTRA_AUDIO_SOURCE_ENCODING, )
+                    putExtra(EXTRA_AUDIO_SOURCE_SAMPLING_RATE, 16000)
+                }
             } ?: putExtra(EXTRA_PARTIAL_RESULTS, false)
             AnalyticsProvider.getInstance().logEvent("trigger_voice_command", null)
         }

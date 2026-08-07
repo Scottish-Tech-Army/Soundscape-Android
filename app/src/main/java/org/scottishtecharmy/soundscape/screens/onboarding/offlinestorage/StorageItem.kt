@@ -35,7 +35,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
@@ -152,7 +153,11 @@ fun StorageDropDownMenu(
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.surface)
                 .selectableGroup()
-                .heightIn(max = LocalConfiguration.current.screenHeightDp.dp * 0.9f)
+                .heightIn(
+                    max = with(LocalDensity.current) {
+                        LocalWindowInfo.current.containerSize.height.toDp()
+                    } * 0.9f
+                )
         ) {
             storages.forEachIndexed { index, storage ->
                 val isSelected = remember { index == selectedStorageIndex }

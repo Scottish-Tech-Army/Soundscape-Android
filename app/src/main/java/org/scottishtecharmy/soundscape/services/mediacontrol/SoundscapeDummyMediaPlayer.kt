@@ -78,6 +78,8 @@ class SoundscapeDummyMediaPlayer(
             COMMAND_SEEK_TO_PREVIOUS,
             COMMAND_SEEK_BACK,
             COMMAND_SEEK_TO_PREVIOUS_MEDIA_ITEM -> getTarget().onPrevious()
+
+            else -> {}
         }
         return Futures.immediateVoidFuture()
     }

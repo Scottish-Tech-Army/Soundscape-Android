@@ -461,6 +461,10 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     lateinit var sharedPreferences: SharedPreferences
 
     @OptIn(UnstableApi::class)
+    // WakelockTimeout: the lock is held for the service's whole session lifetime (a walking
+    // session can run for hours) and is released in onDestroy(); a timeout would need renewal
+    // logic that risks an audio dropout if it's ever missed.
+    @Suppress("WakelockTimeout")
     override fun onCreate() {
         super.onCreate()
         Log.d(TAG, "onCreate $running")
