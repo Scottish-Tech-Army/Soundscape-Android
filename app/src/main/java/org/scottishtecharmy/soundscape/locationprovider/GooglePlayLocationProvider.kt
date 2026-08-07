@@ -16,7 +16,6 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import org.scottishtecharmy.soundscape.geoengine.filters.KalmanLocationFilter
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import kotlin.time.Duration.Companion.seconds
 
 class GooglePlayLocationProvider(context: Context) :
     LocationProvider() {
@@ -72,23 +71,22 @@ class GooglePlayLocationProvider(context: Context) :
     }
 
     @SuppressLint("MissingPermission")
-    fun start(context: Context) {
+    override fun start(accuracy: Accuracy) {
 
         fusedLocationClient.requestLocationUpdates(
             LocationRequest.Builder(
-                Priority.PRIORITY_HIGH_ACCURACY,
-                LOCATION_UPDATES_INTERVAL_MS
+                when (accuracy) {
+                    Accuracy.Balanced -> Priority.PRIORITY_BALANCED_POWER_ACCURACY
+                    Accuracy.High -> Priority.PRIORITY_HIGH_ACCURACY
+                },
+                accuracy.updateInterval.inWholeMilliseconds
             ).apply {
-                setMinUpdateDistanceMeters(1f)
+                setMinUpdateDistanceMeters(accuracy.minimumDistanceM)
                 setGranularity(Granularity.GRANULARITY_PERMISSION_LEVEL)
                 setWaitForAccurateLocation(true)
             }.build(),
             locationCallback,
             Looper.getMainLooper(),
         )
-    }
-
-    companion object {
-        private val LOCATION_UPDATES_INTERVAL_MS = 1.seconds.inWholeMilliseconds
     }
 }

@@ -407,8 +407,8 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
     private fun startProviders() {
         when (val lp = locationProvider) {
-            is GooglePlayLocationProvider -> lp.start(this)
-            is AndroidLocationProvider -> lp.start(this)
+            is GooglePlayLocationProvider -> lp.start()
+            is AndroidLocationProvider -> lp.start()
             is StaticLocationProvider -> lp.start()
         }
         when (val dp = directionProvider) {

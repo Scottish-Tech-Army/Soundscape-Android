@@ -134,6 +134,13 @@ jobs:
       - name: Setup iOS toolchain
         uses: ./.github/actions/setup-ios-toolchain
 
+      # This runner is a single persistent self-hosted Mac, so a Gradle daemon
+      # left running (or stuck) by a previous job on this machine can get
+      # reused here and blow up project configuration. Kill any daemons
+      # before we start a build of our own.
+      - name: Stop stale Gradle daemons
+        run: ./gradlew --stop
+
       # As with Android, secrets won't be available on fork-triggered PRs.
       # iOS tests that require provider URLs check at runtime, so an empty
       # Local.xcconfig is acceptable.
@@ -228,6 +235,11 @@ jobs:
 
       - name: Setup iOS toolchain
         uses: ./.github/actions/setup-ios-toolchain
+
+      # Same persistent self-hosted Mac as ios-test, so a leftover/stuck
+      # Gradle daemon from a previous job can still be reused here.
+      - name: Stop stale Gradle daemons
+        run: ./gradlew --stop
 
       - name: Setup tile and search providers
         uses: ./.github/actions/write-provider-config
@@ -328,6 +340,8 @@ jobs:
       - name: Maestro Tests
         id: maestro-tests
         continue-on-error: true
+        env:
+          MAESTRO_DRIVER_STARTUP_TIMEOUT: ${{ vars.MAESTRO_DRIVER_STARTUP_TIMEOUT }}
         run: |
           # Onboarding uses "launchApp: clearState: true", which on iOS wipes
           # the app sandbox - so we must run Onboarding FIRST and only then

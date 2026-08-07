@@ -6,7 +6,7 @@ class StaticLocationProvider(private var location: LngLatAlt) : LocationProvider
 
     override fun destroy() {}
 
-    fun start() {
+    override fun start(accuracy: Accuracy) {
         val loc = SoundscapeLocation(
             latitude = location.latitude,
             longitude = location.longitude,

@@ -302,6 +302,7 @@ fun MainViewController() = ComposeUIViewController {
             onGetLanguageMismatch = {
                 org.scottishtecharmy.soundscape.screens.onboarding.language.getLanguageMismatch()
             },
+            provideLocationProvider = { service.iosLocationProvider },
             getOpenSourceLicensesJson = { readResourceText("open_source_licenses.json") },
             // No onResetSettings hook — SharedNavGraph clears the
             // PreferencesProvider and navigates to the onboarding flow when

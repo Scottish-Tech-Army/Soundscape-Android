@@ -16,6 +16,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.intents.IncomingIntent
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
+import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 import org.scottishtecharmy.soundscape.navigation.NavigationStateHolder
 import org.scottishtecharmy.soundscape.navigation.SharedNavHost
@@ -98,6 +99,7 @@ data class AppCallbacks(
     },
     val onSetApplicationLocale: (String?) -> Unit = {},
     val onGetLanguageMismatch: () -> Language? = { null },
+    val provideLocationProvider: (() -> LocationProvider)? = null,
     val getOpenSourceLicensesJson: (() -> String)? = null,
     /**
      * Wipes preferences and immediately restarts the app. When non-null,
