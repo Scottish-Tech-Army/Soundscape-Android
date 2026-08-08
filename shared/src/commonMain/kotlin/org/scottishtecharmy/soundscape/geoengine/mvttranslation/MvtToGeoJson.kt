@@ -114,11 +114,13 @@ private fun extractNamedWaterPolygons(
     tileY: Int,
     tileZoom: Int
 ): List<MvtFeature> {
-    val polygons = mutableListOf<MvtFeature>()
+    val waterFeatures = mutableListOf<MvtFeature>()
     for (layer in mvt.layers) {
         if (layer.name != "water") continue
         for (feature in layer.features) {
-            if (feature.type != Tile.GeomType.POLYGON) continue
+            if (feature.type != Tile.GeomType.POLYGON && feature.type != Tile.GeomType.LINESTRING) {
+                continue
+            }
 
             var firstInPair = true
             var key = ""
@@ -133,6 +135,26 @@ private fun extractNamedWaterPolygons(
             }
             if (name.isNullOrEmpty()) continue
 
+            if (feature.type == Tile.GeomType.LINESTRING) {
+                // A strait/sound (e.g. "Afon Menai / Menai Strait") is sometimes represented as a
+                // named centerline rather than a polygon - the crossing check in AutoCallout's
+                // wayCrossingInfo falls back to nearest-feature search for exactly this case, so a
+                // LineString works there just as well as a polygon.
+                for (line in parseGeometry(true, feature.geometry)) {
+                    if (line.isEmpty()) continue
+                    val coordinates = convertGeometry(tileX, tileY, tileZoom, line)
+                    if (coordinates.size < 2) continue
+                    val waterFeature = MvtFeature()
+                    waterFeature.geometry = LineString(ArrayList(coordinates))
+                    waterFeature.osmId = feature.id ?: 0L
+                    waterFeature.name = name
+                    waterFeature.featureType = "water"
+                    waterFeature.featureValue = "named_water_polygon"
+                    waterFeatures.add(waterFeature)
+                }
+                continue
+            }
+
             var lastClockwisePolygon: Polygon? = null
             for (ring in parseGeometry(false, feature.geometry)) {
                 if (ring.isEmpty()) continue
@@ -144,14 +166,14 @@ private fun extractNamedWaterPolygons(
                     waterFeature.name = name
                     waterFeature.featureType = "water"
                     waterFeature.featureValue = "named_water_polygon"
-                    polygons.add(waterFeature)
+                    waterFeatures.add(waterFeature)
                 } else {
                     lastClockwisePolygon?.addInteriorRing(convertGeometry(tileX, tileY, tileZoom, ring))
                 }
             }
         }
     }
-    return polygons
+    return waterFeatures
 }
 
 // OpenMapTiles waterway `class` values, in roughly descending size/significance: river, canal,
