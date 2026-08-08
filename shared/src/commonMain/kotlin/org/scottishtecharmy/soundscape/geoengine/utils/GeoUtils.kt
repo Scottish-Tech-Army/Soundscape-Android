@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.geoengine.utils
 
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.dto.BoundingBoxCorners
+import org.scottishtecharmy.soundscape.geoengine.UserGeometry.Companion.VEHICLE_SPEED_THRESHOLD_MPS
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
@@ -1465,7 +1466,7 @@ fun extrapolatePositionForward(
     nowMilliseconds: Long,
     extrapolationLimitSeconds: Double = 3.0,
 ): LngLatAlt {
-    if ((heading == null) || (speed <= 0.0) || (fixTimestampMilliseconds <= 0L)) {
+    if ((heading == null) || (speed <= VEHICLE_SPEED_THRESHOLD_MPS) || (fixTimestampMilliseconds <= 0L)) {
         return location
     }
     val elapsedSeconds = (nowMilliseconds - fixTimestampMilliseconds) / 1000.0
