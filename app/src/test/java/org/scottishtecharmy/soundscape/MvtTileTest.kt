@@ -45,6 +45,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.gpx.parseGpx
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
+import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.searchFeaturesByName
 import org.scottishtecharmy.soundscape.geoengine.utils.traverseIntersectionsConfectingNames
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -452,6 +453,79 @@ class MvtTileTest {
         assertEquals(
             "Ashfield Road, Milngavie Southeastbound Bus Stop",
             ashfieldRoad.getText(null).text
+        )
+    }
+
+    /**
+     * The Menai Strait, unlike the Firth of Forth, is represented in the `water` layer as a
+     * named LineString ("Afon Menai / Menai Strait", class=strait) rather than a named polygon -
+     * found via a worldwide test extract (too large - ~92GB - to keep as a permanent local test
+     * fixture, so this reads directly from that path and skips itself if it's not present).
+     * extractNamedWaterPolygons handles both shapes, and it's specifically wayCrossingInfo's
+     * nearest-feature fallback (containment only applies to polygons) that makes a LineString
+     * work here - this exercises that fallback end-to-end against real data, complementing
+     * testFirthOfForthCrossingCallout's polygon-containment case.
+     */
+    @Test
+    fun testMenaiStraitCrossingCallout() {
+        val testPmtilesPath = "/mnt/sdb/map-to-serve/test.pmtiles"
+        if (!File(testPmtilesPath).exists()) return
+
+        val tileX = 8001
+        val tileY = 5320
+        val reader = org.scottishtecharmy.soundscape.geoengine.utils.pmtiles.PmTilesReader(
+            with(okio.Path.Companion) { testPmtilesPath.toPath() }
+        )
+        val rawTile = reader.getTile(14, tileX, tileY)!!
+        val tile = org.scottishtecharmy.soundscape.geoengine.utils.decompressTile(reader.tileCompression, rawTile)!!
+        reader.close()
+
+        val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+        val streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
+        val geojson = vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, streetNumberMap, true, 14)
+
+        val menaiStrait = geojson[TreeId.NAMED_WATER_POLYGONS.id].features
+            .filterIsInstance<MvtFeature>()
+            .find { it.name == "Afon Menai / Menai Strait" }
+        assertNotNull("Expected the Afon Menai / Menai Strait water feature", menaiStrait)
+        assertEquals("LineString", menaiStrait!!.geometry.type)
+
+        val straitCoordinates = (menaiStrait.geometry as LineString).coordinates
+        val crossingPoint = straitCoordinates[straitCoordinates.size / 2]
+
+        val gridState = FileGridState()
+        gridState.ruler = crossingPoint.createCheapRuler()
+        gridState.featureTrees[TreeId.NAMED_WATER_POLYGONS.id] =
+            FeatureTree(FeatureCollection().apply { addFeature(menaiStrait) })
+        val settlementGrid = FileGridState(12, 3)
+
+        val bridgeWay = Way().apply {
+            osmId = 1L
+            name = "Menai Bridge"
+            geometry = LineString(crossingPoint, crossingPoint)
+            setProperty("brunnel", "bridge")
+        }
+        val approachWay = Way().apply {
+            osmId = 2L
+            name = "Approach"
+            geometry = LineString(crossingPoint, crossingPoint)
+        }
+
+        val autoCallout = AutoCallout(null, null)
+        val firstUpdate = UserGeometry(
+            location = crossingPoint, speed = 15.0, mapMatchedWay = approachWay, timestampMilliseconds = 1000L
+        )
+        autoCallout.updateLocation(firstUpdate, gridState, settlementGrid)
+
+        val secondUpdate = UserGeometry(
+            location = crossingPoint, speed = 15.0, mapMatchedWay = bridgeWay, timestampMilliseconds = 6000L
+        )
+        val secondCallout = autoCallout.updateLocation(secondUpdate, gridState, settlementGrid)
+        assertNotNull(secondCallout)
+        assertTrue(
+            "Expected a Menai Strait crossing callout, got: " +
+                "${secondCallout!!.positionedStrings.map { it.text }}",
+            secondCallout.positionedStrings.any { it.text.contains("Menai") }
         )
     }
 
