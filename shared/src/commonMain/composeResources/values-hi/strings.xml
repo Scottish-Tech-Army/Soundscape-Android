@@ -497,7 +497,7 @@
     <string name="new_version_info_text">नई रिलीज़ की जानकारी</string>
     <string name="new_version_info_completed">नई रिलीज़ डायलॉग बंद करें</string>
     <string name="menu_open_source_licenses">ओपन सोर्स लाइसेंस</string>
-    <string name="new_version_info_details">\nयह Soundscape का एक नया माइनर रिलीज़ है। यहाँ किए गए परिवर्तन नीचे दिए गए हैं:\n\nहमने ASHA हियरिंग एड्स के लिए समर्थन ठीक कर दिया है। यदि आप हियरिंग‑एड उपयोगकर्ता हैं और Soundscape आपके लिए काम नहीं कर रहा है, तो कृपया हमें बताएँ।\n\nमुख्य मेनू के शीर्ष पर अब *Soundscape से बाहर निकलें* विकल्प है। इसे टैप करना ऐप को पूरी तरह बंद करने का एक आसान तरीका है।\n\nऑफ़लाइन मानचित्र विवरण स्क्रीन में अब पहले से डाउनलोड किए गए मानचित्रों को पुनः डाउनलोड करने के लिए एक बटन है। मानचित्र OpenStreetMap से महीने में एक बार अपडेट होते हैं, इसलिए समय‑समय पर ऑफ़लाइन मानचित्रों को फिर से डाउनलोड करना उपयोगी है। इसके अलावा डाउनलोड किए गए मानचित्रों के सत्यापन को बेहतर बनाने वाला कोड जोड़ा गया है ताकि किसी भी क्षतिग्रस्त मानचित्र के उपयोग को रोका जा सके।\n\nहम अभी भी ऐप में सुधार के लिए कड़ी मेहनत कर रहे हैं, इसलिए कृपया किसी भी समस्या की रिपोर्ट ज़रूर करें, चाहे वह कितनी भी छोटी क्यों न हो — मुख्य मेनू में मौजूद *सहायता से संपर्क करें* विकल्प के माध्यम से।\n</string>
+    <string name="new_version_info_details">यह Soundscape का पहला प्रोडक्शन रिलीज़ है। हम अभी भी ऐप में सुधार करने के लिए कड़ी मेहनत कर रहे हैं, इसलिए कृपया मुख्य मेनू के *सहायता से संपर्क करें* विकल्प के माध्यम से किसी भी समस्या की रिपोर्ट करें, चाहे वे कितनी भी छोटी क्यों न हों।</string>
     <string name="about_soundscape">Soundscape नवीन ऑडियो-आधारित तकनीक के उपयोग की खोज करता है ताकि लोगों को अपने आसपास की बेहतर जागरूकता बनाने में सक्षम बनाया जा सके, जिससे वे अधिक आत्मविश्वासी और सशक्त होकर घूम-फिर सकें।</string>
     <string name="osm_office_building">कार्यालय भवन</string>
     <string name="osm_school_building">विद्यालय भवन</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">यदि अक्षम किया गया है, तो अन्य ऑडियो ऐप्स पॉज़ हो जाएंगे और लॉक‑स्क्रीन मीडिया नियंत्रण उपलब्ध होंगे।</string>
     <string name="settings_head_tracking">हेड ट्रैकिंग सक्षम करें</string>
     <string name="settings_head_tracking_description">समर्थित AirPods, Bose Frames या बाहरी ब्लूटूथ IMU से प्राप्त मोशन डेटा का उपयोग करके स्थानिक ऑडियो को आपके सिर की दिशा के सापेक्ष व्यवस्थित करें। चलते समय यह स्वतः कैलिब्रेट हो जाता है।</string>
+    <string name="sleep_snoozing">स्नूज़ मोड में</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape वर्तमान में स्नूज़ मोड में है। जब आप अपने वर्तमान स्थान को छोड़ेंगे, तो Soundscape स्वचालित रूप से जाग जाएगा। यह आपके फ़ोन की बैटरी बचाने के लिए लो‑पावर मोड में लोकेशन सर्विसेज़ का उपयोग करता है। Soundscape को अभी जगाने के लिए नीचे दिए गए बटन पर टैप करें।</string>
+    <string name="sleep_wake_on_leave">जब मैं निकलूँ तब जगाएँ</string>
+    <string name="osm_motorway">मोटरवे</string>
+    <string name="osm_trunk">ट्रंक रोड</string>
+    <string name="osm_path">पथ</string>
+    <string name="osm_raceway">रेसवे</string>
+    <string name="osm_busway">बसवे</string>
+    <string name="osm_bus_guideway">बस गाइडवे</string>
+    <string name="osm_ferry">फ़ेरी मार्ग</string>
+    <string name="osm_transit">परिवहन मार्ग</string>
+    <string name="osm_tunnel">सुरंग</string>
 </resources>
