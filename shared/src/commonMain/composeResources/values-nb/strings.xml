@@ -524,7 +524,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Markører og ruter er slettet</string>
     <string name="new_version_info_text">Informasjon om ny versjon</string>
     <string name="new_version_info_completed">Lukk dialog for ny versjon</string>
-    <string name="new_version_info_details">\nDette er en ny, mindre utgivelse av Soundscape. Her er endringene som er gjort.\n\nVi har fikset støtte for ASHA-høreapparater. Hvis du bruker høreapparat og Soundscape ikke fungerer for deg, vennligst gi oss beskjed.\n\nDet finnes et nytt alternativ «Avslutt Soundscape» øverst i hovedmenyen. Trykk på dette for å lukke appen helt.\n\nDetaljsiden for offlinekart har nå en knapp for å laste ned kart på nytt som allerede er lastet ned. Kart oppdateres én gang i måneden fra OpenStreetMap, så det kan lønne seg å laste ned offlinekart på nytt av og til. Det er også lagt inn kode som forbedrer valideringen av nedlastede kart for å forhindre at korrupte kart tas i bruk.\n\nVi jobber fortsatt hardt med å forbedre appen, så vennligst rapporter eventuelle problemer du opplever, uansett hvor små de måtte være, via menyvalget *Kontakt brukerstøtte* i hovedmenyen.\n</string>
+    <string name="new_version_info_details">Dette er den første produksjonsutgivelsen av Soundscape. Vi jobber fortsatt hardt med å forbedre appen, så vennligst rapporter eventuelle problemer du opplever, uansett hvor små de måtte være, via alternativet *Kontakt brukerstøtte* i hovedmenyen.</string>
     <string name="menu_open_source_licenses">Åpne kildekodelisenser</string>
     <string name="osm_tag_ferry_terminal">Fergeterminal</string>
     <string name="osm_tag_ferry_terminal_named">%1$s fergeterminal</string>
@@ -1359,7 +1359,7 @@
     <string name="settings_collapsed">Skjult</string>
     <string name="settings_expanded">Åpnet</string>
     <string name="ui_grant_permission">Gi tillatelse</string>
-    <string name="copyright_notices">Soundscape ville ikke vært mulig uten disse fantastiske tredjepartsbibliotekene og -dataene. Klikk på lenkene for å se lisensene deres:</string>
+    <string name="copyright_notices">Soundscape ville ikke vært mulig uten disse fantastiske tredjepartsbibliotekene og dataene. Klikk på lenkene for å se lisensene deres:</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) leverer alle geodataene som brukes til kartlegging og lyd i Soundscape.</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) brukes til å generere kartflisene vi bruker.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) brukes til å generere 3D-lyden, og er gjort tilgjengelig for bruk under [Apache 2.0-lisensen](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">Når deaktivert, vil andre lydapper pause og mediekontroller på låseskjermen bli tilgjengelige</string>
     <string name="settings_head_tracking">Aktiver hodetsporing</string>
     <string name="settings_head_tracking_description">Posisjoner den romlige lyden i forhold til hvilken retning hodet ditt peker ved å bruke bevegelsesdata fra støttede AirPods, Bose Frames eller en ekstern Bluetooth‑IMU. Kalibreres automatisk mens du går.</string>
+    <string name="sleep_snoozing">I pausemodus</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape er for øyeblikket i pausemodus. Når du forlater din nåværende posisjon, vil Soundscape våkne automatisk. Dette bruker Stedstjenester i lavstrømsmodus for å spare telefonens batteri. Trykk på knappen nedenfor for å vekke Soundscape nå.</string>
+    <string name="sleep_wake_on_leave">Vekk når jeg forlater stedet</string>
+    <string name="osm_motorway">Motorvei</string>
+    <string name="osm_trunk">Hovedvei</string>
+    <string name="osm_path">Sti</string>
+    <string name="osm_raceway">Racerbane</string>
+    <string name="osm_busway">Bussvei</string>
+    <string name="osm_bus_guideway">Guidet bussvei</string>
+    <string name="osm_ferry">Fergerute</string>
+    <string name="osm_transit">Kollektivrute</string>
+    <string name="osm_tunnel">Tunnel</string>
 </resources>
