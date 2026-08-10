@@ -1225,6 +1225,16 @@ We're still working hard on improving the app, so please report any problems tha
     <string name="osm_trunk">Trunk Road</string>
     <!-- Open Street Map term path. A generic unpaved or informal route for walking, cycling etc.-->
     <string name="osm_path">Path</string>
+    <!-- Open Street Map term raceway. A track used for motor or animal racing.-->
+    <string name="osm_raceway">Raceway</string>
+    <!-- Open Street Map term busway. A dedicated road for buses only.-->
+    <string name="osm_busway">Busway</string>
+    <!-- Open Street Map term bus_guideway. A guided busway track for buses only.-->
+    <string name="osm_bus_guideway">Bus Guideway</string>
+    <!-- Open Street Map term ferry. A boat route across water.-->
+    <string name="osm_ferry">Ferry Route</string>
+    <!-- Open Street Map term transit. A generic public transit route.-->
+    <string name="osm_transit">Transit Route</string>
     <!-- Open Street Map term highway. A major public road or motorway.-->
     <string name="osm_highway">Highway</string>
     <!-- Open Street Map term highway_named. The name label for a highway.-->

@@ -106,8 +106,10 @@ import org.scottishtecharmy.soundscape.resources.osm_bungalow
 import org.scottishtecharmy.soundscape.resources.osm_bunker
 import org.scottishtecharmy.soundscape.resources.osm_bunker_silo
 import org.scottishtecharmy.soundscape.resources.osm_bureau_de_change
+import org.scottishtecharmy.soundscape.resources.osm_bus_guideway
 import org.scottishtecharmy.soundscape.resources.osm_bus_station
 import org.scottishtecharmy.soundscape.resources.osm_bus_stop
+import org.scottishtecharmy.soundscape.resources.osm_busway
 import org.scottishtecharmy.soundscape.resources.osm_butcher
 import org.scottishtecharmy.soundscape.resources.osm_cabin
 import org.scottishtecharmy.soundscape.resources.osm_cafe
@@ -245,6 +247,7 @@ import org.scottishtecharmy.soundscape.resources.osm_farm_auxiliary
 import org.scottishtecharmy.soundscape.resources.osm_fashion
 import org.scottishtecharmy.soundscape.resources.osm_fast_food
 import org.scottishtecharmy.soundscape.resources.osm_fencing
+import org.scottishtecharmy.soundscape.resources.osm_ferry
 import org.scottishtecharmy.soundscape.resources.osm_ferry_terminal
 import org.scottishtecharmy.soundscape.resources.osm_field_hockey
 import org.scottishtecharmy.soundscape.resources.osm_fire_extinguisher
@@ -508,6 +511,7 @@ import org.scottishtecharmy.soundscape.resources.osm_pumping_station
 import org.scottishtecharmy.soundscape.resources.osm_pylon
 import org.scottishtecharmy.soundscape.resources.osm_pyrotechnics
 import org.scottishtecharmy.soundscape.resources.osm_quango
+import org.scottishtecharmy.soundscape.resources.osm_raceway
 import org.scottishtecharmy.soundscape.resources.osm_racquet
 import org.scottishtecharmy.soundscape.resources.osm_radiotechnics
 import org.scottishtecharmy.soundscape.resources.osm_railway
@@ -667,6 +671,7 @@ import org.scottishtecharmy.soundscape.resources.osm_train_terminal
 import org.scottishtecharmy.soundscape.resources.osm_training_area
 import org.scottishtecharmy.soundscape.resources.osm_tram_stop
 import org.scottishtecharmy.soundscape.resources.osm_transformer_tower
+import org.scottishtecharmy.soundscape.resources.osm_transit
 import org.scottishtecharmy.soundscape.resources.osm_transportation
 import org.scottishtecharmy.soundscape.resources.osm_travel_agency
 import org.scottishtecharmy.soundscape.resources.osm_travel_agent
@@ -752,6 +757,7 @@ class ResourceMapper {
                 put("service_road", Res.string.osm_service_road)
                 put("rail", Res.string.osm_railway)
                 put("railway", Res.string.osm_railway)
+                put("transit", Res.string.osm_transit)
                 put("service", Res.string.osm_road)
                 put("road", Res.string.osm_road)
                 put("primary", Res.string.osm_road)
@@ -761,6 +767,20 @@ class ResourceMapper {
                 put("motorway", Res.string.osm_motorway)
                 put("trunk", Res.string.osm_trunk)
                 put("path", Res.string.osm_path)
+                put("raceway", Res.string.osm_raceway)
+                put("busway", Res.string.osm_busway)
+                put("bus_guideway", Res.string.osm_bus_guideway)
+                put("ferry", Res.string.osm_ferry)
+                put("motorway_construction", Res.string.osm_road_works)
+                put("trunk_construction", Res.string.osm_road_works)
+                put("primary_construction", Res.string.osm_road_works)
+                put("secondary_construction", Res.string.osm_road_works)
+                put("tertiary_construction", Res.string.osm_road_works)
+                put("minor_construction", Res.string.osm_road_works)
+                put("path_construction", Res.string.osm_road_works)
+                put("service_construction", Res.string.osm_road_works)
+                put("track_construction", Res.string.osm_road_works)
+                put("raceway_construction", Res.string.osm_road_works)
                 put("highway", Res.string.osm_highway)
                 put("highway_named", Res.string.osm_highway_named)
                 put("highway_refed", Res.string.osm_highway_refed)
