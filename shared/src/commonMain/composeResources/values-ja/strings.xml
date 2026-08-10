@@ -524,7 +524,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">マーカーおよびルートを削除しました</string>
     <string name="new_version_info_text">新しいリリース情報</string>
     <string name="new_version_info_completed">新しいリリース情報を閉じる</string>
-    <string name="new_version_info_details">\nこれは Soundscape の小規模な新しいリリースです。変更点は以下のとおりです。\n\nASHA 補聴器のサポートを修正しました。補聴器をお使いで Soundscape が正常に動作しない場合は、ぜひご連絡ください。\n\nメインメニューの上部に「Soundscape を終了する」オプションを追加しました。これをタップするとアプリを完全に終了させることができます。\n\nオフライン地図の詳細画面には、既にダウンロード済みのマップを再ダウンロードするためのボタンを追加しました。マップは OpenStreetMap から月に一度更新されるため、定期的にオフラインマップを再ダウンロードすることをおすすめします。また、ダウンロードしたマップの検証を改善するコードを導入し、破損したマップが使用されるのを防ぐようにしました。\n\n引き続きアプリの改良に取り組んでいます。どんなに小さな問題でも、メインメニューの *「サポートに連絡」* オプションからお知らせください。\n</string>
+    <string name="new_version_info_details">これは Soundscape の最初の製品版リリースです。アプリの改善に向けて引き続き取り組んでいますので、どんなに小さな問題でも、メインメニューの *「サポートに連絡」* オプションからご報告ください。</string>
     <string name="menu_open_source_licenses">オープンソースライセンス</string>
     <string name="osm_tag_ferry_terminal">フェリーターミナル</string>
     <string name="osm_tag_ferry_terminal_named">%1$s フェリーターミナル</string>
@@ -1359,7 +1359,7 @@
     <string name="settings_collapsed">折りたたみ済み</string>
     <string name="settings_expanded">展開済み</string>
     <string name="ui_grant_permission">許可を付与</string>
-    <string name="copyright_notices">Soundscape は、これらの素晴らしいサードパーティのライブラリやデータなしでは実現できません。リンクをクリックしてそれぞれのライセンスを確認してください：</string>
+    <string name="copyright_notices">Soundscape は、これらの素晴らしいサードパーティ製のライブラリやデータがなければ実現できません。リンクをクリックして各ライセンスをご確認ください：</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) は、Soundscape で使用される地図および音声の地理データをすべて提供しています。</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) は、アプリで使用する地図タイルの生成に使用されています。</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) は 3D オーディオの生成に使用されており、[Apache 2.0 ライセンス](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) のもとで利用可能です。</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">無効にすると、他のオーディオアプリは一時停止され、ロック画面のメディアコントロールが利用可能になります</string>
     <string name="settings_head_tracking">ヘッドトラッキングを有効にする</string>
     <string name="settings_head_tracking_description">対応する AirPods、Bose Frames、または外部の Bluetooth IMU からのモーションデータを使用して、頭の向きに合わせて空間オーディオの位置を調整します。歩行中に自動でキャリブレーションされます。</string>
+    <string name="sleep_snoozing">スヌーズ中</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape は現在スヌーズ状態です。現在地から離れると自動的にスリープ解除（ウェイクアップ）します。この機能は端末のバッテリーを節約するために低消費電力モードで位置情報サービスを使用します。今すぐスリープを解除するには、下のボタンをタップしてください。</string>
+    <string name="sleep_wake_on_leave">離れたらスリープ解除</string>
+    <string name="osm_motorway">高速道路</string>
+    <string name="osm_trunk">幹線道路</string>
+    <string name="osm_path">小道</string>
+    <string name="osm_raceway">競走路</string>
+    <string name="osm_busway">バス専用道</string>
+    <string name="osm_bus_guideway">ガイドウェイ式バス路線</string>
+    <string name="osm_ferry">フェリー航路</string>
+    <string name="osm_transit">公共交通路線</string>
+    <string name="osm_tunnel">トンネル</string>
 </resources>
