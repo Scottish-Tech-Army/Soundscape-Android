@@ -35,6 +35,7 @@ kotlin {
         it.binaries.framework {
             baseName = "Shared"
             isStatic = true
+            freeCompilerArgs += listOf("-Xbinary=bundleId=org.scottishtecharmy.soundscape.shared")
         }
     }
 
