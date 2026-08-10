@@ -1359,7 +1359,7 @@
     <string name="settings_collapsed">Collapsed</string>
     <string name="settings_expanded">Expanded</string>
     <string name="ui_grant_permission">Grant Permission</string>
-    <string name="copyright_notices">Soundscape wouldn't be possible without these fantastic third-party libraries and data. Click on the links to see their licences:</string>
+    <string name="copyright_notices">Soundscape wouldn't be possible without these fantastic third‑party libraries and data. Click the links to see their licences:</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geographical data for mapping and audio used in Soundscape.</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the map tiles we use.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">When disabled, other audio apps will pause and lock screen media controls will be available</string>
     <string name="settings_head_tracking">Enable head tracking</string>
     <string name="settings_head_tracking_description">Position spatial audio relative to where your head is facing using motion data from supported AirPods, Bose Frames or an external Bluetooth IMU. Calibrates automatically while you walk.</string>
+    <string name="sleep_snoozing">Snoozing</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape is currently snoozing. When you leave your current location, Soundscape will automatically wake up. This uses Location Services in a low‑power mode to conserve your phone battery. Tap the button below to wake up now.</string>
+    <string name="sleep_wake_on_leave">Wake on Leave</string>
+    <string name="osm_motorway">Motorway</string>
+    <string name="osm_trunk">Trunk Road</string>
+    <string name="osm_path">Path</string>
+    <string name="osm_raceway">Raceway</string>
+    <string name="osm_busway">Busway</string>
+    <string name="osm_bus_guideway">Bus Guideway</string>
+    <string name="osm_ferry">Ferry Route</string>
+    <string name="osm_transit">Transit Route</string>
+    <string name="osm_tunnel">Tunnel</string>
 </resources>
