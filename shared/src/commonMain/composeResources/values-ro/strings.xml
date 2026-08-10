@@ -497,7 +497,7 @@
     <string name="new_version_info_text">Informații despre noua versiune</string>
     <string name="new_version_info_completed">Închide dialogul noii versiuni</string>
     <string name="menu_open_source_licenses">Licențe open source</string>
-    <string name="new_version_info_details">\nAceasta este o nouă lansare minoră a Soundscape. Iată modificările efectuate.\n\nAm remediat suportul pentru aparatele auditive ASHA; dacă folosești un aparat auditiv și Soundscape nu funcționează pentru tine, te rugăm să ne anunți.\n\nExistă o nouă opțiune „Ieși din Soundscape” în partea de sus a meniului principal. Atingerea ei este o modalitate simplă de a închide complet aplicația.\n\nEcranul cu detalii despre hărțile offline are acum un buton pentru re-descărcarea hărților care au fost deja descărcate. Hărțile sunt actualizate o dată pe lună din OpenStreetMap, așa că merită să re-descărci din când în când hărțile offline. De asemenea, am introdus cod care îmbunătățește validarea hărților descărcate pentru a preveni utilizarea unor hărți corupte.\n\nContinuăm să lucrăm din greu pentru a îmbunătăți aplicația, așa că te rugăm să ne raportezi orice problemă, oricât de mică ar fi, prin opțiunea *Contactează asistența* din meniul principal.\n</string>
+    <string name="new_version_info_details">Aceasta este prima versiune de producție a Soundscape. Continuăm să lucrăm intens la îmbunătățirea aplicației, așa că te rugăm să raportezi orice problemă pe care o întâmpini, oricât de mică ar fi, folosind opțiunea *Contactează asistența* din meniul principal.</string>
     <string name="about_soundscape">Soundscape explorează utilizarea tehnologiei audio inovatoare pentru a permite oamenilor să își dezvolte o conștientizare mai bogată a împrejurimilor, devenind astfel mai încrezători și mai autonomi în deplasări.</string>
     <string name="osm_office_building">Clădire de birouri</string>
     <string name="osm_school_building">Clădire de școală</string>
@@ -1359,7 +1359,7 @@
     <string name="settings_collapsed">Restrânsă</string>
     <string name="settings_expanded">Extinsă</string>
     <string name="ui_grant_permission">Acordă permisiunea</string>
-    <string name="copyright_notices">Soundscape nu ar fi fost posibil fără aceste biblioteci și date terțe excelente. Apasă pe linkuri pentru a vedea licențele lor:</string>
+    <string name="copyright_notices">Soundscape nu ar fi posibil fără aceste biblioteci și date terțe fantastice. Apasă pe linkuri pentru a le vedea licențele:</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) furnizează toate datele geografice utilizate pentru cartografiere și pentru audio în Soundscape.</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) este folosit pentru a genera plăcile de hartă pe care le utilizăm.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) este folosită pentru generarea audio 3D și este pusă la dispoziție pentru utilizare sub [licența Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">Când este dezactivat, celelalte aplicații audio vor fi puse pe pauză, iar controalele media de pe ecranul blocat vor fi disponibile</string>
     <string name="settings_head_tracking">Activează urmărirea capului</string>
     <string name="settings_head_tracking_description">Poziționează audio spațial în raport cu direcția în care este îndreptat capul tău, folosind date de mișcare de la AirPods compatibile, Bose Frames sau un IMU Bluetooth extern. Se calibrează automat în timp ce mergi.</string>
+    <string name="sleep_snoozing">În amânare</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape este momentan în modul Amânare. Când părăsești locația curentă, Soundscape se va trezi automat. Aceasta folosește Serviciile de localizare într‑un mod cu consum redus pentru a conserva bateria telefonului. Atinge butonul de mai jos pentru a trezi aplicația acum.</string>
+    <string name="sleep_wake_on_leave">Trezire la plecare</string>
+    <string name="osm_motorway">Autostradă</string>
+    <string name="osm_trunk">Drum principal</string>
+    <string name="osm_path">Cărare</string>
+    <string name="osm_raceway">Pistă de curse</string>
+    <string name="osm_busway">Drum pentru autobuze</string>
+    <string name="osm_bus_guideway">Cale ghidată pentru autobuze</string>
+    <string name="osm_ferry">Rută de feribot</string>
+    <string name="osm_transit">Rută de transport public</string>
+    <string name="osm_tunnel">Tunel</string>
 </resources>
