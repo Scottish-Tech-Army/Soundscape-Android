@@ -160,8 +160,11 @@ class Way : MvtFeature() {
                 }
 
                 if (destinationModifier != null) {
-                    if ((destinationModifier == "dead-end") && noGenericDeadEnds)
-                        return ""
+                    if (destinationModifier == "dead-end") {
+                        if (noGenericDeadEnds)
+                            return ""
+                        destinationModifier = strings?.getOrNull(StringKey.ConfectNameDeadEnd) ?: "dead end"
+                    }
 
                     return if (passesString.isNotEmpty()) {
                         strings?.getOrNull(
