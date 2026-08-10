@@ -524,7 +524,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Markierungen und Routen gelöscht</string>
     <string name="new_version_info_text">Informationen zur neuen Version</string>
     <string name="new_version_info_completed">Dialog zur neuen Version schließen</string>
-    <string name="new_version_info_details">\nDies ist ein neues Minor‑Release von Soundscape. Hier sind die Änderungen, die vorgenommen wurden.\n\nWir haben die Unterstützung für ASHA‑Hörgeräte behoben. Wenn Sie Hörgeräte tragen und Soundscape bei Ihnen nicht funktioniert, lassen Sie es uns bitte wissen.\n\nIm oberen Bereich des Hauptmenüs gibt es jetzt die Option *Soundscape beenden*. Ein Tipp darauf ist eine einfache Möglichkeit, die App vollständig zu schließen.\n\nDer Bildschirm mit den Offline‑Karten‑Details verfügt jetzt über eine Schaltfläche zum erneuten Herunterladen bereits heruntergeladener Karten. Karten werden einmal im Monat aus OpenStreetMap aktualisiert, daher lohnt es sich, Offline‑Karten hin und wieder neu herunterzuladen. Außerdem haben wir den Code zur Validierung heruntergeladener Karten verbessert, um zu verhindern, dass beschädigte Karten verwendet werden.\n\nWir arbeiten weiterhin intensiv an der Verbesserung der App. Bitte melden Sie uns alle Probleme, auch die kleinsten, über die Option *Support kontaktieren* im Hauptmenü.\n</string>
+    <string name="new_version_info_details">Dies ist die erste Produktionsversion von Soundscape. Wir arbeiten weiterhin intensiv an der Verbesserung der App. Bitte melden Sie uns alle Probleme, auch kleine, über die Option *„Support kontaktieren“* im Hauptmenü.</string>
     <string name="menu_open_source_licenses">Open-Source-Lizenzen</string>
     <string name="osm_tag_ferry_terminal">Fährterminal</string>
     <string name="osm_tag_ferry_terminal_named">%1$s Fährterminal</string>
@@ -1359,7 +1359,7 @@
     <string name="settings_collapsed">Eingeklappt</string>
     <string name="settings_expanded">Ausgeklappt</string>
     <string name="ui_grant_permission">Berechtigung erteilen</string>
-    <string name="copyright_notices">Soundscape wäre ohne diese großartigen Drittanbieter‑Bibliotheken und -Daten nicht möglich. Klicken Sie auf die Links, um deren Lizenzen einzusehen:</string>
+    <string name="copyright_notices">Ohne diese großartigen Bibliotheken und Daten von Drittanbietern wäre Soundscape nicht möglich. Klicken Sie auf die Links, um deren Lizenzen einzusehen:</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) stellen alle Geodaten für die Kartendarstellung und die in Soundscape verwendeten Audiodaten bereit.</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) wird verwendet, um die Kartenkacheln zu erzeugen, die wir einsetzen.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) wird zur Erzeugung des 3D‑Audios verwendet und steht unter der [Apache‑2.0‑Lizenz](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) zur Nutzung bereit.</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">Wenn deaktiviert, werden andere Audio‑Apps pausiert und die Mediensteuerung auf dem Sperrbildschirm ist verfügbar.</string>
     <string name="settings_head_tracking">Head‑Tracking aktivieren</string>
     <string name="settings_head_tracking_description">Positioniert das räumliche Audio relativ zur Blickrichtung Ihres Kopfes unter Verwendung von Bewegungsdaten unterstützter AirPods, Bose Frames oder eines externen Bluetooth‑IMU. Kalibriert automatisch, während Sie gehen.</string>
+    <string name="sleep_snoozing">Im Standbymodus</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape ist derzeit im Standbymodus. Wenn Sie Ihren aktuellen Standort verlassen, wird Soundscape automatisch wieder aktiviert. Dabei werden die Ortungsdienste in einem Energiesparmodus verwendet, um den Akku Ihres Telefons zu schonen. Tippen Sie auf die Schaltfläche unten, um Soundscape jetzt zu aktivieren.</string>
+    <string name="sleep_wake_on_leave">Beim Verlassen aufwecken</string>
+    <string name="osm_motorway">Autobahn</string>
+    <string name="osm_trunk">Hauptverkehrsstraße</string>
+    <string name="osm_path">Pfad</string>
+    <string name="osm_raceway">Rennstrecke</string>
+    <string name="osm_busway">Busstraße</string>
+    <string name="osm_bus_guideway">Geführte Busspur</string>
+    <string name="osm_ferry">Fährroute</string>
+    <string name="osm_transit">ÖPNV‑Route</string>
+    <string name="osm_tunnel">Tunnel</string>
 </resources>
