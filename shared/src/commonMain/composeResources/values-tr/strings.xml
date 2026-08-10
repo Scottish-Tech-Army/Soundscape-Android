@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">Devre dışı bırakıldığında diğer ses uygulamaları duraklatılır ve kilit ekranı medya kontrolleri kullanılabilir olur</string>
     <string name="settings_head_tracking">Baş takibini etkinleştir</string>
     <string name="settings_head_tracking_description">Desteklenen AirPods, Bose Frames veya harici bir Bluetooth IMU'dan gelen hareket verilerini kullanarak mekânsal sesi başınızın baktığı yöne göre konumlandırır. Yürürken otomatik olarak kalibre olur.</string>
+    <string name="sleep_snoozing">Erteleme Modu'nda</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape şu an Erteleme Modu'nda. Mevcut konumunuzu terk ettiğinizde Soundscape otomatik olarak uyanacaktır. Bu, telefonunuzun pilini korumak için düşük güç modunda Konum Servisleri'ni kullanır. Şimdi uyandırmak için aşağıdaki düğmeye dokunun.</string>
+    <string name="sleep_wake_on_leave">Ayrıldığımda Uyandır</string>
+    <string name="osm_motorway">Otoyol</string>
+    <string name="osm_trunk">Ana Karayolu</string>
+    <string name="osm_path">Patika</string>
+    <string name="osm_raceway">Yarış Pisti</string>
+    <string name="osm_busway">Otobüs Yolu</string>
+    <string name="osm_bus_guideway">Kılavuzlu Otobüs Yolu</string>
+    <string name="osm_ferry">Feribot Rotası</string>
+    <string name="osm_transit">Toplu Taşıma Rotası</string>
+    <string name="osm_tunnel">Tünel</string>
 </resources>
