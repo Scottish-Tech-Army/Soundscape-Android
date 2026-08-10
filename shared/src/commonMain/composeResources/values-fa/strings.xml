@@ -525,7 +525,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">نشانه‌ها و مسیرها حذف شدند</string>
     <string name="new_version_info_text">اطلاعات نسخه‌ی جدید</string>
     <string name="new_version_info_completed">بستن پنجره‌ی اطلاعات نسخه‌ی جدید</string>
-    <string name="new_version_info_details">\nاین یک نسخهٔ جزئی جدید از ساند‌اسکیپ است. تغییرات انجام‌شده در این نسخه به‌صورت زیر می‌باشند.\n\nما پشتیبانی از سمعک‌های ASHA را اصلاح کرده‌ایم؛ اگر از سمعک استفاده می‌کنید و ساند‌اسکیپ برایتان کار نمی‌کند، لطفاً به ما اطلاع دهید.\n\nدر بالای منوی اصلی، گزینهٔ جدیدی با عنوان «خروج از ساند‌اسکیپ» اضافه شده است. ضربه‌زدن روی این گزینه راهی ساده برای بستن کامل اپلیکیشن است.\n\nصفحهٔ جزئیات نقشه‌های آفلاین اکنون دکمه‌ای برای دوباره‌دانلود نقشه‌هایی که قبلاً دانلود شده‌اند دارد. نقشه‌ها به‌صورت ماهیانه از اوپن‌استریت‌مپ به‌روزرسانی می‌شوند؛ بنابراین هر از گاهی دوباره‌دانلود کردن نقشه‌های آفلاین مفید است. همچنین کدی اضافه شده که اعتبارسنجی نقشه‌های دانلودشده را بهبود می‌بخشد تا از استفاده از نقشه‌های خراب جلوگیری شود.\n\nما همچنان سخت در تلاشیم اپ را بهبود بخشیم، بنابراین لطفاً هر مشکلی که دارید، هرچقدر هم کوچک باشد، از طریق گزینهٔ *تماس با پشتیبانی* در منوی اصلی گزارش کنید.\n</string>
+    <string name="new_version_info_details">این اولین نسخهٔ تولیدی Soundscape است. ما همچنان سخت در تلاش برای بهبود اپ هستیم؛ بنابراین لطفاً هر مشکلی را، هرچند کوچک، از طریق گزینهٔ *تماس با پشتیبانی* در منوی اصلی گزارش دهید.</string>
     <string name="menu_open_source_licenses">مجوزهای متن‌باز</string>
     <string name="osm_tag_ferry_terminal">پایانه کشتی</string>
     <string name="osm_tag_ferry_terminal_named">%1$s پایانه کشتی</string>
@@ -1360,7 +1360,7 @@
     <string name="settings_collapsed">جمع‌شده</string>
     <string name="settings_expanded">بازشده</string>
     <string name="ui_grant_permission">دادن مجوز</string>
-    <string name="copyright_notices">بدون این کتابخانه‌ها و داده‌های فوق‌العادهٔ شخص ثالث، توسعهٔ ساند‌اسکیپ ممکن نبود. برای مشاهدهٔ مجوزهای آنها روی پیوندها کلیک کنید:</string>
+    <string name="copyright_notices">ساند‌اسکیپ بدون این کتابخانه‌ها و داده‌های فوق‌العادهٔ شخص‌ثالث ممکن نبود. برای مشاهدهٔ مجوزهای آن‌ها روی پیوندها کلیک کنید:</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) کلیهٔ داده‌های جغرافیایی مورد استفاده برای نقشه‌برداری و تولید صدا در ساند‌اسکیپ را فراهم می‌کنند.</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) برای تولید کاشی‌های نقشه‌ای که ما از آنها استفاده می‌کنیم به‌کار می‌رود.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) برای تولید صدای سه‌بعدی استفاده می‌شود و تحت [مجوز Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) برای استفاده در دسترس قرار گرفته است.</string>
@@ -1390,4 +1390,16 @@
     <string name="settings_mix_audio_description">هنگامی که غیرفعال باشد، سایر اپلیکیشن‌های صوتی متوقف می‌شوند و کنترل‌های رسانه‌ای صفحهٔ قفل در دسترس خواهند بود</string>
     <string name="settings_head_tracking">فعال‌سازی ردیابی سر</string>
     <string name="settings_head_tracking_description">صدای فضایی را نسبت به جهتی که سر شما به آن است موقعیت‌دهی می‌کند، با استفاده از داده‌های حرکتی ارائه‌شده توسط AirPods یا Bose Framesِ پشتیبانی‌شده یا یک IMU بلوتوثی خارجی. در حین راه‌رفتن به‌طور خودکار کالیبره می‌شود.</string>
+    <string name="sleep_snoozing">در حالت چرت</string>
+    <string name="sleep_sleeping_wake_on_leave_message">ساند‌اسکیپ در حال حاضر در حالت چرت قرار دارد. وقتی محل فعلی خود را ترک کنید، ساند‌اسکیپ به‌طور خودکار بیدار خواهد شد. این حالت از خدمات مکان‌یابی در وضعیت کم‌مصرف استفاده می‌کند تا باتری گوشی شما حفظ شود. برای بیدار کردن الآن، روی دکمهٔ زیر ضربه بزنید.</string>
+    <string name="sleep_wake_on_leave">بیدار شدن هنگام ترک محل</string>
+    <string name="osm_motorway">اتوبان</string>
+    <string name="osm_trunk">راه اصلی</string>
+    <string name="osm_path">مسیر</string>
+    <string name="osm_raceway">پیست مسابقه</string>
+    <string name="osm_busway">خط ویژهٔ اتوبوس</string>
+    <string name="osm_bus_guideway">مسیر هدایت‌شوندهٔ اتوبوس</string>
+    <string name="osm_ferry">مسیر کشتی</string>
+    <string name="osm_transit">مسیر حمل‌و‌نقل عمومی</string>
+    <string name="osm_tunnel">تونل</string>
 </resources>
