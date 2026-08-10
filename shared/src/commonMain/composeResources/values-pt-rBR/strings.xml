@@ -524,7 +524,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Favoritos e rotas excluídos</string>
     <string name="new_version_info_text">Informações da nova versão</string>
     <string name="new_version_info_completed">Fechar diálogo da nova versão</string>
-    <string name="new_version_info_details">\nEsta é uma nova versão menor do Soundscape. Aqui estão as alterações que foram feitas.\n\nCorrigimos o suporte a aparelhos auditivos ASHA. Se você usa aparelho auditivo e o Soundscape não estiver funcionando para você, por favor nos avise.\n\nHá uma nova opção Fechar o Soundscape no topo do menu principal. Ao tocá‑la, é uma forma simples de fechar o aplicativo completamente.\n\nA tela de detalhes dos mapas offline agora tem um botão para baixar novamente mapas que já haviam sido baixados. Os mapas são atualizados uma vez por mês a partir do OpenStreetMap, portanto vale a pena baixar novamente os mapas offline de tempos em tempos. Também incluímos código que melhora a validação dos mapas baixados para evitar que mapas corrompidos sejam usados.\n\nContinuamos trabalhando arduamente para melhorar o aplicativo, então por favor reporte quaisquer problemas que você tiver, por menores que sejam, via a opção *Contatar o suporte* no menu principal.\n</string>
+    <string name="new_version_info_details">Este é o primeiro lançamento de produção do Soundscape. Ainda estamos trabalhando muito para melhorar o aplicativo, portanto, reporte quaisquer problemas que encontrar, por menores que sejam, usando a opção *Contatar o suporte* no menu principal.</string>
     <string name="menu_open_source_licenses">Licenças de código aberto</string>
     <string name="osm_tag_ferry_terminal">Terminal de Balsa</string>
     <string name="osm_tag_ferry_terminal_named">%1$s Terminal de Balsa</string>
@@ -1359,7 +1359,7 @@
     <string name="settings_collapsed">Recolhido</string>
     <string name="settings_expanded">Expandido</string>
     <string name="ui_grant_permission">Conceder Permissão</string>
-    <string name="copyright_notices">O Soundscape não seria possível sem estas fantásticas bibliotecas e dados de terceiros. Clique nos links para ver suas licenças:</string>
+    <string name="copyright_notices">O Soundscape não seria possível sem estas fantásticas bibliotecas e dados de terceiros. Clique nos links para ver as respectivas licenças:</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) fornecem todos os dados geográficos para o mapeamento e o áudio usados no Soundscape.</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) é usado para gerar os blocos de mapa (map tiles) que usamos.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) é usado para gerar o áudio 3D e está disponível para uso sob a [licença Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">Quando desativado, outros apps de áudio serão pausados e os controles de mídia na tela de bloqueio estarão disponíveis</string>
     <string name="settings_head_tracking">Ativar rastreamento de cabeça</string>
     <string name="settings_head_tracking_description">Posicione o áudio espacial em relação à direção para a qual sua cabeça está voltada, usando dados de movimento de AirPods compatíveis, Bose Frames ou um IMU Bluetooth externo. Calibra automaticamente enquanto você caminha.</string>
+    <string name="sleep_snoozing">Em Ociosidade</string>
+    <string name="sleep_sleeping_wake_on_leave_message">O Soundscape está em modo Ociosidade. Ao deixar sua localização atual, o Soundscape despertará automaticamente. Isso utiliza os Serviços de Localização em modo de baixo consumo para conservar a bateria do seu telefone. Toque no botão abaixo para despertar agora.</string>
+    <string name="sleep_wake_on_leave">Despertar quando eu sair</string>
+    <string name="osm_motorway">Rodovia</string>
+    <string name="osm_trunk">Via Principal</string>
+    <string name="osm_path">Caminho</string>
+    <string name="osm_raceway">Pista de Corrida</string>
+    <string name="osm_busway">Via Exclusiva para Ônibus</string>
+    <string name="osm_bus_guideway">Via Guiada para Ônibus</string>
+    <string name="osm_ferry">Rota de Balsa</string>
+    <string name="osm_transit">Rota de Transporte Público</string>
+    <string name="osm_tunnel">Túnel</string>
 </resources>
