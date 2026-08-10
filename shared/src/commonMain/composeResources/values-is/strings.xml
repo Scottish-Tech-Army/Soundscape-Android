@@ -524,7 +524,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Merki og leiðir eytt</string>
     <string name="new_version_info_text">Upplýsingar um nýja útgáfu</string>
     <string name="new_version_info_completed">Loka útgáfuupplýsingum</string>
-    <string name="new_version_info_details">\nÞetta er ný smávægileg uppfærsla á Soundscape. Hér eru breytingarnar sem hafa verið gerðar.\n\nVið höfum lagað stuðning við ASHA-heyrnartæki. Ef þú notar heyrnartæki og Soundscape virkar ekki fyrir þig, vinsamlegast láttu okkur vita.\n\nNýr valkostur „Loka Soundscape“ er nú efst í aðalvalmyndinni. Með því að ýta á hann er auðvelt að loka forritinu alveg.\n\nSkjárinn með upplýsingum um ónettengd kort hefur nú hnapp til að hlaða niður aftur kortum sem þegar hafa verið niðurhlaðin. Kort eru uppfærð einu sinni í mánuði úr OpenStreetMap, svo það er þess virði að endurhlaða ónettengd kort af og til. Einnig hefur verið bætt við kóða sem eykur sannprófun niðurhlaðinna korta til að koma í veg fyrir að gölluð kort séu notuð.\n\nVið erum ennþá að vinna hörðum höndum að því að bæta forritið, svo vinsamlegast tilkynnið okkur um öll vandamál sem þið rekst á, hversu smávægileg sem þau kunna að vera, með valkostinum *hafa samband, stuðningur* í aðalvalmyndinni.\n</string>
+    <string name="new_version_info_details">Þetta er fyrsta framleiðsluútgáfa af Soundscape. Við erum enn að vinna hörðum höndum að því að bæta forritið, svo vinsamlegast tilkynnið öll vandamál sem koma upp, jafnvel þótt þau virðist smávægileg, í gegnum valkostinn *Hafa samband, stuðningur* í aðalvalmyndinni.</string>
     <string name="menu_open_source_licenses">Leyfi opins hugbúnaðar</string>
     <string name="osm_tag_ferry_terminal">Ferjuhöfn</string>
     <string name="osm_tag_ferry_terminal_named">%1$s ferjuhöfn</string>
@@ -1359,7 +1359,7 @@
     <string name="settings_collapsed">Samanfellt</string>
     <string name="settings_expanded">Opnað</string>
     <string name="ui_grant_permission">Veita leyfi</string>
-    <string name="copyright_notices">Soundscape væri ekki mögulegt án þessara frábæru þriðju aðila bókasafna og gagna. Smelltu á tenglana til að skoða leyfin þeirra:</string>
+    <string name="copyright_notices">Soundscape væri ekki mögulegt án þessara frábæru þriðja aðila bókasafna og gagna. Smelltu á tenglana til að skoða leyfin þeirra:</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) veita öll landfræðileg gögn sem notuð eru við kortlagningu og hljóð í Soundscape.</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) er notað til að búa til þær kortaflísur sem við notum.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) er notað til að búa til þrívíddarhljóð og er aðgengilegt til notkunar undir [Apache 2.0 leyfinu](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">Ef þetta er óvirkt munu önnur hljóðforrit stöðvast og fjölmiðlahnappir á læstum skjá verða tiltækar</string>
     <string name="settings_head_tracking">Virkja höfuðrakningu</string>
     <string name="settings_head_tracking_description">Staðsettu rúmsnertilegt hljóð miðað við þá átt sem höfuðið snýr í, með því að nota hreyfigögn frá studdum AirPods, Bose Frames eða ytri Bluetooth IMU. Stillist sjálfkrafa meðan þú gengur.</string>
+    <string name="sleep_snoozing">í lúra‑ham</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape er nú í lúra‑ham. Þegar þú yfirgefur núverandi staðsetningu þína mun Soundscape vekja sig sjálfkrafa. Þetta notar staðsetningarþjónustu í lágorkuham til að spara rafhlöðu símans. Bankaðu á hnappinn hér að neðan til að vekja forritið núna.</string>
+    <string name="sleep_wake_on_leave">Vekja þegar ég fer</string>
+    <string name="osm_motorway">hraðbraut</string>
+    <string name="osm_trunk">aðalvegur</string>
+    <string name="osm_path">stígur</string>
+    <string name="osm_raceway">keppnisbraut</string>
+    <string name="osm_busway">strætóbraut</string>
+    <string name="osm_bus_guideway">leiðstýrð strætóbraut</string>
+    <string name="osm_ferry">ferjuleið</string>
+    <string name="osm_transit">almenningssamgönguleið</string>
+    <string name="osm_tunnel">tunnill</string>
 </resources>
