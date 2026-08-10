@@ -7,7 +7,6 @@ import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
-import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
@@ -187,7 +186,7 @@ class OfflineGeocoder(
         val busStopTree = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
         val nearestBusStop = busStopTree.getNearestFeature(location, gridState.ruler, 20.0)
         if (nearestBusStop != null) {
-            val busStopText = getTextForFeature(null, nearestBusStop as MvtFeature)
+            val busStopText = (nearestBusStop as MvtFeature).getText(localizedStrings)
             return LocationDescription(
                 name = busStopText.text,
                 location = getNearestPointOnFeature(nearestBusStop, location)
@@ -200,7 +199,7 @@ class OfflineGeocoder(
         insidePois.forEach { poi ->
             val mvt = poi as MvtFeature
             if (!mvt.name.isNullOrEmpty()) {
-                val featureText = getTextForFeature(null, mvt)
+                val featureText = mvt.getText(localizedStrings)
                 return LocationDescription(
                     name = featureText.text,
                     location = getNearestPointOnFeature(mvt, location)
@@ -214,7 +213,7 @@ class OfflineGeocoder(
             val mvt = poi as MvtFeature
             if (!mvt.name.isNullOrEmpty()) {
                 return LocationDescription(
-                    name = getTextForFeature(null, mvt).text,
+                    name = mvt.getText(localizedStrings).text,
                     location = getNearestPointOnFeature(mvt, location),
                 )
             }

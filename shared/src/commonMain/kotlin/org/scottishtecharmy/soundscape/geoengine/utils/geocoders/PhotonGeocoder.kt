@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
 import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
-import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -72,7 +71,7 @@ class PhotonGeocoder(
                 mvt.featureClass = "residential_street"
             feature.deferredToLocationDescription(
                 LocationSource.PhotonGeocoder,
-                featureName = getTextForFeature(localizedStrings, mvt)
+                featureName = mvt.getText(localizedStrings)
             ).also(processor)
         }
     }

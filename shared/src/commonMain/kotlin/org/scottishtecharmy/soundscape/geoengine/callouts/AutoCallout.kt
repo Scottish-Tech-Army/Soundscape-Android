@@ -14,7 +14,6 @@ import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
-import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
@@ -144,7 +143,8 @@ class AutoCallout(
 
         val roadsDescription = getRoadsDescriptionFromFov(
             gridState,
-            userGeometry
+            userGeometry,
+            localized
         )
 
         // Don't describe the road we're on if there's an intersection
@@ -187,7 +187,7 @@ class AutoCallout(
         val uniquelyNamedPOIs = mutableMapOf<String, Feature>()
         pois.features.filter { feature ->
 
-            val name = getTextForFeature(localized, feature as MvtFeature)
+            val name = (feature as MvtFeature).getText(localized)
             val nearestPoint =
                 getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
 

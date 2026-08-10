@@ -128,7 +128,8 @@ fun getGridStateForLocation(
         // Update the grid state
         gridState.locationUpdate(
             LngLatAlt(location.longitude, location.latitude),
-            enabledCategories
+            enabledCategories,
+            null
         )
     }
     return gridState
@@ -390,7 +391,7 @@ class MvtTileTest {
         var roads = gridState.getFeatureCollection(TreeId.WAYS_SELECTION)
         val confectionTime2 = measureTimeMillis {
             for (road in roads) {
-                confectNamesForRoad(road as Way, gridState)
+                confectNamesForRoad(road as Way, gridState, null)
             }
         }
         println("Confection time: $confectionTime ms")
@@ -692,11 +693,13 @@ class MvtTileTest {
                 // Update the grid state
                 val gridChanged = gridState.locationUpdate(
                     LngLatAlt(location.longitude, location.latitude),
-                    enabledCategories
+                    enabledCategories,
+                    null
                 )
                 settlementGrid.locationUpdate(
                     LngLatAlt(location.longitude, location.latitude),
-                    emptySet()
+                    emptySet(),
+                    null
                 )
 
                 if (gridChanged) {
@@ -704,7 +707,7 @@ class MvtTileTest {
                     // expensive and is only done on individual Ways as needed when running the app.
                     val roads = gridState.getFeatureCollection(TreeId.WAYS_SELECTION)
                     for (road in roads) {
-                        confectNamesForRoad(road as Way, gridState)
+                        confectNamesForRoad(road as Way, gridState, null)
                     }
                 }
 
@@ -713,7 +716,8 @@ class MvtTileTest {
                     LngLatAlt(location.longitude, location.latitude),
                     gridState,
                     collection,
-                    false
+                    false,
+                    null
                 )
 
                 if (mapMatchedResult.first != null) {
@@ -853,7 +857,8 @@ class MvtTileTest {
                 // Update the grid state
                 val gridChanged = gridState.locationUpdate(
                     LngLatAlt(location.longitude, location.latitude),
-                    enabledCategories
+                    enabledCategories,
+                    null
                 )
 
                 if (gridChanged) {
@@ -861,7 +866,7 @@ class MvtTileTest {
                     // expensive and is only done on individual Ways as needed when running the app.
                     val roads = gridState.getFeatureCollection(TreeId.WAYS_SELECTION)
                     for (road in roads) {
-                        confectNamesForRoad(road as Way, gridState)
+                        confectNamesForRoad(road as Way, gridState, null)
                     }
                 }
 
@@ -870,7 +875,8 @@ class MvtTileTest {
                     LngLatAlt(location.longitude, location.latitude),
                     gridState,
                     collection,
-                    false
+                    false,
+                    null
                 )
 
                 val userGeometry = UserGeometry(
@@ -995,7 +1001,8 @@ class MvtTileTest {
                     // Update the grid state
                     gridState.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
-                        emptySet()
+                        emptySet(),
+                        null
                     )
                     if (false) {
                         // This code is useful for comparing before and after changes of grid parsing
@@ -1335,7 +1342,8 @@ class MvtTileTest {
                 assertEquals(
                     gridState.locationUpdate(
                         location.first,
-                        enabledCategories
+                        enabledCategories,
+                        null
                     ), location.second
                 )
             }

@@ -30,6 +30,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.network.VectorTileClient
 import org.scottishtecharmy.soundscape.platform.ioDispatcher
 import kotlin.concurrent.Volatile
@@ -140,7 +141,8 @@ open class GridState(
         newGridIntersections: List<HashMap<LngLatAlt, Intersection>>,
         localTrees: Array<FeatureTree>,
         intersectionAccumulator: HashMap<LngLatAlt, Intersection>,
-        grid: TileGrid
+        grid: TileGrid,
+        strings: LocalizedStrings?,
     ) {
 
         fixupCollections(featureCollections)
@@ -233,7 +235,7 @@ open class GridState(
 
             // And now update the names for the intersection to include the confections
             for (intersection in intersectionAccumulator) {
-                intersection.value.updateName()
+                intersection.value.updateName(strings = strings)
             }
 
 // The other confection is done lazily as it's relatively time consuming to do the whole tile at once
@@ -250,7 +252,11 @@ open class GridState(
      * has moved away from the center of the current tile grid and if it has calculates a new grid.
      */
     @OptIn(ExperimentalCoroutinesApi::class)
-    suspend fun locationUpdate(location: LngLatAlt, enabledCategories: Set<String>): Boolean {
+    suspend fun locationUpdate(
+        location: LngLatAlt,
+        enabledCategories: Set<String>,
+        strings: LocalizedStrings?,
+    ): Boolean {
         // Check if we're still within the central area of our grid
         if (!pointIsWithinBoundingBox(location, centralBoundingBox)) {
             //println("Update central grid area")
@@ -288,7 +294,8 @@ open class GridState(
                                 newGridIntersections,
                                 featureTrees,
                                 gridIntersections,
-                                tileGrid
+                                tileGrid,
+                                strings
                             )
                             gridStreetNumberTreeMap.clear()
                             for (collection in newGridStreetNumberMap)

@@ -15,6 +15,7 @@ import org.scottishtecharmy.soundscape.components.EnabledFunction
 import org.scottishtecharmy.soundscape.components.FolderItem
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
+import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.location_detail_action_beacon_hint
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -30,8 +31,9 @@ fun PlacesNearbyList(
     onStartBeacon: (LocationDescription) -> Unit,
     modifier: Modifier,
 ) {
+    val localizedStrings = remember { ComposeLocalizedStrings() }
     val locations = remember(uiState) {
-        filterLocations(uiState)
+        filterLocations(uiState, localizedStrings)
     }
 
     LazyColumn(

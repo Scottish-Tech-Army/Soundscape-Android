@@ -145,7 +145,8 @@ class MvtPerformanceTest {
         runBlocking {
             gridState.locationUpdate(
                 LngLatAlt(location.longitude, location.latitude),
-                emptySet()
+                emptySet(),
+                null
             )
         }
 
@@ -234,7 +235,8 @@ class MvtPerformanceTest {
                             // Update the grid state
                             gridState.locationUpdate(
                                 LngLatAlt(location.longitude, location.latitude),
-                                emptySet()
+                                emptySet(),
+                                null
                             )
                         }
                         if (duration > longestDuration) {
@@ -276,7 +278,8 @@ class MvtPerformanceTest {
             // Update the grid state
             gridState.locationUpdate(
                 LngLatAlt(location.longitude, location.latitude),
-                emptySet()
+                emptySet(),
+                null
             )
         }
 

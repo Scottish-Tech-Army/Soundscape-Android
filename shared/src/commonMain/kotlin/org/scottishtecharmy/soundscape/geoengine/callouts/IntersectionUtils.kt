@@ -41,13 +41,15 @@ data class IntersectionDescription(
  *
  * @param gridState The current GridState which is the state of the downloaded tiles
  * @param userGeometry This includes location, heading and other data
+ * @param strings An optional LocalizedStrings used when confecting names for unnamed roads
  *
  * @return An IntersectionDescription containing all the data required for callouts to describe the
  * intersection.
  */
 fun getRoadsDescriptionFromFov(
     gridState: GridState,
-    userGeometry: UserGeometry
+    userGeometry: UserGeometry,
+    strings: LocalizedStrings?,
 ): IntersectionDescription {
 
     // Create FOV triangle
@@ -94,7 +96,7 @@ fun getRoadsDescriptionFromFov(
         if (nearestRoad.properties?.get("pavement") == null) {
             // Confect the names for the sidewalk first, this should come up with the name of the
             // associated road.
-            confectNamesForRoad(nearestRoad, gridState)
+            confectNamesForRoad(nearestRoad, gridState, strings)
         }
         // There could be multiple Ways which share the same pavement name, and we want to pick the
         // right one to use. We want the Way to be running in the same direction as the pavement is,
@@ -156,7 +158,7 @@ fun getRoadsDescriptionFromFov(
             for (way in i.members) {
                 if (way.isSidewalkOrCrossing())
                     ++disposalCount
-                else if (way.isSidewalkConnector(intersection, nearestRoad, gridState))
+                else if (way.isSidewalkConnector(intersection, nearestRoad, gridState, strings))
                     ++disposalCount
             }
             if ((i.members.size - disposalCount) < 2) {
@@ -224,7 +226,8 @@ fun getRoadsDescriptionFromFov(
                                                 !member.isSidewalkConnector(
                                                     intersection,
                                                     nearestRoad,
-                                                    gridState
+                                                    gridState,
+                                                    strings
                                                 )
                                             ) {
                                                 count++

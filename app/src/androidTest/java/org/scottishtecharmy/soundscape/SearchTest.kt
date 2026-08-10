@@ -245,7 +245,7 @@ class SearchTest {
         gridState.validateContext = false
         gridState.startWithContext(ApplicationProvider.getApplicationContext(), offlineExtractPath)
         runBlocking {
-            gridState.locationUpdate(location, emptySet())
+            gridState.locationUpdate(location, emptySet(), ComposeLocalizedStrings())
         }
 
         val nearbyWays = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
