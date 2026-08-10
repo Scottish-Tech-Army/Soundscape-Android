@@ -524,7 +524,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Merkinnät ja reitit poistettu</string>
     <string name="new_version_info_text">Uuden julkaisun tiedot</string>
     <string name="new_version_info_completed">Sulje uuden julkaisun valintaikkuna</string>
-    <string name="new_version_info_details">\nTämä on uusi pieni Soundscape-julkaisu. Tässä ovat tehdyt muutokset.\n\nOlemme korjanneet ASHA‑kuulolaitteiden tuen. Jos käytät kuulolaitetta eikä Soundscape toimi sinulle, ilmoitathan siitä meille.\n\nPäävalikon yläosaan on lisätty uusi *Sulje Soundscape* -vaihtoehto. Sen napauttaminen on helppo tapa sulkea sovellus kokonaan.\n\nOffline-karttojen tiedot -näytölle on nyt lisätty painike aiemmin ladattujen karttojen uudelleenlatausta varten. Karttoja päivitetään OpenStreetMapista kerran kuukaudessa, joten offline-karttojen aika ajoin uudelleenlataaminen kannattaa. Lisäksi olemme parantaneet ladattujen karttojen tarkistusta, jotta korruptoituneita karttoja ei käytetä.\n\nTeemme edelleen kovasti töitä sovelluksen parantamiseksi, joten ilmoita meille kaikista ongelmista, vaikka ne olisivatkin pieniä, käyttämällä päävalikon *Ota yhteyttä tukeen* -vaihtoehtoa.\n</string>
+    <string name="new_version_info_details">Tämä on Soundscapen ensimmäinen tuotantojulkaisu. Työskentelemme yhä ahkerasti sovelluksen parantamiseksi, joten ilmoitathan kaikista havaitsemasi ongelmista — vaikka ne olisivat pieniä — päävalikon *Ota yhteyttä tukeen* -vaihtoehdon kautta.</string>
     <string name="menu_open_source_licenses">Avoimen lähdekoodin lisenssit</string>
     <string name="osm_tag_ferry_terminal">Lauttaterminaali</string>
     <string name="osm_tag_ferry_terminal_named">%1$s lauttaterminaali</string>
@@ -1359,7 +1359,7 @@
     <string name="settings_collapsed">Suljettu</string>
     <string name="settings_expanded">Avoinna</string>
     <string name="ui_grant_permission">Salli käyttöoikeus</string>
-    <string name="copyright_notices">Soundscape ei olisi mahdollista ilman näitä mahtavia kolmannen osapuolen kirjastoja ja aineistoja. Napauta linkkejä nähdäksesi niiden lisenssit:</string>
+    <string name="copyright_notices">Soundscape ei olisi mahdollinen ilman näitä upeita kolmannen osapuolen kirjastoja ja tietoja. Napsauta linkkejä nähdäksesi niiden lisenssit:</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) tarjoavat kaikki Soundscape-sovelluksessa kartoituksessa ja ääniin liittyvässä käytössä olevat paikkatiedot.</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md)ia käytetään niiden karttatiilten tuottamiseen, joita sovelluksemme käyttää.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio)ia käytetään 3D-äänen tuottamiseen, ja se on saatavilla käytettäväksi [Apache 2.0 -lisenssin](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) nojalla.</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">Kun tämä on pois päältä, muiden äänisovellusten toisto keskeytetään ja lukitusnäytön mediasäätimet ovat käytettävissä</string>
     <string name="settings_head_tracking">Ota pään seuranta käyttöön</string>
     <string name="settings_head_tracking_description">Aseta tilaääni suhteessa pään suuntaan käyttämällä liikedataa tuetuista AirPods‑kuulokkeista, Bose Frames ‑laseista tai ulkoisesta Bluetooth‑IMU:sta. Kalibroiutuu automaattisesti kävellessäsi.</string>
+    <string name="sleep_snoozing">Odotustilassa</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape on tällä hetkellä odotustilassa. Kun poistut nykyisestä sijainnistasi, Soundscape herää automaattisesti. Tämä käyttää Sijaintipalveluita vähävirtaisessa tilassa puhelimesi akun säästämiseksi. Napauta alla olevaa painiketta herättääksesi Soundscapen nyt.</string>
+    <string name="sleep_wake_on_leave">Herää kun lähden</string>
+    <string name="osm_motorway">Moottoritie</string>
+    <string name="osm_trunk">Pääväylä</string>
+    <string name="osm_path">Polku</string>
+    <string name="osm_raceway">Kilparata</string>
+    <string name="osm_busway">Bussiväylä</string>
+    <string name="osm_bus_guideway">Ohjattu bussiväylä</string>
+    <string name="osm_ferry">Lauttareitti</string>
+    <string name="osm_transit">Joukkoliikennereitti</string>
+    <string name="osm_tunnel">Tunneli</string>
 </resources>
