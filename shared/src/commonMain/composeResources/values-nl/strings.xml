@@ -524,7 +524,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Markeringen en routes verwijderd</string>
     <string name="new_version_info_text">Informatie over de nieuwe release</string>
     <string name="new_version_info_completed">Nieuwe releasedialoog sluiten</string>
-    <string name="new_version_info_details">\nDit is een nieuwe kleine release van Soundscape. Dit zijn de aangebrachte wijzigingen.\n\nWe hebben de ondersteuning voor ASHA-hoortoestellen hersteld. Als u een hoortoestelgebruiker bent en Soundscape werkt niet voor u, laat het ons dan weten.\n\nEr is een nieuwe optie *Soundscape afsluiten* bovenaan het hoofdmenu. Als u hierop tikt, kunt u de app eenvoudig volledig afsluiten.\n\nHet scherm met details van offline kaarten heeft nu een knop om kaarten die al zijn gedownload opnieuw te downloaden. Kaarten worden eenmaal per maand bijgewerkt vanuit OpenStreetMap, dus het af en toe opnieuw downloaden van offline kaarten is aan te raden. Er is ook code toegevoegd die de validatie van gedownloade kaarten verbetert om te voorkomen dat beschadigde kaarten worden gebruikt.\n\nWe blijven hard werken aan het verbeteren van de app. Meld eventuele problemen, hoe klein ook, via de optie *Contact opnemen met ondersteuning* in het hoofdmenu.\n</string>
+    <string name="new_version_info_details">Dit is de eerste productieversie van Soundscape. We blijven hard werken aan verbeteringen van de app, dus meldt eventuele problemen, hoe klein ook, via de optie *Contact opnemen met ondersteuning* in het hoofdmenu.</string>
     <string name="menu_open_source_licenses">Open-sourcelicenties</string>
     <string name="osm_tag_ferry_terminal">Veerterminal</string>
     <string name="osm_tag_ferry_terminal_named">%1$s Veerterminal</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">Wanneer uitgeschakeld, worden andere audio‑apps gepauzeerd en zijn de mediacontroles op het vergrendelscherm beschikbaar</string>
     <string name="settings_head_tracking">Hoofdtracking inschakelen</string>
     <string name="settings_head_tracking_description">Plaats ruimtelijke audio ten opzichte van de richting waarin uw hoofd is gericht, met behulp van bewegingsgegevens van ondersteunde AirPods, Bose Frames of een externe Bluetooth‑IMU. Kalibreert automatisch terwijl u loopt.</string>
+    <string name="sleep_snoozing">Sluimerstand</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape staat momenteel in de sluimerstand. Wanneer u uw huidige locatie verlaat, wordt Soundscape automatisch weer geactiveerd. Hiervoor worden Locatievoorzieningen in een zuinige modus gebruikt om de batterij van uw telefoon te sparen. Tik op de knop hieronder om Soundscape nu te activeren.</string>
+    <string name="sleep_wake_on_leave">Wek bij vertrek</string>
+    <string name="osm_motorway">Autosnelweg</string>
+    <string name="osm_trunk">Hoofdweg</string>
+    <string name="osm_path">Pad</string>
+    <string name="osm_raceway">Racebaan</string>
+    <string name="osm_busway">Busbaan</string>
+    <string name="osm_bus_guideway">Geleide busbaan</string>
+    <string name="osm_ferry">Veerroute</string>
+    <string name="osm_transit">Route openbaar vervoer</string>
+    <string name="osm_tunnel">Tunnel</string>
 </resources>
