@@ -524,7 +524,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Отметки и пути удалены</string>
     <string name="new_version_info_text">Информация о новом выпуске</string>
     <string name="new_version_info_completed">Закрыть окно с информацией о новом выпуске</string>
-    <string name="new_version_info_details">\nЭто новое незначительное обновление Soundscape. Ниже перечислены внесённые изменения.\n\nМы исправили поддержку слуховых аппаратов ASHA. Если вы пользуетесь слуховым аппаратом и Soundscape у вас не работает, пожалуйста, сообщите нам.\n\nВ верхней части главного меню появилась новая опция «Выйти из Soundscape». Нажатие на неё — простой способ полностью закрыть приложение.\n\nНа экране сведений об офлайн‑картах теперь есть кнопка для повторной загрузки уже скачанных карт. Карты обновляются из OpenStreetMap раз в месяц, поэтому время от времени имеет смысл повторно загружать офлайн‑карты. Также добавлен код, который улучшает проверку загруженных карт и предотвращает использование повреждённых файлов карт.\n\nМы продолжаем активно работать над улучшением приложения, поэтому, пожалуйста, сообщайте о любых проблемах, даже если они кажутся незначительными, через опцию *Связаться со службой поддержки* в главном меню.\n</string>
+    <string name="new_version_info_details">Это первый производственный выпуск Soundscape. Мы продолжаем активно работать над улучшением приложения, поэтому, пожалуйста, сообщайте о любых проблемах, даже самых незначительных, через опцию *«Связаться со службой поддержки»* в главном меню.</string>
     <string name="menu_open_source_licenses">Лицензии с открытым исходным кодом</string>
     <string name="osm_tag_ferry_terminal">Паромный терминал</string>
     <string name="osm_tag_ferry_terminal_named">%1$s Паромный терминал</string>
@@ -1359,7 +1359,7 @@
     <string name="settings_collapsed">Свернуто</string>
     <string name="settings_expanded">Развернуто</string>
     <string name="ui_grant_permission">Предоставить разрешение</string>
-    <string name="copyright_notices">Soundscape не был бы возможен без этих замечательных сторонних библиотек и данных. Нажмите на ссылки, чтобы просмотреть их лицензии:</string>
+    <string name="copyright_notices">Soundscape был бы невозможен без этих замечательных сторонних библиотек и данных. Нажмите на ссылки, чтобы просмотреть их лицензии:</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) предоставляют все геоданные, используемые в Soundscape для картографии и аудио.</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) используется для генерации картографических плиток, которые мы применяем.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) используется для генерации 3D‑аудио и предоставляется для использования в соответствии с [лицензией Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">Если отключено, другие аудиоприложения будут приостановлены, а элементы управления медиа на экране блокировки станут доступны</string>
     <string name="settings_head_tracking">Включить отслеживание головы</string>
     <string name="settings_head_tracking_description">Располагать пространственное аудио относительно направления вашей головы, используя данные движения от поддерживаемых AirPods, Bose Frames или внешнего Bluetooth‑IMU. Калибруется автоматически во время прогулки.</string>
+    <string name="sleep_snoozing">В режиме «Snooze»</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape в настоящее время находится в режиме «Snooze». Когда вы покинете текущее местоположение, Soundscape автоматически разбудится. Для этого используются Службы геолокации в режиме пониженного энергопотребления, чтобы экономить заряд батареи телефона. Нажмите кнопку ниже, чтобы разбудить Soundscape.</string>
+    <string name="sleep_wake_on_leave">Разбудить, когда я уйду</string>
+    <string name="osm_motorway">Автомагистраль</string>
+    <string name="osm_trunk">Магистральная дорога</string>
+    <string name="osm_path">Тропа</string>
+    <string name="osm_raceway">Гоночная трасса</string>
+    <string name="osm_busway">Выделенная автобусная дорога</string>
+    <string name="osm_bus_guideway">Направляющая для автобусов</string>
+    <string name="osm_ferry">Паромный маршрут</string>
+    <string name="osm_transit">Маршрут общественного транспорта</string>
+    <string name="osm_tunnel">Туннель</string>
 </resources>
