@@ -524,7 +524,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Znaczniki i trasy usunięte</string>
     <string name="new_version_info_text">Informacje o nowej wersji</string>
     <string name="new_version_info_completed">Zamknij okno informacji o nowej wersji</string>
-    <string name="new_version_info_details">\nTo jest nowe drobne wydanie Soundscape. Oto wprowadzone zmiany.\n\nNaprawiliśmy obsługę aparatów słuchowych ASHA. Jeśli używasz aparatu słuchowego i Soundscape nie działa u Ciebie poprawnie, prosimy daj nam znać.\n\nW menu głównym u góry pojawiła się nowa opcja *Zamknij Soundscape*. Stuknięcie w nią to prosty sposób na całkowite zamknięcie aplikacji.\n\nNa ekranie szczegółów map offline dodano przycisk umożliwiający ponowne pobranie map, które zostały wcześniej pobrane. Mapy są aktualizowane raz w miesiącu z OpenStreetMap, więc od czasu do czasu warto je ponownie pobrać. Dodaliśmy także mechanizmy poprawiające walidację pobranych map, aby zapobiec użyciu uszkodzonych plików map.\n\nWciąż intensywnie pracujemy nad ulepszaniem aplikacji, więc prosimy o zgłaszanie wszelkich problemów, nawet drobnych, za pomocą opcji *Kontakt z pomocą techniczną* w menu głównym.\n</string>
+    <string name="new_version_info_details">To jest pierwsze produkcyjne wydanie Soundscape. Wciąż ciężko pracujemy nad ulepszeniami aplikacji, więc prosimy zgłaszać wszelkie problemy, nawet te najmniejsze, korzystając z opcji *Kontakt z pomocą techniczną* w menu głównym.</string>
     <string name="menu_open_source_licenses">Licencje open source</string>
     <string name="osm_tag_ferry_terminal">Terminal promowy</string>
     <string name="osm_tag_ferry_terminal_named">%1$s Terminal promowy</string>
@@ -1359,7 +1359,7 @@
     <string name="settings_collapsed">Zwinięte</string>
     <string name="settings_expanded">Rozwinięte</string>
     <string name="ui_grant_permission">Przyznaj uprawnienie</string>
-    <string name="copyright_notices">Soundscape nie byłby możliwy bez tych fantastycznych bibliotek i danych firm trzecich. Kliknij linki, aby zobaczyć ich licencje:</string>
+    <string name="copyright_notices">Soundscape nie byłby możliwy bez tych znakomitych bibliotek i danych stron trzecich. Kliknij linki, aby zobaczyć ich licencje:</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) dostarczają wszystkie dane geograficzne wykorzystywane do mapowania i generowania dźwięku w Soundscape.</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) jest używany do generowania kafelków mapy, których używamy.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) służy do generowania dźwięku 3D i jest udostępniona do użytku na warunkach [licencji Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">Gdy wyłączone, inne aplikacje audio zostaną wstrzymane, a na ekranie blokady będą dostępne sterowanie mediami</string>
     <string name="settings_head_tracking">Włącz śledzenie ruchu głowy</string>
     <string name="settings_head_tracking_description">Ustawiaj dźwięk przestrzenny względem kierunku, w którym zwrócona jest Twoja głowa, korzystając z danych ruchu pochodzących z obsługiwanych słuchawek AirPods, okularów Bose Frames lub zewnętrznego modułu IMU przez Bluetooth. Kalibruje się automatycznie podczas marszu.</string>
+    <string name="sleep_snoozing">Tryb drzemki</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape jest obecnie w trybie drzemki. Po opuszczeniu bieżącej lokalizacji Soundscape obudzi się automatycznie. Wykorzystywane są w tym celu Usługi lokalizacji w trybie niskiego zużycia energii, aby oszczędzać baterię telefonu. Stuknij przycisk poniżej, aby obudzić Soundscape teraz.</string>
+    <string name="sleep_wake_on_leave">Obudź mnie, gdy opuszczę to miejsce</string>
+    <string name="osm_motorway">Autostrada</string>
+    <string name="osm_trunk">Droga główna</string>
+    <string name="osm_path">Ścieżka</string>
+    <string name="osm_raceway">Tor wyścigowy</string>
+    <string name="osm_busway">Droga autobusowa</string>
+    <string name="osm_bus_guideway">Tor autobusowy</string>
+    <string name="osm_ferry">Trasa promowa</string>
+    <string name="osm_transit">Trasa transportu publicznego</string>
+    <string name="osm_tunnel">Tunel</string>
 </resources>
