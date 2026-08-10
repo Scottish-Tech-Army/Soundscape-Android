@@ -524,7 +524,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Mærker og ruter er slettet</string>
     <string name="new_version_info_text">Oplysninger om ny udgivelse</string>
     <string name="new_version_info_completed">Luk dialog om ny udgivelse</string>
-    <string name="new_version_info_details">\nDette er en ny mindre udgivelse af Soundscape. Her er de ændringer, der er foretaget.\n\nVi har forbedret understøttelsen af ASHA-høreapparater. Hvis du er høreapparatbruger, og Soundscape ikke virker for dig, så giv os venligst besked.\n\nDer er en ny mulighed Afslut Soundscape øverst i hovedmenuen. Ved at trykke på den kan du nemt lukke appen helt.\n\nSkærmen *Detaljer om offline-kort* har nu en knap til at hente kort på ny, som allerede er blevet downloadet. Kortene opdateres én gang om måneden fra Open Street Map, så det kan betale sig jævnligt at hente offline-kortene igen. Der er også kode, som forbedrer valideringen af downloadede kort for at forhindre, at beskadigede kort tages i brug.\n\nVi arbejder stadig hårdt på at forbedre appen, så rapporter gerne eventuelle problemer — også små — via *Kontakt support* i hovedmenuen.\n</string>
+    <string name="new_version_info_details">Dette er den første produktionsudgivelse af Soundscape. Vi arbejder stadig hårdt på at forbedre appen, så rapportér venligst eventuelle problemer, uanset hvor små de måtte være, via *Kontakt support*-muligheden i hovedmenuen.</string>
     <string name="menu_open_source_licenses">Open source-licenser</string>
     <string name="osm_office">Kontor</string>
     <string name="osm_school">Skole</string>
@@ -1359,7 +1359,7 @@
     <string name="settings_collapsed">Skjult</string>
     <string name="settings_expanded">Udvidet</string>
     <string name="ui_grant_permission">Giv tilladelse</string>
-    <string name="copyright_notices">Soundscape ville ikke være muligt uden disse fantastiske tredjepartsbiblioteker og -data. Klik på linkene for at se deres licenser:</string>
+    <string name="copyright_notices">Soundscape ville ikke være muligt uden disse fantastiske tredjepartsbiblioteker og data. Klik på linkene for at se deres licenser:</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) leverer alle geodata til kortlægning og lyd, som bruges i Soundscape.</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) bruges til at generere de kortfliser, vi bruger.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) bruges til at generere 3D-lyden og stilles til rådighed under [Apache 2.0-licensen](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">Når den er deaktiveret, vil andre lyd‑apps blive sat på pause, og mediekontroller på låseskærmen vil være tilgængelige</string>
     <string name="settings_head_tracking">Aktivér hovedsporing</string>
     <string name="settings_head_tracking_description">Positionér den rumlige lyd i forhold til, hvor dit hoved vender, ved hjælp af bevægelsesdata fra understøttede AirPods, Bose Frames eller en ekstern Bluetooth IMU. Kalibreres automatisk, mens du går.</string>
+    <string name="sleep_snoozing">I slumretilstand</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape er i øjeblikket i slumretilstand. Når du forlader din nuværende placering, vækkes Soundscape automatisk. Denne funktion bruger lokalitetstjenester i en lavenergitilstand for at spare telefonens batteri. Tryk på knappen nedenfor for at vække Soundscape nu.</string>
+    <string name="sleep_wake_on_leave">Væk, når jeg forlader stedet</string>
+    <string name="osm_motorway">Motorvej</string>
+    <string name="osm_trunk">Hovedvej</string>
+    <string name="osm_path">Sti</string>
+    <string name="osm_raceway">Racerbane</string>
+    <string name="osm_busway">Busbane</string>
+    <string name="osm_bus_guideway">Guidet busbane</string>
+    <string name="osm_ferry">Færgerute</string>
+    <string name="osm_transit">Rute for offentlig transport</string>
+    <string name="osm_tunnel">Tunnel</string>
 </resources>
