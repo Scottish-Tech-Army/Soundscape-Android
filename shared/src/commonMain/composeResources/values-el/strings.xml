@@ -1359,7 +1359,7 @@
     <string name="settings_collapsed">Συμπτυγμένο</string>
     <string name="settings_expanded">Αναπτυγμένο</string>
     <string name="ui_grant_permission">Παροχή άδειας</string>
-    <string name="copyright_notices">Το Soundscape δεν θα ήταν δυνατό χωρίς αυτές τις εξαιρετικές βιβλιοθήκες τρίτων και τα δεδομένα τους. Κάντε κλικ στους συνδέσμους για να δείτε τις άδειές τους:</string>
+    <string name="copyright_notices">Το Soundscape δεν θα ήταν δυνατό χωρίς αυτές τις εξαιρετικές βιβλιοθήκες και δεδομένα τρίτων. Κάντε κλικ στους συνδέσμους για να δείτε τις άδειές τους:</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) παρέχουν όλα τα γεωγραφικά δεδομένα για τη χαρτογράφηση και τον ήχο που χρησιμοποιούνται στο Soundscape.</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) χρησιμοποιείται για τη δημιουργία των πλακιδίων χάρτη (map tiles) που χρησιμοποιούμε.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) χρησιμοποιείται για τη δημιουργία του 3D ήχου και διατίθεται για χρήση υπό την [άδεια Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">Όταν είναι απενεργοποιημένη, άλλες εφαρμογές ήχου θα παύουν και θα είναι διαθέσιμοι οι έλεγχοι πολυμέσων στην οθόνη κλειδώματος.</string>
     <string name="settings_head_tracking">Ενεργοποίηση παρακολούθησης κεφαλής</string>
     <string name="settings_head_tracking_description">Τοποθετήστε τον χωρικό ήχο σε σχέση με την κατεύθυνση που κοιτάει το κεφάλι σας, χρησιμοποιώντας δεδομένα κίνησης από υποστηριζόμενα AirPods, Bose Frames ή εξωτερικό Bluetooth IMU. Η βαθμονόμηση γίνεται αυτόματα όσο περπατάτε.</string>
+    <string name="sleep_snoozing">Σε λειτουργία αναβολής</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Το Soundscape αυτήν τη στιγμή βρίσκεται σε λειτουργία αναβολής. Όταν φύγετε από την τρέχουσα τοποθεσία σας, το Soundscape θα ενεργοποιηθεί αυτόματα. Αυτό χρησιμοποιεί τις Υπηρεσίες τοποθεσίας σε λειτουργία χαμηλής κατανάλωσης ενέργειας για να εξοικονομήσει μπαταρία στο τηλέφωνό σας. Πατήστε το παρακάτω κουμπί για να το ενεργοποιήσετε τώρα.</string>
+    <string name="sleep_wake_on_leave">Ενεργοποίηση όταν φύγω</string>
+    <string name="osm_motorway">Αυτοκινητόδρομος</string>
+    <string name="osm_trunk">Εθνική οδός</string>
+    <string name="osm_path">Μονοπάτι</string>
+    <string name="osm_raceway">Πίστα αγώνων</string>
+    <string name="osm_busway">Λεωφορειόδρομος</string>
+    <string name="osm_bus_guideway">Καθοδηγούμενος λεωφορειόδρομος</string>
+    <string name="osm_ferry">Δρομολόγιο πορθμείου</string>
+    <string name="osm_transit">Διαδρομή συγκοινωνίας</string>
+    <string name="osm_tunnel">Σήραγγα</string>
 </resources>
