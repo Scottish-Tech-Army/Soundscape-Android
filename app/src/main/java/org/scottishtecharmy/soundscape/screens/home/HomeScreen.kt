@@ -6,6 +6,7 @@ import android.os.Process
 import android.util.Log
 import androidx.activity.compose.LocalActivity
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -80,15 +81,23 @@ fun HomeScreen(
             MainActivity.RECORD_TRAVEL_KEY,
             MainActivity.RECORD_TRAVEL_DEFAULT
         )
-        MutableStateFlow(initial).also { flow ->
-            preferences.registerOnSharedPreferenceChangeListener { sp, key ->
-                if (key == MainActivity.RECORD_TRAVEL_KEY) {
-                    flow.value = sp.getBoolean(
-                        MainActivity.RECORD_TRAVEL_KEY,
-                        MainActivity.RECORD_TRAVEL_DEFAULT
-                    )
-                }
+        MutableStateFlow(initial)
+    }
+    val recordingEnabledListener = remember(preferences, recordingEnabledFlow) {
+        SharedPreferences.OnSharedPreferenceChangeListener { sp, key ->
+            if (key == MainActivity.RECORD_TRAVEL_KEY) {
+                recordingEnabledFlow.value = sp.getBoolean(
+                    MainActivity.RECORD_TRAVEL_KEY,
+                    MainActivity.RECORD_TRAVEL_DEFAULT
+                )
+                Log.d("Home", "value change: $key -> ${recordingEnabledFlow.value}")
             }
+        }
+    }
+    DisposableEffect(preferences, recordingEnabledListener) {
+        preferences.registerOnSharedPreferenceChangeListener(recordingEnabledListener)
+        onDispose {
+            preferences.unregisterOnSharedPreferenceChangeListener(recordingEnabledListener)
         }
     }
 
