@@ -1359,7 +1359,7 @@
     <string name="settings_collapsed">Ridotta</string>
     <string name="settings_expanded">Espansa</string>
     <string name="ui_grant_permission">Concedi autorizzazione</string>
-    <string name="copyright_notices">Soundscape non sarebbe possibile senza queste fantastiche librerie e dati di terze parti. Tocca i link per visualizzare le relative licenze:</string>
+    <string name="copyright_notices">Soundscape non sarebbe possibile senza queste fantastiche librerie e dati di terze parti. Tocca i link per visualizzarne le licenze:</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) forniscono tutti i dati geografici per le mappe e l'audio utilizzati in Soundscape.</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) viene utilizzato per generare i tasselli di mappa che usiamo.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) viene utilizzata per generare l'audio 3D ed è resa disponibile per l'uso sotto la [licenza Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">Se disattivato, le altre app audio verranno messe in pausa e saranno disponibili i controlli multimediali nella schermata di blocco</string>
     <string name="settings_head_tracking">Abilitare il tracciamento della testa</string>
     <string name="settings_head_tracking_description">Posiziona l'audio spaziale in base alla direzione della tua testa, utilizzando i dati di movimento provenienti da AirPods compatibili, Bose Frames o da un IMU Bluetooth esterno. Si calibra automaticamente mentre cammini.</string>
+    <string name="sleep_snoozing">In modalità Posponi</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape è attualmente in modalità Posponi. Quando lasci la tua posizione attuale, Soundscape si riattiverà automaticamente. Questo utilizza i servizi di localizzazione in modalità a basso consumo per risparmiare la batteria del telefono. Tocca il pulsante qui sotto per riattivarlo ora.</string>
+    <string name="sleep_wake_on_leave">Riattiva quando mi allontano</string>
+    <string name="osm_motorway">Autostrada</string>
+    <string name="osm_trunk">Strada principale</string>
+    <string name="osm_path">Sentiero</string>
+    <string name="osm_raceway">Pista di gara</string>
+    <string name="osm_busway">Strada riservata agli autobus</string>
+    <string name="osm_bus_guideway">Percorso guidato per autobus</string>
+    <string name="osm_ferry">Linea traghetto</string>
+    <string name="osm_transit">Linea di trasporto pubblico</string>
+    <string name="osm_tunnel">Galleria</string>
 </resources>
