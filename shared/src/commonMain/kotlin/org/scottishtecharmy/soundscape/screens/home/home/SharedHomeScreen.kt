@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.screens.home.home
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.ime
@@ -112,116 +113,118 @@ fun SharedHomeScreen(
         }
     }
 
-    Scaffold(
-        modifier = if (drawerOpen) modifier.clearAndSetSemantics { } else modifier,
-        // If the keyboard is open, then we don't show the top or the bottom bars. This makes more
-        // room for the search. This is important when the font size is very large, but it's
-        // also good for allowing the user to view more search results.
-        topBar = {
-            if (!keyboardOpen.value) {
-                SharedHomeTopAppBar(
-                    onMenuClick = { drawerOpen = true },
-                    streetPreviewState = state.streetPreviewState.enabled != StreetPreviewEnabled.OFF,
-                    streetPreviewFunctions = streetPreviewFunctions,
-                    onSleep = onSleep,
-                )
-            }
-        },
-        bottomBar = {
-            if (!fullscreenMap.value && !keyboardOpen.value) {
-                SharedHomeBottomAppBar(bottomButtonFunctions)
-            }
-        },
-        floatingActionButton = {
-            if ((!keyboardOpen.value) && showMap && (fullscreenMap.value || !routePlaying)) {
-                FullScreenMapFab(
-                    fullscreenMap,
-                    Modifier.testTag("homeFullScreenMap"),
-                )
-            }
-        },
-        contentWindowInsets = WindowInsets(0, 0, 0, 0),
-    ) { innerPadding ->
-        if (languageMismatchDialog.value && phoneLanguage != null) {
-            SharedLanguageMismatchDialog(
-                innerPadding = innerPadding,
-                preferencesProvider = preferencesProvider,
-                showDialog = languageMismatchDialog,
-                phoneLanguage = phoneLanguage,
-                onSetApplicationLocale = onSetApplicationLocale,
-            )
-        } else if (newReleaseDialog.value) {
-            SharedNewReleaseDialog(
-                innerPadding = innerPadding,
-                preferencesProvider = preferencesProvider,
-                newReleaseDialog = newReleaseDialog,
-            )
-        }
-
-        if (fullscreenMap.value && showMap) {
-            state.location?.let { location ->
-                PlatformMapContainer(
-                    beaconLocation = state.beaconState?.location,
-                    routeData = state.currentRouteData.routeData,
-                    currentBeaconWaypointIndex = state.currentRouteData.currentWaypoint,
-                    mapCenter = location,
-                    allowScrolling = false,
-                    userLocation = location,
-                    userSymbolRotation = state.heading,
-                    modifier = modifier.fillMaxSize(),
-                )
-            }
-        } else {
-            SharedHomeContent(
-                location = state.location,
-                beaconState = state.beaconState,
-                routePlayerState = state.currentRouteData,
-                heading = state.heading,
-                modifier = modifier.padding(innerPadding),
-                onNavigate = onNavigate,
-                onSelectLocation = onSelectLocation,
-                getCurrentLocationDescription = getCurrentLocationDescription,
-                searchBar = {
-                    MainSearchBar(
-                        results = state.searchItems.orEmpty(),
-                        onTriggerSearch = searchFunctions.onTriggerSearch,
-                        onItemClick = { item -> onSelectLocation(item) },
-                        hint = stringResource(Res.string.search_bar_hint),
-                        userLocation = state.location,
-                        isSearching = state.searchInProgress,
+    Box(modifier = modifier) {
+        Scaffold(
+            modifier = if (drawerOpen) Modifier.clearAndSetSemantics { } else Modifier,
+            // If the keyboard is open, then we don't show the top or the bottom bars. This makes more
+            // room for the search. This is important when the font size is very large, but it's
+            // also good for allowing the user to view more search results.
+            topBar = {
+                if (!keyboardOpen.value) {
+                    SharedHomeTopAppBar(
+                        onMenuClick = { drawerOpen = true },
+                        streetPreviewState = state.streetPreviewState.enabled != StreetPreviewEnabled.OFF,
+                        streetPreviewFunctions = streetPreviewFunctions,
+                        onSleep = onSleep,
                     )
-                },
-                onMapLongClick = onMapLongClick,
-                streetPreviewState = state.streetPreviewState,
-                routeFunctions = routeFunctions,
-                streetPreviewFunctions = streetPreviewFunctions,
-                goToAppSettings = goToAppSettings,
-                fullscreenMap = fullscreenMap,
-                permissionsRequired = permissionsRequired,
-                showMap = showMap,
-                voiceCommandListening = voiceCommandListening,
+                }
+            },
+            bottomBar = {
+                if (!fullscreenMap.value && !keyboardOpen.value) {
+                    SharedHomeBottomAppBar(bottomButtonFunctions)
+                }
+            },
+            floatingActionButton = {
+                if ((!keyboardOpen.value) && showMap && (fullscreenMap.value || !routePlaying)) {
+                    FullScreenMapFab(
+                        fullscreenMap,
+                        Modifier.testTag("homeFullScreenMap"),
+                    )
+                }
+            },
+            contentWindowInsets = WindowInsets(0, 0, 0, 0),
+        ) { innerPadding ->
+            if (languageMismatchDialog.value && phoneLanguage != null) {
+                SharedLanguageMismatchDialog(
+                    innerPadding = innerPadding,
+                    preferencesProvider = preferencesProvider,
+                    showDialog = languageMismatchDialog,
+                    phoneLanguage = phoneLanguage,
+                    onSetApplicationLocale = onSetApplicationLocale,
+                )
+            } else if (newReleaseDialog.value) {
+                SharedNewReleaseDialog(
+                    innerPadding = innerPadding,
+                    preferencesProvider = preferencesProvider,
+                    newReleaseDialog = newReleaseDialog,
+                )
+            }
+
+            if (fullscreenMap.value && showMap) {
+                state.location?.let { location ->
+                    PlatformMapContainer(
+                        beaconLocation = state.beaconState?.location,
+                        routeData = state.currentRouteData.routeData,
+                        currentBeaconWaypointIndex = state.currentRouteData.currentWaypoint,
+                        mapCenter = location,
+                        allowScrolling = false,
+                        userLocation = location,
+                        userSymbolRotation = state.heading,
+                        modifier = Modifier.fillMaxSize(),
+                    )
+                }
+            } else {
+                SharedHomeContent(
+                    location = state.location,
+                    beaconState = state.beaconState,
+                    routePlayerState = state.currentRouteData,
+                    heading = state.heading,
+                    modifier = Modifier.padding(innerPadding),
+                    onNavigate = onNavigate,
+                    onSelectLocation = onSelectLocation,
+                    getCurrentLocationDescription = getCurrentLocationDescription,
+                    searchBar = {
+                        MainSearchBar(
+                            results = state.searchItems.orEmpty(),
+                            onTriggerSearch = searchFunctions.onTriggerSearch,
+                            onItemClick = { item -> onSelectLocation(item) },
+                            hint = stringResource(Res.string.search_bar_hint),
+                            userLocation = state.location,
+                            isSearching = state.searchInProgress,
+                        )
+                    },
+                    onMapLongClick = onMapLongClick,
+                    streetPreviewState = state.streetPreviewState,
+                    routeFunctions = routeFunctions,
+                    streetPreviewFunctions = streetPreviewFunctions,
+                    goToAppSettings = goToAppSettings,
+                    fullscreenMap = fullscreenMap,
+                    permissionsRequired = permissionsRequired,
+                    showMap = showMap,
+                    voiceCommandListening = voiceCommandListening,
+                )
+            }
+        }
+
+        AnimatedVisibility(
+            visible = drawerOpen,
+            enter = slideInHorizontally(initialOffsetX = { -it }),
+            exit = slideOutHorizontally(targetOffsetX = { -it }),
+        ) {
+            SharedDrawerContent(
+                onClose = { drawerOpen = false },
+                onNavigate = onNavigate,
+                rateSoundscape = rateSoundscape,
+                contactSupport = contactSupport,
+                shareRecording = shareRecording,
+                offlineMaps = offlineMaps,
+                toggleTutorial = toggleTutorial,
+                tutorialRunning = tutorialRunning,
+                recordingEnabled = recordingEnabled,
+                newReleaseDialog = newReleaseDialog,
+                exitApp = exitApp,
             )
         }
-    }
-
-    AnimatedVisibility(
-        visible = drawerOpen,
-        enter = slideInHorizontally(initialOffsetX = { -it }),
-        exit = slideOutHorizontally(targetOffsetX = { -it }),
-    ) {
-        SharedDrawerContent(
-            onClose = { drawerOpen = false },
-            onNavigate = onNavigate,
-            rateSoundscape = rateSoundscape,
-            contactSupport = contactSupport,
-            shareRecording = shareRecording,
-            offlineMaps = offlineMaps,
-            toggleTutorial = toggleTutorial,
-            tutorialRunning = tutorialRunning,
-            recordingEnabled = recordingEnabled,
-            newReleaseDialog = newReleaseDialog,
-            exitApp = exitApp,
-        )
     }
 
     // Deprecated in CMP 1.11 in favor of androidx.navigationevent's NavigationEventHandler,
