@@ -524,7 +524,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Marqueurs et itinéraires supprimés</string>
     <string name="new_version_info_text">Informations sur la nouvelle version</string>
     <string name="new_version_info_completed">Fermer les informations sur la nouvelle version</string>
-    <string name="new_version_info_details">\nIl s’agit d’une nouvelle version mineure de Soundscape. Voici les modifications apportées.\n\nNous avons corrigé la prise en charge des aides auditives ASHA. Si vous utilisez un appareil auditif et que Soundscape ne fonctionne pas correctement pour vous, veuillez nous le signaler.\n\nUne nouvelle option « Quitter Soundscape » a été ajoutée en haut du menu principal. Appuyer dessus est un moyen simple de fermer complètement l’application.\n\nL’écran des détails des cartes hors ligne comporte désormais un bouton permettant de retélécharger des cartes déjà téléchargées. Les cartes sont mises à jour une fois par mois via OpenStreetMap ; il est donc utile de retélécharger de temps en temps les cartes hors ligne. Nous avons également ajouté du code améliorant la validation des cartes téléchargées afin d’éviter l’utilisation de fichiers corrompus.\n\nNous continuons à travailler activement à l’amélioration de l’application ; veuillez signaler tout problème, même mineur, via l’option *Contacter le support* dans le menu principal.\n</string>
+    <string name="new_version_info_details">Ceci est la première version de production de Soundscape. Nous travaillons toujours à l’amélioration de l’application, alors veuillez signaler tout problème que vous rencontrez, même minime, via l’option *Contacter le support* dans le menu principal.</string>
     <string name="menu_open_source_licenses">Licences open source</string>
     <string name="osm_tag_ferry_terminal">Terminal de traversier</string>
     <string name="osm_tag_ferry_terminal_named">%1$s Terminal de traversier</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">Si désactivé, les autres applications audio seront mises en pause et les commandes multimédias de l’écran verrouillé seront disponibles</string>
     <string name="settings_head_tracking">Activer le suivi de la tête</string>
     <string name="settings_head_tracking_description">Positionner l’audio spatial en fonction de l’orientation de votre tête, en utilisant les données de mouvement des AirPods compatibles, des Bose Frames ou d’un IMU Bluetooth externe. Se calibre automatiquement pendant la marche.</string>
+    <string name="sleep_snoozing">Désactivé temporairement</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape est actuellement en mode « Désactiver temporairement ». Lorsque vous quitterez votre emplacement actuel, Soundscape se réveillera automatiquement. Cela utilise les Services de localisation en mode basse consommation afin de préserver la batterie de votre téléphone. Appuyez sur le bouton ci‑dessous pour le réveiller maintenant.</string>
+    <string name="sleep_wake_on_leave">Sortir de veille lorsque je pars</string>
+    <string name="osm_motorway">Autoroute</string>
+    <string name="osm_trunk">Route principale</string>
+    <string name="osm_path">Sentier</string>
+    <string name="osm_raceway">Piste de course</string>
+    <string name="osm_busway">Voie réservée aux bus</string>
+    <string name="osm_bus_guideway">Voie guidée pour bus</string>
+    <string name="osm_ferry">Ligne de ferry</string>
+    <string name="osm_transit">Ligne de transport</string>
+    <string name="osm_tunnel">Tunnel</string>
 </resources>
