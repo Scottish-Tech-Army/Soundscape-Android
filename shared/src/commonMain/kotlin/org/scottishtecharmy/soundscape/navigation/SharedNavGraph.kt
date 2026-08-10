@@ -36,6 +36,8 @@ import org.scottishtecharmy.soundscape.network.DownloadStateCommon
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.markers_title
+import org.scottishtecharmy.soundscape.resources.routes_title
 import org.scottishtecharmy.soundscape.resources.search_view_markers
 import org.scottishtecharmy.soundscape.resources.universal_links_marker_share_message
 import org.scottishtecharmy.soundscape.screens.home.HomeState
@@ -705,13 +707,13 @@ private fun MarkersAndRoutesContainer(
                     Tab(
                         selected = selectedTab == 0,
                         onClick = { selectedTab = 0 },
-                        text = { Text("Markers") },
+                        text = { Text(stringResource(Res.string.markers_title)) },
                         modifier = Modifier.testTag("markersTab")
                     )
                     Tab(
                         selected = selectedTab == 1,
                         onClick = { selectedTab = 1 },
-                        text = { Text("Routes") },
+                        text = { Text(stringResource(Res.string.routes_title)) },
                         modifier = Modifier.testTag("routesTab")
                     )
                 }
