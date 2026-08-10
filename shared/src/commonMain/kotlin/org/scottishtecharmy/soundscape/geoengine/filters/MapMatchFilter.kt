@@ -21,6 +21,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import kotlin.math.asin
 import kotlin.math.cos
 import kotlin.math.max
@@ -718,7 +719,8 @@ class MapMatchFilter {
         location: LngLatAlt,
         gridState: GridState,
         collection: FeatureCollection,
-        dump: Boolean
+        dump: Boolean,
+        strings: LocalizedStrings?,
     ): Triple<LngLatAlt?, Feature?, String> {
 
         extendFollowerList(location, gridState)
@@ -761,8 +763,8 @@ class MapMatchFilter {
                             // We're matching on a sidewalk, see if the other way is either the
                             // associated way or another sidewalk for the associated way
                             val roadTree = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
-                            addSidewalk(matched, roadTree, gridState.ruler)
-                            addSidewalk(way, roadTree, gridState.ruler)
+                            addSidewalk(matched, roadTree, gridState.ruler, strings)
+                            addSidewalk(way, roadTree, gridState.ruler, strings)
 
                             val matchedPavement = matched.properties?.get("pavement")
                             val matchedName = matched.name

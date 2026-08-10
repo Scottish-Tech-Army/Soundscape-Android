@@ -35,7 +35,8 @@ class ComplexIntersections {
 
         val intersection = getRoadsDescriptionFromFov(
             gridState,
-            userGeometry
+            userGeometry,
+            null
         ).intersection
 
         Assert.assertEquals(3, intersection!!.members.size)
@@ -92,7 +93,8 @@ class ComplexIntersections {
 
         val intersection = getRoadsDescriptionFromFov(
             gridState,
-            userGeometry
+            userGeometry,
+            null
         ).intersection
 
         Assert.assertEquals(4, intersection!!.members.size)

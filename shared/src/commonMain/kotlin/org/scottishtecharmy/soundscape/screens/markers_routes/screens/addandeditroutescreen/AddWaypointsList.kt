@@ -40,6 +40,7 @@ import org.scottishtecharmy.soundscape.components.FolderItem
 import org.scottishtecharmy.soundscape.components.LocationItem
 import org.scottishtecharmy.soundscape.components.LocationItemDecoration
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.platform.ioDispatcher
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.general_loading_start
@@ -116,8 +117,9 @@ fun AddWaypointsList(
         ),
     )
     val levelOneFolders = placesNearbyFolders
+    val localizedStrings = remember { ComposeLocalizedStrings() }
     val nearbyLocations = remember(placesNearbyUiState) {
-        filterLocations(placesNearbyUiState)
+        filterLocations(placesNearbyUiState, localizedStrings)
     }
     val coroutineScope = rememberCoroutineScope()
     var fetchingLocation by remember { mutableStateOf(false) }

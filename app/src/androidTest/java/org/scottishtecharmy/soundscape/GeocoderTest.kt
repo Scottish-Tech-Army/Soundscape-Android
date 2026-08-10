@@ -22,7 +22,6 @@ import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.ProtomapsGridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
-import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.address.AddressFormatter
@@ -69,8 +68,8 @@ class GeocoderTest {
         val cheapRuler = CheapRuler(location.latitude)
         return runBlocking {
             // Update the grid states for this location
-            gridState.locationUpdate(location, emptySet())
-            settlementState.locationUpdate(location, emptySet())
+            gridState.locationUpdate(location, emptySet(), ComposeLocalizedStrings())
+            settlementState.locationUpdate(location, emptySet(), ComposeLocalizedStrings())
 
             // Find the nearby road so as we can pretend that we are map matched
             val roadTree = gridState.getFeatureTree(TreeId.WAYS_SELECTION)
@@ -309,8 +308,8 @@ class GeocoderTest {
 
         runBlocking {
             // Update the grid states for this location
-            gridState.locationUpdate(nearbyLocation, emptySet())
-            settlementState.locationUpdate(nearbyLocation, emptySet())
+            gridState.locationUpdate(nearbyLocation, emptySet(), ComposeLocalizedStrings())
+            settlementState.locationUpdate(nearbyLocation, emptySet(), ComposeLocalizedStrings())
 
             // Run the geocoders in parallel and wait for them all to either fail or complete
             val timeoutMillis = 10000L
@@ -572,7 +571,7 @@ class GeocoderTest {
 
         val milngavie = LngLatAlt(-4.317166334292434, 55.941822016283)
         runBlocking {
-            gridState.locationUpdate(milngavie, emptySet())
+            gridState.locationUpdate(milngavie, emptySet(), ComposeLocalizedStrings())
 
             val features = gridState.getFeatureCollection(TreeId.POIS)
             features.forEach { feature ->
@@ -581,7 +580,7 @@ class GeocoderTest {
                     val ld = feature.toLocationDescription(
                         LocationSource.OfflineGeocoder,
                         getDistanceToFeature(milngavie, feature, gridState.ruler).point,
-                        getTextForFeature(ComposeLocalizedStrings(), mvt)
+                        mvt.getText(ComposeLocalizedStrings())
                     )
                 }
             }

@@ -10,14 +10,13 @@ import androidx.compose.material.icons.rounded.LocalGroceryStore
 import androidx.compose.ui.graphics.vector.ImageVector
 import org.jetbrains.compose.resources.StringResource
 import org.scottishtecharmy.soundscape.components.LocationSource
-import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.featureHasEntrances
 import org.scottishtecharmy.soundscape.geoengine.utils.featureIsInFilterGroup
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.all_places_nearby_description
 import org.scottishtecharmy.soundscape.resources.banks_places_nearby_description
@@ -80,7 +79,10 @@ val placesNearbyFolders = listOf(
     ),
 )
 
-fun filterLocations(uiState: PlacesNearbyUiState): List<LocationDescription> {
+fun filterLocations(
+    uiState: PlacesNearbyUiState,
+    strings: LocalizedStrings,
+): List<LocationDescription> {
     val location = uiState.userLocation ?: LngLatAlt()
     val ruler = CheapRuler(location.latitude)
     return if (uiState.filter == "intersections") {
@@ -102,15 +104,12 @@ fun filterLocations(uiState: PlacesNearbyUiState): List<LocationDescription> {
             // Filter based on any folder selected and filter out POIs with entrances
             !featureHasEntrances(feature) &&
                     featureIsInFilterGroup(feature, uiState.filter) &&
-                    getTextForFeature(
-                        ComposeLocalizedStrings(),
-                        feature as MvtFeature
-                    ).text.isNotEmpty()
+                    (feature as MvtFeature).getText(strings).text.isNotEmpty()
         }.map { feature ->
             feature.deferredToLocationDescription(
                 LocationSource.OfflineGeocoder,
                 getDistanceToFeature(location, feature, ruler).point,
-                getTextForFeature(ComposeLocalizedStrings(), feature as MvtFeature)
+                (feature as MvtFeature).getText(strings)
             )
         }.sortedBy {
             uiState.userLocation?.let { location ->

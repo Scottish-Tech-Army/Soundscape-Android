@@ -25,7 +25,8 @@ class IntersectionsTestMvt {
             location = currentLocation,
             gridState = gridState,
             collection = FeatureCollection(),
-            dump = false
+            dump = false,
+            strings = null
         )
         val userGeometry = UserGeometry(
             location = currentLocation,
@@ -36,7 +37,8 @@ class IntersectionsTestMvt {
 
         return getRoadsDescriptionFromFov(
             gridState,
-            userGeometry
+            userGeometry,
+            null
         ).intersection
     }
 

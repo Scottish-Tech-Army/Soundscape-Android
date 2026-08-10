@@ -57,7 +57,7 @@ class Intersection : MvtFeature() {
 
     fun updateName(
         gridState: GridState? = null,
-        strings: LocalizedStrings? = null
+        strings: LocalizedStrings?
     ) {
         val updatedName = StringBuilder()
         val namesUsed = mutableSetOf<String>()
@@ -106,7 +106,7 @@ class Way : MvtFeature() {
     fun getName(
         direction: Boolean? = null,
         gridState: GridState? = null,
-        strings: LocalizedStrings? = null,
+        strings: LocalizedStrings?,
         nonGenericOnly: Boolean = false,
         noGenericDeadEnds: Boolean = false
     ): String {
@@ -128,7 +128,7 @@ class Way : MvtFeature() {
             }
 
             if (gridState != null) {
-                confectNamesForRoad(this, gridState)
+                confectNamesForRoad(this, gridState, strings)
             }
 
             if (direction != null) {
@@ -270,6 +270,7 @@ class Way : MvtFeature() {
         intersection: Intersection,
         mainWay: Way?,
         gridState: GridState,
+        strings: LocalizedStrings?,
     ): Boolean {
 
         // It's not a connector if the mainWay isn't named
@@ -293,7 +294,7 @@ class Way : MvtFeature() {
                     // connector i.e. it may connect to a sidewalk, but it goes further.
                     return false
                 } else if (way.properties?.get("pavement") == null) {
-                    confectNamesForRoad(way, gridState)
+                    confectNamesForRoad(way, gridState, strings)
                 }
                 // And then return true if it's the pavement for this Way
                 val pavement = way.properties?.get("pavement")

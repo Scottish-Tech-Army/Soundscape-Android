@@ -6,7 +6,6 @@ import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
-import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.circleToPolygon
@@ -243,8 +242,8 @@ class PoiTest {
         val poiTree = gridState.getFeatureTree(TreeId.POIS)
         val pois = poiTree.getNearbyCollection(userGeometry.location, 50.0, gridState.ruler)
         for (poi in pois) {
-            println("Poi: ${(poi as MvtFeature).name} ${getTextForFeature(null, poi)}")
-            assertNotEquals("Unknown", getTextForFeature(null, poi).text)
+            println("Poi: ${(poi as MvtFeature).name} ${poi.getText(null)}")
+            assertNotEquals("Unknown", poi.getText(null).text)
         }
     }
 }

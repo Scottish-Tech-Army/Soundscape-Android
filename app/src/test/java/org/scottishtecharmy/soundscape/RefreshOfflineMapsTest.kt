@@ -29,16 +29,16 @@ class RefreshOfflineMapsTest {
 
         runBlocking {
             // The first update always recomputes, starting from an empty central bounding box.
-            assertTrue(gridState.locationUpdate(location, enabledCategories))
+            assertTrue(gridState.locationUpdate(location, enabledCategories, null))
 
             // A second update at the same, unmoved location is a no-op - it's still within the
             // grid's existing central area.
-            assertFalse(gridState.locationUpdate(location, enabledCategories))
+            assertFalse(gridState.locationUpdate(location, enabledCategories, null))
 
             // refreshOfflineMaps() (called when an offline map extract is downloaded or deleted)
             // must force the very next update to recompute, even without the location moving.
             gridState.refreshOfflineMaps()
-            assertTrue(gridState.locationUpdate(location, enabledCategories))
+            assertTrue(gridState.locationUpdate(location, enabledCategories, null))
         }
     }
 }

@@ -11,7 +11,6 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
-import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.RelativeDirections
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.SoundscapeGeocoder
@@ -193,14 +192,11 @@ fun buildWhatsAroundMeCallout(
                             for (feature in featureCollection) {
                                 var duplicate = false
                                 val featureName =
-                                    getTextForFeature(localizedStrings, feature as MvtFeature).text
+                                    (feature as MvtFeature).getText(localizedStrings).text
                                 for (otherFeature in featuresByDirection) {
                                     if (otherFeature == null) continue
                                     val otherName =
-                                        getTextForFeature(
-                                            localizedStrings,
-                                            otherFeature as MvtFeature
-                                        ).text
+                                        (otherFeature as MvtFeature).getText(localizedStrings).text
                                     if (featureName == otherName) duplicate = true
                                 }
                                 if (!duplicate) {
@@ -220,7 +216,7 @@ fun buildWhatsAroundMeCallout(
                     if (feature == null) continue
                     val poiLocation =
                         getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
-                    val name = getTextForFeature(localizedStrings, feature as MvtFeature)
+                    val name = (feature as MvtFeature).getText(localizedStrings)
                     val text = "${name.text}. ${
                         formatDistanceAndDirection(
                             poiLocation.distance,
@@ -281,7 +277,7 @@ fun buildAheadOfMeCallout(
 
                     val poiLocation =
                         getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
-                    val name = getTextForFeature(localizedStrings, feature as MvtFeature)
+                    val name = (feature as MvtFeature).getText(localizedStrings)
                     val text = "${name.text}. ${
                         formatDistanceAndDirection(
                             poiLocation.distance,
@@ -352,7 +348,7 @@ fun buildNearbyMarkersCallout(
                 if (nearestMarkers != null) {
                     for (feature in nearestMarkers.features) {
                         val featureText =
-                            getTextForFeature(localizedStrings, feature as MvtFeature)
+                            (feature as MvtFeature).getText(localizedStrings)
                         val markerLocation =
                             getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
                         val text = "${featureText.text}. ${

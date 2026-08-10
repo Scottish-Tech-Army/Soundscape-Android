@@ -374,11 +374,13 @@ class GeoEngine {
 
                     val updated = gridState.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
-                        createSuperCategoriesSet()
+                        createSuperCategoriesSet(),
+                        localizedStrings
                     )
                     settlementGrid.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
-                        createSuperCategoriesSet()
+                        createSuperCategoriesSet(),
+                        localizedStrings
                     )
 
                     runBlocking {
@@ -392,11 +394,12 @@ class GeoEngine {
                                         ),
                                         gridState,
                                         FeatureCollection(),
-                                        false
+                                        false,
+                                        localizedStrings
                                     )
                                 }
                                 val matchedWay = mapMatchFilter.matchedWay
-                                println("MapMatch: $mapMatchTime to get ${matchedWay?.getName()}")
+                                println("MapMatch: $mapMatchTime to get ${matchedWay?.getName(strings = localizedStrings)}")
                             }
                         }
                     }
@@ -566,7 +569,7 @@ class GeoEngine {
 
         CoroutineScope(Job()).launch(gridState.treeContext) {
             val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Phone)
-            val choices = streetPreview.getDirectionChoices(gridState, userGeometry.location)
+            val choices = streetPreview.getDirectionChoices(gridState, userGeometry.location, localizedStrings)
             var heading = 0.0
             if (choices.isNotEmpty()) {
                 val lastHeading = streetPreview.getLastHeading()
@@ -589,7 +592,7 @@ class GeoEngine {
                 }
             }
             userGeometry.phoneHeading = heading
-            streetPreview.go(userGeometry, gridState, locationProvider)
+            streetPreview.go(userGeometry, gridState, locationProvider, localizedStrings)
         }
     }
 
@@ -598,11 +601,11 @@ class GeoEngine {
         val results = runBlocking {
             withContext(gridState.treeContext) {
                 val userGeometry = getCurrentUserGeometry(UserGeometry.HeadingMode.Phone)
-                val newLocation = streetPreview.go(userGeometry, gridState, locationProvider)
+                val newLocation = streetPreview.go(userGeometry, gridState, locationProvider, localizedStrings)
                 if (newLocation != null) {
-                    streetPreview.getDirectionChoices(gridState, newLocation)
+                    streetPreview.getDirectionChoices(gridState, newLocation, localizedStrings)
                 } else {
-                    streetPreview.getDirectionChoices(gridState, userGeometry.location)
+                    streetPreview.getDirectionChoices(gridState, userGeometry.location, localizedStrings)
                 }
             }
         }

@@ -8,7 +8,6 @@ import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
-import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.convertGeometry
@@ -682,7 +681,7 @@ class TileSearch(
         return streetResults.map { (mvt, result) ->
             mvt.toLocationDescription(
                 LocationSource.OfflineGeocoder,
-                featureName = getTextForFeature(localizedStrings, mvt)
+                featureName = mvt.getText(localizedStrings)
             )
         }
     }

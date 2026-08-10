@@ -18,7 +18,7 @@ fun addSidewalk(
     currentRoad: Way,
     roadTree: FeatureTree,
     ruler: Ruler,
-    strings: LocalizedStrings? = null,
+    strings: LocalizedStrings?,
 ): Boolean {
 
     var found = false
@@ -124,7 +124,8 @@ fun checkNearbyPoi(
 
 fun addPoiDestinations(
     way: Way,
-    gridState: GridState
+    gridState: GridState,
+    strings: LocalizedStrings?,
 ): Boolean {
 
     // We want to use the locations at the furthest extent of the way as the start and end points.
@@ -215,15 +216,15 @@ fun addPoiDestinations(
 
     if (startPoi != endPoi) {
         if (!startDestinationAdded) {
-            val startName = (startPoi as MvtFeature?)?.name
-            if (startName != null) {
+            val startName = (startPoi as MvtFeature?)?.getText(strings)?.text
+            if (!startName.isNullOrEmpty()) {
                 way.setProperty("destination:backward", startName)
                 addedDestinations = true
             }
         }
         if (!endDestinationAdded) {
-            val endName = (endPoi as MvtFeature?)?.name
-            if (endName != null) {
+            val endName = (endPoi as MvtFeature?)?.getText(strings)?.text
+            if (!endName.isNullOrEmpty()) {
                 way.setProperty("destination:forward", endName)
                 addedDestinations = true
             }
@@ -234,7 +235,8 @@ fun addPoiDestinations(
 
 fun confectNamesForRoad(
     road: Way,
-    gridState: GridState
+    gridState: GridState,
+    strings: LocalizedStrings?,
 ) {
 
     // rtree searches take time and so we should avoid them where possible.
@@ -243,11 +245,11 @@ fun confectNamesForRoad(
     val cycleway = (road.featureType == "highway") && (road.featureValue == "cycleway")
     if ((road.name == null) || cycleway) {
 
-        if (addSidewalk(road, roadTree, gridState.ruler)) {
+        if (addSidewalk(road, roadTree, gridState.ruler, strings)) {
             return
         }
 
-        addPoiDestinations(road, gridState)
+        addPoiDestinations(road, gridState, strings)
     }
 }
 

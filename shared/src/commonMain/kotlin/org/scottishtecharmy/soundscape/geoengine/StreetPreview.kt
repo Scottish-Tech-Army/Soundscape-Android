@@ -7,6 +7,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
 
@@ -52,7 +53,8 @@ class StreetPreview {
     fun go(
         userGeometry: UserGeometry,
         gridState: GridState,
-        locationProvider: LocationProvider
+        locationProvider: LocationProvider,
+        strings: LocalizedStrings?,
     ): LngLatAlt? {
 
         when (previewState) {
@@ -95,7 +97,7 @@ class StreetPreview {
             }
 
             PreviewState.AT_NODE -> {
-                val choices = getDirectionChoices(gridState, userGeometry.location)
+                val choices = getDirectionChoices(gridState, userGeometry.location, strings)
                 var bestIndex = -1
                 var bestHeadingDiff = Double.POSITIVE_INFINITY
 
@@ -169,7 +171,11 @@ class StreetPreview {
         return null
     }
 
-    fun getDirectionChoices(gridState: GridState, location: LngLatAlt): List<StreetPreviewChoice> {
+    fun getDirectionChoices(
+        gridState: GridState,
+        location: LngLatAlt,
+        strings: LocalizedStrings?,
+    ): List<StreetPreviewChoice> {
         val choices = mutableListOf<StreetPreviewChoice>()
 
         val ruler = CheapRuler(location.latitude)
@@ -182,7 +188,8 @@ class StreetPreview {
                         heading = member.heading(nearestIntersection),
                         name = member.getName(
                             member.intersections[WayEnd.START.id] == nearestIntersection,
-                            gridState
+                            gridState,
+                            strings
                         ),
                         way = member
                     )

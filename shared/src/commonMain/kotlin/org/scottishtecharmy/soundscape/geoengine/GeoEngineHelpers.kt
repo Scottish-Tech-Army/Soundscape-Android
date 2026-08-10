@@ -25,116 +25,6 @@ import kotlin.math.roundToInt
  */
 var metric = true
 
-/**
- * getTextForFeature returns text describing the feature for callouts. Usually it returns a name
- * or if it doesn't have one then a localized description of the type of feature it is e.g. bike
- * parking, or style. Some types of Feature have more info e.g. bus stops and railway stations
- * name from the OSM tag rather than an actual name.
- */
-fun getTextForFeature(localized: LocalizedStrings?, feature: MvtFeature): TextForFeature {
-    var generic = false
-    val name = feature.name
-    val entranceType = feature.properties?.get("entrance") as String?
-    val featureValue = feature.featureValue
-    val isMarker = feature.superCategory == SuperCategoryId.MARKER
-
-    if (feature.superCategory == SuperCategoryId.HOUSENUMBER) {
-        return TextForFeature(name ?: feature.housenumber ?: "", false)
-    }
-
-    if (isMarker) {
-        val description = feature.properties?.get("description")
-        var text = name
-        if (description != null) {
-            if (text != null)
-                text += ", $description"
-            else
-                text = description as String
-        }
-        return if (text != null)
-            TextForFeature(
-                localized?.get(StringKey.MarkersMarkerWithName, text) ?: "Marker. $text",
-                false
-            )
-        else
-            TextForFeature(localized?.get(StringKey.MarkersGenericName) ?: "Marker", false)
-    }
-
-    var text = name
-
-    // The default OSM descriptor is based on the feature class/subclass, but can be overridden
-    // by more complex OSM tagging structures like transit stops.
-    var osmFeatureKey: StringKey? = null
-
-    val namedTransit = when (featureValue) {
-        "bus_stop" -> Pair(StringKey.OsmBusStopNamed, StringKey.OsmBusStop)
-        "station" -> Pair(StringKey.OsmTrainStationNamed, StringKey.OsmTrainStation)
-        "tram_stop" -> Pair(StringKey.OsmTramStopNamed, StringKey.OsmTramStop)
-        "subway" -> Pair(StringKey.OsmSubwayNamed, StringKey.OsmSubway)
-        "ferry_terminal" -> Pair(StringKey.OsmFerryTerminalNamed, StringKey.OsmFerryTerminal)
-        else -> null
-    }
-    if (namedTransit != null) {
-        osmFeatureKey = namedTransit.second
-        text = if (name != null)
-            localized?.get(namedTransit.first, name) ?: "$name Transit Stop"
-        else
-            localized?.get(namedTransit.second) ?: "Transit"
-    }
-
-    if (entranceType != null) {
-        val entranceName = feature.properties?.get("entrance_name") as String?
-        val destinationName = text
-
-        val entranceText =
-            if (entranceType == "main")
-                localized?.get(StringKey.OsmMainEntrance) ?: "Main entrance"
-            else
-                localized?.get(StringKey.OsmEntrance) ?: "Entrance"
-
-        text = if (entranceName != null) {
-            localized?.get(
-                StringKey.OsmEntranceNamedWithDestination,
-                destinationName,
-                entranceText,
-                entranceName,
-            ) ?: "$destinationName $entranceText to $entranceName"
-        } else {
-            localized?.get(StringKey.OsmEntranceWithDestination, destinationName, entranceText)
-                ?: "$destinationName $entranceText"
-        }
-    }
-
-    if ((feature.featureClass == null) && (feature.featureSubClass == null)) {
-        return if (text == null)
-            TextForFeature("", true)
-        else
-            TextForFeature(text, false)
-    }
-
-    val osmText = if (localized != null) {
-        osmFeatureKey?.let { localized.get(it) }
-            ?: feature.featureClass?.let { localized.resolveFeatureClass(it) }
-            ?: feature.featureSubClass?.let { localized.resolveFeatureClass(it) }
-    } else {
-        "OSM Feature"
-    }
-    var additionalText: String? = null
-    if (text == null) {
-        text = osmText
-        generic = true
-    } else {
-        additionalText = osmText
-    }
-    val capitalizedText = text?.replaceFirstChar {
-        if (it.isLowerCase()) it.titlecase() else it.toString()
-    }
-    if (capitalizedText == null)
-        return TextForFeature("", generic, additionalText)
-
-    return TextForFeature(capitalizedText, generic, additionalText)
-}
-
 fun formatDistanceAndDirection(
     distance: Double,
     heading: Double?,
@@ -265,7 +155,7 @@ private fun travellingReverseGeocodeName(
     val busStopTree = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
     val nearestBusStop = busStopTree.getNearestFeature(location, gridState.ruler, 20.0)
     if (nearestBusStop != null) {
-        val busStopText = getTextForFeature(localized, nearestBusStop as MvtFeature)
+        val busStopText = (nearestBusStop as MvtFeature).getText(localized)
         if (!busStopText.generic) {
             return localized?.get(StringKey.DirectionsNearName, busStopText.text)
                 ?: "Near ${busStopText.text}"

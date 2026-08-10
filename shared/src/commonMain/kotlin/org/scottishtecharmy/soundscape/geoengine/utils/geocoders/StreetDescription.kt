@@ -2,7 +2,6 @@ package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.TreeId
-import org.scottishtecharmy.soundscape.geoengine.getTextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.IntersectionType
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
@@ -735,7 +734,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
                     aheadValue as? Intersection?,
                     nearestWay,
                     localizedStrings
-                ) ?: getTextForFeature(localizedStrings, aheadValue).text
+                ) ?: aheadValue.getText(localizedStrings).text
 
                 tmpAhead = StreetPosition(text, ahead - distance)
             }
@@ -748,7 +747,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
                     behindValue as? Intersection?,
                     nearestWay,
                     localizedStrings
-                ) ?: getTextForFeature(localizedStrings, behindValue).text
+                ) ?: behindValue.getText(localizedStrings).text
                 tmpBehind = StreetPosition(
                     text,
                     distance - behind
@@ -770,7 +769,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
     fun describeStreet() {
         println("Describe $name")
         for (point in sortedDescriptivePoints) {
-            val text = getTextForFeature(null, point.value)
+            val text = point.value.getText(null)
             when (point.value.side) {
                 null -> println("\t\t\t\t\t${point.key.toInt()}m (${text.text})")
                 true -> println("\t\t\t\t\t${point.key.toInt()}m ${text.text}")
