@@ -62,6 +62,7 @@ kotlin {
             implementation(libs.intellij.markdown)
             implementation(libs.reorderable)
             implementation(libs.kable.core)
+            implementation(libs.composepreferencelibrary)
         }
         commonTest.dependencies {
             implementation(kotlin("test"))
