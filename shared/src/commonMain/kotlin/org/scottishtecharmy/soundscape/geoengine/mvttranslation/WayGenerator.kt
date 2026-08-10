@@ -119,7 +119,13 @@ class Way : MvtFeature() {
 
         if (result == null) {
             // Un-named way, so use "class" property
-            result = featureClass.toString()
+            result = featureClass?.let {
+                strings?.resolveFeatureClass(it)
+            } ?: featureClass ?: ""
+
+            if(!featureClass.isNullOrEmpty())
+                println("$featureClass -> ${strings?.resolveFeatureClass(featureClass!!)}")
+
             result = result.replaceFirstChar {
                 if (it.isLowerCase())
                     it.titlecase()
@@ -142,7 +148,9 @@ class Way : MvtFeature() {
                     properties?.get("passes:forward")
                 else
                     properties?.get("passes:backward")
-                passesString = passesModifier?.toString() ?: ""
+                passesString = passesModifier?.toString()?.let {
+                    strings?.resolveFeatureClass(it) ?: it
+                } ?: ""
 
                 if (destinationModifier == null) {
                     destinationModifier = if (direction)

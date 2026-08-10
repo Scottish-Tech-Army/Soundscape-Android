@@ -1219,6 +1219,12 @@ We're still working hard on improving the app, so please report any problems tha
     <string name="osm_service_road">Service Road</string>
     <!-- Open Street Map term road. A generic road or street.-->
     <string name="osm_road">Road</string>
+    <!-- Open Street Map term motorway. A high-speed, multi-lane divided highway.-->
+    <string name="osm_motorway">Motorway</string>
+    <!-- Open Street Map term trunk. A major road below motorway status.-->
+    <string name="osm_trunk">Trunk Road</string>
+    <!-- Open Street Map term path. A generic unpaved or informal route for walking, cycling etc.-->
+    <string name="osm_path">Path</string>
     <!-- Open Street Map term highway. A major public road or motorway.-->
     <string name="osm_highway">Highway</string>
     <!-- Open Street Map term highway_named. The name label for a highway.-->
@@ -2271,6 +2277,8 @@ We're still working hard on improving the app, so please report any problems tha
     <string name="osm_courthouse">Courthouse</string>
     <!-- Open Street Map term bridge. Structure carrying a route over an obstacle like water or road-->
     <string name="osm_bridge">Bridge</string>
+    <!-- Open Street Map term tunnel. Underground passage carrying a route beneath an obstacle-->
+    <string name="osm_tunnel">Tunnel</string>
     <!-- Open Street Map term hangar. Large building for storing and servicing aircraft-->
     <string name="osm_hangar">Hangar</string>
     <!-- Open Street Map term tower. Tall vertical structure used for observation or support-->

@@ -421,6 +421,7 @@ import org.scottishtecharmy.soundscape.resources.osm_motor
 import org.scottishtecharmy.soundscape.resources.osm_motorcycle
 import org.scottishtecharmy.soundscape.resources.osm_motorcycle_barrier
 import org.scottishtecharmy.soundscape.resources.osm_motorcycle_parking
+import org.scottishtecharmy.soundscape.resources.osm_motorway
 import org.scottishtecharmy.soundscape.resources.osm_mud
 import org.scottishtecharmy.soundscape.resources.osm_multi
 import org.scottishtecharmy.soundscape.resources.osm_museum
@@ -464,6 +465,7 @@ import org.scottishtecharmy.soundscape.resources.osm_parking_space
 import org.scottishtecharmy.soundscape.resources.osm_parquet_layer
 import org.scottishtecharmy.soundscape.resources.osm_pasta
 import org.scottishtecharmy.soundscape.resources.osm_pastry
+import org.scottishtecharmy.soundscape.resources.osm_path
 import org.scottishtecharmy.soundscape.resources.osm_pavillion
 import org.scottishtecharmy.soundscape.resources.osm_pawnbroker
 import org.scottishtecharmy.soundscape.resources.osm_peak
@@ -669,6 +671,8 @@ import org.scottishtecharmy.soundscape.resources.osm_transportation
 import org.scottishtecharmy.soundscape.resources.osm_travel_agency
 import org.scottishtecharmy.soundscape.resources.osm_travel_agent
 import org.scottishtecharmy.soundscape.resources.osm_trophy
+import org.scottishtecharmy.soundscape.resources.osm_trunk
+import org.scottishtecharmy.soundscape.resources.osm_tunnel
 import org.scottishtecharmy.soundscape.resources.osm_turnstile
 import org.scottishtecharmy.soundscape.resources.osm_turntable
 import org.scottishtecharmy.soundscape.resources.osm_tyres
@@ -753,6 +757,10 @@ class ResourceMapper {
                 put("primary", Res.string.osm_road)
                 put("secondary", Res.string.osm_road)
                 put("tertiary", Res.string.osm_road)
+                put("minor", Res.string.osm_road)
+                put("motorway", Res.string.osm_motorway)
+                put("trunk", Res.string.osm_trunk)
+                put("path", Res.string.osm_path)
                 put("highway", Res.string.osm_highway)
                 put("highway_named", Res.string.osm_highway_named)
                 put("highway_refed", Res.string.osm_highway_refed)
@@ -1279,6 +1287,7 @@ class ResourceMapper {
                 put("prison", Res.string.osm_prison)
                 put("courthouse", Res.string.osm_courthouse)
                 put("bridge", Res.string.osm_bridge)
+                put("tunnel", Res.string.osm_tunnel)
                 put("hangar", Res.string.osm_hangar)
                 put("tower", Res.string.osm_tower)
                 put("attraction", Res.string.osm_attraction)
