@@ -1044,7 +1044,7 @@
     <string name="new_version_info_text">新版本信息</string>
     <string name="new_version_info_completed">关闭新版本对话框</string>
     <string name="menu_open_source_licenses">开源许可证</string>
-    <string name="new_version_info_details">\n这是 Soundscape 的一个小版本更新。以下是本次更改内容：\n\n我们已修复对 ASHA 助听器的支持。如果您是助听器用户且 Soundscape 无法为您正常工作，请告知我们。\n\n主菜单顶部新增“退出 Soundscape”选项。点击此项可以方便地将应用完全关闭。\n\n离线地图详情页面现在增加了一个重新下载已下载地图的按钮。地图每月会从 OpenStreetMap 更新一次，因此不时重新下载离线地图是值得的。我们还加入了改进的下载地图校验代码，以防止使用任何损坏的地图。\n\n我们仍在努力改进应用，因此无论问题大小，请通过主菜单中的*联系支持*选项向我们反馈。\n</string>
+    <string name="new_version_info_details">这是 Soundscape 的第一个正式生产版本。我们仍在努力改进应用，因此请通过主菜单中的*联系支持*选项报告您遇到的任何问题（无论多小）。</string>
     <string name="about_soundscape">Soundscape 探索使用创新的音频技术，帮助人们更好地感知周围环境，从而更加自信、自主地出行。</string>
     <string name="osm_office_building">办公楼</string>
     <string name="osm_school_building">教学楼</string>
@@ -1359,7 +1359,7 @@
     <string name="settings_collapsed">已折叠</string>
     <string name="settings_expanded">已展开</string>
     <string name="ui_grant_permission">授予权限</string>
-    <string name="copyright_notices">没有这些优秀的第三方库和数据，Soundscape 无法实现。点击以下链接查看它们的许可证：</string>
+    <string name="copyright_notices">没有这些出色的第三方库和数据，Soundscape 将无法实现。点击链接查看它们的许可证：</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) 为 Soundscape 提供用于地图和音频的全部地理数据。</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) 用于生成我们使用的地图切片。</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) 用于生成 3D 音频，并在 [Apache 2.0 许可证](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) 下提供使用。</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">禁用时，其他音频应用将被暂停，并且可使用锁屏媒体控制。</string>
     <string name="settings_head_tracking">启用头部追踪</string>
     <string name="settings_head_tracking_description">使用支持的 AirPods、Bose Frames 或外部蓝牙惯性测量单元（IMU）的运动数据，将空间音频相对于您头部的朝向定位。行走时会自动校准。</string>
+    <string name="sleep_snoozing">小睡中</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape 当前处于小睡模式。离开当前位置时，Soundscape 会自动唤醒。该功能在低功耗模式下使用定位服务以节省手机电量。点击下方按钮即可立即唤醒 Soundscape。</string>
+    <string name="sleep_wake_on_leave">离开时唤醒</string>
+    <string name="osm_motorway">高速公路</string>
+    <string name="osm_trunk">主干道</string>
+    <string name="osm_path">小径</string>
+    <string name="osm_raceway">赛道</string>
+    <string name="osm_busway">公交专用道</string>
+    <string name="osm_bus_guideway">导向公交道</string>
+    <string name="osm_ferry">渡轮航线</string>
+    <string name="osm_transit">公共交通线路</string>
+    <string name="osm_tunnel">隧道</string>
 </resources>
