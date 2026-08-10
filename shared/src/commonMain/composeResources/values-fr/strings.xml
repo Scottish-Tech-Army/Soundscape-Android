@@ -524,7 +524,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Marqueurs et itinéraires supprimés</string>
     <string name="new_version_info_text">Informations sur la nouvelle version</string>
     <string name="new_version_info_completed">Fermer les informations sur la nouvelle version</string>
-    <string name="new_version_info_details">\nIl s’agit d’une nouvelle version mineure de Soundscape. Voici les modifications apportées.\n\nNous avons rétabli la prise en charge des aides auditives ASHA. Si vous utilisez un appareil auditif et que Soundscape ne fonctionne pas pour vous, veuillez nous le faire savoir.\n\nUne nouvelle option « Quitter Soundscape » a été ajoutée en haut du menu principal. Appuyer dessus permet de fermer complètement l’application.\n\nL’écran des détails des cartes hors ligne dispose désormais d’un bouton permettant de retélécharger les cartes déjà téléchargées. Les cartes sont mises à jour une fois par mois depuis OpenStreetMap ; il est donc utile de retélécharger périodiquement les cartes hors ligne. Nous avons aussi ajouté du code améliorant la validation des cartes téléchargées afin d’éviter l’utilisation de cartes corrompues.\n\nNous continuons de travailler assidûment à l’amélioration de l’application. Veuillez signaler tout problème, même minime, via l’option *Contacter le support* du menu principal.\n</string>
+    <string name="new_version_info_details">Ceci est la première version de production de Soundscape. Nous travaillons encore d’arrache‑pied pour améliorer l’application, aussi veuillez signaler tout problème, même mineur, via l’option *Contacter le support* dans le menu principal.</string>
     <string name="menu_open_source_licenses">Licences open source</string>
     <string name="osm_tag_ferry_terminal">Terminal de ferry</string>
     <string name="osm_tag_ferry_terminal_named">%1$s Terminal de ferry</string>
@@ -1359,7 +1359,7 @@
     <string name="settings_collapsed">Replié</string>
     <string name="settings_expanded">Déplié</string>
     <string name="ui_grant_permission">Accorder l’autorisation</string>
-    <string name="copyright_notices">Soundscape ne serait pas possible sans ces formidables bibliothèques et jeux de données tiers. Cliquez sur les liens pour consulter leurs licences :</string>
+    <string name="copyright_notices">Soundscape n’aurait pas été possible sans ces formidables bibliothèques et données tierces. Cliquez sur les liens pour consulter leurs licences :</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) fournissent toutes les données géographiques utilisées pour la cartographie et l’audio dans Soundscape.</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) est utilisé pour générer les tuiles cartographiques que nous utilisons.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) est utilisé pour générer l’audio 3D et est mis à disposition sous la licence [Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
@@ -1389,4 +1389,16 @@
     <string name="settings_mix_audio_description">Lorsque cette option est désactivée, les autres applications audio seront mises en pause et les contrôles multimédias de l’écran de verrouillage seront disponibles.</string>
     <string name="settings_head_tracking">Activer le suivi de la tête</string>
     <string name="settings_head_tracking_description">Positionner l’audio spatial par rapport à l’orientation de votre tête en utilisant les données de mouvement des AirPods compatibles, des Bose Frames ou d’un IMU Bluetooth externe. Se calibre automatiquement pendant la marche.</string>
+    <string name="sleep_snoozing">Désactivation temporaire</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape est actuellement en mode Désactivation temporaire. Lorsque vous quittez votre emplacement actuel, Soundscape se réveillera automatiquement. Cela utilise les services de localisation en mode basse consommation pour économiser la batterie de votre téléphone. Appuyez sur le bouton ci‑dessous pour le sortir de veille maintenant.</string>
+    <string name="sleep_wake_on_leave">Sortir de veille quand je m’éloigne</string>
+    <string name="osm_motorway">Autoroute</string>
+    <string name="osm_trunk">Route principale</string>
+    <string name="osm_path">Chemin</string>
+    <string name="osm_raceway">Piste de course</string>
+    <string name="osm_busway">Voie réservée aux bus</string>
+    <string name="osm_bus_guideway">Voie guidée pour bus</string>
+    <string name="osm_ferry">Traversée en ferry</string>
+    <string name="osm_transit">Ligne de transport</string>
+    <string name="osm_tunnel">Tunnel</string>
 </resources>
