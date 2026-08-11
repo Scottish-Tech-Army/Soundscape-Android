@@ -17,6 +17,7 @@ struct iOSApp: App {
         WindowGroup {
             ZStack {
                 ComposeView()
+                .ignoresSafeArea() // disables default platform insets so shared Compose UI can control its own padding and layout.
                     .onOpenURL { url in
                         IntentBridge.shared.handle(url: url)
                     }
