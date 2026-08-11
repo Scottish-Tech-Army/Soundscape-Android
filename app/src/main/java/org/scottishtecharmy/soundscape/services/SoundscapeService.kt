@@ -47,6 +47,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.getString
+import org.koin.android.ext.android.inject
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
@@ -95,6 +96,8 @@ import org.scottishtecharmy.soundscape.network.createAndroidVectorTileClient
 import org.scottishtecharmy.soundscape.preferences.AndroidPreferencesProvider
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.Preferences
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.app_name
 import org.scottishtecharmy.soundscape.resources.notification_text
@@ -181,8 +184,10 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     // Wake lock — keeps CPU running while screen is off so audio callbacks continue
     private var wakeLock: PowerManager.WakeLock? = null
 
+    private val preferences: Preferences by inject()
+
     // Audio engine
-    var audioEngine = NativeAudioEngine(this)
+    var audioEngine = NativeAudioEngine(service = this, preferences)
     private var audioBeacon: Long = 0
 
     // Audio menu (navigated via media buttons when no route is active)

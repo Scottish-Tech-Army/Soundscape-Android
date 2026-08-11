@@ -21,20 +21,23 @@ import org.scottishtecharmy.soundscape.MainActivity.Companion.BEACON_TYPE_DEFAUL
 import org.scottishtecharmy.soundscape.MainActivity.Companion.BEACON_TYPE_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SPEECH_ENGINE_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.SPEECH_ENGINE_KEY
-import org.scottishtecharmy.soundscape.MainActivity.Companion.SPEECH_RATE_DEFAULT
-import org.scottishtecharmy.soundscape.MainActivity.Companion.SPEECH_RATE_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.VOICE_TYPE_DEFAULT
 import org.scottishtecharmy.soundscape.MainActivity.Companion.VOICE_TYPE_KEY
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.preferences.Preferences
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.first_launch_callouts_example_3
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.util.Locale
 
-class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
+class NativeAudioEngine(
+    val service: SoundscapeService? = null,
+    private val preferences: Preferences
+) : AudioEngine {
 
-    @Volatile private var engineHandle: Long = 0
+    @Volatile
+    private var engineHandle: Long = 0
     private val engineMutex = Any()
     private var beaconType = BEACON_TYPE_DEFAULT
 
@@ -158,12 +161,12 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
         // configuration.
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         sharedPreferencesListener =
-            SharedPreferences.OnSharedPreferenceChangeListener { preferences, key ->
-                if (sharedPreferences == preferences) {
+            SharedPreferences.OnSharedPreferenceChangeListener { sharedPrefs, key ->
+                if (sharedPreferences == sharedPrefs) {
                     var update = false
                     if (key == SPEECH_ENGINE_KEY) {
                         // Replace the current TTS engine
-                        val engineLabelAndName = preferences?.getString(
+                        val engineLabelAndName = sharedPrefs?.getString(
                             SPEECH_ENGINE_KEY,
                             SPEECH_ENGINE_DEFAULT
                         )
@@ -176,34 +179,33 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
                             ttsEngine.destroy()
 
                             // Reset the current chosen voice as we've switched engine
-                            preferences.edit(true) {
+                            sharedPrefs.edit(true) {
                                 putString(
                                     VOICE_TYPE_KEY,
                                     VOICE_TYPE_DEFAULT
                                 )
                             }
                             Log.d(TAG, "Create new TtsEngine for $engineLabelAndName")
-                            ttsEngine = TtsEngine(this, engineLabelAndName)
+                            ttsEngine = TtsEngine(this, engineLabelAndName, preferences)
                             Log.d(TAG, "Initialize ttsEngine")
                             ttsEngine.initialize(context)
                             update = true
                         }
                     }
                     if (key == VOICE_TYPE_KEY) {
-                        update = (preferences.getString(VOICE_TYPE_KEY, VOICE_TYPE_DEFAULT)
+                        update = (sharedPrefs.getString(VOICE_TYPE_KEY, VOICE_TYPE_DEFAULT)
                                 != ttsEngine.getCurrentVoice())
                         if (update)
                             Log.d(TAG, "VOICE_TYPE_KEY change")
                     }
-                    if (!update && (key == SPEECH_RATE_KEY)) {
-                        update = (preferences.getFloat(SPEECH_RATE_KEY, SPEECH_RATE_DEFAULT)
-                                != ttsEngine.getCurrentRate())
-                        if (update)
-                            Log.d(TAG, "SPEECH_RATE_KEY change")
-                    }
+
+                    update = (preferences.speechRate != ttsEngine.getCurrentRate())
+                    if (update)
+                        Log.d(TAG, "SPEECH_RATE_KEY change")
+
                     if (update) {
                         if (ttsEngine.checkTextToSpeechInitialization(false)) {
-                            if (ttsEngine.updateSpeech(preferences)) {
+                            if (ttsEngine.updateSpeech(sharedPrefs)) {
                                 if (service?.requestAudioFocus() == true) {
                                     // If the voice type preference changes play some test speech
                                     clearTextToSpeechQueue()
@@ -215,7 +217,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
                         }
                     }
                     if (key == BEACON_TYPE_KEY) {
-                        updateBeaconType(preferences)
+                        updateBeaconType(sharedPrefs)
                     }
                 }
             }
@@ -231,8 +233,9 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
                 this,
                 sharedPreferences?.getString(
                     SPEECH_ENGINE_KEY,
-                    SPEECH_ENGINE_DEFAULT
-                )
+                    SPEECH_ENGINE_DEFAULT,
+                ),
+                preferences
             )
             Log.d(TAG, "Call initialize on ttsEngine")
             ttsEngine.initialize(context)
@@ -350,7 +353,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
     }
 
     override fun clearTextToSpeechQueue() {
-        if(engineHandle == 0L)
+        if (engineHandle == 0L)
             return
 
         if (!ttsEngine.checkTextToSpeechInitialization(true))

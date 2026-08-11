@@ -1066,8 +1066,6 @@ class MainActivity : AppCompatActivity() {
         const val SPEECH_ENGINE_KEY = "SpeechEngine"
         const val VOICE_TYPE_DEFAULT = "Default"
         const val VOICE_TYPE_KEY = "VoiceType"
-        const val SPEECH_RATE_DEFAULT = 1.0f
-        const val SPEECH_RATE_KEY = "SpeechRate"
         const val HINTS_DEFAULT = true
         const val HINTS_KEY = "Hints"
         const val THEME_LIGHTNESS_DEFAULT = "Auto"

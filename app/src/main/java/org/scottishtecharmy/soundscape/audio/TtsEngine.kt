@@ -12,6 +12,7 @@ import android.speech.tts.Voice
 import android.util.Log
 import androidx.preference.PreferenceManager
 import org.scottishtecharmy.soundscape.MainActivity
+import org.scottishtecharmy.soundscape.preferences.Preferences
 import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
 import java.util.Collections
@@ -19,9 +20,9 @@ import java.util.Locale
 
 class TtsEngine(
     val audioEngine: NativeAudioEngine,
-    val engineLabelAndName: String?
-) :
-    TextToSpeech.OnInitListener {
+    val engineLabelAndName: String?,
+    val preferences: Preferences,
+) : TextToSpeech.OnInitListener {
 
     private var ttsSockets =
         Collections.synchronizedMap(HashMap<String, Array<ParcelFileDescriptor>>())
@@ -137,10 +138,8 @@ class TtsEngine(
             }
         }
         // Check for change in rate preference
-        val rate = sharedPreferences.getFloat(
-            MainActivity.SPEECH_RATE_KEY,
-            MainActivity.SPEECH_RATE_DEFAULT
-        )
+        val rate = preferences.speechRate
+
         if (rate != textToSpeechRate) {
             textToSpeech.setSpeechRate(rate)
             Log.d(TAG, "Speech rate changed from $textToSpeechRate to $rate on $this")
@@ -338,8 +337,8 @@ class TtsEngine(
     fun getAvailableSpeechLanguages(): Set<Locale> {
         try {
             if (textToSpeechInitialized)
-                // getAvailableLanguages() is a platform getter that can return null, so fall back
-                // to an empty set rather than returning null from a non-null-typed function.
+            // getAvailableLanguages() is a platform getter that can return null, so fall back
+            // to an empty set rather than returning null from a non-null-typed function.
                 return textToSpeech.availableLanguages ?: emptySet()
         } catch (e: Exception) {
             AnalyticsProvider.getInstance().logEvent("getAvailableSpeechLanguages_error", null)
@@ -351,8 +350,8 @@ class TtsEngine(
     fun getAvailableSpeechVoices(): Set<Voice> {
         try {
             if (textToSpeechInitialized)
-                // getVoices() is a platform getter that can return null, so fall back to an
-                // empty set rather than returning null from a non-null-typed function.
+            // getVoices() is a platform getter that can return null, so fall back to an
+            // empty set rather than returning null from a non-null-typed function.
                 return textToSpeech.voices ?: emptySet()
         } catch (e: Exception) {
             AnalyticsProvider.getInstance().logEvent("getAvailableSpeechVoices_error", null)

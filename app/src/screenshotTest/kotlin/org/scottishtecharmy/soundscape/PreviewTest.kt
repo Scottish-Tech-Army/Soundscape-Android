@@ -252,6 +252,8 @@ private object PreviewPreferencesProvider : PreferencesProvider {
     override fun getFloat(key: String, default: Float): Float = default
     override fun putBoolean(key: String, value: Boolean) {}
     override fun putString(key: String, value: String) {}
+    override fun putFloat(key: String, value: Float) {}
+
     override fun clearAll() {}
     override fun addListener(listener: PreferencesListener) {}
     override fun removeListener(listener: PreferencesListener) {}

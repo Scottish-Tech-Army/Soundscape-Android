@@ -12,6 +12,7 @@ import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.intents.IntentEventBus
 import org.scottishtecharmy.soundscape.preferences.AndroidPreferencesProvider
+import org.scottishtecharmy.soundscape.preferences.Preferences
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.screens.home.HomeViewModel
 import org.scottishtecharmy.soundscape.screens.home.Navigator
@@ -26,8 +27,12 @@ import org.scottishtecharmy.soundscape.viewmodels.SettingsViewModel
 
 val appModule = module {
 
+    single<Preferences> {
+        Preferences(get())
+    }
+
     single {
-        val audioEngine = NativeAudioEngine()
+        val audioEngine = NativeAudioEngine(preferences = get())
         audioEngine.initialize(androidContext())
         audioEngine
     }

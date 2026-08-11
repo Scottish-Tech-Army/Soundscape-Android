@@ -15,6 +15,8 @@ private class FakePreferencesProvider(private val values: Map<String, String>) :
     override fun getFloat(key: String, default: Float) = default
     override fun putBoolean(key: String, value: Boolean) = throw NotImplementedError()
     override fun putString(key: String, value: String) = throw NotImplementedError()
+    override fun putFloat(key: String, value: Float) = throw NotImplementedError()
+
     override fun clearAll() = throw NotImplementedError()
     override fun addListener(listener: PreferencesListener) = throw NotImplementedError()
     override fun removeListener(listener: PreferencesListener) = throw NotImplementedError()

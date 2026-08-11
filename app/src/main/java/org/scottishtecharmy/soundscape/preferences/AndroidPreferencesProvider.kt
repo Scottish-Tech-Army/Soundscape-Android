@@ -26,6 +26,10 @@ class AndroidPreferencesProvider(
         sharedPreferences.edit { putString(key, value) }
     }
 
+    override fun putFloat(key: String, value: Float) {
+        sharedPreferences.edit { putFloat(key, value) }
+    }
+
     override fun clearAll() {
         sharedPreferences.edit(commit = true) { clear() }
     }

@@ -14,6 +14,7 @@ interface PreferencesProvider {
 
     fun putBoolean(key: String, value: Boolean)
     fun putString(key: String, value: String)
+    fun putFloat(key: String, value: Float)
 
     /**
      * Clear every key, restoring defaults on next read. Used by the "Reset

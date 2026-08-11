@@ -53,6 +53,10 @@ class IosPreferencesProvider : PreferencesProvider {
         defaults.setObject(value, forKey = key)
     }
 
+    override fun putFloat(key: String, value: Float) {
+        defaults.setFloat(value, key)
+    }
+
     override fun clearAll() {
         // Drop every key in the app domain. NSUserDefaults posts a single
         // change notification, so any registered listeners will be notified
