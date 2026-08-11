@@ -372,6 +372,7 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core.v351)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.ui.test.junit4)
+    debugImplementation(libs.leakcanary)
     debugImplementation(libs.ui.tooling)
     debugImplementation(libs.ui.test.manifest)
 

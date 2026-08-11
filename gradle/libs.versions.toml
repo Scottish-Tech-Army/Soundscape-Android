@@ -69,6 +69,7 @@ jaredsburrows-license = "0.9.9"
 kable = "0.43.0" # 0.43.1+ is built with Kotlin compiler ABI 2.4.0, which our kotlin=2.3.10 can't consume
 
 composeBom = "2026.06.01"
+leakcanary = "1.0.0"
 #maplibreComposeMaterial3 = "0.6.0"
 
 [libraries]
@@ -158,6 +159,7 @@ androidx-media3-session = { group = "androidx.media3", name = "media3-session", 
 maplibre-annotations = { module = "org.maplibre.gl:android-plugin-annotation-v9", version.ref = "mapLibreAnnotation" }
 androidx-lifecycle-process = { group = "androidx.lifecycle", name = "lifecycle-process", version.ref = "lifecycleProcess" }
 screenshot-validation-api = { group = "com.android.tools.screenshot", name = "screenshot-validation-api", version.ref = "screenshotValidationApi" }
+leakcanary = { group = "com.android.tools.studio.leakcanary", name = "leakcanary", version.ref = "leakcanary" }
 
 [plugins]
 screenshot = { id = "com.android.compose.screenshot", version.ref = "screenshot"}
