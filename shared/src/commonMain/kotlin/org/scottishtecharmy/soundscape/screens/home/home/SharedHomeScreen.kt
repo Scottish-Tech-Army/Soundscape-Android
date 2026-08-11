@@ -170,7 +170,7 @@ fun SharedHomeScreen(
                         allowScrolling = false,
                         userLocation = location,
                         userSymbolRotation = state.heading,
-                        modifier = modifier.fillMaxSize(),
+                        modifier = Modifier.fillMaxSize(),
                     )
                 }
             } else {
@@ -179,7 +179,7 @@ fun SharedHomeScreen(
                     beaconState = state.beaconState,
                     routePlayerState = state.currentRouteData,
                     heading = state.heading,
-                    modifier = modifier.padding(innerPadding),
+                    modifier = Modifier.padding(innerPadding),
                     onNavigate = onNavigate,
                     onSelectLocation = onSelectLocation,
                     getCurrentLocationDescription = getCurrentLocationDescription,
@@ -225,14 +225,14 @@ fun SharedHomeScreen(
                 exitApp = exitApp,
             )
         }
+    }
 
-        // Deprecated in CMP 1.11 in favor of androidx.navigationevent's NavigationEventHandler,
-        // but that reads LocalNavigationEventDispatcherOwner, which CMP only wires up via the
-        // internal compat local this BackHandler uses - migrating would break back handling on
-        // iOS. Revisit once CMP exposes the public local (JetBrains/compose-multiplatform).
-        @Suppress("DEPRECATION")
-        BackHandler(enabled = drawerOpen) {
-            drawerOpen = false
-        }
+    // Deprecated in CMP 1.11 in favor of androidx.navigationevent's NavigationEventHandler,
+    // but that reads LocalNavigationEventDispatcherOwner, which CMP only wires up via the
+    // internal compat local this BackHandler uses - migrating would break back handling on
+    // iOS. Revisit once CMP exposes the public local (JetBrains/compose-multiplatform).
+    @Suppress("DEPRECATION")
+    BackHandler(enabled = drawerOpen) {
+        drawerOpen = false
     }
 }
