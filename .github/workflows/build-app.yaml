@@ -292,6 +292,7 @@ jobs:
     # the Android emulator has room in its 16 GB budget.
     env:
       GRADLE_OPTS: -Xmx8192m
+      GRADLE_ARGS: -PincludeIos=true
 
     steps:
       # Pull the latest commit on the branch (including the version-bump

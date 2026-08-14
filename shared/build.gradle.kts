@@ -28,8 +28,10 @@ kotlin {
         // for iosSimulatorArm64Test on the macOS CI runner, and never run at all on Android.
         withHostTest {}
     }
-    val isMac = System.getProperty("os.name").lowercase().contains("mac")
-    if (isMac) {
+    // Only configure iOS targets on macOS (local dev) or if explicitly requested via -PincludeIos=true.
+    // This speeds up build/sync times on Linux/Windows where iOS targets cannot be compiled.
+    val includeIos = System.getProperty("os.name").lowercase().contains("mac") || project.hasProperty("includeIos")
+    if (includeIos) {
         listOf(
             iosArm64(),
             iosSimulatorArm64(),
@@ -81,11 +83,9 @@ kotlin {
             // in a single canonical location consumed by both platforms.
             resources.srcDir("src/commonMain/resources")
         }
-        if (isMac) {
-            named("iosMain") {
-                dependencies {
-                    implementation(libs.ktor.client.darwin)
-                }
+        findByName("iosMain")?.apply {
+            dependencies {
+                implementation(libs.ktor.client.darwin)
             }
         }
     }
@@ -101,7 +101,8 @@ wire {
 
 dependencies {
     add("kspAndroid", libs.androidx.room.compiler)
-    if (System.getProperty("os.name").lowercase().contains("mac")) {
+    val includeIos = System.getProperty("os.name").lowercase().contains("mac") || project.hasProperty("includeIos")
+    if (includeIos) {
         add("kspIosArm64", libs.androidx.room.compiler)
         add("kspIosSimulatorArm64", libs.androidx.room.compiler)
     }
