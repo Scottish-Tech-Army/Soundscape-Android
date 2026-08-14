@@ -133,7 +133,7 @@ jobs:
       # test sources to catch Kotlin/iOS errors; the XCTest step below
       # exercises the linked code via xcodebuild.
       - name: Compile shared Kotlin/Native tests for iOS simulator
-        run: ./gradlew --configure-on-demand :shared:compileTestKotlinIosSimulatorArm64
+        run: ./gradlew --configure-on-demand :shared:compileTestKotlinIosSimulatorArm64 -PincludeIos=true
 
       # The runner image does not always pre-register a concrete simulator
       # device (xcodebuild only sees the "Any iOS Simulator" placeholder), so
