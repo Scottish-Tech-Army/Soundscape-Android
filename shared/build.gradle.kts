@@ -83,13 +83,16 @@ kotlin {
             // in a single canonical location consumed by both platforms.
             resources.srcDir("src/commonMain/resources")
         }
-        if (includeIos) {
-            // Ensure iosMain exists and has its dependency; the default hierarchy
-            // will link it to the iOS targets if they were created.
-            val iosMain = findByName("iosMain") ?: create("iosMain").apply {
-                dependsOn(commonMain.get())
-            }
-            iosMain.dependencies {
+        
+        // iosMain is created automatically by the default hierarchy template
+        // when iOS targets are enabled. We configure its dependencies below
+        // using configureEach to avoid "SourceSet not found" errors when 
+        // iOS targets are disabled.
+    }
+
+    sourceSets.configureEach {
+        if (name == "iosMain") {
+            dependencies {
                 implementation(libs.ktor.client.darwin)
             }
         }
