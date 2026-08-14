@@ -18,6 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -425,6 +426,14 @@ fun SharedNavHost(
                         navStateHolder.setPendingImportRoute(null)
                     }
                 }
+                fun navOnFinish(navController: NavController) {
+                    if (!navController.popBackStack(SharedRoutes.MARKERS_AND_ROUTES, inclusive = false)) {
+                        // If the list wasn't in the stack, navigate to it and remove the current "Add Route" screen
+                        navController.navigate(SharedRoutes.MARKERS_AND_ROUTES) {
+                            popUpTo(SharedRoutes.ADD_ROUTE) { inclusive = true }
+                        }
+                    }
+                }
                 SharedAddAndEditRouteScreen(
                     holder = holder,
                     isEditing = false,
@@ -432,18 +441,8 @@ fun SharedNavHost(
                     heading = homeState.heading,
                     getCurrentLocationDescription = callbacks.onGetCurrentLocationDescription,
                     onNavigateUp = { navController.popBackStack() },
-                    onSaveComplete = {
-                        navController.popBackStack(
-                            SharedRoutes.MARKERS_AND_ROUTES,
-                            inclusive = false
-                        )
-                    },
-                    onDeleteComplete = {
-                        navController.popBackStack(
-                            SharedRoutes.MARKERS_AND_ROUTES,
-                            inclusive = false
-                        )
-                    },
+                    onSaveComplete = { navOnFinish(navController) },
+                    onDeleteComplete = { navOnFinish(navController) },
                 )
             }
         }
