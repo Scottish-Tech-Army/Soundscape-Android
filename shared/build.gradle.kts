@@ -28,14 +28,17 @@ kotlin {
         // for iosSimulatorArm64Test on the macOS CI runner, and never run at all on Android.
         withHostTest {}
     }
-    listOf(
-        iosArm64(),
-        iosSimulatorArm64(),
-    ).forEach {
-        it.binaries.framework {
-            baseName = "Shared"
-            isStatic = true
-            freeCompilerArgs += listOf("-Xbinary=bundleId=org.scottishtecharmy.soundscape.shared")
+    val isMac = System.getProperty("os.name").lowercase().contains("mac")
+    if (isMac) {
+        listOf(
+            iosArm64(),
+            iosSimulatorArm64(),
+        ).forEach {
+            it.binaries.framework {
+                baseName = "Shared"
+                isStatic = true
+                freeCompilerArgs += listOf("-Xbinary=bundleId=org.scottishtecharmy.soundscape.shared")
+            }
         }
     }
 
@@ -78,8 +81,12 @@ kotlin {
             // in a single canonical location consumed by both platforms.
             resources.srcDir("src/commonMain/resources")
         }
-        iosMain.dependencies {
-            implementation(libs.ktor.client.darwin)
+        if (isMac) {
+            named("iosMain") {
+                dependencies {
+                    implementation(libs.ktor.client.darwin)
+                }
+            }
         }
     }
 }
@@ -94,8 +101,10 @@ wire {
 
 dependencies {
     add("kspAndroid", libs.androidx.room.compiler)
-    add("kspIosArm64", libs.androidx.room.compiler)
-    add("kspIosSimulatorArm64", libs.androidx.room.compiler)
+    if (System.getProperty("os.name").lowercase().contains("mac")) {
+        add("kspIosArm64", libs.androidx.room.compiler)
+        add("kspIosSimulatorArm64", libs.androidx.room.compiler)
+    }
 }
 
 room {
