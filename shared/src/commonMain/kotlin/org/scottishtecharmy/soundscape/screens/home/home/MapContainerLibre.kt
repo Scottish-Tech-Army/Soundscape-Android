@@ -51,6 +51,7 @@ import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.platform.nativeMapRenderOptions
 import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.current_beacon_location_marker
 import org.scottishtecharmy.soundscape.resources.location_detail_exit_full_screen_hint
 import org.scottishtecharmy.soundscape.resources.location_detail_full_screen_hint
 import org.scottishtecharmy.soundscape.resources.location_marker
@@ -160,6 +161,7 @@ fun MapContainerLibre(
 
     val navigationMarker = painterResource(Res.drawable.navigation)
     val locationMarker = painterResource(Res.drawable.location_marker)
+    val currentBeaconLocationMarker = painterResource(Res.drawable.current_beacon_location_marker)
 
     Box(
         modifier = modifier.pointerInput(Unit) {
@@ -193,8 +195,8 @@ fun MapContainerLibre(
                 gestureOptions = if (allowScrolling) GestureOptions.RotationLocked
                 else GestureOptions.ZoomOnly,
                 ornamentOptions = OrnamentOptions.AllDisabled,
-                // Platform-specific render options: Android uses TextureView so
-                // the map participates in Compose's fade/slide nav transitions
+                // Platform-specific render options: Android uses SurfaceView due to a leak in
+                // MapLibre: See SA-379
                 // (the default SurfaceView is a hardware overlay that doesn't
                 // animate). iOS keeps Standard.
                 renderOptions = nativeMapRenderOptions(),
@@ -235,35 +237,6 @@ fun MapContainerLibre(
                     iconSize = const(1.2F),
                     iconRotate = const(userSymbolRotation),
                     iconAllowOverlap = const(true)
-                )
-            }
-            if (beaconLocation != null) {
-                val position = Position(
-                    latitude = beaconLocation.latitude,
-                    longitude = beaconLocation.longitude
-                )
-                val beaconLocationGeoJson =
-                    rememberGeoJsonSource(
-                        data = GeoJsonData.Features(Point(position))
-                    )
-
-                SymbolLayer(
-                    id = "beacon-location",
-                    source = beaconLocationGeoJson,
-                    iconImage = image(locationMarker),
-                    iconSize = const(1.2F),
-                    iconAllowOverlap = const(true),
-                    iconAnchor = const(SymbolAnchor.Bottom),
-                    // Default font stack (Open Sans, Arial Unicode MS) is not
-                    // bundled — must use a Roboto variant that ships with the
-                    // glyph PBFs in osm-liberty-accessible/fonts/.
-                    textField = format(span("${currentBeaconWaypointIndex + 1}")),
-                    textFont = const(listOf("Roboto Bold")),
-                    textColor = const(Color.White),
-                    textSize = const(11.sp),
-                    textAllowOverlap = const(true),
-                    textAnchor = const(SymbolAnchor.Center),
-                    textOffset = offset(0f.em, (-1.3f).em),
                 )
             }
 
@@ -309,6 +282,37 @@ fun MapContainerLibre(
                         )
                     }
                 }
+            }
+
+            // Draw beacon location marker last to prevent waypoint marker being drawn on top.
+            if (beaconLocation != null) {
+                val position = Position(
+                    latitude = beaconLocation.latitude,
+                    longitude = beaconLocation.longitude
+                )
+                val beaconLocationGeoJson =
+                    rememberGeoJsonSource(
+                        data = GeoJsonData.Features(Point(position))
+                    )
+
+                SymbolLayer(
+                    id = "beacon-location",
+                    source = beaconLocationGeoJson,
+                    iconImage = image(currentBeaconLocationMarker),
+                    iconSize = const(1.2F),
+                    iconAllowOverlap = const(true),
+                    iconAnchor = const(SymbolAnchor.Bottom),
+                    // Default font stack (Open Sans, Arial Unicode MS) is not
+                    // bundled — must use a Roboto variant that ships with the
+                    // glyph PBFs in osm-liberty-accessible/fonts/.
+                    textField = format(span("${currentBeaconWaypointIndex + 1}")),
+                    textFont = const(listOf("Roboto Bold")),
+                    textColor = const(Color.White),
+                    textSize = const(11.sp),
+                    textAllowOverlap = const(true),
+                    textAnchor = const(SymbolAnchor.Center),
+                    textOffset = offset(0f.em, (-1.3f).em),
+                )
             }
         }
     }
