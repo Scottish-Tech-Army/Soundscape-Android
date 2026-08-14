@@ -84,10 +84,13 @@ kotlin {
             resources.srcDir("src/commonMain/resources")
         }
         if (includeIos) {
-            getByName("iosMain") {
-                dependencies {
-                    implementation(libs.ktor.client.darwin)
-                }
+            // Ensure iosMain exists and has its dependency; the default hierarchy
+            // will link it to the iOS targets if they were created.
+            val iosMain = findByName("iosMain") ?: create("iosMain").apply {
+                dependsOn(commonMain.get())
+            }
+            iosMain.dependencies {
+                implementation(libs.ktor.client.darwin)
             }
         }
     }
