@@ -83,9 +83,11 @@ kotlin {
             // in a single canonical location consumed by both platforms.
             resources.srcDir("src/commonMain/resources")
         }
-        findByName("iosMain")?.apply {
-            dependencies {
-                implementation(libs.ktor.client.darwin)
+        if (includeIos) {
+            getByName("iosMain") {
+                dependencies {
+                    implementation(libs.ktor.client.darwin)
+                }
             }
         }
     }
