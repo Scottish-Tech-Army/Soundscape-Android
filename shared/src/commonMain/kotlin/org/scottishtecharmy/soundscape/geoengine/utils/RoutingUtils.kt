@@ -37,7 +37,7 @@ fun dijkstraOnWaysWithLoops(
     end.dijkstraPrevious = null
 
     while (priorityQueue.isNotEmpty()) {
-        val (node, currentDist) = priorityQueue.poll()!!
+        val (node, currentDist) = priorityQueue.poll() ?: break
         if (visited.add(node to currentDist)) {
             node.members.forEach { way ->
                 val weight = way.length
@@ -119,8 +119,12 @@ fun findShortestDistance(
 
     val newStartIntersection = startWay.createTemporaryIntersectionAndWays(startLocation, ruler)
     var newEndIntersection = endIntersection
-    if (endIntersection == null)
-        newEndIntersection = endWay!!.createTemporaryIntersectionAndWays(endLocation!!, ruler)
+    if (newEndIntersection == null) {
+        val nonNullEndWay = requireNotNull(endWay) { "endWay must be provided when endIntersection is null" }
+        val nonNullEndLocation =
+            requireNotNull(endLocation) { "endLocation must be provided when endIntersection is null" }
+        newEndIntersection = nonNullEndWay.createTemporaryIntersectionAndWays(nonNullEndLocation, ruler)
+    }
 
     val shortestDistance = dijkstraOnWaysWithLoops(
         newStartIntersection,
