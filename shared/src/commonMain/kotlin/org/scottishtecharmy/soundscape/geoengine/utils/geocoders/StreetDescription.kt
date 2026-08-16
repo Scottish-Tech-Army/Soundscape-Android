@@ -506,8 +506,9 @@ class StreetDescription(val name: String, val gridState: GridState) {
                     continue
 
                 // We have a house number on the side of the street that we're interested in
-                if (point.value.housenumber != null) {
-                    val houseNumber = parseHouseNumber(point.value.housenumber!!)
+                val houseNumberString = point.value.housenumber
+                if (houseNumberString != null) {
+                    val houseNumber = parseHouseNumber(houseNumberString)
                     if (houseNumber != null) {
                         numberPoints[point.key] = point.value
                         if (houseNumber % 2 == 0)
@@ -652,12 +653,14 @@ class StreetDescription(val name: String, val gridState: GridState) {
                 return Pair(houseNumber, side != locationSide)
 
             if ((ceilingDistance != Double.MAX_VALUE) && ((floorDistance != Double.MAX_VALUE))) {
-                val floorNumber = parseHouseNumber(floorValue?.housenumber ?: "")!!
-                val ceilingNumber = parseHouseNumber(ceilingValue?.housenumber ?: "")!!
-                val adjustment = floorDistance / (ceilingDistance + floorDistance)
-                val interpolatedDouble = ((ceilingNumber - floorNumber) * adjustment)
-                val interpolatedInt = round(interpolatedDouble / 2.0).toInt() * 2
-                return Pair((interpolatedInt + floorNumber).toString(), side != locationSide)
+                val floorNumber = parseHouseNumber(floorValue?.housenumber ?: "")
+                val ceilingNumber = parseHouseNumber(ceilingValue?.housenumber ?: "")
+                if (floorNumber != null && ceilingNumber != null) {
+                    val adjustment = floorDistance / (ceilingDistance + floorDistance)
+                    val interpolatedDouble = ((ceilingNumber - floorNumber) * adjustment)
+                    val interpolatedInt = round(interpolatedDouble / 2.0).toInt() * 2
+                    return Pair((interpolatedInt + floorNumber).toString(), side != locationSide)
+                }
             }
             if (houseNumber.isNotEmpty())
                 return Pair(houseNumber, side != locationSide)
