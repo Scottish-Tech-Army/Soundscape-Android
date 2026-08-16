@@ -14,3 +14,7 @@ runs:
       uses: gradle/actions/setup-gradle@v6
       with:
         gradle-version: current
+        # Self-hosted runners are long-lived, so a cache left by a previous
+        # job would otherwise carry over into this build; hosted runners are
+        # ephemeral and always start with no cache anyway.
+        cache-overwrite-existing: ${{ runner.environment == 'self-hosted' }}
