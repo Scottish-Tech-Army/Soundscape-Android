@@ -213,9 +213,10 @@ fun getRoadsDescriptionFromFov(
                     if (shortestDistanceResults.distance < 50.0) {
                         var skip = false
                         val ways = getPathWays(graphIntersection)
-                        var nextIntersection = graphIntersection
+                        var nextIntersection: Intersection? = graphIntersection
                         for (way in ways) {
-                            nextIntersection = way.getOtherIntersection(nextIntersection!!)
+                            val currentIntersection = nextIntersection ?: break
+                            nextIntersection = way.getOtherIntersection(currentIntersection)
 
                             nextIntersection?.let { next ->
                                 var count = 0
@@ -265,18 +266,17 @@ fun getRoadsDescriptionFromFov(
         return IntersectionDescription(nearestRoad, userGeometry)
     }
 
-    var intersection: Intersection? = nonTrivialIntersections.firstOrNull { prioritised ->
+    // No intersection with a priority greater than zero, so just pick the highest
+    val intersection = nonTrivialIntersections.firstOrNull { prioritised ->
         prioritised.first > 0
     }?.second
-    if (intersection == null) {
-        // No intersection with a priority greater than zero, so just pick the highest
-        intersection = nonTrivialIntersections.maxByOrNull { prioritised ->
+        ?: nonTrivialIntersections.maxByOrNull { prioritised ->
             prioritised.first
         }?.second
-    }
+        ?: return IntersectionDescription(nearestRoad, userGeometry)
 
     // Find the bearing that we're coming in at - measured to the nearest intersection
-    val heading = nearestRoad?.heading(intersection!!)
+    val heading = nearestRoad?.heading(intersection)
     //val heading = userGeometry.heading()
     if (heading != null) {
         // And use the polygons to describe the roads at the intersection
@@ -368,12 +368,11 @@ fun addIntersectionCalloutFromDescription(
     // as the incoming Way to the intersection could be 90 degrees (or more?) away from the current
     // heading.
     if (description.nearestRoad?.containsIntersection(description.intersection) != true) {
-        if (description.nearestRoad == null)
-            return null
+        val nearestRoadBeforeExtension = description.nearestRoad ?: return null
 
         val shortestDistanceResults = findShortestDistance(
             description.userGeometry.mapMatchedLocation?.point ?: description.userGeometry.location,
-            description.nearestRoad!!,
+            nearestRoadBeforeExtension,
             null, null, description.intersection,
             null,
             50.0
@@ -393,7 +392,7 @@ fun addIntersectionCalloutFromDescription(
 
     val trackedCallout = TrackedCallout(
         description.userGeometry,
-        intersectionName!!,
+        intersectionName ?: "",
         intersectionLocation,
         positionedStrings = List(1) {
             PositionedString(
@@ -480,9 +479,7 @@ fun addIntersectionCalloutFromDescription(
         }
     }
     // Order intersection callout by heading from left to right
-    intersectionResults.sortWith(Comparator { p1, p2 ->
-        p1.heading!!.compareTo(p2.heading!!)
-    })
+    intersectionResults.sortBy { it.heading }
     trackedCallout.positionedStrings = intersectionResults
     return trackedCallout
 }
