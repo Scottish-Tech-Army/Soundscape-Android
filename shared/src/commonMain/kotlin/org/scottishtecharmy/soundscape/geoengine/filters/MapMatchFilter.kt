@@ -85,13 +85,15 @@ class IndexedLineString {
         indices = Array(route.size) { 0 }
         direction = Array(route.size) { true }
         if (route.size == 1) {
-            line = route[0].geometry as LineString
-            indices?.set(0, line!!.coordinates.size)
-            hashCode = line?.coordinates.hashCode()
+            val singleLine = route[0].geometry as LineString
+            line = singleLine
+            indices?.set(0, singleLine.coordinates.size)
+            hashCode = singleLine.coordinates.hashCode()
             return
         }
 
-        line = LineString()
+        val newLine = LineString()
+        line = newLine
         for ((index, way) in route.withIndex()) {
 
             var forwards: Boolean
@@ -121,16 +123,16 @@ class IndexedLineString {
             // order of the coordinates. This results in the same coordinate being duplicated at
             // each intersection, but is simple.
             if (forwards) {
-                line!!.coordinates.addAll((way.geometry as LineString).coordinates)
+                newLine.coordinates.addAll((way.geometry as LineString).coordinates)
             } else {
-                line!!.coordinates.addAll((way.geometry as LineString).coordinates.reversed())
+                newLine.coordinates.addAll((way.geometry as LineString).coordinates.reversed())
             }
             direction?.set(index, forwards)
 
             // Note the index at which this Way ends
-            indices?.set(index, line!!.coordinates.size)
+            indices?.set(index, newLine.coordinates.size)
         }
-        hashCode = line?.coordinates.hashCode()
+        hashCode = newLine.coordinates.hashCode()
     }
 }
 
@@ -210,11 +212,7 @@ class RoadFollower(
         for (way in route) {
             for (intersection in way.intersections) {
                 if (intersection != null) {
-                    if (hashMap.containsKey(intersection)) {
-                        hashMap[intersection] = hashMap[intersection]!! + 1
-                    } else {
-                        hashMap[intersection] = 1
-                    }
+                    hashMap[intersection] = (hashMap[intersection] ?: 0) + 1
                 }
             }
         }
@@ -471,9 +469,11 @@ class RoadFollower(
                 // Last point
                 lastCenter = gpsLocation
                 var matchedPoint = nearestPoint
-                if ((lastGpsLocation != null) and (lastMatchedLocation != null)) {
-                    val c1 = bearingFromTwoPoints(lastGpsLocation!!, lastMatchedLocation!!.point)
-                    val d1 = ruler.distance(lastGpsLocation!!, lastMatchedLocation!!.point)
+                val previousGpsLocation = lastGpsLocation
+                val previousMatchedLocation = lastMatchedLocation
+                if (previousGpsLocation != null && previousMatchedLocation != null) {
+                    val c1 = bearingFromTwoPoints(previousGpsLocation, previousMatchedLocation.point)
+                    val d1 = ruler.distance(previousGpsLocation, previousMatchedLocation.point)
                     var ar = k.pow(pointGap / averagePointGap)
                     if (ar.isNaN()) ar = 1.0
                     lastCenter = getDestinationCoordinate(gpsLocation, c1, d1 * ar)
@@ -482,7 +482,7 @@ class RoadFollower(
                             lastCenter,
                             currentNearestRoad.geometry as LineString
                         )
-                    radius = max(dMin, ruler.distance(gpsLocation, lastGpsLocation!!) * ar)
+                    radius = max(dMin, ruler.distance(gpsLocation, previousGpsLocation) * ar)
                 }
 
                 if (matchedPoint.distance > radius)
@@ -784,19 +784,30 @@ class MapMatchFilter {
                             }
                         }
                         if (useDijkstra) {
-                            val testDistance = (follower.averagePointGap * 8) + 15.0
-                            val shortestDistance = findShortestDistance(
-                                matchedLocation!!.point,
-                                matched,
-                                follower.chosen()!!.point,
-                                way,
-                                null,
-                                null,
-                                testDistance
-                            )
-                            if (shortestDistance.distance >= testDistance)
+                            // matchedWay is normally only ever set alongside matchedLocation, and
+                            // every follower in the list has just been given a chosen point by
+                            // update(). If that invariant is ever violated we can't run the
+                            // Dijkstra check, so treat this candidate as not a good enough match
+                            // rather than crash.
+                            val fromPoint = matchedLocation?.point
+                            val toPoint = follower.chosen()?.point
+                            if (fromPoint == null || toPoint == null) {
                                 skip = true
-                            shortestDistance.tidy()
+                            } else {
+                                val testDistance = (follower.averagePointGap * 8) + 15.0
+                                val shortestDistance = findShortestDistance(
+                                    fromPoint,
+                                    matched,
+                                    toPoint,
+                                    way,
+                                    null,
+                                    null,
+                                    testDistance
+                                )
+                                if (shortestDistance.distance >= testDistance)
+                                    skip = true
+                                shortestDistance.tidy()
+                            }
                         }
                     }
                 }
@@ -811,8 +822,8 @@ class MapMatchFilter {
         if (lowestFollower != null) {
             matchedLocation = lowestFollower.chosen()
             matchedFollower = lowestFollower
-            matchedWay = matchedFollower!!.currentNearestRoad
-            val color = matchedFollower!!.color
+            matchedWay = lowestFollower.currentNearestRoad
+            val color = lowestFollower.color
             matchedLocation?.let { matchedLocation ->
                 return Triple(matchedLocation.point, matchedWay, color)
             }
