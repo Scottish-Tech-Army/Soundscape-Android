@@ -188,7 +188,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             THEME_CONTRAST_KEY -> {
-                val contrast = preferences.getString(THEME_CONTRAST_KEY, "High")!!
+                val contrast = preferences.getString(THEME_CONTRAST_KEY, "High") ?: "High"
                 _themeStateFlow.value = themeStateFlow.value.copy(themeContrast = contrast)
                 Log.e(TAG, "themeContrast $contrast")
             }
@@ -203,7 +203,7 @@ class MainActivity : AppCompatActivity() {
                 val mode = preferences.getString(
                     PreferenceKeys.MEDIA_CONTROLS_MODE,
                     PreferenceDefaults.MEDIA_CONTROLS_MODE
-                )!!
+                ) ?: PreferenceDefaults.MEDIA_CONTROLS_MODE
                 Log.e(TAG, "mediaControlsMode $mode")
                 soundscapeServiceConnection.soundscapeService?.updateMediaControls(mode)
             }
@@ -777,7 +777,8 @@ class MainActivity : AppCompatActivity() {
         bodyText.append(tableRow("AndroidGeocoder", AndroidGeocoder.enabled.toString()))
 
         val extractPath =
-            sharedPreferences.getString(SELECTED_STORAGE_KEY, SELECTED_STORAGE_DEFAULT)!!
+            sharedPreferences.getString(SELECTED_STORAGE_KEY, SELECTED_STORAGE_DEFAULT)
+                ?: SELECTED_STORAGE_DEFAULT
         val extractCollection =
             findExtracts(File(extractPath, Environment.DIRECTORY_DOWNLOADS).path)
         if (extractCollection != null) {
