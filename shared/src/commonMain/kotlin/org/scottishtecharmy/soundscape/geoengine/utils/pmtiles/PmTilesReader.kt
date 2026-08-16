@@ -192,8 +192,9 @@ class PmTilesReader(path: Path, fileSystem: FileSystem = systemFileSystem) : Aut
         }
 
         private fun getCachedTile(id: Long, dirIndex: Int): ByteArray {
-            if (cachedTileId == id) {
-                return cachedTile!!
+            val cached = cachedTile
+            if (cachedTileId == id && cached != null) {
+                return cached
             }
             val tile = readTile(dirIndex)
             cachedTile = tile
