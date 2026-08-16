@@ -32,7 +32,10 @@ class MultiLineStringJsonAdapter : JsonAdapter<MultiLineString>() {
                         reader.beginArray()
                         val line = arrayListOf<LngLatAlt>()
                         while (reader.hasNext()) {
-                            line.add(positionJsonAdapter.fromJson(reader)!!)
+                            line.add(
+                                positionJsonAdapter.fromJson(reader)
+                                    ?: throw JsonDataException("Missing position at ${reader.path}")
+                            )
                         }
                         position.add(line)
                         reader.endArray()
