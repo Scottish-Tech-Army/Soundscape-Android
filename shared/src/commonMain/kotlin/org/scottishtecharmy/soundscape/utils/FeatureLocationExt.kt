@@ -87,15 +87,13 @@ fun LocationDescription.process() {
                     }
                 }
                 //nameLocal = properties["name"] as String?
-                if (mvt != null) {
-                    if (mvt.housenumber != null) {
-                        jsonFields["house_number"] = mvt.housenumber!!
-                        address = true
-                    }
-                    if (mvt.street != null) {
-                        jsonFields["road"] = mvt.street!!
-                        address = true
-                    }
+                mvt?.housenumber?.let {
+                    jsonFields["house_number"] = it
+                    address = true
+                }
+                mvt?.street?.let {
+                    jsonFields["road"] = it
+                    address = true
                 }
             }
             if (address) {
