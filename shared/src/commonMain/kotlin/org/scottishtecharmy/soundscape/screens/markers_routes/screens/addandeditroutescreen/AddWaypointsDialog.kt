@@ -55,9 +55,10 @@ fun AddWaypointsDialog(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top,
     ) {
-        if (showSaveMarker && placesNearbyUiState.markerDescription != null) {
+        val markerDescription = placesNearbyUiState.markerDescription
+        if (showSaveMarker && markerDescription != null) {
             SharedSaveAndEditMarkerScreen(
-                locationDescription = placesNearbyUiState.markerDescription!!,
+                locationDescription = markerDescription,
                 userLocation = placesNearbyUiState.userLocation,
                 heading = heading,
                 onCancel = { showSaveMarker = false },
