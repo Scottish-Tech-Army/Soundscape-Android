@@ -67,10 +67,14 @@ fun buildAddressLocationDescription(
     val formattedAddress = try {
         formatter.format(json, fallback)
     } catch (e: Throwable) {
-        val retryJson = buildJsonObject {
-            for ((k, v) in fields) if (k != "country_code") put(k, v)
-        }.toString().replace("\\/", "/")
-        formatter.format(retryJson, "GB")
+        try {
+            val retryJson = buildJsonObject {
+                for ((k, v) in fields) if (k != "country_code") put(k, v)
+            }.toString().replace("\\/", "/")
+            formatter.format(retryJson, "GB")
+        } catch (e2: Throwable) {
+            fields.filterKeys { it != "country_code" }.values.joinToString(", ")
+        }
     }
 
     var chosenName = providedName
