@@ -78,8 +78,8 @@ class SettingsViewModel(
             refreshMicrophones()
             soundscapeServiceConnection.serviceBoundState.collect {
                 Log.d(TAG, "serviceBoundState $it")
-                if (it) {
-                    val audioEngine = soundscapeServiceConnection.soundscapeService?.audioEngine!!
+                val audioEngine = soundscapeServiceConnection.soundscapeService?.audioEngine
+                if (it && audioEngine != null) {
                     serviceBoundJob = viewModelScope.launch {
                         audioEngine.ttsRunningStateChange.collectLatest { initialized ->
                             if (initialized) {
