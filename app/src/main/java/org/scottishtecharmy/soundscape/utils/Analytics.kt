@@ -10,7 +10,9 @@ object AnalyticsProvider {
             var instance = INSTANCE
             if (instance == null) {
                 instance = if (dummy == false)
-                    createPlatformAnalytics(context!!)
+                    createPlatformAnalytics(
+                        requireNotNull(context) { "context must be provided when dummy=false" }
+                    )
                 else
                     NoOpAnalytics()
                 INSTANCE = instance
