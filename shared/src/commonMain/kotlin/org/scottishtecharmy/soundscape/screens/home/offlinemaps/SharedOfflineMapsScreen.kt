@@ -185,10 +185,11 @@ fun OfflineMapsScreenContent(
             )
         },
     ) { padding ->
+        val extract = extractDetailsFeature.value
         when {
-            extractDetailsFeature.value != null -> {
+            extract != null -> {
                 SharedOfflineMapExtractDetails(
-                    extract = extractDetailsFeature.value!!,
+                    extract = extract,
                     downloadExtract = { name, feature ->
                         onDownload(name, feature)
                         extractDetailsFeature.value = null
