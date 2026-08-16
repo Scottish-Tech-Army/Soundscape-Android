@@ -96,7 +96,7 @@ class AutoCallout(
             val callout = TrackedCallout(
                 userGeometry,
                 trackedText = result.text,
-                location = result.location!!,
+                location = result.location ?: userGeometry.location,
                 positionedStrings = listOf(result),
                 isPoint = false,
                 isGeneric = false,
