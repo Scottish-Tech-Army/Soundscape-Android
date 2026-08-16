@@ -94,7 +94,7 @@ class RoutePlayer(
     fun startRoute(routeId: Long, reverse: Boolean = false, startWaypoint: Int = 0) {
         coroutineScope.launch {
             val route = routeDao.getRouteWithMarkers(routeId) ?: return@launch
-            currentRouteData = if (reverse) {
+            val routeData = if (reverse) {
                 val reverseName = getString(Res.string.route_reverse_name, route.route.name)
                 RouteWithMarkers(
                     RouteEntity(route.route.routeId, reverseName, route.route.description),
@@ -103,7 +103,8 @@ class RoutePlayer(
             } else {
                 route
             }
-            currentMarker = startWaypoint.coerceIn(0, currentRouteData!!.markers.size - 1)
+            currentRouteData = routeData
+            currentMarker = startWaypoint.coerceIn(0, routeData.markers.size - 1)
             _currentRouteFlow.update {
                 it.copy(
                     routeData = currentRouteData,
