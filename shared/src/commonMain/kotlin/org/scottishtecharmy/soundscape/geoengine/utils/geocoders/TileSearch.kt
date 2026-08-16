@@ -251,8 +251,9 @@ class TileSearch(
                 // Load the tile and add all of its String to a cache
                 cache = mutableListOf()
                 val tileData = try { reader?.getTile(MAX_ZOOM_LEVEL, x, y) } catch (_: Exception) { null }
-                if (tileData != null) {
-                    val tile = decompressTile(reader!!.tileCompression, tileData)
+                val currentReader = reader
+                if (tileData != null && currentReader != null) {
+                    val tile = decompressTile(currentReader.tileCompression, tileData)
                     if (tile != null) {
                         for (layer in tile.layers) {
                             if ((layer.name == "transportation") || (layer.name == "poi")) {
@@ -330,8 +331,9 @@ class TileSearch(
         val detailedResults = mutableListOf<DetailedSearchResult>()
         for (result in searchResults) {
             val tileData = try { reader?.getTile(MAX_ZOOM_LEVEL, result.tileX, result.tileY) } catch (_: Exception) { null }
-            if (tileData != null) {
-                val tile = decompressTile(reader!!.tileCompression, tileData)
+            val currentReader = reader
+            if (tileData != null && currentReader != null) {
+                val tile = decompressTile(currentReader.tileCompression, tileData)
                 if (tile != null) {
                     var stringValue = ""
                     for (layer in tile.layers) {
