@@ -47,17 +47,18 @@ class EntranceMatching {
             // Rather than have a 2D sparse array, turn the coordinates into a single int so that we
             // can have a 1D sparse array instead.
             val coordinateKey = point.first.shl(12) + point.second
-            if (buildingNodes[coordinateKey] == null) {
+            val nodesAtCoordinate = buildingNodes[coordinateKey]
+            if (nodesAtCoordinate == null) {
                 buildingNodes[coordinateKey] = arrayListOf(details.copy())
             } else {
                 // Remove any previous entries for this osmID as they didn't have a level set
-                for (node in buildingNodes[coordinateKey]!!) {
+                for (node in nodesAtCoordinate) {
                     if (node.osmId == details.osmId) {
-                        buildingNodes[coordinateKey]?.remove(node)
+                        nodesAtCoordinate.remove(node)
                         break
                     }
                 }
-                buildingNodes[coordinateKey]?.add(details.copy())
+                nodesAtCoordinate.add(details.copy())
             }
         }
     }
