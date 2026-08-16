@@ -1158,25 +1158,25 @@ class MvtTileTest {
         // Warm up (JIT, first-call allocation costs) before timing.
         repeat(2) {
             val warmup = MapMatchFilter()
-            for (c in roadCoordinates) warmup.filter(c, gridState, FeatureCollection(), false)
+            for (c in roadCoordinates) warmup.filter(c, gridState, FeatureCollection(), false, null)
         }
 
         val roadOnlyTime = measureTime {
             val filter = MapMatchFilter()
-            for (c in roadCoordinates) filter.filter(c, gridState, FeatureCollection(), false)
+            for (c in roadCoordinates) filter.filter(c, gridState, FeatureCollection(), false, null)
         }
 
         val railOnlyTime = measureTime {
             val filter = MapMatchFilter(networkTree = TreeId.TRANSIT)
-            for (c in railCoordinates) filter.filter(c, gridState, FeatureCollection(), false)
+            for (c in railCoordinates) filter.filter(c, gridState, FeatureCollection(), false, null)
         }
 
         val bothTime = measureTime {
             val roadFilter = MapMatchFilter()
             val railFilter = MapMatchFilter(networkTree = TreeId.TRANSIT)
             for (i in 0 until minOf(roadCoordinates.size, railCoordinates.size)) {
-                roadFilter.filter(roadCoordinates[i], gridState, FeatureCollection(), false)
-                railFilter.filter(railCoordinates[i], gridState, FeatureCollection(), false)
+                roadFilter.filter(roadCoordinates[i], gridState, FeatureCollection(), false, null)
+                railFilter.filter(railCoordinates[i], gridState, FeatureCollection(), false, null)
             }
         }
 
@@ -1245,8 +1245,8 @@ class MvtTileTest {
         val coordinates = (targetWay!!.geometry as LineString).coordinates
         val railMapMatchFilter = MapMatchFilter(networkTree = TreeId.TRANSIT)
         for (coordinate in coordinates) {
-            runBlocking { gridState.locationUpdate(coordinate, emptySet()) }
-            railMapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false)
+            runBlocking { gridState.locationUpdate(coordinate, emptySet(), null) }
+            railMapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null)
         }
 
         val matched = railMapMatchFilter.matchedWay
@@ -1294,8 +1294,8 @@ class MvtTileTest {
         val coordinates = (byresRoad!!.geometry as LineString).coordinates
         val railMapMatchFilter = MapMatchFilter(networkTree = TreeId.TRANSIT)
         for (coordinate in coordinates) {
-            runBlocking { gridState.locationUpdate(coordinate, emptySet()) }
-            railMapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false)
+            runBlocking { gridState.locationUpdate(coordinate, emptySet(), null) }
+            railMapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null)
         }
 
         assertFalse(
@@ -1903,7 +1903,8 @@ class MvtTileTest {
                     LngLatAlt(location.longitude, location.latitude),
                     gridState,
                     collection,
-                    false
+                    false,
+                    null
                 )
 
                 if (railMapMatchedResult.first != null) {
