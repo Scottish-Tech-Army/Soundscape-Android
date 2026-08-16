@@ -123,10 +123,6 @@ class Way : MvtFeature() {
                 strings?.resolveFeatureClass(it)
             } ?: featureClass ?: ""
 
-            val currentFeatureClass = featureClass
-            if (!currentFeatureClass.isNullOrEmpty())
-                println("$currentFeatureClass -> ${strings?.resolveFeatureClass(currentFeatureClass)}")
-
             result = result.replaceFirstChar {
                 if (it.isLowerCase())
                     it.titlecase()
