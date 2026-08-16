@@ -176,12 +176,19 @@ class RoadFollower(
      * LOCKED follower that's actually drifted away from the true road (e.g. the outer edge of a
      * bend, where matchedPoint.distance and radius are both still large) shouldn't beat a
      * brand-new follower whose very first sample landed almost exactly on the road, just because
-     * the new one hasn't accumulated a big queue yet. So this is used for the actual competitive
-     * frechetAverage instead of unconditionally disqualifying with Double.MAX_VALUE whenever the
-     * queue isn't yet half full - only a follower with literally zero history (still
-     * Double.MAX_VALUE here) can't win.
+     * the new one hasn't accumulated a big queue yet. So when [drivingSelection] is true, this is
+     * used for the actual competitive frechetAverage instead of unconditionally disqualifying with
+     * Double.MAX_VALUE whenever the queue isn't yet half full - only a follower with literally
+     * zero history (still Double.MAX_VALUE here) can't win.
+     *
+     * At walking speed this doesn't apply - see MapMatchFilter.filter's drivingSelection - since
+     * it was diagnosed from driving GPX replays (radius growing large enough to span a nearby
+     * parallel/service road) and changes real walking-mode callouts if left unconditional.
      */
-    fun frechetAverageOrMax(): Double {
+    fun frechetAverageOrMax(drivingSelection: Boolean): Double {
+        if (!drivingSelection) {
+            return if (frechetQueue.size > FRECHET_QUEUE_SIZE / 2) frechetQueue.average() else Double.MAX_VALUE
+        }
         if (frechetQueue.isEmpty()) return Double.MAX_VALUE
         return frechetQueue.average()
     }
@@ -409,7 +416,8 @@ class RoadFollower(
     fun update(
         gpsLocation: LngLatAlt,
         collection: FeatureCollection,
-        ruler: CheapRuler
+        ruler: CheapRuler,
+        drivingSelection: Boolean
     ): RoadFollowerStatus {
 
         if (ils.line == null)
@@ -436,7 +444,7 @@ class RoadFollower(
 
             if (lastLocation == gpsLocation) {
                 return RoadFollowerStatus(
-                    frechetAverageOrMax(),
+                    frechetAverageOrMax(drivingSelection),
                     if (frechetQueue.size > FRECHET_QUEUE_SIZE / 2) {
                         RoadFollowerState.LOCKED
                     } else {
@@ -611,7 +619,7 @@ class RoadFollower(
             }
         }
         return RoadFollowerStatus(
-            frechetAverageOrMax(),
+            frechetAverageOrMax(drivingSelection),
             when {
                 directionChange -> RoadFollowerState.DIRECTION_CHANGED
                 frechetQueue.size > (FRECHET_QUEUE_SIZE / 2) -> RoadFollowerState.LOCKED
@@ -652,6 +660,19 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
     private fun matchTree(vehicleMode: Boolean): TreeId {
         return networkTree ?: if (vehicleMode) TreeId.ROADS else TreeId.WAYS_SELECTION
     }
+
+    /**
+     * Whether to use the driving-tuned follower-selection heuristics (frechetAverageOrMax letting
+     * a partial-history follower compete, and filter's switch hysteresis/raw-distance override) -
+     * both diagnosed from driving GPX replays where radius (see RoadFollower.update) grows large
+     * enough at driving speed to span a nearby parallel/service road. Left unconditional, they
+     * also change real walking-speed callouts (confirmed against travel.gpx), so they're gated
+     * here to true vehicle speed - or the rail/transit network, which is always fast-moving
+     * regardless of vehicleMode (the road/path vehicleMode flag isn't meaningful for it, since
+     * networkTree already forces TreeId.TRANSIT), so it should get the same treatment as driving.
+     */
+    private fun useDrivingFollowerSelection(vehicleMode: Boolean): Boolean =
+        vehicleMode || (networkTree == TreeId.TRANSIT)
 
 
     val followerList: MutableList<RoadFollower> = mutableListOf()
@@ -852,6 +873,8 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
 
         extendFollowerList(location, gridState, vehicleMode)
 
+        val drivingSelection = useDrivingFollowerSelection(vehicleMode)
+
         var lowestFrechet = Double.MAX_VALUE
         var lowestFollower: RoadFollower? = null
         val previouslyMatchedFollower = matchedFollower
@@ -867,7 +890,7 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
         val followerIterator = followerList.listIterator()
         while (followerIterator.hasNext()) {
             val follower = followerIterator.next()
-            val frechetStatus = follower.update(location, collection, gridState.ruler)
+            val frechetStatus = follower.update(location, collection, gridState.ruler, drivingSelection)
 
             if (frechetStatus.state == RoadFollowerState.DISTANT) {
                 followerIterator.remove()
@@ -976,7 +999,9 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
         }
 
         // Prefer sticking with the previously-matched follower unless a challenger clearly beats
-        // it. At driving speed, radius (see RoadFollower.update) has to grow large enough to
+        // it - gated on drivingSelection (see useDrivingFollowerSelection) below, since it changes
+        // real walking-speed callouts if left unconditional. At driving speed, radius (see
+        // RoadFollower.update) has to grow large enough to
         // tolerate the bigger gap between GPS fixes, and a large enough radius can end up
         // containing a nearby parallel/service road as well as the true road - at which point
         // their frechetAverage values are within noise of each other, and the bare "lowest wins"
@@ -1002,19 +1027,21 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
         // already a long way off (RAW_DISTANCE_OVERRIDE_MINIMUM_METRES), so it doesn't reopen the
         // original close-parallel-road ambiguity this hysteresis exists to prevent, where both
         // roads' raw distances are small.
-        val previousMatchDistance = previouslyMatchedFollower?.nearestPoint?.distance
-        val challengerRawDistanceWins = (previousMatchDistance != null) &&
-            (closestByRawDistance != null) && (closestByRawDistance !== previouslyMatchedFollower) &&
-            (previousMatchDistance > RAW_DISTANCE_OVERRIDE_MINIMUM_METRES) &&
-            (closestRawDistance < previousMatchDistance * RAW_DISTANCE_OVERRIDE_RATIO)
-        if (challengerRawDistanceWins) {
-            lowestFollower = closestByRawDistance
-            lowestFrechet = closestByRawDistanceFrechet
-        } else if ((previousMatchFrechet != null) && (lowestFollower !== previouslyMatchedFollower) &&
-            (lowestFrechet >= previousMatchFrechet * FOLLOWER_SWITCH_HYSTERESIS_FACTOR)
-        ) {
-            lowestFollower = previouslyMatchedFollower
-            lowestFrechet = previousMatchFrechet
+        if (drivingSelection) {
+            val previousMatchDistance = previouslyMatchedFollower?.nearestPoint?.distance
+            val challengerRawDistanceWins = (previousMatchDistance != null) &&
+                (closestByRawDistance != null) && (closestByRawDistance !== previouslyMatchedFollower) &&
+                (previousMatchDistance > RAW_DISTANCE_OVERRIDE_MINIMUM_METRES) &&
+                (closestRawDistance < previousMatchDistance * RAW_DISTANCE_OVERRIDE_RATIO)
+            if (challengerRawDistanceWins) {
+                lowestFollower = closestByRawDistance
+                lowestFrechet = closestByRawDistanceFrechet
+            } else if ((previousMatchFrechet != null) && (lowestFollower !== previouslyMatchedFollower) &&
+                (lowestFrechet >= previousMatchFrechet * FOLLOWER_SWITCH_HYSTERESIS_FACTOR)
+            ) {
+                lowestFollower = previouslyMatchedFollower
+                lowestFrechet = previousMatchFrechet
+            }
         }
 
         lastLocation = location
