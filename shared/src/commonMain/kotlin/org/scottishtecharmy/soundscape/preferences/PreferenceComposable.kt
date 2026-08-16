@@ -22,17 +22,13 @@ fun rememberBooleanPreference(
         mutableStateOf(provider?.getBoolean(key, default) ?: default)
     }
     DisposableEffect(provider, key) {
-        val listener = if (provider == null) {
-            null
-        } else {
-            PreferencesListener { changed ->
-                if (changed == key) {
-                    state.value = provider.getBoolean(key, default)
-                }
+        val listener = PreferencesListener { changed ->
+            if (changed == key) {
+                state.value = provider?.getBoolean(key, default) ?: default
             }
         }
-        if (listener != null) provider!!.addListener(listener)
-        onDispose { if (listener != null) provider!!.removeListener(listener) }
+        provider?.addListener(listener)
+        onDispose { provider?.removeListener(listener) }
     }
     return state
 }
