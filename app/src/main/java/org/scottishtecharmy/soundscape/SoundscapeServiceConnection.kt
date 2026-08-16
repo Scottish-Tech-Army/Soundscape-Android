@@ -91,7 +91,12 @@ class SoundscapeServiceConnection @Inject constructor() {
             Log.d(TAG, "onServiceConnected")
 
             val binder = service as SoundscapeBinder
-            soundscapeService = binder.getSoundscapeService()
+            val boundService = binder.getSoundscapeService()
+            if (boundService == null) {
+                Log.w(TAG, "onServiceConnected but underlying service already destroyed; ignoring")
+                return
+            }
+            soundscapeService = boundService
             _serviceBoundState.value = true
         }
 
