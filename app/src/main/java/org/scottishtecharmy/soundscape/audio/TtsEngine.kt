@@ -114,7 +114,7 @@ class TtsEngine(
         val voiceType = sharedPreferences.getString(
             MainActivity.VOICE_TYPE_KEY,
             MainActivity.VOICE_TYPE_DEFAULT
-        )!!
+        ) ?: MainActivity.VOICE_TYPE_DEFAULT
         // textToSpeech.voices is a platform getter (getVoices()) that is re-invoked on every
         // access and can return null, so capture it once rather than checking and iterating
         // separately (which crashed when the second read returned null).
