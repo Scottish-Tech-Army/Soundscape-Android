@@ -52,17 +52,18 @@ private fun applyOverrides(
             paintOverrides["background-color"] = JsonPrimitive(overrides.backgroundColor)
         }
         // Line color overrides
-        if (type == "line" && id in overrides.lineColor) {
-            paintOverrides["line-color"] = JsonPrimitive(overrides.lineColor[id]!!)
+        if (type == "line") {
+            overrides.lineColor[id]?.let { paintOverrides["line-color"] = JsonPrimitive(it) }
         }
         // Fill color overrides
-        if (type == "fill" && id in overrides.fillColor) {
-            paintOverrides["fill-color"] = JsonPrimitive(overrides.fillColor[id]!!)
+        if (type == "fill") {
+            overrides.fillColor[id]?.let { paintOverrides["fill-color"] = JsonPrimitive(it) }
         }
         // Fill-extrusion color overrides
-        if (type == "fill-extrusion" && id in overrides.fillExtrusionColor) {
-            paintOverrides["fill-extrusion-color"] =
-                JsonPrimitive(overrides.fillExtrusionColor[id]!!)
+        if (type == "fill-extrusion") {
+            overrides.fillExtrusionColor[id]?.let {
+                paintOverrides["fill-extrusion-color"] = JsonPrimitive(it)
+            }
         }
         // Symbol layers: apply foreground/background text colors
         if (type == "symbol") {
@@ -74,12 +75,8 @@ private fun applyOverrides(
             }
         }
         // Per-layer text color overrides
-        if (id in overrides.textColor) {
-            paintOverrides["text-color"] = JsonPrimitive(overrides.textColor[id]!!)
-        }
-        if (id in overrides.textHaloColor) {
-            paintOverrides["text-halo-color"] = JsonPrimitive(overrides.textHaloColor[id]!!)
-        }
+        overrides.textColor[id]?.let { paintOverrides["text-color"] = JsonPrimitive(it) }
+        overrides.textHaloColor[id]?.let { paintOverrides["text-halo-color"] = JsonPrimitive(it) }
 
         if (paintOverrides.isEmpty()) {
             layerElement
