@@ -441,7 +441,9 @@ class IosAudioEngine : AudioEngine {
         ensureEngineStarted()
         val handle = nextHandle++
 
-        val type = BEACON_TYPES[currentBeaconType] ?: BEACON_TYPES["Current"]!!
+        val type = BEACON_TYPES[currentBeaconType]
+            ?: BEACON_TYPES["Current"]
+            ?: error("BEACON_TYPES is missing its \"Current\" entry")
         val player = BeaconPlayer(type, location.latitude, location.longitude)
 
         if (!player.loadAssets()) {
