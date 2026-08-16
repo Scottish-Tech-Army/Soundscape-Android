@@ -29,10 +29,10 @@ class OffscreenStorageOnboardingViewModel(val appContext: Context) : ViewModel()
 
         // Get the currently selected storage and if uninitialized set it to the first external storage
         val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(appContext)
-        var path = sharedPreferences.getString(
+        val path = sharedPreferences.getString(
             MainActivity.SELECTED_STORAGE_KEY,
             MainActivity.SELECTED_STORAGE_DEFAULT
-        )
+        ) ?: MainActivity.SELECTED_STORAGE_DEFAULT
 
         var currentIndex = -1
         for ((index, storage) in storages.withIndex()) {
@@ -42,7 +42,7 @@ class OffscreenStorageOnboardingViewModel(val appContext: Context) : ViewModel()
             }
         }
         _uiState.value = _uiState.value.copy(
-            currentPath = path!!,
+            currentPath = path,
             selectedStorageIndex = currentIndex,
             storages = storages
         )
