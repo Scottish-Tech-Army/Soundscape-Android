@@ -326,9 +326,18 @@ fun HomeScreen(
             onOfflineMapsDelete = { feature -> offlineMaps.deleteExtractByFeature(feature) },
             onOfflineMapsCancelDownload = { offlineMaps.cancelDownload() },
             onResetSettings = {
-                // SharedNavGraph has already cleared the preferences. Relaunch
-                // MainActivity in a fresh task and kill the current process so
-                // the rebuilt app sees the cleared state from a clean slate.
+                // Android supplies its own settingsContent below, so SharedNavGraph's
+                // clearAll()-wrapping lambda is never built for this platform - clear here
+                // instead. Then relaunch MainActivity in a fresh task and kill the current
+                // process so the rebuilt app sees the cleared state from a clean slate.
+                prefsProvider.clearAll()
+                // Explicitly stop the foreground service first. SoundscapeService is a
+                // MediaSessionService (effectively START_STICKY); killing the process
+                // without stopping it first leaves Android's restart bookkeeping intact,
+                // so it auto-restarts the old service instance - with its already-running
+                // GeoEngine/AutoCallout speaking a stale location callout - independent of
+                // the freshly relaunched activity. Same fix as onSetApplicationLocale above.
+                activity.setServiceState(false)
                 val launch = activity.packageManager.getLaunchIntentForPackage(activity.packageName)
                 if (launch != null) {
                     launch.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
