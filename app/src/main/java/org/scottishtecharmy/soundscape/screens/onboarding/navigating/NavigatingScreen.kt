@@ -99,6 +99,11 @@ enum class Permission(
 
 @Composable
 fun NavigatingScreen(
+    // Called both when the user taps Continue and when the screen skips itself
+    // because every permission is already granted. Either way there's nothing left
+    // to review on this screen once it's satisfied, so callers should have this pop
+    // the screen off the back stack - otherwise swiping back re-reveals it, its skip
+    // check re-fires immediately, and it bounces straight forward again.
     onNavigate: () -> Unit,
     modifier: Modifier = Modifier,
     vm: NavigatingScreenViewModel = viewModel(),

@@ -75,13 +75,27 @@ fun SetUpOnboardingNavGraph(
             )
         }
         composable(OnboardingScreens.Navigating.route) {
+            // Pop this screen off the back stack on the way out, whether the user
+            // just granted everything or it was already satisfied - there's nothing
+            // left to review here either way, and leaving it on the back stack means
+            // swiping back into it re-triggers its own skip check and immediately
+            // bounces forward again.
             NavigatingScreen(
-                onNavigate = { navController.navigate(OnboardingScreens.BatteryOptimization.route) }
+                onNavigate = {
+                    navController.navigate(OnboardingScreens.BatteryOptimization.route) {
+                        popUpTo(OnboardingScreens.Navigating.route) { inclusive = true }
+                    }
+                },
             )
         }
         composable(OnboardingScreens.BatteryOptimization.route) {
+            // Same reasoning as Navigating above.
             BatteryOptimizationScreen(
-                onNavigate = { navController.navigate(OnboardingScreens.Listening.route) }
+                onNavigate = {
+                    navController.navigate(OnboardingScreens.Listening.route) {
+                        popUpTo(OnboardingScreens.BatteryOptimization.route) { inclusive = true }
+                    }
+                },
             )
         }
         composable(OnboardingScreens.AudioBeacons.route) {

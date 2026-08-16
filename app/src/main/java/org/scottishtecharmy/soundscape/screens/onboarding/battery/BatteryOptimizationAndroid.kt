@@ -19,8 +19,13 @@ import androidx.core.net.toUri
 
 @Composable
 fun BatteryOptimizationScreen(
+    // Called both when the system permission dialog returns and when the screen
+    // skips itself because the exemption is already granted. Either way there's
+    // nothing left to review on this screen once it's satisfied, so callers should
+    // have this pop the screen off the back stack - otherwise swiping back reveals
+    // it, its skip check re-fires immediately, and it bounces straight forward again.
     onNavigate: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
     val alreadyExempted = remember { isIgnoringBatteryOptimizations(context) }
