@@ -106,8 +106,9 @@ private class TokenReader(private val tokens: List<XmlToken>) {
 
     fun readTextContent(tagName: String): String {
         val sb = StringBuilder()
-        while (hasNext()) {
-            when (val t = peek()!!) {
+        while (true) {
+            val t = peek() ?: break
+            when (t) {
                 is XmlToken.EndTag -> {
                     if (t.localName == tagName) {
                         next(); return sb.toString()
