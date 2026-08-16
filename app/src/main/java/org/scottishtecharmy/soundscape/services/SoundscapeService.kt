@@ -1156,8 +1156,8 @@ class SoundscapeService : MediaSessionService() {
 // Binder to allow local clients to Bind to our service
 class SoundscapeBinder(newService: SoundscapeService?) : Binder() {
     var service: SoundscapeService? = newService
-    fun getSoundscapeService(): SoundscapeService {
-        return service!!
+    fun getSoundscapeService(): SoundscapeService? {
+        return service
     }
 
     fun reset() {
