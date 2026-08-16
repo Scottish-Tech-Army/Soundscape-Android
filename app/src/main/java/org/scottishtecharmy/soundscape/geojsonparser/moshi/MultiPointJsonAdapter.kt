@@ -29,7 +29,10 @@ class MultiPointJsonAdapter : JsonAdapter<MultiPoint>() {
                     position = arrayListOf()
                     reader.beginArray()
                     while (reader.hasNext()) {
-                        position.add(positionJsonAdapter.fromJson(reader)!!)
+                        position.add(
+                            positionJsonAdapter.fromJson(reader)
+                                ?: throw JsonDataException("Missing position at ${reader.path}")
+                        )
                     }
                     reader.endArray()
                 }
