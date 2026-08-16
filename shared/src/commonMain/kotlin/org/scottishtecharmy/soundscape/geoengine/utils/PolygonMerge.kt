@@ -25,11 +25,9 @@ fun mergeAllPolygonsInFeatureCollection(
     for (feature in polygonFeatureCollection.features) {
         if (feature.geometry.type == "Polygon") {
             val osmId = (feature as MvtFeature).osmId
-            if (!features.containsKey(osmId)) {
-                features[osmId] = mutableListOf()
-            }
+            val featureCollectionsForId = features.getOrPut(osmId) { mutableListOf() }
             var foundOverlap = false
-            for (featureCollection in features[osmId]!!) {
+            for (featureCollection in featureCollectionsForId) {
                 for (existingFeature in featureCollection) {
                     if (polygonFeaturesOverlap(feature, existingFeature)) {
                         featureCollection.addFeature(feature)
@@ -41,7 +39,7 @@ fun mergeAllPolygonsInFeatureCollection(
             if (!foundOverlap) {
                 val newFeatureCollection = FeatureCollection()
                 newFeatureCollection.addFeature(feature)
-                features[osmId]!!.add(newFeatureCollection)
+                featureCollectionsForId.add(newFeatureCollection)
             }
         } else {
             resultantFeatureCollection.addFeature(feature)
@@ -53,17 +51,23 @@ fun mergeAllPolygonsInFeatureCollection(
             var mergedFeature: Feature? = null
             for ((index, feature) in featureCollection.features.withIndex()) {
                 val tempMergedFeature = mergedFeature
-                mergedFeature = if (index == 0) {
+                // index > 0 should imply tempMergedFeature is set (from the first feature or a
+                // prior merge), but if that invariant is ever violated, fall back to starting a
+                // fresh chain from this feature rather than crash.
+                mergedFeature = if (index == 0 || tempMergedFeature == null) {
                     feature
                 } else {
-                    mergePolygons(mergedFeature!!, feature)
+                    mergePolygons(tempMergedFeature, feature)
                 }
                 if (mergedFeature == feature) {
                     if (tempMergedFeature != null)
                         resultantFeatureCollection.addFeature(tempMergedFeature)
                 }
             }
-            resultantFeatureCollection.addFeature(mergedFeature!!)
+            // featureCollection is only ever created with at least one feature already added to
+            // it, so the loop above always runs and sets mergedFeature. Skip adding anything if
+            // that's ever not the case, rather than crash.
+            mergedFeature?.let { resultantFeatureCollection.addFeature(it) }
         }
     }
     return resultantFeatureCollection
