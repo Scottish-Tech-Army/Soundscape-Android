@@ -252,7 +252,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         val extractPath = sharedPreferences.getString(
             MainActivity.SELECTED_STORAGE_KEY,
             MainActivity.SELECTED_STORAGE_DEFAULT
-        )!!
+        ) ?: MainActivity.SELECTED_STORAGE_DEFAULT
         val offlineExtractPath = extractPath + "/" + android.os.Environment.DIRECTORY_DOWNLOADS
 
         networkUtils = NetworkUtils(application)
@@ -365,11 +365,8 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
     @SuppressLint("MissingSuperCall")
     override fun onBind(intent: Intent?): IBinder {
-        if (binder == null) {
-            // Create binder if we don't have one already
-            binder = SoundscapeBinder(this@SoundscapeService)
-        }
-        return binder!!
+        // Create binder if we don't have one already
+        return binder ?: SoundscapeBinder(this@SoundscapeService).also { binder = it }
     }
 
     override fun setStreetPreviewMode(on: Boolean, location: LngLatAlt?) {
@@ -539,7 +536,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
             val mode = sharedPreferences.getString(
                 PreferenceKeys.MEDIA_CONTROLS_MODE,
                 PreferenceDefaults.MEDIA_CONTROLS_MODE
-            )!!
+            ) ?: PreferenceDefaults.MEDIA_CONTROLS_MODE
             updateMediaControls(mode)
 
             // Resume whatever route/beacon was playing when sleep mode last stopped this service.
@@ -1242,8 +1239,8 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
                         .setOnAudioFocusChangeListener(focusChangeListener)
                         .build()
             }
-            if (audioFocusRequest != null) {
-                val result = audioManager.requestAudioFocus(audioFocusRequest!!)
+            audioFocusRequest?.let { request ->
+                val result = audioManager.requestAudioFocus(request)
 
                 return if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                     audioFocusGained = true
@@ -1315,8 +1312,8 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 // Binder to allow local clients to Bind to our service
 class SoundscapeBinder(newService: SoundscapeService?) : Binder() {
     var service: SoundscapeService? = newService
-    fun getSoundscapeService(): SoundscapeService {
-        return service!!
+    fun getSoundscapeService(): SoundscapeService? {
+        return service
     }
 
     fun reset() {
