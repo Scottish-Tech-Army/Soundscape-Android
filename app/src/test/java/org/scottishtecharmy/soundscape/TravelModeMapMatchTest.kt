@@ -64,7 +64,7 @@ private fun buildContinuousRoute(
     while (totalDistance < targetDistance) {
         // Recentre the grid on where we've got to, so the tiles ahead of us are loaded before we
         // reach their edge - mirroring how the real app follows a moving user.
-        val gridChanged = runBlocking { gridState.locationUpdate(orderedCoords.last(), emptySet()) }
+        val gridChanged = runBlocking { gridState.locationUpdate(orderedCoords.last(), emptySet(), null) }
         println("  locationUpdate at totalDistance=$totalDistance gridChanged=$gridChanged")
 
         val endIntersection = currentWay.intersections[WayEnd.END.id]
@@ -188,7 +188,7 @@ class TravelModeMapMatchTest {
         val gridState = FileGridState(MAX_ZOOM_LEVEL, 3)
         gridState.start(offlineExtractPath)
         runBlocking {
-            gridState.locationUpdate(startLocation, emptySet())
+            gridState.locationUpdate(startLocation, emptySet(), null)
         }
 
         val startWay = gridState.getFeatureTree(TreeId.ROADS)
@@ -211,9 +211,9 @@ class TravelModeMapMatchTest {
         var unmatchedCount = 0
         for (sample in samples) {
             runBlocking {
-                gridState.locationUpdate(sample.location, emptySet())
+                gridState.locationUpdate(sample.location, emptySet(), null)
             }
-            mapMatchFilter.filter(sample.location, gridState, FeatureCollection(), false, true)
+            mapMatchFilter.filter(sample.location, gridState, FeatureCollection(), false, null, true)
             val matched = mapMatchFilter.matchedWay
             if (matched == null) {
                 unmatchedCount++
@@ -250,7 +250,7 @@ class TravelModeMapMatchTest {
         val gridState = FileGridState(MAX_ZOOM_LEVEL, 3)
         gridState.start(offlineExtractPath)
         runBlocking {
-            gridState.locationUpdate(startLocation, emptySet())
+            gridState.locationUpdate(startLocation, emptySet(), null)
         }
 
         val startWay = gridState.getFeatureTree(TreeId.TRANSIT)
@@ -279,9 +279,9 @@ class TravelModeMapMatchTest {
         var unmatchedCount = 0
         for (sample in samples) {
             runBlocking {
-                gridState.locationUpdate(sample.location, emptySet())
+                gridState.locationUpdate(sample.location, emptySet(), null)
             }
-            railMapMatchFilter.filter(sample.location, gridState, FeatureCollection(), false)
+            railMapMatchFilter.filter(sample.location, gridState, FeatureCollection(), false, null)
             val matched = railMapMatchFilter.matchedWay
             if (matched == null) {
                 unmatchedCount++

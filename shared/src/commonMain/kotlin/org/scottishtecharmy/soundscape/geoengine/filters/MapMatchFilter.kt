@@ -920,8 +920,8 @@ class MapMatchFilter(private val networkTree: TreeId? = null) {
                             // We're matching on a sidewalk, see if the other way is either the
                             // associated way or another sidewalk for the associated way
                             val roadTree = gridState.getFeatureTree(matchTree(vehicleMode))
-                            addSidewalk(matched, roadTree, gridState.ruler)
-                            addSidewalk(way, roadTree, gridState.ruler)
+                            addSidewalk(matched, roadTree, gridState.ruler, strings)
+                            addSidewalk(way, roadTree, gridState.ruler, strings)
 
                             val matchedPavement = matched.properties?.get("pavement")
                             val matchedName = matched.name
