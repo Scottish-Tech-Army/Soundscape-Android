@@ -12,7 +12,8 @@ import platform.Foundation.timeZoneWithAbbreviation
 private val gpxTimeFormatter = NSDateFormatter().apply {
     dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     locale = NSLocale("en_US_POSIX")
-    timeZone = NSTimeZone.timeZoneWithAbbreviation("UTC")!!
+    timeZone = NSTimeZone.timeZoneWithAbbreviation("UTC")
+        ?: error("UTC time zone abbreviation not recognized by the platform")
 }
 
 actual fun formatGpxTimestamp(epochMillis: Long): String {
