@@ -234,12 +234,13 @@ class VoiceCommandManager(
                 // Start path: SCO is now active, begin recognition.
                 context.unregisterReceiver(this)
                 startListeningInternal()
-            } else if (state == AudioManager.SCO_AUDIO_STATE_DISCONNECTED && scoDisconnectedCallback != null) {
+            } else if (state == AudioManager.SCO_AUDIO_STATE_DISCONNECTED) {
                 // Stop path: SCO has disconnected, safe to play audio output.
-                val callback = scoDisconnectedCallback
-                scoDisconnectedCallback = null
-                context.unregisterReceiver(this)
-                callback!!()
+                scoDisconnectedCallback?.let { callback ->
+                    scoDisconnectedCallback = null
+                    context.unregisterReceiver(this)
+                    callback()
+                }
             }
         }
     }
