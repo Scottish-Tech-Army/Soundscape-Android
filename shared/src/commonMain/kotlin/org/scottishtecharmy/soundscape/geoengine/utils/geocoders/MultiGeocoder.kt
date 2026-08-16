@@ -51,8 +51,9 @@ class MultiGeocoder(
             val needle = normalizeForSearch(locationName)
             for (marker in markers) {
                 val mvt = marker as MvtFeature
-                if (mvt.name != null) {
-                    val haystack = normalizeForSearch(mvt.name!!)
+                val name = mvt.name
+                if (name != null) {
+                    val haystack = normalizeForSearch(name)
                     val score = haystack.fuzzyCompare(needle, true)
                     if (score < 0.25) {
                         val ld = mvt.deferredToLocationDescription(LocationSource.OfflineGeocoder)
