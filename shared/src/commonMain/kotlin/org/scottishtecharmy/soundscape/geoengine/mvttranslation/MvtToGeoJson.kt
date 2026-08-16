@@ -502,11 +502,7 @@ fun vectorTileToGeoJson(
                                     continue
                             }
                             if (feature.type == Tile.GeomType.POLYGON) {
-                                if (!mapPolygonFeatures.contains(id)) {
-                                    mapPolygonFeatures[id] = MutableList(1) { geoFeature }
-                                } else {
-                                    mapPolygonFeatures[id]!!.add(geoFeature)
-                                }
+                                mapPolygonFeatures.getOrPut(id) { mutableListOf() }.add(geoFeature)
                             } else {
                                 mapPointFeatures[id] = geoFeature
                             }
