@@ -85,7 +85,7 @@ class AndroidOfflineMapsManager(
         val path = sharedPreferences.getString(
             MainActivity.SELECTED_STORAGE_KEY,
             MainActivity.SELECTED_STORAGE_DEFAULT,
-        )!!
+        ) ?: MainActivity.SELECTED_STORAGE_DEFAULT
         return File(path, Environment.DIRECTORY_DOWNLOADS)
     }
 
