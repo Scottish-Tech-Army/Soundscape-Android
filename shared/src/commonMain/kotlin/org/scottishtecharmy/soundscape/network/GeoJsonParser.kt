@@ -102,14 +102,14 @@ object GeoJsonParser {
         return LngLatAlt(lng, lat, alt)
     }
 
-    private fun parsePoint(obj: JsonObject): Point {
-        val coords = obj["coordinates"]!!.jsonArray
+    private fun parsePoint(obj: JsonObject): Point? {
+        val coords = obj["coordinates"]?.jsonArray ?: return null
         val lngLatAlt = parseCoordinate(coords)
         return Point(lngLatAlt.longitude, lngLatAlt.latitude, lngLatAlt.altitude)
     }
 
-    private fun parseLineString(obj: JsonObject): LineString {
-        val coords = obj["coordinates"]!!.jsonArray
+    private fun parseLineString(obj: JsonObject): LineString? {
+        val coords = obj["coordinates"]?.jsonArray ?: return null
         val lineString = LineString()
         for (coord in coords) {
             lineString.coordinates.add(parseCoordinate(coord.jsonArray))
@@ -117,8 +117,8 @@ object GeoJsonParser {
         return lineString
     }
 
-    private fun parsePolygon(obj: JsonObject): Polygon {
-        val coords = obj["coordinates"]!!.jsonArray
+    private fun parsePolygon(obj: JsonObject): Polygon? {
+        val coords = obj["coordinates"]?.jsonArray ?: return null
         val polygon = Polygon()
         for (ring in coords) {
             val ringCoords = arrayListOf<LngLatAlt>()
@@ -130,8 +130,8 @@ object GeoJsonParser {
         return polygon
     }
 
-    private fun parseMultiPoint(obj: JsonObject): MultiPoint {
-        val coords = obj["coordinates"]!!.jsonArray
+    private fun parseMultiPoint(obj: JsonObject): MultiPoint? {
+        val coords = obj["coordinates"]?.jsonArray ?: return null
         val multiPoint = MultiPoint()
         for (coord in coords) {
             multiPoint.coordinates.add(parseCoordinate(coord.jsonArray))
@@ -139,8 +139,8 @@ object GeoJsonParser {
         return multiPoint
     }
 
-    private fun parseMultiLineString(obj: JsonObject): MultiLineString {
-        val coords = obj["coordinates"]!!.jsonArray
+    private fun parseMultiLineString(obj: JsonObject): MultiLineString? {
+        val coords = obj["coordinates"]?.jsonArray ?: return null
         val multiLineString = MultiLineString()
         for (line in coords) {
             val lineCoords = arrayListOf<LngLatAlt>()
@@ -152,8 +152,8 @@ object GeoJsonParser {
         return multiLineString
     }
 
-    private fun parseMultiPolygon(obj: JsonObject): MultiPolygon {
-        val coords = obj["coordinates"]!!.jsonArray
+    private fun parseMultiPolygon(obj: JsonObject): MultiPolygon? {
+        val coords = obj["coordinates"]?.jsonArray ?: return null
         val multiPolygon = MultiPolygon()
         for (polygon in coords) {
             val rings = arrayListOf<ArrayList<LngLatAlt>>()
