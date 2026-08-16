@@ -24,12 +24,12 @@ class AddressFormatter(
         }
 
         components = determineCountryCode(components, fallbackCountryCode)
-        val countryCode = components["country_code"]!!
+        val countryCode = components["country_code"] ?: (fallbackCountryCode ?: "GB").uppercase()
 
         if (appendCountry) {
-            val countryNames = Templates.countryNames
-            if (countryNames.containsKey(countryCode) && components["country"] == null) {
-                components["country"] = countryNames[countryCode]!!.jsonPrimitive.content
+            val countryName = (Templates.countryNames[countryCode] as? JsonPrimitive)?.content
+            if (countryName != null && components["country"] == null) {
+                components["country"] = countryName
             }
         } else {
             components.remove("country")
@@ -83,12 +83,14 @@ class AddressFormatter(
         if (countryCode == "UK") countryCode = "GB"
 
         val country = Templates.worldwide[countryCode]?.jsonObject
-        if (country != null && country.containsKey("use_country")) {
+        val useCountry = (country?.get("use_country") as? JsonPrimitive)?.content
+        if (country != null && useCountry != null) {
             val oldCountryCode = countryCode
-            countryCode = country["use_country"]!!.jsonPrimitive.content.uppercase()
+            countryCode = useCountry.uppercase()
 
-            if (country.containsKey("change_country")) {
-                var newCountry = country["change_country"]!!.jsonPrimitive.content
+            val changeCountry = (country["change_country"] as? JsonPrimitive)?.content
+            if (changeCountry != null) {
+                var newCountry = changeCountry
                 val varRegex = Regex("\\$(\\w+)")
                 val match = varRegex.find(newCountry)
                 if (match != null) {
@@ -100,13 +102,10 @@ class AddressFormatter(
             }
 
             val oldCountry = Templates.worldwide[oldCountryCode]?.jsonObject
-            val addComponent = oldCountry?.get("add_component")
-            if (addComponent != null) {
-                val text = addComponent.jsonPrimitive.content
-                if ("=" in text) {
-                    val (k, v) = text.split("=", limit = 2)
-                    if (k == "state") components["state"] = v
-                }
+            val addComponentText = (oldCountry?.get("add_component") as? JsonPrimitive)?.content
+            if (addComponentText != null && "=" in addComponentText) {
+                val (k, v) = addComponentText.split("=", limit = 2)
+                if (k == "state") components["state"] = v
             }
         }
 
@@ -140,10 +139,10 @@ class AddressFormatter(
             var newKey = key
             for (alias in Templates.aliases) {
                 val obj = alias.jsonObject
-                if (obj["alias"]!!.jsonPrimitive.content == key &&
-                    !components.containsKey(obj["name"]!!.jsonPrimitive.content)
-                ) {
-                    newKey = obj["name"]!!.jsonPrimitive.content
+                val aliasName = (obj["alias"] as? JsonPrimitive)?.content ?: continue
+                val targetName = (obj["name"] as? JsonPrimitive)?.content ?: continue
+                if (aliasName == key && !components.containsKey(targetName)) {
+                    newKey = targetName
                     break
                 }
             }
@@ -154,8 +153,15 @@ class AddressFormatter(
     }
 
     private fun findTemplate(components: MutableMap<String, String>): JsonElement {
-        val cc = components["country_code"]!!
-        return Templates.worldwide[cc] ?: Templates.worldwide["default"]!!
+        val cc = components["country_code"] ?: "default"
+        return Templates.worldwide[cc]
+            ?: Templates.worldwide["default"]
+            ?: JsonObject(emptyMap())
+    }
+
+    private fun resolveTemplateRef(ref: String): String {
+        val resolved = Templates.worldwide[ref]
+        return if (resolved is JsonPrimitive) resolved.content else ref
     }
 
     private fun chooseTemplateText(
@@ -163,30 +169,23 @@ class AddressFormatter(
         components: Map<String, String>
     ): String {
         val obj = template.jsonObject
-        var selected: String? = null
+        val defaultTemplate = Templates.worldwide["default"]?.jsonObject
 
-        if (obj.containsKey("address_template")) {
-            val ref = obj["address_template"]!!.jsonPrimitive.content
-            val resolved = Templates.worldwide[ref]
-            selected = if (resolved is JsonPrimitive) resolved.content else ref
-        }
+        var selected: String? = (obj["address_template"] as? JsonPrimitive)?.content
+            ?.let { resolveTemplateRef(it) }
         if (selected == null) {
-            val defaults = Templates.worldwide["default"]!!.jsonObject
-            val ref = defaults["address_template"]!!.jsonPrimitive.content
-            selected = Templates.worldwide[ref]!!.jsonPrimitive.content
+            selected = (defaultTemplate?.get("address_template") as? JsonPrimitive)?.content
+                ?.let { resolveTemplateRef(it) }
+                ?: ""
         }
 
         val required = listOf("road", "postcode")
         val missingCount = required.count { !components.containsKey(it) }
         if (missingCount == 2) {
-            if (obj.containsKey("fallback_template")) {
-                val ref = obj["fallback_template"]!!.jsonPrimitive.content
-                val resolved = Templates.worldwide[ref]
-                selected = if (resolved is JsonPrimitive) resolved.content else ref
-            } else {
-                val defaults = Templates.worldwide["default"]!!.jsonObject
-                val ref = defaults["fallback_template"]!!.jsonPrimitive.content
-                selected = Templates.worldwide[ref]!!.jsonPrimitive.content
+            val fallbackRef = (obj["fallback_template"] as? JsonPrimitive)?.content
+                ?: (defaultTemplate?.get("fallback_template") as? JsonPrimitive)?.content
+            if (fallbackRef != null) {
+                selected = resolveTemplateRef(fallbackRef)
             }
         }
         return selected
@@ -225,10 +224,11 @@ class AddressFormatter(
         }
 
         if (!components.containsKey("state_code") && components.containsKey("state")) {
-            val stateCode = getStateCode(components["state"]!!, components["country_code"]!!)
+            val stateVal = components["state"] ?: ""
+            val countryCodeVal = components["country_code"] ?: ""
+            val stateCode = getStateCode(stateVal, countryCodeVal)
             if (stateCode != null) components["state_code"] = stateCode
 
-            val stateVal = components["state"]!!
             if (Regex(
                     "^washington,? d\\.?c\\.?",
                     RegexOption.IGNORE_CASE
@@ -241,7 +241,9 @@ class AddressFormatter(
         }
 
         if (!components.containsKey("county_code") && components.containsKey("county")) {
-            val countyCode = getCountyCode(components["county"]!!, components["country_code"]!!)
+            val countyVal = components["county"] ?: ""
+            val countryCodeVal = components["country_code"] ?: ""
+            val countyCode = getCountyCode(countyVal, countryCodeVal)
             if (countyCode != null) components["county_code"] = countyCode
         }
 
@@ -263,22 +265,23 @@ class AddressFormatter(
             }
         }
 
-        if (abbreviate && components.containsKey("country_code")) {
-            val cc = components["country_code"]!!
-            val languages = Templates.country2lang[cc]?.jsonArray
+        if (abbreviate) {
+            val cc = components["country_code"]
+            val languages = cc?.let { Templates.country2lang[it]?.jsonArray }
             if (languages != null) {
                 for (lang in languages) {
-                    val langKey = lang.jsonPrimitive.content
+                    val langKey = (lang as? JsonPrimitive)?.content ?: continue
                     val langAbbrevs = Templates.abbreviations[langKey]?.jsonArray ?: continue
                     for (abbrevEntry in langAbbrevs) {
                         val obj = abbrevEntry.jsonObject
-                        val component = obj["component"]?.jsonPrimitive?.content ?: continue
+                        val component = (obj["component"] as? JsonPrimitive)?.content ?: continue
                         val currentVal = components[component] ?: continue
                         val abbrevsArray = obj["replacements"]?.jsonArray ?: continue
                         var updated = currentVal
                         for (r in abbrevsArray) {
-                            val src = r.jsonObject["src"]!!.jsonPrimitive.content
-                            val dest = r.jsonObject["dest"]!!.jsonPrimitive.content
+                            val entry = r.jsonObject
+                            val src = (entry["src"] as? JsonPrimitive)?.content ?: continue
+                            val dest = (entry["dest"] as? JsonPrimitive)?.content ?: continue
                             updated = Regex("\\b${Regex.escape(src)}\\b").replace(updated, dest)
                         }
                         components[component] = updated
@@ -294,11 +297,9 @@ class AddressFormatter(
     private fun getStateCode(state: String, countryCode: String): String? {
         val countryCodes = Templates.stateCodes[countryCode]?.jsonObject ?: return null
         for ((code, node) in countryCodes) {
-            val name = when {
-                node is JsonObject && node.containsKey("default") ->
-                    node["default"]!!.jsonPrimitive.content
-
-                node is JsonPrimitive -> node.content
+            val name = when (node) {
+                is JsonObject -> (node["default"] as? JsonPrimitive)?.content ?: continue
+                is JsonPrimitive -> node.content
                 else -> continue
             }
             if (name.equals(state, ignoreCase = true)) return code
@@ -309,11 +310,9 @@ class AddressFormatter(
     private fun getCountyCode(county: String, countryCode: String): String? {
         val countryData = Templates.countyCodes[countryCode]?.jsonObject ?: return null
         for ((code, node) in countryData) {
-            val name = when {
-                node is JsonObject && node.containsKey("default") ->
-                    node["default"]!!.jsonPrimitive.content
-
-                node is JsonPrimitive -> node.content
+            val name = when (node) {
+                is JsonObject -> (node["default"] as? JsonPrimitive)?.content ?: continue
+                is JsonPrimitive -> node.content
                 else -> continue
             }
             if (name.equals(county, ignoreCase = true)) return code
@@ -330,12 +329,12 @@ class AddressFormatter(
         rendered = cleanupRender(rendered)
 
         val obj = template.jsonObject
-        if (obj.containsKey("postformat_replace")) {
-            val postformat = obj["postformat_replace"]!!.jsonArray
+        val postformat = obj["postformat_replace"] as? JsonArray
+        if (postformat != null) {
             for (entry in postformat) {
-                val arr = entry.jsonArray
-                val pattern = arr[0].jsonPrimitive.content
-                val replacement = arr[1].jsonPrimitive.content
+                val arr = entry as? JsonArray ?: continue
+                val pattern = (arr.getOrNull(0) as? JsonPrimitive)?.content ?: continue
+                val replacement = (arr.getOrNull(1) as? JsonPrimitive)?.content ?: continue
                 rendered = Regex(pattern).replace(rendered, replacement)
             }
         }
@@ -470,6 +469,6 @@ private object Templates {
         json.parseToJsonElement(readResourceText("address/countycodes.json")).jsonObject
     }
     val knownComponents: List<String> by lazy {
-        aliases.map { it.jsonObject["alias"]!!.jsonPrimitive.content }
+        aliases.mapNotNull { (it.jsonObject["alias"] as? JsonPrimitive)?.content }
     }
 }

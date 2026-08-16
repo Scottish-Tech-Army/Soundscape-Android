@@ -118,12 +118,16 @@ fun LocationDescription.process() {
                 val formattedAddress = try {
                     formatter.format(json, fallbackCountryCode)
                 } catch (e: Throwable) {
-                    val retryFields = jsonFields.toMutableMap()
-                    retryFields.remove("country_code")
-                    val retryJson = buildJsonObject {
-                        for ((k, v) in retryFields) put(k, v)
-                    }.toString().replace("\\/", "/")
-                    formatter.format(retryJson, "GB")
+                    try {
+                        val retryFields = jsonFields.toMutableMap()
+                        retryFields.remove("country_code")
+                        val retryJson = buildJsonObject {
+                            for ((k, v) in retryFields) put(k, v)
+                        }.toString().replace("\\/", "/")
+                        formatter.format(retryJson, "GB")
+                    } catch (e2: Throwable) {
+                        jsonFields.filterKeys { it != "country_code" }.values.joinToString(", ")
+                    }
                 }
 
                 if (nameLocal != null) {
