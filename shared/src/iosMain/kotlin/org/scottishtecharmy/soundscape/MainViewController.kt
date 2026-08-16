@@ -12,6 +12,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import me.zhanghai.compose.preference.listPreference
+import me.zhanghai.compose.preference.switchPreference
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.audio.TourButton
 import org.scottishtecharmy.soundscape.audio.availableTtsVoicesForCurrentLanguage
@@ -23,6 +24,8 @@ import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesListener
 import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.settings_mix_audio
+import org.scottishtecharmy.soundscape.resources.settings_mix_audio_description
 import org.scottishtecharmy.soundscape.resources.settings_theme_auto
 import org.scottishtecharmy.soundscape.resources.voice_voices
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -30,6 +33,7 @@ import org.scottishtecharmy.soundscape.screens.home.home.AdvancedMarkersAndRoute
 import org.scottishtecharmy.soundscape.screens.home.placesnearby.PlacesNearbyViewModel
 import org.scottishtecharmy.soundscape.screens.home.settings.ClickableOption
 import org.scottishtecharmy.soundscape.screens.home.settings.ListPreferenceItem
+import org.scottishtecharmy.soundscape.screens.home.settings.SettingDetails
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandeditroutescreen.AddAndEditRouteViewModel
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersViewModel
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesViewModel
@@ -129,6 +133,18 @@ fun MainViewController() = ComposeUIViewController {
                 ClickableOption(
                     text = ttsVoiceDescriptions[idx],
                     textColor = textColor,
+                )
+            },
+        )
+        switchPreference(
+            key = PreferenceKeys.MIX_AUDIO,
+            defaultValue = PreferenceDefaults.MIX_AUDIO,
+            modifier = expandedSectionModifier,
+            title = {
+                SettingDetails(
+                    Res.string.settings_mix_audio,
+                    Res.string.settings_mix_audio_description,
+                    textColor,
                 )
             },
         )
