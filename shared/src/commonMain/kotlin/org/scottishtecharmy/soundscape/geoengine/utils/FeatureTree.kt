@@ -172,9 +172,11 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         distance: Double,
         ruler: Ruler
     ): Sequence<Entry<Feature, Geometry>> {
-        check(tree != null)
+        // tree can be cleared from another thread while a search is in flight (see GridState);
+        // fail soft with no results rather than crash.
+        val tree = tree ?: return emptySequence()
         val bounds: Rectangle = createBoundingSquare(from, distance)
-        return tree!!.search(bounds).filter { entry ->
+        return tree.search(bounds).filter { entry ->
             entryWithinDistance(entry, distance, from, ruler)
         }
     }
@@ -185,9 +187,11 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         maxCount: Int,
         ruler: Ruler
     ): List<Entry<Feature, Geometry>> {
-        check(tree != null)
+        // tree can be cleared from another thread while a search is in flight (see GridState);
+        // fail soft with no results rather than crash.
+        val tree = tree ?: return emptyList()
         val k = if (maxCount < 1) Int.MAX_VALUE else maxCount
-        return tree!!.nearest(from.longitude, from.latitude, distance, k).filter { entry ->
+        return tree.nearest(from.longitude, from.latitude, distance, k).filter { entry ->
             entryWithinDistance(entry, distance, from, ruler)
         }
     }
@@ -263,9 +267,11 @@ class FeatureTree(featureCollection: FeatureCollection?) {
     }
 
     private fun searchWithinTriangle(triangle: Triangle): Sequence<Entry<Feature, Geometry>> {
-        check(tree != null)
+        // tree can be cleared from another thread while a search is in flight (see GridState);
+        // fail soft with no results rather than crash.
+        val tree = tree ?: return emptySequence()
         val bounds: Rectangle = createBoundingSquareContainingTriangle(triangle)
-        return tree!!.search(bounds).filter { entry -> entryWithinTriangle(entry, triangle) }
+        return tree.search(bounds).filter { entry -> entryWithinTriangle(entry, triangle) }
     }
 
     private fun nearestWithinTriangle(
@@ -300,12 +306,11 @@ class FeatureTree(featureCollection: FeatureCollection?) {
 
     fun getAllCollection(): FeatureCollection {
         val featureCollection = FeatureCollection()
-        if (tree != null) {
-            val deduplicationSet = mutableSetOf<Feature>()
-            for (entry in tree!!.entries()) {
-                if (deduplicationSet.add(entry.value)) {
-                    featureCollection.addFeature(entry.value)
-                }
+        val tree = tree ?: return featureCollection
+        val deduplicationSet = mutableSetOf<Feature>()
+        for (entry in tree.entries()) {
+            if (deduplicationSet.add(entry.value)) {
+                featureCollection.addFeature(entry.value)
             }
         }
         return featureCollection
@@ -358,22 +363,20 @@ class FeatureTree(featureCollection: FeatureCollection?) {
 
             while ((initialItem != null) or (newItem != null)) {
                 if (featureCollection.features.size >= maxCount) break
-                if (initialItem != null) {
-                    var addInitial = false
-                    if (newItem == null) addInitial = true
-                    if (!addInitial) addInitial = getDistanceToFeature(
-                        location,
-                        initialItem,
-                        ruler
-                    ).distance < newItem!!.distance
-                    if (addInitial) {
-                        featureCollection.addFeature(initialItem)
-                        initialItem =
-                            if (initialItemIterator?.hasNext() == true) initialItemIterator.next() else null
-                        continue
-                    }
+
+                val currentInitial = initialItem
+                val currentNew = newItem
+                if (currentInitial != null &&
+                    (currentNew == null ||
+                        getDistanceToFeature(location, currentInitial, ruler).distance < currentNew.distance)
+                ) {
+                    featureCollection.addFeature(currentInitial)
+                    initialItem =
+                        if (initialItemIterator?.hasNext() == true) initialItemIterator.next() else null
+                    continue
                 }
-                featureCollection.addFeature(newItem!!.entry.value)
+
+                currentNew?.let { featureCollection.addFeature(it.entry.value) }
                 newItem = if (newItemIterator.hasNext()) newItemIterator.next() else null
             }
         }
@@ -422,12 +425,12 @@ class FeatureTree(featureCollection: FeatureCollection?) {
     }
 
     fun getContainingPolygons(location: LngLatAlt): FeatureCollection {
-        if (tree == null) return FeatureCollection()
+        val tree = tree ?: return FeatureCollection()
 
         val result = FeatureCollection()
         val pointBox =
             Rectangle(location.longitude, location.latitude, location.longitude, location.latitude)
-        for (entry in tree!!.search(pointBox)) {
+        for (entry in tree.search(pointBox)) {
             val geom = entry.value.geometry
             val match = when (geom.type) {
                 "Polygon" -> polygonContainsCoordinates(location, geom as Polygon)
@@ -520,9 +523,11 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         deduplicationSet: MutableSet<Feature>,
         ruler: Ruler
     ): Sequence<Entry<Feature, Geometry>> {
-        check(tree != null)
+        // tree can be cleared from another thread while a search is in flight (see GridState);
+        // fail soft with no results rather than crash.
+        val tree = tree ?: return emptySequence()
         val bounds: Rectangle = createBoundingSquareContainingLine(p1, p2, distance)
-        return tree!!.search(bounds).filter { entry ->
+        return tree.search(bounds).filter { entry ->
             if (!deduplicationSet.contains(entry.value))
                 entryNearLine(entry, p1, p2, distance, ruler)
             else
