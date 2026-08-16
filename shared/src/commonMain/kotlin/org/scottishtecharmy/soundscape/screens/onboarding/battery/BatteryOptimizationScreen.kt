@@ -14,10 +14,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -44,7 +41,6 @@ fun BatteryOptimization(
     onGrantPermission: (() -> Unit)? = null,
 ) {
     val focusRequester = remember { FocusRequester() }
-    var canContinue by remember { mutableStateOf(onGrantPermission == null) }
 
     BoxWithGradientBackground(
         modifier = modifier,
@@ -81,27 +77,28 @@ fun BatteryOptimization(
 
             Column(modifier = Modifier.padding(horizontal = spacing.medium)) {
                 if (onGrantPermission != null) {
+                    // Moving on to the next screen once the system permission dialog
+                    // returns is the caller's responsibility (Android doesn't report
+                    // whether the user tapped Allow or Deny), so there's no separate
+                    // Continue button - this is the only control on screen.
                     OnboardButton(
                         text = stringResource(Res.string.ui_grant_permission),
-                        onClick = {
-                            onGrantPermission()
-                            canContinue = true
-                        },
+                        onClick = onGrantPermission,
                         modifier = Modifier
                             .fillMaxWidth()
                             .focusable()
                             .testTag("batteryOptimizationGrantPermissionButton"),
                     )
+                } else {
+                    OnboardButton(
+                        text = stringResource(Res.string.ui_continue),
+                        onClick = onContinue,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .focusable()
+                            .testTag("batteryOptimizationContinueButton"),
+                    )
                 }
-                OnboardButton(
-                    text = stringResource(Res.string.ui_continue),
-                    onClick = { onContinue() },
-                    enabled = canContinue,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .focusable()
-                        .testTag("batteryOptimizationContinueButton"),
-                )
             }
         }
     }

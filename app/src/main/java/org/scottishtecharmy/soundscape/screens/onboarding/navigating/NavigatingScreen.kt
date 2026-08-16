@@ -44,6 +44,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
@@ -54,8 +55,10 @@ import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.first_launch_permissions_granted
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_location
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_message
+import org.scottishtecharmy.soundscape.resources.first_launch_permissions_not_granted
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_notification
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_record_audio
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_required
@@ -126,6 +129,14 @@ fun NavigatingScreen(
 
     LaunchedEffect(permissionsStatus) {
         vm.permissionsRequired(permissionsStatus)
+    }
+
+    // Skip this screen entirely if every required permission is already granted
+    // (e.g. the user re-runs onboarding after already having granted them).
+    LaunchedEffect(Unit) {
+        if (requiredPermissionsGranted(permissionsStatus)) {
+            onNavigate()
+        }
     }
 
     val onPermissionResult = remember(vm) {
@@ -286,7 +297,20 @@ fun PermissionRationale(
     Row(
         modifier = modifier
             .mediumPadding()
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .focusable()
+            .semantics(mergeDescendants = true) {}
+            .testTag(clickableTestTag)
+            .then(
+                // Once granted there's nothing left for a tap to do - permissions can't be
+                // withdrawn from here - so drop the click action rather than leaving a
+                // "double tap to activate" hint that does nothing.
+                if (granted) {
+                    Modifier
+                } else {
+                    Modifier.clickable { onClick() }
+                }
+            ),
     )
     {
         Icon(
@@ -296,14 +320,7 @@ fun PermissionRationale(
         )
         Spacer(modifier = Modifier.width(spacing.extraSmall))
         Column(
-            modifier = Modifier
-                .weight(1f)
-                .focusable()
-                .semantics(mergeDescendants = true) {}
-                .testTag(clickableTestTag)
-                .clickable {
-                    onClick()
-                }
+            modifier = Modifier.weight(1f)
         ) {
             Text(
                 text = stringResource(mainText),
@@ -314,20 +331,25 @@ fun PermissionRationale(
                 text = stringResource(subtitleText),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurface,
+                // The rationale text is only useful while the permission is still
+                // outstanding - once granted, TalkBack should just say "<name>,
+                // permission granted" rather than repeating the now-irrelevant
+                // rationale.
+                modifier = if (granted) Modifier.clearAndSetSemantics {} else Modifier,
             )
         }
         Spacer(modifier = Modifier.weight(0.05f))
         if (granted) {
             Icon(
                 Icons.Default.Check,
-                contentDescription = null,
+                contentDescription = stringResource(Res.string.first_launch_permissions_granted),
                 modifier = Modifier.align(Alignment.CenterVertically),
                 tint = MaterialTheme.colorScheme.onSurface
             )
         } else {
             Icon(
                 Icons.Default.Cancel,
-                contentDescription = null,
+                contentDescription = stringResource(Res.string.first_launch_permissions_not_granted),
                 modifier = Modifier.align(Alignment.CenterVertically),
                 tint = MaterialTheme.colorScheme.onSurface
             )

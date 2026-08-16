@@ -5,17 +5,20 @@ import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
+fun requiredPermissionsGranted(permissionsStatus: Map<Permission, Boolean>): Boolean =
+    permissionsStatus.filterKeys {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            it == Permission.ACCESS_FINE_LOCATION || it == Permission.POST_NOTIFICATIONS
+        } else {
+            it == Permission.ACCESS_FINE_LOCATION
+        }
+    }.none { !it.value }
+
 data class NavigatingScreenState(
     val permissionsStatus: Map<Permission, Boolean>
 ) {
     val continueEnabled: Boolean
-        get() = permissionsStatus.filterKeys {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                it == Permission.ACCESS_FINE_LOCATION || it == Permission.POST_NOTIFICATIONS
-            } else {
-                it == Permission.ACCESS_FINE_LOCATION
-            }
-        }.none { !it.value }
+        get() = requiredPermissionsGranted(permissionsStatus)
 }
 
 class NavigatingScreenViewModel : ViewModel() {
