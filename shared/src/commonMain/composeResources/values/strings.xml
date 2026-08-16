@@ -675,6 +675,10 @@
     <string name="first_launch_permissions_motion">Motion and Fitness</string>
     <!-- Text to indicate that a permission is required -->
     <string name="first_launch_permissions_required">This permission is required</string>
+    <!-- Accessibility description read by screen readers for the status icon next to a permission row that has already been granted -->
+    <string name="first_launch_permissions_granted">Permission granted</string>
+    <!-- Accessibility description read by screen readers for the status icon next to a permission row that has not been granted yet -->
+    <string name="first_launch_permissions_not_granted">Not yet granted</string>
     <!-- Text to indicate that a permission is required -->
     <string name="permissions_required">The app requires location permissions to be able to run.</string>
     <string name="permissions_button">Change the permissions in app settings</string>
@@ -911,7 +915,7 @@
     <!-- For voice commands to work we need permission to access the microphone and record audio -->
     <string name="first_launch_permissions_record_audio">Record audio</string>
     <!-- The app will run without record audio permissions, but voice control won't be available -->
-    <string name="first_launch_permissions_required_for_voice_control">This permission is optional, but is required if you want to use voice commands to control the app.</string>
+    <string name="first_launch_permissions_required_for_voice_control">This permission is optional, but is required if you want to use voice commands to control the app</string>
     <!-- Battery optimization - needed so that Android doesn't stop the app working in the background -->
     <string name="battery_optimization_title">Background Battery Usage</string>
     <string name="battery_optimization_message">Soundscape requires unrestricted battery usage to keep providing audio navigation when your phone is locked. Please allow this in the next dialog. If you close Soundscape, all services will stop and it will no longer use battery.</string>
