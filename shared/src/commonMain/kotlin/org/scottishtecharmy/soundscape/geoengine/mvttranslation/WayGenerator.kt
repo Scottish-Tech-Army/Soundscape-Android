@@ -123,8 +123,9 @@ class Way : MvtFeature() {
                 strings?.resolveFeatureClass(it)
             } ?: featureClass ?: ""
 
-            if(!featureClass.isNullOrEmpty())
-                println("$featureClass -> ${strings?.resolveFeatureClass(featureClass!!)}")
+            val currentFeatureClass = featureClass
+            if (!currentFeatureClass.isNullOrEmpty())
+                println("$currentFeatureClass -> ${strings?.resolveFeatureClass(currentFeatureClass)}")
 
             result = result.replaceFirstChar {
                 if (it.isLowerCase())
@@ -463,18 +464,20 @@ class Way : MvtFeature() {
             newIntersection.members.add(newWay2)        // Sort these based on length
         }
 
-        if (intersections[WayEnd.START.id] != null) {
-            intersections[WayEnd.START.id]!!.members.add(newWay1)
-            intersections[WayEnd.START.id]!!.members =
-                intersections[WayEnd.START.id]!!.members.sortedBy { way ->
+        val startIntersection = intersections[WayEnd.START.id]
+        if (startIntersection != null) {
+            startIntersection.members.add(newWay1)
+            startIntersection.members =
+                startIntersection.members.sortedBy { way ->
                     way.length
                 }.toMutableList()
         }
 
-        if (intersections[WayEnd.END.id] != null) {
-            intersections[WayEnd.END.id]!!.members.add(newWay2)
-            intersections[WayEnd.END.id]!!.members =
-                intersections[WayEnd.END.id]!!.members.sortedBy { way ->
+        val endIntersection = intersections[WayEnd.END.id]
+        if (endIntersection != null) {
+            endIntersection.members.add(newWay2)
+            endIntersection.members =
+                endIntersection.members.sortedBy { way ->
                     way.length
                 }.toMutableList()
         }
@@ -485,14 +488,16 @@ class Way : MvtFeature() {
     fun removeIntersection(intersection: Intersection) {
         // The passed in intersection has two member ways - one in each direction. Remove them from
         // the intersection at the other end.
-        if (intersections[WayEnd.START.id] != null) {
-            intersections[WayEnd.START.id]!!.members.remove(intersection.members[0])
-            intersections[WayEnd.START.id]!!.members.remove(intersection.members[1])
+        val startIntersection = intersections[WayEnd.START.id]
+        if (startIntersection != null) {
+            startIntersection.members.remove(intersection.members[0])
+            startIntersection.members.remove(intersection.members[1])
         }
 
-        if (intersections[WayEnd.END.id] != null) {
-            intersections[WayEnd.END.id]!!.members.remove(intersection.members[0])
-            intersections[WayEnd.END.id]!!.members.remove(intersection.members[1])
+        val endIntersection = intersections[WayEnd.END.id]
+        if (endIntersection != null) {
+            endIntersection.members.remove(intersection.members[0])
+            endIntersection.members.remove(intersection.members[1])
         }
 
         intersection.members.clear()
@@ -699,9 +704,7 @@ class WayGenerator(val transit: Boolean = false) {
                     )
                     ways.add(currentWay)
                     // Add completed way to intersection at start if there is one
-                    if (currentWay.intersections[WayEnd.START.id] != null) {
-                        currentWay.intersections[WayEnd.START.id]!!.members.add(currentWay)
-                    }
+                    currentWay.intersections[WayEnd.START.id]?.members?.add(currentWay)
                     if (tileEdge) {
                         // We're ending at a tile edge, so create an intersection that we can
                         // join to other tiles later
