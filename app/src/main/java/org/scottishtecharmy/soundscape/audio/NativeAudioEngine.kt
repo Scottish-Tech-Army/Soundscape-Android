@@ -406,7 +406,7 @@ class NativeAudioEngine(val service: SoundscapeService? = null) : AudioEngine {
         val newBeaconType = sharedPreferences.getString(
             BEACON_TYPE_KEY,
             BEACON_TYPE_DEFAULT
-        )!!
+        ) ?: BEACON_TYPE_DEFAULT
         if (newBeaconType != beaconType) {
             setBeaconType(newBeaconType)
             Log.d(TAG, "Beacon changed from $beaconType to $newBeaconType on $this")
