@@ -66,7 +66,6 @@ import kotlin.io.path.nameWithoutExtension
 import kotlin.math.abs
 import kotlin.system.measureTimeMillis
 import kotlin.time.measureTime
-import vector_tile.Tile
 
 /**
  * FileGridState overrides ProtomapsGridState updateTile to set validateContext to false as it
@@ -221,20 +220,10 @@ class MvtTileTest {
     fun testTransportationNameRef() {
         val tileX = 7995
         val tileY = 5106
-        val tileFile = File("src/main/assets/${tileX}x${tileY}.mvt")
-        val tile = Tile.ADAPTER.decode(tileFile.readBytes())
 
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
         val streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
-        val geojson = vectorTileToGeoJson(
-            tileX,
-            tileY,
-            tile,
-            intersectionMap,
-            streetNumberMap,
-            true,
-            14
-        )
+        val geojson = vectorTileToGeoJsonFromFile(tileX, tileY, intersectionMap, streetNumberMap)
 
         val roads = geojson[TreeId.ROADS_AND_PATHS.id]
         val parkRoad = roads.features.find { (it as? MvtFeature)?.name == "Park Road" }
