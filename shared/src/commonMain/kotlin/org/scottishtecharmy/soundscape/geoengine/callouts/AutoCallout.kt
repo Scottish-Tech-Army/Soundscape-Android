@@ -435,7 +435,7 @@ class AutoCallout(
                 PositionedString(
                     text = text,
                     location = userGeometry.location,
-                    type = AudioType.LOCALIZED
+                    type = AudioType.STANDARD
                 )
             ),
             isPoint = true,
@@ -535,7 +535,7 @@ class AutoCallout(
                 PositionedString(
                     text = text,
                     location = userGeometry.location,
-                    type = AudioType.LOCALIZED
+                    type = AudioType.STANDARD
                 )
             ),
             isPoint = true,
