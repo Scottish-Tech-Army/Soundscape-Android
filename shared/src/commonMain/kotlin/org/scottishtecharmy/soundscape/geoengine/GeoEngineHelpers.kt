@@ -233,7 +233,7 @@ private fun travellingReverseGeocodeName(
             .getNearestFeature(location, gridState.ruler, 50.0) as? MvtFeature
         val isStation = (nearestStation?.featureValue == "station") ||
             (nearestStation?.featureValue == "train_station")
-        if (isStation && (nearestStation?.name != null) &&
+        if (isStation && (nearestStation.name != null) &&
             (nearestStation.name != lastStationTracker.name)
         ) {
             lastStationTracker.updateStation(

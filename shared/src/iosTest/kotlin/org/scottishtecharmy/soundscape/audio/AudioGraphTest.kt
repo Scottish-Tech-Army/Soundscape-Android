@@ -57,7 +57,6 @@ class AudioGraphTest {
 
     private fun createStereoFormat(sampleRate: Double): AVAudioFormat? {
         val layout = AVAudioChannelLayout(layoutTag = kAudioChannelLayoutTag_Stereo)
-            ?: return null
         return AVAudioFormat(standardFormatWithSampleRate = sampleRate, channelLayout = layout)
     }
 
@@ -222,11 +221,6 @@ class AudioGraphTest {
 
         // Create a buffer in the same format
         val buffer = AVAudioPCMBuffer(pCMFormat = mono, frameCapacity = 4410u)
-        if (buffer == null) {
-            println("SKIP: can't create buffer")
-            engine.stop()
-            return
-        }
         buffer.frameLength = 4410u
 
         try {
