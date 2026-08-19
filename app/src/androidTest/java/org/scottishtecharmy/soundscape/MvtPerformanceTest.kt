@@ -7,6 +7,7 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import okio.Path.Companion.toPath
 import org.junit.Test
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
@@ -17,28 +18,30 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
+import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
 import org.scottishtecharmy.soundscape.geoengine.utils.findShortestDistance
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getXYTile
+import org.scottishtecharmy.soundscape.geoengine.utils.pmtiles.PmTilesReader
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.utils.findExtractPaths
 import org.scottishtecharmy.soundscape.utils.getOfflineMapStorage
-import vector_tile.Tile
 import kotlin.time.measureTime
 
 class MvtPerformanceTest {
 
-    private fun vectorTileToGeoJsonFromFile(
+    private fun vectorTileToGeoJsonFromExtract(
+        reader: PmTilesReader,
+        compression: Byte,
         tileX: Int,
         tileY: Int,
-        filename: String,
-        cropPoints: Boolean = true
-    ): Array<FeatureCollection> {
+        zoom: Int
+    ): Array<FeatureCollection>? {
 
-        val context = InstrumentationRegistry.getInstrumentation().targetContext
-        val remoteTile = context.assets.open(filename)
-        val tile: Tile = Tile.ADAPTER.decode(remoteTile.readBytes())
+        val rawTile = reader.getTile(zoom, tileX, tileY) ?: return null
+        val tile = decompressTile(compression, rawTile) ?: return null
         val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
         val streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
 
@@ -48,24 +51,48 @@ class MvtPerformanceTest {
             tile,
             intersectionMap,
             streetNumberMap,
-            cropPoints,
-            15
+            true,
+            zoom
         )
     }
 
     @Test
     fun testRtree() {
 
-        // Make a large grid to aid analysis
+        // Read tiles from the offline map extract that CI pushes to the device's Download
+        // folder (see .github/workflows/run-tests.yaml), the same one used by testGridCache.
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        getOfflineMapStorage(context)
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val storagePath = sharedPreferences.getString(
+            MainActivity.SELECTED_STORAGE_KEY,
+            MainActivity.SELECTED_STORAGE_DEFAULT
+        )
+        val offlineExtractPath = storagePath + "/" + Environment.DIRECTORY_DOWNLOADS
+
+        val extractFile = findExtractPaths(offlineExtractPath).firstOrNull()
+        if (extractFile == null) {
+            println("No offline map extract found at $offlineExtractPath - skipping testRtree")
+            return
+        }
+
+        val reader = PmTilesReader(extractFile.toPath())
+        val compression = reader.tileCompression
+
+        // Make a large grid around Glasgow city centre to aid analysis
+        val (centreX, centreY) = getXYTile(LngLatAlt(-4.316914, 55.941861), MAX_ZOOM_LEVEL)
         val featureCollection = FeatureCollection()
-        for (x in 15990..15992) {
-            for (y in 10212..10213) {
-                val geojsonArray = vectorTileToGeoJsonFromFile(x, y, "${x}x${y}.mvt")
+        for (x in centreX - 1..centreX + 1) {
+            for (y in centreY - 1..centreY + 1) {
+                val geojsonArray =
+                    vectorTileToGeoJsonFromExtract(reader, compression, x, y, MAX_ZOOM_LEVEL)
+                        ?: continue
                 for (fc in geojsonArray) {
                     featureCollection += fc
                 }
             }
         }
+        reader.close()
 
         // Iterate through all of the features and add them to an Rtree
         var start = System.currentTimeMillis()
