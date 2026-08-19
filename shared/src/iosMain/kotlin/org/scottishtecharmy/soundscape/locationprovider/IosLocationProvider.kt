@@ -10,6 +10,7 @@ import platform.CoreLocation.CLLocationManagerDelegateProtocol
 import platform.CoreLocation.kCLLocationAccuracyBest
 import platform.CoreLocation.kCLLocationAccuracyNearestTenMeters
 import platform.Foundation.NSError
+import platform.Foundation.timeIntervalSince1970
 import platform.darwin.NSObject
 
 class IosLocationProvider : LocationProvider() {
