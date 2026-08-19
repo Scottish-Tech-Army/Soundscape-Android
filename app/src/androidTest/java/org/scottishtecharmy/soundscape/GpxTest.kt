@@ -26,7 +26,11 @@ class GpxTest {
         nameOverride: String? = null,
     ): Long {
         val context = InstrumentationRegistry.getInstrumentation().targetContext
-        val input = context.assets.open(filename).bufferedReader().use { it.readText() }
+
+        // The fixture gpx files live in this test APK's own assets (androidTest/assets),
+        // not the app's - read them via the instrumentation context rather than targetContext.
+        val input = InstrumentationRegistry.getInstrumentation().context.assets
+            .open(filename).bufferedReader().use { it.readText() }
 
         val routeData = parseGpxFile(input)
         if (routeData == null) {
