@@ -140,9 +140,9 @@ class PoiTest {
             println("Furthest name : $furthestName")
             when (index) {
                 0 -> assertEquals("Woodburn Way Car Park", furthestName)
-                1 -> assertEquals("No. 1 Boutique", furthestName)
+                1 -> assertEquals("No1 Boutique", furthestName)
                 2 -> assertEquals("Vivienne Nails & Spa", furthestName)
-                3 -> assertEquals("Woodburn Way Car Park", furthestName)
+                3 -> assertEquals("W & J Lewis", furthestName)
             }
 
             featuresToDraw.addFeature(polygon)

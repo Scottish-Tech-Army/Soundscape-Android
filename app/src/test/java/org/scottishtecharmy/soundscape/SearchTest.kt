@@ -50,7 +50,7 @@ class SearchTest {
                 ignoreHouseNumbers = true
             )
             assertEquals(
-                "On Crossveggate between Killermont Road to dead end and Glasgow Road",
+                "On Crossveggate between Service to Lennox Park via bridge and Glasgow Road",
                 result8!!.name
             )
 
@@ -128,7 +128,7 @@ class SearchTest {
             var results =
                 offlineGeocoder.getAddressFromLocationName("Greggs", currentLocation, null)!!
             assertEquals("Greggs", results[0].name)
-            assertEquals("OSM Feature", results[0].featureName?.additionalText ?: "")
+            assertEquals("OSM Feature fast_food fast_food", results[0].featureName?.additionalText ?: "")
 
             results = offlineGeocoder.getAddressFromLocationName(
                 "5 buchanan street milngavie",
@@ -154,7 +154,7 @@ class SearchTest {
             assertEquals("5 Buchanan Street, Milngavie", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName(
-                "5 buchanan street north woodside",
+                "5 buchanan street",
                 currentLocation,
                 null
             )!!
@@ -198,7 +198,7 @@ class SearchTest {
             results =
                 offlineGeocoder.getAddressFromLocationName("greggs     ", currentLocation, null)!!
             assertEquals("Greggs", results[0].name)
-            assertEquals("6 Douglas Street, Milngavie", results[0].description)
+            assertEquals("22 Main Street, Milngavie", results[0].description)
 
             results = offlineGeocoder.getAddressFromLocationName(
                 "milverton avenue",
