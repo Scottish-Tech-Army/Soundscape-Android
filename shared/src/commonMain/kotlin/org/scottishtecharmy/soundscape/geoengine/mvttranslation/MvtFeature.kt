@@ -223,7 +223,7 @@ open class MvtFeature : Feature() {
                 ?: featureClass?.let { localized.resolveFeatureClass(it) }
                 ?: featureSubClass?.let { localized.resolveFeatureClass(it) }
         } else {
-            "OSM Feature"
+            "OSM Feature $featureClass $featureSubClass"
         }
         var additionalText: String? = null
         if (text == null) {
