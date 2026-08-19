@@ -33,7 +33,8 @@ class GpxDrivenProvider {
     private val walkingSpeed = 1.0
 
     fun start(context: Context) {
-        val input = context.assets.open("gpx/milngavie-centre.gpx")
+        // Place the file to be replayed in the assets/gpx folder and open it here
+        val input = context.assets.open("")
         parseGpxStream(input)
 
         coroutineScope.launch {
