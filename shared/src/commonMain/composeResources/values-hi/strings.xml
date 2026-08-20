@@ -532,8 +532,6 @@
     <string name="osm_service_road">सर्विस रोड</string>
     <string name="osm_road">सड़क</string>
     <string name="osm_highway">राजमार्ग</string>
-    <string name="osm_highway_named">राजमार्ग का नाम</string>
-    <string name="osm_highway_refed">राजमार्ग संदर्भ</string>
     <string name="osm_intersection">चौराहा</string>
     <string name="osm_roundabout">गोल चक्कर</string>
     <string name="osm_highway_ramp">राजमार्ग रैंप</string>
@@ -565,8 +563,6 @@
     <string name="osm_fuel">ईंधन स्टेशन</string>
     <string name="osm_bank">बैंक</string>
     <string name="osm_atm">ATM</string>
-    <string name="osm_atm_named">नामित ATM</string>
-    <string name="osm_atm_refed">ATM संदर्भ</string>
     <string name="osm_bus_stop">बस स्टॉप</string>
     <string name="osm_recycling">रीसाइक्लिंग</string>
     <string name="osm_fountain">फव्वारा</string>

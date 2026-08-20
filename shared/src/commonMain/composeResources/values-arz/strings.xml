@@ -315,8 +315,6 @@
     <string name="osm_service_road">طريق الخدمة</string>
     <string name="osm_road">طريق</string>
     <string name="osm_highway">الطريق السريع</string>
-    <string name="osm_highway_named">%1$s الطريق السريع</string>
-    <string name="osm_highway_refed">الطريق السريع %1$s</string>
     <string name="osm_intersection">التقاطع</string>
     <string name="osm_roundabout">دوار</string>
     <string name="osm_highway_ramp">الطريق السريع الطريق المنحدر</string>
@@ -347,8 +345,6 @@
     <string name="osm_gas_station">محطة بنزين</string>
     <string name="osm_bank">بنك</string>
     <string name="osm_atm">أجهزة الصراف الآلي</string>
-    <string name="osm_atm_named">%1$s أجهزة الصراف الآلي</string>
-    <string name="osm_atm_refed">أجهزة الصراف الآلي\n\n%1$s</string>
     <string name="osm_bus_stop_named">محطة الحافلات\n\n%1$s</string>
     <string name="osm_recycling_bin">سلة المهملات</string>
     <string name="osm_fountain">نافورة</string>

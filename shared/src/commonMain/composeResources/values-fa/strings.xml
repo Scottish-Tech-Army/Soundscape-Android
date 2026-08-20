@@ -316,8 +316,6 @@
     <string name="osm_service_road">کنار‌گذر</string>
     <string name="osm_road">جاده</string>
     <string name="osm_highway">بزرگراه</string>
-    <string name="osm_highway_named">بزرگراه %1$s</string>
-    <string name="osm_highway_refed">بزرگراه %1$s</string>
     <string name="osm_intersection">تقاطع</string>
     <string name="osm_roundabout">فلکه</string>
     <string name="osm_highway_ramp">رمپ بزرگراه</string>
@@ -348,8 +346,6 @@
     <string name="osm_gas_station">پمپ بنزین</string>
     <string name="osm_bank">بانک</string>
     <string name="osm_atm">دستگاه خودپرداز</string>
-    <string name="osm_atm_named">خودپرداز %1$s</string>
-    <string name="osm_atm_refed">خودپرداز %1$s</string>
     <string name="osm_bus_stop">ایستگاه اتوبوس</string>
     <string name="osm_bus_stop_named">ایستگاه اتوبوس %1$s</string>
     <string name="osm_recycling_bin">سطل بازیافت</string>

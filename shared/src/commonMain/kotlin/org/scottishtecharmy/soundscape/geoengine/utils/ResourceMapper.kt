@@ -37,8 +37,6 @@ import org.scottishtecharmy.soundscape.resources.osm_assembly_point
 import org.scottishtecharmy.soundscape.resources.osm_association
 import org.scottishtecharmy.soundscape.resources.osm_athletics
 import org.scottishtecharmy.soundscape.resources.osm_atm
-import org.scottishtecharmy.soundscape.resources.osm_atm_named
-import org.scottishtecharmy.soundscape.resources.osm_atm_refed
 import org.scottishtecharmy.soundscape.resources.osm_attraction
 import org.scottishtecharmy.soundscape.resources.osm_australian_football
 import org.scottishtecharmy.soundscape.resources.osm_baby_goods
@@ -330,9 +328,7 @@ import org.scottishtecharmy.soundscape.resources.osm_help_point
 import org.scottishtecharmy.soundscape.resources.osm_herbalist
 import org.scottishtecharmy.soundscape.resources.osm_hifi
 import org.scottishtecharmy.soundscape.resources.osm_highway
-import org.scottishtecharmy.soundscape.resources.osm_highway_named
 import org.scottishtecharmy.soundscape.resources.osm_highway_ramp
-import org.scottishtecharmy.soundscape.resources.osm_highway_refed
 import org.scottishtecharmy.soundscape.resources.osm_historic_monument
 import org.scottishtecharmy.soundscape.resources.osm_hockey
 import org.scottishtecharmy.soundscape.resources.osm_horse_racing
@@ -782,8 +778,6 @@ class ResourceMapper {
                 put("track_construction", Res.string.osm_road_works)
                 put("raceway_construction", Res.string.osm_road_works)
                 put("highway", Res.string.osm_highway)
-                put("highway_named", Res.string.osm_highway_named)
-                put("highway_refed", Res.string.osm_highway_refed)
                 put("intersection", Res.string.osm_intersection)
                 put("roundabout", Res.string.osm_roundabout)
                 put("highway_ramp", Res.string.osm_highway_ramp)
@@ -815,8 +809,6 @@ class ResourceMapper {
                 put("fuel", Res.string.osm_gas_station)
                 put("bank", Res.string.osm_bank)
                 put("atm", Res.string.osm_atm)
-                put("atm_named", Res.string.osm_atm_named)
-                put("atm_refed", Res.string.osm_atm_refed)
                 put("bus_stop", Res.string.osm_bus_stop)
                 put("recycling", Res.string.osm_recycling_bin)
                 put("fountain", Res.string.osm_fountain)

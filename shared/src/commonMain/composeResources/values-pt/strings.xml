@@ -288,8 +288,6 @@
     <string name="osm_service_road">Estrada de Serviço</string>
     <string name="osm_road">Estrada</string>
     <string name="osm_highway">Autoestrada</string>
-    <string name="osm_highway_named">Autoestrada de %1$s</string>
-    <string name="osm_highway_refed">Autoestrada %1$s</string>
     <string name="osm_intersection">Cruzamento</string>
     <string name="osm_roundabout">Rotunda</string>
     <string name="osm_highway_ramp">Acesso a Autoestrada</string>
@@ -320,8 +318,6 @@
     <string name="osm_gas_station">Posto de Combustível</string>
     <string name="osm_bank">Agência bancária</string>
     <string name="osm_atm">Caixa Multibanco</string>
-    <string name="osm_atm_named">Caixa Multibanco %1$s</string>
-    <string name="osm_atm_refed">Caixa Multibanco %1$s</string>
     <string name="osm_bus_stop">Paragem de Autocarro</string>
     <string name="osm_bus_stop_named">Paragem de Autocarro de %1$s</string>
     <string name="osm_recycling_bin">Contentor de Reciclagem</string>

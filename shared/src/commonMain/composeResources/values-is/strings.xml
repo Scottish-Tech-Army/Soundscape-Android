@@ -286,8 +286,6 @@
     <string name="osm_service_road">ómerkt gata</string>
     <string name="osm_road">vegur</string>
     <string name="osm_highway">hraðbraut</string>
-    <string name="osm_highway_named">%1$s hraðgata</string>
-    <string name="osm_highway_refed">hraðgata %1$s</string>
     <string name="osm_intersection">gatnamot</string>
     <string name="osm_roundabout">hringtorg</string>
     <string name="osm_highway_ramp">aðrein-frárein</string>
@@ -318,8 +316,6 @@
     <string name="osm_gas_station">bensínstöð</string>
     <string name="osm_bank">banki</string>
     <string name="osm_atm">hraðbanki</string>
-    <string name="osm_atm_named">%1$s hraðbnki</string>
-    <string name="osm_atm_refed">hraðbanki %1$s</string>
     <string name="osm_bus_stop">stoppistöð</string>
     <string name="osm_bus_stop_named">%1$s stoppistöð</string>
     <string name="osm_recycling_bin">endurvinnslutunna</string>

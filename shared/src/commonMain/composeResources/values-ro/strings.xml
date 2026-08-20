@@ -532,8 +532,6 @@
     <string name="osm_service_road">Drum de serviciu</string>
     <string name="osm_road">Drum</string>
     <string name="osm_highway">Autostradă</string>
-    <string name="osm_highway_named">Nume autostradă</string>
-    <string name="osm_highway_refed">Referință autostradă</string>
     <string name="osm_intersection">Intersecție</string>
     <string name="osm_roundabout">Sens giratoriu</string>
     <string name="osm_highway_ramp">Rampă de autostradă</string>
@@ -565,8 +563,6 @@
     <string name="osm_fuel">Stație de combustibil</string>
     <string name="osm_bank">Bancă</string>
     <string name="osm_atm">Bancomat</string>
-    <string name="osm_atm_named">Bancomat cu denumire</string>
-    <string name="osm_atm_refed">Referință bancomat</string>
     <string name="osm_bus_stop">Stație de autobuz</string>
     <string name="osm_recycling">Reciclare</string>
     <string name="osm_fountain">Fântână</string>

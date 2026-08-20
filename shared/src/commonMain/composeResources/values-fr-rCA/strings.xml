@@ -288,8 +288,6 @@
     <string name="osm_service_road">Ruelle</string>
     <string name="osm_road">Route</string>
     <string name="osm_highway">Autoroute</string>
-    <string name="osm_highway_named">Autoroute de %1$s</string>
-    <string name="osm_highway_refed">Autoroute %1$s</string>
     <string name="osm_intersection">Intersection</string>
     <string name="osm_roundabout">Carrefour giratoire</string>
     <string name="osm_highway_ramp">Bretelle d’autoroute</string>
@@ -320,8 +318,6 @@
     <string name="osm_gas_station">Station-service</string>
     <string name="osm_bank">Banque</string>
     <string name="osm_atm">Guichet automatique bancaire</string>
-    <string name="osm_atm_named">Guichet automatique bancaire %1$s</string>
-    <string name="osm_atm_refed">Guichet automatique bancaire %1$s</string>
     <string name="osm_bus_stop">Arrêt de bus</string>
     <string name="osm_bus_stop_named">Arrêt de bus %1$s</string>
     <string name="osm_recycling_bin">Poubelle de recyclage</string>
