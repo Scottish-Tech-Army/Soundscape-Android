@@ -134,14 +134,19 @@ def cmd_upload(args: argparse.Namespace) -> None:
 
     path = f"translations/{PROJECT}/{COMPONENT}/{args.lang}/file/"
     files = {"file": open(args.file, "rb")}
-    params = {
-        "conflicts": "replace-translated",
-        "email": args.email,
-        "author": args.author,
-        "method": "translate",
-        "file": "file",
-    }
-    result = c.post(path, files=files, params=params)
+    # These must go in as POST kwargs (-> wlc sends them as multipart form
+    # fields alongside `files`), NOT as `params=` (URL query string) - the
+    # Weblate API only reads method/conflicts/author/email from the form
+    # body, so passing them as query params makes `conflicts` silently
+    # fall back to its default and already-translated strings get skipped.
+    result = c.post(
+        path,
+        files=files,
+        conflicts="replace-translated",
+        email=args.email,
+        author=args.author,
+        method="translate",
+    )
     print(f"Uploaded {len(translations)} translations for {args.lang}:")
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
