@@ -288,8 +288,6 @@
     <string name="osm_service_road">Huoltotie</string>
     <string name="osm_road">Tie</string>
     <string name="osm_highway">Maantie</string>
-    <string name="osm_highway_named">%1$s maantie</string>
-    <string name="osm_highway_refed">Maantie %1$s</string>
     <string name="osm_intersection">Risteys</string>
     <string name="osm_roundabout">Liikenneympyrä</string>
     <string name="osm_highway_ramp">Maantien liittymä</string>
@@ -320,8 +318,6 @@
     <string name="osm_gas_station">Huoltoasema</string>
     <string name="osm_bank">Pankki</string>
     <string name="osm_atm">Pankkiautomaatti</string>
-    <string name="osm_atm_named">%1$s Pankkiautomaatti</string>
-    <string name="osm_atm_refed">Pankkiautomaatti %1$s</string>
     <string name="osm_bus_stop">Linja-autopysäkki</string>
     <string name="osm_bus_stop_named">%1$s Linja-autopysäkki</string>
     <string name="osm_recycling_bin">Kierrätysastia</string>

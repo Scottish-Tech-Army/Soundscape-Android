@@ -288,8 +288,6 @@
     <string name="osm_service_road">Zufahrtsstraße</string>
     <string name="osm_road">Straße</string>
     <string name="osm_highway">Autobahn</string>
-    <string name="osm_highway_named">%1$s Autobahn</string>
-    <string name="osm_highway_refed">Autobahn %1$s</string>
     <string name="osm_intersection">Kreuzung</string>
     <string name="osm_roundabout">Kreisverkehr</string>
     <string name="osm_highway_ramp">Autobahnauffahrt</string>
@@ -320,8 +318,6 @@
     <string name="osm_gas_station">Tankstelle</string>
     <string name="osm_bank">Bank</string>
     <string name="osm_atm">Geldautomat</string>
-    <string name="osm_atm_named">%1$s Geldautomat</string>
-    <string name="osm_atm_refed">Geldautomat %1$s</string>
     <string name="osm_bus_stop">Bushaltestelle</string>
     <string name="osm_bus_stop_named">%1$s Bushaltestelle</string>
     <string name="osm_recycling_bin">Mülltonne</string>
