@@ -288,8 +288,6 @@
     <string name="osm_service_road">Stikvej</string>
     <string name="osm_road">Vej</string>
     <string name="osm_highway">Motorvej</string>
-    <string name="osm_highway_named">%1$s motorvej</string>
-    <string name="osm_highway_refed">Motorvej %1$s</string>
     <string name="osm_intersection">Kryds</string>
     <string name="osm_roundabout">Rundkørsel</string>
     <string name="osm_highway_ramp">Motorvejsrampe</string>
@@ -320,8 +318,6 @@
     <string name="osm_gas_station">Tankstation</string>
     <string name="osm_bank">Bank</string>
     <string name="osm_atm">Hæveautomat</string>
-    <string name="osm_atm_named">%1$s-hæveautomat</string>
-    <string name="osm_atm_refed">Hæveautomat %1$s</string>
     <string name="osm_bus_stop">Busstoppested</string>
     <string name="osm_bus_stop_named">%1$s busstoppested</string>
     <string name="osm_recycling_bin">Skraldespand</string>

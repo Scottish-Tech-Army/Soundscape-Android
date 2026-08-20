@@ -546,8 +546,6 @@
     <string name="osm_service_road">Servis Yolu</string>
     <string name="osm_road">Yol</string>
     <string name="osm_highway">Otoyol</string>
-    <string name="osm_highway_named">Otoyol Adı</string>
-    <string name="osm_highway_refed">Otoyol Referans Kodu</string>
     <string name="osm_intersection">Kavşak</string>
     <string name="osm_roundabout">Döner Kavşak</string>
     <string name="osm_highway_ramp">Otoyol Bağlantı Yolu</string>
@@ -579,8 +577,6 @@
     <string name="osm_fuel">Akaryakıt İstasyonu</string>
     <string name="osm_bank">Banka</string>
     <string name="osm_atm">ATM</string>
-    <string name="osm_atm_named">İsimli ATM</string>
-    <string name="osm_atm_refed">ATM Referansı</string>
     <string name="osm_bus_stop">Otobüs Durağı</string>
     <string name="osm_recycling">Geri Dönüşüm</string>
     <string name="osm_fountain">Çeşme</string>

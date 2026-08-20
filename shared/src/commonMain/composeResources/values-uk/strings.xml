@@ -312,8 +312,6 @@
     <string name="osm_service_road">Під'їзна дорога</string>
     <string name="osm_road">Дорога</string>
     <string name="osm_highway">Шосе</string>
-    <string name="osm_highway_named">%1$s шосе</string>
-    <string name="osm_highway_refed">Шосе %1$s</string>
     <string name="osm_intersection">Перехрестя</string>
     <string name="osm_roundabout">Круговий рух</string>
     <string name="osm_highway_ramp">З’їзд із шосе</string>
@@ -344,8 +342,6 @@
     <string name="osm_gas_station">Автозаправна станція</string>
     <string name="osm_bank">Банк</string>
     <string name="osm_atm">Банкомат</string>
-    <string name="osm_atm_named">%1$s Банкомат</string>
-    <string name="osm_atm_refed">Банкомат %1$s</string>
     <string name="osm_bus_stop">Автобусна зупинка</string>
     <string name="osm_bus_stop_named">%1$s Автобусна зупинка</string>
     <string name="osm_recycling_bin">Кошик для вторсировини</string>
