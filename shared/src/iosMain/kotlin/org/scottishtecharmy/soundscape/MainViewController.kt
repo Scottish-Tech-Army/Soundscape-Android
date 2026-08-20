@@ -298,23 +298,6 @@ fun MainViewController() = ComposeUIViewController {
                     LocationDescription("", LngLatAlt())
                 }
             },
-            onSetApplicationLocale = { tag ->
-                // iOS reads the per-app language override from
-                // NSUserDefaults["AppleLanguages"] at launch. Writing it now
-                // takes effect on the next launch — terminate the process so
-                // the user re-launches into the chosen language.
-                if (tag != null) {
-                    platform.Foundation.NSUserDefaults.standardUserDefaults.setObject(
-                        listOf(tag),
-                        forKey = "AppleLanguages",
-                    )
-                } else {
-                    platform.Foundation.NSUserDefaults.standardUserDefaults.removeObjectForKey(
-                        "AppleLanguages",
-                    )
-                }
-                platform.posix.exit(0)
-            },
             onGetLanguageMismatch = {
                 org.scottishtecharmy.soundscape.screens.onboarding.language.getLanguageMismatch()
             },
