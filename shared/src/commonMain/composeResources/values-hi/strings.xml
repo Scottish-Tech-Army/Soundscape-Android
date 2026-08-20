@@ -105,7 +105,7 @@
     <string name="markers_sort_button_sort_by_distance">दूरी</string>
     <string name="markers_sort_button_sort_by_distance_voiceover">दूरी के अनुसार क्रमबद्ध</string>
     <string name="markers_no_markers_title">मार्करों के साथ शुरुआत करें</string>
-    <string name="markers_no_markers_hint_1">अपने पसंदीदा गंतव्यों, मार्ग के बिंदुओं, या किसी भी ऐसे स्थान के लिए मार्कर बनाएँ जिनकी आप घोषणा चाहते हैं। बस होम स्क्रीन से कोई स्थान, या अपना वर्तमान स्थान भी चुनें और *"मार्कर के रूप में सहेजें"* चुनें।</string>
+    <string name="markers_no_markers_hint_1">अपने पसंदीदा गंतव्यों, मार्ग बिंदुओं, या किसी भी ऐसे स्थान के लिए मार्कर बनाएँ जिसकी आप घोषणा चाहते हैं। बस होम स्क्रीन से कोई स्थान, या अपना वर्तमान स्थान भी चुनें और *मार्कर के रूप में सहेजें* चुनें।</string>
     <string name="markers_no_markers_hint_2">अपने घर, अपने कार्यस्थल के प्रवेश द्वार, या पार्क में अपनी पसंदीदा जगह को मार्कर के रूप में सहेजकर देखें।</string>
     <string name="markers_edit_screen_title_edit">मार्कर संपादित करें</string>
     <string name="markers_generic_name">मार्कर</string>
@@ -351,9 +351,9 @@
     <string name="faq_markers_function_answer">मार्कर वे स्थान हैं जिन्हें आपने सहेजा है। ये ऐप में पहले से उपलब्ध स्थान हो सकते हैं, या वे पूरी तरह नए स्थान भी हो सकते हैं जो आपने स्वयं जोड़े हों। आप अपने वर्तमान स्थान को मार्कर के रूप में सहेजने के लिए होम स्क्रीन पर *\"वर्तमान स्थान\"* बटन चुनें और फिर *\"मार्कर के रूप में सहेजें\"* चुनें। आप अन्य स्थानों को भी मार्कर के रूप में सहेज सकते हैं—खोज बार से वह स्थान खोजकर जिसे आप सहेजना चाहते हैं, या होम स्क्रीन पर *\"पास के स्थान\"* बटन का उपयोग करके कोई जगह ढूँढकर। एक बार जब आप वही स्थान चुन लें, तो यह आपको *\"स्थान विवरण\"* स्क्रीन पर ले जाएगा। उस स्क्रीन पर *\"मार्कर के रूप में सहेजें\"* बटन चुनें।</string>
     <string name="faq_section_getting_the_best_experience">मैं Soundscape से सबसे अच्छा अनुभव कैसे प्राप्त करूँ?</string>
     <string name="faq_what_can_I_set_question">मैं किस पर बीकन सेट कर सकता हूँ?</string>
-    <string name="faq_what_can_I_set_answer">आप किसी भी व्यवसाय, स्थान, रुचि के बिंदु, पते या चौराहे पर ऑडियो बीकन सेट कर सकते हैं। किसी स्थान पर बीकन जोड़ने के कुछ तरीके हैं। सबसे पहले किसी स्थान के विवरण देखने के लिए खोज बार का उपयोग करके स्थान खोजें, या *\"पास के स्थान\"*, *\"मार्कर और मार्ग\"* या *\"वर्तमान स्थान\"* बटनों में से किसी एक को टैप करके कोई स्थान चुनें। *\"स्थान विवरण\"* स्क्रीन पर जाएँ और *\"ऑडियो बीकन शुरू करें\"* बटन चुनें। इसे टैप करने पर आप होम स्क्रीन पर लौटेंगे और आपके द्वारा चुने गए स्थान की दिशा से आने वाला श्रव्य बीकन चालू हो जाएगा। आपके द्वारा चुने गए स्थान का नाम, उसकी दूरी और भौतिक पता (यदि उपलब्ध हो) अब मुख्य ऐप स्क्रीन पर प्रदर्शित होगा।</string>
+    <string name="faq_what_can_I_set_answer">आप किसी भी व्यवसाय, स्थान, रुचि के स्थान, पते या चौराहे पर ऑडियो बीकन सेट कर सकते हैं।</string>
     <string name="faq_how_to_use_beacon_question">मैं बीकन का विशेषज्ञ की तरह उपयोग कैसे करूँ?</string>
-    <string name="faq_how_to_use_beacon_answer">आप श्रव्य बीकन को *\"कानों के लिए एक लाइटहाउस\"* के रूप में समझ सकते हैं, जो यह बताता है कि आपकी मंज़िल आपकी स्थिति के सापेक्ष कहाँ है (सीधी रेखा में)। एक लाइटहाउस की तरह, यह यह नहीं बताता कि वहाँ कैसे पहुँचना है—रास्ते में आपको कई नेविगेशन संबंधी निर्णय लेने पड़ सकते हैं, ठीक वैसे ही जैसे एक पालतू नौका लाइटहाउस के करीब पहुँचने के लिए कई रणनीतिक \"टैक\" लेती है। ऑडियो बीकन की निरंतर लयबद्ध ध्वनि मंज़िल की दिशा से स्थानिक (3D) रूप में आती है और चलते समय यह आपको आपकी तुलना में मंज़िल के स्थान के बारे में सतर्क रखती है। जब आप सीधे मंज़िल की ओर चल रहे होते हैं, या फ़ोन को मंज़िल की ओर इशारा करने के लिए घुमाते हैं, तो एक ऊँची पिच की *\"रिंग\"* ध्वनि सुनाई देगी। यह सुविधा आपको दिशा का सटीक पता लगाने में मदद करती है क्योंकि कभी‑कभी उच्च‑लयबद्ध ध्वनि को तेज़ वातावरण में सही दिशा तक महसूस करना कठिन हो सकता है। ऊँची पिच की *\"रिंग\"* खोजते समय, फ़ोन को सपाट पकड़े रखें और धीरे‑धीरे घुमाएँ; अपने सिर को भी उसी दिशा में घुमाएँ जिस दिशा में फ़ोन इशारा कर रहा है ताकि आपको सर्वश्रेष्ठ स्थानिक ऑडियो अनुभव मिल सके।\n\nबीकन के लाइटहाउस रूपक के कुछ नैसर्गिक निहितार्थ हैं:\n\n1. बीकन का उपयोग करते समय कोई *\"सही\"* दिशा नहीं होती—Soundscape के साथ आप स्वयं चुनते हैं कि वहाँ कैसे जाना है;\n\n2. ऊँची पिच की *\"रिंग\"* केवल मंज़िल की दिशा का सटीक पता लगाने में मदद करती है—यह यह संकेत नहीं देती कि आपको वहाँ कैसे पहुँचना चाहिए;\n\n3. यदि आप सामान्यतः जानते हैं कि अपने गंतव्य तक कैसे पहुँचना है, तो आप पूरे मार्ग में बीकन को म्यूट रखना चाह सकते हैं और केवल मंज़िल के नज़दीक पहुँचते ही इसे चालू कर सकते हैं।</string>
+    <string name="faq_how_to_use_beacon_answer">...ठीक वैसे ही जैसे एक पाल नौका (नौकायन नाव) लाइटहाउस के करीब पहुँचने के लिए कई रणनीतिक \\"टैक\\" लेती है..।</string>
     <string name="faq_why_does_beacon_disappear_question">श्रव्य बीकन कभी-कभी गायब क्यों हो जाता है?</string>
     <string name="faq_why_does_beacon_disappear_answer">Soundscape का श्रव्य बीकन मूल रूप से एक दिशात्मक संकेत है, जो आपको बताता है कि आप जिस दिशा का सामना कर रहे हैं उसके सापेक्ष आपकी मंज़िल कहाँ है। जब Soundscape को अनिश्चितता होती है कि आप किस दिशा का सामना कर रहे हैं, तो यह बीकन की आवाज़ धीमी कर देता है। अक्सर ऐसा तब होता है जब आप फ़ोन को जेब या बैग में रखकर चल रहे होते हैं और रुक जाते हैं, जैसे सड़क पार करने के लिए। जब आप फिर से चलना शुरू करेंगे, या फ़ोन को सपाट पकड़कर उस दिशा में इंगित करेंगे जिधर आपका मुँह है, तो बीकन फिर से तेज़ हो जाएगा।</string>
     <string name="faq_beacon_on_address_question">क्या मैं किसी पते पर बीकन सेट कर सकता हूँ?</string>
@@ -374,7 +374,7 @@
     <string name="faq_miss_a_callout_answer">Soundscape में आपके हाल के कॉलआउट की एक सूची होती है ताकि आप उन कॉलआउट को फिर से देख सकें जो आपसे छूट गए हों। इसे खोजने के लिए, Soundscape होम स्क्रीन पर खोज बार पर टैप करें। इस स्क्रीन के नीचे, *"हाल के कॉलआउट"* का एक अनुभाग है जहाँ आपका छूटा हुआ कॉलआउट सूचीबद्ध होगा।</string>
     <string name="faq_section_how_soundscape_works">Soundscape कैसे काम करता है?</string>
     <string name="faq_supported_phones_question">Soundscape किस फ़ोन पर चलता है?</string>
-    <string name="faq_supported_phones_answer">Android के लिए Soundscape वर्तमान में Android 11 या उसके बाद के संस्करण चलाने वाले Android फ़ोन के लिए उपलब्ध है।</string>
+    <string name="faq_supported_phones_answer">Soundscape वर्तमान में iOS 16 या उसके बाद के संस्करण वाले iPhone के लिए, और Android 11 या उसके बाद के संस्करण चलाने वाले Android फ़ोन के लिए उपलब्ध है।</string>
     <string name="faq_supported_headsets_question">मुझे Soundscape के साथ कौन से हेडफ़ोन का उपयोग करना चाहिए?</string>
     <string name="faq_supported_headsets_answer">Soundscape के साथ कौन से हेडफ़ोन का उपयोग करना है यह व्यक्तिगत पसंद का मामला है, और प्रत्येक विकल्प के अपने लाभ और समझौते हैं। एकमात्र विशिष्ट आवश्यकता स्टीरियो हेडफ़ोन का उपयोग करना है ताकि आप Soundscape के 3D स्थानिक ऑडियो कॉलआउट का लाभ उठा सकें।</string>
     <string name="faq_battery_impact_question">Soundscape मेरे फ़ोन की बैटरी पर क्या प्रभाव डालता है?</string>
@@ -394,13 +394,13 @@
     <string name="faq_use_with_wayfinding_apps_question">मैं Soundscape का उपयोग मार्ग-निर्धारण ऐप के साथ कैसे करूँ?</string>
     <string name="faq_use_with_wayfinding_apps_answer">Soundscape एक जागरूकता ऐप के रूप में डिज़ाइन किया गया है जो आपके वातावरण के बारे में उन विवरणों को भरने में मदद करता है जिनके बारे में आप अन्यथा जागरूक नहीं हो सकते। हालाँकि यह मोड़-दर-मोड़ नेविगेशन ऐप के रूप में डिज़ाइन नहीं किया गया है, इसका उपयोग ऐसे ऐप्स के साथ पूरक जानकारी प्रदान करने के लिए किया जा सकता है। Soundscape को इन ऐप्स के साथ उपयोग करने के लिए, पहले अपना नेविगेशन ऐप शुरू करें। फिर, Soundscape पर जाएँ और नेविगेशन ऐप में जो मंज़िल है उसी पर बीकन सेट करें। इस बिंदु पर, दोनों ऐप चल रहे होंगे और आपको अपने नेविगेशन ऐप से पैदल चलने के निर्देश सुनाई देंगे, साथ ही Soundscape से रुचि के स्थानों, चौराहों, और अपनी मंज़िल से दूरी के बारे में अपडेट मिलेंगे।</string>
     <string name="faq_controlling_what_you_hear_question">मैं Soundscape में क्या सुनता हूँ और कब सुनता हूँ, इसे कैसे नियंत्रित करूँ?</string>
-    <string name="faq_controlling_what_you_hear_answer">Soundscape आपको यह नियंत्रित करने के कई तरीके देता है कि आप क्या और कब सुनते हैं:\n\n1. सभी ऑडियो तत्काल बंद करें: सभी ऑडियो (जिसमें वह कॉलआउट भी शामिल है जो चल रहा हो और यदि बीकन चालू है तो वह भी) तुरंत बंद करने के लिए स्क्रीन पर दो उँगलियों से डबल‑टैप करें। आप अगले चौराहे या रुचि के स्थान के पास पहुँचने पर कॉलआउट स्वचालित रूप से फिर से सुनेंगे, लेकिन श्रव्य बीकन अपने आप शुरू नहीं होगा। बीकन सुनना फिर से शुरू करने के लिए मुख्य स्क्रीन पर *\"ऑडियो बीकन अनम्यूट करें\"* बटन चुनें।\n\n2. स्वचालित कॉलआउट बंद करें: जब आप यात्रा नहीं कर रहे हों या किसी मंज़िल पर पहुँच चुके हों, तब संभवतः आपको Soundscape से अपने आस‑पास की चीज़ों की लगातार सूचना की आवश्यकता नहीं होगी। ऐप से बाहर निकलने के बजाय आप Soundscape को *\"स्नूज़\"* मोड में रख सकते हैं और यह आपकी जगह छोड़ते ही फिर जाग जाएगा, या आप इसे *\"स्लीप\"* मोड में डाल सकते हैं और यह तब तक बंद रहेगा जब तक आप इसे स्वयं चालू न करें। वैकल्पिक रूप से, मेनू से *\"सेटिंग्स\"* चुनें और *\"कॉलआउट प्रबंधित करें\"* सेक्शन में जाकर सभी कॉलआउट्स बंद कर देने का विकल्प चुनें।\n\n3. बीकन बंद करें: कई परिदृश्यों में आप किसी गंतव्य पर बीकन सेट करना चाह सकते हैं पर बीकन को हमेशा चालू रखने की आवश्यकता नहीं होती। उदाहरण के लिए, आपको अपने गंतव्य तक कैसे पहुँचना है यह पहले से पता हो सकता है पर आप फिर भी अपनी दूरी के समय‑समय पर अपडेट चाहते हों। या आप केवल अपने गंतव्य के नज़दीक पहुँचते समय ही बीकन सुनना चाहें। किसी भी स्थिति में, आप मुख्य स्क्रीन पर *\"बीकन म्यूट करें\"*/*\"बीकन अनम्यूट करें\"* बटन को टॉगल करके तय कर सकते हैं कि आप कब बीकन सुनना चाहते हैं।\n\nयदि आप Soundscape के साथ इंटरैक्ट करना जारी रखना चाहते हैं पर स्वचालित कॉलआउट नहीं सुनना चाहते, तो मेनू से *\"सेटिंग्स\"* स्क्रीन के *\"कॉलआउट प्रबंधित करें\"* सेक्शन में जाकर कॉलआउट्स बंद कर सकते हैं। या यदि आप Soundscape उपयोग नहीं करने वाले हैं, तो होम स्क्रीन पर स्थित *\"स्लीप\"* बटन से ऐप को *\"स्लीप\"* या *\"स्नूज़\"* मोड में डाल दें।</string>
+    <string name="faq_controlling_what_you_hear_answer">बीकन सुनना फिर से शुरू करने के लिए मुख्य स्क्रीन पर *\\"बीकन अनम्यूट करें\\"* बटन चुनें। ... आप मुख्य स्क्रीन पर *\\"बीकन म्यूट करें\\"*/*\\"बीकन अनम्यूट करें\\"* बटन को टॉगल करके तय कर सकते हैं..।</string>
     <string name="faq_holding_phone_flat_question">क्या मुझे हर समय फ़ोन हाथ में पकड़ना होगा?</string>
     <string name="faq_holding_phone_flat_answer">नहीं! चलते समय आप फ़ोन को बैग, जेब या जहाँ सुविधाजनक हो वहाँ रख सकते हैं। Soundscape यह पता लगाने के लिए आपकी चलने की दिशा का उपयोग करेगा कि कौन‑सी कॉलआउट आपके बाएँ और दाएँ बतानी है। जब आप रुकते हैं तो Soundscape यह नहीं जानता कि आप किस दिशा की ओर मुख कर रहे हैं। यदि श्रव्य बीकन चालू है तो आप देखेंगे कि इसकी आवाज़ शांत हो जाती है जब तक आप फिर से चलना शुरू न करें। आप किसी भी समय फ़ोन निकालकर स्क्रीन के नीचे स्थित लोकेशन और अन्वेषण बटन दबा सकते हैं, पर ध्यान रखें कि फ़ोन को इस तरह पकड़े रखें कि फ़ोन का ऊपरी हिस्सा उस दिशा की ओर इशारा करे जिस दिशा में आप मुख कर रहे हैं और स्क्रीन आकाश की ओर हो। इस *\"सपाट\"* स्थिति में, Soundscape फ़ोन के कम्पास का उपयोग करके यह निर्धारित करेगा कि आप किस दिशा में हैं और सटीक स्थानिक कॉलआउट देगा। यदि बीकन चालू है तो आप देखेंगे कि उसकी आवाज़ फिर से पूरी तीव्रता पर लौट आती है।</string>
     <string name="faq_what_is_osm_question">Open Street Map क्या है और हम इसे Soundscape के लिए क्यों उपयोग करते हैं?</string>
     <string name="faq_what_is_osm_answer">Soundscape ऐप में सूचना कॉलआउट प्रदान करने के लिए भौगोलिक नक्शा डेटा का उपयोग करता है। हम जिस प्राथमिक नक्शा स्रोत का उपयोग करते हैं वह Open Street Map (www.openstreetmap.org) है, जो एक समृद्ध समुदाय-निर्मित मैपिंग प्लेटफ़ॉर्म है, जो संगठनों और व्यक्तियों को Open Street Map मैप ऑथरिंग टूल्स का उपयोग करके प्रदान की गई जानकारी की गुणवत्ता और विस्तार तथा उनके स्थानों की पहुँच में सुधार करने में सक्षम बनाता है।</string>
     <string name="faq_tip_beacon_quiet">यदि आप अपना फ़ोन जेब में रखकर चलना बंद कर देते हैं, तो बीकन की आवाज़ धीमी हो जाएगी क्योंकि Soundscape यह नहीं बता सकता कि आप किस दिशा का सामना कर रहे हैं। इसे हल करने के लिए फिर से चलना शुरू करें, या अपना फ़ोन निकालकर सपाट पकड़ें।</string>
-    <string name="faq_tip_setting_beacon_on_address">आप किसी भी पते पर बीकन सेट कर सकते हैं। मुख्य Soundscape स्क्रीन से उस पते को खोजें। खोज परिणामों में पता चुनने के बाद *\"स्थान विवरण\"* स्क्रीन दिखाई देगी और उसमें उस पते पर *\"ऑडियो बीकन शुरू करें\"* का विकल्प होगा। इस तरह आप उन व्यवसायों, स्थानों, रुचि के बिंदुओं और आवासों पर भी बीकन सेट कर सकते हैं जो Open Street Map में नहीं हैं।</string>
+    <string name="faq_tip_setting_beacon_on_address">इस तरह आप उन व्यवसायों, स्थानों, रुचि के स्थानों और आवासों पर भी बीकन सेट कर सकते हैं जो Open Street Map में नहीं हैं।</string>
     <string name="faq_tip_finding_bus_stops">आप *\"पास के स्थान\"* सूची में *\"सार्वजनिक परिवहन\"* फ़िल्टर चुनकर पास के बस स्टॉप ढूँढ सकते हैं।</string>
     <string name="faq_tip_turning_beacon_off">आप होम स्क्रीन पर म्यूट बटन का उपयोग करके बीकन की लयबद्ध ध्वनि को चालू और बंद कर सकते हैं। यदि बीकन म्यूट है तो भी आपको लगभग हर 50 मीटर पर अपनी मंज़िल से दूरी के अपडेट मिलते रहेंगे।</string>
     <string name="faq_tip_turning_off_auto_callouts">यदि आप Soundscape के साथ इंटरैक्ट करना जारी रखना चाहते हैं पर स्वचालित कॉलआउट नहीं सुनना चाहते, तो मेन्यू से *\"सेटिंग्स\"* स्क्रीन के *\"कॉलआउट प्रबंधित करें\"* सेक्शन में जाकर आप कॉलआउट्स बंद कर सकते हैं। या, यदि आप Soundscape का उपयोग नहीं करने वाले हैं, तो होम स्क्रीन पर *\"स्लीप\"* बटन का उपयोग करके इसे स्लीप या स्नूज़ मोड में डाल सकते हैं।</string>
@@ -427,7 +427,7 @@
     <string name="settings_use_value">उपयोग करें</string>
     <string name="street_preview_exit">स्थान सिमुलेशन से बाहर निकलें</string>
     <string name="settings_travel_recording">यात्रा की रिकॉर्डिंग सक्षम करें</string>
-    <string name="settings_show_map">स्क्रीन पर नक्शा दिखाएँ</string>
+    <string name="settings_show_map">स्क्रीन पर मानचित्र दिखाएँ</string>
     <string name="settings_debug_heading">डीबग विकल्प</string>
     <string name="settings_search_results_language">खोज भाषा</string>
     <string name="settings_search_results_language_description">ऑनलाइन खोज परिणाम की स्थानीय भाषा का उपयोग कर सकती है, या अंग्रेज़ी, फ़्रेंच या जर्मन में परिणाम देने के लिए बाध्य की जा सकती है।</string>
@@ -470,7 +470,7 @@
     <string name="route_description_description_hint">इस मार्ग के लिए एक वैकल्पिक विवरण जोड़ें</string>
     <string name="fab_add_item">आइटम जोड़ें</string>
     <string name="fab_add_route">मार्ग जोड़ें</string>
-    <string name="route_waypoint_progress">मार्ग %1$s, मार्ग बिंदु %2$s / %3$s पर</string>
+    <string name="route_waypoint_progress">मार्ग %1$s, %3$s में से मार्ग बिंदु %2$s पर</string>
     <string name="home_screen_title">Soundscape होम</string>
     <string name="settings_reset_button">सेटिंग्स को डिफ़ॉल्ट पर रीसेट करें</string>
     <string name="settings_reset_button_hint">सेटिंग्स को डिफ़ॉल्ट पर रीसेट करें और फिर ऐप को पुनः आरंभ करें।</string>
@@ -511,7 +511,7 @@
     <string name="osm_gas_station">पेट्रोल पंप</string>
     <string name="osm_bus_stop_named">%1$s बस स्टॉप</string>
     <string name="osm_recycling_bin">रीसाइक्लिंग बिन</string>
-    <string name="osm_water_fountain">पानी का फव्वारा</string>
+    <string name="osm_water_fountain">पेयजल फव्वारा</string>
     <string name="osm_sports_field">खेल का मैदान</string>
     <string name="osm_picnic_area">पिकनिक क्षेत्र</string>
     <string name="osm_main_entrance">मुख्य प्रवेश द्वार</string>
@@ -532,7 +532,7 @@
     <string name="osm_service_road">सर्विस रोड</string>
     <string name="osm_road">सड़क</string>
     <string name="osm_highway">राजमार्ग</string>
-    <string name="osm_intersection">चौराहा</string>
+    <string name="osm_intersection">जंक्शन</string>
     <string name="osm_roundabout">गोल चक्कर</string>
     <string name="osm_highway_ramp">राजमार्ग रैंप</string>
     <string name="osm_merging_lane">विलय लेन</string>
@@ -546,7 +546,7 @@
     <string name="osm_turnstile">टर्नस्टाइल</string>
     <string name="osm_cattle_grid">पशु अवरोधक</string>
     <string name="osm_gate">गेट</string>
-    <string name="osm_lift_gate">लिफ़्ट गेट</string>
+    <string name="osm_lift_gate">बूम बैरियर गेट</string>
     <string name="osm_toilets">शौचालय</string>
     <string name="osm_parking">पार्किंग</string>
     <string name="osm_parking_entrance">पार्किंग प्रवेश द्वार</string>
@@ -571,8 +571,8 @@
     <string name="osm_car_wash">कार वॉश</string>
     <string name="osm_vending_machine">वेंडिंग मशीन</string>
     <string name="osm_playground">खेल का मैदान</string>
-    <string name="osm_pitch">खेल मैदान</string>
-    <string name="osm_swimming_pool">तरणताल</string>
+    <string name="osm_pitch">खेल पिच</string>
+    <string name="osm_swimming_pool">स्विमिंग पूल</string>
     <string name="osm_garden">बगीचा</string>
     <string name="osm_park">पार्क</string>
     <string name="osm_picnic_table">पिकनिक टेबल</string>
@@ -612,7 +612,7 @@
     <string name="osm_water_tap">पानी का नल</string>
     <string name="osm_water_well">कुआँ</string>
     <string name="osm_petroleum_well">पेट्रोलियम कुआँ</string>
-    <string name="osm_cross">क्रॉस</string>
+    <string name="osm_cross">क्रूस</string>
     <string name="osm_gallows">फाँसी का तख़्ता</string>
     <string name="osm_speed_camera">स्पीड कैमरा</string>
     <string name="osm_siren">सायरन</string>
@@ -628,8 +628,8 @@
     <string name="osm_stone">पत्थर</string>
     <string name="osm_surveillance">निगरानी</string>
     <string name="osm_monitoring_station">निगरानी केंद्र</string>
-    <string name="osm_wayside_shrine">मार्ग किनारे का मंदिर</string>
-    <string name="osm_wayside_cross">मार्ग किनारे का क्रॉस</string>
+    <string name="osm_wayside_shrine">मार्ग किनारे का पूजा स्थल</string>
+    <string name="osm_wayside_cross">मार्ग किनारे का क्रूस</string>
     <string name="osm_tomb">मकबरा</string>
     <string name="osm_traffic_signals">ट्रैफिक सिग्नल</string>
     <string name="osm_hut">झोपड़ी</string>
@@ -640,16 +640,16 @@
     <string name="osm_photo_booth">फोटो बूथ</string>
     <string name="osm_bbq">बारबेक्यू</string>
     <string name="osm_shop">दुकान</string>
-    <string name="osm_newsagent">अखबार की दुकान</string>
+    <string name="osm_newsagent">अखबार व पत्रिका की दुकान</string>
     <string name="osm_anime">एनिमे की दुकान</string>
     <string name="osm_musical_instrument">वाद्य यंत्र की दुकान</string>
     <string name="osm_vacuum_cleaner">वैक्यूम क्लीनर की दुकान</string>
     <string name="osm_mobile_phone">मोबाइल फोन की दुकान</string>
     <string name="osm_carpet">कालीन की दुकान</string>
     <string name="osm_trade">व्यापार की दुकान</string>
-    <string name="osm_garden_centre">गार्डन सेंटर</string>
+    <string name="osm_garden_centre">गार्डन सेंटर की दुकान</string>
     <string name="osm_florist">फूलों की दुकान</string>
-    <string name="osm_fireplace">चिमनी</string>
+    <string name="osm_fireplace">अंगीठी</string>
     <string name="osm_massage">मालिश</string>
     <string name="osm_herbalist">जड़ी-बूटी की दुकान</string>
     <string name="osm_bag">बैग की दुकान</string>
@@ -660,7 +660,7 @@
     <string name="osm_substation">सबस्टेशन</string>
     <string name="osm_travel_agent">ट्रैवल एजेंट</string>
     <string name="osm_research">अनुसंधान केंद्र</string>
-    <string name="osm_newspaper">अखबार की दुकान</string>
+    <string name="osm_newspaper">अखबार का स्टॉल</string>
     <string name="osm_ammunition">गोला-बारूद की दुकान</string>
     <string name="osm_wildlife_hide">वन्यजीव अवलोकन शाला</string>
     <string name="osm_watchmaker">घड़ीसाज़ की दुकान</string>
@@ -720,7 +720,7 @@
     <string name="osm_skateboard">स्केटबोर्डिंग</string>
     <string name="osm_sailing">नौकायन</string>
     <string name="osm_safety_training">सुरक्षा प्रशिक्षण</string>
-    <string name="osm_rowing">नौकायन (रोइंग)</string>
+    <string name="osm_rowing">रोइंग</string>
     <string name="osm_model_aerodrome">मॉडल हवाई पट्टी</string>
     <string name="osm_korfball">कोर्फ़बॉल</string>
     <string name="osm_ice_stock">आइस स्टॉक</string>
@@ -742,7 +742,7 @@
     <string name="osm_money_lender">साहूकार</string>
     <string name="osm_gift">उपहार की दुकान</string>
     <string name="osm_books">किताबों की दुकान</string>
-    <string name="osm_bookmaker">सट्टेबाज़</string>
+    <string name="osm_bookmaker">सट्टा दुकान</string>
     <string name="osm_photo">फ़ोटो की दुकान</string>
     <string name="osm_craft">हस्तशिल्प की दुकान</string>
     <string name="osm_motorcycle">मोटरसाइकिल की दुकान</string>
@@ -761,7 +761,7 @@
     <string name="osm_baby_goods">शिशु सामग्री की दुकान</string>
     <string name="osm_tea">चाय की दुकान</string>
     <string name="osm_pasta">पास्ता की दुकान</string>
-    <string name="osm_coffee">कॉफ़ी शॉप</string>
+    <string name="osm_coffee">कॉफ़ी की दुकान</string>
     <string name="osm_quango">अर्ध-सरकारी संगठन</string>
     <string name="osm_political_party">राजनीतिक दल</string>
     <string name="osm_association">संघ</string>
@@ -783,7 +783,7 @@
     <string name="osm_builder">भवन निर्माता</string>
     <string name="osm_bookbinder">जिल्दसाज़</string>
     <string name="osm_boatbuilder">नाव निर्माता</string>
-    <string name="osm_brewery">शराब की भट्टी</string>
+    <string name="osm_brewery">बीयर बनाने का कारखाना</string>
     <string name="osm_blacksmith">लोहार</string>
     <string name="osm_basket_maker">टोकरी बनाने वाला</string>
     <string name="osm_greenhouse">ग्रीनहाउस</string>
@@ -822,7 +822,7 @@
     <string name="osm_paddle_tennis">पैडल टेनिस</string>
     <string name="osm_hockey">हॉकी</string>
     <string name="osm_fencing">तलवारबाज़ी</string>
-    <string name="osm_bowls">बॉल्स</string>
+    <string name="osm_bowls">लॉन बॉल्स</string>
     <string name="osm_badminton">बैडमिंटन</string>
     <string name="osm_archery">तीरंदाज़ी</string>
     <string name="osm_american_football">अमेरिकी फ़ुटबॉल</string>
@@ -836,15 +836,15 @@
     <string name="osm_kitchen">रसोई सामान की दुकान</string>
     <string name="osm_interior_decoration">इंटीरियर डेकोरेशन की दुकान</string>
     <string name="osm_houseware">घरेलू सामान की दुकान</string>
-    <string name="osm_erotic">वयस्क उत्पाद दुकान</string>
+    <string name="osm_erotic">वयस्क उत्पादों की दुकान</string>
     <string name="osm_beauty">ब्यूटी शॉप</string>
     <string name="osm_wine">वाइन की दुकान</string>
     <string name="osm_dairy">डेयरी की दुकान</string>
-    <string name="osm_cheese">पनीर की दुकान</string>
+    <string name="osm_cheese">चीज़ की दुकान</string>
     <string name="osm_bakery">बेकरी</string>
     <string name="osm_telecommunication">दूरसंचार की दुकान</string>
     <string name="osm_tax">कर कार्यालय</string>
-    <string name="osm_real_estate_agent">रियल एस्टेट एजेंट</string>
+    <string name="osm_real_estate_agent">रियल एस्टेट एजेंसी</string>
     <string name="osm_notary">नोटरी</string>
     <string name="osm_ngo">NGO कार्यालय</string>
     <string name="osm_lawyer">वकील</string>
@@ -865,7 +865,7 @@
     <string name="osm_painter">पेंटर</string>
     <string name="osm_jeweller">आभूषण की दुकान</string>
     <string name="osm_floorer">फ़र्श लगाने वाला</string>
-    <string name="osm_distillery">शराब भट्टी</string>
+    <string name="osm_distillery">डिस्टिलरी</string>
     <string name="osm_carpet_layer">कालीन बिछाने वाला</string>
     <string name="osm_beekeeper">मधुमक्खी पालक</string>
     <string name="osm_public">सार्वजनिक</string>
@@ -918,7 +918,7 @@
     <string name="osm_hardware">हार्डवेयर की दुकान</string>
     <string name="osm_gas">पेट्रोल पंप</string>
     <string name="osm_energy">ऊर्जा कंपनी</string>
-    <string name="osm_doityourself">डीआईवाई दुकान</string>
+    <string name="osm_doityourself">डीआईवाई की दुकान</string>
     <string name="osm_bathroom_furnishing">बाथरूम सामान की दुकान</string>
     <string name="osm_medical_supply">चिकित्सा सामग्री की दुकान</string>
     <string name="osm_variety_store">विविध सामान की दुकान</string>
@@ -964,7 +964,7 @@
     <string name="osm_caravan_site">कारवाँ स्थल</string>
     <string name="osm_weightlifting">भारोत्तोलन सुविधा</string>
     <string name="osm_taekwondo">तायक्वोंडो क्लब</string>
-    <string name="osm_swimming">तरणताल</string>
+    <string name="osm_swimming">स्विमिंग पूल</string>
     <string name="osm_surfing">सर्फ़िंग क्षेत्र</string>
     <string name="osm_skating">स्केटिंग रिंक</string>
     <string name="osm_racquet">रैकेट खेल सुविधा</string>
@@ -1009,7 +1009,7 @@
     <string name="osm_government">सरकारी कार्यालय</string>
     <string name="osm_forestry">वानिकी</string>
     <string name="osm_estate_agent">संपत्ति एजेंट</string>
-    <string name="osm_spring">जलस्रोत</string>
+    <string name="osm_spring">चश्मा</string>
     <string name="osm_golf_course">गोल्फ कोर्स</string>
     <string name="osm_ses_station">आपातकालीन सेवा केंद्र</string>
     <string name="osm_lifeguard_place">लाइफगार्ड चौकी</string>
@@ -1022,7 +1022,7 @@
     <string name="osm_electrician">इलेक्ट्रीशियन</string>
     <string name="osm_dressmaker">दर्जी</string>
     <string name="osm_caterer">केटरर</string>
-    <string name="osm_terrace">छत</string>
+    <string name="osm_terrace">टैरेस</string>
     <string name="osm_toy_shop">खिलौने की दुकान</string>
     <string name="osm_dive_centre">डाइविंग केंद्र</string>
     <string name="osm_swingerclub">स्विंगर क्लब</string>
@@ -1034,7 +1034,7 @@
     <string name="osm_residential">आवासीय क्षेत्र</string>
     <string name="osm_food">खाद्य दुकान</string>
     <string name="osm_waterfall">झरना</string>
-    <string name="osm_boatyard">नाव घाट</string>
+    <string name="osm_boatyard">नाव मरम्मत एवं निर्माण स्थल</string>
     <string name="osm_theme_park">थीम पार्क</string>
     <string name="osm_roundhouse">राउंडहाउस</string>
     <string name="osm_generator">जनरेटर</string>
@@ -1054,7 +1054,7 @@
     <string name="osm_courthouse">न्यायालय</string>
     <string name="osm_bridge">पुल</string>
     <string name="osm_hangar">हैंगर</string>
-    <string name="osm_tower">मीनार</string>
+    <string name="osm_tower">टॉवर</string>
     <string name="osm_attraction">आकर्षण स्थल</string>
     <string name="osm_zoo">चिड़ियाघर</string>
     <string name="osm_gallery">गैलरी</string>
@@ -1094,7 +1094,7 @@
     <string name="osm_archaeological_site">पुरातात्विक स्थल</string>
     <string name="osm_train_station">रेलवे स्टेशन</string>
     <string name="osm_train_station_named">%1$s रेलवे स्टेशन</string>
-    <string name="osm_shrine">तीर्थस्थल</string>
+    <string name="osm_shrine">देवस्थान</string>
     <string name="osm_church">गिरजाघर</string>
     <string name="osm_historic_monument">ऐतिहासिक स्मारक</string>
     <string name="osm_generic_landmark">लैंडमार्क</string>
@@ -1104,7 +1104,7 @@
     <string name="osm_marketplace">बाज़ार</string>
     <string name="osm_fire_station">दमकल केंद्र</string>
     <string name="osm_ruins">खंडहर</string>
-    <string name="osm_weir">बाँध</string>
+    <string name="osm_weir">जल नियंत्रक बांध</string>
     <string name="osm_museum">संग्रहालय</string>
     <string name="osm_mall">मॉल</string>
     <string name="osm_volcano">ज्वालामुखी</string>
@@ -1149,7 +1149,7 @@
     <string name="osm_ice_rink">आइस रिंक</string>
     <string name="osm_manor">जागीर</string>
     <string name="osm_city_gate">नगर द्वार</string>
-    <string name="osm_castle">महल</string>
+    <string name="osm_castle">किला</string>
     <string name="osm_aircraft">विमान</string>
     <string name="osm_digester">डाइजेस्टर</string>
     <string name="osm_sally_port">सैली पोर्ट</string>
@@ -1211,7 +1211,7 @@
     <string name="osm_log">लट्ठा</string>
     <string name="osm_jersey_barrier">जर्सी बैरियर</string>
     <string name="osm_construction_site">निर्माण स्थल</string>
-    <string name="osm_ridge">पर्वत श्रेणी</string>
+    <string name="osm_ridge">कटक</string>
     <string name="osm_nuclear_explosion_site">परमाणु विस्फोट स्थल</string>
     <string name="osm_dyke">तटबंध</string>
     <string name="osm_sump_buster">सम्प बस्टर</string>
@@ -1290,11 +1290,11 @@
     <string name="settings_media_controls_voice_command">वॉइस कमांड</string>
     <string name="settings_media_controls_audio_menu">ऑडियो मेनू</string>
     <string name="voice_cmd_help_response">उपलब्ध वॉइस कमांड:</string>
-    <string name="voice_cmd_listening">सुन रहा/रही हूँ…</string>
-    <string name="voice_cmd_not_recognized">क्षमा करें, मैं कमांड %1$s नहीं ढूँढ सका। वॉइस कमांड %2$s उपलब्ध कमांड सूचीबद्ध करेगा।</string>
-    <string name="voice_cmd_list_routes">मार्ग सूची दिखाएँ</string>
+    <string name="voice_cmd_listening">सुन रहे हैं…</string>
+    <string name="voice_cmd_not_recognized">क्षमा करें, मुझे कमांड %1$s नहीं मिला। वॉइस कमांड %2$s उपलब्ध कमांड सूचीबद्ध करेगा।</string>
+    <string name="voice_cmd_list_routes">मार्ग सूचीबद्ध करें</string>
     <string name="voice_cmd_routes_list">उपलब्ध मार्ग हैं,</string>
-    <string name="voice_cmd_list_markers">मार्कर सूची दिखाएँ</string>
+    <string name="voice_cmd_list_markers">मार्कर सूचीबद्ध करें</string>
     <string name="voice_cmd_markers_list">उपलब्ध मार्कर हैं,</string>
     <string name="voice_cmd_no_routes">कोई मार्ग सहेजा नहीं गया है</string>
     <string name="voice_cmd_no_markers">कोई मार्कर सहेजा नहीं गया है</string>
@@ -1327,7 +1327,7 @@
     <string name="settings_voice_command_microphone">माइक्रोफ़ोन</string>
     <string name="settings_voice_command_microphone_description">वॉइस कमांड के लिए किस माइक्रोफ़ोन का उपयोग करना है, चुनें।</string>
     <string name="battery_optimization_title">पृष्ठभूमि बैटरी उपयोग</string>
-    <string name="battery_optimization_message">Soundscape को तब भी जब आपका फोन लॉक हो तब ऑडियो नेविगेशन प्रदान करते रहने के लिए अप्रतिबंधित बैटरी उपयोग की आवश्यकता होती है। कृपया अगली डायलॉग में इसे अनुमति दें। यदि आप Soundscape को बंद कर देते हैं तो सभी सेवाएँ रुक जाएँगी और यह अब बैटरी का उपयोग नहीं करेगा</string>
+    <string name="battery_optimization_message">आपके फ़ोन के लॉक होने पर भी ऑडियो नेविगेशन प्रदान करते रहने के लिए Soundscape को अप्रतिबंधित बैटरी उपयोग की आवश्यकता होती है। कृपया अगली डायलॉग में इसे अनुमति दें। यदि आप Soundscape को बंद कर देते हैं तो सभी सेवाएँ रुक जाएँगी और यह अब बैटरी का उपयोग नहीं करेगा</string>
     <string name="route_detail_action_start_route_reverse">मार्ग उल्टे क्रम में शुरू करें</string>
     <string name="route_detail_action_start_route_reverse_hint">इस मार्ग को उल्टे क्रम में चलाएँ</string>
     <string name="route_reverse_name">%1$s उल्टे क्रम में</string>
@@ -1339,7 +1339,7 @@
     <string name="settings_relative_directions_degrees">डिग्री</string>
     <string name="settings_relative_directions_left_right">बाएँ/दाएँ</string>
     <string name="callout_settings_position_text">रुचि के स्थानों की कॉलआउट में दूरी और दिशा शामिल करें</string>
-    <string name="callout_settings_position_description">डिफ़ॉल्ट रूप से जब स्थानों की घोषणा की जाती है तो उनमें दूरी या दिशा शामिल नहीं होती। यह सेटिंग उन जानकारीयों को कॉलआउट में जोड़ती है।</string>
+    <string name="callout_settings_position_description">डिफ़ॉल्ट रूप से जब स्थानों की घोषणा की जाती है तो उनमें दूरी या दिशा शामिल नहीं होती। यह सेटिंग उन जानकारियों को कॉलआउट में जोड़ती है।</string>
     <string name="relative_clock_direction">%1$s बजे की दिशा</string>
     <string name="relative_degrees_direction">%1$s डिग्री पर</string>
     <string name="relative_left_right_direction_ahead">आगे</string>
@@ -1380,7 +1380,7 @@
     <string name="bytes_format_gb_a11y">%1$s गीगाबाइट</string>
     <string name="bytes_format_tb">%1$s TB</string>
     <string name="bytes_format_tb_a11y">%1$s टेराबाइट</string>
-    <string name="help_config_voices_content_ios">Soundscape आपके iOS डिवाइस पर Settings ऐप में डाउनलोड की गई किसी भी आवाज़ का उपयोग कर सकता है, सिवाय Siri की आवाज़ों के, जो Soundscape के लिए उपलब्ध नहीं हैं। हम *Enhanced* आवाज़ों में से किसी एक को चुनने की सलाह देते हैं क्योंकि उनकी आवाज़ गुणवत्ता काफी बेहतर होती है; लेकिन ऐसा करने के लिए पहले आपको एक Enhanced आवाज़ डाउनलोड करनी होगी। आप iOS Settings ऐप में जाकर Accessibility &gt; Spoken Content &gt; Voices पर जाकर किसी आवाज़ पर टैप करके आवाज़ डाउनलोड कर सकते हैं। Soundscape ऐप के भीतर, आप वह आवाज़ चुनने के लिए मुख्य मेनू से *\\"सेटिंग्स\\"* पर जाएँ और फिर *\\"आवाज़ें\\"* चुनें।</string>
+    <string name="help_config_voices_content_ios">Soundscape आपके iOS डिवाइस पर Settings ऐप में डाउनलोड की गई किसी भी आवाज़ का उपयोग कर सकता है, सिवाय Siri की आवाज़ों के, जो Soundscape के लिए उपलब्ध नहीं हैं। हम *Enhanced* आवाज़ों में से किसी एक को चुनने की सलाह देते हैं क्योंकि उनकी आवाज़ गुणवत्ता काफी बेहतर होती है; लेकिन ऐसा करने के लिए पहले आपको एक Enhanced आवाज़ डाउनलोड करनी होगी। आप iOS Settings ऐप में जाकर Accessibility &gt; Spoken Content &gt; Voices पर जाकर किसी आवाज़ पर टैप करके आवाज़ डाउनलोड कर सकते हैं। Soundscape ऐप के भीतर, आप वह आवाज़ चुनने के लिए मुख्य मेनू से सेटिंग्स पर जाएँ और फिर *आवाज़ें* चुनें।</string>
     <string name="settings_mix_audio">अन्य ऐप्स के साथ ऑडियो मिलाएँ</string>
     <string name="settings_mix_audio_description">यदि अक्षम किया गया है, तो अन्य ऑडियो ऐप्स पॉज़ हो जाएंगे और लॉक‑स्क्रीन मीडिया नियंत्रण उपलब्ध होंगे।</string>
     <string name="settings_head_tracking">हेड ट्रैकिंग सक्षम करें</string>
