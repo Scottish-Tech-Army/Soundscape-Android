@@ -288,8 +288,6 @@
     <string name="osm_service_road">Vluchtstrook</string>
     <string name="osm_road">Weg</string>
     <string name="osm_highway">Snelweg</string>
-    <string name="osm_highway_named">Snelweg van %1$s</string>
-    <string name="osm_highway_refed">Snelweg %1$s</string>
     <string name="osm_intersection">Kruispunt</string>
     <string name="osm_roundabout">Rotonde</string>
     <string name="osm_highway_ramp">Oprit naar snelweg</string>
@@ -320,8 +318,6 @@
     <string name="osm_gas_station">Benzinepomp</string>
     <string name="osm_bank">Bank</string>
     <string name="osm_atm">Geldautomaat</string>
-    <string name="osm_atm_named">Geldautomaat van %1$s</string>
-    <string name="osm_atm_refed">Geldautomaat %1$s</string>
     <string name="osm_bus_stop">Bushalte</string>
     <string name="osm_bus_stop_named">Bushalte van %1$s</string>
     <string name="osm_recycling_bin">Vuilnisbak</string>

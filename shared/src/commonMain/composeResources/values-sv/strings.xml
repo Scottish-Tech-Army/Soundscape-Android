@@ -288,8 +288,6 @@
     <string name="osm_service_road">Serviceväg</string>
     <string name="osm_road">Väg</string>
     <string name="osm_highway">Motorväg</string>
-    <string name="osm_highway_named">Motorvägen %1$s</string>
-    <string name="osm_highway_refed">Motorväg %1$s</string>
     <string name="osm_intersection">Vägkorsning</string>
     <string name="osm_roundabout">Rondell</string>
     <string name="osm_highway_ramp">Motorvägsramp</string>
@@ -320,8 +318,6 @@
     <string name="osm_gas_station">Bensinstation</string>
     <string name="osm_bank">Bank</string>
     <string name="osm_atm">Bankomat</string>
-    <string name="osm_atm_named">Bankomat vid %1$s</string>
-    <string name="osm_atm_refed">Bankomat %1$s</string>
     <string name="osm_bus_stop">Busshållplats</string>
     <string name="osm_bus_stop_named">Busshållplatsen %1$s</string>
     <string name="osm_recycling_bin">Återvinningskärl</string>
