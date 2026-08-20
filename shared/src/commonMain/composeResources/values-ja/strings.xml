@@ -288,8 +288,6 @@
     <string name="osm_service_road">連絡道路</string>
     <string name="osm_road">道路</string>
     <string name="osm_highway">車道</string>
-    <string name="osm_highway_named">%1$s 車道</string>
-    <string name="osm_highway_refed">車道 %1$s</string>
     <string name="osm_intersection">交差点</string>
     <string name="osm_roundabout">環状交差点</string>
     <string name="osm_highway_ramp">接続道路</string>
@@ -320,8 +318,6 @@
     <string name="osm_gas_station">ガソリン スタンド</string>
     <string name="osm_bank">銀行</string>
     <string name="osm_atm">ATM</string>
-    <string name="osm_atm_named">%1$s ATM</string>
-    <string name="osm_atm_refed">ATM %1$s</string>
     <string name="osm_bus_stop">バス停</string>
     <string name="osm_bus_stop_named">%1$s バス停</string>
     <string name="osm_recycling_bin">リサイクル用ごみ箱</string>

@@ -1301,10 +1301,6 @@ We're still working hard on improving the app, so please report any problems tha
     <string name="osm_transit">Transit Route</string>
     <!-- Open Street Map term highway. A major public road or motorway.-->
     <string name="osm_highway">Highway</string>
-    <!-- Open Street Map term highway_named. The name label for a highway.-->
-    <string name="osm_highway_named">Highway Name</string>
-    <!-- Open Street Map term highway_refed. The reference code or number for a highway.-->
-    <string name="osm_highway_refed">Highway Reference</string>
     <!-- Open Street Map term intersection. A point where two or more ways meet.-->
     <string name="osm_intersection">Intersection</string>
     <!-- Open Street Map term roundabout. A circular junction directing traffic around a central island.-->
@@ -1367,10 +1363,6 @@ We're still working hard on improving the app, so please report any problems tha
     <string name="osm_bank">Bank</string>
     <!-- Open Street Map term atm. An automated teller machine for cash services.-->
     <string name="osm_atm">ATM</string>
-    <!-- Open Street Map term atm_named. An ATM with a specific name or operator.-->
-    <string name="osm_atm_named">Named ATM</string>
-    <!-- Open Street Map term atm_refed. An ATM identified by a reference code.-->
-    <string name="osm_atm_refed">ATM Reference</string>
     <!-- Open Street Map term bus_stop. A designated place where buses stop to pick up passengers.-->
     <string name="osm_bus_stop">Bus Stop</string>
     <!-- Open Street Map term recycling. A point for depositing recyclable materials.-->

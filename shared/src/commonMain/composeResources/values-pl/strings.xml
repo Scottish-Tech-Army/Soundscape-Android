@@ -318,8 +318,6 @@
     <string name="osm_service_road">Droga serwisowa</string>
     <string name="osm_road">Droga</string>
     <string name="osm_highway">Droga</string>
-    <string name="osm_highway_named">%1$s — droga</string>
-    <string name="osm_highway_refed">Droga %1$s</string>
     <string name="osm_intersection">Skrzyżowanie</string>
     <string name="osm_roundabout">Rondo</string>
     <string name="osm_highway_ramp">Zjazd z drogi</string>
@@ -350,8 +348,6 @@
     <string name="osm_gas_station">Stacja paliw</string>
     <string name="osm_bank">Bank</string>
     <string name="osm_atm">ATM</string>
-    <string name="osm_atm_named">%1$s ATM</string>
-    <string name="osm_atm_refed">ATM %1$s</string>
     <string name="osm_bus_stop">Przystanek autobusowy</string>
     <string name="osm_bus_stop_named">Przystanek autobusowy – %1$s</string>
     <string name="osm_recycling_bin">Kosz na recykling</string>

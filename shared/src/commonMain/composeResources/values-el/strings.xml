@@ -288,8 +288,6 @@
     <string name="osm_service_road">Βοηθητική οδός</string>
     <string name="osm_road">Δρόμος</string>
     <string name="osm_highway">Αυτοκινητόδρομος</string>
-    <string name="osm_highway_named">Αυτοκινητόδρομος %1$s</string>
-    <string name="osm_highway_refed">Αυτοκινητόδρομος %1$s</string>
     <string name="osm_intersection">Διασταύρωση</string>
     <string name="osm_roundabout">Κυκλικός κόμβος</string>
     <string name="osm_highway_ramp">Έξοδος αυτοκινητόδρομου</string>
@@ -320,8 +318,6 @@
     <string name="osm_gas_station">Πρατήριο καυσίμων</string>
     <string name="osm_bank">Τράπεζα</string>
     <string name="osm_atm">ATM</string>
-    <string name="osm_atm_named">%1$s ATM</string>
-    <string name="osm_atm_refed">ATM %1$s</string>
     <string name="osm_bus_stop">Στάση</string>
     <string name="osm_bus_stop_named">%1$s Στάση</string>
     <string name="osm_recycling_bin">Κάδος ανακύκλωσης</string>

@@ -249,8 +249,6 @@
     <string name="osm_service_road">Подъездная дорога</string>
     <string name="osm_road">Дорога</string>
     <string name="osm_highway">Шоссе</string>
-    <string name="osm_highway_named">Шоссе %1$s</string>
-    <string name="osm_highway_refed">Шоссе %1$s</string>
     <string name="osm_intersection">Перекрёсток</string>
     <string name="osm_roundabout">Круглое движение</string>
     <string name="osm_highway_ramp">Съезд с шоссе</string>
@@ -278,8 +276,6 @@
     <string name="osm_restaurant">Ресторан</string>
     <string name="osm_telephone">Телефон</string>
     <string name="osm_gas_station">Заправка</string>
-    <string name="osm_atm_named">Банкомат %1$s</string>
-    <string name="osm_atm_refed">Банкомат %1$s</string>
     <string name="osm_bus_stop">Автобусная остановка</string>
     <string name="osm_bus_stop_named">Автобусная остановка %1$s</string>
     <string name="osm_recycling_bin">Контейнер для сбора мусора</string>

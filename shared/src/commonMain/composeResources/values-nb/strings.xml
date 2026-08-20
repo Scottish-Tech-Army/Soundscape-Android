@@ -288,8 +288,6 @@
     <string name="osm_service_road">Stikkvei</string>
     <string name="osm_road">Vei</string>
     <string name="osm_highway">Motorvei</string>
-    <string name="osm_highway_named">%1$s-motorvei</string>
-    <string name="osm_highway_refed">Motorvei %1$s</string>
     <string name="osm_intersection">Veikryss</string>
     <string name="osm_roundabout">Rundkjøring</string>
     <string name="osm_highway_ramp">Motorveirampe</string>
@@ -320,8 +318,6 @@
     <string name="osm_gas_station">Bensinstasjon</string>
     <string name="osm_bank">Bank</string>
     <string name="osm_atm">Minibank</string>
-    <string name="osm_atm_named">%1$s-minibank</string>
-    <string name="osm_atm_refed">Minibank %1$s</string>
     <string name="osm_bus_stop">Busstopp</string>
     <string name="osm_bus_stop_named">%1$s-busstopp</string>
     <string name="osm_recycling_bin">Søppelkasse</string>

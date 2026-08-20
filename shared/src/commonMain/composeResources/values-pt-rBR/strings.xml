@@ -288,8 +288,6 @@
     <string name="osm_service_road">Via Lateral</string>
     <string name="osm_road">Rua</string>
     <string name="osm_highway">Rodovia</string>
-    <string name="osm_highway_named">Rodovia %1$s</string>
-    <string name="osm_highway_refed">Rodovia %1$s</string>
     <string name="osm_intersection">Cruzamento</string>
     <string name="osm_roundabout">Rotatória</string>
     <string name="osm_highway_ramp">Acesso a Rodovia</string>
@@ -320,8 +318,6 @@
     <string name="osm_gas_station">Posto de Gasolina</string>
     <string name="osm_bank">Agência bancária</string>
     <string name="osm_atm">Caixa Eletrônico</string>
-    <string name="osm_atm_named">Caixa Eletrônico - %1$s</string>
-    <string name="osm_atm_refed">Caixa Eletrônico - %1$s</string>
     <string name="osm_bus_stop">Ponto de Ônibus</string>
     <string name="osm_bus_stop_named">%1$s Ponto de Ônibus</string>
     <string name="osm_recycling_bin">Lixeira</string>
