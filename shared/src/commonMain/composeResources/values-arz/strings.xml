@@ -345,7 +345,11 @@
     <string name="osm_gas_station">محطة بنزين</string>
     <string name="osm_bank">بنك</string>
     <string name="osm_atm">أجهزة الصراف الآلي</string>
+<<<<<<< HEAD
     <string name="osm_bus_stop_named">محطة حافلات %1$s</string>
+=======
+    <string name="osm_bus_stop_named">محطة الحافلات\n\n%1$s</string>
+>>>>>>> 088ace888 (Remove unused osm_highway_named/refed and osm_atm_named/refed strings)
     <string name="osm_recycling_bin">سلة المهملات</string>
     <string name="osm_fountain">نافورة</string>
     <string name="osm_place_of_worship">مكان العبادة</string>
