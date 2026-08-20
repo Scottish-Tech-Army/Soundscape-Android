@@ -106,7 +106,7 @@
     <string name="filter_groceries">بقالی و سوپرمارکت</string>
     <string name="filter_banks">بانک و دستگاه خودپرداز</string>
     <string name="callouts_panel_title">آشنایی با محیط</string>
-    <string name="callouts_allow_callouts">اجازه به اعلان‌ها</string>
+    <string name="callouts_allow_callouts">فعال‌سازی اعلان‌ها</string>
     <string name="callouts_places_and_landmarks">مکان‌ها و نقاط شاخص</string>
     <string name="callouts_mobility">تحرک</string>
     <string name="callouts_audio_beacon">فاصله تا جهت‌نمای صوتی</string>
@@ -184,9 +184,9 @@
     <string name="directions_cardinal_west">غرب</string>
     <string name="directions_cardinal_north_west">شمال غربی</string>
     <string name="directions_cardinal_north_abb">ش</string>
-    <string name="directions_cardinal_north_east_abb">ش‌ش‌ق</string>
-    <string name="directions_cardinal_east_abb">ش‌ق</string>
-    <string name="directions_cardinal_south_east_abb">ج‌ش‌ق</string>
+    <string name="directions_cardinal_north_east_abb">ش‌ق</string>
+    <string name="directions_cardinal_east_abb">ق</string>
+    <string name="directions_cardinal_south_east_abb">ج‌ق</string>
     <string name="directions_cardinal_south_abb">ج</string>
     <string name="directions_cardinal_south_west_abb">ج‌غ</string>
     <string name="directions_cardinal_west_abb">غ</string>
@@ -197,7 +197,7 @@
     <string name="distance_format_miles">%1$s مایل</string>
     <string name="ui_action_button_my_location">موقعیت\nمکانی من</string>
     <string name="ui_action_button_my_location_acc_hint">دربارهٔ موقعیت مکانی فعلی خود بشنوید</string>
-    <string name="ui_action_button_nearby_markers">نشانههای\nنزدیک</string>
+    <string name="ui_action_button_nearby_markers">نشانه‌های\nنزدیک</string>
     <string name="ui_action_button_nearby_markers_acc_hint">دربارهٔ مکان‌های نزدیک که نشانه‌گذاری کرده‌اید بشنوید</string>
     <string name="ui_action_button_around_me">اطراف\nمن</string>
     <string name="ui_action_button_around_me_acc_hint">دربارهٔ مکان‌ها در چهار جهت اطراف‌تان بشنوید</string>
@@ -235,7 +235,7 @@
     <string name="terms_of_use_message">استفاده‌ی شما از ساند‌اسکیپ تابع شرایط %1$s و شرایط مصرح در زیر می‌باشد (که در مجموع *«شرایط استفاده»* نامیده می‌شود).</string>
     <string name="terms_of_use_service_agreement">Scottish Tech Army Services Agreement</string>
     <string name="terms_of_use_accept_checkbox_acc_label">پذیرش شرایط استفاده</string>
-    <string name="terms_of_use_medical_safety_disclaimer">شما تأیید می‌نمایید که ساند‌اسکیپ (۱( با هدف استفاده به‌عنوان یک وسیله‌ی پزشکی تولید و ارائه نگردیده است و (۲) نباید به‌عنوان یک ابزار جایگزین برای توصیه‌های حرفه‌ای پزشکی یا اقدامات تشخیصی و درمانی مورد استفاده قرار گیرد.\n\nهشدار ایمنی\n\nساند‌اسکیپ یک ابزار مسیریابی کمکی می‌باشد و نباید جای مهارت‌های جهت‌یابی، آگاهی محیطی و رجوع به عقل سلیم را بگیرد. هنگام تردد در محیط پیرامون خود، همواره جانب احتیاط را رعایت نمایید زیرا داده‌های نقشه‌برداری که در ساند‌اسکیپ مورد استفاده قرار می‌گیرد، از یک برنامه‌ی ثالث دریافت می‌شود و بنابراین، ممکن است در میزان دقت اطلاعاتی که به شما ارائه می‌گردد محدودیت‌هایی وجود داشته باشد.</string>
+    <string name="terms_of_use_medical_safety_disclaimer">شما تأیید می‌نمایید که ساند‌اسکیپ (۱) با هدف استفاده به‌عنوان یک وسیله‌ی پزشکی تولید و ارائه نگردیده است و (۲) نباید به‌عنوان یک ابزار جایگزین برای توصیه‌های حرفه‌ای پزشکی یا اقدامات تشخیصی و درمانی مورد استفاده قرار گیرد.\n\nهشدار ایمنی\n\nساند‌اسکیپ یک ابزار مسیریابی کمکی می‌باشد و نباید جای مهارت‌های جهت‌یابی، آگاهی محیطی و رجوع به عقل سلیم را بگیرد. هنگام تردد در محیط پیرامون خود، همواره جانب احتیاط را رعایت نمایید زیرا داده‌های نقشه‌برداری که در ساند‌اسکیپ مورد استفاده قرار می‌گیرد، از یک برنامه‌ی ثالث دریافت می‌شود و بنابراین، ممکن است در میزان دقت اطلاعاتی که به شما ارائه می‌گردد محدودیت‌هایی وجود داشته باشد.</string>
     <string name="first_launch_soundscape_language">زبان ساند‌اسکیپ</string>
     <string name="first_launch_soundscape_language_text">زبانی را که می‌خواهید ساند‌اسکیپ از آن استفاده کند انتخاب نمایید. شما همواره می‌توانید انتخاب خود را در قسمت تنظیمات اپلیکیشن تغییر دهید.</string>
     <string name="first_launch_welcome_title">خوش آمدید!</string>
@@ -274,8 +274,8 @@
     <string name="help_text_automatic_callouts_when_1">**آشنایی با یک محل جدید:**\n\nاعلان‌های خودکار را فعال کرده و شروع به حرکت نمایید تا از فروشگاه‌ها، رستوران‌ها و موارد مشابه که از کنارشان عبور می‌کنید مطلع شوید.</string>
     <string name="help_text_automatic_callouts_when_2">**رفتن به یک مکان خاص:**\n\nوقتی در حال حرکت به‌سمت یک مکان معین هستید، اطلاع از تقاطع‌ها به‌شکل اعلان‌های خودکار می‌تواند بسیار مفید باشد. پیام‌هایی که در قالب اعلان تقاطع در اختیار شما قرار می‌گیرد، شما را از نقشه‌ی کلی تقاطع آگاه می‌سازد و پس از عبور از تقاطع به شما می‌گوید که اکنون در کدام خیابان قرار دارید.</string>
     <string name="help_text_automatic_callouts_when_3">**وقتی به سکوت نیاز دارید:**\n\nهنگامی که قصد دارید از خیابان عبور کنید یا به هر دلیلی می‌خواهید اپلیکیشن ساکت شود، می‌توانید اعلان‌ها را خاموش نمایید. وقتی اعلان‌ها خاموش باشد، اپلیکیشن تنها زمانی به شما اطلاعات می‌دهد که خودتان روی یکی از دکمه‌های *«موقعیت مکانی من»*، *«نشانه‌های نزدیک»*، *«اطراف من»* یا *«مقابل من»* ضربه بزنید.</string>
-    <string name="help_text_automatic_callouts_how_1">**روشن یا خاموش کردن اعلان‌ها:**\n\nخاموش کردن اعلان‌ها باعث بی‌صدا شدن اپلیکیشن می‌شود. برای روشن یا خاموش کردن اعلان‌ها به بخش *«مدیریت اعلان‌ها»* در صفحه‌ی *«تنظیمات»* مراجعه کنید و با زدن کلید تغییر وضعیت *«اجازه به اعلان‌ها»* آنها را روشن یا خاموش نمایید. اگر هدفون شما دکمه‌های کنترل رسانه‌ای دارد، می‌توانید با استفاده از فرمان *«پرش به جلو»* (دو بار ضربه و نگه‌داشتن) نیز اعلان‌ها را روشن یا خاموش کنید. همچنین، می‌توانید با استفاده از دکمه‌ی *«حالت خواب»* در گوشهٔ بالای سمت چپ صفحه‌ی اصلی، از پخش اعلان‌ها جلوگیری کنید تا زمانی که خودتان اپ را دوباره بیدار نمایید.</string>
-    <string name="help_text_automatic_callouts_how_2">**مدیریت اعلان‌هایی که می‌شنوید:**\n\nبرای انتخاب نوع مواردی که ساند‌اسکیپ به‌صورت خودکار اعلام می‌کند، از منوی صفحهٔ اصلی وارد صفحهٔ *«تنظیمات»* شوید. بخش *«مدیریت اعلان‌ها»* در صفحهٔ *«تنظیمات»* فهرستی از انواع مواردی را که اپ می‌تواند اعلام کند در خود دارد. هر مورد دارای یک دکمهٔ تغییر وضعیت است که می‌توانید آن را روشن یا خاموش کنید. اگر می‌خواهید همهٔ اعلان‌ها را خاموش نمایید، روی کلید تغییر وضعیت *«اجازه به اعلان‌ها»* در بالای فهرست ضربه بزنید.</string>
+    <string name="help_text_automatic_callouts_how_1">**روشن یا خاموش کردن اعلان‌ها:**\n\nخاموش کردن اعلان‌ها باعث بی‌صدا شدن اپلیکیشن می‌شود. برای روشن یا خاموش کردن اعلان‌ها به بخش *«مدیریت اعلان‌ها»* در صفحه‌ی *«تنظیمات»* مراجعه کنید و با زدن کلید تغییر وضعیت *«فعال‌سازی اعلان‌ها»* آنها را روشن یا خاموش نمایید. اگر هدفون شما دکمه‌های کنترل رسانه‌ای دارد، می‌توانید با استفاده از فرمان *«پرش به جلو»* (دو بار ضربه و نگه‌داشتن) نیز اعلان‌ها را روشن یا خاموش کنید. همچنین، می‌توانید با استفاده از دکمه‌ی *«حالت خواب»* در گوشهٔ بالای سمت چپ صفحه‌ی اصلی، از پخش اعلان‌ها جلوگیری کنید تا زمانی که خودتان اپ را دوباره بیدار نمایید.</string>
+    <string name="help_text_automatic_callouts_how_2">**مدیریت اعلان‌هایی که می‌شنوید:**\n\nبرای انتخاب نوع مواردی که ساند‌اسکیپ به‌صورت خودکار اعلام می‌کند، از منوی صفحهٔ اصلی وارد صفحهٔ *«تنظیمات»* شوید. بخش *«مدیریت اعلان‌ها»* در صفحهٔ *«تنظیمات»* فهرستی از انواع مواردی را که اپ می‌تواند اعلام کند در خود دارد. هر مورد دارای یک دکمهٔ تغییر وضعیت است که می‌توانید آن را روشن یا خاموش کنید. اگر می‌خواهید همهٔ اعلان‌ها را خاموش نمایید، روی کلید تغییر وضعیت *«فعال‌سازی اعلان‌ها»* در بالای فهرست ضربه بزنید.</string>
     <string name="help_text_my_location_what">دکمه‌ی *«موقعیت مکانی من»* به‌سرعت اطلاعاتی را در اختیار شما قرار می‌دهد که می‌توانید به‌کمک آن متوجه شوید در حال حاضر در چه نقطه‌ای قرار دارید. شما می‌توانید با استفاده از این قابلیت به اطلاعاتی از قبیل جهتی که رو به آن ایستاده‌اید، خیابان‌ها و تقاطع‌هایی که در نزدیکی شما واقع شده‌اند و نقاط شاخصی که در اطرافتان قرار دارد دست پیدا کنید.</string>
     <string name="help_text_my_location_when">قابلیت *«موقعیت مکانی من»* زمانی مفید است که شما می‌خواهید بدانید کجا هستید یا رو به کدام جهت اصلی ایستاده‌اید.</string>
     <string name="help_text_my_location_how">پیش از آنکه روی دکمه‌ی *«موقعیت مکانی من»* ضربه بزنید، گوشی خود را به حالت افقی نگه دارید؛ به‌گونه‌ای که صفحه‌ی نمایش گوشی رو به آسمان و جلوی گوشی در جهتی باشد که شما رو به آن ایستاده‌اید. این کار را هنگام استفاده از هر چهار دکمه‌ی پایین صفحه‌ی اصلی انجام دهید. در این حالت، گوشی شما مانند یک قطب‌نما عمل کرده و به اپلیکیشن می‌گوید که شما رو به کدام جهت ایستاده‌اید. حالا کافیست روی دکمه‌ی *«موقعیت مکانی من»* ضربه بزنید تا ساند‌اسکیپ به شما بگوید کجا هستید.</string>
@@ -327,9 +327,9 @@
     <string name="osm_building_entrance">ورودی ساختمان</string>
     <string name="osm_assembly_point">نقطه‌ی تجمع</string>
     <string name="osm_cycle_barrier">مانع دوچرخه</string>
-    <string name="osm_turnstile">گیت گردان</string>
+    <string name="osm_turnstile">دروازه گردان</string>
     <string name="osm_cattle_grid">محافظ میله‌ای جلوگیری از عبور دام</string>
-    <string name="osm_gate">گیت</string>
+    <string name="osm_gate">دروازه</string>
     <string name="osm_restroom">توالت عمومی</string>
     <string name="osm_parking_lot">پارکینگ</string>
     <string name="osm_parking_entrance">ورودی پارکینگ</string>
@@ -395,7 +395,7 @@
     <string name="faq_miss_a_callout_answer">ساند‌اسکیپ مجموعه‌ای از اعلان‌های اخیر شما را ذخیره می‌کند تا شما بتوانید در صورت نیاز به آنها مراجعه نمایید. برای دسترسی به فهرست اعلان‌های اخیر، روی نوار جستجو در صفحه‌ی اصلی ساند‌اسکیپ ضربه بزنید. شما می‌توانید در پایین این صفحه فهرست اعلان‌های اخیر را مشاهده نمایید.</string>
     <string name="faq_section_how_soundscape_works">ساند‌اسکیپ چگونه کار می‌کند؟</string>
     <string name="faq_supported_phones_question">ساند‌اسکیپ روی چه گوشی‌هایی اجرا می‌شود؟</string>
-    <string name="faq_supported_phones_answer">نسخه‌ی تحت اندروید ساند‌اسکیپ در حال حاضر برای گوشی‌هایی که اندروید ۱۱ یا جدید‌تر را اجرا می‌کنند در دسترس است.</string>
+    <string name="faq_supported_phones_answer">ساند‌اسکیپ در حال حاضر برای آیفون‌هایی که iOS 16 یا نسخه‌های جدیدتر را اجرا می‌کنند و برای گوشی‌های اندرویدی که اندروید ۱۱ یا نسخه‌های جدیدتر را اجرا می‌کنند در دسترس است.</string>
     <string name="faq_supported_headsets_question">برای کار با ساند‌اسکیپ باید از چه نوع هندزفری‌هایی استفاده کنم؟</string>
     <string name="faq_supported_headsets_answer">انتخاب نوع هندزفری برای استفاده با ساند‌اسکیپ به ترجیحات شخصی افراد باز می‌گردد و هر گزینه‌ای مزایا و معایب خاص خود را دارد. تنها امر الزامی، استفاده از یک هندزفری استریو می‌باشد که امکان بهره‌گیری شما از اعلان‌های سه‌بعدی ساند‌اسکیپ را فراهم سازد.</string>
     <string name="faq_battery_impact_question">استفاده از ساند‌اسکیپ چه تأثیری روی باتری گوشی من دارد؟</string>
@@ -469,7 +469,7 @@
     <string name="permissions_button">مجوز‌ها را در قسمت تنظیمات اپلیکیشن تغییر دهید</string>
     <string name="menu_contact_support">تماس با پشتیبانی</string>
     <string name="settings_show_map">نمایش نقشه روی صفحه</string>
-    <string name="settings_search_results_language">جستجوی زبان</string>
+    <string name="settings_search_results_language">زبان جستجو</string>
     <string name="route_detail_action_previous_disabled_hint">غیرفعال است زیرا مسیر هم‌اکنون در ابتدا قرار دارد</string>
     <string name="route_detail_action_next_disabled_hint">غیرفعال است زیرا مسیر هم‌اکنون در انتها قرار دارد</string>
     <string name="osm_entrance">ورودی</string>
@@ -521,7 +521,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">نشانه‌ها و مسیرها حذف شدند</string>
     <string name="new_version_info_text">اطلاعات نسخه‌ی جدید</string>
     <string name="new_version_info_completed">بستن پنجره‌ی اطلاعات نسخه‌ی جدید</string>
-    <string name="new_version_info_details">این اولین نسخهٔ تولیدی Soundscape است. ما همچنان سخت در تلاش برای بهبود اپ هستیم؛ بنابراین لطفاً هر مشکلی را، هرچند کوچک، از طریق گزینهٔ *تماس با پشتیبانی* در منوی اصلی گزارش دهید.</string>
+    <string name="new_version_info_details">این اولین نسخهٔ تولیدی ساند‌اسکیپ است. ما همچنان سخت در تلاش برای بهبود اپ هستیم…</string>
     <string name="menu_open_source_licenses">مجوزهای متن‌باز</string>
     <string name="osm_tag_ferry_terminal">پایانه کشتی</string>
     <string name="osm_tag_ferry_terminal_named">%1$s پایانه کشتی</string>
@@ -669,7 +669,7 @@
     <string name="osm_billiards">بیلیارد</string>
     <string name="osm_toys">فروشگاه اسباب‌بازی</string>
     <string name="osm_pyrotechnics">فروشگاه آتش‌بازی</string>
-    <string name="osm_laundry">لاندری</string>
+    <string name="osm_laundry">لباسشویی</string>
     <string name="osm_funeral_directors">دفتر خدمات تشییع جنازه</string>
     <string name="osm_dry_cleaning">خشکشویی</string>
     <string name="osm_copyshop">مرکز تکثیر و چاپ</string>
@@ -1404,8 +1404,8 @@
     <string name="directions_transit_stop_street_locality_bound">%1$s، %2$s %3$s</string>
     <string name="directions_transit_stop_common_name_bound">%1$s %2$s</string>
     <string name="directions_transit_stop_with_landmark">%1$s نزدیک %2$s</string>
-    <string name="directions_junction_with_ref">خروجی %1$s</string>
-    <string name="directions_junction_with_ref_and_name">خروجی %1$s، %2$s</string>
+    <string name="directions_junction_with_ref">تقاطع %1$s</string>
+    <string name="directions_junction_with_ref_and_name">تقاطع %1$s، %2$s</string>
     <string name="directions_on_road">در %1$s</string>
     <string name="directions_on_road_and_settlement">در %1$s و نزدیک %2$s</string>
     <string name="directions_on_road_at_junction">در %1$s، %2$s</string>
