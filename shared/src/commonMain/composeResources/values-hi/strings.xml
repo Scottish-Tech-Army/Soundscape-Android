@@ -411,7 +411,7 @@
     <string name="notification_text">Soundscape की स्थान सेवा फोन लॉक होने पर भी चलती रहती है।</string>
     <string name="cancel_search_contentDescription">खोज रद्द करें</string>
     <string name="menu_manage_audio">ऑडियो</string>
-    <string name="menu_manage_language">भाषा और क्षेत्र </string>
+    <string name="menu_manage_locale">भाषा और क्षेत्र </string>
     <string name="menu_manage_accessibility">पहुँच-योग्यता</string>
     <string name="settings_theme_light_dark">लाइट या डार्क थीम</string>
     <string name="settings_theme_auto">स्वचालित</string>

@@ -54,7 +54,7 @@ import org.scottishtecharmy.soundscape.resources.menu_advanced_markers_and_route
 import org.scottishtecharmy.soundscape.resources.menu_manage_accessibility
 import org.scottishtecharmy.soundscape.resources.menu_manage_audio
 import org.scottishtecharmy.soundscape.resources.menu_manage_callouts
-import org.scottishtecharmy.soundscape.resources.menu_manage_language
+import org.scottishtecharmy.soundscape.resources.menu_manage_locale
 import org.scottishtecharmy.soundscape.resources.menu_manage_search
 import org.scottishtecharmy.soundscape.resources.menu_media_controls
 import org.scottishtecharmy.soundscape.resources.offline_map_storage_title
@@ -126,11 +126,6 @@ fun SharedSettingsScreen(
      * the app (Android relaunches the activity, iOS exits via `exit(0)`).
      */
     onResetSettings: (() -> Unit)? = null,
-    /**
-     * Persists the user's per-app language choice. When non-null, the Language
-     * section renders a [LanguageDropDownMenu] reflecting the current locale.
-     */
-    onSetApplicationLocale: ((String?) -> Unit)? = null,
     /**
      * Beacon style audio preview. When all three are non-null the beacon style
      * row opens a dialog that asks the platform to play a temporary beacon at
@@ -560,7 +555,7 @@ fun SharedSettingsScreen(
             // ── Language Section ──────────────────────────────────────────
             item(key = "header_language") {
                 ExpandableSectionHeader(
-                    title = stringResource(Res.string.menu_manage_language),
+                    title = stringResource(Res.string.menu_manage_locale),
                     expanded = expandedSection.value == "language",
                     onToggle = {
                         expandedSection.value =
@@ -599,25 +594,6 @@ fun SharedSettingsScreen(
                         )
                     },
                 )
-
-                if (onSetApplicationLocale != null) {
-                    item(key = "language_picker") {
-                        // Re-derive on each show so that returning to Settings
-                        // after a per-app locale change reflects the new choice.
-                        val selectedIndex = remember(expandedSection.value) {
-                            indexOfBestLanguageMatch(getAppLocale() ?: getSystemLocale())
-                        }
-                        Column(modifier = expandedSectionModifier.fillMaxWidth().mediumPadding()) {
-                            LanguageDropDownMenu(
-                                allLanguages = appSupportedLanguages,
-                                onLanguageSelected = { language ->
-                                    onSetApplicationLocale("${language.code}-${language.region}")
-                                },
-                                selectedLanguageIndex = selectedIndex,
-                            )
-                        }
-                    }
-                }
 
                 platformLanguageContent?.invoke(this)
             }

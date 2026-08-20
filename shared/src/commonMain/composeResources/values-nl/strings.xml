@@ -1260,7 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">Nabijgelegen plaatsen zoals winkels en restaurants</string>
     <string name="callouts_mobility_description">Informatie over kruispunten en vervoer</string>
     <string name="callouts_audio_beacon_description">Updates over de afstand tot het audiobaken wanneer dit is ingesteld</string>
-    <string name="menu_manage_language">Taal en regio </string>
+    <string name="menu_manage_locale">Taal en regio </string>
     <string name="settings_search_results_language_description">Online zoeken kan resultaten in de lokale taal tonen, of geforceerd resultaten in het Engels, Frans of Duits teruggeven.</string>
     <string name="language_mismatch_title">Nieuwe taal beschikbaar</string>
     <string name="language_mismatch_message">Uw telefoon is ingesteld op %1$s en die taal is nu beschikbaar in Soundscape. Wilt u dat Soundscape overschakelt naar %1$s?</string>

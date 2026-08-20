@@ -1260,7 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">Locais nas proximidades, como lojas e restaurantes</string>
     <string name="callouts_mobility_description">Informações sobre cruzamentos e transportes</string>
     <string name="callouts_audio_beacon_description">Atualizações sobre a distância até ao Sinal de Áudio quando este estiver definido</string>
-    <string name="menu_manage_language">Idioma e Região </string>
+    <string name="menu_manage_locale">Idioma e Região </string>
     <string name="settings_search_results_language_description">A pesquisa online pode usar o idioma local do resultado ou ser forçada a devolver resultados em inglês, francês ou alemão.</string>
     <string name="language_mismatch_title">Novo idioma disponível</string>
     <string name="language_mismatch_message">O seu telemóvel está definido para %1$s e esse idioma já está disponível no Soundscape. Deseja que o Soundscape passe a utilizar %1$s?</string>

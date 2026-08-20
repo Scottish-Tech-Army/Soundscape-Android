@@ -411,7 +411,7 @@
     <string name="notification_text">Serviciul de localizare Soundscape rulează chiar și atunci când telefonul este blocat.</string>
     <string name="cancel_search_contentDescription">Anulează căutarea</string>
     <string name="menu_manage_audio">Audio</string>
-    <string name="menu_manage_language">Limbă și regiune </string>
+    <string name="menu_manage_locale">Limbă și regiune </string>
     <string name="menu_manage_accessibility">Accesibilitate</string>
     <string name="settings_theme_light_dark">Temă deschisă sau întunecată</string>
     <string name="settings_theme_auto">Automat</string>

@@ -985,8 +985,8 @@
     <string name="cancel_search_contentDescription">Cancel search</string>
     <!-- Title for settings page group of audio settings -->
     <string name="menu_manage_audio">Audio</string>
-    <!-- Title for settings page group of language settings -->
-    <string name="menu_manage_language">Language and Region </string>
+    <!-- Title for settings page group of locale settings -->
+    <string name="menu_manage_locale">Locale</string>
     <!-- Title for settings page group of accessibility settings -->
     <string name="menu_manage_accessibility">Accessibility</string>
     <!-- Title for settings page group of settings for the media controls -->
@@ -1189,14 +1189,6 @@
     <string name="street_description_relative_after">On %1$s just after %2$s</string>
     <!-- Callout text when at an intersection where we don't know which road we're on -->
     <string name="street_description_intersection">Near intersection of %1$s</string>
-    <!-- Title for language mismatch dialog -->
-    <string name="language_mismatch_title">New language available</string>
-    <!-- Message for language mismatch dialog. %1$s is the phone language name -->
-    <string name="language_mismatch_message">Your phone is set to %1$s and that language is now available in Soundscape. Would you like to switch Soundscape to use %1$s?</string>
-    <!-- Button to switch app language in the language mismatch dialog. %1$s is the language name -->
-    <string name="language_mismatch_switch">Switch to %1$s</string>
-    <!-- Button to keep the current app language in the language mismatch dialog -->
-    <string name="language_mismatch_keep">Keep current language</string>
 
     <!-- Title for dialog which explains what is new in the current release -->
     <string name="new_version_info_text">New release information</string>

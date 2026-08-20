@@ -97,7 +97,6 @@ data class AppCallbacks(
             LngLatAlt()
         )
     },
-    val onSetApplicationLocale: (String?) -> Unit = {},
     val onGetLanguageMismatch: () -> Language? = { null },
     val provideLocationProvider: (() -> LocationProvider)? = null,
     val getOpenSourceLicensesJson: (() -> String)? = null,

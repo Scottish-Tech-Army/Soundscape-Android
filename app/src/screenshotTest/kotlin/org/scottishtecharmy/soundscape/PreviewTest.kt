@@ -380,8 +380,6 @@ private fun BaseHomePreview(state: HomeState) {
         permissionsRequired = false,
         goToAppSettings = {},
         onSleep = {},
-        onSetApplicationLocale = {},
-        getLanguageMismatch = { null },
     )
 }
 
@@ -528,18 +526,6 @@ fun NewReleaseDialogPreview() {
     )
 }
 
-@Preview
-@Composable
-fun LanguageMismatchDialogPreview() {
-    SharedLanguageMismatchDialog(
-        innerPadding = PaddingValues(),
-        preferencesProvider = PreviewPreferencesProvider,
-        showDialog = remember { mutableStateOf(true) },
-        phoneLanguage = supportedLanguages.first(),
-        onSetApplicationLocale = {},
-    )
-}
-
 // ---------------------------------------------------------------------------
 // Settings
 // ---------------------------------------------------------------------------
@@ -553,7 +539,6 @@ fun SettingsPreview() {
         preferencesProvider = PreviewPreferencesProvider,
         onNavigateToAdvancedMarkersAndRoutes = {},
         onResetSettings = {},
-        onSetApplicationLocale = {},
     )
 }
 
@@ -875,13 +860,6 @@ class ThemeTestClass {
     @PreviewTest
     fun NewReleaseDialogPreviewTest() {
         SoundscapeTheme(testTheme = testTheme) { NewReleaseDialogPreview() }
-    }
-
-    @CustomPreviews
-    @Composable
-    @PreviewTest
-    fun LanguageMismatchDialogPreviewTest() {
-        SoundscapeTheme(testTheme = testTheme) { LanguageMismatchDialogPreview() }
     }
 
     @CustomPreviews
