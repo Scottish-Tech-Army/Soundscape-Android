@@ -105,6 +105,42 @@ of output for the user to sift through, so don't default to "all" the way
    If a language had zero findings, just say so in one line. Mention that
    nothing was uploaded and that fixes can be applied on request.
 
+### If parallelizing the review across subagents
+
+Step 2c's batches are written for one agent working through them
+sequentially in a single session — that's the default and is fine for
+languages up to a few hundred units. Only reach for parallel subagents when
+a corpus is large enough (many hundreds of units) that sequential review
+would be too slow.
+
+If you do parallelize, do **not** hand batches to `fork` subagents. A fork
+inherits this entire skill file verbatim, including the generic
+instructions and file paths above ("go through `<code>-translated.json`",
+"write to `/tmp/weblate-review/<code>-findings.json`"). A worker holding
+both that generic instruction and your narrower per-batch delegation ("only
+look at batch N") can end up following the skill's own generic instructions
+instead of the delegation — re-reviewing the *entire* corpus on its own
+initiative and overwriting every other batch's output file (and even
+deleting the batch input files afterwards as "cleanup"). This has happened
+more than once in practice.
+
+Instead, launch fresh (non-`fork`, e.g. `general-purpose`) agents. A fresh
+agent has no memory of this skill, so it only knows what you put in its
+prompt. Give each worker:
+- one batch input file to read, distinct from every other worker's input
+  file (e.g. a pre-split `<code>-batch-N.json`, not the full
+  `<code>-translated.json`)
+- one output file it may write, distinct from every other worker's output
+  file and distinct from the canonical `<code>-findings.json` used by the
+  single-agent flow (e.g. `<code>-findings-N.json`)
+- an explicit instruction not to read `<code>-translated.json` or any other
+  batch/output file, and not to delete or modify anything else, and to stop
+  once its one output file is written
+
+Only after every worker reports back do you concatenate their output files
+yourself into the final `<code>-findings.json` for the summary and for the
+"Applying fixes" step below.
+
 ## Applying fixes (separate step — only on the user's own explicit request)
 
 This step uploads to a shared system other translators see, so treat it with
