@@ -1429,4 +1429,6 @@
     <string name="directions_cardinal_north_west_bound">Richtung Nordwesten</string>
     <string name="first_launch_permissions_granted">Berechtigung erteilt</string>
     <string name="first_launch_permissions_not_granted">Noch nicht erteilt</string>
+    <string name="talkback_double_tap_template">Doppeltippen, um%1$s</string>
+    <string name="menu_manage_locale">Gebietsschema</string>
 </resources>
