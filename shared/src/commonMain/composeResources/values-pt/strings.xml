@@ -367,7 +367,7 @@
     <string name="faq_miss_a_callout_answer">O Soundscape tem uma lista dos seus avisos recentes para que possa rever avisos que possa ter perdido. Para a encontrar, toque na barra de pesquisa no ecrã principal do Soundscape. Na parte inferior deste ecrã existe uma secção *"Avisos Recentes"* onde o aviso que perdeu será apresentado.</string>
     <string name="faq_section_how_soundscape_works">Como funciona o Soundscape?</string>
     <string name="faq_supported_phones_question">Que telemóveis são compatíveis com o Soundscape?</string>
-    <string name="faq_supported_phones_answer">O Soundscape para Android está atualmente disponível para telefones Android com Android 11 ou posterior.</string>
+    <string name="faq_supported_phones_answer">O Soundscape está atualmente disponível para iPhones com iOS 16 ou posterior, e para telefones Android com Android 11 ou posterior.</string>
     <string name="faq_supported_headsets_question">Que auscultadores devo utilizar com o Soundscape?</string>
     <string name="faq_supported_headsets_answer">Os auscultadores que utilizar com o Soundscape são uma preferência pessoal e cada opção tem vantagens e compromissos. O único requisito específico é utilizar auscultadores estéreo para poder tirar partido dos avisos em áudio espacial 3D do Soundscape.</string>
     <string name="faq_battery_impact_question">Qual é o impacto do Soundscape na bateria do meu telefone?</string>
@@ -956,7 +956,7 @@
     <string name="osm_electrical">Loja de material elétrico</string>
     <string name="osm_perfumery">Perfumaria</string>
     <string name="osm_hairdresser">Cabeleireiro</string>
-    <string name="osm_drugstore">Drogaria</string>
+    <string name="osm_drugstore">Parafarmácia</string>
     <string name="osm_shoes">Loja de calçado</string>
     <string name="osm_leather">Loja de artigos em couro</string>
     <string name="osm_general">Loja geral</string>
@@ -1128,7 +1128,7 @@
     <string name="osm_pharmacy">Farmácia</string>
     <string name="osm_kneipp_water_cure">Tratamento Kneipp</string>
     <string name="osm_food_court">Zona de restauração</string>
-    <string name="osm_chemist">Drogaria</string>
+    <string name="osm_chemist">Parafarmácia</string>
     <string name="osm_checkpoint">Posto de controlo</string>
     <string name="osm_dog_park">Parque para Cães</string>
     <string name="osm_kissing_gate">Portinhola para Peões</string>
