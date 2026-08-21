@@ -1429,4 +1429,6 @@
     <string name="directions_cardinal_north_west_bound">Mot nordväst</string>
     <string name="first_launch_permissions_granted">Behörighet beviljad</string>
     <string name="first_launch_permissions_not_granted">Ännu inte beviljad</string>
+    <string name="talkback_double_tap_template">Dubbeltryck för att%1$s</string>
+    <string name="menu_manage_locale">Regioninställningar</string>
 </resources>
