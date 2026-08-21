@@ -1429,4 +1429,6 @@
     <string name="directions_cardinal_north_west_bound">Northwestbound</string>
     <string name="first_launch_permissions_granted">Permission granted</string>
     <string name="first_launch_permissions_not_granted">Not yet granted</string>
+    <string name="talkback_double_tap_template">Double tap to %1$s</string>
+    <string name="menu_manage_locale">Locale</string>
 </resources>
