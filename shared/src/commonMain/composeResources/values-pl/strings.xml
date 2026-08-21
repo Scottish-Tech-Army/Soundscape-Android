@@ -21,7 +21,7 @@
     <string name="beacon_styles_tactile">Stukot</string>
     <string name="beacon_styles_ping">Pikanie</string>
     <string name="beacon_styles_drop">Upadek</string>
-    <string name="beacon_styles_signal">Pulsujący</string>
+    <string name="beacon_styles_signal">Sygnał</string>
     <string name="beacon_styles_signal_slow">Pulsujący (wolny)</string>
     <string name="beacon_styles_signal_very_slow">Pulsujący (bardzo wolny)</string>
     <string name="beacon_styles_mallet">Pałeczka</string>
@@ -46,7 +46,7 @@
     <string name="location_detail_action_preview_hint">rozpocząć podgląd tej lokalizacji</string>
     <string name="location_detail_add_waypoint_existing_hint">usunąć ten znacznik z trasy</string>
     <string name="location_detail_add_waypoint_new_hint">dodać ten znacznik jako punkt trasy</string>
-    <string name="location_detail_full_screen_hint">wyświetlić mapę na pełnym ekranie</string>
+    <string name="location_detail_full_screen_hint">wyświetl mapę na pełnym ekranie</string>
     <string name="location_detail_exit_full_screen_hint">Zamknij tryb pełnoekranowy mapy</string>
     <string name="route_detail_action_start_route">Rozpocznij trasę</string>
     <string name="route_detail_action_stop_route">Zatrzymaj trasę</string>
@@ -397,7 +397,7 @@
     <string name="faq_miss_a_callout_answer">Soundscape posiada listę Twoich ostatnich powiadomień, dzięki czemu możesz odsłuchać powiadomienia, które mogłeś przegapić. Aby ją znaleźć, stuknij pasek wyszukiwania na ekranie głównym Soundscape. Na dole tego ekranu znajduje się sekcja *Ostatnie powiadomienia*, w której będzie wymienione powiadomienie, które przegapiłeś.</string>
     <string name="faq_section_how_soundscape_works">Jak działa Soundscape?</string>
     <string name="faq_supported_phones_question">Na jakich telefonach działa Soundscape?</string>
-    <string name="faq_supported_phones_answer">Soundscape jest obecnie dostępny na iPhone'y z systemem iOS 16 lub nowszym oraz na telefony z Androidem z systemem Android 11 lub nowszym.</string>
+    <string name="faq_supported_phones_answer">Soundscape jest obecnie dostępny na iPhone'y z systemem iOS 16 lub nowszym oraz na telefony z Androidem w wersji 11 lub nowszej.</string>
     <string name="faq_supported_headsets_question">Jakie słuchawki powinienem używać z Soundscape?</string>
     <string name="faq_supported_headsets_answer">Wybór słuchawek do Soundscape zależy od osobistych preferencji — każda opcja ma swoje zalety i wady. Jedynym konkretnym wymaganiem jest użycie słuchawek stereo, aby móc korzystać z przestrzennych, trójwymiarowych dźwiękowych powiadomień Soundscape.</string>
     <string name="faq_battery_impact_question">Jak Soundscape wpływa na baterię mojego telefonu?</string>
