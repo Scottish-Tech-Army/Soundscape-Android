@@ -1429,4 +1429,6 @@
     <string name="directions_cardinal_north_west_bound">西北行</string>
     <string name="first_launch_permissions_granted">权限已授予</string>
     <string name="first_launch_permissions_not_granted">尚未授予</string>
+    <string name="talkback_double_tap_template">双击以%1$s</string>
+    <string name="menu_manage_locale">区域设置</string>
 </resources>
