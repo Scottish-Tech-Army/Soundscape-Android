@@ -1429,4 +1429,6 @@
     <string name="directions_cardinal_north_west_bound">Mot nordvest</string>
     <string name="first_launch_permissions_granted">Tillatelse gitt</string>
     <string name="first_launch_permissions_not_granted">Ikke gitt ennå</string>
+    <string name="talkback_double_tap_template">Dobbelttrykk for å%1$s</string>
+    <string name="menu_manage_locale">Region</string>
 </resources>
