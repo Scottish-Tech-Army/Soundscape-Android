@@ -198,7 +198,7 @@
     <string name="osm_garden">Сад</string>
     <string name="osm_park">Парк</string>
     <string name="faq_title">Частые вопросы</string>
-    <string name="faq_title_abbreviated">FAQ</string>
+    <string name="faq_title_abbreviated">Частые вопросы</string>
     <string name="settings_theme_light">Светлая</string>
     <string name="settings_theme_dark">Тёмная</string>
     <string name="settings_theme_contrast">Контраст темы</string>
@@ -441,7 +441,7 @@
     <string name="faq_miss_a_callout_answer">В Soundscape есть список недавних уточнений, чтобы вы могли прослушать те, которые могли пропустить. Для этого коснитесь строки поиска на главном экране Soundscape. Внизу этого экрана есть раздел *"Недавние уточнения"*, где будет перечислено пропущенное вами уточнение.</string>
     <string name="faq_section_how_soundscape_works">Как работает Soundscape?</string>
     <string name="faq_supported_phones_question">На каких телефонах работает Soundscape?</string>
-    <string name="faq_supported_phones_answer">Soundscape для Android в настоящее время доступен на телефонах с Android 11 и новее.</string>
+    <string name="faq_supported_phones_answer">Soundscape в настоящее время доступен для iPhone с iOS 16 или новее, а также для телефонов Android с версией 11 или новее.</string>
     <string name="faq_supported_headsets_question">Какие наушники лучше использовать с Soundscape?</string>
     <string name="faq_supported_headsets_answer">Выбор наушников для Soundscape зависит от личных предпочтений: у каждого варианта есть свои преимущества и компромиссы. Единственное требование — использовать стереонаушники, чтобы вы могли воспользоваться 3D‑пространственными уточнениями Soundscape.</string>
     <string name="faq_battery_impact_question">Как Soundscape влияет на батарею моего телефона?</string>
