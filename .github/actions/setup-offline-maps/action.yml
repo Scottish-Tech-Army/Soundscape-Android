@@ -20,7 +20,7 @@ runs:
           ${{ inputs.output_dir }}/glasgow-gb.pmtiles
           ${{ inputs.output_dir }}/liverpool-gb.pmtiles
           ${{ inputs.output_dir }}/manifest.geojson.gz
-        key: pmtiles-v2-${{ hashFiles('.github/actions/setup-offline-maps/action.yml') }}
+        key: pmtiles-v3-${{ hashFiles('.github/actions/setup-offline-maps/action.yml') }}
 
     - name: Download pmtiles + manifest
       if: steps.cache.outputs.cache-hit != 'true'
