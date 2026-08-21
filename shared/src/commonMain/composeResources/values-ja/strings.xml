@@ -1140,7 +1140,7 @@
     <string name="osm_subway_entrance">地下鉄入口</string>
     <string name="osm_cave_entrance">洞窟入口</string>
     <string name="osm_swing_gate">スイングゲート（開閉式の門）</string>
-    <string name="osm_stile">スタイル（柵越え通路）</string>
+    <string name="osm_stile">柵越え階段</string>
     <string name="osm_car_sharing">カーシェアリング</string>
     <string name="osm_customer_service">案内窓口（カスタマーサービス）</string>
     <string name="osm_watering_place">動物用の水飲み場</string>
@@ -1429,4 +1429,6 @@
     <string name="directions_cardinal_north_west_bound">北西方面</string>
     <string name="first_launch_permissions_granted">許可済み</string>
     <string name="first_launch_permissions_not_granted">未許可</string>
+    <string name="talkback_double_tap_template">ダブルタップして%1$s</string>
+    <string name="menu_manage_locale">ロケール</string>
 </resources>
