@@ -882,7 +882,7 @@
     <string name="osm_doityourself">Baumarkt</string>
     <string name="osm_bathroom_furnishing">Sanitärfachgeschäft</string>
     <string name="osm_medical_supply">Sanitätshaus</string>
-    <string name="osm_variety_store">Gemischtwarenladen</string>
+    <string name="osm_variety_store">Ramschladen</string>
     <string name="osm_second_hand">Gebrauchtwarenladen</string>
     <string name="osm_charity">Wohltätigkeitsladen</string>
     <string name="osm_fashion">Modegeschäft</string>
@@ -1140,7 +1140,7 @@
     <string name="osm_subway_entrance">U-Bahn-Eingang</string>
     <string name="osm_cave_entrance">Höhleneingang</string>
     <string name="osm_swing_gate">Schwenktor</string>
-    <string name="osm_stile">Stile (Trittstufen über einen Zaun)</string>
+    <string name="osm_stile">Zauntritt</string>
     <string name="osm_car_sharing">Carsharing</string>
     <string name="osm_customer_service">Kundenservice</string>
     <string name="osm_watering_place">Tränke</string>
@@ -1167,7 +1167,7 @@
     <string name="osm_ridge">Grat</string>
     <string name="osm_nuclear_explosion_site">Ort einer Nuklearexplosion</string>
     <string name="osm_dyke">Deich</string>
-    <string name="osm_sump_buster">Unterfahrschutz</string>
+    <string name="osm_sump_buster">Hindernis für Fahrzeuge mit geringer Bodenfreiheit</string>
     <string name="osm_rope">Seil</string>
     <string name="osm_debris">Schutt</string>
     <string name="osm_road_works">Straßenarbeiten</string>
