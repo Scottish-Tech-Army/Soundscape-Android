@@ -1429,4 +1429,6 @@
     <string name="directions_cardinal_north_west_bound">Κατεύθυνση βορειοδυτικά</string>
     <string name="first_launch_permissions_granted">Η άδεια χορηγήθηκε</string>
     <string name="first_launch_permissions_not_granted">Δεν έχει χορηγηθεί ακόμα</string>
+    <string name="talkback_double_tap_template">Πατήστε δύο φορές για να%1$s</string>
+    <string name="menu_manage_locale">Τοπικές ρυθμίσεις</string>
 </resources>
