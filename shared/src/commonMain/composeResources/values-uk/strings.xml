@@ -1429,4 +1429,6 @@
     <string name="directions_cardinal_north_west_bound">На північний захід</string>
     <string name="first_launch_permissions_granted">Дозвіл надано</string>
     <string name="first_launch_permissions_not_granted">Ще не надано</string>
+    <string name="talkback_double_tap_template">Двічі торкніться, щоб%1$s</string>
+    <string name="menu_manage_locale">Регіональні параметри</string>
 </resources>
