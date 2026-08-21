@@ -51,7 +51,6 @@ fun LocationDescription.process() {
             println("$featureName")
             feature.properties?.let { properties ->
                 properties.forEach { (key, value) ->
-                    println("$key -> $value")
                     when (key) {
                         "countrycode" -> jsonFields["country_code"] = value.toString()
                         "housenumber" -> {
@@ -141,7 +140,14 @@ fun LocationDescription.process() {
                 opposite = oppositeProperty
                 locationType = locationTypeProperty
             } else {
-                name = mvt?.name?.takeIf { it.isNotEmpty() } ?: featureName?.text ?: ""
+                // Bus stops: prefer the NaPTAN-enriched name (e.g. "Main Street, Milngavie
+                // Northeastbound") over the plain OSM name - featureName is built with
+                // includeTransitTypeSuffix = false here, so no "Bus Stop" suffix is added.
+                name = if (mvt?.featureValue == "bus_stop") {
+                    featureName?.text?.takeIf { it.isNotEmpty() } ?: mvt.name?.takeIf { it.isNotEmpty() } ?: ""
+                } else {
+                    mvt?.name?.takeIf { it.isNotEmpty() } ?: featureName?.text ?: ""
+                }
                 opposite = oppositeProperty
                 locationType = locationTypeProperty
             }
