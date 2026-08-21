@@ -435,7 +435,7 @@
     <string name="first_launch_change_language_hint">muuta sovelluksen käyttämää kieltä</string>
     <string name="osm_entrance">Sisäänkäynti</string>
     <string name="osm_main_entrance">pääsisäänkäynti</string>
-    <string name="osm_entrance_named_with_destination">%1$s %2$s osoitteessa %3$s</string>
+    <string name="osm_entrance_named_with_destination">%1$s %2$s osoitteesta %3$s</string>
     <string name="osm_entrance_with_destination">%1$s %2$s</string>
     <string name="notification_text">Soundscapen sijaintipalvelu toimii myös, kun puhelin on lukittu.</string>
     <string name="cancel_search_contentDescription">Peruuta haku</string>
@@ -781,7 +781,7 @@
     <string name="osm_skiing">Laskettelu</string>
     <string name="osm_rc_car">Radio-ohjattavat autot</string>
     <string name="osm_paddle_tennis">Padel</string>
-    <string name="osm_hockey">Jääkiekko</string>
+    <string name="osm_hockey">Maahockey</string>
     <string name="osm_fencing">Miekkailu</string>
     <string name="osm_bowls">Bowls (ruohopeli)</string>
     <string name="osm_badminton">Sulkapallo</string>
@@ -1038,7 +1038,7 @@
     <string name="osm_mosque">Moskeija</string>
     <string name="osm_chapel">Kappeli</string>
     <string name="osm_cathedral">Katedraali</string>
-    <string name="osm_train_terminal">Rautatieasema</string>
+    <string name="osm_train_terminal">Rautatieterminaali</string>
     <string name="osm_college">Oppilaitos</string>
     <string name="osm_arts_centre">Taidekeskus</string>
     <string name="osm_ranger_station">Metsänvartijan asema</string>
@@ -1080,7 +1080,7 @@
     <string name="osm_locomotive">Veturi</string>
     <string name="osm_fort">Linnoitus</string>
     <string name="osm_services">Palvelualue</string>
-    <string name="osm_lifeguard_tower">Pelastusvartijan torni</string>
+    <string name="osm_lifeguard_tower">Uimavalvontatorni</string>
     <string name="osm_temple">Temppeli</string>
     <string name="osm_national_park">Kansallispuisto</string>
     <string name="osm_heliport">Heliportti</string>
