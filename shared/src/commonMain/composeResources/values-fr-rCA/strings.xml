@@ -42,7 +42,7 @@
     <string name="location_detail_add_waypoint_new_hint">ajouter ce marqueur comme point de cheminement sur votre itinéraire</string>
     <string name="route_detail_action_start_route">Démarrer un Itinéraire</string>
     <string name="route_detail_action_stop_route">Arrêter l’Itinéraire</string>
-    <string name="route_detail_action_edit">Modifier l'Itinéraire</string>
+    <string name="route_detail_action_edit">Modifier l’Itinéraire</string>
     <string name="route_detail_action_start_route_hint">démarrer la lecture de cet itinéraire</string>
     <string name="route_detail_action_start_route_disabled_hint">ajouter des points de repère avant de démarrer l’itinéraire</string>
     <string name="route_detail_action_stop_route_hint">arrêter la lecture de cet itinéraire</string>
@@ -1414,7 +1414,7 @@
     <string name="directions_away_from_settlement">en s’éloignant de %1$s, à %2$s</string>
     <string name="directions_near_settlement_inline">près de %1$s</string>
     <string name="directions_close_to_settlement_inline">près de %1$s</string>
-    <string name="directions_generic_train">train</string>
+    <string name="directions_generic_train">le train</string>
     <string name="directions_crossing_waterway">Traversée de %1$s</string>
     <string name="directions_crossing_railway_generic">Traversée de la voie ferrée</string>
     <string name="directions_going_under_railway">Passage sous %1$s</string>
