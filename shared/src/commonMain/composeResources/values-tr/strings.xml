@@ -19,7 +19,6 @@
     <string name="settings_theme_auto">Otomatik</string>
     <string name="settings_section_units_description">Mesafeyi ölçmek için kullanılacak birimi seçin</string>
     <string name="general_alert_cancel">İptal</string>
-    <string name="menu_manage_language">Dil ve Bölge </string>
     <string name="settings_theme_light_dark">Açık veya Koyu Tema</string>
     <string name="settings_theme_contrast_regular">Standart</string>
     <string name="settings_use_value">Kullan</string>
@@ -504,10 +503,6 @@
     <string name="street_description_relative_before">%1$s üzerinde, %2$s'ın hemen öncesinde</string>
     <string name="street_description_relative_after">%1$s üzerinde, %2$s'ın hemen sonrasında</string>
     <string name="street_description_intersection">%1$s kavşağı yakınında</string>
-    <string name="language_mismatch_title">Yeni dil mevcut</string>
-    <string name="language_mismatch_message">Telefonunuz %1$s olarak ayarlı ve bu dil artık Soundscape'te kullanılabilir. Soundscape'i %1$s diline geçirmek ister misiniz?</string>
-    <string name="language_mismatch_switch">%1$s diline geç</string>
-    <string name="language_mismatch_keep">Mevcut dili koru</string>
     <string name="new_version_info_text">Yeni sürüm bilgileri</string>
     <string name="new_version_info_completed">Yeni sürüm iletişim kutusunu kapat</string>
     <string name="menu_open_source_licenses">Açık kaynak lisansları</string>
@@ -1360,12 +1355,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) kullandığımız harita karolarını oluşturmak için kullanılır.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) 3D sesi oluşturmak için kullanılır ve [Apache 2.0 lisansı](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) kapsamında kullanıma sunulmuştur.</string>
     <string name="trademark_disclaimer">Tüm üçüncü taraf ürün, şirket adları ve logolar ticari marka veya tescilli ticari markalardır ve ilgili sahiplerinin mülkiyetinde kalır.</string>
-    <string name="settings_accessible_map">Erişilebilir harita stilini etkinleştir</string>
     <string name="loading_indicator_content_description">Yükleniyor</string>
     <string name="offline_maps_extract_damaged">Hasarlı — silip yeniden indirin</string>
     <string name="offline_map_details_update">Çevrimdışı haritayı güncelle</string>
     <string name="menu_exit_app">Soundscape'ten Çık</string>
-    <string name="talkback_double_tap_prefix">Çift dokunun</string>
     <string name="talkback_default_activate">etkinleştirmek</string>
     <string name="distance_format_km_a11y">%1$s kilometre</string>
     <string name="number_decimal_separator">,</string>

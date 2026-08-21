@@ -1260,12 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">Nearby places like shops and restaurants</string>
     <string name="callouts_mobility_description">Intersection and transport information</string>
     <string name="callouts_audio_beacon_description">Updates about distance to the audio beacon when it’s set</string>
-    <string name="menu_manage_language">Language and Region </string>
     <string name="settings_search_results_language_description">Online search can use the local language of the result, or be forced to return English, French or German.</string>
-    <string name="language_mismatch_title">New Language Available</string>
-    <string name="language_mismatch_message">Your phone is set to %1$s and that language is now available in Soundscape. Would you like Soundscape to switch to %1$s?</string>
-    <string name="language_mismatch_switch">Switch to %1$s</string>
-    <string name="language_mismatch_keep">Keep Current Language</string>
     <string name="preview_go_hint">move in this direction to the next intersection</string>
     <string name="error_message_route_not_found">Failed to find route in the database.</string>
     <string name="error_message_deleting_route">Failed to delete the route.</string>
@@ -1360,12 +1355,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the map tiles we use.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 licence](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective owners.</string>
-    <string name="settings_accessible_map">Enable accessible map styling</string>
     <string name="loading_indicator_content_description">Loading…</string>
     <string name="offline_maps_extract_damaged">Damaged - delete and re-download</string>
     <string name="offline_map_details_update">Update offline map</string>
     <string name="menu_exit_app">Exit Soundscape</string>
-    <string name="talkback_double_tap_prefix">Double tap to</string>
     <string name="talkback_default_activate">activate</string>
     <string name="distance_format_km_a11y">%1$s kilometres</string>
     <string name="number_decimal_separator">.</string>

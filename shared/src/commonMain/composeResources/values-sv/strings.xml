@@ -1260,12 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">Närliggande platser som butiker och restauranger</string>
     <string name="callouts_mobility_description">Information om vägkorsningar och transporter</string>
     <string name="callouts_audio_beacon_description">Uppdateringar om avstånd till ljudfyren när den är aktiverad</string>
-    <string name="menu_manage_language">Språk och region </string>
     <string name="settings_search_results_language_description">Onlinesökning kan använda resultatets lokala språk, eller tvingas att returnera engelska, franska eller tyska.</string>
-    <string name="language_mismatch_title">Nytt språk tillgängligt</string>
-    <string name="language_mismatch_message">Din telefon är inställd på %1$s och det språket finns nu tillgängligt i Soundscape. Vill du byta så att Soundscape använder %1$s?</string>
-    <string name="language_mismatch_switch">Byt till %1$s</string>
-    <string name="language_mismatch_keep">Behåll nuvarande språk</string>
     <string name="preview_go_hint">gå i den här riktningen till nästa korsning</string>
     <string name="error_message_route_not_found">Det gick inte att hitta rutten i databasen.</string>
     <string name="error_message_deleting_route">Det gick inte att ta bort rutten.</string>
@@ -1360,12 +1355,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) används för att generera de kartplattor vi använder.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) används för att generera 3D-ljud och görs tillgänglig för användning under [Apache 2.0-licensen](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">Alla tredjepartsproduktnamn, företagsnamn och logotyper är varumärken eller registrerade varumärken och tillhör sina respektive innehavare.</string>
-    <string name="settings_accessible_map">Aktivera tillgänglig kartformatering</string>
     <string name="loading_indicator_content_description">Laddar…</string>
     <string name="offline_maps_extract_damaged">Skadad – ta bort och ladda ned igen</string>
     <string name="offline_map_details_update">Uppdatera offlinekarta</string>
     <string name="menu_exit_app">Avsluta Soundscape</string>
-    <string name="talkback_double_tap_prefix">Dubbeltryck för att</string>
     <string name="talkback_default_activate">aktivera</string>
     <string name="distance_format_km_a11y">%1$s kilometer</string>
     <string name="number_decimal_separator">,</string>

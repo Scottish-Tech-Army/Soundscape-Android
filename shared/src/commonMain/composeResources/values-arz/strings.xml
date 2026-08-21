@@ -1260,12 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">أماكن قريبة مثل المحلات والمطاعم</string>
     <string name="callouts_mobility_description">معلومات عن التقاطعات ووسائل النقل</string>
     <string name="callouts_audio_beacon_description">تحديثات حول المسافة إلى منارة الصوت عند تعيينها</string>
-    <string name="menu_manage_language">اللغة والمنطقة </string>
     <string name="settings_search_results_language_description">يمكن للبحث عبر الإنترنت أن يستخدم اللغة المحلية للنتيجة، أو إجباره على إرجاع النتائج بالإنجليزية أو الفرنسية أو الألمانية.</string>
-    <string name="language_mismatch_title">لغة جديدة متاحة</string>
-    <string name="language_mismatch_message">هاتفك مضبوط على %1$s وهذه اللغة أصبحت متاحة الآن في Soundscape. هل تود تحويل Soundscape لاستخدام %1$s؟</string>
-    <string name="language_mismatch_switch">التبديل إلى %1$s</string>
-    <string name="language_mismatch_keep">ابقَ على اللغة الحالية</string>
     <string name="preview_go_hint">تحرك في هذا الاتجاه إلى التقاطع التالي</string>
     <string name="error_message_route_not_found">تعذّر العثور على الطريق في قاعدة البيانات.</string>
     <string name="error_message_deleting_route">فشل حذف الطريق.</string>
@@ -1360,12 +1355,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) تُستخدم لتوليد بلاطات الخرائط التي نستخدمها.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) تُستخدم لتوليد الصوت ثلاثي الأبعاد، ومتاحة للاستخدام بموجب [رخصة Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">جميع أسماء المنتجات والشركات والشعارات الخاصة بأطراف ثالثة هي علامات تجارية أو علامات تجارية مسجلة وتظل ملكًا لأصحابها.</string>
-    <string name="settings_accessible_map">تفعيل الخرائط القابله للوصول</string>
     <string name="loading_indicator_content_description">تحميل</string>
     <string name="offline_maps_extract_damaged">تالف - احذف وأعد تنزيله</string>
     <string name="offline_map_details_update">تحديث الخريطة غير المتصلة بالإنترنت</string>
     <string name="menu_exit_app">الخروج من Soundscape</string>
-    <string name="talkback_double_tap_prefix">اضغط مرتين لـ</string>
     <string name="talkback_default_activate">تفعيل</string>
     <string name="distance_format_km_a11y">%1$s كيلو متر</string>
     <string name="number_decimal_separator">.</string>

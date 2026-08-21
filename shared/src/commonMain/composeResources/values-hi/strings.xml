@@ -411,7 +411,6 @@
     <string name="notification_text">Soundscape की स्थान सेवा फोन लॉक होने पर भी चलती रहती है।</string>
     <string name="cancel_search_contentDescription">खोज रद्द करें</string>
     <string name="menu_manage_audio">ऑडियो</string>
-    <string name="menu_manage_language">भाषा और क्षेत्र </string>
     <string name="menu_manage_accessibility">पहुँच-योग्यता</string>
     <string name="settings_theme_light_dark">लाइट या डार्क थीम</string>
     <string name="settings_theme_auto">स्वचालित</string>
@@ -1262,10 +1261,6 @@
     <string name="menu_audio_tutorial_cancel">मार्गदर्शित ट्यूटोरियल रद्द करें</string>
     <string name="tour_continue_button">जारी रखें</string>
     <string name="tour_continue_hint">पॉपअप बंद करें और ट्यूटोरियल जारी रखें</string>
-    <string name="language_mismatch_title">नई भाषा उपलब्ध है</string>
-    <string name="language_mismatch_message">आपके फोन की भाषा %1$s पर सेट है और वह भाषा अब Soundscape में उपलब्ध है। क्या आप Soundscape को %1$s में बदलना चाहेंगे?</string>
-    <string name="language_mismatch_switch">%1$s में बदलें</string>
-    <string name="language_mismatch_keep">वर्तमान भाषा रखें</string>
     <string name="preview_go_hint">इस दिशा में अगले चौराहे की ओर बढ़ें</string>
     <string name="error_message_route_not_found">डेटाबेस में मार्ग नहीं मिल सका।</string>
     <string name="error_message_deleting_route">मार्ग हटाया नहीं जा सका।</string>
@@ -1360,12 +1355,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) का उपयोग उन मैपिंग टाइल्स को उत्पन्न करने के लिए किया जाता है जिनका हम उपयोग करते हैं।</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) का उपयोग 3D ऑडियो उत्पन्न करने के लिए किया जाता है, और इसे उपयोग के लिए [Apache 2.0 लाइसेंस](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) के अंतर्गत उपलब्ध कराया गया है।</string>
     <string name="trademark_disclaimer">सभी तृतीय‑पक्ष उत्पादों, कंपनी नामों और लोगो ट्रेडमार्क या पंजीकृत ट्रेडमार्क हैं और अपने‑अपने धारकों की संपत्ति बने रहते हैं।</string>
-    <string name="settings_accessible_map">पहुँच-योग्य नक्शा शैली सक्षम करें</string>
     <string name="loading_indicator_content_description">लोड हो रहा है</string>
     <string name="offline_maps_extract_damaged">क्षतिग्रस्त - हटाएँ और फिर से डाउनलोड करें</string>
     <string name="offline_map_details_update">ऑफ़लाइन मानचित्र अपडेट करें</string>
     <string name="menu_exit_app">Soundscape से बाहर निकलें</string>
-    <string name="talkback_double_tap_prefix">दो बार टैप करें</string>
     <string name="talkback_default_activate">सक्रिय करें</string>
     <string name="distance_format_km_a11y">%1$s किलोमीटर</string>
     <string name="number_decimal_separator">।</string>

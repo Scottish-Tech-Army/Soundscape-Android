@@ -1260,12 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">Lähellä olevat paikat, kuten kaupat ja ravintolat</string>
     <string name="callouts_mobility_description">Risteys- ja liikennetiedot</string>
     <string name="callouts_audio_beacon_description">Päivityksiä etäisyydestä äänimajakkaan, kun majakka on asetettu</string>
-    <string name="menu_manage_language">Kieli ja alue </string>
     <string name="settings_search_results_language_description">Online‑haku voi käyttää hakutulosten paikallista kieltä tai pakottaa tulokset palautumaan englanniksi, ranskaksi tai saksaksi.</string>
-    <string name="language_mismatch_title">Uusi kieli saatavilla</string>
-    <string name="language_mismatch_message">Puhelimesi kieli on asetettu kieleksi %1$s, ja tämä kieli on nyt saatavilla Soundscapessa. Haluatko vaihtaa Soundscapen kieleksi %1$s?</string>
-    <string name="language_mismatch_switch">Vaihda kieleksi %1$s</string>
-    <string name="language_mismatch_keep">Pidä nykyinen kieli</string>
     <string name="preview_go_hint">liikkuaksesi tähän suuntaan seuraavaan risteykseen</string>
     <string name="error_message_route_not_found">Tietokannasta ei löytynyt reittiä.</string>
     <string name="error_message_deleting_route">Reitin poistaminen epäonnistui.</string>
@@ -1360,12 +1355,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md)ia käytetään niiden karttatiilten tuottamiseen, joita sovelluksemme käyttää.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio)ia käytetään 3D-äänen tuottamiseen, ja se on saatavilla käytettäväksi [Apache 2.0 -lisenssin](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) nojalla.</string>
     <string name="trademark_disclaimer">Kaikki kolmansien osapuolten tuotteiden ja yritysten nimet sekä logot ovat tavaramerkkejä tai rekisteröityjä tavaramerkkejä, ja ne säilyvät niiden omistajien omaisuutena.</string>
-    <string name="settings_accessible_map">Ota saavutettava karttatyyli käyttöön</string>
     <string name="loading_indicator_content_description">Ladataan</string>
     <string name="offline_maps_extract_damaged">Viallinen - poista ja lataa uudelleen</string>
     <string name="offline_map_details_update">Päivitä offline-kartta</string>
     <string name="menu_exit_app">Sulje Soundscape</string>
-    <string name="talkback_double_tap_prefix">Kaksoisnapauta</string>
     <string name="talkback_default_activate">aktivoidaksesi</string>
     <string name="distance_format_km_a11y">%1$s kilometriä</string>
     <string name="number_decimal_separator">,</string>

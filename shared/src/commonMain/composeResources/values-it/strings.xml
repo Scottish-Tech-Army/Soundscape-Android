@@ -1260,12 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">Luoghi nelle vicinanze come negozi e ristoranti</string>
     <string name="callouts_mobility_description">Informazioni su incroci e trasporti</string>
     <string name="callouts_audio_beacon_description">Aggiornamenti sulla distanza dall'audiofaro quando è impostato</string>
-    <string name="menu_manage_language">Lingua e Regione </string>
     <string name="settings_search_results_language_description">La ricerca online può usare la lingua locale del risultato o essere forzata a restituire risultati in inglese, francese o tedesco.</string>
-    <string name="language_mismatch_title">Nuova lingua disponibile</string>
-    <string name="language_mismatch_message">Il tuo telefono è impostato su %1$s e questa lingua è ora disponibile in Soundscape. Vuoi che Soundscape utilizzi %1$s?</string>
-    <string name="language_mismatch_switch">Passa a %1$s</string>
-    <string name="language_mismatch_keep">Mantieni la lingua corrente</string>
     <string name="preview_go_hint">muoviti in questa direzione fino al prossimo incrocio</string>
     <string name="error_message_route_not_found">Impossibile trovare il percorso nel database.</string>
     <string name="error_message_deleting_route">Impossibile eliminare il percorso.</string>
@@ -1360,12 +1355,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) viene utilizzato per generare i tasselli di mappa che usiamo.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) viene utilizzata per generare l'audio 3D ed è resa disponibile per l'uso sotto la [licenza Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">Tutti i nomi e i loghi di prodotti e aziende di terze parti sono marchi commerciali o marchi registrati e restano di proprietà dei rispettivi titolari.</string>
-    <string name="settings_accessible_map">Abilita lo stile della mappa accessibile</string>
     <string name="loading_indicator_content_description">Caricamento</string>
     <string name="offline_maps_extract_damaged">Danneggiata - elimina e scarica di nuovo</string>
     <string name="offline_map_details_update">Aggiorna la mappa offline</string>
     <string name="menu_exit_app">Esci da Soundscape</string>
-    <string name="talkback_double_tap_prefix">Tocca due volte per</string>
     <string name="talkback_default_activate">attivare</string>
     <string name="distance_format_km_a11y">%1$s chilometri</string>
     <string name="number_decimal_separator">,</string>
