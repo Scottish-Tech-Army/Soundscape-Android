@@ -374,7 +374,7 @@
     <string name="faq_miss_a_callout_answer">Soundscape are o listă cu anunțurile tale recente pentru a putea revedea anunțurile pe care le-ai ratat. Pentru a o găsi, apasă pe bara de căutare de pe ecranul principal Soundscape. În partea de jos a acestui ecran, există o secțiune *"Anunțuri recente"* unde va fi listat anunțul pe care l-ai ratat.</string>
     <string name="faq_section_how_soundscape_works">Cum funcționează Soundscape?</string>
     <string name="faq_supported_phones_question">Pe ce telefon funcționează Soundscape?</string>
-    <string name="faq_supported_phones_answer">Soundscape pentru Android este disponibil în prezent pe telefoanele Android cu Android 11 sau versiuni ulterioare.</string>
+    <string name="faq_supported_phones_answer">Soundscape este disponibil în prezent pentru iPhone-uri cu iOS 16 sau o versiune ulterioară, precum și pentru telefoane Android cu Android 11 sau o versiune ulterioară.</string>
     <string name="faq_supported_headsets_question">Ce căști ar trebui să folosesc cu Soundscape?</string>
     <string name="faq_supported_headsets_answer">Ce căști folosești cu Soundscape este o chestiune de preferință personală, iar fiecare opțiune vine cu avantaje și compromisuri. Singura cerință specifică este să folosești o pereche de căști stereo pentru a putea profita de anunțurile audio spațiale 3D ale Soundscape.</string>
     <string name="faq_battery_impact_question">Cum afectează Soundscape bateria telefonului meu?</string>
@@ -936,7 +936,7 @@
     <string name="osm_hackerspace">Hackerspace</string>
     <string name="osm_lifeguard_base">Post de salvare</string>
     <string name="osm_roofer">Acoperișar</string>
-    <string name="osm_rigger">Montator de schele</string>
+    <string name="osm_rigger">Legător de sarcină</string>
     <string name="osm_parquet_layer">Parchetar</string>
     <string name="osm_gardener">Grădinar</string>
     <string name="osm_stable">Grajd</string>
@@ -994,7 +994,7 @@
     <string name="osm_garden_furniture">Magazin de mobilier de grădină</string>
     <string name="osm_electrical">Magazin de materiale electrice</string>
     <string name="osm_perfumery">Parfumerie</string>
-    <string name="osm_hairdresser">Frizerie</string>
+    <string name="osm_hairdresser">Coafor</string>
     <string name="osm_drugstore">Drogherie</string>
     <string name="osm_shoes">Magazin de încălțăminte</string>
     <string name="osm_leather">Magazin de piele</string>
@@ -1201,7 +1201,7 @@
     <string name="osm_boat_sharing">Partajare bărci</string>
     <string name="osm_help_point">Punct de asistență</string>
     <string name="osm_open_space">Spațiu deschis</string>
-    <string name="osm_spending_area">Zonă de agrement</string>
+    <string name="osm_spending_area">Zonă de popas</string>
     <string name="osm_bicycle_repair_station">Stație de reparații biciclete</string>
     <string name="osm_motorcycle_barrier">Barieră pentru motociclete</string>
     <string name="osm_kent_carriage_gap">Trecere Kent pentru atelaje</string>
@@ -1371,15 +1371,15 @@
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">virgulă</string>
     <string name="bytes_format_b">%1$s B</string>
-    <string name="bytes_format_b_a11y">%1$s bytes</string>
+    <string name="bytes_format_b_a11y">%1$s octeți</string>
     <string name="bytes_format_kb">%1$s kB</string>
-    <string name="bytes_format_kb_a11y">%1$s kilobytes</string>
+    <string name="bytes_format_kb_a11y">%1$s kiloocteți</string>
     <string name="bytes_format_mb">%1$s MB</string>
-    <string name="bytes_format_mb_a11y">%1$s megabytes</string>
+    <string name="bytes_format_mb_a11y">%1$s megaocteți</string>
     <string name="bytes_format_gb">%1$s GB</string>
-    <string name="bytes_format_gb_a11y">%1$s gigabytes</string>
+    <string name="bytes_format_gb_a11y">%1$s gigaocteți</string>
     <string name="bytes_format_tb">%1$s TB</string>
-    <string name="bytes_format_tb_a11y">%1$s terabytes</string>
+    <string name="bytes_format_tb_a11y">%1$s teraocteți</string>
     <string name="help_config_voices_content_ios">...În aplicația Soundscape, poți selecta vocea dorită din Setări din meniul principal, apoi alegând *Voci*.</string>
     <string name="settings_mix_audio">Permite redarea audio împreună cu alte aplicații</string>
     <string name="settings_mix_audio_description">Când este dezactivat, celelalte aplicații audio vor fi puse pe pauză, iar controalele media de pe ecranul blocat vor fi disponibile</string>
