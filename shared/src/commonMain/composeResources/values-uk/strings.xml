@@ -804,7 +804,7 @@
     <string name="osm_cheese">Магазин сирів</string>
     <string name="osm_bakery">Пекарня</string>
     <string name="osm_telecommunication">Магазин зв'язку</string>
-    <string name="osm_tax">Податкова служба</string>
+    <string name="osm_tax">Офіс податкового консультування</string>
     <string name="osm_real_estate_agent">Агентство нерухомості</string>
     <string name="osm_notary">Нотаріус</string>
     <string name="osm_ngo">Офіс неурядової організації</string>
@@ -1102,7 +1102,7 @@
     <string name="osm_swimming_area">Місце для купання</string>
     <string name="osm_slipway">Рампа для спуску човнів</string>
     <string name="osm_nature_reserve">Природний заповідник</string>
-    <string name="osm_marina">Марина</string>
+    <string name="osm_marina">Яхтова гавань</string>
     <string name="osm_ice_rink">Каток</string>
     <string name="osm_manor">Маєток</string>
     <string name="osm_city_gate">Міські ворота</string>
