@@ -1430,4 +1430,6 @@
     <string name="directions_cardinal_north_west_bound">به سمت شمال غربی</string>
     <string name="first_launch_permissions_granted">مجوز داده شد</string>
     <string name="first_launch_permissions_not_granted">هنوز داده نشده</string>
+    <string name="talkback_double_tap_template">دو بار ضربه بزنید تا%1$s</string>
+    <string name="menu_manage_locale">تنظیمات محلی</string>
 </resources>
