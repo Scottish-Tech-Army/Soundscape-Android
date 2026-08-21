@@ -520,7 +520,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Markører og ruter er slettet</string>
     <string name="new_version_info_text">Informasjon om ny versjon</string>
     <string name="new_version_info_completed">Lukk dialog for ny versjon</string>
-    <string name="new_version_info_details">Dette er den første produksjonsutgivelsen av Soundscape. Vi jobber fortsatt hardt med å forbedre appen, så vennligst rapporter eventuelle problemer du opplever, uansett hvor små de måtte være, via alternativet *Kontakt brukerstøtte* i hovedmenyen.</string>
+    <string name="new_version_info_details">Dette er en stor oppdatering av Soundscape. Reisemodus er betydelig forbedret, med varsler om veinumre, kjøreretning og nærliggende tettsteder når du reiser med bil eller buss, samt varsler når du krysser elver, kanaler, fjorder og bukter. Oppdater de offline-kartene dine for å sikre at du får glede av disse funksjonene. For brukere i Storbritannia har busstopp nå mye bedre beskrivelser. Dvalemodus kan nå våkne automatisk når den oppdager at du beveger deg igjen, så du trenger ikke lenger huske å vekke den selv. Den underliggende koden er omstrukturert i stor grad slik at vi kan bygge en iOS-app fra den samme koden. Dette betyr at vi i fremtiden kan lansere en iOS-app med alle funksjonene vi har laget for Android. Som alltid, vennligst rapporter eventuelle problemer du opplever, uansett hvor små de er, via Kontakt brukerstøtte i hovedmenyen.</string>
     <string name="menu_open_source_licenses">Åpne kildekodelisenser</string>
     <string name="osm_tag_ferry_terminal">Fergeterminal</string>
     <string name="osm_tag_ferry_terminal_named">%1$s-fergeterminal</string>
