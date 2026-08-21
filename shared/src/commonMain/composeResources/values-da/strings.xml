@@ -520,7 +520,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Mærker og ruter er slettet</string>
     <string name="new_version_info_text">Oplysninger om ny udgivelse</string>
     <string name="new_version_info_completed">Luk dialog om ny udgivelse</string>
-    <string name="new_version_info_details">Dette er den første produktionsudgivelse af Soundscape. Vi arbejder stadig hårdt på at forbedre appen, så rapportér venligst eventuelle problemer, uanset hvor små de måtte være, via *Kontakt support*-muligheden i hovedmenuen.</string>
+    <string name="new_version_info_details">Dette er en større opdatering til Soundscape. Rejsetilstand er blevet væsentligt forbedret med meddelelser om vejnumre, rejseretning og nærliggende bebyggelser, når du rejser med bil eller bus, samt meddelelser når du krydser floder, kanaler, fjorde og bugter. Opdater venligst dine offline-kort for at sikre, at du får gavn af disse funktioner. For brugere i Storbritannien har busstoppesteder nu meget bedre beskrivelser. Dvaletilstand kan nu vågne automatisk, når den registrerer, at du bevæger dig igen, så du ikke længere behøver at huske at vække den selv. Den underliggende kode er blevet omstruktureret betydeligt, så vi kan bygge en iOS-app ud fra den samme kode. Det betyder, at vi i fremtiden kan udgive en iOS-app med alle de funktioner, vi har skabt til Android. Som altid bedes du rapportere eventuelle problemer, du oplever, uanset hvor små de måtte være, via Kontakt support i hovedmenuen.</string>
     <string name="menu_open_source_licenses">Open source-licenser</string>
     <string name="osm_office">Kontor</string>
     <string name="osm_school">Skole</string>
