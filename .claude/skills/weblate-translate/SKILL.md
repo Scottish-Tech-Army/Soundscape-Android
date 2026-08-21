@@ -1,6 +1,6 @@
 ---
 name: weblate-translate
-description: Translate Soundscape-Android's untranslated Weblate strings (androidkmp component) directly in-session and upload the results back to Weblate. Use when the user asks to translate untranslated/missing/unfinished strings, sync translations with Weblate, or run the "weblate-translate-unfinished" workflow.
+description: Translate Soundscape-Android's untranslated Weblate strings (androidkmp component) directly in-session and upload the results back to Weblate. Use when the user asks to translate untranslated/missing/unfinished strings, sync translations with Weblate, or run the "weblate-translate-unfinished" workflow — for a language the app doesn't support at all yet, use [[weblate-add-language]] instead.
 ---
 
 # Weblate translate-unfinished
