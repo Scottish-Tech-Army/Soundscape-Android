@@ -1429,4 +1429,6 @@
     <string name="directions_cardinal_north_west_bound">Norðvestur</string>
     <string name="first_launch_permissions_granted">Leyfi veitt</string>
     <string name="first_launch_permissions_not_granted">Ekki enn veitt</string>
+    <string name="talkback_double_tap_template">Tvíbankaðu til að%1$s</string>
+    <string name="menu_manage_locale">Staðfærsla</string>
 </resources>
