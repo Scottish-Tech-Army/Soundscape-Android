@@ -1429,4 +1429,5 @@
     <string name="directions_cardinal_north_west_bound">Kuzeybatı yönü</string>
     <string name="first_launch_permissions_granted">İzin verildi</string>
     <string name="first_launch_permissions_not_granted">Henüz verilmedi</string>
+    <string name="menu_manage_locale">Yerel ayar</string>
 </resources>
