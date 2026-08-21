@@ -60,8 +60,6 @@ import org.scottishtecharmy.soundscape.resources.menu_media_controls
 import org.scottishtecharmy.soundscape.resources.offline_map_storage_title
 import org.scottishtecharmy.soundscape.resources.settings_debug_heading
 import org.scottishtecharmy.soundscape.resources.settings_explanation
-import org.scottishtecharmy.soundscape.resources.settings_head_tracking
-import org.scottishtecharmy.soundscape.resources.settings_head_tracking_description
 import org.scottishtecharmy.soundscape.resources.settings_media_controls_audio_menu
 import org.scottishtecharmy.soundscape.resources.settings_media_controls_original
 import org.scottishtecharmy.soundscape.resources.settings_relative_directions_clockface
@@ -534,19 +532,6 @@ fun SharedSettingsScreen(
                         Text(
                             text = "${((it * 10).toInt() / 10.0)}x",
                             color = textColor
-                        )
-                    },
-                )
-
-                switchPreference(
-                    key = PreferenceKeys.HEAD_TRACKING_ENABLED,
-                    defaultValue = PreferenceDefaults.HEAD_TRACKING_ENABLED,
-                    modifier = expandedSectionModifier,
-                    title = {
-                        SettingDetails(
-                            Res.string.settings_head_tracking,
-                            Res.string.settings_head_tracking_description,
-                            textColor
                         )
                     },
                 )
