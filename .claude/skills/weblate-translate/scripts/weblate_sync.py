@@ -125,6 +125,22 @@ def cmd_fetch(args: argparse.Namespace) -> None:
     print(f"Wrote {len(translated)} translated units -> {translated_path}")
 
 
+def cmd_add_language(args: argparse.Namespace) -> None:
+    c = client()
+    component = c.get_component(f"{PROJECT}/{COMPONENT}")
+    result = component.add_translation(args.lang)
+    print(f"Added language '{args.lang}' to {COMPONENT}:")
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def cmd_create_language(args: argparse.Namespace) -> None:
+    c = client()
+    plural = {"number": args.plural_number, "formula": args.plural_formula}
+    result = c.create_language(args.code, args.name, direction=args.direction, plural=plural)
+    print(f"Created language '{args.code}' in Weblate's language database:")
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
 def cmd_upload(args: argparse.Namespace) -> None:
     c = client()
     translations = json.loads(Path(args.file).read_text())
@@ -174,6 +190,18 @@ def main() -> None:
     p_fetch.add_argument("--lang", required=True, help="Weblate language code, e.g. de, fr_CA, zh_Hans.")
     p_fetch.add_argument("--out-dir", default=".", help="Directory to write cache JSON into.")
     p_fetch.set_defaults(func=cmd_fetch)
+
+    p_addlang = sub.add_parser("add-language", help="Add an existing Weblate language as a new translation of the component.")
+    p_addlang.add_argument("--lang", required=True, help="Weblate language code, e.g. et, nn_NO, cy.")
+    p_addlang.set_defaults(func=cmd_add_language)
+
+    p_createlang = sub.add_parser("create-language", help="Define a language Weblate doesn't know at all yet (rare).")
+    p_createlang.add_argument("--code", required=True, help="New Weblate language code.")
+    p_createlang.add_argument("--name", required=True, help="Language name (in English), e.g. 'Scottish Gaelic'.")
+    p_createlang.add_argument("--direction", default="ltr", choices=["ltr", "rtl"])
+    p_createlang.add_argument("--plural-number", type=int, default=2, help="Number of plural forms.")
+    p_createlang.add_argument("--plural-formula", default="n != 1", help="CLDR-style plural formula.")
+    p_createlang.set_defaults(func=cmd_create_language)
 
     p_upload = sub.add_parser("upload", help="Upload a {key: translation} JSON file as the live translation.")
     p_upload.add_argument("--lang", required=True, help="Weblate language code.")
