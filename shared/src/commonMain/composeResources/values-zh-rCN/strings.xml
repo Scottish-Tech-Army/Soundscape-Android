@@ -1043,7 +1043,7 @@
     <string name="new_version_info_text">新版本信息</string>
     <string name="new_version_info_completed">关闭新版本对话框</string>
     <string name="menu_open_source_licenses">开源许可证</string>
-    <string name="new_version_info_details">这是 Soundscape 的第一个正式生产版本。我们仍在努力改进应用，因此请通过主菜单中的*联系支持*选项报告您遇到的任何问题（无论多小）。</string>
+    <string name="new_version_info_details">这是Soundscape的一次重大更新。旅行模式已得到大幅改进：当您乘坐汽车或公交车出行时，应用会播报道路编号、行进方向和附近的居民点，还会在您经过河流、运河、河口湾和海湾时进行播报。请更新您的离线地图，以确保能够充分利用这些新功能。对于英国用户，公交车站的描述现在更加完善。休眠模式现在可以在检测到您再次移动时自动唤醒，因此您不再需要记得自己手动唤醒它。底层代码已进行了大幅重组，以便我们能够使用相同的代码构建iOS应用。这意味着未来我们可以发布一款拥有我们为Android开发的所有功能的iOS应用。一如既往，请通过主菜单中的联系客服选项，向我们报告您遇到的任何问题，无论大小。</string>
     <string name="about_soundscape">Soundscape 探索使用创新的音频技术，帮助人们更好地感知周围环境，从而更加自信、自主地出行。</string>
     <string name="osm_office_building">办公楼</string>
     <string name="osm_school_building">校舍</string>
