@@ -1033,7 +1033,7 @@
     <string name="osm_beach_resort">ビーチリゾート</string>
     <string name="osm_village_green">村の共有地（芝生広場）</string>
     <string name="osm_ship">船</string>
-    <string name="osm_memorial">記念の場所</string>
+    <string name="osm_memorial">メモリアル</string>
     <string name="osm_synagogue">シナゴーグ</string>
     <string name="osm_mosque">モスク</string>
     <string name="osm_chapel">礼拝堂</string>
@@ -1171,7 +1171,7 @@
     <string name="osm_rope">ロープ</string>
     <string name="osm_debris">がれき</string>
     <string name="osm_road_works">道路工事</string>
-    <string name="osm_lock_gate">閘門</string>
+    <string name="osm_lock_gate">ロックゲート</string>
     <string name="osm_sinkhole">陥没穴</string>
     <string name="osm_range">射撃場</string>
     <string name="osm_ambulance_station">救急車基地</string>
