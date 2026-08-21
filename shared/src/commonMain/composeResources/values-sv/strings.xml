@@ -287,7 +287,7 @@
     <string name="osm_residential_street">Bostadsgata</string>
     <string name="osm_service_road">Serviceväg</string>
     <string name="osm_road">Väg</string>
-    <string name="osm_highway">Motorväg</string>
+    <string name="osm_highway">Huvudväg</string>
     <string name="osm_intersection">Vägkorsning</string>
     <string name="osm_roundabout">Rondell</string>
     <string name="osm_highway_ramp">Motorvägsramp</string>
