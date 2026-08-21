@@ -747,7 +747,7 @@
     <string name="osm_craft">हस्तशिल्प की दुकान</string>
     <string name="osm_motorcycle">मोटरसाइकिल की दुकान</string>
     <string name="osm_hunting">शिकार सामग्री की दुकान</string>
-    <string name="osm_window_blind">विंडो ब्लाइंड की दुकान</string>
+    <string name="osm_window_blind">झिलमिली की दुकान</string>
     <string name="osm_curtain">पर्दों की दुकान</string>
     <string name="osm_antiques">प्राचीन वस्तुओं की दुकान</string>
     <string name="osm_paint">पेंट की दुकान</string>
@@ -859,7 +859,7 @@
     <string name="osm_tiler">टाइल मिस्त्री</string>
     <string name="osm_chimney_sweeper">चिमनी सफ़ाईकर्ता</string>
     <string name="osm_stand_builder">स्टैंड निर्माता</string>
-    <string name="osm_saddler">साज़-सामान बनाने वाला</string>
+    <string name="osm_saddler">काठी बनाने वाला</string>
     <string name="osm_plumber">प्लम्बर</string>
     <string name="osm_plasterer">पलस्तर करने वाला</string>
     <string name="osm_painter">पेंटर</string>
@@ -1153,7 +1153,7 @@
     <string name="osm_aircraft">विमान</string>
     <string name="osm_digester">डाइजेस्टर</string>
     <string name="osm_sally_port">सैली पोर्ट</string>
-    <string name="osm_aerodrome">हवाई अड्डा</string>
+    <string name="osm_aerodrome">हवाई पट्टी</string>
     <string name="osm_shopping_mall">शॉपिंग मॉल</string>
     <string name="osm_cinema">सिनेमाघर</string>
     <string name="osm_rescue_station">बचाव केंद्र</string>
