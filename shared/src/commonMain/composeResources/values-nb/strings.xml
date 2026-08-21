@@ -16,7 +16,7 @@
     <string name="beacon_styles_shimmer">Glitter</string>
     <string name="beacon_styles_tactile">Taktil</string>
     <string name="beacon_styles_ping">Ping</string>
-    <string name="beacon_styles_drop">Slipp</string>
+    <string name="beacon_styles_drop">Fall</string>
     <string name="beacon_styles_signal">Signal</string>
     <string name="beacon_styles_signal_slow">Signal (langsomt)</string>
     <string name="beacon_styles_signal_very_slow">Signal (svært langsomt)</string>
@@ -293,9 +293,9 @@
     <string name="osm_highway_ramp">Motorveirampe</string>
     <string name="osm_merging_lane">Flettefelt</string>
     <string name="osm_office_building">Kontorbygg</string>
-    <string name="osm_school_building">Skole</string>
+    <string name="osm_school_building">Skolebygg</string>
     <string name="osm_covered_pavilion">Paviljong</string>
-    <string name="osm_convenience_store">Matbutikk</string>
+    <string name="osm_convenience_store">Nærbutikk</string>
     <string name="osm_building_entrance">Bygningsinngang</string>
     <string name="osm_assembly_point">Samlingspunkt</string>
     <string name="osm_cycle_barrier">Sykkelsperre</string>
@@ -367,7 +367,7 @@
     <string name="faq_miss_a_callout_answer">Soundscape har en liste over nylige meldinger slik at du kan gå tilbake til meldinger du kanskje gikk glipp av. For å finne denne, trykk på søkefeltet på Soundscape-startskjermen. Nederst på denne skjermen er det en seksjon for *"Nylige meldinger"* hvor meldingen du gikk glipp av vil være oppført.</string>
     <string name="faq_section_how_soundscape_works">Hvordan fungerer Soundscape?</string>
     <string name="faq_supported_phones_question">Hvilken telefon støtter Soundscape?</string>
-    <string name="faq_supported_phones_answer">Soundscape for Android er for øyeblikket tilgjengelig for Android-telefoner som kjører Android 11 eller nyere.</string>
+    <string name="faq_supported_phones_answer">Soundscape er for øyeblikket tilgjengelig for iPhone med iOS 16 eller nyere, og for Android-telefoner som kjører Android 11 eller nyere.</string>
     <string name="faq_supported_headsets_question">Hvilke hodetelefoner bør jeg bruke med Soundscape?</string>
     <string name="faq_supported_headsets_answer">Hvilke hodetelefoner du bruker med Soundscape, er helt opp til deg, og hvert alternativ kommer med fordeler og ulemper. Det eneste bestemte kravet er å bruke stereohodetelefoner slik at du kan dra nytte av Soundscapes 3D-meldinger med romlig lyd.</string>
     <string name="faq_battery_impact_question">Hvordan påvirker Soundscape telefonens batteri?</string>
@@ -597,7 +597,7 @@
     <string name="osm_static_caravan">Stasjonær campingvogn</string>
     <string name="osm_bollard">Pullert</string>
     <string name="osm_block">Blokk</string>
-    <string name="osm_waste_disposal">Avfallshåndtering</string>
+    <string name="osm_waste_disposal">Avfallscontainer</string>
     <string name="osm_photo_booth">Fotoautomat</string>
     <string name="osm_bbq">Grillplass</string>
     <string name="osm_shop">Butikk</string>
@@ -716,7 +716,7 @@
     <string name="osm_nutrition_supplements">Kosttilskuddsbutikk</string>
     <string name="osm_hearing_aids">Høreapparatbutikk</string>
     <string name="osm_cosmetics">Kosmetikkbutikk</string>
-    <string name="osm_watches">Urmaker</string>
+    <string name="osm_watches">Klokkebutikk</string>
     <string name="osm_jewelry">Smykkebutikk</string>
     <string name="osm_boutique">Boutique</string>
     <string name="osm_baby_goods">Babyutstyrsbutikk</string>
@@ -1063,7 +1063,7 @@
     <string name="osm_marketplace">Markedsplass</string>
     <string name="osm_fire_station">Brannstasjon</string>
     <string name="osm_ruins">Ruiner</string>
-    <string name="osm_weir">Demning</string>
+    <string name="osm_weir">Elveterskel</string>
     <string name="osm_museum">Museum</string>
     <string name="osm_mall">Kjøpesenter</string>
     <string name="osm_volcano">Vulkan</string>
