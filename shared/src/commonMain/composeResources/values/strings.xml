@@ -1196,11 +1196,17 @@
     <string name="new_version_info_completed">Close new release dialog</string>
     <!-- Title of screen that contains all of the information about the open source licenses of the packages used within the app -->
     <string name="menu_open_source_licenses">Open source licenses</string>
-    <!-- Text for dialog which explains what is new in the current release. This is in markdown format. -->
+    <!-- Text for dialog which explains what is new in the current release. Rendered as plain text, split into sentences - avoid markdown syntax. -->
     <string name="new_version_info_details">
-This is the first production release of Soundscape.
+This is a major update to Soundscape.
 
-We're still working hard on improving the app, so please report any problems that you have, however small they may be via the *Contact Support* option in the main menu.
+Travel mode has been substantially improved, with callouts for road numbers, direction of travel and nearby settlements when you're travelling by car or bus, as well as calling out when you cross rivers, canals, firths and bays. Please update your offline maps to make sure you get the benefit of these features. For users in the UK bus stops now have much better descriptions.
+
+Sleep mode can now wake automatically when it detects that you're moving again, so you no longer need to remember to wake it yourself.
+
+The underlying code has been moved around a lot so that we can build an iOS app from the same code. This means that in the future we can release an iOS app with all of the features that we have created for Android.
+
+As always, please report any problems that you have, however small they may be, via Contact Support in the main menu.
 </string>
     <!-- Text for the About Soundscape menu option. It describes what the app does -->
     <string name="about_soundscape">Soundscape explores the use of innovative audio-based technology to enable people to build a richer awareness of their surroundings, thus becoming more confident and empowered to get around.</string>
