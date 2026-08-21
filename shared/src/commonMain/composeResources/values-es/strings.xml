@@ -1429,4 +1429,6 @@
     <string name="directions_cardinal_north_west_bound">Hacia el noroeste</string>
     <string name="first_launch_permissions_granted">Permiso concedido</string>
     <string name="first_launch_permissions_not_granted">Aún no concedido</string>
+    <string name="talkback_double_tap_template">Pulse dos veces para%1$s</string>
+    <string name="menu_manage_locale">Configuración regional</string>
 </resources>
