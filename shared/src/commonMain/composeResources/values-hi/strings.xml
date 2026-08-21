@@ -1361,7 +1361,7 @@
     <string name="menu_exit_app">Soundscape से बाहर निकलें</string>
     <string name="talkback_default_activate">सक्रिय करें</string>
     <string name="distance_format_km_a11y">%1$s किलोमीटर</string>
-    <string name="number_decimal_separator">।</string>
+    <string name="number_decimal_separator">.</string>
     <string name="number_decimal_separator_a11y">दशमलव</string>
     <string name="bytes_format_b">%1$s B</string>
     <string name="bytes_format_b_a11y">%1$s बाइट</string>

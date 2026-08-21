@@ -638,7 +638,7 @@
     <string name="distance_format_km_a11y">%1$s কিলোমিটার</string>
     <string name="distance_format_feet">%1$s ফুট</string>
     <string name="distance_format_miles">%1$s মাইল</string>
-    <string name="number_decimal_separator">।</string>
+    <string name="number_decimal_separator">.</string>
     <string name="number_decimal_separator_a11y">দশমিক</string>
     <string name="bytes_format_b">%1$s B</string>
     <string name="bytes_format_b_a11y">%1$s বাইট</string>
