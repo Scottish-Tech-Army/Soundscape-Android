@@ -1260,7 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">Nálægir staðir, til dæmis verslanir og veitingastaðir</string>
     <string name="callouts_mobility_description">Upplýsingar um gatnamót og samgöngur</string>
     <string name="callouts_audio_beacon_description">Uppfærslur um fjarlægð að hljóðvita þegar hann er settur</string>
-    <string name="menu_manage_locale">Tungumál og svæði </string>
+    <string name="menu_manage_language">Tungumál og svæði </string>
     <string name="settings_search_results_language_description">Netleit getur notað staðbundið tungumál niðurstaðna, eða verið stillt til að skila niðurstöðum á ensku, frönsku eða þýsku.</string>
     <string name="language_mismatch_title">Nýtt tungumál í boði</string>
     <string name="language_mismatch_message">Síminn þinn er stilltur á %1$s og það tungumál er nú í boði í Soundscape. Viltu að Soundscape noti %1$s?</string>

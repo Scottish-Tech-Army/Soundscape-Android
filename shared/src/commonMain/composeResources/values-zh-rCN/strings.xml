@@ -958,7 +958,7 @@
     <string name="notification_text">即使手机锁屏，Soundscape 的定位服务仍会运行。</string>
     <string name="cancel_search_contentDescription">取消搜索</string>
     <string name="menu_manage_audio">音频</string>
-    <string name="menu_manage_locale">语言和地区 </string>
+    <string name="menu_manage_language">语言和地区 </string>
     <string name="menu_manage_accessibility">无障碍</string>
     <string name="settings_theme_light_dark">浅色或深色主题</string>
     <string name="settings_theme_auto">自动</string>

@@ -19,7 +19,7 @@
     <string name="settings_theme_auto">Otomatik</string>
     <string name="settings_section_units_description">Mesafeyi ölçmek için kullanılacak birimi seçin</string>
     <string name="general_alert_cancel">İptal</string>
-    <string name="menu_manage_locale">Dil ve Bölge </string>
+    <string name="menu_manage_language">Dil ve Bölge </string>
     <string name="settings_theme_light_dark">Açık veya Koyu Tema</string>
     <string name="settings_theme_contrast_regular">Düzenli</string>
     <string name="settings_use_value">Kullan</string>

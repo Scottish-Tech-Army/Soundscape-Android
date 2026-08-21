@@ -1260,7 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">Найближчі місця, як‑от магазини та ресторани</string>
     <string name="callouts_mobility_description">Інформація про перехрестя та транспорт</string>
     <string name="callouts_audio_beacon_description">Оновлення про відстань до звукового маячка, коли він встановлений</string>
-    <string name="menu_manage_locale">Мова та регіон </string>
+    <string name="menu_manage_language">Мова та регіон </string>
     <string name="settings_search_results_language_description">Онлайн‑пошук може використовувати місцеву мову результату або бути примусово налаштований на повернення результатів англійською, французькою або німецькою.</string>
     <string name="language_mismatch_title">Доступна нова мова</string>
     <string name="language_mismatch_message">На вашому телефоні встановлено %1$s, і ця мова тепер доступна у Soundscape. Бажаєте переключити Soundscape на використання %1$s?</string>

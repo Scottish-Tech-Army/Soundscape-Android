@@ -1260,7 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">Κοντινά μέρη όπως καταστήματα και εστιατόρια</string>
     <string name="callouts_mobility_description">Πληροφορίες για διασταυρώσεις και συγκοινωνίες</string>
     <string name="callouts_audio_beacon_description">Ενημερώσεις σχετικά με την απόσταση από το ηχητικό σήμα όταν έχει οριστεί</string>
-    <string name="menu_manage_locale">Γλώσσα και περιοχή </string>
+    <string name="menu_manage_language">Γλώσσα και περιοχή </string>
     <string name="settings_search_results_language_description">Η διαδικτυακή αναζήτηση μπορεί να χρησιμοποιήσει την τοπική γλώσσα του αποτελέσματος ή να επιβάλει επιστροφή αποτελεσμάτων στα Αγγλικά, Γαλλικά ή Γερμανικά.</string>
     <string name="language_mismatch_title">Νέα γλώσσα διαθέσιμη</string>
     <string name="language_mismatch_message">Το τηλέφωνό σας έχει ρυθμιστεί στη γλώσσα %1$s και αυτή η γλώσσα είναι πλέον διαθέσιμη στο Soundscape. Θέλετε να αλλάξετε το Soundscape ώστε να χρησιμοποιεί τη γλώσσα %1$s;</string>
