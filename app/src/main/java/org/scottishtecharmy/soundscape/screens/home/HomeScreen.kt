@@ -216,19 +216,6 @@ fun HomeScreen(
                     LocationDescription("", LngLatAlt())
                 }
             },
-            onSetApplicationLocale = { tag ->
-                if (tag != null) {
-                    androidx.appcompat.app.AppCompatDelegate.setApplicationLocales(
-                        androidx.core.os.LocaleListCompat.forLanguageTags(tag),
-                    )
-                }
-                // Stop the service so it picks up the new locale on next start. The activity
-                // will be recreated by setApplicationLocales(...); its onResume() will detect
-                // the stopped service and restart it from a freshly-registered
-                // ActivityResultLauncher. Holding a MainActivity reference across recreate
-                // would crash when launch() is invoked on the destroyed activity's launcher.
-                activity.setServiceState(false)
-            },
             onGetLanguageMismatch = { getLanguageMismatch() },
             provideLocationProvider = {
                 if (org.scottishtecharmy.soundscape.hasPlayServices(context)) {
@@ -369,7 +356,6 @@ fun HomeScreen(
                 onStorageSelected = { path -> settingsViewModel.selectStorage(path) },
                 selectedStorageIndex = uiState.selectedStorageIndex,
                 onResetSettings = callbacks.onResetSettings,
-                onSetApplicationLocale = callbacks.onSetApplicationLocale,
                 onBeaconPreviewStart = { type -> settingsViewModel.startBeaconPreview(type) },
                 onBeaconPreviewUpdate = { type -> settingsViewModel.updateBeaconPreviewType(type) },
                 onBeaconPreviewStop = { commit, chosen ->

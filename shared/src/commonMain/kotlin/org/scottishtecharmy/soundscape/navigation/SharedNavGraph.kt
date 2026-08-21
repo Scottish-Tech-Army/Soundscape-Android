@@ -154,7 +154,6 @@ fun SharedNavHost(
                             popUpTo(SharedRoutes.ONBOARDING) { inclusive = true }
                         }
                     },
-                    onSetApplicationLocale = callbacks.onSetApplicationLocale,
                 )
             }
         }
@@ -218,8 +217,6 @@ fun SharedNavHost(
                         callbacks.onSleep()
                         navController.navigate(SharedRoutes.SLEEP)
                     },
-                    onSetApplicationLocale = callbacks.onSetApplicationLocale,
-                    getLanguageMismatch = callbacks.onGetLanguageMismatch,
                 )
             }
         }
@@ -615,7 +612,6 @@ fun SharedNavHost(
                     } else {
                         null
                     },
-                    onSetApplicationLocale = callbacks.onSetApplicationLocale,
                     onResetSettings = if (preferencesProvider != null) {
                         {
                             preferencesProvider.clearAll()

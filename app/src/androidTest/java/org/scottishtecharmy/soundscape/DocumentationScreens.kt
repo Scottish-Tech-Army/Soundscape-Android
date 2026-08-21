@@ -148,8 +148,6 @@ class DocumentationScreens {
                 goToAppSettings = { },
                 permissionsRequired = false,
                 onSleep = {},
-                onSetApplicationLocale = {},
-                getLanguageMismatch = { null },
             )
         }
     }
@@ -193,8 +191,6 @@ class DocumentationScreens {
                 goToAppSettings = { },
                 permissionsRequired = false,
                 onSleep = {},
-                onSetApplicationLocale = {},
-                getLanguageMismatch = { null },
             )
         }
     }

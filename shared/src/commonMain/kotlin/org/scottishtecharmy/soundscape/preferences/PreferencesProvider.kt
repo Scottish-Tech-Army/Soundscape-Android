@@ -52,7 +52,6 @@ object PreferenceKeys {
     const val MEDIA_CONTROLS_MODE = "MediaControlsMode"
     const val FIRST_LAUNCH = "FirstLaunch"
     const val SHOW_MAP = "ShowMap"
-    const val LANGUAGE_SUPPORTED_PROMPTED = "LanguageSupported"
     const val LAST_NEW_RELEASE = "LastNewRelease"
     const val MARKERS_SORT_BY_NAME = "MarkersSortByName"
     const val MARKERS_SORT_ASCENDING = "MarkersSortAscending"

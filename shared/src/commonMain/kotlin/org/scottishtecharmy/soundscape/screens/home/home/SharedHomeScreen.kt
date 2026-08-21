@@ -68,8 +68,6 @@ fun SharedHomeScreen(
     permissionsRequired: Boolean,
     goToAppSettings: () -> Unit,
     onSleep: () -> Unit,
-    onSetApplicationLocale: (String?) -> Unit,
-    getLanguageMismatch: () -> org.scottishtecharmy.soundscape.screens.onboarding.language.Language?,
     modifier: Modifier = Modifier,
 ) {
     val showMap by rememberBooleanPreference(
@@ -89,17 +87,6 @@ fun SharedHomeScreen(
                 PreferenceDefaults.LAST_NEW_RELEASE
             )
                     != appVersionMinorTrimmed()) &&
-                    analyticsEnabled,
-        )
-    }
-    val phoneLanguage = remember { getLanguageMismatch() }
-    val languageMismatchDialog = remember {
-        mutableStateOf(
-            (phoneLanguage != null &&
-                    (preferencesProvider?.getBoolean(
-                        PreferenceKeys.LANGUAGE_SUPPORTED_PROMPTED,
-                        PreferenceDefaults.LANGUAGE_SUPPORTED_PROMPTED,
-                    ) == false)) &&
                     analyticsEnabled,
         )
     }
@@ -144,15 +131,7 @@ fun SharedHomeScreen(
             },
             contentWindowInsets = WindowInsets(0, 0, 0, 0),
         ) { innerPadding ->
-            if (languageMismatchDialog.value && phoneLanguage != null) {
-                SharedLanguageMismatchDialog(
-                    innerPadding = innerPadding,
-                    preferencesProvider = preferencesProvider,
-                    showDialog = languageMismatchDialog,
-                    phoneLanguage = phoneLanguage,
-                    onSetApplicationLocale = onSetApplicationLocale,
-                )
-            } else if (newReleaseDialog.value) {
+            if (newReleaseDialog.value) {
                 SharedNewReleaseDialog(
                     innerPadding = innerPadding,
                     preferencesProvider = preferencesProvider,
