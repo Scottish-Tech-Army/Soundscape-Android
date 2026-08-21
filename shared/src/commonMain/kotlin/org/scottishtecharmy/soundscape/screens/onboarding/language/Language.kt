@@ -12,6 +12,7 @@ data class Language(
  */
 val supportedLanguages: List<Language> = listOf(
     Language("العربية المصرية", "arz", "EG"),
+    Language("বাংলা", "bn", "BD"),
     Language("中文 (简体)", "zh", "CN"),
     Language("Dansk", "da", "DK"),
     Language("Deutsch", "de", "DE"),
@@ -23,7 +24,9 @@ val supportedLanguages: List<Language> = listOf(
     Language("Suomi", "fi", "FI"),
     Language("Français (France)", "fr", "FR"),
     Language("Français (Canada)", "fr", "CA"),
+    Language("Hausa", "ha", "NG"),
     Language("हिंदी", "hi", "IN"),
+    Language("Bahasa Indonesia", "id", "ID"),
     Language("Íslenska", "is", "IS"),
     Language("Italiano", "it", "IT"),
     Language("日本語", "ja", "JP"),
@@ -35,6 +38,10 @@ val supportedLanguages: List<Language> = listOf(
     Language("Русский", "ru", "RU"),
     Language("Română", "ro", "RO"),
     Language("Svenska", "sv", "SE"),
+    Language("Kiswahili", "sw", "TZ"),
+    Language("తెలుగు", "te", "IN"),
     Language("Türkçe", "tr", "TR"),
     Language("Українська", "uk", "UA"),
+    Language("اردو", "ur", "PK"),
+    Language("Tiếng Việt", "vi", "VN"),
 )

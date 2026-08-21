@@ -164,6 +164,7 @@ android {
         // Maintaining this list means that we can exclude translations that aren't complete yet
         localeFilters += listOf(
             "arz",
+            "bn",
             "zh-rCN",
             "da",
             "de",
@@ -175,7 +176,9 @@ android {
             "fi",
             "fr",
             "fr-rCA",
+            "ha",
             "hi",
+            "in",
             "is",
             "it",
             "ja",
@@ -187,8 +190,12 @@ android {
             "ro",
             "ru",
             "sv",
+            "sw",
+            "te",
             "tr",
-            "uk"
+            "uk",
+            "ur",
+            "vi"
         )
         // Keep the map style assets stored uncompressed in the APK. "pbf" is unique to the
         // glyph fonts in this folder; the style JSON/sprite PNGs need exact paths since those

@@ -229,6 +229,7 @@ class DocumentationScreens {
     private val localeMap: Map<String, String> = mapOf(
         "en" to "en",          // default -> no suffix, no `lang:` front matter
         "arz" to "arz",
+        "bn" to "bn",
         "zh-rCN" to "zh-CN",
         "da" to "da",
         "de" to "de",
@@ -239,7 +240,9 @@ class DocumentationScreens {
         "fi" to "fi",
         "fr" to "fr",
         "fr-rCA" to "fr-CA",
+        "ha" to "ha",
         "hi" to "hi",
+        "in" to "id",
         "is" to "is",
         "it" to "it",
         "ja" to "ja",
@@ -251,8 +254,12 @@ class DocumentationScreens {
         "ro" to "ro",
         "ru" to "ru",
         "sv" to "sv",
+        "sw" to "sw",
+        "te" to "te",
         "tr" to "tr",
         "uk" to "uk",
+        "ur" to "ur",
+        "vi" to "vi",
     )
 
     // Localized "Using Soundscape" — the nav parent/section title. Keyed by web language
@@ -263,6 +270,7 @@ class DocumentationScreens {
         "en" to "Using Soundscape",
         "en-GB" to "Using Soundscape",
         "arz" to "استخدام ساوندسكيب",
+        "bn" to "সাউন্ডস্কেপ ব্যবহার",
         "zh-CN" to "使用 Soundscape",
         "da" to "Brug af Soundscape",
         "de" to "Soundscape verwenden",
@@ -272,7 +280,9 @@ class DocumentationScreens {
         "fi" to "Soundscapen käyttö",
         "fr" to "Utiliser Soundscape",
         "fr-CA" to "Utiliser Soundscape",
+        "ha" to "Amfani da Soundscape",
         "hi" to "Soundscape का उपयोग",
+        "id" to "Menggunakan Soundscape",
         "is" to "Að nota Soundscape",
         "it" to "Usare Soundscape",
         "ja" to "Soundscape を使う",
@@ -284,8 +294,12 @@ class DocumentationScreens {
         "ro" to "Utilizarea Soundscape",
         "ru" to "Использование Soundscape",
         "sv" to "Använda Soundscape",
+        "sw" to "Kutumia Soundscape",
+        "te" to "Soundscape వాడకం",
         "tr" to "Soundscape Kullanımı",
         "uk" to "Використання Soundscape",
+        "ur" to "Soundscape کا استعمال",
+        "vi" to "Sử dụng Soundscape",
     )
 
     /**
