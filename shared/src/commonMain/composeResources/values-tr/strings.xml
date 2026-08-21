@@ -250,7 +250,7 @@
     <string name="distance_format_miles">%1$s mil</string>
     <string name="ui_action_button_my_location">Konu\nmum</string>
     <string name="ui_action_button_my_location_acc_hint">mevcut konumunuz hakkında bilgi alın</string>
-    <string name="ui_action_button_nearby_markers">Yakın\nNoktalar</string>
+    <string name="ui_action_button_nearby_markers">Yakındaki\nKayıtlı Noktalar</string>
     <string name="ui_action_button_nearby_markers_acc_hint">işaretlediğiniz yakın yerler hakkında bilgi alın</string>
     <string name="ui_action_button_around_me">Etra\nfımda</string>
     <string name="ui_action_button_around_me_acc_hint">etrafınızdaki dört çeyrekteki yerler hakkında bilgi alın</string>
@@ -634,7 +634,7 @@
     <string name="osm_mineshaft">Maden Kuyusu</string>
     <string name="osm_flagpole">Bayrak Direği</string>
     <string name="osm_optical_telegraph">Optik Telgraf</string>
-    <string name="osm_cannon">Top</string>
+    <string name="osm_cannon">Tarihi Top</string>
     <string name="osm_boundary_stone">Sınır Taşı</string>
     <string name="osm_shed">Baraka</string>
     <string name="osm_traffic_cones">Trafik Konisi</string>
@@ -684,7 +684,7 @@
     <string name="osm_metal_construction">Metal Yapı Atölyesi</string>
     <string name="osm_handicraft">El Sanatları Dükkanı</string>
     <string name="osm_cowshed">Ahır</string>
-    <string name="osm_cabin">Kabin</string>
+    <string name="osm_cabin">Kır Kulübesi</string>
     <string name="osm_barn">Çiftlik Ambarı</string>
     <string name="osm_warehouse">Depo</string>
     <string name="osm_houseboat">Yüzen Ev</string>
