@@ -650,7 +650,7 @@
     <string name="osm_public_bookcase">Δημόσιο ράφι ανταλλαγής βιβλίων</string>
     <string name="osm_biergarten">Κήπος μπύρας</string>
     <string name="osm_running">Πίστα τρεξίματος</string>
-    <string name="osm_glaziery">Εργαστήριο υαλοπλαίσων</string>
+    <string name="osm_glaziery">Εργαστήριο υαλουργού</string>
     <string name="osm_garages">Συνεργεία αυτοκινήτων</string>
     <string name="osm_retail">Κατάστημα λιανικής</string>
     <string name="osm_hotel">Ξενοδοχείο</string>
@@ -1228,7 +1228,7 @@
     <string name="tour_stop_beacon">Όταν είστε έτοιμοι να σταματήσετε το ηχητικό σήμα, πατήστε το κουμπί «Διακοπή διαδρομής».</string>
     <string name="tour_finish">Αυτό ολοκληρώνει τον οδηγό. Μπορείτε να τον εκτελέσετε ξανά από το κύριο μενού. Ελπίζουμε να βρείτε την εφαρμογή χρήσιμη!</string>
     <string name="tour_cancel">Ο καθοδηγούμενος οδηγός ακυρώθηκε. Εάν θέλετε, μπορείτε να τον εκτελέσετε ξανά από το κύριο μενού.</string>
-    <string name="menu_audio_tutorial">Καθοδηγούμενος οδηγός</string>
+    <string name="menu_audio_tutorial">Καθοδηγούμενη περιήγηση</string>
     <string name="menu_audio_tutorial_cancel">Ακύρωση καθοδηγούμενου οδηγού</string>
     <string name="search_bar_hint">Πληκτρολογήστε το όνομα ή τη διεύθυνση του προορισμού</string>
     <string name="all_places_nearby_description">δείτε μια μη φιλτραρισμένη λίστα με όλες τις κοντινές τοποθεσίες</string>
