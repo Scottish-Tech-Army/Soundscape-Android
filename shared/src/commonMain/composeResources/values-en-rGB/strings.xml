@@ -209,7 +209,7 @@
     <string name="terms_of_use_message">Your use of Soundscape is subject to the terms of the %1$s and the terms set out below (together, the *"Terms of Use"*).</string>
     <string name="terms_of_use_service_agreement">Scottish Tech Army Services Agreement</string>
     <string name="terms_of_use_accept_checkbox_acc_label">Accept Terms of Use</string>
-    <string name="terms_of_use_medical_safety_disclaimer">You acknowledge that Soundscape (1) is not designed, intended, or made available as a medical device, and (2) is not designed or intended to be a substitute for professional medical advice, diagnosis, treatment, or judgment and should not be used to replace or as a substitute for professional medical advice, diagnosis, treatment, or judgment.\n\nSafety Notice\n\nSoundscape is a navigation aid and should not be used in lieu of mobility skills, being aware of your surroundings, and good judgement. Use caution when navigating your environment as the mapping data incorporated into the Soundscape program is captured from a third-party program, and therefore, there may be limitations with the accuracy of the information presented.</string>
+    <string name="terms_of_use_medical_safety_disclaimer">You acknowledge that Soundscape (1) is not designed, intended, or made available as a medical device, and (2) is not designed or intended to be a substitute for professional medical advice, diagnosis, treatment, or judgement and should not be used to replace or as a substitute for professional medical advice, diagnosis, treatment, or judgement.\n\nSafety Notice\n\nSoundscape is a navigation aid and should not be used in lieu of mobility skills, being aware of your surroundings, and good judgement. Use caution when navigating your environment as the mapping data incorporated into the Soundscape program is captured from a third-party program, and therefore, there may be limitations with the accuracy of the information presented.</string>
     <string name="first_launch_soundscape_language">Soundscape Language</string>
     <string name="first_launch_soundscape_language_text">Select the language you would like Soundscape to use. You can always change your selection in the app settings.</string>
     <string name="first_launch_welcome_title">Welcome!</string>
@@ -223,8 +223,8 @@
     <string name="first_launch_callouts_listen">Listen to an example of what Soundscape might call out on your next walk</string>
     <string name="first_launch_callouts_listen_accessibility_label">Listen</string>
     <string name="first_launch_callouts_example_1">Cafe</string>
-    <string name="first_launch_callouts_example_3">Main Street goes left</string>
-    <string name="first_launch_callouts_example_4">Main Street goes right</string>
+    <string name="first_launch_callouts_example_3">High Street goes left</string>
+    <string name="first_launch_callouts_example_4">High Street goes right</string>
     <string name="first_launch_permissions_title">App Permissions</string>
     <string name="first_launch_permissions_message">In order for Soundscape to run, it needs certain permissions granted. These allow it to be updated with the phone's location, even when locked. Please tap each of the following permissions and enable them when prompted:</string>
     <string name="first_launch_permissions_location">Location Services with Precise Location</string>
@@ -266,7 +266,7 @@
     <string name="help_text_markers_content_2">You can mark things that are personal and relevant to you like your home, your office and your preferred grocery store. You can mark any place or address, but you can also mark things that might traditionally not be available in maps, for example, entrances to buildings or parks, push-to-walk buttons, pedestrian crossings or bridges, bus stops or even your dog’s favourite tree and use these as references along your walk.</string>
     <string name="help_text_markers_content_3">To experience marked places, Soundscape will automatically call out markers as you walk by or approach them, or you can use the *\"Nearby Markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. You can also set an audio beacon on any marked place. When you do this, the familiar Soundscape audio beacon will be heard and you can operate it as usual.</string>
     <string name="help_text_creating_markers_content_1">You can create markers in three ways: by searching for the place you want to save using the search bar, by finding somewhere using the *\"Places Nearby\"* button, or by using the *\"Use Current Location\"* button — all of which are on the Soundscape home screen. Once you have found the place you want, selecting it will open the *\"Location Details\"* screen. On that screen, select the *\"Save as Marker\"* button.</string>
-    <string name="help_text_creating_markers_content_2">You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.</string>
+    <string name="help_text_creating_markers_content_2">You will now have the option to customise this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *Done* button to save your Marker.</string>
     <string name="help_text_customizing_markers_content_1">If you want to rename a marker you previously created, or add an annotation to it, select the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then choose the *\"Edit Marker\"* button. Use this to give markers descriptive nicknames and to add a longer description in the annotation field.</string>
     <string name="help_text_customizing_markers_content_2">From this *"Edit"* screen you can also delete a marker if you no longer need it.</string>
     <string name="help_text_routes_content_what">Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.</string>
@@ -277,12 +277,12 @@
     <string name="osm_crossing">Crossing</string>
     <string name="osm_construction">Construction</string>
     <string name="osm_dangerous_area">Dangerous Area</string>
-    <string name="osm_townhall">Townhall</string>
+    <string name="osm_townhall">Town Hall</string>
     <string name="osm_steps">Steps</string>
-    <string name="osm_elevator">Lifts</string>
-    <string name="osm_walking_path">FootPath</string>
+    <string name="osm_elevator">Lift</string>
+    <string name="osm_walking_path">Footpath</string>
     <string name="osm_pedestrian_street">Pedestrian Street</string>
-    <string name="osm_bicycle_path">Bicycle Path</string>
+    <string name="osm_bicycle_path">Cycle Path</string>
     <string name="osm_residential_street">Residential Street</string>
     <string name="osm_service_road">Service Road</string>
     <string name="osm_road">Road</string>
@@ -338,7 +338,7 @@
     <string name="faq_tips_title">Tips</string>
     <string name="faq_section_what_is_soundscape">What is Soundscape and how should I use it?</string>
     <string name="faq_when_to_use_soundscape_question">When should I use Soundscape?</string>
-    <string name="faq_when_to_use_soundscape_answer">Soundscape has features and benefits that span a variety of scenarios and time scales. Furthermore, Soundscape’s value to you may evolve over time so how you use it today may differ from how you will use it in three months. People often think about apps in terms of \"what problem is this app good at solving?\" Soundscape certainly can be used on a case by case basis when you have a specific information need – such as keeping track of a destination as you make your way there, helping to orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is one of *\"lighting up your world with sound\"*, designed to be used anytime you are out and about to provide ambient awareness of your surroundings, such as keeping you aware of the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\"nice companion app\"*, which supports *\"serendipity\"*, to *\"fill in the gaps in your mental map\"* and provide more *\"confidence when walking\"*. Here are some other examples of how our users are incorporating Soundscape into their life:\n\n\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\"\n\n\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\"\n\n\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\"\n\n\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\"\n\n\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!\"</string>
+    <string name="faq_when_to_use_soundscape_answer">Soundscape has features and benefits that span a variety of scenarios and time scales. Furthermore, Soundscape’s value to you may evolve over time so how you use it today may differ from how you will use it in three months. People often think about apps in terms of \\"what problem is this app good at solving?\\" Soundscape certainly can be used on a case by case basis when you have a specific information need – such as keeping track of a destination as you make your way there, helping to orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is one of *\\"lighting up your world with sound\\"*, designed to be used anytime you are out and about to provide ambient awareness of your surroundings, such as keeping you aware of the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *\\"nice companion app\\"*, which supports *\\"serendipity\\"*, to *\\"fill in the gaps in your mental map\\"* and provide more *\\"confidence when walking\\"*. Here are some other examples of how our users are incorporating Soundscape into their life:\n\n\\"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction.\\"\n\n\\"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape].\\"\n\n\\"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use.\\"\n\n\\"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors.\\"\n\n\\"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 metres of the door – brilliant!\\"</string>
     <string name="faq_markers_function_question">What are Markers and how do I get the most out of them?</string>
     <string name="faq_markers_function_answer">Markers are places that you have saved. They may be places already discoverable in the app or entirely new places you add yourself. You can save your current location as a marker by selecting the *\"Current Location\"* button on the home screen and then choosing *\"Save as Marker\"*. You can save other locations by searching for the place using the search bar or by finding somewhere with the *\"Places Nearby\"* button. Once you have found the place you want, selecting it will open the *\"Location Details\"* screen; on that screen select the *\"Save as Marker\"* button.</string>
     <string name="faq_section_getting_the_best_experience">How do I get the best out of Soundscape?</string>
@@ -372,9 +372,9 @@
     <string name="faq_battery_impact_question">How does Soundscape impact my phone’s battery?</string>
     <string name="faq_battery_impact_answer">Battery life varies significantly depending on which phone you own and how old it is. The biggest drain on your battery is having the screen on, so to maximise your phone’s battery life you should keep the screen locked whenever possible. To help minimise the impact on your phone battery, Soundscape now includes a Sleep Mode. To further reduce battery use, when you are not using Soundscape you should force close it via your phone’s App Switcher.</string>
     <string name="faq_sleep_mode_battery_question">How do I use Sleep Mode to minimise Soundscape’s impact on my phone battery?</string>
-    <string name="faq_sleep_mode_battery_answer">To put Soundscape into Sleep Mode, select the *\"Sleep\"* button in the top-right corner of the screen. When you do this, Soundscape will stop using Location Services and mobile data until you choose to wake it up again.\n</string>
+    <string name="faq_sleep_mode_battery_answer">To put Soundscape into Sleep Mode, select the *\\"Sleep\\"* button in the top-right corner of the screen. When you do this, Soundscape will stop using Location Services and mobile data until you choose to wake it up again.</string>
     <string name="faq_snooze_mode_battery_question">How do I use Snooze mode to minimise Soundscape’s impact on my phone battery?</string>
-    <string name="faq_snooze_mode_battery_answer">To put Soundscape into Snooze Mode, select the *\"Sleep\"* button in the top-right corner of the screen. Once Soundscape is in Sleep Mode, select the *\"Wake up when I leave\"* button and Soundscape will enter a low‑power state until you leave your current location.\n</string>
+    <string name="faq_snooze_mode_battery_answer">To put Soundscape into Snooze Mode, select the *\\"Sleep\\"* button in the top-right corner of the screen. Once Soundscape is in Sleep Mode, select the *\\"Wake up when I leave\\"* button and Soundscape will enter a low‑power state until you leave your current location.</string>
     <string name="faq_headset_battery_impact_question">How does my choice of headphones affect the battery life of my phone?</string>
     <string name="faq_headset_battery_impact_answer">In our tests, the battery consumption of Bluetooth headphones is comparable to wired headphones and should not be a significant factor to consider when selecting headphones.</string>
     <string name="faq_background_battery_impact_question">How does running Soundscape in the background impact battery life of my phone?</string>
@@ -456,7 +456,7 @@
     <string name="last_entry_in_list"> and %1$s</string>
     <string name="settings_section_units">Units of Measure</string>
     <string name="settings_units_imperial">Imperial (Feet)</string>
-    <string name="settings_units_metric">Metric (Meters)</string>
+    <string name="settings_units_metric">Metric (Metres)</string>
     <string name="settings_theme_light_dark">Light or Dark Theme</string>
     <string name="settings_theme_auto">Auto</string>
     <string name="settings_theme_light">Light</string>
@@ -471,7 +471,7 @@
     <string name="menu_contact_support">Contact support</string>
     <string name="route_detail_action_previous_disabled_hint">Inactive as the route is already at the start</string>
     <string name="route_detail_action_next_disabled_hint">Inactive as the route is already at the end</string>
-    <string name="osm_entrance">entrance</string>
+    <string name="osm_entrance">Entrance</string>
     <string name="osm_main_entrance">main entrance</string>
     <string name="osm_entrance_named_with_destination">%1$s %2$s from %3$s</string>
     <string name="osm_entrance_with_destination">%1$s %2$s</string>
@@ -495,7 +495,7 @@
     <string name="offline_map_storage_description">So that Soundscape can be used without an Internet connection it is possible to download maps and store them on the phone. The default storage is any external storage on your phone, but you can select an alternative destination here.</string>
     <string name="text_field_clear_text">Clear Text</string>
     <string name="marker_name_description_hint">edit the marker name</string>
-    <string name="annotation_description_hint">add an optional note to help you recognize this marker later</string>
+    <string name="annotation_description_hint">add an optional note to help you recognise this marker later</string>
     <string name="route_name_description_hint">edit the route name</string>
     <string name="route_description_description_hint">add an optional description for this route</string>
     <string name="fab_add_item">Add Item</string>
@@ -827,7 +827,7 @@
     <string name="osm_jeweller">Jewellery Shop</string>
     <string name="osm_floorer">Floorer</string>
     <string name="osm_distillery">Distillery</string>
-    <string name="osm_carpet_layer">Carpet Layer</string>
+    <string name="osm_carpet_layer">Carpet Fitter</string>
     <string name="osm_beekeeper">Beekeeper</string>
     <string name="osm_public">Public</string>
     <string name="osm_dormitory">Hall of Residence</string>
@@ -883,7 +883,7 @@
     <string name="osm_bathroom_furnishing">Bathroom Shop</string>
     <string name="osm_medical_supply">Medical Supplies Shop</string>
     <string name="osm_variety_store">Variety Shop</string>
-    <string name="osm_second_hand">Second‑hand Shop</string>
+    <string name="osm_second_hand">Second-hand Shop</string>
     <string name="osm_charity">Charity Shop</string>
     <string name="osm_fashion">Fashion Shop</string>
     <string name="osm_fabric">Fabric Shop</string>
@@ -989,7 +989,7 @@
     <string name="osm_swingerclub">Swingers' Club</string>
     <string name="osm_doctors">Doctors' Surgery</string>
     <string name="osm_driving_school">Driving School</string>
-    <string name="osm_free_flying">Free‑flying Area</string>
+    <string name="osm_free_flying">Free-flying Area</string>
     <string name="osm_religion">Religion</string>
     <string name="osm_kiosk">Kiosk</string>
     <string name="osm_residential">Residential Area</string>
@@ -1329,7 +1329,7 @@
     <string name="battery_optimization_title">Background Battery Usage</string>
     <string name="battery_optimization_message">Soundscape requires unrestricted battery use to keep providing audio navigation when your phone is locked. Please allow this in the next dialog. If you close Soundscape, all services will stop and it will no longer use battery</string>
     <string name="route_detail_action_start_route_reverse">Start Route in Reverse</string>
-    <string name="route_detail_action_start_route_reverse_hint">Start playback of this route in reverse</string>
+    <string name="route_detail_action_start_route_reverse_hint">start playback of this route in reverse</string>
     <string name="route_reverse_name">%1$s in reverse</string>
     <string name="callouts_no_nearby_markers">There are no nearby markers</string>
     <string name="stationary_on_way">Stationary on %1$s</string>
@@ -1358,12 +1358,12 @@
     <string name="copyright_notices">Soundscape wouldn't be possible without these fantastic third‑party libraries and data. Click the links to see their licences:</string>
     <string name="osm_copyright">[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geographical data for mapping and audio used in Soundscape.</string>
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the map tiles we use.</string>
-    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
+    <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 licence](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective owners.</string>
     <string name="settings_accessible_map">Enable accessible map styling</string>
     <string name="loading_indicator_content_description">Loading…</string>
     <string name="offline_maps_extract_damaged">Damaged - delete and re-download</string>
-    <string name="offline_map_details_update">Re-download offline map</string>
+    <string name="offline_map_details_update">Update offline map</string>
     <string name="menu_exit_app">Exit Soundscape</string>
     <string name="talkback_double_tap_prefix">Double tap to</string>
     <string name="talkback_default_activate">activate</string>
@@ -1386,7 +1386,7 @@
     <string name="settings_head_tracking">Enable head tracking</string>
     <string name="settings_head_tracking_description">Position spatial audio relative to where your head is facing using motion data from supported AirPods, Bose Frames or an external Bluetooth IMU. Calibrates automatically while you walk.</string>
     <string name="sleep_snoozing">Snoozing</string>
-    <string name="sleep_sleeping_wake_on_leave_message">Soundscape is currently snoozing. When you leave your current location, Soundscape will automatically wake up. This uses Location Services in a low‑power mode to conserve your phone battery. Tap the button below to wake up now.</string>
+    <string name="sleep_sleeping_wake_on_leave_message">Soundscape is currently snoozing. When you leave your current location, Soundscape will automatically wake up. This uses Location Services in a low‑power mode to conserve your phone's battery. Tap the button below to wake up now.</string>
     <string name="sleep_wake_on_leave">Wake on Leave</string>
     <string name="osm_motorway">Motorway</string>
     <string name="osm_trunk">Trunk Road</string>
