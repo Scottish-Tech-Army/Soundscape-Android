@@ -520,7 +520,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">マーカーおよびルートを削除しました</string>
     <string name="new_version_info_text">新しいリリース情報</string>
     <string name="new_version_info_completed">新しいリリース情報を閉じる</string>
-    <string name="new_version_info_details">これは Soundscape の最初の製品版リリースです。アプリの改善に向けて引き続き取り組んでいますので、どんなに小さな問題でも、メインメニューの *「サポートに連絡」* オプションからご報告ください。</string>
+    <string name="new_version_info_details">これはSoundscapeの大型アップデートです。移動モードが大幅に改善され、車やバスで移動する際に道路番号、進行方向、近くの集落についての読み上げが行われるようになり、また川、運河、入り江、湾を渡るときにも読み上げが行われるようになりました。これらの機能を活用するために、オフラインマップを更新してください。英国のユーザー向けには、バス停の説明が大幅に改善されました。スリープ モードは、再び移動していることを検知すると自動的に解除されるようになったため、ご自身で解除する手間がなくなりました。基盤となるコードは大幅に再構成され、同じコードからiOSアプリを構築できるようになりました。これにより、将来的にはAndroid向けに作成したすべての機能を備えたiOSアプリをリリースできるようになります。いつものように、どんなに些細な問題でも、メインメニューのサポートに連絡オプションからご報告ください。</string>
     <string name="menu_open_source_licenses">オープンソースライセンス</string>
     <string name="osm_tag_ferry_terminal">フェリーターミナル</string>
     <string name="osm_tag_ferry_terminal_named">%1$s フェリーターミナル</string>
