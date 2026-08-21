@@ -104,12 +104,12 @@ fun filterLocations(
             // Filter based on any folder selected and filter out POIs with entrances
             !featureHasEntrances(feature) &&
                     featureIsInFilterGroup(feature, uiState.filter) &&
-                    (feature as MvtFeature).getText(strings).text.isNotEmpty()
+                    (feature as MvtFeature).getText(strings, includeTransitTypeSuffix = false).text.isNotEmpty()
         }.map { feature ->
             feature.deferredToLocationDescription(
                 LocationSource.OfflineGeocoder,
                 getDistanceToFeature(location, feature, ruler).point,
-                (feature as MvtFeature).getText(strings)
+                (feature as MvtFeature).getText(strings, includeTransitTypeSuffix = false)
             )
         }.sortedBy {
             uiState.userLocation?.let { location ->

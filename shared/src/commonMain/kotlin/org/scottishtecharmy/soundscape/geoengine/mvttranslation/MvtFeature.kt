@@ -114,8 +114,13 @@ open class MvtFeature : Feature() {
      * or if it doesn't have one then a localized description of the type of feature it is e.g. bike
      * parking, or style. Some types of Feature have more info e.g. bus stops and railway stations
      * name from the OSM tag rather than an actual name.
+     *
+     * [includeTransitTypeSuffix] controls whether a NaPTAN bus stop's name gets the generic
+     * "Bus Stop" suffix appended (e.g. "Main Street, Milngavie Northeastbound Bus Stop") - wanted
+     * for spoken callouts so the type is unambiguous, but redundant in a list like Places Nearby
+     * where the stop is already shown/grouped as a bus stop.
      */
-    fun getText(localized: LocalizedStrings?): TextForFeature {
+    fun getText(localized: LocalizedStrings?, includeTransitTypeSuffix: Boolean = true): TextForFeature {
         var generic = false
         val name = name
         val entranceType = properties?.get("entrance") as String?
@@ -177,9 +182,12 @@ open class MvtFeature : Feature() {
                 null
             }
             val displayName = naptanName?.displayName ?: name
-            text = if (displayName != null)
-                localized?.get(namedTransit.first, displayName) ?: "$displayName $genericFallback"
-            else
+            text = if (displayName != null) {
+                if (featureValue == "bus_stop" && !includeTransitTypeSuffix)
+                    displayName
+                else
+                    localized?.get(namedTransit.first, displayName) ?: "$displayName $genericFallback"
+            } else
                 localized?.get(namedTransit.second) ?: genericFallback
 
             naptanName?.landmark?.let { landmark ->
