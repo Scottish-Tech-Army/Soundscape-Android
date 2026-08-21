@@ -408,7 +408,7 @@
     <string name="faq_headset_battery_impact_question">كيف يؤثر اختياري لسماعات الرأس على عمر بطارية هاتفي؟</string>
     <string name="faq_headset_battery_impact_answer">في اختباراتنا ، يكون استهلاك البطارية لسماعات الرأس Bluetooth قابلة للمقارنة مع سماعات الرأس السلكية ويجب ألا يكون عاملاً مهمًا في الاعتبار عند اختيار سماعات الرأس.</string>
     <string name="faq_background_battery_impact_question">كيف يؤثر تشغيل Soundscape في الخلفية على عمر بطارية هاتفي؟</string>
-    <string name="faq_background_battery_impact_answer">Soundscape تطبيق يعتمد على تحديد الموقع، ويستخدم خدمات الموقع لتحديد مكانك. في اختباراتنا، لا يستهلك Soundscape طاقة بطارية أكثر من متوسط تطبيقات الخرائط؛ لكن إذا كنت قلقًا بشأن استهلاك البطارية أثناء استخدام هاتفك، فإليك بعض النصائح التي تساعد على خفض الاستهلاك:\n\n1. أطفئ شاشة الهاتف قدر الإمكان عندما لا تتفاعل مع التطبيق.\n\n2. أغلق التطبيق عند عدم استخدامه. يستخدم Soundscape خدمات الموقع باستمرار أثناء تشغيله ليظل على علم بموقعك، حتى عندما لا تكون متحركًا. لا تنسَ إعادة تشغيل التطبيق عند استئناف رحلتك.\n\n3. في الطقس البارد، حافظ على هاتفك دافئًا؛ فأداء البطاريات يضعف في درجات الحرارة المنخفضة.</string>
+    <string name="faq_background_battery_impact_answer">Soundscape تطبيق يعتمد على الموقع، ويستخدم خدمات الموقع لتحديد موقعك. في اختباراتنا، لا يستهلك Soundscape بطارية أكثر من متوسط استهلاك تطبيقات الخرائط؛ ولكن إذا كنت قلقًا بشأن استهلاك البطارية أثناء استخدام هاتفك، فإليك بعض النصائح التي ستساعد في تقليل الاستهلاك:\n\n1. أطفئ شاشة الهاتف قدر الإمكان عندما لا تكون تتفاعل مع التطبيق.\n\n2. عندما لا تستخدم التطبيق، أغلقه تمامًا. يستخدم Soundscape خدمات الموقع باستمرار أثناء تشغيله حتى يظل يعرف موقعك دائمًا، حتى عندما لا تكون متحركًا. لا تنسَ إعادة تشغيل التطبيق عند استئناف رحلتك.\n\n3. في الطقس البارد، حافظ على دفء هاتفك، حيث تؤدي البطاريات أداءً أسوأ في درجات الحرارة المنخفضة.</string>
     <string name="faq_mobile_data_use_question">ما مقدار بيانات الأجهزة المحمولة التي تستخدمها Soundscape؟</string>
     <string name="faq_mobile_data_use_answer">تعتمد كمية بيانات الهاتف المحمول المستخدمة على كيفية استخدام SoundScape. لقد قمنا بتصميم Soundscape لاستخدام كمية صغيرة فقط من البيانات عندما تكون خارجًا ، ومن خلال القيام بأشياء مثل حفظ النقاط أثناء التجول حتى لا تحتاج إلى تنزيلها مرة أخرى في كل مرة تعود فيها إلى مكان ما كنت بالفعل. لتقليل كمية بيانات الهاتف المحمول التي تستخدمها ، تأكد من توصيل Wi-Fi كلما كان ذلك ممكنًا ، خاصة لتنزيل التطبيق. عندما لا تستخدم Soundscape ، يجب عليك استخدام زر * "Sleep" * لوضع Soundscape للنوم أو إغلاق التطبيق.</string>
     <string name="faq_difference_from_map_apps_question">كيف يختلف SoundScape عن تطبيقات الخريطة الأخرى؟</string>
@@ -765,7 +765,7 @@
     <string name="osm_ice_cream">آيس كريم</string>
     <string name="osm_fast_food">وجبات سريعة</string>
     <string name="osm_commercial">تجاري</string>
-    <string name="osm_canoe">زورق</string>
+    <string name="osm_canoe">تجديف بالكانو</string>
     <string name="osm_scuba_diving">غوص سكوبا</string>
     <string name="osm_fishing">صيد</string>
     <string name="osm_optician">محل نظارات</string>
@@ -1047,7 +1047,7 @@
     <string name="osm_supermarket">سوبر ماركت</string>
     <string name="osm_peak">قمة</string>
     <string name="osm_storage_tank">خزان تخزين</string>
-    <string name="osm_lighthouse">منارة</string>
+    <string name="osm_lighthouse">منارة بحرية</string>
     <string name="osm_beacon">منارة إرشادية</string>
     <string name="osm_port">ميناء</string>
     <string name="osm_archaeological_site">موقع أثري</string>
@@ -1152,7 +1152,7 @@
     <string name="osm_boat_sharing">مشاركة قوارب</string>
     <string name="osm_help_point">نقطة مساعدة</string>
     <string name="osm_open_space">مساحة مفتوحة</string>
-    <string name="osm_spending_area">منطقة تسوّق</string>
+    <string name="osm_spending_area">منطقة قضاء الوقت</string>
     <string name="osm_bicycle_repair_station">محطة صيانة دراجات</string>
     <string name="osm_motorcycle_barrier">حاجز للدراجات النارية</string>
     <string name="osm_kent_carriage_gap">فتحة عربات كنت</string>
