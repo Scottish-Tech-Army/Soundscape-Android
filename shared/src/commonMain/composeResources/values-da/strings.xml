@@ -1429,4 +1429,6 @@
     <string name="directions_cardinal_north_west_bound">Mod nordvest</string>
     <string name="first_launch_permissions_granted">Tilladelse givet</string>
     <string name="first_launch_permissions_not_granted">Endnu ikke givet</string>
+    <string name="talkback_double_tap_template">Dobbelttryk for at%1$s</string>
+    <string name="menu_manage_locale">Regionale indstillinger</string>
 </resources>
