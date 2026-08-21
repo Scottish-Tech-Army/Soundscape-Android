@@ -20,7 +20,7 @@
     <string name="beacon_styles_signal">Signal</string>
     <string name="beacon_styles_signal_slow">Signal (langsom)</string>
     <string name="beacon_styles_signal_very_slow">Signal (meget langsom)</string>
-    <string name="beacon_styles_mallet">Hammer</string>
+    <string name="beacon_styles_mallet">Kølle</string>
     <string name="beacon_styles_mallet_slow">Hammer (langsom)</string>
     <string name="beacon_styles_mallet_very_slow">Hammer (meget langsom)</string>
     <string name="beacon_audio_beacon">Lydfyr</string>
@@ -367,7 +367,7 @@
     <string name="faq_miss_a_callout_answer">Soundscape har en liste over dine seneste lydbeskeder, så du kan genfinde lydbeskeder, du måske gik glip af. For at finde denne liste skal du trykke på søgefeltet på Soundscapes startskærm. Nederst på denne skærm er der en sektion for *"Seneste lydbeskeder"*, hvor den lydbesked, du gik glip af, vil være angivet.</string>
     <string name="faq_section_how_soundscape_works">Hvordan fungerer Soundscape?</string>
     <string name="faq_supported_phones_question">Hvilken telefon kører Soundscape på?</string>
-    <string name="faq_supported_phones_answer">Soundscape til Android er i øjeblikket tilgængelig til Android-telefoner, der kører Android 11 eller nyere.</string>
+    <string name="faq_supported_phones_answer">Soundscape er i øjeblikket tilgængelig til iPhones, der kører iOS 16 eller nyere, og til Android-telefoner, der kører Android 11 eller nyere.</string>
     <string name="faq_supported_headsets_question">Hvilke hovedtelefoner skal jeg bruge sammen med Soundscape?</string>
     <string name="faq_supported_headsets_answer">Hvilke hovedtelefoner du bruger sammen med Soundscape, er et spørgsmål om personlig præference, og der er fordele og ulemper ved hver mulighed. Det eneste specifikke krav er, at du skal bruge et par stereohovedtelefoner, så du kan drage fordel af rumlig 3D-lyd i lydbeskeder fra Soundscape.</string>
     <string name="faq_battery_impact_question">Hvordan påvirker Soundscape min telefons batteri?</string>
@@ -1340,7 +1340,7 @@
     <string name="settings_relative_directions_left_right">Venstre/Højre</string>
     <string name="callout_settings_position_text">Medtag afstand og retning i lydbeskeder om interessepunkter</string>
     <string name="callout_settings_position_description">Som standard indeholder lydbeskeder om steder ikke afstand eller retning. Denne indstilling tilføjer disse oplysninger til lydbeskederne.</string>
-    <string name="relative_clock_direction">kl. %1$s</string>
+    <string name="relative_clock_direction">klokken %1$s</string>
     <string name="relative_degrees_direction">ved %1$s grader</string>
     <string name="relative_left_right_direction_ahead">forude</string>
     <string name="relative_left_right_direction_ahead_left">forude til venstre</string>
