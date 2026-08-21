@@ -124,10 +124,10 @@
     <string name="preview_go_title">Go</string>
     <!-- Hint for button that in street preview goes to the next intersection. This is always preceded by "Double tap to  -->
     <string name="preview_go_hint">move in this direction to the next intersection</string>
-    <!-- Prefix prepended to onClick hints on iOS to match Android TalkBack's "Double tap to" gesture announcement. Trailing space is intentional. -->
-    <string name="talkback_double_tap_prefix">Double tap to </string>
     <!-- Fallback verb used in iOS VoiceOver "Double tap to..." hints when a button has no specific hint, producing "Double tap to activate". Mirrors the default verb Android TalkBack uses for unlabelled actions. -->
     <string name="talkback_default_activate">activate</string>
+    <!-- Template combining the double-tap gesture instruction with a specific action hint on iOS VoiceOver, e.g. "Double tap to move in this direction to the next intersection". %1$s is one of the many short action-hint strings passed to talkbackHint() throughout the app (see e.g. preview_go_hint, ui_menu_hint, route_detail_action_next_hint) - translators should place %1$s wherever their language's grammar requires "to <action>" to go, and phrase those action-hint strings as an infinitive/nominal fragment that fits there rather than as a standalone imperative sentence. -->
+    <string name="talkback_double_tap_template">Double tap to %1$s</string>
     <!-- Initial location simulation state for Go button which is indicating that pressing the button will take the user to the nearest intersection -->
     <string name="preview_go_nearest_intersection">Go to nearest intersection</string>
     <!-- Notification, %s is the last entry in a comma delimited list e.g. roads within an intersection. e.g. " and Moor Road" -->
