@@ -520,7 +520,7 @@
     <string name="menu_advanced_markers_and_routes_clear_all_success">Platsmarkörer och rutter har tagits bort</string>
     <string name="new_version_info_text">Information om ny version</string>
     <string name="new_version_info_completed">Stäng dialogrutan om ny version</string>
-    <string name="new_version_info_details">Detta är den första produktionsversionen av Soundscape. Vi arbetar fortfarande hårt med att förbättra appen, så rapportera gärna alla problem du hittar, även små, via alternativet *Kontakta supporten* i huvudmenyn.</string>
+    <string name="new_version_info_details">Det här är en stor uppdatering av Soundscape. Reseläget har förbättrats avsevärt, med utrop för vägnummer, färdriktning och närliggande orter när du reser med bil eller buss, samt utrop när du korsar floder, kanaler, fjordar och vikar. Uppdatera dina offlinekartor för att säkerställa att du får ut det mesta av dessa funktioner. För användare i Storbritannien har busshållplatser nu mycket bättre beskrivningar. Viloläget kan nu vakna automatiskt när det upptäcker att du rör dig igen, så du behöver inte längre komma ihåg att väcka det själv. Den underliggande koden har omstrukturerats i stor utsträckning så att vi kan bygga en iOS-app från samma kod. Det innebär att vi i framtiden kan släppa en iOS-app med alla funktioner vi har skapat för Android. Som alltid, rapportera gärna eventuella problem du stöter på, hur små de än är, via alternativet Kontakta supporten i huvudmenyn.</string>
     <string name="menu_open_source_licenses">Licenser för öppen källkod</string>
     <string name="osm_tag_ferry_terminal">Färjeterminal</string>
     <string name="osm_tag_ferry_terminal_named">%1$s Färjeterminal</string>
