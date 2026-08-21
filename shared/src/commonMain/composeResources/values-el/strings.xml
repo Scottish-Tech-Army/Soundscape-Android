@@ -1260,12 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">Κοντινά μέρη όπως καταστήματα και εστιατόρια</string>
     <string name="callouts_mobility_description">Πληροφορίες για διασταυρώσεις και συγκοινωνίες</string>
     <string name="callouts_audio_beacon_description">Ενημερώσεις σχετικά με την απόσταση από το ηχητικό σήμα όταν έχει οριστεί</string>
-    <string name="menu_manage_language">Γλώσσα και περιοχή </string>
     <string name="settings_search_results_language_description">Η διαδικτυακή αναζήτηση μπορεί να χρησιμοποιήσει την τοπική γλώσσα του αποτελέσματος ή να επιβάλει επιστροφή αποτελεσμάτων στα Αγγλικά, Γαλλικά ή Γερμανικά.</string>
-    <string name="language_mismatch_title">Νέα γλώσσα διαθέσιμη</string>
-    <string name="language_mismatch_message">Το τηλέφωνό σας έχει ρυθμιστεί στη γλώσσα %1$s και αυτή η γλώσσα είναι πλέον διαθέσιμη στο Soundscape. Θέλετε να αλλάξετε το Soundscape ώστε να χρησιμοποιεί τη γλώσσα %1$s;</string>
-    <string name="language_mismatch_switch">Αλλαγή σε %1$s</string>
-    <string name="language_mismatch_keep">Διατήρηση τρέχουσας γλώσσας</string>
     <string name="preview_go_hint">μετακινηθείτε προς αυτή την κατεύθυνση έως την επόμενη διασταύρωση</string>
     <string name="error_message_route_not_found">Αποτυχία εύρεσης της διαδρομής στη βάση δεδομένων.</string>
     <string name="error_message_deleting_route">Αποτυχία διαγραφής της διαδρομής.</string>
@@ -1360,12 +1355,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) χρησιμοποιείται για τη δημιουργία των πλακιδίων χάρτη (map tiles) που χρησιμοποιούμε.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) χρησιμοποιείται για τη δημιουργία του 3D ήχου και διατίθεται για χρήση υπό την [άδεια Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">Όλα τα ονόματα προϊόντων, εταιρειών και λογότυπα τρίτων είναι εμπορικά σήματα ή καταχωρημένα εμπορικά σήματα και παραμένουν ιδιοκτησία των αντίστοιχων κατόχων τους.</string>
-    <string name="settings_accessible_map">Ενεργοποίηση προσβάσιμης εμφάνισης χάρτη</string>
     <string name="loading_indicator_content_description">Φόρτωση</string>
     <string name="offline_maps_extract_damaged">Κατεστραμμένο - διαγράψτε και κατεβάστε ξανά</string>
     <string name="offline_map_details_update">Ενημέρωση χάρτη εκτός σύνδεσης</string>
     <string name="menu_exit_app">Έξοδος από το Soundscape</string>
-    <string name="talkback_double_tap_prefix">Πατήστε δύο φορές για να</string>
     <string name="talkback_default_activate">ενεργοποιήσετε</string>
     <string name="distance_format_km_a11y">%1$s χιλιόμετρα</string>
     <string name="number_decimal_separator">,</string>

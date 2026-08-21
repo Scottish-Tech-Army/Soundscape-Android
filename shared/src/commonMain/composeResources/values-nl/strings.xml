@@ -1260,12 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">Nabijgelegen plaatsen zoals winkels en restaurants</string>
     <string name="callouts_mobility_description">Informatie over kruispunten en vervoer</string>
     <string name="callouts_audio_beacon_description">Updates over de afstand tot het audiobaken wanneer dit is ingesteld</string>
-    <string name="menu_manage_language">Taal en regio </string>
     <string name="settings_search_results_language_description">Online zoeken kan de lokale taal van het resultaat gebruiken, of geforceerd resultaten in het Engels, Frans of Duits teruggeven.</string>
-    <string name="language_mismatch_title">Nieuwe taal beschikbaar</string>
-    <string name="language_mismatch_message">Uw telefoon is ingesteld op %1$s en die taal is nu beschikbaar in Soundscape. Wilt u dat Soundscape overschakelt naar %1$s?</string>
-    <string name="language_mismatch_switch">Overschakelen naar %1$s</string>
-    <string name="language_mismatch_keep">Huidige taal behouden</string>
     <string name="preview_go_hint">beweeg in deze richting naar het volgende kruispunt</string>
     <string name="error_message_route_not_found">We kunnen de route niet in de database vinden.</string>
     <string name="error_message_deleting_route">Het verwijderen van de route is mislukt.</string>
@@ -1360,12 +1355,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) wordt gebruikt om de kaarttegels te genereren die we gebruiken.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) wordt gebruikt om de 3D-audio te genereren en is beschikbaar voor gebruik onder de [Apache 2.0-licentie](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">Alle product- en bedrijfsnamen en logo's van derden zijn handelsmerken of geregistreerde handelsmerken en blijven het eigendom van de betreffende houders.</string>
-    <string name="settings_accessible_map">Toegankelijke kaartstijl inschakelen</string>
     <string name="loading_indicator_content_description">Laden</string>
     <string name="offline_maps_extract_damaged">Beschadigd - verwijderen en opnieuw downloaden</string>
     <string name="offline_map_details_update">Offline kaart bijwerken</string>
     <string name="menu_exit_app">Soundscape afsluiten</string>
-    <string name="talkback_double_tap_prefix">Dubbeltik om</string>
     <string name="talkback_default_activate">activeren</string>
     <string name="distance_format_km_a11y">%1$s kilometer</string>
     <string name="number_decimal_separator">,</string>

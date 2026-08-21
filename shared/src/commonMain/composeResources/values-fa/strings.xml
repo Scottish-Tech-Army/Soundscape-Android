@@ -1261,12 +1261,7 @@
     <string name="callouts_places_and_landmarks_description">مکان‌های نزدیک مانند فروشگاه‌ها و رستوران‌ها</string>
     <string name="callouts_mobility_description">اطلاعات مربوط به تقاطع‌ها و حمل‌و‌نقل</string>
     <string name="callouts_audio_beacon_description">به‌روزرسانی‌هایی دربارهٔ فاصله تا جهت‌نمای صوتی هنگام فعال‌بودن آن</string>
-    <string name="menu_manage_language">زبان و منطقه </string>
     <string name="settings_search_results_language_description">جستجوی آنلاین می‌تواند نتایج را به زبان محلی نمایش دهد، یا می‌توان آن را طوری تنظیم کرد که نتایج فقط به انگلیسی، فرانسوی یا آلمانی بازگردانده شوند.</string>
-    <string name="language_mismatch_title">زبان جدید در دسترس است</string>
-    <string name="language_mismatch_message">گوشی شما به زبان %1$s تنظیم شده و این زبان اکنون در ساند‌اسکیپ موجود است. آیا مایلید ساند‌اسکیپ از زبان %1$s استفاده کند؟</string>
-    <string name="language_mismatch_switch">تغییر به %1$s</string>
-    <string name="language_mismatch_keep">حفظ زبان فعلی</string>
     <string name="preview_go_hint">در این جهت حرکت کنید تا به تقاطع بعدی برسید</string>
     <string name="error_message_route_not_found">یافتن مسیر در پایگاه داده با شکست مواجه شد.</string>
     <string name="error_message_deleting_route">حذف مسیر با شکست مواجه شد.</string>
@@ -1361,12 +1356,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) برای تولید کاشی‌های نقشه‌ای که ما از آنها استفاده می‌کنیم به‌کار می‌رود.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) برای تولید صدای سه‌بعدی استفاده می‌شود و تحت [مجوز Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) برای استفاده در دسترس قرار گرفته است.</string>
     <string name="trademark_disclaimer">تمامی نام‌ها، لوگوها و نشان‌های تجاری محصولات و شرکت‌های شخص ثالث علامت تجاری یا علامت تجاری ثبت‌شده هستند و مالکیت آنها برای دارندگان مربوطه محفوظ است.</string>
-    <string name="settings_accessible_map">نمایش نقشه‌ی دسترسی‌پذیر</string>
     <string name="loading_indicator_content_description">در حال بارگذاری</string>
     <string name="offline_maps_extract_damaged">خراب — حذف کنید و دوباره دانلود نمایید</string>
     <string name="offline_map_details_update">به‌روزرسانی نقشه‌ی آفلاین</string>
     <string name="menu_exit_app">خروج از ساند‌اسکیپ</string>
-    <string name="talkback_double_tap_prefix">دو بار ضربه بزنید تا</string>
     <string name="talkback_default_activate">فعال شود</string>
     <string name="distance_format_km_a11y">%1$s کیلومتر</string>
     <string name="number_decimal_separator">٫</string>

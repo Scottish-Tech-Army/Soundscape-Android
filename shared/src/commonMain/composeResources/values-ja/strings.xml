@@ -1260,12 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">近くの店舗やレストランなど</string>
     <string name="callouts_mobility_description">交差点および交通に関する情報</string>
     <string name="callouts_audio_beacon_description">音声ビーコンが設定されているときの距離に関する更新</string>
-    <string name="menu_manage_language">言語と地域 </string>
     <string name="settings_search_results_language_description">オンライン検索は、結果の現地言語を使用するか、英語・フランス語・ドイツ語のいずれかで返すように設定できます。</string>
-    <string name="language_mismatch_title">新しい言語が利用可能です</string>
-    <string name="language_mismatch_message">お使いの端末の言語が %1$s に設定されており、その言語が Soundscape で利用できるようになりました。Soundscape を %1$s に切り替えますか?</string>
-    <string name="language_mismatch_switch">%1$s に切り替える</string>
-    <string name="language_mismatch_keep">現在の言語を保持する</string>
     <string name="preview_go_hint">この方向に移動して次の交差点へ進みます</string>
     <string name="error_message_route_not_found">データベースでルートが見つかりませんでした。</string>
     <string name="error_message_deleting_route">ルートの削除に失敗しました。</string>
@@ -1360,12 +1355,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) は、アプリで使用する地図タイルの生成に使用されています。</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) は 3D オーディオの生成に使用されており、[Apache 2.0 ライセンス](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) のもとで利用可能です。</string>
     <string name="trademark_disclaimer">第三者の製品名、会社名およびロゴは各社の商標または登録商標であり、それぞれの権利所有者に帰属します。</string>
-    <string name="settings_accessible_map">アクセシブルな地図スタイルを有効にする</string>
     <string name="loading_indicator_content_description">読み込み中</string>
     <string name="offline_maps_extract_damaged">破損しています — 削除して再ダウンロードしてください</string>
     <string name="offline_map_details_update">オフラインマップを更新する</string>
     <string name="menu_exit_app">Soundscape を終了する</string>
-    <string name="talkback_double_tap_prefix">ダブルタップして</string>
     <string name="talkback_default_activate">実行</string>
     <string name="distance_format_km_a11y">%1$s キロメートル</string>
     <string name="number_decimal_separator">.</string>

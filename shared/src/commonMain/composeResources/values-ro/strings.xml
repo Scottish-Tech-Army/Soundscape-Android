@@ -411,7 +411,6 @@
     <string name="notification_text">Serviciul de localizare Soundscape rulează chiar și atunci când telefonul este blocat.</string>
     <string name="cancel_search_contentDescription">Anulează căutarea</string>
     <string name="menu_manage_audio">Audio</string>
-    <string name="menu_manage_language">Limbă și regiune </string>
     <string name="menu_manage_accessibility">Accesibilitate</string>
     <string name="settings_theme_light_dark">Temă deschisă sau întunecată</string>
     <string name="settings_theme_auto">Automat</string>
@@ -1262,10 +1261,6 @@
     <string name="menu_audio_tutorial_cancel">Anulează tutorialul ghidat</string>
     <string name="tour_continue_button">Continuă</string>
     <string name="tour_continue_hint">închide fereastra pop‑up și continuă tutorialul</string>
-    <string name="language_mismatch_title">Limbă nouă disponibilă</string>
-    <string name="language_mismatch_message">Telefonul tău este setat la %1$s și acea limbă este acum disponibilă în Soundscape. Dorești să schimbi Soundscape pentru a folosi %1$s?</string>
-    <string name="language_mismatch_switch">Comută la %1$s</string>
-    <string name="language_mismatch_keep">Păstrează limba curentă</string>
     <string name="preview_go_hint">a merge în această direcție până la următoarea intersecție</string>
     <string name="error_message_route_not_found">Nu s-a putut găsi ruta în baza de date.</string>
     <string name="error_message_deleting_route">Ștergerea rutei a eșuat.</string>
@@ -1360,12 +1355,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) este folosit pentru a genera plăcile de hartă pe care le utilizăm.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) este folosită pentru generarea audio 3D și este pusă la dispoziție pentru utilizare sub [licența Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">Toate denumirile și logourile produselor și companiilor terțe sunt mărci comerciale sau mărci înregistrate și rămân proprietatea titularilor lor.</string>
-    <string name="settings_accessible_map">Activează stilizarea accesibilă a hărții</string>
     <string name="loading_indicator_content_description">Se încarcă…</string>
     <string name="offline_maps_extract_damaged">Deteriorat - șterge și descarcă din nou</string>
     <string name="offline_map_details_update">Actualizează harta offline</string>
     <string name="menu_exit_app">Ieși din Soundscape</string>
-    <string name="talkback_double_tap_prefix">Atinge de două ori pentru</string>
     <string name="talkback_default_activate">a activa</string>
     <string name="distance_format_km_a11y">%1$s kilometri</string>
     <string name="number_decimal_separator">,</string>

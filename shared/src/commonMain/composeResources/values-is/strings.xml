@@ -1260,12 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">Nálægir staðir, til dæmis verslanir og veitingastaðir</string>
     <string name="callouts_mobility_description">Upplýsingar um gatnamót og samgöngur</string>
     <string name="callouts_audio_beacon_description">Uppfærslur um fjarlægð að hljóðvita þegar hann er settur</string>
-    <string name="menu_manage_language">Tungumál og svæði </string>
     <string name="settings_search_results_language_description">Netleit getur notað staðbundið tungumál niðurstaðna, eða verið stillt til að skila niðurstöðum á ensku, frönsku eða þýsku.</string>
-    <string name="language_mismatch_title">Nýtt tungumál í boði</string>
-    <string name="language_mismatch_message">Síminn þinn er stilltur á %1$s og það tungumál er nú í boði í Soundscape. Viltu að Soundscape noti %1$s?</string>
-    <string name="language_mismatch_switch">Skipta yfir í %1$s</string>
-    <string name="language_mismatch_keep">Halda núverandi tungumáli</string>
     <string name="preview_go_hint">fara þessa leið að næstu gatnamótum</string>
     <string name="error_message_route_not_found">Mistókst að finna leið í gagnagrunni.</string>
     <string name="error_message_deleting_route">Mistókst að eyða leiðinni.</string>
@@ -1360,12 +1355,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) er notað til að búa til þær kortaflísur sem við notum.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) er notað til að búa til þrívíddarhljóð og er aðgengilegt til notkunar undir [Apache 2.0 leyfinu](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">Öll vörumerki, fyrirtækjanöfn og lógó þriðja aðila eru vörumerki eða skráð vörumerki og eru áfram eign þeirra sem eiga þau.</string>
-    <string name="settings_accessible_map">Virkja aðgengilegan kortastíl</string>
     <string name="loading_indicator_content_description">Hleður</string>
     <string name="offline_maps_extract_damaged">Skemmt - eyða og hlaða niður aftur</string>
     <string name="offline_map_details_update">Uppfæra ónettengt kort</string>
     <string name="menu_exit_app">Loka Soundscape</string>
-    <string name="talkback_double_tap_prefix">Tvíbankaðu til að</string>
     <string name="talkback_default_activate">virkja</string>
     <string name="distance_format_km_a11y">%1$s kílómetrar</string>
     <string name="number_decimal_separator">,</string>

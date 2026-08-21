@@ -1260,12 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">Steder i nærheden, såsom butikker og restauranter</string>
     <string name="callouts_mobility_description">Oplysninger om vejkryds og transport</string>
     <string name="callouts_audio_beacon_description">Opdateringer om afstanden til lydfyret, når det er indstillet</string>
-    <string name="menu_manage_language">Sprog og region </string>
     <string name="settings_search_results_language_description">Online-søgning kan bruge resultatets lokale sprog eller tvinges til at returnere engelsk, fransk eller tysk.</string>
-    <string name="language_mismatch_title">Nyt sprog er tilgængeligt</string>
-    <string name="language_mismatch_message">Din telefon er indstillet til %1$s, og det sprog er nu tilgængeligt i Soundscape. Vil du skifte Soundscape til at bruge %1$s?</string>
-    <string name="language_mismatch_switch">Skift til %1$s</string>
-    <string name="language_mismatch_keep">Behold nuværende sprog</string>
     <string name="preview_go_hint">gå i denne retning til det næste vejkryds</string>
     <string name="error_message_route_not_found">Kunne ikke finde ruten i databasen.</string>
     <string name="error_message_deleting_route">Kunne ikke slette ruten.</string>
@@ -1360,12 +1355,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) bruges til at generere de kortfliser, vi bruger.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) bruges til at generere 3D-lyden og stilles til rådighed under [Apache 2.0-licensen](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">Alle tredjeparts produkt- og firmanavne samt logoer er varemærker eller registrerede varemærker og forbliver deres respektive ejeres ejendom.</string>
-    <string name="settings_accessible_map">Aktivér kortvisning med forbedret tilgængelighed</string>
     <string name="loading_indicator_content_description">Indlæser</string>
     <string name="offline_maps_extract_damaged">Beskadiget - slet og download igen</string>
     <string name="offline_map_details_update">Opdater offline-kort</string>
     <string name="menu_exit_app">Afslut Soundscape</string>
-    <string name="talkback_double_tap_prefix">Dobbelttryk for at</string>
     <string name="talkback_default_activate">aktivere</string>
     <string name="distance_format_km_a11y">%1$s kilometer</string>
     <string name="number_decimal_separator">,</string>

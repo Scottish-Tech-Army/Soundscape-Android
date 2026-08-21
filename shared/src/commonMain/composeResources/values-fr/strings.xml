@@ -1260,12 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">Lieux à proximité, comme les magasins et les restaurants</string>
     <string name="callouts_mobility_description">Informations sur les intersections et les transports</string>
     <string name="callouts_audio_beacon_description">Mises à jour sur la distance à la balise sonore lorsqu’elle est définie</string>
-    <string name="menu_manage_language">Langue et région </string>
     <string name="settings_search_results_language_description">La recherche en ligne peut utiliser la langue locale des résultats, ou être configurée pour renvoyer l’anglais, le français ou l’allemand.</string>
-    <string name="language_mismatch_title">Nouvelle langue disponible</string>
-    <string name="language_mismatch_message">Votre téléphone est réglé sur %1$s et cette langue est désormais disponible dans Soundscape. Souhaitez-vous que Soundscape utilise %1$s ?</string>
-    <string name="language_mismatch_switch">Passer à %1$s</string>
-    <string name="language_mismatch_keep">Conserver la langue actuelle</string>
     <string name="preview_go_hint">avancer dans cette direction vers l’intersection suivante</string>
     <string name="error_message_route_not_found">Échec de la recherche de l’itinéraire dans la base de données.</string>
     <string name="error_message_deleting_route">Échec de la suppression de l’itinéraire.</string>
@@ -1360,12 +1355,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) est utilisé pour générer les tuiles cartographiques que nous utilisons.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) est utilisé pour générer l’audio 3D et est mis à disposition sous la licence [Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">Tous les noms de produits, noms de sociétés et logos de tiers sont des marques commerciales ou des marques déposées et restent la propriété de leurs titulaires respectifs.</string>
-    <string name="settings_accessible_map">Activer le style de carte accessible</string>
     <string name="loading_indicator_content_description">Chargement</string>
     <string name="offline_maps_extract_damaged">Endommagée — supprimer et retélécharger</string>
     <string name="offline_map_details_update">Mettre à jour la carte hors ligne</string>
     <string name="menu_exit_app">Quitter Soundscape</string>
-    <string name="talkback_double_tap_prefix">Appuyez deux fois pour</string>
     <string name="talkback_default_activate">activer</string>
     <string name="distance_format_km_a11y">%1$s kilomètres</string>
     <string name="number_decimal_separator">,</string>

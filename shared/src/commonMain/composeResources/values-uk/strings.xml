@@ -1260,12 +1260,7 @@
     <string name="callouts_places_and_landmarks_description">Найближчі місця, як‑от магазини та ресторани</string>
     <string name="callouts_mobility_description">Інформація про перехрестя та транспорт</string>
     <string name="callouts_audio_beacon_description">Оновлення про відстань до звукового маячка, коли він встановлений</string>
-    <string name="menu_manage_language">Мова та регіон </string>
     <string name="settings_search_results_language_description">Онлайн‑пошук може використовувати місцеву мову результату або бути примусово налаштований на повернення результатів англійською, французькою або німецькою.</string>
-    <string name="language_mismatch_title">Доступна нова мова</string>
-    <string name="language_mismatch_message">На вашому телефоні встановлено %1$s, і ця мова тепер доступна у Soundscape. Бажаєте переключити Soundscape на використання %1$s?</string>
-    <string name="language_mismatch_switch">Переключити на %1$s</string>
-    <string name="language_mismatch_keep">Залишити поточну мову</string>
     <string name="preview_go_hint">переміститися в цьому напрямку до наступного перехрестя</string>
     <string name="error_message_route_not_found">Не вдалося знайти маршрут у базі даних.</string>
     <string name="error_message_deleting_route">Не вдалося видалити маршрут.</string>
@@ -1360,12 +1355,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) використовується для генерації картографічних плиток, які ми використовуємо.</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) використовується для генерації 3D‑аудіо і надається для використання відповідно до [ліцензії Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).</string>
     <string name="trademark_disclaimer">Усі назви сторонніх продуктів, компаній та логотипи є торговельними марками або зареєстрованими торговельними марками й належать їхнім відповідним правовласникам.</string>
-    <string name="settings_accessible_map">Увімкнути доступний стиль карти</string>
     <string name="loading_indicator_content_description">Завантаження</string>
     <string name="offline_maps_extract_damaged">Пошкоджено — видаліть і завантажте знову</string>
     <string name="offline_map_details_update">Оновити офлайн‑карту</string>
     <string name="menu_exit_app">Вийти з Soundscape</string>
-    <string name="talkback_double_tap_prefix">Двічі торкніться, щоб</string>
     <string name="talkback_default_activate">активувати</string>
     <string name="distance_format_km_a11y">%1$s кілометрів</string>
     <string name="number_decimal_separator">,</string>

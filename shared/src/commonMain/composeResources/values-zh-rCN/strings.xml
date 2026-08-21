@@ -958,7 +958,6 @@
     <string name="notification_text">即使手机锁屏，Soundscape 的定位服务仍会运行。</string>
     <string name="cancel_search_contentDescription">取消搜索</string>
     <string name="menu_manage_audio">音频</string>
-    <string name="menu_manage_language">语言和地区 </string>
     <string name="menu_manage_accessibility">无障碍</string>
     <string name="settings_theme_light_dark">浅色或深色主题</string>
     <string name="settings_theme_auto">自动</string>
@@ -1262,10 +1261,6 @@
     <string name="first_launch_permissions_title">应用权限</string>
     <string name="first_launch_permissions_message">为了让 Soundscape 正常运行，需要授予某些权限。这些权限允许应用在手机锁屏时也能获取位置信息并保持更新。请点击下列每一项权限，并在提示时启用它们：</string>
     <string name="first_launch_permissions_location">定位服务（精确定位）</string>
-    <string name="language_mismatch_title">新语言可用</string>
-    <string name="language_mismatch_message">您的手机语言设置为%1$s，该语言现在已在 Soundscape 中可用。是否将 Soundscape 切换为使用 %1$s？</string>
-    <string name="language_mismatch_switch">切换为 %1$s</string>
-    <string name="language_mismatch_keep">保留当前语言</string>
     <string name="preview_go_hint">向此方向移动以到达下一个路口</string>
     <string name="error_message_route_not_found">未能在数据库中找到路线。</string>
     <string name="error_message_deleting_route">删除路线失败。</string>
@@ -1360,12 +1355,10 @@
     <string name="openmaptiles_copyright">[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) 用于生成我们使用的地图切片。</string>
     <string name="steam_copyright">[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) 用于生成 3D 音频，并在 [Apache 2.0 许可证](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) 下提供使用。</string>
     <string name="trademark_disclaimer">所有第三方产品、公司名称和徽标均为其各自所有者的商标或注册商标，且仍归其各自所有者所有。</string>
-    <string name="settings_accessible_map">启用无障碍地图样式</string>
     <string name="loading_indicator_content_description">加载中</string>
     <string name="offline_maps_extract_damaged">已损坏 - 删除后重新下载</string>
     <string name="offline_map_details_update">更新离线地图</string>
     <string name="menu_exit_app">退出 Soundscape</string>
-    <string name="talkback_double_tap_prefix">双击以</string>
     <string name="talkback_default_activate">激活</string>
     <string name="distance_format_km_a11y">%1$s公里</string>
     <string name="number_decimal_separator">.</string>
