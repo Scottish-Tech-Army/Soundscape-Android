@@ -182,7 +182,7 @@
     <string name="directions_transit_stop_street_locality">%1$s, %2$s</string>
     <string name="directions_transit_stop_street_locality_bound">%1$s, %2$s %3$s</string>
     <string name="directions_transit_stop_common_name_bound">%1$s %2$s</string>
-    <string name="directions_transit_stop_with_landmark">%1$s (%2$s 인근)</string>
+    <string name="directions_transit_stop_with_landmark">%1$s, %2$s 인근</string>
     <string name="directions_name_goes_left">%1$s, 왼쪽으로 이어집니다</string>
     <string name="directions_name_goes_right">%1$s, 오른쪽으로 이어집니다</string>
     <string name="directions_name_continues_ahead">%1$s, 앞으로 계속됩니다</string>
@@ -538,7 +538,7 @@
     <string name="confect_name_dead_end">막다른 길</string>
     <string name="offline_maps_title">오프라인 지도</string>
     <string name="offline_map_details_title">오프라인 지도 상세 정보</string>
-    <string name="offline_maps_loading">로드하는 중…</string>
+    <string name="offline_maps_loading">불러오는 중…</string>
     <string name="offline_maps_downloading">%1$s 다운로드 중</string>
     <string name="offline_maps_caching">서버에서 %1$s 다운로드를 준비하고 있습니다. 몇 분 정도 걸릴 수 있으며, 준비가 끝나면 다운로드가 자동으로 시작됩니다.</string>
     <string name="offline_maps_free_space">%1$s 여유 공간</string>
@@ -658,7 +658,7 @@
     <string name="osm_entrance">출입구</string>
     <string name="osm_assembly_point">비상 집결지</string>
     <string name="osm_cycle_barrier">자전거 차단기</string>
-    <string name="osm_turnstile">회전문</string>
+    <string name="osm_turnstile">턴스타일</string>
     <string name="osm_cattle_grid">가축 탈출 방지 격자</string>
     <string name="osm_gate">문</string>
     <string name="osm_lift_gate">차단기</string>
@@ -682,7 +682,7 @@
     <string name="osm_recycling">재활용</string>
     <string name="osm_fountain">분수</string>
     <string name="osm_place_of_worship">예배 시설</string>
-    <string name="osm_drinking_water">음용수</string>
+    <string name="osm_drinking_water">음수대</string>
     <string name="osm_car_wash">세차장</string>
     <string name="osm_vending_machine">자동판매기</string>
     <string name="osm_playground">놀이터</string>
@@ -833,7 +833,7 @@
     <string name="osm_table_soccer">테이블 축구</string>
     <string name="osm_table_tennis">탁구장</string>
     <string name="osm_skateboard">스케이트보드장</string>
-    <string name="osm_sailing">세일링</string>
+    <string name="osm_sailing">세일링장</string>
     <string name="osm_safety_training">안전 훈련 시설</string>
     <string name="osm_rowing">조정장</string>
     <string name="osm_model_aerodrome">모형 비행장</string>
@@ -956,7 +956,7 @@
     <string name="osm_wine">와인 판매점</string>
     <string name="osm_dairy">유제품 판매점</string>
     <string name="osm_cheese">치즈 판매점</string>
-    <string name="osm_bakery">제빵점</string>
+    <string name="osm_bakery">베이커리</string>
     <string name="osm_telecommunication">통신기기 판매점</string>
     <string name="osm_tax">세무서</string>
     <string name="osm_real_estate_agent">부동산 중개소</string>
@@ -1164,7 +1164,7 @@
     <string name="osm_monument">기념물</string>
     <string name="osm_battlefield">전적지</string>
     <string name="osm_planetarium">플라네타리움</string>
-    <string name="osm_social_centre">사회복지관</string>
+    <string name="osm_social_centre">커뮤니티 센터</string>
     <string name="osm_prison">교도소</string>
     <string name="osm_courthouse">법원</string>
     <string name="osm_bridge">다리</string>
@@ -1421,7 +1421,7 @@
     <string name="relative_left_right_direction_behind_left">왼쪽 뒤</string>
     <string name="relative_left_right_direction_behind_right">오른쪽 뒤</string>
     <string name="relative_left_right_direction_behind">뒤쪽</string>
-    <string name="loading_indicator_content_description">로드하는 중</string>
+    <string name="loading_indicator_content_description">로딩 중</string>
     <string name="menu_exit_app">Soundscape 종료</string>
     <string name="offline_map_details_update">오프라인 지도 업데이트</string>
 </resources>
