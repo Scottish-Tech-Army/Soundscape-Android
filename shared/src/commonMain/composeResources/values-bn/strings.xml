@@ -111,7 +111,7 @@
     <string name="osm_plant">শিল্প প্ল্যান্ট</string>
     <string name="osm_insurance">বীমা অফিস</string>
     <string name="osm_airfield">বিমানক্ষেত্র</string>
-    <string name="osm_water_tower">পানির টাওয়ার</string>
+    <string name="osm_water_tower">জলের টাওয়ার</string>
     <string name="osm_pumping_station">পাম্পিং স্টেশন</string>
     <string name="osm_hot_water_tank">গরম জলের ট্যাংক</string>
     <string name="osm_campanile">ঘণ্টা মিনার</string>
@@ -436,7 +436,7 @@
     <string name="osm_restroom">শৌচাগার</string>
     <string name="osm_parking_lot">পার্কিং লট</string>
     <string name="osm_taxi_waiting_area">ট্যাক্সি অপেক্ষার স্থান</string>
-    <string name="osm_bike_parking">বাইক পার্কিং</string>
+    <string name="osm_bike_parking">সাইকেল পার্কিং</string>
     <string name="osm_gas_station">গ্যাস স্টেশন</string>
     <string name="osm_bus_stop_named">%1$s বাস স্টপ</string>
     <string name="osm_recycling_bin">পুনর্ব্যবহার বিন</string>
@@ -483,8 +483,8 @@
     <string name="osm_turnstile">টার্নস্টাইল</string>
     <string name="osm_cattle_grid">গবাদি পশু বাধা</string>
     <string name="osm_gate">গেট</string>
-    <string name="osm_lift_gate">লিফট গেট</string>
-    <string name="osm_toilets">টয়লেট</string>
+    <string name="osm_lift_gate">ব্যারিয়ার গেট</string>
+    <string name="osm_toilets">শৌচাগার</string>
     <string name="osm_parking">পার্কিং</string>
     <string name="osm_parking_entrance">পার্কিং প্রবেশপথ</string>
     <string name="osm_bench">বেঞ্চ</string>
@@ -775,7 +775,7 @@
     <string name="osm_houseware">গৃহস্থালি সামগ্রীর দোকান</string>
     <string name="osm_erotic">প্রাপ্তবয়স্কদের সামগ্রীর দোকান</string>
     <string name="osm_beauty">সৌন্দর্য পণ্যের দোকান</string>
-    <string name="osm_wine">মদের দোকান</string>
+    <string name="osm_wine">ওয়াইনের দোকান</string>
     <string name="osm_dairy">দুগ্ধজাত পণ্যের দোকান</string>
     <string name="osm_cheese">পনিরের দোকান</string>
     <string name="osm_bakery">বেকারি</string>
@@ -916,7 +916,7 @@
     <string name="settings_search_auto">স্বয়ংক্রিয়</string>
     <string name="settings_relative_directions_text">আপেক্ষিক দিকনির্দেশ মোড</string>
     <string name="settings_relative_directions_description">আপেক্ষিক দিকনির্দেশ কীভাবে বর্ণনা করা হয় তা পরিবর্তন করুন।</string>
-    <string name="settings_relative_directions_clockface">ঘড়ির কাঁটা</string>
+    <string name="settings_relative_directions_clockface">ঘড়ির ডায়াল</string>
     <string name="settings_relative_directions_degrees">ডিগ্রি</string>
     <string name="settings_relative_directions_left_right">বাম/ডান</string>
     <string name="settings_collapse_section">সেকশন সংকুচিত করুন</string>
@@ -1233,7 +1233,7 @@
     <string name="voice_cmd_speech_recognition_error_cannot_listen_to_download_events">স্পিচ রিকগনিশন ডাউনলোড শোনার ত্রুটি।</string>
     <string name="voice_cmd_speech_recognition_error_unknown">স্পিচ রিকগনিশন অজানা ত্রুটি।</string>
     <string name="voice_cmd_speech_recognition_error_unsupported">এই ফোনে স্পিচ রিকগনিশন সমর্থিত নয়।</string>
-    <string name="relative_clock_direction">%1$s টার দিকে</string>
+    <string name="relative_clock_direction">ঘড়ির কাঁটার হিসাবে %1$s-টার দিকে</string>
     <string name="relative_degrees_direction">%1$s ডিগ্রিতে</string>
     <string name="relative_left_right_direction_ahead">সামনে</string>
     <string name="relative_left_right_direction_ahead_left">সামনে বাঁয়ে</string>
