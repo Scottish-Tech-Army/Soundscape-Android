@@ -2,13 +2,16 @@
 <locale-config xmlns:android="http://schemas.android.com/apk/res/android">
     <locale android:name="ar" /> <!-- Arabic -->
     <locale android:name="arz" /> <!-- Egyptian Arabic -->
+    <locale android:name="bg" /> <!-- Bulgarian -->
     <locale android:name="bn" /> <!-- Bengali -->
+    <locale android:name="ca" /> <!-- Catalan -->
     <locale android:name="cs" /> <!-- Czech -->
     <locale android:name="da" /> <!-- Danish -->
     <locale android:name="de" /> <!-- German -->
     <locale android:name="el" /> <!-- Greek -->
     <locale android:name="en-GB" /> <!-- English (UK) -->
     <locale android:name="es" /> <!-- Spanish (Spain) -->
+    <locale android:name="et" /> <!-- Estonian -->
     <locale android:name="fa" /> <!-- Persian -->
     <locale android:name="fi" /> <!-- Finnish -->
     <locale android:name="fr" /> <!-- French (France) -->
@@ -31,6 +34,7 @@
     <locale android:name="ro" /> <!-- Romanian -->
     <locale android:name="ru" /> <!-- Russian -->
     <locale android:name="sk" /> <!-- Slovak -->
+    <locale android:name="sl" /> <!-- Slovenian -->
     <locale android:name="sr" /> <!-- Serbian -->
     <locale android:name="sv" /> <!-- Swedish -->
     <locale android:name="sw" /> <!-- Swahili -->
