@@ -204,7 +204,7 @@
     <string name="osm_veterinary">Veterinarska klinika</string>
     <string name="osm_social_facility">Socijalna ustanova</string>
     <string name="osm_clinic">Klinika</string>
-    <string name="osm_charging_station">Stanica za punjenje</string>
+    <string name="osm_charging_station">Punionica za električna vozila</string>
     <string name="osm_kindergarten">Vrtić</string>
     <string name="osm_ice_cream">Prodavaonica sladoleda</string>
     <string name="osm_fast_food">Restoran brze hrane</string>
@@ -313,7 +313,7 @@
     <string name="osm_tyres">Trgovina gumama</string>
     <string name="osm_sports">Sportska trgovina</string>
     <string name="osm_outdoor">Trgovina opremom za boravak u prirodi</string>
-    <string name="osm_car">Prodavač automobila</string>
+    <string name="osm_car">Autokuća</string>
     <string name="osm_electronics">Trgovina elektronikom</string>
     <string name="osm_computer">Trgovina računalima</string>
     <string name="osm_furniture">Trgovina namještajem</string>
@@ -665,7 +665,7 @@
     <string name="menu_audio_tutorial">Vođeni vodič</string>
     <string name="menu_audio_tutorial_cancel">Otkaži vođeni vodič</string>
     <string name="tour_continue_button">Nastavi</string>
-    <string name="tour_continue_hint">zatvara skočni prozor i nastavlja vodič</string>
+    <string name="tour_continue_hint">zatvorite skočni prozor i nastavite vodič</string>
     <string name="voice_cmd_help_response">Dostupne glasovne naredbe:</string>
     <string name="voice_cmd_listening">Slušam…</string>
     <string name="voice_cmd_not_recognized">Žao mi je, ne mogu pronaći naredbu %1$s. Glasovna naredba %2$s prikazat će popis dostupnih naredbi.</string>
@@ -758,7 +758,7 @@
     <string name="beacon_styles_shimmer">Titraj</string>
     <string name="beacon_styles_tactile">Taktilni</string>
     <string name="beacon_styles_ping">Ping</string>
-    <string name="beacon_styles_drop">Kap</string>
+    <string name="beacon_styles_drop">Pad</string>
     <string name="beacon_styles_signal">Signal</string>
     <string name="beacon_styles_signal_slow">Signal (sporo)</string>
     <string name="beacon_styles_signal_very_slow">Signal (vrlo sporo)</string>
@@ -899,7 +899,7 @@
     <string name="directions_name_goes_right">%1$s, skreće desno</string>
     <string name="directions_name_continues_ahead">%1$s, nastavlja ravno</string>
     <string name="directions_direction_ahead">sprijeda</string>
-    <string name="directions_near_road_and_settlement">Blizu %1$s i nedaleko od %2$s</string>
+    <string name="directions_near_road_and_settlement">Blizu %1$s i u blizini %2$s</string>
     <string name="directions_junction_with_ref">Čvor %1$s</string>
     <string name="directions_junction_with_ref_and_name">Čvor %1$s, %2$s</string>
     <string name="directions_on_road">Na %1$s</string>
@@ -1051,7 +1051,7 @@
     <string name="help_explore_page_title">Ispred mene</string>
     <string name="help_creating_markers_page_title">Izrada oznaka</string>
     <string name="help_edit_markers_page_title">Prilagodba oznaka</string>
-    <string name="help_remote_page_title">Upotreba kontrola za reprodukciju</string>
+    <string name="help_remote_page_title">Upotreba upravljanja medijima</string>
     <string name="help_text_section_title_what">Što je to?</string>
     <string name="help_text_section_title_when">Kada se ovo koristi?</string>
     <string name="help_text_section_title_how">Kako to funkcionira?</string>
@@ -1092,7 +1092,7 @@
     <string name="first_launch_prompt_message">Spremni ste za svoju prvu šetnju uz Soundscape. Da biste to isprobali odmah, samo odaberite obližnje odredište, pokrenite zvučni svjetionik i čut ćete ga u smjeru vašeg odredišta.</string>
     <string name="first_launch_prompt_button">Završi</string>
     <string name="first_launch_change_language">Promijeni jezik</string>
-    <string name="first_launch_change_language_hint">promijeni jezik koji aplikacija koristi</string>
+    <string name="first_launch_change_language_hint">promijenili jezik koji aplikacija koristi</string>
     <string name="help_text_destination_beacons_what">Postavljanje svjetionika na obližnju lokaciju omogućuje Soundscapeu da vas obavještava puštanjem zvučnog signala svjetionika koji dolazi iz smjera te lokacije. Ovaj svjetionik možete utišati ili uključiti na početnom zaslonu. Osim toga, Soundscape prikazuje informacije o lokaciji na početnom zaslonu, uključujući udaljenost do nje i njezinu adresu, ako je poznata.</string>
     <string name="help_text_destination_beacons_when">Postavljanje svjetionika korisno je kada želite pratiti poznatu znamenitost dok istražujete novo područje ili kada idete nekamo i želite biti obaviješteni o svojoj okolini usput. Značajka svjetionika ne daje vam upute korak po korak, ali daje vam neprekidan zvučni signal koji vam govori smjer prema svjetioniku, u odnosu na vaš trenutni položaj. Uz pomoć zvučnog svjetionika, vlastitih vještina snalaženja, pa čak i omiljene aplikacije za navigaciju, sami možete odlučiti kako doći do obližnjih lokacija.</string>
     <string name="help_text_destination_beacons_how_1">**Postavljanje svjetionika:**\n\n Najprije pogledajte detalje lokacije koristeći traku za pretraživanje kako biste pronašli mjesto, ili dodirom na gumb *"Mjesta u blizini"*, *"Oznake i rute"* ili *"Trenutna lokacija"* i odabirom lokacije. Na zaslonu *"Detalji lokacije"* možete odabrati gumb *"Pokreni zvučni svjetionik"*. Dodirom na njega vratit ćete se na početni zaslon i uključiti zvučni svjetionik koji dolazi iz smjera odabranog mjesta. Naziv odabranog mjesta, zajedno s udaljenošću i fizičkom adresom, ako je dostupna, sada će biti prikazani na glavnom zaslonu aplikacije.</string>
@@ -1105,7 +1105,7 @@
     <string name="help_text_automatic_callouts_how_1">**Uključivanje ili isključivanje najava:**\n\n Isključivanjem najava utišat ćete aplikaciju. Najave se mogu uključiti ili isključiti u odjeljku *"Upravljanje najavama"* na zaslonu *"Postavke"*, gdje možete dodirnuti prekidač *"Dopusti najave"* za njihovo uključivanje ili isključivanje. Najave možete uključiti ili isključiti i pomoću naredbe *"preskoči naprijed"* (dvostruki dodir i zadržavanje) ako vaše slušalice imaju gumbe za upravljanje medijima. Također, možete koristiti gumb *"Mirovanje"* u gornjem desnom kutu početnog zaslona kako biste zaustavili Soundscape da izgovara najave dok ga ponovno ne probudite.</string>
     <string name="help_text_automatic_callouts_how_2">**Upravljanje najavama koje čujete:**\n\n Kako biste odabrali vrste stvari koje će Soundscape automatski najavljivati, otvorite zaslon *"Postavke"* pomoću izbornika na početnom zaslonu. Odjeljak *"Upravljanje najavama"* na zaslonu *"Postavke"* sadrži popis vrsta stvari koje aplikacija može najavljivati. Svaka stavka ima prekidač koji možete uključiti ili isključiti. Ako želite isključiti sve najave, dodirnite prekidač *"Dopusti najave"* na vrhu popisa.</string>
     <string name="help_text_my_location_what">Gumb *Moja lokacija* brzo vam daje informacije koje vam pomažu da otkrijete gdje se trenutno nalazite. *Moja lokacija* govori vam o vašoj trenutnoj lokaciji, uključujući smjer u kojem ste okrenuti, gdje se nalaze obližnje ceste ili raskrižja te gdje se nalaze obližnje zanimljive točke.</string>
-    <string name="help_text_my_location_when">*Moja lokacija* korisna je kada trebate otkriti gdje se nalazite ili u kojem ste stranu svijeta okrenuti.</string>
+    <string name="help_text_my_location_when">*Moja lokacija* korisna je kada trebate otkriti gdje se nalazite ili u koju ste stranu svijeta okrenuti.</string>
     <string name="help_text_my_location_how">Kao i sa svim ostala četiri gumba na dnu početnog zaslona, prije nego što pritisnete gumb *Moja lokacija*, držite telefon tako da mu je zaslon ravan (okrenut prema nebu), a vrh telefona usmjeren u smjeru u kojem ste okrenuti. To djeluje poput kompasa koji aplikaciji govori u kojem ste smjeru okrenuti. Jednostavno dodirnite gumb *Moja lokacija* i slušajte.</string>
     <string name="help_text_nearby_markers_what">Gumb *Oznake u blizini* govori vam o najviše četiri oznake koje su vam najbliže. *Oznake u blizini* namijenjene su tome da vam pomognu snaći se koristeći mjesta koja već poznajete.</string>
     <string name="help_text_nearby_markers_when">Kada pokušavate odrediti svoj položaj i snaći se u okolini, koristite *Oznake u blizini* kako biste čuli o lokacijama mjesta koja poznajete.</string>
@@ -1118,7 +1118,7 @@
     <string name="help_text_ahead_of_me_how">Kao i sa svim ostala četiri gumba na dnu početnog zaslona, prije nego što pritisnete gumb *Ispred mene*, držite telefon tako da mu je zaslon ravan (okrenut prema nebu), a vrh telefona usmjeren u smjeru u kojem ste okrenuti. To djeluje poput kompasa koji aplikaciji govori u kojem ste smjeru okrenuti. Jednostavno dodirnite gumb *Ispred mene* i čut ćete nekoliko zanimljivih točaka koje se nalaze otprilike ispred vas.</string>
     <string name="help_text_remote_control_what">Uz pomoć gumba za upravljanje medijima na slušalicama možete pristupiti određenim značajkama u Soundscapeu. Ova funkcija radi sa svim žičanim ili Bluetooth slušalicama koje imaju gumbe za upravljanje medijima poput Play, Pause, Next, Previous i drugih. Različite slušalice mogu imati različite gumbe, pa pogledajte popis radnji u nastavku kako biste utvrdili koje su vam dostupne.</string>
     <string name="help_text_remote_control_when">Gumbi za upravljanje medijima na slušalicama mogu se koristiti dok Soundscape radi. To vrijedi bilo da se trenutačno nalazite u Soundscapeu, bilo da Soundscape radi u pozadini, pa čak i dok je uređaj zaključan. Napomena: gumbi za upravljanje medijima na slušalicama neće raditi sa Soundscapeom ako drugom aplikacijom reproducirate zvuk, poput glazbe, podcasta ili videozapisa.</string>
-    <string name="help_text_remote_control_how">Postoje 3 načina rada gumba za upravljanje medijima. Način rada može se odabrati u odjeljku *Postavke* *Upravljanje medijima*. Načini rada su:\n\n Izvorni način. \n\n⏯ Play/Pause: Uključuje ili isključuje zvuk svjetionika. \n\n⏭ Next: Ako se reproducira ruta, pomiče zvučni svjetionik na sljedeću točku rute. Ako se ruta ne reproducira, najavljuje *Moju lokaciju*.\n\n⏮ Previous: Ako se reproducira ruta, pomiče zvučni svjetionik na prethodnu točku rute. Ako se ruta ne reproducira, najavljuje *Što je oko mene*.\n\n\n\n Glasovna naredba. \n\n\n\n⏯ Play/Pause: Ovo pokreće aplikaciju da počne slušati glasovne naredbe.\n\n\n\nZvučni izbornik. \n\n\n\n⏭ Next i ⏮ Previous kreću se kroz niz opcija izbornika koje aplikacija opisuje putem pretvorbe teksta u govor. ⏯ Play/Pause zatim pokreće aplikaciju da izvrši opisanu opciju. Postoji jedan glavni izbornik koji ima samo podizbornike kao opcije. Svaki podizbornik sadrži skupinu sličnih mogućih radnji.</string>
+    <string name="help_text_remote_control_how">Postoje 3 načina rada gumba za upravljanje medijima. Način rada može se odabrati u odjeljku *Postavke* *Upravljanje medijima*. Načini rada su:\n\n Izvorni način. \n\n⏯ Play/Pause: Uključuje ili isključuje zvuk svjetionika. \n\n⏭ Next: Ako se reproducira ruta, pomiče zvučni svjetionik na sljedeću putnu točku. Ako se ruta ne reproducira, najavljuje *Moju lokaciju*.\n\n⏮ Previous: Ako se reproducira ruta, pomiče zvučni svjetionik na prethodnu putnu točku. Ako se ruta ne reproducira, najavljuje *Što je oko mene*.\n\n\n\n Glasovna naredba. \n\n\n\n⏯ Play/Pause: Ovo pokreće aplikaciju da počne slušati glasovne naredbe.\n\n\n\nZvučni izbornik. \n\n\n\n⏭ Next i ⏮ Previous kreću se kroz niz opcija izbornika koje aplikacija opisuje putem pretvorbe teksta u govor. ⏯ Play/Pause zatim pokreće aplikaciju da izvrši opisanu opciju. Postoji jedan glavni izbornik koji ima samo podizbornike kao opcije. Svaki podizbornik sadrži skupinu sličnih mogućih radnji.</string>
     <string name="help_text_markers_content_1">Uz Soundscape možete označiti svoj svijet i sve do čega vam je stalo, poput pribadača na karti.</string>
     <string name="help_text_markers_content_2">Možete označiti stvari koje su vam osobne i važne, poput vašeg doma, ureda i omiljene trgovine. Možete označiti bilo koje mjesto ili adresu, ali možete označiti i stvari koje tradicionalno možda nisu dostupne na kartama, primjerice ulaze u zgrade ili parkove, gumbe za prelazak ceste, pješačke prijelaze ili mostove, autobusna stajališta, pa čak i omiljeno stablo vašeg psa, i koristiti ih kao referentne točke tijekom šetnje.</string>
     <string name="help_text_markers_content_3">Kako biste doživjeli označena mjesta, Soundscape će automatski najavljivati označena mjesta dok prolazite pored njih ili im se približavate, ili možete koristiti gumb *"Oznake u blizini"* na dnu početnog zaslona Soundscapea kako biste čuli prostornu najavu označenih mjesta oko vas. Osim toga, imate mogućnost postaviti zvučni svjetionik na bilo koje označeno mjesto. Kada to učinite, čut ćete poznati zvučni svjetionik Soundscapea i moći ćete njime upravljati kao inače.</string>
@@ -1169,7 +1169,7 @@
     <string name="faq_supported_headsets_question">Koje bih slušalice trebao/la koristiti uz Soundscape?</string>
     <string name="faq_supported_headsets_answer">Koje ćete slušalice koristiti uz Soundscape stvar je osobnog izbora, a svaka opcija dolazi s prednostima i kompromisima. Jedini poseban zahtjev jest korištenje stereo slušalica kako biste mogli iskoristiti prostorne 3D zvučne najave Soundscapea.</string>
     <string name="faq_battery_impact_question">Kako Soundscape utječe na bateriju mog telefona?</string>
-    <string name="faq_battery_impact_answer">Trajanje baterije uvelike ovisi o tome koji telefon posjedujete i koliko je star. Najveće trošenje baterije uzrokuje uključen zaslon, pa biste, kako biste produljili trajanje baterije telefona, zaslon trebali držati zaključanim kad god je to moguće. Kako bi se smanjio utjecaj na bateriju telefona, Soundscape sada ima način rada Mirovanje. Za dodatno smanjenje potrošnje baterije, kada ne koristite Soundscape, trebali biste ga prisilno zatvoriti putem preglednika aplikacija na telefonu.</string>
+    <string name="faq_battery_impact_answer">Za dodatno smanjenje potrošnje baterije, kada ne koristite Soundscape, trebali biste ga prisilno zatvoriti putem izbornika nedavnih aplikacija na telefonu.</string>
     <string name="faq_sleep_mode_battery_question">Kako da koristim način rada Mirovanje kako bih smanjio/la utjecaj Soundscapea na bateriju telefona?</string>
     <string name="faq_sleep_mode_battery_answer">Kako biste Soundscape prebacili u način rada Mirovanje, odaberite gumb *Mirovanje* u gornjem desnom kutu zaslona. Kada to odaberete, Soundscape će prestati koristiti usluge lociranja i mobilne podatke dok ga ponovno ne probudite.</string>
     <string name="faq_snooze_mode_battery_question">Kako da koristim način rada Odgoda kako bih smanjio/la utjecaj Soundscapea na bateriju telefona?</string>
@@ -1185,7 +1185,7 @@
     <string name="faq_use_with_wayfinding_apps_question">Kako da koristim Soundscape uz aplikaciju za snalaženje?</string>
     <string name="faq_use_with_wayfinding_apps_answer">Soundscape je osmišljen kao aplikacija za osvještavanje okoline koja pomaže popuniti detalje o vašoj okolini kojih možda inače ne biste bili svjesni. Iako nije osmišljen kao aplikacija za navigaciju korak po korak, može se koristiti zajedno s takvim aplikacijama kako bi pružio dodatne informacije. Za korištenje Soundscapea uz te aplikacije, najprije pokrenite svoju aplikaciju za navigaciju. Zatim prijeđite na Soundscape i postavite svjetionik na isto odredište kao u aplikaciji za navigaciju. U tom trenutku obje će aplikacije raditi te ćete čuti upute za hodanje iz svoje aplikacije za navigaciju, dok ćete od Soundscapea dobivati ažuriranja o zanimljivim točkama, raskrižjima i udaljenosti do odredišta.</string>
     <string name="faq_controlling_what_you_hear_question">Kako mogu kontrolirati što čujem i kada to čujem u Soundscapeu?</string>
-    <string name="faq_controlling_what_you_hear_answer">Soundscape nudi nekoliko načina kontrole onoga što i kada čujete:\n\n1. Trenutačno zaustavljanje svog zvuka: Dvaput dodirnite zaslon s dva prsta kako biste odmah isključili sav zvuk, uključujući svaku najavu koja se trenutačno reproducira i svjetionik ako je uključen. Najave će se automatski nastaviti kada se približite sljedećem raskrižju ili zanimljivoj točki, no zvučni svjetionik neće. Odaberite gumb *"uključi zvuk svjetionika"* na glavnom zaslonu kako biste ponovno čuli svjetionik.\n\n2. Zaustavljanje automatskih najava: Kada ne putujete ili ste stigli na odredište, vjerojatno vam Soundscape neće trebati da vas nastavi obavještavati o stvarima u okolini. Umjesto izlaska iz aplikacije, možete Soundscape staviti u način rada Odgoda te će se ponovno probuditi kada odete, ili ga možete staviti u način rada Mirovanje pa će ostati isključen dok ga sami ponovno ne uključite. Alternativno, možete odabrati *"Postavke"* iz izbornika i isključiti sve najave u odjeljku *"Upravljanje najavama"*.\n\n3. Zaustavljanje svjetionika: Postoji nekoliko situacija u kojima biste možda postavili odredište, ali vam zvučni svjetionik ne treba biti uključen. Na primjer, možda točno znate kako doći do odredišta, ali i dalje želite automatska ažuriranja o tome koliko ste udaljeni. Ili vam zvučni svjetionik možda treba samo dok se približavate odredištu. U svakom slučaju, možete odabrati kada ćete čuti svjetionik prebacivanjem gumba *"utišaj svjetionik"*/*"uključi zvuk svjetionika"* na glavnom zaslonu.\n\nAko i dalje želite koristiti Soundscape, ali ne želite čuti automatske najave, možete ih isključiti odlaskom u odjeljak *"Upravljanje najavama"* na zaslonu *"Postavke"* iz izbornika. Ili, ako nećete koristiti Soundscape, možete ga staviti u način rada Mirovanje ili Odgoda pomoću gumba *"Mirovanje"* na početnom zaslonu.</string>
+    <string name="faq_controlling_what_you_hear_answer">1. Trenutačno zaustavljanje cijelog zvuka: Dvaput dodirnite zaslon s dva prsta kako biste odmah isključili sav zvuk, ...</string>
     <string name="faq_holding_phone_flat_question">Moram li cijelo vrijeme držati telefon u ruci?</string>
     <string name="faq_holding_phone_flat_answer">Ne! Dok hodate, telefon možete spremiti u torbu, džep ili gdje god vam odgovara. Soundscape će koristiti smjer u kojem hodate kako bi odredio koje najave izgovoriti s vaše lijeve, a koje s vaše desne strane. Kada prestanete hodati, Soundscape ne zna u kojem ste smjeru okrenuti. Ako je zvučni svjetionik uključen, primijetit ćete da postane tiši dok ponovno ne krenete. Telefon možete izvaditi kako biste pritisnuli gumbe za lokaciju i istraživanje na dnu zaslona u bilo kojem trenutku, ali pazite da telefon držite tako da mu je vrh usmjeren u smjeru u kojem ste okrenuti, a zaslon prema nebu. U tom *"ravnom"* položaju Soundscape će koristiti kompas telefona kako bi odredio u kojem ste smjeru okrenuti i pružio točne prostorne najave. Ako je svjetionik uključen, primijetit ćete i da se vraća na punu glasnoću.</string>
     <string name="faq_what_is_osm_question">Što je Open Street Map i zašto ga koristimo za Soundscape?</string>
@@ -1283,7 +1283,7 @@
     <string name="route_description_description_hint">dodaš neobavezan opis ove rute</string>
     <string name="fab_add_item">Dodaj stavku</string>
     <string name="fab_add_route">Dodaj rutu</string>
-    <string name="route_waypoint_progress">Ruta %1$s na točki %2$s od %3$s</string>
+    <string name="route_waypoint_progress">Ruta %1$s na točki rute %2$s od %3$s</string>
     <string name="route_beacon_progress">Svjetionik na %1$s</string>
     <string name="home_screen_title">Soundscape početni zaslon</string>
     <string name="settings_reset_button">Vrati postavke na zadano</string>
@@ -1311,7 +1311,7 @@
     <string name="new_version_info_text">Informacije o novom izdanju</string>
     <string name="new_version_info_completed">Zatvori dijaloški okvir o novom izdanju</string>
     <string name="menu_open_source_licenses">Licence otvorenog koda</string>
-    <string name="new_version_info_details">Ovo je veliko ažuriranje Soundscapea. Način rada Putovanje znatno je poboljšan, uz najave brojeva cesta, smjera kretanja i obližnjih naselja kada putujete automobilom ili autobusom, kao i najave prilikom prelaska rijeka, kanala, estuarija i zaljeva. Ažurirajte svoje izvanmrežne karte kako biste imali koristi od ovih značajki. Za korisnike u Ujedinjenom Kraljevstvu, autobusna stajališta sada imaju mnogo bolje opise. Način rada Mirovanje sada se može automatski probuditi kada otkrije da se ponovno krećete, pa ga više ne morate sami pamtiti probuditi. Osnovni kod je uvelike preuređen kako bismo mogli izraditi iOS aplikaciju iz istog koda. To znači da u budućnosti možemo objaviti iOS aplikaciju sa svim značajkama koje smo izradili za Android. Kao i uvijek, molimo prijavite sve probleme na koje naiđete, koliko god mali bili, putem opcije Kontaktiraj podršku u glavnom izborniku.</string>
+    <string name="new_version_info_details">Način rada Mirovanje sada se može automatski probuditi kada otkrije da se ponovno krećete, pa ga više ne morate sami buditi.</string>
     <string name="about_soundscape">Soundscape istražuje primjenu inovativne, na zvuku temeljene tehnologije kako bi ljudima omogućio da izgrade bogatiju svijest o svojoj okolini, postajući tako samopouzdaniji i osnaženiji za snalaženje u prostoru.</string>
     <string name="copyright_notices">Soundscape ne bi bio moguć bez ovih izvrsnih vanjskih biblioteka i podataka. Kliknite na poveznice kako biste vidjeli njihove licence:</string>
     <string name="osm_copyright">[©OpenStreetMap suradnici](https://www.openstreetmap.org/copyright) pružaju sve geografske podatke za izradu karata i zvuka koji se koriste u Soundscapeu.</string>
@@ -1369,7 +1369,7 @@
     <string name="osm_convenience">Trgovina mješovitom robom</string>
     <string name="osm_entrance">Ulaz</string>
     <string name="osm_assembly_point">Zborno mjesto</string>
-    <string name="osm_cycle_barrier">Biciklistička brana</string>
+    <string name="osm_cycle_barrier">Biciklistička prepreka</string>
     <string name="osm_turnstile">Turniket</string>
     <string name="osm_cattle_grid">Rešetka za stoku</string>
     <string name="osm_gate">Vrata</string>
