@@ -35,11 +35,11 @@
     <string name="osm_model">Obchod s modelmi</string>
     <string name="osm_frame">Rámovacia dielňa</string>
     <string name="osm_art">Obchod s umením</string>
-    <string name="osm_car_parts">Obchod s náhradnými dielmi</string>
+    <string name="osm_car_parts">Obchod s náhradnými dielmi na autá</string>
     <string name="osm_radiotechnics">Obchod s rádiotechnikou</string>
     <string name="osm_bed">Obchod s posteľami</string>
     <string name="osm_garden_furniture">Obchod so záhradným nábytkom</string>
-    <string name="osm_electrical">Obchod s elektrospotrebičmi</string>
+    <string name="osm_electrical">Obchod s elektroinštalačným materiálom</string>
     <string name="osm_perfumery">Parfuméria</string>
     <string name="osm_hairdresser">Kaderníctvo</string>
     <string name="osm_drugstore">Drogéria</string>
@@ -112,7 +112,7 @@
     <string name="osm_insurance">Poisťovňa</string>
     <string name="osm_airfield">Letisko</string>
     <string name="osm_water_tower">Vodojem</string>
-    <string name="osm_pumping_station">Čerpacia stanica</string>
+    <string name="osm_pumping_station">Vodárenská čerpacia stanica</string>
     <string name="osm_hot_water_tank">Zásobník teplej vody</string>
     <string name="osm_campanile">Zvonica</string>
     <string name="osm_sports_centre">Športové centrum</string>
@@ -200,7 +200,7 @@
     <string name="osm_castle">Hrad</string>
     <string name="osm_aircraft">Lietadlo</string>
     <string name="osm_digester">Vyhnívacia nádrž</string>
-    <string name="osm_sally_port">Únikový vchod pevnosti</string>
+    <string name="osm_sally_port">Bránka pevnosti</string>
     <string name="osm_aerodrome">Letisko</string>
     <string name="osm_shopping_mall">Nákupné centrum</string>
     <string name="osm_cinema">Kino</string>
@@ -231,12 +231,12 @@
     <string name="osm_subway_entrance">Vstup do metra</string>
     <string name="osm_cave_entrance">Vstup do jaskyne</string>
     <string name="osm_swing_gate">Otváracia bránka</string>
-    <string name="osm_stile">Prelaz</string>
+    <string name="osm_stile">Prielaz</string>
     <string name="osm_car_sharing">Zdieľanie áut</string>
     <string name="osm_customer_service">Zákaznícky servis</string>
     <string name="osm_watering_place">Napájadlo</string>
     <string name="osm_platform">Nástupište</string>
-    <string name="osm_horse_stile">Prelaz pre kone</string>
+    <string name="osm_horse_stile">Prielaz pre kone</string>
     <string name="osm_bureau_de_change">Zmenáreň</string>
     <string name="osm_stairs">Schody</string>
     <string name="osm_bicycle_rental">Požičovňa bicyklov</string>
@@ -245,7 +245,7 @@
     <string name="osm_subway">Stanica metra</string>
     <string name="osm_subway_named">Stanica metra %1$s</string>
     <string name="osm_hampshire_gate">Hampshirská bránka</string>
-    <string name="osm_full_height_turnstile">Turniket v plnej výške</string>
+    <string name="osm_full_height_turnstile">Turniket na celú výšku</string>
     <string name="osm_boat_sharing">Zdieľanie lodí</string>
     <string name="osm_help_point">Miesto pomoci</string>
     <string name="osm_open_space">Otvorený priestor</string>
@@ -276,7 +276,7 @@
     <string name="osm_danger_area">Nebezpečná oblasť</string>
     <string name="osm_chain">Reťazová zábrana</string>
     <string name="osm_parking_space">Parkovacie miesto</string>
-    <string name="osm_motorcycle_parking">Parkovanie pre motocykle</string>
+    <string name="osm_motorcycle_parking">Parkovisko pre motocykle</string>
     <string name="osm_city">Mesto</string>
     <string name="osm_town">Mestečko</string>
     <string name="osm_neighbourhood">Štvrť</string>
@@ -375,7 +375,7 @@
     <string name="osm_gallows">Šibenica</string>
     <string name="osm_speed_camera">Rýchlostná kamera</string>
     <string name="osm_siren">Siréna</string>
-    <string name="osm_pylon">Stožiar</string>
+    <string name="osm_pylon">Pylón</string>
     <string name="osm_mineshaft">Banská šachta</string>
     <string name="osm_flagpole">Vlajkový stožiar</string>
     <string name="osm_optical_telegraph">Optický telegraf</string>
@@ -602,7 +602,7 @@
     <string name="osm_cheese">Syráreň</string>
     <string name="osm_bakery">Pekáreň</string>
     <string name="osm_telecommunication">Obchod s telekomunikačnými službami</string>
-    <string name="osm_tax">Daňový úrad</string>
+    <string name="osm_tax">Daňová kancelária</string>
     <string name="osm_real_estate_agent">Realitná kancelária</string>
     <string name="osm_notary">Notár</string>
     <string name="osm_ngo">Kancelária mimovládnej organizácie</string>
@@ -914,7 +914,7 @@
     <string name="directions_generic_train">vlak</string>
     <string name="directions_crossing_waterway">Prechod cez %1$s</string>
     <string name="directions_crossing_railway_generic">Prechod cez železnicu</string>
-    <string name="directions_going_under_railway">Pod %1$s</string>
+    <string name="directions_going_under_railway">Prechod pod %1$s</string>
     <string name="directions_going_under_railway_generic">Pod železnicou</string>
     <string name="directions_traveling_n">Cestujete na sever</string>
     <string name="directions_traveling_ne">Cestujete na severovýchod</string>
@@ -1326,7 +1326,7 @@
     <string name="osm_restroom">Toaleta</string>
     <string name="osm_parking_lot">Parkovisko</string>
     <string name="osm_taxi_waiting_area">Miesto čakania taxíkov</string>
-    <string name="osm_bike_parking">Parkovanie pre bicykle</string>
+    <string name="osm_bike_parking">Parkovisko pre bicykle</string>
     <string name="osm_gas_station">Čerpacia stanica</string>
     <string name="osm_bus_stop_named">Autobusová zastávka %1$s</string>
     <string name="osm_recycling_bin">Recyklačný kontajner</string>
