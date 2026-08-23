@@ -163,6 +163,7 @@ android {
     androidResources {
         // Maintaining this list means that we can exclude translations that aren't complete yet
         localeFilters += listOf(
+            "ar",
             "arz",
             "bn",
             "zh-rCN",
@@ -185,6 +186,8 @@ android {
             "is",
             "it",
             "ja",
+            "ko",
+            "mr",
             "nb",
             "nl",
             "pl",
@@ -196,7 +199,9 @@ android {
             "sr",
             "sv",
             "sw",
+            "ta",
             "te",
+            "th",
             "tr",
             "uk",
             "ur",

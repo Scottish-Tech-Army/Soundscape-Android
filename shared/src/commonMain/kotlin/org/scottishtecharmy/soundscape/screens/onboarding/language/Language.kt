@@ -11,6 +11,7 @@ data class Language(
  * language picker and the language mismatch detection.
  */
 val supportedLanguages: List<Language> = listOf(
+    Language("العربية", "ar", "SA"),
     Language("العربية المصرية", "arz", "EG"),
     Language("বাংলা", "bn", "BD"),
     Language("中文 (简体)", "zh", "CN"),
@@ -33,6 +34,8 @@ val supportedLanguages: List<Language> = listOf(
     Language("Íslenska", "is", "IS"),
     Language("Italiano", "it", "IT"),
     Language("日本語", "ja", "JP"),
+    Language("한국어", "ko", "KR"),
+    Language("मराठी", "mr", "IN"),
     Language("Norsk", "nb", "NO"),
     Language("Nederlands", "nl", "NL"),
     Language("Polski", "pl", "PL"),
@@ -44,7 +47,9 @@ val supportedLanguages: List<Language> = listOf(
     Language("Српски", "sr", "RS"),
     Language("Svenska", "sv", "SE"),
     Language("Kiswahili", "sw", "TZ"),
+    Language("தமிழ்", "ta", "IN"),
     Language("తెలుగు", "te", "IN"),
+    Language("ไทย", "th", "TH"),
     Language("Türkçe", "tr", "TR"),
     Language("Українська", "uk", "UA"),
     Language("اردو", "ur", "PK"),
