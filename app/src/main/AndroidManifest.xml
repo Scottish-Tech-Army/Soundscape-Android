@@ -26,7 +26,12 @@
         android:usesPermissionFlags="neverForLocation"
         tools:targetApi="s" />
     <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CONNECTED_DEVICE" />
+    <!-- FOREGROUND_SERVICE_CONNECTED_DEVICE is required once head tracking ships (the service
+         will need to run as foregroundServiceType="connectedDevice" to stay connected to a
+         head-tracking BLE device). The head tracking code is all in place, but the feature is
+         currently disabled for users, so this permission is left out to avoid requiring it
+         before it's needed. Re-add it, and "connectedDevice" to the service's
+         foregroundServiceType below, when the feature ships. -->
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
 
     <application
@@ -130,7 +135,7 @@
             android:stopWithTask="true"
             android:enabled="true"
             android:exported="true"
-            android:foregroundServiceType="location|mediaPlayback|microphone|connectedDevice"
+            android:foregroundServiceType="location|mediaPlayback|microphone"
             android:permission="android.permission.FOREGROUND_SERVICE_LOCATION">
             <intent-filter>
                 <action android:name="androidx.media3.session.MediaSessionService" />
