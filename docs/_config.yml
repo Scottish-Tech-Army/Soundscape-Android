@@ -20,9 +20,9 @@ plugins:
 # Web/BCP-47 language codes. The help-page generator maps Android resource
 # qualifiers (zh-rCN, fr-rCA, pt-rBR, en-rGB) to these. Source of truth for the
 # supported set: app/build.gradle.kts resourceConfigurations.
-languages: ["en", "arz", "bn", "cs", "da", "de", "el", "en-GB", "es", "fa", "fi", "fr", "fr-CA",
-            "ha", "hi", "hr", "hu", "id", "is", "it", "ja", "nb", "nl", "pl", "pt", "pt-BR", "ro",
-            "ru", "sk", "sr", "sv", "sw", "te", "tr", "uk", "ur", "vi", "zh-CN"]
+languages: ["en", "ar", "arz", "bn", "cs", "da", "de", "el", "en-GB", "es", "fa", "fi", "fr", "fr-CA",
+            "ha", "hi", "hr", "hu", "id", "is", "it", "ja", "ko", "mr", "nb", "nl", "pl", "pt", "pt-BR", "ro",
+            "ru", "sk", "sr", "sv", "sw", "ta", "te", "th", "tr", "uk", "ur", "vi", "zh-CN"]
 default_lang: "en"
 # Untranslated pages fall back to the default_lang version under every /<lang>/ URL.
 # NB: do not add bare "*.svg"/"*.png" globs here — polyglot compiles them to

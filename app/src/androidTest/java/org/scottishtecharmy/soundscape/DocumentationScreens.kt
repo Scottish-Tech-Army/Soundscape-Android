@@ -228,6 +228,7 @@ class DocumentationScreens {
     // Keep this in sync with the `languages` list in docs/_config.yml.
     private val localeMap: Map<String, String> = mapOf(
         "en" to "en",          // default -> no suffix, no `lang:` front matter
+        "ar" to "ar",
         "arz" to "arz",
         "bn" to "bn",
         "zh-rCN" to "zh-CN",
@@ -249,6 +250,8 @@ class DocumentationScreens {
         "is" to "is",
         "it" to "it",
         "ja" to "ja",
+        "ko" to "ko",
+        "mr" to "mr",
         "nb" to "nb",
         "nl" to "nl",
         "pl" to "pl",
@@ -260,7 +263,9 @@ class DocumentationScreens {
         "sr" to "sr",
         "sv" to "sv",
         "sw" to "sw",
+        "ta" to "ta",
         "te" to "te",
+        "th" to "th",
         "tr" to "tr",
         "uk" to "uk",
         "ur" to "ur",
@@ -274,6 +279,7 @@ class DocumentationScreens {
     private val parentLabels: Map<String, String> = mapOf(
         "en" to "Using Soundscape",
         "en-GB" to "Using Soundscape",
+        "ar" to "استخدام Soundscape",
         "arz" to "استخدام ساوندسكيب",
         "bn" to "সাউন্ডস্কেপ ব্যবহার",
         "zh-CN" to "使用 Soundscape",
@@ -294,6 +300,8 @@ class DocumentationScreens {
         "is" to "Að nota Soundscape",
         "it" to "Usare Soundscape",
         "ja" to "Soundscape を使う",
+        "ko" to "Soundscape 사용하기",
+        "mr" to "Soundscape वापरणे",
         "nb" to "Bruke Soundscape",
         "nl" to "Soundscape gebruiken",
         "pl" to "Korzystanie z Soundscape",
@@ -305,7 +313,9 @@ class DocumentationScreens {
         "sr" to "Коришћење Soundscape",
         "sv" to "Använda Soundscape",
         "sw" to "Kutumia Soundscape",
+        "ta" to "Soundscape பயன்படுத்துதல்",
         "te" to "Soundscape వాడకం",
+        "th" to "การใช้ Soundscape",
         "tr" to "Soundscape Kullanımı",
         "uk" to "Використання Soundscape",
         "ur" to "Soundscape کا استعمال",
