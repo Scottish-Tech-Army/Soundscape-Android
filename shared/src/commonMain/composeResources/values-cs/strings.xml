@@ -202,7 +202,7 @@
     <string name="osm_community_centre">Komunitní centrum</string>
     <string name="osm_brothel">Nevěstinec</string>
     <string name="osm_veterinary">Veterinární klinika</string>
-    <string name="osm_social_facility">Sociální zařízení</string>
+    <string name="osm_social_facility">Zařízení sociálních služeb</string>
     <string name="osm_clinic">Klinika</string>
     <string name="osm_charging_station">Nabíjecí stanice</string>
     <string name="osm_kindergarten">Mateřská škola</string>
@@ -286,7 +286,7 @@
     <string name="osm_volleyball">Volejbal</string>
     <string name="osm_tennis">Tenis</string>
     <string name="osm_soccer">Fotbal</string>
-    <string name="osm_shooting">Střelnice</string>
+    <string name="osm_shooting">Střelba</string>
     <string name="osm_rugby_union">Ragby</string>
     <string name="osm_orienteering">Orientační běh</string>
     <string name="osm_netball">Netball</string>
@@ -313,7 +313,7 @@
     <string name="osm_tyres">Pneuservis</string>
     <string name="osm_sports">Sportovní potřeby</string>
     <string name="osm_outdoor">Outdoorové vybavení</string>
-    <string name="osm_car">Autobazar</string>
+    <string name="osm_car">Autosalon</string>
     <string name="osm_electronics">Elektro</string>
     <string name="osm_computer">Obchod s počítači</string>
     <string name="osm_furniture">Obchod s nábytkem</string>
@@ -339,8 +339,8 @@
     <string name="osm_hackerspace">Hackerspace</string>
     <string name="osm_lifeguard_base">Stanoviště plavčíků</string>
     <string name="osm_roofer">Pokrývač</string>
-    <string name="osm_rigger">Riger</string>
-    <string name="osm_parquet_layer">Pokladač parket</string>
+    <string name="osm_rigger">Rigger</string>
+    <string name="osm_parquet_layer">Pokládač parket</string>
     <string name="osm_gardener">Zahradník</string>
     <string name="osm_stable">Stáj</string>
     <string name="osm_garage">Garáž</string>
@@ -383,7 +383,7 @@
     <string name="osm_canadian_football">Hřiště pro kanadský fotbal</string>
     <string name="osm_beachvolleyball">Hřiště na beach volejbal</string>
     <string name="osm_base">Základna</string>
-    <string name="osm_athletics">Atletický stadion</string>
+    <string name="osm_athletics">Atletická dráha</string>
     <string name="osm_pawnbroker">Zastavárna</string>
     <string name="osm_ticket">Prodej vstupenek</string>
     <string name="osm_stationery">Papírnictví</string>
@@ -550,7 +550,7 @@
     <string name="osm_slipway">Spouštěcí rampa pro lodě</string>
     <string name="osm_nature_reserve">Přírodní rezervace</string>
     <string name="osm_marina">Marina</string>
-    <string name="osm_ice_rink">Ledová plocha</string>
+    <string name="osm_ice_rink">Kluziště</string>
     <string name="osm_manor">Panské sídlo</string>
     <string name="osm_city_gate">Městská brána</string>
     <string name="osm_castle">Hrad</string>
@@ -575,7 +575,7 @@
     <string name="osm_pharmacy">Lékárna</string>
     <string name="osm_kneipp_water_cure">Kneippovy vodoléčebné lázně</string>
     <string name="osm_food_court">Zóna rychlého občerstvení</string>
-    <string name="osm_chemist">Lékárna s drogerií</string>
+    <string name="osm_chemist">Drogerie</string>
     <string name="osm_checkpoint">Kontrolní stanoviště</string>
     <string name="osm_dog_park">Psí park</string>
     <string name="osm_kissing_gate">Turniketová branka</string>
@@ -768,7 +768,7 @@
     <string name="beacon_audio_beacon">Zvukový maják</string>
     <string name="beacon_action_mute_beacon">Ztlumit maják</string>
     <string name="beacon_action_mute_beacon_acc_hint">ztlumíte zvukový maják</string>
-    <string name="beacon_action_unmute_beacon">Zapnout maják</string>
+    <string name="beacon_action_unmute_beacon">Zrušit ztlumení majáku</string>
     <string name="beacon_action_unmute_beacon_acc_hint">zrušíte ztlumení zvukového majáku</string>
     <string name="preview_title">Simulovat polohu</string>
     <string name="preview_go_title">Jít</string>
@@ -908,7 +908,7 @@
     <string name="directions_at_junction_inline">u %1$s</string>
     <string name="directions_on_road_and_settlement_since">Na %1$s a blízko %2$s, %3$s od %4$s</string>
     <string name="directions_towards_settlement">směrem k %1$s, %2$s daleko</string>
-    <string name="directions_away_from_settlement">od %1$s, %2$s daleko</string>
+    <string name="directions_away_from_settlement">pryč od %1$s, %2$s daleko</string>
     <string name="directions_near_settlement_inline">poblíž %1$s</string>
     <string name="directions_close_to_settlement_inline">blízko %1$s</string>
     <string name="directions_generic_train">vlaku</string>
@@ -1120,7 +1120,7 @@
     <string name="help_text_remote_control_when">Tlačítka pro ovládání médií na sluchátkách lze používat, když je Soundscape spuštěný. Platí to jak v případě, že se právě nacházíte v aplikaci Soundscape, tak když běží na pozadí, a to i když je zařízení uzamčené. Mějte však na paměti, že tlačítka pro ovládání médií na sluchátkách nebudou s aplikací Soundscape fungovat, pokud přehráváte zvuk, jako je hudba, podcasty nebo videa, v jiné aplikaci.</string>
     <string name="help_text_remote_control_how">K dispozici jsou 3 režimy ovládání médií. Režim lze vybrat v části *Nastavení* *Ovládání médií*. Režimy jsou:\n\n Původní režim. \n\n⏯ Přehrát/Pozastavit: Zapne nebo vypne zvuk majáku. \n\n⏭ Další: Pokud se přehrává trasa, přesune zvukový maják na další bod trasy. Pokud se nepřehrává žádná trasa, oznámí *Moje poloha*.\n\n⏮ Předchozí: Pokud se přehrává trasa, přesune zvukový maják na předchozí bod trasy. Pokud se nepřehrává žádná trasa, oznámí *Co je kolem mě*.\n\n\n\n Hlasový příkaz. \n\n\n\n⏯ Přehrát/Pozastavit: Tímto aplikace začne naslouchat hlasovým příkazům.\n\n\n\nZvukové menu. \n\n\n\n⏭ Další a ⏮ Předchozí procházejí řadou možností nabídky, které aplikace popisuje pomocí převodu textu na řeč. ⏯ Přehrát/Pozastavit poté spustí provedení popsané možnosti. Existuje jediná hlavní nabídka, která má jako možnosti pouze podnabídky. Každá podnabídka obsahuje skupinu podobných možných akcí.</string>
     <string name="help_text_markers_content_1">Se Soundscape můžete označit svůj svět a cokoli, na čem vám záleží, podobně jako špendlíky na mapě.</string>
-    <string name="help_text_markers_content_2">Můžete si označit věci, které jsou pro vás osobní a důležité, jako je váš domov, kancelář nebo oblíbené potraviny. Můžete označit jakékoli místo nebo adresu, ale také věci, které běžně na mapách nenajdete, například vchody do budov nebo parků, tlačítka pro přecházení, přechody pro chodce nebo mosty, autobusové zastávky nebo dokonce oblíbený strom vašeho psa, a používat je jako orientační body na své procházce.</string>
+    <string name="help_text_markers_content_2">Můžete si označit věci, které jsou pro vás osobní a důležité, jako je váš domov, kancelář nebo oblíbený obchod s potravinami.</string>
     <string name="help_text_markers_content_3">Abyste mohli označená místa využívat, Soundscape je automaticky ohlásí, když kolem nich procházíte nebo se k nim přibližujete, nebo můžete použít tlačítko *\\"Značky v okolí\\"* ve spodní části domovské obrazovky Soundscape a poslechnout si prostorové hlášení označených míst kolem vás. Kromě toho máte možnost nastavit zvukový maják na libovolném označeném místě. Když to uděláte, uslyšíte již známý zvukový maják Soundscape a můžete ho ovládat jako obvykle.</string>
     <string name="help_text_creating_markers_content_1">Značky můžete vytvořit třemi způsoby: vyhledáním místa, které chcete uložit, pomocí vyhledávacího pole, nalezením místa pomocí tlačítka *\\"Místa v okolí\\"* nebo pomocí tlačítka *\\"Použít aktuální polohu\\"*, přičemž všechny tyto možnosti najdete na domovské obrazovce Soundscape. Jakmile najdete požadované místo, jeho výběrem se dostanete na obrazovku *\\"Podrobnosti o místě\\"*. Na této obrazovce vyberte tlačítko *\\"Uložit jako značku\\"*.</string>
     <string name="help_text_creating_markers_content_2">Nyní máte možnost tuto značku upravit. Můžete změnit název značky a také přidat poznámku, která bude oznámena společně se značkou a poskytne dodatečné informace. Jakmile budete hotovi, výběrem tlačítka *Hotovo* značku uložíte.</string>
@@ -1354,14 +1354,14 @@
     <string name="osm_trunk">Silnice pro motorová vozidla</string>
     <string name="osm_path">Cesta</string>
     <string name="osm_raceway">Závodní dráha</string>
-    <string name="osm_busway">Autobusový pruh</string>
+    <string name="osm_busway">Silnice pouze pro autobusy</string>
     <string name="osm_bus_guideway">Vodicí dráha pro autobusy</string>
     <string name="osm_ferry">Trajektová linka</string>
     <string name="osm_transit">Linka veřejné dopravy</string>
     <string name="osm_highway">Hlavní silnice</string>
     <string name="osm_intersection">Křižovatka</string>
     <string name="osm_roundabout">Kruhový objezd</string>
-    <string name="osm_highway_ramp">Sjezd z dálnice</string>
+    <string name="osm_highway_ramp">Dálniční rampa</string>
     <string name="osm_merging_lane">Připojovací pruh</string>
     <string name="osm_office">Kancelář</string>
     <string name="osm_school">Škola</string>
