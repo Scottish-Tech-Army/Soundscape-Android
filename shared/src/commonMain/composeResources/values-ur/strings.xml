@@ -3,7 +3,7 @@
     <string name="osm_pottery">مٹی کے برتن بنانے کا اسٹوڈیو</string>
     <string name="osm_key_cutter">چابی بنانے والا</string>
     <string name="osm_hvac">ایئر کنڈیشننگ اور حرارتی نظام کا ٹھیکیدار</string>
-    <string name="osm_clockmaker">گھڑی ساز</string>
+    <string name="osm_clockmaker">دیواری گھڑی ساز (to distinguish from Watchmaker Shop)</string>
     <string name="osm_carpenter">بڑھئی</string>
     <string name="osm_builder">تعمیراتی ٹھیکیدار</string>
     <string name="osm_bookbinder">جلد ساز</string>
@@ -173,7 +173,7 @@
     <string name="osm_consumer_electronics_store">الیکٹرانکس کی دکان</string>
     <string name="osm_speciality_store">خصوصی اشیاء کی دکان</string>
     <string name="osm_defined">متعین</string>
-    <string name="osm_sauna">سونا</string>
+    <string name="osm_sauna">ساؤنا</string>
     <string name="osm_gym">جم</string>
     <string name="osm_crematorium">شمشان گھاٹ</string>
     <string name="osm_gambling">جوئے خانہ</string>
@@ -198,7 +198,7 @@
     <string name="osm_speed_camera">سپیڈ کیمرہ</string>
     <string name="osm_siren">سائرن</string>
     <string name="osm_pylon">پائلن</string>
-    <string name="osm_mineshaft">کان کی سرنگ</string>
+    <string name="osm_mineshaft">کان کا عمودی راستہ / کان کا کنواں</string>
     <string name="osm_flagpole">جھنڈے کا کھمبا</string>
     <string name="osm_optical_telegraph">بصری ٹیلی گراف</string>
     <string name="osm_cannon">توپ</string>
@@ -214,7 +214,7 @@
     <string name="osm_tomb">مقبرہ</string>
     <string name="osm_traffic_signals">ٹریفک سگنلز</string>
     <string name="osm_hut">جھونپڑی</string>
-    <string name="osm_static_caravan">ساکن کارواں</string>
+    <string name="osm_static_caravan">ساکن کیریوان (پارک شدہ رہائشی گاڑی)</string>
     <string name="osm_bollard">رکاوٹ کھمبا</string>
     <string name="osm_block">بلاک</string>
     <string name="osm_waste_disposal">فضلہ ٹھکانے لگانے کی جگہ</string>
@@ -243,7 +243,7 @@
     <string name="osm_research">تحقیقی ادارہ</string>
     <string name="osm_newspaper">اخبار کی دکان</string>
     <string name="osm_ammunition">گولہ بارود کی دکان</string>
-    <string name="osm_wildlife_hide">مشاہدے کی چھپن گاہ</string>
+    <string name="osm_wildlife_hide">مشاہدے کی کمین گاہ</string>
     <string name="osm_watchmaker">گھڑی ساز کی دکان</string>
     <string name="osm_tinsmith">ٹین ساز کی دکان</string>
     <string name="osm_sun_protection">دھوپ سے تحفظ کی دکان</string>
@@ -264,7 +264,7 @@
     <string name="osm_animal_boarding">جانوروں کی عارضی رہائش</string>
     <string name="osm_blood_donation">خون کا عطیہ</string>
     <string name="osm_nursing_home">نرسنگ ہوم</string>
-    <string name="osm_dentist">دندان ساز</string>
+    <string name="osm_dentist">دانتوں کا ڈاکٹر</string>
     <string name="osm_baby_hatch">بے بی ہیچ</string>
     <string name="osm_language_school">زبان کا اسکول</string>
     <string name="osm_public_bookcase">عوامی کتاب الماری</string>
@@ -387,9 +387,9 @@
     <string name="accessibility_screen_reader_enabled">چونکہ آپ نے اسکرین ریڈر فعال کیا ہوا ہے، ہم تجویز کرتے ہیں کہ ایپ کو یوزر انٹرفیس کے گرافیکل نقشوں کو بند رکھ کر چلائیں۔ آپ یہ سیٹنگ یہاں تبدیل کر سکتے ہیں، یا بس آگے بڑھ سکتے ہیں۔</string>
     <string name="accessibility_screen_reader_disabled">چونکہ آپ نے اسکرین ریڈر فعال نہیں کیا ہوا، ہم یہ فرض کرتے ہیں کہ آپ یوزر انٹرفیس میں گرافیکل نقشے دکھانا چاہتے ہیں۔ آپ یہ سیٹنگ یہاں تبدیل کر سکتے ہیں، یا بس آگے بڑھ سکتے ہیں۔</string>
     <string name="text_field_clear_text">متن صاف کریں</string>
-    <string name="marker_name_description_hint">مارکر کا نام میں ترمیم کریں</string>
+    <string name="marker_name_description_hint">مارکر کے نام میں ترمیم کریں</string>
     <string name="annotation_description_hint">بعد میں اس مارکر کو پہچاننے میں مدد کے لیے ایک اختیاری نوٹ شامل کریں</string>
-    <string name="route_name_description_hint">روٹ کا نام میں ترمیم کریں</string>
+    <string name="route_name_description_hint">روٹ کے نام میں ترمیم کریں</string>
     <string name="route_description_description_hint">اس روٹ کے لیے ایک اختیاری تفصیل شامل کریں</string>
     <string name="fab_add_item">آئٹم شامل کریں</string>
     <string name="fab_add_route">روٹ شامل کریں</string>
@@ -701,7 +701,7 @@
     <string name="callout_settings_position_description">بطور ڈیفالٹ جب مقامات کا اعلان کیا جاتا ہے تو ان میں فاصلہ یا سمت شامل نہیں ہوتی۔ یہ ترتیب انہیں کالآؤٹس میں شامل کرتی ہے۔</string>
     <string name="sleep_sleep">نیند</string>
     <string name="sleep_sleeping">نیند میں</string>
-    <string name="sleep_snoozing">اسنوز</string>
+    <string name="sleep_snoozing">اسنوز میں</string>
     <string name="sleep_sleeping_message">Soundscape اس وقت نیند میں ہے۔ اس سے Soundscape کو لوکیشن سروسز استعمال کرنے یا ڈیٹا ڈاؤن لوڈ کرنے سے روکا جاتا ہے۔ یہ اس وقت بیٹری کی بچت کرتا ہے جب آپ Soundscape استعمال نہیں کر رہے ہوتے۔ Soundscape کو جگانے کے لیے نیچے دیے گئے بٹن پر تھپتھپائیں۔</string>
     <string name="sleep_sleeping_wake_on_leave_message">Soundscape اس وقت اسنوز موڈ میں ہے۔ جب آپ اپنے موجودہ مقام سے روانہ ہوں گے تو Soundscape خود بخود جاگ جائے گا۔ یہ آپ کے فون کی بیٹری بچانے کے لیے لوکیشن سروسز کو کم بجلی والے موڈ میں استعمال کرتا ہے۔ ابھی جاگنے کے لیے نیچے دیا گیا بٹن دبائیں۔</string>
     <string name="sleep_sleep_acc_hint">Soundscape کو نیند میں ڈالنے</string>
@@ -720,7 +720,7 @@
     <string name="osm_industrial">صنعتی علاقہ</string>
     <string name="osm_wilderness_hut">بیابانی جھونپڑا</string>
     <string name="osm_hostel">ہاسٹل</string>
-    <string name="osm_caravan_site">کاروان سائٹ</string>
+    <string name="osm_caravan_site">کیریوان پارک / رہائشی گاڑیوں کی جگہ</string>
     <string name="osm_weightlifting">ویٹ لفٹنگ کی سہولت</string>
     <string name="osm_taekwondo">تائیکوانڈو کلب</string>
     <string name="osm_swimming">سوئمنگ پول</string>
@@ -1218,7 +1218,7 @@
     <string name="settings_help_section_beacons_and_pois">بیکنز اور کالآؤٹس</string>
     <string name="settings_help_section_home_screen_buttons">ہوم اسکرین کے بٹن</string>
     <string name="help_config_voices_content">Soundscape آپ کے اینڈرائیڈ فون کی Text-to-speech آؤٹ پٹ سیٹنگز میں ڈاؤن لوڈ کی گئی کسی بھی آواز کو استعمال کر سکتا ہے۔ Soundscape ایپ کے اندر، ڈیفالٹ اینڈرائیڈ آواز کے علاوہ کوئی اور آواز منتخب کرنے کے لیے، مرکزی مینو سے *\\"سیٹنگز\\"* پر جائیں، *\\"آڈیو\\"* سیکشن کو پھیلائیں، اور پھر *\\"آوازیں\\"* منتخب کریں۔</string>
-    <string name="help_config_voices_content_ios">Soundscape آپ کی iOS سیٹنگز ایپ میں ڈاؤن لوڈ کی گئی کسی بھی آواز کو استعمال کر سکتا ہے سوائے Siri آوازوں کے، جو Soundscape کے لیے دستیاب نہیں ہیں۔ ہم تجویز کرتے ہیں کہ آپ *Enhanced* آوازوں میں سے کوئی ایک منتخب کریں کیونکہ ان کی آواز کا معیار کہیں بہتر ہوتا ہے، لیکن ایسا کرنے کے لیے آپ کو پہلے ایک Enhanced آواز ڈاؤن لوڈ کرنی ہوگی۔ آپ iOS سیٹنگز ایپ میں Accessibility &gt; Spoken Content &gt; Voices میں جا کر اور کسی آواز پر ٹیپ کر کے آوازیں ڈاؤن لوڈ کر سکتے ہیں۔ Soundscape ایپ کے اندر، آپ مرکزی مینو سے سیٹنگز میں جا کر اور پھر *Voices* منتخب کر کے وہ آواز چن سکتے ہیں جسے آپ استعمال کرنا چاہتے ہیں۔</string>
+    <string name="help_config_voices_content_ios">...اور پھر *آوازیں* منتخب کر کے...</string>
     <string name="help_offline_page_title">Soundscape آف لائن کیوں کام کر رہا ہے؟</string>
     <string name="help_offline_description">جب انٹرنیٹ کنکشن دستیاب نہ ہو یا Soundscape سروسز میں تعطل ہو، تو Soundscape آف لائن موڈ میں چلا جاتا ہے۔ اس کے باوجود، Soundscape کام کرتا رہے گا، لیکن کچھ فنکشنز محدود ہو سکتے ہیں۔</string>
     <string name="help_offline_limitations_heading">حدود</string>
