@@ -48,7 +48,6 @@ fun LocationDescription.process() {
             val mvt = (feature as? MvtFeature)
             var nameLocal: String? = null
 
-            println("$featureName")
             feature.properties?.let { properties ->
                 properties.forEach { (key, value) ->
                     when (key) {
@@ -85,7 +84,7 @@ fun LocationDescription.process() {
                         "postcode", "country", "state" -> {}
                     }
                 }
-                //nameLocal = properties["name"] as String?
+                nameLocal = properties["name"] as? String
                 mvt?.housenumber?.let {
                     jsonFields["house_number"] = it
                     address = true
