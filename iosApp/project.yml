@@ -27,6 +27,9 @@ packages:
   RealmSwift:
     url: https://github.com/realm/realm-swift
     from: 20.0.4
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk
+    from: 11.7.0
 targets:
   iosApp:
     type: application
@@ -37,6 +40,10 @@ targets:
       - package: RealmSwift
         product: RealmSwift
         embed: true
+      - package: Firebase
+        product: FirebaseAnalytics
+      - package: Firebase
+        product: FirebaseCrashlytics
       - target: ShareExtension
         embed: true
     sources:
@@ -137,6 +144,8 @@ targets:
           - "-framework"
           - "Shared"
         CODE_SIGN_ENTITLEMENTS: iosApp/iosApp.entitlements
+        # Full DWARF with dSYM so Crashlytics can symbolicate crash reports.
+        DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
       configs:
         # CI archives with manual signing so xcodebuild uses the
         # distribution cert + profile imported by setup-ios-signing rather
@@ -155,6 +164,18 @@ targets:
         script: |
           cd "$SRCROOT/.."
           ./gradlew --configure-on-demand :shared:embedAndSignAppleFrameworkForXcode
+        basedOnDependencyAnalysis: false
+    postBuildScripts:
+      # Crashlytics needs dSYMs uploaded so crash reports symbolicate. The
+      # Firebase SDK ships a `run` script inside its SPM checkout that handles
+      # this. Uses BUILD_DIR to locate the SourcePackages checkouts directory
+      # (SPM unpacks packages under DerivedData/…/SourcePackages/checkouts).
+      - name: "Crashlytics: upload dSYMs"
+        script: |
+          "${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run"
+        inputFiles:
+          - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}
+          - $(SRCROOT)/iosApp/GoogleService-Info.plist
         basedOnDependencyAnalysis: false
 
   iosAppTests:

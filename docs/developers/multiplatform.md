@@ -24,6 +24,16 @@ EXTRACT_PROVIDER_URL = https:/$()/extracts.example.com/
 ```
 You can find your `DEVELOPMENT_TEAM_ID` at https://developer.apple.com/
 
+## Firebase (optional for local dev)
+
+Firebase Analytics and Crashlytics are wired up on iOS but skipped on Debug builds and
+whenever XCTest is running, so the placeholder `iosApp/iosApp/GoogleService-Info.plist`
+checked into the repo is enough for local development and PR CI. If you need to exercise
+the Firebase path, download the real plist for the `org.scottishtecharmy.soundscape`
+iOS app from the Firebase console and drop it in over the placeholder, then archive
+Release. See [Build types and analytics]({% link developers/build-types.md %}) for the
+gating detail.
+
 ### If using Android Studio
 
 - Build configurations should auto generate, and you can run the app on a **Simulator** / **Device** in the same way as you would an 

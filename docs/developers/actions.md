@@ -37,6 +37,13 @@ Authenticate for talking to the Firebase servers is done using [google-github-ac
 * GCLOUD_CREDENTIALS_JSON - the value passed in to  `credentials_json`.
 * FIREBASE_PROJECT_ID - This is the Project ID from Firebase. 
 
+#### iOS Firebase
+Same pattern for iOS. The iOS app must be registered in the same Firebase project as the Android one (bundle id `org.scottishtecharmy.soundscape`) so its `GoogleService-Info.plist` can be downloaded.
+* GOOGLE_SERVICE_INFO_PLIST - base64 encoded `GoogleService-Info.plist` from the Firebase console. Generated with `base64 -i GoogleService-Info.plist`.
+* GOOGLE_SERVICE_INFO_PLIST_PATH - not really secret, always set to `iosApp/iosApp/GoogleService-Info.plist`.
+
+A placeholder `GoogleService-Info.plist` is committed so PR CI (which has no access to secrets) still builds. The real plist is written over the top by the `ios-build` jobs in `build-app.yaml` and `nightly.yaml`. The `ios-firebase` (Test Lab XCTest) job and `run-tests.yaml`'s ios-test job do not need the real plist — Firebase's iOS runtime gate (`shouldEnableFirebase()` in `FirebaseAnalyticsBridge.swift`) returns false whenever XCTest is present, so no Firebase call is ever made in those jobs. Unlike Android, iOS Firebase Test Lab does not set a well-known env var; instead the gate checks for `XCTestConfigurationFilePath` in the environment and for the `XCTestCase` class in the running process.
+
 ### Tile provider secrets
 These are the secrets that are used to get mapping tiles from the protomaps server.
 * TILE_PROVIDER_URL - the base URL pointing at our protomaps server
