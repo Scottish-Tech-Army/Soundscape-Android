@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -24,7 +23,7 @@ import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextAlign
 import me.zhanghai.compose.preference.ProvidePreferenceLocals
-import me.zhanghai.compose.preference.switchPreference
+import me.zhanghai.compose.preference.SwitchPreference
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.components.OnboardButton
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
@@ -105,35 +104,31 @@ fun AccessibilityOnboardingScreen(
             Spacer(modifier = Modifier.height(spacing.large))
 
             ProvidePreferenceLocals {
-                LazyColumn(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                ) {
-                    switchPreference(
-                        key = PreferenceKeys.SHOW_MAP,
-                        defaultValue = PreferenceDefaults.SHOW_MAP,
-                        rememberState = { showMap },
-                        modifier = Modifier.testTag("accessibilityOnboardingScreenShowMapToggle"),
-                        title = {
-                            Text(
-                                text = stringResource(Res.string.settings_show_map),
-                                color = MaterialTheme.colorScheme.onBackground,
-                                modifier = Modifier.focusable()
-                            )
-                        },
-                    )
-
-                    item {
-                        OnboardButton(
-                            text = stringResource(Res.string.ui_continue),
-                            onClick = { onNavigate() },
+                SwitchPreference(
+                    state = showMap,
+                    title = {
+                        Text(
+                            text = stringResource(Res.string.settings_show_map),
+                            color = MaterialTheme.colorScheme.onBackground,
+                            textAlign = TextAlign.Center,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .focusable()
-                                .testTag("accessibilityOnboardingScreenContinueButton"),
                         )
-                    }
-                }
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .testTag("accessibilityOnboardingScreenShowMapToggle"),
+                )
+
+                OnboardButton(
+                    text = stringResource(Res.string.ui_continue),
+                    onClick = { onNavigate() },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .focusable()
+                        .testTag("accessibilityOnboardingScreenContinueButton"),
+                )
             }
         }
     }
