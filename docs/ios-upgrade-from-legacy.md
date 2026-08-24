@@ -1,3 +1,10 @@
+---
+title: Upgrading from the legacy iOS app
+layout: page
+parent: "Using Soundscape"
+has_toc: false
+---
+
 # Upgrading from the legacy Soundscape iOS app
 
 This page is for users of the legacy Microsoft Soundscape iOS app who are
