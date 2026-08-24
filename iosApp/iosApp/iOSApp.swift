@@ -11,6 +11,11 @@ struct iOSApp: App {
         // database are populated before MainViewController reads them.
         // See LegacyMigrator.swift.
         LegacyMigrator.runIfNeeded()
+
+        // Initialise Firebase and inject the analytics bridge into the
+        // shared iOS singleton. Skipped on Debug/XCTest.
+        // See FirebaseAnalyticsBridge.swift.
+        FirebaseBootstrap.configureIfEnabled()
     }
 
     var body: some Scene {

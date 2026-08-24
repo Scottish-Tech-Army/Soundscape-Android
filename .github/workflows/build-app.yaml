@@ -325,6 +325,17 @@ jobs:
           search_provider_url: ${{ secrets.SEARCH_PROVIDER_URL }}
           extract_provider_url: ${{ secrets.EXTRACT_PROVIDER_URL }}
 
+      # Overwrite the committed placeholder GoogleService-Info.plist with the
+      # real one so Firebase Analytics + Crashlytics initialise on Release
+      # builds. FirebaseAnalyticsBridge.swift's gate keeps Firebase off in
+      # Debug/XCTest, so the placeholder is enough for PR CI and the
+      # ios-firebase Test Lab job.
+      - name: Decode Google service info
+        uses: ./.github/actions/decode-base64-secret
+        with:
+          encoded: ${{ secrets.GOOGLE_SERVICE_INFO_PLIST }}
+          output_path: ${{ secrets.GOOGLE_SERVICE_INFO_PLIST_PATH }}
+
       - name: Generate Xcode project
         working-directory: iosApp
         run: xcodegen generate

@@ -98,6 +98,11 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     val preferencesProvider = IosPreferencesProvider()
     val networkUtils = IosNetworkUtils()
 
+    // Swift injects a Firebase-backed impl on Release via
+    // FirebaseBootstrap.configureIfEnabled(). Default stays NoOp so Debug
+    // builds and unit tests do not touch Firebase.
+    private val analytics: Analytics = analyticsFactory()
+
     // GeoEngine
     val geoEngine = GeoEngine()
     private var geoEngineStarted = false
@@ -340,7 +345,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
             listener = this,
             localizedStrings = ComposeLocalizedStrings(),
             preferencesProvider = preferencesProvider,
-            analytics = NoOpAnalytics,
+            analytics = analytics,
             tileClient = tileClient,
             routeDao = routeDao,
             offlineExtractPath = documentsPath,
@@ -823,6 +828,12 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
                 ?: ""
 
         private var INSTANCE: IosSoundscapeService? = null
+
+        private var analyticsFactory: () -> Analytics = { NoOpAnalytics }
+
+        fun setAnalyticsFactory(factory: () -> Analytics) {
+            analyticsFactory = factory
+        }
 
         fun getInstance(): IosSoundscapeService {
             return INSTANCE ?: IosSoundscapeService().also { INSTANCE = it }
