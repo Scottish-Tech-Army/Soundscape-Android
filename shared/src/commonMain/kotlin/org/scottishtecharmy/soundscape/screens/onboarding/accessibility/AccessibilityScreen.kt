@@ -36,6 +36,7 @@ import org.scottishtecharmy.soundscape.resources.accessibility_screen_reader_ena
 import org.scottishtecharmy.soundscape.resources.accessibility_title
 import org.scottishtecharmy.soundscape.resources.settings_show_map
 import org.scottishtecharmy.soundscape.resources.ui_continue
+import org.scottishtecharmy.soundscape.screens.home.settings.rememberSoundscapePreferenceFlow
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
@@ -103,7 +104,7 @@ fun AccessibilityOnboardingScreen(
             )
             Spacer(modifier = Modifier.height(spacing.large))
 
-            ProvidePreferenceLocals {
+            ProvidePreferenceLocals(flow = rememberSoundscapePreferenceFlow()) {
                 SwitchPreference(
                     state = showMap,
                     title = {

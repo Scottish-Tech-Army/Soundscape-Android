@@ -144,8 +144,6 @@ targets:
           - "-framework"
           - "Shared"
         CODE_SIGN_ENTITLEMENTS: iosApp/iosApp.entitlements
-        # Full DWARF with dSYM so Crashlytics can symbolicate crash reports.
-        DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
       configs:
         # CI archives with manual signing so xcodebuild uses the
         # distribution cert + profile imported by setup-ios-signing rather
@@ -159,6 +157,10 @@ targets:
           CODE_SIGN_STYLE: Manual
           CODE_SIGN_IDENTITY: "Apple Distribution"
           PROVISIONING_PROFILE_SPECIFIER: "$(PROFILE_NAME_APP)"
+          # dSYMs are only needed for Crashlytics symbolication on Release.
+          # Firebase is gated off on Debug, so producing dSYMs there would
+          # just slow the build.
+          DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
     preBuildScripts:
       - name: "Build Kotlin Framework"
         script: |
@@ -168,11 +170,25 @@ targets:
     postBuildScripts:
       # Crashlytics needs dSYMs uploaded so crash reports symbolicate. The
       # Firebase SDK ships a `run` script inside its SPM checkout that handles
-      # this. Uses BUILD_DIR to locate the SourcePackages checkouts directory
-      # (SPM unpacks packages under DerivedData/…/SourcePackages/checkouts).
+      # this. Skipped on Debug because Firebase is gated off there anyway
+      # (FirebaseAnalyticsBridge.swift). The standard path formula assumes
+      # BUILD_DIR sits under DerivedData; falls back to a `find` under the
+      # module cache's parent for custom Xcode build locations.
       - name: "Crashlytics: upload dSYMs"
         script: |
-          "${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run"
+          if [ "$CONFIGURATION" = "Debug" ]; then
+            exit 0
+          fi
+          RUN_SCRIPT="${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run"
+          if [ ! -x "$RUN_SCRIPT" ]; then
+            DERIVED_ROOT=$(dirname "$MODULE_CACHE_DIR")
+            RUN_SCRIPT=$(find "$DERIVED_ROOT" -maxdepth 6 -type f -path "*/firebase-ios-sdk/Crashlytics/run" -print -quit)
+          fi
+          if [ -z "$RUN_SCRIPT" ] || [ ! -x "$RUN_SCRIPT" ]; then
+            echo "error: could not locate firebase-ios-sdk Crashlytics/run script"
+            exit 1
+          fi
+          "$RUN_SCRIPT"
         inputFiles:
           - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}
           - $(SRCROOT)/iosApp/GoogleService-Info.plist

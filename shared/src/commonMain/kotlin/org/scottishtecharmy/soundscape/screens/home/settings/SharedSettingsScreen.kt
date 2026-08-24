@@ -213,7 +213,7 @@ fun SharedSettingsScreen(
     )
     val geocoderValues = listOf("Auto", "Offline")
 
-    ProvidePreferenceLocals {
+    ProvidePreferenceLocals(flow = rememberSoundscapePreferenceFlow()) {
         // Track allowCallouts reactively for enabling/disabling child settings
         val allowCallouts by rememberPreferenceState(
             PreferenceKeys.ALLOW_CALLOUTS,
