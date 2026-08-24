@@ -18,6 +18,21 @@ inputs:
 runs:
   using: composite
   steps:
+    - name: Free disk space on self-hosted runner
+      # The self-hosted Mac accumulates Xcode's DerivedData across every
+      # build (each archive/test run regenerates gigabytes of intermediates
+      # and it's never purged), which eventually fills the disk and fails
+      # the Kotlin/Native link step with "No space left on device" even
+      # though nothing about the build itself is broken. DerivedData is
+      # fully regenerable, so wiping it before each run trades a bit of
+      # incremental-build speed for not dying to disk exhaustion.
+      if: runner.environment == 'self-hosted'
+      shell: bash
+      run: |
+        df -h / || true
+        rm -rf "$HOME/Library/Developer/Xcode/DerivedData/iosApp-"*
+        df -h / || true
+
     - name: Select Xcode
       # Self-hosted runners use whatever Xcode is already installed; only
       # GitHub-hosted runners need the version pinned via setup-xcode.
