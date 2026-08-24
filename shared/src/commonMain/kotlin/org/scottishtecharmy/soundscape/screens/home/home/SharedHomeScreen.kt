@@ -60,7 +60,7 @@ fun SharedHomeScreen(
     rateSoundscape: () -> Unit,
     contactSupport: () -> Unit,
     shareRecording: () -> Unit,
-    exitApp: () -> Unit = {},
+    exitApp: (() -> Unit)? = null,
     toggleTutorial: () -> Unit,
     tutorialRunning: Boolean,
     recordingEnabled: Boolean,
