@@ -8,6 +8,7 @@ import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Test
+import org.junit.experimental.categories.Category
 import org.scottishtecharmy.soundscape.MainActivity.Companion.MOBILITY_KEY
 import org.scottishtecharmy.soundscape.MainActivity.Companion.PLACES_AND_LANDMARKS_KEY
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
@@ -1977,6 +1978,7 @@ class MvtTileTest {
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
+    @Category(NightlyOnlyTest::class)
     @Test
     fun testCallouts() {
         val directoryPath = Path("src/test/res/org/scottishtecharmy/soundscape/gpxFiles/")
@@ -2141,6 +2143,7 @@ class MvtTileTest {
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
+    @Category(NightlyOnlyTest::class)
     @Test
     fun replayStreetNumbers() {
         val directoryPath = Path("src/test/res/org/scottishtecharmy/soundscape/gpxFiles/")

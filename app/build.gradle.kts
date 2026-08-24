@@ -468,6 +468,33 @@ dependencies {
     testImplementation(libs.json)
 }
 
+// Some JVM unit tests (e.g. MvtTileTest.testCallouts, which replays every GPX fixture through
+// the full grid/callout engine) are too slow to run on every PR. They're tagged with the
+// NightlyOnlyTest JUnit4 category so they can be excluded from the regular `test` task and run
+// separately, e.g. overnight - see .github/workflows/nightly.yaml.
+val nightlyOnlyTestCategory = "org.scottishtecharmy.soundscape.NightlyOnlyTest"
+
+tasks.withType<Test>().configureEach {
+    // Matches the AGP-generated testDebugUnitTest/testReleaseUnitTest/testReleaseTestUnitTest
+    // tasks, but not nightlyUnitTest below (that one includes the category instead).
+    if (name.startsWith("test") && name.endsWith("UnitTest")) {
+        useJUnit {
+            excludeCategories(nightlyOnlyTestCategory)
+        }
+    }
+}
+
+tasks.register<Test>("nightlyUnitTest") {
+    group = "verification"
+    description = "Runs the slow JVM unit tests excluded from the regular test task (nightly build only)."
+    val debugUnitTest = tasks.named<Test>("testDebugUnitTest").get()
+    testClassesDirs = debugUnitTest.testClassesDirs
+    classpath = debugUnitTest.classpath
+    useJUnit {
+        includeCategories(nightlyOnlyTestCategory)
+    }
+}
+
 dokka {
     dokkaSourceSets.configureEach {
         if (name == "main") {

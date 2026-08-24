@@ -316,6 +316,7 @@ class MvtPerformanceTest {
         Thread.sleep(10000)
     }
 
+    @NightlyOnly
     @Test
     fun testMapAreas() {
         if (!tileProviderAvailable())
