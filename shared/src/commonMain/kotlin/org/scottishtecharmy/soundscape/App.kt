@@ -118,7 +118,12 @@ data class AppCallbacks(
     val onBeaconPreviewStart: ((String) -> Unit)? = null,
     val onBeaconPreviewUpdate: ((String) -> Unit)? = null,
     val onBeaconPreviewStop: ((Boolean, String?) -> Unit)? = null,
-    val onExitApp: () -> Unit = {},
+    /**
+     * Fully exits the app (stops the foreground service and finishes the
+     * activity). Left null on iOS, where Apple's HIG forbids apps quitting
+     * themselves; the drawer hides the "Exit Soundscape" item when null.
+     */
+    val onExitApp: (() -> Unit)? = null,
 )
 
 data class AppFlows(

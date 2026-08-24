@@ -64,7 +64,7 @@ fun SharedDrawerContent(
     tutorialRunning: Boolean,
     recordingEnabled: Boolean,
     newReleaseDialog: MutableState<Boolean>?,
-    exitApp: () -> Unit = {},
+    exitApp: (() -> Unit)? = null,
 ) {
     val running = remember(tutorialRunning) { mutableStateOf(tutorialRunning) }
 
@@ -113,12 +113,14 @@ fun SharedDrawerContent(
                         .padding(innerPadding)
                         .verticalScroll(rememberScrollState()),
                 ) {
-                    DrawerMenuItem(
-                        onClick = { exitApp() },
-                        label = stringResource(Res.string.menu_exit_app),
-                        icon = Icons.AutoMirrored.Rounded.ExitToApp,
-                        modifier = Modifier.testTag("menuExitApp"),
-                    )
+                    if (exitApp != null) {
+                        DrawerMenuItem(
+                            onClick = { exitApp() },
+                            label = stringResource(Res.string.menu_exit_app),
+                            icon = Icons.AutoMirrored.Rounded.ExitToApp,
+                            modifier = Modifier.testTag("menuExitApp"),
+                        )
+                    }
                     DrawerMenuItem(
                         onClick = { onNavigate(SharedRoutes.SETTINGS) },
                         label = stringResource(Res.string.settings_screen_title),
