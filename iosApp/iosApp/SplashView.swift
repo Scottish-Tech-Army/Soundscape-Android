@@ -104,7 +104,15 @@ final class SplashCoordinator: ObservableObject {
     }
 
     private func currentMinorVersion() -> String {
-        let raw = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "0.0.0"
+        // Must mirror PlatformInfo.appVersionName()/appVersionMinorTrimmed() exactly:
+        // CI pre-trims MARKETING_VERSION (CFBundleShortVersionString) to major.minor for
+        // TestFlight grouping, while AppVersionName keeps the full major.minor.patch. Reading
+        // CFBundleShortVersionString here would trim an already-trimmed value on those builds,
+        // producing a different string than the Kotlin side writes to the same "LastNewRelease"
+        // key and causing this splash and the release-notes dialog to fight over it forever.
+        let raw = (Bundle.main.infoDictionary?["AppVersionName"] as? String)
+            ?? (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)
+            ?? "0.0.0"
         if let lastDot = raw.range(of: ".", options: .backwards) {
             return String(raw[..<lastDot.lowerBound])
         }

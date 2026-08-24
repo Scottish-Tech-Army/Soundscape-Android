@@ -54,12 +54,14 @@ fun SharedNewReleaseDialog(
         dismissButton = {
             TextButton(
                 modifier = Modifier.testTag("newReleaseDialogDismiss"),
-                onClick = { newReleaseDialog.value = false },
+                onClick = {
+                    preferencesProvider?.putString(
+                        PreferenceKeys.LAST_NEW_RELEASE,
+                        appVersionMinorTrimmed(),
+                    )
+                    newReleaseDialog.value = false
+                },
             ) {
-                preferencesProvider?.putString(
-                    PreferenceKeys.LAST_NEW_RELEASE,
-                    appVersionMinorTrimmed(),
-                )
                 Text(text = stringResource(Res.string.new_version_info_completed))
             }
         },
