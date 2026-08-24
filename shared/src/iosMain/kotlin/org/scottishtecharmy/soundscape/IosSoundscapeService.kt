@@ -351,7 +351,9 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
             offlineExtractPath = documentsPath,
             hasNetwork = { networkUtils.hasNetwork() },
             photonSearch = photonSearch,
-            platformGeocoder = IosGeocoder(),
+            platformGeocoder = IosGeocoder(
+                analyticsLogger = { name -> analytics.logEvent(name, null) }
+            ),
             streetPreviewEnabled = streetPreviewEnabled,
         )
         geoEngineStarted = true
