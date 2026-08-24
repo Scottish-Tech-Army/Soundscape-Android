@@ -66,6 +66,7 @@ class AudioEngineTest {
         audioEngine.destroy()
     }
 
+    @NightlyOnly
     @Test
     fun soundBeacon() {
         val audioEngine = initializeAudioEngine()
@@ -84,6 +85,7 @@ class AudioEngineTest {
         tidyUp(audioEngine)
     }
 
+    @NightlyOnly
     @Test
     fun allBeacons() {
         val audioEngine = initializeAudioEngine()
@@ -103,6 +105,7 @@ class AudioEngineTest {
         tidyUp(audioEngine)
     }
 
+    @NightlyOnly
     @Test
     fun queuedSpeech() {
         val audioEngine = initializeAudioEngine()
@@ -115,6 +118,7 @@ class AudioEngineTest {
         tidyUp(audioEngine)
     }
 
+    @NightlyOnly
     @Test
     fun earcon() {
         val audioEngine = initializeAudioEngine()
@@ -141,6 +145,7 @@ class AudioEngineTest {
         tidyUp(audioEngine)
     }
 
+    @NightlyOnly
     @Test
     fun textAndEarcon() {
         val audioEngine = initializeAudioEngine()
@@ -151,6 +156,7 @@ class AudioEngineTest {
         tidyUp(audioEngine)
     }
 
+    @NightlyOnly
     @Test
     fun textWithShutdownRestart() {
         var audioEngine = initializeAudioEngine()
@@ -185,6 +191,7 @@ class AudioEngineTest {
 //        tidyUp(audioEngine)
 //    }
 
+    @NightlyOnly
     @Test
     fun earconPosition() {
         val audioEngine = initializeAudioEngine()
@@ -222,6 +229,7 @@ class AudioEngineTest {
         tidyUp(audioEngine)
     }
 
+    @NightlyOnly
     @Test
     fun textPosition() {
         val audioEngine = initializeAudioEngine()

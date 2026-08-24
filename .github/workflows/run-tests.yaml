@@ -79,7 +79,9 @@ jobs:
             touch app/emulator.log                    # create log file
             chmod 777 app/emulator.log                # allow writing to log file
             adb logcat >> app/emulator.log &          # pipe all logcat messages into log file as a background process
-            ./gradlew connectedCheck
+            # NightlyOnly-annotated tests (real-time audio soak tests, live-network map fetches)
+            # are excluded here and run separately in nightly.yaml instead.
+            ./gradlew connectedCheck -Pandroid.testInstrumentationRunnerArguments.notAnnotation=org.scottishtecharmy.soundscape.NightlyOnly
 
       - name: Upload Failing Test Report Log
         if: steps.instrumentation-tests.outcome != 'success'        # upload the generated log on failure of the tests job

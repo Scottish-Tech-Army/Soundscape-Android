@@ -79,6 +79,12 @@ jobs:
       - name: Run gradle tests
         run: ./gradlew test
 
+      # Slow JVM unit tests (tagged @Category(NightlyOnlyTest::class)) that are excluded from
+      # the regular `test` task run in run-tests.yaml, e.g. because they just replay every GPX
+      # fixture through the full grid/callout engine to check nothing crashes.
+      - name: Run nightly-only unit tests
+        run: ./gradlew :app:nightlyUnitTest
+
       # Setup release build keys
       - name: Decode Keystore
         uses: ./.github/actions/decode-base64-secret
@@ -104,79 +110,73 @@ jobs:
           name: release-apk
           path: ${{ env.main_project_module }}/build/outputs/apk/releaseTest/
 
-      # Generate android instrumentation tests APK
-#      - name: Assemble Android Instrumentation Tests
-#        env:
-#          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
-#          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
-#          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-#          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
-#        run: ./gradlew assembleAndroidTest -DtestBuildType=debug
-#      - name: Upload Android Test APK
-#        uses: actions/upload-artifact@v6
-#        with:
-#          name: release-androidTest
-#          path: ${{ env.main_project_module }}/build/outputs/apk/androidTest/debug/app-release-androidTest.apk
+  instrumentation-tests-nightly:
+    name: Run full instrumentation test suite
+    runs-on: ubuntu-latest
+    environment: development
+    needs: check_date
+    if: ${{ needs.check_date.outputs.should_run != 'false' }}
 
-#  instrumentation-tests:
-#    name: Run matrix of instrumentation tests
-#    needs: build
-#    environment: development
-#    runs-on: ubuntu-latest
-#    strategy:
-#      matrix:
-#        api-level: [30, 31, 34]
-#      fail-fast: false
-#    steps:
-#      - uses: actions/checkout@v6
-#        with:
-#          fetch-depth: 0
-#
-#      - name: Setup tile provider
-#        env:
-#          TILE_PROVIDER_API_KEY: ${{ secrets.TILE_PROVIDER_API_KEY }}
-#          TILE_PROVIDER_URL: ${{ secrets.TILE_PROVIDER_URL }}
-#        run: |
-#          echo tileProviderUrl=$TILE_PROVIDER_URL > local.properties
-#          echo tileProviderApiKey=$TILE_PROVIDER_API_KEY >> local.properties
-#
-#      - name: Decode Google services
-#        env:
-#          ENCODED_STRING: ${{ secrets.GOOGLE_SERVICES }}
-#          GOOGLE_SERVICES_PATH: ${{ secrets.GOOGLE_SERVICES_PATH }}
-#
-#        run: |
-#          echo $ENCODED_STRING > google-services-b64.txt
-#          base64 -d google-services-b64.txt > ${{ env.main_project_module }}/$GOOGLE_SERVICES_PATH
-#
-#      - name: Setup Gradle
-#        uses: gradle/actions/setup-gradle@v5
-#
-#      - name: Set Up JDK
-#        uses: actions/setup-java@v5
-#        with:
-#          distribution: 'zulu' # See 'Supported distributions' for available options
-#          java-version: '19'
-#
-#      - name: Enable KVM
-#        run: |
-#          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
-#          sudo udevadm control --reload-rules
-#          sudo udevadm trigger --name-match=kvm
-#
-#      - name: Instrumentation Tests
-#        id: instrumentation-tests
-#        uses: reactivecircus/android-emulator-runner@v2
-#        with:
-#          api-level: ${{ matrix.api-level }}
-#          target: default
-#          arch: x86_64
-#          script: |
-#            adb logcat -c                             # clear logs
-#            touch app/emulator.log                    # create log file
-#            chmod 777 app/emulator.log                # allow writing to log file
-#            adb logcat >> app/emulator.log &          # pipe all logcat messages into log file as a background process
-#            ./gradlew connectedCheck
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup offline maps for tests
+        uses: ./.github/actions/setup-offline-maps
+        with:
+          output_dir: ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape
+
+      - name: Setup JDK + Gradle
+        uses: ./.github/actions/setup-jdk-gradle
+
+      - name: Setup tile and search providers
+        uses: ./.github/actions/write-provider-config
+        with:
+          platform: android
+          tile_provider_url: ${{ secrets.TILE_PROVIDER_URL }}
+          tile_provider_api_key: ${{ secrets.TILE_PROVIDER_API_KEY }}
+          search_provider_url: ${{ secrets.SEARCH_PROVIDER_URL }}
+          search_provider_api_key: ${{ secrets.SEARCH_PROVIDER_API_KEY }}
+          extract_provider_url: ${{ secrets.EXTRACT_PROVIDER_URL }}
+
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      # Runs the full instrumented suite unfiltered - both the tests that also run on every PR
+      # (run-tests.yaml excludes @NightlyOnly there via notAnnotation) and the @NightlyOnly ones
+      # (real-time audio soak tests, live-network map fetches) that are too slow for PRs.
+      - name: Full instrumentation test suite
+        id: instrumentation-tests-nightly
+        uses: reactivecircus/android-emulator-runner@v2
+        continue-on-error: true # IMPORTANT: allow pipeline to continue to log upload step
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          script: |
+            adb root
+            adb shell mkdir -p /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download
+            adb push ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape/glasgow-gb.pmtiles /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Download/
+            adb logcat -c                             # clear logs
+            touch app/emulator.log                    # create log file
+            chmod 777 app/emulator.log                # allow writing to log file
+            adb logcat >> app/emulator.log &          # pipe all logcat messages into log file as a background process
+            ./gradlew connectedCheck
+
+      - name: Upload Failing Test Report Log
+        if: steps.instrumentation-tests-nightly.outcome != 'success'
+        uses: actions/upload-artifact@v6
+        with:
+          name: nightly-instrumentation-logs
+          path: app/emulator.log
+
+      - name: Raise error on test fail
+        if: steps.instrumentation-tests-nightly.outcome != 'success'
+        run: exit 1
 
   firebase:
     name: Run UI tests with Firebase Test Lab
@@ -194,11 +194,6 @@ jobs:
         with:
           name: release-apk
 
-#      - name: Download Android test APK
-#        uses: actions/download-artifact@v8
-#        with:
-#          name: release-androidTest
-
       - name: Auth
         uses: google-github-actions/auth@v3
         with:
@@ -209,10 +204,6 @@ jobs:
 
       - name: Set current project
         run: gcloud config set project ${{ secrets.FIREBASE_PROJECT_ID }}
-
-# These tests now need the pmtiles file, skip for now as we already test locally
-#      - name: Run Instrumentation Tests in Firebase Test Lab
-#        run: gcloud firebase test android run --type instrumentation --use-orchestrator --app app-release.apk --test app-release-androidTest.apk --device model=shiba,version=34,locale=en,orientation=portrait
 
       - name: Run Robo test in Firebase Test Lab
         run: gcloud firebase test android run --type robo --app=app-releaseTest.apk --robo-script firebase/robo_script.json --timeout=1800s --device model=shiba,version=34,locale=en,orientation=portrait
