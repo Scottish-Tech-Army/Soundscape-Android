@@ -108,6 +108,30 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     private var geoEngineStarted = false
     private val gpxRecorder = GpxRecorder()
 
+    // Callout buttons and user-initiated-TTS-interrupt behaviour — implementation
+    // lives in shared CalloutController so iOS and Android stay in lockstep. Runs
+    // on a scope pinned to [IosAudioEngine.audioDispatcher] — the serial GCD queue
+    // that also owns the TTS render callback and DiscretePlayer completion in
+    // IosAudioEngine. Keeping the whole pipeline on that queue serializes the
+    // AVAudioEngine mutations (avoiding the `[_nodes containsObject: node]` crash
+    // we hit previously) *and* keeps callout audio decoupled from main-thread
+    // stalls — e.g. the ~100–500 ms hiccup when iOS instantiates the soft keyboard
+    // for the first time after the user taps the search bar mid-callout, which
+    // used to gap out the audio between utterances.
+    //
+    // Declared here (before init{}, alongside audioEngine/geoEngine) rather than
+    // further down the file: geoEngine.start() below can synchronously deliver a
+    // location update that calls back into updateAudioEngineGeometry()/speakCallout()
+    // before this object has finished constructing, so calloutController's `by lazy`
+    // delegate must already exist by then — declaring it after init{} left the
+    // delegate field null during that reentrant call and crashed with SIGSEGV.
+    private val calloutScope by lazy {
+        CoroutineScope(scope.coroutineContext + audioEngine.audioDispatcher)
+    }
+    private val calloutController by lazy {
+        CalloutController(audioEngine, geoEngine, this, calloutScope)
+    }
+
     // Database
     val routeDao: RouteDao by lazy { MarkersAndRoutesDatabaseProvider.getInstance().routeDao() }
     val markersAndRoutesIo: MarkersAndRoutesIo = IosMarkersAndRoutesIo()
@@ -548,23 +572,6 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     }
 
     // --- GeoEngine Queries ---
-
-    // Callout buttons and user-initiated-TTS-interrupt behaviour — implementation
-    // lives in shared CalloutController so iOS and Android stay in lockstep. Runs
-    // on a scope pinned to [IosAudioEngine.audioDispatcher] — the serial GCD queue
-    // that also owns the TTS render callback and DiscretePlayer completion in
-    // IosAudioEngine. Keeping the whole pipeline on that queue serializes the
-    // AVAudioEngine mutations (avoiding the `[_nodes containsObject: node]` crash
-    // we hit previously) *and* keeps callout audio decoupled from main-thread
-    // stalls — e.g. the ~100–500 ms hiccup when iOS instantiates the soft keyboard
-    // for the first time after the user taps the search bar mid-callout, which
-    // used to gap out the audio between utterances.
-    private val calloutScope by lazy {
-        CoroutineScope(scope.coroutineContext + audioEngine.audioDispatcher)
-    }
-    private val calloutController by lazy {
-        CalloutController(audioEngine, geoEngine, this, calloutScope)
-    }
 
     override val activeCalloutFlow: StateFlow<TourButton?>
         get() = calloutController.activeCalloutFlow
