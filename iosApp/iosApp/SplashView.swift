@@ -1,4 +1,5 @@
 import AVFoundation
+import Shared
 import SwiftUI
 
 // Mirrors Android's MainActivity splash flow (app/src/main/.../MainActivity.kt):
@@ -54,15 +55,12 @@ final class SplashCoordinator: ObservableObject {
             dismissIfReady()
             return
         }
+        // Delegate AVAudioSession setup to IosAudioEngine so the splash player
+        // and the shared engine don't race each other on setCategory/setActive.
+        // The engine owns the session lifecycle from here on — we never call
+        // setActive(false) below, since the engine is about to start using it.
+        IosSoundscapeService.companion.getInstance().audioEngine.configureAudioSession()
         do {
-            // .playback so the splash audio is heard regardless of the silent
-            // switch (MediaPlayer on Android plays through the media stream).
-            // .mixWithOthers so we don't hijack any music the user is already
-            // playing. AVAudioSession is iOS-only, hence the os guard.
-            #if os(iOS)
-            try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [.mixWithOthers])
-            try AVAudioSession.sharedInstance().setActive(true)
-            #endif
             let p = try AVAudioPlayer(contentsOf: url)
             p.volume = 0.7
             let delegate = SplashAudioDelegate { [weak self] in
@@ -98,9 +96,6 @@ final class SplashCoordinator: ObservableObject {
         }
         player = nil
         audioDelegate = nil
-        #if os(iOS)
-        try? AVAudioSession.sharedInstance().setActive(false, options: [.notifyOthersOnDeactivation])
-        #endif
     }
 
     private func currentMinorVersion() -> String {
