@@ -118,7 +118,7 @@ class IosAudioEngine : AudioEngine {
         if (engineStarted) return
 
         // Configure and activate audio session
-        configureAndActivateSession()
+        configureAudioSession()
 
         // Register for audio session notifications
         registerAudioSessionObservers()
@@ -141,7 +141,13 @@ class IosAudioEngine : AudioEngine {
         }
     }
 
-    private fun configureAndActivateSession() {
+    /**
+     * Idempotent AVAudioSession setup. Called internally when the audio engine
+     * first needs to start playing, and from Swift (SplashCoordinator) so the
+     * splash's AVAudioPlayer shares the same session category/options rather
+     * than racing us for `setCategory`/`setActive` on the shared session.
+     */
+    fun configureAudioSession() {
         val session = AVAudioSession.sharedInstance()
         val options = if (mixWithOthers) AVAudioSessionCategoryOptionMixWithOthers else 0u
         try {
@@ -166,7 +172,7 @@ class IosAudioEngine : AudioEngine {
      * Reconfigure the audio session when the mixWithOthers setting changes at runtime.
      */
     private fun reconfigureAudioSession() {
-        configureAndActivateSession()
+        configureAudioSession()
         println("IosAudioEngine: Audio session reconfigured (mixWithOthers=$mixWithOthers)")
     }
 
