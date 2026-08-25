@@ -15,6 +15,8 @@ import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.audio.AudioTourHost
 import org.scottishtecharmy.soundscape.audio.BeaconPreviewController
 import org.scottishtecharmy.soundscape.audio.AudioType
+import org.scottishtecharmy.soundscape.audio.EARCON_MODE_ENTER
+import org.scottishtecharmy.soundscape.audio.EARCON_MODE_EXIT
 import org.scottishtecharmy.soundscape.audio.IosAudioEngine
 import org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
@@ -592,9 +594,17 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
 
     override fun myLocation() {
         startCallout {
+            // myLocation can take a second or so if it does network reverse
+            // geocoding — play the enter earcon immediately so the user hears
+            // the action registered, mirroring Android.
+            audioEngine.createEarcon(EARCON_MODE_ENTER, AudioType.STANDARD)
             val callout = withContext(Dispatchers.Default) { geoEngine.myLocation() }
             ensureActive()
-            val handle = speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+            var handle = 0L
+            if (callout != null) {
+                handle = speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+            }
+            audioEngine.createEarcon(EARCON_MODE_EXIT, AudioType.STANDARD)
             awaitHandle(handle)
         }
     }
@@ -603,7 +613,10 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         startCallout {
             val callout = withContext(Dispatchers.Default) { geoEngine.whatsAroundMe() }
             ensureActive()
-            val handle = speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+            var handle = 0L
+            if (callout.positionedStrings.isNotEmpty()) {
+                handle = speakCalloutCommon(callout, true, audioEngine, lastGeometry, ruler)
+            }
             awaitHandle(handle)
         }
     }
@@ -612,7 +625,10 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         startCallout {
             val callout = withContext(Dispatchers.Default) { geoEngine.aheadOfMe() }
             ensureActive()
-            val handle = speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+            var handle = 0L
+            if (callout != null) {
+                handle = speakCalloutCommon(callout, true, audioEngine, lastGeometry, ruler)
+            }
             awaitHandle(handle)
         }
     }
@@ -621,7 +637,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         startCallout {
             val callout = withContext(Dispatchers.Default) { geoEngine.nearbyMarkers() }
             ensureActive()
-            val handle = speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+            val handle = speakCalloutCommon(callout, true, audioEngine, lastGeometry, ruler)
             awaitHandle(handle)
         }
     }
