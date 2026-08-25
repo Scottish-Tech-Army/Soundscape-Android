@@ -88,7 +88,7 @@ class IosAudioEngine : AudioEngine {
     private var mediaResetObserver: Any? = null
 
     private sealed class PlayerEntry {
-        class Discrete(val player: DiscretePlayer) : PlayerEntry()
+        class Discrete(val player: DiscretePlayer, val isTts: Boolean) : PlayerEntry()
         class Beacon(val player: BeaconPlayer) : PlayerEntry()
     }
 
@@ -343,12 +343,23 @@ class IosAudioEngine : AudioEngine {
             }
         })
 
-        withActivePlayersLock { activePlayers[sound.handle] = PlayerEntry.Discrete(player) }
+        withActivePlayersLock {
+            activePlayers[sound.handle] = PlayerEntry.Discrete(player, sound.isTts)
+        }
 
         if (sound.isTts) {
             // Render TTS to PCM buffers, then connect and play through the audio graph
             ttsRenderer.render(sound.text) { buffers ->
                 platform.darwin.dispatch_async(platform.darwin.dispatch_get_main_queue()) {
+                    // If the sound was cancelled (e.g. clearTextToSpeechQueue) while we were
+                    // rendering, it is no longer in activePlayers. Bail without touching the
+                    // engine — otherwise we would attach a node that no one will disconnect
+                    // and the next teardown trips AVAudioEngine's `_nodes containsObject`
+                    // assertion.
+                    val stillActive =
+                        withActivePlayersLock { activePlayers.containsKey(sound.handle) }
+                    if (!stillActive) return@dispatch_async
+
                     if (buffers.isNotEmpty()) {
                         // Attach the layer
                         player.layer.format = buffers.first().format
@@ -419,16 +430,31 @@ class IosAudioEngine : AudioEngine {
         // Cancel any in-progress TTS rendering
         ttsRenderer.cancel()
 
-        // Remove TTS entries from queue
-        discreteQueue.removeAll { it.isTts }
+        // Match Android's ClearQueue: nuke *everything* queued behind the current
+        // sound (TTS and earcons alike). Filtering just isTts here left earcons
+        // piled up so callouts kept playing beeps long after the user cancelled.
+        discreteQueue.clear()
 
-        // Stop current if it's TTS
-        val currentHandle = currentDiscreteHandle
-        if (currentHandle != null) {
-            val entry = withActivePlayersLock { activePlayers[currentHandle] }
-            if (entry is PlayerEntry.Discrete) {
-                entry.player.stop()
-            }
+        // Stop the current sound only if it's TTS — matches Android where
+        // ttsEngine.stop() cancels in-flight TTS but leaves currently-playing
+        // earcons/beacons alone. Removing from activePlayers *before* stop() so
+        // that a TTS render callback already dispatched to the main queue for
+        // this handle sees the sound as cancelled and bails on its own
+        // containsKey check; otherwise it would attach a zombie node behind our
+        // back. Clearing currentDiscreteHandle here also lets the next enqueued
+        // sound play immediately instead of stacking behind the async
+        // onDiscreteComplete.
+        val currentHandle = currentDiscreteHandle ?: return
+        val stopped = withActivePlayersLock {
+            val entry = activePlayers[currentHandle]
+            if (entry is PlayerEntry.Discrete && entry.isTts) {
+                activePlayers.remove(currentHandle)
+                entry
+            } else null
+        }
+        if (stopped != null) {
+            currentDiscreteHandle = null
+            stopped.player.stop()
         }
     }
 
@@ -438,7 +464,10 @@ class IosAudioEngine : AudioEngine {
     }
 
     override fun isHandleActive(handle: Long): Boolean {
-        return withActivePlayersLock { activePlayers.containsKey(handle) }
+        if (withActivePlayersLock { activePlayers.containsKey(handle) }) return true
+        // A handle enqueued behind the currently-playing sound isn't in activePlayers
+        // yet — treat it as active so awaitHandle waits for its whole turn.
+        return discreteQueue.any { it.handle == handle }
     }
 
     // --- AudioEngine Interface: Beacons ---
