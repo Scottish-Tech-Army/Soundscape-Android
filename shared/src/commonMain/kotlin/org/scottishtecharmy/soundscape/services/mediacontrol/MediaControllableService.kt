@@ -4,6 +4,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import org.scottishtecharmy.soundscape.audio.AudioType
+import org.scottishtecharmy.soundscape.audio.TourButton
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
@@ -27,6 +28,9 @@ private val DEFAULT_HEAD_HEADING_FLOW: StateFlow<HeadHeading?> =
 
 private val DEFAULT_HEADSET_BATTERY_FLOW: StateFlow<Int?> =
     MutableStateFlow<Int?>(null).asStateFlow()
+
+private val DEFAULT_ACTIVE_CALLOUT_FLOW: StateFlow<TourButton?> =
+    MutableStateFlow<TourButton?>(null).asStateFlow()
 
 interface MediaControllableService {
     // Media control target methods
@@ -84,6 +88,13 @@ interface MediaControllableService {
         get() = DEFAULT_STREET_PREVIEW_FLOW
     val voiceCommandStateFlow: StateFlow<VoiceCommandState>
         get() = DEFAULT_VOICE_COMMAND_FLOW
+
+    /** Which "hear my surroundings" button, if any, has an in-flight callout.
+     *  Emits null when nothing is playing. The home-screen bottom bar uses
+     *  this to animate the active button and stop when the audio completes
+     *  or the user cancels by tapping again. */
+    val activeCalloutFlow: StateFlow<TourButton?>
+        get() = DEFAULT_ACTIVE_CALLOUT_FLOW
 
     fun routeStartReverse(routeId: Long)
     fun setStreetPreviewMode(on: Boolean, location: LngLatAlt? = null) {}

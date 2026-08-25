@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.screens.home
 
+import org.scottishtecharmy.soundscape.audio.TourButton
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -18,4 +19,8 @@ data class HomeState(
     val routesTabSelected: Boolean = true,
     val permissionsRequired: Boolean = false,
     val voiceCommandListening: Boolean = false,
+    /** Which "hear my surroundings" button has an in-flight callout, or null
+     *  when no callout is playing. Drives the pulse animation on the active
+     *  button in the home-screen bottom bar. */
+    val activeCallout: TourButton? = null,
 )
