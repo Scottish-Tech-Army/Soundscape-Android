@@ -15,6 +15,22 @@ on:
   workflow_dispatch:
 
 jobs:
+  lint:
+
+    runs-on: ubuntu-latest
+    environment: development
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup JDK + Gradle
+        uses: ./.github/actions/setup-jdk-gradle
+
+      - name: Run lint over the repo
+        run: ./gradlew lint
+
   test:
 
     runs-on: ubuntu-latest
@@ -47,9 +63,6 @@ jobs:
           search_provider_url: ${{ secrets.SEARCH_PROVIDER_URL }}
           search_provider_api_key: ${{ secrets.SEARCH_PROVIDER_API_KEY }}
           extract_provider_url: ${{ secrets.EXTRACT_PROVIDER_URL }}
-
-      - name: Run lint over the repo
-        run: ./gradlew lint
 
       - name: Run tests
         run: ./gradlew test :shared:testAndroidHostTest
