@@ -3,10 +3,13 @@ package org.scottishtecharmy.soundscape
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.getString
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.audio.AudioTourHost
@@ -83,6 +86,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
 
     private val scope = CoroutineScope(Dispatchers.Default + Job())
     private var suppressionJob: Job? = null
+    private var calloutJob: Job? = null
 
     // Providers — iosLocationProvider is the device GPS. locationProvider is the
     // currently active provider, which is swapped to a StaticLocationProvider while
@@ -553,24 +557,73 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
 
     // --- GeoEngine Queries ---
 
+    private suspend fun awaitHandle(handle: Long) {
+        while (handle != 0L && audioEngine.isHandleActive(handle)) {
+            delay(100)
+        }
+    }
+
+    /**
+     * Mirrors SoundscapeService.startCallout on Android. Cancels any previous
+     * user-initiated callout and clears the TTS queue so a button press
+     * interrupts (rather than queues behind) existing audio. If a callout was
+     * still in progress, the press just cancels it — pressing the same button
+     * twice silences the app.
+     *
+     * Runs on Dispatchers.Main so clearTextToSpeechQueue and the enqueue calls
+     * in [body] are serialized with the TTS render callback (which itself
+     * dispatches to the main queue). Off-main AVAudioEngine mutations racing
+     * with the render callback tripped `[_nodes containsObject: node]` on
+     * disconnect.
+     */
+    private fun startCallout(body: suspend CoroutineScope.() -> Unit) {
+        val previousJob = calloutJob
+        calloutJob = scope.launch(Dispatchers.Main) {
+            val wasActive = previousJob?.isActive == true
+            if (wasActive) previousJob.cancel()
+
+            audioEngine.clearTextToSpeechQueue()
+
+            if (wasActive) return@launch
+
+            body()
+        }
+    }
+
     override fun myLocation() {
-        val callout = geoEngine.myLocation()
-        speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+        startCallout {
+            val callout = withContext(Dispatchers.Default) { geoEngine.myLocation() }
+            ensureActive()
+            val handle = speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+            awaitHandle(handle)
+        }
     }
 
     override fun whatsAroundMe() {
-        val callout = geoEngine.whatsAroundMe()
-        speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+        startCallout {
+            val callout = withContext(Dispatchers.Default) { geoEngine.whatsAroundMe() }
+            ensureActive()
+            val handle = speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+            awaitHandle(handle)
+        }
     }
 
     override fun aheadOfMe() {
-        val callout = geoEngine.aheadOfMe()
-        speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+        startCallout {
+            val callout = withContext(Dispatchers.Default) { geoEngine.aheadOfMe() }
+            ensureActive()
+            val handle = speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+            awaitHandle(handle)
+        }
     }
 
     override fun nearbyMarkers() {
-        val callout = geoEngine.nearbyMarkers()
-        speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+        startCallout {
+            val callout = withContext(Dispatchers.Default) { geoEngine.nearbyMarkers() }
+            ensureActive()
+            val handle = speakCalloutCommon(callout, false, audioEngine, lastGeometry, ruler)
+            awaitHandle(handle)
+        }
     }
 
     // --- Beacon Control ---
