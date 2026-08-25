@@ -106,6 +106,11 @@ open class HomeViewModel(
                 }
             }
         }
+        scope.launch {
+            service.activeCalloutFlow.collectLatest { active ->
+                _state.update { it.copy(activeCallout = active) }
+            }
+        }
     }
 
     private fun stopMonitoringLocation() {

@@ -133,7 +133,10 @@ fun SharedHomeScreen(
             },
             bottomBar = {
                 if (!fullscreenMap.value && !hideChromeForKeyboard) {
-                    SharedHomeBottomAppBar(bottomButtonFunctions)
+                    SharedHomeBottomAppBar(
+                        bottomButtonFunctions = bottomButtonFunctions,
+                        activeCallout = state.activeCallout,
+                    )
                 }
             },
             floatingActionButton = {
