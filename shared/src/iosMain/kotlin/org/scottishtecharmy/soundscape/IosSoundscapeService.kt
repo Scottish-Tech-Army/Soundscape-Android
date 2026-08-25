@@ -572,15 +572,18 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
      * still in progress, the press just cancels it — pressing the same button
      * twice silences the app.
      *
-     * Runs on Dispatchers.Main so clearTextToSpeechQueue and the enqueue calls
-     * in [body] are serialized with the TTS render callback (which itself
-     * dispatches to the main queue). Off-main AVAudioEngine mutations racing
-     * with the render callback tripped `[_nodes containsObject: node]` on
-     * disconnect.
+     * Runs on [IosAudioEngine.audioDispatcher] — the serial GCD queue that
+     * also owns the TTS render callback and DiscretePlayer completion in
+     * IosAudioEngine. Keeping the whole pipeline on that queue serializes the
+     * AVAudioEngine mutations (avoiding the `[_nodes containsObject: node]`
+     * crash we hit previously) *and* keeps callout audio decoupled from
+     * main-thread stalls — e.g. the ~100–500 ms hiccup when iOS instantiates
+     * the soft keyboard for the first time after the user taps the search
+     * bar mid-callout, which used to gap out the audio between utterances.
      */
     private fun startCallout(body: suspend CoroutineScope.() -> Unit) {
         val previousJob = calloutJob
-        calloutJob = scope.launch(Dispatchers.Main) {
+        calloutJob = scope.launch(audioEngine.audioDispatcher) {
             val wasActive = previousJob?.isActive == true
             if (wasActive) previousJob.cancel()
 

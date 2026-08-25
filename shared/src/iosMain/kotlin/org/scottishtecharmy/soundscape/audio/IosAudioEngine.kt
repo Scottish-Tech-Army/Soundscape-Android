@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape.audio
 
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.cValue
+import kotlinx.coroutines.CoroutineDispatcher
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControlTarget
 import platform.AVFAudio.AVAudio3DAngularOrientation
@@ -17,6 +18,9 @@ import platform.AVFAudio.AVAudioSessionInterruptionTypeEnded
 import platform.AVFAudio.AVAudioSessionInterruptionTypeKey
 import platform.AVFAudio.setActive
 import platform.CoreAudioTypes.kAudioChannelLayoutTag_Stereo
+import platform.darwin.dispatch_async
+import platform.darwin.dispatch_queue_create
+import platform.darwin.dispatch_queue_t
 import platform.Foundation.NSLock
 import platform.Foundation.NSNotification
 import platform.Foundation.NSNotificationCenter
@@ -47,10 +51,26 @@ class IosAudioEngine : AudioEngine {
     private val activePlayers = mutableMapOf<Long, PlayerEntry>()
 
     // activePlayers is touched from multiple threads: from coroutine dispatchers
-    // (updateGeometry, createBeacon, speakCallout, ...) and from the main queue
-    // via dispatch_async completion callbacks. mutableMapOf is not thread-safe,
-    // so guard every access with this lock.
+    // (updateGeometry, createBeacon, speakCallout, ...) and from [audioQueue]
+    // completion callbacks. mutableMapOf is not thread-safe, so guard every
+    // access with this lock.
     private val activePlayersLock = NSLock()
+
+    // Serial queue that owns the discrete-sound pipeline (TTS render callback,
+    // DiscretePlayer completion, playQueued → attach/connect/play). Kept off
+    // the main queue so first-tap keyboard init (or any other main-thread stall)
+    // can't gap out callout audio between utterances.
+    private val audioQueue: dispatch_queue_t =
+        dispatch_queue_create("org.scottishtecharmy.soundscape.audio", null)!!
+
+    /**
+     * Serial coroutine dispatcher backed by [audioQueue]. Publish this so
+     * [org.scottishtecharmy.soundscape.IosSoundscapeService.startCallout] can
+     * launch on the same queue: its `clearTextToSpeechQueue` + `createTextToSpeech`
+     * calls then serialize naturally with the render/completion callbacks in
+     * [playQueued] / [onDiscreteComplete], without ever hopping to main.
+     */
+    val audioDispatcher: CoroutineDispatcher = DispatchQueueDispatcher(audioQueue)
 
     // Discrete sound queue
     private val discreteQueue = ArrayDeque<QueuedSound>()
@@ -338,7 +358,7 @@ class IosAudioEngine : AudioEngine {
         val is3D = sound.audioType != AudioType.STANDARD
 
         val player = DiscretePlayer(onComplete = {
-            platform.darwin.dispatch_async(platform.darwin.dispatch_get_main_queue()) {
+            dispatch_async(audioQueue) {
                 onDiscreteComplete(sound.handle)
             }
         })
@@ -350,7 +370,7 @@ class IosAudioEngine : AudioEngine {
         if (sound.isTts) {
             // Render TTS to PCM buffers, then connect and play through the audio graph
             ttsRenderer.render(sound.text) { buffers ->
-                platform.darwin.dispatch_async(platform.darwin.dispatch_get_main_queue()) {
+                dispatch_async(audioQueue) {
                     // If the sound was cancelled (e.g. clearTextToSpeechQueue) while we were
                     // rendering, it is no longer in activePlayers. Bail without touching the
                     // engine — otherwise we would attach a node that no one will disconnect
