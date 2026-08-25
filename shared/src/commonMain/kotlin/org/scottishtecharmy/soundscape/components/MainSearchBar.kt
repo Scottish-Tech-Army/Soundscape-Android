@@ -52,7 +52,12 @@ import androidx.compose.ui.semantics.CollectionItemInfo
 import androidx.compose.ui.semantics.collectionItemInfo
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.IntRect
+import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.window.Popup
+import androidx.compose.ui.window.PopupPositionProvider
 import androidx.compose.ui.window.PopupProperties
 import org.jetbrains.compose.resources.stringResource
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -77,6 +82,7 @@ fun MainSearchBar(
     onItemClick: (LocationDescription) -> Unit,
     userLocation: LngLatAlt?,
     isSearching: Boolean = false,
+    onExpandedChange: (Boolean) -> Unit = {},
 ) {
     val shape = RoundedCornerShape(spacing.small)
     val colors = MaterialTheme.colorScheme
@@ -85,6 +91,8 @@ fun MainSearchBar(
     var expanded by rememberSaveable { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
     val searchLocation = remember { mutableStateOf(userLocation) }
+
+    LaunchedEffect(expanded) { onExpandedChange(expanded) }
 
     // Collapsed search bar
     Surface(
@@ -119,9 +127,21 @@ fun MainSearchBar(
         }
     }
 
-    // Fullscreen search overlay
+    // Fullscreen search overlay. Pin to (0, 0) in window coordinates so it covers
+    // the top bar on Android instead of docking at the collapsed search bar's anchor.
+    val fullscreenPositionProvider = remember {
+        object : PopupPositionProvider {
+            override fun calculatePosition(
+                anchorBounds: IntRect,
+                windowSize: IntSize,
+                layoutDirection: LayoutDirection,
+                popupContentSize: IntSize,
+            ): IntOffset = IntOffset.Zero
+        }
+    }
     if (expanded) {
         Popup(
+            popupPositionProvider = fullscreenPositionProvider,
             onDismissRequest = { expanded = false },
             properties = PopupProperties(focusable = true)
         ) {
