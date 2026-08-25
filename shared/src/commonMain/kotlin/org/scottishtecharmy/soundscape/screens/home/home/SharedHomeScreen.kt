@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -78,6 +79,20 @@ fun SharedHomeScreen(
     var drawerOpen by remember { mutableStateOf(false) }
     val fullscreenMap = remember { mutableStateOf(false) }
     val keyboardOpen = keyboardAsState()
+    var searchExpanded by remember { mutableStateOf(false) }
+    // Stays true from the moment the search popup opens the IME until the IME has
+    // fully animated closed after dismissal. Prevents the top/bottom bars from
+    // briefly hiding during that close animation, which would otherwise slide the
+    // collapsed search bar up under the iOS status bar.
+    var searchOwnsIme by remember { mutableStateOf(false) }
+    LaunchedEffect(searchExpanded, keyboardOpen.value) {
+        if (searchExpanded && keyboardOpen.value) {
+            searchOwnsIme = true
+        } else if (!keyboardOpen.value) {
+            searchOwnsIme = false
+        }
+    }
+    val hideChromeForKeyboard = keyboardOpen.value && !searchExpanded && !searchOwnsIme
     val routePlaying = (state.currentRouteData.routeData != null)
 
     val newReleaseDialog = remember {
@@ -107,7 +122,7 @@ fun SharedHomeScreen(
             // room for the search. This is important when the font size is very large, but it's
             // also good for allowing the user to view more search results.
             topBar = {
-                if (!keyboardOpen.value) {
+                if (!hideChromeForKeyboard) {
                     SharedHomeTopAppBar(
                         onMenuClick = { drawerOpen = true },
                         streetPreviewState = state.streetPreviewState.enabled != StreetPreviewEnabled.OFF,
@@ -117,7 +132,7 @@ fun SharedHomeScreen(
                 }
             },
             bottomBar = {
-                if (!fullscreenMap.value && !keyboardOpen.value) {
+                if (!fullscreenMap.value && !hideChromeForKeyboard) {
                     SharedHomeBottomAppBar(bottomButtonFunctions)
                 }
             },
@@ -170,6 +185,7 @@ fun SharedHomeScreen(
                             hint = stringResource(Res.string.search_bar_hint),
                             userLocation = state.location,
                             isSearching = state.searchInProgress,
+                            onExpandedChange = { searchExpanded = it },
                         )
                     },
                     onMapLongClick = onMapLongClick,
