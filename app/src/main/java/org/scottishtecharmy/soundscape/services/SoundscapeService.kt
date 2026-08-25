@@ -38,10 +38,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
@@ -53,8 +51,7 @@ import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.BeaconPreviewController
-import org.scottishtecharmy.soundscape.audio.EARCON_MODE_ENTER
-import org.scottishtecharmy.soundscape.audio.EARCON_MODE_EXIT
+import org.scottishtecharmy.soundscape.audio.CalloutController
 import org.scottishtecharmy.soundscape.audio.NativeAudioEngine
 import org.scottishtecharmy.soundscape.audio.TourButton
 import org.scottishtecharmy.soundscape.bluetooth.AudioHeadsetBatteryMonitor
@@ -69,11 +66,9 @@ import org.scottishtecharmy.soundscape.geoengine.StreetPreviewEnabled
 import org.scottishtecharmy.soundscape.geoengine.StreetPreviewState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
-import org.scottishtecharmy.soundscape.geoengine.speakCalloutCommon
 import org.scottishtecharmy.soundscape.geoengine.utils.GpxRecorder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.AndroidGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
-import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.hasPlayServices
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
@@ -176,16 +171,6 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
     // secondary service
     private var timerJob: Job? = null
-
-    // Guard to prevent duplicate user-triggered callouts
-    private var calloutJob: Job? = null
-
-    // Which "hear my surroundings" button is currently animating. Set by
-    // startCallout on launch and cleared when the callout body finishes or is
-    // superseded (via compareAndSet so a fresh callout doesn't clobber its
-    // own value in the previous coroutine's finally block).
-    private val _activeCalloutFlow = MutableStateFlow<TourButton?>(null)
-    override val activeCalloutFlow: StateFlow<TourButton?> = _activeCalloutFlow.asStateFlow()
 
     // Wake lock — keeps CPU running while screen is off so audio callbacks continue
     private var wakeLock: PowerManager.WakeLock? = null
@@ -888,104 +873,22 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     fun stopBeaconPreview(commit: Boolean, chosenBeaconType: String?) =
         beaconPreviewController.stop(commit, chosenBeaconType)
 
-    private suspend fun awaitHandle(handle: Long) {
-        while (handle != 0L && audioEngine.isHandleActive(handle)) {
-            delay(100)
-        }
+    // Callout buttons and user-initiated-TTS-interrupt behaviour — implementation
+    // lives in shared CalloutController so iOS and Android stay in lockstep.
+    private val calloutController by lazy {
+        CalloutController(audioEngine, geoEngine, this, coroutineScope)
     }
 
-    /**
-     * Start a user-initiated callout.
-     *
-     * The previous callout (if any) is cancelled and the TTS queue cleared on the background
-     * coroutine dispatcher rather than on the calling thread. clearTextToSpeechQueue() makes a
-     * blocking binder call into the system TTS service (TextToSpeech.stop()), so running it on the
-     * main thread - as the old synchronous cancelCallout() did - could ANR if that service was slow.
-     *
-     * If a callout was already in progress, the user action simply cancels it (toggle behaviour)
-     * and [body] is skipped. Otherwise the TTS queue is cleared and then [body] runs, preserving the
-     * clear-before-speak ordering that callouts rely on.
-     */
-    private fun startCallout(source: TourButton, body: suspend CoroutineScope.() -> Unit) {
-        val previousJob = calloutJob
-        calloutJob = coroutineScope.launch {
-            val wasActive = previousJob?.isActive == true
-            if (wasActive)
-                previousJob.cancel()
+    override val activeCalloutFlow: StateFlow<TourButton?>
+        get() = calloutController.activeCalloutFlow
 
-            // Always clear the TTS queue as there's been a user action that requires a response
-            audioEngine.clearTextToSpeechQueue()
+    override fun myLocation() = calloutController.myLocation()
 
-            // If a callout was already in progress, the user action just cancels it.
-            if (wasActive) {
-                _activeCalloutFlow.value = null
-                return@launch
-            }
+    override fun whatsAroundMe() = calloutController.whatsAroundMe()
 
-            _activeCalloutFlow.value = source
-            try {
-                body()
-            } finally {
-                // Only clear if it's still us — a fresh callout that cancelled
-                // this one already set the flow to its own source.
-                _activeCalloutFlow.compareAndSet(source, null)
-            }
-        }
-    }
+    override fun aheadOfMe() = calloutController.aheadOfMe()
 
-    override fun myLocation() {
-        startCallout(TourButton.MY_LOCATION) {
-            if (requestAudioFocus()) {
-                // The call to myLocation can take a second or so as it might be doing network
-                // based reverse geocoding. Ensure that the user has feedback that the action is
-                // taking place by immediately playing the earcon.
-                audioEngine.createEarcon(EARCON_MODE_ENTER, AudioType.STANDARD)
-                val results = geoEngine.myLocation()
-                ensureActive()
-                var lastHandle = 0L
-                if (results != null) {
-                    lastHandle = speakCallout(results, false)
-                }
-                audioEngine.createEarcon(EARCON_MODE_EXIT, AudioType.STANDARD)
-                awaitHandle(lastHandle)
-            } else {
-                Log.w(TAG, "myLocation: Could not get audio focus.")
-            }
-        }
-    }
-
-    override fun whatsAroundMe() {
-        startCallout(TourButton.AROUND_ME) {
-            val results = geoEngine.whatsAroundMe()
-            ensureActive()
-            var lastHandle = 0L
-            if (results.positionedStrings.isNotEmpty()) {
-                lastHandle = speakCallout(results, true)
-            }
-            awaitHandle(lastHandle)
-        }
-    }
-
-    override fun aheadOfMe() {
-        startCallout(TourButton.AHEAD_OF_ME) {
-            val results = geoEngine.aheadOfMe()
-            ensureActive()
-            var lastHandle = 0L
-            if (results != null) {
-                lastHandle = speakCallout(results, true)
-            }
-            awaitHandle(lastHandle)
-        }
-    }
-
-    override fun nearbyMarkers() {
-        startCallout(TourButton.NEARBY_MARKERS) {
-            val results = geoEngine.nearbyMarkers()
-            ensureActive()
-            val lastHandle = speakCallout(results, true)
-            awaitHandle(lastHandle)
-        }
-    }
+    override fun nearbyMarkers() = calloutController.nearbyMarkers()
 
     fun triggerVoiceCommand() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
@@ -1152,14 +1055,12 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
             audioEngine.createTextToSpeech(text, AudioType.STANDARD)
     }
 
-    private var lastGeometry: UserGeometry? = null
-    private var ruler = CheapRuler(0.0)
     override fun updateAudioEngineGeometry(
         userGeometry: UserGeometry
     ) {
         // Send the update to the audio engine. This affects the direction and sound
         // of the audio beacon.
-        lastGeometry = userGeometry
+        calloutController.updateGeometry(userGeometry)
         audioEngine.updateGeometry(
             userGeometry.location.latitude,
             userGeometry.location.longitude,
@@ -1170,16 +1071,8 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         )
     }
 
-    override fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean): Long {
-        if (callout == null) return 0L
-
-        if (!requestAudioFocus()) {
-            Log.w(TAG, "SpeakCallout: Could not get audio focus.")
-            return 0L
-        }
-
-        return speakCalloutCommon(callout, addModeEarcon, audioEngine, lastGeometry, ruler)
-    }
+    override fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean): Long =
+        calloutController.speakCallout(callout, addModeEarcon)
 
     fun toggleAutoCallouts() {
         geoEngine.toggleAutoCallouts()
