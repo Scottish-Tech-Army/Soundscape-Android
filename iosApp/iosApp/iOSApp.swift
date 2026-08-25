@@ -6,6 +6,12 @@ struct iOSApp: App {
     @StateObject private var splashCoordinator = SplashCoordinator()
 
     init() {
+        // Must be first: installs Kotlin/Native's setUnhandledExceptionHook so
+        // any uncaught exception thrown during LegacyMigrator, FirebaseBootstrap,
+        // or IosSoundscapeService construction (or any coroutine they spawn) is
+        // written to stderr before the process dies, instead of vanishing.
+        UnhandledExceptionLoggerKt.installUnhandledExceptionLogger()
+
         // Run the legacy → multiplatform data migration before the Compose
         // UI mounts. Synchronous so the new app's preferences and Room
         // database are populated before MainViewController reads them.

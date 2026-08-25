@@ -19,6 +19,13 @@ private val install: Boolean by lazy {
     true
 }
 
-internal fun installUnhandledExceptionLogger() {
+/**
+ * Public so Swift can invoke it from `iOSApp.init()` before any other Kotlin
+ * code runs. Installing later (e.g. from the Compose entry point) leaves a
+ * window during LegacyMigrator + FirebaseBootstrap + IosSoundscapeService
+ * construction where a coroutine failure would terminate the process with no
+ * log written.
+ */
+fun installUnhandledExceptionLogger() {
     install
 }
