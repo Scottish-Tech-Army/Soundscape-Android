@@ -252,6 +252,15 @@ class OfflineMapManager(
                         }
                     }
                 }
+                // Retries exhausted (server kept returning 503) without ever succeeding or
+                // hitting a non-retryable error - must not fall through silently, or
+                // downloadState is left stuck on Caching forever with no indication anything
+                // failed.
+                _downloadState.value = DownloadStateCommon.Error("Download timed out after retries")
+                try {
+                    systemFileSystem.delete(tempPath.toPath())
+                } catch (_: Exception) {
+                }
             } catch (e: CancellationException) {
                 _downloadState.value = DownloadStateCommon.Canceled
                 try {

@@ -49,6 +49,13 @@ fun formatBytes(
         value /= 1000.0
         unitIndex++
     }
+    // The loop above compares the raw value, but display rounds to a whole number once
+    // value >= 100 - a value like 999.5 passes the raw check (< 1000) but rounds to "1000",
+    // which would show as e.g. "1000 kB" instead of correctly advancing to the next unit.
+    if (value >= 100.0 && value.roundToInt() >= 1000 && unitIndex < unitKeys.lastIndex) {
+        value /= 1000.0
+        unitIndex++
+    }
     val separator = decimalSeparator(localized, forAccessibility)
     val formatted = if (value >= 100.0) {
         value.roundToInt().toString()

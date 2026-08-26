@@ -1504,7 +1504,10 @@ class ResourceMapper {
                 put("swimming", Res.string.osm_swimming)
                 put("castle", Res.string.osm_castle)
                 put("atm", Res.string.osm_atm)
-                put("fuel", Res.string.osm_fuel)
+                // "fuel" -> osm_gas_station is set once, above (near "telephone"/"bank"); this
+                // duplicate entry used to silently overwrite it with the more generic
+                // osm_fuel ("Fuel Station" vs "Gas Station") since HashMap.put() calls just
+                // apply in file order - removed to keep the earlier, intended mapping.
                 put("river", Res.string.osm_river)
                 put("city", Res.string.osm_city)
                 put("town", Res.string.osm_town)
