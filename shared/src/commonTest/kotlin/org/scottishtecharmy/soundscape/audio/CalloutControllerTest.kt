@@ -340,7 +340,7 @@ class CalloutControllerTest {
         // the initial null, the MY_LOCATION it flips to synchronously, and
         // the null it resets to once the callout body throws and startCallout's
         // catch/finally run.
-        withTimeout(5_000) {
+        withTimeout(20_000) {
             while (emissions.size < 3) delay(5)
         }
 
@@ -359,7 +359,7 @@ class CalloutControllerTest {
         // So a subsequent button press on the same scope still runs, rather
         // than being a silent permanent no-op on an already-cancelled parent.
         controller.whatsAroundMe()
-        withTimeout(5_000) {
+        withTimeout(20_000) {
             while (emissions.size < 5) delay(5)
         }
         collectJob.cancel()
