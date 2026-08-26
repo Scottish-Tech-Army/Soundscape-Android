@@ -123,7 +123,9 @@ class TileSearch(
                 break
             result.insert(0, " ")
         }
-        return result.toString()
+        // If wordCount > words.size, the loop runs out of words before `count` ever reaches 0,
+        // leaving the last-inserted leading separator in place.
+        return result.toString().trim()
     }
 
     fun generateWithoutSettlement(string: String, settlementNames: Set<String>): String? {
@@ -155,11 +157,15 @@ class TileSearch(
 
         val finalWordsBuilder = StringBuilder()
         for (word in hayStackWords) {
+            // Checked before appending (not after decrementing) so a wordTarget of 0 - the
+            // whole string was consumed by the settlement match - correctly emits nothing,
+            // instead of the post-decrement check (`--wordTarget == 0`) never firing once
+            // wordTarget starts at 0 and only counts further downward.
+            if (wordTarget == 0)
+                break
             finalWordsBuilder.append(word)
             finalWordsBuilder.append(" ")
             --wordTarget
-            if (wordTarget == 0)
-                break
         }
         return finalWordsBuilder.toString().trim()
     }

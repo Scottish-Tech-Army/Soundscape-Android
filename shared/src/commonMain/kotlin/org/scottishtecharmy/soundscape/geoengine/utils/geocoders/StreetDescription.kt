@@ -168,7 +168,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
                     continue
                 }
             }
-            if (distance > way.first.length) {
+            if (distanceLeft > way.first.length) {
                 distanceLeft -= way.first.length
                 continue
             }
@@ -438,8 +438,10 @@ class StreetDescription(val name: String, val gridState: GridState) {
                         way.first.intersections[WayEnd.START.id]
 
                 if (lastIntersection != null) {
+                    // totalDistance already includes way.first.length from the increment above -
+                    // adding it again here would double-count the last way's length.
                     if (descriptiveIntersection(lastIntersection, localizedStrings))
-                        descriptivePoints[totalDistance + way.first.length] = lastIntersection
+                        descriptivePoints[totalDistance] = lastIntersection
                 }
             }
         }
@@ -616,8 +618,11 @@ class StreetDescription(val name: String, val gridState: GridState) {
         val pdh = getDistanceToFeature(location, way, gridState.ruler)
         val distance = distanceAlongLine(way, pdh)
 
-        // Find which side of the road the point is on
-        val locationSide = whichSide(way, !direction, pdh, location)
+        // Find which side of the road the point is on. Must use the same direction convention
+        // addHouse() used when it recorded each house's side into leftSortedNumbers/
+        // rightSortedNumbers (i.e. the Pair's direction flag as-is, not negated) - otherwise
+        // this computes the opposite side from the one houses were actually filed under.
+        val locationSide = whichSide(way, direction, pdh, location)
 
         // Try that side first, but it could be that there are no street numbers on this side,
         // so we also have to fallback to trying the other side too.
