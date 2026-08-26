@@ -183,26 +183,20 @@ class StreetDescription(val name: String, val gridState: GridState) {
         MIXED
     }
 
+    companion object {
+        /** See [isDominantParity]. */
+        private const val PARITY_EXCEPTION_TOLERANCE = 0.1
+    }
+
     fun assignHouseNumberModes(odd: Array<Int>, even: Array<Int>) {
         if ((odd[0] + odd[1] + even[0] + even[1]) >= 2) {
             // We have at least 2 house numbers
-            if (
-                (odd[0] == 0) &&
-                (even[0] >= 0) &&
-                (odd[1] >= 0) &&
-                (even[1] == 0)
-            ) {
+            if (isDominantParity(even[0], odd[0]) && isDominantParity(odd[1], even[1])) {
                 leftMode = HouseNumberMode.EVEN
                 rightMode = HouseNumberMode.ODD
                 println("Odd on right side, even on left")
                 return
-            } else if (
-                (odd[1] == 0) &&
-                (even[1] >= 0) &&
-                (odd[0] >= 0) &&
-                (even[0] == 0)
-
-            ) {
+            } else if (isDominantParity(odd[0], even[0]) && isDominantParity(even[1], odd[1])) {
                 leftMode = HouseNumberMode.ODD
                 rightMode = HouseNumberMode.EVEN
                 println("Odd on left side, even on right")
@@ -212,6 +206,18 @@ class StreetDescription(val name: String, val gridState: GridState) {
         println("Mixed house numbering")
         leftMode = HouseNumberMode.MIXED
         rightMode = HouseNumberMode.MIXED
+    }
+
+    /**
+     * True if [exceptionCount] is small enough, relative to [dominantCount], to treat a side as
+     * confidently one parity rather than MIXED. Real street data is almost never 100% clean
+     * (historic renumbering, redevelopment, corner properties genuinely tagged to this street),
+     * so a small tolerance lets an overwhelmingly-one-parity side still be usefully classified
+     * instead of always falling back to MIXED over one or two known exceptions.
+     */
+    private fun isDominantParity(dominantCount: Int, exceptionCount: Int): Boolean {
+        if (dominantCount == 0) return false
+        return exceptionCount.toDouble() / (dominantCount + exceptionCount) <= PARITY_EXCEPTION_TOLERANCE
     }
 
     private fun addHouse(
@@ -561,6 +567,29 @@ class StreetDescription(val name: String, val gridState: GridState) {
         }
 
         assignHouseNumberModes(odd, even)
+
+        // A side confidently assigned ODD/EVEN under tolerance can still carry a handful of
+        // opposite-parity exceptions - those must not take part in floor/ceiling interpolation
+        // (getStreetNumber, getLocationFromStreetNumber), where a wrong-parity number sitting
+        // in the middle of an otherwise-consistent sequence would silently corrupt the
+        // estimate for genuinely unknown numbers around it.
+        leftSortedNumbers = removeParityExceptions(leftSortedNumbers, leftMode)
+        rightSortedNumbers = removeParityExceptions(rightSortedNumbers, rightMode)
+    }
+
+    private fun removeParityExceptions(
+        numbers: Map<Double, MvtFeature>,
+        mode: HouseNumberMode
+    ): Map<Double, MvtFeature> {
+        val wantEven = when (mode) {
+            HouseNumberMode.EVEN -> true
+            HouseNumberMode.ODD -> false
+            HouseNumberMode.MIXED -> return numbers
+        }
+        return numbers.filterValues { house ->
+            val houseNumber = parseHouseNumber(house.housenumber ?: "") ?: return@filterValues true
+            (houseNumber % 2 == 0) == wantEven
+        }
     }
 
     fun getInterpolateLocation(

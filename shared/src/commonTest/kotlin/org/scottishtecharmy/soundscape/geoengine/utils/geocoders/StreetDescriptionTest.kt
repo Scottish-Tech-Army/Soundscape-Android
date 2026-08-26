@@ -477,6 +477,40 @@ class StreetDescriptionTest {
     }
 
     @Test
+    fun assignHouseNumberModes_smallMinorityWithinTolerance_isNotMixed() {
+        // Real street data is rarely 100% clean - a side that's overwhelmingly one parity
+        // should still be classified rather than falling back to MIXED over one or two
+        // exceptions (e.g. Sauchiehall Street in Glasgow: 41 even house numbers against just 2
+        // odd ones on one side, both genuinely tagged street=Sauchiehall Street in OSM).
+        val sd = newStreetDescription()
+        sd.assignHouseNumberModes(odd = arrayOf(0, 41), even = arrayOf(50, 2))
+        assertEquals(StreetDescription.HouseNumberMode.EVEN, sd.leftMode)
+        assertEquals(StreetDescription.HouseNumberMode.ODD, sd.rightMode)
+    }
+
+    @Test
+    fun assignHouseNumberModes_minorityExceedsTolerance_isMixed() {
+        val sd = newStreetDescription()
+        // 15 out of 65 (23%) is too large a minority to treat as exceptions.
+        sd.assignHouseNumberModes(odd = arrayOf(0, 35), even = arrayOf(50, 15))
+        assertEquals(StreetDescription.HouseNumberMode.MIXED, sd.leftMode)
+        assertEquals(StreetDescription.HouseNumberMode.MIXED, sd.rightMode)
+    }
+
+    @Test
+    fun assignHouseNumberModes_toleranceBoundary_exactlyTenPercentPassesElevenPercentFails() {
+        val atBoundary = newStreetDescription()
+        atBoundary.assignHouseNumberModes(odd = arrayOf(0, 90), even = arrayOf(100, 10))
+        assertEquals(StreetDescription.HouseNumberMode.EVEN, atBoundary.leftMode)
+        assertEquals(StreetDescription.HouseNumberMode.ODD, atBoundary.rightMode)
+
+        val overBoundary = newStreetDescription()
+        overBoundary.assignHouseNumberModes(odd = arrayOf(0, 89), even = arrayOf(100, 11))
+        assertEquals(StreetDescription.HouseNumberMode.MIXED, overBoundary.leftMode)
+        assertEquals(StreetDescription.HouseNumberMode.MIXED, overBoundary.rightMode)
+    }
+
+    @Test
     fun assignHouseNumberModes_fewerThanTwoHouseNumbers_staysMixed() {
         val sd = newStreetDescription()
         sd.assignHouseNumberModes(odd = arrayOf(1, 0), even = arrayOf(0, 0))
@@ -1098,6 +1132,45 @@ class StreetDescriptionTest {
         assertEquals(listOf("12", "14"), sd.rightSortedNumbers.values.map { it.housenumber })
         assertEquals(StreetDescription.HouseNumberMode.ODD, sd.leftMode)
         assertEquals(StreetDescription.HouseNumberMode.EVEN, sd.rightMode)
+    }
+
+    @Test
+    fun createDescription_toleratedParityExceptionIsRemovedFromSortedNumbers() {
+        // West side: 9 odd numbers plus one genuinely street-confident even exception (10%,
+        // right at the tolerance boundary) - mirrors the real Sauchiehall Street case where a
+        // couple of confidently-tagged numbers break an otherwise consistent side.
+        val fixture = buildLinearStreetFixture()
+        val sd = StreetDescription("Test Street", fixture.gridState)
+
+        val westOddHouses = listOf("1", "3", "5", "7", "9", "11", "13", "15", "17").mapIndexed { i, num ->
+            house(num, getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 5.0 + i * 3.0), 270.0, 5.0))
+        }
+        val westExceptionHouse =
+            house("100", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 32.0), 270.0, 5.0))
+        // Offset from the west houses' distances (5, 8, 11, ..., 32) so no east/west pair lands
+        // at the same along-street position - see the comment on the sibling test above about
+        // why that would collide as the same key in the (side-unaware) houseNumberPoints map.
+        val eastEvenHouses = listOf("2", "4", "6").mapIndexed { i, num ->
+            house(num, getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 6.5 + i * 5.0), 90.0, 5.0))
+        }
+        fixture.gridState.gridStreetNumberTreeMap["Test Street"] = FeatureTree(
+            FeatureCollection().apply {
+                (westOddHouses + westExceptionHouse + eastEvenHouses).forEach { addFeature(it) }
+            }
+        )
+
+        sd.createDescription(fixture.waySouth, null)
+
+        assertEquals(StreetDescription.HouseNumberMode.ODD, sd.leftMode)
+        assertEquals(StreetDescription.HouseNumberMode.EVEN, sd.rightMode)
+        // The tolerated exception is excluded from the sorted numbers used for interpolation...
+        assertFalse(sd.leftSortedNumbers.values.any { it.housenumber == "100" })
+        // ...while every genuine odd number, and the clean even side, are untouched.
+        assertEquals(
+            listOf("1", "3", "5", "7", "9", "11", "13", "15", "17"),
+            sd.leftSortedNumbers.values.map { it.housenumber },
+        )
+        assertEquals(listOf("2", "4", "6"), sd.rightSortedNumbers.values.map { it.housenumber })
     }
 
     @Test
