@@ -34,6 +34,8 @@ firebaseBom = "34.17.0"
 junitJupiter = "6.1.2"
 coreKtx = "1.19.0"
 junit = "4.13.2"
+mockitoCore = "5.20.0"
+mockitoKotlin = "6.1.0"
 kotlinTestJunit = "2.3.10"
 kotlinxCoroutinesCore = "1.11.0"
 kotlinxCoroutinesTest = "1.11.0"
@@ -117,6 +119,8 @@ core-ktx = { group = "androidx.test", name = "core-ktx", version.ref = "coreKtxV
 androidx-lifecycle-runtime-compose-android = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose-android", version.ref = "lifecycleRuntimeComposeAndroid" }
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junitJupiter" }
 kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlinTestJunit" }
+mockito-core = { module = "org.mockito:mockito-core", version.ref = "mockitoCore" }
+mockito-kotlin = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlinxCoroutinesTest" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
