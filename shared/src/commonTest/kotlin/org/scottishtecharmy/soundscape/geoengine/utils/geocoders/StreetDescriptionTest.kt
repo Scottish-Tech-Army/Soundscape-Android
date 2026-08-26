@@ -1100,6 +1100,143 @@ class StreetDescriptionTest {
         assertEquals(StreetDescription.HouseNumberMode.EVEN, sd.rightMode)
     }
 
+    @Test
+    fun createDescription_poiTaggedToADifferentStreetIsExcluded() {
+        // A landmark POI's own "street" property, if present, must take precedence over pure
+        // 25m proximity - a car park tagged street=Stewart Street must not be attached to Test
+        // Street's description just because it happens to sit close to one of Test Street's ways.
+        val fixture = buildLinearStreetFixture()
+        val sd = StreetDescription("Test Street", fixture.gridState)
+
+        val wrongStreetPoi = MvtFeature().apply {
+            name = "Stewart Street Car Park"
+            geometry = Point(getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 20.0), 90.0, 5.0))
+            street = "Stewart Street"
+        }
+        val ownStreetPoi = MvtFeature().apply {
+            name = "Test Street Cafe"
+            geometry = Point(getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 30.0), 90.0, 5.0))
+            street = "Test Street"
+        }
+        val untaggedPoi = MvtFeature().apply {
+            name = "Untagged Landmark"
+            geometry = Point(getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 10.0), 90.0, 5.0))
+        }
+        fixture.gridState.featureTrees[TreeId.LANDMARK_POIS.id] = FeatureTree(
+            FeatureCollection().apply { addFeature(wrongStreetPoi); addFeature(ownStreetPoi); addFeature(untaggedPoi) }
+        )
+
+        sd.createDescription(fixture.waySouth, null)
+
+        val names = sd.sortedDescriptivePoints.values.map { it.name }
+        assertFalse(names.contains("Stewart Street Car Park"))
+        assertTrue(names.contains("Test Street Cafe"))
+        assertTrue(names.contains("Untagged Landmark"))
+    }
+
+    @Test
+    fun createDescription_unknownStreetHouseCloserToADifferentNamedWayIsExcluded() {
+        // nearestWayOnStreet() only compares distance among this street's own segments, so on
+        // its own it can't tell an untagged house that's actually closer to a neighbouring
+        // street apart from one that's genuinely on this street - there must be a check against
+        // the globally nearest named way too.
+        val fixture = buildLinearStreetFixture()
+
+        // Confidence-true anchors bracketing the range, so checkSortedNumberConsistency doesn't
+        // just discard everything else for falling outside the "confident" range.
+        val anchor5 = house("5", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 5.0), 270.0, 5.0))
+        val anchor15 = house("9", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 15.0), 270.0, 5.0))
+        val anchor25 = house("13", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 25.0), 270.0, 5.0))
+        val anchor35 = house("17", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 35.0), 270.0, 5.0))
+        fixture.gridState.gridStreetNumberTreeMap["Test Street"] = FeatureTree(
+            FeatureCollection().apply {
+                addFeature(anchor5); addFeature(anchor15); addFeature(anchor25); addFeature(anchor35)
+            }
+        )
+
+        // A legitimate untagged house at the 10m mark (numbered "7", between anchors "5" and
+        // "9" - keeping the whole sequence monotonically increasing with distance regardless of
+        // which entries survive filtering), genuinely nearest to Test Street.
+        val legitimateLocation =
+            getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 10.0), 270.0, 5.0)
+        val legitimateHouse = house("7", legitimateLocation)
+
+        // A "contaminating" untagged house at the 20m mark (numbered "11", between anchors "9"
+        // and "13"), 5m from Test Street but only 1m from a completely different named way
+        // passing right next to it.
+        val contaminatingLocation =
+            getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 20.0), 270.0, 5.0)
+        val contaminatingHouse = house("11", contaminatingLocation)
+        // A short segment (18m-22m mark) so it only passes near the contaminating house at the
+        // 20m mark, well clear of the legitimate house at the 10m mark.
+        val otherStreetPoint = getDestinationCoordinate(contaminatingLocation, 270.0, 1.0)
+        val otherStreet = Way().apply {
+            name = "Other Street"
+            geometry = LineString(
+                getDestinationCoordinate(otherStreetPoint, 0.0, 2.0),
+                getDestinationCoordinate(otherStreetPoint, 180.0, 2.0),
+            )
+        }
+        fixture.gridState.featureTrees[TreeId.ROADS_AND_PATHS.id] = FeatureTree(
+            FeatureCollection().apply {
+                addFeature(fixture.waySouth); addFeature(fixture.wayNorth); addFeature(otherStreet)
+            }
+        )
+        fixture.gridState.gridStreetNumberTreeMap["null"] = FeatureTree(
+            FeatureCollection().apply { addFeature(legitimateHouse); addFeature(contaminatingHouse) }
+        )
+
+        val sd = StreetDescription("Test Street", fixture.gridState)
+        sd.createDescription(fixture.waySouth, null)
+
+        val leftNumbers = sd.leftSortedNumbers.values.map { it.housenumber }
+        assertTrue(leftNumbers.contains("7"))
+        // The contaminating "11" (from the unknown-street search, near "Other Street") must not
+        // appear - only the confidence=true anchors and the legitimate "7" should be present.
+        assertFalse(leftNumbers.contains("11"))
+        assertEquals(listOf("5", "7", "9", "13", "17"), leftNumbers)
+    }
+
+    @Test
+    fun createDescription_oddEvenModeIsComputedAfterConsistencyFiltering() {
+        // The odd/even mode decision must be based on the same numbers checkSortedNumberConsistency
+        // approved, not the raw pre-filter counts - otherwise a single confidence=false outlier
+        // that consistency-checking would have removed still forces the whole side to MIXED.
+        val fixture = buildLinearStreetFixture()
+
+        val westAnchors = listOf(
+            house("5", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 5.0), 270.0, 5.0)),
+            house("9", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 15.0), 270.0, 5.0)),
+            house("13", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 25.0), 270.0, 5.0)),
+            house("17", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 35.0), 270.0, 5.0)),
+        )
+        val eastAnchors = listOf(
+            house("6", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 10.0), 90.0, 5.0)),
+            house("10", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 30.0), 90.0, 5.0)),
+        )
+        fixture.gridState.gridStreetNumberTreeMap["Test Street"] = FeatureTree(
+            FeatureCollection().apply { (westAnchors + eastAnchors).forEach { addFeature(it) } }
+        )
+
+        // A single even outlier on the (otherwise all-odd) west side, breaking the ascending
+        // odd sequence between the "9" and "13" anchors - exactly what checkSortedNumberConsistency
+        // is designed to remove.
+        val outlier = house("8", getDestinationCoordinate(getDestinationCoordinate(fixture.pointA, 0.0, 20.0), 270.0, 5.0))
+        fixture.gridState.gridStreetNumberTreeMap["null"] = FeatureTree(
+            FeatureCollection().apply { addFeature(outlier) }
+        )
+
+        val sd = StreetDescription("Test Street", fixture.gridState)
+        sd.createDescription(fixture.waySouth, null)
+
+        // The outlier was indeed removed by consistency-checking...
+        assertFalse(sd.leftSortedNumbers.values.any { it.housenumber == "8" })
+        // ...and with the counts now taken from the filtered numbers, the mode is correctly
+        // detected instead of falling back to MIXED.
+        assertEquals(StreetDescription.HouseNumberMode.ODD, sd.leftMode)
+        assertEquals(StreetDescription.HouseNumberMode.EVEN, sd.rightMode)
+    }
+
     // ============================================================================================
     // describeStreet (smoke test only - the function's only observable behaviour is println output)
     // ============================================================================================
