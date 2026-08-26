@@ -4,7 +4,6 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import org.scottishtecharmy.soundscape.geoengine.LocationRecorder
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
-import org.scottishtecharmy.soundscape.platform.currentTimeMillis
 import org.scottishtecharmy.soundscape.platform.formatGpxTimestamp
 
 class GpxRecorder : LocationRecorder {
@@ -17,7 +16,6 @@ class GpxRecorder : LocationRecorder {
         val builder = StringBuilder()
         builder.append(GPX_HEADER)
         bufferMutex.withLock {
-            val timestamp = formatGpxTimestamp(currentTimeMillis())
             for (location in buffer) {
                 builder.append("<trkpt lat=\"").append(location.latitude)
                     .append("\" lon=\"").append(location.longitude).append("\">\n")
@@ -28,7 +26,9 @@ class GpxRecorder : LocationRecorder {
                 builder.append("<bearingAccuracyDegrees>")
                     .append(location.bearingAccuracyDegrees)
                     .append("</bearingAccuracyDegrees>\n")
-                builder.append("<time>").append(timestamp).append("</time>\n")
+                builder.append("<time>")
+                    .append(formatGpxTimestamp(location.timestampMilliseconds))
+                    .append("</time>\n")
                 builder.append("</trkpt>\n")
             }
         }
@@ -40,7 +40,7 @@ class GpxRecorder : LocationRecorder {
         bufferMutex.withLock {
             buffer.add(location)
             if (buffer.size > maxBufferSize)
-                buffer.drop(1)
+                buffer.removeAt(0)
         }
     }
 
