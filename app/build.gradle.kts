@@ -388,6 +388,8 @@ dependencies {
     testImplementation (libs.kotlin.test.junit)
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.ktor.client.mock)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.kotlin)
 
     androidTestImplementation(libs.androidx.junit.v121)
     androidTestImplementation(libs.androidx.espresso.core.v351)

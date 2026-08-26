@@ -39,6 +39,13 @@ fun dijkstraOnWaysWithLoops(
     while (priorityQueue.isNotEmpty()) {
         val (node, currentDist) = priorityQueue.poll() ?: break
         if (visited.add(node to currentDist)) {
+            // The node popped here is only guaranteed to have its final (minimal) distance once
+            // it's been taken off the priority queue - the queue is ordered by totalDist plus an
+            // admissible straight-line heuristic to `end`, so this is the earliest point at which
+            // reaching `end` can be trusted as the shortest distance found so far.
+            if (node == end) {
+                return currentDist
+            }
             node.members.forEach { way ->
                 val weight = way.length
                 val adjacent = if (node == way.intersections[WayEnd.START.id])
@@ -67,9 +74,6 @@ fun dijkstraOnWaysWithLoops(
                                     (totalDist + directDistanceToEnd)
                                 )
                             )
-                            if (adjacent == end) {
-                                return end.dijkstraDistance
-                            }
                         }
                     }
                 }

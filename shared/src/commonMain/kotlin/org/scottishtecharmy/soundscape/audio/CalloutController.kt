@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.audio
 
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -97,6 +98,15 @@ class CalloutController(
             _activeCalloutFlow.value = source
             try {
                 body()
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                // A failure here (e.g. a button pressed before geoEngine has
+                // finished starting) must not escape this launch: scope is a
+                // plain root Job, not a SupervisorJob, so an uncaught
+                // exception would cancel it and silently disable every future
+                // callout button press for the rest of the service's lifetime.
+                println("CalloutController: $source callout failed: $e")
             } finally {
                 // Only clear if the flow is still us — if a newer callout
                 // started while we were cancelled, its coroutine already set
