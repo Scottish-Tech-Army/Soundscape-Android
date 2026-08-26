@@ -25,11 +25,21 @@ fun buildShareLocationText(
         "https://links.soundscape.scottishtecharmy.org/v1/sharemarker?" +
                 "lat=$latitude&lon=$longitude&name=$encodedName"
     val mapsUrl = mapsUrlBuilder(latitude, longitude, encodedName)
-    return messageTemplate
-        .replace("Google Maps", mapsName)
-        .replace("%1\$s", desc.name)
-        .replace("%2\$s", soundscapeUrl)
-        .replace("%3\$s", mapsUrl)
+
+    // A single regex pass over messageTemplate, rather than four chained .replace() calls: with
+    // chained replace, if desc.name itself contained literal placeholder text (e.g. a marker
+    // named "%2$s"), inserting it via one replace() would then get matched and rewritten again
+    // by a later one - user data getting swept up as if it were template syntax. Matching once
+    // against the original template and substituting from a lookup avoids that entirely, since
+    // the replacement values are never re-scanned.
+    val replacements = mapOf(
+        "Google Maps" to mapsName,
+        "%1\$s" to desc.name,
+        "%2\$s" to soundscapeUrl,
+        "%3\$s" to mapsUrl,
+    )
+    val placeholderPattern = Regex(replacements.keys.joinToString("|") { Regex.escape(it) })
+    return placeholderPattern.replace(messageTemplate) { match -> replacements.getValue(match.value) }
 }
 
 /** Format a double to exactly 5 decimal places, no locale-specific separators. */

@@ -40,8 +40,10 @@ fun resolveTileSourceUrl(
     if (offlineExtractPaths.isEmpty()) return networkUrl
 
     if (location == null) {
-        // No location — use the first available (validated) extract
-        return "pmtiles://file://${offlineExtractPaths[0]}"
+        // No location — use the largest available (validated) extract, matching the "best
+        // (largest)" guarantee this function documents for the location != null case below.
+        val largestPath = offlineExtractPaths.maxBy { systemFileSystem.metadata(it.toPath()).size ?: 0L }
+        return "pmtiles://file://$largestPath"
     }
 
     // Pick the largest extract that contains the user's location
