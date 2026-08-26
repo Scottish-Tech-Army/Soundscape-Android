@@ -208,6 +208,41 @@ class FusedGeocoderTest {
     }
 
     @Test
+    fun getAddressFromLocationName_nearbyPhotonStreetNumberWithUnprocessedName_keepsPlatformName() =
+        runTest {
+            val platformResult = LocationDescription(
+                name = "Platform House",
+                location = origin,
+                locationType = LocationType.StreetNumber,
+            )
+            // 50m away - within the 100m merge threshold.
+            val photonLocation = getDestinationCoordinate(origin, 90.0, 50.0)
+            val photonFeature = fusedPhotonFeature(photonLocation, "Photon House")
+            // No processor wired, so photonResult.name is never populated (stays "") - PhotonGeocoder
+            // itself only sets featureName, not name; see photonGeocoderReturning()'s doc comment.
+            // Merging must not let that blank name overwrite the good platform-provided one.
+            val unprocessedPhotonGeocoder = PhotonGeocoder(
+                FusedFakePhotonSearch(
+                    searchResult = FeatureCollection().apply { addFeature(photonFeature) },
+                ),
+                processor = { it.locationType = LocationType.StreetNumber },
+            )
+            val fused = FusedGeocoder(
+                buildGridState(),
+                unprocessedPhotonGeocoder,
+                FakePlatformGeocoder(locationNameResult = listOf(platformResult)),
+            )
+
+            val results = fused.getAddressFromLocationName("House", origin, null)
+
+            assertEquals(1, results.size)
+            assertSame(platformResult, results[0])
+            assertEquals("Platform House", results[0].name)
+            // Location and typeDescription are still taken from the closer photon match.
+            assertEquals(photonLocation, results[0].location)
+        }
+
+    @Test
     fun getAddressFromLocationName_distantPhotonStreetNumber_isKeptSeparate() = runTest {
         val platformResult = LocationDescription(
             name = "Platform House",

@@ -81,7 +81,14 @@ class FusedGeocoder(
                             ) < 100.0
                         ) {
                             println("Using photon result")
-                            streetResult.name = photonResult.name
+                            // photonResult.name is only populated once something has called
+                            // LocationDescription.process() on it (PhotonGeocoder itself doesn't -
+                            // it defers that to whichever processor its caller wired up). Guard
+                            // against blank here so an unprocessed photonResult can't silently
+                            // wipe out a perfectly good platform-provided street name.
+                            if (photonResult.name.isNotBlank()) {
+                                streetResult.name = photonResult.name
+                            }
                             streetResult.location = photonResult.location
                             streetResult.typeDescription = photonResult.typeDescription
                             continue
