@@ -150,7 +150,12 @@ class StreetPreview {
                                 ways.last().second.intersections[WayEnd.START.id]
 
                             if (nextIntersection != null) {
-                                lastHeading = (road.way.heading(nextIntersection) + 180.0) % 360.0
+                                // Use the way actually followed to reach nextIntersection, not
+                                // the first way chosen at the junction - followWays can walk
+                                // through one or more pass-through nodes onto a later segment
+                                // whose geometry (and thus heading) differs from road.way's.
+                                lastHeading =
+                                    (ways.last().second.heading(nextIntersection) + 180.0) % 360.0
                                 locationProvider.updateLocation(
                                     SoundscapeLocation(
                                         latitude = nextIntersection.location.latitude,

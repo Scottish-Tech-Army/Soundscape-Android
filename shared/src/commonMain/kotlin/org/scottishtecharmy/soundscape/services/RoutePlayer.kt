@@ -74,7 +74,7 @@ class RoutePlayer(
             it.copy(
                 routeData = currentRouteData,
                 currentWaypoint = currentMarker,
-                beaconOnly = true
+                beaconOnly = beaconOnly
             )
         }
         play()
@@ -243,8 +243,8 @@ class RoutePlayer(
                     // moveToNext() rely on the Boolean return being available immediately.
                     val waypoint = currentMarker
                     coroutineScope.launch { createBeaconAtWaypoint(waypoint, userInitiated) }
+                    return true
                 }
-                return true
             }
         }
         return false
