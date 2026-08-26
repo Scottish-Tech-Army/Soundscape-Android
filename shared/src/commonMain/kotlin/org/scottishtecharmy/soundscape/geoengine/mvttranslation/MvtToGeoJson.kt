@@ -26,7 +26,13 @@ private fun addToStreetNumberMap(
     streetNumberMap: HashMap<String, FeatureCollection>
 ) {
     if (mvt.housenumber != null) {
-        val street = mvt.properties?.get("street")
+        // The tag-parsing loop above stores a parsed "street" tag in the dedicated `street`
+        // field, not in `properties` (it's a special-cased key, never copied into the generic
+        // properties map) - reading `properties["street"]` here always sees null, so every POI/
+        // building feature that also carries a housenumber (e.g. a car park tagged with both a
+        // name and an address) silently lands in the "null" (unknown street) bucket regardless
+        // of whether it actually has a real street tag.
+        val street = mvt.street
         val streetString = street.toString()
         if (!streetNumberMap.containsKey(streetString)) {
             streetNumberMap[streetString] = FeatureCollection()

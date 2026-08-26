@@ -466,12 +466,26 @@ class StreetDescription(val name: String, val gridState: GridState) {
                     25.0,
                     gridState.ruler
                 )
-                for (house in results) {
+                for (result in results) {
+                    val house = result as MvtFeature
+                    val location = getCentralPointForFeature(house)
                     // A searched for house should only be added if it's the nearest Way that it was
-                    // found in.
-                    val nearestWay =
-                        nearestWayOnStreet(getCentralPointForFeature(house as MvtFeature))
-                    if (way.first == nearestWay?.first) {
+                    // found in...
+                    val nearestWay = nearestWayOnStreet(location)
+                    if (way.first == nearestWay?.first && location != null) {
+                        // ...AND no other real named street is genuinely closer.
+                        // nearestWayOnStreet() only compares distance among this street's own
+                        // segments, so on its own it can't tell an untagged house that's actually
+                        // closer to a neighbouring street (e.g. across a shared junction) apart
+                        // from one that's genuinely on this street.
+                        val globalNearestWay =
+                            gridState.getNearestFeature(TreeId.WAYS_SELECTION, gridState.ruler, location, 25.0) as Way?
+                        if ((globalNearestWay != null) &&
+                            (globalNearestWay.name != null) &&
+                            (globalNearestWay.name != name)
+                        ) {
+                            continue
+                        }
                         addHouse(house, way, houseNumberPoints, false)
                     }
                 }
@@ -487,8 +501,18 @@ class StreetDescription(val name: String, val gridState: GridState) {
                 25.0,
                 gridState.ruler
             )
-            for (poi in results) {
-                val nearestWay = nearestWayOnStreet(getCentralPointForFeature(poi as MvtFeature))
+            for (result in results) {
+                val poi = result as MvtFeature
+                // A landmark POI's own address tag, if present, takes precedence over pure
+                // proximity - e.g. "Stewart Street Car Park" tagged street=Stewart Street must
+                // not be attached to a different street's description just because it happens
+                // to sit within 25m of one of that other street's ways. The parsed street tag
+                // lives in the dedicated `street` field (see MvtToGeoJson.kt's tag parsing) -
+                // it's never copied into `properties`.
+                val poiStreet = poi.street
+                if (poiStreet != null && poiStreet != name) continue
+
+                val nearestWay = nearestWayOnStreet(getCentralPointForFeature(poi))
                 if (way.first == nearestWay?.first) {
                     addHouse(poi, way, descriptivePoints, false)
                 }
@@ -498,8 +522,6 @@ class StreetDescription(val name: String, val gridState: GridState) {
         sortedDescriptivePoints = descriptivePoints.toList().sortedBy { it.first }.toMap()
 
         // Analyse the house numbers on each side of the road
-        val odd = arrayOf(0, 0)
-        val even = arrayOf(0, 0)
         val sides = arrayOf(true, false)
         for (side in 0..1) {
             val numberPoints: MutableMap<Double, MvtFeature> = mutableMapOf()
@@ -513,10 +535,6 @@ class StreetDescription(val name: String, val gridState: GridState) {
                     val houseNumber = parseHouseNumber(houseNumberString)
                     if (houseNumber != null) {
                         numberPoints[point.key] = point.value
-                        if (houseNumber % 2 == 0)
-                            even[side]++
-                        else
-                            odd[side]++
                     }
                 }
             }
@@ -529,6 +547,18 @@ class StreetDescription(val name: String, val gridState: GridState) {
 
         leftSortedNumbers = checkSortedNumberConsistency(leftSortedNumbers)
         rightSortedNumbers = checkSortedNumberConsistency(rightSortedNumbers)
+
+        // Count odd/even numbers from the filtered (consistency-checked) numbers, not the raw
+        // ones - otherwise checkSortedNumberConsistency's cleanup of numbering outliers has no
+        // effect on the odd/even mode decision it exists to inform.
+        val odd = arrayOf(0, 0)
+        val even = arrayOf(0, 0)
+        for ((sideIndex, sortedNumbers) in listOf(leftSortedNumbers, rightSortedNumbers).withIndex()) {
+            for (house in sortedNumbers.values) {
+                val houseNumber = parseHouseNumber(house.housenumber ?: "") ?: continue
+                if (houseNumber % 2 == 0) even[sideIndex]++ else odd[sideIndex]++
+            }
+        }
 
         assignHouseNumberModes(odd, even)
     }
