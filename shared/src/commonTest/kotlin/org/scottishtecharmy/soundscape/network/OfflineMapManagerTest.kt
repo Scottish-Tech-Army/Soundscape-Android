@@ -12,11 +12,14 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import okio.Buffer
 import okio.GzipSink
+import okio.Path
+import okio.Path.Companion.toPath
 import okio.buffer
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.platform.systemFileSystem
 import org.scottishtecharmy.soundscape.screens.home.offlinemaps.NearbyExtractsState
-import java.io.File
+import kotlin.random.Random
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -38,18 +41,26 @@ import kotlin.test.assertTrue
  */
 class OfflineMapManagerTest {
 
-    private lateinit var tempDir: File
+    private lateinit var tempDir: Path
 
     @BeforeTest
     fun setUp() {
-        tempDir = File(System.getProperty("java.io.tmpdir"), "offline-map-manager-test-${System.nanoTime()}")
-        tempDir.mkdirs()
+        tempDir = "build/offlineMapManagerTest-${Random.nextLong().let { if (it < 0) -it else it }}".toPath()
+        systemFileSystem.createDirectories(tempDir)
     }
 
     @AfterTest
     fun tearDown() {
-        tempDir.deleteRecursively()
+        systemFileSystem.deleteRecursively(tempDir)
     }
+
+    private fun writeFile(name: String, text: String) {
+        systemFileSystem.write(tempDir / name) { writeUtf8(text) }
+    }
+
+    private fun fileExists(name: String): Boolean = systemFileSystem.exists(tempDir / name)
+
+    private fun filePath(name: String): String = (tempDir / name).toString()
 
     // ---------- test doubles / fixtures ----------
 
@@ -81,7 +92,9 @@ class OfflineMapManagerTest {
     /** gzip-compresses [text], matching what [ManifestClient.getManifestJson] decompresses. */
     private fun gzip(text: String): ByteArray {
         val buffer = Buffer()
-        GzipSink(buffer).buffer().use { it.writeUtf8(text) }
+        val sink = GzipSink(buffer).buffer()
+        sink.writeUtf8(text)
+        sink.close()
         return buffer.readByteArray()
     }
 
@@ -138,7 +151,7 @@ class OfflineMapManagerTest {
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
 
@@ -159,7 +172,7 @@ class OfflineMapManagerTest {
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip(json)),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
 
@@ -178,7 +191,7 @@ class OfflineMapManagerTest {
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.NotFound, ByteArray(0)),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
 
@@ -195,7 +208,7 @@ class OfflineMapManagerTest {
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, "not gzip data".encodeToByteArray()),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
 
@@ -211,7 +224,7 @@ class OfflineMapManagerTest {
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("not { valid json")),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
 
@@ -227,7 +240,7 @@ class OfflineMapManagerTest {
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("""{"type":"FeatureCollection","features":[]}""")),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
 
@@ -243,18 +256,18 @@ class OfflineMapManagerTest {
 
     @Test
     fun refresh_alsoScansForDownloadedExtracts() = runBlocking {
-        File(tempDir, "already-downloaded.pmtiles").writeText("data")
+        writeFile("already-downloaded.pmtiles", "data")
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("""{"type":"FeatureCollection","features":[]}""")),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
 
         manager.refresh()
         waitUntil { manager.downloadedExtracts.value.isNotEmpty() }
 
-        assertEquals(listOf(File(tempDir, "already-downloaded.pmtiles").path), manager.downloadedExtracts.value)
+        assertEquals(listOf(filePath("already-downloaded.pmtiles")), manager.downloadedExtracts.value)
     }
 
     // ----- getExtractsContaining() -----
@@ -264,7 +277,7 @@ class OfflineMapManagerTest {
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
 
@@ -280,7 +293,7 @@ class OfflineMapManagerTest {
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip(json)),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
         manager.refresh()
@@ -308,7 +321,7 @@ class OfflineMapManagerTest {
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip(json)),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
         manager.refresh()
@@ -323,11 +336,11 @@ class OfflineMapManagerTest {
 
     @Test
     fun isDownloaded_matchesByBasenameRegardlessOfPathPrefix() {
-        File(tempDir, "region.pmtiles").writeText("data")
+        writeFile("region.pmtiles", "data")
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
 
@@ -340,19 +353,19 @@ class OfflineMapManagerTest {
 
     @Test
     fun refreshDownloaded_onlyListsPmtilesFiles() {
-        File(tempDir, "region.pmtiles").writeText("data")
-        File(tempDir, "region.pmtiles.downloading").writeText("partial")
-        File(tempDir, "notes.txt").writeText("irrelevant")
+        writeFile("region.pmtiles", "data")
+        writeFile("region.pmtiles.downloading", "partial")
+        writeFile("notes.txt", "irrelevant")
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
 
         manager.refreshDownloaded()
 
-        assertEquals(listOf(File(tempDir, "region.pmtiles").path), manager.downloadedExtracts.value)
+        assertEquals(listOf(filePath("region.pmtiles")), manager.downloadedExtracts.value)
     }
 
     // ----- startDownload() / cancelDownload() -----
@@ -361,24 +374,24 @@ class OfflineMapManagerTest {
     fun startDownload_success_movesTempFileToFinalPathAndUpdatesDownloadedExtracts() = runBlocking {
         val downloader = RecordingFileDownloader { _, destPath, onProgress ->
             onProgress(500)
-            File(destPath).writeText("pmtiles-bytes")
+            systemFileSystem.write(destPath.toPath()) { writeUtf8("pmtiles-bytes") }
             DownloadResultCommon.Success
         }
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             downloader,
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
 
         manager.startDownload("region.pmtiles")
         waitUntil { manager.downloadState.value is DownloadStateCommon.Success }
 
-        assertTrue(File(tempDir, "region.pmtiles").exists())
-        assertFalse(File(tempDir, "region.pmtiles.downloading").exists())
-        assertEquals(listOf(File(tempDir, "region.pmtiles").path), manager.downloadedExtracts.value)
+        assertTrue(fileExists("region.pmtiles"))
+        assertFalse(fileExists("region.pmtiles.downloading"))
+        assertEquals(listOf(filePath("region.pmtiles")), manager.downloadedExtracts.value)
         assertEquals(
-            listOf("https://example.test/extracts/region.pmtiles" to File(tempDir, "region.pmtiles.downloading").path),
+            listOf("https://example.test/extracts/region.pmtiles" to filePath("region.pmtiles.downloading")),
             downloader.calls,
         )
     }
@@ -386,13 +399,13 @@ class OfflineMapManagerTest {
     @Test
     fun startDownload_trimsTrailingSlashFromBaseUrl_andStripsPathPrefixFromDestFilename() = runBlocking {
         val downloader = RecordingFileDownloader { _, destPath, _ ->
-            File(destPath).writeText("bytes")
+            systemFileSystem.write(destPath.toPath()) { writeUtf8("bytes") }
             DownloadResultCommon.Success
         }
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             downloader,
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts/", // trailing slash
         )
 
@@ -400,20 +413,20 @@ class OfflineMapManagerTest {
         waitUntil { manager.downloadState.value is DownloadStateCommon.Success }
 
         assertEquals("https://example.test/extracts/sub/region.pmtiles", downloader.calls.single().first)
-        assertTrue(File(tempDir, "region.pmtiles").exists()) // "sub/" prefix stripped for the local filename
+        assertTrue(fileExists("region.pmtiles")) // "sub/" prefix stripped for the local filename
     }
 
     @Test
     fun startDownload_whileAlreadyActive_isIgnored() = runBlocking {
         val downloader = RecordingFileDownloader { _, destPath, _ ->
             delay(300)
-            File(destPath).writeText("bytes")
+            systemFileSystem.write(destPath.toPath()) { writeUtf8("bytes") }
             DownloadResultCommon.Success
         }
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             downloader,
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
 
@@ -424,7 +437,7 @@ class OfflineMapManagerTest {
 
         assertEquals(1, downloader.calls.size)
         assertTrue(downloader.calls.single().first.endsWith("first.pmtiles"))
-        assertEquals(listOf(File(tempDir, "first.pmtiles").path), manager.downloadedExtracts.value)
+        assertEquals(listOf(filePath("first.pmtiles")), manager.downloadedExtracts.value)
     }
 
     @Test
@@ -433,7 +446,7 @@ class OfflineMapManagerTest {
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             downloader,
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
 
@@ -443,7 +456,7 @@ class OfflineMapManagerTest {
         val error = manager.downloadState.value as DownloadStateCommon.Error
         assertTrue(error.message.contains("500"))
         assertEquals(1, downloader.calls.size)
-        assertFalse(File(tempDir, "region.pmtiles.downloading").exists())
+        assertFalse(fileExists("region.pmtiles.downloading"))
     }
 
     @Test
@@ -454,14 +467,14 @@ class OfflineMapManagerTest {
             if (attempt == 1) {
                 DownloadResultCommon.HttpError(503, "still caching")
             } else {
-                File(destPath).writeText("bytes")
+                systemFileSystem.write(destPath.toPath()) { writeUtf8("bytes") }
                 DownloadResultCommon.Success
             }
         }
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             downloader,
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
 
@@ -471,31 +484,31 @@ class OfflineMapManagerTest {
         waitUntil(timeoutMs = 10_000) { manager.downloadState.value is DownloadStateCommon.Success }
 
         assertEquals(2, downloader.calls.size)
-        assertTrue(File(tempDir, "region.pmtiles").exists())
+        assertTrue(fileExists("region.pmtiles"))
     }
 
     @Test
     fun cancelDownload_cancelsInProgressDownload_andDeletesTempFile() = runBlocking {
         val downloader = RecordingFileDownloader { _, destPath, _ ->
-            File(destPath).writeText("partial") // simulates bytes already streamed to disk
+            systemFileSystem.write(destPath.toPath()) { writeUtf8("partial") } // simulates bytes already streamed to disk
             delay(30_000) // never resolves on its own; must be cancelled
             DownloadResultCommon.Success
         }
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             downloader,
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
 
         manager.startDownload("region.pmtiles")
-        waitUntil { File(tempDir, "region.pmtiles.downloading").exists() }
+        waitUntil { fileExists("region.pmtiles.downloading") }
 
         manager.cancelDownload()
         waitUntil { manager.downloadState.value is DownloadStateCommon.Canceled }
 
-        assertFalse(File(tempDir, "region.pmtiles.downloading").exists())
-        assertFalse(File(tempDir, "region.pmtiles").exists())
+        assertFalse(fileExists("region.pmtiles.downloading"))
+        assertFalse(fileExists("region.pmtiles"))
     }
 
     @Test
@@ -503,7 +516,7 @@ class OfflineMapManagerTest {
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
 
@@ -516,53 +529,53 @@ class OfflineMapManagerTest {
 
     @Test
     fun deleteExtract_removesFileAndSidecarAndRefreshesDownloadedExtracts() {
-        File(tempDir, "region.pmtiles").writeText("data")
-        File(tempDir, "region.pmtiles.geojson").writeText("{}")
+        writeFile("region.pmtiles", "data")
+        writeFile("region.pmtiles.geojson", "{}")
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
         manager.refreshDownloaded()
         assertEquals(1, manager.downloadedExtracts.value.size)
 
-        manager.deleteExtract(File(tempDir, "region.pmtiles").path)
+        manager.deleteExtract(filePath("region.pmtiles"))
 
-        assertFalse(File(tempDir, "region.pmtiles").exists())
-        assertFalse(File(tempDir, "region.pmtiles.geojson").exists())
+        assertFalse(fileExists("region.pmtiles"))
+        assertFalse(fileExists("region.pmtiles.geojson"))
         assertTrue(manager.downloadedExtracts.value.isEmpty())
     }
 
     @Test
     fun deleteExtract_nonexistentPath_doesNotThrowOrChangeDownloadedExtracts() {
-        File(tempDir, "region.pmtiles").writeText("data")
+        writeFile("region.pmtiles", "data")
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
         manager.refreshDownloaded()
         assertEquals(1, manager.downloadedExtracts.value.size)
 
-        manager.deleteExtract(File(tempDir, "does-not-exist.pmtiles").path) // must not throw
+        manager.deleteExtract(filePath("does-not-exist.pmtiles")) // must not throw
 
         // deleteExtract() only calls refreshDownloaded() after a *successful* delete, so a
         // failed delete of a nonexistent file leaves the previously-cached list untouched.
         assertEquals(1, manager.downloadedExtracts.value.size)
-        assertTrue(File(tempDir, "region.pmtiles").exists())
+        assertTrue(fileExists("region.pmtiles"))
     }
 
     // ----- deleteExtractByFeature() -----
 
     @Test
     fun deleteExtractByFeature_matchesByExactFilename() {
-        File(tempDir, "region.pmtiles").writeText("data")
+        writeFile("region.pmtiles", "data")
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
         manager.refreshDownloaded()
@@ -570,7 +583,7 @@ class OfflineMapManagerTest {
 
         manager.deleteExtractByFeature(feature)
 
-        assertFalse(File(tempDir, "region.pmtiles").exists())
+        assertFalse(fileExists("region.pmtiles"))
         assertTrue(manager.downloadedExtracts.value.isEmpty())
     }
 
@@ -583,11 +596,11 @@ class OfflineMapManagerTest {
      */
     @Test
     fun deleteExtractByFeature_fallsBackToStrippedPrefixWhenExactNameDoesNotMatch() {
-        File(tempDir, "glasgow-gb.pmtiles").writeText("data")
+        writeFile("glasgow-gb.pmtiles", "data")
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
         manager.refreshDownloaded()
@@ -597,24 +610,24 @@ class OfflineMapManagerTest {
 
         manager.deleteExtractByFeature(feature)
 
-        assertFalse(File(tempDir, "glasgow-gb.pmtiles").exists())
+        assertFalse(fileExists("glasgow-gb.pmtiles"))
         assertTrue(manager.downloadedExtracts.value.isEmpty())
     }
 
     @Test
     fun deleteExtractByFeature_noFilenameProperty_isANoOp() {
-        File(tempDir, "region.pmtiles").writeText("data")
+        writeFile("region.pmtiles", "data")
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
         manager.refreshDownloaded()
 
         manager.deleteExtractByFeature(Feature()) // no properties at all - must not throw
 
-        assertTrue(File(tempDir, "region.pmtiles").exists())
+        assertTrue(fileExists("region.pmtiles"))
         assertEquals(1, manager.downloadedExtracts.value.size)
     }
 
@@ -623,7 +636,7 @@ class OfflineMapManagerTest {
         val manager = OfflineMapManager(
             manifestClient(HttpStatusCode.OK, gzip("{}")),
             noopDownloader(),
-            tempDir.path,
+            tempDir.toString(),
             "https://example.test/extracts",
         )
         manager.refreshDownloaded() // nothing downloaded
