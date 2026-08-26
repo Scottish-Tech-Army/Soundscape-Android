@@ -220,18 +220,14 @@ class PhotonGeocoderTest {
     }
 
     /**
-     * BUG (documented, not fixed - see task instructions): PhotonGeocoder.kt line ~67 does
-     * `mvt.name = feature.properties?.get("name").toString()`. The `?.` only guards the `.get`
-     * call - `.toString()` is then invoked unconditionally on a nullable receiver, so when a
-     * Photon result has no "name" property (or no properties at all), Kotlin's `Any?.toString()`
-     * turns the real `null` into the literal string "null" instead of leaving it/an empty string.
-     * That bogus "null" is then treated as a genuine feature name by MvtFeature.getText(), so the
-     * user would see "Null" spoken/displayed instead of falling back to a class-based description
-     * (e.g. "Cafe"). The same pattern affects the osm_key/osm_value -> featureType/featureClass
-     * assignments a few lines below. This test pins down the current (buggy) behaviour.
+     * A Photon result with no "name" property must not surface the literal string "null"/"Null"
+     * as if it were a real feature name - it should fall back to MvtFeature.getText()'s
+     * class-based description. `?.get("name")` returning genuine `null` must stay `null` all the
+     * way through to `mvt.name`, not get coerced into the string "null" by an unguarded
+     * `.toString()`.
      */
     @Test
-    fun getAddressFromLocationName_featureWithoutNameProperty_currentlyProducesLiteralNullText() =
+    fun getAddressFromLocationName_featureWithoutNameProperty_fallsBackToClassBasedText() =
         runTest {
             val feature = photonFeature(
                 getDestinationCoordinate(origin, 0.0, 5.0),
@@ -247,8 +243,12 @@ class PhotonGeocoderTest {
             val result = geocoder.getAddressFromLocationName("residential road", origin, null)
 
             assertEquals(1, result?.size)
-            // This is the bug: a nameless feature should not surface the string "Null".
-            assertEquals("Null", result!![0].featureName?.text)
+            // localizedStrings is null here (as it is throughout this test file), so this is
+            // MvtFeature.getText()'s "OSM Feature <class> <subClass>" fallback text used when no
+            // real localization is available - see its own doc comment. The point of this
+            // assertion is what it does NOT say: not "null"/"Null", and it does carry the
+            // class-derived "residential_street" text, proving the class-based fallback ran.
+            assertEquals("OSM Feature residential_street null", result!![0].featureName?.text)
         }
 
     // ---- getAddressFromLngLat -------------------------------------------------------------------

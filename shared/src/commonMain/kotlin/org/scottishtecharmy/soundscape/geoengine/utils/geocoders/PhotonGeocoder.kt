@@ -62,18 +62,30 @@ class PhotonGeocoder(
             }
 
         return deduplicate.map { feature ->
-            val mvt = MvtFeature()
-            mvt.properties = feature.properties
-            mvt.name = feature.properties?.get("name").toString()
-            mvt.featureType = feature.properties?.get("osm_key").toString()
-            mvt.featureClass = feature.properties?.get("osm_value").toString()
-            if ((mvt.featureType == "highway") && (mvt.featureClass == "residential"))
-                mvt.featureClass = "residential_street"
-            feature.deferredToLocationDescription(
-                LocationSource.PhotonGeocoder,
-                featureName = mvt.getText(localizedStrings)
-            ).also(processor)
+            feature.toPhotonLocationDescription(localizedStrings).also(processor)
         }
+    }
+
+    /**
+     * Builds the [MvtFeature] scratch object Photon results are described through, and the
+     * [LocationDescription] it feeds. `?.toString()` (not `.toString()`) on each property lookup
+     * matters: a genuinely absent property must stay null, not become the literal string "null" -
+     * that string would otherwise flow into [MvtFeature.getText] as if it were a real name.
+     */
+    private fun Feature.toPhotonLocationDescription(
+        localizedStrings: LocalizedStrings?,
+    ): LocationDescription {
+        val mvt = MvtFeature()
+        mvt.properties = properties
+        mvt.name = properties?.get("name")?.toString()
+        mvt.featureType = properties?.get("osm_key")?.toString()
+        mvt.featureClass = properties?.get("osm_value")?.toString()
+        if ((mvt.featureType == "highway") && (mvt.featureClass == "residential"))
+            mvt.featureClass = "residential_street"
+        return deferredToLocationDescription(
+            LocationSource.PhotonGeocoder,
+            featureName = mvt.getText(localizedStrings)
+        )
     }
 
     override suspend fun getAddressFromLngLat(
@@ -94,7 +106,7 @@ class PhotonGeocoder(
         analyticsLogger("photonReverseGeocode")
 
         return searchResult?.features?.firstNotNullOfOrNull { feature ->
-            feature.deferredToLocationDescription(LocationSource.PhotonGeocoder).also(processor)
+            feature.toPhotonLocationDescription(localizedStrings).also(processor)
         }
     }
 }
