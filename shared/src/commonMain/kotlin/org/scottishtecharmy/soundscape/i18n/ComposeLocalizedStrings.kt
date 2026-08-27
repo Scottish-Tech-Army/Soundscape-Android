@@ -16,6 +16,7 @@ import org.scottishtecharmy.soundscape.resources.bytes_format_mb_a11y
 import org.scottishtecharmy.soundscape.resources.bytes_format_tb
 import org.scottishtecharmy.soundscape.resources.bytes_format_tb_a11y
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon
+import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon_distance
 import org.scottishtecharmy.soundscape.resources.callouts_no_nearby_markers
 import org.scottishtecharmy.soundscape.resources.callouts_nothing_to_call_out_now
 import org.scottishtecharmy.soundscape.resources.confect_name_dead_end
@@ -182,6 +183,7 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.ConfectNamePavementNextTo -> Res.string.confect_name_pavement_next_to
         StringKey.ConfectNamePavement -> Res.string.confect_name_pavement
         StringKey.CalloutsAudioBeacon -> Res.string.callouts_audio_beacon
+        StringKey.CalloutsAudioBeaconDistance -> Res.string.callouts_audio_beacon_distance
         StringKey.DirectionsAtPoi -> Res.string.directions_at_poi
         StringKey.DirectionsDirectionAhead -> Res.string.directions_direction_ahead
         StringKey.IntersectionApproachingIntersection -> Res.string.intersection_approaching_intersection

@@ -105,9 +105,8 @@ class AutoCallout(
 
         val distance = userGeometry.ruler.distance(userGeometry.location, beacon)
         val distanceString = formatDistanceAndDirection(distance, null, localized)
-        var text = localized?.get(StringKey.CalloutsAudioBeacon) ?: "Distance to the audio beacon"
-        text += " $distanceString"
-
+        val text = localized?.get(StringKey.CalloutsAudioBeaconDistance, distanceString)
+            ?: "Distance to beacon $distanceString"
         return TrackedCallout(
             userGeometry = userGeometry,
             trackedText = "",
