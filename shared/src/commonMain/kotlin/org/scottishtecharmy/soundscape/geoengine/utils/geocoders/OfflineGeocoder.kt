@@ -104,7 +104,9 @@ class OfflineGeocoder(
             }
         }
         if (nearbyWay != null) {
-            val nearbyName = nearbyWay.properties?.get("pavement") as String? ?: nearbyWay.name
+            val nearbyName = (nearbyWay.properties?.get("pavement") as String?)
+                .takeUnless { it.isNullOrEmpty() }
+                ?: nearbyWay.getName(null, gridState, localizedStrings)
             if (nearbyName != null) {
                 val description = StreetDescription(nearbyName, gridState)
                 description.createDescription(nearbyWay, localizedStrings)
