@@ -31,7 +31,13 @@ jobs:
       - name: Run lint over the repo
         run: ./gradlew lint
 
-  test:
+  # The unit tests and the instrumentation tests are independent of each other,
+  # so they run as separate parallel jobs rather than one long serial job. Both
+  # need the offline map fixtures (the unit tests read them out of the test
+  # resources, the instrumentation job pushes one onto the emulator), but that
+  # step is cached so fetching it twice costs little.
+  unit-test:
+    name: Run unit tests
 
     runs-on: ubuntu-latest
     environment: development
@@ -67,6 +73,40 @@ jobs:
       - name: Run tests
         run: ./gradlew test :shared:testAndroidHostTest
 
+  instrumentation-test:
+    name: Run instrumentation tests
+
+    runs-on: ubuntu-latest
+    environment: development
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup offline maps for tests
+        uses: ./.github/actions/setup-offline-maps
+        with:
+          output_dir: ${{ env.main_project_module }}/src/test/res/org/scottishtecharmy/soundscape
+
+      - name: Setup JDK + Gradle
+        uses: ./.github/actions/setup-jdk-gradle
+
+#      See the note in the unit-test job: provider secrets are unavailable to
+#      fork-triggered runs, and the tests that need them check at runtime.
+
+      - name: Setup tile and search providers
+        uses: ./.github/actions/write-provider-config
+        with:
+          platform: android
+          tile_provider_url: ${{ secrets.TILE_PROVIDER_URL }}
+          tile_provider_api_key: ${{ secrets.TILE_PROVIDER_API_KEY }}
+          search_provider_url: ${{ secrets.SEARCH_PROVIDER_URL }}
+          search_provider_api_key: ${{ secrets.SEARCH_PROVIDER_API_KEY }}
+          extract_provider_url: ${{ secrets.EXTRACT_PROVIDER_URL }}
+
+      # Build the APK before the emulator boots so the slow Gradle work doesn't
+      # happen with an emulator sitting open waiting on it.
       - name: Build debug version
         run: ./gradlew assembleDebug
 
