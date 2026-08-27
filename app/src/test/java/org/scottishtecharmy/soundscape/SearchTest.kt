@@ -131,6 +131,42 @@ class SearchTest {
     )
 
     @Test
+    fun offlineReverseGeocode_houseNumbersOddFacingNorth() = assertOfflineReverseGeocode(
+        LngLatAlt(-4.3122090, 55.9436836),
+        0.0,
+        "11 Kersland Drive",
+        ignoreHouseNumbers = false,
+        mapMatch = true
+    )
+
+    @Test
+    fun offlineReverseGeocode_houseNumbersOddFacingSouth() = assertOfflineReverseGeocode(
+        LngLatAlt(-4.3122090, 55.9436836),
+        180.0,
+        "11 Kersland Drive",
+        ignoreHouseNumbers = false,
+        mapMatch = true
+    )
+
+    @Test
+    fun offlineReverseGeocode_houseNumbersEvenFacingNorth() = assertOfflineReverseGeocode(
+        LngLatAlt(-4.3119106, 55.9437322),
+        0.0,
+        "18 Kersland Drive",
+        ignoreHouseNumbers = false,
+        mapMatch = true
+    )
+
+    @Test
+    fun offlineReverseGeocode_houseNumbersEvenFacingSouth() = assertOfflineReverseGeocode(
+        LngLatAlt(-4.3119106, 55.9437322),
+        180.0,
+        "18 Kersland Drive",
+        ignoreHouseNumbers = false,
+        mapMatch = true
+    )
+
+    @Test
     fun offlineSearch() {
         runBlocking {
 

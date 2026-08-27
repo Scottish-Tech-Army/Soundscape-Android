@@ -52,16 +52,8 @@ private fun house(number: String, location: LngLatAlt): MvtFeature =
 class StreetDescriptionTest {
 
     // ============================================================================================
-    // sideToBool / otherSide
+    // otherSide
     // ============================================================================================
-
-    @Test
-    fun sideToBool_mapsLeftRightAndInline() {
-        val sd = newStreetDescription()
-        assertEquals(false, sd.sideToBool(Side.LEFT))
-        assertEquals(true, sd.sideToBool(Side.RIGHT))
-        assertNull(sd.sideToBool(Side.INLINE))
-    }
 
     @Test
     fun otherSide_flipsLeftAndRightButInlineHasNoOpposite() {
@@ -1125,13 +1117,13 @@ class StreetDescriptionTest {
         sd.createDescription(fixture.waySouth, null)
 
         // Due to the whichSide/addHouse orientation convention (see the dedicated whichSide test
-        // documenting its "reversed" behaviour), the west-side (odd) houses land in
-        // leftSortedNumbers and the east-side (even) houses land in rightSortedNumbers for this
+        // documenting its "reversed" behaviour), the east-side (even) houses land in
+        // leftSortedNumbers and the west-side (odd) houses land in rightSortedNumbers for this
         // south-to-north street.
-        assertEquals(listOf("11", "13"), sd.leftSortedNumbers.values.map { it.housenumber })
-        assertEquals(listOf("12", "14"), sd.rightSortedNumbers.values.map { it.housenumber })
-        assertEquals(StreetDescription.HouseNumberMode.ODD, sd.leftMode)
-        assertEquals(StreetDescription.HouseNumberMode.EVEN, sd.rightMode)
+        assertEquals(listOf("12", "14"), sd.leftSortedNumbers.values.map { it.housenumber })
+        assertEquals(listOf("11", "13"), sd.rightSortedNumbers.values.map { it.housenumber })
+        assertEquals(StreetDescription.HouseNumberMode.EVEN, sd.leftMode)
+        assertEquals(StreetDescription.HouseNumberMode.ODD, sd.rightMode)
     }
 
     @Test
@@ -1161,16 +1153,19 @@ class StreetDescriptionTest {
 
         sd.createDescription(fixture.waySouth, null)
 
-        assertEquals(StreetDescription.HouseNumberMode.ODD, sd.leftMode)
-        assertEquals(StreetDescription.HouseNumberMode.EVEN, sd.rightMode)
+        // Due to the whichSide/addHouse orientation convention, the east-side (even) houses land
+        // in leftSortedNumbers and the west-side (odd) houses land in rightSortedNumbers for this
+        // south-to-north street - see the sibling test above.
+        assertEquals(StreetDescription.HouseNumberMode.EVEN, sd.leftMode)
+        assertEquals(StreetDescription.HouseNumberMode.ODD, sd.rightMode)
         // The tolerated exception is excluded from the sorted numbers used for interpolation...
-        assertFalse(sd.leftSortedNumbers.values.any { it.housenumber == "100" })
+        assertFalse(sd.rightSortedNumbers.values.any { it.housenumber == "100" })
         // ...while every genuine odd number, and the clean even side, are untouched.
         assertEquals(
             listOf("1", "3", "5", "7", "9", "11", "13", "15", "17"),
-            sd.leftSortedNumbers.values.map { it.housenumber },
+            sd.rightSortedNumbers.values.map { it.housenumber },
         )
-        assertEquals(listOf("2", "4", "6"), sd.rightSortedNumbers.values.map { it.housenumber })
+        assertEquals(listOf("2", "4", "6"), sd.leftSortedNumbers.values.map { it.housenumber })
     }
 
     @Test
@@ -1262,12 +1257,15 @@ class StreetDescriptionTest {
         val sd = StreetDescription("Test Street", fixture.gridState)
         sd.createDescription(fixture.waySouth, null)
 
-        val leftNumbers = sd.leftSortedNumbers.values.map { it.housenumber }
-        assertTrue(leftNumbers.contains("7"))
+        // These are all west-side houses, which (per the whichSide/addHouse orientation
+        // convention documented on the sibling tests above) land in rightSortedNumbers for this
+        // south-to-north street.
+        val westNumbers = sd.rightSortedNumbers.values.map { it.housenumber }
+        assertTrue(westNumbers.contains("7"))
         // The contaminating "11" (from the unknown-street search, near "Other Street") must not
         // appear - only the confidence=true anchors and the legitimate "7" should be present.
-        assertFalse(leftNumbers.contains("11"))
-        assertEquals(listOf("5", "7", "9", "13", "17"), leftNumbers)
+        assertFalse(westNumbers.contains("11"))
+        assertEquals(listOf("5", "7", "9", "13", "17"), westNumbers)
     }
 
     @Test
@@ -1302,12 +1300,14 @@ class StreetDescriptionTest {
         val sd = StreetDescription("Test Street", fixture.gridState)
         sd.createDescription(fixture.waySouth, null)
 
-        // The outlier was indeed removed by consistency-checking...
-        assertFalse(sd.leftSortedNumbers.values.any { it.housenumber == "8" })
+        // The outlier was indeed removed by consistency-checking. It's on the west side, which
+        // (per the whichSide/addHouse orientation convention documented on the sibling tests
+        // above) lands in rightSortedNumbers for this south-to-north street.
+        assertFalse(sd.rightSortedNumbers.values.any { it.housenumber == "8" })
         // ...and with the counts now taken from the filtered numbers, the mode is correctly
         // detected instead of falling back to MIXED.
-        assertEquals(StreetDescription.HouseNumberMode.ODD, sd.leftMode)
-        assertEquals(StreetDescription.HouseNumberMode.EVEN, sd.rightMode)
+        assertEquals(StreetDescription.HouseNumberMode.EVEN, sd.leftMode)
+        assertEquals(StreetDescription.HouseNumberMode.ODD, sd.rightMode)
     }
 
     // ============================================================================================
@@ -1319,8 +1319,8 @@ class StreetDescriptionTest {
         val sd = newStreetDescription()
         sd.describeStreet()
 
-        val poi = MvtFeature().apply { name = "Cafe"; side = true }
-        val poi2 = MvtFeature().apply { name = "Bakery"; side = false }
+        val poi = MvtFeature().apply { name = "Cafe"; side = Side.RIGHT }
+        val poi2 = MvtFeature().apply { name = "Bakery"; side = Side.LEFT }
         val poi3 = MvtFeature().apply { name = "Statue" } // side == null
         sd.sortedDescriptivePoints = mapOf(0.0 to poi, 10.0 to poi2, 20.0 to poi3)
         sd.describeStreet()

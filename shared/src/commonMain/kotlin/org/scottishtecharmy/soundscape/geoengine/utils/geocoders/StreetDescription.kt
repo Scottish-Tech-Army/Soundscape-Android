@@ -56,14 +56,6 @@ class StreetDescription(val name: String, val gridState: GridState) {
         return getSideOfLine(start, end, location)
     }
 
-    fun sideToBool(side: Side): Boolean? {
-        return when (side) {
-            Side.LEFT -> false
-            Side.RIGHT -> true
-            else -> null
-        }
-    }
-
     fun otherSide(side: Side): Side? {
         return when (side) {
             Side.LEFT -> Side.RIGHT
@@ -236,7 +228,7 @@ class StreetDescription(val name: String, val gridState: GridState) {
                 pdh,
                 location
             )
-            house.side = sideToBool(side)
+            house.side = side
             house.streetConfidence = streetConfidence
 
             points[totalDistance] = house
@@ -527,12 +519,13 @@ class StreetDescription(val name: String, val gridState: GridState) {
 
         sortedDescriptivePoints = descriptivePoints.toList().sortedBy { it.first }.toMap()
 
-        // Analyse the house numbers on each side of the road
-        val sides = arrayOf(true, false)
-        for (side in 0..1) {
+        // Analyse the house numbers on each side of the road. Bucketing directly on the Side enum
+        // (rather than a positional Boolean array) means the compiler enforces which bucket each
+        // side goes into, instead of relying on a convention that has to be got right by hand.
+        for (side in listOf(Side.LEFT, Side.RIGHT)) {
             val numberPoints: MutableMap<Double, MvtFeature> = mutableMapOf()
             for (point in houseNumberPoints) {
-                if (point.value.side != sides[side])
+                if (point.value.side != side)
                     continue
 
                 // We have a house number on the side of the street that we're interested in
@@ -544,10 +537,11 @@ class StreetDescription(val name: String, val gridState: GridState) {
                     }
                 }
             }
-            if (sides[side]) {
-                leftSortedNumbers = numberPoints.toList().sortedBy { it.first }.toMap()
-            } else {
-                rightSortedNumbers = numberPoints.toList().sortedBy { it.first }.toMap()
+            val sortedNumberPoints = numberPoints.toList().sortedBy { it.first }.toMap()
+            when (side) {
+                Side.LEFT -> leftSortedNumbers = sortedNumberPoints
+                Side.RIGHT -> rightSortedNumbers = sortedNumberPoints
+                else -> {}
             }
         }
 
@@ -838,9 +832,9 @@ class StreetDescription(val name: String, val gridState: GridState) {
         for (point in sortedDescriptivePoints) {
             val text = point.value.getText(null)
             when (point.value.side) {
-                null -> println("\t\t\t\t\t${point.key.toInt()}m (${text.text})")
-                true -> println("\t\t\t\t\t${point.key.toInt()}m ${text.text}")
-                false -> println("${text.text}\t${point.key.toInt()}m")
+                null, Side.INLINE -> println("\t\t\t\t\t${point.key.toInt()}m (${text.text})")
+                Side.RIGHT -> println("\t\t\t\t\t${point.key.toInt()}m ${text.text}")
+                Side.LEFT -> println("${text.text}\t${point.key.toInt()}m")
             }
         }
     }

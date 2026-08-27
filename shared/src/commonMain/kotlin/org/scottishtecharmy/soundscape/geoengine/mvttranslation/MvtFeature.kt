@@ -1,6 +1,7 @@
 package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
 import org.scottishtecharmy.soundscape.geoengine.TextForFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.Side
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
@@ -79,7 +80,7 @@ open class MvtFeature : Feature() {
     var ref: String? = null
     var housenumber: String? = null
     var street: String? = null
-    var side: Boolean? = null
+    var side: Side? = null
     var streetConfidence: Boolean = false
     var featureClass: String? = null
     var featureSubClass: String? = null
