@@ -105,7 +105,7 @@
     <string name="markers_sort_button_sort_by_distance">距离</string>
     <string name="markers_sort_button_sort_by_distance_voiceover">已按距离排序</string>
     <string name="markers_no_markers_title">开始使用标记点</string>
-    <string name="markers_no_markers_hint_1">为常去的目的地、路线上的航点或任何想要提示的地点创建标记点。只需从主屏幕选择一个地点或您的当前位置，然后选择*"保存为标记点"*。</string>
+    <string name="markers_no_markers_hint_1">为常去的目的地、路线上的航点或任何想要提示的地点创建标记点。只需从主屏幕选择一个地点或您的当前位置，然后选择*保存为标记点*。</string>
     <string name="markers_no_markers_hint_2">试着标记您的家、工作地点的入口或公园里您最喜欢的地方。</string>
     <string name="markers_edit_screen_title_edit">编辑标记点</string>
     <string name="markers_generic_name">标记点</string>
@@ -893,7 +893,7 @@
     <string name="faq_tips_title">使用技巧</string>
     <string name="faq_section_what_is_soundscape">什么是Soundscape，我该如何使用？</string>
     <string name="faq_when_to_use_soundscape_question">我应该在什么时候使用Soundscape？</string>
-    <string name="faq_when_to_use_soundscape_answer">Soundscape的功能和优势涵盖多种场景和时间跨度。此外，Soundscape对您的价值可能会随时间演变，因此您今天的使用方式可能与三个月后有所不同。人们常常以*"这个应用能解决什么问题？"*的角度来看待应用。Soundscape当然可以在您有特定信息需求时按需使用——例如在前往目的地途中追踪目的地位置、从地铁站出来时帮助您辨别方向、下车后确定方位，或者查找下一个路口的街道名称和距离。然而，Soundscape背后的理念是*"用声音照亮您的世界"*，设计初衷是在您外出时随时使用，提供对周围环境的感知，例如让您了解所在街道的名称、行进方向以及经过的商家名称。在这种使用模式下，我们的用户将Soundscape称为*"不错的伴侣应用"*，支持*"偶然发现"*，能*"填补心理地图中的空白"*，并在*"步行时提供更多信心"*。以下是我们用户将Soundscape融入生活的一些其他例子：\n\n"Soundscape帮助我在下错公交车后重新找到了方向。"\n\n"即使在我已经住了3年的城镇，使用Soundscape后，我对周围环境有了更好的了解。"\n\n"3D声音增强了我的步行体验，因为我感觉与环境的联系更加紧密……有了这个应用，我更愿意尝试新路线了。"\n\n"我怀念走在路上偶然发现事物的感觉。有了Soundscape真好——无需任何努力就能听到周围事物的信息。位置关系信息非常有用，是一款很棒的情境感知和探索商业区的应用。"\n\n"我用Soundscape在约克市中心找到一家酒吧。我使用了它的多种功能先定位再实际找到它。它把我带到了距离门口3米以内的地方——太棒了！"</string>
+    <string name="faq_when_to_use_soundscape_answer">Soundscape的功能和优势涵盖多种场景和时间跨度。此外，Soundscape对您的价值可能会随时间演变，因此您今天的使用方式可能与三个月后有所不同。人们常常以*这个应用能解决什么问题？*的角度来看待应用。Soundscape当然可以在您有特定信息需求时按需使用——例如在前往目的地途中追踪目的地位置、从地铁站出来时帮助您辨别方向、下车后确定方位，或者查找下一个路口的街道名称和距离。然而，Soundscape背后的理念是*用声音照亮您的世界*，设计初衷是在您外出时随时使用，提供对周围环境的感知，例如让您了解所在街道的名称、行进方向以及经过的商家名称。在这种使用模式下，我们的用户将Soundscape称为*不错的伴侣应用*，支持*偶然发现*，能*填补心理地图中的空白*，并在*步行时提供更多信心*。以下是我们用户将Soundscape融入生活的一些其他例子：\n\nSoundscape帮助我在下错公交车后重新找到了方向。\n\n即使在我已经住了3年的城镇，使用Soundscape后，我对周围环境有了更好的了解。\n\n3D声音增强了我的步行体验，因为我感觉与环境的联系更加紧密……有了这个应用，我更愿意尝试新路线了。\n\n我怀念走在路上偶然发现事物的感觉。有了Soundscape真好——无需任何努力就能听到周围事物的信息。位置关系信息非常有用，是一款很棒的情境感知和探索商业区的应用。\n\n我用Soundscape在约克市中心找到一家酒吧。我使用了它的多种功能先定位再实际找到它。它把我带到了距离门口3米以内的地方——太棒了！</string>
     <string name="faq_markers_function_question">什么是标记点，如何充分利用它们？</string>
     <string name="faq_markers_function_answer">标记点是您保存的地点。它们可以是应用中可发现的地点，也可以是您亲自添加的全新地点。您可以通过在主屏幕选择*\"当前位置\"*按钮并点击*\"保存为标记点\"*来将当前位置保存为标记点。也可以在主屏幕使用搜索栏搜索想要保存的地点，或使用*\"附近地点\"*按钮查找地点来保存其他位置。找到想保存的地点后，选择该地点将进入*\"位置详情\"*屏幕，在该屏幕上点击名为*\"保存为标记点\"*的按钮即可。</string>
     <string name="faq_section_getting_the_best_experience">如何获得Soundscape的最佳体验？</string>
@@ -947,10 +947,10 @@
     <string name="faq_what_is_osm_question">什么是Open Street Map，为什么Soundscape使用它？</string>
     <string name="faq_what_is_osm_answer">Soundscape利用地理地图数据提供应用中的信息播报。我们使用的主要地图数据源是Open Street Map（www.openstreetmap.org），这是一个丰富的社区生成的地图平台，使组织和个人能够使用Open Street Map地图编辑工具改善所提供信息的质量和精细度以及其空间的无障碍性。</string>
     <string name="faq_tip_beacon_quiet">如果您将手机放在口袋里并停止移动，信标声音会变安静，因为Soundscape无法判断您面朝的方向。解决方法是重新开始走动，或拿出手机平放。</string>
-    <string name="faq_tip_setting_beacon_on_address">您可以在任何地址上设置信标。从 Soundscape 主屏幕搜索该地址，在搜索结果中选择地址后，会显示*\"位置详情\"*页面，其中有在该地址*\"启动音频信标\"*的选项。通过这种方式，您可以在不在 Open Street Map 中的商家、地点、兴趣点和住宅上设置信标。</string>
+    <string name="faq_tip_setting_beacon_on_address">您可以在任何地址上设置信标。从 Soundscape 主屏幕搜索该地址，在搜索结果中选择地址后，会显示*\\"位置详情\\"*页面，其中有在该地址*\\"启动音频信标\\"*的选项。通过这种方式，您可以在不在 Open Street Map 中的商家、地点、兴趣点和住宅上设置信标。</string>
     <string name="faq_tip_finding_bus_stops">您可以在*\"附近地点\"*列表中选择*\"公共交通\"*筛选器来查找附近的公交站点。</string>
     <string name="faq_tip_turning_beacon_off">您可以使用主屏幕上的静音按钮来开启和关闭信标的节奏声。如果信标被静音，您仍会每隀50米左右收到关于到目的地距离的更新。</string>
-    <string name="faq_tip_turning_off_auto_callouts">如果您仍想与 Soundscape 交互，但不想听到自动播报，可以通过主菜单进入*\"设置\"*屏幕的*\"管理提示\"*部分将播报关闭。或者，如果您短时间不使用 Soundscape，可在主屏幕使用*\"休眠\"*按钮将其设为休眠或小睡模式。</string>
+    <string name="faq_tip_turning_off_auto_callouts">如果您仍想与 Soundscape 交互，但不想听到自动播报，可以通过主菜单进入*\\"设置\\"*屏幕的*\\"管理提示\\"*部分将播报关闭。或者，如果您短时间不使用 Soundscape，可在主屏幕使用*\\"休眠\\"*按钮将其设为休眠或小睡模式。</string>
     <string name="faq_tip_hold_phone_flat">Soundscape在您将手机平放、屏幕朝向天空、手机顶部指向远离您的方向时效果最佳。</string>
     <string name="faq_tip_create_marker_at_bus_stop">如果有您经常乘坐的公交线路，可将上下车站点设为标记点。这样它们会被保存，便于您下次查找：在主屏幕进入*\\"标记点和路线\\"*，在*\\"标记点\\"*页面找到它们。您可以在这些标记点上设置音频信标，并获得关于距下车站的定期距离更新。注意：您可以关闭音频信标的节奏声，但沿途仍会收到距离更新。</string>
     <string name="no_language_selected">未选择语言</string>
