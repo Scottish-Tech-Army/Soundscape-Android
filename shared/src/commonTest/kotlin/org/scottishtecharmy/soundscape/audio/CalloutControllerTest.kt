@@ -4,7 +4,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -330,8 +330,16 @@ class CalloutControllerTest {
         // already happened and StateFlow would only ever show it the final
         // value.
         val emissions = mutableListOf<TourButton?>()
+        // Signalled from the collector each time a new emission lands, so the
+        // waits below suspend until notified instead of polling on a delay -
+        // deterministic regardless of CI scheduler contention on the real
+        // Dispatchers.Default that myLocation()/whatsAroundMe() dispatch onto.
+        val emitted = Channel<Unit>(Channel.UNLIMITED)
         val collectJob = launch(start = CoroutineStart.UNDISPATCHED) {
-            controller.activeCalloutFlow.collect { emissions.add(it) }
+            controller.activeCalloutFlow.collect {
+                emissions.add(it)
+                emitted.trySend(Unit)
+            }
         }
 
         controller.myLocation()
@@ -341,7 +349,7 @@ class CalloutControllerTest {
         // the null it resets to once the callout body throws and startCallout's
         // catch/finally run.
         withTimeout(20_000) {
-            while (emissions.size < 3) delay(5)
+            while (emissions.size < 3) emitted.receive()
         }
 
         assertEquals(listOf(null, TourButton.MY_LOCATION, null), emissions)
@@ -360,7 +368,7 @@ class CalloutControllerTest {
         // than being a silent permanent no-op on an already-cancelled parent.
         controller.whatsAroundMe()
         withTimeout(20_000) {
-            while (emissions.size < 5) delay(5)
+            while (emissions.size < 5) emitted.receive()
         }
         collectJob.cancel()
 
