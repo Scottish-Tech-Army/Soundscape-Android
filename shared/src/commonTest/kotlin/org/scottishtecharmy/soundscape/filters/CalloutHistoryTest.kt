@@ -1,15 +1,15 @@
 package org.scottishtecharmy.soundscape.filters
 
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
-import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 class CalloutHistoryTest {
 
@@ -99,6 +99,6 @@ class CalloutHistoryTest {
             }
         }
         println("Callout count: $calloutCount")
-        assert(calloutCount == 41)
+        assertEquals(41, calloutCount)
     }
 }
