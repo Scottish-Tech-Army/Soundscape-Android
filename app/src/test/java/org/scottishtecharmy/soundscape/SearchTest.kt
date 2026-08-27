@@ -22,94 +22,113 @@ import org.scottishtecharmy.soundscape.utils.process
 import kotlin.test.assertEquals
 
 class SearchTest {
-    @Test
-    fun offlineReverseGeocode() {
-        runBlocking {
 
-            val currentLocation = LngLatAlt(-4.3108846, 55.9495440)
-            val gridState = getGridStateForLocation(currentLocation, MAX_ZOOM_LEVEL, GRID_SIZE)
-            val settlementState = getGridStateForLocation(currentLocation, 12, 3)
-            val tileSearch = TileSearch(offlineExtractPath, gridState, settlementState)
-            val offlineGeocoder = OfflineGeocoder(
-                gridState,
-                settlementState,
-                tileSearch,
-                processor = { it.process() })
+    // Builds a fresh OfflineGeocoder (and the GridState/settlementState it needs), centered on
+    // `location`, so each case is independent rather than sharing one geocoder/grid across
+    // unrelated query points.
+    private fun assertOfflineReverseGeocode(
+        location: LngLatAlt,
+        heading: Double,
+        expectedName: String,
+        ignoreHouseNumbers: Boolean = true,
+        // Real GPS map-matching (MapMatchFilter) snaps onto the nearest way in TreeId.WAYS_SELECTION
+        // regardless of whether it's named, unlike OfflineGeocoder's own unmatched fallback search
+        // which only considers named roads. Set this to reproduce being map-matched onto whatever
+        // way (named or not) is actually nearest `location`.
+        mapMatch: Boolean = false
+    ) = runBlocking {
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, GRID_SIZE)
+        val settlementState = getGridStateForLocation(location, 12, 3)
+        val tileSearch = TileSearch(offlineExtractPath, gridState, settlementState)
+        val offlineGeocoder = OfflineGeocoder(
+            gridState,
+            settlementState,
+            tileSearch,
+            processor = { it.process() })
 
-            // Check that the street address also works
-            val result4 = offlineGeocoder.getAddressFromLngLat(
-                UserGeometry(LngLatAlt(-4.3069511, 55.9400774), 90.0),
-                null,
-                ignoreHouseNumbers = false
-            )
-            assertEquals("21 Dougalston Avenue", result4!!.name)
+        val mapMatchedWay = if (mapMatch) {
+            gridState.getNearestFeature(TreeId.WAYS_SELECTION, gridState.ruler, location, 30.0) as Way?
+        } else null
 
-            val result8 = offlineGeocoder.getAddressFromLngLat(
-                UserGeometry(LngLatAlt(-4.3118, 55.9400), 90.0),
-                null,
-                ignoreHouseNumbers = true
-            )
-            assertEquals(
-                "On Crossveggate between Service to Lennox Park via bridge and Glasgow Road",
-                result8!!.name
-            )
-
-            val result7 = offlineGeocoder.getAddressFromLngLat(
-                UserGeometry(LngLatAlt(-4.3108846, 55.9495440), 180.0),
-                null,
-                ignoreHouseNumbers = true
-            )
-            assertEquals("On Craigmillar Avenue, 345 metres until Tannoch Drive", result7!!.name)
-
-
-            val result5 = offlineGeocoder.getAddressFromLngLat(
-                UserGeometry(LngLatAlt(-4.3117919, 55.9486518), 0.0),
-                null,
-                ignoreHouseNumbers = true
-            )
-            assertEquals("On Craigmillar Avenue, 220 metres since Tannoch Drive", result5!!.name)
-
-            val result6 = offlineGeocoder.getAddressFromLngLat(
-                UserGeometry(LngLatAlt(-4.3107229, 55.9438725), 0.0),
-                null,
-                ignoreHouseNumbers = true
-            )
-            assertEquals(
-                "On Strathblane Road between Kersland Lane and Path to Kersland Drive",
-                result6!!.name
-            )
-
-            val result1 = offlineGeocoder.getAddressFromLngLat(
-                UserGeometry(LngLatAlt(-4.3103500, 55.9396160), 90.0),
-                null,
-                ignoreHouseNumbers = true
-            )
-            assertEquals(
-                "On Dougalston Avenue between Glasgow Road and Path to Dougalston Gardens North",
-                result1!!.name
-            )
-
-            val result2 = offlineGeocoder.getAddressFromLngLat(
-                UserGeometry(LngLatAlt(-4.3088339, 55.9396215), 90.0),
-                null,
-                ignoreHouseNumbers = true
-            )
-            assertEquals(
-                "On Dougalston Avenue between South Glassford Street and Briarwell Road",
-                result2!!.name
-            )
-
-            val result3 = offlineGeocoder.getAddressFromLngLat(
-                UserGeometry(LngLatAlt(-4.3069511, 55.9400774), 90.0),
-                null,
-                ignoreHouseNumbers = true
-            )
-            assertEquals(
-                "On Dougalston Avenue between Briarwell Road and Connell Crescent to dead end",
-                result3!!.name
-            )
-        }
+        val result = offlineGeocoder.getAddressFromLngLat(
+            UserGeometry(location, heading, mapMatchedWay = mapMatchedWay),
+            null,
+            ignoreHouseNumbers
+        )
+        assertEquals(expectedName, result!!.name)
     }
+
+    // Check that the street address also works
+    @Test
+    fun offlineReverseGeocode_houseNumber() = assertOfflineReverseGeocode(
+        LngLatAlt(-4.3069511, 55.9400774),
+        90.0,
+        "21 Dougalston Avenue",
+        ignoreHouseNumbers = false
+    )
+
+    @Test
+    fun offlineReverseGeocode_crossveggateBetweenServiceRoadAndGlasgowRoad() = assertOfflineReverseGeocode(
+        LngLatAlt(-4.3118, 55.9400),
+        90.0,
+        "On Crossveggate between Service to Lennox Park via bridge and Glasgow Road"
+    )
+
+    @Test
+    fun offlineReverseGeocode_craigmillarAvenueUntilTannochDrive() = assertOfflineReverseGeocode(
+        LngLatAlt(-4.3108846, 55.9495440),
+        180.0,
+        "On Craigmillar Avenue, 345 metres until Tannoch Drive"
+    )
+
+    @Test
+    fun offlineReverseGeocode_craigmillarAvenueSinceTannochDrive() = assertOfflineReverseGeocode(
+        LngLatAlt(-4.3117919, 55.9486518),
+        0.0,
+        "On Craigmillar Avenue, 220 metres since Tannoch Drive"
+    )
+
+    @Test
+    fun offlineReverseGeocode_strathblaneRoadBetweenKerslandLaneAndPathToKerslandDrive() = assertOfflineReverseGeocode(
+        LngLatAlt(-4.3107229, 55.9438725),
+        0.0,
+        "On Strathblane Road between Kersland Lane and Path to Kersland Drive"
+    )
+
+    @Test
+    fun offlineReverseGeocode_dougalstonAvenueBetweenGlasgowRoadAndPathToDougalstonGardensNorth() = assertOfflineReverseGeocode(
+        LngLatAlt(-4.3103500, 55.9396160),
+        90.0,
+        "On Dougalston Avenue between Glasgow Road and Path to Dougalston Gardens North"
+    )
+
+    @Test
+    fun offlineReverseGeocode_dougalstonAvenueBetweenSouthGlassfordStreetAndBriarwellRoad() = assertOfflineReverseGeocode(
+        LngLatAlt(-4.3088339, 55.9396215),
+        90.0,
+        "On Dougalston Avenue between South Glassford Street and Briarwell Road"
+    )
+
+    @Test
+    fun offlineReverseGeocode_dougalstonAvenueBetweenBriarwellRoadAndConnellCrescentToDeadEnd() = assertOfflineReverseGeocode(
+        LngLatAlt(-4.3069511, 55.9400774),
+        90.0,
+        "On Dougalston Avenue between Briarwell Road and Connell Crescent to dead end"
+    )
+
+    // Regression test: an unnamed path with no adjacent named road matched into its "pavement"
+    // property used to produce a blank first argument to StreetDescriptionBetween, i.e. "On
+    // between X and Y" (double space after "On"). This only happens when the path is map-matched
+    // directly (mapMatch = true) - OfflineGeocoder's own unmatched fallback search only considers
+    // named roads, so it can never land on this branch by itself.
+    @Test
+    fun offlineReverseGeocode_unnamedPathBetweenTwoNamedRoads() = assertOfflineReverseGeocode(
+        LngLatAlt(-4.312731921672821, 55.93184213588228),
+        90.0,
+        "On Path that joins OSM Feature playground playground and Allander Leisure Centre " +
+            "between Path to Bennie Place and Path to Allander Leisure Centre",
+        mapMatch = true
+    )
 
     @Test
     fun offlineSearch() {
