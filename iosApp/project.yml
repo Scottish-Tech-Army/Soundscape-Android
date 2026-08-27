@@ -201,6 +201,12 @@ targets:
       - path: iosAppTests
     dependencies:
       - target: iosApp
+      # LegacyMigratorDatabaseTests builds its fixtures with RealmSwift, so the
+      # test bundle needs to link it directly. `embed: false` because the host
+      # app already embeds the framework and the bundle loads inside it.
+      - package: RealmSwift
+        product: RealmSwift
+        embed: false
     settings:
       base:
         CODE_SIGNING_ALLOWED: "YES"
