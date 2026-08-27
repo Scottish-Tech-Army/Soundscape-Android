@@ -451,10 +451,13 @@ class GeoEngine {
                         if (callout != null) {
                             listener.speakCallout(callout, false)
                         }
+                    }
 
-                        if (recordTravel) {
-                            locationRecorder?.storeLocation(location)
-                        }
+                    // GPS point recording is a data-capture concern, not an audio one - it must not
+                    // be skipped just because a callout (e.g. from "My Location") is being spoken,
+                    // otherwise repeatedly triggering callouts silently drops recorded track points.
+                    if (recordTravel) {
+                        locationRecorder?.storeLocation(location)
                     }
                 }
             }
