@@ -31,6 +31,35 @@ class OfflineGeocoder(
     private val processor: (LocationDescription) -> Unit = {},
 ) : SoundscapeGeocoder() {
 
+    // Cache of the last StreetDescription built by getAddressFromLngLat(), keyed by street name
+    // and the GridState generation it was built from. createDescription() walks the whole
+    // street's way graph plus every nearby house-number/POI tree, which isn't cheap - a caller
+    // that repeatedly queries the same street against an unchanged grid (e.g. pressing "My
+    // Location" more than once while stationary) shouldn't pay that cost again.
+    internal var cachedStreetDescription: StreetDescription? = null
+    internal var cachedStreetGeneration: Int = -1
+
+    internal fun getOrBuildStreetDescription(
+        streetName: String,
+        nearbyWay: Way,
+        localizedStrings: LocalizedStrings?
+    ): StreetDescription {
+        val cached = cachedStreetDescription
+        if (cached != null &&
+            cachedStreetGeneration == gridState.generation &&
+            cached.name == streetName &&
+            cached.ways.any { it.first == nearbyWay }
+        ) {
+            return cached
+        }
+
+        val description = StreetDescription(streetName, gridState)
+        description.createDescription(nearbyWay, localizedStrings)
+        cachedStreetDescription = description
+        cachedStreetGeneration = gridState.generation
+        return description
+    }
+
     fun addNamesFromGrid(treeId: TreeId, names: MutableSet<String>) {
         val features = settlementGrid.getFeatureTree(treeId).getAllCollection()
         for (feature in features) {
@@ -108,8 +137,7 @@ class OfflineGeocoder(
                 .takeUnless { it.isNullOrEmpty() }
                 ?: nearbyWay.getName(null, gridState, localizedStrings)
             if (nearbyName != null) {
-                val description = StreetDescription(nearbyName, gridState)
-                description.createDescription(nearbyWay, localizedStrings)
+                val description = getOrBuildStreetDescription(nearbyName, nearbyWay, localizedStrings)
                 val nearestWay = description.nearestWayOnStreet(userGeometry.location)
                 if ((nearestWay != null) && !ignoreHouseNumbers) {
                     val houseNumber =
