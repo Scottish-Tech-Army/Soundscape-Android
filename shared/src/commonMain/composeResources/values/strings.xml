@@ -320,6 +320,8 @@
     <string name="callouts_audio_beacon">Distance to the Audio Beacon</string>
     <!-- A description for the distance to audio beacon setting. -->
     <string name="callouts_audio_beacon_description">Updates about distance to the audio beacon when it's set</string>
+    <!-- Callout text for the distance to the currently playing beacon. %1$s contains the distance in metres e.g. "Beacon is currently 105 metres away". -->
+    <string name="callouts_audio_beacon_distance">Beacon is currently %1$s away</string>
     <!-- Help title for automatic callouts -->
     <string name="callouts_automatic_callouts">Automatic Callouts</string>
     <!-- Speech callout indicating that there's no useful information available -->
