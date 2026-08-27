@@ -82,19 +82,24 @@ enum LegacyMigrator {
     /// already-clean defaults and lets us ship later fixes without needing
     /// to reset the done flag. Synchronous so the caller can be sure
     /// preferences are settled before the Compose UI reads them.
-    static func runIfNeeded() {
-        let defaults = UserDefaults.standard
-
+    ///
+    /// `defaults`, `documentsPath` and `importDatabase` default to the real
+    /// production values/behaviour; tests override them to drive each
+    /// branch deterministically without touching real Realm/Room state.
+    static func runIfNeeded(
+        defaults: UserDefaults = .standard,
+        documentsPath: String = NSHomeDirectory() + "/Documents",
+        importDatabase: (String) -> Int32 = { importLegacyDatabase(at: $0) }
+    ) {
         if !defaults.bool(forKey: doneKey) {
-            let docs = NSHomeDirectory() + "/Documents"
-            let legacyRealmPath = docs + "/database.realm"
+            let legacyRealmPath = documentsPath + "/database.realm"
 
             if !FileManager.default.fileExists(atPath: legacyRealmPath) {
                 // Fresh install: no legacy data to migrate. Mark done so we
                 // never probe again.
                 defaults.set(true, forKey: doneKey)
             } else {
-                let importedCount = importDatabase(at: legacyRealmPath)
+                let importedCount = importDatabase(legacyRealmPath)
                 if importedCount < 0 {
                     // Database import failed. Leave the legacy files in
                     // place so the user can retry on next launch (or we
@@ -102,7 +107,7 @@ enum LegacyMigrator {
                     print("[LegacyMigrator] database import failed; will retry on next launch")
                 } else {
                     migrateSettings(defaults: defaults)
-                    deleteLegacyArtefacts(documentsPath: docs)
+                    deleteLegacyArtefacts(documentsPath: documentsPath)
                     defaults.set(true, forKey: doneKey)
                     print("[LegacyMigrator] migrated \(importedCount) markers + routes")
                 }
@@ -114,33 +119,12 @@ enum LegacyMigrator {
 
     // MARK: Database import
 
-    private static func importDatabase(at realmPath: String) -> Int32 {
-        // Open the legacy realm read-write. Read-only mode refuses to touch
-        // the file, but RealmSwift 20.x will reject any legacy file at an
-        // older on-disk format (e.g. v22) unless it can upgrade in place.
-        // Letting Realm upgrade is harmless because we delete the file
-        // after a successful import.
-        var config = Realm.Configuration(
-            fileURL: URL(fileURLWithPath: realmPath),
-            objectTypes: [LegacyReferenceEntity.self, LegacyRoute.self, LegacyRouteWaypoint.self],
-        )
-        // Schema migration block. The legacy app shipped at schemaVersion 0
-        // and our model is shape-compatible (we declare every @Persisted
-        // column the legacy file has). Bumping schemaVersion to 1 with a
-        // no-op block lets Realm treat any minor mismatch as a migration
-        // it can handle without prompting.
-        config.schemaVersion = 1
-        config.migrationBlock = { _, _ in }
-        config.deleteRealmIfMigrationNeeded = false
-
-        let realm: Realm
-        do {
-            realm = try Realm(configuration: config)
-        } catch {
-            print("[LegacyMigrator] could not open legacy realm: \(error)")
-            return -1
-        }
-
+    /// Reads markers and routes out of an already-open legacy `realm` and
+    /// encodes them as the JSON payload the Kotlin importer expects. Pure —
+    /// no file I/O, no Kotlin/Room call — so tests can exercise it against
+    /// an in-memory fixture Realm without touching the production database.
+    /// Returns nil only if the payload can't be JSON-encoded.
+    static func buildLegacyPayload(realm: Realm) -> String? {
         let savedReferences = realm.objects(LegacyReferenceEntity.self).filter("isTemp == false")
         var markersJson: [[String: Any]] = []
         markersJson.reserveCapacity(savedReferences.count)
@@ -179,14 +163,44 @@ enum LegacyMigrator {
 
         let payload: [String: Any] = ["markers": markersJson, "routes": routesJson]
 
-        let data: Data
+        guard let data = try? JSONSerialization.data(withJSONObject: payload, options: []) else {
+            print("[LegacyMigrator] could not encode payload")
+            return nil
+        }
+        return String(data: data, encoding: .utf8)
+    }
+
+    /// Opens the legacy Realm at `realmPath`, builds the JSON payload via
+    /// [buildLegacyPayload], and hands it to the Kotlin side to write into
+    /// the production Room database.
+    private static func importLegacyDatabase(at realmPath: String) -> Int32 {
+        // Open the legacy realm read-write. Read-only mode refuses to touch
+        // the file, but RealmSwift 20.x will reject any legacy file at an
+        // older on-disk format (e.g. v22) unless it can upgrade in place.
+        // Letting Realm upgrade is harmless because we delete the file
+        // after a successful import.
+        var config = Realm.Configuration(
+            fileURL: URL(fileURLWithPath: realmPath),
+            objectTypes: [LegacyReferenceEntity.self, LegacyRoute.self, LegacyRouteWaypoint.self],
+        )
+        // Schema migration block. The legacy app shipped at schemaVersion 0
+        // and our model is shape-compatible (we declare every @Persisted
+        // column the legacy file has). Bumping schemaVersion to 1 with a
+        // no-op block lets Realm treat any minor mismatch as a migration
+        // it can handle without prompting.
+        config.schemaVersion = 1
+        config.migrationBlock = { _, _ in }
+        config.deleteRealmIfMigrationNeeded = false
+
+        let realm: Realm
         do {
-            data = try JSONSerialization.data(withJSONObject: payload, options: [])
+            realm = try Realm(configuration: config)
         } catch {
-            print("[LegacyMigrator] could not encode payload: \(error)")
+            print("[LegacyMigrator] could not open legacy realm: \(error)")
             return -1
         }
-        guard let json = String(data: data, encoding: .utf8) else { return -1 }
+
+        guard let json = buildLegacyPayload(realm: realm) else { return -1 }
 
         return LegacyMigrationKt.runLegacyMigrationImport(payloadJson: json)
     }
@@ -373,7 +387,7 @@ enum LegacyMigrator {
 
     // MARK: Cleanup
 
-    private static func deleteLegacyArtefacts(documentsPath: String) {
+    static func deleteLegacyArtefacts(documentsPath: String) {
         let fm = FileManager.default
         let realmFiles = [
             documentsPath + "/database.realm",
