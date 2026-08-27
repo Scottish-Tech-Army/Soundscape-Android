@@ -103,6 +103,12 @@ open class GridState(
 
     var validateContext = true
 
+    // Bumped every time featureTrees/gridStreetNumberTreeMap are rebuilt from a new tile grid (or
+    // torn down in stop()). Callers that cache anything derived from those trees - e.g.
+    // OfflineGeocoder's per-street StreetDescription cache - key off this value to know when a
+    // cached result no longer matches the data it was built from.
+    var generation: Int = 0
+
     // This doesn't naturally belong in GridState, but it's where all the other geo info is. It's
     // a tree of Markers from the database.
     var markerTree: FeatureTree? = null
@@ -114,6 +120,7 @@ open class GridState(
             tree.tree = null
         }
         centralBoundingBox = BoundingBox()
+        generation++
     }
 
     open fun fixupCollections(featureCollections: Array<FeatureCollection>) {}
@@ -403,6 +410,7 @@ open class GridState(
                             for (collection in newGridStreetNumberMap)
                                 gridStreetNumberTreeMap[collection.key] =
                                     FeatureTree(collection.value)
+                            generation++
                         }
                         println("Time to process grid: $duration")
                     }
