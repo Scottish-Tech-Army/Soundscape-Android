@@ -1425,4 +1425,7 @@
     <string name="osm_bird_hide">Заклон за посматрање птица</string>
     <string name="osm_transformer_tower">Трансформаторска станица</string>
     <string name="callouts_audio_beacon_distance">Бакен је тренутно удаљен %1$s</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s поред %2$s</string>
+    <string name="street_description_relative_near">На %1$s близу %2$s</string>
 </resources>
