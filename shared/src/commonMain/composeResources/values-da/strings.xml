@@ -1425,4 +1425,7 @@
     <string name="talkback_double_tap_template">Dobbelttryk for at%1$s</string>
     <string name="menu_manage_locale">Regionale indstillinger</string>
     <string name="callouts_audio_beacon_distance">Lydfyret er i øjeblikket %1$s væk</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s ved siden af %2$s</string>
+    <string name="street_description_relative_near">På %1$s nær %2$s</string>
 </resources>
