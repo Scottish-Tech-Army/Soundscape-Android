@@ -1425,4 +1425,7 @@
     <string name="talkback_double_tap_template">Dubbeltryck för att%1$s</string>
     <string name="menu_manage_locale">Regioninställningar</string>
     <string name="callouts_audio_beacon_distance">Ljudfyren är just nu %1$s bort</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s intill %2$s</string>
+    <string name="street_description_relative_near">På %1$s nära %2$s</string>
 </resources>
