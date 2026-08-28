@@ -1425,4 +1425,7 @@
     <string name="talkback_double_tap_template">双击以%1$s</string>
     <string name="menu_manage_locale">区域设置</string>
     <string name="callouts_audio_beacon_distance">信标当前距离%1$s</string>
+    <string name="directions_street_settlement">%1$s，%2$s</string>
+    <string name="confect_name_next_to">%2$s旁的%1$s</string>
+    <string name="street_description_relative_near">在%1$s上，靠近%2$s</string>
 </resources>
