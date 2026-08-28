@@ -1425,4 +1425,7 @@
     <string name="fab_add_route">Добави маршрут</string>
     <string name="route_waypoint_progress">Маршрут %1$s на пътна точка %2$s от %3$s</string>
     <string name="callouts_audio_beacon_distance">Маякът в момента е на %1$s разстояние</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s до %2$s</string>
+    <string name="street_description_relative_near">На %1$s близо до %2$s</string>
 </resources>
