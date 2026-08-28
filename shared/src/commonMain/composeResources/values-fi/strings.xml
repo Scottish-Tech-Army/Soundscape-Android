@@ -1425,4 +1425,7 @@
     <string name="talkback_double_tap_template">Kaksoisnapauta%1$s</string>
     <string name="menu_manage_locale">Alueasetukset</string>
     <string name="callouts_audio_beacon_distance">Majakka on tällä hetkellä %1$s päässä</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s kohteen %2$s vieressä</string>
+    <string name="street_description_relative_near">Kadulla %1$s lähellä kohdetta %2$s</string>
 </resources>
