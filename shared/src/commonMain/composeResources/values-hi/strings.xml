@@ -1425,4 +1425,7 @@
     <string name="talkback_double_tap_template">दो बार टैप करें%1$s</string>
     <string name="menu_manage_locale">क्षेत्रीय सेटिंग्स</string>
     <string name="callouts_audio_beacon_distance">बीकन इस समय %1$s दूर है</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%2$s के बगल में %1$s</string>
+    <string name="street_description_relative_near">%1$s पर, %2$s के पास</string>
 </resources>
