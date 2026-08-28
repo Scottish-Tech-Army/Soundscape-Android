@@ -1425,4 +1425,7 @@
     <string name="talkback_double_tap_template">Double tap to %1$s</string>
     <string name="menu_manage_locale">Locale</string>
     <string name="callouts_audio_beacon_distance">Beacon is currently %1$s away</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s next to %2$s</string>
+    <string name="street_description_relative_near">On %1$s near %2$s</string>
 </resources>
