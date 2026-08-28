@@ -1425,4 +1425,7 @@
     <string name="confect_name_via">%2$s வழியாக %1$s</string>
     <string name="confect_name_pavement_next_to">%1$s அருகில் உள்ள நடைபாதை</string>
     <string name="callouts_audio_beacon_distance">பீக்கன் தற்போது %1$s தொலைவில் உள்ளது</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%2$s அருகில் உள்ள %1$s</string>
+    <string name="street_description_relative_near">%1$s இல், %2$s அருகே</string>
 </resources>
