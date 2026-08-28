@@ -1425,4 +1425,7 @@
     <string name="talkback_double_tap_template">ダブルタップして%1$s</string>
     <string name="menu_manage_locale">ロケール</string>
     <string name="callouts_audio_beacon_distance">ビーコンまで現在 %1$s です</string>
+    <string name="directions_street_settlement">%1$s、%2$s</string>
+    <string name="confect_name_next_to">%2$s 沿いの%1$s</string>
+    <string name="street_description_relative_near">%1$s（%2$s 付近）</string>
 </resources>
