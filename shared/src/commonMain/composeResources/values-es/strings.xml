@@ -1425,4 +1425,7 @@
     <string name="talkback_double_tap_template">Pulse dos veces para%1$s</string>
     <string name="menu_manage_locale">Configuración regional</string>
     <string name="callouts_audio_beacon_distance">La señal está actualmente a %1$s</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s junto a %2$s</string>
+    <string name="street_description_relative_near">En %1$s cerca de %2$s</string>
 </resources>
