@@ -20,7 +20,6 @@ object SharedRoutes {
     const val ONBOARDING = "onboarding"
     const val SLEEP = "sleep_screen"
     const val HELP = "help_screen"
-    const val LANGUAGE = "language_screen"
     const val OPEN_SOURCE_LICENSES = "open_source_licenses"
     const val ADVANCED_MARKERS_AND_ROUTES_SETTINGS = "advanced_markers_and_routes_settings"
 }
