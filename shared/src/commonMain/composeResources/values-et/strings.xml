@@ -1425,4 +1425,7 @@
     <string name="faq_tip_create_marker_at_bus_stop">Kui kasutate regulaarselt mõnda bussiliini, salvestage oma pealemineku- ja mahaminekupeatused markeritena. Nii jäävad need salvestatuks ja leiate need hõlpsalt uuesti — minge lihtsalt avakuvalt lehele *"Markerid ja marsruudid"* ja leidke need lehelt *"Markerid"*. Saate neile seada helimajaka ning saate perioodilisi värskendusi selle kohta, kui lähedal olete oma mahaminekupeatusele. Märkus: saate rütmilise heli välja lülitada ja saate teekonnal ikkagi kauguse värskendusi.</string>
     <string name="no_language_selected">Keelt ei ole valitud</string>
     <string name="callouts_audio_beacon_distance">Majakas on praegu %1$s kaugusel</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s %2$s kõrval</string>
+    <string name="street_description_relative_near">Tänaval %1$s, %2$s lähedal</string>
 </resources>
