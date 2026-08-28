@@ -1425,4 +1425,7 @@
     <string name="menu_exit_app">Surt de Soundscape</string>
     <string name="offline_map_details_update">Actualitza el mapa fora de línia</string>
     <string name="callouts_audio_beacon_distance">La balisa és actualment a %1$s</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s al costat de %2$s</string>
+    <string name="street_description_relative_near">A %1$s prop de %2$s</string>
 </resources>
