@@ -181,6 +181,11 @@ fun SharedNavHost(
                             navController, SharedRoutes.LOCATION_DETAILS, desc,
                         )
                     },
+                    onShowRouteDetails = { desc ->
+                        navStateHolder.navigateWithLocation(
+                            navController, SharedRoutes.ROUTE_DETAILS, desc,
+                        )
+                    },
                     preferencesProvider = preferencesProvider,
                     onMapLongClick = callbacks.onMapLongClick,
                     bottomButtonFunctions = org.scottishtecharmy.soundscape.screens.home.home.BottomButtonFunctions(

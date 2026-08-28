@@ -51,6 +51,7 @@ fun SharedHomeScreen(
     state: HomeState,
     onNavigate: (String) -> Unit,
     onSelectLocation: (LocationDescription) -> Unit,
+    onShowRouteDetails: (LocationDescription) -> Unit = {},
     preferencesProvider: PreferencesProvider?,
     onMapLongClick: ((LngLatAlt) -> Boolean)?,
     bottomButtonFunctions: BottomButtonFunctions,
@@ -179,6 +180,7 @@ fun SharedHomeScreen(
                     modifier = Modifier.padding(innerPadding),
                     onNavigate = onNavigate,
                     onSelectLocation = onSelectLocation,
+                    onShowRouteDetails = onShowRouteDetails,
                     getCurrentLocationDescription = getCurrentLocationDescription,
                     searchBar = {
                         MainSearchBar(
