@@ -1425,4 +1425,7 @@
     <string name="confect_name_via">%1$s ta %2$s</string>
     <string name="confect_name_pavement_next_to">Titin ƙafa kusa da %1$s</string>
     <string name="callouts_audio_beacon_distance">Siginar sauti tana nisan %1$s a yanzu</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s kusa da %2$s</string>
+    <string name="street_description_relative_near">A kan %1$s kusa da %2$s</string>
 </resources>
