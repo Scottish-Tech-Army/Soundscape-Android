@@ -1425,4 +1425,7 @@
     <string name="menu_exit_app">Soundscape 종료</string>
     <string name="offline_map_details_update">오프라인 지도 업데이트</string>
     <string name="callouts_audio_beacon_distance">비콘까지 현재 %1$s 남았습니다</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%2$s 옆 %1$s</string>
+    <string name="street_description_relative_near">%1$s, %2$s 근처</string>
 </resources>
