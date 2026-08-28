@@ -1426,4 +1426,7 @@
     <string name="talkback_double_tap_template">دو بار ضربه بزنید تا%1$s</string>
     <string name="menu_manage_locale">تنظیمات محلی</string>
     <string name="callouts_audio_beacon_distance">جهت‌نما در حال حاضر %1$s فاصله دارد</string>
+    <string name="directions_street_settlement">%1$s، %2$s</string>
+    <string name="confect_name_next_to">%1$s کنار %2$s</string>
+    <string name="street_description_relative_near">در %1$s نزدیک %2$s</string>
 </resources>
