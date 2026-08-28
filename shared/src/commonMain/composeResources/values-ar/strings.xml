@@ -1425,4 +1425,7 @@
     <string name="faq_tip_beacon_quiet">إذا وضعت هاتفك في جيبك وتوقفت عن الحركة، يصبح صوت المنارة الصوتية أخفت لأن Soundscape لا يستطيع معرفة الاتجاه الذي تواجهه. لإصلاح ذلك، ابدأ بالمشي مرة أخرى، أو أخرج هاتفك وأمسكه بشكل أفقي.</string>
     <string name="faq_tip_setting_beacon_on_address">يمكنك ضبط منارة صوتية على أي عنوان. من الشاشة الرئيسية لتطبيق Soundscape، ابحث عن العنوان. بعد اختيار العنوان من نتائج البحث، ستظهر شاشة *"تفاصيل الموقع"* وتحتوي على خيار *"تشغيل المنارة الصوتية"* على العنوان. بهذه الطريقة، يمكنك ضبط منارة صوتية على المحال التجارية والأماكن ونقاط الاهتمام والمساكن غير الموجودة في Open Street Map.</string>
     <string name="callouts_audio_beacon_distance">المنارة الصوتية على بعد %1$s حاليًا</string>
+    <string name="directions_street_settlement">%1$s، %2$s</string>
+    <string name="confect_name_next_to">%1$s بجانب %2$s</string>
+    <string name="street_description_relative_near">على %1$s بالقرب من %2$s</string>
 </resources>
