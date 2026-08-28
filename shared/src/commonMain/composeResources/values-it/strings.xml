@@ -1425,4 +1425,7 @@
     <string name="talkback_double_tap_template">Tocca due volte per%1$s</string>
     <string name="menu_manage_locale">Impostazioni locali</string>
     <string name="callouts_audio_beacon_distance">L'audiofaro si trova attualmente a %1$s</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s accanto a %2$s</string>
+    <string name="street_description_relative_near">Su %1$s vicino a %2$s</string>
 </resources>
