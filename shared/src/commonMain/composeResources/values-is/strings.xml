@@ -1425,4 +1425,7 @@
     <string name="talkback_double_tap_template">Tvíbankaðu til að%1$s</string>
     <string name="menu_manage_locale">Staðfærsla</string>
     <string name="callouts_audio_beacon_distance">Hljóðvitinn er nú í %1$s fjarlægð</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s við %2$s</string>
+    <string name="street_description_relative_near">Á %1$s nærri %2$s</string>
 </resources>
