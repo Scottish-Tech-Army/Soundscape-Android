@@ -1425,4 +1425,7 @@
     <string name="confect_name_via">%2$s হয়ে %1$s</string>
     <string name="confect_name_pavement_next_to">%1$s-এর পাশের ফুটপাত</string>
     <string name="callouts_audio_beacon_distance">বীকন এখন %1$s দূরে</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%2$s-এর পাশে %1$s</string>
+    <string name="street_description_relative_near">%1$s-এ, %2$s-এর কাছে</string>
 </resources>
