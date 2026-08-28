@@ -1425,4 +1425,7 @@
     <string name="confect_name_via">%2$s మీదుగా %1$s</string>
     <string name="confect_name_pavement_next_to">%1$s పక్కన ఉన్న ఫుట్‌పాత్</string>
     <string name="callouts_audio_beacon_distance">బీకాన్ ప్రస్తుతం %1$s దూరంలో ఉంది</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%2$s పక్కన ఉన్న %1$s</string>
+    <string name="street_description_relative_near">%1$sలో, %2$s సమీపంలో</string>
 </resources>
