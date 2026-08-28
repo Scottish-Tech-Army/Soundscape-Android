@@ -311,6 +311,7 @@ fun MainViewController() = ComposeUIViewController {
                     LocationDescription("", LngLatAlt())
                 }
             },
+            onGetOfflineAddress = { location -> service.getOfflineAddress(location) },
             onGetLanguageMismatch = {
                 org.scottishtecharmy.soundscape.screens.onboarding.language.getLanguageMismatch()
             },

@@ -25,6 +25,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -81,6 +82,12 @@ fun SharedLocationDetailsScreen(
     onEnableStreetPreview: ((LngLatAlt) -> Unit)? = null,
     onShareLocation: ((LocationDescription) -> Unit)? = null,
     onOfflineMaps: ((LocationDescription) -> Unit)? = null,
+    /**
+     * Offline-geocodes the location to a full address, used to fill in an address for a place
+     * which arrived here without one (e.g. an un-named POI picked from Places Nearby). Null
+     * disables the lookup and leaves whatever the caller supplied.
+     */
+    resolveAddress: (suspend (LngLatAlt) -> LocationDescription?)? = null,
 ) {
     val showMap by rememberBooleanPreference(
         preferencesProvider,
@@ -127,6 +134,7 @@ fun SharedLocationDetailsScreen(
                 LocationDescriptionTextsSection(
                     locationDescription = locationDescription,
                     userLocation = userLocation,
+                    resolveAddress = resolveAddress,
                 )
 
                 HorizontalDivider()
@@ -166,7 +174,21 @@ fun SharedLocationDetailsScreen(
 private fun LocationDescriptionTextsSection(
     locationDescription: LocationDescription,
     userLocation: LngLatAlt?,
+    resolveAddress: (suspend (LngLatAlt) -> LocationDescription?)? = null,
 ) {
+    // Places which already carry an address show it straight away. For everything else we start
+    // with the street the POI was associated with at tile load (so the row never flashes empty)
+    // and then upgrade to the geocoder's full address - house number and all - once it arrives.
+    var address by remember(locationDescription.location) {
+        mutableStateOf(locationDescription.description ?: locationDescription.street)
+    }
+    if (locationDescription.description.isNullOrEmpty() && (resolveAddress != null)) {
+        LaunchedEffect(locationDescription.location) {
+            resolveAddress(locationDescription.location)
+                ?.let { it.description?.takeIf(String::isNotEmpty) ?: it.name.takeIf(String::isNotEmpty) }
+                ?.let { address = it }
+        }
+    }
     Column(
         verticalArrangement = Arrangement.spacedBy(spacing.small),
         modifier = Modifier.padding(horizontal = spacing.medium, vertical = spacing.small),
@@ -224,7 +246,7 @@ private fun LocationDescriptionTextsSection(
             }
         }
 
-        locationDescription.description?.let { desc ->
+        address?.takeIf { it.isNotEmpty() }?.let { desc ->
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(spacing.small),

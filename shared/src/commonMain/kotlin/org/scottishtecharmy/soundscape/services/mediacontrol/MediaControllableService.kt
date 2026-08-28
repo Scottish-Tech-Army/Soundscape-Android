@@ -100,6 +100,13 @@ interface MediaControllableService {
     fun setStreetPreviewMode(on: Boolean, location: LngLatAlt? = null) {}
     fun streetPreviewGo() {}
     fun getLocationDescription(location: LngLatAlt): LocationDescription
+
+    /**
+     * The offline geocoder's full address for a point, or null when it can't produce one (e.g.
+     * the point is outside the loaded tile grid). Defaults to null so implementations which have
+     * no geo engine don't have to provide it.
+     */
+    suspend fun getOfflineAddress(location: LngLatAlt): LocationDescription? = null
     suspend fun searchResult(query: String): List<LocationDescription>?
     fun isAudioEngineBusy(): Boolean
     fun speakCallout(callout: TrackedCallout?, addModeEarcon: Boolean): Long

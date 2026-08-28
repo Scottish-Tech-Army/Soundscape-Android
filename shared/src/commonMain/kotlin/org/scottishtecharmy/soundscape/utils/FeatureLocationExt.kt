@@ -9,6 +9,8 @@ import org.scottishtecharmy.soundscape.geoengine.utils.address.AddressFormatter
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.platform.getDefaultCountryCode
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.home.data.LocationType
@@ -20,7 +22,8 @@ private fun setIfLower(newType: LocationType, oldType: LocationType): LocationTy
 fun Feature.toLocationDescription(
     source: LocationSource,
     alternateLocation: LngLatAlt = LngLatAlt(),
-    featureName: TextForFeature? = null
+    featureName: TextForFeature? = null,
+    strings: LocalizedStrings? = null
 ): LocationDescription {
     val location = when (geometry.type) {
         "Point" -> (geometry as Point).coordinates
@@ -34,11 +37,32 @@ fun Feature.toLocationDescription(
         alternateLocation = alternateLocation,
         featureName = featureName
     )
-    ld.process()
+    ld.process(strings)
     return ld
 }
 
-fun LocationDescription.process() {
+/**
+ * Builds the "street, settlement" line shown for a POI which has no address of its own - e.g.
+ * "London Road, Bridgeton" under a post box - from the nearest way and the settlement associated
+ * with it at tile load time by GridState.attachNearestWays.
+ *
+ * Both halves are required: a way with no settlement, or a settlement with no way, isn't worth
+ * showing on its own and returns null. The way is identified by its name, or failing that its ref
+ * ("A81"), which names a road just as well.
+ */
+private fun streetForFeature(mvt: MvtFeature?, strings: LocalizedStrings?): String? {
+    val way = mvt?.nearestWay?.let { it.name ?: it.ref }
+    val settlement = mvt?.nearestSettlement
+
+    return when {
+        (way != null) && (settlement != null) ->
+            strings?.get(StringKey.DirectionsStreetSettlement, way, settlement)
+                ?: "$way, $settlement"
+        else -> null
+    }
+}
+
+fun LocationDescription.process(strings: LocalizedStrings? = null) {
     if (feature != null) {
         feature?.let { feature ->
             var address = false
@@ -92,6 +116,13 @@ fun LocationDescription.process() {
                 mvt?.street?.let {
                     jsonFields["road"] = it
                     address = true
+                }
+                // OSM addresses on POIs very often stop at addr:street, so an address built from
+                // the tags alone reads as a bare "Kersland Drive" with no town. Fill the gap with
+                // the settlement associated at tile load time so the formatter can produce
+                // "Kersland Drive, Milngavie".
+                if (!jsonFields.containsKey("city")) {
+                    mvt?.nearestSettlement?.let { jsonFields["city"] = it }
                 }
             }
             if (address) {
@@ -149,6 +180,9 @@ fun LocationDescription.process() {
                 }
                 opposite = oppositeProperty
                 locationType = locationTypeProperty
+                // No address of its own, so fall back to the way and settlement the POI was
+                // associated with at tile load time.
+                street = streetForFeature(mvt, strings)
             }
             typeDescription = featureName
         }

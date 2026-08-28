@@ -19,6 +19,51 @@ import kotlin.math.round
 import kotlin.math.roundToInt
 
 /**
+ * The nearest settlement to a location, and whether it's a city.
+ *
+ * Cities are called out because they're large, often-merged conurbations: you can't sensibly be
+ * "towards Glasgow" while already inside its urban area, so callers phrase those differently from
+ * the discrete hamlet/village/town points a road passes near.
+ */
+data class NearestSettlement(val feature: MvtFeature?, val isCity: Boolean) {
+    val name: String? get() = feature?.name
+}
+
+/**
+ * Finds the nearest settlement using Nominatim's proximities, so that the smaller and more local
+ * a settlement is, the closer you have to be for it to be the one worth naming:
+ *
+ *     cities, municipalities, islands | 15 km
+ *     towns, boroughs                 |  4 km
+ *     villages, suburbs               |  2 km
+ *     hamlets, farms, neighbourhoods  |  1 km
+ *
+ * Settlements live in their own low-zoom grid - the high-zoom tiles the rest of the geo engine
+ * uses don't carry the "place" layer at all - so [settlementGrid] is a different GridState from
+ * the one everything else is looked up in. Must be called from within its treeContext.
+ */
+fun nearestSettlement(settlementGrid: GridState, location: LngLatAlt): NearestSettlement {
+    val ruler = settlementGrid.ruler
+    settlementGrid.getFeatureTree(TreeId.SETTLEMENT_HAMLET)
+        .getNearestFeature(location, ruler, 1000.0)?.let { hamlet ->
+            (hamlet as MvtFeature).name?.let { return NearestSettlement(hamlet, false) }
+        }
+    settlementGrid.getFeatureTree(TreeId.SETTLEMENT_VILLAGE)
+        .getNearestFeature(location, ruler, 2000.0)?.let { village ->
+            (village as MvtFeature).name?.let { return NearestSettlement(village, false) }
+        }
+    settlementGrid.getFeatureTree(TreeId.SETTLEMENT_TOWN)
+        .getNearestFeature(location, ruler, 4000.0)?.let { town ->
+            (town as MvtFeature).name?.let { return NearestSettlement(town, false) }
+        }
+    settlementGrid.getFeatureTree(TreeId.SETTLEMENT_CITY)
+        .getNearestFeature(location, ruler, 15000.0)?.let { city ->
+            (city as MvtFeature).name?.let { return NearestSettlement(city, true) }
+        }
+    return NearestSettlement(null, false)
+}
+
+/**
  * We're going to round metric as documented for iOS:
  *  For metric units, we round all distances less than 1000 meters to the nearest 5 meters and all
  *  distances over 1000 meters to the nearest 50 meters.
@@ -349,31 +394,14 @@ private fun travellingReverseGeocodeName(
         }
     }
 
-    // Nearest settlements with Nominatim-style proximities. Hamlet/village/town are discrete
-    // points a road passes near or through, so they're eligible for directional "towards X"/
-    // "away from X"/"near X" phrasing below (see nearestSettlementIsCity). A city is a large,
+    // Hamlet/village/town are discrete points a road passes near or through, so they're eligible
+    // for the directional "towards X"/"away from X"/"near X" phrasing below. A city is a large,
     // often-merged conurbation where that phrasing would be misleading - you can't be "towards
     // Glasgow" while already inside its urban area - so it keeps the vaguer "close to" instead.
-    var nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_HAMLET)
-        .getNearestFeature(location, settlementGrid.ruler, 1000.0) as MvtFeature?
-    var nearestSettlementName = nearestSettlement?.name
-    var nearestSettlementIsCity = false
-    if (nearestSettlementName == null) {
-        nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_VILLAGE)
-            .getNearestFeature(location, settlementGrid.ruler, 2000.0) as MvtFeature?
-        nearestSettlementName = nearestSettlement?.name
-        if (nearestSettlementName == null) {
-            nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_TOWN)
-                .getNearestFeature(location, settlementGrid.ruler, 4000.0) as MvtFeature?
-            nearestSettlementName = nearestSettlement?.name
-            if (nearestSettlementName == null) {
-                nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_CITY)
-                    .getNearestFeature(location, settlementGrid.ruler, 15000.0) as MvtFeature?
-                nearestSettlementName = nearestSettlement?.name
-                nearestSettlementIsCity = nearestSettlementName != null
-            }
-        }
-    }
+    val settlement = nearestSettlement(settlementGrid, location)
+    val nearestSettlementFeature = settlement.feature
+    val nearestSettlementName = settlement.name
+    val nearestSettlementIsCity = settlement.isCity
 
     if (roadName != null) {
         val phrase = roadPhrase(roadName)
@@ -425,7 +453,7 @@ private fun travellingReverseGeocodeName(
         // gets phrased relative to the direction of travel; a city keeps the vaguer "close to"
         // (see nearestSettlementIsCity above). Both need a heading to work out the relative
         // bearing, so without one this falls through to the plain road/settlement mention below.
-        val settlementLocation = (nearestSettlement?.geometry as? Point)?.coordinates
+        val settlementLocation = (nearestSettlementFeature?.geometry as? Point)?.coordinates
         if ((nearestSettlementName != null) && (travelHeadingDegrees != null) &&
             (settlementLocation != null)
         ) {

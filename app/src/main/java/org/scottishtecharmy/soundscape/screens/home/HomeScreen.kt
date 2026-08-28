@@ -216,6 +216,7 @@ fun HomeScreen(
                     LocationDescription("", LngLatAlt())
                 }
             },
+            onGetOfflineAddress = { location -> viewModel.getOfflineAddress(location) },
             onGetLanguageMismatch = { getLanguageMismatch() },
             provideLocationProvider = {
                 if (org.scottishtecharmy.soundscape.hasPlayServices(context)) {

@@ -306,6 +306,7 @@ fun SharedNavHost(
                     userLocation = homeState.location,
                     heading = homeState.heading,
                     preferencesProvider = preferencesProvider,
+                    resolveAddress = callbacks.onGetOfflineAddress,
                     onNavigateUp = { navController.popBackStack() },
                     onStartBeacon = { loc, name ->
                         callbacks.onStartBeacon(loc.latitude, loc.longitude, name)

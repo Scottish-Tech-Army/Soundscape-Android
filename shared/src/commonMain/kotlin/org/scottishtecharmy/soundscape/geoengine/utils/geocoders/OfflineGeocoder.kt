@@ -8,6 +8,7 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geoengine.nearestSettlement
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -169,7 +170,19 @@ class OfflineGeocoder(
                     formatDistanceAndDirection(result.behind.distance, null, localizedStrings)
                 val formattedAheadDistance =
                     formatDistanceAndDirection(result.ahead.distance, null, localizedStrings)
+                // "just before"/"just after"/"until"/"since" all place the location relative to
+                // the direction of travel, and describeLocation only knows which way that is from
+                // a heading - without one it fills in ahead and behind arbitrarily, so those
+                // phrasings would be actively misleading. Describing a point rather than someone
+                // moving along a street (an address for somewhere the user tapped) therefore only
+                // uses the forms which read the same in either direction: "between", and "near"
+                // in place of "just before"/"just after".
+                val directional = (heading != null)
+                val closest = listOf(result.ahead, result.behind)
+                    .filter { it.name.isNotEmpty() }
+                    .minByOrNull { it.distance }
                 if (
+                    directional &&
                     (result.ahead.distance < 10.0) &&
                     ((result.ahead.distance < result.behind.distance) || result.behind.name.isEmpty())
                 ) {
@@ -178,10 +191,14 @@ class OfflineGeocoder(
                     text = localizedStrings?.get(
                         StringKey.StreetDescriptionRelativeBefore, nearbyName, result.ahead.name
                     ) ?: "On $nearbyName just before ${result.ahead.name}"
-                } else if (result.behind.distance < 10.0) {
+                } else if (directional && (result.behind.distance < 10.0)) {
                     text = localizedStrings?.get(
                         StringKey.StreetDescriptionRelativeAfter, nearbyName, result.behind.name
                     ) ?: "On $nearbyName just after ${result.behind.name}"
+                } else if (!directional && (closest != null) && (closest.distance < 10.0)) {
+                    text = localizedStrings?.get(
+                        StringKey.StreetDescriptionRelativeNear, nearbyName, closest.name
+                    ) ?: "On $nearbyName near ${closest.name}"
                 } else if (result.ahead.name.isNotEmpty() && result.behind.name.isNotEmpty()) {
                     text = localizedStrings?.get(
                         StringKey.StreetDescriptionBetween,
@@ -189,7 +206,7 @@ class OfflineGeocoder(
                         result.behind.name,
                         result.ahead.name
                     ) ?: "On $nearbyName between ${result.behind.name} and ${result.ahead.name}"
-                } else {
+                } else if (directional) {
                     if (result.ahead.name.isNotEmpty()) {
                         text = localizedStrings?.get(
                             StringKey.StreetDescriptionUntil,
@@ -249,31 +266,7 @@ class OfflineGeocoder(
             }
         }
 
-        // Get the nearest settlements. Nominatim uses the following proximities, so we do the same:
-        //
-        // cities, municipalities, islands | 15 km
-        // towns, boroughs                 | 4 km
-        // villages, suburbs               | 2 km
-        // hamlets, farms, neighbourhoods  |  1 km
-        //
-        var nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_HAMLET)
-            .getNearestFeature(location, settlementGrid.ruler, 1000.0) as MvtFeature?
-        var nearestSettlementName = nearestSettlement?.name
-        if (nearestSettlementName == null) {
-            nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_VILLAGE)
-                .getNearestFeature(location, settlementGrid.ruler, 2000.0) as MvtFeature?
-            nearestSettlementName = nearestSettlement?.name
-            if (nearestSettlementName == null) {
-                nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_TOWN)
-                    .getNearestFeature(location, settlementGrid.ruler, 4000.0) as MvtFeature?
-                nearestSettlementName = nearestSettlement?.name
-                if (nearestSettlementName == null) {
-                    nearestSettlement = settlementGrid.getFeatureTree(TreeId.SETTLEMENT_CITY)
-                        .getNearestFeature(location, settlementGrid.ruler, 15000.0) as MvtFeature?
-                    nearestSettlementName = nearestSettlement?.name
-                }
-            }
-        }
+        val nearestSettlementName = nearestSettlement(settlementGrid, location).name
 
         // Check if the location is alongside a road/path
         val nearestRoad = gridState.getNearestFeature(
@@ -301,7 +294,6 @@ class OfflineGeocoder(
         }
 
         if (nearestSettlementName != null) {
-            //val distanceToSettlement = settlementGrid.ruler.distance(location, (nearestSettlement?.geometry as Point).coordinates)
             return LocationDescription(
                 name = nearestSettlementName,
                 location = location,

@@ -21,6 +21,9 @@ import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.findLineIntersectionPoint
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
+import org.scottishtecharmy.soundscape.geoengine.utils.getCentralPointForFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.getCentroidOfPolygon
+import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
@@ -31,6 +34,8 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.network.VectorTileClient
 import org.scottishtecharmy.soundscape.platform.ioDispatcher
@@ -277,6 +282,178 @@ open class GridState(
         }
     }
 
+    // How far from a POI we'll look for a road to call it "on". StreetDescription uses 25m for
+    // the same job when deciding which houses belong to a street; much beyond 50m and we start
+    // attributing POIs to the road on the far side of the block.
+    private val nearestWaySearchDistanceMetres = 30.0
+
+    // ~110m of latitude, less of longitude away from the equator. See settlementByCell below.
+    private val settlementCellsPerDegree = 1000.0
+
+
+    /**
+     * Supplies the name of the settlement a location is in. Settlements aren't in the high-zoom
+     * tiles this grid is built from - the "place" layer only appears at low zoom - so they live in
+     * a separate GridState which only GeoEngine can see. It sets this; left null (e.g. in tests,
+     * or for the settlement grid itself) no settlement is recorded.
+     */
+    var settlementNameProvider: ((LngLatAlt) -> String?)? = null
+
+    /**
+     * The nearest way to [probe] which identifies itself, or null if there isn't one within
+     * [nearestWaySearchDistanceMetres].
+     *
+     * getNearbyCollection rather than getNearestCollection: the latter passes its metre distance
+     * into RTree.nearest as a planar degree bound and asks for an unbounded k, so it ends up
+     * walking the whole tree. This is a properly pruned box search, and it already deduplicates
+     * the per-segment rtree entries back down to whole Ways.
+     */
+    /**
+     * The point to search around for a POI's surroundings.
+     *
+     * getCentralPointForFeature handles points and polygons only. fixupCollections merges polygons
+     * which straddle a tile boundary into MultiPolygons - exactly the large features (parks,
+     * retail parks) most in need of an address - and a handful of POIs are LineStrings, so both
+     * get a fallback here rather than being skipped.
+     */
+    private fun probePointFor(feature: Feature): LngLatAlt? {
+        getCentralPointForFeature(feature)?.let { return it }
+        when (val geometry = feature.geometry) {
+            is MultiPolygon -> {
+                val exteriorRing = geometry.coordinates.firstOrNull()?.firstOrNull()
+                return exteriorRing?.let { getCentroidOfPolygon(Polygon(it)) }
+            }
+            // Piers and steps are ways which are also POIs, so they turn up here as LineStrings
+            is LineString -> return geometry.coordinates.getOrNull(geometry.coordinates.size / 2)
+            else -> return null
+        }
+    }
+
+    /**
+     * How far [feature] reaches from [probe] - zero for a point. Added to the candidate search
+     * radius so that a road alongside the far edge of a large feature is still found.
+     */
+    private fun extentFrom(feature: Feature, probe: LngLatAlt): Double {
+        val ring = when (val geometry = feature.geometry) {
+            is Polygon -> geometry.coordinates.firstOrNull()
+            is MultiPolygon -> geometry.coordinates.firstOrNull()?.firstOrNull()
+            is LineString -> geometry.coordinates
+            else -> null
+        } ?: return 0.0
+        return ring.maxOfOrNull { ruler.distance(probe, it) } ?: 0.0
+    }
+
+    /**
+     * The nearest way to [poi] which identifies itself, or null if there isn't one within
+     * [nearestWaySearchDistanceMetres] of it.
+     *
+     * getNearbyCollection rather than getNearestCollection: the latter passes its metre distance
+     * into RTree.nearest as a planar degree bound and asks for an unbounded k, so it ends up
+     * walking the whole tree. This is a properly pruned box search, and it already deduplicates
+     * the per-segment rtree entries back down to whole Ways.
+     */
+    private fun nearestNamedWay(
+        tree: FeatureTree,
+        poi: Feature,
+        probe: LngLatAlt,
+        extent: Double
+    ): Way? {
+        var nearest: Way? = null
+        var nearestDistance = Double.POSITIVE_INFINITY
+        // Candidates are gathered around the POI's centre, widened by how far the POI reaches:
+        // a large feature's centre can be well outside the threshold while the feature itself is
+        // right beside the road - a playground's middle is 35m from the street its fence is 10m
+        // from. The real threshold is applied to the measured distance below.
+        for (candidate in tree.getNearbyCollection(probe, nearestWaySearchDistanceMetres + extent, ruler)) {
+            val way = candidate as? Way ?: continue
+            // Only ways which identify themselves are any use as an address. Read name/ref
+            // directly rather than calling getName(), which confects names for un-named ways
+            // (more rtree searches) and can decorate them with "to dead end" style suffixes.
+            if ((way.name == null) && (way.ref == null)) continue
+            // getDistanceToFeature measures a point against a whole feature, polygons included,
+            // so going from the way back to the POI judges the POI by how close it actually gets
+            // to the road rather than by where its middle happens to be.
+            val pointOnWay = getDistanceToFeature(probe, way, ruler).point
+            val distance = getDistanceToFeature(pointOnWay, poi, ruler).distance
+            if ((distance < nearestWaySearchDistanceMetres) && (distance < nearestDistance)) {
+                nearestDistance = distance
+                nearest = way
+            }
+        }
+        return nearest
+    }
+
+    /**
+     * Associates each POI with the nearest named way and the settlement it's in, storing them as
+     * MvtFeature.nearestWay and MvtFeature.nearestSettlement.
+     *
+     * Lists like Places Nearby are full of POIs which OSM never named - post boxes, benches,
+     * waste baskets - and which all render as the same generic type label. Knowing which street
+     * each one is on is what makes them tellable apart. Doing the association here, once per grid,
+     * rather than on demand means it survives for as long as the grid does: the screen can be
+     * opened, scrolled, re-sorted and re-opened without repeating any of it, and it's available
+     * to any other consumer of the feature.
+     *
+     * Only the association is done here - no strings are built. Turning these into displayable
+     * text stays lazy (LocationDescription.process()), so nothing is formatted for the thousands
+     * of POIs which are never looked at.
+     *
+     * Needs the ROADS and ROADS_AND_PATHS rtrees built above, and must run inside the treeContext
+     * like the rest of processGridState.
+     */
+    internal fun attachNearestWays(
+        featureCollections: Array<FeatureCollection>,
+        localTrees: Array<FeatureTree>
+    ) {
+        val roadTree = localTrees[TreeId.ROADS.id]
+        val pathTree = localTrees[TreeId.ROADS_AND_PATHS.id]
+        val settlementNameProvider = settlementNameProvider
+        // The settlement grid is built from the low zoom "place" layer only, so it has no ways to
+        // associate anything with and nothing to ask about settlements - don't walk its POIs.
+        val hasWays = featureCollections[TreeId.ROADS.id].features.isNotEmpty() ||
+                featureCollections[TreeId.ROADS_AND_PATHS.id].features.isNotEmpty()
+        if (!hasWays && (settlementNameProvider == null)) return
+
+        // Which settlement a point is in barely changes over a hundred metres - the cascade's
+        // radii start at 1km - so POIs are bucketed into ~100m cells and the lookup done once per
+        // cell. POIs cluster hard along streets, so this takes most of the work out of what is
+        // otherwise four rtree queries each.
+        val settlementByCell = mutableMapOf<Pair<Int, Int>, String?>()
+
+        for (feature in featureCollections[TreeId.POIS.id]) {
+            val poi = feature as? MvtFeature ?: continue
+            if (poi.superCategory == SuperCategoryId.HOUSENUMBER) continue
+
+            // A POI which carries its own OSM street doesn't need one confecting for it - but it
+            // still needs a settlement. OSM addresses on POIs very often stop at addr:street with
+            // no addr:city, which is how "Kersland Drive Car Park" ends up presented as a bare
+            // "Kersland Drive" with no town, so the settlement is recorded either way.
+            val hasOwnStreet = (poi.street != null) || (poi.housenumber != null)
+
+            val probe = probePointFor(poi) ?: continue
+            val extent = extentFrom(poi, probe)
+
+            // Roads first, and only if there's nothing there do we accept a path. A named path
+            // ("Clyde Walkway") places a POI in a park far better than nothing does, but where
+            // there's a road it's always the better answer - ROADS deliberately excludes
+            // footways, so a POI on a pavement is described by the street, not the pavement.
+            if (!hasOwnStreet) {
+                poi.nearestWay = nearestNamedWay(roadTree, poi, probe, extent)
+                    ?: nearestNamedWay(pathTree, poi, probe, extent)
+            }
+
+            if (settlementNameProvider != null) {
+                val cell = Pair(
+                    (probe.latitude * settlementCellsPerDegree).toInt(),
+                    (probe.longitude * settlementCellsPerDegree).toInt()
+                )
+                poi.nearestSettlement = settlementByCell.getOrPut(cell) {
+                    settlementNameProvider(probe)
+                }
+            }
+        }
+    }
+
     /**
      * processGridState is now called from within the single thread that can access the tile grid.
      * This makes it somewhat performance critical. However, by doing this it allows us to
@@ -312,6 +489,11 @@ open class GridState(
         // Needs both the ROADS_AND_PATHS and TRANSIT rtrees built above, but nothing else from
         // this function, so it can run before the tile-edge stitching below.
         attachRailwayCrossings(featureCollections, localTrees)
+
+        val nearestWayTiming = measureTime {
+            attachNearestWays(featureCollections, localTrees)
+        }
+        println("Nearest ways took $nearestWayTiming")
 
         if (featureCollections[TreeId.ROADS_AND_PATHS.id].features.isNotEmpty()) {
             joinTileEdgeIntersections(grid, newGridIntersections)

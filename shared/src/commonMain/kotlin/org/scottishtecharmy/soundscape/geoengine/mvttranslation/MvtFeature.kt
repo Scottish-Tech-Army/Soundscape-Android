@@ -88,6 +88,24 @@ open class MvtFeature : Feature() {
     var featureValue: String? = null
     var superCategory: SuperCategoryId = SuperCategoryId.UNCATEGORIZED
 
+    /**
+     * The nearest named road to this POI, associated at tile load time by
+     * GridState.attachNearestWays(). It's used as a fallback "address" for POIs which have no
+     * address of their own - a list full of un-named "Post Box" entries is much more useful when
+     * each one says which street it's on. Null when the POI carries its own OSM address, or when
+     * there's no named road close enough to it. The Way comes from the same grid as the POI, so
+     * it's dropped along with everything else when the grid is rebuilt.
+     */
+    var nearestWay: Way? = null
+
+    /**
+     * The name of the settlement this POI is in, associated at tile load time alongside
+     * [nearestWay]. Settlements aren't in the high-zoom tiles the POI itself came from - they're
+     * looked up in the separate low-zoom settlement grid - which is why this is a plain name
+     * rather than a feature reference.
+     */
+    var nearestSettlement: String? = null
+
     fun setProperty(key: String, value: Any) {
         (properties ?: HashMap()).also {
             it[key] = value
@@ -108,6 +126,8 @@ open class MvtFeature : Feature() {
         featureType = other.featureType
         featureValue = other.featureValue
         superCategory = other.superCategory
+        nearestWay = other.nearestWay
+        nearestSettlement = other.nearestSettlement
     }
 
     /**

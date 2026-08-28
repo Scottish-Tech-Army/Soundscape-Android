@@ -121,7 +121,7 @@ fun LocationItem(
                         ?: listOfNotNull(
                             item.name,
                             item.typeDescription?.additionalText,
-                            item.description,
+                            item.description ?: item.street,
                             distanceStringA11y
                         ).joinToString(", ")
                 }
@@ -192,14 +192,17 @@ fun LocationItem(
                     style = MaterialTheme.typography.bodySmall,
                 )
             }
-            if (item.description?.isNotEmpty() == true) {
-                item.description?.let {
-                    Text(
-                        text = it,
-                        color = MaterialTheme.colorScheme.onSurface,
-                        style = MaterialTheme.typography.bodyMedium,
-                    )
-                }
+            // A POI with a real address shows it; one without falls back to the street it was
+            // associated with at tile load, which is what tells a screen full of identical
+            // "Post Box" rows apart.
+            val addressLine = item.description?.takeIf { it.isNotEmpty() }
+                ?: item.street?.takeIf { it.isNotEmpty() }
+            addressLine?.let {
+                Text(
+                    text = it,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    style = MaterialTheme.typography.bodyMedium,
+                )
             }
             if (item.typeDescription?.generic != true) {
                 item.typeDescription?.additionalText?.let { text ->

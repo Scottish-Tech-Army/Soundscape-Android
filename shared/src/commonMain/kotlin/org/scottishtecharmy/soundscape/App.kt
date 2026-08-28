@@ -97,6 +97,12 @@ data class AppCallbacks(
             LngLatAlt()
         )
     },
+    /**
+     * Offline-geocodes a point to a full address (house number included where the tile data
+     * supports it). Used by the location details screen to fill in an address for a POI which
+     * has none of its own. Null when the platform hasn't wired it up.
+     */
+    val onGetOfflineAddress: (suspend (LngLatAlt) -> LocationDescription?)? = null,
     val onGetLanguageMismatch: () -> Language? = { null },
     val provideLocationProvider: (() -> LocationProvider)? = null,
     val getOpenSourceLicensesJson: (() -> String)? = null,
