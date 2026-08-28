@@ -1425,4 +1425,7 @@
     <string name="osm_bird_hide">Skrovište za promatranje ptica</string>
     <string name="osm_transformer_tower">Transformatorska stanica</string>
     <string name="callouts_audio_beacon_distance">Svjetionik je trenutačno udaljen %1$s</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s pored %2$s</string>
+    <string name="street_description_relative_near">Na %1$s blizu %2$s</string>
 </resources>
