@@ -174,6 +174,7 @@ fun SharedHomeContent(
     heading: Float,
     onNavigate: (String) -> Unit,
     onSelectLocation: (LocationDescription) -> Unit,
+    onShowRouteDetails: (LocationDescription) -> Unit,
     onMapLongClick: ((LngLatAlt) -> Boolean)?,
     getCurrentLocationDescription: () -> LocationDescription,
     searchBar: @Composable () -> Unit,
@@ -337,7 +338,22 @@ fun SharedHomeContent(
                                         testTag = "routeSkipNext",
                                     )
                                     CardButton(
-                                        onClick = { onNavigate("${SharedRoutes.ROUTE_DETAILS}/${currentRoute.route.routeId}") },
+                                        // The route details screen takes its route through the
+                                        // NavigationStateHolder, keyed by back stack entry, like
+                                        // every other per-entry payload in this graph - there is no
+                                        // "route_details_screen/{id}" destination to navigate to.
+                                        onClick = {
+                                            onShowRouteDetails(
+                                                LocationDescription(
+                                                    name = currentRoute.route.name,
+                                                    location = currentRoute.markers.firstOrNull()
+                                                        ?.let { LngLatAlt(it.longitude, it.latitude) }
+                                                        ?: LngLatAlt(),
+                                                    description = currentRoute.route.description,
+                                                    databaseId = currentRoute.route.routeId,
+                                                )
+                                            )
+                                        },
                                         imageVector = Icons.Filled.Info,
                                         contentDescriptionId = Res.string.behavior_experiences_route_nav_title,
                                         testTag = "routeDetails",
