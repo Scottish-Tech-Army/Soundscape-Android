@@ -1425,4 +1425,7 @@
     <string name="osm_bird_hide">Pozorovatelna ptáků</string>
     <string name="osm_transformer_tower">Transformátorová věž</string>
     <string name="callouts_audio_beacon_distance">Maják je nyní %1$s daleko</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s u %2$s</string>
+    <string name="street_description_relative_near">Na %1$s poblíž %2$s</string>
 </resources>
