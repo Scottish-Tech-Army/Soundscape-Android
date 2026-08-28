@@ -1425,4 +1425,7 @@
     <string name="talkback_double_tap_template">اضغط مرتين لـ%1$s</string>
     <string name="menu_manage_locale">الإعدادات المحلية</string>
     <string name="callouts_audio_beacon_distance">منارة الصوت دلوقتي على بعد %1$s</string>
+    <string name="directions_street_settlement">%1$s، %2$s</string>
+    <string name="confect_name_next_to">%1$s بجانب %2$s</string>
+    <string name="street_description_relative_near">في %1$s بالقرب من %2$s</string>
 </resources>
