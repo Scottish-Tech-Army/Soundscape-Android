@@ -1425,4 +1425,7 @@
     <string name="confect_name_via">%1$s kupitia %2$s</string>
     <string name="confect_name_pavement_next_to">Njia ya miguu karibu na %1$s</string>
     <string name="callouts_audio_beacon_distance">Beacon kwa sasa iko umbali wa %1$s</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s karibu na %2$s</string>
+    <string name="street_description_relative_near">Kwenye %1$s karibu na %2$s</string>
 </resources>
