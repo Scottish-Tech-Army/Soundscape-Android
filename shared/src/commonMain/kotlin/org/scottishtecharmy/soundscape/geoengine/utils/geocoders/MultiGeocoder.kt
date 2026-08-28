@@ -27,7 +27,14 @@ class MultiGeocoder(
 ) : SoundscapeGeocoder() {
 
     private val fusedGeocoder = FusedGeocoder(gridState, photonGeocoder, platformGeocoder)
-    private val localGeocoder =
+
+    /**
+     * Exposed so callers who specifically want the tile-derived answer can ask for it rather than
+     * whatever [pickGeocoder] would choose. Somewhere already in the loaded grid - a POI the user
+     * just tapped in Places Nearby, say - the offline geocoder is both faster and more relevant
+     * than a network round trip, and it works with no signal at all.
+     */
+    val offlineGeocoder =
         OfflineGeocoder(gridState, settlementState, tileSearch, analyticsLogger, processor)
 
     private fun pickGeocoder(): SoundscapeGeocoder? {
@@ -35,7 +42,7 @@ class MultiGeocoder(
         return if (hasNetwork() && (settingsChoice != "Offline"))
             fusedGeocoder
         else
-            localGeocoder
+            offlineGeocoder
     }
 
     override suspend fun getAddressFromLocationName(
@@ -87,8 +94,8 @@ class MultiGeocoder(
         var results =
             firstGeocoder?.getAddressFromLngLat(userGeometry, localizedStrings, ignoreHouseNumbers)
         if (results == null) {
-            if (firstGeocoder != localGeocoder) {
-                results = localGeocoder.getAddressFromLngLat(
+            if (firstGeocoder != offlineGeocoder) {
+                results = offlineGeocoder.getAddressFromLngLat(
                     userGeometry,
                     localizedStrings,
                     ignoreHouseNumbers

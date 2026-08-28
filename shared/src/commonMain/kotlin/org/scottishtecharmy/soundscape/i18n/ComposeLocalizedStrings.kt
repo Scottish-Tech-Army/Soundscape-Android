@@ -99,6 +99,7 @@ import org.scottishtecharmy.soundscape.resources.directions_name_continues_ahead
 import org.scottishtecharmy.soundscape.resources.directions_name_goes_left
 import org.scottishtecharmy.soundscape.resources.directions_name_goes_right
 import org.scottishtecharmy.soundscape.resources.directions_near_name
+import org.scottishtecharmy.soundscape.resources.directions_street_settlement
 import org.scottishtecharmy.soundscape.resources.directions_near_road_and_settlement
 import org.scottishtecharmy.soundscape.resources.directions_transit_stop_near_settlement
 import org.scottishtecharmy.soundscape.resources.directions_transit_stop_near_poi
@@ -158,6 +159,7 @@ import org.scottishtecharmy.soundscape.resources.stationary_on_way
 import org.scottishtecharmy.soundscape.resources.street_description_between
 import org.scottishtecharmy.soundscape.resources.street_description_intersection
 import org.scottishtecharmy.soundscape.resources.street_description_relative_after
+import org.scottishtecharmy.soundscape.resources.street_description_relative_near
 import org.scottishtecharmy.soundscape.resources.street_description_relative_before
 import org.scottishtecharmy.soundscape.resources.street_description_since
 import org.scottishtecharmy.soundscape.resources.street_description_until
@@ -250,6 +252,7 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.OsmEntranceNamedWithDestination -> Res.string.osm_entrance_named_with_destination
         StringKey.OsmEntranceWithDestination -> Res.string.osm_entrance_with_destination
         StringKey.DirectionsNearName -> Res.string.directions_near_name
+        StringKey.DirectionsStreetSettlement -> Res.string.directions_street_settlement
         StringKey.DirectionsNearRoadAndSettlement -> Res.string.directions_near_road_and_settlement
         StringKey.DirectionsTransitStopNearSettlement -> Res.string.directions_transit_stop_near_settlement
         StringKey.DirectionsTransitStopNearPoi -> Res.string.directions_transit_stop_near_poi
@@ -276,6 +279,7 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.StreetDescriptionIntersection -> Res.string.street_description_intersection
         StringKey.StreetDescriptionRelativeBefore -> Res.string.street_description_relative_before
         StringKey.StreetDescriptionRelativeAfter -> Res.string.street_description_relative_after
+        StringKey.StreetDescriptionRelativeNear -> Res.string.street_description_relative_near
         StringKey.StreetDescriptionBetween -> Res.string.street_description_between
         StringKey.StreetDescriptionUntil -> Res.string.street_description_until
         StringKey.StreetDescriptionSince -> Res.string.street_description_since

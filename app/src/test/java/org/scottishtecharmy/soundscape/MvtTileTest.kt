@@ -25,6 +25,8 @@ import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.EntranceDetails
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.EntranceMatching
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
+import org.scottishtecharmy.soundscape.components.LocationSource
+import org.scottishtecharmy.soundscape.geoengine.nearestSettlement
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
@@ -41,6 +43,8 @@ import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.OfflineGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.StreetDescription
+import org.scottishtecharmy.soundscape.geoengine.utils.getCentralPointForFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.getCentroidOfPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
@@ -54,9 +58,12 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.StringKey
+import org.scottishtecharmy.soundscape.utils.toLocationDescription
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.process
 import java.io.File
@@ -144,11 +151,21 @@ private fun parseGpxFromFile(filename: String): FeatureCollection {
 fun getGridStateForLocation(
     location: LngLatAlt,
     zoomLevel: Int,
-    gridSize: Int
+    gridSize: Int,
+    /**
+     * An already-loaded low-zoom settlement grid. Pass one to mirror what GeoEngine does in
+     * production, so that the load-time POI address pass can record which settlement each POI is
+     * in - the high-zoom tiles don't carry the "place" layer, so without this there are no
+     * settlements to be had.
+     */
+    settlementGrid: GridState? = null
 ): GridState {
 
     val gridState = FileGridState(zoomLevel, gridSize)
     gridState.start(offlineExtractPath)
+    settlementGrid?.let { grid ->
+        gridState.settlementNameProvider = { probe -> nearestSettlement(grid, probe).name }
+    }
     runBlocking {
 
         val enabledCategories = mutableSetOf<String>()
@@ -217,6 +234,236 @@ class MvtTileTest {
      * for `name` (see MvtFeature.ref/copyProperties), so this is a plain tag read - no join
      * against `transportation_name` by OSM id needed, unlike the old prototype this replaced.
      */
+    /**
+     * End-to-end check of GridState.attachNearestWays() against real Glasgow tiles.
+     *
+     * OSM leaves most street furniture un-named, so a Places Nearby list is otherwise full of
+     * identical "Post Box"/"Bench" rows. Associating each with the road it sits on at tile load
+     * time is what makes them tellable apart, and doing it once per grid means the list can be
+     * opened and scrolled repeatedly for free.
+     *
+     * The pinned POI is a post box on London Road (found by scanning TreeId.POIS around
+     * [glasgowTestLocation] for un-named features).
+     */
+    /** Mirrors GridState.probePointFor, which isn't public. */
+    private fun probePoint(feature: MvtFeature): LngLatAlt =
+        getCentralPointForFeature(feature)
+            ?: (feature.geometry as? LineString)?.coordinates?.let { it[it.size / 2] }
+            ?: (feature.geometry as? MultiPolygon)?.coordinates?.first()?.first()?.let {
+                getCentroidOfPolygon(Polygon(it))
+            }
+            ?: error("no probe point for ${feature.osmId}")
+
+    @Test
+    fun testNearestWayAssociatesUnnamedPoisWithTheirStreet() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3, settlementGrid)
+        val pois = gridState.featureTrees[TreeId.POIS.id].getAllCollection()
+
+        val postBox = pois.features
+            .filterIsInstance<MvtFeature>()
+            .first { it.osmId == 15104401251L }
+        assertEquals("post_box", postBox.featureSubClass)
+        assertNull(postBox.name)
+        assertEquals("London Road", postBox.nearestWay?.name)
+        assertNotNull(postBox.nearestSettlement)
+
+        var addressless = 0
+        var associated = 0
+        var settled = 0
+        for (feature in pois.features) {
+            val poi = feature as? MvtFeature ?: continue
+            val nearestWay = poi.nearestWay
+            if ((poi.name == null) && (poi.street == null) && (poi.housenumber == null)) {
+                addressless++
+                if (nearestWay != null) associated++
+                if (poi.nearestSettlement != null) settled++
+            }
+            if (nearestWay != null) {
+                // A POI which has an address of its own is skipped, so it should never pick one up
+                assertNull(poi.street)
+                assertNull(poi.housenumber)
+                // ...and the road it did pick up has to be a named one within the search radius
+                // (nearestWaySearchDistanceMetres, 30m) of the POI.
+                assertTrue((nearestWay.name != null) || (nearestWay.ref != null))
+                // Measured POI-to-way, the way GridState does it - a large feature is judged by
+                // how close it actually gets to the road, not by where its centre is
+                val pointOnWay =
+                    getDistanceToFeature(probePoint(poi), nearestWay, gridState.ruler).point
+                assertTrue(
+                    "${poi.osmId} associated with a way more than 30m away",
+                    getDistanceToFeature(pointOnWay, poi, gridState.ruler).distance < 31.0
+                )
+            }
+        }
+
+        // Not every un-named POI is near a named road - ones in parks and retail parks legitimately
+        // get nothing - but in a dense city grid most of them should be resolved.
+        assertTrue("expected plenty of un-named POIs, got $addressless", addressless > 1000)
+        assertTrue(
+            "only $associated of $addressless un-named POIs were given a street",
+            associated > (addressless / 2)
+        )
+        // Glasgow is well inside the city's 15km radius, so every POI lands in some settlement
+        assertEquals(addressless, settled)
+        println("Un-named POIs: $addressless, with a way: $associated, with a settlement: $settled")
+    }
+
+    /**
+     * Milngavie car parks, from the Glasgow extract.
+     *
+     * OSM tags these with addr:street but no addr:city, so building an address from the tags
+     * alone gives a bare "Kersland Drive" with no town in it. The settlement recorded at tile
+     * load time fills that gap - which means POIs that have a street of their own still need the
+     * settlement attached, even though they don't need a nearestWay confected.
+     */
+    @Test
+    fun testCarParkAddressIncludesTheSettlement() {
+        val location = LngLatAlt(-4.3142776, 55.9401126)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3, settlementGrid)
+
+        val pois = gridState.featureTrees[TreeId.POIS.id].getAllCollection()
+        fun carPark(name: String) = pois.features
+            .filterIsInstance<MvtFeature>()
+            .first { it.name == name }
+
+        val kerslandDrive = carPark("Kersland Drive Car Park")
+        assertEquals("Kersland Drive", kerslandDrive.street)
+        assertNull(kerslandDrive.housenumber)
+        // It has a street of its own, so no way is confected for it...
+        assertNull(kerslandDrive.nearestWay)
+        // ...but it still gets the settlement, which its OSM tags don't carry
+        assertEquals("Milngavie", kerslandDrive.nearestSettlement)
+
+        val description = kerslandDrive.toLocationDescription(LocationSource.OfflineGeocoder)
+        assertEquals("Kersland Drive Car Park", description.name)
+        assertEquals("Kersland Drive, Milngavie", description.description)
+
+        // Same shape, different streets - these were all bare street names before
+        assertEquals(
+            "Woodburn Way, Milngavie",
+            carPark("Woodburn Way Car Park")
+                .toLocationDescription(LocationSource.OfflineGeocoder).description
+        )
+        assertEquals(
+            "Ellangowan Road, Milngavie",
+            carPark("Ellangowan Car Park")
+                .toLocationDescription(LocationSource.OfflineGeocoder).description
+        )
+    }
+
+    /**
+     * "just before"/"just after"/"until"/"since" describe where a location is relative to the
+     * direction you're travelling, which StreetDescription.describeLocation only knows from a
+     * heading - without one it fills ahead and behind in arbitrarily. Reverse geocoding a bare
+     * point (an address for somewhere the user tapped, which passes UserGeometry(location) with
+     * no heading) must therefore never produce them. "Between" is symmetric, so it still stands,
+     * and "near" replaces "just before"/"just after" for a feature right beside the location.
+     */
+    @Test
+    fun testReverseGeocodeWithoutHeadingHasNoDirectionalDescriptions() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val geocoder = OfflineGeocoder(gridState, settlementGrid, processor = { it.process() })
+
+        // Sample along the named roads around the test location, which is what a user tapping
+        // POIs in this area amounts to
+        val ruler = gridState.ruler
+        val samples = gridState.featureTrees[TreeId.ROADS.id].getAllCollection().features
+            .filterIsInstance<Way>()
+            .filter { it.name != null }
+            .mapNotNull { (it.geometry as? LineString)?.coordinates }
+            .flatten()
+            .filter { ruler.distance(location, it) < 1000.0 }
+            .take(400)
+        assertTrue("no sample points found", samples.size > 100)
+
+        val directional = listOf("just before", "just after", " until ", " since ")
+        var headingResults = 0
+        var directionalWithHeading = 0
+        var nearWithoutHeading = 0
+
+        runBlocking {
+            for (sample in samples) {
+                val withoutHeading =
+                    geocoder.getAddressFromLngLat(UserGeometry(sample), null, false)
+                withoutHeading?.name?.let { text ->
+                    for (phrase in directional) {
+                        assertTrue(
+                            "reverse geocode with no heading produced \"$text\"",
+                            !text.contains(phrase)
+                        )
+                    }
+                    if (text.contains(" near ")) nearWithoutHeading++
+                }
+
+                // The same point with a heading may still use them - that's the case they're for
+                val withHeading = geocoder.getAddressFromLngLat(
+                    UserGeometry(location = sample, travelHeading = 90.0, speed = 1.5), null, false
+                )
+                withHeading?.name?.let { text ->
+                    headingResults++
+                    if (directional.any { text.contains(it) }) directionalWithHeading++
+                }
+            }
+        }
+
+        // Guards the test itself: if nothing ever takes the directional branch then the assertions
+        // above are passing vacuously
+        assertTrue("no results at all with a heading", headingResults > 0)
+        assertTrue(
+            "no directional descriptions produced even with a heading, so the no-heading " +
+                "assertions above prove nothing",
+            directionalWithHeading > 0
+        )
+        // The close-by case should be described rather than dropped
+        assertTrue("no \"near\" descriptions produced", nearWithoutHeading > 0)
+    }
+
+    /**
+     * A Milngavie playground, from the Glasgow extract.
+     *
+     * Its centre is 35m from Campsie Drive - outside the association threshold - but its fence is
+     * 10m from it, and the fence is where the user is standing. Judging a POI by its centre alone
+     * leaves large features with no address at all, so the measurement runs from the way back to
+     * the POI, which getDistanceToFeature handles for polygons.
+     */
+    @Test
+    fun testLargePoiIsAssociatedByItsEdgeNotItsCentre() {
+        val location = LngLatAlt(-4.307773, 55.945404)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3, settlementGrid)
+        val ruler = gridState.ruler
+
+        val playground = gridState.featureTrees[TreeId.POIS.id].getAllCollection().features
+            .filterIsInstance<MvtFeature>()
+            .first { poi ->
+                val centre = getCentralPointForFeature(poi) ?: return@first false
+                (poi.featureClass == "playground") && (ruler.distance(location, centre) < 50.0)
+            }
+
+        val centre = getCentralPointForFeature(playground)!!
+        val campsieDrive = gridState.featureTrees[TreeId.ROADS.id]
+            .getNearbyCollection(centre, 100.0, ruler).features
+            .filterIsInstance<Way>()
+            .filter { it.name == "Campsie Drive" }
+            .minBy { getDistanceToFeature(centre, it, ruler).distance }
+
+        // The centre is out of range, which is why this used to come back with nothing...
+        val fromCentre = getDistanceToFeature(centre, campsieDrive, ruler).distance
+        assertTrue("expected the centre to be out of range, was ${fromCentre.toInt()}m", fromCentre > 30.0)
+        // ...while the playground itself is well within it
+        val pointOnWay = getDistanceToFeature(centre, campsieDrive, ruler).point
+        val fromEdge = getDistanceToFeature(pointOnWay, playground, ruler).distance
+        assertTrue("expected the edge to be in range, was ${fromEdge.toInt()}m", fromEdge < 30.0)
+
+        assertEquals("Campsie Drive", playground.nearestWay?.name)
+        assertEquals("Milngavie", playground.nearestSettlement)
+    }
+
     @Test
     fun testTransportationNameRef() {
         val tileX = 7995

@@ -733,6 +733,10 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         return geoEngine.getLocationDescription(location)
     }
 
+    override suspend fun getOfflineAddress(location: LngLatAlt): LocationDescription? {
+        return geoEngine.getOfflineAddress(location)
+    }
+
     override suspend fun searchResult(query: String): List<LocationDescription>? {
         return geoEngine.searchResult(query)
     }

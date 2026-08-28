@@ -922,6 +922,10 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         return geoEngine.getLocationDescription(location)
     }
 
+    override suspend fun getOfflineAddress(location: LngLatAlt): LocationDescription? {
+        return geoEngine.getOfflineAddress(location)
+    }
+
     override fun startBeacon(location: LngLatAlt, name: String) {
         // RoutePlayer.startBeacon() makes blocking audio engine calls (WAV decode, native
         // lock), so it's dispatched off the caller's thread to avoid blocking the main thread

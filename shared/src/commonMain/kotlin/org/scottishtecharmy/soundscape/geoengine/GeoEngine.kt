@@ -100,6 +100,7 @@ class GeoEngine {
     private lateinit var preferencesProvider: PreferencesProvider
 
     lateinit var geocoder: SoundscapeGeocoder
+    private lateinit var multiGeocoder: MultiGeocoder
     lateinit var tileSearch: TileSearch
 
     var appInForeground = false
@@ -283,6 +284,12 @@ class GeoEngine {
         settlementGrid.analytics = analyticsAdapter
         gridState.start(offlineExtractPath)
         settlementGrid.start(offlineExtractPath)
+        // The high-zoom tiles gridState is built from don't carry the "place" layer, so it can't
+        // see settlements at all - give it a way to ask the low-zoom grid, which it has no other
+        // reference to. Used when associating POIs with an address at tile load time.
+        gridState.settlementNameProvider = { location ->
+            nearestSettlement(settlementGrid, location).name
+        }
         tileSearch = TileSearch(offlineExtractPath, gridState, settlementGrid)
 
         autoCallout = AutoCallout(localizedStrings, preferencesProvider)
@@ -291,11 +298,11 @@ class GeoEngine {
             photonSearch = photonSearch,
             languageProvider = { getPhotonLanguage(preferencesProvider) },
             analyticsLogger = { name -> analytics.logEvent(name, null) },
-            processor = { it.process() }
+            processor = { it.process(localizedStrings) }
         )
         val analyticsLoggerFn = { name: String -> analytics.logEvent(name, null) }
-        val processorFn: (LocationDescription) -> Unit = { it.process() }
-        geocoder = MultiGeocoder(
+        val processorFn: (LocationDescription) -> Unit = { it.process(localizedStrings) }
+        multiGeocoder = MultiGeocoder(
             gridState = gridState,
             settlementState = settlementGrid,
             tileSearch = tileSearch,
@@ -311,6 +318,7 @@ class GeoEngine {
                 )
             }
         )
+        geocoder = multiGeocoder
         locationProvider = newLocationProvider
         directionProvider = newDirectionProvider
 
@@ -392,12 +400,15 @@ class GeoEngine {
                     analytics.crashSetCustomKey("latitude", newLocation.latitude.toString())
                     analytics.crashSetCustomKey("longitude", newLocation.longitude.toString())
 
-                    val updated = gridState.locationUpdate(
+                    // The settlement grid goes first: gridState's load-time POI address pass
+                    // asks it which settlement each POI is in, so it has to already hold the
+                    // settlements covering this location by the time gridState rebuilds.
+                    settlementGrid.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
                         createSuperCategoriesSet(),
                         localizedStrings
                     )
-                    settlementGrid.locationUpdate(
+                    val updated = gridState.locationUpdate(
                         LngLatAlt(location.longitude, location.latitude),
                         createSuperCategoriesSet(),
                         localizedStrings
@@ -645,6 +656,26 @@ class GeoEngine {
             }
         }
         return results
+    }
+
+    /**
+     * The offline geocoder's full address for a point, including a house number where the tile
+     * data supports deriving one. This is the suspend counterpart of [getLocationDescription],
+     * which wraps the same work in runBlocking and so can't be called from a composition.
+     *
+     * Deliberately the offline geocoder rather than whichever one [MultiGeocoder] would pick: it's
+     * used for places which are already in the loaded grid, where going to the network would be
+     * both slower and less relevant, and it keeps working with no signal.
+     */
+    @OptIn(ExperimentalCoroutinesApi::class)
+    suspend fun getOfflineAddress(location: LngLatAlt): LocationDescription? {
+        return withContext(gridState.treeContext) {
+            multiGeocoder.offlineGeocoder.getAddressFromLngLat(
+                UserGeometry(location),
+                localizedStrings,
+                ignoreHouseNumbers = false
+            )
+        }
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)

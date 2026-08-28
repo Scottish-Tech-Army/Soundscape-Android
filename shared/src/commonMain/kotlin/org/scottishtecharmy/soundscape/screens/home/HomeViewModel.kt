@@ -204,6 +204,10 @@ open class HomeViewModel(
         return connection.service?.getLocationDescription(location)
     }
 
+    suspend fun getOfflineAddress(location: LngLatAlt): LocationDescription? {
+        return connection.service?.getOfflineAddress(location)
+    }
+
     fun onTriggerSearch(text: String) {
         viewModelScope.launch {
             _state.update { it.copy(searchInProgress = true) }
