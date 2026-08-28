@@ -1425,4 +1425,7 @@
     <string name="menu_manage_locale">Yerel ayar</string>
     <string name="talkback_double_tap_template">%1$s için çift dokunun</string>
     <string name="callouts_audio_beacon_distance">İşaret şu anda %1$s uzaklıkta</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%2$s yanındaki %1$s</string>
+    <string name="street_description_relative_near">%1$s üzerinde, %2$s yakınında</string>
 </resources>
