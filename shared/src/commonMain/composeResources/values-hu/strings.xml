@@ -1425,4 +1425,7 @@
     <string name="osm_bird_hide">Madárles</string>
     <string name="osm_transformer_tower">Transzformátorállomás</string>
     <string name="callouts_audio_beacon_distance">A hangjelző jelenleg %1$s távolságra van</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s a(z) %2$s mellett</string>
+    <string name="street_description_relative_near">A(z) %1$s úton, a(z) %2$s közelében</string>
 </resources>
