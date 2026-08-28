@@ -53,7 +53,7 @@ classDiagram
 Features are points, lines or polygons along with some metadata describing what they are. We construct these based on the Mapbox Vector Tile contents and then divide them up into separate searchable FeatureTrees depending on the type of feature they are.
 
 ## Parsing the MVT (MapBox Vector Tiles)
-Each MVT tile is processed layer by layer creating Features for all of the points that we are interested in. The main layers of interest are the POI which contains points and polygons for all of the various points of interest, and the transportation layers which contains roads and paths. We don't currently parse other layers (e.g. groundcover, water, housenumbers), though we may add some of those in future if we want to use that data e.g. rivers and streams.
+Each MVT tile is processed layer by layer creating Features for all of the points that we are interested in. The main layers of interest are the POI which contains points and polygons for all of the various points of interest, and the transportation layers which contains roads and paths. We parse the `water` and `waterway` layers only for named lakes/reservoirs and named rivers/burns, and don't currently parse other layers (e.g. groundcover), though we may add some of those in future if we want to use that data.
 After the initial parsing, some post-processing is done on the roads with the aim of:
 
 * Finding Intersections so that we can call them out.
@@ -74,6 +74,8 @@ Once code has an Intersection or a Way it can follow Ways across the map tiles. 
 
 * Street Preview. It's possible to implement the Way traversal used by Street Preview using just FeatureTrees, but it's far more efficient to use Ways and Intersections.
 * Name confection. This is how we add context to un-named paths and service roads. For each intersection that contains at least one named way (e.g. `"Roselea Drive"` rather than just `"path"`) we add a tag to each un-named way that joins that intersection. The tag will either be `"destination:forward"` or `"destination:backward"` depending on which way the Way runs (in to or out of the intersection). These can be used when describing paths later when approaching intersections e.g. `"Path to Roselea Drive"` when travelling one way, or `"Path to Mosswell Road"` when travelling in the opposite direction. We also add tags indicating dead-ends which is a useful way of filtering callouts e.g. don't call out un-named dead-ends - there are a lot of dead-end service roads in my local area, and calling them adds little context.
+
+  Two further confections are done lazily, per Way, the first time something needs to describe it (they need FeatureTree searches, so doing the whole grid up front is too slow). A pavement is named after the road it runs beside, e.g. `"Pavement next to Clober Road"`, and a way which follows a named river, burn or loch for a meaningful distance is named after the water, e.g. `"Path next to Allander Water"` or `"Path next to Craigmaddie Reservoir"`. The water confection requires at least 80m of the way (or all of it, if it's shorter) to lie within 25m of the same water, which is what distinguishes a path that follows a river from a road that merely crosses it.
  
 ## Filters
 Two filters in `geoengine/filters/` sit between raw sensor readings and the rest of the engine: a Kalman filter that smooths location and heading, and the map-matching filter that decides which road or path the user is actually walking on.

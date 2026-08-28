@@ -14,6 +14,7 @@ enum class StringKey {
     ConfectNameDeadEnd,
     ConfectNamePavementNextTo,
     ConfectNamePavement,
+    ConfectNameNextTo,
     CalloutsAudioBeacon,
     CalloutsAudioBeaconDistance,
     DirectionsAtPoi,

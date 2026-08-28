@@ -189,6 +189,78 @@ private fun extractNamedWaterPolygons(
 // culvert), so it's judged on the waterway's own class rather than its brunnel value.
 private val significantWaterwayClasses = setOf("river", "canal")
 
+// The `waterway` classes worth naming an adjacent path after. Deliberately wider than
+// significantWaterwayClasses above, because the two sets answer different questions. That one asks
+// "is crossing this worth announcing?", where a culverted stream under a road is not. This one asks
+// "does following this for hundreds of metres identify the path?", and a burn very much does - the
+// path at 55.931961,-4.305300 is known by the Allander Water it runs beside. Drains and ditches
+// stay out: they're field drainage, not a landmark anyone navigates by.
+private val nameableWaterwayClasses = setOf("river", "canal", "stream")
+
+/**
+ * The named lines of the `waterway` layer - rivers, canals and burns - kept as features in their
+ * own right so that an un-named path which follows one for its whole length can be described by it
+ * ("Path next to Allander Water") - see addWaterAdjacency in WayNaming.kt.
+ *
+ * extractCrossings below also reads this layer, but only to work out which road crosses which
+ * waterway; it discards the waterway geometry afterwards, and filters to river/canal only. Neither
+ * is what naming needs, hence the separate pass.
+ *
+ * Segments carrying a `brunnel` tag are skipped: those are the culverted/tunnelled stretches, and a
+ * path isn't meaningfully "next to" a watercourse that's buried under it at that point.
+ */
+private fun extractNamedWaterways(
+    mvt: Tile,
+    tileX: Int,
+    tileY: Int,
+    tileZoom: Int
+): List<MvtFeature> {
+    val waterways = mutableListOf<MvtFeature>()
+    for (layer in mvt.layers) {
+        if (layer.name != "waterway") continue
+        for (feature in layer.features) {
+            if (feature.type != Tile.GeomType.LINESTRING) continue
+
+            var firstInPair = true
+            var key = ""
+            var name: String? = null
+            var featureClass: String? = null
+            var brunnel: String? = null
+            for (tag in feature.tags) {
+                if (firstInPair) {
+                    key = layer.keys[tag]
+                } else {
+                    val value = layer.values[tag].string_value
+                    when (key) {
+                        "name" -> name = value
+                        "class" -> featureClass = value
+                        "brunnel" -> brunnel = value
+                    }
+                }
+                firstInPair = !firstInPair
+            }
+            if (name.isNullOrEmpty()) continue
+            if (featureClass !in nameableWaterwayClasses) continue
+            if (brunnel != null) continue
+
+            for (line in parseGeometry(true, feature.geometry)) {
+                if (line.isEmpty()) continue
+                val coordinates = convertGeometry(tileX, tileY, tileZoom, line)
+                if (coordinates.size < 2) continue
+                val waterway = MvtFeature()
+                waterway.geometry = LineString(ArrayList(coordinates))
+                waterway.osmId = feature.id ?: 0L
+                waterway.name = name
+                waterway.featureType = "waterway"
+                waterway.featureValue = "named_waterway"
+                waterway.featureClass = featureClass
+                waterways.add(waterway)
+            }
+        }
+    }
+    return waterways
+}
+
 // OpenMapTiles `transportation` classes that are a railway rather than a road - see the equivalent
 // check in MvtToGeoJson's main Way-building loop.
 private val railwayClasses = setOf("rail", "transit")
@@ -563,6 +635,9 @@ fun vectorTileToGeoJson(
         }
         for (waterPolygon in extractNamedWaterPolygons(mvt, tileX, tileY, tileZoom)) {
             collection.addFeature(waterPolygon)
+        }
+        for (waterway in extractNamedWaterways(mvt, tileX, tileY, tileZoom)) {
+            collection.addFeature(waterway)
         }
     }
 

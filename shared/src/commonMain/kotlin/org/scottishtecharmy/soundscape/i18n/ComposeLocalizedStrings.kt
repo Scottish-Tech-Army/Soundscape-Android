@@ -22,6 +22,7 @@ import org.scottishtecharmy.soundscape.resources.callouts_nothing_to_call_out_no
 import org.scottishtecharmy.soundscape.resources.confect_name_dead_end
 import org.scottishtecharmy.soundscape.resources.confect_name_joins
 import org.scottishtecharmy.soundscape.resources.confect_name_pavement
+import org.scottishtecharmy.soundscape.resources.confect_name_next_to
 import org.scottishtecharmy.soundscape.resources.confect_name_pavement_next_to
 import org.scottishtecharmy.soundscape.resources.confect_name_to
 import org.scottishtecharmy.soundscape.resources.confect_name_to_via
@@ -184,6 +185,7 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.ConfectNameDeadEnd -> Res.string.confect_name_dead_end
         StringKey.ConfectNamePavementNextTo -> Res.string.confect_name_pavement_next_to
         StringKey.ConfectNamePavement -> Res.string.confect_name_pavement
+        StringKey.ConfectNameNextTo -> Res.string.confect_name_next_to
         StringKey.CalloutsAudioBeacon -> Res.string.callouts_audio_beacon
         StringKey.CalloutsAudioBeaconDistance -> Res.string.callouts_audio_beacon_distance
         StringKey.DirectionsAtPoi -> Res.string.directions_at_poi

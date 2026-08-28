@@ -138,9 +138,7 @@ class Way : MvtFeature() {
                 genericName = false
             } else {
                 // Un-named way, so use "class" property
-                result = featureClass?.let {
-                    strings?.resolveFeatureClass(it)
-                } ?: featureClass ?: ""
+                result = genericClassName(strings)
             }
 
             result = result.replaceFirstChar {
@@ -150,59 +148,71 @@ class Way : MvtFeature() {
                     it.toString()
             }
 
-            if (gridState != null) {
+            // A confected name (a pavement's parent road, or the water the way follows) describes
+            // the way in full, so it replaces the generic class noun and skips the destination
+            // handling below - "Path next to Allander Water to dead end" reads no better than
+            // either half alone. Applying it here rather than leaving it for the next getName()
+            // call to pick up off this.name means the very first callout for the way already says
+            // it, instead of announcing a bare "Path" once and the real description afterwards.
+            val confectedName = if (gridState != null) {
                 confectNamesForRoad(this, gridState, strings)
-            }
-
-            if (direction != null) {
-                // Describe as 'towards'
-                destinationModifier = if (direction)
-                    properties?.get("destination:forward")
-                else
-                    properties?.get("destination:backward")
-
-                passesModifier = if (direction)
-                    properties?.get("passes:forward")
-                else
-                    properties?.get("passes:backward")
-                passesString = passesModifier?.toString()?.let {
-                    strings?.resolveFeatureClass(it) ?: it
-                } ?: ""
-
-                if (destinationModifier == null) {
-                    destinationModifier = if (direction)
-                        properties?.get("dead-end:forward")
-                    else
-                        properties?.get("dead-end:backward")
-                }
-
-                if (destinationModifier != null) {
-                    if (destinationModifier == "dead-end") {
-                        if (noGenericDeadEnds)
-                            return ""
-                        destinationModifier = strings?.getOrNull(StringKey.ConfectNameDeadEnd) ?: "dead end"
-                    }
-
-                    return if (passesString.isNotEmpty()) {
-                        strings?.getOrNull(
-                            StringKey.ConfectNameToVia,
-                            result,
-                            destinationModifier,
-                            passesString
-                        )
-                            ?: "$result to $destinationModifier via $passesString"
-                    } else {
-                        strings?.getOrNull(StringKey.ConfectNameTo, result, destinationModifier)
-                            ?: "$result to $destinationModifier"
-                    }
-                }
             } else {
-                val start = properties?.get("destination:backward")
-                val end = properties?.get("destination:forward")
+                null
+            }
+            if (confectedName != null) {
+                result = confectedName
+                genericName = false
+            } else {
+                if (direction != null) {
+                    // Describe as 'towards'
+                    destinationModifier = if (direction)
+                        properties?.get("destination:forward")
+                    else
+                        properties?.get("destination:backward")
 
-                if ((end != null) and (start != null)) {
-                    return strings?.getOrNull(StringKey.ConfectNameJoins, result, start, end)
-                        ?: "$result that joins $start and $end"
+                    passesModifier = if (direction)
+                        properties?.get("passes:forward")
+                    else
+                        properties?.get("passes:backward")
+                    passesString = passesModifier?.toString()?.let {
+                        strings?.resolveFeatureClass(it) ?: it
+                    } ?: ""
+
+                    if (destinationModifier == null) {
+                        destinationModifier = if (direction)
+                            properties?.get("dead-end:forward")
+                        else
+                            properties?.get("dead-end:backward")
+                    }
+
+                    if (destinationModifier != null) {
+                        if (destinationModifier == "dead-end") {
+                            if (noGenericDeadEnds)
+                                return ""
+                            destinationModifier = strings?.getOrNull(StringKey.ConfectNameDeadEnd) ?: "dead end"
+                        }
+
+                        return if (passesString.isNotEmpty()) {
+                            strings?.getOrNull(
+                                StringKey.ConfectNameToVia,
+                                result,
+                                destinationModifier,
+                                passesString
+                            )
+                                ?: "$result to $destinationModifier via $passesString"
+                        } else {
+                            strings?.getOrNull(StringKey.ConfectNameTo, result, destinationModifier)
+                                ?: "$result to $destinationModifier"
+                        }
+                    }
+                } else {
+                    val start = properties?.get("destination:backward")
+                    val end = properties?.get("destination:forward")
+
+                    if ((end != null) and (start != null)) {
+                        return strings?.getOrNull(StringKey.ConfectNameJoins, result, start, end)
+                            ?: "$result that joins $start and $end"
+                    }
                 }
             }
         }
@@ -273,6 +283,21 @@ class Way : MvtFeature() {
         }
 
         return Pair(null, 0)
+    }
+
+    /**
+     * The generic, class-derived noun for an un-named way - "Path", "Track", "Service Road" -
+     * localized and title-cased ready to start a description. Shared with addWaterAdjacency (see
+     * WayNaming.kt), which builds "&lt;noun&gt; next to &lt;water&gt;" out of it.
+     */
+    fun genericClassName(strings: LocalizedStrings?): String {
+        val noun = featureClass?.let { strings?.resolveFeatureClass(it) } ?: featureClass ?: ""
+        return noun.replaceFirstChar {
+            if (it.isLowerCase())
+                it.titlecase()
+            else
+                it.toString()
+        }
     }
 
     fun isSidewalkOrCrossing(): Boolean {

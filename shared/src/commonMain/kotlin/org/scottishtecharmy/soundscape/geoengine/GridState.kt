@@ -70,8 +70,9 @@ enum class TreeId(
     HOUSENUMBER(21, "House numbers"),
     HIGHWAY_JUNCTIONS(22, "Highway Junctions"),
     NAMED_WATER_POLYGONS(23, "Named Water Polygons"),
-    MAX_COLLECTION_ID(24, ""),
-    WAYS_SELECTION(id = 24, "Either Roads OR Roads and Paths")
+    NAMED_WATERWAYS(24, "Named Waterways"),
+    MAX_COLLECTION_ID(25, ""),
+    WAYS_SELECTION(id = 25, "Either Roads OR Roads and Paths")
 }
 
 fun treeIdToIndex(id: TreeId): TreeId {
@@ -933,6 +934,24 @@ private fun getNamedWaterPolygonsFromTileFeatureCollection(tileFeatureCollection
 }
 
 /**
+ * Parses out the named `waterway` lines - rivers, canals and burns - used to name un-named paths
+ * which follow them, see [org.scottishtecharmy.soundscape.geoengine.mvttranslation.extractNamedWaterways].
+ * @param tileFeatureCollection
+ * A FeatureCollection object.
+ * @return A FeatureCollection object that contains only named waterways.
+ */
+private fun getNamedWaterwaysFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection {
+    val waterwaysFeatureCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        val mvtFeature = feature as MvtFeature
+        if (mvtFeature.featureType == "waterway" && mvtFeature.featureValue == "named_waterway") {
+            waterwaysFeatureCollection.addFeature(feature)
+        }
+    }
+    return waterwaysFeatureCollection
+}
+
+/**
  * Parses out all the Entrances in a tile FeatureCollection using the "gd_entrance_list" feature_type.
  * @param tileFeatureCollection
  * A FeatureCollection object.
@@ -965,7 +984,10 @@ private fun getPointsOfInterestFeatureCollectionFromTileFeatureCollection(
     for (feature in tileFeatureCollection) {
         var add = true
         val mvtFeature = feature as MvtFeature
-        if (mvtFeature.featureType == "highway" || mvtFeature.featureType == "water") {
+        if (mvtFeature.featureType == "highway" ||
+            mvtFeature.featureType == "water" ||
+            mvtFeature.featureType == "waterway"
+        ) {
             add = false
         }
         if (mvtFeature.featureClass == "edgePoint" ||
@@ -1004,6 +1026,9 @@ fun processTileFeatureCollection(
         tileFeatureCollection
     )
     initialFeatureCollections[TreeId.NAMED_WATER_POLYGONS.id] += getNamedWaterPolygonsFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    initialFeatureCollections[TreeId.NAMED_WATERWAYS.id] += getNamedWaterwaysFromTileFeatureCollection(
         tileFeatureCollection
     )
 

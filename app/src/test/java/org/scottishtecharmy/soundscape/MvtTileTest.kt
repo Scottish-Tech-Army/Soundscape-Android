@@ -593,6 +593,95 @@ class MvtTileTest {
     }
 
     /**
+     * The `waterway` layer's named lines are kept as features in their own right (see
+     * extractNamedWaterways), so that a path which follows one can be named after it. Unlike the
+     * crossing filter above, a burn counts here: a path can follow one for hundreds of metres.
+     * They must not leak into the POI tree, or every river turns up in "What's around me".
+     */
+    @Test
+    fun testNamedWaterwayParsing() {
+        val gridState = getGridStateForLocation(LngLatAlt(-4.3053, 55.9319), MAX_ZOOM_LEVEL, 2)
+        val waterways = gridState.getFeatureTree(TreeId.NAMED_WATERWAYS).getAllCollection().features
+            .filterIsInstance<MvtFeature>()
+
+        val allanderWater = waterways.filter { it.name == "Allander Water" }
+        assertTrue("Expected Allander Water in NAMED_WATERWAYS", allanderWater.isNotEmpty())
+        assertEquals("river", allanderWater.first().featureClass)
+
+        // A stream, deliberately kept here even though extractCrossings filters streets out.
+        assertTrue(
+            "Expected Craigmaddie Burn (a stream) in NAMED_WATERWAYS",
+            waterways.any { it.name == "Craigmaddie Burn" }
+        )
+        assertTrue(
+            "Waterways should all be LineStrings",
+            waterways.all { it.geometry is LineString }
+        )
+
+        val pois = gridState.getFeatureTree(TreeId.POIS).getAllCollection().features
+            .filterIsInstance<MvtFeature>()
+        assertTrue(
+            "Waterways must not leak into the POI tree",
+            pois.none { it.featureType == "waterway" }
+        )
+    }
+
+    /**
+     * The two paths that motivated water-based name confection, both around Milngavie and both
+     * un-named in OSM: one follows the Allander Water, the other runs round the shore of
+     * Craigmaddie Reservoir. Without this they're announced as a bare "Path".
+     */
+    @Test
+    fun testNameConfectionForPathFollowingWater() {
+        assertWaterConfectedName(LngLatAlt(-4.305300, 55.931961), "Allander Water")
+        assertWaterConfectedName(LngLatAlt(-4.300997, 55.948076), "Craigmaddie Reservoir")
+    }
+
+    /**
+     * A road that merely crosses a river is beside it only for the few metres either side of the
+     * bridge, so it must not pick up the river's name. Strathblane Road crosses the Allander Water
+     * in Milngavie and is named anyway; this checks the un-named ways around the crossing too.
+     */
+    @Test
+    fun testNameConfectionDoesNotNameRoadsThatOnlyCrossWater() {
+        val location = LngLatAlt(-4.3231, 55.9461)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 2)
+        val crossing = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection()
+            .features.filterIsInstance<Way>()
+            .filter { it.properties?.get("crossing_name") == "Allander Water" }
+        assertTrue("Expected at least one Allander Water crossing way", crossing.isNotEmpty())
+        for (way in crossing) {
+            val name = way.getName(gridState = gridState, strings = null)
+            assertFalse(
+                "A way that only crosses the Allander Water shouldn't be named after it: $name",
+                name == "Path next to Allander Water"
+            )
+        }
+    }
+
+    /**
+     * The user-facing coordinates are approximate (they point at a stretch of path, not a vertex),
+     * so this looks for the confected name among the un-named ways in the area rather than
+     * insisting on the single nearest one.
+     */
+    private fun assertWaterConfectedName(location: LngLatAlt, expectedWater: String) {
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 2)
+        val nearby = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
+            .getNearestCollection(location, 250.0, 100, gridState.ruler)
+            .features.filterIsInstance<Way>()
+            .filter { it.name == null }
+        assertTrue("Expected un-named ways near $location", nearby.isNotEmpty())
+
+        // getName() has to say it on the very first call, not only once a previous call has cached
+        // the name onto the Way - the first callout is the one the user actually hears.
+        val names = nearby.map { it.getName(gridState = gridState, strings = null) }
+        assertTrue(
+            "Expected \"Path next to $expectedWater\" among the ways near $location, got $names",
+            names.contains("Path next to $expectedWater")
+        )
+    }
+
+    /**
      * `naptanLocalityName` isn't populated for every stop (e.g. missing for central Glasgow
      * stops in practice) - when it's absent, the locality is simply left out of the description
      * (CommonName and direction only) rather than falling back to anything parsed from `name`.
@@ -1764,12 +1853,12 @@ class MvtTileTest {
      * This test generates a FeatureCollection containing un-named roads and paths that we managed
      * to generate our own names for. The priority for naming is:
      *  1. Sidewalks
-     *  2. Road destinations
-     *  3. POI destinations
-     *  4. Dead ends
+     *  2. Water the way follows (see testNameConfectionForPathFollowingWater)
+     *  3. Road destinations
+     *  4. POI destinations
+     *  5. Dead ends
      *
-     * Once we add water and railways, we can consider adding 'along canal' and 'along railway' type
-     * descriptions too.
+     * Once we add railways, we can consider adding an 'along railway' type description too.
      */
     @Test
     fun testNameConfection() {
