@@ -1425,4 +1425,7 @@
     <string name="confect_name_via">%1$s qua %2$s</string>
     <string name="confect_name_pavement_next_to">Vỉa hè cạnh %1$s</string>
     <string name="callouts_audio_beacon_distance">Đèn hiệu hiện cách %1$s</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s cạnh %2$s</string>
+    <string name="street_description_relative_near">Trên %1$s gần %2$s</string>
 </resources>
