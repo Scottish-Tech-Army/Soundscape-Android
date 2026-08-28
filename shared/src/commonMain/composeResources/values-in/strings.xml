@@ -1425,4 +1425,7 @@
     <string name="confect_name_via">%1$s melalui %2$s</string>
     <string name="confect_name_pavement_next_to">Trotoar di samping %1$s</string>
     <string name="callouts_audio_beacon_distance">Suar saat ini berjarak %1$s</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s di samping %2$s</string>
+    <string name="street_description_relative_near">Di %1$s dekat %2$s</string>
 </resources>
