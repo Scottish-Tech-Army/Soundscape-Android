@@ -1425,4 +1425,7 @@
     <string name="confect_name_via">%1$s بذریعہ %2$s</string>
     <string name="confect_name_pavement_next_to">%1$s کے ساتھ فٹ پاتھ</string>
     <string name="callouts_audio_beacon_distance">بیکن اس وقت %1$s دور ہے</string>
+    <string name="directions_street_settlement">%1$s، %2$s</string>
+    <string name="confect_name_next_to">%2$s کے ساتھ %1$s</string>
+    <string name="street_description_relative_near">%1$s پر، %2$s کے قریب</string>
 </resources>
