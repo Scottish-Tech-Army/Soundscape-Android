@@ -1071,6 +1071,8 @@
     <string name="confect_name_pavement_next_to">Sidewalk next to %1$s</string>
     <!-- Sidewalk description -->
     <string name="confect_name_pavement">Sidewalk</string>
+    <!-- Description of an un-named path which follows a river or the shore of a lake e.g. "Path next to Allander Water" -->
+    <string name="confect_name_next_to">%1$s next to %2$s</string>
     <!-- Dead end road description - a road that goes nowhere -->
     <string name="confect_name_dead_end">dead end</string>
     <!-- Offscreen maps screen title - offline maps are map files which can be downloaded by the app so that the app can work without Internet -->

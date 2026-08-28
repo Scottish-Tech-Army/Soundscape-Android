@@ -66,6 +66,45 @@ private fun polygonPoi(name: String, center: LngLatAlt, halfSize: Double = 0.01)
     }
 }
 
+private fun waterway(name: String, vararg points: LngLatAlt): MvtFeature =
+    MvtFeature().apply {
+        this.name = name
+        this.featureType = "waterway"
+        this.featureValue = "named_waterway"
+        this.featureClass = "river"
+        geometry = LineString(*points)
+    }
+
+private fun waterPolygon(name: String, vararg ring: LngLatAlt): MvtFeature =
+    MvtFeature().apply {
+        this.name = name
+        this.featureType = "water"
+        this.featureValue = "named_water_polygon"
+        geometry = Polygon(arrayListOf(*ring, ring.first()))
+    }
+
+/** [base] moved [east] metres east and [north] metres north, for laying out test geometry. */
+private fun offset(base: LngLatAlt, east: Double, north: Double): LngLatAlt =
+    getDestinationCoordinate(getDestinationCoordinate(base, 90.0, east), 0.0, north)
+
+/** A GridState holding the given water features, with a ruler valid for [near]. */
+private fun waterGridState(near: LngLatAlt, vararg water: MvtFeature): GridState {
+    val gridState = GridState()
+    gridState.validateContext = false
+    gridState.ruler = near.createCheapRuler()
+    gridState.featureTrees[TreeId.NAMED_WATERWAYS.id] = FeatureTree(
+        FeatureCollection().apply {
+            water.filter { it.featureType == "waterway" }.forEach { addFeature(it) }
+        }
+    )
+    gridState.featureTrees[TreeId.NAMED_WATER_POLYGONS.id] = FeatureTree(
+        FeatureCollection().apply {
+            water.filter { it.featureType == "water" }.forEach { addFeature(it) }
+        }
+    )
+    return gridState
+}
+
 class WayNamingTest {
 
     // ============================================================================================
@@ -555,6 +594,217 @@ class WayNamingTest {
         // The pre-existing name "Cycle Path" is overwritten because cycleway is special-cased
         // through the same "name == null || cycleway" guard as unnamed roads.
         assertEquals("Pavement next to Riverside Drive", cycleway.name)
+    }
+
+
+    // ============================================================================================
+    // addWaterAdjacency
+    // ============================================================================================
+
+    // A 200m path running due north, with the water laid out relative to its start.
+    private val waterOrigin = LngLatAlt(-4.3053, 55.9319)
+
+    private fun ridingPath(featureClass: String? = "path"): Way =
+        way(
+            name = null,
+            start = waterOrigin,
+            end = offset(waterOrigin, 0.0, 200.0),
+            featureValue = "path",
+        ).apply { this.featureClass = featureClass }
+
+    @Test
+    fun addWaterAdjacency_pathFollowingRiver_isNamedAfterIt() {
+        val path = ridingPath()
+        // River 20m to the east, running the full length of the path and beyond.
+        val river = waterway(
+            "Allander Water",
+            offset(waterOrigin, 20.0, -50.0),
+            offset(waterOrigin, 20.0, 250.0),
+        )
+        val gridState = waterGridState(waterOrigin, river)
+
+        val name = addWaterAdjacency(path, gridState, null)
+
+        assertEquals("Path next to Allander Water", name)
+        assertEquals("Path next to Allander Water", path.name)
+        assertEquals("Allander Water", path.properties?.get("waterside"))
+    }
+
+    @Test
+    fun addWaterAdjacency_usesTheConfectNameNextToStringKey() {
+        val path = ridingPath()
+        val river = waterway(
+            "Allander Water",
+            offset(waterOrigin, 20.0, -50.0),
+            offset(waterOrigin, 20.0, 250.0),
+        )
+        val gridState = waterGridState(waterOrigin, river)
+
+        val name = addWaterAdjacency(path, gridState, WayNamingFakeLocalizedStrings())
+
+        assertEquals("ConfectNameNextTo(Path,Allander Water)", name)
+    }
+
+    @Test
+    fun addWaterAdjacency_pathMerelyCrossingRiver_isNotNamedAfterIt() {
+        val path = ridingPath()
+        // River running east-west, crossing the path near its middle. Close at one sample, far
+        // away at every other - this is the false positive the fraction test exists to reject.
+        val river = waterway(
+            "Allander Water",
+            offset(waterOrigin, -200.0, 100.0),
+            offset(waterOrigin, 200.0, 100.0),
+        )
+        val gridState = waterGridState(waterOrigin, river)
+
+        assertNull(addWaterAdjacency(path, gridState, null))
+        assertNull(path.name)
+        // Memoised as "no match" so the search isn't repeated.
+        assertEquals("", path.properties?.get("waterside"))
+    }
+
+    @Test
+    fun addWaterAdjacency_pathRoundLake_isNamedAfterTheLake() {
+        val path = ridingPath()
+        // A reservoir whose western shore runs 20m east of the path. The path is ~200m from the
+        // polygon's centre, so this only works because distances are measured to the shore.
+        val lake = waterPolygon(
+            "Craigmaddie Reservoir",
+            offset(waterOrigin, 20.0, -50.0),
+            offset(waterOrigin, 20.0, 250.0),
+            offset(waterOrigin, 320.0, 250.0),
+            offset(waterOrigin, 320.0, -50.0),
+        )
+        val gridState = waterGridState(waterOrigin, lake)
+
+        assertEquals("Path next to Craigmaddie Reservoir", addWaterAdjacency(path, gridState, null))
+    }
+
+    @Test
+    fun addWaterAdjacency_waterTooFarAway_isIgnored() {
+        val path = ridingPath()
+        val river = waterway(
+            "Allander Water",
+            offset(waterOrigin, 60.0, -50.0),
+            offset(waterOrigin, 60.0, 250.0),
+        )
+        val gridState = waterGridState(waterOrigin, river)
+
+        assertNull(addWaterAdjacency(path, gridState, null))
+    }
+
+    @Test
+    fun addWaterAdjacency_shortStub_isIgnored() {
+        // A 20m connector below WATER_ADJACENCY_MIN_LENGTH_METRES: naming it after the river says
+        // less about where it goes than the junction it joins.
+        val stub = way(
+            name = null,
+            start = waterOrigin,
+            end = offset(waterOrigin, 0.0, 20.0),
+            featureValue = "path",
+        ).apply { featureClass = "path" }
+        val river = waterway(
+            "Allander Water",
+            offset(waterOrigin, 20.0, -50.0),
+            offset(waterOrigin, 20.0, 250.0),
+        )
+        val gridState = waterGridState(waterOrigin, river)
+
+        assertNull(addWaterAdjacency(stub, gridState, null))
+        assertEquals("", stub.properties?.get("waterside"))
+    }
+
+    @Test
+    fun addWaterAdjacency_wayWithARouteNumber_isLeftAlone() {
+        val road = ridingPath(featureClass = "trunk").apply { ref = "A81" }
+        val river = waterway(
+            "River Kelvin",
+            offset(waterOrigin, 20.0, -50.0),
+            offset(waterOrigin, 20.0, 250.0),
+        )
+        val gridState = waterGridState(waterOrigin, river)
+
+        assertNull(addWaterAdjacency(road, gridState, null))
+        assertNull(road.name)
+    }
+
+    @Test
+    fun addWaterAdjacency_severalCandidates_closestByMeanDistanceWins() {
+        val path = ridingPath()
+        val near = waterway(
+            "Allander Water",
+            offset(waterOrigin, 8.0, -50.0),
+            offset(waterOrigin, 8.0, 250.0),
+        )
+        val far = waterPolygon(
+            "Dougalston Loch",
+            offset(waterOrigin, 22.0, -50.0),
+            offset(waterOrigin, 22.0, 250.0),
+            offset(waterOrigin, 322.0, 250.0),
+            offset(waterOrigin, 322.0, -50.0),
+        )
+        val gridState = waterGridState(waterOrigin, near, far)
+
+        assertEquals("Path next to Allander Water", addWaterAdjacency(path, gridState, null))
+    }
+
+    @Test
+    fun addWaterAdjacency_riverSplitIntoSegments_isStillMatchedAsOneRiver() {
+        val path = ridingPath()
+        // The same river arriving as two LineStrings, as it does from a real tile. Neither half
+        // runs the length of the path, so grouping by name is what makes this match at all.
+        val first = waterway(
+            "Allander Water",
+            offset(waterOrigin, 20.0, -50.0),
+            offset(waterOrigin, 20.0, 100.0),
+        )
+        val second = waterway(
+            "Allander Water",
+            offset(waterOrigin, 20.0, 100.0),
+            offset(waterOrigin, 20.0, 250.0),
+        )
+        val gridState = waterGridState(waterOrigin, first, second)
+
+        assertEquals("Path next to Allander Water", addWaterAdjacency(path, gridState, null))
+    }
+
+    @Test
+    fun addWaterAdjacency_isMemoisedAndNotRecomputed() {
+        val path = ridingPath()
+        val river = waterway(
+            "Allander Water",
+            offset(waterOrigin, 20.0, -50.0),
+            offset(waterOrigin, 20.0, 250.0),
+        )
+        val gridState = waterGridState(waterOrigin, river)
+        assertEquals("Path next to Allander Water", addWaterAdjacency(path, gridState, null))
+
+        // Empty the trees: a second call that re-ran the search would now find nothing.
+        gridState.featureTrees[TreeId.NAMED_WATERWAYS.id] = FeatureTree(null)
+        gridState.featureTrees[TreeId.NAMED_WATER_POLYGONS.id] = FeatureTree(null)
+
+        assertEquals("Path next to Allander Water", addWaterAdjacency(path, gridState, null))
+    }
+
+    @Test
+    fun confectNamesForRoad_unnamedPathBesideRiver_prefersWaterOverPoiDestinations() {
+        val path = ridingPath()
+        val river = waterway(
+            "Allander Water",
+            offset(waterOrigin, 20.0, -50.0),
+            offset(waterOrigin, 20.0, 250.0),
+        )
+        val gridState = waterGridState(waterOrigin, river)
+        gridState.featureTrees[TreeId.ROADS_AND_PATHS.id] = FeatureTree(
+            FeatureCollection().apply { addFeature(path) }
+        )
+        // A marker that addPoiDestinations would otherwise use, to prove water wins.
+        gridState.markerTree = FeatureTree(
+            FeatureCollection().apply { addFeature(poi("Some Marker", offset(waterOrigin, 0.0, -2.0))) }
+        )
+
+        assertEquals("Path next to Allander Water", confectNamesForRoad(path, gridState, null))
+        assertNull(path.properties?.get("destination:backward"))
     }
 
     // ============================================================================================
