@@ -1425,4 +1425,7 @@
     <string name="talkback_double_tap_template">Appuyez deux fois pour%1$s</string>
     <string name="menu_manage_locale">Paramètres régionaux</string>
     <string name="callouts_audio_beacon_distance">La balise se trouve actuellement à %1$s</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s à côté de %2$s</string>
+    <string name="street_description_relative_near">Sur %1$s près de %2$s</string>
 </resources>
