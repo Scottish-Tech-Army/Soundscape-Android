@@ -1425,4 +1425,7 @@
     <string name="talkback_double_tap_template">Дважды нажмите, чтобы%1$s</string>
     <string name="menu_manage_locale">Региональные параметры</string>
     <string name="callouts_audio_beacon_distance">До маяка сейчас %1$s</string>
+    <string name="directions_street_settlement">%1$s, %2$s</string>
+    <string name="confect_name_next_to">%1$s рядом с %2$s</string>
+    <string name="street_description_relative_near">На %1$s около %2$s</string>
 </resources>
