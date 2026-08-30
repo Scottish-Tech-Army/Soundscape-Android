@@ -277,11 +277,26 @@
     <string name="directions_cardinal_west_bound">மேற்கு நோக்கி</string>
     <string name="directions_cardinal_north_west_bound">வடமேற்கு நோக்கி</string>
     <string name="stationary_on_way">%1$s இல் நகரவில்லை</string>
-    <string name="distance_format_meters">%1$s மீட்டர்</string>
-    <string name="distance_format_km">%1$s கி.மீ</string>
-    <string name="distance_format_km_a11y">%1$s கிலோமீட்டர்கள்</string>
-    <string name="distance_format_feet">%1$s அடி</string>
-    <string name="distance_format_miles">%1$s மைல்கள்</string>
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s மீட்டர்</item>
+        <item quantity="other">%1$s மீட்டர்</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="one">%1$s கி.மீ</item>
+        <item quantity="other">%1$s கி.மீ</item>
+    </plurals>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s கிலோமீட்டர்</item>
+        <item quantity="other">%1$s கிலோமீட்டர்கள்</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="one">%1$s அடி</item>
+        <item quantity="other">%1$s அடி</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="one">%1$s மைல்</item>
+        <item quantity="other">%1$s மைல்கள்</item>
+    </plurals>
     <string name="number_decimal_separator">.</string>
     <string name="number_decimal_separator_a11y">புள்ளி</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1428,4 +1443,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%2$s அருகில் உள்ள %1$s</string>
     <string name="street_description_relative_near">%1$s இல், %2$s அருகே</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe நூலகம் ©The Android Open Source Project](https://github.com/google/oboe) குறைந்த தாமதத்துடன் ஆடியோவை இயக்கப் பயன்படுத்தப்படுகிறது, மேலும் இது [Apache 2.0 உரிமத்தின்](https://github.com/google/oboe/blob/main/LICENSE) கீழ் பயன்பாட்டிற்குக் கிடைக்கிறது.</string>
 </resources>
