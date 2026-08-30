@@ -633,11 +633,31 @@
     <string name="directions_cardinal_west_bound">Западни смер</string>
     <string name="directions_cardinal_north_west_bound">Северозападни смер</string>
     <string name="stationary_on_way">Нема кретања на %1$s</string>
-    <string name="distance_format_meters">%1$s метара</string>
-    <string name="distance_format_km">%1$s км</string>
-    <string name="distance_format_km_a11y">%1$s километара</string>
-    <string name="distance_format_feet">%1$s стопа</string>
-    <string name="distance_format_miles">%1$s миља</string>
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s метар</item>
+        <item quantity="few">%1$s метра</item>
+        <item quantity="other">%1$s метара</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="one">%1$s км</item>
+        <item quantity="few">%1$s км</item>
+        <item quantity="other">%1$s км</item>
+    </plurals>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s километар</item>
+        <item quantity="few">%1$s километра</item>
+        <item quantity="other">%1$s километара</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="one">%1$s стопа</item>
+        <item quantity="few">%1$s стопе</item>
+        <item quantity="other">%1$s стопа</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="one">%1$s миља</item>
+        <item quantity="few">%1$s миље</item>
+        <item quantity="other">%1$s миља</item>
+    </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">зарез</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1428,4 +1448,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s поред %2$s</string>
     <string name="street_description_relative_near">На %1$s близу %2$s</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe библиотека ©The Android Open Source Project](https://github.com/google/oboe) се користи за репродукцију звука са малим кашњењем и доступна је за коришћење под [Apache 2.0 лиценцом](https://github.com/google/oboe/blob/main/LICENSE).</string>
 </resources>
