@@ -219,10 +219,18 @@
     <string name="directions_cardinal_south_west_abb">ЮЗ</string>
     <string name="directions_cardinal_west_abb">З</string>
     <string name="directions_cardinal_north_west_abb">СЗ</string>
-    <string name="distance_format_meters">%1$s метров</string>
-    <string name="distance_format_km">%1$s км</string>
-    <string name="distance_format_feet">%1$s футов</string>
-    <string name="distance_format_miles">%1$s миль</string>
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s метров</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="one">%1$s км</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="one">%1$s футов</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="one">%1$s миль</item>
+    </plurals>
     <string name="ui_action_button_my_location">Моя\nпозиция</string>
     <string name="ui_action_button_my_location_acc_hint">узнать о вашем текущем местоположении</string>
     <string name="ui_action_button_nearby_markers">Ближайшие\nотметки</string>
