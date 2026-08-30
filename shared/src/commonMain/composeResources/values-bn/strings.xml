@@ -633,11 +633,26 @@
     <string name="directions_cardinal_west_bound">পশ্চিমগামী</string>
     <string name="directions_cardinal_north_west_bound">উত্তর-পশ্চিমগামী</string>
     <string name="stationary_on_way">%1$s-এ নড়াচড়া করছেন না</string>
-    <string name="distance_format_meters">%1$s মিটার</string>
-    <string name="distance_format_km">%1$s কিমি</string>
-    <string name="distance_format_km_a11y">%1$s কিলোমিটার</string>
-    <string name="distance_format_feet">%1$s ফুট</string>
-    <string name="distance_format_miles">%1$s মাইল</string>
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s মিটার</item>
+        <item quantity="other">%1$s মিটার</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="one">%1$s কিমি</item>
+        <item quantity="other">%1$s কিমি</item>
+    </plurals>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s কিলোমিটার</item>
+        <item quantity="other">%1$s কিলোমিটার</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="one">%1$s ফুট</item>
+        <item quantity="other">%1$s ফুট</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="one">%1$s মাইল</item>
+        <item quantity="other">%1$s মাইল</item>
+    </plurals>
     <string name="number_decimal_separator">.</string>
     <string name="number_decimal_separator_a11y">দশমিক</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1428,4 +1443,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%2$s-এর পাশে %1$s</string>
     <string name="street_description_relative_near">%1$s-এ, %2$s-এর কাছে</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">কম লেটেন্সিতে অডিও চালাতে [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) ব্যবহার করা হয়, এবং এটি [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE)-এর অধীনে ব্যবহারের জন্য উপলব্ধ।</string>
 </resources>
