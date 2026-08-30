@@ -211,9 +211,15 @@ class OfflineGeocoder(
                 )
                 var text = ""
                 val formattedBehindDistance =
-                    formatDistanceAndDirection(result.behind.distance, null, localizedStrings)
+                    formatDistanceAndDirection(
+                        result.behind.distance, null, localizedStrings,
+                        speed = userGeometry.speed
+                    )
                 val formattedAheadDistance =
-                    formatDistanceAndDirection(result.ahead.distance, null, localizedStrings)
+                    formatDistanceAndDirection(
+                        result.ahead.distance, null, localizedStrings,
+                        speed = userGeometry.speed
+                    )
                 // "just before"/"just after"/"until"/"since" all place the location relative to
                 // the direction of travel, and describeLocation only knows which way that is from
                 // a heading - without one it fills in ahead and behind arbitrarily, so those

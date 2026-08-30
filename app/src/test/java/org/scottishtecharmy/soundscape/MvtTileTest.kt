@@ -62,6 +62,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.PluralKey
 import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.utils.toLocationDescription
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
@@ -96,10 +97,18 @@ class FileGridState(
  * a callout resolves to, without pulling in the real Compose resource-bundle string lookup.
  */
 private class FakeLocalizedStrings : LocalizedStrings {
-    override fun get(key: StringKey, vararg args: Any?): String =
-        "$key(${args.joinToString(", ")})"
+    override fun get(key: StringKey, vararg args: Any?): String = when (key) {
+        // Keep formatted numbers readable in assertions rather than nesting a
+        // NumberDecimalSeparator() stub in the middle of every distance.
+        StringKey.NumberDecimalSeparator -> "."
+        StringKey.NumberDecimalSeparatorA11y -> " point "
+        else -> "$key(${args.joinToString(", ")})"
+    }
 
     override fun getOrNull(key: StringKey, vararg args: Any?): String? = get(key, *args)
+
+    override fun getPlural(key: PluralKey, quantity: Int, vararg args: Any?): String =
+        "$key(${args.joinToString(", ")})"
 
     override fun resolveFeatureClass(key: String): String? = null
 }
@@ -516,7 +525,7 @@ class MvtTileTest {
 
         assertNotNull(result)
         assertEquals(
-            "DirectionsAlongTravelingN(M8) DirectionsAwayFromSettlement(Cowcaddens, DistanceFormatMeters(155))",
+            "DirectionsAlongTravelingN(M8) DirectionsAwayFromSettlement(Cowcaddens, DistanceKm(0.2))",
             result!!.text
         )
     }
@@ -537,7 +546,7 @@ class MvtTileTest {
 
         assertNotNull(result)
         assertEquals(
-            "DirectionsAlongTravelingS(M8) DirectionsTowardsSettlement(Cowcaddens, DistanceFormatMeters(155))",
+            "DirectionsAlongTravelingS(M8) DirectionsTowardsSettlement(Cowcaddens, DistanceKm(0.2))",
             result!!.text
         )
     }
@@ -1328,7 +1337,7 @@ class MvtTileTest {
      * Once probablyOnTrain() detects a nearby real station (via TreeId.TRANSIT_STOPS), it should
      * be tracked in a LastStationTracker so a later call can describe progress as "distance since
      * {station}" - but only combined with a nearby settlement, e.g. "On the line and close to
-     * Merchant City, 200 metres since Argyle Street" - a standalone since-distance with nothing
+     * Merchant City, 0.2 km since Argyle Street" - a standalone since-distance with nothing
      * else to describe would fire on every location update as the distance keeps climbing, which
      * is too frequent on its own (see real train-1/train-2.gpx replays). See LastStationTracker.
      *
@@ -1377,13 +1386,16 @@ class MvtTileTest {
 
         assertNotNull(result)
         assertEquals(
-            "On Fake Railway Line and close to Merchant City, 200 metres since Argyle Street",
+            "On Fake Railway Line and close to Merchant City, 0.2 km since Argyle Street",
             result!!.text
         )
 
-        // A little further still - the spoken distance moves on, but the dedup key (road,
-        // settlement, station - no distance) stays identical so history can suppress the repeat.
-        val evenFurtherAlong = gridState.ruler.offset(argyleStreetStation, 0.0, 250.0)
+        // Further still - the spoken distance moves on, but the dedup key (road, settlement,
+        // station - no distance) stays identical so history can suppress the repeat. It takes a
+        // decent step to change the spoken text, since at this speed the distance is read out in
+        // tenths of a kilometre (see formatDistanceAndDirection), and Glasgow Queen Street
+        // station is only ~500m further north again.
+        val evenFurtherAlong = gridState.ruler.offset(argyleStreetStation, 0.0, 400.0)
         val userGeometryEvenFurtherAlong = UserGeometry(
             location = evenFurtherAlong,
             speed = 15.0,

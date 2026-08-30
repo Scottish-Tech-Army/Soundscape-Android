@@ -64,7 +64,8 @@ fun speakCalloutCommon(
                     result.text + ", " + formatDistanceAndDirection(
                         distance, heading,
                         ComposeLocalizedStrings(),
-                        lastGeometry.heading()
+                        lastGeometry.heading(),
+                        speed = lastGeometry.speed
                     )
                 } ?: result.text
             } else {

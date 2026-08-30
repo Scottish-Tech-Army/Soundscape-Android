@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.PluralKey
 import org.scottishtecharmy.soundscape.i18n.StringKey
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -35,6 +36,9 @@ private class StreetDescriptionFakeLocalizedStrings : LocalizedStrings {
     override fun get(key: StringKey, vararg args: Any?): String =
         if (args.isEmpty()) key.name else "${key.name}(${args.joinToString(",")})"
     override fun getOrNull(key: StringKey, vararg args: Any?): String? = get(key, *args)
+    override fun getPlural(key: PluralKey, quantity: Int, vararg args: Any?): String =
+        "$key(${args.joinToString(", ")})"
+
     override fun resolveFeatureClass(key: String): String? = null
 }
 
