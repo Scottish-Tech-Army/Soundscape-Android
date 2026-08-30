@@ -277,11 +277,21 @@
     <string name="directions_cardinal_west_bound">서행</string>
     <string name="directions_cardinal_north_west_bound">북서행</string>
     <string name="stationary_on_way">%1$s에서 움직이지 않음</string>
-    <string name="distance_format_meters">%1$s미터</string>
-    <string name="distance_format_km">%1$s km</string>
-    <string name="distance_format_km_a11y">%1$s 킬로미터</string>
-    <string name="distance_format_feet">%1$s피트</string>
-    <string name="distance_format_miles">%1$s마일</string>
+    <plurals name="distance_format_meters">
+        <item quantity="other">%1$s미터</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="other">%1$s km</item>
+    </plurals>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="other">%1$s 킬로미터</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="other">%1$s피트</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="other">%1$s마일</item>
+    </plurals>
     <string name="number_decimal_separator">.</string>
     <string name="number_decimal_separator_a11y">점</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1428,4 +1438,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%2$s 옆 %1$s</string>
     <string name="street_description_relative_near">%1$s, %2$s 근처</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe)는 낮은 지연 시간으로 오디오를 재생하는 데 사용되며, [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE)에 따라 사용할 수 있습니다.</string>
 </resources>
