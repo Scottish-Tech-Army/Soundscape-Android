@@ -386,6 +386,8 @@
     <string name="directions_junction_with_ref">Junction %1$s</string>
     <!-- Travelling in a vehicle, describes a numbered road junction that also has an interchange name, %1$s is the junction number and %2$s is the interchange name, example: "Junction 2, Robroyston" -->
     <string name="directions_junction_with_ref_and_name">Junction %1$s, %2$s</string>
+    <!-- Travelling in a vehicle, names a road that carries both a route number and a local street name, %1$s is the route number and %2$s is the street name, example: "A81 (Glasgow Road)" -->
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
     <!-- Travelling in a vehicle, we're confirmed to be on this road (via map matching) rather than just near it, %1$s is a road name, example: "On the M8" -->
     <string name="directions_on_road">On %1$s</string>
     <!-- Travelling in a vehicle, on a road that's also close to a settlement, %1$s is a road name and %2$s is a settlement name, example: "On Glasgow Road and close to Milngavie" -->

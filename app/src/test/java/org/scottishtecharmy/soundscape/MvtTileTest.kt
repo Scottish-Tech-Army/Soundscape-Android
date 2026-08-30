@@ -473,6 +473,79 @@ class MvtTileTest {
         assertEquals("Milngavie", playground.nearestSettlement)
     }
 
+    /**
+     * A road carrying both a route number and a local street name should be announced with both,
+     * e.g. "A81 (Glasgow Road)" - the ref alone isn't how a passenger recognises where they are
+     * in a town, and the street name alone loses the road they're actually following. Way.getName()
+     * treats the two as mutually exclusive (name wins), so this combining is done by
+     * travellingReverseGeocodeName and applies to travel-mode callouts only.
+     */
+    @Test
+    fun testTravelCalloutCombinesRoadRefAndName() {
+        val location = LngLatAlt(-4.313381016254425, 55.935718434264274)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val userGeometry = UserGeometry(location = location, speed = 15.0, travelHeading = 0.0)
+        val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, FakeLocalizedStrings())
+
+        assertNotNull(result)
+        assertEquals(
+            "DirectionsAlongTravelingN(DirectionsRoadWithRefAndName(A81, Glasgow Road)) " +
+                "DirectionsTowardsSettlement(Milngavie, DistanceKm(0.7))",
+            result!!.text
+        )
+    }
+
+    /**
+     * The A81 through Milngavie is Strathblane Road, then Glasgow Road, then Main Street, but
+     * it's one road to someone travelling along it. A numbered road is therefore deduped on its
+     * ref alone, so neither the street name changing nor the settlement alongside it changing
+     * re-announces the same road (see roadDedup in travellingReverseGeocodeName). The spoken text
+     * still differs between the two points - it's only the callout-history key that collapses.
+     */
+    @Test
+    fun testTravelCalloutDedupsNumberedRoadByRefAlone() {
+        val strathblaneRoad = LngLatAlt(-4.310806095600128, 55.94419385637048)
+        val glasgowRoad = LngLatAlt(-4.313381016254425, 55.935718434264274)
+
+        val results = listOf(strathblaneRoad, glasgowRoad).map { location ->
+            val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+            val settlementGrid = getGridStateForLocation(location, 12, 3)
+            val userGeometry = UserGeometry(location = location, speed = 15.0, travelHeading = 0.0)
+            describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
+        }
+
+        assertEquals(
+            "Traveling north along A81 (Strathblane Road) near Milngavie", results[0]!!.text
+        )
+        assertEquals(
+            "Traveling north along A81 (Glasgow Road) towards Milngavie, 0.7 km away",
+            results[1]!!.text
+        )
+        assertEquals("A81", results[0]!!.dedupText)
+        assertEquals("A81", results[1]!!.dedupText)
+    }
+
+    /**
+     * A road with no ref has nothing but its name to identify it, so it keeps the fuller dedup
+     * key and a genuine change of street still gets announced - the ref-only collapsing above
+     * mustn't silence those.
+     */
+    @Test
+    fun testTravelCalloutDedupsUnnumberedRoadByName() {
+        val location = LngLatAlt(-4.321057498455048, 55.94279393223639)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val userGeometry = UserGeometry(location = location, speed = 15.0, travelHeading = 0.0)
+        val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
+
+        assertNotNull(result)
+        assertEquals("Traveling north along Allander Road near Milngavie", result!!.text)
+        assertEquals("On Allander Road near Milngavie", result.dedupText)
+    }
+
     @Test
     fun testTransportationNameRef() {
         val tileX = 7995
@@ -1107,6 +1180,9 @@ class MvtTileTest {
 
         assertNotNull(result)
         assertEquals("On M80 at Junction 2, Robroyston", result!!.text)
+        // The junction callout also claims the plain road key, so it isn't followed moments
+        // later by a redundant "still on the M80" - see TrackedCallout.extraDedupText.
+        assertEquals("M80", result.extraDedupText)
     }
 
     /**
@@ -2317,7 +2393,7 @@ class MvtTileTest {
     fun testCalloutsSingleTest  () {
         val resultsStorageDir = File("gpxFiles/")
         if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
-        val testFile = "Motorway"
+        val testFile = "MotorwayForTravel"
         testMovingGrid(
             "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$testFile.gpx",
             "gpxFiles/$testFile.txt",

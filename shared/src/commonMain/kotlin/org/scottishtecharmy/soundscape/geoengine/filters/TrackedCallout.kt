@@ -19,6 +19,15 @@ class TrackedCallout(
     // text embeds an ever-changing value (e.g. a live "distance since X") still dedup against
     // an earlier callout that differs only in that value.
     private val dedupText: String? = null,
+    /**
+     * A second, broader key this callout records in the history when it's spoken, but which it
+     * does *not* itself match against - see [CalloutHistory.add]. Deliberately asymmetric: a
+     * motorway junction callout ("On M80 at Junction 2, Robroyston") should stop a plain "still
+     * on the M80" callout following it a few seconds later, without a plain M80 callout ever
+     * stopping the junction one. Reaching a junction is always worth announcing; being told
+     * again which road you're on straight afterwards is not.
+     */
+    val extraDedupText: String? = null,
 ) {
     val time = userGeometry?.timestampMilliseconds ?: 0L
     val ruler = location.createCheapRuler()
@@ -63,6 +72,19 @@ class CalloutHistory(expiryPeriodMilliseconds: Long = 60000) {
 
     fun add(callout: TrackedCallout) {
         history.add(callout)
+        // Recorded as a separate entry rather than as a second key on the callout itself, so
+        // that matching stays one-way - see TrackedCallout.extraDedupText. It shares the
+        // callout's timestamp and location, so it expires with it on the next trim().
+        callout.extraDedupText?.let { extra ->
+            history.add(
+                TrackedCallout(
+                    userGeometry = callout.userGeometry,
+                    trackedText = extra,
+                    location = callout.location,
+                    isPoint = callout.isPoint
+                )
+            )
+        }
     }
 
     fun trim(userGeometry: UserGeometry) {
