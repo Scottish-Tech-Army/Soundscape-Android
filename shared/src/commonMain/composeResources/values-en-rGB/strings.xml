@@ -166,16 +166,20 @@
     <string name="directions_along_heading_w">Heading west along %1$s</string>
     <string name="directions_along_heading_nw">Heading northwest along %1$s</string>
     <plurals name="distance_format_meters">
-        <item quantity="one">%1$s metres</item>
+        <item quantity="one">%1$s metre</item>
+        <item quantity="other">%1$s metres</item>
     </plurals>
     <plurals name="distance_format_km">
         <item quantity="one">%1$s km</item>
+        <item quantity="other">%1$s km</item>
     </plurals>
     <plurals name="distance_format_feet">
-        <item quantity="one">%1$s feet</item>
+        <item quantity="one">%1$s foot</item>
+        <item quantity="other">%1$s feet</item>
     </plurals>
     <plurals name="distance_format_miles">
-        <item quantity="one">%1$s miles</item>
+        <item quantity="one">%1$s mile</item>
+        <item quantity="other">%1$s miles</item>
     </plurals>
     <string name="ui_action_button_my_location">My\nLocation</string>
     <string name="ui_action_button_my_location_acc_hint">hear about your current location</string>
@@ -1368,7 +1372,10 @@
     <string name="offline_map_details_update">Update offline map</string>
     <string name="menu_exit_app">Exit Soundscape</string>
     <string name="talkback_default_activate">activate</string>
-    <string name="distance_format_km_a11y">%1$s kilometres</string>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s kilometre</item>
+        <item quantity="other">%1$s kilometres</item>
+    </plurals>
     <string name="number_decimal_separator">.</string>
     <string name="number_decimal_separator_a11y">point</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1436,4 +1443,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s next to %2$s</string>
     <string name="street_description_relative_near">On %1$s near %2$s</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 licence](https://github.com/google/oboe/blob/main/LICENSE).</string>
 </resources>
