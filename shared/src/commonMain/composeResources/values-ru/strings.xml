@@ -220,16 +220,28 @@
     <string name="directions_cardinal_west_abb">З</string>
     <string name="directions_cardinal_north_west_abb">СЗ</string>
     <plurals name="distance_format_meters">
-        <item quantity="one">%1$s метров</item>
+        <item quantity="one">%1$s метр</item>
+        <item quantity="few">%1$s метра</item>
+        <item quantity="many">%1$s метров</item>
+        <item quantity="other">%1$s метров</item>
     </plurals>
     <plurals name="distance_format_km">
         <item quantity="one">%1$s км</item>
+        <item quantity="few">%1$s км</item>
+        <item quantity="many">%1$s км</item>
+        <item quantity="other">%1$s км</item>
     </plurals>
     <plurals name="distance_format_feet">
-        <item quantity="one">%1$s футов</item>
+        <item quantity="one">%1$s фут</item>
+        <item quantity="few">%1$s фута</item>
+        <item quantity="many">%1$s футов</item>
+        <item quantity="other">%1$s футов</item>
     </plurals>
     <plurals name="distance_format_miles">
-        <item quantity="one">%1$s миль</item>
+        <item quantity="one">%1$s миля</item>
+        <item quantity="few">%1$s мили</item>
+        <item quantity="many">%1$s миль</item>
+        <item quantity="other">%1$s миль</item>
     </plurals>
     <string name="ui_action_button_my_location">Моя\nпозиция</string>
     <string name="ui_action_button_my_location_acc_hint">узнать о вашем текущем местоположении</string>
@@ -1368,7 +1380,12 @@
     <string name="offline_map_details_update">Обновить офлайн-карту</string>
     <string name="menu_exit_app">Выйти из Soundscape</string>
     <string name="talkback_default_activate">активировать</string>
-    <string name="distance_format_km_a11y">%1$s километров</string>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s километр</item>
+        <item quantity="few">%1$s километра</item>
+        <item quantity="many">%1$s километров</item>
+        <item quantity="other">%1$s километров</item>
+    </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">запятая</string>
     <string name="bytes_format_b">%1$s Б</string>
@@ -1436,4 +1453,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s рядом с %2$s</string>
     <string name="street_description_relative_near">На %1$s около %2$s</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) используется для воспроизведения звука с низкой задержкой и предоставляется для использования в соответствии с [лицензией Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
 </resources>
