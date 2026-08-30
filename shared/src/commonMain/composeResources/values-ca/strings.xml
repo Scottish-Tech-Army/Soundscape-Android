@@ -277,11 +277,31 @@
     <string name="directions_cardinal_west_bound">Direcció oest</string>
     <string name="directions_cardinal_north_west_bound">Direcció nord-oest</string>
     <string name="stationary_on_way">Sense moviment a %1$s</string>
-    <string name="distance_format_meters">%1$s metres</string>
-    <string name="distance_format_km">%1$s km</string>
-    <string name="distance_format_km_a11y">%1$s quilòmetres</string>
-    <string name="distance_format_feet">%1$s peus</string>
-    <string name="distance_format_miles">%1$s milles</string>
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s metre</item>
+        <item quantity="many">%1$s metres</item>
+        <item quantity="other">%1$s metres</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="one">%1$s km</item>
+        <item quantity="many">%1$s km</item>
+        <item quantity="other">%1$s km</item>
+    </plurals>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s quilòmetre</item>
+        <item quantity="many">%1$s quilòmetres</item>
+        <item quantity="other">%1$s quilòmetres</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="one">%1$s peu</item>
+        <item quantity="many">%1$s peus</item>
+        <item quantity="other">%1$s peus</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="one">%1$s milla</item>
+        <item quantity="many">%1$s milles</item>
+        <item quantity="other">%1$s milles</item>
+    </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">coma</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1428,4 +1448,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s al costat de %2$s</string>
     <string name="street_description_relative_near">A %1$s prop de %2$s</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Biblioteca Oboe ©The Android Open Source Project](https://github.com/google/oboe) s'utilitza per reproduir l'àudio amb baixa latència, i es posa a disposició per al seu ús sota la [llicència Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
 </resources>
