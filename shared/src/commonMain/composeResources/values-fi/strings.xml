@@ -165,10 +165,18 @@
     <string name="directions_along_heading_sw">Matkalla lounaaseen tiellä %1$s</string>
     <string name="directions_along_heading_w">Matkalla länteen tiellä %1$s</string>
     <string name="directions_along_heading_nw">Matkalla luoteeseen tiellä %1$s</string>
-    <string name="distance_format_meters">%1$s metriä</string>
-    <string name="distance_format_km">%1$s km</string>
-    <string name="distance_format_feet">%1$s jalkaa</string>
-    <string name="distance_format_miles">%1$s mailia</string>
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s metriä</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="one">%1$s km</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="one">%1$s jalkaa</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="one">%1$s mailia</item>
+    </plurals>
     <string name="ui_action_button_my_location">Oma si-\njaintini</string>
     <string name="ui_action_button_my_location_acc_hint">kuule tietoja nykyisestä sijainnistasi</string>
     <string name="ui_action_button_nearby_markers">Merkin-\nnät</string>
