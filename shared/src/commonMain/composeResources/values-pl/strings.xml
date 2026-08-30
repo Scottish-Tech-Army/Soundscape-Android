@@ -191,16 +191,28 @@
     <string name="directions_cardinal_west_abb">Zach.</string>
     <string name="directions_cardinal_north_west_abb">Płn. zach.</string>
     <plurals name="distance_format_meters">
-        <item quantity="one">%1$s metrów</item>
+        <item quantity="one">%1$s metr</item>
+        <item quantity="few">%1$s metry</item>
+        <item quantity="many">%1$s metrów</item>
+        <item quantity="other">%1$s metrów</item>
     </plurals>
     <plurals name="distance_format_km">
         <item quantity="one">%1$s km</item>
+        <item quantity="few">%1$s km</item>
+        <item quantity="many">%1$s km</item>
+        <item quantity="other">%1$s km</item>
     </plurals>
     <plurals name="distance_format_feet">
-        <item quantity="one">%1$s stóp</item>
+        <item quantity="one">%1$s stopa</item>
+        <item quantity="few">%1$s stopy</item>
+        <item quantity="many">%1$s stóp</item>
+        <item quantity="other">%1$s stóp</item>
     </plurals>
     <plurals name="distance_format_miles">
-        <item quantity="one">%1$s mil</item>
+        <item quantity="one">%1$s mila</item>
+        <item quantity="few">%1$s mile</item>
+        <item quantity="many">%1$s mil</item>
+        <item quantity="other">%1$s mil</item>
     </plurals>
     <string name="ui_action_button_my_location">Moja\npozycja</string>
     <string name="ui_action_button_my_location_acc_hint">usłyszeć informacje o swojej bieżącej lokalizacji</string>
@@ -1368,7 +1380,12 @@
     <string name="offline_map_details_update">Zaktualizuj mapę offline</string>
     <string name="menu_exit_app">Zamknij Soundscape</string>
     <string name="talkback_default_activate">aktywować</string>
-    <string name="distance_format_km_a11y">%1$s kilometrów</string>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s kilometr</item>
+        <item quantity="few">%1$s kilometry</item>
+        <item quantity="many">%1$s kilometrów</item>
+        <item quantity="other">%1$s kilometrów</item>
+    </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">przecinek</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1436,4 +1453,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s obok %2$s</string>
     <string name="street_description_relative_near">Na %1$s w pobliżu %2$s</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) służy do odtwarzania dźwięku z niskim opóźnieniem i jest udostępniona do użytku na warunkach [licencji Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
 </resources>
