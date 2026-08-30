@@ -989,11 +989,36 @@
     <string name="directions_cardinal_west_bound">Směr západ</string>
     <string name="directions_cardinal_north_west_bound">Směr severozápad</string>
     <string name="stationary_on_way">Bez pohybu na %1$s</string>
-    <string name="distance_format_meters">%1$s metrů</string>
-    <string name="distance_format_km">%1$s km</string>
-    <string name="distance_format_km_a11y">%1$s kilometrů</string>
-    <string name="distance_format_feet">%1$s stop</string>
-    <string name="distance_format_miles">%1$s mil</string>
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s metr</item>
+        <item quantity="few">%1$s metry</item>
+        <item quantity="many">%1$s metrů</item>
+        <item quantity="other">%1$s metrů</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="one">%1$s km</item>
+        <item quantity="few">%1$s km</item>
+        <item quantity="many">%1$s km</item>
+        <item quantity="other">%1$s km</item>
+    </plurals>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s kilometr</item>
+        <item quantity="few">%1$s kilometry</item>
+        <item quantity="many">%1$s kilometrů</item>
+        <item quantity="other">%1$s kilometrů</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="one">%1$s stopa</item>
+        <item quantity="few">%1$s stopy</item>
+        <item quantity="many">%1$s stop</item>
+        <item quantity="other">%1$s stop</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="one">%1$s míle</item>
+        <item quantity="few">%1$s míle</item>
+        <item quantity="many">%1$s mil</item>
+        <item quantity="other">%1$s mil</item>
+    </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">celá</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1428,4 +1453,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s u %2$s</string>
     <string name="street_description_relative_near">Na %1$s poblíž %2$s</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Knihovna Oboe ©The Android Open Source Project](https://github.com/google/oboe) se používá k přehrávání zvuku s nízkou latencí a je zpřístupněna k použití pod [licencí Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
 </resources>
