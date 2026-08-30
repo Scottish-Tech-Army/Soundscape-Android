@@ -560,16 +560,31 @@
     <string name="directions_cardinal_north_west_bound">Northwestbound</string>
     <!-- Standing still with no direction. %s is a road name -->
     <string name="stationary_on_way">Not moving on %1$s</string>
-    <!-- Preserve meters unit - Do not convert but can translate. Distance string, plural. %s is a plural number, "15 meters" -->
-    <string name="distance_format_meters">%1$s meters</string>
-    <!-- Preserve km unit - Do not convert but can translate abbreviation of kilometer. Distance string. %s is a number, "15 km" -->
-    <string name="distance_format_km">%1$s km</string>
-    <!-- Accessibility variant of distance_format_km. Used for screen-reader content descriptions where the abbreviation "km" gets mispronounced (e.g. iOS VoiceOver reads "km" as "K M"). Spell the unit out fully. %s is a number, "1.05 kilometres" -->
-    <string name="distance_format_km_a11y">%1$s kilometres</string>
-    <!-- Preserve feet unit - Do not convert but can translate. Distance string, plural. %s is a plural number, "15 feet" -->
-    <string name="distance_format_feet">%1$s feet</string>
-    <!-- Preserve miles unit - Do not convert but can translate. Distance string, plural.%s is a plural number, "15 miles" -->
-    <string name="distance_format_miles">%1$s miles</string>
+    <!-- Preserve meters unit - Do not convert but can translate. Distance string. %s is a number, "15 meters". The singular form is only ever used for exactly 1. -->
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s meter</item>
+        <item quantity="other">%1$s meters</item>
+    </plurals>
+    <!-- Preserve km unit - Do not convert but can translate abbreviation of kilometer. Distance string. %s is a number, "15 km". English does not inflect the abbreviation, but other languages may. -->
+    <plurals name="distance_format_km">
+        <item quantity="one">%1$s km</item>
+        <item quantity="other">%1$s km</item>
+    </plurals>
+    <!-- Accessibility variant of distance_format_km. Used for screen-reader content descriptions where the abbreviation "km" gets mispronounced (e.g. iOS VoiceOver reads "km" as "K M"). Spell the unit out fully. %s is a number, "1.1 kilometres". The singular form is only ever used for exactly 1. -->
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s kilometre</item>
+        <item quantity="other">%1$s kilometres</item>
+    </plurals>
+    <!-- Preserve feet unit - Do not convert but can translate. Distance string. %s is a number, "15 feet". The singular form is only ever used for exactly 1. -->
+    <plurals name="distance_format_feet">
+        <item quantity="one">%1$s foot</item>
+        <item quantity="other">%1$s feet</item>
+    </plurals>
+    <!-- Preserve miles unit - Do not convert but can translate. Distance string. %s is a number, "15 miles". The singular form is only ever used for exactly 1. -->
+    <plurals name="distance_format_miles">
+        <item quantity="one">%1$s mile</item>
+        <item quantity="other">%1$s miles</item>
+    </plurals>
     <!-- Decimal separator used in numbers displayed to the user, e.g. "." in "1.05 km" (English) or "," in "1,05 km" (German/French). Translate to the locale's conventional separator. -->
     <string name="number_decimal_separator">.</string>
     <!-- Spoken form of the decimal separator, used in screen-reader content descriptions where punctuation gets mispronounced (e.g. iOS VoiceOver reads "1.05" as "one dot oh five"). Surround with spaces so it reads as a discrete word, e.g. " point " (English), " Komma " (German), " virgule " (French). -->

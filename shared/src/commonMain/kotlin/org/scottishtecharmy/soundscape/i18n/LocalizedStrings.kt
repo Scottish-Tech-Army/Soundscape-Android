@@ -3,7 +3,31 @@ package org.scottishtecharmy.soundscape.i18n
 interface LocalizedStrings {
     fun get(key: StringKey, vararg args: Any?): String
     fun getOrNull(key: StringKey, vararg args: Any?): String?
+
+    /**
+     * Resolves a string whose wording depends on how many of something it describes, e.g. "1
+     * mile" against "5 miles".
+     *
+     * [quantity] only selects the wording and is separate from [args] - the number the user
+     * actually sees is passed in as an argument like any other, because it isn't always a whole
+     * number ("1.4 miles" is quantity 2, since no language treats a fraction as singular).
+     */
+    fun getPlural(key: PluralKey, quantity: Int, vararg args: Any?): String
+
     fun resolveFeatureClass(key: String): String?
+}
+
+/**
+ * Keys for strings that decline with a quantity, kept apart from [StringKey] because they resolve
+ * to a different kind of resource (`<plurals>` rather than `<string>`) and need the extra
+ * quantity argument to resolve at all.
+ */
+enum class PluralKey {
+    DistanceMeters,
+    DistanceFeet,
+    DistanceKm,
+    DistanceMiles,
+    DistanceKmA11y,
 }
 
 enum class StringKey {
@@ -23,11 +47,6 @@ enum class StringKey {
     DirectionsNameGoesLeft,
     DirectionsNameGoesRight,
     DirectionsNameContinuesAhead,
-    DistanceFormatMeters,
-    DistanceFormatFeet,
-    DistanceFormatKm,
-    DistanceFormatMiles,
-    DistanceFormatKmA11y,
     BytesFormatB,
     BytesFormatBA11y,
     BytesFormatKb,

@@ -1,7 +1,9 @@
 package org.scottishtecharmy.soundscape.i18n
 
 import kotlinx.coroutines.runBlocking
+import org.jetbrains.compose.resources.PluralStringResource
 import org.jetbrains.compose.resources.StringResource
+import org.jetbrains.compose.resources.getPluralString
 import org.jetbrains.compose.resources.getString
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.resources.Res
@@ -172,10 +174,23 @@ class ComposeLocalizedStrings : LocalizedStrings {
     override fun getOrNull(key: StringKey, vararg args: Any?): String? =
         runCatching { get(key, *args) }.getOrNull()
 
+    override fun getPlural(key: PluralKey, quantity: Int, vararg args: Any?): String =
+        runBlocking {
+            getPluralString(pluralResId(key), quantity, *args.map { it ?: "" }.toTypedArray())
+        }
+
     override fun resolveFeatureClass(key: String): String? =
         ResourceMapper.getStringResource(key)?.let {
             runBlocking { getString(it) }
         }
+
+    private fun pluralResId(key: PluralKey): PluralStringResource = when (key) {
+        PluralKey.DistanceMeters -> Res.plurals.distance_format_meters
+        PluralKey.DistanceFeet -> Res.plurals.distance_format_feet
+        PluralKey.DistanceKm -> Res.plurals.distance_format_km
+        PluralKey.DistanceKmA11y -> Res.plurals.distance_format_km_a11y
+        PluralKey.DistanceMiles -> Res.plurals.distance_format_miles
+    }
 
     private fun resId(key: StringKey): StringResource = when (key) {
         StringKey.ConfectNameTo -> Res.string.confect_name_to
@@ -194,11 +209,6 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.DirectionsNameGoesLeft -> Res.string.directions_name_goes_left
         StringKey.DirectionsNameGoesRight -> Res.string.directions_name_goes_right
         StringKey.DirectionsNameContinuesAhead -> Res.string.directions_name_continues_ahead
-        StringKey.DistanceFormatMeters -> Res.string.distance_format_meters
-        StringKey.DistanceFormatFeet -> Res.string.distance_format_feet
-        StringKey.DistanceFormatKm -> Res.string.distance_format_km
-        StringKey.DistanceFormatKmA11y -> Res.string.distance_format_km_a11y
-        StringKey.DistanceFormatMiles -> Res.string.distance_format_miles
         StringKey.BytesFormatB -> Res.string.bytes_format_b
         StringKey.BytesFormatBA11y -> Res.string.bytes_format_b_a11y
         StringKey.BytesFormatKb -> Res.string.bytes_format_kb

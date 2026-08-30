@@ -78,7 +78,7 @@ class SearchTest {
     fun offlineReverseGeocode_craigmillarAvenueUntilTannochDrive() = assertOfflineReverseGeocode(
         LngLatAlt(-4.3108846, 55.9495440),
         180.0,
-        "On Craigmillar Avenue, 345 metres until Tannoch Drive"
+        "On Craigmillar Avenue, 340 metres until Tannoch Drive"
     )
 
     @Test

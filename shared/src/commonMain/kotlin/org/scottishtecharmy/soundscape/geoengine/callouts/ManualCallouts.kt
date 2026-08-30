@@ -221,7 +221,8 @@ fun buildWhatsAroundMeCallout(
                         formatDistanceAndDirection(
                             poiLocation.distance,
                             poiLocation.heading,
-                            localizedStrings
+                            localizedStrings,
+                            speed = userGeometry.speed
                         )
                     }"
                     list.add(
@@ -282,7 +283,8 @@ fun buildAheadOfMeCallout(
                         formatDistanceAndDirection(
                             poiLocation.distance,
                             poiLocation.heading,
-                            localizedStrings
+                            localizedStrings,
+                            speed = userGeometry.speed
                         )
                     }"
                     list.add(
@@ -355,7 +357,8 @@ fun buildNearbyMarkersCallout(
                             formatDistanceAndDirection(
                                 markerLocation.distance,
                                 markerLocation.heading,
-                                localizedStrings
+                                localizedStrings,
+                                speed = userGeometry.speed
                             )
                         }"
                         list.add(

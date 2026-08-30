@@ -13,6 +13,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.normalizeHeading
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.PluralKey
 import org.scottishtecharmy.soundscape.i18n.StringKey
 import kotlin.math.abs
 import kotlin.math.round
@@ -64,15 +65,29 @@ fun nearestSettlement(settlementGrid: GridState, location: LngLatAlt): NearestSe
 }
 
 /**
- * We're going to round metric as documented for iOS:
- *  For metric units, we round all distances less than 1000 meters to the nearest 5 meters and all
- *  distances over 1000 meters to the nearest 50 meters.
+ * Distances are rounded so that they're as short as possible to read out, because every syllable
+ * spoken is time the user isn't hearing the next callout:
+ *
+ *  small units (metres/feet) | below 100, to the nearest 5; from 100 up, to the nearest 10 so
+ *                            | that there's no unit digit to read out ("110", not "114")
+ *  big units (km/miles)      | below 10, to 1 decimal place; from 10 up, to a whole big unit.
+ *                            | A trailing ".0" is always dropped - "1 km", never "1.0 km".
+ *
+ * Above [UserGeometry.BIG_UNIT_SPEED_THRESHOLD_MPS] big units are used whatever the distance -
+ * see [speed].
  *
  * The iOS imperial docs are wrong, and in fact distances are all in feet and we can round in the
  * same way as metric.
  */
 var metric = true
 
+/**
+ * @param speed the user's speed in m/s, if known. Above
+ * [UserGeometry.BIG_UNIT_SPEED_THRESHOLD_MPS] the distance is always given in big units
+ * (kilometres/miles), as metre/foot precision is worthless at that speed. Callers with no idea of
+ * the user's speed (UI showing a distance to a saved marker, say) leave it at the default and
+ * always get small units for short distances.
+ */
 fun formatDistanceAndDirection(
     distance: Double,
     heading: Double?,
@@ -80,6 +95,7 @@ fun formatDistanceAndDirection(
     userHeading: Double? = null,
     relativeTimeMode: String = "ClockFace",
     forAccessibility: Boolean = false,
+    speed: Double = 0.0
 ): String {
     var units = distance
     var bigUnitDivisor = 100
@@ -88,32 +104,46 @@ fun formatDistanceAndDirection(
         bigUnitDivisor = (176 * 3)
     }
 
-    val roundToNearest = if (units < 1000) 5.0 else 50.0
-    val roundedDistance =
-        ((units + (roundToNearest / 2)) / roundToNearest).toInt() * roundToNearest
+    val roundToNearest = if (units < 100) 5.0 else 10.0
+    val roundedDistance = (units / roundToNearest).roundToInt() * roundToNearest
+
+    val bigUnits = units / (bigUnitDivisor * 10.0)
+    // Tenths of a big unit, which is what decides between the big unit roundings, and whether
+    // there's enough distance to express in big units at all.
+    val bigUnitTenths = round(bigUnits * 10)
+    // Whole big units from 10 up, and any exact number of big units below that - there's nothing
+    // for a decimal place to say about "1.0 km" that "1 km" doesn't.
+    val bigUnitDecimals = if ((bigUnitTenths >= 100) || (bigUnitTenths % 10.0 == 0.0)) 0 else 1
+
+    // At speed, small units are false precision and cost more to say than they're worth - unless
+    // we're so close that big units would round down to nothing.
+    val alwaysBigUnits =
+        (speed > UserGeometry.BIG_UNIT_SPEED_THRESHOLD_MPS) && (bigUnitTenths >= 1)
 
     val distanceText: String
-    if (roundedDistance < 1000) {
+    if ((roundedDistance < 1000) && !alwaysBigUnits) {
         val wholeUnits = roundedDistance.toInt()
-        distanceText = localized?.get(
-            if (metric) StringKey.DistanceFormatMeters else StringKey.DistanceFormatFeet,
-            wholeUnits.toString()
-        ) ?: "$wholeUnits metres"
+        val smallUnitKey = if (metric) PluralKey.DistanceMeters else PluralKey.DistanceFeet
+        distanceText = localized?.getPlural(smallUnitKey, wholeUnits, wholeUnits.toString())
+            ?: "$wholeUnits ${if (wholeUnits == 1) "metre" else "metres"}"
     } else {
-        val bigUnits = (roundedDistance.toInt() / 10).toFloat() / bigUnitDivisor
         val separator = decimalSeparator(localized, forAccessibility)
         val formatted = formatDecimal(
-            bigUnits.toDouble(),
-            decimals = 2,
+            bigUnits,
+            decimals = bigUnitDecimals,
             separator = separator,
             spaceFractionalDigits = forAccessibility,
         )
+        // Plural rules select on a whole number, but "1.4 km" isn't one. Only an exact number of
+        // big units can be singular, so a fractional distance asks for 2 - every language that
+        // singles out "one" treats a fraction as something else.
+        val quantity = if (bigUnitDecimals == 0) round(bigUnits).toInt() else 2
         val bigUnitKey = if (metric) {
-            if (forAccessibility) StringKey.DistanceFormatKmA11y else StringKey.DistanceFormatKm
+            if (forAccessibility) PluralKey.DistanceKmA11y else PluralKey.DistanceKm
         } else {
-            StringKey.DistanceFormatMiles
+            PluralKey.DistanceMiles
         }
-        distanceText = localized?.get(bigUnitKey, formatted) ?: "$formatted km"
+        distanceText = localized?.getPlural(bigUnitKey, quantity, formatted) ?: "$formatted km"
     }
 
     var headingText = ""
@@ -419,7 +449,8 @@ private fun travellingReverseGeocodeName(
             // were included in the dedup comparison - dedupText leaves it out, so this only
             // re-announces when the road/settlement/station combination actually changes.
             val distanceText = formatDistanceAndDirection(
-                gridState.ruler.distance(location, sinceStationLocation), null, localized
+                gridState.ruler.distance(location, sinceStationLocation), null, localized,
+                speed = userGeometry.speed
             )
             return ReverseGeocodeText(
                 text = localized?.get(
@@ -474,7 +505,8 @@ private fun travellingReverseGeocodeName(
             val (settlementPhrase, dedupSuffix) = when {
                 headingOffset <= 45.0 -> {
                     val distanceText = formatDistanceAndDirection(
-                        gridState.ruler.distance(location, settlementLocation), null, localized
+                        gridState.ruler.distance(location, settlementLocation), null, localized,
+                        speed = userGeometry.speed
                     )
                     Pair(
                         localized?.get(
@@ -485,7 +517,8 @@ private fun travellingReverseGeocodeName(
                 }
                 headingOffset >= 135.0 -> {
                     val distanceText = formatDistanceAndDirection(
-                        gridState.ruler.distance(location, settlementLocation), null, localized
+                        gridState.ruler.distance(location, settlementLocation), null, localized,
+                        speed = userGeometry.speed
                     )
                     Pair(
                         localized?.get(

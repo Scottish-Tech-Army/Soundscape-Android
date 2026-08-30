@@ -17,6 +17,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
+import org.scottishtecharmy.soundscape.i18n.PluralKey
 import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import kotlin.test.Test
@@ -36,6 +37,9 @@ private class FakeLocalizedStrings : LocalizedStrings {
         "$key(${args.joinToString(", ")})"
 
     override fun getOrNull(key: StringKey, vararg args: Any?): String? = get(key, *args)
+
+    override fun getPlural(key: PluralKey, quantity: Int, vararg args: Any?): String =
+        "$key(${args.joinToString(", ")})"
 
     override fun resolveFeatureClass(key: String): String? = null
 }

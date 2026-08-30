@@ -209,5 +209,13 @@ class UserGeometry(
 
     companion object {
         const val VEHICLE_SPEED_THRESHOLD_MPS = 5.0
+
+        /**
+         * 30mph. Above this, distances are read out in kilometres/miles regardless of how short
+         * they are - see formatDistanceAndDirection. Metre/foot precision is meaningless when
+         * you're covering more than 13m every second, and the extra syllables cost time that
+         * matters far more at speed.
+         */
+        const val BIG_UNIT_SPEED_THRESHOLD_MPS = 13.4
     }
 }
