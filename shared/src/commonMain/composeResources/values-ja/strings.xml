@@ -165,10 +165,18 @@
     <string name="directions_along_heading_sw">%1$s を南西方向へ</string>
     <string name="directions_along_heading_w">%1$s を西方向へ</string>
     <string name="directions_along_heading_nw">%1$s を北西方向へ</string>
-    <string name="distance_format_meters">%1$s メートル</string>
-    <string name="distance_format_km">%1$s km</string>
-    <string name="distance_format_feet">%1$s フィート</string>
-    <string name="distance_format_miles">%1$s マイル</string>
+    <plurals name="distance_format_meters">
+        <item quantity="other">%1$s メートル</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="other">%1$s km</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="other">%1$s フィート</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="other">%1$s マイル</item>
+    </plurals>
     <string name="ui_action_button_my_location">現在地</string>
     <string name="ui_action_button_my_location_acc_hint">現在地の情報を聞きます</string>
     <string name="ui_action_button_nearby_markers">近くの\nマーカー</string>
