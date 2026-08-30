@@ -811,11 +811,21 @@
     <string name="directions_cardinal_west_bound">Hướng Tây</string>
     <string name="directions_cardinal_north_west_bound">Hướng Tây Bắc</string>
     <string name="stationary_on_way">Không di chuyển trên %1$s</string>
-    <string name="distance_format_meters">%1$s mét</string>
-    <string name="distance_format_km">%1$s km</string>
-    <string name="distance_format_km_a11y">%1$s ki-lô-mét</string>
-    <string name="distance_format_feet">%1$s feet</string>
-    <string name="distance_format_miles">%1$s dặm</string>
+    <plurals name="distance_format_meters">
+        <item quantity="other">%1$s mét</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="other">%1$s km</item>
+    </plurals>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="other">%1$s ki-lô-mét</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="other">%1$s feet</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="other">%1$s dặm</item>
+    </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">phẩy</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1428,4 +1438,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s cạnh %2$s</string>
     <string name="street_description_relative_near">Trên %1$s gần %2$s</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Thư viện Oboe ©The Android Open Source Project](https://github.com/google/oboe) được sử dụng để phát âm thanh với độ trễ thấp, và được cung cấp để sử dụng theo [giấy phép Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
 </resources>
