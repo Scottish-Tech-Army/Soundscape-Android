@@ -167,15 +167,19 @@
     <string name="directions_along_heading_nw">Auf %1$s in Richtung Nordwesten</string>
     <plurals name="distance_format_meters">
         <item quantity="one">%1$s Meter</item>
+        <item quantity="other">%1$s Meter</item>
     </plurals>
     <plurals name="distance_format_km">
         <item quantity="one">%1$s km</item>
+        <item quantity="other">%1$s km</item>
     </plurals>
     <plurals name="distance_format_feet">
         <item quantity="one">%1$s Fuß</item>
+        <item quantity="other">%1$s Fuß</item>
     </plurals>
     <plurals name="distance_format_miles">
-        <item quantity="one">%1$s Meilen</item>
+        <item quantity="one">%1$s Meile</item>
+        <item quantity="other">%1$s Meilen</item>
     </plurals>
     <string name="ui_action_button_my_location">Mein\nStandort</string>
     <string name="ui_action_button_my_location_acc_hint">Informationen zu Ihrem aktuellen Standort hören</string>
@@ -1368,7 +1372,10 @@
     <string name="offline_map_details_update">Offline-Karte aktualisieren</string>
     <string name="menu_exit_app">Soundscape beenden</string>
     <string name="talkback_default_activate">aktivieren</string>
-    <string name="distance_format_km_a11y">%1$s Kilometer</string>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s Kilometer</item>
+        <item quantity="other">%1$s Kilometer</item>
+    </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">Komma</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1436,4 +1443,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s neben %2$s</string>
     <string name="street_description_relative_near">Auf %1$s nahe %2$s</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) wird zur Wiedergabe des Audios mit geringer Latenz verwendet und steht unter der [Apache‑2.0‑Lizenz](https://github.com/google/oboe/blob/main/LICENSE) zur Nutzung bereit.</string>
 </resources>
