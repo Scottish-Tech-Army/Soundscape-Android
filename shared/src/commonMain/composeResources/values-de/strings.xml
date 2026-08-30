@@ -165,10 +165,18 @@
     <string name="directions_along_heading_sw">Auf %1$s in Richtung Südwesten</string>
     <string name="directions_along_heading_w">Auf %1$s in Richtung Westen</string>
     <string name="directions_along_heading_nw">Auf %1$s in Richtung Nordwesten</string>
-    <string name="distance_format_meters">%1$s Meter</string>
-    <string name="distance_format_km">%1$s km</string>
-    <string name="distance_format_feet">%1$s Fuß</string>
-    <string name="distance_format_miles">%1$s Meilen</string>
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s Meter</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="one">%1$s km</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="one">%1$s Fuß</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="one">%1$s Meilen</item>
+    </plurals>
     <string name="ui_action_button_my_location">Mein\nStandort</string>
     <string name="ui_action_button_my_location_acc_hint">Informationen zu Ihrem aktuellen Standort hören</string>
     <string name="ui_action_button_nearby_markers">Mark.\nin Nähe</string>
