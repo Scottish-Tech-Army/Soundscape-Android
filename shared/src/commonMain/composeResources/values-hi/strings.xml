@@ -221,10 +221,18 @@
     <string name="directions_cardinal_south_west_abb">दप</string>
     <string name="directions_cardinal_west_abb">प</string>
     <string name="directions_cardinal_north_west_abb">उप</string>
-    <string name="distance_format_meters">%1$s मीटर</string>
-    <string name="distance_format_km">%1$s किमी</string>
-    <string name="distance_format_feet">%1$s फ़ीट</string>
-    <string name="distance_format_miles">%1$s मील</string>
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s मीटर</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="one">%1$s किमी</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="one">%1$s फ़ीट</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="one">%1$s मील</item>
+    </plurals>
     <string name="ui_action_button_my_location">मेरा\nस्थान</string>
     <string name="ui_action_button_my_location_acc_hint">अपने वर्तमान स्थान के बारे में सुनें</string>
     <string name="ui_action_button_nearby_markers">पास के\nमार्कर</string>
