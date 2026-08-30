@@ -32,6 +32,7 @@ import me.zhanghai.compose.preference.rememberPreferenceState
 import me.zhanghai.compose.preference.sliderPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.jetbrains.compose.resources.stringResource
+import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
@@ -212,6 +213,16 @@ fun SharedSettingsScreen(
         stringResource(Res.string.settings_search_offline),
     )
     val geocoderValues = listOf("Auto", "Offline")
+
+    // Debug-only, so the labels are literals rather than Res.string entries: four throwaway
+    // strings in every supported language is real translator work for a picker that exists to be
+    // deleted once one of the strategies wins. Same order as PoiRankStrategy.entries.
+    val poiRankDescriptions = listOf(
+        "Distance only",
+        "Drop street furniture",
+        "Rank-weighted distance",
+        "Rank first",
+    )
 
     ProvidePreferenceLocals(flow = rememberSoundscapePreferenceFlow()) {
         // Track allowCallouts reactively for enabling/disabling child settings
@@ -645,6 +656,32 @@ fun SharedSettingsScreen(
                 )
             }
             if (expandedSection.value == "debug") {
+                listPreference(
+                    key = PreferenceKeys.POI_RANK_STRATEGY,
+                    defaultValue = PreferenceDefaults.POI_RANK_STRATEGY,
+                    values = PoiRankStrategy.keys,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        Text(text = "Nearby POI ranking", color = textColor)
+                    },
+                    item = { value, currentValue, onClick ->
+                        ListPreferenceItem(
+                            poiRankDescriptions[PoiRankStrategy.keys.indexOf(value)],
+                            value,
+                            currentValue,
+                            onClick,
+                            PoiRankStrategy.keys.indexOf(value),
+                            PoiRankStrategy.keys.size
+                        )
+                    },
+                    summary = {
+                        ClickableOption(
+                            poiRankDescriptions[PoiRankStrategy.keys.indexOf(it)],
+                            textColor
+                        )
+                    },
+                )
+
                 switchPreference(
                     key = PreferenceKeys.RECORD_TRAVEL,
                     defaultValue = PreferenceDefaults.RECORD_TRAVEL,

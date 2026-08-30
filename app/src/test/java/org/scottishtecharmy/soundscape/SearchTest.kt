@@ -166,6 +166,38 @@ class SearchTest {
         mapMatch = true
     )
 
+    /**
+     * The address row on a POI's details screen reverse geocodes the POI's own location, so the
+     * nearest named feature to it is always the POI itself: James Gale Memorial is a fountain in
+     * a Milngavie park, with nothing named within 30m and no named road within 90m, so the
+     * nearby-POI fallback used to hand back "James Gale Memorial" as the memorial's address -
+     * a copy of the title already at the top of the screen. getAddressForFeature leaves those
+     * fallbacks out and answers with the settlement instead, while getAddressFromLngLat (which
+     * is what "My Location" uses, where naming the nearest feature is exactly what's wanted)
+     * keeps naming the memorial.
+     */
+    @Test
+    fun offlineReverseGeocode_poiWithNoStreetIsNotItsOwnAddress() = runBlocking {
+        val location = LngLatAlt(-4.3092868, 55.9503336)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, GRID_SIZE)
+        val settlementState = getGridStateForLocation(location, 12, 3)
+        val offlineGeocoder = OfflineGeocoder(
+            gridState,
+            settlementState,
+            TileSearch(offlineExtractPath, gridState, settlementState),
+            processor = { it.process() })
+
+        val userGeometry = UserGeometry(location)
+        assertEquals(
+            "James Gale Memorial",
+            offlineGeocoder.getAddressFromLngLat(userGeometry, null, false)?.name
+        )
+        assertEquals(
+            "Milngavie",
+            offlineGeocoder.getAddressForFeature(userGeometry, null, false)?.name
+        )
+    }
+
     @Test
     fun offlineSearch() {
         runBlocking {

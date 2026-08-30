@@ -56,6 +56,13 @@ object PreferenceKeys {
     const val MARKERS_SORT_BY_NAME = "MarkersSortByName"
     const val MARKERS_SORT_ASCENDING = "MarkersSortAscending"
     const val HEAD_TRACKING_ENABLED = "HeadTrackingEnabled"
+
+    /**
+     * Debug-only: which PoiRankStrategy to use when choosing between nearby POIs. Held as a string
+     * rather than the enum so that an unrecognised value degrades to the default instead of
+     * throwing, and so that it round-trips through the plain string preference store.
+     */
+    const val POI_RANK_STRATEGY = "PoiRankStrategy"
 }
 
 object PreferenceDefaults {
@@ -84,4 +91,5 @@ object PreferenceDefaults {
     const val MARKERS_SORT_BY_NAME = false  // distance by default
     const val MARKERS_SORT_ASCENDING = true
     const val HEAD_TRACKING_ENABLED = false
+    const val POI_RANK_STRATEGY = "off"
 }

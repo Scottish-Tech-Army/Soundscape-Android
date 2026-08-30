@@ -10,6 +10,8 @@ import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.nearestSettlement
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
+import org.scottishtecharmy.soundscape.geoengine.utils.bestPoiForSpeech
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -30,6 +32,12 @@ class OfflineGeocoder(
     val tileSearch: TileSearcher? = null,
     private val analyticsLogger: (String) -> Unit = {},
     private val processor: (LocationDescription) -> Unit = {},
+    /**
+     * Which of the [PoiRankStrategy] prototypes to use when choosing between nearby POIs. Read
+     * through a lambda on each call rather than captured once, so that flipping the debug setting
+     * takes effect without restarting the service.
+     */
+    private val poiStrategy: () -> PoiRankStrategy = { PoiRankStrategy.default },
 ) : SoundscapeGeocoder() {
 
     // Cache of the last StreetDescription built by getAddressFromLngLat(), keyed by street name
@@ -107,6 +115,42 @@ class OfflineGeocoder(
         userGeometry: UserGeometry,
         localizedStrings: LocalizedStrings?,
         ignoreHouseNumbers: Boolean
+    ): LocationDescription? = reverseGeocode(
+        userGeometry,
+        localizedStrings,
+        ignoreHouseNumbers,
+        nameNearbyFeatures = true
+    )
+
+    /**
+     * The address of a location which is itself a named feature - the address row on a POI's
+     * details screen, say.
+     *
+     * Same as [getAddressFromLngLat] but without the fallbacks which answer with the name of a
+     * nearby feature. Those are what let "My Location" say "James Gale Memorial" when there's no
+     * street to be had, which is the right answer for someone asking where they are - but asked
+     * for the memorial's own address, the nearest named feature to it *is* it, so the address
+     * comes back as a copy of the name already at the top of the screen. Excluding the feature
+     * itself wouldn't help: the answer would just become whatever unrelated POI is next nearest.
+     * A street, a road or the settlement is the only kind of answer that reads as an address, so
+     * that's all this considers.
+     */
+    suspend fun getAddressForFeature(
+        userGeometry: UserGeometry,
+        localizedStrings: LocalizedStrings?,
+        ignoreHouseNumbers: Boolean
+    ): LocationDescription? = reverseGeocode(
+        userGeometry,
+        localizedStrings,
+        ignoreHouseNumbers,
+        nameNearbyFeatures = false
+    )
+
+    private suspend fun reverseGeocode(
+        userGeometry: UserGeometry,
+        localizedStrings: LocalizedStrings?,
+        ignoreHouseNumbers: Boolean,
+        nameNearbyFeatures: Boolean
     ): LocationDescription? {
 
         val location = userGeometry.location
@@ -229,36 +273,50 @@ class OfflineGeocoder(
             }
         }
 
-        // Check if we're near a bus/tram/train stop. This is useful when travelling on public transport
-        val busStopTree = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
-        val nearestBusStop = busStopTree.getNearestFeature(location, gridState.ruler, 20.0)
-        if (nearestBusStop != null) {
-            val busStopText = (nearestBusStop as MvtFeature).getText(localizedStrings)
-            return LocationDescription(
-                name = busStopText.text,
-                location = getNearestPointOnFeature(nearestBusStop, location)
-            )
-        }
-
-        // Check if we're inside a POI
-        val gridPoiTree = gridState.getFeatureTree(TreeId.POIS)
-        val insidePois = gridPoiTree.getContainingPolygons(location)
-        insidePois.forEach { poi ->
-            val mvt = poi as MvtFeature
-            if (!mvt.name.isNullOrEmpty()) {
-                val featureText = mvt.getText(localizedStrings)
+        if (nameNearbyFeatures) {
+            // Check if we're near a bus/tram/train stop. This is useful when travelling on public transport
+            val busStopTree = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
+            val nearestBusStop = busStopTree.getNearestFeature(location, gridState.ruler, 20.0)
+            if (nearestBusStop != null) {
+                val busStopText = (nearestBusStop as MvtFeature).getText(localizedStrings)
                 return LocationDescription(
-                    name = featureText.text,
-                    location = getNearestPointOnFeature(mvt, location)
+                    name = busStopText.text,
+                    location = getNearestPointOnFeature(nearestBusStop, location)
                 )
             }
-        }
 
-        // See if there are any nearby named POI
-        val nearbyPois = gridPoiTree.getNearestCollection(location, 300.0, 10, gridState.ruler)
-        nearbyPois.forEach { poi ->
-            val mvt = poi as MvtFeature
-            if (!mvt.name.isNullOrEmpty()) {
+            // Check if we're inside a POI
+            val gridPoiTree = gridState.getFeatureTree(TreeId.POIS)
+            val insidePois = gridPoiTree.getContainingPolygons(location)
+            insidePois.forEach { poi ->
+                val mvt = poi as MvtFeature
+                if (!mvt.name.isNullOrEmpty()) {
+                    val featureText = mvt.getText(localizedStrings)
+                    return LocationDescription(
+                        name = featureText.text,
+                        location = getNearestPointOnFeature(mvt, location)
+                    )
+                }
+            }
+
+            // See if there are any nearby named POI. The name test goes into the tree query so
+            // that the 10 item cap counts named POIs: previously ten un-named neighbours could
+            // hide the eleventh, named one and drop us all the way through to the road and
+            // settlement fallbacks below.
+            val nearbyPois = gridPoiTree.getNearestCollection(
+                location,
+                300.0,
+                10,
+                gridState.ruler,
+                include = { !(it as MvtFeature).name.isNullOrEmpty() }
+            )
+            bestPoiForSpeech(
+                nearbyPois.features,
+                location,
+                gridState.ruler,
+                poiStrategy()
+            )?.let { best ->
+                val mvt = best.feature as MvtFeature
                 return LocationDescription(
                     name = mvt.getText(localizedStrings).text,
                     location = getNearestPointOnFeature(mvt, location),

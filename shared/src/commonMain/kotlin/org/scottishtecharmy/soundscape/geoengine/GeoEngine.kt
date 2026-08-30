@@ -20,6 +20,7 @@ import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
+import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.extrapolatePositionForward
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.MultiGeocoder
@@ -315,6 +316,14 @@ class GeoEngine {
                 preferencesProvider.getString(
                     PreferenceKeys.GEOCODER_MODE,
                     PreferenceDefaults.GEOCODER_MODE
+                )
+            },
+            poiStrategy = {
+                PoiRankStrategy.fromPreference(
+                    preferencesProvider.getString(
+                        PreferenceKeys.POI_RANK_STRATEGY,
+                        PreferenceDefaults.POI_RANK_STRATEGY
+                    )
                 )
             }
         )
@@ -666,11 +675,15 @@ class GeoEngine {
      * Deliberately the offline geocoder rather than whichever one [MultiGeocoder] would pick: it's
      * used for places which are already in the loaded grid, where going to the network would be
      * both slower and less relevant, and it keeps working with no signal.
+     *
+     * getAddressForFeature rather than getAddressFromLngLat: the caller is describing somewhere
+     * which already has a name, so an answer of "the nearest named feature" would just hand back
+     * that same name.
      */
     @OptIn(ExperimentalCoroutinesApi::class)
     suspend fun getOfflineAddress(location: LngLatAlt): LocationDescription? {
         return withContext(gridState.treeContext) {
-            multiGeocoder.offlineGeocoder.getAddressFromLngLat(
+            multiGeocoder.offlineGeocoder.getAddressForFeature(
                 UserGeometry(location),
                 localizedStrings,
                 ignoreHouseNumbers = false
