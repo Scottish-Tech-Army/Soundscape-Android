@@ -24,8 +24,14 @@ htmlMermaidDokkaPlugin = "0.6.0"
 jtsCore = "1.20.0"
 ktor = "3.5.1" # 3.5.2 is a partial release missing published iosSimulatorArm64 artifacts (POM 404s)
 leakcanaryAndroid = "2.14"
-mapLibre = "13.3.1" # 13.4.0+ statically links its own STL, which conflicts with this app's native code
-                     # (Steam Audio/Oboe, built with -DANDROID_STL=c++_shared) - CMake fails with CXX1211
+mapLibre = "13.6.0" # Do not drop below 13.5.0. The plain android-sdk artifact is the Vulkan build
+                     # from 13.x, and its MapLibreVulkanSurfaceView deadlocked the main thread in
+                     # RenderThread.onWindowResize on surface resize (ANR); upstream fixed that in
+                     # 13.5.0 by having ableToDraw() also test graphicsSurfaceCreated. 13.4.0+ also
+                     # ships a prefab package declaring stl=c++_static, which is only tolerable
+                     # because prefab is off - see app/build.gradle.kts. If the Vulkan renderer ever
+                     # needs backing out, org.maplibre.gl:android-sdk-opengl is the same version
+                     # built on OpenGL and has never had that deadlock.
 mapLibreAnnotation = "3.0.2"
 androidxJunit = "1.3.0"
 coreSplashscreen = "1.2.0"
