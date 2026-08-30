@@ -190,10 +190,18 @@
     <string name="directions_cardinal_south_west_abb">Płd. zach.</string>
     <string name="directions_cardinal_west_abb">Zach.</string>
     <string name="directions_cardinal_north_west_abb">Płn. zach.</string>
-    <string name="distance_format_meters">%1$s metrów</string>
-    <string name="distance_format_km">%1$s km</string>
-    <string name="distance_format_feet">%1$s stóp</string>
-    <string name="distance_format_miles">%1$s mil</string>
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s metrów</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="one">%1$s km</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="one">%1$s stóp</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="one">%1$s mil</item>
+    </plurals>
     <string name="ui_action_button_my_location">Moja\npozycja</string>
     <string name="ui_action_button_my_location_acc_hint">usłyszeć informacje o swojej bieżącej lokalizacji</string>
     <string name="ui_action_button_nearby_markers">Bliskie\npinezki</string>
