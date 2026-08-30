@@ -183,6 +183,7 @@ class AutoCallout(
                 userGeometry,
                 trackedText = result.text,
                 dedupText = result.dedupText,
+                extraDedupText = result.extraDedupText,
                 location = result.location ?: userGeometry.location,
                 positionedStrings = listOf(result),
                 isPoint = false,

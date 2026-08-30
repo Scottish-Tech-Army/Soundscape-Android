@@ -106,6 +106,7 @@ import org.scottishtecharmy.soundscape.resources.directions_street_settlement
 import org.scottishtecharmy.soundscape.resources.directions_near_road_and_settlement
 import org.scottishtecharmy.soundscape.resources.directions_transit_stop_near_settlement
 import org.scottishtecharmy.soundscape.resources.directions_transit_stop_near_poi
+import org.scottishtecharmy.soundscape.resources.directions_road_with_ref_and_name
 import org.scottishtecharmy.soundscape.resources.directions_on_road
 import org.scottishtecharmy.soundscape.resources.directions_on_road_and_settlement
 import org.scottishtecharmy.soundscape.resources.directions_on_road_and_settlement_since
@@ -274,6 +275,7 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.DirectionsTransitStopWithLandmark -> Res.string.directions_transit_stop_with_landmark
         StringKey.DirectionsJunctionWithRef -> Res.string.directions_junction_with_ref
         StringKey.DirectionsJunctionWithRefAndName -> Res.string.directions_junction_with_ref_and_name
+        StringKey.DirectionsRoadWithRefAndName -> Res.string.directions_road_with_ref_and_name
         StringKey.DirectionsOnRoad -> Res.string.directions_on_road
         StringKey.DirectionsOnRoadAndSettlement -> Res.string.directions_on_road_and_settlement
         StringKey.DirectionsOnRoadAtJunction -> Res.string.directions_on_road_at_junction

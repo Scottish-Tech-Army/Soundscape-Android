@@ -112,6 +112,7 @@ enum class StringKey {
     DirectionsTransitStopWithLandmark,
     DirectionsJunctionWithRef,
     DirectionsJunctionWithRefAndName,
+    DirectionsRoadWithRefAndName,
     DirectionsOnRoad,
     DirectionsOnRoadAndSettlement,
     DirectionsOnRoadAtJunction,

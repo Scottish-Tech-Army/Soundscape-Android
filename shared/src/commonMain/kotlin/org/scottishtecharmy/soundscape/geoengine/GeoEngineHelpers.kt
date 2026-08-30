@@ -277,7 +277,11 @@ private val minorHighwayJunctionClasses =
  * same text with that value left out, so the callout can still dedup against an earlier one that
  * differs only in that value. See [PositionedString.dedupText].
  */
-private data class ReverseGeocodeText(val text: String, val dedupText: String = text)
+private data class ReverseGeocodeText(
+    val text: String,
+    val dedupText: String = text,
+    val extraDedupText: String? = null
+)
 
 private fun travellingReverseGeocodeName(
     userGeometry: UserGeometry,
@@ -337,6 +341,31 @@ private fun travellingReverseGeocodeName(
     }
     val roadName = nearestRoad?.getName(null, gridState, localized, true)?.takeIf { it.isNotEmpty() }
 
+    // A numbered road keeps its identity across name changes: the A81 through Milngavie is
+    // Strathblane Road, then Glasgow Road, then Main Street, but to someone travelling along it
+    // that's one road, and re-announcing at each boundary is just noise. So where a road carries
+    // a route number, that ref becomes both the dedup identity (see roadDedup below) and part of
+    // the spoken name. Railway lines don't carry a road-style ref and have their own naming path
+    // in Way.getName(), so trains are excluded.
+    val roadRef = if (!probablyOnTrain) nearestRoad?.ref else null
+    val spokenRoadName = when {
+        roadRef == null -> roadName
+        // getName() already falls back to the ref for a way with no name of its own, so this
+        // covers both "unnamed" and "named after the number anyway" without saying "M8 (M8)".
+        (roadName == null) || (roadName == roadRef) -> roadRef
+        else -> localized?.get(StringKey.DirectionsRoadWithRefAndName, roadRef, roadName)
+            ?: "$roadRef ($roadName)"
+    }
+    // Used in the dedup keys below in place of the spoken name, which embeds the street name and
+    // so changes along an unchanged road.
+    val roadIdentity = roadRef ?: roadName
+
+    // A numbered road is identified by its ref alone: neither a change of street name nor a new
+    // settlement alongside it means we've reached a different road, so neither is a reason to
+    // announce it again. A road with no ref has nothing but its name to identify it, so it keeps
+    // the fuller key and a genuine change of street still gets announced.
+    fun roadDedup(fullKey: String): String = roadRef ?: fullKey
+
     // The direction of travel along a road (e.g. "Traveling north along M8") - using the
     // map-matched heading, which snaps to the road's own tangent (see UserGeometry.snappedHeading)
     // - is only meaningful for an actual road, not a railway line. Every road callout below goes
@@ -390,18 +419,30 @@ private fun travellingReverseGeocodeName(
                 // winding road, the compass direction can shift tick to tick while the road and
                 // junction stay the same, and that shouldn't be treated as a new thing to
                 // announce (see the equivalent reasoning below for the plain "on road" callouts).
-                if (roadName != null) {
+                if (spokenRoadName != null) {
                     return ReverseGeocodeText(
                         text = if (travelHeadingDegrees != null) {
-                            "${roadPhrase(roadName)} " + (
+                            "${roadPhrase(spokenRoadName)} " + (
                                 localized?.get(StringKey.DirectionsAtJunctionInline, junctionText)
                                     ?: "at $junctionText"
                                 )
                         } else {
-                            localized?.get(StringKey.DirectionsOnRoadAtJunction, roadName, junctionText)
-                                ?: "On $roadName at $junctionText"
+                            localized?.get(
+                                StringKey.DirectionsOnRoadAtJunction, spokenRoadName, junctionText
+                            ) ?: "On $spokenRoadName at $junctionText"
                         },
-                        dedupText = "On $roadName at $junctionText"
+                        // Unlike the callouts below, this key keeps the junction in it rather
+                        // than collapsing to the road's identity - reaching a junction is a new
+                        // thing to announce even though we're still on the same road.
+                        dedupText = "On $roadIdentity at $junctionText",
+                        // Having just been told we're at a junction on the A81, being told a few
+                        // seconds later that we're still on the A81 adds nothing. So the junction
+                        // callout also claims the plain road key that such a callout would use,
+                        // which holds it off until the history expires. Only for a numbered road:
+                        // a ref-less road's plain key varies with the settlement phrasing, so
+                        // there's no single key to claim. See TrackedCallout.extraDedupText for
+                        // why this is recorded separately rather than matched on.
+                        extraDedupText = roadRef
                     )
                 }
                 return ReverseGeocodeText(
@@ -433,8 +474,8 @@ private fun travellingReverseGeocodeName(
     val nearestSettlementName = settlement.name
     val nearestSettlementIsCity = settlement.isCity
 
-    if (roadName != null) {
-        val phrase = roadPhrase(roadName)
+    if (spokenRoadName != null) {
+        val phrase = roadPhrase(spokenRoadName)
 
         // Distance since the last station is only worth mentioning alongside something else worth
         // describing (a nearby settlement) - otherwise it ends up as a standalone callout that
@@ -455,13 +496,13 @@ private fun travellingReverseGeocodeName(
             return ReverseGeocodeText(
                 text = localized?.get(
                     StringKey.DirectionsOnRoadAndSettlementSince,
-                    roadName, nearestSettlementName, distanceText, sinceStationName
-                ) ?: "On $roadName and close to $nearestSettlementName, $distanceText since $sinceStationName",
+                    spokenRoadName, nearestSettlementName, distanceText, sinceStationName
+                ) ?: "On $spokenRoadName and close to $nearestSettlementName, $distanceText since $sinceStationName",
                 // Keep the station in the dedup key (unlike the distance, which is never
                 // included) - a genuinely new "since {station}" is worth a fresh announcement,
                 // only the ever-climbing distance number itself shouldn't defeat deduping. This
                 // key is never spoken, so it doesn't need localizing.
-                dedupText = "On $roadName and close to $nearestSettlementName since $sinceStationName"
+                dedupText = "On $roadIdentity and close to $nearestSettlementName since $sinceStationName"
             )
         }
 
@@ -472,8 +513,8 @@ private fun travellingReverseGeocodeName(
             return ReverseGeocodeText(
                 if (nearestSettlementName != null) {
                     localized?.get(
-                        StringKey.DirectionsOnRoadAndSettlement, roadName, nearestSettlementName
-                    ) ?: "On $roadName and close to $nearestSettlementName"
+                        StringKey.DirectionsOnRoadAndSettlement, spokenRoadName, nearestSettlementName
+                    ) ?: "On $spokenRoadName and close to $nearestSettlementName"
                 } else {
                     phrase
                 }
@@ -495,7 +536,7 @@ private fun travellingReverseGeocodeName(
                             ?: "close to $nearestSettlementName"
                         ),
                     // Excludes the direction of travel - see the dedupText comment further below.
-                    dedupText = "On $roadName close to $nearestSettlementName"
+                    dedupText = roadDedup("On $roadName close to $nearestSettlementName")
                 )
             }
 
@@ -539,15 +580,15 @@ private fun travellingReverseGeocodeName(
                 // and the direction of travel - on a winding road the compass direction can shift
                 // tick to tick while the road and the towards/away/near relationship stay the
                 // same, and that alone shouldn't trigger a fresh announcement.
-                dedupText = "On $roadName $dedupSuffix"
+                dedupText = roadDedup("On $roadName $dedupSuffix")
             )
         }
 
         return ReverseGeocodeText(
             text = if (nearestSettlementName != null) {
                 localized?.get(
-                    StringKey.DirectionsOnRoadAndSettlement, roadName, nearestSettlementName
-                ) ?: "On $roadName and close to $nearestSettlementName"
+                    StringKey.DirectionsOnRoadAndSettlement, spokenRoadName, nearestSettlementName
+                ) ?: "On $spokenRoadName and close to $nearestSettlementName"
             } else {
                 phrase
             },
@@ -555,9 +596,11 @@ private fun travellingReverseGeocodeName(
             // a winding road, phrase's compass direction can shift tick to tick purely from the
             // road's own bends, well before the road or settlement actually changes.
             dedupText = if (nearestSettlementName != null) {
-                "On $roadName and close to $nearestSettlementName"
+                roadDedup("On $roadName and close to $nearestSettlementName")
             } else {
-                roadName
+                // Equivalent to roadIdentity, but expressed through roadDedup so the compiler
+                // can see it's non-null in this branch (spokenRoadName already is).
+                roadDedup(spokenRoadName)
             }
         )
     }
@@ -594,6 +637,7 @@ fun describeReverseGeocode(
     return PositionedString(
         text = description.text,
         dedupText = description.dedupText,
+        extraDedupText = description.extraDedupText,
         location = userGeometry.location,
         type = AudioType.LOCALIZED,
     )

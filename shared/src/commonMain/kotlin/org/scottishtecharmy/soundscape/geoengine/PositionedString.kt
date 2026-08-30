@@ -10,6 +10,9 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
  * never repeats exactly and so never gets suppressed as a duplicate. Passing a stable dedupText
  * (the same text with the ever-changing part left out) lets it dedup correctly while the spoken
  * text keeps the live value.
+ * @param extraDedupText a second, broader key recorded in the callout history alongside
+ * [dedupText] but never matched against by this callout itself - see
+ * TrackedCallout.extraDedupText.
  */
 data class PositionedString(
     val text: String,
@@ -18,5 +21,6 @@ data class PositionedString(
     val type: AudioType = AudioType.STANDARD,
     val heading: Double? = null,
     val addDistanceAndHeading: Boolean = false,
-    val dedupText: String? = null
+    val dedupText: String? = null,
+    val extraDedupText: String? = null
 )

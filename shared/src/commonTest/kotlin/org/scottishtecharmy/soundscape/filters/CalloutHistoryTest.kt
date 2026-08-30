@@ -65,6 +65,67 @@ class CalloutHistoryTest {
         assertEquals(0, history.size())
     }
 
+    /**
+     * A callout carrying an extraDedupText claims that broader key as well as its own, so a
+     * later callout using the broader key is suppressed. This is what stops a motorway junction
+     * callout ("On M80 at Junction 2, Robroyston") being followed moments later by a plain
+     * "still on the M80" one.
+     */
+    @Test
+    fun testExtraDedupTextSuppressesLaterBroaderCallout() {
+        val history = CalloutHistory(10)
+        val location = LngLatAlt(0.0, 0.0, 0.0)
+        val junctionCallout = TrackedCallout(
+            UserGeometry(), "On M80 at Junction 2, Robroyston", location,
+            extraDedupText = "M80"
+        )
+        history.add(junctionCallout)
+        assertEquals(2, history.size())
+
+        val roadCallout = TrackedCallout(UserGeometry(), "M80", location)
+        assertTrue(history.find(roadCallout))
+    }
+
+    /**
+     * The matching is deliberately one-way: claiming the broader key must not work in reverse,
+     * or a plain "on the M80" callout would swallow the junction callout that follows it. The
+     * junction is always worth announcing.
+     */
+    @Test
+    fun testExtraDedupTextDoesNotSuppressTheJunctionCallout() {
+        val history = CalloutHistory(10)
+        val location = LngLatAlt(0.0, 0.0, 0.0)
+        history.add(TrackedCallout(UserGeometry(), "M80", location))
+
+        val junctionCallout = TrackedCallout(
+            UserGeometry(), "On M80 at Junction 2, Robroyston", location,
+            extraDedupText = "M80"
+        )
+        assertFalse(history.find(junctionCallout))
+    }
+
+    /**
+     * The claimed key shares the callout's timestamp, so it expires with it rather than
+     * outliving it in the history.
+     */
+    @Test
+    fun testExtraDedupTextExpiresWithItsCallout() {
+        val history = CalloutHistory(10)
+        val location = LngLatAlt(0.0, 0.0, 0.0)
+        history.add(
+            TrackedCallout(
+                UserGeometry(timestampMilliseconds = 0L),
+                "On M80 at Junction 2, Robroyston",
+                location,
+                extraDedupText = "M80"
+            )
+        )
+        history.trim(UserGeometry(location = location, timestampMilliseconds = 11L))
+
+        assertEquals(0, history.size())
+        assertFalse(history.find(TrackedCallout(UserGeometry(), "M80", location)))
+    }
+
     @Test
     fun testTrimEmptyHistory() {
         val history = CalloutHistory(10)
