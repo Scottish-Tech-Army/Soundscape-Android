@@ -191,16 +191,20 @@
     <string name="directions_cardinal_west_abb">V</string>
     <string name="directions_cardinal_north_west_abb">NV</string>
     <plurals name="distance_format_meters">
-        <item quantity="one">%1$s metrar</item>
+        <item quantity="one">%1$s metri</item>
+        <item quantity="other">%1$s metrar</item>
     </plurals>
     <plurals name="distance_format_km">
         <item quantity="one">%1$s km</item>
+        <item quantity="other">%1$s km</item>
     </plurals>
     <plurals name="distance_format_feet">
         <item quantity="one">%1$s fet</item>
+        <item quantity="other">%1$s fet</item>
     </plurals>
     <plurals name="distance_format_miles">
-        <item quantity="one">%1$s mílur</item>
+        <item quantity="one">%1$s míla</item>
+        <item quantity="other">%1$s mílur</item>
     </plurals>
     <string name="ui_action_button_my_location">Mín\\nStaðsetning</string>
     <string name="ui_action_button_my_location_acc_hint">heyra um núverandi staðsetningu þína</string>
@@ -1368,7 +1372,10 @@
     <string name="offline_map_details_update">Uppfæra ónettengt kort</string>
     <string name="menu_exit_app">Loka Soundscape</string>
     <string name="talkback_default_activate">virkja</string>
-    <string name="distance_format_km_a11y">%1$s kílómetrar</string>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s kílómetri</item>
+        <item quantity="other">%1$s kílómetrar</item>
+    </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">komma</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1436,4 +1443,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s við %2$s</string>
     <string name="street_description_relative_near">Á %1$s nærri %2$s</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) er notað til að spila hljóðið með lítilli töf og er aðgengilegt til notkunar undir [Apache 2.0 leyfinu](https://github.com/google/oboe/blob/main/LICENSE).</string>
 </resources>
