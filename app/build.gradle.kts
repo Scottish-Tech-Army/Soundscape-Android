@@ -20,7 +20,12 @@ android {
 
     buildFeatures {
         buildConfig = true
-        prefab = true
+        // Must stay off. Enabling prefab makes AGP validate the prefab metadata of every
+        // AAR on the classpath, not just the ones the native build consumes, and MapLibre
+        // 13.4.0+ declares stl=c++_static which is rejected against our c++_shared build
+        // (CXX1211). Oboe was the only reason this was on; it is vendored instead - see
+        // scripts/update-oboe.sh and app/src/main/cpp/CMakeLists.txt.
+        prefab = false
     }
 
     bundle {
@@ -428,7 +433,6 @@ dependencies {
     implementation(libs.androidx.datastore)
 
     // Audio engine
-    implementation(libs.oboe)
 
     // Firebase
     implementation(platform(libs.firebase.bom))

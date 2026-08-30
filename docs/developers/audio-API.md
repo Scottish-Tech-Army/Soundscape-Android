@@ -18,7 +18,7 @@ The audio engine is responsible for playing audio beacons, text-to-speech callou
 | `app/src/main/jniLibs/<abi>/libphonon.so` | Pre-built Steam Audio shared library, one per ABI |
 | `app/src/main/java/.../audio/` | Kotlin interface, JNI bridge, TTS glue |
 
-Supported ABIs: `arm64-v8a`, `armeabi-v7a`, `x86`, `x86_64`. The CMake build pulls Oboe via Prefab (`find_package(oboe REQUIRED CONFIG)`) and imports `libphonon.so` as a shared library.
+Supported ABIs: `arm64-v8a`, `armeabi-v7a`, `x86`, `x86_64`. The CMake build imports both Oboe and Steam Audio as prebuilt shared libraries from `app/src/main/jniLibs/<abi>/`. Oboe used to come via Prefab, but Prefab makes AGP validate the prefab metadata of every AAR on the classpath - which MapLibre 13.4.0+ fails with CXX1211 - so it is vendored instead and refreshed with `scripts/update-oboe.sh` (the pinned version lives in `gradle/libs.versions.toml`).
 
 ## C++ architecture
 
