@@ -20,23 +20,39 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.CountryBoundaries
 import org.scottishtecharmy.soundscape.geoengine.utils.DrivingSide
+import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.normalizeHeading
+import org.scottishtecharmy.soundscape.geoengine.utils.orderPoisForSpeech
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.StringKey
+import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import kotlin.math.roundToInt
 
 class AutoCallout(
     private val localized: LocalizedStrings?,
-    private val preferences: PreferencesProvider?
+    private val preferences: PreferencesProvider?,
+    /**
+     * Which of the [PoiRankStrategy] prototypes to use when choosing between nearby POIs. Read
+     * through a lambda on each callout rather than captured once, so that flipping the debug
+     * setting takes effect on the next location update rather than needing a restart.
+     */
+    private val poiStrategy: () -> PoiRankStrategy = {
+        PoiRankStrategy.fromPreference(
+            preferences?.getString(
+                PreferenceKeys.POI_RANK_STRATEGY,
+                PreferenceDefaults.POI_RANK_STRATEGY
+            )
+        )
+    }
 ) {
     private val destinationFilter = LocationUpdateFilter(60000, 10.0)
     private val locationFilter = LocationUpdateFilter(10000, 50.0)
@@ -620,8 +636,19 @@ class AutoCallout(
             markers
         )
 
+        // Order the candidates before walking them. Markers are in this list too, but the
+        // weighting in PoiRanking is penalty-only, so nothing can be pushed in front of a marker
+        // that isn't genuinely nearer than it. The walk below is otherwise untouched, and still
+        // gates on the true distance from getDistanceToFeature rather than on any ranking score.
+        val ordered = orderPoisForSpeech(
+            pois.features,
+            userGeometry.location,
+            userGeometry.ruler,
+            poiStrategy()
+        )
+
         val uniquelyNamedPOIs = mutableMapOf<String, Feature>()
-        pois.features.filter { feature ->
+        ordered.map { it.feature }.filter { feature ->
 
             val name = (feature as MvtFeature).getText(localized)
             val nearestPoint =

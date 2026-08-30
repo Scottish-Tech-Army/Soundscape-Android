@@ -4,6 +4,7 @@ import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
@@ -24,6 +25,7 @@ class MultiGeocoder(
     private val processor: (LocationDescription) -> Unit = {},
     private val hasNetwork: () -> Boolean = { false },
     private val geocoderMode: () -> String? = { null },
+    poiStrategy: () -> PoiRankStrategy = { PoiRankStrategy.default },
 ) : SoundscapeGeocoder() {
 
     private val fusedGeocoder = FusedGeocoder(gridState, photonGeocoder, platformGeocoder)
@@ -35,7 +37,14 @@ class MultiGeocoder(
      * than a network round trip, and it works with no signal at all.
      */
     val offlineGeocoder =
-        OfflineGeocoder(gridState, settlementState, tileSearch, analyticsLogger, processor)
+        OfflineGeocoder(
+            gridState,
+            settlementState,
+            tileSearch,
+            analyticsLogger,
+            processor,
+            poiStrategy
+        )
 
     private fun pickGeocoder(): SoundscapeGeocoder? {
         val settingsChoice = geocoderMode()

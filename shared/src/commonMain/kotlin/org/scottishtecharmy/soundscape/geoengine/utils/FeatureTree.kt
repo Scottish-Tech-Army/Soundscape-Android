@@ -338,7 +338,17 @@ class FeatureTree(featureCollection: FeatureCollection?) {
         distance: Double,
         maxCount: Int,
         ruler: Ruler,
-        initialCollection: FeatureCollection? = null
+        initialCollection: FeatureCollection? = null,
+        /**
+         * Applied to the tree's own results before [maxCount] is honoured, so a caller asking for
+         * "the 10 nearest named POIs" gets ten named ones rather than however many of the ten
+         * nearest happen to be named. It costs nothing: the full list is measured and sorted below
+         * regardless of [maxCount], which only takes effect in the merge loop.
+         *
+         * Deliberately not applied to [initialCollection] - those are the caller's own features
+         * (user markers) and are never dropped on the tree's behalf.
+         */
+        include: ((Feature) -> Boolean)? = null
     ): FeatureCollection {
         val featureCollection = FeatureCollection()
         if (tree != null) {
@@ -351,7 +361,9 @@ class FeatureTree(featureCollection: FeatureCollection?) {
                 .groupBy { it.entry.value }
                 .map { (_, entries) -> entries.minBy { it.distance } }
 
-            val sortedList = unsortedList.sortedBy { it.distance }
+            val sortedList = unsortedList
+                .filter { include?.invoke(it.entry.value) != false }
+                .sortedBy { it.distance }
 
             val initialItemIterator = initialCollection?.features?.iterator()
             val newItemIterator = sortedList.iterator()
