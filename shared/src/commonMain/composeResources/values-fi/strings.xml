@@ -166,16 +166,20 @@
     <string name="directions_along_heading_w">Matkalla länteen tiellä %1$s</string>
     <string name="directions_along_heading_nw">Matkalla luoteeseen tiellä %1$s</string>
     <plurals name="distance_format_meters">
-        <item quantity="one">%1$s metriä</item>
+        <item quantity="one">%1$s metri</item>
+        <item quantity="other">%1$s metriä</item>
     </plurals>
     <plurals name="distance_format_km">
         <item quantity="one">%1$s km</item>
+        <item quantity="other">%1$s km</item>
     </plurals>
     <plurals name="distance_format_feet">
-        <item quantity="one">%1$s jalkaa</item>
+        <item quantity="one">%1$s jalka</item>
+        <item quantity="other">%1$s jalkaa</item>
     </plurals>
     <plurals name="distance_format_miles">
-        <item quantity="one">%1$s mailia</item>
+        <item quantity="one">%1$s maili</item>
+        <item quantity="other">%1$s mailia</item>
     </plurals>
     <string name="ui_action_button_my_location">Oma si-\njaintini</string>
     <string name="ui_action_button_my_location_acc_hint">kuule tietoja nykyisestä sijainnistasi</string>
@@ -1368,7 +1372,10 @@
     <string name="offline_map_details_update">Päivitä offline-kartta</string>
     <string name="menu_exit_app">Sulje Soundscape</string>
     <string name="talkback_default_activate">aktivoidaksesi</string>
-    <string name="distance_format_km_a11y">%1$s kilometriä</string>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s kilometri</item>
+        <item quantity="other">%1$s kilometriä</item>
+    </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">pilkku</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1436,4 +1443,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s kohteen %2$s vieressä</string>
     <string name="street_description_relative_near">Kadulla %1$s lähellä kohdetta %2$s</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe)a käytetään äänen toistamiseen pienellä viiveellä, ja se on saatavilla käytettäväksi [Apache 2.0 -lisenssin](https://github.com/google/oboe/blob/main/LICENSE) nojalla.</string>
 </resources>
