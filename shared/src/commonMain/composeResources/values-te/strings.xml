@@ -989,11 +989,26 @@
     <string name="directions_cardinal_west_bound">పడమర దిశగా</string>
     <string name="directions_cardinal_north_west_bound">వాయువ్య దిశగా</string>
     <string name="stationary_on_way">%1$s పై కదలడం లేదు</string>
-    <string name="distance_format_meters">%1$s మీటర్లు</string>
-    <string name="distance_format_km">%1$s కి.మీ</string>
-    <string name="distance_format_km_a11y">%1$s కిలోమీటర్లు</string>
-    <string name="distance_format_feet">%1$s అడుగులు</string>
-    <string name="distance_format_miles">%1$s మైళ్ళు</string>
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s మీటరు</item>
+        <item quantity="other">%1$s మీటర్లు</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="one">%1$s కి.మీ</item>
+        <item quantity="other">%1$s కి.మీ</item>
+    </plurals>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s కిలోమీటరు</item>
+        <item quantity="other">%1$s కిలోమీటర్లు</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="one">%1$s అడుగు</item>
+        <item quantity="other">%1$s అడుగులు</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="one">%1$s మైలు</item>
+        <item quantity="other">%1$s మైళ్ళు</item>
+    </plurals>
     <string name="number_decimal_separator">.</string>
     <string name="number_decimal_separator_a11y">పాయింట్</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1428,4 +1443,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%2$s పక్కన ఉన్న %1$s</string>
     <string name="street_description_relative_near">%1$sలో, %2$s సమీపంలో</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">తక్కువ లేటెన్సీతో ఆడియోను ప్లే చేయడానికి [Oboe library ©The Android Open Source Project](https://github.com/google/oboe) ఉపయోగించబడుతుంది, మరియు ఇది [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE) కింద ఉపయోగం కోసం అందుబాటులో ఉంచబడింది.</string>
 </resources>
