@@ -223,15 +223,19 @@
     <string name="directions_cardinal_north_west_abb">उप</string>
     <plurals name="distance_format_meters">
         <item quantity="one">%1$s मीटर</item>
+        <item quantity="other">%1$s मीटर</item>
     </plurals>
     <plurals name="distance_format_km">
         <item quantity="one">%1$s किमी</item>
+        <item quantity="other">%1$s किमी</item>
     </plurals>
     <plurals name="distance_format_feet">
-        <item quantity="one">%1$s फ़ीट</item>
+        <item quantity="one">%1$s फ़ुट</item>
+        <item quantity="other">%1$s फ़ीट</item>
     </plurals>
     <plurals name="distance_format_miles">
         <item quantity="one">%1$s मील</item>
+        <item quantity="other">%1$s मील</item>
     </plurals>
     <string name="ui_action_button_my_location">मेरा\nस्थान</string>
     <string name="ui_action_button_my_location_acc_hint">अपने वर्तमान स्थान के बारे में सुनें</string>
@@ -1368,7 +1372,10 @@
     <string name="offline_map_details_update">ऑफ़लाइन मानचित्र अपडेट करें</string>
     <string name="menu_exit_app">Soundscape से बाहर निकलें</string>
     <string name="talkback_default_activate">सक्रिय करें</string>
-    <string name="distance_format_km_a11y">%1$s किलोमीटर</string>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s किलोमीटर</item>
+        <item quantity="other">%1$s किलोमीटर</item>
+    </plurals>
     <string name="number_decimal_separator">.</string>
     <string name="number_decimal_separator_a11y">दशमलव</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1436,4 +1443,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%2$s के बगल में %1$s</string>
     <string name="street_description_relative_near">%1$s पर, %2$s के पास</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) का उपयोग कम विलंबता के साथ ऑडियो चलाने के लिए किया जाता है, और इसे उपयोग के लिए [Apache 2.0 लाइसेंस](https://github.com/google/oboe/blob/main/LICENSE) के अंतर्गत उपलब्ध कराया गया है।</string>
 </resources>
