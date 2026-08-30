@@ -165,6 +165,7 @@ import org.scottishtecharmy.soundscape.resources.markers_title
 import org.scottishtecharmy.soundscape.resources.menu_help
 import org.scottishtecharmy.soundscape.resources.menu_open_source_licenses
 import org.scottishtecharmy.soundscape.resources.openmaptiles_copyright
+import org.scottishtecharmy.soundscape.resources.oboe_copyright
 import org.scottishtecharmy.soundscape.resources.osm_copyright
 import org.scottishtecharmy.soundscape.resources.routes_title
 import org.scottishtecharmy.soundscape.resources.search_view_markers
@@ -589,6 +590,7 @@ val helpPages = listOf(
             Section(Res.string.osm_copyright, SectionType.Paragraph),
             Section(Res.string.openmaptiles_copyright, SectionType.Paragraph),
             Section(Res.string.steam_copyright, SectionType.Paragraph),
+            Section(Res.string.oboe_copyright, SectionType.Paragraph),
             Section(Res.string.trademark_disclaimer, SectionType.Paragraph),
         )
     )
