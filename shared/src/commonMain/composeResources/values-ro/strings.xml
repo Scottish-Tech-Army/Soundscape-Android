@@ -222,16 +222,24 @@
     <string name="directions_cardinal_west_abb">V</string>
     <string name="directions_cardinal_north_west_abb">NV</string>
     <plurals name="distance_format_meters">
-        <item quantity="one">%1$s metri</item>
+        <item quantity="one">%1$s metru</item>
+        <item quantity="few">%1$s metri</item>
+        <item quantity="other">%1$s de metri</item>
     </plurals>
     <plurals name="distance_format_km">
         <item quantity="one">%1$s km</item>
+        <item quantity="few">%1$s km</item>
+        <item quantity="other">%1$s de km</item>
     </plurals>
     <plurals name="distance_format_feet">
-        <item quantity="one">%1$s picioare</item>
+        <item quantity="one">%1$s picior</item>
+        <item quantity="few">%1$s picioare</item>
+        <item quantity="other">%1$s de picioare</item>
     </plurals>
     <plurals name="distance_format_miles">
-        <item quantity="one">%1$s mile</item>
+        <item quantity="one">%1$s milă</item>
+        <item quantity="few">%1$s mile</item>
+        <item quantity="other">%1$s de mile</item>
     </plurals>
     <string name="ui_action_button_my_location">Locația\nmea</string>
     <string name="ui_action_button_my_location_acc_hint">a asculta informații despre locația ta curentă</string>
@@ -1368,7 +1376,11 @@
     <string name="offline_map_details_update">Actualizează harta offline</string>
     <string name="menu_exit_app">Ieși din Soundscape</string>
     <string name="talkback_default_activate">a activa</string>
-    <string name="distance_format_km_a11y">%1$s kilometri</string>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s kilometru</item>
+        <item quantity="few">%1$s kilometri</item>
+        <item quantity="other">%1$s de kilometri</item>
+    </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">virgulă</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1436,4 +1448,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s lângă %2$s</string>
     <string name="street_description_relative_near">Pe %1$s aproape de %2$s</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) este folosită pentru redarea audio cu latență redusă și este pusă la dispoziție pentru utilizare sub [licența Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
 </resources>
