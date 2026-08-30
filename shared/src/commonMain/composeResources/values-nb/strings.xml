@@ -167,15 +167,19 @@
     <string name="directions_along_heading_nw">Du går mot nordvest langs %1$s</string>
     <plurals name="distance_format_meters">
         <item quantity="one">%1$s meter</item>
+        <item quantity="other">%1$s meter</item>
     </plurals>
     <plurals name="distance_format_km">
         <item quantity="one">%1$s km</item>
+        <item quantity="other">%1$s km</item>
     </plurals>
     <plurals name="distance_format_feet">
         <item quantity="one">%1$s fot</item>
+        <item quantity="other">%1$s fot</item>
     </plurals>
     <plurals name="distance_format_miles">
-        <item quantity="one">%1$s engelske mil</item>
+        <item quantity="one">%1$s engelsk mil</item>
+        <item quantity="other">%1$s engelske mil</item>
     </plurals>
     <string name="ui_action_button_my_location">Min\nposisjon</string>
     <string name="ui_action_button_my_location_acc_hint">hør om din nåværende posisjon</string>
@@ -1368,7 +1372,10 @@
     <string name="offline_map_details_update">Oppdater offlinekart</string>
     <string name="menu_exit_app">Avslutt Soundscape</string>
     <string name="talkback_default_activate">aktivere</string>
-    <string name="distance_format_km_a11y">%1$s kilometer</string>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s kilometer</item>
+        <item quantity="other">%1$s kilometer</item>
+    </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">komma</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1436,4 +1443,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s ved siden av %2$s</string>
     <string name="street_description_relative_near">På %1$s nær %2$s</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) brukes til å spille av lyden med lav latens, og er gjort tilgjengelig for bruk under [Apache 2.0-lisensen](https://github.com/google/oboe/blob/main/LICENSE).</string>
 </resources>
