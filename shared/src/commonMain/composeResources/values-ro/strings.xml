@@ -221,10 +221,18 @@
     <string name="directions_cardinal_south_west_abb">SV</string>
     <string name="directions_cardinal_west_abb">V</string>
     <string name="directions_cardinal_north_west_abb">NV</string>
-    <string name="distance_format_meters">%1$s metri</string>
-    <string name="distance_format_km">%1$s km</string>
-    <string name="distance_format_feet">%1$s picioare</string>
-    <string name="distance_format_miles">%1$s mile</string>
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s metri</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="one">%1$s km</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="one">%1$s picioare</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="one">%1$s mile</item>
+    </plurals>
     <string name="ui_action_button_my_location">Locația\nmea</string>
     <string name="ui_action_button_my_location_acc_hint">a asculta informații despre locația ta curentă</string>
     <string name="ui_action_button_nearby_markers">Marcaje\naproape</string>
