@@ -182,15 +182,21 @@
     <string name="directions_cardinal_south_west">الجنوب الغربي</string>
     <string name="directions_cardinal_west">الغرب</string>
     <string name="directions_cardinal_north_west">الشمال الغربي</string>
-    <string name="distance_format_meters">%1$s أمتار</string>
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s متر</item>
+        <item quantity="other">%1$s متر</item>
+    </plurals>
     <plurals name="distance_format_km">
         <item quantity="one">%1$s كيلو متر</item>
+        <item quantity="other">%1$s كيلو متر</item>
     </plurals>
     <plurals name="distance_format_feet">
         <item quantity="one">%1$s قدم</item>
+        <item quantity="other">%1$s قدم</item>
     </plurals>
     <plurals name="distance_format_miles">
         <item quantity="one">%1$s ميل</item>
+        <item quantity="other">%1$s ميل</item>
     </plurals>
     <string name="ui_action_button_my_location">موقعي</string>
     <string name="ui_action_button_my_location_acc_hint">اسمع عن موقعك الحالي</string>
@@ -1366,7 +1372,10 @@
     <string name="offline_map_details_update">تحديث الخريطة غير المتصلة بالإنترنت</string>
     <string name="menu_exit_app">الخروج من Soundscape</string>
     <string name="talkback_default_activate">تفعيل</string>
-    <string name="distance_format_km_a11y">%1$s كيلو متر</string>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s كيلو متر</item>
+        <item quantity="other">%1$s كيلو متر</item>
+    </plurals>
     <string name="number_decimal_separator">.</string>
     <string name="number_decimal_separator_a11y">نقطة</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1434,4 +1443,6 @@
     <string name="directions_street_settlement">%1$s، %2$s</string>
     <string name="confect_name_next_to">%1$s بجانب %2$s</string>
     <string name="street_description_relative_near">في %1$s بالقرب من %2$s</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) تُستخدم لتشغيل الصوت بزمن استجابة منخفض، ومتاحة للاستخدام بموجب [رخصة Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
 </resources>
