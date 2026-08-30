@@ -166,16 +166,20 @@
     <string name="directions_along_heading_w">Κατεύθυνση δυτικά κατά μήκος της %1$s</string>
     <string name="directions_along_heading_nw">Κατεύθυνση βορειοδυτικά κατά μήκος της %1$s</string>
     <plurals name="distance_format_meters">
-        <item quantity="one">%1$s μέτρα</item>
+        <item quantity="one">%1$s μέτρο</item>
+        <item quantity="other">%1$s μέτρα</item>
     </plurals>
     <plurals name="distance_format_km">
         <item quantity="one">%1$s χλμ</item>
+        <item quantity="other">%1$s χλμ</item>
     </plurals>
     <plurals name="distance_format_feet">
-        <item quantity="one">%1$s πόδια</item>
+        <item quantity="one">%1$s πόδι</item>
+        <item quantity="other">%1$s πόδια</item>
     </plurals>
     <plurals name="distance_format_miles">
-        <item quantity="one">%1$s μίλια</item>
+        <item quantity="one">%1$s μίλι</item>
+        <item quantity="other">%1$s μίλια</item>
     </plurals>
     <string name="ui_action_button_my_location">Η θέση\nμου</string>
     <string name="ui_action_button_my_location_acc_hint">ακούστε πληροφορίες για την τρέχουσα τοποθεσία σας</string>
@@ -1368,7 +1372,10 @@
     <string name="offline_map_details_update">Ενημέρωση χάρτη εκτός σύνδεσης</string>
     <string name="menu_exit_app">Έξοδος από το Soundscape</string>
     <string name="talkback_default_activate">ενεργοποιήσετε</string>
-    <string name="distance_format_km_a11y">%1$s χιλιόμετρα</string>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s χιλιόμετρο</item>
+        <item quantity="other">%1$s χιλιόμετρα</item>
+    </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">κόμμα</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1436,4 +1443,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s δίπλα στο %2$s</string>
     <string name="street_description_relative_near">Στην %1$s, κοντά σε %2$s</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) χρησιμοποιείται για την αναπαραγωγή του ήχου με χαμηλή καθυστέρηση και διατίθεται για χρήση υπό την [άδεια Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
 </resources>
