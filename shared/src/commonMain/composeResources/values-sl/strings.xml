@@ -277,11 +277,36 @@
     <string name="directions_cardinal_west_bound">Proti zahodu</string>
     <string name="directions_cardinal_north_west_bound">Proti severozahodu</string>
     <string name="stationary_on_way">Brez gibanja na %1$s</string>
-    <string name="distance_format_meters">%1$s metrov</string>
-    <string name="distance_format_km">%1$s km</string>
-    <string name="distance_format_km_a11y">%1$s kilometrov</string>
-    <string name="distance_format_feet">%1$s čevljev</string>
-    <string name="distance_format_miles">%1$s milj</string>
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s meter</item>
+        <item quantity="two">%1$s metra</item>
+        <item quantity="few">%1$s metri</item>
+        <item quantity="other">%1$s metrov</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="one">%1$s km</item>
+        <item quantity="two">%1$s km</item>
+        <item quantity="few">%1$s km</item>
+        <item quantity="other">%1$s km</item>
+    </plurals>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s kilometer</item>
+        <item quantity="two">%1$s kilometra</item>
+        <item quantity="few">%1$s kilometri</item>
+        <item quantity="other">%1$s kilometrov</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="one">%1$s čevelj</item>
+        <item quantity="two">%1$s čevlja</item>
+        <item quantity="few">%1$s čevlji</item>
+        <item quantity="other">%1$s čevljev</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="one">%1$s milja</item>
+        <item quantity="two">%1$s milji</item>
+        <item quantity="few">%1$s milje</item>
+        <item quantity="other">%1$s milj</item>
+    </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">vejica</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1428,4 +1453,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s ob %2$s</string>
     <string name="street_description_relative_near">Na %1$s blizu %2$s</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) se uporablja za predvajanje zvoka z nizko zakasnitvijo in je na voljo za uporabo pod licenco [Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
 </resources>
