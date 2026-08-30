@@ -1167,11 +1167,26 @@
     <string name="directions_cardinal_west_bound">مغرب کی جانب</string>
     <string name="directions_cardinal_north_west_bound">شمال مغرب کی جانب</string>
     <string name="stationary_on_way">%1$s پر ساکن</string>
-    <string name="distance_format_meters">%1$s میٹر</string>
-    <string name="distance_format_km">%1$s کلومیٹر</string>
-    <string name="distance_format_km_a11y">%1$s کلومیٹر</string>
-    <string name="distance_format_feet">%1$s فٹ</string>
-    <string name="distance_format_miles">%1$s میل</string>
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s میٹر</item>
+        <item quantity="other">%1$s میٹر</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="one">%1$s کلومیٹر</item>
+        <item quantity="other">%1$s کلومیٹر</item>
+    </plurals>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s کلومیٹر</item>
+        <item quantity="other">%1$s کلومیٹر</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="one">%1$s فٹ</item>
+        <item quantity="other">%1$s فٹ</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="one">%1$s میل</item>
+        <item quantity="other">%1$s میل</item>
+    </plurals>
     <string name="number_decimal_separator">.</string>
     <string name="number_decimal_separator_a11y">اعشاریہ</string>
     <string name="bytes_format_b">%1$s بائٹ</string>
@@ -1428,4 +1443,6 @@
     <string name="directions_street_settlement">%1$s، %2$s</string>
     <string name="confect_name_next_to">%2$s کے ساتھ %1$s</string>
     <string name="street_description_relative_near">%1$s پر، %2$s کے قریب</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) کم تاخیر کے ساتھ آڈیو چلانے کے لیے استعمال ہوتی ہے، اور اسے [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE) کے تحت استعمال کے لیے دستیاب کیا گیا ہے۔</string>
 </resources>
