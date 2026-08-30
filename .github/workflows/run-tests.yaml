@@ -25,6 +25,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Oboe is vendored as prebuilts rather than resolved by Gradle (so that prefab
+      # can stay off - see app/src/main/cpp/CMakeLists.txt), which means nothing
+      # normally verifies that the committed binaries still match the version pinned
+      # in the catalogue. This does. Needs no JDK, so it runs before the setup step.
+      - name: Check vendored Oboe matches the pinned version
+        run: ./scripts/update-oboe.sh --check
+
       - name: Setup JDK + Gradle
         uses: ./.github/actions/setup-jdk-gradle
 

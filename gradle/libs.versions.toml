@@ -5,7 +5,9 @@ intellijMarkdown = "0.7.8"
 json = "20260719"
 kotlin = "2.3.10" # 2.4.10 exists but kept back: dependent libs (e.g. kable) don't yet ship Kotlin-2.4-ABI builds
 maplibreCompose = "0.13.1"
-oboe = "1.9.3" # 1.10.0 is out but untested against this project's native audio engine
+oboe = "1.10.0" # Vendored, not resolved by Gradle: this key is the source of truth for
+                # scripts/update-oboe.sh, which pulls the prebuilts into jniLibs/ and
+                # cpp/oboe/include/. Bump it, run the script, then build and test.
 composeMultiplatform = "1.11.1"
 composeMaterial3 = "1.9.0"
 composeMaterialIconsExtended = "1.7.3"
@@ -87,6 +89,9 @@ jetbrains-navigation-compose = { module = "org.jetbrains.androidx.navigation:nav
 jetbrains-lifecycle-viewmodel = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel", version.ref = "lifecycleViewmodelMultiplatform" }
 jetbrains-lifecycle-viewmodel-compose = { module = "org.jetbrains.androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelMultiplatform" }
 koin-android = { module = "io.insert-koin:koin-android", version.ref = "koin" }
+# Deliberately not referenced from any dependencies block - Oboe is vendored (see the
+# oboe version key above). Kept so the coordinates stay recorded in one place and so
+# dependency-update tooling still reports new Oboe releases.
 oboe = { module = "com.google.oboe:oboe", version.ref = "oboe" }
 koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koin" }
 androidx-junit-v121 = { module = "androidx.test.ext:junit", version.ref = "androidxJunit" }
