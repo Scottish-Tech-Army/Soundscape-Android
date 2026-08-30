@@ -1193,10 +1193,18 @@
     <string name="directions_cardinal_south_west_abb">西南</string>
     <string name="directions_cardinal_west_abb">西</string>
     <string name="directions_cardinal_north_west_abb">西北</string>
-    <string name="distance_format_meters">%1$s米</string>
-    <string name="distance_format_km">%1$s公里</string>
-    <string name="distance_format_feet">%1$s英尺</string>
-    <string name="distance_format_miles">%1$s英里</string>
+    <plurals name="distance_format_meters">
+        <item quantity="other">%1$s米</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="other">%1$s公里</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="other">%1$s英尺</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="other">%1$s英里</item>
+    </plurals>
     <string name="ui_action_button_my_location">我的\n位置</string>
     <string name="ui_action_button_my_location_acc_hint">收听您当前位置信息</string>
     <string name="ui_action_button_nearby_markers">附近\n标记点</string>
