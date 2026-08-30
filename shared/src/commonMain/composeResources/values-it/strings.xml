@@ -166,16 +166,24 @@
     <string name="directions_along_heading_w">Sei diretto verso ovest lungo %1$s</string>
     <string name="directions_along_heading_nw">Sei diretto verso nord ovest lungo %1$s</string>
     <plurals name="distance_format_meters">
-        <item quantity="one">%1$s metri</item>
+        <item quantity="one">%1$s metro</item>
+        <item quantity="many">%1$s metri</item>
+        <item quantity="other">%1$s metri</item>
     </plurals>
     <plurals name="distance_format_km">
         <item quantity="one">%1$s km</item>
+        <item quantity="many">%1$s km</item>
+        <item quantity="other">%1$s km</item>
     </plurals>
     <plurals name="distance_format_feet">
-        <item quantity="one">%1$s piedi</item>
+        <item quantity="one">%1$s piede</item>
+        <item quantity="many">%1$s piedi</item>
+        <item quantity="other">%1$s piedi</item>
     </plurals>
     <plurals name="distance_format_miles">
-        <item quantity="one">%1$s miglia</item>
+        <item quantity="one">%1$s miglio</item>
+        <item quantity="many">%1$s miglia</item>
+        <item quantity="other">%1$s miglia</item>
     </plurals>
     <string name="ui_action_button_my_location">La mia\nposizione</string>
     <string name="ui_action_button_my_location_acc_hint">ascoltare informazioni sulla tua posizione attuale</string>
@@ -1368,7 +1376,11 @@
     <string name="offline_map_details_update">Aggiorna la mappa offline</string>
     <string name="menu_exit_app">Esci da Soundscape</string>
     <string name="talkback_default_activate">attivare</string>
-    <string name="distance_format_km_a11y">%1$s chilometri</string>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s chilometro</item>
+        <item quantity="many">%1$s chilometri</item>
+        <item quantity="other">%1$s chilometri</item>
+    </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">virgola</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1436,4 +1448,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s accanto a %2$s</string>
     <string name="street_description_relative_near">Su %1$s vicino a %2$s</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) viene utilizzata per riprodurre l'audio con bassa latenza ed è resa disponibile per l'uso sotto la [licenza Apache 2.0](https://github.com/google/oboe/blob/main/LICENSE).</string>
 </resources>
