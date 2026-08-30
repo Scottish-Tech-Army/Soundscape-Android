@@ -1217,11 +1217,26 @@
     <string name="directions_cardinal_west_abb">LÄ</string>
     <string name="directions_cardinal_north_west_abb">LO</string>
     <string name="stationary_on_way">Ei liigu teel %1$s</string>
-    <string name="distance_format_meters">%1$s meetrit</string>
-    <string name="distance_format_km">%1$s km</string>
-    <string name="distance_format_km_a11y">%1$s kilomeetrit</string>
-    <string name="distance_format_feet">%1$s jalga</string>
-    <string name="distance_format_miles">%1$s miili</string>
+    <plurals name="distance_format_meters">
+        <item quantity="one">%1$s meeter</item>
+        <item quantity="other">%1$s meetrit</item>
+    </plurals>
+    <plurals name="distance_format_km">
+        <item quantity="one">%1$s km</item>
+        <item quantity="other">%1$s km</item>
+    </plurals>
+    <plurals name="distance_format_km_a11y">
+        <item quantity="one">%1$s kilomeeter</item>
+        <item quantity="other">%1$s kilomeetrit</item>
+    </plurals>
+    <plurals name="distance_format_feet">
+        <item quantity="one">%1$s jalg</item>
+        <item quantity="other">%1$s jalga</item>
+    </plurals>
+    <plurals name="distance_format_miles">
+        <item quantity="one">%1$s miil</item>
+        <item quantity="other">%1$s miili</item>
+    </plurals>
     <string name="number_decimal_separator">,</string>
     <string name="number_decimal_separator_a11y">koma</string>
     <string name="bytes_format_b">%1$s B</string>
@@ -1428,4 +1443,6 @@
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <string name="confect_name_next_to">%1$s %2$s kõrval</string>
     <string name="street_description_relative_near">Tänaval %1$s, %2$s lähedal</string>
+    <string name="directions_road_with_ref_and_name">%1$s (%2$s)</string>
+    <string name="oboe_copyright">[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) abil esitatakse heli väikese latentsusega ning see on kasutamiseks saadaval [Apache 2.0 litsentsi](https://github.com/google/oboe/blob/main/LICENSE) alusel.</string>
 </resources>
