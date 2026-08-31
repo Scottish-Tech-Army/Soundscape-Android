@@ -1433,8 +1433,8 @@
     <string name="directions_near_settlement_inline">рядом с %1$s</string>
     <string name="directions_close_to_settlement_inline">близко к %1$s</string>
     <string name="directions_generic_train">поезд</string>
-    <string name="directions_crossing_waterway">Пересечение %1$s</string>
-    <string name="directions_crossing_railway_generic">Пересечение железной дороги</string>
+    <string name="directions_crossing_waterway">Проезд над %1$s</string>
+    <string name="directions_crossing_railway_generic">Проезд над железной дорогой</string>
     <string name="directions_going_under_railway">Проезд под %1$s</string>
     <string name="directions_going_under_railway_generic">Проезд под железной дорогой</string>
     <string name="directions_cardinal_north_bound">На север</string>
