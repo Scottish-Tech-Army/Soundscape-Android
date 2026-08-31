@@ -1118,7 +1118,261 @@ class MvtTileTest {
 
         val railwayCrossing = ways.find { it.properties?.get("crossing_type") == "railway" }
         assertNotNull("Expected a railway crossing near Renton", railwayCrossing)
-        assertEquals("bridge", railwayCrossing!!.properties?.get("crossing_brunnel"))
+        assertEquals("over", railwayCrossing!!.properties?.get("crossing_position"))
+    }
+
+    /**
+     * The Union Canal is carried over the A720 City of Edinburgh Bypass on an aqueduct, so it's the
+     * *waterway* that's tagged brunnel=bridge (way/4385757) and the road underneath carries no tag
+     * at all. That inverts the usual reading: the user goes under, not over. Before crossing_position
+     * existed the raw brunnel value was stored and this announced "Crossing the Union Canal" while
+     * driving beneath it.
+     *
+     * It also pins the multiple-roads behaviour - the aqueduct spans both bypass carriageways and
+     * two slip roads, and findCrossingRoads has to return all of them rather than whichever it
+     * happened to test first.
+     */
+    @Test
+    fun testAqueductOverRoadCrossingCallout() {
+        val location = LngLatAlt(-3.307207, 55.921562)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val ways = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection().features
+            .filterIsInstance<Way>()
+
+        // The canal runs for miles across this grid and plenty of roads bridge over it, so pick
+        // out specifically the ways that pass beneath it.
+        val underCanal = ways.filter {
+            it.properties?.get("crossing_name") == "Union Canal" &&
+                it.properties?.get("crossing_position") == "under"
+        }
+        assertTrue(
+            "Expected the roads under the Union Canal aqueduct to carry the crossing",
+            underCanal.isNotEmpty()
+        )
+        // Both A720 carriageways plus the two slip roads the aqueduct spans. osmId here is the
+        // tile feature id, which planetiler encodes as the OSM way id * 10 + the geometry type
+        // (2 == LineString).
+        assertTrue(
+            "Expected every way under the aqueduct to be tagged, got osmIds " +
+                "${underCanal.map { it.osmId }.toSortedSet()}",
+            underCanal.map { it.osmId }.toSet().containsAll(
+                setOf(30612219L, 241161339L, 99205503L, 1446633976L).map { it * 10 + 2 }.toSet()
+            )
+        )
+        assertTrue(underCanal.all { it.properties?.get("crossing_type") == "waterway" })
+        assertTrue(underCanal.all { it.properties?.get("crossing_latitude") != null })
+
+        // Now the callout itself. The user stays on one Way throughout, so the Way-change edge can
+        // never fire - this only works off proximity to the stored crossing point.
+        val way = underCanal.first { it.osmId == 30612219L * 10 + 2 }
+        val crossingPoint = LngLatAlt(
+            way.properties?.get("crossing_longitude") as Double,
+            way.properties?.get("crossing_latitude") as Double
+        )
+        val autoCallout = AutoCallout(null, null)
+
+        // Establish the baseline well short of the aqueduct - nothing to announce yet.
+        val approach = gridState.ruler.destination(crossingPoint, 500.0, 90.0)
+        val firstUpdate = UserGeometry(
+            location = approach, speed = 20.0, mapMatchedWay = way, timestampMilliseconds = 1000L
+        )
+        val firstCallout = autoCallout.updateLocation(firstUpdate, gridState, settlementGrid)
+        assertTrue(
+            "Expected no canal callout 500m away, got: " +
+                "${firstCallout?.positionedStrings?.map { it.text }}",
+            firstCallout?.positionedStrings?.none { it.text.contains("Union Canal") } != false
+        )
+
+        val secondUpdate = UserGeometry(
+            location = gridState.ruler.destination(crossingPoint, 40.0, 90.0), speed = 20.0,
+            mapMatchedWay = way, timestampMilliseconds = 6000L
+        )
+        val secondCallout = autoCallout.updateLocation(secondUpdate, gridState, settlementGrid)
+        assertNotNull(secondCallout)
+        assertTrue(
+            "Expected \"Going under\" the Union Canal, got: " +
+                "${secondCallout!!.positionedStrings.map { it.text }}",
+            secondCallout.positionedStrings.any { it.text == "Going under Union Canal" }
+        )
+
+        // Still approaching the same crossing - must not repeat.
+        val thirdUpdate = UserGeometry(
+            location = gridState.ruler.destination(crossingPoint, 5.0, 90.0), speed = 20.0,
+            mapMatchedWay = way, timestampMilliseconds = 11000L
+        )
+        val thirdCallout = autoCallout.updateLocation(thirdUpdate, gridState, settlementGrid)
+        assertTrue(
+            "Expected no repeat of the Union Canal callout, got: " +
+                "${thirdCallout?.positionedStrings?.map { it.text }}",
+            thirdCallout?.positionedStrings?.none { it.text.contains("Union Canal") } != false
+        )
+    }
+
+    /**
+     * A canal or river deep in a tunnel isn't something the road above crosses in any meaningful
+     * sense - it's not a landmark a sighted person would use - so it mustn't be called out. The
+     * Union Canal runs 649m underground through the Falkirk Tunnel (way/191157784) with Slamannan
+     * Road, a service road, a footway and two cycleways passing over the top of it.
+     *
+     * The discriminator is the length of the tagged span: water passing under a road is culvert- or
+     * ford-width (the Allander Water's is 15m, see testWaterwayCrossingParsing), whereas this is
+     * 607m in one tile. The tile-clipped remainder in the neighbouring tile measures only 89m,
+     * which is why isRoadWidthSpan rejects a span running off the edge of its tile as well.
+     *
+     * The control matters as much as the suppression: South Bantaskine Road bridges the *open*
+     * canal a few hundred metres away and must still be announced.
+     */
+    @Test
+    fun testCanalInLongTunnelIsNotCalledOut() {
+        val location = LngLatAlt(-3.7948, 55.9906)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val ways = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection().features
+            .filterIsInstance<Way>()
+
+        // osmId is the tile feature id - the OSM way id * 10 + the geometry type (2 == LineString).
+        val overTheTunnel = setOf(
+            19659047L,      // Slamannan Road
+            1240166001L,    // service road
+            1275945335L,    // footway
+            610911293L,     // cycleway
+            1464564718L,    // cycleway
+        ).map { it * 10 + 2 }.toSet()
+
+        val bogus = ways.filter {
+            it.osmId in overTheTunnel && it.properties?.get("crossing_name") != null
+        }
+        assertTrue(
+            "Nothing above the Falkirk Tunnel should claim to cross the Union Canal, got " +
+                "${bogus.map { "${it.name}/${it.osmId}" }}",
+            bogus.isEmpty()
+        )
+
+        // ...but a genuine bridge over the open canal still is a crossing.
+        val southBantaskineRoad = ways.filter { it.osmId == 31875414L * 10 + 2 }
+        assertTrue(
+            "Expected South Bantaskine Road to still cross the open Union Canal",
+            southBantaskineRoad.any { it.properties?.get("crossing_name") == "Union Canal" }
+        )
+    }
+
+    /**
+     * The same concern for railways, which central Glasgow is full of: the Argyle Line and the
+     * North Clyde Line run in tunnel under the city centre for hundreds of metres at a time, with
+     * ordinary streets over the top. Announcing a railway crossing on every one of them would be
+     * constant and useless.
+     *
+     * These are excluded earlier and by a different route than the canal above: isUnmatchableRailway
+     * keeps brunnel=tunnel rail out of TreeId.TRANSIT altogether, so attachRailwayCrossings never
+     * sees them. This pins that from the callout end, now that the candidate search is wide enough
+     * to have found them.
+     *
+     * The control is important, because the naive fix here would be to suppress railway crossings
+     * in city centres entirely: Bellgrove Street and the streets around it bridge the North Clyde
+     * Line where it runs in an *open cutting*, which is a real landmark and must still be called
+     * out.
+     */
+    @Test
+    fun testRailwayInTunnelIsNotCalledOut() {
+        val location = LngLatAlt(-4.2425, 55.8585)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val ways = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection().features
+            .filterIsInstance<Way>()
+
+        // Streets which pass directly over the tunnelled Argyle/North Clyde lines.
+        val overTheTunnels = setOf(
+            4741292L,       // Saltmarket, over the Argyle Line
+            5730546L,       // Chisholm Street, over the Argyle Line
+            4521152L,       // George Street, over the North Clyde Line
+            20448005L,      // Montrose Street, over the North Clyde Line
+            20450086L,      // John Street, over the North Clyde Line
+            37943342L,      // Trongate, over the Argyle Line
+        ).map { it * 10 + 2 }.toSet()
+
+        val bogus = ways.filter {
+            it.osmId in overTheTunnels && it.properties?.get("crossing_type") == "railway"
+        }
+        assertTrue(
+            "Streets over the central Glasgow rail tunnels must not announce a crossing, got " +
+                "${bogus.map { "${it.name}: ${it.properties?.get("crossing_name")}" }}",
+            bogus.isEmpty()
+        )
+
+        // ...but bridges over the open cutting still are crossings.
+        val overTheCutting = ways.filter {
+            it.properties?.get("crossing_type") == "railway" &&
+                it.properties?.get("crossing_position") == "over"
+        }
+        assertTrue(
+            "Expected the bridges over the open North Clyde Line cutting to still be crossings",
+            overTheCutting.any { it.name == "Bellgrove Street" }
+        )
+    }
+
+    /**
+     * The Edinburgh and Glasgow Main Line crosses the M80 at Castlecary on a viaduct - a 2-vertex,
+     * 172m way (way/32243541) tagged brunnel=bridge, with the motorway below untagged.
+     *
+     * This is the regression test for the candidate shortlist in GridState.attachRailwayCrossings.
+     * It used to query the road tree 20m around each *railway vertex*, and the viaduct's two
+     * endpoints are 47m and 119m from the M80, so no road was ever shortlisted and the geometric
+     * intersection test never ran at all.
+     */
+    @Test
+    fun testRailwayViaductOverRoadCrossingCallout() {
+        val location = LngLatAlt(-3.943732, 55.981647)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val ways = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection().features
+            .filterIsInstance<Way>()
+
+        // Other roads bridge over this same line elsewhere in the grid, so select the ones that
+        // pass beneath it.
+        val underViaduct = ways.filter {
+            it.properties?.get("crossing_name") == "Edinburgh and Glasgow Main Line" &&
+                it.properties?.get("crossing_position") == "under"
+        }
+        assertTrue(
+            "Expected the M80 under the Castlecary viaduct to carry a railway crossing",
+            underViaduct.isNotEmpty()
+        )
+        assertTrue(underViaduct.all { it.properties?.get("crossing_type") == "railway" })
+
+        // way/94939658 is 2045m long with the viaduct 1705m along it, so the old Way-change edge
+        // would have announced this the better part of a minute early at motorway speed.
+        val way = underViaduct.firstOrNull { it.osmId == 94939658L * 10 + 2 }
+        assertNotNull("Expected the long M80 way to be tagged", way)
+        val crossingPoint = LngLatAlt(
+            way!!.properties?.get("crossing_longitude") as Double,
+            way.properties?.get("crossing_latitude") as Double
+        )
+
+        val autoCallout = AutoCallout(null, null)
+        val firstUpdate = UserGeometry(
+            location = gridState.ruler.destination(crossingPoint, 1500.0, 180.0), speed = 30.0,
+            mapMatchedWay = way, timestampMilliseconds = 1000L
+        )
+        val firstCallout = autoCallout.updateLocation(firstUpdate, gridState, settlementGrid)
+        assertTrue(
+            "Expected no railway callout 1500m short of the viaduct, got: " +
+                "${firstCallout?.positionedStrings?.map { it.text }}",
+            firstCallout?.positionedStrings?.none { it.text.contains("Glasgow Main Line") } != false
+        )
+
+        // At 30m/s the trigger radius is 90m, so this is the update that should fire.
+        val secondUpdate = UserGeometry(
+            location = gridState.ruler.destination(crossingPoint, 60.0, 180.0), speed = 30.0,
+            mapMatchedWay = way, timestampMilliseconds = 6000L
+        )
+        val secondCallout = autoCallout.updateLocation(secondUpdate, gridState, settlementGrid)
+        assertNotNull(secondCallout)
+        assertTrue(
+            "Expected \"Going under\" the railway line, got: " +
+                "${secondCallout!!.positionedStrings.map { it.text }}",
+            secondCallout.positionedStrings.any {
+                it.text == "Going under Edinburgh and Glasgow Main Line"
+            }
+        )
     }
 
     /**

@@ -1359,6 +1359,32 @@ fun findLineIntersectionPoint(line1: List<LngLatAlt>, line2: List<LngLatAlt>): L
     return null
 }
 
+/**
+ * The shortest distance in metres between two line segments. Zero when they cross; otherwise the
+ * smallest of the four endpoint-to-opposite-segment distances, which is exact rather than an
+ * approximation - two segments that don't intersect always attain their minimum separation at an
+ * endpoint of one of them.
+ *
+ * Used by FeatureTree.entryNearLine to test a LineString tree entry (which is stored a segment at a
+ * time, see FeatureTree.createRtree) against a query line, so that e.g. a road can be found near a
+ * railway however sparsely either of them happens to be digitised.
+ */
+fun segmentToSegmentDistance(
+    a1: LngLatAlt,
+    a2: LngLatAlt,
+    b1: LngLatAlt,
+    b2: LngLatAlt,
+    ruler: Ruler,
+): Double {
+    if (straightLinesIntersectLngLatAlt(a1, a2, b1, b2) != null) return 0.0
+    return minOf(
+        ruler.pointToSegmentDistance(a1, b1, b2),
+        ruler.pointToSegmentDistance(a2, b1, b2),
+        ruler.pointToSegmentDistance(b1, a1, a2),
+        ruler.pointToSegmentDistance(b2, a1, a2),
+    )
+}
+
 fun isLineHorizontal(lineStart: LngLatAlt, lineEnd: LngLatAlt, tolerance: Double = 1e-6): Boolean {
     return abs(lineStart.latitude - lineEnd.latitude) < tolerance
 }

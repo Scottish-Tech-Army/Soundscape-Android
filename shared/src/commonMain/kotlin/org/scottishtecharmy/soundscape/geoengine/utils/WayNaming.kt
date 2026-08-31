@@ -375,8 +375,9 @@ fun addWaterAdjacency(
     // outside this circle. Searching once from the middle rather than per sample point keeps this
     // to one pruned rtree search per tree without having to argue about probe spacing, and the
     // candidates it over-collects are discarded by the measurement that follows. FeatureTree's own
-    // getNearbyLine would be the natural fit but can't be used - entryNearLine doesn't handle
-    // LineString entries, which is exactly what a waterway is.
+    // getNearbyLine now handles LineString entries too (see entryNearLine) and would be a tighter
+    // fit here, but this search is deliberately per-name rather than per-feature, so switching it
+    // over isn't a straight swap.
     val midpoint = ruler.along(line, wayLength / 2)
     val searchRadius = (wayLength / 2) + WATER_ADJACENCY_DISTANCE_METRES
     val candidatesByName = mutableMapOf<String, MutableList<Feature>>()
