@@ -1428,8 +1428,8 @@
     <string name="directions_near_settlement_inline">vicino a %1$s</string>
     <string name="directions_close_to_settlement_inline">vicino a %1$s</string>
     <string name="directions_generic_train">treno</string>
-    <string name="directions_crossing_waterway">Attraversamento di %1$s</string>
-    <string name="directions_crossing_railway_generic">Attraversamento della ferrovia</string>
+    <string name="directions_crossing_waterway">Passaggio sopra %1$s</string>
+    <string name="directions_crossing_railway_generic">Passaggio sopra la ferrovia</string>
     <string name="directions_going_under_railway">Passaggio sotto %1$s</string>
     <string name="directions_going_under_railway_generic">Passaggio sotto la ferrovia</string>
     <string name="directions_cardinal_north_bound">Direzione nord</string>
