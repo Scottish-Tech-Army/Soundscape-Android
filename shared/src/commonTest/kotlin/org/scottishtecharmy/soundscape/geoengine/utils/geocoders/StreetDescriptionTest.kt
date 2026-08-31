@@ -1056,6 +1056,111 @@ class StreetDescriptionTest {
         return LinearStreetFixture(gridState, waySouth, wayNorth, intersectionEnd, pointA, pointB, pointC)
     }
 
+    /**
+     * Adds a named footpath meeting the street at its midpoint. On foot that's a landmark worth
+     * describing; at driving speed a footpath isn't something a driver can turn down, and in the
+     * real recordings these crowded out the cross streets - "between Kilbowie Roundabout and Path
+     * to Mountblow Road via steps" where a driver wants the road.
+     */
+    private fun addNamedPathAtMidpoint(fixture: LinearStreetFixture) {
+        val path = Way().apply {
+            name = "Riverside Path"
+            featureType = "highway"
+            featureValue = "footway"
+            geometry = LineString(
+                getDestinationCoordinate(fixture.pointB, 270.0, 20.0),
+                getDestinationCoordinate(fixture.pointB, 90.0, 20.0),
+            )
+        }
+        fixture.waySouth.intersections[WayEnd.END.id]?.members?.add(path)
+    }
+
+    @Test
+    fun createDescription_onFootANamedPathJunctionIsDescriptive() {
+        val fixture = buildLinearStreetFixture()
+        addNamedPathAtMidpoint(fixture)
+        val sd = StreetDescription("Test Street", fixture.gridState)
+
+        sd.createDescription(fixture.waySouth, null)
+
+        // The midpoint path junction counts, on top of the far Cross Street one.
+        assertEquals(2, sd.sortedDescriptivePoints.size)
+    }
+
+    @Test
+    fun createDescription_travelModeIgnoresAPathJunctionEvenWhenNamed() {
+        val fixture = buildLinearStreetFixture()
+        addNamedPathAtMidpoint(fixture)
+        val sd = StreetDescription("Test Street", fixture.gridState, travelMode = true)
+
+        sd.createDescription(fixture.waySouth, null)
+
+        // Only the junction with a road survives.
+        assertEquals(1, sd.sortedDescriptivePoints.size)
+        assertEquals(fixture.intersectionEnd, sd.sortedDescriptivePoints.values.first())
+    }
+
+    @Test
+    fun createDescription_travelModeIgnoresAnUnnamedRoadJunction() {
+        val fixture = buildLinearStreetFixture()
+        val unnamedService = Way().apply {
+            featureType = "highway"
+            featureValue = "service"
+            geometry = LineString(
+                getDestinationCoordinate(fixture.pointB, 270.0, 20.0),
+                getDestinationCoordinate(fixture.pointB, 90.0, 20.0),
+            )
+        }
+        fixture.waySouth.intersections[WayEnd.END.id]?.members?.add(unnamedService)
+        val sd = StreetDescription("Test Street", fixture.gridState, travelMode = true)
+
+        sd.createDescription(fixture.waySouth, null)
+
+        // Way.getName would confect something like "Service to Marks & Spencer" for this.
+        assertEquals(1, sd.sortedDescriptivePoints.size)
+        assertEquals(fixture.intersectionEnd, sd.sortedDescriptivePoints.values.first())
+    }
+
+    @Test
+    fun getIntersectionText_travelModeUsesTheBareRoadNameNotAConfectedOne() {
+        val fixture = buildLinearStreetFixture()
+        // A named road that Way.getName would decorate - "Cross Street to dead end" and the like.
+        val crossStreet = fixture.intersectionEnd.members.first { it.name == "Cross Street" }
+        crossStreet.setProperty("dead-end:forward", true)
+
+        val travelling = StreetDescription("Test Street", fixture.gridState, travelMode = true)
+        assertEquals(
+            "Cross Street",
+            travelling.getIntersectionText(fixture.intersectionEnd, fixture.wayNorth, null)
+        )
+    }
+
+    @Test
+    fun createDescription_travelModeIgnoresAnUnnamedPoi() {
+        val fixture = buildLinearStreetFixture()
+        val unnamedPoi = MvtFeature().apply {
+            featureType = "leisure"
+            featureValue = "park"
+            geometry = Point(getDestinationCoordinate(fixture.pointB, 90.0, 5.0))
+        }
+        fixture.gridState.featureTrees[TreeId.LANDMARK_POIS.id] =
+            FeatureTree(FeatureCollection().apply { addFeature(unnamedPoi) })
+
+        val onFoot = StreetDescription("Test Street", fixture.gridState)
+        onFoot.createDescription(fixture.waySouth, null)
+        val onFootPoints = onFoot.sortedDescriptivePoints.size
+
+        val travelling = StreetDescription("Test Street", fixture.gridState, travelMode = true)
+        travelling.createDescription(fixture.waySouth, null)
+
+        // An unnamed POI describes itself as "OSM Feature park park", which is no use at speed.
+        assertTrue(
+            travelling.sortedDescriptivePoints.size < onFootPoints,
+            "Expected the unnamed park to be dropped in travel mode"
+        )
+        assertTrue(travelling.sortedDescriptivePoints.values.none { it === unnamedPoi })
+    }
+
     @Test
     fun createDescription_buildsOrderedWaysListAcrossASameNamedJunction() {
         val fixture = buildLinearStreetFixture()

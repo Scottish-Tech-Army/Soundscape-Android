@@ -47,25 +47,31 @@ class OfflineGeocoder(
     // Location" more than once while stationary) shouldn't pay that cost again.
     internal var cachedStreetDescription: StreetDescription? = null
     internal var cachedStreetGeneration: Int = -1
+    // Travel mode changes which junctions a description is built from, so it has to be part of the
+    // cache key - otherwise stopping the car would keep serving the driving-mode description.
+    internal var cachedStreetTravelMode: Boolean = false
 
     internal fun getOrBuildStreetDescription(
         streetName: String,
         nearbyWay: Way,
-        localizedStrings: LocalizedStrings?
+        localizedStrings: LocalizedStrings?,
+        travelMode: Boolean = false
     ): StreetDescription {
         val cached = cachedStreetDescription
         if (cached != null &&
             cachedStreetGeneration == gridState.generation &&
+            cachedStreetTravelMode == travelMode &&
             cached.name == streetName &&
             cached.ways.any { it.first == nearbyWay }
         ) {
             return cached
         }
 
-        val description = StreetDescription(streetName, gridState)
+        val description = StreetDescription(streetName, gridState, travelMode)
         description.createDescription(nearbyWay, localizedStrings)
         cachedStreetDescription = description
         cachedStreetGeneration = gridState.generation
+        cachedStreetTravelMode = travelMode
         return description
     }
 
@@ -182,7 +188,9 @@ class OfflineGeocoder(
                 .takeUnless { it.isNullOrEmpty() }
                 ?: nearbyWay.getName(null, gridState, localizedStrings)
             if (nearbyName.isNotEmpty()) {
-                val description = getOrBuildStreetDescription(nearbyName, nearbyWay, localizedStrings)
+                val description = getOrBuildStreetDescription(
+                    nearbyName, nearbyWay, localizedStrings, userGeometry.inVehicle()
+                )
                 val nearestWay = description.nearestWayOnStreet(userGeometry.location)
                 if ((nearestWay != null) && !ignoreHouseNumbers) {
                     val houseNumber =
