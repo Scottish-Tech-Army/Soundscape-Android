@@ -1090,8 +1090,8 @@
     <string name="directions_near_settlement_inline">%1$s کے قریب</string>
     <string name="directions_close_to_settlement_inline">%1$s کے نزدیک</string>
     <string name="directions_generic_train">ٹرین</string>
-    <string name="directions_crossing_waterway">%1$s عبور کرتے ہوئے</string>
-    <string name="directions_crossing_railway_generic">ریلوے لائن عبور کرتے ہوئے</string>
+    <string name="directions_crossing_waterway">%1$s کے اوپر سے گزرتے ہوئے</string>
+    <string name="directions_crossing_railway_generic">ریلوے لائن کے اوپر سے گزرتے ہوئے</string>
     <string name="directions_going_under_railway">%1$s کے نیچے سے گزرتے ہوئے</string>
     <string name="directions_going_under_railway_generic">ریلوے لائن کے نیچے سے گزرتے ہوئے</string>
     <string name="directions_traveling_n">شمال کی طرف سفر</string>
