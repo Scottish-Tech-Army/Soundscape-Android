@@ -223,10 +223,11 @@ open class GridState(
     // Candidate-gathering radius for attachRailwayCrossings - generous since it's only used to
     // shortlist nearby road/path Ways from the rtree before the real geometric intersection test
     // decides the match, not as a proximity threshold in its own right.
-    private val railwayCrossingSearchDistanceMetres = 20.0
+    private val structureCrossingSearchDistanceMetres = 20.0
 
     /**
-     * Attaches crossing_type/crossing_name/crossing_brunnel properties directly onto the road/path
+     * Attaches crossing_type/crossing_name/crossing_position/crossing_latitude/crossing_longitude
+     * properties directly onto the road/path
      * Way(s) that geometrically cross a railway, mirroring what extractCrossings (MvtToGeoJson.kt)
      * already does for waterway crossings at MVT-tile-parse time - see its class doc comment for
      * why railway crossings specifically can't be resolved that early: a road and a railway can
@@ -246,40 +247,87 @@ open class GridState(
      * point), not by this geometric test. TreeId.TRANSIT already excludes subway/buried-tunnel
      * railway lines (see isUnmatchableRailway in MvtToGeoJson.kt), so there's no need to repeat
      * that exclusion here.
+     *
+     * Returns the number of road/railway crossings found, for the timing log in the caller.
      */
     private fun attachRailwayCrossings(
         featureCollections: Array<FeatureCollection>,
         localTrees: Array<FeatureTree>
-    ) {
+    ): Int {
         val railwayWays = featureCollections[TreeId.TRANSIT.id].features.filterIsInstance<Way>()
-        if (railwayWays.isEmpty()) return
+        if (railwayWays.isEmpty()) return 0
+        var crossingsFound = 0
 
         val roadTree = localTrees[TreeId.ROADS_AND_PATHS.id]
+        // A single OSM way is split into several Way objects at its intersections, all sharing one
+        // osmId - see applyCrossing for why the "under" case needs all of them.
+        val waysByOsmId = featureCollections[TreeId.ROADS_AND_PATHS.id].features
+            .filterIsInstance<Way>()
+            .groupBy { it.osmId }
         for (railway in railwayWays) {
             val railwayGeometry = railway.geometry as? LineString ?: continue
             if (railwayGeometry.coordinates.size < 2) continue
             val railwayBrunnel = railway.properties?.get("brunnel") as? String
 
-            // getNearbyLine only supports Point/Polygon tree entries, not the LineString Ways
-            // roadTree holds, so candidates are gathered by querying near each railway vertex
-            // instead (getNearbyCollection does support LineString entries).
-            val candidates = mutableSetOf<Way>()
-            for (point in railwayGeometry.coordinates) {
-                val nearby = roadTree.getNearbyCollection(point, railwayCrossingSearchDistanceMetres, ruler)
-                for (feature in nearby.features) {
-                    (feature as? Way)?.let { candidates.add(it) }
-                }
-            }
+            // Shortlist by proximity to the railway *line*, not to its vertices: a bridge is
+            // routinely a single 2-point way spanning the whole obstacle, so its vertices sit well
+            // back from the road it crosses (172m viaduct, endpoints 47m and 119m from the M80 at
+            // Castlecary) and a per-vertex query finds nothing at all.
+            val candidates = roadTree
+                .getNearbyLine(railwayGeometry, structureCrossingSearchDistanceMetres, ruler)
+                .features
+                .filterIsInstance<Way>()
 
             for (road in candidates) {
                 val roadGeometry = road.geometry as? LineString ?: continue
                 val roadBrunnel = road.properties?.get("brunnel") as? String
                 if (roadBrunnel == null && railwayBrunnel != "bridge") continue
-                findLineIntersectionPoint(railwayGeometry.coordinates, roadGeometry.coordinates) ?: continue
-                road.setProperty("crossing_type", "railway")
-                road.setProperty("crossing_brunnel", roadBrunnel ?: "tunnel")
-                railway.name?.let { road.setProperty("crossing_name", it) }
+                val point = findLineIntersectionPoint(
+                    railwayGeometry.coordinates,
+                    roadGeometry.coordinates
+                ) ?: continue
+                // Either the road carries the brunnel and reads directly, or it carries none and
+                // the evidence came from the railway being a bridge - in which case the road is
+                // the thing underneath. (railwayBrunnel can never be "tunnel" here: buried and
+                // subway rail is kept out of TreeId.TRANSIT entirely, see isUnmatchableRailway,
+                // so passing over a rail tunnel is deliberately never announced.)
+                val position = if (roadBrunnel == "bridge") "over" else "under"
+                applyCrossing(road, waysByOsmId, "railway", railway.name, position, point)
+                crossingsFound++
             }
+        }
+        return crossingsFound
+    }
+
+    /**
+     * Records a crossing on the road Way(s) it should fire from.
+     *
+     * Going "over", the road carries its own brunnel, so OSM has already split it exactly at the
+     * structure and the single intersecting Way *is* the bridge - marking just that Way keeps the
+     * callout's existing Way-change trigger pixel-accurate.
+     *
+     * Going "under" there's nothing to split on: the road below is untagged and unbroken, so the
+     * intersecting Way is an arbitrary piece of a road that may run for kilometres. Every Way
+     * sharing its osmId is marked, so that whichever piece the user is map-matched to on the
+     * approach can see the crossing coming and fire on proximity to `point` instead. This also
+     * brings the railway path into line with the waterway one, where all the split Ways already
+     * inherit these properties from the pre-split MvtFeature (see WayGenerator).
+     */
+    private fun applyCrossing(
+        road: Way,
+        waysByOsmId: Map<Long, List<Way>>,
+        type: String,
+        name: String?,
+        position: String,
+        point: LngLatAlt
+    ) {
+        val targets = if (position == "over") listOf(road) else waysByOsmId[road.osmId] ?: listOf(road)
+        for (way in targets) {
+            way.setProperty("crossing_type", type)
+            way.setProperty("crossing_position", position)
+            way.setProperty("crossing_latitude", point.latitude)
+            way.setProperty("crossing_longitude", point.longitude)
+            name?.let { way.setProperty("crossing_name", it) }
         }
     }
 
@@ -489,7 +537,19 @@ open class GridState(
 
         // Needs both the ROADS_AND_PATHS and TRANSIT rtrees built above, but nothing else from
         // this function, so it can run before the tile-edge stitching below.
-        attachRailwayCrossings(featureCollections, localTrees)
+        var railwayCrossings = 0
+        val crossingTiming = measureTime {
+            railwayCrossings = attachRailwayCrossings(featureCollections, localTrees)
+        }
+        // Waterway crossings are resolved per-tile at parse time instead (see extractCrossings),
+        // so only the railway half is timed here - but report both counts, since the time is only
+        // meaningful against how many crossings there were to find.
+        val waterwayCrossings = featureCollections[TreeId.ROADS_AND_PATHS.id].features
+            .count { (it as? Way)?.properties?.get("crossing_type") == "waterway" }
+        println(
+            "Crossings took $crossingTiming " +
+                "($railwayCrossings railway ways, $waterwayCrossings waterway ways)"
+        )
 
         val nearestWayTiming = measureTime {
             attachNearestWays(featureCollections, localTrees)

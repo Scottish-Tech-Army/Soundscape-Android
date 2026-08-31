@@ -466,7 +466,18 @@ class FeatureTree(featureCollection: FeatureCollection?) {
                 return ruler.pointToSegmentDistance(LngLatAlt(p.x, p.y), p1, p2) < distance
             }
 
-            is Line,
+            is Line -> {
+                // A LineString feature is stored a segment at a time (see createRtree), so this
+                // entry is already the individual segment - no need to walk the whole feature.
+                return segmentToSegmentDistance(
+                    LngLatAlt(p.x1, p.y1),
+                    LngLatAlt(p.x2, p.y2),
+                    p1,
+                    p2,
+                    ruler,
+                ) < distance
+            }
+
             is Rectangle -> {
                 val feature = entry.value
                 when (feature.geometry.type) {

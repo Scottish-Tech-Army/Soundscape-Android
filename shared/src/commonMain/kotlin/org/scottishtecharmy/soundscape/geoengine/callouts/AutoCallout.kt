@@ -71,6 +71,12 @@ class AutoCallout(
     // suppress the callout. See buildCalloutForVehicleCrossing/buildCalloutForWalkingCrossing.
     private var lastVehicleCrossingWayOsmId: Long? = null
     private var lastWalkingCrossingWayOsmId: Long? = null
+    // Crossings already announced via the proximity trigger (see crossingToAnnounce). Shared
+    // between the vehicle and walking builders so that flipping travel mode partway across a
+    // structure can't announce the same crossing twice. CalloutHistory isn't usable here: its
+    // trim() hardcodes a 50m radius, which at motorway speed is inside the trigger radius, so an
+    // entry would be dropped and re-armed while still approaching the same crossing.
+    private val announcedCrossings = mutableListOf<AnnouncedCrossing>()
     private val lastStationTracker = LastStationTracker()
     private val notableVehicleEventTracker = NotableVehicleEventTracker()
     private var lastTrainTimestampMs: Long? = null
@@ -436,13 +442,8 @@ class AutoCallout(
 
         val previousOsmId = lastVehicleCrossingWayOsmId
         lastVehicleCrossingWayOsmId = matchedWay.osmId
-        if (previousOsmId == null || previousOsmId == matchedWay.osmId) {
-            // No baseline yet (first Way matched since entering vehicle mode), or still on the
-            // same Way as last time - nothing to announce.
-            return null
-        }
 
-        val crossing = wayCrossingInfo(matchedWay, gridState, userGeometry.location) ?: return null
+        val crossing = crossingToAnnounce(userGeometry, gridState, previousOsmId) ?: return null
         val text = crossingCalloutText(crossing)
         val callout = TrackedCallout(
             userGeometry,
@@ -463,10 +464,25 @@ class AutoCallout(
         return callout
     }
 
-    private data class WayCrossingInfo(val type: String, val name: String?, val brunnel: String?)
+    // position is the user's relationship to the structure, "over" or "under" - see CrossingInfo
+    // in MvtToGeoJson.kt for why the raw OSM brunnel value isn't good enough. point is where the
+    // road and the structure actually cross, absent for the water-polygon fallback below.
+    private data class WayCrossingInfo(
+        val type: String,
+        val name: String?,
+        val position: String?,
+        val point: LngLatAlt?
+    )
+
+    private data class AnnouncedCrossing(
+        val key: String,
+        val location: LngLatAlt,
+        val timestampMilliseconds: Long
+    )
 
     /**
-     * Reads the crossing_type/crossing_name/crossing_brunnel properties extractCrossings (see
+     * Reads the crossing_type/crossing_name/crossing_position/crossing_latitude/crossing_longitude
+     * properties extractCrossings (see
      * MvtToGeoJson.kt) attaches directly onto the Way(s) that cross a named river/canal or a
      * railway, if any. An unnamed waterway crossing isn't worth announcing - there's nothing
      * useful to say beyond "Crossing" nothing - but an unnamed railway still is, since "Crossing
@@ -485,17 +501,93 @@ class AutoCallout(
         if (type != null) {
             val name = way.properties?.get("crossing_name") as? String
             if (type == "waterway" && name.isNullOrEmpty()) return null
-            val brunnel = way.properties?.get("crossing_brunnel") as? String
-            return WayCrossingInfo(type, name, brunnel)
+            val position = way.properties?.get("crossing_position") as? String
+            val latitude = way.properties?.get("crossing_latitude") as? Double
+            val longitude = way.properties?.get("crossing_longitude") as? Double
+            val point = if (latitude != null && longitude != null) {
+                LngLatAlt(longitude, latitude)
+            } else {
+                null
+            }
+            return WayCrossingInfo(type, name, position, point)
         }
 
-        if (way.properties?.get("brunnel") != "bridge") return null
+        // A bridge carries the user over the water, a tunnel takes them under it - the Clyde
+        // Tunnel under the River Clyde being the obvious example. Neither is reachable through
+        // extractCrossings, because a firth/bay/tidal river is a water polygon rather than a
+        // waterway line.
+        val position = when (way.properties?.get("brunnel")) {
+            "bridge" -> "over"
+            "tunnel" -> "under"
+            else -> return null
+        }
         val waterTree = gridState.getFeatureTree(TreeId.NAMED_WATER_POLYGONS)
         val containing = waterTree.getContainingPolygons(location).features.firstOrNull()
         val nearby = containing
             ?: waterTree.getNearestFeature(location, gridState.ruler, waterCrossingSearchDistanceMetres)
         val waterName = (nearby as? MvtFeature)?.name ?: return null
-        return WayCrossingInfo("waterway", waterName, "bridge")
+        // No crossing point for this one - a firth is commonly wider than a tile, so there's no
+        // precomputed intersection to aim at. The Way is itself the bridge or tunnel though, so
+        // the Way change is already an accurate trigger; see crossingToAnnounce.
+        return WayCrossingInfo("waterway", waterName, position, null)
+    }
+
+    // How much warning to give before reaching a crossing the user passes under, and the bounds
+    // the resulting radius is clamped to. Scaling with speed matters: at 30m/s locations arrive
+    // roughly 30m apart, so a small fixed radius would be stepped straight over on a motorway.
+    private val crossingTriggerLeadSeconds = 3.0
+    private val crossingTriggerMinimumRadiusMetres = 25.0
+    private val crossingTriggerMaximumRadiusMetres = 150.0
+    // An announced crossing is forgotten once well clear of it, so that genuinely returning to the
+    // same crossing later announces it again.
+    private val crossingForgetDistanceMetres = 300.0
+    private val crossingForgetTimeMilliseconds = 300_000L
+
+    /**
+     * Decides whether the crossing on the currently matched Way should be announced now.
+     *
+     * The Way-change edge this used to rely on exclusively is only meaningful when the matched Way
+     * *is* the structure. Going over, it is: the road carries brunnel=bridge, so OSM split it there
+     * and the Way change coincides with the crossing. Going under, the road below carries no tag at
+     * all, so it is never split and the Way change lands wherever that road happens to begin -
+     * measured 1705m before the railway viaduct over the M80 at Castlecary, roughly 55 seconds
+     * early. So a Way with a crossing it passes under triggers on proximity to the stored crossing
+     * point instead.
+     */
+    private fun crossingToAnnounce(
+        userGeometry: UserGeometry,
+        gridState: GridState,
+        previousOsmId: Long?
+    ): WayCrossingInfo? {
+        val way = userGeometry.mapMatchedWay ?: return null
+        val crossing = wayCrossingInfo(way, gridState, userGeometry.location) ?: return null
+
+        // A Way carrying its own brunnel is the structure, so the edge is already accurate. This
+        // also covers the water-polygon fallback above, which has no point to aim at.
+        val wayIsStructure = way.properties?.get("brunnel") != null
+        if (crossing.point == null || wayIsStructure) {
+            val edgeFired = previousOsmId != null && previousOsmId != way.osmId
+            return if (edgeFired) crossing else null
+        }
+
+        announcedCrossings.removeAll {
+            ((userGeometry.timestampMilliseconds - it.timestampMilliseconds) >
+                crossingForgetTimeMilliseconds) ||
+                (gridState.ruler.distance(userGeometry.location, it.location) >
+                    crossingForgetDistanceMetres)
+        }
+
+        val key = "${way.osmId}|${crossing.type}|${crossing.name}"
+        if (announcedCrossings.any { it.key == key }) return null
+
+        val radius = (userGeometry.speed * crossingTriggerLeadSeconds)
+            .coerceIn(crossingTriggerMinimumRadiusMetres, crossingTriggerMaximumRadiusMetres)
+        if (gridState.ruler.distance(userGeometry.location, crossing.point) > radius) return null
+
+        announcedCrossings.add(
+            AnnouncedCrossing(key, crossing.point, userGeometry.timestampMilliseconds)
+        )
+        return crossing
     }
 
     /**
@@ -505,10 +597,11 @@ class AutoCallout(
      */
     private fun crossingCalloutText(crossing: WayCrossingInfo): String {
         val name = crossing.name
-        // For a railway (unlike a waterway), the road's own brunnel tells us whether we're going
-        // over it (bridge) or under it (tunnel) - worth distinguishing, since "going under" reads
-        // oddly for a bridge and vice versa.
-        val goingUnder = (crossing.type == "railway") && (crossing.brunnel == "tunnel")
+        // Whether we're going over or under has already been resolved from whichever side carried
+        // the brunnel evidence (see CrossingInfo in MvtToGeoJson.kt) - worth distinguishing, since
+        // "going under" reads oddly for a bridge and vice versa. It applies just as much to a
+        // waterway as to a railway: an aqueduct carries a canal over the road beneath it.
+        val goingUnder = crossing.position == "under"
         return if (name != null) {
             if (goingUnder) {
                 localized?.get(StringKey.DirectionsGoingUnderRailway, name) ?: "Going under $name"
@@ -538,11 +631,8 @@ class AutoCallout(
 
         val previousOsmId = lastWalkingCrossingWayOsmId
         lastWalkingCrossingWayOsmId = matchedWay.osmId
-        if (previousOsmId == null || previousOsmId == matchedWay.osmId) {
-            return null
-        }
 
-        val crossing = wayCrossingInfo(matchedWay, gridState, userGeometry.location) ?: return null
+        val crossing = crossingToAnnounce(userGeometry, gridState, previousOsmId) ?: return null
         val text = crossingCalloutText(crossing)
         return TrackedCallout(
             userGeometry,

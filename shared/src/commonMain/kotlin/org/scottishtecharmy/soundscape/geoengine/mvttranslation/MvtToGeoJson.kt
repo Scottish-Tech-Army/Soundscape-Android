@@ -300,7 +300,23 @@ private class PendingCulvert(val coordinates: List<LngLatAlt>, val name: String,
 // The crossing info to attach to the crossing road's Way, keyed by that road's osmId - see
 // extractCrossings. type is "waterway" (railway crossings are resolved separately, after tile
 // stitching - see GridState.attachRailwayCrossings).
-private data class CrossingInfo(val type: String, val name: String?, val brunnel: String?)
+//
+// `position` is always the *user's* relationship to the named structure - "over" or "under" - not
+// a raw OSM brunnel value. That distinction matters because the brunnel evidence arrives from
+// either side and the two invert each other: a road tagged brunnel=bridge is over the river,
+// whereas a waterway tagged brunnel=bridge is an aqueduct, so the road below it goes under.
+// Storing the OSM tag instead of the resolved relationship is what made every aqueduct announce
+// "Crossing the Union Canal" while the user was driving underneath it.
+//
+// `point` is where the two lines actually cross. The road below a structure carries no brunnel of
+// its own, so OSM never splits it there and it can run for kilometres either side; the callout
+// needs the real crossing point to know when to fire (see AutoCallout.crossingToAnnounce).
+private data class CrossingInfo(
+    val type: String,
+    val name: String?,
+    val position: String,
+    val point: LngLatAlt?
+)
 
 /**
  * Crossings of a named river/canal while travelling by car/bus or on foot - a major navigation
@@ -372,6 +388,7 @@ private fun extractCrossings(
                         if (line.isEmpty()) continue
                         val coordinates = convertGeometry(tileX, tileY, tileZoom, line)
                         if (coordinates.isEmpty()) continue
+                        if (brunnel != "bridge" && !isRoadWidthSpan(coordinates, line)) continue
                         pendingCulverts.add(PendingCulvert(coordinates, name, brunnel))
                     }
                 }
@@ -406,19 +423,35 @@ private fun extractCrossings(
     // Case (a): the tagged culvert span IS the crossing, but carries no reference to which road
     // crosses it.
     for (culvert in pendingCulverts) {
-        val roadOsmId = findCrossingRoadOsmId(culvert.coordinates, roadLines) ?: continue
-        crossingsByOsmId[roadOsmId] = CrossingInfo("waterway", culvert.name, culvert.brunnel)
+        // The brunnel here belongs to the *waterway*, so it inverts: an aqueduct (brunnel=bridge)
+        // carries the water over the road, meaning the user passes under it, while a culvert or
+        // ford takes the water beneath the road, meaning the user passes over it.
+        val position = if (culvert.brunnel == "bridge") "under" else "over"
+        for (road in findCrossingRoads(culvert.coordinates, roadLines)) {
+            crossingsByOsmId[road.osmId] =
+                CrossingInfo("waterway", culvert.name, position, road.point)
+        }
     }
 
     // Case (b): a named river/canal geometrically crossed by a road tagged brunnel=bridge.
     for (waterway in namedWaterways) {
         for (road in roadLines) {
-            if (road.brunnel != "bridge") continue
-            findLineIntersectionPoint(waterway.coordinates, road.coordinates) ?: continue
+            // Here the brunnel belongs to the *road*, so it reads directly: a bridge carries the
+            // user over the water, a tunnel takes them under it. Note that the widest rivers are
+            // mapped as water polygons rather than waterway lines, so a road tunnel under one of
+            // those is picked up by AutoCallout.wayCrossingInfo's fallback instead of here.
+            val position = when (road.brunnel) {
+                "bridge" -> "over"
+                "tunnel" -> "under"
+                else -> continue
+            }
+            val point =
+                findLineIntersectionPoint(waterway.coordinates, road.coordinates) ?: continue
             // A road crossing two different named features (e.g. a viaduct over both a river and
             // a railway) is rare enough that last-write-wins here is fine - Way.properties is a
             // flat map, so supporting more than one crossing per Way isn't worth the complexity.
-            crossingsByOsmId[road.osmId] = CrossingInfo("waterway", waterway.name, "bridge")
+            crossingsByOsmId[road.osmId] =
+                CrossingInfo("waterway", waterway.name, position, point)
         }
     }
 
@@ -431,15 +464,55 @@ private fun extractCrossings(
 // path, so a full scan of roadLines per culvert (normally only a handful per tile) is fine.
 private const val CULVERT_ROAD_MATCH_TOLERANCE_METRES = 15.0
 
-private fun findCrossingRoadOsmId(
+// A waterway only counts as being crossed where it dips beneath the road - a culvert or a ford,
+// something road-width. Beyond that it's a genuine tunnel, and a canal or river tens of metres
+// underground isn't a landmark anyone crosses: the Union Canal runs 649m through the Falkirk
+// Tunnel with Slamannan Road passing over the top, which has nothing to do with the canal. The
+// Allander Water's culvert, by contrast, is a 15m span directly under the road.
+//
+// This deliberately doesn't apply to brunnel=bridge: an aqueduct carries the water overhead, so
+// however long it is, the road beneath genuinely passes under it.
+private const val CULVERT_MAX_SPAN_METRES = 100.0
+
+/**
+ * Whether a brunnel-tagged waterway span is short enough to be the water passing under a road
+ * rather than a tunnel in its own right.
+ *
+ * The tile-space geometry is needed as well as the length: a long tunnel is clipped at the tile
+ * boundary, so the far side of it can arrive here as a short-looking remnant (the Falkirk Tunnel
+ * measures 607m in one tile and 89m in the next). A span that runs off the edge of the tile
+ * continues somewhere we can't see, so it's never treated as a road-width crossing.
+ */
+private fun isRoadWidthSpan(coordinates: List<LngLatAlt>, tileLine: List<Pair<Int, Int>>): Boolean {
+    if (tileLine.any { pointIsOffTile(it.first, it.second) }) return false
+    if (coordinates.size < 2) return true
+    val ruler = coordinates.first().createCheapRuler()
+    return ruler.lineLength(LineString(ArrayList(coordinates))) <= CULVERT_MAX_SPAN_METRES
+}
+
+private class CrossingRoad(val osmId: Long, val point: LngLatAlt)
+
+/**
+ * Every road the culvert/aqueduct span genuinely crosses, not just the first: one structure
+ * regularly spans a dual carriageway plus its slip roads (the Union Canal aqueduct crosses four
+ * separate ways over the A720), and tagging only the first of them makes the callout depend on
+ * which direction the user happens to be travelling.
+ *
+ * The nearest-line fallback stays single-result and only runs when nothing genuinely intersects -
+ * it exists to cover mis-aligned digitising, so running it alongside real intersections would
+ * start attributing the structure to roads on the far side of the block.
+ */
+private fun findCrossingRoads(
     culvertCoordinates: List<LngLatAlt>,
     roadLines: List<RoadLine>
-): Long? {
+): List<CrossingRoad> {
+    val matches = mutableListOf<CrossingRoad>()
     for (road in roadLines) {
-        if (findLineIntersectionPoint(culvertCoordinates, road.coordinates) != null) {
-            return road.osmId
+        findLineIntersectionPoint(culvertCoordinates, road.coordinates)?.let {
+            matches.add(CrossingRoad(road.osmId, it))
         }
     }
+    if (matches.isNotEmpty()) return matches
 
     val midpoint = culvertCoordinates[culvertCoordinates.size / 2]
     val ruler = midpoint.createCheapRuler()
@@ -452,7 +525,7 @@ private fun findCrossingRoadOsmId(
             bestOsmId = road.osmId
         }
     }
-    return bestOsmId
+    return bestOsmId?.let { listOf(CrossingRoad(it, midpoint)) } ?: emptyList()
 }
 
 /**
@@ -932,7 +1005,14 @@ fun vectorTileToGeoJson(
                         crossingsByOsmId[id]?.let { crossing ->
                             geoFeature.setProperty("crossing_type", crossing.type)
                             crossing.name?.let { geoFeature.setProperty("crossing_name", it) }
-                            crossing.brunnel?.let { geoFeature.setProperty("crossing_brunnel", it) }
+                            geoFeature.setProperty("crossing_position", crossing.position)
+                            // Two Doubles rather than an LngLatAlt: GeoJsonObjectMoshiAdapter
+                            // writes any non-primitive property value as JSON null, so an object
+                            // here would silently vanish from the debug GeoJSON dumps.
+                            crossing.point?.let {
+                                geoFeature.setProperty("crossing_latitude", it.latitude)
+                                geoFeature.setProperty("crossing_longitude", it.longitude)
+                            }
                         }
                     }
                     if (translateProperties(geoFeature)) {

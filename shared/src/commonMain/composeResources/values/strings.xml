@@ -412,7 +412,7 @@
     <string name="directions_crossing_waterway">Crossing %1$s</string>
     <!-- Travelling in a car or bus, called out as the road crosses a railway (via a bridge or tunnel) that has no name in the map data, example: "Crossing the railway" -->
     <string name="directions_crossing_railway_generic">Crossing the railway</string>
-    <!-- Travelling in a car or bus, called out as the road passes under a named railway line via a tunnel/underpass (as opposed to a bridge over it, which uses "Crossing %1$s" instead), %1$s is the railway line's name, example: "Going under the West Highland Line" -->
+    <!-- Travelling in a car or bus, called out as the road passes under a named structure - either a railway line on a viaduct, or a river/canal carried over the road on an aqueduct (as opposed to a bridge over it, which uses "Crossing %1$s" instead), %1$s is the railway line's or waterway's name, examples: "Going under the West Highland Line", "Going under the Union Canal" -->
     <string name="directions_going_under_railway">Going under %1$s</string>
     <!-- Travelling in a car or bus, called out as the road passes under a railway (via a tunnel/underpass) that has no name in the map data, example: "Going under the railway" -->
     <string name="directions_going_under_railway_generic">Going under the railway</string>
