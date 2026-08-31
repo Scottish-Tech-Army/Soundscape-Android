@@ -912,8 +912,8 @@
     <string name="directions_near_settlement_inline">poblíž %1$s</string>
     <string name="directions_close_to_settlement_inline">blízko %1$s</string>
     <string name="directions_generic_train">vlaku</string>
-    <string name="directions_crossing_waterway">Přechod přes %1$s</string>
-    <string name="directions_crossing_railway_generic">Přechod přes železnici</string>
+    <string name="directions_crossing_waterway">Nadjezd nad %1$s</string>
+    <string name="directions_crossing_railway_generic">Nadjezd nad železnicí</string>
     <string name="directions_going_under_railway">Podjezd pod %1$s</string>
     <string name="directions_going_under_railway_generic">Podjezd pod železnicí</string>
     <string name="directions_traveling_n">Jízda na sever</string>
