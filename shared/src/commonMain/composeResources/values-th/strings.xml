@@ -556,10 +556,10 @@
     <string name="directions_near_settlement_inline">ใกล้ %1$s</string>
     <string name="directions_close_to_settlement_inline">ใกล้กับ %1$s</string>
     <string name="directions_generic_train">รถไฟ</string>
-    <string name="directions_crossing_waterway">ข้าม %1$s</string>
-    <string name="directions_crossing_railway_generic">ข้ามทางรถไฟ</string>
-    <string name="directions_going_under_railway">ลอดใต้ %1$s</string>
-    <string name="directions_going_under_railway_generic">ลอดใต้ทางรถไฟ</string>
+    <string name="directions_crossing_waterway">ผ่านเหนือ %1$s</string>
+    <string name="directions_crossing_railway_generic">ผ่านเหนือทางรถไฟ</string>
+    <string name="directions_going_under_railway">ผ่านใต้ %1$s</string>
+    <string name="directions_going_under_railway_generic">ผ่านใต้ทางรถไฟ</string>
     <string name="directions_traveling_n">กำลังเดินทางไปทางทิศเหนือ</string>
     <string name="directions_traveling_ne">กำลังเดินทางไปทางทิศตะวันออกเฉียงเหนือ</string>
     <string name="directions_traveling_e">กำลังเดินทางไปทางทิศตะวันออก</string>
