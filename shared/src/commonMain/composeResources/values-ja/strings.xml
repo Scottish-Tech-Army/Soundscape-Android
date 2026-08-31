@@ -1418,8 +1418,8 @@
     <string name="directions_near_settlement_inline">%1$s 付近</string>
     <string name="directions_close_to_settlement_inline">%1$s の近く</string>
     <string name="directions_generic_train">電車</string>
-    <string name="directions_crossing_waterway">%1$s を横断中</string>
-    <string name="directions_crossing_railway_generic">線路を横断中</string>
+    <string name="directions_crossing_waterway">%1$s の上を通過中</string>
+    <string name="directions_crossing_railway_generic">線路の上を通過中</string>
     <string name="directions_going_under_railway">%1$s の下を通過中</string>
     <string name="directions_going_under_railway_generic">線路の下を通過中</string>
     <string name="directions_cardinal_north_bound">北方面</string>
