@@ -912,8 +912,8 @@
     <string name="directions_near_settlement_inline">%1$s közelében</string>
     <string name="directions_close_to_settlement_inline">%1$s közelében</string>
     <string name="directions_generic_train">vonat</string>
-    <string name="directions_crossing_waterway">%1$s átszelése</string>
-    <string name="directions_crossing_railway_generic">A vasút átszelése</string>
+    <string name="directions_crossing_waterway">%1$s feletti áthaladás</string>
+    <string name="directions_crossing_railway_generic">A vasút feletti áthaladás</string>
     <string name="directions_going_under_railway">%1$s alatti áthaladás</string>
     <string name="directions_going_under_railway_generic">A vasút alatti áthaladás</string>
     <string name="directions_traveling_n">Haladás észak felé</string>
