@@ -31,6 +31,31 @@ data class NearestSettlement(val feature: MvtFeature?, val isCity: Boolean) {
 }
 
 /**
+ * The size tiers settlements are grouped into, smallest first, so that a caller which only cares
+ * about larger places can say so - see [nearestSettlement]'s smallestTier.
+ */
+enum class SettlementTier { HAMLET, VILLAGE, TOWN, CITY }
+
+/**
+ * A settlement tier, the tree its features live in, and Nominatim's proximity for it: the
+ * smaller and more local a settlement is, the closer you have to be for it to be the one worth
+ * naming.
+ */
+private data class SettlementSearch(
+    val tier: SettlementTier,
+    val treeId: TreeId,
+    val proximity: Double
+)
+
+// Smallest first, so nearestSettlement returns the most local settlement that's close enough.
+private val settlementSearches = listOf(
+    SettlementSearch(SettlementTier.HAMLET, TreeId.SETTLEMENT_HAMLET, 1000.0),
+    SettlementSearch(SettlementTier.VILLAGE, TreeId.SETTLEMENT_VILLAGE, 2000.0),
+    SettlementSearch(SettlementTier.TOWN, TreeId.SETTLEMENT_TOWN, 4000.0),
+    SettlementSearch(SettlementTier.CITY, TreeId.SETTLEMENT_CITY, 15000.0),
+)
+
+/**
  * Finds the nearest settlement using Nominatim's proximities, so that the smaller and more local
  * a settlement is, the closer you have to be for it to be the one worth naming:
  *
@@ -42,25 +67,25 @@ data class NearestSettlement(val feature: MvtFeature?, val isCity: Boolean) {
  * Settlements live in their own low-zoom grid - the high-zoom tiles the rest of the geo engine
  * uses don't carry the "place" layer at all - so [settlementGrid] is a different GridState from
  * the one everything else is looked up in. Must be called from within its treeContext.
+ *
+ * @param smallestTier the smallest kind of settlement worth naming. Tiers below it are skipped
+ * entirely rather than being widened out, so a caller which only wants towns gets a town within
+ * 4 km or a city within 15 km, and otherwise nothing. Defaults to naming anything at all.
  */
-fun nearestSettlement(settlementGrid: GridState, location: LngLatAlt): NearestSettlement {
+fun nearestSettlement(
+    settlementGrid: GridState,
+    location: LngLatAlt,
+    smallestTier: SettlementTier = SettlementTier.HAMLET
+): NearestSettlement {
     val ruler = settlementGrid.ruler
-    settlementGrid.getFeatureTree(TreeId.SETTLEMENT_HAMLET)
-        .getNearestFeature(location, ruler, 1000.0)?.let { hamlet ->
-            (hamlet as MvtFeature).name?.let { return NearestSettlement(hamlet, false) }
+    for (search in settlementSearches) {
+        if (search.tier < smallestTier) continue
+        val settlement = settlementGrid.getFeatureTree(search.treeId)
+            .getNearestFeature(location, ruler, search.proximity) as MvtFeature?
+        if (settlement?.name != null) {
+            return NearestSettlement(settlement, search.tier == SettlementTier.CITY)
         }
-    settlementGrid.getFeatureTree(TreeId.SETTLEMENT_VILLAGE)
-        .getNearestFeature(location, ruler, 2000.0)?.let { village ->
-            (village as MvtFeature).name?.let { return NearestSettlement(village, false) }
-        }
-    settlementGrid.getFeatureTree(TreeId.SETTLEMENT_TOWN)
-        .getNearestFeature(location, ruler, 4000.0)?.let { town ->
-            (town as MvtFeature).name?.let { return NearestSettlement(town, false) }
-        }
-    settlementGrid.getFeatureTree(TreeId.SETTLEMENT_CITY)
-        .getNearestFeature(location, ruler, 15000.0)?.let { city ->
-            (city as MvtFeature).name?.let { return NearestSettlement(city, true) }
-        }
+    }
     return NearestSettlement(null, false)
 }
 
@@ -273,6 +298,16 @@ private val majorHighwayJunctionClasses = setOf("motorway", "trunk", "primary")
 private val minorHighwayJunctionClasses =
     setOf("secondary", "tertiary", "residential", "unclassified", "living_street")
 
+// How small a settlement is worth naming alongside the road being travelled, keyed on the road's
+// class (Way.featureValue - see translateProperties). A hamlet is a useful landmark on a country
+// lane, but on a motorway it's a name nobody navigates by and one that's gone before it's been
+// spoken - so the faster the road, the larger the settlement has to be to earn a mention. Roads
+// not listed here (and railways, which have no road class) keep the default of naming anything.
+private val roadClassSmallestSettlement = mapOf(
+    "motorway" to SettlementTier.TOWN,
+    "trunk" to SettlementTier.VILLAGE,
+)
+
 /**
  * @param text the text to actually speak.
  * @param dedupText the text to use for callout-history comparison - defaults to [text], but for
@@ -472,7 +507,12 @@ private fun travellingReverseGeocodeName(
     // for the directional "towards X"/"away from X"/"near X" phrasing below. A city is a large,
     // often-merged conurbation where that phrasing would be misleading - you can't be "towards
     // Glasgow" while already inside its urban area - so it keeps the vaguer "close to" instead.
-    val settlement = nearestSettlement(settlementGrid, location)
+    // The road's own class sets a floor on how small a settlement can be and still be worth
+    // naming - see roadClassSmallestSettlement.
+    val settlement = nearestSettlement(
+        settlementGrid, location,
+        roadClassSmallestSettlement[nearestRoad?.featureValue] ?: SettlementTier.HAMLET
+    )
     val nearestSettlementFeature = settlement.feature
     val nearestSettlementName = settlement.name
     val nearestSettlementIsCity = settlement.isCity
