@@ -169,7 +169,6 @@ android {
         // Maintaining this list means that we can exclude translations that aren't complete yet
         localeFilters += listOf(
             "ar",
-            "arz",
             "bg",
             "bn",
             "ca",

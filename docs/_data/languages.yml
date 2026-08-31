@@ -3,7 +3,6 @@
 # language picker — see supportedLanguages in
 # app/src/main/java/org/scottishtecharmy/soundscape/utils/Locale.kt.
 en: English
-arz: العربية المصرية
 zh-CN: 中文 (简体)
 da: Dansk
 de: Deutsch

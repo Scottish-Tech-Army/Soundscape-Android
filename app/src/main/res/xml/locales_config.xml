@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <locale-config xmlns:android="http://schemas.android.com/apk/res/android">
     <locale android:name="ar" /> <!-- Arabic -->
-    <locale android:name="arz" /> <!-- Egyptian Arabic -->
     <locale android:name="bg" /> <!-- Bulgarian -->
     <locale android:name="bn" /> <!-- Bengali -->
     <locale android:name="ca" /> <!-- Catalan -->
