@@ -912,8 +912,8 @@
     <string name="directions_near_settlement_inline">%1$s సమీపంలో</string>
     <string name="directions_close_to_settlement_inline">%1$sకి దగ్గరలో</string>
     <string name="directions_generic_train">రైలు</string>
-    <string name="directions_crossing_waterway">%1$s దాటుతోంది</string>
-    <string name="directions_crossing_railway_generic">రైల్వేను దాటుతోంది</string>
+    <string name="directions_crossing_waterway">%1$s పై నుండి వెళుతోంది</string>
+    <string name="directions_crossing_railway_generic">రైల్వే పై నుండి వెళుతోంది</string>
     <string name="directions_going_under_railway">%1$s కింద నుండి వెళుతోంది</string>
     <string name="directions_going_under_railway_generic">రైల్వే కింద నుండి వెళుతోంది</string>
     <string name="directions_traveling_n">ఉత్తరం వైపు ప్రయాణిస్తోంది</string>
