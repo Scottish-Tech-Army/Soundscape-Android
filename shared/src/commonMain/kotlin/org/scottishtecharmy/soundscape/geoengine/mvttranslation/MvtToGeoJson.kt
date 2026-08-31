@@ -320,7 +320,7 @@ private data class CrossingInfo(
 
 /**
  * Crossings of a named river/canal while travelling by car/bus or on foot - a major navigation
- * point worth a callout in its own right, e.g. "Crossing Allander Water"/"Crossing the River
+ * point worth a callout in its own right, e.g. "Passing over Allander Water"/"Passing over the River
  * Leven". The road/path doing the crossing can be any highway class, including footway/path, so a
  * pedestrian on a footbridge gets the same callout as a vehicle on a road bridge at the same spot.
  *
