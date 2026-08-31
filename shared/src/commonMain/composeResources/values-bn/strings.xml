@@ -556,8 +556,8 @@
     <string name="directions_near_settlement_inline">%1$s-এর কাছে</string>
     <string name="directions_close_to_settlement_inline">%1$s-এর নিকটে</string>
     <string name="directions_generic_train">ট্রেন</string>
-    <string name="directions_crossing_waterway">%1$s পার হচ্ছে</string>
-    <string name="directions_crossing_railway_generic">রেলপথ পার হচ্ছে</string>
+    <string name="directions_crossing_waterway">%1$s-এর উপর দিয়ে যাচ্ছে</string>
+    <string name="directions_crossing_railway_generic">রেলপথের উপর দিয়ে যাচ্ছে</string>
     <string name="directions_going_under_railway">%1$s-এর নিচ দিয়ে যাচ্ছে</string>
     <string name="directions_going_under_railway_generic">রেলপথের নিচ দিয়ে যাচ্ছে</string>
     <string name="directions_traveling_n">উত্তর দিকে যাত্রা</string>
