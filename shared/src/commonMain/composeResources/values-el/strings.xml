@@ -1423,8 +1423,8 @@
     <string name="directions_near_settlement_inline">κοντά σε %1$s</string>
     <string name="directions_close_to_settlement_inline">κοντά σε %1$s</string>
     <string name="directions_generic_train">τρένο</string>
-    <string name="directions_crossing_waterway">Διάσχιση %1$s</string>
-    <string name="directions_crossing_railway_generic">Διάσχιση σιδηροδρόμου</string>
+    <string name="directions_crossing_waterway">Διέλευση πάνω από %1$s</string>
+    <string name="directions_crossing_railway_generic">Διέλευση πάνω από τον σιδηρόδρομο</string>
     <string name="directions_going_under_railway">Διέλευση κάτω από %1$s</string>
     <string name="directions_going_under_railway_generic">Διέλευση κάτω από τον σιδηρόδρομο</string>
     <string name="directions_cardinal_north_bound">Κατεύθυνση βόρεια</string>
