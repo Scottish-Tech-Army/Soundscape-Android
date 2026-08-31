@@ -1428,8 +1428,8 @@
     <string name="directions_near_settlement_inline">lângă %1$s</string>
     <string name="directions_close_to_settlement_inline">în apropierea %1$s</string>
     <string name="directions_generic_train">tren</string>
-    <string name="directions_crossing_waterway">Traversare %1$s</string>
-    <string name="directions_crossing_railway_generic">Traversarea căii ferate</string>
+    <string name="directions_crossing_waterway">Trecere pe deasupra %1$s</string>
+    <string name="directions_crossing_railway_generic">Trecere pe deasupra căii ferate</string>
     <string name="directions_going_under_railway">Trecere pe sub %1$s</string>
     <string name="directions_going_under_railway_generic">Trecere pe sub calea ferată</string>
     <string name="directions_cardinal_north_bound">Spre nord</string>
