@@ -734,10 +734,10 @@
     <string name="directions_near_settlement_inline">gần %1$s</string>
     <string name="directions_close_to_settlement_inline">gần %1$s</string>
     <string name="directions_generic_train">tàu hỏa</string>
-    <string name="directions_crossing_waterway">Băng qua %1$s</string>
-    <string name="directions_crossing_railway_generic">Băng qua đường sắt</string>
-    <string name="directions_going_under_railway">Đi dưới %1$s</string>
-    <string name="directions_going_under_railway_generic">Đi dưới đường sắt</string>
+    <string name="directions_crossing_waterway">Đi phía trên %1$s</string>
+    <string name="directions_crossing_railway_generic">Đi phía trên đường sắt</string>
+    <string name="directions_going_under_railway">Đi phía dưới %1$s</string>
+    <string name="directions_going_under_railway_generic">Đi phía dưới đường sắt</string>
     <string name="directions_traveling_n">Di chuyển hướng Bắc</string>
     <string name="directions_traveling_ne">Di chuyển hướng Đông Bắc</string>
     <string name="directions_traveling_e">Di chuyển hướng Đông</string>
