@@ -10,9 +10,20 @@ interface LocalizedStrings {
      *
      * [quantity] only selects the wording and is separate from [args] - the number the user
      * actually sees is passed in as an argument like any other, because it isn't always a whole
-     * number ("1.4 miles" is quantity 2, since no language treats a fraction as singular).
+     * number. For the ones that aren't, ask [fractionalPluralQuantity] what to select on.
      */
     fun getPlural(key: PluralKey, quantity: Int, vararg args: Any?): String
+
+    /**
+     * The quantity to pass to [getPlural] for an amount that isn't a whole number, e.g. the "1.4"
+     * of "1.4 km".
+     *
+     * Plural resources can only select on a whole number, so the fraction never reaches CLDR's
+     * `v` operand and we have to name an integer that lands in the category the real value would.
+     * 2 is right for most languages, but not for the ones whose `one` covers an integer part of 0
+     * or 1: French and Portuguese take the singular, "1,4 kilomètre" and "1,4 quilómetro".
+     */
+    val fractionalPluralQuantity: Int get() = 2
 
     fun resolveFeatureClass(key: String): String?
 }

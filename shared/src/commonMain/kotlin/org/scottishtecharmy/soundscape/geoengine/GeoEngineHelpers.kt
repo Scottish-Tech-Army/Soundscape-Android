@@ -134,10 +134,13 @@ fun formatDistanceAndDirection(
             separator = separator,
             spaceFractionalDigits = forAccessibility,
         )
-        // Plural rules select on a whole number, but "1.4 km" isn't one. Only an exact number of
-        // big units can be singular, so a fractional distance asks for 2 - every language that
-        // singles out "one" treats a fraction as something else.
-        val quantity = if (bigUnitDecimals == 0) round(bigUnits).toInt() else 2
+        // Plural rules select on a whole number, but "1.4 km" isn't one, so the fraction never
+        // reaches them. Which whole number stands in for it is a per-language question - French
+        // and Portuguese take the singular for "1,4 kilomètre", where English takes the plural -
+        // so ask the strings themselves rather than assuming.
+        val quantity =
+            if (bigUnitDecimals == 0) round(bigUnits).toInt()
+            else localized?.fractionalPluralQuantity ?: 2
         val bigUnitKey = if (metric) {
             if (forAccessibility) PluralKey.DistanceKmA11y else PluralKey.DistanceKm
         } else {

@@ -6,6 +6,8 @@ import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.getPluralString
 import org.jetbrains.compose.resources.getString
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
+import org.scottishtecharmy.soundscape.screens.onboarding.language.getAppLocale
+import org.scottishtecharmy.soundscape.screens.onboarding.language.getSystemLocale
 import org.scottishtecharmy.soundscape.resources.Res
 import org.scottishtecharmy.soundscape.resources.bytes_format_b
 import org.scottishtecharmy.soundscape.resources.bytes_format_b_a11y
@@ -168,6 +170,14 @@ import org.scottishtecharmy.soundscape.resources.street_description_relative_bef
 import org.scottishtecharmy.soundscape.resources.street_description_since
 import org.scottishtecharmy.soundscape.resources.street_description_until
 
+/**
+ * Languages whose CLDR `one` category covers an integer part of 0 or 1, so a fractional amount
+ * takes the singular - French "1,4 kilomètre", Portuguese "1,4 quilómetro". Every other language
+ * we ship puts a fraction in the same category as 2 ("1.4 kilometres", "1,4 километра"). Regional
+ * variants come along for free: fr_CA and pt_BR both report their base language here.
+ */
+private val singularFractionLanguages = setOf("bn", "fa", "fr", "hi", "mr", "pt")
+
 class ComposeLocalizedStrings : LocalizedStrings {
     override fun get(key: StringKey, vararg args: Any?): String =
         runBlocking { getString(resId(key), *args.map { it ?: "" }.toTypedArray()) }
@@ -178,6 +188,12 @@ class ComposeLocalizedStrings : LocalizedStrings {
     override fun getPlural(key: PluralKey, quantity: Int, vararg args: Any?): String =
         runBlocking {
             getPluralString(pluralResId(key), quantity, *args.map { it ?: "" }.toTypedArray())
+        }
+
+    override val fractionalPluralQuantity: Int
+        get() {
+            val language = (getAppLocale() ?: getSystemLocale()).language
+            return if (language in singularFractionLanguages) 1 else 2
         }
 
     override fun resolveFeatureClass(key: String): String? =
