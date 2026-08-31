@@ -200,8 +200,8 @@
     <string name="directions_near_settlement_inline">prop de %1$s</string>
     <string name="directions_close_to_settlement_inline">a prop de %1$s</string>
     <string name="directions_generic_train">tren</string>
-    <string name="directions_crossing_waterway">Creuant %1$s</string>
-    <string name="directions_crossing_railway_generic">Creuant la via del tren</string>
+    <string name="directions_crossing_waterway">Passant per sobre de %1$s</string>
+    <string name="directions_crossing_railway_generic">Passant per sobre de la via del tren</string>
     <string name="directions_going_under_railway">Passant per sota de %1$s</string>
     <string name="directions_going_under_railway_generic">Passant per sota de la via del tren</string>
     <string name="directions_traveling_n">Circulant cap al nord</string>
