@@ -860,8 +860,8 @@
     <string name="directions_near_settlement_inline">بالقرب من %1$s</string>
     <string name="directions_close_to_settlement_inline">قريبًا من %1$s</string>
     <string name="directions_generic_train">قطار</string>
-    <string name="directions_crossing_waterway">عبور %1$s</string>
-    <string name="directions_crossing_railway_generic">عبور السكة الحديدية</string>
+    <string name="directions_crossing_waterway">المرور فوق %1$s</string>
+    <string name="directions_crossing_railway_generic">المرور فوق السكة الحديدية</string>
     <string name="directions_going_under_railway">المرور تحت %1$s</string>
     <string name="directions_going_under_railway_generic">المرور تحت السكة الحديدية</string>
     <string name="directions_traveling_n">التوجه نحو الشمال</string>
