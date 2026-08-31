@@ -13,7 +13,9 @@ import kotlin.test.assertEquals
  * quantity would select, and the number the user actually hears. The quantity and the number are
  * deliberately separate - "1.4 km" is quantity 2.
  */
-private class FakeLocalizedStrings : LocalizedStrings {
+private class FakeLocalizedStrings(
+    override val fractionalPluralQuantity: Int = 2,
+) : LocalizedStrings {
     override fun get(key: StringKey, vararg args: Any?): String = when (key) {
         StringKey.NumberDecimalSeparator -> "."
         StringKey.NumberDecimalSeparatorA11y -> " point "
@@ -43,6 +45,30 @@ class FormatDistanceTest {
         formatDistanceAndDirection(
             distance, null, localized, forAccessibility = true, speed = speed
         )
+
+    /**
+     * A fraction can't reach the plural rules, which only ever see a whole number, so each
+     * language names the whole number that falls in the category its fractional wording lives in.
+     * English puts "1.4" with the plural; French puts "1,4 kilomètre" with the singular, because
+     * its CLDR "one" covers an integer part of 0 or 1.
+     */
+    @Test
+    fun fractionalBigUnitsTakeTheLanguagesOwnQuantity() {
+        val french = FakeLocalizedStrings(fractionalPluralQuantity = 1)
+        assertEquals(
+            "DistanceKmA11y[1](1 point 4)",
+            formatDistanceAndDirection(1400.0, null, french, forAccessibility = true),
+        )
+        // A whole number of big units is unaffected - it selects on itself in every language.
+        assertEquals(
+            "DistanceKmA11y[1](1)",
+            formatDistanceAndDirection(1000.0, null, french, forAccessibility = true),
+        )
+        assertEquals(
+            "DistanceKmA11y[12](12)",
+            formatDistanceAndDirection(12345.0, null, french, forAccessibility = true),
+        )
+    }
 
     @AfterTest
     fun restoreUnits() {
