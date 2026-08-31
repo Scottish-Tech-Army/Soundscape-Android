@@ -566,6 +566,9 @@ class MvtTileTest {
      * name). This is an end-to-end check that travel-mode reverse geocoding falls back to the
      * ref ("M8") instead of the generic class-based description ("Motorway") it used to produce,
      * phrased as "On M8" since we're confirmed to be on the road, not just near it.
+     *
+     * The settlement is Glasgow rather than the much nearer Cowcaddens because a motorway only
+     * names towns and cities - see [testTravelCalloutSettlementSizeVariesWithRoadClass].
      */
     @Test
     fun testTravelCalloutForUnnamedRefRoad() {
@@ -577,51 +580,97 @@ class MvtTileTest {
         val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
 
         assertNotNull(result)
-        assertEquals("On M8 and close to Cowcaddens", result!!.text)
+        assertEquals("On M8 and close to Glasgow", result!!.text)
     }
+
+    // On the A8 trunk road east of Glasgow, where the nearest settlement of any size is the
+    // isolated dwelling "Ivy Cottage" but the nearest one big enough for a trunk road to name is
+    // the village of Carnbroe, roughly 0.9 km to the north.
+    private val a8TestLocation = LngLatAlt(-4.005613625049591, 55.839092189377)
 
     /**
      * When a travel heading is available, travel-mode reverse geocoding for a road (not a
-     * railway) should announce the direction of travel along it, e.g. "Traveling north along M8",
+     * railway) should announce the direction of travel along it, e.g. "Traveling south along A8",
      * instead of just naming the road - using the existing DirectionsAlongTraveling* string keys.
-     * Cowcaddens (a discrete, non-city settlement here) is roughly behind the direction of travel
-     * (north), so it's phrased as "away from Cowcaddens" rather than the vaguer "close to".
+     * Carnbroe (a discrete, non-city settlement here) is roughly behind the direction of travel
+     * (south), so it's phrased as "away from Carnbroe" rather than the vaguer "close to".
      */
     @Test
     fun testTravelCalloutForRoadIncludesDirection() {
-        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
-        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
-        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val gridState = getGridStateForLocation(a8TestLocation, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(a8TestLocation, 12, 3)
 
-        val userGeometry = UserGeometry(location = location, speed = 15.0, travelHeading = 0.0)
+        val userGeometry = UserGeometry(location = a8TestLocation, speed = 25.0, travelHeading = 180.0)
         val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, FakeLocalizedStrings())
 
         assertNotNull(result)
         assertEquals(
-            "DirectionsAlongTravelingN(M8) DirectionsAwayFromSettlement(Cowcaddens, DistanceKm(0.2))",
+            "DirectionsAlongTravelingS(DirectionsRoadWithRefAndName(A8, Glasgow and Edinburgh Road)) " +
+                "DirectionsAwayFromSettlement(Carnbroe, DistanceKm(0.9))",
             result!!.text
         )
     }
 
     /**
      * Same location as [testTravelCalloutForRoadIncludesDirection] but travelling the opposite
-     * way (south instead of north) - Cowcaddens is now roughly ahead of the direction of travel,
+     * way (north instead of south) - Carnbroe is now roughly ahead of the direction of travel,
      * so it should flip from "away from" to "towards".
      */
     @Test
     fun testTravelCalloutForRoadTowardsSettlement() {
-        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
-        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
-        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val gridState = getGridStateForLocation(a8TestLocation, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(a8TestLocation, 12, 3)
 
-        val userGeometry = UserGeometry(location = location, speed = 15.0, travelHeading = 180.0)
+        val userGeometry = UserGeometry(location = a8TestLocation, speed = 25.0, travelHeading = 0.0)
         val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, FakeLocalizedStrings())
 
         assertNotNull(result)
         assertEquals(
-            "DirectionsAlongTravelingS(M8) DirectionsTowardsSettlement(Cowcaddens, DistanceKm(0.2))",
+            "DirectionsAlongTravelingN(DirectionsRoadWithRefAndName(A8, Glasgow and Edinburgh Road)) " +
+                "DirectionsTowardsSettlement(Carnbroe, DistanceKm(0.9))",
             result!!.text
         )
+    }
+
+    /**
+     * The faster the road, the larger a settlement has to be before it's worth naming: a hamlet
+     * is a useful landmark on a country lane but meaningless at motorway speed. So a motorway
+     * names only towns and cities, and a trunk road anything from a village up, while every other
+     * road keeps naming whatever is nearest.
+     *
+     * Both halves check the settlement the callout actually uses against the one an unrestricted
+     * lookup at the same point returns, so they'd fail if the road class stopped being consulted.
+     */
+    @Test
+    fun testTravelCalloutSettlementSizeVariesWithRoadClass() {
+        // Trunk road: "Ivy Cottage" is an isolated dwelling nobody navigates by, so the A8 skips
+        // it for the village of Carnbroe.
+        val trunkGridState = getGridStateForLocation(a8TestLocation, MAX_ZOOM_LEVEL, 3)
+        val trunkSettlementGrid = getGridStateForLocation(a8TestLocation, 12, 3)
+        assertEquals(
+            "Ivy Cottage", nearestSettlement(trunkSettlementGrid, a8TestLocation).name
+        )
+        val trunkResult = describeReverseGeocode(
+            UserGeometry(location = a8TestLocation, speed = 25.0), trunkGridState,
+            trunkSettlementGrid, null
+        )
+        assertNotNull(trunkResult)
+        assertEquals("On A8 (Glasgow and Edinburgh Road) and close to Carnbroe", trunkResult!!.text)
+
+        // Motorway: Cowcaddens is a suburb, still too small to be worth naming on the M8, which
+        // goes all the way up to Glasgow itself.
+        val motorwayLocation = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val motorwayGridState = getGridStateForLocation(motorwayLocation, MAX_ZOOM_LEVEL, 3)
+        val motorwaySettlementGrid = getGridStateForLocation(motorwayLocation, 12, 3)
+        assertEquals(
+            "Cowcaddens", nearestSettlement(motorwaySettlementGrid, motorwayLocation).name
+        )
+        val motorwayResult = describeReverseGeocode(
+            UserGeometry(location = motorwayLocation, speed = 25.0), motorwayGridState,
+            motorwaySettlementGrid, null
+        )
+        assertNotNull(motorwayResult)
+        assertEquals("On M8 and close to Glasgow", motorwayResult!!.text)
     }
 
     /**
