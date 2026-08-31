@@ -556,8 +556,8 @@
     <string name="directions_near_settlement_inline">близу %1$s</string>
     <string name="directions_close_to_settlement_inline">у близини %1$s</string>
     <string name="directions_generic_train">воз</string>
-    <string name="directions_crossing_waterway">Прелазак преко %1$s</string>
-    <string name="directions_crossing_railway_generic">Прелазак преко пруге</string>
+    <string name="directions_crossing_waterway">Пролазак изнад %1$s</string>
+    <string name="directions_crossing_railway_generic">Пролазак изнад пруге</string>
     <string name="directions_going_under_railway">Пролазак испод %1$s</string>
     <string name="directions_going_under_railway_generic">Пролазак испод пруге</string>
     <string name="directions_traveling_n">Путовање ка северу</string>
