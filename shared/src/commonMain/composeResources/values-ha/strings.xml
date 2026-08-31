@@ -912,8 +912,8 @@
     <string name="directions_near_settlement_inline">kusa da %1$s</string>
     <string name="directions_close_to_settlement_inline">daf da %1$s</string>
     <string name="directions_generic_train">jirgin ƙasa</string>
-    <string name="directions_crossing_waterway">Ana ketare %1$s</string>
-    <string name="directions_crossing_railway_generic">Ana ketare hanyar jirgin ƙasa</string>
+    <string name="directions_crossing_waterway">Ana wucewa bisa %1$s</string>
+    <string name="directions_crossing_railway_generic">Ana wucewa bisa hanyar jirgin ƙasa</string>
     <string name="directions_going_under_railway">Ana wucewa ƙarƙashin %1$s</string>
     <string name="directions_going_under_railway_generic">Ana wucewa ƙarƙashin hanyar jirgin ƙasa</string>
     <string name="directions_traveling_n">Ana tafiya zuwa arewa</string>
