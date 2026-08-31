@@ -704,7 +704,7 @@ class MvtTileTest {
      * segments, with the segment that passes under a road tagged `brunnel=tunnel` (a culvert).
      * Checks that the crossing road's Way ends up with crossing_name/crossing_type properties
      * attached directly to it (see extractCrossings), ready for travel-mode callouts like
-     * "Crossing Allander Water" - no separate search tree needed.
+     * "Passing over Allander Water" - no separate search tree needed.
      */
     @Test
     fun testWaterwayCrossingParsing() {
@@ -1109,7 +1109,7 @@ class MvtTileTest {
      * The A82 crosses the West Highland railway line near Renton via a real bridge - unlike a
      * waterway, a railway is never split/tagged at the crossing point itself, so this needs the
      * geometric road/rail intersection strategy in extractCrossings, found via a real GPX replay
-     * (see ToBalloch.gpx) landing on "Crossing the railway" there.
+     * (see ToBalloch.gpx) landing on "Passing over the railway" there.
      */
     @Test
     fun testRailwayCrossingParsing() {
@@ -1192,9 +1192,9 @@ class MvtTileTest {
         val secondCallout = autoCallout.updateLocation(secondUpdate, gridState, settlementGrid)
         assertNotNull(secondCallout)
         assertTrue(
-            "Expected \"Going under\" the Union Canal, got: " +
+            "Expected \"Passing under\" the Union Canal, got: " +
                 "${secondCallout!!.positionedStrings.map { it.text }}",
-            secondCallout.positionedStrings.any { it.text == "Going under Union Canal" }
+            secondCallout.positionedStrings.any { it.text == "Passing under Union Canal" }
         )
 
         // Still approaching the same crossing - must not repeat.
@@ -1368,10 +1368,10 @@ class MvtTileTest {
         val secondCallout = autoCallout.updateLocation(secondUpdate, gridState, settlementGrid)
         assertNotNull(secondCallout)
         assertTrue(
-            "Expected \"Going under\" the railway line, got: " +
+            "Expected \"Passing under\" the railway line, got: " +
                 "${secondCallout!!.positionedStrings.map { it.text }}",
             secondCallout.positionedStrings.any {
-                it.text == "Going under Edinburgh and Glasgow Main Line"
+                it.text == "Passing under Edinburgh and Glasgow Main Line"
             }
         )
     }
@@ -1795,13 +1795,13 @@ class MvtTileTest {
     }
 
     /**
-     * Riding a railway, the roads it passes over and under should be named - "Crossing Glasgow
-     * Road", "Going under Milngavie Road" - and the line being ridden must never be announced as
+     * Riding a railway, the roads it passes over and under should be named - "Passing over Glasgow
+     * Road", "Passing under Milngavie Road" - and the line being ridden must never be announced as
      * something being crossed.
      *
      * Both come from the same place. Crossings hang off the *road* Way, so on a train the road
      * matcher latches onto whatever runs alongside and those roads carry the crossing properties
-     * for the very line being ridden: recordings had "Going under Milngavie Branch" interleaved
+     * for the very line being ridden: recordings had "Passing under Milngavie Branch" interleaved
      * with "On Milngavie Branch". Suppressing that leaves the data available to read the other way
      * round, naming the road rather than the railway (see buildCalloutForTrainCrossing). The
      * over/under sense inverts, since the stored position is the road user's.
@@ -1847,13 +1847,13 @@ class MvtTileTest {
         assertTrue(
             "The line being ridden must never be announced as crossed, got: $texts",
             texts.none {
-                it == "Crossing Milngavie Branch" || it == "Going under Milngavie Branch"
+                it == "Passing over Milngavie Branch" || it == "Passing under Milngavie Branch"
             }
         )
         // The road is over the railway, so from the train we pass beneath it.
         assertTrue(
             "Expected to go under the road carrying the bridge, got: $texts",
-            texts.any { it == "Going under ${bridge.getName(null, gridState, null, true)}" }
+            texts.any { it == "Passing under ${bridge.getName(null, gridState, null, true)}" }
         )
     }
 

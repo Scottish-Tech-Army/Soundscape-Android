@@ -408,14 +408,14 @@
     <string name="directions_close_to_settlement_inline">close to %1$s</string>
     <!-- Travelling on an unnamed railway line - used in place of a line name (e.g. "Argyle Line") when the line's name isn't available in the map data, combined with the "On %s" style templates, example: "On train" -->
     <string name="directions_generic_train">train</string>
-    <!-- Travelling in a car or bus, called out as the road crosses a named river or stream, %1$s is the waterway's name, example: "Crossing Allander Water" -->
-    <string name="directions_crossing_waterway">Crossing %1$s</string>
-    <!-- Travelling in a car or bus, called out as the road crosses a railway (via a bridge or tunnel) that has no name in the map data, example: "Crossing the railway" -->
-    <string name="directions_crossing_railway_generic">Crossing the railway</string>
-    <!-- Travelling in a car or bus, called out as the road passes under a named structure - either a railway line on a viaduct, or a river/canal carried over the road on an aqueduct (as opposed to a bridge over it, which uses "Crossing %1$s" instead), %1$s is the railway line's or waterway's name, examples: "Going under the West Highland Line", "Going under the Union Canal" -->
-    <string name="directions_going_under_railway">Going under %1$s</string>
-    <!-- Travelling in a car or bus, called out as the road passes under a railway (via a tunnel/underpass) that has no name in the map data, example: "Going under the railway" -->
-    <string name="directions_going_under_railway_generic">Going under the railway</string>
+    <!-- Travelling by car, bus or train, called out on passing above a named feature: a river or canal crossed by a bridge, a railway line crossed by a bridge, or (riding a train) a road the line is carried over. Pairs with "Passing under %1$s" below, so the two should stay symmetrical - the point is to say which side of the feature the traveller is on. %1$s is the feature's name, examples: "Passing over Allander Water", "Passing over the West Highland Line", "Passing over Great Western Road" -->
+    <string name="directions_crossing_waterway">Passing over %1$s</string>
+    <!-- Travelling by car or bus, called out on passing above a railway that has no name in the map data, example: "Passing over the railway" -->
+    <string name="directions_crossing_railway_generic">Passing over the railway</string>
+    <!-- Travelling by car, bus or train, called out on passing beneath a named feature: a railway line on a viaduct, a river or canal carried overhead on an aqueduct, or (riding a train) a road bridged over the line. Pairs with "Passing over %1$s" above, so the two should stay symmetrical. %1$s is the feature's name, examples: "Passing under the West Highland Line", "Passing under the Union Canal", "Passing under Drymen Road" -->
+    <string name="directions_going_under_railway">Passing under %1$s</string>
+    <!-- Travelling by car or bus, called out on passing beneath a railway that has no name in the map data, example: "Passing under the railway" -->
+    <string name="directions_going_under_railway_generic">Passing under the railway</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
     <string name="directions_traveling_n">Traveling north</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->

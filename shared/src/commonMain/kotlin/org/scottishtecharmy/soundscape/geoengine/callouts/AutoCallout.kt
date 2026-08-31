@@ -423,7 +423,7 @@ class AutoCallout(
 
     /**
      * Announces a river/canal or railway crossing while travelling by car/bus - these are major
-     * navigation points ("Crossing Allander Water", "Crossing the railway") worth calling out on
+     * navigation points ("Passing over Allander Water", "Passing over the railway") worth calling out on
      * their own, not just as part of a "via a bridge" road name. Fires as a simple edge: once when
      * userGeometry.mapMatchedWay's osmId changes to a Way carrying crossing properties (see
      * extractCrossings in MvtToGeoJson.kt, which computes and attaches these directly onto the
@@ -514,7 +514,7 @@ class AutoCallout(
             if (gridState.ruler.distance(userGeometry.location, point) > radius) continue
 
             // Only genuinely named roads. Way.getName confects a name for anything unnamed, which
-            // from a train reads as noise rather than a landmark - "Crossing Service that joins
+            // from a train reads as noise rather than a landmark - "Passing over Service that joins
             // Lennox Park and Crossveggate" tells a passenger nothing.
             if ((road.name == null) && (road.ref == null)) continue
             val roadName = road.getName(null, gridState, localized, true)
@@ -531,10 +531,10 @@ class AutoCallout(
             val goingUnder = road.properties?.get("crossing_position") == "over"
             val text = if (goingUnder) {
                 localized?.get(StringKey.DirectionsGoingUnderRailway, roadName)
-                    ?: "Going under $roadName"
+                    ?: "Passing under $roadName"
             } else {
                 localized?.get(StringKey.DirectionsCrossingWaterway, roadName)
-                    ?: "Crossing $roadName"
+                    ?: "Passing over $roadName"
             }
 
             announcedCrossings.add(
@@ -656,7 +656,7 @@ class AutoCallout(
         // Crossings hang off the *road* the user is matched to, so they only mean anything if the
         // user is actually on a road. On a train the road matcher still latches onto whatever runs
         // alongside the line, and those roads carry the crossing properties for the very railway
-        // being ridden - recordings had "Going under Milngavie Branch" and "Crossing Milngavie
+        // being ridden - recordings had "Passing under Milngavie Branch" and "Passing over Milngavie
         // Branch" interleaved with "On Milngavie Branch". Announcing a train's own crossings would
         // mean attaching them to railway Ways, which is a separate job from this one.
         //
@@ -709,14 +709,14 @@ class AutoCallout(
         val goingUnder = crossing.position == "under"
         return if (name != null) {
             if (goingUnder) {
-                localized?.get(StringKey.DirectionsGoingUnderRailway, name) ?: "Going under $name"
+                localized?.get(StringKey.DirectionsGoingUnderRailway, name) ?: "Passing under $name"
             } else {
-                localized?.get(StringKey.DirectionsCrossingWaterway, name) ?: "Crossing $name"
+                localized?.get(StringKey.DirectionsCrossingWaterway, name) ?: "Passing over $name"
             }
         } else if (goingUnder) {
-            localized?.get(StringKey.DirectionsGoingUnderRailwayGeneric) ?: "Going under the railway"
+            localized?.get(StringKey.DirectionsGoingUnderRailwayGeneric) ?: "Passing under the railway"
         } else {
-            localized?.get(StringKey.DirectionsCrossingRailwayGeneric) ?: "Crossing the railway"
+            localized?.get(StringKey.DirectionsCrossingRailwayGeneric) ?: "Passing over the railway"
         }
     }
 
