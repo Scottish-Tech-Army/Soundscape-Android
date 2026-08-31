@@ -200,8 +200,8 @@
     <string name="directions_near_settlement_inline">%1$s 근처</string>
     <string name="directions_close_to_settlement_inline">%1$s 인근</string>
     <string name="directions_generic_train">기차</string>
-    <string name="directions_crossing_waterway">%1$s 횡단</string>
-    <string name="directions_crossing_railway_generic">철도 횡단</string>
+    <string name="directions_crossing_waterway">%1$s 위를 통과</string>
+    <string name="directions_crossing_railway_generic">철도 위를 통과</string>
     <string name="directions_going_under_railway">%1$s 아래를 통과</string>
     <string name="directions_going_under_railway_generic">철도 아래를 통과</string>
     <string name="directions_traveling_n">북쪽으로 주행 중</string>
