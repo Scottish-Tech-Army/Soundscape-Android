@@ -464,6 +464,100 @@ class AutoCallout(
         return callout
     }
 
+    /**
+     * Announces the roads a train passes over and under. GridState.attachRailwayCrossings already
+     * records, on every road Way that crosses a railway, which railway it crosses and exactly
+     * where - so riding a railway, the same data can simply be read the other way round: find the
+     * roads whose recorded crossing is with *this* line, and name them as they go by.
+     *
+     * The over/under sense inverts, since the stored position describes the road user's
+     * relationship to the railway. A road recorded as going "over" the line is a bridge the train
+     * passes beneath, and vice versa.
+     *
+     * Only grade-separated crossings appear, because that's all attachRailwayCrossings records - a
+     * level crossing has no brunnel on either side and is deliberately left to the explicit
+     * railway=level_crossing point. Unnamed roads are skipped: "Crossing" an unnamed track isn't
+     * worth saying, the same reasoning as for an unnamed waterway in wayCrossingInfo.
+     */
+    private fun buildCalloutForTrainCrossing(userGeometry: UserGeometry, gridState: GridState): TrackedCallout? {
+        if (!userGeometry.probablyOnTrain()) return null
+        val railwayName = userGeometry.mapMatchedRailway?.name ?: return null
+
+        announcedCrossings.removeAll {
+            ((userGeometry.timestampMilliseconds - it.timestampMilliseconds) >
+                crossingForgetTimeMilliseconds) ||
+                (gridState.ruler.distance(userGeometry.location, it.location) >
+                    crossingForgetDistanceMetres)
+        }
+
+        val radius = (userGeometry.speed * crossingTriggerLeadSeconds)
+            .coerceIn(crossingTriggerMinimumRadiusMetres, crossingTriggerMaximumRadiusMetres)
+
+        // TreeId.ROADS rather than ROADS_AND_PATHS: footways, pavements, cycleways and bridleways
+        // are excluded from it (see WayGenerator), which is both what a rail passenger wants and a
+        // good deal less to sift through. The Way objects are shared between the two collections,
+        // so the crossing properties attachRailwayCrossings wrote are on these same instances.
+        //
+        // Searched at the trigger radius, not wider: the crossing point lies on the road's own
+        // geometry, so any road whose crossing is close enough to announce is itself within that
+        // radius. Anything found beyond it would only be discarded below.
+        val nearbyRoads = gridState.getFeatureTree(TreeId.ROADS).getNearbyCollection(
+            userGeometry.location, radius, gridState.ruler
+        ).features.filterIsInstance<Way>()
+
+        for (road in nearbyRoads) {
+            if (road.properties?.get("crossing_type") != "railway") continue
+            if (road.properties?.get("crossing_name") != railwayName) continue
+            val latitude = road.properties?.get("crossing_latitude") as? Double ?: continue
+            val longitude = road.properties?.get("crossing_longitude") as? Double ?: continue
+            val point = LngLatAlt(longitude, latitude)
+            if (gridState.ruler.distance(userGeometry.location, point) > radius) continue
+
+            // Only genuinely named roads. Way.getName confects a name for anything unnamed, which
+            // from a train reads as noise rather than a landmark - "Crossing Service that joins
+            // Lennox Park and Crossveggate" tells a passenger nothing.
+            if ((road.name == null) && (road.ref == null)) continue
+            val roadName = road.getName(null, gridState, localized, true)
+            if (roadName.isEmpty()) continue
+
+            // Keyed on the name rather than the osmId, so a dual carriageway carried on two
+            // separate bridge decks is announced once rather than twice. Genuinely crossing the
+            // same road again later in the journey still re-announces, once the earlier entry has
+            // aged or fallen far enough behind to be pruned above.
+            val key = "road|$roadName"
+            if (announcedCrossings.any { it.key == key }) continue
+
+            // Inverted: a road recorded as being over the railway is one the train goes under.
+            val goingUnder = road.properties?.get("crossing_position") == "over"
+            val text = if (goingUnder) {
+                localized?.get(StringKey.DirectionsGoingUnderRailway, roadName)
+                    ?: "Going under $roadName"
+            } else {
+                localized?.get(StringKey.DirectionsCrossingWaterway, roadName)
+                    ?: "Crossing $roadName"
+            }
+
+            announcedCrossings.add(
+                AnnouncedCrossing(key, point, userGeometry.timestampMilliseconds)
+            )
+            return TrackedCallout(
+                userGeometry,
+                trackedText = roadName,
+                location = userGeometry.location,
+                positionedStrings = listOf(
+                    PositionedString(
+                        text = text,
+                        location = userGeometry.location,
+                        type = AudioType.STANDARD
+                    )
+                ),
+                isPoint = true,
+                isGeneric = false,
+            )
+        }
+        return null
+    }
+
     // position is the user's relationship to the structure, "over" or "under" - see CrossingInfo
     // in MvtToGeoJson.kt for why the raw OSM brunnel value isn't good enough. point is where the
     // road and the structure actually cross, absent for the water-polygon fallback below.
@@ -559,6 +653,17 @@ class AutoCallout(
         gridState: GridState,
         previousOsmId: Long?
     ): WayCrossingInfo? {
+        // Crossings hang off the *road* the user is matched to, so they only mean anything if the
+        // user is actually on a road. On a train the road matcher still latches onto whatever runs
+        // alongside the line, and those roads carry the crossing properties for the very railway
+        // being ridden - recordings had "Going under Milngavie Branch" and "Crossing Milngavie
+        // Branch" interleaved with "On Milngavie Branch". Announcing a train's own crossings would
+        // mean attaching them to railway Ways, which is a separate job from this one.
+        //
+        // Suppressed shortly after losing rail lock too, for the same reason as the vehicle
+        // landmark callouts above: probablyOnTrain() can flicker false for an instant mid-journey.
+        if (userGeometry.probablyOnTrain() || recentlyOnTrain(userGeometry)) return null
+
         val way = userGeometry.mapMatchedWay ?: return null
         val crossing = wayCrossingInfo(way, gridState, userGeometry.location) ?: return null
 
@@ -872,6 +977,11 @@ class AutoCallout(
                         buildCalloutForVehicleTransitStop(userGeometry, gridState, settlementGrid)
                     val vehicleWaterwayCrossingCallout =
                         buildCalloutForVehicleCrossing(userGeometry, gridState)
+                    // On a train the road-matched crossings above are suppressed (see
+                    // crossingToAnnounce), so this names the roads the line passes over/under
+                    // instead.
+                    val trainCrossingCallout =
+                        buildCalloutForTrainCrossing(userGeometry, gridState)
                     // Always run alongside its vehicle equivalent above (rather than only in the
                     // pedestrian branch below) so its own tracked Way osmId resets correctly the
                     // moment vehicle travel starts - the same reason buildCalloutForVehicleCrossing
@@ -880,7 +990,7 @@ class AutoCallout(
                         buildCalloutForWalkingCrossing(userGeometry, gridState)
                     val vehicleCallouts = listOfNotNull(
                         roadSenseCallout, vehicleLandmarkCallout, vehicleTransitStopCallout,
-                        vehicleWaterwayCrossingCallout
+                        vehicleWaterwayCrossingCallout, trainCrossingCallout
                     )
                     if (vehicleCallouts.isNotEmpty()) {
                         val primary = vehicleCallouts.first()
