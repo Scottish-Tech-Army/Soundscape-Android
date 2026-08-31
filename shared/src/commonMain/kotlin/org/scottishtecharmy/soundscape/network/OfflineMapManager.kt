@@ -228,8 +228,15 @@ class OfflineMapManager(
                             } catch (_: Exception) {
                             }
                             systemFileSystem.atomicMove(tempFile, finalFile)
-                            _downloadState.value = DownloadStateCommon.Success
+                            // Refresh before publishing Success, not after. Success is what
+                            // releases anything waiting on downloadState, and the natural next
+                            // thing for a waiter to do is read downloadedExtracts - which, the
+                            // other way round, still held the list from before this download for
+                            // the width of one statement. Rare, but it is exactly what
+                            // OfflineMapManagerTest.startDownload_success_movesTempFileToFinal-
+                            // PathAndUpdatesDownloadedExtracts intermittently caught on CI.
                             refreshDownloaded()
+                            _downloadState.value = DownloadStateCommon.Success
                             return@launch
                         }
 
