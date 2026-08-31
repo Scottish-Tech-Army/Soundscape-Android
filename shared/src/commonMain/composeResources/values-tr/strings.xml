@@ -1423,10 +1423,10 @@
     <string name="directions_near_settlement_inline">%1$s yakınında</string>
     <string name="directions_close_to_settlement_inline">%1$s'e yakın</string>
     <string name="directions_generic_train">tren</string>
-    <string name="directions_crossing_waterway">%1$s geçiliyor</string>
-    <string name="directions_crossing_railway_generic">Demiryolu geçiliyor</string>
+    <string name="directions_crossing_waterway">%1$s üzerinden geçiliyor</string>
+    <string name="directions_crossing_railway_generic">Demiryolunun üzerinden geçiliyor</string>
     <string name="directions_going_under_railway">%1$s altından geçiliyor</string>
-    <string name="directions_going_under_railway_generic">Demiryolu altından geçiliyor</string>
+    <string name="directions_going_under_railway_generic">Demiryolunun altından geçiliyor</string>
     <string name="directions_cardinal_north_bound">Kuzey yönü</string>
     <string name="directions_cardinal_north_east_bound">Kuzeydoğu yönü</string>
     <string name="directions_cardinal_east_bound">Doğu yönü</string>
