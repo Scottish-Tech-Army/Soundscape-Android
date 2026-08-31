@@ -1032,8 +1032,8 @@
     <string name="directions_near_settlement_inline">%1$s lähedal</string>
     <string name="directions_close_to_settlement_inline">%1$s läheduses</string>
     <string name="directions_generic_train">rongis</string>
-    <string name="directions_crossing_waterway">Ületab %1$s</string>
-    <string name="directions_crossing_railway_generic">Ületab raudteed</string>
+    <string name="directions_crossing_waterway">Läheb %1$s pealt üle</string>
+    <string name="directions_crossing_railway_generic">Läheb raudtee pealt üle</string>
     <string name="directions_going_under_railway">Läheb %1$s alt läbi</string>
     <string name="directions_going_under_railway_generic">Läheb raudtee alt läbi</string>
     <string name="directions_cardinal_north_bound">Põhja suunas</string>
