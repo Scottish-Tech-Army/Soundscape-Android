@@ -73,10 +73,14 @@ class UserGeometry(
 
     /**
      * Roads and railways are matched independently (see MapMatchFilter's networkTree), since
-     * they're separate connectivity graphs. A confident lock onto a railway Way while travelling
-     * at vehicle speed is a reasonable proxy for "on a train" - the two networks essentially never
-     * physically overlap except very briefly at level crossings, so this shouldn't be confused
-     * with driving alongside a railway line.
+     * they're separate connectivity graphs.
+     *
+     * A confident lock onto a railway is NOT on its own a safe proxy for being on a train, however
+     * much it looks like one. Motorways are routinely built alongside railway lines for kilometres
+     * - the M90 past Winchburgh runs 35-70m from the Winchburgh Chord for about a minute at 70mph,
+     * which used to be enough for a driver to be told "On Winchburgh Chord". Deciding this needs
+     * the railway match to be weighed against the road match from the same update, which is
+     * RailMatchArbiter's job; by the time mapMatchedRailway is set here, that's already happened.
      */
     fun probablyOnTrain(): Boolean {
         return inVehicle() && (mapMatchedRailway != null)
