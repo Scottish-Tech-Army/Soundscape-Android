@@ -200,8 +200,8 @@
     <string name="directions_near_settlement_inline">близо до %1$s</string>
     <string name="directions_close_to_settlement_inline">в близост до %1$s</string>
     <string name="directions_generic_train">влак</string>
-    <string name="directions_crossing_waterway">Пресичане на %1$s</string>
-    <string name="directions_crossing_railway_generic">Пресичане на жп линията</string>
+    <string name="directions_crossing_waterway">Преминаване над %1$s</string>
+    <string name="directions_crossing_railway_generic">Преминаване над жп линията</string>
     <string name="directions_going_under_railway">Преминаване под %1$s</string>
     <string name="directions_going_under_railway_generic">Преминаване под жп линията</string>
     <string name="directions_traveling_n">Пътувате на север</string>
