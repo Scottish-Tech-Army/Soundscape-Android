@@ -200,8 +200,8 @@
     <string name="directions_near_settlement_inline">%1$s அருகில்</string>
     <string name="directions_close_to_settlement_inline">%1$s-க்கு அருகாமையில்</string>
     <string name="directions_generic_train">ரயில்</string>
-    <string name="directions_crossing_waterway">%1$s-ஐக் கடக்கிறது</string>
-    <string name="directions_crossing_railway_generic">ரயில் பாதையைக் கடக்கிறது</string>
+    <string name="directions_crossing_waterway">%1$s-க்கு மேலே செல்கிறது</string>
+    <string name="directions_crossing_railway_generic">ரயில் பாதைக்கு மேலே செல்கிறது</string>
     <string name="directions_going_under_railway">%1$s-க்கு அடியில் செல்கிறது</string>
     <string name="directions_going_under_railway_generic">ரயில் பாதைக்கு அடியில் செல்கிறது</string>
     <string name="directions_traveling_n">வடக்கு நோக்கிப் பயணம்</string>
