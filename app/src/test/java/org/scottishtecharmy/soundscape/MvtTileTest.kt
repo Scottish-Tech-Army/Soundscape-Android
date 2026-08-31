@@ -22,6 +22,7 @@ import org.scottishtecharmy.soundscape.geoengine.LastStationTracker
 import org.scottishtecharmy.soundscape.geoengine.NotableVehicleEventTracker
 import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
+import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.EntranceDetails
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.EntranceMatching
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
@@ -1943,6 +1944,91 @@ class MvtTileTest {
     }
 
     /**
+     * Driving the M90 past Winchburgh must never be reported as being on a train. The Winchburgh
+     * Chord runs alongside the motorway there - the recorded track sits 35-70m from it for about
+     * sixty consecutive fixes at 70mph, well inside the rail follower's DISTANT threshold at that
+     * speed - and the rail matcher duly builds a confident lock on it. Before RailMatchArbiter that
+     * was enough on its own, and MotorwayForTravel.gpx announced "On Winchburgh Chord and close to
+     * Scotstoun" in the middle of a motorway drive.
+     *
+     * This drives the M90's own centreline, which is the strongest form of the case: the road match
+     * is essentially perfect throughout, so the railway should never get a look in.
+     */
+    @Test
+    fun testMotorwayBesideRailwayIsNotATrain() {
+        val location = LngLatAlt(-3.390, 55.970)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+
+        val motorway = gridState.getFeatureTree(TreeId.ROADS).getAllCollection().features
+            .filterIsInstance<Way>()
+            .filter { it.ref == "M90" }
+            .maxByOrNull { it.length }
+        assertNotNull("Expected a stretch of the M90 near Winchburgh in the test data", motorway)
+
+        val railways = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
+            .filterIsInstance<Way>()
+        assertTrue(
+            "Expected the Winchburgh Chord in the test data - without it this test proves nothing",
+            railways.any { it.name == "Winchburgh Chord" }
+        )
+
+        val mapMatchFilter = MapMatchFilter()
+        val railMapMatchFilter = MapMatchFilter(networkTree = TreeId.TRANSIT)
+        val arbiter = RailMatchArbiter()
+
+        var railEverConfident = false
+        for (coordinate in (motorway!!.geometry as LineString).coordinates) {
+            runBlocking { gridState.locationUpdate(coordinate, emptySet(), null) }
+            mapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null, true)
+            railMapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null)
+            if (railMapMatchFilter.isMatchConfident) railEverConfident = true
+            val railway = arbiter.update(mapMatchFilter, railMapMatchFilter)
+            assertNull(
+                "Driving the M90 must never be reported as a train, got ${railway?.name}",
+                railway
+            )
+        }
+
+        // Without this the test could pass simply because no railway was ever matched, which would
+        // make it silently stop covering the bug if the tiles or the matcher changed.
+        assertTrue(
+            "The rail matcher never locked on here, so this test isn't exercising the bug it " +
+                "exists for - pick a stretch where the railway really does run alongside",
+            railEverConfident
+        )
+    }
+
+    /**
+     * The other half of testMotorwayBesideRailwayIsNotATrain: the arbiter must not simply refuse to
+     * ever report a train. Driving a real railway's own geometry, it should eventually acquire one.
+     */
+    @Test
+    fun testTravellingAlongARailwayIsATrain() {
+        val gridState = getGridStateForLocation(glasgowTestLocation, MAX_ZOOM_LEVEL, 3)
+        val railway = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
+            .filterIsInstance<Way>()
+            .filter { (it.geometry as LineString).coordinates.size > 20 }
+            .maxByOrNull { it.length }
+        assertNotNull("Expected a reasonably long railway Way in the test data", railway)
+
+        val mapMatchFilter = MapMatchFilter()
+        val railMapMatchFilter = MapMatchFilter(networkTree = TreeId.TRANSIT)
+        val arbiter = RailMatchArbiter()
+
+        var matchedAsTrain = false
+        for (coordinate in (railway!!.geometry as LineString).coordinates) {
+            runBlocking { gridState.locationUpdate(coordinate, emptySet(), null) }
+            mapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null, true)
+            railMapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null)
+            if (arbiter.update(mapMatchFilter, railMapMatchFilter) != null) {
+                matchedAsTrain = true
+                break
+            }
+        }
+        assertTrue("Travelling along a railway should still be detected as a train", matchedAsTrain)
+    }
+
+    /**
      * MapMatchFilter can now be configured to match against a network other than roads, via
      * `MapMatchFilter(networkTree = TreeId.TRANSIT)`. This feeds a real railway Way's own
      * geometry through such a filter and checks it locks onto a Way from the railway network,
@@ -2531,6 +2617,10 @@ class MvtTileTest {
         settlementGrid.start(offlineExtractPath)
         val mapMatchFilter = MapMatchFilter()
         val railMapMatchFilter = MapMatchFilter(networkTree = TreeId.TRANSIT)
+        // Mirror GeoEngine exactly - the whole point of this harness is that it behaves like
+        // production, and whether the user is on a train is decided by weighing the two matchers
+        // against each other rather than trusting the rail one alone.
+        val railMatchArbiter = RailMatchArbiter()
         val gps = parseGpxFromFile(gpxFilename)
         val collection = FeatureCollection()
         val startIndex = 0
@@ -2650,9 +2740,7 @@ class MvtTileTest {
                     speed = speed,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
-                    mapMatchedRailway = railMapMatchFilter.matchedWay.takeIf {
-                        railMapMatchFilter.isMatchConfident
-                    },
+                    mapMatchedRailway = railMatchArbiter.update(mapMatchFilter, railMapMatchFilter),
                     timestampMilliseconds = (position.properties?.get("time") as? Double?)?.toLong()
                         ?: time
                 )

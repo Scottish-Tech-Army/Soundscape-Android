@@ -17,8 +17,10 @@ import org.scottishtecharmy.soundscape.geoengine.callouts.buildMyLocationCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildNearbyMarkersCallout
 import org.scottishtecharmy.soundscape.geoengine.callouts.buildWhatsAroundMeCallout
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
+import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
@@ -92,6 +94,11 @@ class GeoEngine {
     private var headTrackingProvider: HeadTrackingProvider? = null
     private var mapMatchFilter = MapMatchFilter()
     private var railMapMatchFilter = MapMatchFilter(networkTree = TreeId.TRANSIT)
+    // The two matchers can't see each other, so something has to weigh a confident railway match
+    // against the road match before believing the user is on a train - see RailMatchArbiter.
+    private var railMatchArbiter = RailMatchArbiter()
+    // RailMatchArbiter's verdict from the most recent location update.
+    private var arbitratedRailway: Way? = null
 
     fun setHeadTrackingProvider(provider: HeadTrackingProvider?) {
         headTrackingProvider = provider
@@ -204,11 +211,9 @@ class GeoEngine {
             headHeading = headHeading,
             mapMatchedWay = mapMatchFilter?.matchedWay,
             mapMatchedLocation = mapMatchFilter?.matchedLocation,
-            // Only trust the rail match once it's been sustained for a real stretch, not just
-            // this one tick - see MapMatchFilter.isMatchConfident, which stops a road crossing a
-            // railway at a level crossing from being briefly mistaken for actually being on a
-            // train.
-            mapMatchedRailway = railMapMatchFilter.matchedWay.takeIf { railMapMatchFilter.isMatchConfident },
+            // Decided by RailMatchArbiter when the filters ran, since it needs to compare the two
+            // matchers against each other rather than trust the railway one on its own.
+            mapMatchedRailway = arbitratedRailway,
             currentBeacon = beaconLocation,
             inStreetPreview = streetPreview.running,
             timestampMilliseconds = currentTimeMillis()
@@ -452,6 +457,11 @@ class GeoEngine {
                                     false,
                                     localizedStrings
                                 )
+
+                                // Both matchers have now run for this location, so the railway
+                                // match can be weighed against the road one.
+                                arbitratedRailway =
+                                    railMatchArbiter.update(mapMatchFilter, railMapMatchFilter)
                             }
                         }
                     }
