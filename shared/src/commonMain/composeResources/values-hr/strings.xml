@@ -912,8 +912,8 @@
     <string name="directions_near_settlement_inline">blizu %1$s</string>
     <string name="directions_close_to_settlement_inline">u blizini %1$s</string>
     <string name="directions_generic_train">vlaku</string>
-    <string name="directions_crossing_waterway">Prelazak preko %1$s</string>
-    <string name="directions_crossing_railway_generic">Prelazak preko željezničke pruge</string>
+    <string name="directions_crossing_waterway">Prolazak iznad %1$s</string>
+    <string name="directions_crossing_railway_generic">Prolazak iznad željezničke pruge</string>
     <string name="directions_going_under_railway">Prolazak ispod %1$s</string>
     <string name="directions_going_under_railway_generic">Prolazak ispod željezničke pruge</string>
     <string name="directions_traveling_n">Kretanje prema sjeveru</string>
