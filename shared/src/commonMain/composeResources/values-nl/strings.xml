@@ -1423,8 +1423,8 @@
     <string name="directions_near_settlement_inline">bij %1$s</string>
     <string name="directions_close_to_settlement_inline">dicht bij %1$s</string>
     <string name="directions_generic_train">trein</string>
-    <string name="directions_crossing_waterway">Oversteken van %1$s</string>
-    <string name="directions_crossing_railway_generic">Oversteken van de spoorlijn</string>
+    <string name="directions_crossing_waterway">Over %1$s heen</string>
+    <string name="directions_crossing_railway_generic">Over de spoorlijn heen</string>
     <string name="directions_going_under_railway">Onder %1$s door</string>
     <string name="directions_going_under_railway_generic">Onder de spoorlijn door</string>
     <string name="directions_cardinal_north_bound">Richting noorden</string>
