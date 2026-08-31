@@ -1423,10 +1423,10 @@
     <string name="directions_near_settlement_inline">nära %1$s</string>
     <string name="directions_close_to_settlement_inline">nära %1$s</string>
     <string name="directions_generic_train">tåg</string>
-    <string name="directions_crossing_waterway">Korsar %1$s</string>
-    <string name="directions_crossing_railway_generic">Korsar järnvägen</string>
-    <string name="directions_going_under_railway">Går under %1$s</string>
-    <string name="directions_going_under_railway_generic">Går under järnvägen</string>
+    <string name="directions_crossing_waterway">Passerar över %1$s</string>
+    <string name="directions_crossing_railway_generic">Passerar över järnvägen</string>
+    <string name="directions_going_under_railway">Passerar under %1$s</string>
+    <string name="directions_going_under_railway_generic">Passerar under järnvägen</string>
     <string name="directions_cardinal_north_bound">Mot norr</string>
     <string name="directions_cardinal_north_east_bound">Mot nordost</string>
     <string name="directions_cardinal_east_bound">Mot öster</string>
