@@ -912,8 +912,8 @@
     <string name="directions_near_settlement_inline">dekat %1$s</string>
     <string name="directions_close_to_settlement_inline">tidak jauh dari %1$s</string>
     <string name="directions_generic_train">kereta</string>
-    <string name="directions_crossing_waterway">Melintasi %1$s</string>
-    <string name="directions_crossing_railway_generic">Melintasi jalur kereta api</string>
+    <string name="directions_crossing_waterway">Melintas di atas %1$s</string>
+    <string name="directions_crossing_railway_generic">Melintas di atas jalur kereta api</string>
     <string name="directions_going_under_railway">Melintas di bawah %1$s</string>
     <string name="directions_going_under_railway_generic">Melintas di bawah jalur kereta api</string>
     <string name="directions_traveling_n">Melaju ke utara</string>
