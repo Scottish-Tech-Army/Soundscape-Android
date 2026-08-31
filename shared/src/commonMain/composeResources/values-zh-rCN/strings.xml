@@ -1418,8 +1418,8 @@
     <string name="directions_near_settlement_inline">靠近%1$s</string>
     <string name="directions_close_to_settlement_inline">接近%1$s</string>
     <string name="directions_generic_train">列车</string>
-    <string name="directions_crossing_waterway">正在跨越%1$s</string>
-    <string name="directions_crossing_railway_generic">正在跨越铁路</string>
+    <string name="directions_crossing_waterway">正在从%1$s上方穿过</string>
+    <string name="directions_crossing_railway_generic">正在从铁路上方穿过</string>
     <string name="directions_going_under_railway">正在从%1$s下方穿过</string>
     <string name="directions_going_under_railway_generic">正在从铁路下方穿过</string>
     <string name="directions_cardinal_north_bound">北行</string>
