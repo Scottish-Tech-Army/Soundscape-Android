@@ -912,10 +912,10 @@
     <string name="directions_near_settlement_inline">blízko %1$s</string>
     <string name="directions_close_to_settlement_inline">neďaleko %1$s</string>
     <string name="directions_generic_train">vlak</string>
-    <string name="directions_crossing_waterway">Prechod cez %1$s</string>
-    <string name="directions_crossing_railway_generic">Prechod cez železnicu</string>
+    <string name="directions_crossing_waterway">Prechod nad %1$s</string>
+    <string name="directions_crossing_railway_generic">Prechod nad železnicou</string>
     <string name="directions_going_under_railway">Prechod pod %1$s</string>
-    <string name="directions_going_under_railway_generic">Pod železnicou</string>
+    <string name="directions_going_under_railway_generic">Prechod pod železnicou</string>
     <string name="directions_traveling_n">Cestujete na sever</string>
     <string name="directions_traveling_ne">Cestujete na severovýchod</string>
     <string name="directions_traveling_e">Cestujete na východ</string>
