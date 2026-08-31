@@ -1148,8 +1148,8 @@
     <string name="directions_near_settlement_inline">%1$s जवळ</string>
     <string name="directions_close_to_settlement_inline">%1$s च्या जवळपास</string>
     <string name="directions_generic_train">ट्रेन</string>
-    <string name="directions_crossing_waterway">%1$s ओलांडत आहे</string>
-    <string name="directions_crossing_railway_generic">रेल्वे मार्ग ओलांडत आहे</string>
+    <string name="directions_crossing_waterway">%1$sच्या वरून जात आहे</string>
+    <string name="directions_crossing_railway_generic">रेल्वे मार्गाच्या वरून जात आहे</string>
     <string name="directions_going_under_railway">%1$sच्या खालून जात आहे</string>
     <string name="directions_going_under_railway_generic">रेल्वे मार्गाच्या खालून जात आहे</string>
     <string name="directions_traveling_n">उत्तरेकडे प्रवास करत आहे</string>
