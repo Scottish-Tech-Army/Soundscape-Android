@@ -26,11 +26,13 @@ import android.widget.Toast
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.core.content.ContextCompat
+import androidx.core.os.LocaleListCompat
 import androidx.core.content.FileProvider
 import androidx.core.content.edit
 import androidx.core.content.pm.ShortcutInfoCompat
@@ -232,6 +234,37 @@ class MainActivity : AppCompatActivity() {
 
     private var locationPermissionGranted = -1
     private var notificationPermissionGranted = -1
+
+    /**
+     * Moves anyone still set to Egyptian Arabic onto Arabic, on the first launch after upgrading.
+     *
+     * We dropped arz because Compose Resources has no plural rules for it: an unknown locale gets
+     * an empty rule list, whose getCategory() throws rather than falling back to `other`, so every
+     * distance callout threw.
+     *
+     * Removing the language is not enough by itself. arz is its own ISO 639-3 language and CLDR's
+     * parent for it is `root` rather than `ar`, so with values-arz gone a stored arz locale
+     * resolves to the base English strings, not to Arabic. Without this rewrite those users would
+     * silently find themselves in English.
+     *
+     * It has to run from the activity rather than Application.onCreate. Both AppCompat locale
+     * calls reach the platform via getLocaleManagerForApplication(), which looks for a context by
+     * walking the set of live activity delegates, and a delegate only joins that set inside
+     * super.onCreate(). Called any earlier the getter returns an empty list and the setter is a
+     * silent no-op, so the migration appears to run while changing nothing.
+     *
+     * It writes "ar-001" rather than a bare "ar" because that is exactly what the language picker
+     * stores for Arabic, so the picker finds an exact language+region match and shows العربية as
+     * selected.
+     *
+     * Once that is written the app locale is no longer arz, so the check below stops matching and
+     * the migration never runs again.
+     */
+    private fun migrateEgyptianArabicToArabic() {
+        if (AppCompatDelegate.getApplicationLocales()[0]?.language == "arz") {
+            AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags("ar-001"))
+        }
+    }
 
     override fun onResume() {
         super.onResume()
@@ -471,6 +504,8 @@ class MainActivity : AppCompatActivity() {
         // We delay starting the service until the splash screen is gone so that we don't have a
         // clash of audio with the splash screen sound.
         super.onCreate(savedInstanceState)
+
+        migrateEgyptianArabicToArabic()
 
         // Hook the file picker for the advanced markers/routes import flow into
         // the activity result registry now that super.onCreate has run.

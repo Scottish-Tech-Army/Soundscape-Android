@@ -17,7 +17,6 @@
 search:
   en: "Search Soundscape"
   en-GB: "Search Soundscape"
-  arz: "ابحث في Soundscape"
   da: "Søg i Soundscape"
   de: "Soundscape durchsuchen"
   el: "Αναζήτηση στο Soundscape"
@@ -48,7 +47,6 @@ aux_links:
   "Soundscape on GitHub":
     en: "Soundscape on GitHub"
     en-GB: "Soundscape on GitHub"
-    arz: "Soundscape على GitHub"
     da: "Soundscape på GitHub"
     de: "Soundscape auf GitHub"
     el: "Το Soundscape στο GitHub"

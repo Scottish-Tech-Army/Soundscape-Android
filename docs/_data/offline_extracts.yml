@@ -24,25 +24,6 @@
   errBasemap: "Could not initialise the basemap (%s)."
   errManifest: "Could not load the list of map extracts: %s"
 
-"arz":
-  mapLabel: "خريطة العالم لمقتطفات الخريطة أوفلاين"
-  loading: "جاري تحميل مقتطفات الخريطة…"
-  tapPrompt: "دوس على منطقة في الخريطة علشان تشوف تفاصيلها هنا."
-  typeCountry: "دولة"
-  typeRegion: "منطقة"
-  typeCity: "مدينة"
-  coversOne: "مقتطف واحد بيغطي النقطة دي"
-  coversMany: "%d مقتطفات بتغطي النقطة دي"
-  none: "مفيش أي مقتطف خريطة أوفلاين بيغطي النقطة دي. دوس على واحدة من المناطق الملوّنة."
-  downloadSize: "حجم التنزيل %s"
-  sizeUnavailable: "حجم التنزيل لسه مش متاح"
-  includes: "بيشمل %s."
-  and: "و"
-  errLibrary: "فشل تحميل مكتبة الخرايط. اتأكد من اتصالك بالشبكة وأعد تحميل الصفحة."
-  errRenderer: "فشل تحميل محرك عرض الخريطة. اتأكد من اتصالك بالشبكة وأعد تحميل الصفحة."
-  errBasemap: "تعذّر تهيئة الخريطة الأساسية (%s)."
-  errManifest: "تعذّر تحميل قائمة مقتطفات الخريطة: %s"
-
 "da":
   mapLabel: "Verdenskort over offline kortudsnit"
   loading: "Indlæser kortudsnit…"

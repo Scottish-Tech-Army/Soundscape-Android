@@ -229,7 +229,6 @@ class DocumentationScreens {
     private val localeMap: Map<String, String> = mapOf(
         "en" to "en",          // default -> no suffix, no `lang:` front matter
         "ar" to "ar",
-        "arz" to "arz",
         "bg" to "bg",
         "bn" to "bn",
         "ca" to "ca",
@@ -284,7 +283,6 @@ class DocumentationScreens {
         "en" to "Using Soundscape",
         "en-GB" to "Using Soundscape",
         "ar" to "استخدام Soundscape",
-        "arz" to "استخدام ساوندسكيب",
         "bg" to "Използване на Soundscape",
         "bn" to "সাউন্ডস্কেপ ব্যবহার",
         "ca" to "Utilitzar Soundscape",

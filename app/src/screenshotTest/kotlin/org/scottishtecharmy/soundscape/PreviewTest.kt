@@ -62,7 +62,7 @@ import org.scottishtecharmy.soundscape.ui.theme.SoundscapeTheme
 
 @Preview(
     name = "Arabic",
-    locale = "arz",
+    locale = "ar",
     group = "Language",
     showBackground = true,
     device = "id:small_phone"
