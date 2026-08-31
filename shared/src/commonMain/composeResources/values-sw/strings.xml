@@ -556,8 +556,8 @@
     <string name="directions_near_settlement_inline">karibu na %1$s</string>
     <string name="directions_close_to_settlement_inline">si mbali na %1$s</string>
     <string name="directions_generic_train">treni</string>
-    <string name="directions_crossing_waterway">Inavuka %1$s</string>
-    <string name="directions_crossing_railway_generic">Inavuka reli</string>
+    <string name="directions_crossing_waterway">Inapita juu ya %1$s</string>
+    <string name="directions_crossing_railway_generic">Inapita juu ya reli</string>
     <string name="directions_going_under_railway">Inapita chini ya %1$s</string>
     <string name="directions_going_under_railway_generic">Inapita chini ya reli</string>
     <string name="directions_traveling_n">Unasafiri kuelekea kaskazini</string>
