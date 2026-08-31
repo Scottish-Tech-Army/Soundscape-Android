@@ -1424,8 +1424,8 @@
     <string name="directions_near_settlement_inline">نزدیک %1$s</string>
     <string name="directions_close_to_settlement_inline">در نزدیکی %1$s</string>
     <string name="directions_generic_train">قطار</string>
-    <string name="directions_crossing_waterway">عبور از %1$s</string>
-    <string name="directions_crossing_railway_generic">عبور از راه‌آهن</string>
+    <string name="directions_crossing_waterway">عبور از روی %1$s</string>
+    <string name="directions_crossing_railway_generic">عبور از روی راه‌آهن</string>
     <string name="directions_going_under_railway">عبور از زیر %1$s</string>
     <string name="directions_going_under_railway_generic">عبور از زیر راه‌آهن</string>
     <string name="directions_cardinal_north_bound">به سمت شمال</string>
