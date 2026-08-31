@@ -1795,6 +1795,69 @@ class MvtTileTest {
     }
 
     /**
+     * Riding a railway, the roads it passes over and under should be named - "Crossing Glasgow
+     * Road", "Going under Milngavie Road" - and the line being ridden must never be announced as
+     * something being crossed.
+     *
+     * Both come from the same place. Crossings hang off the *road* Way, so on a train the road
+     * matcher latches onto whatever runs alongside and those roads carry the crossing properties
+     * for the very line being ridden: recordings had "Going under Milngavie Branch" interleaved
+     * with "On Milngavie Branch". Suppressing that leaves the data available to read the other way
+     * round, naming the road rather than the railway (see buildCalloutForTrainCrossing). The
+     * over/under sense inverts, since the stored position is the road user's.
+     */
+    @Test
+    fun testTrainCrossingNamesTheRoadNotTheRailway() {
+        val location = LngLatAlt(-4.3115, 55.9295)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        // A road carrying a bridge over the Milngavie Branch, as recorded by
+        // GridState.attachRailwayCrossings.
+        val bridge = gridState.getFeatureTree(TreeId.ROADS).getAllCollection().features
+            .filterIsInstance<Way>()
+            .firstOrNull {
+                it.properties?.get("crossing_name") == "Milngavie Branch" &&
+                    it.properties?.get("crossing_position") == "over" &&
+                    it.name != null
+            }
+        assertNotNull("Expected a named road bridging the Milngavie Branch", bridge)
+
+        val crossingPoint = LngLatAlt(
+            bridge!!.properties?.get("crossing_longitude") as Double,
+            bridge.properties?.get("crossing_latitude") as Double
+        )
+        val railway = Way().apply { name = "Milngavie Branch" }
+        val userGeometry = UserGeometry(
+            location = crossingPoint,
+            speed = 15.0,
+            mapMatchedWay = bridge,
+            mapMatchedRailway = railway,
+            timestampMilliseconds = 1000L
+        )
+        assertTrue(userGeometry.probablyOnTrain())
+
+        val autoCallout = AutoCallout(null, null)
+        val callout = autoCallout.updateLocation(userGeometry, gridState, settlementGrid)
+        assertNotNull("Expected the road carrying the bridge to be called out", callout)
+
+        val texts = callout!!.positionedStrings.map { it.text }
+        // "On Milngavie Branch and close to Bearsden" is expected and correct - it's being told
+        // you're *crossing* or *going under* the line you're riding that never made sense.
+        assertTrue(
+            "The line being ridden must never be announced as crossed, got: $texts",
+            texts.none {
+                it == "Crossing Milngavie Branch" || it == "Going under Milngavie Branch"
+            }
+        )
+        // The road is over the railway, so from the train we pass beneath it.
+        assertTrue(
+            "Expected to go under the road carrying the bridge, got: $texts",
+            texts.any { it == "Going under ${bridge.getName(null, gridState, null, true)}" }
+        )
+    }
+
+    /**
      * When userGeometry.probablyOnTrain() is true (vehicle speed + a confident railway match),
      * travel-mode reverse geocoding should use the railway's name instead of doing a road search
      * or looking for a highway junction, and should still combine it with a nearby settlement,
