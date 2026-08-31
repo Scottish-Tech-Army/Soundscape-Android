@@ -1423,10 +1423,10 @@
     <string name="directions_near_settlement_inline">near %1$s</string>
     <string name="directions_close_to_settlement_inline">close to %1$s</string>
     <string name="directions_generic_train">train</string>
-    <string name="directions_crossing_waterway">Crossing %1$s</string>
-    <string name="directions_crossing_railway_generic">Crossing the railway</string>
-    <string name="directions_going_under_railway">Going under %1$s</string>
-    <string name="directions_going_under_railway_generic">Going under the railway</string>
+    <string name="directions_crossing_waterway">Passing over %1$s</string>
+    <string name="directions_crossing_railway_generic">Passing over the railway</string>
+    <string name="directions_going_under_railway">Passing under %1$s</string>
+    <string name="directions_going_under_railway_generic">Passing under the railway</string>
     <string name="directions_cardinal_north_bound">Northbound</string>
     <string name="directions_cardinal_north_east_bound">Northeastbound</string>
     <string name="directions_cardinal_east_bound">Eastbound</string>
