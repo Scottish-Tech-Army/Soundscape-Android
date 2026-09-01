@@ -28,7 +28,6 @@ import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.services.ServiceConnection
 import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService
-import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -114,7 +113,6 @@ class HomeViewModelTest {
             DeviceDirection(floatArrayOf(0f, 0f, 0f, 0f), 90f, 5f, 0L)
         service.beaconFlowState.value = BeaconState(name = "Home")
         service.currentRouteFlowState.value = RoutePlayerState(currentWaypoint = 2)
-        service.voiceCommandStateFlowState.value = VoiceCommandState.Listening
         service.activeCalloutFlowState.value = TourButton.AROUND_ME
         testDispatcher.scheduler.advanceUntilIdle()
 
@@ -123,7 +121,6 @@ class HomeViewModelTest {
         assertEquals(90f, state.heading)
         assertEquals("Home", state.beaconState?.name)
         assertEquals(2, state.currentRouteData.currentWaypoint)
-        assertTrue(state.voiceCommandListening)
         assertEquals(TourButton.AROUND_ME, state.activeCallout)
     }
 
@@ -279,9 +276,6 @@ private class FakeMediaControllableService : MediaControllableService {
 
     val streetPreviewFlowState = MutableStateFlow(StreetPreviewState())
     override val streetPreviewFlow: StateFlow<StreetPreviewState> = streetPreviewFlowState
-
-    val voiceCommandStateFlowState = MutableStateFlow<VoiceCommandState>(VoiceCommandState.Idle)
-    override val voiceCommandStateFlow: StateFlow<VoiceCommandState> = voiceCommandStateFlowState
 
     val activeCalloutFlowState = MutableStateFlow<TourButton?>(null)
     override val activeCalloutFlow: StateFlow<TourButton?> = activeCalloutFlowState

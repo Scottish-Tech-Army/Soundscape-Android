@@ -103,14 +103,6 @@ fun HomeScreen(
 
     val permissionsRequiredFlow =
         remember(permissionsRequired) { MutableStateFlow(permissionsRequired) }
-    val voiceCommandListeningFlow: StateFlow<Boolean> = remember(viewModel) {
-        viewModel.state.map { it.voiceCommandListening }
-            .stateIn(
-                scope = kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.Main.immediate),
-                started = SharingStarted.Eagerly,
-                initialValue = false,
-            )
-    }
     val locationFlow: StateFlow<org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation?> =
         remember(viewModel) {
             viewModel.state
@@ -147,7 +139,6 @@ fun HomeScreen(
         audioTourRunningFlow,
         recordingEnabledFlow,
         permissionsRequiredFlow,
-        voiceCommandListeningFlow,
         intentBus,
         offlineMaps,
         locationFlow
@@ -159,7 +150,6 @@ fun HomeScreen(
             audioTourInstruction = audioTour.currentInstruction,
             recordingEnabled = recordingEnabledFlow.asStateFlow(),
             permissionsRequired = permissionsRequiredFlow.asStateFlow(),
-            voiceCommandListening = voiceCommandListeningFlow,
             pendingIntent = intentBus.pendingIntent,
             onPendingIntentHandled = { intentBus.handled() },
             offlineMapsNearbyExtractsState = offlineMaps.nearbyExtractsState,

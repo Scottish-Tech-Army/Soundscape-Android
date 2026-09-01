@@ -97,7 +97,6 @@ fun MainViewController() = ComposeUIViewController {
 
     // Stub flows for features iOS doesn't yet have its own state for.
     val permissionsRequired = remember { MutableStateFlow(false) }
-    val voiceCommandListening = remember { MutableStateFlow(false) }
 
     // TTS voice picker contents for the Audio section of the iOS settings
     // screen. Voices are enumerated once per launch — adding/removing voices
@@ -177,7 +176,6 @@ fun MainViewController() = ComposeUIViewController {
             audioTourInstruction = audioTour.currentInstruction,
             recordingEnabled = recordingEnabled,
             permissionsRequired = permissionsRequired,
-            voiceCommandListening = voiceCommandListening,
             pendingIntent = service.pendingIntent,
             onPendingIntentHandled = { service.pendingIntentHandled() },
         ),

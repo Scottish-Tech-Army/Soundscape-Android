@@ -19,7 +19,6 @@ import org.scottishtecharmy.soundscape.services.ServiceConnection
 import org.scottishtecharmy.soundscape.services.SoundscapeBinder
 import org.scottishtecharmy.soundscape.services.SoundscapeService
 import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService
-import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
 import android.content.ServiceConnection as AndroidServiceConnection
 
 class SoundscapeServiceConnection : ServiceConnection {
@@ -54,10 +53,6 @@ class SoundscapeServiceConnection : ServiceConnection {
 
     fun getGridStateFlow(): StateFlow<GridState?>? {
         return soundscapeService?.gridStateFlow
-    }
-
-    fun getVoiceCommandStateFlow(): StateFlow<VoiceCommandState>? {
-        return soundscapeService?.voiceCommandStateFlow
     }
 
     fun setStreetPreviewMode(on: Boolean, location: LngLatAlt? = null) {

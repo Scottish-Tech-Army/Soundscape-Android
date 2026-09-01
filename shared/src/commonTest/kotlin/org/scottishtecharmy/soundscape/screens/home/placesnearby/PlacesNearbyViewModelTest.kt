@@ -29,7 +29,6 @@ import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.services.ServiceConnection
 import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService
-import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -219,8 +218,6 @@ private class FakeMediaControllableService : MediaControllableService {
     override val gridStateFlow: StateFlow<GridState?> = gridStateFlowState
 
     override val streetPreviewFlow: StateFlow<StreetPreviewState> = MutableStateFlow(StreetPreviewState())
-    override val voiceCommandStateFlow: StateFlow<VoiceCommandState> =
-        MutableStateFlow(VoiceCommandState.Idle)
     override val filteredLocationFlow: StateFlow<SoundscapeLocation?> = MutableStateFlow(null)
 
     override var menuActive: Boolean = false

@@ -19,7 +19,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -93,15 +92,10 @@ import org.scottishtecharmy.soundscape.resources.ui_continue
 import org.scottishtecharmy.soundscape.resources.voice_settings_speaking_rate
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomAppBar
 import org.scottishtecharmy.soundscape.screens.markers_routes.components.CustomButton
-import org.scottishtecharmy.soundscape.screens.onboarding.language.LanguageDropDownMenu
-import org.scottishtecharmy.soundscape.screens.onboarding.language.getAppLocale
-import org.scottishtecharmy.soundscape.screens.onboarding.language.getSystemLocale
-import org.scottishtecharmy.soundscape.screens.onboarding.language.indexOfBestLanguageMatch
 import org.scottishtecharmy.soundscape.screens.talkbackHint
 import org.scottishtecharmy.soundscape.ui.theme.mediumPadding
 import org.scottishtecharmy.soundscape.ui.theme.smallPadding
 import org.scottishtecharmy.soundscape.ui.theme.spacing
-import org.scottishtecharmy.soundscape.screens.onboarding.language.supportedLanguages as appSupportedLanguages
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -109,13 +103,10 @@ fun SharedSettingsScreen(
     onNavigateUp: () -> Unit,
     beaconTypes: List<String>,
     preferencesProvider: PreferencesProvider? = null,
-    mediaControlsValues: List<String>? = null,
-    mediaControlsDescriptions: List<String>? = null,
     platformAccessibilityContent: (LazyListScope.() -> Unit)? = null,
     platformStorageContent: (LazyListScope.() -> Unit)? = null,
     platformAudioContent: (LazyListScope.() -> Unit)? = null,
     platformLanguageContent: (LazyListScope.() -> Unit)? = null,
-    platformMediaControlsContent: (LazyListScope.() -> Unit)? = null,
     platformDebugContent: (LazyListScope.() -> Unit)? = null,
     onNavigateToAdvancedMarkersAndRoutes: (() -> Unit)? = null,
     /**
@@ -203,10 +194,6 @@ fun SharedSettingsScreen(
         stringResource(Res.string.settings_media_controls_audio_menu),
     )
     val defaultMediaControlsValues = listOf("Original", "AudioMenu")
-
-    val effectiveMediaControlsValues = mediaControlsValues ?: defaultMediaControlsValues
-    val effectiveMediaControlsDescriptions =
-        mediaControlsDescriptions ?: defaultMediaControlsDescriptions
 
     val geocoderDescriptions = listOf(
         stringResource(Res.string.settings_search_auto),
@@ -610,7 +597,7 @@ fun SharedSettingsScreen(
                 listPreference(
                     key = PreferenceKeys.MEDIA_CONTROLS_MODE,
                     defaultValue = PreferenceDefaults.MEDIA_CONTROLS_MODE,
-                    values = effectiveMediaControlsValues,
+                    values = defaultMediaControlsValues,
                     modifier = expandedSectionModifier,
                     title = {
                         SettingDetails(
@@ -621,26 +608,24 @@ fun SharedSettingsScreen(
                     },
                     item = { value, currentValue, onClick ->
                         ListPreferenceItem(
-                            effectiveMediaControlsDescriptions[effectiveMediaControlsValues.indexOf(
+                            defaultMediaControlsDescriptions[defaultMediaControlsValues.indexOf(
                                 value
                             )],
                             value,
                             currentValue,
                             onClick,
-                            effectiveMediaControlsValues.indexOf(value),
-                            effectiveMediaControlsValues.size
+                            defaultMediaControlsValues.indexOf(value),
+                            defaultMediaControlsValues.size
                         )
                     },
                     summary = {
                         ClickableOption(
-                            effectiveMediaControlsDescriptions[effectiveMediaControlsValues.indexOf(
+                            defaultMediaControlsDescriptions[defaultMediaControlsValues.indexOf(
                                 it
                             )], textColor
                         )
                     },
                 )
-
-                platformMediaControlsContent?.invoke(this)
             }
 
             // ── Debug Section ────────────────────────────────────────────

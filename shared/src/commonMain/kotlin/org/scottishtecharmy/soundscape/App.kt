@@ -149,7 +149,6 @@ data class AppFlows(
     val audioTourInstruction: StateFlow<AudioTourInstruction?>? = null,
     val recordingEnabled: StateFlow<Boolean>? = null,
     val permissionsRequired: StateFlow<Boolean>? = null,
-    val voiceCommandListening: StateFlow<Boolean>? = null,
     /**
      * Single-shot inbound intent (URL, file import, deep link) emitted by the
      * platform launch handler. SharedNavHost dispatches to navigation/callbacks

@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import me.zhanghai.compose.preference.listPreference
-import me.zhanghai.compose.preference.switchPreference
 import org.jetbrains.compose.resources.stringResource
 import org.koin.compose.koinInject
 import org.scottishtecharmy.soundscape.MainActivity
@@ -58,24 +57,12 @@ fun Settings(
     )
     val themeLightnessValues = listOf("Auto", "Light", "Dark")
 
-    val mediaControlsDescriptions = listOf(
-        stringResource(Res.string.settings_media_controls_original),
-        stringResource(Res.string.settings_media_controls_voice_command),
-        stringResource(Res.string.settings_media_controls_audio_menu),
-    )
-    val mediaControlsValues = listOf("Original", "VoiceControl", "AudioMenu")
-
-    val microphoneDescriptions = uiState.microphoneDescriptions
-    val microphoneValues = uiState.microphoneValues
-
     val preferencesProvider: PreferencesProvider = koinInject()
 
     SharedSettingsScreen(
         onNavigateUp = { navController.navigateUp() },
         beaconTypes = beaconValues,
         preferencesProvider = preferencesProvider,
-        mediaControlsValues = mediaControlsValues,
-        mediaControlsDescriptions = mediaControlsDescriptions,
         onNavigateToAdvancedMarkersAndRoutes = {
             navController.navigate(SharedRoutes.ADVANCED_MARKERS_AND_ROUTES_SETTINGS)
         },
@@ -203,50 +190,5 @@ fun Settings(
                 summary = { ClickableOption(it, textColor) },
             )
         },
-
-        platformMediaControlsContent = {
-            switchPreference(
-                key = MainActivity.VOICE_COMMAND_LISTENING_PROMPT_KEY,
-                defaultValue = MainActivity.VOICE_COMMAND_LISTENING_PROMPT_DEFAULT,
-                modifier = expandedSectionModifier,
-                title = {
-                    SettingDetails(
-                        Res.string.settings_voice_command_listening_prompt,
-                        Res.string.settings_voice_command_listening_prompt_description,
-                        textColor
-                    )
-                },
-            )
-            listPreference(
-                key = MainActivity.VOICE_COMMAND_MICROPHONE_KEY,
-                defaultValue = MainActivity.VOICE_COMMAND_MICROPHONE_DEFAULT,
-                values = microphoneValues,
-                modifier = expandedSectionModifier,
-                title = {
-                    SettingDetails(
-                        Res.string.settings_voice_command_microphone,
-                        Res.string.settings_voice_command_microphone_description,
-                        textColor
-                    )
-                },
-                item = { value, currentValue, onClick ->
-                    val idx = microphoneValues.indexOf(value).coerceAtLeast(0)
-                    ListPreferenceItem(
-                        microphoneDescriptions[idx],
-                        value,
-                        currentValue,
-                        onClick,
-                        idx,
-                        microphoneValues.size
-                    )
-                },
-                summary = {
-                    val idx = microphoneValues.indexOf(it)
-                    val label = if (idx >= 0) microphoneDescriptions[idx] else it
-                    ClickableOption(label, textColor)
-                },
-            )
-        },
-
-        )
+    )
 }

@@ -106,10 +106,6 @@ class MainActivity : AppCompatActivity() {
             checkAndRequestLocationPermissions()
         }
 
-    // Microphone permission for voice commands — best-effort; if denied, voice commands are silently skipped
-    private val micPermissionLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { /* no-op */ }
-
     // Bluetooth scan + connect for the external BLE head-tracker. Re-applies the
     // HEAD_TRACKING_ENABLED preference once the user has decided, so the service
     // picks up newly-granted permissions without a toggle.
@@ -530,6 +526,10 @@ class MainActivity : AppCompatActivity() {
         // and Auto worked the same anyway...
         if (sharedPreferences.getString(GEOCODER_MODE_KEY, GEOCODER_MODE_DEFAULT) == "Online") {
             sharedPreferences.edit { putString(GEOCODER_MODE_KEY, GEOCODER_MODE_DEFAULT) }
+        }
+        // We've removed voice command mode for now as it was unreliable, reset to default mode
+        if (sharedPreferences.getString(PreferenceKeys.MEDIA_CONTROLS_MODE, PreferenceDefaults.MEDIA_CONTROLS_MODE) == "VoiceControl") {
+            sharedPreferences.edit { putString(PreferenceKeys.MEDIA_CONTROLS_MODE, PreferenceDefaults.MEDIA_CONTROLS_MODE) }
         }
 
         for (pref in sharedPreferences.all) {
@@ -1070,12 +1070,6 @@ class MainActivity : AppCompatActivity() {
             }
             throw e
         }
-        // Request microphone permission for voice commands (best-effort)
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
-            != android.content.pm.PackageManager.PERMISSION_GRANTED
-        ) {
-            micPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
-        }
         // Prompt for battery optimization exemption if not already granted.
         // This catches upgrading users who didn't go through the updated onboarding.
         requestBatteryOptimizationExemption(this)
@@ -1128,10 +1122,6 @@ class MainActivity : AppCompatActivity() {
         const val GEOCODER_MODE_KEY = "GeocoderMode"
         const val LAST_SPLASH_RELEASE_DEFAULT = ""
         const val LAST_SPLASH_RELEASE_KEY = "LastNewRelease"
-        const val VOICE_COMMAND_LISTENING_PROMPT_DEFAULT = true
-        const val VOICE_COMMAND_LISTENING_PROMPT_KEY = "VoiceCommandListeningPrompt"
-        const val VOICE_COMMAND_MICROPHONE_DEFAULT = "Auto"
-        const val VOICE_COMMAND_MICROPHONE_KEY = "VoiceCommandMicrophone"
         const val POSITION_INCLUDES_HEADING_AND_DISTANCE_DEFAULT = false
         const val POSITION_INCLUDES_HEADING_AND_DISTANCE_KEY = "PositionTextDescription"
         const val RELATIVE_DIRECTION_DEFAULT = "ClockFace"

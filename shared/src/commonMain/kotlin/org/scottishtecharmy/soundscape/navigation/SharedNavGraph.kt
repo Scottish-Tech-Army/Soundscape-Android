@@ -168,8 +168,6 @@ fun SharedNavHost(
                     ?: remember { mutableStateOf(false) }
                 val audioTourRunning by flows.audioTourRunning?.collectAsState()
                     ?: remember { mutableStateOf(false) }
-                val voiceCommandListening by flows.voiceCommandListening?.collectAsState()
-                    ?: remember { mutableStateOf(false) }
                 val permissionsRequired by flows.permissionsRequired?.collectAsState()
                     ?: remember { mutableStateOf(false) }
 
@@ -215,7 +213,6 @@ fun SharedNavHost(
                     toggleTutorial = callbacks.onToggleAudioTour,
                     tutorialRunning = audioTourRunning,
                     recordingEnabled = recordingEnabled,
-                    voiceCommandListening = voiceCommandListening,
                     permissionsRequired = permissionsRequired,
                     goToAppSettings = callbacks.onGoToAppSettings,
                     onSleep = {

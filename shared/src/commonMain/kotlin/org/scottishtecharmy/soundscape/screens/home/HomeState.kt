@@ -18,7 +18,6 @@ data class HomeState(
     val searchItems: List<LocationDescription>? = null,
     val routesTabSelected: Boolean = true,
     val permissionsRequired: Boolean = false,
-    val voiceCommandListening: Boolean = false,
     /** Which "hear my surroundings" button has an in-flight callout, or null
      *  when no callout is playing. Drives the pulse animation on the active
      *  button in the home-screen bottom bar. */
