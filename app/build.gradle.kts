@@ -383,7 +383,8 @@ dependencies {
     implementation(libs.screenshot.validation.api)
     implementation(libs.core.google.shortcuts)
 
-    // JTS kept only for a test helper that calls union() directly
+    // JTS kept only as the oracle for PolygonClipperParityTest, which checks our
+    // :shared polygon clipper against it - the same arrangement as rtree2 below
     testImplementation(libs.jts.core)
 
     testImplementation(libs.junit)

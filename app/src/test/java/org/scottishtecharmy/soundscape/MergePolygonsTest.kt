@@ -6,6 +6,7 @@ import org.junit.Test
 import org.locationtech.jts.geom.Coordinate
 import org.locationtech.jts.geom.GeometryFactory
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
+import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
@@ -18,7 +19,13 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
+import org.scottishtecharmy.soundscape.clipper.LATTICE_SCALE
+import org.scottishtecharmy.soundscape.geoengine.utils.polygonFeaturesOverlap
 import java.io.FileOutputStream
+import kotlin.math.max
+import kotlin.test.assertEquals
+import kotlin.test.assertNotNull
+import kotlin.test.assertTrue
 
 class MergePolygonsTest {
 
@@ -174,6 +181,110 @@ class MergePolygonsTest {
         println(mergedGridPolygonsFeatureCollection)
     }
 
+
+    /**
+     * Merge every genuinely tile-split polygon in a real 2x2 grid of z14 tiles and check each
+     * one against JTS.
+     *
+     * This is the most valuable test of the clipper there is: real OSM geometry, split at real
+     * tile boundaries, with all the coincident edges and simplification differences that
+     * produces - and being differential it needs no hand-computed expected values. It stays in
+     * the app module because the tile fixtures live under an app-relative path.
+     *
+     * Pairs the clipper declines to merge are counted rather than failed. mergePolygons reports
+     * those by handing back its second argument, and the caller then keeps both pieces, which
+     * is the same safe outcome JTS produces for polygons that don't combine.
+     */
+    @Test
+    fun realTileSplitPolygonsMatchJts() {
+        val location = LngLatAlt(-2.640563550340726, 51.540046658498945)
+        val grid = getGeoJsonForLocation(location)
+
+        val byOsmId = grid.features
+            .filterIsInstance<MvtFeature>()
+            .filter { it.geometry.type == "Polygon" }
+            .groupBy { it.osmId }
+
+        var merged = 0
+        var declined = 0
+
+        for ((_, group) in byOsmId) {
+            for (i in group.indices) {
+                for (j in i + 1 until group.size) {
+                    val first = group[i]
+                    val second = group[j]
+                    if (!polygonFeaturesOverlap(first, second)) continue
+
+                    val jtsFirst = polygonToJts(first) ?: continue
+                    val jtsSecond = polygonToJts(second) ?: continue
+                    if (!jtsFirst.isValid || !jtsSecond.isValid) continue
+                    val jtsUnion = try {
+                        jtsFirst.union(jtsSecond)
+                    } catch (e: RuntimeException) {
+                        continue
+                    }
+
+                    val result =
+                        org.scottishtecharmy.soundscape.geoengine.utils.mergePolygons(first, second)
+                    if (result === second) {
+                        declined++
+                        continue
+                    }
+                    merged++
+
+                    assertEquals(
+                        1,
+                        jtsUnion.numGeometries,
+                        "we merged osmId ${first.osmId} into one polygon but JTS did not",
+                    )
+                    val ours = polygonToJts(result)
+                    assertNotNull(ours, "merged result was not a usable polygon")
+                    assertTrue(ours.isValid, "merged result is not a valid polygon")
+                    // Snapping onto the clipper's lattice can move each vertex by half a
+                    // lattice unit, so allow the perimeter times that, with a generous margin.
+                    val tolerance = max(
+                        8.0 * ours.length * (0.5 / LATTICE_SCALE),
+                        16.0 / (LATTICE_SCALE * LATTICE_SCALE),
+                    )
+                    assertEquals(
+                        jtsUnion.area,
+                        ours.area,
+                        tolerance,
+                        "merged area for osmId ${first.osmId} disagrees with JTS",
+                    )
+                }
+            }
+        }
+
+        println("Real tile grid: merged $merged polygon pairs, declined $declined")
+        assertTrue(merged > 0, "found no tile-split polygon pairs to merge at all")
+        // Every tile-split pair in this grid merges, including the DHL warehouse whose two
+        // clippings disagree about where their shared boundary runs by a few millimetres -
+        // that one only works because PolygonClipper reconciles tile-edge clip vertices before
+        // the sweep. Declining any of them is a regression.
+        assertEquals(0, declined, "declined $declined of ${merged + declined} tile-split merges")
+    }
+
+    private fun polygonToJts(feature: Feature): org.locationtech.jts.geom.Polygon? {
+        val rings = (feature.geometry as? Polygon)?.coordinates ?: return null
+        if (rings.isEmpty()) return null
+        val factory = GeometryFactory()
+        return try {
+            factory.createPolygon(
+                factory.createLinearRing(
+                    rings[0].map { Coordinate(it.longitude, it.latitude) }.toTypedArray()
+                ),
+                rings.drop(1).map { ring ->
+                    factory.createLinearRing(
+                        ring.map { Coordinate(it.longitude, it.latitude) }.toTypedArray()
+                    )
+                }.toTypedArray(),
+            )
+        } catch (e: IllegalArgumentException) {
+            null
+        }
+    }
+
     private fun mergePolygons(
         polygon1: Feature,
         polygon2: Feature
@@ -277,7 +388,10 @@ class MergePolygonsTest {
     ): Array<FeatureCollection> {
 
         val gridState = FileGridState()
-        val result: Array<FeatureCollection> = emptyArray()
+        // One collection per TreeId, which is what updateTile fills in. This used to be
+        // emptyArray(), so updateTile had nowhere to put anything and every caller here
+        // silently got no features at all.
+        val result = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
 
         gridState.start(offlineExtractPath)
         gridState.checkOfflineMaps()

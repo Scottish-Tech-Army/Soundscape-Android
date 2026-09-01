@@ -77,7 +77,6 @@ kotlin {
         }
         androidMain {
             dependencies {
-                implementation(libs.jts.core)
                 implementation(libs.ktor.client.okhttp)
             }
             // Reuse shared resources for the Android target so JSON data files live

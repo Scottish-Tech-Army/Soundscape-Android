@@ -1,11 +1,49 @@
 package org.scottishtecharmy.soundscape.geoengine.utils
 
+import org.scottishtecharmy.soundscape.clipper.PolygonClipper
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 
-expect fun mergePolygons(polygon1: Feature, polygon2: Feature): Feature
+/**
+ * Unions two Polygon features.
+ *
+ * In production these are always two clippings of the same OSM way, matched by osmId, taken
+ * from adjacent z14 MVT tiles - so they share long runs of exactly coincident boundary and
+ * differ only where each tile's buffer cut them and where each tile's simplification kept a
+ * different subset of vertices.
+ *
+ * When the two do not merge into a single connected polygon - disjoint, touching at only a
+ * point, or too degenerate for the clipper to resolve - this returns **polygon2 itself, by
+ * reference**. [mergeAllPolygonsInFeatureCollection] detects a failed merge with
+ * `mergedFeature == feature`, so this must stay a reference return and must never be a copy.
+ * That is also what the JTS implementation this replaces did when its union came back as a
+ * MultiPolygon.
+ */
+fun mergePolygons(polygon1: Feature, polygon2: Feature): Feature {
+    val geometry1 = polygon1.geometry as? Polygon ?: return polygon2
+    val geometry2 = polygon2.geometry as? Polygon ?: return polygon2
+
+    val merged = PolygonClipper.union(geometry1.coordinates, geometry2.coordinates)
+    // Anything other than exactly one result polygon means the two didn't combine into one
+    // connected area, which is the same signal JTS gave by returning a MultiPolygon.
+    if (merged.size != 1) return polygon2
+
+    return MvtFeature().also { feature ->
+        feature.properties = polygon1.properties
+        feature.type = "Feature"
+        // The JTS implementation cast unconditionally. polygon1 is always an MvtFeature in
+        // production, but the tests pass a plain Feature, so degrade rather than throw.
+        (polygon1 as? MvtFeature)?.let { feature.copyProperties(it) }
+        feature.geometry = Polygon().also { polygon ->
+            polygon.coordinates = merged[0].mapTo(ArrayList()) { ring ->
+                ring.mapTo(ArrayList<LngLatAlt>()) { it }
+            }
+        }
+    }
+}
 
 fun polygonFeaturesOverlap(feature1: Feature, feature2: Feature): Boolean {
     for (point in (feature1.geometry as Polygon).coordinates[0]) {
