@@ -18,8 +18,10 @@ changed or are not yet present.
 
 When you launch the new build for the first time, a one-shot migration runs
 silently in the background. It reads the legacy database and preferences out of
-the app's existing container and writes them into the new app's storage. After
-it finishes, the legacy files are removed.
+the app's existing container and writes them into the new app's storage. It
+copies rather than moves: the legacy database and settings are left exactly
+where they were, untouched, so nothing is lost if you go back to the legacy
+build or if support needs to look at them later.
 
 Migrated automatically:
 
@@ -37,9 +39,9 @@ Migrated automatically:
   - Mix-with-other-audio
   - Marker sort preference (distance / alphabetical)
 
-The migration runs only once. If something goes wrong (e.g. a damaged database
-file), it leaves your legacy data untouched and tries again on the next launch
-rather than discarding anything.
+The migration runs only once, and never deletes anything belonging to the
+legacy app. If something goes wrong (e.g. a damaged database file), it tries
+again on the next launch rather than discarding anything.
 
 ## What's new
 
@@ -97,9 +99,9 @@ upgrading.
   app has a single speech rate plus a "mix with other audio" toggle; per-
   channel gain is no longer adjustable. These settings are not migrated.
 - **Marker notes.** The legacy "annotation" field on a marker (free-text user
-  notes) is not preserved by the migration — the new schema doesn't include a
-  notes field. If you've written notes on a marker that you want to keep,
-  export your markers from the legacy app as a backup before upgrading.
+  notes) is not carried over by the migration — the new schema doesn't include
+  a notes field. The legacy database still holds them, so nothing is lost, but
+  the new app has nowhere to show them.
 - **Beacon variants.** The "haptic-only" beacon and the legacy "Classic" /
   "V2" beacons are mapped to the closest current beacon style. The new
   catalogue is broader (Original, Current, Tactile, Flare, Shimmer, Ping,

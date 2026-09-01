@@ -42,6 +42,7 @@ private fun NSUserDefaults.readSoundscapePreferences(): Preferences {
     return MapPreferences(
         buildMap {
             for ((key, value) in dictionary) {
+                if (key.isLegacyKey()) continue
                 val converted = value.toPreferenceValueOrNull() ?: continue
                 put(key, converted)
             }
@@ -53,11 +54,12 @@ private fun NSUserDefaults.writeSoundscapePreferences(preferences: Preferences) 
     val bundleId = NSBundle.mainBundle.bundleIdentifier ?: return
     // setPersistentDomain replaces the entire domain, so re-read it now and
     // keep any foreign keys (Firebase Crashlytics's cached remote settings
-    // dictionary, etc.) that we cannot represent in a Preferences map.
+    // dictionary, etc.) that we cannot represent in a Preferences map, plus
+    // the legacy app's keys, which have to survive verbatim.
     @Suppress("UNCHECKED_CAST")
     val foreign =
         ((persistentDomainForName(bundleId) as? Map<String, Any>).orEmpty())
-            .filterValues { it.toPreferenceValueOrNull() == null }
+            .filter { (key, value) -> key.isLegacyKey() || value.toPreferenceValueOrNull() == null }
     val converted =
         preferences.asMap().mapValues { (_, mapValue) ->
             @Suppress("CAST_NEVER_SUCCEEDS")
@@ -74,6 +76,14 @@ private fun NSUserDefaults.writeSoundscapePreferences(preferences: Preferences) 
         }
     setPersistentDomain(converted + foreign, bundleId)
 }
+
+// The legacy iOS app's settings, which LegacyMigrator translates once on
+// first launch and then leaves in place untouched. Excluding them from the
+// Preferences map keeps them out of the app's settings UI and, because the
+// write path then carries them across verbatim, stops a round-trip through
+// the preference types from rewriting them (a legacy double re-read as a
+// Float, say).
+private fun String.isLegacyKey(): Boolean = startsWith("GDA")
 
 // Values stored in NSUserDefaults by third-party SDKs (nested NSDictionary
 // from Firebase Crashlytics's settings cache, NSNumber with an objCType

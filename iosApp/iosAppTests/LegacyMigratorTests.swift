@@ -178,7 +178,9 @@ final class LegacyMigratorTests: XCTestCase {
         XCTAssertNil(defaults.object(forKey: "FirstLaunch"))
     }
 
-    func testTranslatedLegacyKeysAreRemoved() {
+    func testTranslatedLegacyKeysAreLeftInPlace() {
+        // Translation reads the legacy settings but never removes them —
+        // they stay behind for rollback to the legacy build and for support.
         defaults.set(true, forKey: "GDASettingsMetric")
         defaults.set(true, forKey: "GDAAudioSessionMixesWithOthers")
         defaults.set("V2Beacon", forKey: "GDASelectedBeaconName")
@@ -186,25 +188,31 @@ final class LegacyMigratorTests: XCTestCase {
 
         LegacyMigrator.migrateSettings(defaults: defaults)
 
-        XCTAssertNil(defaults.object(forKey: "GDASettingsMetric"))
-        XCTAssertNil(defaults.object(forKey: "GDAAudioSessionMixesWithOthers"))
-        XCTAssertNil(defaults.object(forKey: "GDASelectedBeaconName"))
-        XCTAssertNil(defaults.object(forKey: "GDASettingsAPNsDeviceToken"))
+        XCTAssertTrue(defaults.bool(forKey: "GDASettingsMetric"))
+        XCTAssertTrue(defaults.bool(forKey: "GDAAudioSessionMixesWithOthers"))
+        XCTAssertEqual(defaults.string(forKey: "GDASelectedBeaconName"), "V2Beacon")
+        XCTAssertTrue(defaults.bool(forKey: "GDASettingsAPNsDeviceToken"))
     }
 
     // MARK: - sweepIncompatibleDefaults
 
-    func testSweepRemovesAnyRemainingGDAKey() {
-        // Suffixed legacy keys (e.g., GDADidAddDevice_<type>) aren't on
-        // the explicit removal list in migrateSettings. The sweep should
-        // catch them on every launch.
+    func testSweepKeepsEveryGDAKeyWhateverItsType() {
+        // Legacy settings are left in place, including the ones holding
+        // types the sweep would otherwise drop.
         defaults.set(true, forKey: "GDADidAddDevice_BoseAR")
         defaults.set("ignored", forKey: "GDABannerDidDismissForKey_DeviceReachability_Foo")
+        defaults.set(Data([0x01, 0x02]), forKey: "GDASettingsAPNsDeviceToken")
+        defaults.set(Date(), forKey: "GDASomeTimestamp")
 
         LegacyMigrator.sweepIncompatibleDefaults(defaults: defaults)
 
-        XCTAssertNil(defaults.object(forKey: "GDADidAddDevice_BoseAR"))
-        XCTAssertNil(defaults.object(forKey: "GDABannerDidDismissForKey_DeviceReachability_Foo"))
+        XCTAssertTrue(defaults.bool(forKey: "GDADidAddDevice_BoseAR"))
+        XCTAssertEqual(
+            defaults.string(forKey: "GDABannerDidDismissForKey_DeviceReachability_Foo"),
+            "ignored",
+        )
+        XCTAssertNotNil(defaults.object(forKey: "GDASettingsAPNsDeviceToken"))
+        XCTAssertNotNil(defaults.object(forKey: "GDASomeTimestamp"))
     }
 
     func testSweepRemovesNonPrimitiveValues() {

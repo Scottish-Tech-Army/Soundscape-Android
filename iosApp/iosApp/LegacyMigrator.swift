@@ -13,13 +13,20 @@
 //       which writes them into the new Room database.
 //    3. Migrates a curated subset of the GDA* preferences into their new
 //       PreferenceKeys equivalents.
-//    4. Deletes the legacy Realm files and the cache realms in Library/.
-//    5. Sets a `LegacyMigrationDone` flag so subsequent launches no-op.
+//    4. Sets a `LegacyMigrationDone` flag so subsequent launches no-op.
+//
+//  Nothing belonging to the legacy app is ever deleted. The Realm files
+//  and the GDA* preferences are left exactly as they were found, so a user
+//  who rolls back to the legacy build still has their data, and so support
+//  can recover anything a future release's import turns out to have
+//  missed. The import even reads from a throwaway copy of the database so
+//  that opening it can't upgrade the on-disk format underneath the legacy
+//  app.
 //
 //  Migration aborts (without setting the done flag) on any error during
-//  database import, so legacy data is never deleted before a successful
-//  import. Settings translation is best-effort — individual key failures
-//  are tolerated.
+//  database import, so a failed import is retried on the next launch.
+//  Settings translation is best-effort — individual key failures are
+//  tolerated.
 //
 
 import Foundation
@@ -29,8 +36,8 @@ import Shared
 // MARK: - Legacy Realm models (mirror of legacy app schema)
 //
 // We declare every @Persisted field that exists on disk so that opening the
-// realm read-only doesn't trip a schema-mismatch error. The migrator only
-// reads a subset, but Realm needs the model schema to cover every column.
+// realm doesn't trip a schema-mismatch error. The migrator only reads a
+// subset, but Realm needs the model schema to cover every column.
 
 final class LegacyReferenceEntity: Object {
     @Persisted(primaryKey: true) var id: String = ""
@@ -76,8 +83,8 @@ enum LegacyMigrator {
     private static let doneKey = "LegacyMigrationDone"
 
     /// One-shot legacy import + always-on UserDefaults hygiene. The import
-    /// half (database + settings translation + legacy file deletion) is
-    /// gated by `LegacyMigrationDone` and runs at most once per install.
+    /// half (database read + settings translation) is gated by
+    /// `LegacyMigrationDone` and runs at most once per install.
     /// The hygiene sweep runs on every launch — it's a fast no-op for
     /// already-clean defaults and lets us ship later fixes without needing
     /// to reset the done flag. Synchronous so the caller can be sure
@@ -101,13 +108,11 @@ enum LegacyMigrator {
             } else {
                 let importedCount = importDatabase(legacyRealmPath)
                 if importedCount < 0 {
-                    // Database import failed. Leave the legacy files in
-                    // place so the user can retry on next launch (or we
-                    // can ship a fix). Do NOT set the done flag.
+                    // Database import failed. Retry on next launch (or once
+                    // we can ship a fix). Do NOT set the done flag.
                     print("[LegacyMigrator] database import failed; will retry on next launch")
                 } else {
                     migrateSettings(defaults: defaults)
-                    deleteLegacyArtefacts(documentsPath: documentsPath)
                     defaults.set(true, forKey: doneKey)
                     print("[LegacyMigrator] migrated \(importedCount) markers + routes")
                 }
@@ -170,17 +175,54 @@ enum LegacyMigrator {
         return String(data: data, encoding: .utf8)
     }
 
-    /// Opens the legacy Realm at `realmPath`, builds the JSON payload via
-    /// [buildLegacyPayload], and hands it to the Kotlin side to write into
-    /// the production Room database.
+    /// Reads the legacy Realm at `realmPath` and hands the resulting JSON
+    /// payload to the Kotlin side to write into the production Room
+    /// database. Returns the Kotlin importer's count, or -1 if the legacy
+    /// database couldn't be read.
     private static func importLegacyDatabase(at realmPath: String) -> Int32 {
-        // Open the legacy realm read-write. Read-only mode refuses to touch
-        // the file, but RealmSwift 20.x will reject any legacy file at an
-        // older on-disk format (e.g. v22) unless it can upgrade in place.
-        // Letting Realm upgrade is harmless because we delete the file
-        // after a successful import.
+        guard let json = buildPayloadPreservingOriginal(at: realmPath) else { return -1 }
+
+        return LegacyMigrationKt.runLegacyMigrationImport(payloadJson: json)
+    }
+
+    /// Builds the JSON payload from the legacy database at `realmPath`
+    /// without modifying it in any way.
+    ///
+    /// Reads a throwaway copy rather than the file itself: opening a realm
+    /// read-write lets RealmSwift 20.x upgrade an older on-disk format
+    /// (e.g. v22) in place, and read-only mode refuses to open such a file
+    /// at all. Since we leave the legacy database behind for the user, the
+    /// original has to come out of this byte-for-byte unchanged, so we let
+    /// Realm upgrade the copy instead.
+    ///
+    /// Returns nil if the copy, the open or the JSON encode fails.
+    static func buildPayloadPreservingOriginal(at realmPath: String) -> String? {
+        let fm = FileManager.default
+        let scratchDirectory = NSTemporaryDirectory() + "LegacyMigration-" + UUID().uuidString
+        let scratchPath = scratchDirectory + "/database.realm"
+        do {
+            try fm.createDirectory(atPath: scratchDirectory, withIntermediateDirectories: true)
+            try fm.copyItem(atPath: realmPath, toPath: scratchPath)
+        } catch {
+            print("[LegacyMigrator] could not copy legacy realm: \(error)")
+            try? fm.removeItem(atPath: scratchDirectory)
+            return nil
+        }
+
+        // Realm's auxiliary files (.lock/.management) are created alongside
+        // the copy, so removing the whole directory cleans up after us. The
+        // payload is built in a nested scope so the Realm instance is
+        // released before we delete the files it was reading.
+        let json = readLegacyPayload(fromCopyAt: scratchPath)
+        try? fm.removeItem(atPath: scratchDirectory)
+        return json
+    }
+
+    /// Opens the copied legacy realm at `path` and returns the JSON payload,
+    /// or nil if it can't be opened or encoded.
+    private static func readLegacyPayload(fromCopyAt path: String) -> String? {
         var config = Realm.Configuration(
-            fileURL: URL(fileURLWithPath: realmPath),
+            fileURL: URL(fileURLWithPath: path),
             objectTypes: [LegacyReferenceEntity.self, LegacyRoute.self, LegacyRouteWaypoint.self],
         )
         // Schema migration block. The legacy app shipped at schemaVersion 0
@@ -197,12 +239,10 @@ enum LegacyMigrator {
             realm = try Realm(configuration: config)
         } catch {
             print("[LegacyMigrator] could not open legacy realm: \(error)")
-            return -1
+            return nil
         }
 
-        guard let json = buildLegacyPayload(realm: realm) else { return -1 }
-
-        return LegacyMigrationKt.runLegacyMigrationImport(payloadJson: json)
+        return buildLegacyPayload(realm: realm)
     }
 
     // MARK: Settings translation
@@ -300,64 +340,24 @@ enum LegacyMigrator {
             defaults.set(false, forKey: "FirstLaunch")
         }
 
-        // Remove the now-translated legacy keys to keep NSUserDefaults tidy
-        // and avoid confusion if a later release inspects them.
-        let legacyKeys = [
-            "GDASettingsMetric",
-            "GDASettingsLocaleIdentifier",
-            "GDASettingsSpeakingRate",
-            "GDASelectedBeaconName",
-            "GDASettingsAutomaticCalloutsEnabled",
-            "GDASettingsPlaceSenseEnabled",
-            "GDASettingsLandmarkSenseEnabled",
-            "GDASettingsMobilitySenseEnabled",
-            "GDASettingsInformationSenseEnabled",
-            "GDASettingsSafetySenseEnabled",
-            "GDASettingsIntersectionsSenseEnabled",
-            "GDASettingsDestinationSenseEnabled",
-            "GDAAudioSessionMixesWithOthers",
-            "GDAMarkerSortStyle",
-            "GDAFirstLaunchDidComplete",
-            "GDABeaconTutorialDidComplete",
-            "GDAMarkerTutorialDidComplete",
-            "GDAPreviewTutorialDidComplete",
-            "GDARouteTutorialDidComplete",
-            "GDAUserDefaultClientIdentifier",
-            "GDAAppUseCount",
-            "GDANewFeaturesLastDisplayedVersion",
-            "GDAAppleSynthVoice",
-            "GDABeaconVolume",
-            "GDATTSVolume",
-            "GDAOtherVolume",
-            "GDATTSAudioGain",
-            "GDABeaconAudioGain",
-            "GDAAFXAudioGain",
-            "GDASettingsTelemetryOptout",
-            "GDASettingsUseOldBeacon",
-            "GDAPlayBeaconStartEndMelody",
-            "GDASettingsAPNsDeviceToken",
-            "GDASettingsPushNotificationTags",
-            "GDASettingsPreviewIntersectionsIncludeUnnamedRoads",
-            "GDASettingsInitialCloudSyncCompleted",
-            "GDASettingsPreviewInitialRoadFinderComplete",
-            "GDASettingsPreviewInitialRoadFinderError",
-            "GDAFirstUseExperienceShare",
-            "GDAFirstUseExperienceDonateSiriShortcuts",
-        ]
-        for key in legacyKeys {
-            defaults.removeObject(forKey: key)
-        }
+        // The GDA* keys are deliberately left in place. They cost a few
+        // hundred bytes, the new app never reads them again, and keeping
+        // them means a user who rolls back to the legacy build still has
+        // their settings — and that support can see what the legacy app
+        // held if a translation above turns out to be wrong.
     }
 
     // MARK: Defaults hygiene
 
     /// Removes UserDefaults entries that would crash the Compose
-    /// preference library when it iterates `dictionaryRepresentation()`.
-    /// Drops anything still under the legacy `GDA*` prefix as well as any
-    /// non-primitive value (Data, Date, Dictionary, mixed Array) that
-    /// isn't owned by Apple/system frameworks. The new app stores only
+    /// preference library when it iterates `dictionaryRepresentation()`:
+    /// non-primitive values (Data, Date, Dictionary, mixed Array) that
+    /// aren't owned by Apple/system frameworks. The new app stores only
     /// Bool/Number/String through `IosPreferencesProvider`, so anything
     /// else under our control is detritus.
+    ///
+    /// Legacy `GDA*` keys are exempt — whatever type they hold, they are
+    /// the legacy app's settings and we leave them alone.
     ///
     /// Idempotent — runs on every launch so a future fix can land
     /// without resetting `LegacyMigrationDone`.
@@ -367,11 +367,7 @@ enum LegacyMigrator {
 
         for (key, value) in defaults.dictionaryRepresentation() {
             if preserved.contains(key) { continue }
-
-            if key.hasPrefix("GDA") {
-                defaults.removeObject(forKey: key)
-                continue
-            }
+            if key.hasPrefix("GDA") { continue }
 
             let isSystem = systemPrefixes.contains { key.hasPrefix($0) }
             if isSystem { continue }
@@ -382,30 +378,6 @@ enum LegacyMigrator {
             if let array = value as? [String] { _ = array; continue }
 
             defaults.removeObject(forKey: key)
-        }
-    }
-
-    // MARK: Cleanup
-
-    static func deleteLegacyArtefacts(documentsPath: String) {
-        let fm = FileManager.default
-        let realmFiles = [
-            documentsPath + "/database.realm",
-            documentsPath + "/database.realm.lock",
-            documentsPath + "/database.realm.note",
-            documentsPath + "/database.realm.management",
-        ]
-        for path in realmFiles {
-            try? fm.removeItem(atPath: path)
-        }
-
-        // Cache realms live in Library/cache.<n>.realm — POI cache, fully
-        // regenerable. Sweep them out so we don't waste space.
-        let libraryPath = NSHomeDirectory() + "/Library"
-        if let entries = try? fm.contentsOfDirectory(atPath: libraryPath) {
-            for entry in entries where entry.hasPrefix("cache.") && entry.contains(".realm") {
-                try? fm.removeItem(atPath: libraryPath + "/" + entry)
-            }
         }
     }
 }
