@@ -376,7 +376,6 @@ private fun BaseHomePreview(state: HomeState) {
         toggleTutorial = {},
         tutorialRunning = false,
         recordingEnabled = false,
-        voiceCommandListening = false,
         permissionsRequired = false,
         goToAppSettings = {},
         onSleep = {},

@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.screens.home.home
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -86,7 +85,6 @@ import org.scottishtecharmy.soundscape.resources.search_button_nearby_accessibil
 import org.scottishtecharmy.soundscape.resources.search_nearby_screen_title
 import org.scottishtecharmy.soundscape.resources.search_use_current_location
 import org.scottishtecharmy.soundscape.resources.search_view_markers
-import org.scottishtecharmy.soundscape.resources.voice_cmd_listening
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.screens.talkbackDescription
 import org.scottishtecharmy.soundscape.screens.talkbackHint
@@ -185,7 +183,6 @@ fun SharedHomeContent(
     fullscreenMap: MutableState<Boolean>,
     permissionsRequired: Boolean,
     showMap: Boolean,
-    voiceCommandListening: Boolean = false,
     modifier: Modifier = Modifier,
 ) {
     val coroutineScope = rememberCoroutineScope()
@@ -435,23 +432,6 @@ fun SharedHomeContent(
                         }
                     }
                 }
-            }
-        }
-        if (voiceCommandListening) {
-            Box(
-                contentAlignment = Alignment.BottomCenter,
-                modifier = Modifier.fillMaxSize(),
-            ) {
-                Text(
-                    text = stringResource(Res.string.voice_cmd_listening),
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(MaterialTheme.colorScheme.surface.copy(alpha = 0.85f))
-                        .padding(vertical = spacing.small),
-                    textAlign = TextAlign.Center,
-                )
             }
         }
     }

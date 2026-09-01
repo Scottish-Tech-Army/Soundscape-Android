@@ -66,7 +66,6 @@ fun SharedHomeScreen(
     toggleTutorial: () -> Unit,
     tutorialRunning: Boolean,
     recordingEnabled: Boolean,
-    voiceCommandListening: Boolean,
     permissionsRequired: Boolean,
     goToAppSettings: () -> Unit,
     onSleep: () -> Unit,
@@ -201,7 +200,6 @@ fun SharedHomeScreen(
                     fullscreenMap = fullscreenMap,
                     permissionsRequired = permissionsRequired,
                     showMap = showMap,
-                    voiceCommandListening = voiceCommandListening,
                 )
             }
         }

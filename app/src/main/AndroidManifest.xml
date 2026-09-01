@@ -15,9 +15,6 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK" />
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.BLUETOOTH"
         android:maxSdkVersion="30" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"
@@ -135,7 +132,7 @@
             android:stopWithTask="true"
             android:enabled="true"
             android:exported="true"
-            android:foregroundServiceType="location|mediaPlayback|microphone"
+            android:foregroundServiceType="location|mediaPlayback"
             android:permission="android.permission.FOREGROUND_SERVICE_LOCATION">
             <intent-filter>
                 <action android:name="androidx.media3.session.MediaSessionService" />

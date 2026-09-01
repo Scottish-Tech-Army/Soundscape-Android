@@ -20,12 +20,11 @@ import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.ServiceConnection
-import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
 
 /**
  * Shared ViewModel backing the home screen on both Android and iOS.
  *
- * Combines service flows (location, heading, beacon, route, voice command) into
+ * Combines service flows (location, heading, beacon, route) into
  * a single `HomeState` and offers action methods that delegate to the bound service.
  */
 @OptIn(FlowPreview::class)
@@ -97,13 +96,6 @@ open class HomeViewModel(
         scope.launch {
             service.currentRouteFlow.collectLatest { value ->
                 _state.update { it.copy(currentRouteData = value) }
-            }
-        }
-        scope.launch {
-            service.voiceCommandStateFlow.collectLatest { voiceState ->
-                _state.update {
-                    it.copy(voiceCommandListening = voiceState is VoiceCommandState.Listening)
-                }
             }
         }
         scope.launch {

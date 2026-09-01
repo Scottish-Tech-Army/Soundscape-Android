@@ -20,9 +20,6 @@ import org.scottishtecharmy.soundscape.services.RoutePlayerState
 private val DEFAULT_STREET_PREVIEW_FLOW: StateFlow<StreetPreviewState> =
     MutableStateFlow(StreetPreviewState(StreetPreviewEnabled.OFF)).asStateFlow()
 
-private val DEFAULT_VOICE_COMMAND_FLOW: StateFlow<VoiceCommandState> =
-    MutableStateFlow<VoiceCommandState>(VoiceCommandState.Idle).asStateFlow()
-
 private val DEFAULT_HEAD_HEADING_FLOW: StateFlow<HeadHeading?> =
     MutableStateFlow<HeadHeading?>(null).asStateFlow()
 
@@ -86,8 +83,6 @@ interface MediaControllableService {
     // Default no-op implementations for iOS until it grows these features.
     val streetPreviewFlow: StateFlow<StreetPreviewState>
         get() = DEFAULT_STREET_PREVIEW_FLOW
-    val voiceCommandStateFlow: StateFlow<VoiceCommandState>
-        get() = DEFAULT_VOICE_COMMAND_FLOW
 
     /** Which "hear my surroundings" button, if any, has an in-flight callout.
      *  Emits null when nothing is playing. The home-screen bottom bar uses

@@ -112,9 +112,6 @@ import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableSe
 import org.scottishtecharmy.soundscape.services.mediacontrol.OriginalMediaControls
 import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeDummyMediaPlayer
 import org.scottishtecharmy.soundscape.services.mediacontrol.SoundscapeMediaSessionCallback
-import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandManager
-import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandMediaControls
-import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
 import org.scottishtecharmy.soundscape.utils.AnalyticsProvider
 import org.scottishtecharmy.soundscape.utils.NetworkUtils
 import org.scottishtecharmy.soundscape.utils.getCurrentLocale
@@ -341,11 +338,6 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     private val _gridStateFlow = MutableStateFlow<GridState?>(null)
     override val gridStateFlow: StateFlow<GridState?> = _gridStateFlow
 
-    // Voice command manager — only initialized when RECORD_AUDIO permission is granted
-    private var voiceCommandManager: VoiceCommandManager? = null
-    override val voiceCommandStateFlow: StateFlow<VoiceCommandState>
-        get() = voiceCommandManager?.state ?: MutableStateFlow(VoiceCommandState.Idle)
-
     // Media control button code
     private var mediaSession: MediaSession? = null
 
@@ -441,7 +433,6 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
             val configuration = Configuration(applicationContext.resources.configuration)
             configuration.setLocale(configLocale)
             localizedContext = applicationContext.createConfigurationContext(configuration)
-            voiceCommandManager?.updateContext(localizedContext)
             startGeoEngine(false)
             started = true
         }
@@ -514,14 +505,6 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
             // create new RealmDB or open existing
             startRealms(applicationContext)
 
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
-                == PackageManager.PERMISSION_GRANTED
-            ) {
-                voiceCommandManager = VoiceCommandManager(
-                    service = this
-                )
-            }
-
             headsetBatteryMonitor.start()
 
             // Update the media controls mode
@@ -536,19 +519,6 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
             // Resume whatever route/beacon was playing when sleep mode last stopped this service.
             restoreSleepPlaybackState()
 
-            // Keep biasing strings up to date whenever markers or routes change
-            val dao = MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao()
-            coroutineScope.launch {
-                dao.getAllMarkersFlow().collect { markers ->
-                    voiceCommandManager?.updateMarkers(markers)
-                }
-            }
-            coroutineScope.launch {
-                dao.getAllRoutesFlow().collect { routes ->
-                    voiceCommandManager?.updateRoutes(routes)
-                }
-            }
-
             mediaSession = MediaSession.Builder(this, mediaPlayer)
                 .setId("org.scottishtecharmy.soundscape")
                 .setCallback(SoundscapeMediaSessionCallback { mediaControlsTarget })
@@ -557,16 +527,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     }
 
     fun updateMediaControls(target: String) {
-        val hasRecordAudio =
-            ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) ==
-                    PackageManager.PERMISSION_GRANTED
         mediaControlsTarget = when (target) {
-            "VoiceControl" if hasRecordAudio -> {
-                voiceCommandManager?.initialize()
-                VoiceCommandMediaControls(this)
-            }
-
-            "VoiceControl" -> AudioMenuMediaControls(audioMenu)
             "AudioMenu" -> AudioMenuMediaControls(audioMenu)
             "Original" -> OriginalMediaControls(this)
             else -> OriginalMediaControls(this)
@@ -620,8 +581,6 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
         wakeLock?.let { if (it.isHeld) it.release() }
         wakeLock = null
 
-        voiceCommandManager?.destroy()
-
         // Clear service reference in binder so that it can be garbage collected
         binder?.reset()
     }
@@ -643,16 +602,8 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
                 }
             }
 
-            // Only claim the microphone type if we actually hold RECORD_AUDIO - the system
-            // requires that permission to be granted at promotion time for this type, otherwise
-            // it throws a SecurityException.
-            var serviceType = ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION or
+            val serviceType = ServiceInfo.FOREGROUND_SERVICE_TYPE_LOCATION or
                 ServiceInfo.FOREGROUND_SERVICE_TYPE_MEDIA_PLAYBACK
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
-                == PackageManager.PERMISSION_GRANTED) {
-                serviceType = serviceType or ServiceInfo.FOREGROUND_SERVICE_TYPE_MICROPHONE
-            }
-
             ServiceCompat.startForeground(
                 this,
                 NOTIFICATION_ID,
@@ -890,30 +841,6 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
     override fun nearbyMarkers() = calloutController.nearbyMarkers()
 
-    fun triggerVoiceCommand() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
-            != PackageManager.PERMISSION_GRANTED
-        ) return
-
-        if (!requestAudioFocus()) {
-            Log.w(TAG, "speakText: Could not get audio focus. Aborting callouts.")
-            return
-        }
-
-        // Stop callbacks whilst we handle voice commands
-        callbackHoldOff()
-
-        // Clear the speech queue
-        audioEngine.clearTextToSpeechQueue()
-
-        // And start listening for voice commands
-        coroutineScope.launch {
-            withContext(Dispatchers.Main) {
-                voiceCommandManager?.startListening()
-            }
-        }
-    }
-
     override suspend fun searchResult(query: String): List<LocationDescription>? {
         return geoEngine.searchResult(query)
     }
@@ -972,47 +899,6 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
             }
         }
         return wasPlaying
-    }
-
-    fun routeListRoutes() {
-        coroutineScope.launch {
-            val routes = MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao()
-                .getAllRoutes()
-            if (routes.isEmpty())
-                speak2dText(getString(Res.string.voice_cmd_no_routes))
-            else {
-                val names = routes.joinToString(". ") { it.name }
-                speak2dText(getString(Res.string.voice_cmd_routes_list) + names)
-            }
-        }
-    }
-
-    fun routeStart(route: RouteEntity) {
-        speak2dText(kotlinx.coroutines.runBlocking { getString(Res.string.voice_cmd_starting_route) }
-            .format(route.name))
-        routeStartById(route.routeId)
-    }
-
-    fun routeListMarkers() {
-        coroutineScope.launch {
-            val markers =
-                MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao()
-                    .getAllMarkers()
-            if (markers.isEmpty()) {
-                speak2dText(getString(Res.string.voice_cmd_no_markers))
-            } else {
-                val names = markers.joinToString(". ") { it.name }
-                speak2dText(getString(Res.string.voice_cmd_markers_list) + names)
-            }
-        }
-    }
-
-    fun markerStart(marker: MarkerEntity) {
-        speak2dText(kotlinx.coroutines.runBlocking { getString(Res.string.voice_cmd_starting_beacon_at_marker) }
-            .format(marker.name))
-
-        val location = LngLatAlt(marker.longitude, marker.latitude)
-        startBeacon(location, marker.name)
     }
 
     /**

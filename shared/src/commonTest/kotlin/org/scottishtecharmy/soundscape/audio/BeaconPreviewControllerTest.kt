@@ -19,7 +19,6 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.services.BeaconState
 import org.scottishtecharmy.soundscape.services.RoutePlayerState
 import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableService
-import org.scottishtecharmy.soundscape.services.mediacontrol.VoiceCommandState
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -154,8 +153,6 @@ private class PreviewFakeMediaControllableService : MediaControllableService {
     override val gridStateFlow: StateFlow<GridState?> = MutableStateFlow(null)
     override val streetPreviewFlow: StateFlow<StreetPreviewState> =
         MutableStateFlow(StreetPreviewState(StreetPreviewEnabled.OFF))
-    override val voiceCommandStateFlow: StateFlow<VoiceCommandState> =
-        MutableStateFlow(VoiceCommandState.Idle)
     override val activeCalloutFlow: StateFlow<TourButton?> = MutableStateFlow(null)
 
     override fun routeStartReverse(routeId: Long) {}

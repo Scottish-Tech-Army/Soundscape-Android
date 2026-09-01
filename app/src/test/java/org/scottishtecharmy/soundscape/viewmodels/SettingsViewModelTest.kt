@@ -160,11 +160,6 @@ class SettingsViewModelTest {
         assertTrue(state.storages.isEmpty())
         assertEquals("", state.currentStoragePath)
         assertEquals(-1, state.selectedStorageIndex)
-        assertEquals(listOf("Auto"), state.microphoneDescriptions)
-        assertEquals(
-            listOf(MainActivity.VOICE_COMMAND_MICROPHONE_DEFAULT),
-            state.microphoneValues
-        )
     }
 
     @Test
@@ -184,7 +179,6 @@ class SettingsViewModelTest {
             assertTrue(state.storages.isEmpty())
             assertEquals("", state.currentStoragePath)
             assertEquals(0, state.selectedStorageIndex)
-            assertEquals(listOf("Auto"), state.microphoneDescriptions)
         }
     }
 
@@ -223,20 +217,5 @@ class SettingsViewModelTest {
         verify(connection).startBeaconPreview("Current")
         verify(connection).updateBeaconPreviewType("Classic")
         verify(connection).stopBeaconPreview(true, "Classic")
-    }
-
-    @Test
-    fun refreshMicrophones_noInputDevices_resetsToAutoOnly() {
-        val context = mockContext()
-        val viewModel = SettingsViewModel(mockConnection(), context)
-
-        viewModel.refreshMicrophones()
-
-        val state = viewModel.state.value
-        assertEquals(listOf("Auto"), state.microphoneDescriptions)
-        assertEquals(
-            listOf(MainActivity.VOICE_COMMAND_MICROPHONE_DEFAULT),
-            state.microphoneValues
-        )
     }
 }

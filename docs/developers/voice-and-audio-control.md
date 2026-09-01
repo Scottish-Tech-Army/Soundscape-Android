@@ -14,6 +14,9 @@ As well as the accessible GUI to control the app, we also have 3 other options w
 The first of these was implemented in an early release, but the second two are new.
 
 ## Voice control
+
+*Voice control has been disabled for now. It was too unreliable in its operation, which was simply confusing to users.*
+
 Most voice commands will be relatively fixed and discoverable simply by asking. The expected design is that the user will tap the play/pause button on their headphones and that will prompt the user that it's listening for a command. The user speaks the command and after a short period of silence the listening will stop and the text is sent to the app to process.
 
 It's possible to have a number of phrases that have the same action, though it's not clear whether that really makes sense. If you can use "My location" to trigger that feature, then having "Where am I" as well might just be confusing? In general sticking to the same text as is used in the GUI makes the most sense. To do that, we should actually use the same string resources so that the translations remain consistent. 

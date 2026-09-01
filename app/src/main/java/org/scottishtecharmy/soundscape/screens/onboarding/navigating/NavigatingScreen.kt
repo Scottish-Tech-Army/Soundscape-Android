@@ -26,7 +26,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Cancel
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.rounded.LocationOn
-import androidx.compose.material.icons.rounded.Mic
 import androidx.compose.material.icons.rounded.Notifications
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -60,9 +59,7 @@ import org.scottishtecharmy.soundscape.resources.first_launch_permissions_locati
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_message
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_not_granted
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_notification
-import org.scottishtecharmy.soundscape.resources.first_launch_permissions_record_audio
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_required
-import org.scottishtecharmy.soundscape.resources.first_launch_permissions_required_for_voice_control
 import org.scottishtecharmy.soundscape.resources.first_launch_permissions_title
 import org.scottishtecharmy.soundscape.resources.ui_continue
 import org.scottishtecharmy.soundscape.screens.onboarding.component.BoxWithGradientBackground
@@ -80,12 +77,6 @@ enum class Permission(
         Manifest.permission.ACCESS_FINE_LOCATION, Icons.Rounded.LocationOn,
         Res.string.first_launch_permissions_location,
         Res.string.first_launch_permissions_required,
-    ),
-    RECORD_AUDIO(
-        Manifest.permission.RECORD_AUDIO,
-        Icons.Rounded.Mic,
-        Res.string.first_launch_permissions_record_audio,
-        Res.string.first_launch_permissions_required_for_voice_control,
     ),
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
@@ -114,13 +105,11 @@ fun NavigatingScreen(
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             listOf(
                 Permission.ACCESS_FINE_LOCATION,
-                Permission.POST_NOTIFICATIONS,
-                Permission.RECORD_AUDIO,
+                Permission.POST_NOTIFICATIONS
             )
         } else {
             listOf(
-                Permission.ACCESS_FINE_LOCATION,
-                Permission.RECORD_AUDIO,
+                Permission.ACCESS_FINE_LOCATION
             )
         }
     }
