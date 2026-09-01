@@ -2,11 +2,12 @@
 //  LegacyMigratorDatabaseTests.swift
 //
 //  Unit tests for the parts of LegacyMigrator that LegacyMigratorTests.swift
-//  doesn't cover: the Realm→JSON payload builder, the legacy-file cleanup,
-//  and the runIfNeeded orchestration across its four branches (fresh
-//  install, successful import, failed import, already done). All of these
-//  run against in-memory Realm fixtures, temp directories and isolated
-//  UserDefaults suites — never the production Realm/Room/UserDefaults.standard.
+//  doesn't cover: the Realm→JSON payload builder, the copy-and-read step
+//  that keeps the legacy database intact, and the runIfNeeded orchestration
+//  across its four branches (fresh install, successful import, failed
+//  import, already done). All of these run against in-memory or temporary
+//  Realm fixtures, temp directories and isolated UserDefaults suites —
+//  never the production Realm/Room/UserDefaults.standard.
 //
 
 import XCTest
@@ -96,8 +97,8 @@ final class LegacyMigratorDatabaseTests: XCTestCase {
         return object
     }
 
-    private func createFile(at path: String) {
-        FileManager.default.createFile(atPath: path, contents: Data())
+    private func createFile(at path: String, contents: Data = Data()) {
+        FileManager.default.createFile(atPath: path, contents: contents)
     }
 
     // MARK: - buildLegacyPayload
@@ -240,51 +241,85 @@ final class LegacyMigratorDatabaseTests: XCTestCase {
         XCTAssertEqual((payload["routes"] as? [[String: Any]])?.count, 0)
     }
 
-    // MARK: - deleteLegacyArtefacts
+    // MARK: - buildPayloadPreservingOriginal
 
-    func testDeleteLegacyArtefactsRemovesAllFourRealmFiles() {
-        let suffixes = ["", ".lock", ".note", ".management"]
-        for suffix in suffixes {
-            createFile(at: documentsPath + "/database.realm" + suffix)
-        }
-
-        LegacyMigrator.deleteLegacyArtefacts(documentsPath: documentsPath)
-
-        for suffix in suffixes {
-            XCTAssertFalse(
-                FileManager.default.fileExists(atPath: documentsPath + "/database.realm" + suffix),
-                "Expected database.realm\(suffix) to be removed",
+    /// Writes a legacy-shaped realm to `path` and returns once it's closed,
+    /// so the caller can treat the file as a static on-disk fixture.
+    private func writeOnDiskLegacyRealm(at path: String, markerName: String) {
+        autoreleasepool {
+            let config = Realm.Configuration(
+                fileURL: URL(fileURLWithPath: path),
+                objectTypes: [LegacyReferenceEntity.self, LegacyRoute.self, LegacyRouteWaypoint.self],
             )
+            let realm = try! Realm(configuration: config)
+            addMarker(to: realm, id: "leg-1", nickname: markerName, latitude: 1, longitude: 2)
         }
     }
 
-    func testDeleteLegacyArtefactsToleratesMissingFiles() {
-        // Nothing created in documentsPath - must not throw or crash.
-        LegacyMigrator.deleteLegacyArtefacts(documentsPath: documentsPath)
+    func testBuildPayloadPreservingOriginalReadsMarkersFromDisk() {
+        let realmPath = documentsPath + "/database.realm"
+        writeOnDiskLegacyRealm(at: realmPath, markerName: "On disk")
+
+        let payload = decodePayload(LegacyMigrator.buildPayloadPreservingOriginal(at: realmPath))
+        let markers = payload["markers"] as? [[String: Any]]
+
+        XCTAssertEqual(markers?.count, 1)
+        XCTAssertEqual(markers?.first?["name"] as? String, "On disk")
     }
 
-    func testDeleteLegacyArtefactsLeavesUnrelatedFilesAlone() {
-        createFile(at: documentsPath + "/database.realm")
-        createFile(at: documentsPath + "/settings.json")
+    func testBuildPayloadPreservingOriginalLeavesTheLegacyFileByteIdentical() {
+        // The whole point of reading a copy: Realm would otherwise upgrade
+        // the on-disk format in place, and the legacy database has to stay
+        // usable by the legacy build.
+        let realmPath = documentsPath + "/database.realm"
+        writeOnDiskLegacyRealm(at: realmPath, markerName: "On disk")
+        let before = try! Data(contentsOf: URL(fileURLWithPath: realmPath))
 
-        LegacyMigrator.deleteLegacyArtefacts(documentsPath: documentsPath)
+        XCTAssertNotNil(LegacyMigrator.buildPayloadPreservingOriginal(at: realmPath))
 
-        XCTAssertTrue(FileManager.default.fileExists(atPath: documentsPath + "/settings.json"))
+        let after = try! Data(contentsOf: URL(fileURLWithPath: realmPath))
+        XCTAssertEqual(before, after)
     }
 
-    func testDeleteLegacyArtefactsSweepsCacheRealmsInLibrary() {
-        // deleteLegacyArtefacts hardcodes NSHomeDirectory()/Library for the
-        // cache-realm sweep (not parameterized), so this case isn't fully
-        // hermetic - it touches the real test-runner home Library, scoped to
-        // a uniquely-named file so it can't collide with anything real.
-        let libraryPath = NSHomeDirectory() + "/Library"
-        let cacheFile = libraryPath + "/cache.test-\(UUID().uuidString).realm"
-        createFile(at: cacheFile)
-        defer { try? FileManager.default.removeItem(atPath: cacheFile) }
+    func testBuildPayloadPreservingOriginalReturnsNilForAnUnreadableFile() {
+        // Bytes that are not a realm at all: Realm refuses to open the copy,
+        // so the import reports failure and gets retried on a later launch.
+        let realmPath = documentsPath + "/database.realm"
+        let garbage = Data("this is not a realm file".utf8)
+        createFile(at: realmPath, contents: garbage)
 
-        LegacyMigrator.deleteLegacyArtefacts(documentsPath: documentsPath)
+        XCTAssertNil(LegacyMigrator.buildPayloadPreservingOriginal(at: realmPath))
+        // Even a failed read leaves the file exactly as it was.
+        XCTAssertEqual(try? Data(contentsOf: URL(fileURLWithPath: realmPath)), garbage)
+    }
 
-        XCTAssertFalse(FileManager.default.fileExists(atPath: cacheFile))
+    func testBuildPayloadPreservingOriginalTreatsAnEmptyFileAsAnEmptyDatabase() {
+        // Realm initialises a zero-length file into a fresh empty realm
+        // rather than failing. That happens to the throwaway copy, so the
+        // import sees no markers or routes and the original stays empty.
+        let realmPath = documentsPath + "/database.realm"
+        createFile(at: realmPath)
+
+        let payload = decodePayload(LegacyMigrator.buildPayloadPreservingOriginal(at: realmPath))
+
+        XCTAssertEqual((payload["markers"] as? [[String: Any]])?.count, 0)
+        XCTAssertEqual((payload["routes"] as? [[String: Any]])?.count, 0)
+        XCTAssertEqual(try? Data(contentsOf: URL(fileURLWithPath: realmPath)), Data())
+    }
+
+    func testBuildPayloadPreservingOriginalCleansUpItsScratchCopy() {
+        let realmPath = documentsPath + "/database.realm"
+        writeOnDiskLegacyRealm(at: realmPath, markerName: "On disk")
+
+        let tempDirectory = NSTemporaryDirectory()
+        let before = Set((try? FileManager.default.contentsOfDirectory(atPath: tempDirectory)) ?? [])
+        XCTAssertNotNil(LegacyMigrator.buildPayloadPreservingOriginal(at: realmPath))
+        let after = Set((try? FileManager.default.contentsOfDirectory(atPath: tempDirectory)) ?? [])
+
+        XCTAssertTrue(
+            after.subtracting(before).filter { $0.hasPrefix("LegacyMigration-") }.isEmpty,
+            "Scratch copy left behind in \(tempDirectory)",
+        )
     }
 
     // MARK: - runIfNeeded orchestration
@@ -305,7 +340,7 @@ final class LegacyMigratorDatabaseTests: XCTestCase {
         XCTAssertTrue(defaults.bool(forKey: "LegacyMigrationDone"))
     }
 
-    func testRunIfNeededSuccessfulImportRunsSettingsDeletesArtefactsAndSetsDone() {
+    func testRunIfNeededSuccessfulImportRunsSettingsKeepsLegacyDataAndSetsDone() {
         let realmPath = documentsPath + "/database.realm"
         createFile(at: realmPath)
         defaults.set(true, forKey: "GDASettingsMetric")
@@ -327,8 +362,9 @@ final class LegacyMigratorDatabaseTests: XCTestCase {
         XCTAssertEqual(capturedPath, realmPath)
         // migrateSettings ran.
         XCTAssertEqual(defaults.string(forKey: "MeasurementUnits"), "Metric")
-        // deleteLegacyArtefacts ran.
-        XCTAssertFalse(FileManager.default.fileExists(atPath: realmPath))
+        // ...and left the legacy database and settings behind.
+        XCTAssertTrue(FileManager.default.fileExists(atPath: realmPath))
+        XCTAssertTrue(defaults.bool(forKey: "GDASettingsMetric"))
         XCTAssertTrue(defaults.bool(forKey: "LegacyMigrationDone"))
     }
 
@@ -364,27 +400,29 @@ final class LegacyMigratorDatabaseTests: XCTestCase {
     }
 
     func testRunIfNeededAlwaysRunsHygieneSweepRegardlessOfBranch() {
+        // A Date is one of the types the sweep still drops — GDA* keys are
+        // exempt now, so they can't be used as the marker any more.
         // Already-done branch: hygiene sweep still fires even though import is skipped.
         defaults.set(true, forKey: "LegacyMigrationDone")
-        defaults.set(true, forKey: "GDAStaleKey")
+        defaults.set(Date(), forKey: "StaleTimestamp")
         LegacyMigrator.runIfNeeded(
             defaults: defaults,
             documentsPath: documentsPath,
             importDatabase: { _ in 0 },
         )
-        XCTAssertNil(defaults.object(forKey: "GDAStaleKey"))
+        XCTAssertNil(defaults.object(forKey: "StaleTimestamp"))
 
         // Fresh-install branch (no database.realm at documentsPath): hygiene sweep still fires.
         let freshSuiteName = "LegacyMigratorDatabaseTests-fresh-" + UUID().uuidString
         let freshDefaults = UserDefaults(suiteName: freshSuiteName)!
         defer { freshDefaults.removePersistentDomain(forName: freshSuiteName) }
-        freshDefaults.set(true, forKey: "GDAStaleKey")
+        freshDefaults.set(Date(), forKey: "StaleTimestamp")
 
         LegacyMigrator.runIfNeeded(
             defaults: freshDefaults,
             documentsPath: documentsPath,
             importDatabase: { _ in 0 },
         )
-        XCTAssertNil(freshDefaults.object(forKey: "GDAStaleKey"))
+        XCTAssertNil(freshDefaults.object(forKey: "StaleTimestamp"))
     }
 }
