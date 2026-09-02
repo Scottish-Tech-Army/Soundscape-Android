@@ -16,6 +16,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.significantWaterwayClasses
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.findLineIntersectionPoint
@@ -228,7 +229,8 @@ open class GridState(
     /**
      * Attaches crossing_type/crossing_name/crossing_position/crossing_latitude/crossing_longitude
      * properties directly onto the road/path
-     * Way(s) that geometrically cross a railway, mirroring what extractCrossings (MvtToGeoJson.kt)
+     * Way(s) that geometrically cross a railway - and, via attachRailwayWaterwayCrossing, onto the
+     * railway Ways that cross a named river or canal - mirroring what extractCrossings (MvtToGeoJson.kt)
      * already does for waterway crossings at MVT-tile-parse time - see its class doc comment for
      * why railway crossings specifically can't be resolved that early: a road and a railway can
      * straddle an MVT tile boundary right at the point they cross, with each tile's raw geometry
@@ -264,6 +266,7 @@ open class GridState(
         var crossingsFound = 0
 
         val roadTree = localTrees[TreeId.ROADS_AND_PATHS.id]
+        val waterwayTree = localTrees[TreeId.NAMED_WATERWAYS.id]
         // A single OSM way is split into several Way objects at its intersections, all sharing one
         // osmId - see applyCrossing for why the "under" case needs all of them.
         val waysByOsmId = featureCollections[TreeId.ROADS_AND_PATHS.id].features
@@ -273,6 +276,16 @@ open class GridState(
             val railwayGeometry = railway.geometry as? LineString ?: continue
             if (railwayGeometry.coordinates.size < 2) continue
             val railwayBrunnel = railway.properties?.get("brunnel") as? String
+
+            // The rivers and canals the line itself crosses, recorded on the railway Way. Done
+            // before the tunnel check below rather than after it, because a railway *tunnel* under
+            // a canal is a real crossing worth announcing ("Passing under the Forth and Clyde
+            // Canal", where the North Clyde Line runs beneath it) - unlike a road bridge that
+            // merely happens to pass over the horizontal projection of a deep tunnel.
+            if (attachRailwayWaterwayCrossing(railway, railwayGeometry, railwayBrunnel, waterwayTree)) {
+                crossingsFound++
+            }
+
             if (railwayBrunnel == "tunnel") continue
 
             // Shortlist by proximity to the railway *line*, not to its vertices: a bridge is
@@ -302,6 +315,70 @@ open class GridState(
             }
         }
         return crossingsFound
+    }
+
+    /**
+     * Records on a railway [Way] the named river or canal it crosses, using the same
+     * crossing_type/crossing_name/crossing_position/crossing_latitude/crossing_longitude properties
+     * the road crossings use, so that the callout code can read either the same way.
+     *
+     * Nothing computes this anywhere else. extractCrossings (MvtToGeoJson.kt) resolves waterway
+     * crossings at tile-parse time but deliberately excludes railways from its road list, on the
+     * grounds that railway crossings are this function's job - and until now this function only did
+     * road-against-railway. So a train crossing the River Kelvin, the Allander Water or the Clyde
+     * said nothing at all, while a car over the same bridge announced it.
+     *
+     * The over/under sense comes from the railway's own brunnel and is *not* inverted the way the
+     * road-against-railway case is: this property describes the train's own relationship to the
+     * water, which is what gets spoken. A railway with no brunnel at all is skipped - with nothing
+     * built there it's a ford or a tagging error, not a crossing to announce. Note that the
+     * waterway half can never supply the evidence instead, the way it can for roads: brunnel-tagged
+     * waterway segments are kept out of TreeId.NAMED_WATERWAYS entirely (see
+     * getNamedWaterwaysFromTileFeatureCollection), so an aqueduct carrying a canal over a line
+     * isn't representable here.
+     *
+     * Returns true if a crossing was recorded.
+     */
+    private fun attachRailwayWaterwayCrossing(
+        railway: Way,
+        railwayGeometry: LineString,
+        railwayBrunnel: String?,
+        waterwayTree: FeatureTree
+    ): Boolean {
+        val position = when (railwayBrunnel) {
+            "bridge" -> "over"
+            "tunnel" -> "under"
+            else -> return false
+        }
+
+        val candidates = waterwayTree
+            .getNearbyLine(railwayGeometry, structureCrossingSearchDistanceMetres, ruler)
+            .features
+            .filterIsInstance<MvtFeature>()
+
+        for (waterway in candidates) {
+            // Only rivers and canals - a burn under a railway bridge is no more a landmark than a
+            // burn under a road one. Same judgement, same set, as extractCrossings.
+            if (waterway.featureClass !in significantWaterwayClasses) continue
+            val name = waterway.name ?: continue
+            val waterwayGeometry = waterway.geometry as? LineString ?: continue
+            if (waterwayGeometry.coordinates.size < 2) continue
+            val point = findLineIntersectionPoint(
+                railwayGeometry.coordinates,
+                waterwayGeometry.coordinates
+            ) ?: continue
+
+            // Written straight onto this Way rather than onto every piece sharing its osmId: OSM
+            // splits the line at the structure, so the Way that intersects the water *is* the
+            // bridge, and it's the piece the train will be matched to as it goes over.
+            railway.setProperty("crossing_type", "waterway")
+            railway.setProperty("crossing_name", name)
+            railway.setProperty("crossing_position", position)
+            railway.setProperty("crossing_latitude", point.latitude)
+            railway.setProperty("crossing_longitude", point.longitude)
+            return true
+        }
+        return false
     }
 
     /**
