@@ -116,6 +116,22 @@ class CalloutController(
         }
     }
 
+    /**
+     * Cancels any in-flight callout without starting another.
+     *
+     * [startCallout] treats a repeat of an already-playing callout as a cancel, so
+     * that pressing a button twice silences the app. An assistant needs the
+     * opposite: asking "what's around me?" twice means say it again. The assistant
+     * path calls this first so its next request always starts fresh, and clearing
+     * [calloutJob] is what makes that work — the next [startCallout] then sees no
+     * previous job and takes the normal start path rather than the toggle-off one.
+     */
+    fun cancel() {
+        calloutJob?.cancel()
+        calloutJob = null
+        _activeCalloutFlow.value = null
+    }
+
     fun myLocation() {
         startCallout(TourButton.MY_LOCATION) {
             if (service.requestAudioFocus()) {

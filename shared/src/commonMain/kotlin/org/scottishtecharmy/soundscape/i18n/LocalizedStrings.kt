@@ -213,4 +213,19 @@ enum class StringKey {
     StationaryOnWay,
     CalloutsNothingToCallOutNow,
     CalloutsNoNearbyMarkers,
+
+    // Assistant (Siri / voice shortcut) confirmations and errors, spoken by the
+    // assistant rather than by Soundscape's own audio engine.
+    ActionRouteStarted,
+    ActionRouteStopped,
+    ActionBeaconStarted,
+    ActionBeaconStopped,
+    ActionNoSuchRoute,
+    ActionNoSuchMarker,
+    ActionItemNotFound,
+    ActionNoMarkersSaved,
+    ActionNoLocation,
+    ActionNoMapData,
+    ActionNoRouteActive,
+    MenuNoRoutes,
 }
