@@ -940,6 +940,59 @@ class WayNamingTest {
     }
 
     @Test
+    fun traverseIntersections_onlyTagsPassesOnWaysWithTheStepsStillAhead() {
+        // Main Street -- pathA --> Y -- steps --> Z -- pathB --> anchor
+        // Walking towards Main Street from pathB you go up the steps, so pathB is "via steps".
+        // pathA is on the far side of them - the user has already been over them by the time they
+        // are on it - so it must not be tagged.
+        val wLoc = LngLatAlt(-2.657, 51.420)
+        val xLoc = LngLatAlt(-2.657, 51.430)
+        val yLoc = getDestinationCoordinate(xLoc, 0.0, 20.0)
+        val zLoc = getDestinationCoordinate(yLoc, 0.0, 20.0)
+        val endLoc = getDestinationCoordinate(zLoc, 0.0, 20.0)
+
+        val anchorW = Intersection().apply { location = wLoc }
+        val x = Intersection().apply { location = xLoc }
+        val y = Intersection().apply { location = yLoc }
+        val z = Intersection().apply { location = zLoc }
+        val anchorEnd = Intersection().apply { location = endLoc }
+
+        val namedWay = way(name = "Main Street", start = wLoc, end = xLoc).apply {
+            intersections[WayEnd.START.id] = anchorW
+            intersections[WayEnd.END.id] = x
+        }
+        val pathA = way(name = null, start = xLoc, end = yLoc).apply {
+            intersections[WayEnd.START.id] = x
+            intersections[WayEnd.END.id] = y
+        }
+        val stepsWay = way(name = null, start = yLoc, end = zLoc).apply {
+            featureSubClass = "steps"
+            intersections[WayEnd.START.id] = y
+            intersections[WayEnd.END.id] = z
+        }
+        val pathB = way(name = null, start = zLoc, end = endLoc).apply {
+            intersections[WayEnd.START.id] = z
+            intersections[WayEnd.END.id] = anchorEnd
+        }
+        anchorW.members = mutableListOf(namedWay)
+        x.members = mutableListOf(namedWay, pathA)
+        y.members = mutableListOf(pathA, stepsWay)
+        z.members = mutableListOf(stepsWay, pathB)
+        anchorEnd.members = mutableListOf(pathB)
+
+        traverseIntersectionsConfectingNames(hashMapOf(x.location to x))
+
+        // All three are described as leading to Main Street...
+        assertEquals("Main Street", pathA.properties?.get("destination:backward"))
+        assertEquals("Main Street", stepsWay.properties?.get("destination:backward"))
+        assertEquals("Main Street", pathB.properties?.get("destination:backward"))
+        // ...but only the steps themselves and the way beyond them mention them.
+        assertNull(pathA.properties?.get("passes:backward"))
+        assertEquals("steps", stepsWay.properties?.get("passes:backward"))
+        assertEquals("steps", pathB.properties?.get("passes:backward"))
+    }
+
+    @Test
     fun traverseIntersections_stopsFollowingOnceItReachesAnotherNamedWay() {
         // X -- unnamedWay --> Y (2 members) -- namedWay2 --> anchor
         // The naming pass should stop as soon as it reaches namedWay2, i.e. only unnamedWay gets
