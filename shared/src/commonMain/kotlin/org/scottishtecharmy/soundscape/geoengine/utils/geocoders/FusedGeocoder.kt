@@ -34,6 +34,18 @@ class FusedGeocoder(
         localizedStrings: LocalizedStrings?
     ): List<LocationDescription> {
 
+        // A platform geocoder which is itself a place search (MKLocalSearch on iOS) already
+        // returns named businesses and landmarks with their category, which is the only reason
+        // Photon is in this list for search. Merging the two would just produce each place twice.
+        val placeSearch = geocoderList.firstOrNull { it.providesPlaceSearch }
+        if (placeSearch != null) {
+            return placeSearch.getAddressFromLocationName(
+                locationName,
+                nearbyLocation,
+                localizedStrings
+            ).orEmpty()
+        }
+
         val deferredResults = geocoderList.map { geocoder ->
             coroutineScope {
                 async {

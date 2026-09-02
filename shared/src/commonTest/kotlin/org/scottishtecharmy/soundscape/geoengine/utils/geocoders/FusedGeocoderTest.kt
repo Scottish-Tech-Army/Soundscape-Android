@@ -39,6 +39,28 @@ private class FakePlatformGeocoder(
     ): LocationDescription? = lngLatResult
 }
 
+/**
+ * A platform geocoder which is itself a place search, as MKLocalSearch is on iOS. Records whether
+ * it was asked, so a test can tell "returned nothing" apart from "was never consulted".
+ */
+private class FakePlaceSearchGeocoder(
+    private val locationNameResult: List<LocationDescription>? = null,
+) : SoundscapeGeocoder() {
+    var searchCount = 0
+        private set
+
+    override val providesPlaceSearch = true
+
+    override suspend fun getAddressFromLocationName(
+        locationName: String,
+        nearbyLocation: LngLatAlt,
+        localizedStrings: LocalizedStrings?
+    ): List<LocationDescription>? {
+        searchCount++
+        return locationNameResult
+    }
+}
+
 /** Minimal fake of [PhotonSearch] - see PhotonGeocoderTest for a more thoroughly exercised copy. */
 private class FusedFakePhotonSearch(
     private val searchResult: FeatureCollection? = FeatureCollection(),
@@ -300,6 +322,62 @@ class FusedGeocoderTest {
         val results = fused.getAddressFromLocationName("Nowhere", origin, null)
 
         assertTrue(results.isEmpty())
+    }
+
+    // ---- getAddressFromLocationName: place-search platform geocoder ------------------------------
+
+    @Test
+    fun getAddressFromLocationName_placeSearchPlatform_photonIsNotMerged() = runTest {
+        val applePoi = LocationDescription(
+            name = "Kelvingrove Art Gallery and Museum",
+            location = origin,
+            locationType = LocationType.Street,
+        )
+        val cafe = fusedPhotonFeature(getDestinationCoordinate(origin, 0.0, 5.0), "Costa")
+        val fused = FusedGeocoder(
+            buildGridState(),
+            photonGeocoderReturning(cafe),
+            FakePlaceSearchGeocoder(listOf(applePoi)),
+        )
+
+        val results = fused.getAddressFromLocationName("Kelvingrove", origin, null)
+
+        assertEquals(1, results.size)
+        assertSame(applePoi, results[0])
+    }
+
+    @Test
+    fun getAddressFromLocationName_placeSearchReturnsNull_doesNotFallBackToPhoton() = runTest {
+        // Falling back would defeat the point: Photon is skipped so that iOS search is Apple's
+        // results alone, and an empty Apple answer is still Apple's answer.
+        val cafe = fusedPhotonFeature(getDestinationCoordinate(origin, 0.0, 5.0), "Costa")
+        val placeSearch = FakePlaceSearchGeocoder(null)
+        val fused = FusedGeocoder(buildGridState(), photonGeocoderReturning(cafe), placeSearch)
+
+        val results = fused.getAddressFromLocationName("Costa", origin, null)
+
+        assertTrue(results.isEmpty())
+        assertEquals(1, placeSearch.searchCount)
+    }
+
+    @Test
+    fun getAddressFromLocationName_platformWithoutPlaceSearch_stillMergesWithPhoton() = runTest {
+        // The Android geocoder leaves providesPlaceSearch false, so the merge path is unchanged.
+        val streetResult = LocationDescription(
+            name = "1 Main Street",
+            location = origin,
+            locationType = LocationType.StreetNumber,
+        )
+        val cafe = fusedPhotonFeature(getDestinationCoordinate(origin, 0.0, 5.0), "Costa")
+        val fused = FusedGeocoder(
+            buildGridState(),
+            photonGeocoderReturning(cafe),
+            FakePlatformGeocoder(listOf(streetResult)),
+        )
+
+        val results = fused.getAddressFromLocationName("Main Street", origin, null)
+
+        assertEquals(2, results.size)
     }
 
     // ---- getAddressFromLngLat --------------------------------------------------------------------
