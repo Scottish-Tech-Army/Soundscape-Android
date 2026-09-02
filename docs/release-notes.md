@@ -7,7 +7,8 @@ has_toc: false
 
 # Release notes
 
-Soundscape 2.0 is a big release. The headline change is that Soundscape now has something useful to
+Soundscape 2.0 is a big release and is currently in closed Beta. The headline change is that 
+Soundscape now has something useful to
 say when you're travelling by car, bus or train, rather than only when you're on foot. There's also
 a great deal of smaller work on how places are described, twenty new languages, and a long list of
 fixes.
@@ -189,6 +190,4 @@ the same screens, the same wording, and the same callouts, so a new feature like
 above arrives on both at once instead of being written twice. That shared foundation is why 2.0 took
 as long as it did, and it's what should make future releases arrive more quickly on both. The iPhone
 app is currently available through TestFlight by invitation: ask on Slack if you're an STA member,
-or email the Help Desk. If you used the original Microsoft Soundscape on iPhone, see
-[Upgrading from the legacy Soundscape iOS app]({{ "/ios-upgrade-from-legacy.html" | relative_url }})
-for what carries over. None of this changes anything about the Android app you're already using.
+or email the Help Desk.
