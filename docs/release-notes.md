@@ -7,16 +7,15 @@ has_toc: false
 
 # Release notes
 
-Soundscape 2.0 is a big release. The headline change is that Soundscape now runs on iPhone as well
-as Android, but there's also a lot that's new for existing Android users - most notably that
-Soundscape now has something useful to say when you're travelling by car, bus or train.
+Soundscape 2.0 is a big release. The headline change is that Soundscape now has something useful to
+say when you're travelling by car, bus or train, rather than only when you're on foot. There's also
+a great deal of smaller work on how places are described, twenty new languages, and a long list of
+fixes.
 
 Notes for older versions are on the [Release notes for 1.x]({% link v1.0-release-notes.md %}) page.
 
 ## What's new in 2.0
 
-* **Soundscape on iPhone.** There's now an iPhone version, built from the same shared code as the
-  Android app, so the two behave the same way and gain new features at the same time.
 * **Callouts while travelling by car, bus or train.** Soundscape recognises when you're moving at
   speed and describes your journey instead of your immediate surroundings.
 * **Told when you cross water and railways.** Rivers, canals, firths and railway lines are called
@@ -31,8 +30,7 @@ Notes for older versions are on the [Release notes for 1.x]({% link v1.0-release
 * **A quicker way out.** *Exit Soundscape* is now at the top of the main menu.
 * **Offline map improvements**, including updating a downloaded map in place and a map of the
   available regions on this website.
-* **A lot of accessibility work** on TalkBack and VoiceOver, particularly around the onboarding
-  screens.
+* **A lot of accessibility work** on TalkBack, particularly around the onboarding screens.
 * **A great many crash and stability fixes.**
 
 Two things have been **removed** in 2.0: the voice control feature, and the language menu inside the
@@ -42,21 +40,6 @@ instead.
 ---
 
 ## In more detail
-
-### Soundscape on iPhone
-
-Soundscape is now available on iPhone as well as Android. Both apps are built from a single shared
-codebase, which means the screens, the wording and the callouts are the same on both, and a new
-feature arrives on both at once rather than being written twice.
-
-The iPhone app is currently available through TestFlight by invitation. If you would like to try it,
-ask on Slack if you're an STA member, or email the Help Desk at
-<soundscapeAndroid@scottishtecharmy.support>.
-
-If you used the original Microsoft Soundscape on iPhone, see
-[Upgrading from the legacy Soundscape iOS app]({{ "/ios-upgrade-from-legacy.html" | relative_url }})
-for what carries over and what has changed. Your existing markers, routes and settings are left
-alone by the new app.
 
 ### Travelling by car, bus or train
 
@@ -197,3 +180,15 @@ If something isn't right, we'd like to hear about it. Email the Help Desk at
 If a callout was wrong or didn't happen, a recording of your journey helps us enormously - we can
 replay it and see exactly what Soundscape was working from. There are instructions for that under
 [Providing a debug location trace]({% link testing/test-instructions.md %}#providing-a-debug-location-trace).
+
+## A note on iPhone
+
+Everything above is about the Android app, but it's worth knowing where the rest of the work in this
+release went. Soundscape now runs on iPhone too, and both apps are built from the same shared code -
+the same screens, the same wording, and the same callouts, so a new feature like the travel callouts
+above arrives on both at once instead of being written twice. That shared foundation is why 2.0 took
+as long as it did, and it's what should make future releases arrive more quickly on both. The iPhone
+app is currently available through TestFlight by invitation: ask on Slack if you're an STA member,
+or email the Help Desk. If you used the original Microsoft Soundscape on iPhone, see
+[Upgrading from the legacy Soundscape iOS app]({{ "/ios-upgrade-from-legacy.html" | relative_url }})
+for what carries over. None of this changes anything about the Android app you're already using.
