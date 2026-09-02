@@ -7,162 +7,193 @@ has_toc: false
 
 # Release notes
 
-# 1.0.x
-1.0 is our first main release. The changes are relatively small and aimed at improving usability:
-* Choosing a new beacon style in Settings/Audio now plays a beacon as a preview. The beacon is placed directly ahead of you and as you turn your phone you can hear how that beacon style changes.
-* The onboarding screens have been improved to make Talkback focus work properly. Previously it was jumping to the Continue button instead of the top of the screen.
-* The main Menu now covers the whole screen which removes the extra Close button that appeared in Talkback where the user could tap on the area of screen outside of the menu.
-* A couple of minor crash fixes.
-* Share location now always gives correct URLs. In many languages it was using commas in place of a decimal point in the latitude and longitude.
-* UI improvements in the offline map screen to indicate that the offline map manifest is downloading.
+Soundscape 2.0 is a big release. The headline change is that Soundscape now runs on iPhone as well
+as Android, but there's also a lot that's new for existing Android users - most notably that
+Soundscape now has something useful to say when you're travelling by car, bus or train.
 
-# 0.4.x
-0.4 releases add some new means of controlling the app remotely through using headphone media controls and speech recognition. For more information see [Help using Media Controls]({{ "/users/help-using-media-controls.html" | relative_url }}).
-Smaller fixes include:
-* Add an onboarding screen to give the user the ability to allow the app to run unhindered when the phone is locked. This is important for phone manufacturers which run more aggressive battery optimization which can stop Soundscape running.
-* Tapping any of the Hear My Surroundings buttons will cancel any which were already in progress. For example, tapping My Location and then tapping it again will stop the speech.
-* Bug fix for some media controls which were causing crash when using audio menu.
+Notes for older versions are on the [Release notes for 1.x]({% link v1.0-release-notes.md %}) page.
 
-# 0.3.x
-The main change in 0.3 is a switch in how the 3D audio is created. This should give a more distinct positioning of the app sounds.
+## What's new in 2.0
 
-# 0.2.x
-We've bumped the minor release number and aim to update release notes each time we do this instead of on each minor build.
+* **Soundscape on iPhone.** There's now an iPhone version, built from the same shared code as the
+  Android app, so the two behave the same way and gain new features at the same time.
+* **Callouts while travelling by car, bus or train.** Soundscape recognises when you're moving at
+  speed and describes your journey instead of your immediate surroundings.
+* **Told when you cross water and railways.** Rivers, canals, firths and railway lines are called
+  out as you cross them, whether you're walking or travelling.
+* **Better addresses and place names.** Places that have no address of their own now get the street
+  and area they're in, house numbers are matched to the correct side of the street, and bus stops
+  in Great Britain use their official names.
+* **Twenty new languages**, bringing the total to 46. The documentation website is translated too.
+* **Wake on leave.** Sleep mode can now wake Soundscape up again when you leave the place where you
+  put it to sleep.
+* **Shorter, more natural distances**, using larger units when you're moving quickly.
+* **A quicker way out.** *Exit Soundscape* is now at the top of the main menu.
+* **Offline map improvements**, including updating a downloaded map in place and a map of the
+  available regions on this website.
+* **A lot of accessibility work** on TalkBack and VoiceOver, particularly around the onboarding
+  screens.
+* **A great many crash and stability fixes.**
 
-## Changes since 0.1.8
-The main focus has been on improving Search and My Location. We now have offline search which uses downloaded offline maps and allows search without any Internet connection. The Search UI has changed in that it requires the user to tap on the Search key to trigger a search, and the results displayed now include street address where possible. Searching on street addresses should work much better and uses a combination of Android system and our own search server. Offline search will find street addresses if the Open Street Map data includes them.
+Two things have been **removed** in 2.0: the voice control feature, and the language menu inside the
+app. See [Things that have been removed](#things-that-have-been-removed) below for what to do
+instead.
 
-Where searches returns points of interest they now include the type of the place e.g. restaurant, bakery, convenience store. This also appears in Places Nearby and hopefully helps clear up an problems telling businesses apart.
+---
 
-In Settings, there's a new option to only use offline search which won't search using the Internet.
+## In more detail
 
-Other changes include:
+### Soundscape on iPhone
 
-* Cyclepaths are treated the same as sidewalks for describing surroundings so that the street name is used instead of any cyclepath name. This is useful for heavily mapped areas which have cyclepaths running along side roads.
-* Talkback editing of the query text within the Search text field should now work.
+Soundscape is now available on iPhone as well as Android. Both apps are built from a single shared
+codebase, which means the screens, the wording and the callouts are the same on both, and a new
+feature arrives on both at once rather than being written twice.
 
+The iPhone app is currently available through TestFlight by invitation. If you would like to try it,
+ask on Slack if you're an STA member, or email the Help Desk at
+<soundscapeAndroid@scottishtecharmy.support>.
 
-## Changes since 0.0.118
+If you used the original Microsoft Soundscape on iPhone, see
+[Upgrading from the legacy Soundscape iOS app]({{ "/ios-upgrade-from-legacy.html" | relative_url }})
+for what carries over and what has changed. Your existing markers, routes and settings are left
+alone by the new app.
 
-Offline map support has been added and this has involved a large number of changes. When offline maps are downloaded to the app it means that Soundscape can run the majority of its features without any network access. In this initial release, Search still requires network support, but Places Nearby, the audio callouts and the graphical map will all use the downloaded offline maps where present.
-  
-There are a large number of pre-built map regions which cover everywhere on the planet. Many locations will be within more than one offline map region and so the user can choose which one they would like to download and use. More than one offline map can be downloaded and Soundscape will switch between them automatically as the user moves around.
+### Travelling by car, bus or train
 
-Map regions can be whole countries, states or clusters of larger towns and cities. They vary in size depending on how well mapped a region is as well as the physical size of the region. If you are the first user to download a region, there will be a short delay before the download starts. This can be up to a few minutes during which the server processes the map to make it available for download.
+This is the largest new feature for existing users. Previously Soundscape had very little to say
+once you got into a vehicle - it carried on describing your immediate surroundings, which at speed
+meant a stream of things you had already gone past.
 
-The currently downloaded offline maps can be seen by going to Menu/Offline maps. That screen also shows the nearby maps that can be downloaded. The Location Details screen also has a link to offline maps so if you want to download maps for somewhere you are travelling to you can Search for that location and then tap on the "Nearby offline maps" button to see which maps are available at that location. Maps which are no longer required can be deleted by selecting one of the "Maps already downloaded" and then selecting "Delete offline map".
+Soundscape now notices when you're travelling faster than walking pace and changes what it tells
+you. There's nothing to switch on, and it goes back to normal by itself once you slow down or get
+out and walk.
 
-Other changes include:
+While you're travelling you'll hear:
 
-* All map tiles used for the audio and graphical maps are a four times greater area than previous releases. This change was made for two reasons. Firstly, so that Places Nearby list covers a much larger area, and secondly so that the new offline maps are half the size they would have been as we no longer generate zoom level 15 map tiles.
-* Various small improvements to the UI to make it more accessible.
-* Added use of mapped Entrances within Places Nearby list. This means that for buildings and point of interest which have mapped entrances the entrances are used as the location to navigate to. If no entrance is mapped, then it's the nearest point on the building/POI to the user that will be used.
-* Added Russian and Icelandic translations - these were largely done by native speakers, but finished off by AI.
-* Updated all of the translations, largely using AI translations. These can be imperfect, but are likely better than no translation. All feedback on translations is welcome and can be done on a per-string basis at <https://hosted.weblate.org/projects/soundscape-android/android-app/>
-* Settings now contains "Reset to defaults" button at bottom. The current Settings are also now included in the Contact Support email, so if you think there's a problem with the settings then use Contact Support prior to resetting so that we can try and reproduce the issue.
-* Clearing, Exporting and Importing Markers and Routes has been added in "Advanced Markers and Routes" at the bottom of the Settings screen. Routes are exported (and imported) as GPX files within a Zip file. Markers not within a route are put in a separate GPX within the Zip. This allows for backup of the database along with sharing of sets of routes and markers.
+* **Where you are**, every so often - the road you're on and the direction you're going, for
+  example "Travelling north along M8". Roads with a number are announced by their number, and
+  Soundscape won't keep re-announcing the same road each time its street name changes.
+* **Towns and villages** you're heading towards, with the distance, as well as ones you're moving
+  away from or simply passing.
+* **Motorway junctions and exits** as you reach them.
+* **Large landmarks** as you pass them, such as parks, hospitals, stadiums and shopping centres.
+* **Bus, tram and train stops** as you pass them. Soundscape only mentions the stops on your side
+  of the road, since the ones on the far side serve the opposite direction.
+* **Rivers, canals and railways you cross.**
+* **Tunnels**, which mainly explains why Soundscape is about to go quiet - there's no GPS signal
+  inside one.
 
-## Changes between 0.0.116 and 0.0.118
-* Fixed race when announcing "Route completed".
-* Included direction in UI everywhere that there's a distance.
-* Callout marker annotations when they are present.
-* Don't callout a marker when it was a beacon and we just reached it and moved the route on to the next beacon
-* Remove over zealous clearing of the speech queue which was throwing away some useful speech
-* Add proximity beacon to audio engine to mimic iOS. When playing back routes there's a 'hum' starts as you near the next Waypoint.
-* Under the hood support started for offline map extracts - a little way off having support in the app, but the groundwork has been laid.
-* Improve exception handling in Google maps redirect code - fixes one of the last remaining crashes that we've seen.
-* Use confected names when constructing intersection names. This improves the naming of some intersections with un-named paths.
-* Fixes for where markdown was seeping into the UI.
+On a **train**, Soundscape works out that you're on a railway rather than a road, and tells you
+which towns you're passing and how far you've come since the last station. Working this out is
+harder than it sounds, because motorways and railway lines are often built alongside each other for
+miles at a time, so a good deal of the work in this release went into not mistaking one for the
+other.
 
-## Changes between 0.0.110 and 0.0.116
-* *Current Location* now appears as an option in the *Add Waypoint* screen
-* Improvements have been made to deal with cases where permissions (location and notifications) have been revoked.
-* Initial Persian and Arabic language support has been added and various additions to other languages. We welcome suggested improvements on Weblate <https://hosted.weblate.org/projects/soundscape-android/android-app/>
-* The *Search* feature was broken for many languages, it is now fixed. There's also a new *Settings* option to force *Search* results to use English. A use case for this would be a Spanish speaker travelling in Japan. Instead of getting results in the local Japanese language it may be easier to have the English results e.g. Tokyo instead of 東京都.
-* Street Preview calls out a single POI after each jump
-* Marker callouts now use a field-of-view to prevent calling out markers which have been passed
-* Distance to beacons is now adaptive for long journeys. The frequency of the callouts increases as the beacon gets closer.
-* GPS location filtering had been broken and so although the map matching to the current street worked well, beacons were unstable. The filtering has been re-instated and the beacons behaviour is back to what it should be.
-* *Save Marker* screen wasn't reflecting the user direction
-* A long term issue where the graphical map wasn't updating beacons and routes immediately has been fixed.
-* More analytics added to track text to speech engine usage and startup errors.
-* Route playback had a race so that it wasn't always playing back correctly after the first route played.
-* Beacon setting now works across all languages, though it still doesn't playback audio as the selections are made.
+The ordinary walking callouts - nearby shops, road crossings and so on - are deliberately held back
+while you're travelling, and the distances at which things are announced are stretched a long way so
+that you hear about something before you've passed it.
 
+### Crossing water and railways
 
-## Changes between 0.0.96 and 0.0.110
-* A new option in settings to select miles and feet instead of kilometers and meters.
-* Improved light and dark themes and defaulting to use the system setting.
-* Improved handling of locations shared from Google Maps especially those of places with names containing non-ASCII characters.
-* The onboarding screen now honours the safe window so that buttons don't appear under system buttons on newer Samsung phones.
-* When the onscreen keyboard is visible for typing into the search bar, the "Hear my surroundings" and "Title bar" both disappear to give more screen estate. This is most important when using large font sizes.
-* The accessible map style is now enabled by default. It can still be disabled/enabled in the app settings.
-* Stability improvements:
-  * Fixed memory leak when entering Sleep mode
-  * Fix for OnePlus Pro8 startup crash
-  * Fix for Honor X8c crash relating to text to speech engine
-  * A fix for a locking issue in audio beacon destruction
-* Improved Media Control buttons behaviour when there's only 1 audio beacon in a route. Instead of trying to skip/preview they fallback to their other behaviour e.g. "My location"
-* Audio focus is now maintained when switching between audio beacons in a route
-* Initial Ukrainian language support has been added
-* Settings now includes the ability to select the TTS engine to use as well as the voice from within that engine. Audio engine support is also much more robust.
-* Locales from all voices are listed for TTS engines and not just those from the chosen locale
-* New option in Settings to disable graphical maps from screen
-* Improved behaviour when permissions haven't been allowed - no crashing and the user is prompted to change the permissions with a link to the app settings
+Soundscape now tells you when you cross a river, canal, firth, bay or railway line. This works when
+you're walking as well as when you're travelling, and it covers going underneath as well as over the
+top, so a footbridge and an underpass are both described.
 
-### Longer term known issues
-The largest issues which are being worked on are:
-* [Offline mapping](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/236) has been tested as a proof of concept but still requires a lot of work.
-* [Route playback](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/667) has various imperfections which are being worked on.
-* [Improving mapping data](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/605) to try and improve both search, the graphical maps and the contents of Places Nearby.
-* [Callouts for roundabouts need work](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/442). We have a plan for this, but it's not yet implemented.
-* [Support for Street Preview is very preliminary](https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/528), especially when it comes to use by people with a visual impairment.
+### Better addresses and place names
 
-## Features
-This is a brief description of the various features of the app.
+A lot of work has gone into Soundscape describing places the way a person would:
 
-#### Onboarding screens
-These are based on the iOS screens and guide the user through language selection, permissions, and beacon style selection.
+* Places with no address of their own are now described by the street and area they're in, rather
+  than being left vague.
+* House numbers are matched to the correct side of the street. Previously an address could be
+  reported from the opposite pavement.
+* A place's address no longer repeats the place's own name back to you.
+* Bus stops in Great Britain use their official public transport names, which are usually the ones
+  on the timetable and the sign at the stop.
+* Unnamed footpaths that run along a river or canal are now named after the water they follow.
+* Paths and roads with no name are described more sensibly, and the words used for them are
+  properly translated rather than appearing in English.
 
-#### Home screen with UI map
-Unlike iOS, a long press on the map brings up the Location Details screen which is central to the UI. As on iOS that screen allows 
-- creation of an audio beacon at the location
-- saving the location as a marker
-- entering Street Preview mode at the location
-- sharing of the location to another app e.g. to email it, or send it on Slack
+### Languages
 
-Clickable items on the home screen that are implemented are:
+Twenty new languages have been added in 2.0: Arabic, Bengali, Bulgarian, Catalan, Croatian, Czech,
+Hausa, Hungarian, Indonesian, Korean, Marathi, Serbian, Slovak, Slovenian, Swahili, Tamil, Telugu,
+Thai, Urdu and Vietnamese. Soundscape is now available in 46 languages, and this documentation
+website has been translated too.
 
-  * **My Location, Around Me, Ahead of Me and Nearby Markers support** Tapping the icons at the bottom of the screen will describe the location of the device via voice using a similar algorithm to Soundscape iOS. 
-  * **Places Nearby** lists either all of the POI within the local area, or a filtered subset depending on the selection chosen. Clicking on an entry in the list brings up the Location Details screen.
-  * **Markers and Routes** brings up the UI for marker editing and route creation/editing. It includes the Places Nearby lists so that Markers can be created as Waypoints are added.
-  * **Current Location** brings up the Location Details screen for the current location.
-  * **Sleep mode** Clicking on that will disable the Soundscape service and bring up the full screen sleep screen. This is similar to the very simplest iOS sleep mode, wake on leave is not yet implemented.
-  * **Street Preview** This is getting closer to how the iOS app works. When Street Preview is entered via the Location Details screen the GPS location is replaced with the static location provided by the user. The Home screen will display that location is if the phone was there. If Street Preview mode is running then buttons appear at the top of the home screen showing the options available.
-    * Exiting Street Preview mode and returning to using the phone's actual location. When in Street Preview mode the direction is still controlled by the phone orientation.
-    * Clicking on the other button jumps to the next intersection on that road. Which road to choose at the intersection is 
-      chosen by rotating the phone. This should behave pretty much as the iOS app does, but with less animated buttons/feedback.
-  * **Search** This allows geo-searching from within the app. It updates the results if you pause typing in an auto-suggest type way. Tapping on a result opens the Location Details screen.
+Egyptian Arabic has been folded into Arabic, and Luganda has been withdrawn, as neither had enough
+translated text to be useful.
 
-#### Soundscape service
-This runs even when the phone is locked. It means that a beacon can be set or a route played and then the phone locked. The audio beacon will continue to sound. The service can be stopped and restarted by entering and exiting Sleep mode. The service is responsible for the audio beacon play out and the audio callouts. The heading logic is similar to iOS which means that when the phone is locked the heading is based on the current direction of travel. If the phone is unlocked - or is locked and held flat in front of the user - then the heading used is the direction that the phone is pointing in.
+Translations are community work and we'd welcome your help with them, or corrections where something
+reads badly. Any string can be improved at
+<https://hosted.weblate.org/projects/soundscape-android/android-app/>.
 
-* **Initial Auto callout support** These are enabled by default and announce upcoming intersections and nearby points of interest.
-* **Media Playback** controls now work allowing headphone or other Bluetooth triggering of some types of callout. They work the same as iOS.
+### Sleep mode
 
-#### Menu
-Some of the options within the Menu have been implemented:
-* **Settings** allows the altering of a few settings that exist in the app. This includes selecting the text to speech voice and its speed. Support for alternatives to the Google text to speech engines have been tested including CereVoices, Vocalizer TTS and Acapela TTS engines.
-* **Help and Tutorials** duplicates the text from the iOS app. This will be updated in future to reflect differences between the Android and iOS apps.
+Sleep mode has gained **wake on leave**. When you put Soundscape to sleep you can ask it to wake up
+again once you leave the area, which is useful when you arrive somewhere and want it quiet until
+you next set off.
 
-#### Opening the app
-The main way that a user might open the app is by tapping on its icon. However, there are other ways to do it:
+### Distances and speech
 
-*  **Open from Google Calendar** Clicking on a location in another app e.g. Google calendar, will open Soundscape in the Location Details screen for that location. This is using a `geo:` intent from the calendar.
-*  **Open via Share from Google Maps** Selecting a place in Google Maps and then clicking on the share icon allows the location to be shared with the Soundscape app. This requires Internet access. Once again the result is opened in the Location Details screen.
-*  **Open a soundscape URI** The behaviour of these URI may well change as we develop further. Currently, it's just a latitude and longitude and clicking on a URI like [soundscape:55.
-   9552485,-3.1928911](soundscape:55.9552485,-3.1928911) will open the Soundscape app in Street Preview mode at the location provided. This is very useful for testing problem locations found by users in the field. That URI is actually from [issue 201](https://github.
-   com/Scottish-Tech-Army/Soundscape-Android/issues/201) and makes it simple to  reproduce.
-*  **Open a GPX/JSON file** from the File application on Android. This supports a fairly limited set of GPX files along with routes saved from the iOS app. The route opens in the "Create Route" screen allowing it to be saved to the app which saves the Markers and the Route.
+Spoken distances have been shortened and made more natural, and Soundscape now switches to larger
+units when you're moving quickly - miles or kilometres rather than a long count of feet or metres.
+Each language decides for itself how to say a fractional distance, which had been forced into an
+English-shaped pattern before.
 
-A suggested [smoke test]({% link testing/smoke_test.md %}) has a list of features to test and how.
+### Offline maps
+
+Offline maps arrived in 1.0 and have been steadily improved:
+
+* A downloaded map can now be updated in place when a newer version is available, from the extract's
+  details screen.
+* Maps that can't be used - a download that was corrupted, for instance - are now clearly marked
+  rather than silently failing.
+* Downloads are more reliable, and the screen shows what's happening while the list of available
+  maps is being fetched instead of a full-screen spinner.
+* A finished download only appears as finished once it's genuinely ready to use.
+* There's a [map of the available regions]({{ "/users/help-offline-map-extracts.html" | relative_url }})
+  on this website.
+
+### Accessibility
+
+A great deal of work has gone into screen reader behaviour, especially in the onboarding screens
+where focus used to jump to the wrong place. Other improvements include better reading of file sizes
+and decimal numbers, correct "double tap to..." hints in languages that put the verb last, and
+sensible hints where none had been set at all.
+
+### Menus and navigation
+
+* **Exit Soundscape** is now the first item in the main menu, rather than being somewhere further
+  down.
+* The main menu no longer has a strip of the screen showing down one side, which had given screen
+  reader users a confusing extra area to tap.
+* The system back gesture no longer skips a level when you're browsing categories in Places Nearby.
+* The *Audio Tutorial* has been renamed the **Guided Tutorial**.
+* Settings has been tidied, and *Reset to defaults* now properly clears everything.
+
+### Stability
+
+2.0 includes a long list of crash and freeze fixes, among them the app freezing on the splash
+screen, freezes when resetting settings, crashes when a downloaded map was damaged, crashes on
+opening route details from the home screen, crashes when changing language, and several problems
+reported automatically through the Play Store. Battery and start-up behaviour have also been made
+more robust on phones that aggressively shut background apps down.
+
+### Things that have been removed
+
+* **Voice control** has been removed. It never worked reliably enough to be worth keeping, and the
+  media control buttons on headphones cover most of the same ground - see
+  [Help using Media Controls]({{ "/users/help-using-media-controls.html" | relative_url }}).
+* **The language menu inside the app** has gone. Soundscape now follows the language you've set for
+  your phone, which is what most people expected it to do. To change it, change your phone's
+  language, or set a per-app language in your phone's settings if it offers that.
+
+## Telling us about problems
+
+If something isn't right, we'd like to hear about it. Email the Help Desk at
+<soundscapeAndroid@scottishtecharmy.support>, or ask on Slack if you're an STA member.
+
+If a callout was wrong or didn't happen, a recording of your journey helps us enormously - we can
+replay it and see exactly what Soundscape was working from. There are instructions for that under
+[Providing a debug location trace]({% link testing/test-instructions.md %}#providing-a-debug-location-trace).
