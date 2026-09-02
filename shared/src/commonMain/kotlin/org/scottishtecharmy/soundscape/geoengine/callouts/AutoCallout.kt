@@ -465,14 +465,20 @@ class AutoCallout(
     }
 
     /**
-     * Announces the roads a train passes over and under. GridState.attachRailwayCrossings already
+     * Announces the roads a train passes over and under, and the rivers and canals it crosses.
+     *
+     * The two halves come from opposite directions. GridState.attachRailwayCrossings already
      * records, on every road Way that crosses a railway, which railway it crosses and exactly
      * where - so riding a railway, the same data can simply be read the other way round: find the
-     * roads whose recorded crossing is with *this* line, and name them as they go by.
+     * roads whose recorded crossing is with *this* line, and name them as they go by. Waterway
+     * crossings have no such road-side record to borrow (extractCrossings leaves railways out
+     * entirely), so attachRailwayWaterwayCrossing writes them directly onto the railway Way and
+     * they're read off the line the passenger is on.
      *
-     * The over/under sense inverts, since the stored position describes the road user's
-     * relationship to the railway. A road recorded as going "over" the line is a bridge the train
-     * passes beneath, and vice versa.
+     * For the roads, the over/under sense inverts, since the stored position describes the road
+     * user's relationship to the railway: a road recorded as going "over" the line is a bridge the
+     * train passes beneath, and vice versa. The waterway crossings need no such flip - they were
+     * written from the train's point of view to begin with.
      *
      * Only grade-separated crossings appear, because that's all attachRailwayCrossings records - a
      * level crossing has no brunnel on either side and is deliberately left to the explicit
@@ -492,6 +498,54 @@ class AutoCallout(
 
         val radius = (userGeometry.speed * crossingTriggerLeadSeconds)
             .coerceIn(crossingTriggerMinimumRadiusMetres, crossingTriggerMaximumRadiusMetres)
+
+        // The rivers and canals the line itself carries the passenger over or under, recorded on
+        // the railway Way by GridState.attachRailwayWaterwayCrossing. Checked before the roads
+        // below because a river is the bigger landmark of the two - crossing the Clyde is worth
+        // more to a passenger than passing under a side street.
+        val nearbyRailways = gridState.getFeatureTree(TreeId.TRANSIT).getNearbyCollection(
+            userGeometry.location, radius, gridState.ruler
+        ).features.filterIsInstance<Way>()
+
+        for (railway in nearbyRailways) {
+            if (railway.properties?.get("crossing_type") != "waterway") continue
+            // Belongs to the line actually being ridden, not one running alongside it. The road
+            // loop below tests the same thing the other way round, via crossing_name.
+            if (railway.name != railwayName) continue
+            val waterName = railway.properties?.get("crossing_name") as? String ?: continue
+            val latitude = railway.properties?.get("crossing_latitude") as? Double ?: continue
+            val longitude = railway.properties?.get("crossing_longitude") as? Double ?: continue
+            val point = LngLatAlt(longitude, latitude)
+            if (gridState.ruler.distance(userGeometry.location, point) > radius) continue
+
+            // Keyed on the water's name, so a line crossing a river on two adjacent bridge decks
+            // announces it once.
+            val key = "water|$waterName"
+            if (announcedCrossings.any { it.key == key }) continue
+
+            // Not inverted, unlike the road case below: crossing_position here already describes
+            // the train's own relationship to the water.
+            val position = railway.properties?.get("crossing_position") as? String
+            val text = crossingCalloutText(WayCrossingInfo("waterway", waterName, position, point))
+
+            announcedCrossings.add(
+                AnnouncedCrossing(key, point, userGeometry.timestampMilliseconds)
+            )
+            return TrackedCallout(
+                userGeometry,
+                trackedText = waterName,
+                location = userGeometry.location,
+                positionedStrings = listOf(
+                    PositionedString(
+                        text = text,
+                        location = userGeometry.location,
+                        type = AudioType.STANDARD
+                    )
+                ),
+                isPoint = true,
+                isGeneric = false,
+            )
+        }
 
         // TreeId.ROADS rather than ROADS_AND_PATHS: footways, pavements, cycleways and bridleways
         // are excluded from it (see WayGenerator), which is both what a rail passenger wants and a

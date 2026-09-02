@@ -187,7 +187,10 @@ private fun extractNamedWaterPolygons(
 // really a landmark - so only the two biggest classes are worth a callout. This can't be inferred
 // from how the crossing happens (e.g. a stream can still pass under a real bridge, not just a
 // culvert), so it's judged on the waterway's own class rather than its brunnel value.
-private val significantWaterwayClasses = setOf("river", "canal")
+//
+// Internal rather than private because GridState.attachRailwayCrossings applies the same judgement
+// to the waterways a *railway* crosses, which can't be resolved here at tile-parse time.
+internal val significantWaterwayClasses = setOf("river", "canal")
 
 // The `waterway` classes worth naming an adjacent path after. Deliberately wider than
 // significantWaterwayClasses above, because the two sets answer different questions. That one asks

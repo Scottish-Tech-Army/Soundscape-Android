@@ -1260,6 +1260,69 @@ class MvtTileTest {
     }
 
     /**
+     * A train crossing a river or canal should say so, exactly as a car over the same bridge does.
+     * It didn't, for a while: extractCrossings (MvtToGeoJson.kt) deliberately leaves railways out
+     * of the road list it intersects waterways against, on the grounds that railway crossings are
+     * attachRailwayCrossings' job - and that only ever did road-against-railway. So the crossings
+     * fell down the gap between the two and a passenger over the Kelvin heard nothing.
+     *
+     * Both senses are checked here, because they're recorded by different routes: the North Clyde
+     * Line bridges the River Kelvin (`brunnel=bridge` -> "over"), and runs beneath the Forth and
+     * Clyde Canal in tunnel (`brunnel=tunnel` -> "under"). The latter is also the control for the
+     * tunnel skip added to the road half of attachRailwayCrossings - a tunnelled line still crosses
+     * the water above it, even though it doesn't meaningfully cross the streets up there.
+     */
+    @Test
+    fun testRailwayWaterwayCrossingsAreAttached() {
+        // Between Partick and Yorkhill, where the North Clyde Line bridges the Kelvin.
+        val kelvinGrid = getGridStateForLocation(LngLatAlt(-4.3042, 55.8677), MAX_ZOOM_LEVEL, 3)
+        val kelvinCrossings = kelvinGrid.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
+            .filterIsInstance<Way>()
+            .filter { it.properties?.get("crossing_name") == "River Kelvin" }
+        assertTrue(
+            "Expected a North Clyde Line Way to record crossing the River Kelvin",
+            kelvinCrossings.isNotEmpty()
+        )
+        assertTrue(
+            "A railway bridging a river carries the passenger over it",
+            kelvinCrossings.any {
+                (it.properties?.get("crossing_type") == "waterway") &&
+                    (it.properties?.get("crossing_position") == "over")
+            }
+        )
+
+        // Knightswood, where the line tunnels under the Forth and Clyde Canal.
+        val canalGrid = getGridStateForLocation(LngLatAlt(-4.3197, 55.8950), MAX_ZOOM_LEVEL, 3)
+        val canalCrossings = canalGrid.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
+            .filterIsInstance<Way>()
+            .filter { it.properties?.get("crossing_name") == "Forth and Clyde Canal" }
+        assertTrue(
+            "A railway tunnelling beneath a canal takes the passenger under it",
+            canalCrossings.any {
+                (it.properties?.get("crossing_type") == "waterway") &&
+                    (it.properties?.get("crossing_position") == "under")
+            }
+        )
+
+        // Burns are not landmarks - the same judgement extractCrossings makes for roads. The
+        // Milngavie Branch crosses several around here, but only the Allander Water is worth it.
+        val burnGrid = getGridStateForLocation(LngLatAlt(-4.3110, 55.9340), MAX_ZOOM_LEVEL, 3)
+        val burnCrossings = burnGrid.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
+            .filterIsInstance<Way>()
+            .mapNotNull { it.properties?.get("crossing_name") as? String }
+            .toSet()
+        assertTrue(
+            "Expected the Allander Water crossing, got $burnCrossings",
+            burnCrossings.contains("Allander Water")
+        )
+        assertTrue(
+            "A burn under a railway bridge is no more a landmark than one under a road, " +
+                "got $burnCrossings",
+            burnCrossings.none { it.endsWith("Burn") }
+        )
+    }
+
+    /**
      * The same concern for railways, which central Glasgow is full of: the Argyle Line and the
      * North Clyde Line run in tunnel under the city centre for hundreds of metres at a time, with
      * ordinary streets over the top. Announcing a railway crossing on every one of them would be
