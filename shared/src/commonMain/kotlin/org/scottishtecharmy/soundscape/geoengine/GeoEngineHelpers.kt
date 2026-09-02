@@ -681,7 +681,17 @@ fun describeReverseGeocode(
         text = description.text,
         dedupText = description.dedupText,
         extraDedupText = description.extraDedupText,
+        // The location is kept for callout-history purposes (see TrackedCallout), but the audio
+        // is deliberately not spatialized. Every phrasing above describes where the traveller
+        // themselves is - the line they're on, the settlement they're near, how far they've come
+        // since a station - so there's no feature for a bearing to point at, and the only
+        // position available to point at is the traveller's own. Localizing it made the callout
+        // play from wherever the vehicle was when the text was generated: harmless on foot, but
+        // this callout is vehicle-only, and by the time a train's callout reaches the front of
+        // the speech queue the train is a few hundred metres past that point. The source pinned
+        // behind the listener, and a rear HRTF reads as quiet and dull - so a callout carrying no
+        // directional information was being made harder to hear for the sake of it.
         location = userGeometry.location,
-        type = AudioType.LOCALIZED,
+        type = AudioType.STANDARD,
     )
 }
