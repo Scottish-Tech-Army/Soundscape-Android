@@ -266,24 +266,38 @@ private fun extractNamedWaterways(
 private val railwayClasses = setOf("rail", "transit")
 
 /**
- * A railway/transit line that's permanently underground - either a `subclass=subway` line (the
- * whole Glasgow Subway, for example) or any segment tagged `brunnel=tunnel` - is excluded from
+ * A `subclass=subway` line - the whole Glasgow Subway, for example - is excluded from
  * TreeId.TRANSIT, the network railMapMatchFilter matches GPS fixes against (see GeoEngine.kt).
  *
- * GPS is 2D: it can't tell a road apart from a railway tunnel running directly beneath it. Where
- * a road sits right above a rail tunnel for a sustained stretch - e.g. Byres Road above the
- * Glasgow Subway, around 55.872965,-4.296419 - the tunnel's horizontal projection would otherwise
- * coincide with the road closely enough, for long enough, to build up the same kind of sustained
- * frechetQueue history as a genuine train ride (see MapMatchFilter.isMatchConfident), wrongly
- * flipping UserGeometry.probablyOnTrain for a driver or pedestrian who was never anywhere near a
- * train. A brief level crossing is already handled by isMatchConfident's history requirement; a
- * tunnel/subway running underneath for hundreds of metres is not "brief", so it needs excluding
- * at the source instead. There's no matching value in keeping these matchable in the first place:
- * a phone actually underground on a real subway/tunnel journey rarely has a usable GPS fix to
- * match with anyway.
+ * GPS is 2D: it can't tell a road apart from a railway running directly beneath it. Where a road
+ * sits right above a buried line for a sustained stretch - e.g. Byres Road above the Glasgow
+ * Subway, around 55.872965,-4.296419 - the line's horizontal projection coincides with the road
+ * closely enough, for long enough, to build up the same kind of sustained frechetQueue history as
+ * a genuine train ride (see MapMatchFilter.isMatchConfident), which would wrongly flip
+ * UserGeometry.probablyOnTrain for a driver or pedestrian who was never anywhere near a train. A
+ * brief level crossing is already handled by isMatchConfident's history requirement; a subway
+ * running underneath for hundreds of metres is not "brief". A subway line is underground for its
+ * entire length, so there's nothing to be gained by keeping it: a rider on one has no usable GPS
+ * fix to match with anyway.
+ *
+ * A `brunnel=tunnel` heavy-rail segment is a different case and is deliberately *not* excluded
+ * here, even though it poses exactly the same road-above-the-line hazard (Kent Road sits directly
+ * over the North Clyde Line at Charing Cross). Unlike a subway, such a segment is a buried stretch
+ * of an otherwise surface line, and recordings show GPS keeps producing genuinely good fixes for a
+ * couple of hundred metres past the tunnel mouth - tracking the tunnel centreline to within 8m
+ * while reporting 6-26m accuracy. Excluding the tunnel used to leave the road overhead as the only
+ * thing left to match against, so a train through the Charing Cross tunnel was announced as
+ * "Traveling east along Kent Road". Keeping the tunnel matchable fixes that; the road-above hazard
+ * is handled instead by RailMatchArbiter, which lets a tunnel match sustain a train lock but never
+ * acquire one.
+ *
+ * Keeping tunnels in also means the tunnel line reaches WayGenerator.addLine, so the node at the
+ * tunnel mouth is counted twice and an Intersection is created there. That's what joins the
+ * surface and tunnel Ways into one connected network, which MapMatchFilter's reachability check
+ * needs in order to follow a train underground.
  */
-private fun isUnmatchableRailway(subClass: String?, brunnel: Any?): Boolean {
-    return (subClass == "subway") || (brunnel == "tunnel")
+private fun isUnmatchableRailway(subClass: String?): Boolean {
+    return subClass == "subway"
 }
 
 private class NamedLine(val name: String?, val featureClass: String?, val coordinates: List<LngLatAlt>)
@@ -557,7 +571,10 @@ private fun findCrossingRoads(
  * easily identify roads and paths for intersection handling. We also add a name tag to every
  * feature in the transportation layer. This ensures that we always have an OSM id and a name where
  * there's one available. The `transportation_name` layer is left unused and so its merging of
- * lines to improve the graphical UI is untouched.
+ * lines to improve the graphical UI is untouched. Two further tags are carried through that aren't
+ * in the stock schema at all: `ref`, and `tunnel_name` from OSM's `tunnel:name` - the latter being
+ * the only way to name a tunnel, since a tunnelled way's own `name` is the road or line running
+ * through it rather than the tunnel (see buildCalloutForTunnel in AutoCallout.kt).
  * Note that these changes are  only in our builds and won't be in upstream `planetiler`. None of
  * these changes should affect the graphical rendering of the tiles which is important as we're
  * using the tiles for that too.
@@ -921,7 +938,7 @@ fun vectorTileToGeoJson(
                                 println("Feature ID is zero for $name")
                             }
                             if ((featureClass == "transit") || (featureClass == "rail")) {
-                                if (!isUnmatchableRailway(featureSubClass, properties?.get("brunnel"))) {
+                                if (!isUnmatchableRailway(featureSubClass)) {
                                     transitGenerator.addLine(line)
                                 }
                             } else {
@@ -1042,7 +1059,7 @@ fun vectorTileToGeoJson(
                                 collection.addFeature(geoFeature)
                             } else {
                                 if ((featureClass == "transit") || (featureClass == "rail")) {
-                                    if (!isUnmatchableRailway(featureSubClass, properties?.get("brunnel"))) {
+                                    if (!isUnmatchableRailway(featureSubClass)) {
                                         transitGenerator.addFeature(geoFeature)
                                     }
                                 } else {

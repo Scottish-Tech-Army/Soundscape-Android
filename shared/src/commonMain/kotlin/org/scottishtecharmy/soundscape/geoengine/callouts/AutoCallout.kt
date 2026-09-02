@@ -755,6 +755,152 @@ class AutoCallout(
         )
     }
 
+    /**
+     * Where the user last was while matched to a tunnel, or null when they're reckoned to be out in
+     * the open - see [buildCalloutForTunnel]. Deliberately a position rather than the tunnel's
+     * identity: a long tunnel is several OSM ways (the Charing Cross tunnel on the North Clyde Line
+     * is four, and the two tracks through it have their own ids again), each split further at
+     * intersections and tile seams, so keying on which way is matched announces the same tunnel
+     * over and over as the match steps between them.
+     */
+    private var lastTunnelLocation: LngLatAlt? = null
+
+    /**
+     * Where the current spell underground began, used to measure how far into a tunnel the user has
+     * actually got - see [unnamedTunnelAnnounceDistanceMetres]. Survives the short surface gaps
+     * [tunnelForgetDistanceMetres] rides out, so a stub tunnel immediately before the real one
+     * doesn't restart the measurement.
+     */
+    private var tunnelEntryLocation: LngLatAlt? = null
+
+    /** Whether the current spell underground has already been announced. */
+    private var tunnelAnnounced = false
+
+    /**
+     * How far the user has to get from the last place they were matched to a tunnel before the
+     * callout re-arms. Covers both the match flickering between a tunnel way and the surface way
+     * beside it at a tunnel mouth, and a run of dropped fixes underground (see isAccuracyUsable)
+     * leaving a gap in the sequence. Two genuinely separate tunnels closer together than this are
+     * announced once, which is the better reading of them anyway.
+     */
+    private val tunnelForgetDistanceMetres = 200.0
+
+    /**
+     * How far into an *unnamed* tunnel the user has to get before it's worth mentioning.
+     *
+     * OSM only names tunnels that are actually tunnels. What it leaves unnamed, on the railway at
+     * least, is overwhelmingly the few metres of cover where a road bridges the line: measured over
+     * the central-belt extract, unnamed rail tunnel segments have a median length of 49m and a 90th
+     * percentile of 100m, against 142m and 597m for named ones. Announcing those is noise - a
+     * passenger is out the far side before the callout finishes - and worse, an unnamed 21m stub
+     * sits immediately before the mouth of the Finnieston Tunnel, so announcing it swallowed the
+     * real tunnel's callout through the re-arm rule above.
+     *
+     * Measuring distance travelled rather than filtering on the matched Way's own length is what
+     * makes this safe: a long tunnel is split into pieces at intersections and tile seams, and
+     * named ones come in pieces as short as 5m (the Queen Street High Level Tunnel), so a
+     * per-segment length test would throw away exactly the tunnels worth announcing.
+     */
+    private val unnamedTunnelAnnounceDistanceMetres = 100.0
+
+    /**
+     * Announces going into a tunnel, whether walking, driving or riding a train.
+     *
+     * Worth saying on its own account - a tunnel is a landmark, and a long one is a notable part of
+     * a journey - but it's also the honest explanation for what follows. Underground, GPS doesn't
+     * stop, it just degrades: recorded train journeys through central Glasgow keep producing usable
+     * fixes for a couple of hundred metres past the tunnel mouth, then collapse to 200-700m
+     * accuracy, at which point isAccuracyUsable has GeoEngine drop them and the journey simply goes
+     * quiet. "Entering a tunnel" tells the user why.
+     *
+     * Both kinds of tunnel are answered the same way, from the Way the user is already map matched
+     * to: a tunnel is a `brunnel=tunnel` segment of the road or of the railway, and being matched
+     * to one is what it means to be in it. No geometric search is needed, and no guessing - which
+     * matters, because a road directly above a rail tunnel is common in a city and a proximity test
+     * couldn't tell the two apart. The railway answer is preferred when both are available: on a
+     * train the road matcher still latches onto whatever runs overhead, and the line is the better
+     * account of where the user actually is.
+     */
+    private fun buildCalloutForTunnel(
+        userGeometry: UserGeometry,
+        gridState: GridState
+    ): TrackedCallout? {
+        val tunnel = tunnelWay(userGeometry)
+        if (tunnel == null) {
+            // Only count as out in the open once well clear of where we last were underground, so
+            // that the callout re-arms for the next tunnel but not for a wobble at this one's mouth.
+            lastTunnelLocation?.let { last ->
+                if (gridState.ruler.distance(userGeometry.location, last) >
+                    tunnelForgetDistanceMetres
+                ) {
+                    lastTunnelLocation = null
+                    tunnelEntryLocation = null
+                    tunnelAnnounced = false
+                }
+            }
+            return null
+        }
+
+        val entry = tunnelEntryLocation ?: userGeometry.location.also { tunnelEntryLocation = it }
+        lastTunnelLocation = userGeometry.location
+        if (tunnelAnnounced) return null
+
+        // OSM's `tunnel:name`, carried through the tile pipeline as `tunnel_name` - "Finnieston
+        // Tunnel", "Charing Cross Tunnel". Only about half the tunnels in an extract have one (the
+        // short covered stretches generally don't), so a generic "Entering a tunnel" is the normal
+        // case rather than the exception.
+        //
+        // The Way's own name is deliberately not used as a fallback. On a railway it names the
+        // *line* running through the tunnel ("North Clyde Line"), which the preceding "On North
+        // Clyde Line" callouts have already said; on a road it names the road ("M8"), so "Entering
+        // M8" would be actively misleading. Way.getName is worse still, confecting things like
+        // "Path via tunnel to Station Road". Better to say nothing than the wrong thing.
+        val name = tunnel.properties?.get("tunnel_name") as? String
+        if ((name == null) &&
+            (gridState.ruler.distance(userGeometry.location, entry) <
+                unnamedTunnelAnnounceDistanceMetres)
+        ) {
+            // Not far enough in to know this is a tunnel rather than a bridge overhead. Wait -
+            // either the distance mounts up, or a named piece of the same tunnel turns up.
+            return null
+        }
+        tunnelAnnounced = true
+
+        val text = if (name != null) {
+            localized?.get(StringKey.DirectionsEnteringTunnelNamed, name) ?: "Entering $name"
+        } else {
+            localized?.get(StringKey.DirectionsEnteringTunnel) ?: "Entering a tunnel"
+        }
+
+        return TrackedCallout(
+            userGeometry,
+            trackedText = name ?: "tunnel",
+            location = userGeometry.location,
+            positionedStrings = listOf(
+                PositionedString(
+                    text = text,
+                    location = userGeometry.location,
+                    type = AudioType.STANDARD
+                )
+            ),
+            isPoint = true,
+            isGeneric = false,
+        )
+    }
+
+    /**
+     * The tunnel Way the user is in right now, or null if they're out in the open.
+     */
+    private fun tunnelWay(userGeometry: UserGeometry): Way? {
+        userGeometry.mapMatchedRailway?.let { railway ->
+            if (railway.properties?.get("brunnel") == "tunnel") return railway
+        }
+        userGeometry.mapMatchedWay?.let { way ->
+            if (way.properties?.get("brunnel") == "tunnel") return way
+        }
+        return null
+    }
+
     fun buildCalloutForIntersections(
         userGeometry: UserGeometry,
         gridState: GridState
@@ -964,6 +1110,10 @@ class AutoCallout(
                     destinationCallout.locationFilter = destinationFilter
                     trackedCallout = destinationCallout
                 } else if (preferences?.getBoolean(PreferenceKeys.ALLOW_CALLOUTS, true) != false) {
+                    // Going into a tunnel is worth saying however the user is travelling, so it's
+                    // computed outside the vehicle/pedestrian split below and merged onto whatever
+                    // else this update produced.
+                    val tunnelCallout = buildCalloutForTunnel(userGeometry, gridState)
                     // buildCalloutForRoadSense builds a callout for travel that's faster than
                     // walking
                     val roadSenseCallout =
@@ -1028,6 +1178,13 @@ class AutoCallout(
                                 } else
                                     trackedCallout = poiCallout
                             }
+                        }
+                    }
+                    if (tunnelCallout != null) {
+                        if (trackedCallout != null) {
+                            trackedCallout.positionedStrings += tunnelCallout.positionedStrings
+                        } else {
+                            trackedCallout = tunnelCallout
                         }
                     }
                 }

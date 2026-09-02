@@ -26,6 +26,16 @@ class GooglePlayLocationProvider(context: Context) :
 
     private val filter = KalmanLocationFilter()
 
+    /**
+     * Publishes a fix on both flows. Every fix is published, however inaccurate: dropping the ones
+     * that aren't good enough to act on is GeoEngine's job (see LocationProvider.isLocationUsable),
+     * so that the GPX recorder and the map still see what the receiver actually reported.
+     */
+    private fun publishLocation(location: Location) {
+        mutableLocationFlow.value = location.toSoundscapeLocation()
+        mutableFilteredLocationFlow.value = filterLocation(location).toSoundscapeLocation()
+    }
+
     fun filterLocation(location: Location): Location {
         val filteredLocation = filter.process(
             LngLatAlt(location.longitude, location.latitude),
@@ -47,9 +57,7 @@ class GooglePlayLocationProvider(context: Context) :
             fusedLocationClient.lastLocation
                 .addOnSuccessListener { location: Location? ->
                     if (location != null) {
-                        mutableLocationFlow.value = location.toSoundscapeLocation()
-                        mutableFilteredLocationFlow.value =
-                            filterLocation(location).toSoundscapeLocation()
+                        publishLocation(location)
                     }
                 }
                 .addOnFailureListener { _: Exception ->
@@ -58,9 +66,7 @@ class GooglePlayLocationProvider(context: Context) :
         locationCallback = object : LocationCallback() {
             override fun onLocationResult(locationResult: LocationResult) {
                 for (location in locationResult.locations) {
-                    mutableLocationFlow.value = location.toSoundscapeLocation()
-                    mutableFilteredLocationFlow.value =
-                        filterLocation(location).toSoundscapeLocation()
+                    publishLocation(location)
                 }
             }
         }

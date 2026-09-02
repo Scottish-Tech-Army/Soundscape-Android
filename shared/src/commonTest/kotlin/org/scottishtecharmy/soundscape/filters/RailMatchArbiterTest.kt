@@ -28,6 +28,15 @@ class RailMatchArbiterTest {
     private fun rail(distance: Double?, confident: Boolean = true) =
         RailMatchArbiter.MatchState(railway, distance, confident)
 
+    private val tunnel = Way().apply {
+        osmId = 3L
+        name = "North Clyde Line"
+        properties = hashMapOf("brunnel" to "tunnel")
+    }
+
+    private fun railTunnel(distance: Double?, confident: Boolean = true) =
+        RailMatchArbiter.MatchState(tunnel, distance, confident, inTunnel = true)
+
     private fun noMatch() = RailMatchArbiter.MatchState(null, null, false)
 
     @Test
@@ -104,6 +113,71 @@ class RailMatchArbiterTest {
         assertNull(
             arbiter.update(noMatch(), rail(2.0, confident = false)),
             "No confident rail match means no train",
+        )
+    }
+
+    /**
+     * Kent Road runs directly over the North Clyde Line where it tunnels under Charing Cross, so a
+     * bus on it matches the tunnel below about as well as it matches the road - measured 0.1-11m to
+     * the road against 0.3-8m to the tunnel centreline. However long that goes on for, and however
+     * often the rail match happens to come out nearer, it must never make the passenger a train
+     * rider.
+     */
+    @Test
+    fun testTunnelUnderneathTheRoadNeverAcquiresATrain() {
+        val arbiter = RailMatchArbiter()
+        repeat(200) {
+            assertNull(
+                arbiter.update(road(5.0), railTunnel(2.0)),
+                "A tunnel under the road must never acquire a train lock, however good the match",
+            )
+        }
+        // Even with no road match at all to weigh against - the point is that the lock has to be
+        // earned above ground, not that the road wins the comparison.
+        repeat(200) {
+            assertNull(
+                arbiter.update(noMatch(), railTunnel(2.0)),
+                "A tunnel match must not acquire even when there's no road to compare against",
+            )
+        }
+    }
+
+    /**
+     * The other half of the same rule: once the lock has been earned on surface track, going
+     * underground has to keep it. Without this the train through Charing Cross was handed back to
+     * Kent Road within releaseTicks and announced as "Traveling east along Kent Road".
+     */
+    @Test
+    fun testTunnelSustainsATrainAcquiredAboveGround() {
+        val arbiter = RailMatchArbiter()
+        repeat(10) { arbiter.update(noMatch(), rail(2.0)) }
+        assertEquals(railway, arbiter.update(noMatch(), rail(2.0)), "Should be on a train by now")
+
+        // Underground the road overhead is consistently the nearer of the two, which under the
+        // ordinary comparison would release the lock after releaseTicks.
+        repeat(50) {
+            assertEquals(
+                tunnel,
+                arbiter.update(road(1.0), railTunnel(8.0)),
+                "A train already underway must stay on its line through a tunnel",
+            )
+        }
+    }
+
+    /**
+     * Getting off underground still ends the journey: what sustains the lock is the rail match
+     * itself, so losing it releases in the ordinary way.
+     */
+    @Test
+    fun testLosingTheRailMatchInATunnelStillReleases() {
+        val arbiter = RailMatchArbiter()
+        repeat(10) { arbiter.update(noMatch(), rail(2.0)) }
+        repeat(10) { arbiter.update(road(1.0), railTunnel(8.0)) }
+
+        repeat(5) { arbiter.update(road(1.0), railTunnel(8.0, confident = false)) }
+        assertNull(
+            arbiter.update(road(1.0), railTunnel(8.0, confident = false)),
+            "Walking away from the line underground should end the train journey",
         )
     }
 }

@@ -138,6 +138,8 @@ enum class StringKey {
     DirectionsCrossingRailwayGeneric,
     DirectionsGoingUnderRailway,
     DirectionsGoingUnderRailwayGeneric,
+    DirectionsEnteringTunnel,
+    DirectionsEnteringTunnelNamed,
     StreetDescriptionIntersection,
     StreetDescriptionRelativeBefore,
     StreetDescriptionRelativeAfter,

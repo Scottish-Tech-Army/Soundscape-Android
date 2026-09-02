@@ -258,6 +258,7 @@ private fun readTrackPoint(reader: TokenReader, attrs: Map<String, String>): Gpx
     var time: String? = null
     var speed: Float? = null
     var bearing: Float? = null
+    var accuracy: Float? = null
 
     while (reader.hasNext()) {
         when (val t = reader.next()) {
@@ -266,6 +267,7 @@ private fun readTrackPoint(reader: TokenReader, attrs: Map<String, String>): Gpx
                 "time" -> time = reader.readTextContent("time")
                 "speed" -> speed = reader.readTextContent("speed").toFloatOrNull()
                 "bearing" -> bearing = reader.readTextContent("bearing").toFloatOrNull()
+                "accuracy" -> accuracy = reader.readTextContent("accuracy").toFloatOrNull()
                 else -> reader.skipToEndTag(t.localName)
             }
 
@@ -273,5 +275,5 @@ private fun readTrackPoint(reader: TokenReader, attrs: Map<String, String>): Gpx
             is XmlToken.Text -> {}
         }
     }
-    return GpxTrackPoint(lat, lon, ele, time, speed, bearing)
+    return GpxTrackPoint(lat, lon, ele, time, speed, bearing, accuracy)
 }

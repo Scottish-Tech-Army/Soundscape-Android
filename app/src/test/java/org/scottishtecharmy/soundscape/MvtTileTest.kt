@@ -65,6 +65,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAda
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.PluralKey
 import org.scottishtecharmy.soundscape.i18n.StringKey
+import org.scottishtecharmy.soundscape.locationprovider.MAXIMUM_USABLE_ACCURACY_METRES
 import org.scottishtecharmy.soundscape.utils.toLocationDescription
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.process
@@ -149,6 +150,7 @@ private fun parseGpxFromFile(filename: String): FeatureCollection {
                     set("marker-color", "#004000")
                     tp.bearing?.let { set("heading", it.toDouble()) }
                     tp.speed?.let { set("speed", it.toDouble()) }
+                    tp.accuracy?.let { set("accuracy", it.toDouble()) }
                 }
                 fc.addFeature(feature)
             }
@@ -1263,10 +1265,12 @@ class MvtTileTest {
      * ordinary streets over the top. Announcing a railway crossing on every one of them would be
      * constant and useless.
      *
-     * These are excluded earlier and by a different route than the canal above: isUnmatchableRailway
-     * keeps brunnel=tunnel rail out of TreeId.TRANSIT altogether, so attachRailwayCrossings never
-     * sees them. This pins that from the callout end, now that the candidate search is wide enough
-     * to have found them.
+     * These are excluded by a different route than the canal above: attachRailwayCrossings skips
+     * any railway Way carrying brunnel=tunnel outright. (It used to get this for free, because
+     * isUnmatchableRailway kept tunnels out of TreeId.TRANSIT entirely - they're now in the tree so
+     * that a train can stay matched underground, which is exactly why the skip has to be explicit.)
+     * This pins it from the callout end, now that the candidate search is wide enough to have found
+     * them.
      *
      * The control is important, because the naive fix here would be to suppress railway crossings
      * in city centres entirely: Bellgrove Street and the streets around it bridge the North Clyde
@@ -2131,22 +2135,30 @@ class MvtTileTest {
      * a train (see MvtToGeoJson.isUnmatchableRailway and UserGeometry.probablyOnTrain). Confirms
      * the Subway itself never reaches TreeId.TRANSIT, and that map-matching a real Byres Road
      * route against the rail network never builds up a confident match.
+     *
+     * Note the deliberate asymmetry with heavy-rail tunnels, which *are* in TreeId.TRANSIT so that
+     * a train can stay matched to its line underground. A subway is underground for its entire
+     * length, so there is never a surface match to continue, and it's excluded outright; the
+     * equivalent protection for a `brunnel=tunnel` heavy-rail segment is RailMatchArbiter refusing
+     * to acquire a train lock on one.
      */
     @Test
     fun testSubwayExcludedFromRailMapMatching() {
         val byresRoadLocation = LngLatAlt(-4.296419, 55.872965)
         val gridState = getGridStateForLocation(byresRoadLocation, MAX_ZOOM_LEVEL, 3)
 
-        // No subway-classed or tunnel-tagged way should ever reach the rail-matching network.
+        // No subway-classed way should ever reach the rail-matching network.
         val transitWays = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
             .filterIsInstance<Way>()
         assertTrue(
             "TreeId.TRANSIT should never contain a subway-classed way",
             transitWays.none { it.featureSubClass == "subway" }
         )
+        // Heavy-rail tunnels, by contrast, must be present - central Glasgow has plenty, and
+        // without them a train through one is matched to whatever street runs over the top.
         assertTrue(
-            "TreeId.TRANSIT should never contain a tunnel-tagged railway segment",
-            transitWays.none { it.properties?.get("brunnel") == "tunnel" }
+            "TreeId.TRANSIT should contain tunnel-tagged heavy-rail segments",
+            transitWays.any { it.properties?.get("brunnel") == "tunnel" }
         )
 
         // Byres Road itself, running along the surface directly above the Subway, should never
@@ -2707,6 +2719,16 @@ class MvtTileTest {
         gps.features.filterIndexed { index, _ ->
             (index > startIndex) and (index < endIndex)
         }.forEachIndexed { index, position ->
+            // Mirror the accuracy gate GeoEngine applies in production (see isAccuracyUsable):
+            // a fix too inaccurate to say which street the user is on never reaches the geoengine,
+            // so the replay mustn't feed it one either. Points recorded without an accuracy - GPX
+            // exported from other apps, or synthesized by hand - are kept, again matching
+            // production.
+            val accuracy = position.properties?.get("accuracy") as? Double?
+            if ((accuracy != null) && (accuracy > MAXIMUM_USABLE_ACCURACY_METRES)) {
+                return@forEachIndexed
+            }
+
             val location = (position.geometry as Point).coordinates
 
             // Calculate direction of travel in case GPX doesn't contain it
@@ -2847,7 +2869,7 @@ class MvtTileTest {
     fun testCalloutsSingleTest  () {
         val resultsStorageDir = File("gpxFiles/")
         if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
-        val testFile = "MotorwayForTravel"
+        val testFile = "ToTown"
         testMovingGrid(
             "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$testFile.gpx",
             "gpxFiles/$testFile.txt",
