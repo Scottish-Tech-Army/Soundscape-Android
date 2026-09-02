@@ -42,4 +42,5 @@ data class GpxTrackPoint(
     val time: String? = null,
     val speed: Float? = null,
     val bearing: Float? = null,
+    val accuracy: Float? = null,
 )

@@ -40,6 +40,7 @@ import org.scottishtecharmy.soundscape.locationprovider.HeadHeading
 import org.scottishtecharmy.soundscape.locationprovider.HeadTrackingProvider
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
+import org.scottishtecharmy.soundscape.locationprovider.isAccuracyUsable
 import org.scottishtecharmy.soundscape.locationprovider.phoneHeldFlat
 import org.scottishtecharmy.soundscape.network.PhotonSearch
 import org.scottishtecharmy.soundscape.network.VectorTileClient
@@ -234,6 +235,10 @@ class GeoEngine {
     private var recordTravel = false
     var locationRecorder: LocationRecorder? = null
 
+    // Whether any location has yet made it past the accuracy gate in startMonitoringLocation - see
+    // isAccuracyUsable for why the first fix is let through however inaccurate it is.
+    private var haveUsableLocation = false
+
     fun updateRecordingState(recordState: Boolean) {
         recordTravel = recordState
     }
@@ -411,6 +416,26 @@ class GeoEngine {
 
                 newLocation?.let { location ->
 
+                    // GPS point recording is a data-capture concern, not an audio one - it must not
+                    // be skipped just because a callout (e.g. from "My Location") is being spoken,
+                    // otherwise repeatedly triggering callouts silently drops recorded track points.
+                    // It also deliberately runs ahead of the accuracy gate below and records every
+                    // fix, including the ones the geoengine goes on to reject: a recording made in
+                    // a tunnel is only useful for diagnosing what happened there if the bad fixes
+                    // are actually in it.
+                    if (recordTravel) {
+                        locationRecorder?.storeLocation(location)
+                    }
+
+                    // A fix too inaccurate to say which street the user is on is worse than no fix
+                    // at all - map matching, callouts and the grid all take a location at face
+                    // value - so hold the last good one instead. See isAccuracyUsable. The very
+                    // first fix is taken whatever it reports, since a rough position beats none at
+                    // all. This deliberately doesn't gate the flows themselves: the map dot and the
+                    // audio engine still follow the raw fix.
+                    if (!isAccuracyUsable(location) && haveUsableLocation) return@let
+                    haveUsableLocation = true
+
                     analytics.crashSetCustomKey("latitude", newLocation.latitude.toString())
                     analytics.crashSetCustomKey("longitude", newLocation.longitude.toString())
 
@@ -481,13 +506,6 @@ class GeoEngine {
                         if (callout != null) {
                             listener.speakCallout(callout, false)
                         }
-                    }
-
-                    // GPS point recording is a data-capture concern, not an audio one - it must not
-                    // be skipped just because a callout (e.g. from "My Location") is being spoken,
-                    // otherwise repeatedly triggering callouts silently drops recorded track points.
-                    if (recordTravel) {
-                        locationRecorder?.storeLocation(location)
                     }
                 }
             }

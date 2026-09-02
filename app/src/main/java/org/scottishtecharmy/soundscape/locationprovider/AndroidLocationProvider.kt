@@ -22,14 +22,12 @@ class AndroidLocationProvider(context: Context) : LocationProvider() {
 
     private val locationListener = object : LocationListener {
         override fun onLocationChanged(location: Location) {
-            mutableLocationFlow.value = location.toSoundscapeLocation()
-            mutableFilteredLocationFlow.value = filterLocation(location).toSoundscapeLocation()
+            publishLocation(location)
         }
 
         override fun onLocationChanged(locations: MutableList<Location>) {
             for (location in locations) {
-                mutableLocationFlow.value = location.toSoundscapeLocation()
-                mutableFilteredLocationFlow.value = filterLocation(location).toSoundscapeLocation()
+                publishLocation(location)
             }
         }
 
@@ -62,10 +60,19 @@ class AndroidLocationProvider(context: Context) : LocationProvider() {
             }
 
             lastLocation?.let { location ->
-                mutableLocationFlow.value = location.toSoundscapeLocation()
-                mutableFilteredLocationFlow.value = filterLocation(location).toSoundscapeLocation()
+                publishLocation(location)
             }
         }
+    }
+
+    /**
+     * Publishes a fix on both flows. Every fix is published, however inaccurate: dropping the ones
+     * that aren't good enough to act on is GeoEngine's job (see LocationProvider.isLocationUsable),
+     * so that the GPX recorder and the map still see what the receiver actually reported.
+     */
+    private fun publishLocation(location: Location) {
+        mutableLocationFlow.value = location.toSoundscapeLocation()
+        mutableFilteredLocationFlow.value = filterLocation(location).toSoundscapeLocation()
     }
 
     fun filterLocation(location: Location): Location {

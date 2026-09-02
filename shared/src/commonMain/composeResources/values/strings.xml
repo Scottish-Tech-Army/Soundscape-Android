@@ -416,6 +416,10 @@
     <string name="directions_going_under_railway">Passing under %1$s</string>
     <!-- Travelling by car or bus, called out on passing beneath a railway that has no name in the map data, example: "Passing under the railway" -->
     <string name="directions_going_under_railway_generic">Passing under the railway</string>
+    <!-- Called out on going into a tunnel that has no name in the map data - a railway tunnel, or an unnamed road or footpath one. Warns the traveller that GPS is about to become unreliable as well as naming the tunnel as a landmark, example: "Entering a tunnel" -->
+    <string name="directions_entering_tunnel">Entering a tunnel</string>
+    <!-- Called out on going into a tunnel that has a name in the map data. %1$s is the tunnel's name, example: "Entering Clyde Tunnel" -->
+    <string name="directions_entering_tunnel_named">Entering %1$s</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->
     <string name="directions_traveling_n">Traveling north</string>
     <!-- Traveling in a vehicle such as a train, bus, car with a cardinal direction, %s is a road name. Whenever the vehicle changes roads, the app will announce a location update by saying the direction the vehicle is travelling in and the name of the road e.g. Travelling east along High Street -->

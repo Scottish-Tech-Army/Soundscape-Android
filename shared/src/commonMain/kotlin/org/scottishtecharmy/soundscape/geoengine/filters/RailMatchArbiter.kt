@@ -32,12 +32,14 @@ class RailMatchArbiter {
 
     /**
      * What one matcher had to say about a single location update. [distance] is how far the fix was
-     * from the matched way; null when there's nothing matched.
+     * from the matched way; null when there's nothing matched. [inTunnel] is only meaningful for the
+     * rail side, where it decides whether the match may acquire a train lock or only sustain one.
      */
     data class MatchState(
         val way: Way?,
         val distance: Double?,
         val confident: Boolean,
+        val inTunnel: Boolean = false,
     )
 
     /**
@@ -76,6 +78,30 @@ class RailMatchArbiter {
             return null
         }
 
+        // A rail tunnel can keep a train ride going, but must never start one. This is the same
+        // road-above-the-line hazard that used to keep tunnels out of TreeId.TRANSIT altogether
+        // (see isUnmatchableRailway in MvtToGeoJson.kt): Kent Road runs directly over the North
+        // Clyde Line at Charing Cross, so a bus on it matches the tunnel below just as well as it
+        // matches the road, and would otherwise be announced as being on a train. Requiring the
+        // lock to be earned on track that's actually above ground rules that out however long the
+        // road runs over the tunnel.
+        if (rail.inTunnel && !onTrain) {
+            fail()
+            return null
+        }
+
+        // Once on a train the problem inverts. Underground the road overhead is routinely *nearer*
+        // the fix than the line is - measured through the Charing Cross tunnel, 0.1-11m to Kent
+        // Road against 0.3-8m to the tunnel centreline - so railBeatsRoad flips back and forth
+        // tick by tick and would drop the lock inside releaseTicks, handing the callouts straight
+        // back to the road above. While the matched line is a tunnel the road simply isn't a
+        // credible alternative, so hold the lock rather than weighing the two.
+        if (rail.inTunnel) {
+            consecutivePasses++
+            ticksSinceLastPass = 0
+            return railway
+        }
+
         if (!railBeatsRoad(road, rail)) {
             fail()
             // Keep reporting the railway through a short dropout, but only if we'd already decided
@@ -112,4 +138,9 @@ class RailMatchArbiter {
 }
 
 private fun MapMatchFilter.matchState() =
-    RailMatchArbiter.MatchState(matchedWay, matchedLocation?.distance, isMatchConfident)
+    RailMatchArbiter.MatchState(
+        matchedWay,
+        matchedLocation?.distance,
+        isMatchConfident,
+        matchedWay?.properties?.get("brunnel") == "tunnel",
+    )

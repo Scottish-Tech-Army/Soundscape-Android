@@ -244,9 +244,14 @@ open class GridState(
      * structure that's actually built). Either side supplies the "grade separated" evidence; when
      * only the railway is tagged, the road is inferred to be going under it. A road with neither
      * side tagged is a level crossing, handled separately (an explicit `railway=level_crossing`
-     * point), not by this geometric test. TreeId.TRANSIT already excludes subway/buried-tunnel
-     * railway lines (see isUnmatchableRailway in MvtToGeoJson.kt), so there's no need to repeat
-     * that exclusion here.
+     * point), not by this geometric test.
+     *
+     * A railway that is itself in a tunnel is skipped outright. TreeId.TRANSIT does now contain
+     * `brunnel=tunnel` segments (they're needed to keep a train matched underground - see
+     * isUnmatchableRailway in MvtToGeoJson.kt), but a road bridge that happens to pass over the
+     * horizontal projection of a deep tunnel isn't crossing anything a traveller can perceive, and
+     * announcing "Passing over the North Clyde Line" to a driver on a bridge above the Charing
+     * Cross tunnel would be nonsense. Subway lines are still excluded from the tree entirely.
      *
      * Returns the number of road/railway crossings found, for the timing log in the caller.
      */
@@ -268,6 +273,7 @@ open class GridState(
             val railwayGeometry = railway.geometry as? LineString ?: continue
             if (railwayGeometry.coordinates.size < 2) continue
             val railwayBrunnel = railway.properties?.get("brunnel") as? String
+            if (railwayBrunnel == "tunnel") continue
 
             // Shortlist by proximity to the railway *line*, not to its vertices: a bridge is
             // routinely a single 2-point way spanning the whole obstacle, so its vertices sit well
@@ -288,9 +294,8 @@ open class GridState(
                 ) ?: continue
                 // Either the road carries the brunnel and reads directly, or it carries none and
                 // the evidence came from the railway being a bridge - in which case the road is
-                // the thing underneath. (railwayBrunnel can never be "tunnel" here: buried and
-                // subway rail is kept out of TreeId.TRANSIT entirely, see isUnmatchableRailway,
-                // so passing over a rail tunnel is deliberately never announced.)
+                // the thing underneath. (railwayBrunnel can never be "tunnel" here: those are
+                // skipped above, so passing over a rail tunnel is deliberately never announced.)
                 val position = if (roadBrunnel == "bridge") "over" else "under"
                 applyCrossing(road, waysByOsmId, "railway", railway.name, position, point)
                 crossingsFound++
