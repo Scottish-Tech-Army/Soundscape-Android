@@ -11,7 +11,7 @@ Welcome to our latest update on what's going on in Soundscape for Android develo
 ## Release update
 We've been working away since the last newsletter and are finally approaching production release! This is really just the start and we have lots more planned for future releases.
 
-[Release notes]({% link release-notes.md %}) are always available.
+[Release notes]({{ "/release-notes.html" | relative_url }}) are always available.
 
 ## What's different between Android Soundscape and old iOS Soundscape?
 Some of you may be new to Android Soundscape so here are the highlights of features which are only available on Android and are available in the 1.0 releases:
