@@ -10,7 +10,10 @@ import platform.Foundation.countryCode
 import platform.Foundation.currentLocale
 
 @OptIn(ExperimentalForeignApi::class)
-fun CLPlacemark.toLocationDescription(name: String?): LocationDescription? {
+fun CLPlacemark.toLocationDescription(
+    name: String?,
+    preferProvidedName: Boolean = false,
+): LocationDescription? {
     val coord = this.location?.coordinate?.useContents { latitude to longitude } ?: return null
     val (lat, lng) = coord
     val isoCountryCode = this.ISOcountryCode
@@ -25,5 +28,6 @@ fun CLPlacemark.toLocationDescription(name: String?): LocationDescription? {
         fallbackCountryCode = if (isoCountryCode == null) NSLocale.currentLocale.countryCode else null,
         providedName = name,
         source = LocationSource.IosGeocoder,
+        preferProvidedName = preferProvidedName,
     )
 }

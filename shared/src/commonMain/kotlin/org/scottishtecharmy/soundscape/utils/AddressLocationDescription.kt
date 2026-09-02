@@ -20,6 +20,12 @@ import org.scottishtecharmy.soundscape.screens.home.data.LocationType
  *
  * The chosen name uses [providedName] when the result resolves down to a
  * specific street number; otherwise it falls back to the formatted address.
+ *
+ * Set [preferProvidedName] when [providedName] is the place's own name rather
+ * than the string the user searched for - an MKMapItem's `name`, say. A search
+ * hit for "Kelvingrove Art Gallery" should keep that as its name and show the
+ * address underneath, whereas a plain address geocoder only has the user's
+ * query to offer and must not present it as the name of whatever came back.
  */
 fun buildAddressLocationDescription(
     latitude: Double,
@@ -32,6 +38,7 @@ fun buildAddressLocationDescription(
     fallbackCountryCode: String?,
     providedName: String?,
     source: LocationSource,
+    preferProvidedName: Boolean = false,
 ): LocationDescription {
     val formatter =
         AddressFormatter(abbreviate = false, appendCountry = true, appendUnknown = false)
@@ -77,8 +84,10 @@ fun buildAddressLocationDescription(
         }
     }
 
-    var chosenName = providedName
-    if (chosenName == null || locationType != LocationType.StreetNumber) {
+    var chosenName = providedName?.takeIf { it.isNotBlank() }
+    if (chosenName == null ||
+        (!preferProvidedName && locationType != LocationType.StreetNumber)
+    ) {
         chosenName = formattedAddress.substringBefore('\n')
     }
 
