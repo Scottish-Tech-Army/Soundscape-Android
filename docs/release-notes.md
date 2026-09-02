@@ -7,11 +7,10 @@ has_toc: false
 
 # Release notes
 
-Soundscape 2.0 is a big release and is currently in closed Beta. The headline change is that 
-Soundscape now has something useful to
-say when you're travelling by car, bus or train, rather than only when you're on foot. There's also
-a great deal of smaller work on how places are described, twenty new languages, and a long list of
-fixes.
+Soundscape 2.0 is a big release and is currently in closed Beta. The headline change is that
+Soundscape now has something useful to say when you're travelling by car, bus or train, rather than
+only when you're on foot. There's also a great deal of smaller work on how places are described,
+twenty new languages, and a long list of fixes.
 
 Notes for older versions are on the [Release notes for 1.x]({% link v1.0-release-notes.md %}) page.
 
@@ -102,8 +101,8 @@ A lot of work has gone into Soundscape describing places the way a person would:
 
 Twenty new languages have been added in 2.0: Arabic, Bengali, Bulgarian, Catalan, Croatian, Czech,
 Hausa, Hungarian, Indonesian, Korean, Marathi, Serbian, Slovak, Slovenian, Swahili, Tamil, Telugu,
-Thai, Urdu and Vietnamese. These languages are all in alpha, and we're keen to get feedback on their
-accuracy. On total Soundscape is now available in 46 languages, and this documentation
+Thai, Urdu and Vietnamese. These languages are all in alpha, and we're keen to get feedback on
+their accuracy. In total Soundscape is now available in 46 languages, and this documentation
 website has been translated too.
 
 Egyptian Arabic has been folded into Arabic, and Luganda has been withdrawn, as neither had enough
@@ -166,6 +165,7 @@ reported automatically through the Play Store. Battery and start-up behaviour ha
 more robust on phones that aggressively shut background apps down.
 
 ### Things that have been removed
+{: #things-that-have-been-removed }
 
 * **Voice control** has been removed. It never worked reliably enough to be worth keeping, and the
   media control buttons on headphones cover most of the same ground - see
