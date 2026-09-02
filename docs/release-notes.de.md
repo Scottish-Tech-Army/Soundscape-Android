@@ -17,7 +17,7 @@ kleinere Verbesserungen bei der Beschreibung von Orten, zwanzig neue Sprachen un
 von Fehlerbehebungen.
 
 Hinweise zu älteren Versionen finden Sie auf der Seite
-[Versionshinweise für 1.x]({% link v1.0-release-notes.md %}).
+[Versionshinweise für 1.x]({{ "/v1.0-release-notes.html" | relative_url }}).
 
 ## Was ist neu in 2.0
 
@@ -198,7 +198,7 @@ Wenn etwas nicht stimmt, würden wir gern davon erfahren. Schreiben Sie an den H
 Wenn eine Ansage falsch war oder ausblieb, hilft uns eine Aufzeichnung Ihrer Fahrt außerordentlich –
 wir können sie erneut abspielen und genau sehen, womit Soundscape gearbeitet hat. Eine Anleitung
 dazu finden Sie unter
-[Bereitstellen einer Standortaufzeichnung zur Fehlersuche]({% link testing/test-instructions.md %}#providing-a-debug-location-trace).
+[Bereitstellen einer Standortaufzeichnung zur Fehlersuche]({{ "/testing/test-instructions.html" | relative_url }}#providing-a-debug-location-trace).
 
 ## Ein Hinweis zum iPhone
 
