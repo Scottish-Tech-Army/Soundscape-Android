@@ -102,7 +102,8 @@ A lot of work has gone into Soundscape describing places the way a person would:
 
 Twenty new languages have been added in 2.0: Arabic, Bengali, Bulgarian, Catalan, Croatian, Czech,
 Hausa, Hungarian, Indonesian, Korean, Marathi, Serbian, Slovak, Slovenian, Swahili, Tamil, Telugu,
-Thai, Urdu and Vietnamese. Soundscape is now available in 46 languages, and this documentation
+Thai, Urdu and Vietnamese. These languages are all in alpha, and we're keen to get feedback on their
+accuracy. On total Soundscape is now available in 46 languages, and this documentation
 website has been translated too.
 
 Egyptian Arabic has been folded into Arabic, and Luganda has been withdrawn, as neither had enough
