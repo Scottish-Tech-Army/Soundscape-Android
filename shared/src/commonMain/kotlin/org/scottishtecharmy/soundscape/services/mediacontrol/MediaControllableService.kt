@@ -58,6 +58,13 @@ interface MediaControllableService {
     fun requestAudioFocus(): Boolean
     fun aheadOfMe()
     fun nearbyMarkers()
+
+    /**
+     * Cancels any in-flight user-initiated callout without starting another.
+     * Defaults to a no-op for implementations with no callout pipeline of their
+     * own; the real services delegate to CalloutController.cancel().
+     */
+    fun cancelCallout() {}
     fun routeStop()
     fun routeStartById(routeId: Long)
     fun startBeacon(location: LngLatAlt, name: String)

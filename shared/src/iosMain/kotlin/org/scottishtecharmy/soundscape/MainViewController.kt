@@ -7,17 +7,14 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.window.ComposeUIViewController
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.launch
 import me.zhanghai.compose.preference.listPreference
 import me.zhanghai.compose.preference.switchPreference
 import org.jetbrains.compose.resources.stringResource
+import org.scottishtecharmy.soundscape.actions.SoundscapeAction
 import org.scottishtecharmy.soundscape.audio.TourButton
 import org.scottishtecharmy.soundscape.audio.availableTtsVoicesForCurrentLanguage
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.intents.resolveRouteByName
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.platform.readResourceText
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
@@ -192,10 +189,7 @@ fun MainViewController() = ComposeUIViewController {
             onStartRoute = { routeId -> service.routeStartById(routeId) },
             onStartRouteInReverse = { routeId -> service.routeStartReverse(routeId) },
             onStartRouteByName = { name ->
-                CoroutineScope(Dispatchers.Default).launch {
-                    val id = resolveRouteByName(service.routeDao, name)
-                    if (id != null) service.routeStartById(id)
-                }
+                service.performAction(SoundscapeAction.StartRouteNamed(name))
             },
             onRouteStop = {
                 service.routeStop()

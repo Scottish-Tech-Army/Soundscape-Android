@@ -51,6 +51,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
 import org.koin.android.ext.android.inject
+import org.scottishtecharmy.soundscape.actions.ActionResult
+import org.scottishtecharmy.soundscape.actions.SoundscapeAction
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
@@ -923,20 +925,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Resolves a route name to a routeId via the shared fuzzy-match resolver, then
-     * starts playback. Used by the IncomingIntent.StartRouteByName dispatch path.
+     * Starts a saved route by fuzzily-matched name. Both the matching and the start
+     * happen in SoundscapeActionExecutor, shared with iOS, rather than against the DAO
+     * here. Used by the IncomingIntent.StartRouteByName dispatch path.
      */
     fun startRouteByName(name: String) {
-        val db =
-            org.scottishtecharmy.soundscape.database.local.MarkersAndRoutesDatabaseProvider.getInstance(
-                applicationContext
-            )
+        val actions = soundscapeServiceConnection.soundscapeService?.actions
+        if (actions == null) {
+            Log.w(TAG, "Service not running, can't start route by name: $name")
+            return
+        }
         lifecycleScope.launch {
-            val id = org.scottishtecharmy.soundscape.intents.resolveRouteByName(db.routeDao(), name)
-            if (id != null) {
-                soundscapeServiceConnection.routeStart(id)
-            } else {
-                Log.w(TAG, "No route found matching name: $name")
+            val result = actions.execute(SoundscapeAction.StartRouteNamed(name))
+            if (result !is ActionResult.Ok) {
+                Log.w(TAG, "Couldn't start route \"$name\": $result")
             }
         }
     }

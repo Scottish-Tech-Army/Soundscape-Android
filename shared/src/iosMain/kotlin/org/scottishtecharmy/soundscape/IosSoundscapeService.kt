@@ -8,6 +8,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.getString
+import org.scottishtecharmy.soundscape.actions.ActionResult
+import org.scottishtecharmy.soundscape.actions.SoundscapeAction
+import org.scottishtecharmy.soundscape.actions.SoundscapeActionExecutor
 import org.scottishtecharmy.soundscape.audio.AudioTour
 import org.scottishtecharmy.soundscape.audio.AudioTourHost
 import org.scottishtecharmy.soundscape.audio.BeaconPreviewController
@@ -31,7 +34,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.getCompassLabel
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.i18n.ComposeLocalizedStrings
 import org.scottishtecharmy.soundscape.intents.IncomingIntent
-import org.scottishtecharmy.soundscape.intents.resolveRouteByName
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import org.scottishtecharmy.soundscape.locationprovider.IosDirectionProvider
 import org.scottishtecharmy.soundscape.locationprovider.IosCompositeHeadTrackingProvider
@@ -172,21 +174,14 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
 
     /**
      * Publishes a parsed inbound intent into the shared navigation pipeline.
-     * If the intent is a name-based route launch, the name is resolved against
-     * the route DAO on a background coroutine before being republished as a
-     * concrete StartRoute(routeId).
+     *
+     * StartRouteByName used to be resolved to a concrete StartRoute(routeId) here
+     * before publishing. It no longer is: SharedNavGraph hands it to
+     * AppCallbacks.onStartRouteByName, which goes through [SoundscapeActionExecutor]
+     * like Android's does, so name resolution lives in one place rather than three.
      */
     fun publishPendingIntent(intent: IncomingIntent) {
-        if (intent is IncomingIntent.StartRouteByName) {
-            scope.launch {
-                val id = resolveRouteByName(routeDao, intent.name)
-                if (id != null) {
-                    _pendingIntent.value = IncomingIntent.StartRoute(id)
-                }
-            }
-        } else {
-            _pendingIntent.value = intent
-        }
+        _pendingIntent.value = intent
     }
 
     fun pendingIntentHandled() {
@@ -196,6 +191,27 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     // Route player and audio menu
     val routePlayer: RoutePlayer = RoutePlayer(this, routeDao)
     val audioMenu: AudioMenu = AudioMenu(this, routeDao)
+
+    /**
+     * Entry point for assistant commands (Siri App Intents). Reached from Swift via
+     * IosSoundscapeService.companion.getInstance().actions.
+     */
+    val actions: SoundscapeActionExecutor = SoundscapeActionExecutor(this, routeDao)
+
+    /**
+     * Runs an action and drops the result. For the AppCallbacks lambdas, which are
+     * plain (String) -> Unit with no scope of their own — this keeps them off a
+     * freshly-allocated CoroutineScope per call. Swift's App Intents await
+     * [actions] directly instead, because they need the result to report back.
+     */
+    fun performAction(action: SoundscapeAction) {
+        scope.launch {
+            val result = actions.execute(action)
+            if (result !is ActionResult.Ok) {
+                println("IosSoundscapeService: $action -> $result")
+            }
+        }
+    }
 
     // Service bound state (always true on iOS)
     private val _serviceBoundState = MutableStateFlow(true)
@@ -583,6 +599,8 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     override fun aheadOfMe() = calloutController.aheadOfMe()
 
     override fun nearbyMarkers() = calloutController.nearbyMarkers()
+
+    override fun cancelCallout() = calloutController.cancel()
 
     // --- Beacon Control ---
 

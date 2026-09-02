@@ -9,6 +9,17 @@ import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.screens.onboarding.language.getAppLocale
 import org.scottishtecharmy.soundscape.screens.onboarding.language.getSystemLocale
 import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.action_beacon_started
+import org.scottishtecharmy.soundscape.resources.action_beacon_stopped
+import org.scottishtecharmy.soundscape.resources.action_item_not_found
+import org.scottishtecharmy.soundscape.resources.action_no_location
+import org.scottishtecharmy.soundscape.resources.action_no_map_data
+import org.scottishtecharmy.soundscape.resources.action_no_markers_saved
+import org.scottishtecharmy.soundscape.resources.action_no_route_active
+import org.scottishtecharmy.soundscape.resources.action_no_such_marker
+import org.scottishtecharmy.soundscape.resources.action_no_such_route
+import org.scottishtecharmy.soundscape.resources.action_route_started
+import org.scottishtecharmy.soundscape.resources.action_route_stopped
 import org.scottishtecharmy.soundscape.resources.bytes_format_b
 import org.scottishtecharmy.soundscape.resources.bytes_format_b_a11y
 import org.scottishtecharmy.soundscape.resources.bytes_format_gb
@@ -136,6 +147,7 @@ import org.scottishtecharmy.soundscape.resources.distance_format_miles
 import org.scottishtecharmy.soundscape.resources.general_error_location_services_find_location_error
 import org.scottishtecharmy.soundscape.resources.intersection_approaching_intersection
 import org.scottishtecharmy.soundscape.resources.markers_generic_name
+import org.scottishtecharmy.soundscape.resources.menu_no_routes
 import org.scottishtecharmy.soundscape.resources.markers_marker_with_name
 import org.scottishtecharmy.soundscape.resources.number_decimal_separator
 import org.scottishtecharmy.soundscape.resources.number_decimal_separator_a11y
@@ -376,5 +388,17 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.StationaryOnWay -> Res.string.stationary_on_way
         StringKey.CalloutsNothingToCallOutNow -> Res.string.callouts_nothing_to_call_out_now
         StringKey.CalloutsNoNearbyMarkers -> Res.string.callouts_no_nearby_markers
+        StringKey.ActionRouteStarted -> Res.string.action_route_started
+        StringKey.ActionRouteStopped -> Res.string.action_route_stopped
+        StringKey.ActionBeaconStarted -> Res.string.action_beacon_started
+        StringKey.ActionBeaconStopped -> Res.string.action_beacon_stopped
+        StringKey.ActionNoSuchRoute -> Res.string.action_no_such_route
+        StringKey.ActionNoSuchMarker -> Res.string.action_no_such_marker
+        StringKey.ActionItemNotFound -> Res.string.action_item_not_found
+        StringKey.ActionNoMarkersSaved -> Res.string.action_no_markers_saved
+        StringKey.ActionNoLocation -> Res.string.action_no_location
+        StringKey.ActionNoMapData -> Res.string.action_no_map_data
+        StringKey.ActionNoRouteActive -> Res.string.action_no_route_active
+        StringKey.MenuNoRoutes -> Res.string.menu_no_routes
     }
 }

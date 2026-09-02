@@ -2860,4 +2860,28 @@ Please continue to report any problems, however small, through Contact Support i
     <string name="loading_indicator_content_description">Loading</string>
     <string name="menu_exit_app">Exit Soundscape</string>
     <string name="offline_map_details_update">Update offline map</string>
+    <!-- Assistant (e.g. Siri) confirmations and errors. Spoken back to the user by the
+         assistant, so keep them short and conversational rather than UI-style labels. -->
+    <!-- Confirms a route is starting. %1$s is the saved route's name. -->
+    <string name="action_route_started">Starting %1$s</string>
+    <!-- Confirms the route that was playing has been stopped. -->
+    <string name="action_route_stopped">Route stopped</string>
+    <!-- Confirms an audio beacon has been placed. %1$s is the saved marker's name. -->
+    <string name="action_beacon_started">Beacon set on %1$s</string>
+    <!-- Confirms the audio beacon has been switched off. -->
+    <string name="action_beacon_stopped">Beacon stopped</string>
+    <!-- Spoken when the name the user said doesn't match any saved route. %1$s is what they said. -->
+    <string name="action_no_such_route">I can't find a route called %1$s</string>
+    <!-- Spoken when the name the user said doesn't match any saved marker. %1$s is what they said. -->
+    <string name="action_no_such_marker">I can't find a marker called %1$s</string>
+    <!-- Spoken when a saved shortcut points at a route or marker that has since been deleted. -->
+    <string name="action_item_not_found">That's no longer saved in Soundscape</string>
+    <!-- Spoken when the user has no saved markers at all. -->
+    <string name="action_no_markers_saved">No markers saved</string>
+    <!-- Spoken when a callout is requested before the phone has a position fix. -->
+    <string name="action_no_location">Soundscape doesn't have your location yet</string>
+    <!-- Spoken when a callout is requested before map data for the area has loaded. -->
+    <string name="action_no_map_data">Soundscape is still loading the map for your area</string>
+    <!-- Spoken when a route command is given while no route is playing. -->
+    <string name="action_no_route_active">No route is playing</string>
 </resources>

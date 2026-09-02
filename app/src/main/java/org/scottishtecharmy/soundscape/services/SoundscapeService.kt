@@ -49,6 +49,7 @@ import org.jetbrains.compose.resources.getString
 import org.scottishtecharmy.soundscape.BuildConfig
 import org.scottishtecharmy.soundscape.MainActivity
 import org.scottishtecharmy.soundscape.R
+import org.scottishtecharmy.soundscape.actions.SoundscapeActionExecutor
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.audio.BeaconPreviewController
 import org.scottishtecharmy.soundscape.audio.CalloutController
@@ -178,6 +179,13 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
     // Audio menu (navigated via media buttons when no route is active)
     var audioMenu: AudioMenu? = null
+
+    /**
+     * Entry point for assistant commands, shared with iOS's Siri App Intents. Nullable
+     * like [audioMenu] because both are built when the service starts, and a command
+     * can arrive before that.
+     */
+    var actions: SoundscapeActionExecutor? = null
 
     /** True while the user is actively navigating the audio menu. Suppresses auto callouts. */
     override var menuActive: Boolean = false
@@ -481,6 +489,10 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
                 MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao()
             )
             routePlayer = RoutePlayer(
+                this,
+                MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao()
+            )
+            actions = SoundscapeActionExecutor(
                 this,
                 MarkersAndRoutesDatabaseProvider.getInstance(applicationContext).routeDao()
             )
@@ -840,6 +852,8 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     override fun aheadOfMe() = calloutController.aheadOfMe()
 
     override fun nearbyMarkers() = calloutController.nearbyMarkers()
+
+    override fun cancelCallout() = calloutController.cancel()
 
     override suspend fun searchResult(query: String): List<LocationDescription>? {
         return geoEngine.searchResult(query)
