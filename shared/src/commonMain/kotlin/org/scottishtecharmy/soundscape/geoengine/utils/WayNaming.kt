@@ -522,20 +522,24 @@ fun traverseIntersectionsConfectingNames(
                     continue
 
                 val ways = mutableListOf<Pair<Boolean, Way>>()
+                // Break out when the next way has a name
+                road.followWays(intersection.value, ways) { way, _ -> (way.name != null) }
+
+                // followWays returns the chain ordered outwards from the named road, so the
+                // bridge/steps/tunnel a way passes through on its way to that road are those at or
+                // before it in the list. Accumulating as we walk back out means only the ways which
+                // still have the steps ahead of them are described "via steps" - the way on the far
+                // side has already been over them, and "Path to Moor Road via steps" there just
+                // describes ground the user has covered. Where there's more than one, the last one
+                // accumulated wins, which is the one nearest the way being tagged.
                 var brunnelOrStepsValue = ""
-                road.followWays(intersection.value, ways) { way, _ ->
-                    // Break out when the next way has a name and note if it passes a bridge,
-                    // steps or a tunnel
-                    if (way.featureSubClass == "steps") {
+                for (way in ways) {
+                    if (way.second.featureSubClass == "steps") {
                         brunnelOrStepsValue = "steps"
-                    } else if (way.properties?.get("brunnel") != null) {
-                        brunnelOrStepsValue = way.properties?.get("brunnel").toString()
+                    } else if (way.second.properties?.get("brunnel") != null) {
+                        brunnelOrStepsValue = way.second.properties?.get("brunnel").toString()
                     }
 
-                    (way.name != null)
-                }
-
-                for (way in ways) {
                     setDestinationTag(
                         way.second,
                         way.first,
