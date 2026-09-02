@@ -5,7 +5,7 @@ name: Generate localized help docs
 # `DocumentationScreens.getHelp` instrumentation test, which needs an emulator,
 # so this can't run inside the lightweight Jekyll Pages build. Instead this
 # workflow runs the test, pulls the generated markdown off the emulator and
-# commits it to v1.0 — which in turn triggers the Pages deploy.
+# commits it to main — which in turn triggers the Pages deploy.
 
 env:
   main_project_module: app
@@ -33,7 +33,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: v1.0
+          ref: main
           fetch-depth: 0
 
       - name: Setup Gradle
@@ -102,5 +102,5 @@ jobs:
             echo "No changes to localized help docs."
           else
             git commit -m "Regenerate localized help docs from string resources"
-            git push origin HEAD:v1.0
+            git push origin HEAD:main
           fi
