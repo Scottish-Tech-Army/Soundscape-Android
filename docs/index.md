@@ -16,7 +16,7 @@ Rather than giving turn-by-turn directions, Soundscape acts like a lighthouse fo
 - **Markers and routes** - Save favourite locations and create walking routes between them. The app guides you along the route, automatically moving to the next waypoint as you arrive.
 - **Street preview** - Explore an unfamiliar area virtually before visiting, to build confidence and familiarity.
 
-The app carries on working in the background when the phone in a pocket or bag - no need to hold or look at a screen. It is completely free, with no ads or data collection, and the Android version can work offline using downloaded map regions.
+The app carries on working in the background when the phone is in a pocket or bag - no need to hold or look at a screen. It is completely free, with no ads or data collection, and the Android version can work offline using downloaded map regions.
 
 Soundscape was originally developed on iOS by [Microsoft Research](https://www.microsoft.com/en-us/research/product/soundscape/) and was widely used before being open sourced in 2022. The [Scottish Tech Army](https://www.scottishtecharmy.org) has kept it available on iOS and also rewritten it as an open-source Android app.
 
