@@ -148,6 +148,8 @@ import org.scottishtecharmy.soundscape.resources.general_error_location_services
 import org.scottishtecharmy.soundscape.resources.intersection_approaching_intersection
 import org.scottishtecharmy.soundscape.resources.markers_generic_name
 import org.scottishtecharmy.soundscape.resources.menu_no_routes
+import org.scottishtecharmy.soundscape.resources.voice_cmd_markers_list
+import org.scottishtecharmy.soundscape.resources.voice_cmd_routes_list
 import org.scottishtecharmy.soundscape.resources.markers_marker_with_name
 import org.scottishtecharmy.soundscape.resources.number_decimal_separator
 import org.scottishtecharmy.soundscape.resources.number_decimal_separator_a11y
@@ -400,5 +402,7 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.ActionNoMapData -> Res.string.action_no_map_data
         StringKey.ActionNoRouteActive -> Res.string.action_no_route_active
         StringKey.MenuNoRoutes -> Res.string.menu_no_routes
+        StringKey.VoiceCmdRoutesList -> Res.string.voice_cmd_routes_list
+        StringKey.VoiceCmdMarkersList -> Res.string.voice_cmd_markers_list
     }
 }

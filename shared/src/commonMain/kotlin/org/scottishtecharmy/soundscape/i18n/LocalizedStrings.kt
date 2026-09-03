@@ -228,4 +228,9 @@ enum class StringKey {
     ActionNoMapData,
     ActionNoRouteActive,
     MenuNoRoutes,
+
+    // Left behind by the voice-control removal in 75c0bc59 and still translated, so the
+    // list actions reuse them rather than adding new copy for the same sentences.
+    VoiceCmdRoutesList,
+    VoiceCmdMarkersList,
 }

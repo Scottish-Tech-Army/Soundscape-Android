@@ -17,6 +17,7 @@ import platform.AVFAudio.AVAudioSessionInterruptionTypeBegan
 import platform.AVFAudio.AVAudioSessionInterruptionTypeEnded
 import platform.AVFAudio.AVAudioSessionInterruptionTypeKey
 import platform.AVFAudio.setActive
+import platform.posix.usleep
 import platform.CoreAudioTypes.kAudioChannelLayoutTag_Stereo
 import platform.darwin.dispatch_async
 import platform.darwin.dispatch_queue_create
@@ -31,6 +32,14 @@ import platform.MediaPlayer.MPNowPlayingInfoCenter
 import platform.MediaPlayer.MPNowPlayingInfoPropertyMediaType
 import platform.MediaPlayer.MPRemoteCommandCenter
 import platform.MediaPlayer.MPRemoteCommandHandlerStatusSuccess
+
+/**
+ * How long ensureEngineStarted keeps trying to activate the audio session, and how
+ * often. Only reached when activation has already failed — i.e. when audio is broken
+ * anyway — so the block on the audio queue costs nothing that was working.
+ */
+private const val SESSION_ACTIVATION_TIMEOUT_MS = 2_000
+private const val SESSION_ACTIVATION_RETRY_INTERVAL_MS = 200
 
 /**
  * iOS audio engine implementing the KMP AudioEngine interface.
@@ -105,6 +114,7 @@ class IosAudioEngine : AudioEngine {
     // Audio session state
     private var needsReactivation = false
     private var interruptionObserver: Any? = null
+    private var remoteCommandsRegistered = false
     private var mediaResetObserver: Any? = null
 
     private sealed class PlayerEntry {
@@ -135,13 +145,36 @@ class IosAudioEngine : AudioEngine {
     // --- Engine Lifecycle ---
 
     private fun ensureEngineStarted() {
-        if (engineStarted) return
+        // The engine's real state is re-checked every time rather than trusted from a
+        // latch. Siri deactivates our session and stops the engine when it takes audio
+        // for the *next* question, and the interruption-ended notification that would
+        // tell us about it is not reliably delivered to a backgrounded app. Returning
+        // early on engineStarted alone therefore made every Siri callout after the
+        // first one silent: the flag still said "started" while the engine was stopped.
+        if (engineStarted && engine.isRunning()) return
 
-        // Configure and activate audio session
-        configureAudioSession()
-
-        // Register for audio session notifications
+        // Registered before the session is touched. If activation fails below, these
+        // observers are the only route back to working audio — an interruption-ended
+        // notification is what tells us the session is ours again.
         registerAudioSessionObservers()
+
+        // Configure and activate the audio session, retrying activation for a short
+        // while if it loses. The case that matters is an App Intent: Siri still owns
+        // audio as the callout begins, and with MIX_AUDIO off (the default) our
+        // exclusive Playback category is not allowed to interrupt it from the
+        // background. Siri releases a moment after it stops talking. The retry lives
+        // here rather than in configureAudioSession because Swift's SplashCoordinator
+        // calls that one on the main thread, where blocking would stall the launch.
+        var sessionActive = configureAudioSession()
+        var waitedMs = 0
+        while (!sessionActive && waitedMs < SESSION_ACTIVATION_TIMEOUT_MS) {
+            usleep((SESSION_ACTIVATION_RETRY_INTERVAL_MS * 1000).toUInt())
+            waitedMs += SESSION_ACTIVATION_RETRY_INTERVAL_MS
+            sessionActive = AVAudioSession.sharedInstance().setActive(true, error = null)
+        }
+        if (sessionActive && waitedMs > 0) {
+            println("IosAudioEngine: Audio session activated after ${waitedMs}ms")
+        }
 
         // Set up lock screen remote commands (always registered, but only
         // effective when not mixing — iOS ignores them otherwise)
@@ -152,12 +185,19 @@ class IosAudioEngine : AudioEngine {
         @Suppress("UNUSED_VARIABLE")
         val mixer = engine.mainMixerNode
 
-        // Start the engine
-        try {
-            engine.startAndReturnError(null)
+        // startAndReturnError reports failure by returning false, not by throwing, so
+        // the old try/catch could never fire and engineStarted latched true even when
+        // the engine had not started. That left callouts running and animating for the
+        // rest of the process while making no sound at all. Leaving the flag false on
+        // failure means the next callout retries.
+        val started = engine.startAndReturnError(null)
+        if (started) {
             engineStarted = true
-        } catch (e: Exception) {
-            println("IosAudioEngine: Failed to start engine: $e")
+        } else {
+            println(
+                "IosAudioEngine: Engine failed to start (sessionActive=$sessionActive); " +
+                    "will retry on the next callout"
+            )
         }
     }
 
@@ -167,18 +207,23 @@ class IosAudioEngine : AudioEngine {
      * splash's AVAudioPlayer shares the same session category/options rather
      * than racing us for `setCategory`/`setActive` on the shared session.
      */
-    fun configureAudioSession() {
+    fun configureAudioSession(): Boolean {
         val session = AVAudioSession.sharedInstance()
         val options = if (mixWithOthers) AVAudioSessionCategoryOptionMixWithOthers else 0u
-        try {
-            session.setCategory(
-                AVAudioSessionCategoryPlayback,
-                withOptions = options,
-                error = null
+        // Both of these return false on failure rather than throwing. Discarding the
+        // results hid the most interesting case entirely: activation losing to whoever
+        // already holds the session — Siri, while an App Intent runs.
+        val categorySet = session.setCategory(
+            AVAudioSessionCategoryPlayback,
+            withOptions = options,
+            error = null
+        )
+        val activated = session.setActive(true, error = null)
+        if (!categorySet || !activated) {
+            println(
+                "IosAudioEngine: Audio session setup failed " +
+                    "(categorySet=$categorySet, activated=$activated, mixWithOthers=$mixWithOthers)"
             )
-            session.setActive(true, error = null)
-        } catch (e: Exception) {
-            println("IosAudioEngine: Failed to configure audio session: $e")
         }
 
         if (!mixWithOthers) {
@@ -186,6 +231,8 @@ class IosAudioEngine : AudioEngine {
         } else {
             MPNowPlayingInfoCenter.defaultCenter().nowPlayingInfo = null
         }
+
+        return categorySet && activated
     }
 
     /**
@@ -621,6 +668,11 @@ class IosAudioEngine : AudioEngine {
     // --- Audio Session Interruption Handling ---
 
     private fun registerAudioSessionObservers() {
+        // ensureEngineStarted retries after a failed start, so this can be reached more
+        // than once. Without the guard each retry would add another observer and the
+        // interruption handler would run once per registration.
+        if (interruptionObserver != null) return
+
         val center = NSNotificationCenter.defaultCenter
 
         interruptionObserver = center.addObserverForName(
@@ -651,22 +703,15 @@ class IosAudioEngine : AudioEngine {
             println("IosAudioEngine: Audio session interruption ended")
             // Reactivate audio session
             val session = AVAudioSession.sharedInstance()
-            try {
-                session.setActive(true, error = null)
-                needsReactivation = false
-                println("IosAudioEngine: Audio session reactivated after interruption")
-            } catch (e: Exception) {
-                println("IosAudioEngine: Failed to reactivate audio session: $e")
-            }
+            val activated = session.setActive(true, error = null)
+            needsReactivation = !activated
+            println("IosAudioEngine: Audio session reactivation after interruption: $activated")
 
             // Restart engine if needed
             if (!engine.isRunning()) {
-                try {
-                    engine.startAndReturnError(null)
-                    println("IosAudioEngine: Engine restarted after interruption")
-                } catch (e: Exception) {
-                    println("IosAudioEngine: Failed to restart engine: $e")
-                }
+                val restarted = engine.startAndReturnError(null)
+                engineStarted = restarted
+                println("IosAudioEngine: Engine restart after interruption: $restarted")
             }
         }
     }
@@ -694,6 +739,11 @@ class IosAudioEngine : AudioEngine {
     // --- Remote Command Center ---
 
     private fun registerRemoteCommands() {
+        // addTargetWithHandler stacks handlers, so re-entering after an interruption
+        // would fire each media-key action once per registration.
+        if (remoteCommandsRegistered) return
+        remoteCommandsRegistered = true
+
         val commandCenter = MPRemoteCommandCenter.sharedCommandCenter()
 
         commandCenter.togglePlayPauseCommand.setEnabled(true)

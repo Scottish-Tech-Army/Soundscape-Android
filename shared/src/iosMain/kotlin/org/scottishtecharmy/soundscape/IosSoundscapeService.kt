@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape
 
+import kotlin.concurrent.Volatile
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -69,6 +70,7 @@ import org.scottishtecharmy.soundscape.utils.IosNetworkUtils
 import org.scottishtecharmy.soundscape.utils.MarkersAndRoutesIo
 import org.scottishtecharmy.soundscape.utils.routeToShareJson
 import platform.Foundation.NSFileManager
+import platform.Foundation.NSLock
 import platform.Foundation.NSHomeDirectory
 import platform.Foundation.NSString
 import platform.Foundation.NSURL
@@ -197,6 +199,17 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
      * IosSoundscapeService.companion.getInstance().actions.
      */
     val actions: SoundscapeActionExecutor = SoundscapeActionExecutor(this, routeDao)
+
+    /**
+     * Invoked after a marker or route is added, changed or removed. Swift uses it to
+     * refresh the vocabulary Siri matches spoken names against, which otherwise keeps
+     * answering from the list as it was when the app last started — a marker saved this
+     * session is unrecognisable by voice until something rebuilds it.
+     *
+     * A callback rather than a Flow because the one consumer is Swift, and bridging a
+     * Kotlin Flow across for a bare "something changed" signal buys nothing.
+     */
+    var onMarkersOrRoutesChanged: (() -> Unit)? = null
 
     /**
      * Runs an action and drops the result. For the AppCallbacks lambdas, which are
@@ -506,6 +519,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
                 } else {
                     routeDao.insertRouteWithNewMarkers(route, markers)
                 }
+                onMarkersOrRoutesChanged?.invoke()
                 audioEngine.createEarcon(
                     "file:///android_asset/Sounds/sense_poi.wav",
                     org.scottishtecharmy.soundscape.audio.AudioType.STANDARD
@@ -540,6 +554,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
             try {
                 routeDao.removeMarkersForRoute(routeId)
                 routeDao.removeRoute(routeId)
+                onMarkersOrRoutesChanged?.invoke()
             } catch (e: Exception) {
                 println("IosSoundscapeService: Failed to delete route: ${e.message}")
             }
@@ -567,6 +582,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
                 } else {
                     routeDao.insertMarker(marker)
                 }
+                onMarkersOrRoutesChanged?.invoke()
                 audioEngine.createEarcon(
                     "file:///android_asset/Sounds/sense_poi.wav",
                     org.scottishtecharmy.soundscape.audio.AudioType.STANDARD
@@ -581,6 +597,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         scope.launch {
             try {
                 routeDao.removeMarker(markerId)
+                onMarkersOrRoutesChanged?.invoke()
             } catch (e: Exception) {
                 println("IosSoundscapeService: Failed to delete marker: ${e.message}")
             }
@@ -862,6 +879,23 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
             get() = platform.Foundation.NSBundle.mainBundle.objectForInfoDictionaryKey("ExtractProviderURL") as? String
                 ?: ""
 
+        // Guards construction. The unguarded `INSTANCE ?: IosSoundscapeService()` this
+        // replaces was safe while only the UI called it, on the main thread. App Intents
+        // changed that: Siri resolves an intent's entity parameter on its own thread and
+        // then performs the intent on another, so two threads can call in at once. Losing
+        // that race constructs a second service — a second AVAudioEngine, geo engine and
+        // location provider, all live at the same time over one database.
+        //
+        // Lock ordering: this lock is taken before MarkersAndRoutesDatabaseProvider's,
+        // via the routeDao that RoutePlayer and AudioMenu take during construction. The
+        // database provider never reaches back for the service, so there is no cycle.
+        //
+        // Construction is not cheap — it starts the geo engine, location updates and the
+        // audio engine — so a caller arriving mid-construction now waits rather than
+        // building its own. That wait is the point.
+        private val lock = NSLock()
+
+        @Volatile
         private var INSTANCE: IosSoundscapeService? = null
 
         private var analyticsFactory: () -> Analytics = { NoOpAnalytics }
@@ -871,7 +905,14 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         }
 
         fun getInstance(): IosSoundscapeService {
-            return INSTANCE ?: IosSoundscapeService().also { INSTANCE = it }
+            INSTANCE?.let { return it }
+            lock.lock()
+            try {
+                INSTANCE?.let { return it }
+                return IosSoundscapeService().also { INSTANCE = it }
+            } finally {
+                lock.unlock()
+            }
         }
     }
 }
