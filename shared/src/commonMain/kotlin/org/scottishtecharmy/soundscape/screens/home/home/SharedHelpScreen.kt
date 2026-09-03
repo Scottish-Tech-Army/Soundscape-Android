@@ -106,6 +106,7 @@ import org.scottishtecharmy.soundscape.resources.faq_why_does_beacon_disappear_a
 import org.scottishtecharmy.soundscape.resources.faq_why_does_beacon_disappear_question
 import org.scottishtecharmy.soundscape.resources.faq_why_not_every_business_answer
 import org.scottishtecharmy.soundscape.resources.faq_why_not_every_business_question
+import org.scottishtecharmy.soundscape.resources.help_assistant_page_title
 import org.scottishtecharmy.soundscape.resources.help_config_voices_content
 import org.scottishtecharmy.soundscape.resources.help_config_voices_content_ios
 import org.scottishtecharmy.soundscape.resources.help_configuration_section_title
@@ -126,6 +127,15 @@ import org.scottishtecharmy.soundscape.resources.help_text_ahead_of_me_when
 import org.scottishtecharmy.soundscape.resources.help_text_around_me_how
 import org.scottishtecharmy.soundscape.resources.help_text_around_me_what
 import org.scottishtecharmy.soundscape.resources.help_text_around_me_when
+import org.scottishtecharmy.soundscape.resources.help_text_assistant_commands
+import org.scottishtecharmy.soundscape.resources.help_text_assistant_commands_ios
+import org.scottishtecharmy.soundscape.resources.help_text_assistant_how
+import org.scottishtecharmy.soundscape.resources.help_text_assistant_how_ios
+import org.scottishtecharmy.soundscape.resources.help_text_assistant_notes
+import org.scottishtecharmy.soundscape.resources.help_text_assistant_notes_ios
+import org.scottishtecharmy.soundscape.resources.help_text_assistant_what
+import org.scottishtecharmy.soundscape.resources.help_text_assistant_what_ios
+import org.scottishtecharmy.soundscape.resources.help_text_assistant_when
 import org.scottishtecharmy.soundscape.resources.help_text_automatic_callouts_how_1
 import org.scottishtecharmy.soundscape.resources.help_text_automatic_callouts_how_2
 import org.scottishtecharmy.soundscape.resources.help_text_automatic_callouts_what
@@ -269,6 +279,46 @@ val helpPages = listOf(
 
             Section(Res.string.help_text_section_title_how, SectionType.Title),
             Section(Res.string.help_text_remote_control_how, SectionType.Paragraph),
+        )
+    ),
+
+    Sections(
+        Res.string.help_assistant_page_title,
+        listOf(
+            Section(Res.string.help_text_section_title_what, SectionType.Title),
+            Section(
+                platformString(
+                    Res.string.help_text_assistant_what,
+                    Res.string.help_text_assistant_what_ios
+                ),
+                SectionType.Paragraph,
+            ),
+
+            Section(Res.string.help_text_section_title_when, SectionType.Title),
+            Section(Res.string.help_text_assistant_when, SectionType.Paragraph),
+
+            Section(Res.string.help_text_section_title_how, SectionType.Title),
+            Section(
+                platformString(
+                    Res.string.help_text_assistant_how,
+                    Res.string.help_text_assistant_how_ios
+                ),
+                SectionType.Paragraph,
+            ),
+            Section(
+                platformString(
+                    Res.string.help_text_assistant_commands,
+                    Res.string.help_text_assistant_commands_ios
+                ),
+                SectionType.Paragraph,
+            ),
+            Section(
+                platformString(
+                    Res.string.help_text_assistant_notes,
+                    Res.string.help_text_assistant_notes_ios
+                ),
+                SectionType.Paragraph,
+            ),
         )
     ),
 
@@ -418,6 +468,7 @@ val helpPages = listOf(
             Section(Res.string.help_configuration_section_title, SectionType.Title),
             Section(Res.string.voice_voices, SectionType.Link),
             Section(Res.string.help_remote_page_title, SectionType.Link),
+            Section(Res.string.help_assistant_page_title, SectionType.Link),
 
             Section(Res.string.settings_help_section_beacons_and_pois, SectionType.Title),
             Section(Res.string.beacon_audio_beacon, SectionType.Link),
