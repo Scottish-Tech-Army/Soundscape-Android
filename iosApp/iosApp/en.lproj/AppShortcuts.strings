@@ -1,0 +1,35 @@
+/* Spoken Siri commands.
+ 
+   Apple requires this exact filename, and it must be .strings rather than a String
+   Catalog: AppShortcuts.xcstrings needs iOS 17 and the app deploys to 16.
+ 
+   To add a language, copy this file to <lang>.lproj/AppShortcuts.strings and translate the
+   values only — never the keys, which must stay exactly as they are here to match the
+   phrases declared in SoundscapeAppShortcuts.swift.
+ 
+   These are not sentences to translate word for word. A phrase has to be what a speaker
+   would actually say to ask for the thing, so it wants authoring by a speaker rather than
+   converting from English; the English shape "Soundscape <group> <choice>" carries English
+   word order and need not survive.
+ 
+   Two rules the system enforces: every phrase must contain ${applicationName}, and any
+   ${parameter} token must be kept, though it may move to wherever the language puts it.
+ 
+   Only worth doing for languages Siri supports — about twenty of the app's forty-five. */
+
+"${applicationName} surroundings ${kind}" = "${applicationName} surroundings ${kind}";
+"${applicationName} surroundings" = "${applicationName} surroundings";
+
+"${applicationName} route ${command}" = "${applicationName} route ${command}";
+"${applicationName} route" = "${applicationName} route";
+
+"${applicationName} start route ${route}" = "${applicationName} start route ${route}";
+"${applicationName} start route" = "${applicationName} start route";
+
+"${applicationName} beacon ${marker}" = "${applicationName} beacon ${marker}";
+"${applicationName} beacon" = "${applicationName} beacon";
+
+"${applicationName} list ${kind}" = "${applicationName} list ${kind}";
+"${applicationName} list" = "${applicationName} list";
+
+"${applicationName} stop beacon" = "${applicationName} stop beacon";

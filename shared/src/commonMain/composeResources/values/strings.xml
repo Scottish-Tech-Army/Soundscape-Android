@@ -2884,4 +2884,50 @@ Please continue to report any problems, however small, through Contact Support i
     <string name="action_no_map_data">Soundscape is still loading the map for your area</string>
     <!-- Spoken when a route command is given while no route is playing. -->
     <string name="action_no_route_active">No route is playing</string>
+    <!-- ===== Siri / assistant surface (iOS) =====
+         These appear in the Shortcuts app, in Settings > Siri & Search, and when Siri asks
+         which of several choices you meant. They are labels and short descriptions, not
+         spoken commands: the spoken phrases themselves are authored separately per
+         language because they have to be what a speaker would naturally say. -->
+    <!-- Name for the group of "hear my surroundings" choices, shown when Siri asks which one. -->
+    <string name="siri_type_callout">Callout</string>
+    <!-- Name for the group of route control choices (next waypoint, stop, and so on). -->
+    <string name="siri_type_route_command">Route Command</string>
+    <!-- Name for the group of things that can be listed: routes, markers or commands. -->
+    <string name="siri_type_list">List</string>
+    <!-- Label for the "which route command?" parameter. -->
+    <string name="siri_param_command">Command</string>
+    <!-- Label for the "which route?" parameter. -->
+    <string name="siri_param_route">Route</string>
+    <!-- Choice meaning stop the route that is playing. Kept short because it is spoken as
+         part of "route stop". -->
+    <string name="siri_choice_stop">Stop</string>
+    <!-- Choice meaning list the voice commands available. -->
+    <string name="siri_choice_commands">Commands</string>
+    <!-- Shortcut name for the route control shortcut. -->
+    <string name="siri_title_control_route">Control Route</string>
+    <!-- Shortcut name for placing an audio beacon on a saved marker. -->
+    <string name="siri_title_start_beacon">Start Beacon</string>
+    <!-- Shortcut name for switching the audio beacon off. -->
+    <string name="siri_title_stop_beacon">Stop Beacon</string>
+    <!-- Short name for the surroundings shortcut, shown under its icon. -->
+    <string name="siri_short_surroundings">Surroundings</string>
+    <!-- Short name for the beacon shortcut, shown under its icon. -->
+    <string name="siri_short_beacon">Beacon</string>
+    <!-- Description of the surroundings shortcut. -->
+    <string name="siri_desc_surroundings">Describes where you are and what is around you.</string>
+    <!-- Description of the route control shortcut. -->
+    <string name="siri_desc_route_control">Skips waypoints, mutes the beacon, or stops the route.</string>
+    <!-- Description of the start route shortcut. -->
+    <string name="siri_desc_start_route">Starts one of your saved routes.</string>
+    <!-- Description of the start beacon shortcut. -->
+    <string name="siri_desc_start_beacon">Sets an audio beacon on one of your saved markers.</string>
+    <!-- Description of the stop beacon shortcut. -->
+    <string name="siri_desc_stop_beacon">Switches the audio beacon off.</string>
+    <!-- Description of the list shortcut. -->
+    <string name="siri_desc_list">Reads back your saved routes, your saved markers, or the commands you can say.</string>
+    <!-- Spoken when an action would need the app opened before it can be finished. -->
+    <string name="siri_error_needs_app">Open Soundscape to finish that.</string>
+    <!-- Spoken when an action fails for a reason the app has no better wording for. -->
+    <string name="siri_error_generic">Soundscape couldn't do that.</string>
 </resources>
