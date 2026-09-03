@@ -1,5 +1,8 @@
 package org.scottishtecharmy.soundscape.actions
 
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.withTimeoutOrNull
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
@@ -27,12 +30,23 @@ class SoundscapeActionExecutor(
     private val strings: LocalizedStrings = ComposeLocalizedStrings(),
 ) {
 
-    suspend fun execute(action: SoundscapeAction): ActionResult = when (action) {
+    /**
+     * [readyTimeoutMs] is how long a callout action may wait for the position fix and
+     * map tiles it needs. Zero — the right value for a button press, where the app is
+     * already up — fails immediately. An assistant passes a few seconds, because its
+     * command can be what launches the app: the geo engine starts in
+     * IosSoundscapeService's init, but a fix and tiles land a moment later, and
+     * without the wait every cold "what's around me?" would report NotReady.
+     */
+    suspend fun execute(
+        action: SoundscapeAction,
+        readyTimeoutMs: Long = 0L,
+    ): ActionResult = when (action) {
 
-        SoundscapeAction.MyLocation -> callout { service.myLocation() }
-        SoundscapeAction.AroundMe -> callout { service.whatsAroundMe() }
-        SoundscapeAction.AheadOfMe -> callout { service.aheadOfMe() }
-        SoundscapeAction.NearbyMarkers -> callout { service.nearbyMarkers() }
+        SoundscapeAction.MyLocation -> callout(readyTimeoutMs) { service.myLocation() }
+        SoundscapeAction.AroundMe -> callout(readyTimeoutMs) { service.whatsAroundMe() }
+        SoundscapeAction.AheadOfMe -> callout(readyTimeoutMs) { service.aheadOfMe() }
+        SoundscapeAction.NearbyMarkers -> callout(readyTimeoutMs) { service.nearbyMarkers() }
 
         is SoundscapeAction.StartRouteById ->
             routeDao.getRouteById(action.routeId)
@@ -87,7 +101,32 @@ class SoundscapeActionExecutor(
             service.destroyBeacon()
             ActionResult.Ok(strings.get(StringKey.ActionBeaconStopped))
         }
+
+        SoundscapeAction.ListRoutes -> {
+            val routes = routeDao.getAllRoutes()
+            if (routes.isEmpty()) {
+                notReady(ActionResult.Reason.NO_ROUTES_SAVED, StringKey.MenuNoRoutes)
+            } else {
+                ActionResult.Ok(spokenList(StringKey.VoiceCmdRoutesList, routes.map { it.name }))
+            }
+        }
+
+        SoundscapeAction.ListMarkers -> {
+            val markers = routeDao.getAllMarkers()
+            if (markers.isEmpty()) {
+                notReady(ActionResult.Reason.NO_MARKERS_SAVED, StringKey.ActionNoMarkersSaved)
+            } else {
+                ActionResult.Ok(spokenList(StringKey.VoiceCmdMarkersList, markers.map { it.name }))
+            }
+        }
     }
+
+    /**
+     * Joins names onto a lead-in like "Available routes are,". The lead-in already ends in
+     * a comma in every translation, so the names follow it directly.
+     */
+    private fun spokenList(leadIn: StringKey, names: List<String>): String =
+        "${strings.get(leadIn)} ${names.joinToString(", ")}"
 
     /**
      * Issues a callout, first checking the two things it silently needs: a position
@@ -95,7 +134,17 @@ class SoundscapeActionExecutor(
      * an assistant reporting that as success leaves the user waiting for audio that
      * is never coming.
      */
-    private fun callout(issue: () -> Unit): ActionResult {
+    private suspend fun callout(readyTimeoutMs: Long, issue: () -> Unit): ActionResult {
+        // One budget covers both waits, and a warm service never suspends at all.
+        if (readyTimeoutMs > 0 &&
+            (service.locationFlow.value == null || service.gridStateFlow.value == null)
+        ) {
+            withTimeoutOrNull(readyTimeoutMs) {
+                service.locationFlow.filterNotNull().first()
+                service.gridStateFlow.filterNotNull().first()
+            }
+        }
+
         service.locationFlow.value
             ?: return notReady(ActionResult.Reason.NO_LOCATION_FIX, StringKey.ActionNoLocation)
         service.gridStateFlow.value

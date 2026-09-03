@@ -38,4 +38,13 @@ sealed class SoundscapeAction {
     data class BeaconOnMarkerById(val markerId: Long) : SoundscapeAction()
     data class BeaconOnMarkerNamed(val name: String) : SoundscapeAction()
     data object StopBeacon : SoundscapeAction()
+
+    // ── Enumeration ──────────────────────────────────────────────────────────
+    /**
+     * Read back what the user has saved. No AudioMenu equivalent: the menu *is* the
+     * list, so speaking one would be redundant there, whereas an assistant has no
+     * browsable surface of its own.
+     */
+    data object ListRoutes : SoundscapeAction()
+    data object ListMarkers : SoundscapeAction()
 }

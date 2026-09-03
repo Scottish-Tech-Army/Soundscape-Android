@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.actions
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.runTest
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
@@ -232,6 +233,43 @@ class SoundscapeActionExecutorTest {
         assertTrue(service.calls.isEmpty())
     }
 
+    @Test
+    fun calloutWaitsForAColdServiceToBecomeReadyWithinTheTimeout() = runTest {
+        // Mirrors an assistant cold start: the geo engine is coming up, and the fix and
+        // tiles land after the intent has already been dispatched.
+        val service = FakeService().apply {
+            locationFlowState.value = null
+            gridStateFlowState.value = null
+        }
+        val ready = launch {
+            service.locationFlowState.value = SoundscapeLocation()
+            service.gridStateFlowState.value = GridState()
+        }
+        val result = executor(service).execute(SoundscapeAction.AroundMe, readyTimeoutMs = 5_000)
+        ready.join()
+        assertIs<ActionResult.Ok>(result)
+        assertContentEquals(listOf("cancelCallout", "whatsAroundMe"), service.calls)
+    }
+
+    @Test
+    fun calloutGivesUpWhenTheServiceNeverBecomesReady() = runTest {
+        val service = FakeService().apply { locationFlowState.value = null }
+        val result = executor(service).execute(SoundscapeAction.AroundMe, readyTimeoutMs = 5_000)
+        assertIs<ActionResult.NotReady>(result)
+        assertEquals(ActionResult.Reason.NO_LOCATION_FIX, result.reason)
+        assertTrue(service.calls.isEmpty())
+    }
+
+    @Test
+    fun calloutWithZeroTimeoutDoesNotWait() = runTest {
+        // The button path: the app is already up, so a missing fix is a real failure
+        // rather than something to sit and wait for.
+        val service = FakeService().apply { gridStateFlowState.value = null }
+        val result = executor(service).execute(SoundscapeAction.AheadOfMe, readyTimeoutMs = 0)
+        assertIs<ActionResult.NotReady>(result)
+        assertEquals(ActionResult.Reason.NO_MAP_DATA, result.reason)
+    }
+
     // ── Routes ────────────────────────────────────────────────────────────────
 
     @Test
@@ -332,6 +370,40 @@ class SoundscapeActionExecutorTest {
             assertEquals(ActionResult.Reason.NO_ROUTE_ACTIVE, result.reason, "$action")
             assertEquals("ActionNoRouteActive()", result.speech, "$action")
         }
+    }
+
+    // ── Lists ─────────────────────────────────────────────────────────────────
+
+    @Test
+    fun listRoutes_readsBackEveryNameAfterTheLeadIn() = runTest {
+        val dao = FakeRouteDao(routes = listOf(route(1, "Commute"), route(2, "Riverside Walk")))
+        val result = executor(dao = dao).execute(SoundscapeAction.ListRoutes)
+        assertIs<ActionResult.Ok>(result)
+        assertEquals("VoiceCmdRoutesList() Commute, Riverside Walk", result.speech)
+    }
+
+    @Test
+    fun listMarkers_readsBackEveryNameAfterTheLeadIn() = runTest {
+        val dao = FakeRouteDao(
+            markers = listOf(
+                marker(1, "Post Office", lon = -4.3, lat = 55.9),
+                marker(2, "Tesco", lon = -4.4, lat = 55.8),
+            ),
+        )
+        val result = executor(dao = dao).execute(SoundscapeAction.ListMarkers)
+        assertIs<ActionResult.Ok>(result)
+        assertEquals("VoiceCmdMarkersList() Post Office, Tesco", result.speech)
+    }
+
+    @Test
+    fun listsReportEmptinessRatherThanAnEmptySentence() = runTest {
+        val routes = executor().execute(SoundscapeAction.ListRoutes)
+        assertIs<ActionResult.NotReady>(routes)
+        assertEquals(ActionResult.Reason.NO_ROUTES_SAVED, routes.reason)
+
+        val markers = executor().execute(SoundscapeAction.ListMarkers)
+        assertIs<ActionResult.NotReady>(markers)
+        assertEquals(ActionResult.Reason.NO_MARKERS_SAVED, markers.reason)
     }
 
     // ── Beacons ───────────────────────────────────────────────────────────────

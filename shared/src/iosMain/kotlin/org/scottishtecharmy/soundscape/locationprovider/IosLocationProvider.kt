@@ -9,9 +9,13 @@ import platform.CoreLocation.CLLocationManager
 import platform.CoreLocation.CLLocationManagerDelegateProtocol
 import platform.CoreLocation.kCLLocationAccuracyBest
 import platform.CoreLocation.kCLLocationAccuracyNearestTenMeters
+import platform.Foundation.NSDate
 import platform.Foundation.NSError
 import platform.Foundation.timeIntervalSince1970
 import platform.darwin.NSObject
+
+/** How old CLLocationManager's cached fix may be before it is ignored on start. */
+private const val MAX_CACHED_FIX_AGE_SECONDS = 60.0
 
 class IosLocationProvider : LocationProvider() {
 
@@ -48,6 +52,27 @@ class IosLocationProvider : LocationProvider() {
         }
 
         locationManager.startUpdatingLocation()
+        seedFromCachedFix()
+    }
+
+    /**
+     * Publishes CLLocationManager's cached fix straight away, if it is recent enough.
+     *
+     * Until the first delegate callback arrives, locationFlow stays null, and on a cold
+     * start that can take longer than an assistant command is willing to wait — Siri
+     * answering "Soundscape doesn't have your location yet" while a perfectly good
+     * recent fix sat unread in the location manager.
+     *
+     * Bounded by age deliberately: for callouts a stale position is worse than none,
+     * because describing surroundings the user has already walked away from misleads
+     * rather than merely disappoints.
+     */
+    private fun seedFromCachedFix() {
+        val cached = locationManager.location ?: return
+        val ageSeconds = NSDate().timeIntervalSince1970 - cached.timestamp.timeIntervalSince1970
+        if (ageSeconds in 0.0..MAX_CACHED_FIX_AGE_SECONDS) {
+            onLocationUpdate(cached)
+        }
     }
 
     fun pause() {
