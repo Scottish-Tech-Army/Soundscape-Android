@@ -311,17 +311,17 @@ struct ListIntent: AppIntent {
 
     func perform() async throws -> some IntentResult & ProvidesDialog {
         guard let action = kind.action else {
-            return .result(dialog: IntentDialog("\(Self.commandSummary)"))
+            return .result(dialog: IntentDialog(Self.commandSummary))
         }
         let speech = try await SoundscapeIntentRunner.run(action)
         return .result(dialog: SoundscapeIntentRunner.dialog(for: speech))
     }
 
-    /// Kept beside the phrases it describes, in SoundscapeAppShortcuts, so the two cannot
-    /// drift. English-only like the phrases themselves, for the same reason: both resolve
-    /// against the app bundle rather than the shared Compose resources.
-    private static var commandSummary: String {
-        "You can say: Soundscape surroundings, Soundscape route, Soundscape start route, "
-            + "Soundscape beacon, Soundscape stop beacon, or Soundscape list."
-    }
+    /// A LocalizedStringResource rather than a String so it can be translated at all — but
+    /// deliberately not translated from English. It recites the spoken phrases, so a
+    /// language only gets a version of this once someone has authored that language's
+    /// phrases in AppShortcuts.xcstrings; a literal translation would tell the user to say
+    /// commands that do not exist.
+    private static let commandSummary: LocalizedStringResource =
+        "You can say: Soundscape surroundings, Soundscape route, Soundscape start route, Soundscape beacon, Soundscape stop beacon, or Soundscape list."
 }
