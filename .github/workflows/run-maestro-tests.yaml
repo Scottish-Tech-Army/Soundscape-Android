@@ -73,7 +73,7 @@ jobs:
             locale: ja-JP
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -259,14 +259,14 @@ jobs:
       # Artifact names must be unique across the matrix, so suffix them with the
       # combination (e.g. maestro-reports-35-large-ja-JP).
       - name: Upload maestro reports
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: maestro-reports-${{ matrix.api-level }}-${{ matrix.screen }}-${{ matrix.locale }}
           path: maestro_outputs
 
       - name: Upload Failing Test Report Log
         if: steps.maestro-tests.outcome != 'success'        # upload the generated log on failure of the tests job
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: logs-${{ matrix.api-level }}-${{ matrix.screen }}-${{ matrix.locale }}
           path: app/emulator.log # path to where the log is

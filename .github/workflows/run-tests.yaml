@@ -21,7 +21,7 @@ jobs:
     environment: development
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -50,7 +50,7 @@ jobs:
     environment: development
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -87,7 +87,7 @@ jobs:
     environment: development
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -145,7 +145,7 @@ jobs:
 
       - name: Upload Failing Test Report Log
         if: steps.instrumentation-tests.outcome != 'success'        # upload the generated log on failure of the tests job
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: logs
           path: app/emulator.log # path to where the log is
@@ -160,7 +160,7 @@ jobs:
     environment: development
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -243,7 +243,7 @@ jobs:
 
       - name: Upload xcresult bundle
         if: steps.xctest.outcome != 'success'
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ios-xcresult
           path: iosApp/build/DerivedData/Logs/Test/*.xcresult
