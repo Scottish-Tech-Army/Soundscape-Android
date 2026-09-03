@@ -1,0 +1,28 @@
+/* Spoken Siri commands - Chinese (Simplified).
+
+   Values only: the keys are the English phrases declared in
+   SoundscapeAppShortcuts.swift and must stay exactly as they are. See
+   en.lproj/AppShortcuts.strings for the rules (${applicationName} in every phrase, ${parameter}
+   tokens kept but free to move).
+
+   Every phrase keeps the shape "<app name> <group> <choice>", so knowing the six
+   group words is enough to reach everything.
+
+   First pass, not authored by a native speaker - corrections welcome. */
+
+"${applicationName} surroundings ${kind}" = "${applicationName} 周围 ${kind}";
+"${applicationName} surroundings" = "${applicationName} 周围";
+
+"${applicationName} route ${command}" = "${applicationName} 路线 ${command}";
+"${applicationName} route" = "${applicationName} 路线";
+
+"${applicationName} start route ${route}" = "${applicationName} 开始路线 ${route}";
+"${applicationName} start route" = "${applicationName} 开始路线";
+
+"${applicationName} beacon ${marker}" = "${applicationName} 信标 ${marker}";
+"${applicationName} beacon" = "${applicationName} 信标";
+
+"${applicationName} list ${kind}" = "${applicationName} 列表 ${kind}";
+"${applicationName} list" = "${applicationName} 列表";
+
+"${applicationName} stop beacon" = "${applicationName} 停止信标";
