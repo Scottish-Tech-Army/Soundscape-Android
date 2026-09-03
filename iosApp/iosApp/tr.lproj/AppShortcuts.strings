@@ -1,0 +1,28 @@
+/* Spoken Siri commands - Turkish.
+
+   Values only: the keys are the English phrases declared in
+   SoundscapeAppShortcuts.swift and must stay exactly as they are. See
+   en.lproj/AppShortcuts.strings for the rules (${applicationName} in every phrase, ${parameter}
+   tokens kept but free to move).
+
+   Every phrase keeps the shape "<app name> <group> <choice>", so knowing the six
+   group words is enough to reach everything.
+
+   First pass, not authored by a native speaker - corrections welcome. */
+
+"${applicationName} surroundings ${kind}" = "${applicationName} çevre ${kind}";
+"${applicationName} surroundings" = "${applicationName} çevre";
+
+"${applicationName} route ${command}" = "${applicationName} rota ${command}";
+"${applicationName} route" = "${applicationName} rota";
+
+"${applicationName} start route ${route}" = "${applicationName} rota başlat ${route}";
+"${applicationName} start route" = "${applicationName} rota başlat";
+
+"${applicationName} beacon ${marker}" = "${applicationName} işaret ${marker}";
+"${applicationName} beacon" = "${applicationName} işaret";
+
+"${applicationName} list ${kind}" = "${applicationName} liste ${kind}";
+"${applicationName} list" = "${applicationName} liste";
+
+"${applicationName} stop beacon" = "${applicationName} işareti durdur";

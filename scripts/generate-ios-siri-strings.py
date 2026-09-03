@@ -9,8 +9,9 @@ UI. This script copies them across.
 
 Two things it deliberately does not do:
 
-  * Spoken phrases. Those live in AppShortcuts.xcstrings and cannot be produced by
-    translating English, because they have to be what a speaker would actually say.
+  * Spoken phrases. Those live in <locale>.lproj/AppShortcuts.strings and cannot be
+    produced by translating English, because they have to be what a speaker would
+    actually say.
   * Anything not listed in MAPPING. Silence beats guessing at a key whose wording happens
     to match today.
 
@@ -81,14 +82,70 @@ MAPPING = {
     "Soundscape couldn't do that.": "siri_error_generic",
 }
 
-# Strings that must appear in the catalog but must NOT be translated from English,
-# because their content recites the spoken phrases. A language gets a version of these
-# only once someone has authored that language's phrases in AppShortcuts.xcstrings;
-# translating the English would tell the user to say commands that do not exist.
-PHRASE_COUPLED = [
+# Strings whose content recites the spoken phrases, so they cannot be translated from
+# English like the rest. A locale appears here only once its phrases have been authored
+# in <locale>.lproj/AppShortcuts.strings, and the wording must name that locale's group
+# words; otherwise it would tell the user to say commands that do not exist. Locales with
+# no entry fall back to the English source string, which is correct for them: their Siri
+# has no phrases of its own and still answers to the English ones.
+PHRASE_COUPLED = {
     "You can say: Soundscape surroundings, Soundscape route, Soundscape start route, "
-    "Soundscape beacon, Soundscape stop beacon, or Soundscape list.",
-]
+    "Soundscape beacon, Soundscape stop beacon, or Soundscape list.": {
+        "ar": "يمكنك أن تقول: Soundscape المحيط، Soundscape المسار، "
+              "Soundscape ابدأ المسار، Soundscape المنارة، Soundscape أوقف المنارة، "
+              "أو Soundscape قائمة.",
+        "da": "Du kan sige: Soundscape omgivelser, Soundscape rute, "
+              "Soundscape start rute, Soundscape lydfyr, Soundscape stop lydfyr "
+              "eller Soundscape liste.",
+        "de": "Sie können sagen: Soundscape Umgebung, Soundscape Route, "
+              "Soundscape starte Route, Soundscape Beacon, Soundscape stoppe Beacon "
+              "oder Soundscape Liste.",
+        "es": "Puedes decir: Soundscape entorno, Soundscape ruta, "
+              "Soundscape iniciar ruta, Soundscape señal, Soundscape detener señal "
+              "o Soundscape lista.",
+        "fi": "Voit sanoa: Soundscape ympäristö, Soundscape reitti, "
+              "Soundscape aloita reitti, Soundscape majakka, "
+              "Soundscape pysäytä majakka tai Soundscape luettelo.",
+        "fr": "Vous pouvez dire : Soundscape environs, Soundscape itinéraire, "
+              "Soundscape démarre l'itinéraire, Soundscape balise, "
+              "Soundscape arrête la balise ou Soundscape liste.",
+        "it": "Puoi dire: Soundscape dintorni, Soundscape percorso, "
+              "Soundscape avvia percorso, Soundscape audiofaro, "
+              "Soundscape ferma audiofaro o Soundscape elenco.",
+        "ja": "「Soundscape 周辺」「Soundscape ルート」「Soundscape ルート開始」"
+              "「Soundscape ビーコン」「Soundscape ビーコン停止」「Soundscape リスト」"
+              "と言えます。",
+        "ko": "다음과 같이 말할 수 있습니다: Soundscape 주변, Soundscape 경로, "
+              "Soundscape 경로 시작, Soundscape 비콘, Soundscape 비콘 중지, "
+              "Soundscape 목록.",
+        "nb": "Du kan si: Soundscape omgivelser, Soundscape rute, "
+              "Soundscape start rute, Soundscape lydsignal, "
+              "Soundscape stopp lydsignal eller Soundscape liste.",
+        "nl": "U kunt zeggen: Soundscape omgeving, Soundscape route, "
+              "Soundscape start route, Soundscape baken, Soundscape stop baken "
+              "of Soundscape lijst.",
+        "pt": "Pode dizer: Soundscape arredores, Soundscape rota, "
+              "Soundscape iniciar rota, Soundscape sinal, Soundscape parar sinal "
+              "ou Soundscape lista.",
+        "pt-BR": "Você pode dizer: Soundscape arredores, Soundscape rota, "
+                 "Soundscape iniciar rota, Soundscape sinalizador, "
+                 "Soundscape parar sinalizador ou Soundscape lista.",
+        "ru": "Можно сказать: Soundscape окружение, Soundscape маршрут, "
+              "Soundscape запусти маршрут, Soundscape маяк, "
+              "Soundscape выключи маяк или Soundscape список.",
+        "sv": "Du kan säga: Soundscape omgivning, Soundscape rutt, "
+              "Soundscape starta rutt, Soundscape ljudfyr, "
+              "Soundscape stoppa ljudfyr eller Soundscape lista.",
+        "th": "คุณสามารถพูดว่า: Soundscape รอบตัว, Soundscape เส้นทาง, "
+              "Soundscape เริ่มเส้นทาง, Soundscape บีคอน, Soundscape หยุดบีคอน "
+              "หรือ Soundscape รายการ",
+        "tr": "Şunları diyebilirsiniz: Soundscape çevre, Soundscape rota, "
+              "Soundscape rota başlat, Soundscape işaret, Soundscape işareti durdur "
+              "veya Soundscape liste.",
+        "zh-Hans": "你可以说：Soundscape 周围、Soundscape 路线、Soundscape 开始路线、"
+                   "Soundscape 信标、Soundscape 停止信标，或 Soundscape 列表。",
+    },
+}
 
 # Android resource qualifiers to the BCP-47 tags Apple expects. Only the ones that differ
 # need listing; everything else passes through unchanged.
@@ -135,11 +192,14 @@ def main():
             print("  note: '%s' <- %s = '%s'" % (literal, key, source[key].strip()))
 
     strings = {literal: {"localizations": {}} for literal in MAPPING}
-    for literal in PHRASE_COUPLED:
+    for literal, localized in PHRASE_COUPLED.items():
         strings[literal] = {
             "comment": "Recites the spoken phrases. Translate only alongside that "
-                       "language's phrases in AppShortcuts.xcstrings.",
-            "localizations": {},
+                       "language's phrases in <locale>.lproj/AppShortcuts.strings.",
+            "localizations": {
+                locale: {"stringUnit": {"state": "translated", "value": text}}
+                for locale, text in sorted(localized.items())
+            },
         }
 
     locales = 0
