@@ -13,6 +13,9 @@ composeMaterial3 = "1.9.0"
 composeMaterialIconsExtended = "1.7.3"
 wire = "6.4.5"
 devtools-ksp = "2.3.10"
+# AppFunctions is an experimental preview and its API surface is still changing.
+# Pinned deliberately: check the release notes before bumping.
+appfunctions = "1.0.0-alpha10"
 koin = "4.2.2"
 google-services = "4.5.0"
 jetbrains-dokka = "2.2.0"
@@ -104,6 +107,8 @@ androidx-junit-v121 = { module = "androidx.test.ext:junit", version.ref = "andro
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelCompose" }
 androidx-material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
 androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
+androidx-appfunctions = { module = "androidx.appfunctions:appfunctions", version.ref = "appfunctions" }
+androidx-appfunctions-compiler = { module = "androidx.appfunctions:appfunctions-compiler", version.ref = "appfunctions" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompiler" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
 androidx-sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqliteBundled" }

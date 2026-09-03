@@ -40,6 +40,12 @@ sealed class ActionResult {
     data class NotFound(val query: String, val speech: String) : ActionResult()
 
     enum class Reason {
+        /**
+         * No running service to act on. Android only: an AppFunction is invoked into a
+         * process where SoundscapeService may not be up, and a location-type foreground
+         * service cannot be started from the background.
+         */
+        SERVICE_NOT_RUNNING,
         NO_LOCATION_FIX,
         NO_MAP_DATA,
         NO_ROUTE_ACTIVE,

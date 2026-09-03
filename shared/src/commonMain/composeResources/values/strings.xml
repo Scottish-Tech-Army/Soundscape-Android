@@ -2930,4 +2930,7 @@ Please continue to report any problems, however small, through Contact Support i
     <string name="siri_error_needs_app">Open Soundscape to finish that.</string>
     <!-- Spoken when an action fails for a reason the app has no better wording for. -->
     <string name="siri_error_generic">Soundscape couldn't do that.</string>
+    <!-- Spoken when an assistant command arrives while Soundscape is not running, and the
+         command needs the running app rather than just its saved data. -->
+    <string name="action_service_not_running">Open Soundscape first</string>
 </resources>

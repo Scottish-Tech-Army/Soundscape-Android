@@ -458,6 +458,7 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     override fun onCreate() {
         super.onCreate()
         Log.d(TAG, "onCreate $running")
+        runningInstance = this
 
         if (!running) {
 
@@ -551,6 +552,8 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
     }
 
     override fun onDestroy() {
+        // Guarded in case a replacement instance has already registered itself.
+        if (runningInstance === this) runningInstance = null
         suppressionJob?.cancel()
 
         // If _mediaSession is not null, run the following block
@@ -1101,6 +1104,21 @@ class SoundscapeService : MediaSessionService(), GeoEngineListener, MediaControl
 
     companion object {
         private const val TAG = "SoundscapeService"
+
+        /**
+         * The running service, or null when it isn't up.
+         *
+         * Exists for AppFunctions, which are invoked into this process by the system with
+         * no guarantee the service is running - and no way to start it, since a
+         * location-type foreground service can't be launched from the background. Binding
+         * would be the usual answer, but a bind is asynchronous and an AppFunction needs
+         * to know *now* whether it can act. Same process, so a plain reference is enough.
+         *
+         * Deliberately not a way to obtain the service: callers get null and must cope.
+         */
+        @Volatile
+        var runningInstance: SoundscapeService? = null
+            private set
 
         // Secondary "service" every n seconds
         private val TICKER_PERIOD_SECONDS = 3600.seconds
