@@ -22,7 +22,7 @@ jobs:
       version_name: ${{ steps.current-version.outputs.VERSION_NAME }}
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           token: ${{ secrets.PAT_TOKEN }}
@@ -78,7 +78,7 @@ jobs:
     steps:
       # Check out the branch tip so we pick up the version-bump commit
       # that prepare-version pushed.
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           ref: ${{ github.ref }}
@@ -145,7 +145,7 @@ jobs:
 #          zip -r screenshots.zip .
 #
 #      - name: Upload screenshots
-#        uses: actions/upload-artifact@v6
+#        uses: actions/upload-artifact@v7
 #        with:
 #          name: test-screenshots
 #          path: app/src/screenshotTestDebug/reference/org/scottishtecharmy/soundscape/ThemeTestClass/screenshots.zip
@@ -225,7 +225,7 @@ jobs:
       # Upload Artifact Build
       # Noted For Output [main_project_module]/build/outputs/apk/releaseTest/
       - name: Upload APK ReleaseTest
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: releaseTest-apk
           path: |
@@ -233,7 +233,7 @@ jobs:
 
       # Noted For Output [main_project_module]/build/outputs/apk/release/
       - name: Upload APK Release
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: release-apk
           path: |
@@ -241,7 +241,7 @@ jobs:
 
       # Noted For Output [main_project_module]/build/outputs/bundle/release/
       - name: Upload AAB (App Bundle) Release
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: release-aab
           path: |
@@ -255,7 +255,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -297,7 +297,7 @@ jobs:
     steps:
       # Pull the latest commit on the branch (including the version-bump
       # commit produced by the Android `build` job).
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           ref: ${{ github.ref }}
@@ -441,13 +441,13 @@ jobs:
             -allowProvisioningUpdates
 
       - name: Upload .ipa
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: release-ipa
           path: ${{ runner.temp }}/export/*.ipa
 
       - name: Upload .xcarchive (for dSYM/debug symbols)
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: release-xcarchive
           path: ${{ runner.temp }}/Soundscape.xcarchive
@@ -461,7 +461,7 @@ jobs:
     steps:
       # Local composite actions live in .github/actions/, so the workflow
       # must check the repo out before referencing them.
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
 
       - name: Download .ipa
         uses: actions/download-artifact@v8
@@ -506,7 +506,7 @@ jobs:
     steps:
       # Pull the latest commit on the branch (including the version-bump
       # commit produced by the Android `build` job).
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           fetch-depth: 0
           ref: ${{ github.ref }}
