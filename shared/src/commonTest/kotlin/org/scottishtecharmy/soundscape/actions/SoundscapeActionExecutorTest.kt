@@ -10,6 +10,7 @@ import org.scottishtecharmy.soundscape.database.local.dao.RouteDao
 import org.scottishtecharmy.soundscape.database.local.model.MarkerEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteEntity
 import org.scottishtecharmy.soundscape.database.local.model.RouteMarkerCrossRef
+import org.scottishtecharmy.soundscape.database.local.model.RouteWithMarkers
 import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -141,11 +142,18 @@ private class FakeService : MediaControllableService {
 
     override fun destroyBeacon() { calls.add("destroyBeacon") }
 
+    /**
+     * What the route player says is loaded. Separate from [routeCommandsSucceed], which is
+     * only whether the skip call itself moved: the executor consults this to tell a refused
+     * skip at the end of a route apart from one with nothing playing at all.
+     */
+    val currentRouteFlowState = MutableStateFlow(RoutePlayerState())
+    override val currentRouteFlow: StateFlow<RoutePlayerState> = currentRouteFlowState
+
     // --- Unused by the executor ---
     override val filteredLocationFlow: StateFlow<SoundscapeLocation?> = MutableStateFlow(null)
     override val orientationFlow: StateFlow<DeviceDirection?> = MutableStateFlow(null)
     override val beaconFlow: StateFlow<BeaconState> = MutableStateFlow(BeaconState())
-    override val currentRouteFlow: StateFlow<RoutePlayerState> = MutableStateFlow(RoutePlayerState())
     override var menuActive: Boolean = false
 
     override fun speakText(
@@ -175,6 +183,15 @@ private fun route(id: Long, name: String) = RouteEntity(routeId = id, name = nam
 
 private fun marker(id: Long, name: String, lon: Double, lat: Double) =
     MarkerEntity(markerId = id, name = name, longitude = lon, latitude = lat)
+
+/** A route player state with [waypointCount] markers loaded, sitting on [currentWaypoint]. */
+private fun playing(waypointCount: Int, currentWaypoint: Int) = RoutePlayerState(
+    routeData = RouteWithMarkers(
+        route(1, "Commute"),
+        (1..waypointCount).map { marker(it.toLong(), "Stop $it", lon = -4.3, lat = 55.9) },
+    ),
+    currentWaypoint = currentWaypoint,
+)
 
 private fun executor(
     service: FakeService? = FakeService(),
@@ -370,6 +387,60 @@ class SoundscapeActionExecutorTest {
             assertEquals(ActionResult.Reason.NO_ROUTE_ACTIVE, result.reason, "$action")
             assertEquals("ActionNoRouteActive()", result.speech, "$action")
         }
+    }
+
+    @Test
+    fun waypointCommands_reportTheBoundaryWhenTheRouteIsStillPlaying() = runTest {
+        // RoutePlayer.moveToNext/moveToPrevious return false both when nothing is playing
+        // and when a route is playing but already at the end asked for. Reporting the
+        // second as "No route is playing" tells a user mid-route their route is gone.
+        val cases = listOf(
+            SoundscapeAction.NextWaypoint to
+                Triple(ActionResult.Reason.AT_ROUTE_END, "ActionAtRouteEnd()", 1),
+            SoundscapeAction.PreviousWaypoint to
+                Triple(ActionResult.Reason.AT_ROUTE_START, "ActionAtRouteStart()", 0),
+        )
+        for ((action, expected) in cases) {
+            val (reason, speech, waypoint) = expected
+            val service = FakeService().apply {
+                routeCommandsSucceed = false
+                currentRouteFlowState.value = playing(waypointCount = 2, currentWaypoint = waypoint)
+            }
+            val result = executor(service).execute(action)
+            assertIs<ActionResult.NotReady>(result, "$action")
+            assertEquals(reason, result.reason, "$action")
+            assertEquals(speech, result.speech, "$action")
+        }
+    }
+
+    @Test
+    fun waypointCommands_reportASingleWaypointRatherThanABoundary() = runTest {
+        // startBeacon() plays a one-marker route so the same UI can drive it, and a saved
+        // route can have a single waypoint too. Neither has a first or last to be at.
+        for (action in listOf(SoundscapeAction.NextWaypoint, SoundscapeAction.PreviousWaypoint)) {
+            val service = FakeService().apply {
+                routeCommandsSucceed = false
+                currentRouteFlowState.value = playing(waypointCount = 1, currentWaypoint = 0)
+            }
+            val result = executor(service).execute(action)
+            assertIs<ActionResult.NotReady>(result, "$action")
+            assertEquals(ActionResult.Reason.NO_OTHER_WAYPOINTS, result.reason, "$action")
+            assertEquals("ActionNoOtherWaypoints()", result.speech, "$action")
+        }
+    }
+
+    @Test
+    fun muteCommand_reportsNoRouteEvenMidRoute() = runTest {
+        // routeMute()'s false is the one that really does mean nothing is playing, so it
+        // keeps the plain message however far through a route the player happens to be.
+        val service = FakeService().apply {
+            routeCommandsSucceed = false
+            currentRouteFlowState.value = playing(waypointCount = 3, currentWaypoint = 1)
+        }
+        val result = executor(service).execute(SoundscapeAction.ToggleBeaconMute)
+        assertIs<ActionResult.NotReady>(result)
+        assertEquals(ActionResult.Reason.NO_ROUTE_ACTIVE, result.reason)
+        assertEquals("ActionNoRouteActive()", result.speech)
     }
 
     // ── No running service ────────────────────────────────────────────────────

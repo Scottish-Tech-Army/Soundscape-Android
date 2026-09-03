@@ -9,12 +9,15 @@ import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.screens.onboarding.language.getAppLocale
 import org.scottishtecharmy.soundscape.screens.onboarding.language.getSystemLocale
 import org.scottishtecharmy.soundscape.resources.Res
+import org.scottishtecharmy.soundscape.resources.action_at_route_end
+import org.scottishtecharmy.soundscape.resources.action_at_route_start
 import org.scottishtecharmy.soundscape.resources.action_beacon_started
 import org.scottishtecharmy.soundscape.resources.action_beacon_stopped
 import org.scottishtecharmy.soundscape.resources.action_item_not_found
 import org.scottishtecharmy.soundscape.resources.action_no_location
 import org.scottishtecharmy.soundscape.resources.action_no_map_data
 import org.scottishtecharmy.soundscape.resources.action_no_markers_saved
+import org.scottishtecharmy.soundscape.resources.action_no_other_waypoints
 import org.scottishtecharmy.soundscape.resources.action_no_route_active
 import org.scottishtecharmy.soundscape.resources.action_no_such_marker
 import org.scottishtecharmy.soundscape.resources.action_no_such_route
@@ -402,6 +405,9 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.ActionNoLocation -> Res.string.action_no_location
         StringKey.ActionNoMapData -> Res.string.action_no_map_data
         StringKey.ActionNoRouteActive -> Res.string.action_no_route_active
+        StringKey.ActionAtRouteStart -> Res.string.action_at_route_start
+        StringKey.ActionAtRouteEnd -> Res.string.action_at_route_end
+        StringKey.ActionNoOtherWaypoints -> Res.string.action_no_other_waypoints
         StringKey.ActionServiceNotRunning -> Res.string.action_service_not_running
         StringKey.MenuNoRoutes -> Res.string.menu_no_routes
         StringKey.VoiceCmdRoutesList -> Res.string.voice_cmd_routes_list

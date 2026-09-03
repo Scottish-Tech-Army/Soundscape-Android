@@ -2930,6 +2930,17 @@ Please continue to report any problems, however small, through Contact Support i
     <string name="siri_error_needs_app">Open Soundscape to finish that.</string>
     <!-- Spoken when an action fails for a reason the app has no better wording for. -->
     <string name="siri_error_generic">Soundscape couldn't do that.</string>
+    <!-- Spoken when the user asks for the previous waypoint but the route is already at
+         its first one. The route is still playing - see action_no_route_active for when
+         it is not. -->
+    <string name="action_at_route_start">You're already at the first waypoint</string>
+    <!-- Spoken when the user asks for the next waypoint but the route is already at its
+         last one. The route is still playing - see action_no_route_active for when it
+         is not. -->
+    <string name="action_at_route_end">You're already at the last waypoint</string>
+    <!-- Spoken when the user asks to change waypoint while what is playing has only one:
+         an audio beacon, or a route saved with a single waypoint. -->
+    <string name="action_no_other_waypoints">There are no other waypoints</string>
     <!-- Spoken when an assistant command arrives while Soundscape is not running, and the
          command needs the running app rather than just its saved data. -->
     <string name="action_service_not_running">Open Soundscape first</string>
