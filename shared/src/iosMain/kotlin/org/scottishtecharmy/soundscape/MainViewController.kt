@@ -37,6 +37,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandedit
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersViewModel
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesViewModel
 import platform.Foundation.NSURL
+import platform.StoreKit.SKStoreReviewController
 import platform.UIKit.UIActivityViewController
 import platform.UIKit.UIApplication
 import platform.UIKit.UIViewController
@@ -284,7 +285,7 @@ fun MainViewController() = ComposeUIViewController {
             },
             onRateApp = {
                 val url =
-                    NSURL.URLWithString("itms-apps://itunes.apple.com/app/idXXXXXXXX?action=write-review")
+                    NSURL.URLWithString("https://apps.apple.com/app/id6459021379?action=write-review")
                 if (url != null) openExternalUrl(url)
             },
             onContactSupport = { presentContactSupport(service) },
@@ -343,12 +344,14 @@ private fun presentActivityViewController(items: List<Any>) {
     )
 }
 
-internal fun presentTopViewController(viewController: UIViewController) {
-    val keyWindow = UIApplication.sharedApplication.windows
+private fun keyWindow(): UIWindow? =
+    UIApplication.sharedApplication.windows
         .mapNotNull { it as? UIWindow }
         .firstOrNull { it.isKeyWindow() }
         ?: UIApplication.sharedApplication.windows.firstOrNull() as? UIWindow
-        ?: return
+
+internal fun presentTopViewController(viewController: UIViewController) {
+    val keyWindow = keyWindow() ?: return
     var top: UIViewController? = keyWindow.rootViewController
     while (top?.presentedViewController != null) top = top.presentedViewController
     top?.presentViewController(viewController, animated = true, completion = null)
@@ -360,5 +363,25 @@ internal fun openExternalUrl(url: NSURL) {
         options = emptyMap<Any?, Any?>(),
         completionHandler = null,
     )
+}
+
+/**
+ * Ask the system to show its in-app rating prompt.
+ *
+ * Not wired up yet - the drawer's "Rate Soundscape" item deep links to the App Store
+ * review page instead, because iOS decides for itself whether this prompt appears (it is
+ * throttled to a handful per user per year, and never appears in a debug build launched
+ * from Xcode) and gives no callback either way, so a user who tapped a button would have
+ * no idea whether anything happened. This is here for a future organic prompt - after a
+ * completed route, say - where a silent no-op is the right outcome.
+ *
+ * StoreKit 2's AppStore.requestReview(in:) is Swift-only and so invisible to
+ * Kotlin/Native. SKStoreReviewController is the Objective-C entry point; deprecated in
+ * iOS 18 but still the only one we can reach from here.
+ */
+@Suppress("DEPRECATION")
+internal fun requestAppStoreReview() {
+    val scene = keyWindow()?.windowScene ?: return
+    SKStoreReviewController.requestReviewInScene(scene)
 }
 
