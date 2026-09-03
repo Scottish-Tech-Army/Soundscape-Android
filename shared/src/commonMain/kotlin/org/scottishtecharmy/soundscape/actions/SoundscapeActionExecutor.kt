@@ -102,15 +102,21 @@ class SoundscapeActionExecutor(
             ActionResult.Ok(strings.get(StringKey.ActionRouteStopped))
         }
 
-        // routeSkipNext/Previous/Mute already return false when no route is
-        // playing — OriginalMediaControls leans on the same signal to decide
-        // whether a media key means "next waypoint" or "my location".
         SoundscapeAction.NextWaypoint ->
-            if (service.routeSkipNext()) ActionResult.Ok() else noRouteActive()
+            if (service.routeSkipNext()) ActionResult.Ok()
+            else skipRefused(service, ActionResult.Reason.AT_ROUTE_END, StringKey.ActionAtRouteEnd)
 
         SoundscapeAction.PreviousWaypoint ->
-            if (service.routeSkipPrevious()) ActionResult.Ok() else noRouteActive()
+            if (service.routeSkipPrevious()) ActionResult.Ok()
+            else skipRefused(
+                service,
+                ActionResult.Reason.AT_ROUTE_START,
+                StringKey.ActionAtRouteStart,
+            )
 
+        // routeMute() is the one of the three whose false really does mean "nothing is
+        // playing": Android returns routePlayer.isPlaying(), iOS whether a beacon handle
+        // exists. Neither has a boundary to run into.
         SoundscapeAction.ToggleBeaconMute ->
             if (service.routeMute()) ActionResult.Ok() else noRouteActive()
 
@@ -216,6 +222,37 @@ class SoundscapeActionExecutor(
     ): ActionResult {
         service.startBeacon(marker.getLngLatAlt(), marker.name)
         return ActionResult.Ok(strings.get(StringKey.ActionBeaconStarted, marker.name))
+    }
+
+    /**
+     * Explains a refused waypoint skip.
+     *
+     * RoutePlayer.moveToNext/moveToPrevious return a bare false for three different
+     * situations: nothing is playing, what is playing has a single waypoint (an audio
+     * beacon, or a route saved with one marker), or a real route is already at the end
+     * it was asked to move past. OriginalMediaControls is entitled to treat all three
+     * alike, because a media key falls back to "my location" in every one of them.
+     *
+     * An assistant speaks this result, so the distinction matters here: telling someone
+     * mid-route that no route is playing implies their route has been lost. The home
+     * screen already draws it, greying the skip buttons on currentWaypoint rather than
+     * on anything the player returns, so this reads the same [MediaControllableService
+     * .currentRouteFlow] it does instead of widening the interface.
+     *
+     * [atBoundary] is the answer for the direction that was actually asked for — the caller
+     * knows which end it just failed to move past, and the state alone doesn't say.
+     */
+    private fun skipRefused(
+        service: MediaControllableService,
+        atBoundary: ActionResult.Reason,
+        atBoundarySpeech: StringKey,
+    ): ActionResult {
+        val route = service.currentRouteFlow.value.routeData ?: return noRouteActive()
+        return if (route.markers.size <= 1) {
+            notReady(ActionResult.Reason.NO_OTHER_WAYPOINTS, StringKey.ActionNoOtherWaypoints)
+        } else {
+            notReady(atBoundary, atBoundarySpeech)
+        }
     }
 
     private fun noRouteActive() =

@@ -227,6 +227,9 @@ enum class StringKey {
     ActionNoLocation,
     ActionNoMapData,
     ActionNoRouteActive,
+    ActionAtRouteStart,
+    ActionAtRouteEnd,
+    ActionNoOtherWaypoints,
     ActionServiceNotRunning,
     MenuNoRoutes,
 

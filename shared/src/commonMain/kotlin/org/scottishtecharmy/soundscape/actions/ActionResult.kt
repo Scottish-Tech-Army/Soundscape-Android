@@ -49,6 +49,12 @@ sealed class ActionResult {
         NO_LOCATION_FIX,
         NO_MAP_DATA,
         NO_ROUTE_ACTIVE,
+        /** A route is playing, but it is already at its first waypoint. */
+        AT_ROUTE_START,
+        /** A route is playing, but it is already at its last waypoint. */
+        AT_ROUTE_END,
+        /** Something is playing, but it has a single waypoint to move between. */
+        NO_OTHER_WAYPOINTS,
         NO_ROUTES_SAVED,
         NO_MARKERS_SAVED,
     }
