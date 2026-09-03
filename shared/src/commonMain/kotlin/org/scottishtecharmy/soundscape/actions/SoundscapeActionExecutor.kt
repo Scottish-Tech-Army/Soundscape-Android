@@ -25,7 +25,15 @@ import org.scottishtecharmy.soundscape.services.mediacontrol.MediaControllableSe
  * its audio session is still up.
  */
 class SoundscapeActionExecutor(
-    private val service: MediaControllableService,
+    /**
+     * Null when there is no running service to act on. That never happens on iOS, where
+     * the process-wide singleton constructs itself on demand, but is routine on Android:
+     * an AppFunction is invoked into a process where SoundscapeService may well not be
+     * up, and a location-type foreground service cannot be started from the background.
+     * The list actions read only [routeDao] and still answer; everything else reports
+     * SERVICE_NOT_RUNNING.
+     */
+    private val service: MediaControllableService?,
     private val routeDao: RouteDao,
     private val strings: LocalizedStrings = ComposeLocalizedStrings(),
 ) {
@@ -42,15 +50,40 @@ class SoundscapeActionExecutor(
         action: SoundscapeAction,
         readyTimeoutMs: Long = 0L,
     ): ActionResult = when (action) {
+        // Answered from the database, so they work with no service at all.
+        SoundscapeAction.ListRoutes -> listRoutes()
+        SoundscapeAction.ListMarkers -> listMarkers()
 
-        SoundscapeAction.MyLocation -> callout(readyTimeoutMs) { service.myLocation() }
-        SoundscapeAction.AroundMe -> callout(readyTimeoutMs) { service.whatsAroundMe() }
-        SoundscapeAction.AheadOfMe -> callout(readyTimeoutMs) { service.aheadOfMe() }
-        SoundscapeAction.NearbyMarkers -> callout(readyTimeoutMs) { service.nearbyMarkers() }
+        else -> service?.let { withService(action, it, readyTimeoutMs) }
+            ?: notReady(
+                ActionResult.Reason.SERVICE_NOT_RUNNING,
+                StringKey.ActionServiceNotRunning,
+            )
+    }
+
+    /**
+     * The branches that need a running service. Kept exhaustive over the whole sealed
+     * class rather than falling back on `else`, so adding an action still forces a
+     * decision here instead of silently doing nothing.
+     */
+    private suspend fun withService(
+        action: SoundscapeAction,
+        service: MediaControllableService,
+        readyTimeoutMs: Long,
+    ): ActionResult = when (action) {
+
+        SoundscapeAction.ListRoutes -> listRoutes()
+        SoundscapeAction.ListMarkers -> listMarkers()
+
+        SoundscapeAction.MyLocation -> callout(service, readyTimeoutMs) { service.myLocation() }
+        SoundscapeAction.AroundMe -> callout(service, readyTimeoutMs) { service.whatsAroundMe() }
+        SoundscapeAction.AheadOfMe -> callout(service, readyTimeoutMs) { service.aheadOfMe() }
+        SoundscapeAction.NearbyMarkers ->
+            callout(service, readyTimeoutMs) { service.nearbyMarkers() }
 
         is SoundscapeAction.StartRouteById ->
             routeDao.getRouteById(action.routeId)
-                ?.let { startRoute(it, action.reverse) }
+                ?.let { startRoute(service, it, action.reverse) }
                 ?: itemNotFound()
 
         is SoundscapeAction.StartRouteNamed -> {
@@ -59,7 +92,7 @@ class SoundscapeActionExecutor(
                 notReady(ActionResult.Reason.NO_ROUTES_SAVED, StringKey.MenuNoRoutes)
             } else {
                 routes.bestRouteMatch(action.name)
-                    ?.let { startRoute(it, reverse = false) }
+                    ?.let { startRoute(service, it, reverse = false) }
                     ?: notFound(action.name, StringKey.ActionNoSuchRoute)
             }
         }
@@ -83,7 +116,7 @@ class SoundscapeActionExecutor(
 
         is SoundscapeAction.BeaconOnMarkerById ->
             routeDao.getMarkerById(action.markerId)
-                ?.let { beaconOn(it) }
+                ?.let { beaconOn(service, it) }
                 ?: itemNotFound()
 
         is SoundscapeAction.BeaconOnMarkerNamed -> {
@@ -92,7 +125,7 @@ class SoundscapeActionExecutor(
                 notReady(ActionResult.Reason.NO_MARKERS_SAVED, StringKey.ActionNoMarkersSaved)
             } else {
                 markers.bestMarkerMatch(action.name)
-                    ?.let { beaconOn(it) }
+                    ?.let { beaconOn(service, it) }
                     ?: notFound(action.name, StringKey.ActionNoSuchMarker)
             }
         }
@@ -102,22 +135,23 @@ class SoundscapeActionExecutor(
             ActionResult.Ok(strings.get(StringKey.ActionBeaconStopped))
         }
 
-        SoundscapeAction.ListRoutes -> {
-            val routes = routeDao.getAllRoutes()
-            if (routes.isEmpty()) {
-                notReady(ActionResult.Reason.NO_ROUTES_SAVED, StringKey.MenuNoRoutes)
-            } else {
-                ActionResult.Ok(spokenList(StringKey.VoiceCmdRoutesList, routes.map { it.name }))
-            }
-        }
+    }
 
-        SoundscapeAction.ListMarkers -> {
-            val markers = routeDao.getAllMarkers()
-            if (markers.isEmpty()) {
-                notReady(ActionResult.Reason.NO_MARKERS_SAVED, StringKey.ActionNoMarkersSaved)
-            } else {
-                ActionResult.Ok(spokenList(StringKey.VoiceCmdMarkersList, markers.map { it.name }))
-            }
+    private suspend fun listRoutes(): ActionResult {
+        val routes = routeDao.getAllRoutes()
+        return if (routes.isEmpty()) {
+            notReady(ActionResult.Reason.NO_ROUTES_SAVED, StringKey.MenuNoRoutes)
+        } else {
+            ActionResult.Ok(spokenList(StringKey.VoiceCmdRoutesList, routes.map { it.name }))
+        }
+    }
+
+    private suspend fun listMarkers(): ActionResult {
+        val markers = routeDao.getAllMarkers()
+        return if (markers.isEmpty()) {
+            notReady(ActionResult.Reason.NO_MARKERS_SAVED, StringKey.ActionNoMarkersSaved)
+        } else {
+            ActionResult.Ok(spokenList(StringKey.VoiceCmdMarkersList, markers.map { it.name }))
         }
     }
 
@@ -134,7 +168,11 @@ class SoundscapeActionExecutor(
      * an assistant reporting that as success leaves the user waiting for audio that
      * is never coming.
      */
-    private suspend fun callout(readyTimeoutMs: Long, issue: () -> Unit): ActionResult {
+    private suspend fun callout(
+        service: MediaControllableService,
+        readyTimeoutMs: Long,
+        issue: () -> Unit,
+    ): ActionResult {
         // One budget covers both waits, and a warm service never suspends at all.
         if (readyTimeoutMs > 0 &&
             (service.locationFlow.value == null || service.gridStateFlow.value == null)
@@ -159,7 +197,11 @@ class SoundscapeActionExecutor(
         return ActionResult.Ok()
     }
 
-    private fun startRoute(route: RouteEntity, reverse: Boolean): ActionResult {
+    private fun startRoute(
+        service: MediaControllableService,
+        route: RouteEntity,
+        reverse: Boolean,
+    ): ActionResult {
         if (reverse) {
             service.routeStartReverse(route.routeId)
         } else {
@@ -168,7 +210,10 @@ class SoundscapeActionExecutor(
         return ActionResult.Ok(strings.get(StringKey.ActionRouteStarted, route.name))
     }
 
-    private fun beaconOn(marker: MarkerEntity): ActionResult {
+    private fun beaconOn(
+        service: MediaControllableService,
+        marker: MarkerEntity,
+    ): ActionResult {
         service.startBeacon(marker.getLngLatAlt(), marker.name)
         return ActionResult.Ok(strings.get(StringKey.ActionBeaconStarted, marker.name))
     }

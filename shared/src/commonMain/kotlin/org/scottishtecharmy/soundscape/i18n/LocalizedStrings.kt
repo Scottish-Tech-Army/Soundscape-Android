@@ -227,6 +227,7 @@ enum class StringKey {
     ActionNoLocation,
     ActionNoMapData,
     ActionNoRouteActive,
+    ActionServiceNotRunning,
     MenuNoRoutes,
 
     // Left behind by the voice-control removal in 75c0bc59 and still translated, so the

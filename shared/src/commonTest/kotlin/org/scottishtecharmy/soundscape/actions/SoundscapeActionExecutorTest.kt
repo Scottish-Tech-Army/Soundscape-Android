@@ -177,7 +177,7 @@ private fun marker(id: Long, name: String, lon: Double, lat: Double) =
     MarkerEntity(markerId = id, name = name, longitude = lon, latitude = lat)
 
 private fun executor(
-    service: FakeService = FakeService(),
+    service: FakeService? = FakeService(),
     dao: RouteDao = FakeRouteDao(),
 ) = SoundscapeActionExecutor(service, dao, FakeLocalizedStrings())
 
@@ -370,6 +370,56 @@ class SoundscapeActionExecutorTest {
             assertEquals(ActionResult.Reason.NO_ROUTE_ACTIVE, result.reason, "$action")
             assertEquals("ActionNoRouteActive()", result.speech, "$action")
         }
+    }
+
+    // ── No running service ────────────────────────────────────────────────────
+
+    @Test
+    fun withoutAService_everythingNeedingOneReportsServiceNotRunning() = runTest {
+        // The Android case: an AppFunction is invoked into a process where
+        // SoundscapeService isn't up and can't be started from the background.
+        val dao = FakeRouteDao(
+            routes = listOf(route(1, "Commute")),
+            markers = listOf(marker(1, "Tesco", lon = -4.3, lat = 55.9)),
+        )
+        val actions = listOf(
+            SoundscapeAction.MyLocation,
+            SoundscapeAction.AroundMe,
+            SoundscapeAction.AheadOfMe,
+            SoundscapeAction.NearbyMarkers,
+            SoundscapeAction.StartRouteById(1, reverse = false),
+            SoundscapeAction.StartRouteNamed("Commute"),
+            SoundscapeAction.StopRoute,
+            SoundscapeAction.NextWaypoint,
+            SoundscapeAction.PreviousWaypoint,
+            SoundscapeAction.ToggleBeaconMute,
+            SoundscapeAction.BeaconOnMarkerById(1),
+            SoundscapeAction.BeaconOnMarkerNamed("Tesco"),
+            SoundscapeAction.StopBeacon,
+        )
+        for (action in actions) {
+            val result = executor(service = null, dao = dao).execute(action)
+            assertIs<ActionResult.NotReady>(result, "$action")
+            assertEquals(ActionResult.Reason.SERVICE_NOT_RUNNING, result.reason, "$action")
+            assertEquals("ActionServiceNotRunning()", result.speech, "$action")
+        }
+    }
+
+    @Test
+    fun withoutAService_theListActionsStillAnswer() = runTest {
+        // They read only the database, which is what makes them worth exposing to an
+        // assistant that may reach the app while it is not running.
+        val dao = FakeRouteDao(
+            routes = listOf(route(1, "Commute")),
+            markers = listOf(marker(1, "Tesco", lon = -4.3, lat = 55.9)),
+        )
+        val routes = executor(service = null, dao = dao).execute(SoundscapeAction.ListRoutes)
+        assertIs<ActionResult.Ok>(routes)
+        assertEquals("VoiceCmdRoutesList() Commute", routes.speech)
+
+        val markers = executor(service = null, dao = dao).execute(SoundscapeAction.ListMarkers)
+        assertIs<ActionResult.Ok>(markers)
+        assertEquals("VoiceCmdMarkersList() Tesco", markers.speech)
     }
 
     // ── Lists ─────────────────────────────────────────────────────────────────

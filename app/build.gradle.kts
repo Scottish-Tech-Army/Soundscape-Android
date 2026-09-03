@@ -412,6 +412,11 @@ dependencies {
 
     // GeoJSON parsing
     implementation(libs.moshi)
+    // AppFunctions: exposes Soundscape actions to Gemini and other agents. The KSP
+    // compiler generates the service class and the XML schema the OS indexes.
+    implementation(libs.androidx.appfunctions)
+    ksp(libs.androidx.appfunctions.compiler)
+
     ksp(libs.moshi.kotlin.codegen)
 
     // Navigation

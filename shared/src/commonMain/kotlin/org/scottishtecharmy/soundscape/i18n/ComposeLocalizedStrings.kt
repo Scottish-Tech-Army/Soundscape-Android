@@ -19,6 +19,7 @@ import org.scottishtecharmy.soundscape.resources.action_no_route_active
 import org.scottishtecharmy.soundscape.resources.action_no_such_marker
 import org.scottishtecharmy.soundscape.resources.action_no_such_route
 import org.scottishtecharmy.soundscape.resources.action_route_started
+import org.scottishtecharmy.soundscape.resources.action_service_not_running
 import org.scottishtecharmy.soundscape.resources.action_route_stopped
 import org.scottishtecharmy.soundscape.resources.bytes_format_b
 import org.scottishtecharmy.soundscape.resources.bytes_format_b_a11y
@@ -401,6 +402,7 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.ActionNoLocation -> Res.string.action_no_location
         StringKey.ActionNoMapData -> Res.string.action_no_map_data
         StringKey.ActionNoRouteActive -> Res.string.action_no_route_active
+        StringKey.ActionServiceNotRunning -> Res.string.action_service_not_running
         StringKey.MenuNoRoutes -> Res.string.menu_no_routes
         StringKey.VoiceCmdRoutesList -> Res.string.voice_cmd_routes_list
         StringKey.VoiceCmdMarkersList -> Res.string.voice_cmd_markers_list
