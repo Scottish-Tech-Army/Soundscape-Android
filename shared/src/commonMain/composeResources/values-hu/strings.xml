@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">Már az utolsó útvonalponton van</string>
     <string name="action_no_other_waypoints">Nincs több útvonalpont</string>
     <string name="action_service_not_running">Először nyissa meg a Soundscape-et</string>
+    <string name="legacy_migration_title">A mentett adataid importálása</string>
+    <string name="legacy_migration_description">A jelölőid és útvonalaid átkerülnek a Soundscape korábbi verziójából. Az általuk hivatkozott helyek megkeresése eltarthat egy pillanatig.</string>
+    <string name="legacy_migration_progress">%1$s / %2$s importálva</string>
+    <string name="legacy_migration_complete">A jelölőid és útvonalaid készen állnak a használatra.</string>
+    <string name="legacy_migration_needs_map_data">A Soundscape-nek internetkapcsolatra van szüksége az általad mentett helyek megkereséséhez. Csatlakozz és próbáld újra, vagy térj vissza rá, amikor legközelebb megnyitod a Soundscape-et.</string>
+    <string name="legacy_migration_try_again">Próbáld újra</string>
+    <string name="legacy_migration_not_now">Most nem</string>
+    <string name="legacy_migration_failed">Az adataidat nem sikerült importálni. A Soundscape korábbi verziója továbbra is tárolja őket — kérjük, vedd fel a kapcsolatot az ügyfélszolgálattal a Beállítások, Súgó menüpontban.</string>
+    <string name="legacy_migration_continue">Folytatás</string>
 </resources>
