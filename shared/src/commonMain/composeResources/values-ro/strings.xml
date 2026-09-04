@@ -1497,4 +1497,13 @@
     <string name="action_at_route_end">Ești deja la ultimul punct de traseu</string>
     <string name="action_no_other_waypoints">Nu există alte puncte de traseu</string>
     <string name="action_service_not_running">Deschide mai întâi Soundscape</string>
+    <string name="legacy_migration_title">Se importă datele tale salvate</string>
+    <string name="legacy_migration_description">Marcajele și rutele tale sunt transferate din versiunea ta anterioară de Soundscape. Căutarea locurilor la care se referă poate dura un moment.</string>
+    <string name="legacy_migration_progress">%1$s din %2$s importate</string>
+    <string name="legacy_migration_complete">Marcajele și rutele tale sunt gata de utilizare.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape are nevoie de o conexiune la internet pentru a căuta locurile pe care le-ai salvat. Conectează-te și încearcă din nou sau revino data viitoare când deschizi Soundscape.</string>
+    <string name="legacy_migration_try_again">Încearcă din nou</string>
+    <string name="legacy_migration_not_now">Nu acum</string>
+    <string name="legacy_migration_failed">Datele tale nu au putut fi importate. Versiunea ta anterioară de Soundscape le are în continuare — te rugăm să contactezi asistența din Setări, Ajutor.</string>
+    <string name="legacy_migration_continue">Continuă</string>
 </resources>
