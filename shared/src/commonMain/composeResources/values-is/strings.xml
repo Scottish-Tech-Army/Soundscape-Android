@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">Þú ert þegar á síðasta leiðarpunktinum</string>
     <string name="action_no_other_waypoints">Það eru engir aðrir leiðarpunktar</string>
     <string name="action_service_not_running">Opnaðu Soundscape fyrst</string>
+    <string name="legacy_migration_title">Flyt inn vistuðu gögnin þín</string>
+    <string name="legacy_migration_description">Merkin þín og leiðir eru fluttar yfir úr fyrri útgáfu Soundscape. Það getur tekið augnablik að fletta upp stöðunum sem þau vísa til.</string>
+    <string name="legacy_migration_progress">%1$s af %2$s flutt inn</string>
+    <string name="legacy_migration_complete">Merkin þín og leiðir eru tilbúin til notkunar.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape þarf nettengingu til að fletta upp stöðunum sem þú vistaðir. Tengstu og reyndu aftur, eða komdu að þessu næst þegar þú opnar Soundscape.</string>
+    <string name="legacy_migration_try_again">Reyndu aftur</string>
+    <string name="legacy_migration_not_now">Ekki núna</string>
+    <string name="legacy_migration_failed">Ekki tókst að flytja gögnin þín inn. Fyrri útgáfa Soundscape er enn með þau — hafðu samband við þjónustuver í Stillingar, Hjálp.</string>
+    <string name="legacy_migration_continue">Áfram</string>
 </resources>
