@@ -1487,4 +1487,13 @@
     <string name="action_at_route_end">すでに最後のウェイポイントにいます</string>
     <string name="action_no_other_waypoints">他にウェイポイントはありません</string>
     <string name="action_service_not_running">先に Soundscape を開いてください</string>
+    <string name="legacy_migration_title">保存したデータをインポート中</string>
+    <string name="legacy_migration_description">以前のバージョンの Soundscape からマーカーとルートを移行しています。参照先の場所を検索するのに少し時間がかかることがあります。</string>
+    <string name="legacy_migration_progress">%2$s 件中 %1$s 件をインポートしました</string>
+    <string name="legacy_migration_complete">マーカーとルートを使用する準備ができました。</string>
+    <string name="legacy_migration_needs_map_data">保存した場所を検索するには、Soundscape にインターネット接続が必要です。接続してもう一度お試しいただくか、次に Soundscape を開いたときに再開してください。</string>
+    <string name="legacy_migration_try_again">もう一度試す</string>
+    <string name="legacy_migration_not_now">今はしない</string>
+    <string name="legacy_migration_failed">データをインポートできませんでした。以前のバージョンの Soundscape にはまだデータが残っています — 設定、ヘルプからサポートにご連絡ください。</string>
+    <string name="legacy_migration_continue">続行</string>
 </resources>
