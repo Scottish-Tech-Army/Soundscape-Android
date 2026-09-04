@@ -1487,4 +1487,13 @@
     <string name="action_at_route_end">คุณอยู่ที่จุดผ่านทางสุดท้ายอยู่แล้ว</string>
     <string name="action_no_other_waypoints">ไม่มีจุดผ่านทางอื่น</string>
     <string name="action_service_not_running">เปิด Soundscape ก่อน</string>
+    <string name="legacy_migration_title">กำลังนำเข้าข้อมูลที่คุณบันทึกไว้</string>
+    <string name="legacy_migration_description">หมุดและเส้นทางของคุณกำลังถูกย้ายมาจาก Soundscape เวอร์ชันก่อนหน้า การค้นหาสถานที่ที่หมุดและเส้นทางอ้างอิงถึงอาจใช้เวลาสักครู่</string>
+    <string name="legacy_migration_progress">นำเข้าแล้ว %1$s จาก %2$s</string>
+    <string name="legacy_migration_complete">หมุดและเส้นทางของคุณพร้อมใช้งานแล้ว</string>
+    <string name="legacy_migration_needs_map_data">Soundscape ต้องใช้การเชื่อมต่ออินเทอร์เน็ตเพื่อค้นหาสถานที่ที่คุณบันทึกไว้ กรุณาเชื่อมต่อแล้วลองอีกครั้ง หรือกลับมาทำในครั้งถัดไปที่คุณเปิด Soundscape</string>
+    <string name="legacy_migration_try_again">ลองอีกครั้ง</string>
+    <string name="legacy_migration_not_now">ยังไม่ใช่ตอนนี้</string>
+    <string name="legacy_migration_failed">ไม่สามารถนำเข้าข้อมูลของคุณได้ Soundscape เวอร์ชันก่อนหน้ายังคงมีข้อมูลอยู่ — กรุณาติดต่อฝ่ายสนับสนุนจากการตั้งค่า ความช่วยเหลือ</string>
+    <string name="legacy_migration_continue">ดำเนินการต่อ</string>
 </resources>
