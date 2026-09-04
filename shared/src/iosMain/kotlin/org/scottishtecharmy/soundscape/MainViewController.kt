@@ -15,6 +15,8 @@ import org.scottishtecharmy.soundscape.actions.SoundscapeAction
 import org.scottishtecharmy.soundscape.audio.TourButton
 import org.scottishtecharmy.soundscape.audio.availableTtsVoicesForCurrentLanguage
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
+import org.scottishtecharmy.soundscape.migration.hasPendingLegacyMigration
+import org.scottishtecharmy.soundscape.migration.runPendingLegacyMigration
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
 import org.scottishtecharmy.soundscape.platform.readResourceText
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
@@ -56,7 +58,16 @@ fun MainViewController() = ComposeUIViewController {
     val isFirstLaunch = remember {
         prefs.getBoolean(PreferenceKeys.FIRST_LAUNCH, PreferenceDefaults.FIRST_LAUNCH)
     }
-    val startDestination = if (isFirstLaunch) SharedRoutes.ONBOARDING else SharedRoutes.HOME
+    // An upgrade from the legacy app takes precedence over both: the user has markers and routes
+    // waiting to be imported, and importing them needs the network, so it gets a screen of its own
+    // rather than blocking launch. They aren't a first-launch user - onboarding was completed in
+    // the old app - so this is the only extra screen they ever see. See LegacyMigration.kt.
+    val hasLegacyImport = remember { hasPendingLegacyMigration() }
+    val startDestination = when {
+        hasLegacyImport -> SharedRoutes.LEGACY_MIGRATION
+        isFirstLaunch -> SharedRoutes.ONBOARDING
+        else -> SharedRoutes.HOME
+    }
 
     // First-launch users grant location permission from the onboarding permissions screen.
     // For returning users, ask now so the location provider can resume — iOS no-ops if the
@@ -318,6 +329,7 @@ fun MainViewController() = ComposeUIViewController {
             onBeaconPreviewStop = { commit, chosen ->
                 service.stopBeaconPreview(commit, chosen)
             },
+            onRunLegacyMigration = { onProgress -> runPendingLegacyMigration(onProgress) },
         ),
         startDestination = startDestination,
         audioEngine = service.audioEngine,

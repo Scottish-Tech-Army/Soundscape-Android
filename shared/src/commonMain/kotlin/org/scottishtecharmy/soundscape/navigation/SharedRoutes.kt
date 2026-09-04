@@ -18,6 +18,13 @@ object SharedRoutes {
     const val EDIT_ROUTE = "edit_route"
     const val OFFLINE_MAPS = "offline_maps"
     const val ONBOARDING = "onboarding"
+
+    /**
+     * One-shot screen shown on the first run after upgrading from the legacy iOS app, while
+     * its markers and routes are imported. Not part of onboarding: an upgrading user has
+     * already been through that and never sees it again.
+     */
+    const val LEGACY_MIGRATION = "legacy_migration"
     const val SLEEP = "sleep_screen"
     const val HELP = "help_screen"
     const val OPEN_SOURCE_LICENSES = "open_source_licenses"

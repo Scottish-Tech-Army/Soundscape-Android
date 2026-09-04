@@ -2964,4 +2964,30 @@ Please continue to report any problems, however small, through Contact Support i
     <!-- Spoken when an assistant command arrives while Soundscape is not running, and the
          command needs the running app rather than just its saved data. -->
     <string name="action_service_not_running">Open Soundscape first</string>
+    <!-- Title of the screen shown once, on the first run after upgrading from the old
+         version of Soundscape, while the markers and routes saved in it are brought
+         across. -->
+    <string name="legacy_migration_title">Importing your saved data</string>
+    <!-- Explains what is happening on the import screen, and why it isn't instant: markers
+         the old app didn't store a name for have to be looked up in the map data. -->
+    <string name="legacy_migration_description">Your markers and routes are being brought across from your previous version of Soundscape. Looking up the places they refer to can take a moment.</string>
+    <!-- Progress on the import screen. %1$s is the number imported so far, %2$s the total,
+         e.g. "8 of 23 imported". -->
+    <string name="legacy_migration_progress">%1$s of %2$s imported</string>
+    <!-- Shown on the import screen once every marker and route has been imported. -->
+    <string name="legacy_migration_complete">Your markers and routes are ready to use.</string>
+    <!-- Shown on the import screen when there is no map data to name the saved places
+         with: no internet connection, and no offline map covering them. Nothing has been
+         imported and nothing is lost - the data from the old app is still there. -->
+    <string name="legacy_migration_needs_map_data">Soundscape needs an internet connection to look up the places you saved. Connect and try again, or come back to it the next time you open Soundscape.</string>
+    <!-- Button that starts the import over, after connecting to the internet. -->
+    <string name="legacy_migration_try_again">Try again</string>
+    <!-- Button that leaves the import for later and carries on into the app. The import is
+         offered again the next time Soundscape is opened. -->
+    <string name="legacy_migration_not_now">Not now</string>
+    <!-- Shown on the import screen when the saved data couldn't be read at all. Rare, and
+         not worth retrying, so the user is pointed at support instead. -->
+    <string name="legacy_migration_failed">Your data couldn\'t be imported. Your previous version of Soundscape still has it — please contact support from Settings, Help.</string>
+    <!-- Button that leaves the import screen for the rest of the app. -->
+    <string name="legacy_migration_continue">Continue</string>
 </resources>

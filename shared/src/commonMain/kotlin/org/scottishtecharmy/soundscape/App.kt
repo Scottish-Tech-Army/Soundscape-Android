@@ -18,6 +18,7 @@ import org.scottishtecharmy.soundscape.intents.IncomingIntent
 import org.scottishtecharmy.soundscape.locationprovider.DeviceDirection
 import org.scottishtecharmy.soundscape.locationprovider.LocationProvider
 import org.scottishtecharmy.soundscape.locationprovider.SoundscapeLocation
+import org.scottishtecharmy.soundscape.migration.LegacyImportResult
 import org.scottishtecharmy.soundscape.navigation.NavigationStateHolder
 import org.scottishtecharmy.soundscape.navigation.SharedNavHost
 import org.scottishtecharmy.soundscape.navigation.SharedRoutes
@@ -130,6 +131,15 @@ data class AppCallbacks(
      * themselves; the drawer hides the "Exit Soundscape" item when null.
      */
     val onExitApp: (() -> Unit)? = null,
+    /**
+     * Imports the markers and routes staged by the legacy iOS app, reporting progress as
+     * (done so far, total) and saying how it finished. Driven by
+     * [SharedRoutes.LEGACY_MIGRATION], which the platform only makes the start destination
+     * when there is something staged to import. Null on Android, which has no legacy app to
+     * upgrade from.
+     */
+    val onRunLegacyMigration:
+        (suspend ((done: Int, total: Int) -> Unit) -> LegacyImportResult)? = null,
 )
 
 data class AppFlows(

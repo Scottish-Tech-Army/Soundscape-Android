@@ -16,18 +16,31 @@ changed or are not yet present.
 
 ## What carries over
 
-When you launch the new build for the first time, a one-shot migration runs
-silently in the background. It reads the legacy database and preferences out of
-the app's existing container and writes them into the new app's storage. It
-copies rather than moves: the legacy database and settings are left exactly
-where they were, untouched, so nothing is lost if you go back to the legacy
-build or if support needs to look at them later.
+When you launch the new build for the first time, a one-shot migration reads the
+legacy database and preferences out of the app's existing container and writes
+them into the new app's storage. It copies rather than moves: the legacy
+database and settings are left exactly where they were, untouched, so nothing
+is lost if you go back to the legacy build or if support needs to look at them
+later.
+
+Your markers and routes are imported on a screen shown once, just after the app
+opens, with a progress count. **You'll need an internet connection for this**,
+or an offline map covering the places you saved: the old app didn't store a name
+for markers you created from a place on the map — it looked the name up each
+time it drew the list — so the new app has to look those names up too. If it
+can't, nothing is imported and you're offered a "Try again". You can also skip
+it with "Not now" and be asked again the next time you open Soundscape; your
+saved data stays where it is in the meantime.
 
 Migrated automatically:
 
-- **All saved markers** — name, address, latitude/longitude. Temporary "audio
-  beacon" markers (the ones the old app created when you started a beacon) are
-  not migrated; only the markers you explicitly saved.
+- **All saved markers** — name, address, latitude/longitude. Markers you gave
+  your own name to keep it. Markers you saved from a place on the map are named
+  from current map data instead, so a few may come across under a slightly
+  different name than before — the underlying map has moved on since the old
+  app's data was frozen. Temporary "audio beacon" markers (the ones the old app
+  created when you started a beacon) are not migrated; only the markers you
+  explicitly saved.
 - **All saved routes** — name, description, and waypoint order. Each waypoint
   is reconnected to its underlying marker.
 - **Most preferences** with a direct equivalent in the new app:
@@ -40,8 +53,10 @@ Migrated automatically:
   - Marker sort preference (distance / alphabetical)
 
 The migration runs only once, and never deletes anything belonging to the
-legacy app. If something goes wrong (e.g. a damaged database file), it tries
-again on the next launch rather than discarding anything.
+legacy app. If something goes wrong (e.g. a damaged database file, or no
+connection to look place names up with), it imports nothing at all and tries
+again on the next launch rather than discarding anything or leaving you with a
+half-finished set of markers.
 
 ## What's new
 
