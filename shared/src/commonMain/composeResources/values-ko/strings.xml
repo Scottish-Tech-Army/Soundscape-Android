@@ -1487,4 +1487,13 @@
     <string name="action_at_route_end">이미 마지막 경유지에 있습니다</string>
     <string name="action_no_other_waypoints">다른 경유지가 없습니다</string>
     <string name="action_service_not_running">먼저 Soundscape를 여세요</string>
+    <string name="legacy_migration_title">저장된 데이터 가져오는 중</string>
+    <string name="legacy_migration_description">이전 버전의 Soundscape에서 마커와 경로를 가져오고 있습니다. 해당 항목이 가리키는 장소를 조회하는 데 잠시 시간이 걸릴 수 있습니다.</string>
+    <string name="legacy_migration_progress">%2$s개 중 %1$s개 가져옴</string>
+    <string name="legacy_migration_complete">마커와 경로를 사용할 준비가 되었습니다.</string>
+    <string name="legacy_migration_needs_map_data">저장한 장소를 조회하려면 Soundscape에 인터넷 연결이 필요합니다. 연결한 후 다시 시도하거나, 다음에 Soundscape를 열 때 다시 진행하세요.</string>
+    <string name="legacy_migration_try_again">다시 시도</string>
+    <string name="legacy_migration_not_now">지금은 안 함</string>
+    <string name="legacy_migration_failed">데이터를 가져올 수 없습니다. 이전 버전의 Soundscape에 데이터가 그대로 남아 있습니다 — 설정, 도움말에서 지원팀에 문의해 주세요.</string>
+    <string name="legacy_migration_continue">계속</string>
 </resources>
