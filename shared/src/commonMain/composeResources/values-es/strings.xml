@@ -1497,4 +1497,13 @@
     <string name="action_at_route_end">Ya estás en el último punto de ruta</string>
     <string name="action_no_other_waypoints">No hay más puntos de ruta</string>
     <string name="action_service_not_running">Abre Soundscape primero</string>
+    <string name="legacy_migration_title">Importando sus datos guardados</string>
+    <string name="legacy_migration_description">Sus marcadores y rutas se están transfiriendo desde su versión anterior de Soundscape. Buscar los lugares a los que hacen referencia puede tardar un momento.</string>
+    <string name="legacy_migration_progress">%1$s de %2$s importados</string>
+    <string name="legacy_migration_complete">Sus marcadores y rutas están listos para usar.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape necesita una conexión a Internet para buscar los lugares que ha guardado. Conéctese e inténtelo de nuevo, o vuelva a ello la próxima vez que abra Soundscape.</string>
+    <string name="legacy_migration_try_again">Reintentar</string>
+    <string name="legacy_migration_not_now">Ahora no</string>
+    <string name="legacy_migration_failed">No se han podido importar sus datos. Su versión anterior de Soundscape todavía los tiene — póngase en contacto con soporte desde Ajustes, Ayuda.</string>
+    <string name="legacy_migration_continue">Continuar</string>
 </resources>
