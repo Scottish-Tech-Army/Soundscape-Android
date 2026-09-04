@@ -1493,4 +1493,13 @@
     <string name="action_at_route_end">شما همین حالا در آخرین نقطه‌ی بین‌راهی هستید</string>
     <string name="action_no_other_waypoints">نقطه‌ی بین‌راهی دیگری وجود ندارد</string>
     <string name="action_service_not_running">ابتدا Soundscape را باز کنید</string>
+    <string name="legacy_migration_title">در حال وارد کردن داده‌های ذخیره‌شده‌تان</string>
+    <string name="legacy_migration_description">نشانه‌ها و مسیرهای شما از نسخه‌ی پیشین Soundscape منتقل می‌شوند. یافتن مکان‌هایی که به آن‌ها اشاره دارند ممکن است لحظه‌ای طول بکشد.</string>
+    <string name="legacy_migration_progress">%1$s از %2$s وارد شد</string>
+    <string name="legacy_migration_complete">نشانه‌ها و مسیرهای شما آماده‌ی استفاده هستند.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape برای یافتن مکان‌هایی که ذخیره کرده‌اید به اتصال اینترنت نیاز دارد. متصل شوید و دوباره تلاش کنید، یا دفعه‌ی بعد که Soundscape را باز می‌کنید به آن بازگردید.</string>
+    <string name="legacy_migration_try_again">دوباره تلاش کنید</string>
+    <string name="legacy_migration_not_now">اکنون نه</string>
+    <string name="legacy_migration_failed">وارد کردن داده‌های شما ممکن نشد. نسخه‌ی پیشین Soundscape هنوز آن‌ها را دارد — لطفاً از تنظیمات، راهنما با پشتیبانی تماس بگیرید.</string>
+    <string name="legacy_migration_continue">ادامه</string>
 </resources>
