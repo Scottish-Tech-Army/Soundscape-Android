@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">Olet jo viimeisessä reittipisteessä</string>
     <string name="action_no_other_waypoints">Muita reittipisteitä ei ole</string>
     <string name="action_service_not_running">Avaa ensin Soundscape</string>
+    <string name="legacy_migration_title">Tuodaan tallennettuja tietojasi</string>
+    <string name="legacy_migration_description">Merkintöjäsi ja reittejäsi siirretään Soundscapen aiemmasta versiosta. Niiden viittaamien paikkojen hakeminen voi kestää hetken.</string>
+    <string name="legacy_migration_progress">%1$s/%2$s tuotu</string>
+    <string name="legacy_migration_complete">Merkintäsi ja reittisi ovat käyttövalmiita.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape tarvitsee internetyhteyden hakeakseen tallentamasi paikat. Muodosta yhteys ja yritä uudelleen tai palaa asiaan, kun avaat Soundscapen seuraavan kerran.</string>
+    <string name="legacy_migration_try_again">Yritä uudelleen</string>
+    <string name="legacy_migration_not_now">Ei nyt</string>
+    <string name="legacy_migration_failed">Tietojasi ei voitu tuoda. Ne ovat edelleen tallessa Soundscapen aiemmassa versiossa — ota yhteyttä tukeen kohdasta Asetukset, Ohjeet.</string>
+    <string name="legacy_migration_continue">Jatka</string>
 </resources>
