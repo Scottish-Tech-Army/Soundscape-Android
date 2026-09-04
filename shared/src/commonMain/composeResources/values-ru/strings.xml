@@ -1502,4 +1502,13 @@
     <string name="action_at_route_end">Вы уже на последней путевой точке</string>
     <string name="action_no_other_waypoints">Других путевых точек нет</string>
     <string name="action_service_not_running">Сначала откройте Soundscape</string>
+    <string name="legacy_migration_title">Импорт сохранённых данных</string>
+    <string name="legacy_migration_description">Ваши отметки и маршруты переносятся из предыдущей версии Soundscape. Поиск мест, к которым они относятся, может занять некоторое время.</string>
+    <string name="legacy_migration_progress">Импортировано %1$s из %2$s</string>
+    <string name="legacy_migration_complete">Ваши отметки и маршруты готовы к использованию.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape нужно подключение к интернету, чтобы найти сохранённые вами места. Подключитесь и попробуйте снова или вернитесь к этому при следующем запуске Soundscape.</string>
+    <string name="legacy_migration_try_again">Попробовать снова</string>
+    <string name="legacy_migration_not_now">Не сейчас</string>
+    <string name="legacy_migration_failed">Не удалось импортировать ваши данные. Предыдущая версия Soundscape всё ещё хранит их — пожалуйста, свяжитесь со службой поддержки через Настройки, Помощь.</string>
+    <string name="legacy_migration_continue">Продолжить</string>
 </resources>
