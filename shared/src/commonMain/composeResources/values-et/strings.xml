@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">Oled juba viimases teekonnapunktis</string>
     <string name="action_no_other_waypoints">Teisi teekonnapunkte ei ole</string>
     <string name="action_service_not_running">Ava kõigepealt Soundscape</string>
+    <string name="legacy_migration_title">Salvestatud andmete importimine</string>
+    <string name="legacy_migration_description">Sinu markerid ja marsruudid tuuakse üle Soundscape'i eelmisest versioonist. Nende viidatud kohtade otsimine võib võtta hetke.</string>
+    <string name="legacy_migration_progress">Imporditud %1$s / %2$s</string>
+    <string name="legacy_migration_complete">Sinu markerid ja marsruudid on kasutamiseks valmis.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape vajab internetiühendust, et otsida üles sinu salvestatud kohad. Loo ühendus ja proovi uuesti või tule selle juurde tagasi, kui järgmine kord Soundscape'i avad.</string>
+    <string name="legacy_migration_try_again">Proovi uuesti</string>
+    <string name="legacy_migration_not_now">Mitte praegu</string>
+    <string name="legacy_migration_failed">Sinu andmeid ei õnnestunud importida. Soundscape'i eelmine versioon hoiab neid endiselt alles — palun võta ühendust toega menüüs Seadistused, Abi.</string>
+    <string name="legacy_migration_continue">Jätka</string>
 </resources>
