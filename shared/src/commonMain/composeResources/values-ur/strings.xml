@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">آپ پہلے ہی آخری ویپوائنٹ پر ہیں</string>
     <string name="action_no_other_waypoints">کوئی اور ویپوائنٹ نہیں ہے</string>
     <string name="action_service_not_running">پہلے Soundscape کھولیں</string>
+    <string name="legacy_migration_title">آپ کا محفوظ کردہ ڈیٹا امپورٹ کیا جا رہا ہے</string>
+    <string name="legacy_migration_description">آپ کے مارکرز اور روٹس Soundscape کے آپ کے پچھلے ورژن سے منتقل کیے جا رہے ہیں۔ جن مقامات کا وہ حوالہ دیتے ہیں انہیں تلاش کرنے میں کچھ وقت لگ سکتا ہے۔</string>
+    <string name="legacy_migration_progress">%2$s میں سے %1$s امپورٹ ہو گئے</string>
+    <string name="legacy_migration_complete">آپ کے مارکرز اور روٹس استعمال کے لیے تیار ہیں۔</string>
+    <string name="legacy_migration_needs_map_data">آپ کے محفوظ کردہ مقامات تلاش کرنے کے لیے Soundscape کو انٹرنیٹ کنکشن درکار ہے۔ منسلک ہوں اور دوبارہ کوشش کریں، یا اگلی بار جب آپ Soundscape کھولیں تو اس پر واپس آئیں۔</string>
+    <string name="legacy_migration_try_again">دوبارہ کوشش کریں</string>
+    <string name="legacy_migration_not_now">ابھی نہیں</string>
+    <string name="legacy_migration_failed">آپ کا ڈیٹا امپورٹ نہیں کیا جا سکا۔ Soundscape کے آپ کے پچھلے ورژن میں یہ اب بھی موجود ہے — براہ کرم ترتیبات، مدد سے معاونت سے رابطہ کریں۔</string>
+    <string name="legacy_migration_continue">جاری رکھیں</string>
 </resources>
