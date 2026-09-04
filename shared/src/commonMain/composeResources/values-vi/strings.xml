@@ -1487,4 +1487,13 @@
     <string name="action_at_route_end">Bạn đã ở điểm dừng cuối cùng</string>
     <string name="action_no_other_waypoints">Không có điểm dừng nào khác</string>
     <string name="action_service_not_running">Hãy mở Soundscape trước</string>
+    <string name="legacy_migration_title">Đang nhập dữ liệu đã lưu của bạn</string>
+    <string name="legacy_migration_description">Các điểm đánh dấu và lộ trình của bạn đang được chuyển sang từ phiên bản Soundscape trước đó của bạn. Việc tra cứu những địa điểm mà chúng tham chiếu có thể mất một chút thời gian.</string>
+    <string name="legacy_migration_progress">Đã nhập %1$s trên %2$s</string>
+    <string name="legacy_migration_complete">Các điểm đánh dấu và lộ trình của bạn đã sẵn sàng để sử dụng.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape cần kết nối internet để tra cứu những địa điểm bạn đã lưu. Hãy kết nối và thử lại, hoặc quay lại việc này vào lần tới khi bạn mở Soundscape.</string>
+    <string name="legacy_migration_try_again">Thử lại</string>
+    <string name="legacy_migration_not_now">Không phải bây giờ</string>
+    <string name="legacy_migration_failed">Không thể nhập dữ liệu của bạn. Phiên bản Soundscape trước đó của bạn vẫn còn giữ dữ liệu — vui lòng liên hệ hỗ trợ từ Cài đặt, Trợ giúp.</string>
+    <string name="legacy_migration_continue">Tiếp tục</string>
 </resources>
