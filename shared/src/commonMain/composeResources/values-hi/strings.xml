@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">आप पहले से ही अंतिम मार्ग बिंदु पर हैं</string>
     <string name="action_no_other_waypoints">कोई और मार्ग बिंदु नहीं है</string>
     <string name="action_service_not_running">पहले Soundscape खोलें</string>
+    <string name="legacy_migration_title">आपका सहेजा गया डेटा आयात किया जा रहा है</string>
+    <string name="legacy_migration_description">आपके मार्कर और मार्ग Soundscape के आपके पिछले संस्करण से लाए जा रहे हैं। वे जिन स्थानों को संदर्भित करते हैं उन्हें खोजने में थोड़ा समय लग सकता है।</string>
+    <string name="legacy_migration_progress">%2$s में से %1$s आयात किए गए</string>
+    <string name="legacy_migration_complete">आपके मार्कर और मार्ग उपयोग के लिए तैयार हैं।</string>
+    <string name="legacy_migration_needs_map_data">आपके द्वारा सहेजे गए स्थानों को खोजने के लिए Soundscape को इंटरनेट कनेक्शन की आवश्यकता है। कनेक्ट करें और पुनः प्रयास करें, या अगली बार Soundscape खोलने पर इस पर वापस आएँ।</string>
+    <string name="legacy_migration_try_again">पुनः प्रयास करें</string>
+    <string name="legacy_migration_not_now">अभी नहीं</string>
+    <string name="legacy_migration_failed">आपका डेटा आयात नहीं किया जा सका। Soundscape के आपके पिछले संस्करण में यह अब भी मौजूद है — कृपया सेटिंग्स, सहायता में जाकर सपोर्ट से संपर्क करें।</string>
+    <string name="legacy_migration_continue">जारी रखें</string>
 </resources>
