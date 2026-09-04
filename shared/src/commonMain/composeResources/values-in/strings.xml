@@ -1487,4 +1487,13 @@
     <string name="action_at_route_end">Anda sudah berada di titik rute terakhir</string>
     <string name="action_no_other_waypoints">Tidak ada titik rute lain</string>
     <string name="action_service_not_running">Buka Soundscape dulu</string>
+    <string name="legacy_migration_title">Mengimpor data tersimpan Anda</string>
+    <string name="legacy_migration_description">Penanda dan rute Anda sedang dipindahkan dari Soundscape versi sebelumnya. Mencari tempat yang dirujuknya bisa memakan waktu sejenak.</string>
+    <string name="legacy_migration_progress">%1$s dari %2$s diimpor</string>
+    <string name="legacy_migration_complete">Penanda dan rute Anda siap digunakan.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape memerlukan koneksi internet untuk mencari tempat yang Anda simpan. Hubungkan lalu coba lagi, atau kembali lagi saat berikutnya Anda membuka Soundscape.</string>
+    <string name="legacy_migration_try_again">Coba lagi</string>
+    <string name="legacy_migration_not_now">Jangan sekarang</string>
+    <string name="legacy_migration_failed">Data Anda tidak dapat diimpor. Soundscape versi sebelumnya masih menyimpannya — silakan hubungi dukungan dari Pengaturan, Bantuan.</string>
+    <string name="legacy_migration_continue">Lanjutkan</string>
 </resources>
