@@ -1502,4 +1502,13 @@
     <string name="action_at_route_end">Jesteś już przy ostatnim punkcie trasy</string>
     <string name="action_no_other_waypoints">Nie ma innych punktów trasy</string>
     <string name="action_service_not_running">Najpierw otwórz Soundscape</string>
+    <string name="legacy_migration_title">Importowanie zapisanych danych</string>
+    <string name="legacy_migration_description">Twoje znaczniki i trasy są przenoszone z poprzedniej wersji Soundscape. Wyszukanie miejsc, do których się odnoszą, może chwilę potrwać.</string>
+    <string name="legacy_migration_progress">Zaimportowano %1$s z %2$s</string>
+    <string name="legacy_migration_complete">Twoje znaczniki i trasy są gotowe do użycia.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape potrzebuje połączenia z internetem, aby wyszukać zapisane przez Ciebie miejsca. Połącz się i spróbuj ponownie lub wróć do tego przy następnym uruchomieniu Soundscape.</string>
+    <string name="legacy_migration_try_again">Spróbuj ponownie</string>
+    <string name="legacy_migration_not_now">Nie teraz</string>
+    <string name="legacy_migration_failed">Nie udało się zaimportować Twoich danych. Poprzednia wersja Soundscape nadal je przechowuje — skontaktuj się z pomocą techniczną w Ustawieniach, Pomoc.</string>
+    <string name="legacy_migration_continue">Kontynuuj</string>
 </resources>
