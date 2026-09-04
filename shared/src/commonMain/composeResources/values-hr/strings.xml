@@ -1497,4 +1497,13 @@
     <string name="action_at_route_end">Već ste na posljednjoj putnoj točki</string>
     <string name="action_no_other_waypoints">Nema drugih putnih točaka</string>
     <string name="action_service_not_running">Najprije otvorite Soundscape</string>
+    <string name="legacy_migration_title">Uvoz spremljenih podataka</string>
+    <string name="legacy_migration_description">Vaše oznake i rute prenose se iz prethodne verzije Soundscape. Traženje mjesta na koja se odnose može potrajati trenutak.</string>
+    <string name="legacy_migration_progress">Uvezeno %1$s od %2$s</string>
+    <string name="legacy_migration_complete">Vaše oznake i rute spremne su za upotrebu.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape treba internetsku vezu kako bi pronašao mjesta koja ste spremili. Povežite se i pokušajte ponovno ili se tome vratite sljedeći put kada otvorite Soundscape.</string>
+    <string name="legacy_migration_try_again">Pokušaj ponovno</string>
+    <string name="legacy_migration_not_now">Ne sada</string>
+    <string name="legacy_migration_failed">Vaše podatke nije bilo moguće uvesti. Prethodna verzija Soundscape ih još uvijek ima — kontaktirajte podršku u Postavke, Pomoć.</string>
+    <string name="legacy_migration_continue">Nastavi</string>
 </resources>
