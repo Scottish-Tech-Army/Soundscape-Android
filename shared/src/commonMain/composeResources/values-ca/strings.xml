@@ -1497,4 +1497,13 @@
     <string name="action_at_route_end">Ja ets a l’últim punt de ruta</string>
     <string name="action_no_other_waypoints">No hi ha cap altre punt de ruta</string>
     <string name="action_service_not_running">Obre primer Soundscape</string>
+    <string name="legacy_migration_title">S'estan important les teves dades desades</string>
+    <string name="legacy_migration_description">Els teus marcadors i rutes s'estan transferint des de la teva versió anterior de Soundscape. Cercar els llocs als quals fan referència pot trigar un moment.</string>
+    <string name="legacy_migration_progress">%1$s de %2$s importats</string>
+    <string name="legacy_migration_complete">Els teus marcadors i rutes ja es poden fer servir.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape necessita una connexió a Internet per cercar els llocs que has desat. Connecta't i torna-ho a provar, o torna-hi la propera vegada que obris Soundscape.</string>
+    <string name="legacy_migration_try_again">Torna-ho a provar</string>
+    <string name="legacy_migration_not_now">Ara no</string>
+    <string name="legacy_migration_failed">No s'han pogut importar les teves dades. La teva versió anterior de Soundscape encara les té — contacta amb el suport des de Configuració, Ajuda.</string>
+    <string name="legacy_migration_continue">Continua</string>
 </resources>
