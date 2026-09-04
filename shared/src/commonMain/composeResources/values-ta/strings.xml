@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">நீங்கள் ஏற்கெனவே கடைசி வழிப்புள்ளியில் இருக்கிறீர்கள்</string>
     <string name="action_no_other_waypoints">வேறு வழிப்புள்ளிகள் இல்லை</string>
     <string name="action_service_not_running">முதலில் Soundscape ஐத் திறக்கவும்</string>
+    <string name="legacy_migration_title">நீங்கள் சேமித்த தரவு இறக்குமதி செய்யப்படுகிறது</string>
+    <string name="legacy_migration_description">உங்கள் குறிப்பான்களும் பாதைகளும் Soundscape இன் முந்தைய பதிப்பிலிருந்து கொண்டுவரப்படுகின்றன. அவை குறிக்கும் இடங்களைத் தேடுவதற்குச் சிறிது நேரம் ஆகலாம்.</string>
+    <string name="legacy_migration_progress">%2$s இல் %1$s இறக்குமதி செய்யப்பட்டது</string>
+    <string name="legacy_migration_complete">உங்கள் குறிப்பான்களும் பாதைகளும் பயன்படுத்தத் தயாராக உள்ளன.</string>
+    <string name="legacy_migration_needs_map_data">நீங்கள் சேமித்த இடங்களைத் தேட Soundscape க்கு இணைய இணைப்பு தேவை. இணைத்துவிட்டு மீண்டும் முயற்சிக்கவும், அல்லது அடுத்த முறை Soundscape ஐத் திறக்கும்போது இதற்குத் திரும்பவும்.</string>
+    <string name="legacy_migration_try_again">மீண்டும் முயற்சிக்கவும்</string>
+    <string name="legacy_migration_not_now">இப்போது வேண்டாம்</string>
+    <string name="legacy_migration_failed">உங்கள் தரவை இறக்குமதி செய்ய முடியவில்லை. Soundscape இன் உங்கள் முந்தைய பதிப்பில் அது இன்னும் உள்ளது — அமைப்புகள், உதவி என்பதிலிருந்து ஆதரவைத் தொடர்பு கொள்ளவும்.</string>
+    <string name="legacy_migration_continue">தொடரவும்</string>
 </resources>
