@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">Du er allerede ved det siste veipunktet</string>
     <string name="action_no_other_waypoints">Det finnes ingen andre veipunkter</string>
     <string name="action_service_not_running">Åpne Soundscape først</string>
+    <string name="legacy_migration_title">Importerer dine lagrede data</string>
+    <string name="legacy_migration_description">Markørene og rutene dine overføres fra din forrige versjon av Soundscape. Det kan ta et øyeblikk å slå opp stedene de viser til.</string>
+    <string name="legacy_migration_progress">%1$s av %2$s importert</string>
+    <string name="legacy_migration_complete">Markørene og rutene dine er klare til bruk.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape trenger en internettforbindelse for å slå opp stedene du har lagret. Koble til og prøv igjen, eller kom tilbake til det neste gang du åpner Soundscape.</string>
+    <string name="legacy_migration_try_again">Prøv igjen</string>
+    <string name="legacy_migration_not_now">Ikke nå</string>
+    <string name="legacy_migration_failed">Dataene dine kunne ikke importeres. Din forrige versjon av Soundscape har dem fortsatt — kontakt brukerstøtte fra Innstillinger, Hjelp.</string>
+    <string name="legacy_migration_continue">Fortsett</string>
 </resources>
