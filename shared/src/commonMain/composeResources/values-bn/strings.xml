@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">আপনি ইতিমধ্যেই শেষ ওয়েপয়েন্টে আছেন</string>
     <string name="action_no_other_waypoints">আর কোনো ওয়েপয়েন্ট নেই</string>
     <string name="action_service_not_running">আগে Soundscape খুলুন</string>
+    <string name="legacy_migration_title">আপনার সংরক্ষিত ডেটা ইম্পোর্ট করা হচ্ছে</string>
+    <string name="legacy_migration_description">আপনার মার্কার এবং রুট Soundscape-এর আগের সংস্করণ থেকে নিয়ে আসা হচ্ছে। সেগুলি যে স্থানগুলিকে নির্দেশ করে সেগুলি খুঁজে বের করতে কিছুটা সময় লাগতে পারে।</string>
+    <string name="legacy_migration_progress">%2$s-এর মধ্যে %1$s ইম্পোর্ট হয়েছে</string>
+    <string name="legacy_migration_complete">আপনার মার্কার এবং রুট ব্যবহারের জন্য প্রস্তুত।</string>
+    <string name="legacy_migration_needs_map_data">আপনার সংরক্ষিত স্থানগুলি খুঁজে বের করতে Soundscape-এর একটি ইন্টারনেট সংযোগ প্রয়োজন। সংযোগ করে আবার চেষ্টা করুন, অথবা পরের বার Soundscape খোলার সময় এতে ফিরে আসুন।</string>
+    <string name="legacy_migration_try_again">আবার চেষ্টা করুন</string>
+    <string name="legacy_migration_not_now">এখন নয়</string>
+    <string name="legacy_migration_failed">আপনার ডেটা ইম্পোর্ট করা যায়নি। Soundscape-এর আগের সংস্করণে এটি এখনও রয়েছে — অনুগ্রহ করে সেটিংস, সহায়তা থেকে সাপোর্টের সাথে যোগাযোগ করুন।</string>
+    <string name="legacy_migration_continue">চালিয়ে যান</string>
 </resources>
