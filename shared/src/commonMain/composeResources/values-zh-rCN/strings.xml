@@ -1487,4 +1487,13 @@
     <string name="action_at_route_end">你已经在最后一个航点了</string>
     <string name="action_no_other_waypoints">没有其他航点</string>
     <string name="action_service_not_running">请先打开 Soundscape</string>
+    <string name="legacy_migration_title">正在导入您保存的数据</string>
+    <string name="legacy_migration_description">正在从您之前版本的 Soundscape 中迁移标记点和路线。查找它们所指的地点可能需要一点时间。</string>
+    <string name="legacy_migration_progress">已导入 %1$s 个，共 %2$s 个</string>
+    <string name="legacy_migration_complete">您的标记点和路线已可使用。</string>
+    <string name="legacy_migration_needs_map_data">Soundscape 需要连接互联网才能查找您保存的地点。请连接后重试，或下次打开 Soundscape 时再继续。</string>
+    <string name="legacy_migration_try_again">重试</string>
+    <string name="legacy_migration_not_now">暂不</string>
+    <string name="legacy_migration_failed">无法导入您的数据。您之前版本的 Soundscape 中仍保留着这些数据 — 请从设置、帮助中联系客服。</string>
+    <string name="legacy_migration_continue">继续</string>
 </resources>
