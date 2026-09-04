@@ -66,6 +66,7 @@ import org.scottishtecharmy.soundscape.screens.markers_routes.screens.addandedit
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.markersscreen.MarkersScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routedetailsscreen.SharedRouteDetailsScreen
 import org.scottishtecharmy.soundscape.screens.markers_routes.screens.routesscreen.RoutesScreen
+import org.scottishtecharmy.soundscape.screens.migration.LegacyMigrationScreen
 import org.scottishtecharmy.soundscape.screens.onboarding.SharedOnboardingNavHost
 import org.scottishtecharmy.soundscape.screens.onboarding.welcome.Welcome
 
@@ -152,6 +153,20 @@ fun SharedNavHost(
                         preferencesProvider.putBoolean(PreferenceKeys.FIRST_LAUNCH, false)
                         navController.navigate(SharedRoutes.HOME) {
                             popUpTo(SharedRoutes.ONBOARDING) { inclusive = true }
+                        }
+                    },
+                )
+            }
+        }
+
+        composable(SharedRoutes.LEGACY_MIGRATION) {
+            val runImport = callbacks.onRunLegacyMigration
+            if (runImport != null) {
+                LegacyMigrationScreen(
+                    runImport = runImport,
+                    onContinue = {
+                        navController.navigate(SharedRoutes.HOME) {
+                            popUpTo(SharedRoutes.LEGACY_MIGRATION) { inclusive = true }
                         }
                     },
                 )

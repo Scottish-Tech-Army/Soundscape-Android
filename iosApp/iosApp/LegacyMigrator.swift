@@ -9,8 +9,12 @@
 //
 //  This file:
 //    1. Reads markers and routes from the legacy Realm database.
-//    2. Hands them to the Kotlin side (LegacyMigrationKt.runLegacyMigrationImport)
-//       which writes them into the new Room database.
+//    2. Stages them as JSON for the Kotlin side (LegacyMigrationKt) to write
+//       into the new Room database. The write itself deliberately does NOT
+//       happen here: markers the legacy app never stored a name for have to
+//       be looked up in map tiles, and blocking app launch on the network is
+//       how an app gets killed by the watchdog. It runs from the migration
+//       screen instead - see LegacyMigration.kt and LegacyMigrationScreen.kt.
 //    3. Migrates a curated subset of the GDA* preferences into their new
 //       PreferenceKeys equivalents.
 //    4. Sets a `LegacyMigrationDone` flag so subsequent launches no-op.
@@ -23,8 +27,9 @@
 //  that opening it can't upgrade the on-disk format underneath the legacy
 //  app.
 //
-//  Migration aborts (without setting the done flag) on any error during
-//  database import, so a failed import is retried on the next launch.
+//  Migration aborts (without setting the done flag) on any error while
+//  reading or staging the legacy database, so a failed attempt is retried on
+//  the next launch.
 //  Settings translation is best-effort — individual key failures are
 //  tolerated.
 //
@@ -82,21 +87,22 @@ final class LegacyRoute: Object {
 enum LegacyMigrator {
     private static let doneKey = "LegacyMigrationDone"
 
-    /// One-shot legacy import + always-on UserDefaults hygiene. The import
-    /// half (database read + settings translation) is gated by
-    /// `LegacyMigrationDone` and runs at most once per install.
+
+    /// One-shot legacy read + always-on UserDefaults hygiene. The read half
+    /// (legacy database → staged payload, plus settings translation) is gated
+    /// by `LegacyMigrationDone` and runs at most once per install.
     /// The hygiene sweep runs on every launch — it's a fast no-op for
     /// already-clean defaults and lets us ship later fixes without needing
     /// to reset the done flag. Synchronous so the caller can be sure
     /// preferences are settled before the Compose UI reads them.
     ///
-    /// `defaults`, `documentsPath` and `importDatabase` default to the real
+    /// `defaults`, `documentsPath` and `stageDatabase` default to the real
     /// production values/behaviour; tests override them to drive each
     /// branch deterministically without touching real Realm/Room state.
     static func runIfNeeded(
         defaults: UserDefaults = .standard,
         documentsPath: String = NSHomeDirectory() + "/Documents",
-        importDatabase: (String) -> Int32 = { importLegacyDatabase(at: $0) }
+        stageDatabase: (String) -> Int32 = { stageLegacyDatabase(at: $0) }
     ) {
         if !defaults.bool(forKey: doneKey) {
             let legacyRealmPath = documentsPath + "/database.realm"
@@ -106,15 +112,16 @@ enum LegacyMigrator {
                 // never probe again.
                 defaults.set(true, forKey: doneKey)
             } else {
-                let importedCount = importDatabase(legacyRealmPath)
-                if importedCount < 0 {
-                    // Database import failed. Retry on next launch (or once
-                    // we can ship a fix). Do NOT set the done flag.
-                    print("[LegacyMigrator] database import failed; will retry on next launch")
+                let stagedCount = stageDatabase(legacyRealmPath)
+                if stagedCount < 0 {
+                    // Couldn't read or stage the legacy database. Retry on the
+                    // next launch (or once we can ship a fix). Do NOT set the
+                    // done flag.
+                    print("[LegacyMigrator] staging failed; will retry on next launch")
                 } else {
                     migrateSettings(defaults: defaults)
                     defaults.set(true, forKey: doneKey)
-                    print("[LegacyMigrator] migrated \(importedCount) markers + routes")
+                    print("[LegacyMigrator] staged \(stagedCount) markers + routes for import")
                 }
             }
         }
@@ -125,7 +132,11 @@ enum LegacyMigrator {
     // MARK: Database import
 
     /// Reads markers and routes out of an already-open legacy `realm` and
-    /// encodes them as the JSON payload the Kotlin importer expects. Pure —
+    /// encodes them as the JSON payload the Kotlin importer expects.
+    ///
+    /// `name` carries the legacy nickname and is empty for the many markers
+    /// that never had one; naming those from `entityKey` is the Kotlin
+    /// side's job, since that's where the tile data lives. Pure —
     /// no file I/O, no Kotlin/Room call — so tests can exercise it against
     /// an in-memory fixture Realm without touching the production database.
     /// Returns nil only if the payload can't be JSON-encoded.
@@ -135,16 +146,17 @@ enum LegacyMigrator {
         markersJson.reserveCapacity(savedReferences.count)
 
         for ref in savedReferences {
-            let name = ref.nickname?.nonEmpty
-                ?? ref.estimatedAddress?.nonEmpty
-                ?? ref.entityKey?.nonEmpty
-                ?? "Unnamed"
+            // Only the nickname is a name the legacy app actually stored. Everything else it
+            // showed was looked up from `entityKey` against tile data each time it drew the
+            // marker list, so we pass the key through and let the Kotlin importer do the same
+            // lookup against our own tiles — see LegacyMarkerNamer.kt.
             markersJson.append([
                 "legacyId": ref.id,
-                "name": name,
+                "name": ref.nickname?.nonEmpty ?? "",
                 "latitude": ref.latitude,
                 "longitude": ref.longitude,
                 "fullAddress": ref.estimatedAddress ?? "",
+                "entityKey": ref.entityKey ?? "",
             ])
         }
 
@@ -175,14 +187,33 @@ enum LegacyMigrator {
         return String(data: data, encoding: .utf8)
     }
 
-    /// Reads the legacy Realm at `realmPath` and hands the resulting JSON
-    /// payload to the Kotlin side to write into the production Room
-    /// database. Returns the Kotlin importer's count, or -1 if the legacy
-    /// database couldn't be read.
-    private static func importLegacyDatabase(at realmPath: String) -> Int32 {
+    /// Reads the legacy Realm at `realmPath` and stages the resulting JSON
+    /// payload for the migration screen to import.
+    ///
+    /// Returns the number of markers and routes staged, or -1 if the legacy
+    /// database couldn't be read or the payload couldn't be written. Nothing
+    /// is staged for a legacy install that has no markers or routes at all —
+    /// there would be nothing for the migration screen to show.
+    private static func stageLegacyDatabase(at realmPath: String) -> Int32 {
         guard let json = buildPayloadPreservingOriginal(at: realmPath) else { return -1 }
 
-        return LegacyMigrationKt.runLegacyMigrationImport(payloadJson: json)
+        let count = stagedItemCount(in: json)
+        guard count > 0 else { return 0 }
+
+        guard LegacyMigrationKt.stageLegacyMigrationPayload(payloadJson: json) else { return -1 }
+        return count
+    }
+
+    /// How many markers and routes a payload holds, or 0 if it can't be read
+    /// back — in which case there's nothing worth showing a screen for.
+    private static func stagedItemCount(in json: String) -> Int32 {
+        guard let data = json.data(using: .utf8),
+              let payload = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
+        else { return 0 }
+
+        let markers = (payload["markers"] as? [Any])?.count ?? 0
+        let routes = (payload["routes"] as? [Any])?.count ?? 0
+        return Int32(markers + routes)
     }
 
     /// Builds the JSON payload from the legacy database at `realmPath`

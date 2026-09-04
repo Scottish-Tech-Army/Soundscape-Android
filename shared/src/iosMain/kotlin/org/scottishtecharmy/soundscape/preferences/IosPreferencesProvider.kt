@@ -57,10 +57,18 @@ class IosPreferencesProvider : PreferencesProvider {
         // Drop every key in the app domain. NSUserDefaults posts a single
         // change notification, so any registered listeners will be notified
         // for each key that actually changed via notifyChangedKeys().
+        //
+        // Except the legacy app's own settings. We share a bundle identifier
+        // with it, so its GDA* keys sit in the same domain as ours - but they
+        // are not ours to reset. LegacyMigrator copies them rather than moving
+        // them precisely so that a user who rolls back to the legacy build
+        // still has their settings, and so the migration can be re-run or
+        // corrected later; deleting them here would quietly break both.
         @Suppress("UNCHECKED_CAST")
         val keys = (defaults.dictionaryRepresentation() as? Map<String, Any?>)?.keys
             ?: emptySet()
         for (key in keys) {
+            if (key.startsWith(LEGACY_KEY_PREFIX)) continue
             defaults.removeObjectForKey(key)
         }
     }
@@ -91,5 +99,14 @@ class IosPreferencesProvider : PreferencesProvider {
             }
         }
         previousSnapshot = current
+    }
+
+    private companion object {
+        /**
+         * Prefix on every setting belonging to the legacy Microsoft Soundscape iOS app, which
+         * shares our bundle identifier and therefore our UserDefaults domain. See LegacyMigrator
+         * in the iOS app target.
+         */
+        const val LEGACY_KEY_PREFIX = "GDA"
     }
 }

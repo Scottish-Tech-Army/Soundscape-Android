@@ -124,6 +124,7 @@ final class LegacyMigratorDatabaseTests: XCTestCase {
         XCTAssertEqual(marker?["latitude"] as? Double, 55.95)
         XCTAssertEqual(marker?["longitude"] as? Double, -3.19)
         XCTAssertEqual(marker?["fullAddress"] as? String, "1 Royal Mile")
+        XCTAssertEqual(marker?["entityKey"] as? String, "")
     }
 
     func testBuildPayloadExcludesTempMarkers() {
@@ -138,40 +139,50 @@ final class LegacyMigratorDatabaseTests: XCTestCase {
         XCTAssertEqual(markers?.first?["legacyId"] as? String, "saved-1")
     }
 
-    func testBuildPayloadNameFallsBackToNicknameWhenPresent() {
+    func testBuildPayloadSendsNicknameAsTheName() {
         let realm = makeInMemoryRealm()
-        addMarker(to: realm, id: "m1", nickname: "Nickname", estimatedAddress: "Address", entityKey: "EntityKey")
+        addMarker(to: realm, id: "m1", nickname: "Nickname", estimatedAddress: "Address", entityKey: "ft-123")
 
         let payload = decodePayload(LegacyMigrator.buildLegacyPayload(realm: realm))
         let marker = (payload["markers"] as? [[String: Any]])?.first
         XCTAssertEqual(marker?["name"] as? String, "Nickname")
+        XCTAssertEqual(marker?["entityKey"] as? String, "ft-123")
     }
 
-    func testBuildPayloadNameFallsBackToAddressWhenNoNickname() {
+    /// A marker with no nickname is sent with an empty name and its entity
+    /// key, which is what the Kotlin importer names it from. The address is
+    /// still sent, as the fallback for when that lookup finds nothing.
+    func testBuildPayloadSendsEmptyNameAndEntityKeyWhenThereIsNoNickname() {
         let realm = makeInMemoryRealm()
-        addMarker(to: realm, id: "m1", nickname: nil, estimatedAddress: "Address", entityKey: "EntityKey")
+        addMarker(to: realm, id: "m1", nickname: nil, estimatedAddress: "Address", entityKey: "ft-123")
 
         let payload = decodePayload(LegacyMigrator.buildLegacyPayload(realm: realm))
         let marker = (payload["markers"] as? [[String: Any]])?.first
-        XCTAssertEqual(marker?["name"] as? String, "Address")
+        XCTAssertEqual(marker?["name"] as? String, "")
+        XCTAssertEqual(marker?["entityKey"] as? String, "ft-123")
+        XCTAssertEqual(marker?["fullAddress"] as? String, "Address")
     }
 
-    func testBuildPayloadNameFallsBackToEntityKeyWhenNoNicknameOrAddress() {
-        let realm = makeInMemoryRealm()
-        addMarker(to: realm, id: "m1", nickname: nil, estimatedAddress: nil, entityKey: "EntityKey")
-
-        let payload = decodePayload(LegacyMigrator.buildLegacyPayload(realm: realm))
-        let marker = (payload["markers"] as? [[String: Any]])?.first
-        XCTAssertEqual(marker?["name"] as? String, "EntityKey")
-    }
-
-    func testBuildPayloadNameFallsBackToUnnamedWhenAllFallbacksMissing() {
+    func testBuildPayloadSendsEmptyStringsWhenNicknameAndEntityKeyAreMissing() {
         let realm = makeInMemoryRealm()
         addMarker(to: realm, id: "m1", nickname: nil, estimatedAddress: nil, entityKey: nil)
 
         let payload = decodePayload(LegacyMigrator.buildLegacyPayload(realm: realm))
         let marker = (payload["markers"] as? [[String: Any]])?.first
-        XCTAssertEqual(marker?["name"] as? String, "Unnamed")
+        XCTAssertEqual(marker?["name"] as? String, "")
+        XCTAssertEqual(marker?["entityKey"] as? String, "")
+        XCTAssertEqual(marker?["fullAddress"] as? String, "")
+    }
+
+    /// An empty nickname on disk is the same as no nickname: it must not
+    /// suppress the entity-key lookup by arriving as a usable name.
+    func testBuildPayloadTreatsEmptyNicknameAsAbsent() {
+        let realm = makeInMemoryRealm()
+        addMarker(to: realm, id: "m1", nickname: "", estimatedAddress: "Address", entityKey: "ft-123")
+
+        let payload = decodePayload(LegacyMigrator.buildLegacyPayload(realm: realm))
+        let marker = (payload["markers"] as? [[String: Any]])?.first
+        XCTAssertEqual(marker?["name"] as? String, "")
     }
 
     func testBuildPayloadOrdersRouteWaypointsByIndexRegardlessOfInsertionOrder() {
@@ -324,23 +335,23 @@ final class LegacyMigratorDatabaseTests: XCTestCase {
 
     // MARK: - runIfNeeded orchestration
 
-    func testRunIfNeededFreshInstallNoRealmFileSetsDoneFlagWithoutImporting() {
-        var importCalled = false
+    func testRunIfNeededFreshInstallNoRealmFileSetsDoneFlagWithoutStaging() {
+        var stagingCalled = false
 
         LegacyMigrator.runIfNeeded(
             defaults: defaults,
             documentsPath: documentsPath,
-            importDatabase: { _ in
-                importCalled = true
+            stageDatabase: { _ in
+                stagingCalled = true
                 return 0
             },
         )
 
-        XCTAssertFalse(importCalled)
+        XCTAssertFalse(stagingCalled)
         XCTAssertTrue(defaults.bool(forKey: "LegacyMigrationDone"))
     }
 
-    func testRunIfNeededSuccessfulImportRunsSettingsKeepsLegacyDataAndSetsDone() {
+    func testRunIfNeededSuccessfulStagingRunsSettingsKeepsLegacyDataAndSetsDone() {
         let realmPath = documentsPath + "/database.realm"
         createFile(at: realmPath)
         defaults.set(true, forKey: "GDASettingsMetric")
@@ -351,7 +362,7 @@ final class LegacyMigratorDatabaseTests: XCTestCase {
         LegacyMigrator.runIfNeeded(
             defaults: defaults,
             documentsPath: documentsPath,
-            importDatabase: { path in
+            stageDatabase: { path in
                 callCount += 1
                 capturedPath = path
                 return 2
@@ -368,14 +379,14 @@ final class LegacyMigratorDatabaseTests: XCTestCase {
         XCTAssertTrue(defaults.bool(forKey: "LegacyMigrationDone"))
     }
 
-    func testRunIfNeededFailedImportLeavesArtefactsAndDoesNotSetDone() {
+    func testRunIfNeededFailedStagingLeavesArtefactsAndDoesNotSetDone() {
         let realmPath = documentsPath + "/database.realm"
         createFile(at: realmPath)
 
         LegacyMigrator.runIfNeeded(
             defaults: defaults,
             documentsPath: documentsPath,
-            importDatabase: { _ in -1 },
+            stageDatabase: { _ in -1 },
         )
 
         XCTAssertTrue(FileManager.default.fileExists(atPath: realmPath))
@@ -385,30 +396,30 @@ final class LegacyMigratorDatabaseTests: XCTestCase {
     func testRunIfNeededAlreadyDoneIsNoOp() {
         defaults.set(true, forKey: "LegacyMigrationDone")
         createFile(at: documentsPath + "/database.realm")
-        var importCalled = false
+        var stagingCalled = false
 
         LegacyMigrator.runIfNeeded(
             defaults: defaults,
             documentsPath: documentsPath,
-            importDatabase: { _ in
-                importCalled = true
+            stageDatabase: { _ in
+                stagingCalled = true
                 return 0
             },
         )
 
-        XCTAssertFalse(importCalled)
+        XCTAssertFalse(stagingCalled)
     }
 
     func testRunIfNeededAlwaysRunsHygieneSweepRegardlessOfBranch() {
         // A Date is one of the types the sweep still drops — GDA* keys are
         // exempt now, so they can't be used as the marker any more.
-        // Already-done branch: hygiene sweep still fires even though import is skipped.
+        // Already-done branch: hygiene sweep still fires even though staging is skipped.
         defaults.set(true, forKey: "LegacyMigrationDone")
         defaults.set(Date(), forKey: "StaleTimestamp")
         LegacyMigrator.runIfNeeded(
             defaults: defaults,
             documentsPath: documentsPath,
-            importDatabase: { _ in 0 },
+            stageDatabase: { _ in 0 },
         )
         XCTAssertNil(defaults.object(forKey: "StaleTimestamp"))
 
@@ -421,7 +432,7 @@ final class LegacyMigratorDatabaseTests: XCTestCase {
         LegacyMigrator.runIfNeeded(
             defaults: freshDefaults,
             documentsPath: documentsPath,
-            importDatabase: { _ in 0 },
+            stageDatabase: { _ in 0 },
         )
         XCTAssertNil(freshDefaults.object(forKey: "StaleTimestamp"))
     }
