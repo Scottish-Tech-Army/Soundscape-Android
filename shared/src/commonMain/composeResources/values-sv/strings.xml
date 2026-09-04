@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">Du är redan vid den sista brytpunkten</string>
     <string name="action_no_other_waypoints">Det finns inga andra brytpunkter</string>
     <string name="action_service_not_running">Öppna Soundscape först</string>
+    <string name="legacy_migration_title">Importerar dina sparade data</string>
+    <string name="legacy_migration_description">Dina platsmarkörer och rutter förs över från din tidigare version av Soundscape. Att slå upp platserna de hänvisar till kan ta ett ögonblick.</string>
+    <string name="legacy_migration_progress">%1$s av %2$s importerade</string>
+    <string name="legacy_migration_complete">Dina platsmarkörer och rutter är klara att använda.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape behöver en internetanslutning för att slå upp platserna du har sparat. Anslut och försök igen, eller återkom till det nästa gång du öppnar Soundscape.</string>
+    <string name="legacy_migration_try_again">Försök igen</string>
+    <string name="legacy_migration_not_now">Inte nu</string>
+    <string name="legacy_migration_failed">Dina data kunde inte importeras. Din tidigare version av Soundscape har dem fortfarande — kontakta supporten via Inställningar, Hjälp.</string>
+    <string name="legacy_migration_continue">Fortsätt</string>
 </resources>
