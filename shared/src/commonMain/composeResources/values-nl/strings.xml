@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">U bent al bij het laatste routepunt</string>
     <string name="action_no_other_waypoints">Er zijn geen andere routepunten</string>
     <string name="action_service_not_running">Open eerst Soundscape</string>
+    <string name="legacy_migration_title">Uw opgeslagen gegevens worden geïmporteerd</string>
+    <string name="legacy_migration_description">Uw markeringen en routes worden overgezet vanuit uw vorige versie van Soundscape. Het opzoeken van de plaatsen waarnaar ze verwijzen kan even duren.</string>
+    <string name="legacy_migration_progress">%1$s van %2$s geïmporteerd</string>
+    <string name="legacy_migration_complete">Uw markeringen en routes zijn klaar voor gebruik.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape heeft een internetverbinding nodig om de plaatsen die u hebt opgeslagen op te zoeken. Maak verbinding en probeer het opnieuw, of kom er de volgende keer dat u Soundscape opent op terug.</string>
+    <string name="legacy_migration_try_again">Opnieuw proberen</string>
+    <string name="legacy_migration_not_now">Niet nu</string>
+    <string name="legacy_migration_failed">Uw gegevens konden niet worden geïmporteerd. Uw vorige versie van Soundscape heeft ze nog — neem contact op met ondersteuning via Instellingen, Help.</string>
+    <string name="legacy_migration_continue">Doorgaan</string>
 </resources>
