@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">Tayari uko kwenye kituo cha mwisho</string>
     <string name="action_no_other_waypoints">Hakuna vituo vingine</string>
     <string name="action_service_not_running">Fungua Soundscape kwanza</string>
+    <string name="legacy_migration_title">Inaingiza data uliyohifadhi</string>
+    <string name="legacy_migration_description">Alama na njia zako zinahamishwa kutoka toleo lako la awali la Soundscape. Kutafuta maeneo yanayorejelewa kunaweza kuchukua muda kidogo.</string>
+    <string name="legacy_migration_progress">%1$s kati ya %2$s zimeingizwa</string>
+    <string name="legacy_migration_complete">Alama na njia zako ziko tayari kutumika.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape inahitaji muunganisho wa intaneti ili kutafuta maeneo uliyohifadhi. Unganisha kisha ujaribu tena, au urudi kwenye hili wakati ujao utakapofungua Soundscape.</string>
+    <string name="legacy_migration_try_again">Jaribu tena</string>
+    <string name="legacy_migration_not_now">Si sasa</string>
+    <string name="legacy_migration_failed">Data yako haikuweza kuingizwa. Toleo lako la awali la Soundscape bado linayo — tafadhali wasiliana na timu ya usaidizi kutoka Mipangilio, Usaidizi.</string>
+    <string name="legacy_migration_continue">Endelea</string>
 </resources>
