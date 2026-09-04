@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">You're already at the last waypoint</string>
     <string name="action_no_other_waypoints">There are no other waypoints</string>
     <string name="action_service_not_running">Open Soundscape first</string>
+    <string name="legacy_migration_title">Importing your saved data</string>
+    <string name="legacy_migration_description">Your markers and routes are being brought across from your previous version of Soundscape. Looking up the places they refer to can take a moment.</string>
+    <string name="legacy_migration_progress">%1$s of %2$s imported</string>
+    <string name="legacy_migration_complete">Your markers and routes are ready to use.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape needs an internet connection to look up the places you saved. Connect and try again, or come back to it the next time you open Soundscape.</string>
+    <string name="legacy_migration_try_again">Try again</string>
+    <string name="legacy_migration_not_now">Not now</string>
+    <string name="legacy_migration_failed">Your data couldn\\'t be imported. Your previous version of Soundscape still has it — please contact support from Settings, Help.</string>
+    <string name="legacy_migration_continue">Continue</string>
 </resources>
