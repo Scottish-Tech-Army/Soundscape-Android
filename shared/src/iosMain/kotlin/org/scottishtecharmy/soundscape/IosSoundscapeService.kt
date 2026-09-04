@@ -13,6 +13,8 @@ import org.scottishtecharmy.soundscape.actions.ActionResult
 import org.scottishtecharmy.soundscape.actions.SoundscapeAction
 import org.scottishtecharmy.soundscape.actions.SoundscapeActionExecutor
 import org.scottishtecharmy.soundscape.audio.AudioTour
+import org.scottishtecharmy.soundscape.backup.IosCloudBackup
+import org.scottishtecharmy.soundscape.migration.hasPendingLegacyMigration
 import org.scottishtecharmy.soundscape.audio.AudioTourHost
 import org.scottishtecharmy.soundscape.audio.BeaconPreviewController
 import org.scottishtecharmy.soundscape.audio.AudioType
@@ -212,6 +214,32 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
     var onMarkersOrRoutesChanged: (() -> Unit)? = null
 
     /**
+     * Keeps the user's markers and routes in iCloud so that deleting the app or replacing a phone
+     * doesn't lose them. See [IosCloudBackup] for what it does and doesn't promise.
+     */
+    private val cloudBackup = IosCloudBackup(
+        dao = routeDao,
+        scope = scope,
+        // The legacy import fills an empty library too, from a payload staged before the app
+        // opened. Whichever of the two would go first, letting both run gives the user two of
+        // everything, so the backup stands aside until the import has been dealt with.
+        canRestore = { !hasPendingLegacyMigration() },
+        onRestored = { onMarkersOrRoutesChanged?.invoke() },
+    )
+
+    /**
+     * Announces that the user's markers or routes have changed: tells Swift, so it can rebuild the
+     * vocabulary Siri matches names against, and refreshes the iCloud backup.
+     *
+     * Everything that writes markers or routes goes through here rather than calling the two
+     * separately, so a new write path can't quietly stop being backed up.
+     */
+    private suspend fun markersOrRoutesChanged() {
+        onMarkersOrRoutesChanged?.invoke()
+        cloudBackup.backupNow()
+    }
+
+    /**
      * Runs an action and drops the result. For the AppCallbacks lambdas, which are
      * plain (String) -> Unit with no scope of their own — this keeps them off a
      * freshly-allocated CoroutineScope per call. Swift's App Intents await
@@ -355,6 +383,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         geoEngine.setHeadTrackingProvider(headTrackingProvider)
         applyHeadTrackingEnabled()
         observeAppLifecycle()
+        cloudBackup.start()
     }
 
     private fun observeAppLifecycle() {
@@ -519,7 +548,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
                 } else {
                     routeDao.insertRouteWithNewMarkers(route, markers)
                 }
-                onMarkersOrRoutesChanged?.invoke()
+                markersOrRoutesChanged()
                 audioEngine.createEarcon(
                     "file:///android_asset/Sounds/sense_poi.wav",
                     org.scottishtecharmy.soundscape.audio.AudioType.STANDARD
@@ -554,7 +583,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
             try {
                 routeDao.removeMarkersForRoute(routeId)
                 routeDao.removeRoute(routeId)
-                onMarkersOrRoutesChanged?.invoke()
+                markersOrRoutesChanged()
             } catch (e: Exception) {
                 println("IosSoundscapeService: Failed to delete route: ${e.message}")
             }
@@ -582,7 +611,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
                 } else {
                     routeDao.insertMarker(marker)
                 }
-                onMarkersOrRoutesChanged?.invoke()
+                markersOrRoutesChanged()
                 audioEngine.createEarcon(
                     "file:///android_asset/Sounds/sense_poi.wav",
                     org.scottishtecharmy.soundscape.audio.AudioType.STANDARD
@@ -597,7 +626,7 @@ class IosSoundscapeService : GeoEngineListener, MediaControllableService, Servic
         scope.launch {
             try {
                 routeDao.removeMarker(markerId)
-                onMarkersOrRoutesChanged?.invoke()
+                markersOrRoutesChanged()
             } catch (e: Exception) {
                 println("IosSoundscapeService: Failed to delete marker: ${e.message}")
             }
