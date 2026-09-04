@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">మీరు ఇప్పటికే చివరి వేపాయింట్ వద్ద ఉన్నారు</string>
     <string name="action_no_other_waypoints">ఇతర వేపాయింట్‌లు ఏవీ లేవు</string>
     <string name="action_service_not_running">ముందుగా Soundscape ను తెరవండి</string>
+    <string name="legacy_migration_title">మీరు సేవ్ చేసిన డేటా దిగుమతి అవుతోంది</string>
+    <string name="legacy_migration_description">మీ మార్కర్‌లు మరియు రూట్‌లు Soundscape యొక్క మీ మునుపటి సంస్కరణ నుండి తీసుకురాబడుతున్నాయి. అవి సూచించే ప్రదేశాలను వెతకడానికి కొంత సమయం పట్టవచ్చు.</string>
+    <string name="legacy_migration_progress">%2$sలో %1$s దిగుమతి అయ్యాయి</string>
+    <string name="legacy_migration_complete">మీ మార్కర్‌లు మరియు రూట్‌లు ఉపయోగించడానికి సిద్ధంగా ఉన్నాయి.</string>
+    <string name="legacy_migration_needs_map_data">మీరు సేవ్ చేసిన ప్రదేశాలను వెతకడానికి Soundscapeకు ఇంటర్నెట్ కనెక్షన్ అవసరం. కనెక్ట్ చేసి మళ్లీ ప్రయత్నించండి, లేదా తదుపరిసారి Soundscape తెరిచినప్పుడు దీనికి తిరిగి రండి.</string>
+    <string name="legacy_migration_try_again">మళ్లీ ప్రయత్నించండి</string>
+    <string name="legacy_migration_not_now">ఇప్పుడు కాదు</string>
+    <string name="legacy_migration_failed">మీ డేటాను దిగుమతి చేయడం సాధ్యం కాలేదు. Soundscape యొక్క మీ మునుపటి సంస్కరణలో అది ఇప్పటికీ ఉంది — దయచేసి సెట్టింగ్‌లు, సహాయం నుండి సపోర్ట్‌ను సంప్రదించండి.</string>
+    <string name="legacy_migration_continue">కొనసాగించు</string>
 </resources>
