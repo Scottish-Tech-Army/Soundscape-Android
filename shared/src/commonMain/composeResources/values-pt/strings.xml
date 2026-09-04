@@ -1497,4 +1497,13 @@
     <string name="action_at_route_end">Já está no último Ponto de Passagem</string>
     <string name="action_no_other_waypoints">Não há outros Pontos de Passagem</string>
     <string name="action_service_not_running">Abra primeiro o Soundscape</string>
+    <string name="legacy_migration_title">A importar os seus dados guardados</string>
+    <string name="legacy_migration_description">Os seus marcos e rotas estão a ser transferidos da sua versão anterior do Soundscape. A procura dos locais a que se referem pode demorar um momento.</string>
+    <string name="legacy_migration_progress">%1$s de %2$s importados</string>
+    <string name="legacy_migration_complete">Os seus marcos e rotas estão prontos a utilizar.</string>
+    <string name="legacy_migration_needs_map_data">O Soundscape precisa de uma ligação à Internet para procurar os locais que guardou. Ligue-se e tente novamente, ou volte a isto da próxima vez que abrir o Soundscape.</string>
+    <string name="legacy_migration_try_again">Tentar novamente</string>
+    <string name="legacy_migration_not_now">Agora não</string>
+    <string name="legacy_migration_failed">Não foi possível importar os seus dados. A sua versão anterior do Soundscape ainda os tem — por favor, contacte o apoio ao cliente em Definições, Ajuda.</string>
+    <string name="legacy_migration_continue">Continuar</string>
 </resources>
