@@ -1512,4 +1512,13 @@
     <string name="action_at_route_end">أنت بالفعل عند نقطة المسار الأخيرة</string>
     <string name="action_no_other_waypoints">لا توجد نقاط مسار أخرى</string>
     <string name="action_service_not_running">افتح Soundscape أولاً</string>
+    <string name="legacy_migration_title">جارٍ استيراد بياناتك المحفوظة</string>
+    <string name="legacy_migration_description">يجري نقل علاماتك ومساراتك من إصدارك السابق من Soundscape. قد يستغرق البحث عن الأماكن التي تشير إليها بعض الوقت.</string>
+    <string name="legacy_migration_progress">تم استيراد %1$s من %2$s</string>
+    <string name="legacy_migration_complete">علاماتك ومساراتك جاهزة للاستخدام.</string>
+    <string name="legacy_migration_needs_map_data">يحتاج Soundscape إلى اتصال بالإنترنت للبحث عن الأماكن التي حفظتها. اتصل بالإنترنت وحاول مرة أخرى، أو عد إلى ذلك في المرة القادمة التي تفتح فيها Soundscape.</string>
+    <string name="legacy_migration_try_again">المحاولة مرة أخرى</string>
+    <string name="legacy_migration_not_now">ليس الآن</string>
+    <string name="legacy_migration_failed">تعذّر استيراد بياناتك. لا يزال إصدارك السابق من Soundscape يحتفظ بها — يُرجى التواصل مع الدعم من الإعدادات، المساعدة.</string>
+    <string name="legacy_migration_continue">متابعة</string>
 </resources>
