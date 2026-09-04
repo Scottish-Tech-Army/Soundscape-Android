@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">Zaten son ara noktadasınız</string>
     <string name="action_no_other_waypoints">Başka ara nokta yok</string>
     <string name="action_service_not_running">Önce Soundscape'i açın</string>
+    <string name="legacy_migration_title">Kaydettiğiniz veriler içe aktarılıyor</string>
+    <string name="legacy_migration_description">Kayıtlı noktalarınız ve rotalarınız Soundscape'in önceki sürümünden aktarılıyor. Bunların işaret ettiği yerlerin aranması biraz zaman alabilir.</string>
+    <string name="legacy_migration_progress">%2$s öğeden %1$s tanesi içe aktarıldı</string>
+    <string name="legacy_migration_complete">Kayıtlı noktalarınız ve rotalarınız kullanıma hazır.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape'in kaydettiğiniz yerleri bulabilmesi için internet bağlantısı gerekiyor. Bağlanıp tekrar deneyin veya Soundscape'i bir sonraki açışınızda buraya dönün.</string>
+    <string name="legacy_migration_try_again">Tekrar dene</string>
+    <string name="legacy_migration_not_now">Şimdi değil</string>
+    <string name="legacy_migration_failed">Verileriniz içe aktarılamadı. Soundscape'in önceki sürümü onları hâlâ saklıyor — lütfen Ayarlar, Yardım bölümünden destek ile iletişime geçin.</string>
+    <string name="legacy_migration_continue">Devam Et</string>
 </resources>
