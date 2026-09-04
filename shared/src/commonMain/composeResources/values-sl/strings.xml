@@ -1502,4 +1502,13 @@
     <string name="action_at_route_end">Ste že na zadnji točki poti</string>
     <string name="action_no_other_waypoints">Drugih točk poti ni</string>
     <string name="action_service_not_running">Najprej odprite Soundscape</string>
+    <string name="legacy_migration_title">Uvažanje shranjenih podatkov</string>
+    <string name="legacy_migration_description">Vaše oznake in poti se prenašajo iz prejšnje različice Soundscape. Iskanje krajev, na katere se nanašajo, lahko traja nekaj trenutkov.</string>
+    <string name="legacy_migration_progress">Uvoženih %1$s od %2$s</string>
+    <string name="legacy_migration_complete">Vaše oznake in poti so pripravljene za uporabo.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape potrebuje internetno povezavo za iskanje krajev, ki ste jih shranili. Vzpostavite povezavo in poskusite znova ali se k temu vrnite, ko boste naslednjič odprli Soundscape.</string>
+    <string name="legacy_migration_try_again">Poskusi znova</string>
+    <string name="legacy_migration_not_now">Ne zdaj</string>
+    <string name="legacy_migration_failed">Vaših podatkov ni bilo mogoče uvoziti. Prejšnja različica Soundscape jih še vedno ima — obrnite se na podporo v Nastavitve, Pomoč.</string>
+    <string name="legacy_migration_continue">Naprej</string>
 </resources>
