@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">Βρίσκεστε ήδη στο τελευταίο σημείο πορείας</string>
     <string name="action_no_other_waypoints">Δεν υπάρχουν άλλα σημεία πορείας</string>
     <string name="action_service_not_running">Ανοίξτε πρώτα το Soundscape</string>
+    <string name="legacy_migration_title">Εισαγωγή των αποθηκευμένων δεδομένων σας</string>
+    <string name="legacy_migration_description">Οι δείκτες και οι διαδρομές σας μεταφέρονται από την προηγούμενη έκδοση του Soundscape. Η αναζήτηση των τοποθεσιών στις οποίες αναφέρονται μπορεί να πάρει λίγη ώρα.</string>
+    <string name="legacy_migration_progress">Εισήχθησαν %1$s από %2$s</string>
+    <string name="legacy_migration_complete">Οι δείκτες και οι διαδρομές σας είναι έτοιμα για χρήση.</string>
+    <string name="legacy_migration_needs_map_data">Το Soundscape χρειάζεται σύνδεση στο διαδίκτυο για να αναζητήσει τις τοποθεσίες που αποθηκεύσατε. Συνδεθείτε και δοκιμάστε ξανά ή επανέλθετε την επόμενη φορά που θα ανοίξετε το Soundscape.</string>
+    <string name="legacy_migration_try_again">Δοκιμάστε ξανά</string>
+    <string name="legacy_migration_not_now">Όχι τώρα</string>
+    <string name="legacy_migration_failed">Δεν ήταν δυνατή η εισαγωγή των δεδομένων σας. Η προηγούμενη έκδοση του Soundscape τα διατηρεί ακόμη — επικοινωνήστε με την υποστήριξη από τις Ρυθμίσεις, Βοήθεια.</string>
+    <string name="legacy_migration_continue">Συνέχεια</string>
 </resources>
