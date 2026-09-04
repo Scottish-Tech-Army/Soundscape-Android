@@ -1492,4 +1492,13 @@
     <string name="action_at_route_end">Ka riga ka kasance a matsayi na ƙarshe</string>
     <string name="action_no_other_waypoints">Babu wasu matsayai</string>
     <string name="action_service_not_running">Fara buɗe Soundscape</string>
+    <string name="legacy_migration_title">Ana shigo da bayanan da ka ajiye</string>
+    <string name="legacy_migration_description">Ana kawo alamominka da tafarkunanka daga tsohon sigar Soundscape naka. Neman wuraren da suke nunawa na iya ɗaukar ɗan lokaci.</string>
+    <string name="legacy_migration_progress">An shigo da %1$s daga cikin %2$s</string>
+    <string name="legacy_migration_complete">Alamominka da tafarkunanka a shirye suke don amfani.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape na buƙatar haɗin intanet don neman wuraren da ka ajiye. Ka haɗa sannan ka sake gwadawa, ko ka dawo kan haka lokaci na gaba da ka buɗe Soundscape.</string>
+    <string name="legacy_migration_try_again">Sake gwadawa</string>
+    <string name="legacy_migration_not_now">Ba yanzu ba</string>
+    <string name="legacy_migration_failed">Ba a iya shigo da bayananka ba. Tsohon sigar Soundscape naka na nan da su — da fatan za ka tuntuɓi Tallafi daga Saitunan, Taimako.</string>
+    <string name="legacy_migration_continue">Ci gaba</string>
 </resources>
