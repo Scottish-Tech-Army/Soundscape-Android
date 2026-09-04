@@ -1497,4 +1497,13 @@
     <string name="action_at_route_end">Sei già all’ultimo waypoint</string>
     <string name="action_no_other_waypoints">Non ci sono altri waypoint</string>
     <string name="action_service_not_running">Apri prima Soundscape</string>
+    <string name="legacy_migration_title">Importazione dei tuoi dati salvati</string>
+    <string name="legacy_migration_description">I tuoi indicatori e percorsi vengono trasferiti dalla tua versione precedente di Soundscape. La ricerca dei luoghi a cui fanno riferimento può richiedere un momento.</string>
+    <string name="legacy_migration_progress">%1$s di %2$s importati</string>
+    <string name="legacy_migration_complete">I tuoi indicatori e percorsi sono pronti all'uso.</string>
+    <string name="legacy_migration_needs_map_data">Soundscape ha bisogno di una connessione a Internet per cercare i luoghi che hai salvato. Connettiti e riprova, oppure riprendi la prossima volta che apri Soundscape.</string>
+    <string name="legacy_migration_try_again">Riprova</string>
+    <string name="legacy_migration_not_now">Non ora</string>
+    <string name="legacy_migration_failed">Non è stato possibile importare i tuoi dati. La tua versione precedente di Soundscape li contiene ancora — contatta l'assistenza da Impostazioni, Guida.</string>
+    <string name="legacy_migration_continue">Continua</string>
 </resources>
