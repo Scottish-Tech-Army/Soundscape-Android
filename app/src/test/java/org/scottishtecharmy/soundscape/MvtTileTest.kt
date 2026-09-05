@@ -1421,6 +1421,67 @@ class MvtTileTest {
     }
 
     /**
+     * A crossing that falls entirely between two location fixes must still be announced.
+     *
+     * The lookahead is three seconds of travel, clamped to 150m, so at ordinary fix rates the next
+     * crossing is always inside it well before it arrives. A sparse run of fixes - a GPS gap, or
+     * simply line speed against the clamp - can step right over one: it was too far ahead on one
+     * fix and already behind on the next. AutoCallout therefore also walks the Ways *back* to
+     * where the user was, and this pins that: two fixes 400m apart across a crossing 200m into the
+     * gap, which no lookahead from either fix would have reached.
+     *
+     * Needs a real travel heading, since that's what tells the walk which way is forwards - with
+     * an unknown direction it looks both ways anyway and the backward walk isn't used.
+     */
+    @Test
+    fun testCrossingSkippedBetweenFixesIsStillCalledOut() {
+        val location = LngLatAlt(-3.943732, 55.981647)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val way = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection().features
+            .filterIsInstance<Way>()
+            .first {
+                it.osmId == 94939658L * 10 + 2 &&
+                    it.crossingNamed("Edinburgh and Glasgow Main Line") != null
+            }
+        val crossing = way.crossingNamed("Edinburgh and Glasgow Main Line")!!
+        val ruler = gridState.ruler
+
+        // The M80 runs roughly north-south here, so step along the Way itself rather than guessing
+        // a bearing: 200m short of the viaduct, then 200m past it.
+        val before = ruler.along(way.geometry as LineString, crossing.distanceFromStart - 200.0)
+        val after = ruler.along(way.geometry as LineString, crossing.distanceFromStart + 200.0)
+        val heading = ruler.bearing(before, after)
+
+        val autoCallout = AutoCallout(null, null)
+        val firstUpdate = UserGeometry(
+            location = before, speed = 30.0, travelHeading = heading, mapMatchedWay = way,
+            timestampMilliseconds = 1000L
+        )
+        val firstCallout = autoCallout.updateLocation(firstUpdate, gridState, settlementGrid)
+        assertTrue(
+            "200m short of the viaduct is beyond the 90m lookahead, got: " +
+                "${firstCallout?.positionedStrings?.map { it.text }}",
+            firstCallout?.positionedStrings?.none { it.text.contains("Glasgow Main Line") } != false
+        )
+
+        // One fix later the viaduct is 200m behind - never once inside the lookahead.
+        val secondUpdate = UserGeometry(
+            location = after, speed = 30.0, travelHeading = heading, mapMatchedWay = way,
+            timestampMilliseconds = 14000L
+        )
+        val secondCallout = autoCallout.updateLocation(secondUpdate, gridState, settlementGrid)
+        assertNotNull("Expected the skipped crossing to be caught by the backward walk", secondCallout)
+        assertTrue(
+            "Expected \"Passing under\" the railway line, got: " +
+                "${secondCallout!!.positionedStrings.map { it.text }}",
+            secondCallout.positionedStrings.any {
+                it.text == "Passing under Edinburgh and Glasgow Main Line"
+            }
+        )
+    }
+
+    /**
      * The same concern for railways, which central Glasgow is full of: the Argyle Line and the
      * North Clyde Line run in tunnel under the city centre for hundreds of metres at a time, with
      * ordinary streets over the top. Announcing a railway crossing on every one of them would be

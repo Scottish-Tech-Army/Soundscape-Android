@@ -269,17 +269,6 @@ open class GridState(
 
         val roadTree = localTrees[TreeId.ROADS_AND_PATHS.id]
         val waterwayTree = localTrees[TreeId.NAMED_WATERWAYS.id]
-        // A single OSM way is split into several Way objects at its intersections, all sharing one
-        // osmId - see applyCrossing for why the "under" case needs all of them.
-        val waysByOsmId = featureCollections[TreeId.ROADS_AND_PATHS.id].features
-            .filterIsInstance<Way>()
-            .groupBy { it.osmId }
-        // The same, for the railway side of each crossing. A road bridge is a short Way, and at
-        // line speed a train can pass right over one between two location updates without ever
-        // being map-matched to the single railway piece that intersects it - so the crossing goes
-        // onto every piece of the line, and the approach piece can see it coming. Same reasoning
-        // as the "under" case in applyCrossing.
-        val railwaysByOsmId = railwayWays.groupBy { it.osmId }
         for (railway in railwayWays) {
             val railwayGeometry = railway.geometry as? LineString ?: continue
             if (railwayGeometry.coordinates.size < 2) continue
@@ -319,15 +308,7 @@ open class GridState(
                 // skipped above, so passing over a rail tunnel is deliberately never announced.)
                 val position =
                     if (roadBrunnel == "bridge") AlongWayPosition.OVER else AlongWayPosition.UNDER
-                applyCrossing(
-                    road,
-                    waysByOsmId,
-                    AlongWayKind.RAILWAY_CROSSING,
-                    railway.name,
-                    position,
-                    point,
-                    spreadAcrossOsmId = (position == AlongWayPosition.UNDER)
-                )
+                applyCrossing(road, AlongWayKind.RAILWAY_CROSSING, railway.name, position, point)
                 // And the mirror of it on the railway, so that a passenger's callout is a lookup
                 // on the line being ridden rather than a search of the roads that happen to be
                 // nearby - most of which are running alongside the line, not crossing it. The
@@ -336,7 +317,6 @@ open class GridState(
                 // with the user's own localized strings (see Way.getName).
                 applyCrossing(
                     railway,
-                    railwaysByOsmId,
                     AlongWayKind.ROAD_CROSSING,
                     road.name,
                     if (position == AlongWayPosition.OVER) {
@@ -345,7 +325,6 @@ open class GridState(
                         AlongWayPosition.OVER
                     },
                     point,
-                    spreadAcrossOsmId = true,
                     feature = road
                 )
                 crossingsFound++
@@ -423,55 +402,36 @@ open class GridState(
     }
 
     /**
-     * Records a crossing on the Way(s) it should fire from - the road for a RAILWAY_CROSSING, the
-     * railway for the mirrored ROAD_CROSSING.
+     * Records a crossing on the Way whose geometry it actually lies on - the road for a
+     * RAILWAY_CROSSING, the railway for the mirrored ROAD_CROSSING.
      *
-     * [spreadAcrossOsmId] decides whether just [way] is marked or every Way sharing its osmId. A
-     * single OSM way is split into several Way objects at its intersections, and which of those
-     * the user is map-matched to when the crossing should fire is not always the one the crossing
-     * point lands on:
-     *
-     * - A road going "over" carries its own brunnel, so OSM has already split it exactly at the
-     *   structure and the single intersecting Way *is* the bridge. Marking just that Way keeps the
-     *   callout's Way-change trigger pixel-accurate, so the caller passes false.
-     * - A road going "under" has nothing to split on: the road below is untagged and unbroken, so
-     *   the intersecting Way is an arbitrary piece of a road that may run for kilometres. The
-     *   caller passes true, so that whichever piece the user is matched to on the approach can see
-     *   the crossing coming and fire on proximity to [point] instead.
-     * - A railway always passes true. A road bridge is a short Way, and at line speed a train can
-     *   cross one between two location updates without ever being matched to the railway piece
-     *   that intersects it.
-     *
-     * AlongWayFeature.distanceFromStart on a piece that doesn't contain the crossing point clamps
-     * to one of its ends - see Way.distanceAlongWay.
+     * Exactly one Way, even though a single OSM way is split into several Way objects sharing an
+     * osmId. The crossing point comes from intersecting this Way's own geometry, so this is the
+     * piece it genuinely belongs to, and AlongWayFeature.distanceFromStart is an exact position
+     * within it. Marking the neighbouring pieces too would put the same crossing at a distance
+     * clamped to one of their ends, which the along-way queries (see nextAlongWayFeature) would
+     * then read as a real position - reporting the crossing several times over, at distances that
+     * are wrong. Reaching a crossing on the Way ahead is the graph walk's job, not the attach
+     * step's.
      */
     private fun applyCrossing(
         way: Way,
-        waysByOsmId: Map<Long, List<Way>>,
         kind: AlongWayKind,
         name: String?,
         position: AlongWayPosition,
         point: LngLatAlt,
-        spreadAcrossOsmId: Boolean,
         feature: MvtFeature? = null
     ) {
-        val targets = if (spreadAcrossOsmId) {
-            waysByOsmId[way.osmId] ?: listOf(way)
-        } else {
-            listOf(way)
-        }
-        for (target in targets) {
-            target.addAlongWayFeature(
-                AlongWayFeature(
-                    distanceFromStart = target.distanceAlongWay(point, ruler),
-                    point = point,
-                    kind = kind,
-                    name = name,
-                    position = position,
-                    feature = feature
-                )
+        way.addAlongWayFeature(
+            AlongWayFeature(
+                distanceFromStart = way.distanceAlongWay(point, ruler),
+                point = point,
+                kind = kind,
+                name = name,
+                position = position,
+                feature = feature
             )
-        }
+        )
     }
 
     // How far from a POI we'll look for a road to call it "on". StreetDescription uses 25m for
