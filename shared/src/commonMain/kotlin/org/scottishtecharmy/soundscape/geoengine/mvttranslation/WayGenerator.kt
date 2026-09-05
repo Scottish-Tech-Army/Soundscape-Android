@@ -169,7 +169,16 @@ class Way : MvtFeature() {
             // Lennox Park and Milngavie Station"). OSM route-relation line names (e.g. "Argyle
             // Line") aren't in this tile schema yet, so fall back to a plain "train" rather than
             // confecting a name - use the real name above once the tile data has one.
-            return strings?.getOrNull(StringKey.DirectionsGenericTrain) ?: "train"
+            //
+            // A tramway gets its own word: the Edinburgh line carries no name in the tile data, so
+            // without this a tram rider is told "On train". Only tram, deliberately - light_rail,
+            // monorail and funicular have no one word that reads right across the systems tagged
+            // with them, and "train" is at least not wrong for those.
+            return if (featureValue == "tram") {
+                strings?.getOrNull(StringKey.DirectionsGenericTram) ?: "tram"
+            } else {
+                strings?.getOrNull(StringKey.DirectionsGenericTrain) ?: "train"
+            }
         }
 
         if (result == null) {

@@ -2369,6 +2369,48 @@ class MvtTileTest {
     }
 
     /**
+     * A tramway gets its own word. The generic fallback above covers any unnamed railway, and the
+     * Edinburgh tram line carries no name in the tile data - so without this a tram rider is told
+     * "On train", which is simply the wrong vehicle.
+     *
+     * Only tram: light_rail, monorail and funicular have no one word that reads right across the
+     * systems tagged with them, and "train" is at least not wrong for those.
+     */
+    @Test
+    fun testUnnamedTramFallsBackToGenericTram() {
+        val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val unnamedTramway = Way().apply {
+            featureType = "transit"
+            featureValue = "tram"
+        }
+        val userGeometry = UserGeometry(
+            location = location,
+            speed = 15.0,
+            mapMatchedRailway = unnamedTramway
+        )
+
+        val result = describeReverseGeocode(userGeometry, gridState, settlementGrid, null)
+
+        assertNotNull(result)
+        assertEquals("On tram and close to Cowcaddens", result!!.text)
+
+        // ...and a light rail line, which shares the transit type, still says train.
+        val unnamedLightRail = Way().apply {
+            featureType = "transit"
+            featureValue = "light_rail"
+        }
+        val lightRailResult = describeReverseGeocode(
+            UserGeometry(location = location, speed = 15.0, mapMatchedRailway = unnamedLightRail),
+            gridState, settlementGrid, null
+        )
+        assertNotNull(lightRailResult)
+        assertEquals("On train and close to Cowcaddens", lightRailResult!!.text)
+    }
+
+    /**
      * Measures the actual CPU cost of running the new rail MapMatchFilter alongside the existing
      * road one, since running map matching twice per location update is a real concern. Compares:
      *  1. Road matching alone over a real road route (existing behaviour).

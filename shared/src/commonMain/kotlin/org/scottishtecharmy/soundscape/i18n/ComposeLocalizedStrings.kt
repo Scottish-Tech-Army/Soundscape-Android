@@ -100,6 +100,7 @@ import org.scottishtecharmy.soundscape.resources.directions_facing_s
 import org.scottishtecharmy.soundscape.resources.directions_facing_se
 import org.scottishtecharmy.soundscape.resources.directions_facing_sw
 import org.scottishtecharmy.soundscape.resources.directions_facing_w
+import org.scottishtecharmy.soundscape.resources.directions_generic_tram
 import org.scottishtecharmy.soundscape.resources.directions_generic_train
 import org.scottishtecharmy.soundscape.resources.directions_crossing_waterway
 import org.scottishtecharmy.soundscape.resources.directions_crossing_railway_generic
@@ -324,6 +325,7 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.DirectionsNearSettlementInline -> Res.string.directions_near_settlement_inline
         StringKey.DirectionsCloseToSettlementInline -> Res.string.directions_close_to_settlement_inline
         StringKey.DirectionsGenericTrain -> Res.string.directions_generic_train
+        StringKey.DirectionsGenericTram -> Res.string.directions_generic_tram
         StringKey.DirectionsCrossingWaterway -> Res.string.directions_crossing_waterway
         StringKey.DirectionsCrossingRailwayGeneric -> Res.string.directions_crossing_railway_generic
         StringKey.DirectionsGoingUnderRailway -> Res.string.directions_going_under_railway

@@ -410,6 +410,8 @@
     <string name="directions_close_to_settlement_inline">close to %1$s</string>
     <!-- Travelling on an unnamed railway line - used in place of a line name (e.g. "Argyle Line") when the line's name isn't available in the map data, combined with the "On %s" style templates, example: "On train" -->
     <string name="directions_generic_train">train</string>
+    <!-- The same, for an unnamed tramway rather than a railway line - what the rider is on is a tram, not a train, example: "On tram" -->
+    <string name="directions_generic_tram">tram</string>
     <!-- Travelling by car, bus or train, called out on passing above a named feature: a river or canal crossed by a bridge, a railway line crossed by a bridge, or (riding a train) a road the line is carried over. Pairs with "Passing under %1$s" below, so the two should stay symmetrical - the point is to say which side of the feature the traveller is on. %1$s is the feature's name, examples: "Passing over Allander Water", "Passing over the West Highland Line", "Passing over Great Western Road" -->
     <string name="directions_crossing_waterway">Passing over %1$s</string>
     <!-- Travelling by car or bus, called out on passing above a railway that has no name in the map data, example: "Passing over the railway" -->
