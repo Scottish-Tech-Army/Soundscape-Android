@@ -4,6 +4,7 @@ import org.scottishtecharmy.soundscape.geoengine.GridState
 import org.scottishtecharmy.soundscape.geoengine.utils.Direction
 import org.scottishtecharmy.soundscape.geoengine.utils.bearingFromTwoPoints
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
+import org.scottishtecharmy.soundscape.geoengine.utils.distanceAlongLineString
 import org.scottishtecharmy.soundscape.geoengine.utils.getCombinedDirectionSegments
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
@@ -102,6 +103,52 @@ class Way : MvtFeature() {
     var intersections = arrayOf<Intersection?>(null, null)  // Intersections at either end
 
     var wayType = WayType.REGULAR
+
+    /**
+     * Features positioned along this Way - crossings today, transit stops and junctions in future
+     * - kept sorted ascending by [AlongWayFeature.distanceFromStart] so that "what's next along
+     * this road?" is a lookup rather than a geographic search. Add via [addAlongWayFeature] to
+     * maintain that ordering.
+     *
+     * A sorted list rather than a map keyed by distance: commonMain has no sorted-map type, and
+     * two features can legitimately sit at the same distance. Ways are the pieces of road between
+     * intersections, so these lists are short and a linear scan costs nothing.
+     */
+    val alongWayFeatures = mutableListOf<AlongWayFeature>()
+
+    /** Inserts [feature] keeping [alongWayFeatures] sorted by distance from the START end. */
+    fun addAlongWayFeature(feature: AlongWayFeature) {
+        val index = alongWayFeatures.indexOfFirst {
+            it.distanceFromStart > feature.distanceFromStart
+        }
+        if (index < 0)
+            alongWayFeatures.add(feature)
+        else
+            alongWayFeatures.add(index, feature)
+    }
+
+    fun alongWayFeatures(kind: AlongWayKind): List<AlongWayFeature> =
+        alongWayFeatures.filter { it.kind == kind }
+
+    fun firstAlongWayFeature(kind: AlongWayKind): AlongWayFeature? =
+        alongWayFeatures.firstOrNull { it.kind == kind }
+
+    /**
+     * The distance in metres from this Way's START intersection to the nearest point on this Way
+     * to [point].
+     *
+     * Note that [point] needn't actually lie on the Way: a crossing is recorded against every Way
+     * sharing the road's osmId (see GridState.applyCrossing), because the road passing *under* a
+     * structure is never split at it, and the piece the user is matched to on the approach has to
+     * be able to see the crossing coming. Ruler.distanceToLineString clamps to the line's extent,
+     * so for such a piece this returns 0.0 or [length] - correctly reading as "off my start" or
+     * "off my end" rather than as a position within the Way.
+     */
+    fun distanceAlongWay(point: LngLatAlt, ruler: Ruler): Double {
+        val line = geometry as? LineString ?: return 0.0
+        if (line.coordinates.size < 2) return 0.0
+        return distanceAlongLineString(line, ruler.distanceToLineString(point, line), ruler)
+    }
 
     fun getName(
         direction: Boolean? = null,
@@ -509,6 +556,20 @@ class Way : MvtFeature() {
         newWay2.geometry = line2
         newWay2.length = length2
 
+        // Divide any along-way features between the two halves, re-basing the second half's
+        // distances onto its own new START. Routing (the only current user of these temporary
+        // Ways) doesn't read them, but leaving them behind would silently mislead any future
+        // caller which does.
+        for (feature in alongWayFeatures) {
+            if (feature.distanceFromStart <= length1) {
+                newWay1.addAlongWayFeature(feature)
+            } else {
+                newWay2.addAlongWayFeature(
+                    feature.copy(distanceFromStart = feature.distanceFromStart - length1)
+                )
+            }
+        }
+
         if (length1 > length2) {
             newIntersection.members.add(newWay2)
             newIntersection.members.add(newWay1)        // Sort these based on length
@@ -586,6 +647,39 @@ class WayGenerator(val transit: Boolean = false) {
     private val ways = mutableListOf<Way>()
 
     private val intersections: HashMap<LngLatAlt, Intersection> = hashMapOf()
+
+    /**
+     * Turns the crossings found by MvtToGeoJson.extractCrossings into AlongWayFeatures on the Ways
+     * they belong to. Must be called after [generateWays], since the distance along a Way is only
+     * meaningful once the parent feature has been split into Ways with their own geometry.
+     *
+     * A crossing is attached to *every* Way sharing the crossing road's osmId, not just the piece
+     * the crossing point lands on. Going under a structure there's nothing for OSM to split the
+     * road on, so the piece the user is map-matched to on the approach is often not the piece
+     * containing the crossing point, and it still has to be able to see the crossing coming. See
+     * Way.distanceAlongWay for what distanceFromStart means on a piece that doesn't contain the
+     * point.
+     */
+    internal fun attachCrossings(
+        crossingsByOsmId: Map<Long, MutableList<CrossingInfo>>,
+        ruler: Ruler
+    ) {
+        if (crossingsByOsmId.isEmpty()) return
+        for (way in ways) {
+            val crossings = crossingsByOsmId[way.osmId] ?: continue
+            for (crossing in crossings) {
+                way.addAlongWayFeature(
+                    AlongWayFeature(
+                        distanceFromStart = way.distanceAlongWay(crossing.point, ruler),
+                        point = crossing.point,
+                        kind = crossing.kind,
+                        name = crossing.name,
+                        position = crossing.position
+                    )
+                )
+            }
+        }
+    }
 
     /**
      * addLine is called for any line feature that is being added to the FeatureCollection.

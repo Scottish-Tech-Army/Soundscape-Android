@@ -8,6 +8,7 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.processTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.findLineIntersectionPoint
+import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.superCategoryMap
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -315,24 +316,29 @@ private class RoadLine(val osmId: Long, val brunnel: String?, val coordinates: L
 private class PendingCulvert(val coordinates: List<LngLatAlt>, val name: String, val brunnel: String)
 
 // The crossing info to attach to the crossing road's Way, keyed by that road's osmId - see
-// extractCrossings. type is "waterway" (railway crossings are resolved separately, after tile
-// stitching - see GridState.attachRailwayCrossings).
+// extractCrossings. kind is always WATERWAY_CROSSING here (railway crossings are resolved
+// separately, after tile stitching - see GridState.attachRailwayCrossings).
 //
-// `position` is always the *user's* relationship to the named structure - "over" or "under" - not
-// a raw OSM brunnel value. That distinction matters because the brunnel evidence arrives from
-// either side and the two invert each other: a road tagged brunnel=bridge is over the river,
-// whereas a waterway tagged brunnel=bridge is an aqueduct, so the road below it goes under.
-// Storing the OSM tag instead of the resolved relationship is what made every aqueduct announce
-// "Crossing the Union Canal" while the user was driving underneath it.
+// This is the pre-Way form of an AlongWayFeature: it can't become one until generateWays has split
+// the parent feature into Ways, since the distance along the Way is only meaningful once the Way
+// has its own geometry. Internal rather than private so that WayGenerator.attachCrossings can take
+// a map of these.
+//
+// `position` is always the *user's* relationship to the named structure - over or under - not a raw
+// OSM brunnel value. That distinction matters because the brunnel evidence arrives from either side
+// and the two invert each other: a road tagged brunnel=bridge is over the river, whereas a waterway
+// tagged brunnel=bridge is an aqueduct, so the road below it goes under. Storing the OSM tag
+// instead of the resolved relationship is what made every aqueduct announce "Crossing the Union
+// Canal" while the user was driving underneath it.
 //
 // `point` is where the two lines actually cross. The road below a structure carries no brunnel of
 // its own, so OSM never splits it there and it can run for kilometres either side; the callout
 // needs the real crossing point to know when to fire (see AutoCallout.crossingToAnnounce).
-private data class CrossingInfo(
-    val type: String,
+internal data class CrossingInfo(
+    val kind: AlongWayKind,
     val name: String?,
-    val position: String,
-    val point: LngLatAlt?
+    val position: AlongWayPosition,
+    val point: LngLatAlt
 )
 
 /**
@@ -341,10 +347,13 @@ private data class CrossingInfo(
  * Leven". The road/path doing the crossing can be any highway class, including footway/path, so a
  * pedestrian on a footbridge gets the same callout as a vehicle on a road bridge at the same spot.
  *
- * Returns the crossing info keyed by the OSM id of the crossing road/path, ready to be attached
- * directly to that road's Way(s) (see the `crossingsByOsmId[id]?.let { ... }` call in
- * vectorTileToGeoJson, which propagates it into Way.properties) - this lets travel-mode callouts
- * read it straight off userGeometry.mapMatchedWay with no further search needed.
+ * Returns the crossings keyed by the OSM id of the crossing road/path, ready to be attached to
+ * that road's Way(s) as AlongWayFeatures once generateWays has split them (see
+ * WayGenerator.attachCrossings, called from vectorTileToGeoJson) - this lets travel-mode callouts
+ * read them straight off userGeometry.mapMatchedWay with no further search needed.
+ *
+ * A road can cross more than one named feature - a viaduct over both a river and a railway - so
+ * the value is a list rather than a single crossing.
  *
  * A small stream culverted under a road is already split at the crossing point and tagged there
  * (`brunnel=tunnel`, occasionally `bridge`/`ford`) - the tagged segment itself IS the crossing,
@@ -369,8 +378,8 @@ private fun extractCrossings(
     tileX: Int,
     tileY: Int,
     tileZoom: Int
-): HashMap<Long, CrossingInfo> {
-    val crossingsByOsmId = HashMap<Long, CrossingInfo>()
+): HashMap<Long, MutableList<CrossingInfo>> {
+    val crossingsByOsmId = HashMap<Long, MutableList<CrossingInfo>>()
     val namedWaterways = mutableListOf<NamedLine>()
     val roadLines = mutableListOf<RoadLine>()
     val pendingCulverts = mutableListOf<PendingCulvert>()
@@ -443,10 +452,12 @@ private fun extractCrossings(
         // The brunnel here belongs to the *waterway*, so it inverts: an aqueduct (brunnel=bridge)
         // carries the water over the road, meaning the user passes under it, while a culvert or
         // ford takes the water beneath the road, meaning the user passes over it.
-        val position = if (culvert.brunnel == "bridge") "under" else "over"
+        val position =
+            if (culvert.brunnel == "bridge") AlongWayPosition.UNDER else AlongWayPosition.OVER
         for (road in findCrossingRoads(culvert.coordinates, roadLines)) {
-            crossingsByOsmId[road.osmId] =
-                CrossingInfo("waterway", culvert.name, position, road.point)
+            crossingsByOsmId.getOrPut(road.osmId) { mutableListOf() }.add(
+                CrossingInfo(AlongWayKind.WATERWAY_CROSSING, culvert.name, position, road.point)
+            )
         }
     }
 
@@ -458,17 +469,15 @@ private fun extractCrossings(
             // mapped as water polygons rather than waterway lines, so a road tunnel under one of
             // those is picked up by AutoCallout.wayCrossingInfo's fallback instead of here.
             val position = when (road.brunnel) {
-                "bridge" -> "over"
-                "tunnel" -> "under"
+                "bridge" -> AlongWayPosition.OVER
+                "tunnel" -> AlongWayPosition.UNDER
                 else -> continue
             }
             val point =
                 findLineIntersectionPoint(waterway.coordinates, road.coordinates) ?: continue
-            // A road crossing two different named features (e.g. a viaduct over both a river and
-            // a railway) is rare enough that last-write-wins here is fine - Way.properties is a
-            // flat map, so supporting more than one crossing per Way isn't worth the complexity.
-            crossingsByOsmId[road.osmId] =
-                CrossingInfo("waterway", waterway.name, position, point)
+            crossingsByOsmId.getOrPut(road.osmId) { mutableListOf() }.add(
+                CrossingInfo(AlongWayKind.WATERWAY_CROSSING, waterway.name, position, point)
+            )
         }
     }
 
@@ -1021,20 +1030,6 @@ fun vectorTileToGeoJson(
                     geoFeature.featureClass = featureClass
                     geoFeature.featureSubClass = featureSubClass
                     geoFeature.properties = properties
-                    if (layer.name == "transportation") {
-                        crossingsByOsmId[id]?.let { crossing ->
-                            geoFeature.setProperty("crossing_type", crossing.type)
-                            crossing.name?.let { geoFeature.setProperty("crossing_name", it) }
-                            geoFeature.setProperty("crossing_position", crossing.position)
-                            // Two Doubles rather than an LngLatAlt: GeoJsonObjectMoshiAdapter
-                            // writes any non-primitive property value as JSON null, so an object
-                            // here would silently vanish from the debug GeoJSON dumps.
-                            crossing.point?.let {
-                                geoFeature.setProperty("crossing_latitude", it.latitude)
-                                geoFeature.setProperty("crossing_longitude", it.longitude)
-                            }
-                        }
-                    }
                     if (translateProperties(geoFeature)) {
                         // Categorise as we go, picking the highest ranking category
                         val ft = superCategoryMap[geoFeature.featureType]
@@ -1145,6 +1140,18 @@ fun vectorTileToGeoJson(
         transitIntersectionMap,
         tileX, tileY, tileZoom
     )
+
+    // Now that the road features have been split into Ways with their own geometry, the crossings
+    // found above can be attached at their real distance along each Way. Only the road generator:
+    // extractCrossings deliberately excludes railways (their crossings need tile-stitched
+    // geometry, so GridState.attachRailwayCrossings handles them instead), so a transit Way can
+    // never appear in crossingsByOsmId.
+    if (crossingsByOsmId.isNotEmpty()) {
+        wayGenerator.attachCrossings(
+            crossingsByOsmId,
+            getLatLonTileWithOffset(tileX, tileY, tileZoom, 0.0, 0.0).createCheapRuler()
+        )
+    }
 
     // TODO:
     //  This is the first step towards categorising Features as we go rather than returning

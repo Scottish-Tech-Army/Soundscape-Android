@@ -10,6 +10,9 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.scottishtecharmy.soundscape.dto.BoundingBox
 import org.scottishtecharmy.soundscape.dto.Tile
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayPosition
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.IntersectionType
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
@@ -227,8 +230,7 @@ open class GridState(
     private val structureCrossingSearchDistanceMetres = 20.0
 
     /**
-     * Attaches crossing_type/crossing_name/crossing_position/crossing_latitude/crossing_longitude
-     * properties directly onto the road/path
+     * Attaches an AlongWayFeature (RAILWAY_CROSSING) directly onto the road/path
      * Way(s) that geometrically cross a railway - and, via attachRailwayWaterwayCrossing, onto the
      * railway Ways that cross a named river or canal - mirroring what extractCrossings (MvtToGeoJson.kt)
      * already does for waterway crossings at MVT-tile-parse time - see its class doc comment for
@@ -309,8 +311,16 @@ open class GridState(
                 // the evidence came from the railway being a bridge - in which case the road is
                 // the thing underneath. (railwayBrunnel can never be "tunnel" here: those are
                 // skipped above, so passing over a rail tunnel is deliberately never announced.)
-                val position = if (roadBrunnel == "bridge") "over" else "under"
-                applyCrossing(road, waysByOsmId, "railway", railway.name, position, point)
+                val position =
+                    if (roadBrunnel == "bridge") AlongWayPosition.OVER else AlongWayPosition.UNDER
+                applyCrossing(
+                    road,
+                    waysByOsmId,
+                    AlongWayKind.RAILWAY_CROSSING,
+                    railway.name,
+                    position,
+                    point
+                )
                 crossingsFound++
             }
         }
@@ -319,8 +329,8 @@ open class GridState(
 
     /**
      * Records on a railway [Way] the named river or canal it crosses, using the same
-     * crossing_type/crossing_name/crossing_position/crossing_latitude/crossing_longitude properties
-     * the road crossings use, so that the callout code can read either the same way.
+     * AlongWayFeature the road crossings use, so that the callout code can read either the same
+     * way.
      *
      * Nothing computes this anywhere else. extractCrossings (MvtToGeoJson.kt) resolves waterway
      * crossings at tile-parse time but deliberately excludes railways from its road list, on the
@@ -346,8 +356,8 @@ open class GridState(
         waterwayTree: FeatureTree
     ): Boolean {
         val position = when (railwayBrunnel) {
-            "bridge" -> "over"
-            "tunnel" -> "under"
+            "bridge" -> AlongWayPosition.OVER
+            "tunnel" -> AlongWayPosition.UNDER
             else -> return false
         }
 
@@ -371,11 +381,15 @@ open class GridState(
             // Written straight onto this Way rather than onto every piece sharing its osmId: OSM
             // splits the line at the structure, so the Way that intersects the water *is* the
             // bridge, and it's the piece the train will be matched to as it goes over.
-            railway.setProperty("crossing_type", "waterway")
-            railway.setProperty("crossing_name", name)
-            railway.setProperty("crossing_position", position)
-            railway.setProperty("crossing_latitude", point.latitude)
-            railway.setProperty("crossing_longitude", point.longitude)
+            railway.addAlongWayFeature(
+                AlongWayFeature(
+                    distanceFromStart = railway.distanceAlongWay(point, ruler),
+                    point = point,
+                    kind = AlongWayKind.WATERWAY_CROSSING,
+                    name = name,
+                    position = position
+                )
+            )
             return true
         }
         return false
@@ -391,25 +405,35 @@ open class GridState(
      * Going "under" there's nothing to split on: the road below is untagged and unbroken, so the
      * intersecting Way is an arbitrary piece of a road that may run for kilometres. Every Way
      * sharing its osmId is marked, so that whichever piece the user is map-matched to on the
-     * approach can see the crossing coming and fire on proximity to `point` instead. This also
-     * brings the railway path into line with the waterway one, where all the split Ways already
-     * inherit these properties from the pre-split MvtFeature (see WayGenerator).
+     * approach can see the crossing coming and fire on proximity to `point` instead. This matches
+     * what WayGenerator.attachCrossings does for waterway crossings, which are attached to every
+     * split Way sharing the road's osmId for the same reason. AlongWayFeature.distanceFromStart on
+     * a piece that doesn't contain the crossing point clamps to one of its ends - see
+     * Way.distanceAlongWay.
      */
     private fun applyCrossing(
         road: Way,
         waysByOsmId: Map<Long, List<Way>>,
-        type: String,
+        kind: AlongWayKind,
         name: String?,
-        position: String,
+        position: AlongWayPosition,
         point: LngLatAlt
     ) {
-        val targets = if (position == "over") listOf(road) else waysByOsmId[road.osmId] ?: listOf(road)
+        val targets = if (position == AlongWayPosition.OVER) {
+            listOf(road)
+        } else {
+            waysByOsmId[road.osmId] ?: listOf(road)
+        }
         for (way in targets) {
-            way.setProperty("crossing_type", type)
-            way.setProperty("crossing_position", position)
-            way.setProperty("crossing_latitude", point.latitude)
-            way.setProperty("crossing_longitude", point.longitude)
-            name?.let { way.setProperty("crossing_name", it) }
+            way.addAlongWayFeature(
+                AlongWayFeature(
+                    distanceFromStart = way.distanceAlongWay(point, ruler),
+                    point = point,
+                    kind = kind,
+                    name = name,
+                    position = position
+                )
+            )
         }
     }
 
@@ -627,10 +651,10 @@ open class GridState(
         // so only the railway half is timed here - but report both counts, since the time is only
         // meaningful against how many crossings there were to find.
         val waterwayCrossings = featureCollections[TreeId.ROADS_AND_PATHS.id].features
-            .count { (it as? Way)?.properties?.get("crossing_type") == "waterway" }
+            .sumOf { (it as? Way)?.alongWayFeatures(AlongWayKind.WATERWAY_CROSSING)?.size ?: 0 }
         println(
             "Crossings took $crossingTiming " +
-                "($railwayCrossings railway ways, $waterwayCrossings waterway ways)"
+                "($railwayCrossings railway crossings, $waterwayCrossings waterway crossings)"
         )
 
         val nearestWayTiming = measureTime {

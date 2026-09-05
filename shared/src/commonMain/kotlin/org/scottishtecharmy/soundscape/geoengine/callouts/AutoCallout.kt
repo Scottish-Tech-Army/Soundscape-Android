@@ -16,6 +16,9 @@ import org.scottishtecharmy.soundscape.geoengine.filters.CalloutHistory
 import org.scottishtecharmy.soundscape.geoengine.filters.LocationUpdateFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.formatDistanceAndDirection
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayPosition
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.CountryBoundaries
@@ -508,43 +511,41 @@ class AutoCallout(
         ).features.filterIsInstance<Way>()
 
         for (railway in nearbyRailways) {
-            if (railway.properties?.get("crossing_type") != "waterway") continue
             // Belongs to the line actually being ridden, not one running alongside it. The road
-            // loop below tests the same thing the other way round, via crossing_name.
+            // loop below tests the same thing the other way round, via the crossing's name.
             if (railway.name != railwayName) continue
-            val waterName = railway.properties?.get("crossing_name") as? String ?: continue
-            val latitude = railway.properties?.get("crossing_latitude") as? Double ?: continue
-            val longitude = railway.properties?.get("crossing_longitude") as? Double ?: continue
-            val point = LngLatAlt(longitude, latitude)
-            if (gridState.ruler.distance(userGeometry.location, point) > radius) continue
+            for (crossing in railway.alongWayFeatures(AlongWayKind.WATERWAY_CROSSING)) {
+                val waterName = crossing.name ?: continue
+                val point = crossing.point
+                if (gridState.ruler.distance(userGeometry.location, point) > radius) continue
 
-            // Keyed on the water's name, so a line crossing a river on two adjacent bridge decks
-            // announces it once.
-            val key = "water|$waterName"
-            if (announcedCrossings.any { it.key == key }) continue
+                // Keyed on the water's name, so a line crossing a river on two adjacent bridge
+                // decks announces it once.
+                val key = "water|$waterName"
+                if (announcedCrossings.any { it.key == key }) continue
 
-            // Not inverted, unlike the road case below: crossing_position here already describes
-            // the train's own relationship to the water.
-            val position = railway.properties?.get("crossing_position") as? String
-            val text = crossingCalloutText(WayCrossingInfo("waterway", waterName, position, point))
+                // Not inverted, unlike the road case below: the recorded position here already
+                // describes the train's own relationship to the water.
+                val text = crossingCalloutText(WayCrossingInfo(crossing))
 
-            announcedCrossings.add(
-                AnnouncedCrossing(key, point, userGeometry.timestampMilliseconds)
-            )
-            return TrackedCallout(
-                userGeometry,
-                trackedText = waterName,
-                location = userGeometry.location,
-                positionedStrings = listOf(
-                    PositionedString(
-                        text = text,
-                        location = userGeometry.location,
-                        type = AudioType.STANDARD
-                    )
-                ),
-                isPoint = true,
-                isGeneric = false,
-            )
+                announcedCrossings.add(
+                    AnnouncedCrossing(key, point, userGeometry.timestampMilliseconds)
+                )
+                return TrackedCallout(
+                    userGeometry,
+                    trackedText = waterName,
+                    location = userGeometry.location,
+                    positionedStrings = listOf(
+                        PositionedString(
+                            text = text,
+                            location = userGeometry.location,
+                            type = AudioType.STANDARD
+                        )
+                    ),
+                    isPoint = true,
+                    isGeneric = false,
+                )
+            }
         }
 
         // TreeId.ROADS rather than ROADS_AND_PATHS: footways, pavements, cycleways and bridleways
@@ -560,67 +561,72 @@ class AutoCallout(
         ).features.filterIsInstance<Way>()
 
         for (road in nearbyRoads) {
-            if (road.properties?.get("crossing_type") != "railway") continue
-            if (road.properties?.get("crossing_name") != railwayName) continue
-            val latitude = road.properties?.get("crossing_latitude") as? Double ?: continue
-            val longitude = road.properties?.get("crossing_longitude") as? Double ?: continue
-            val point = LngLatAlt(longitude, latitude)
-            if (gridState.ruler.distance(userGeometry.location, point) > radius) continue
+            for (crossing in road.alongWayFeatures(AlongWayKind.RAILWAY_CROSSING)) {
+                if (crossing.name != railwayName) continue
+                val point = crossing.point
+                if (gridState.ruler.distance(userGeometry.location, point) > radius) continue
 
-            // Only genuinely named roads. Way.getName confects a name for anything unnamed, which
-            // from a train reads as noise rather than a landmark - "Passing over Service that joins
-            // Lennox Park and Crossveggate" tells a passenger nothing.
-            if ((road.name == null) && (road.ref == null)) continue
-            val roadName = road.getName(null, gridState, localized, true)
-            if (roadName.isEmpty()) continue
+                // Only genuinely named roads. Way.getName confects a name for anything unnamed,
+                // which from a train reads as noise rather than a landmark - "Passing over Service
+                // that joins Lennox Park and Crossveggate" tells a passenger nothing.
+                if ((road.name == null) && (road.ref == null)) continue
+                val roadName = road.getName(null, gridState, localized, true)
+                if (roadName.isEmpty()) continue
 
-            // Keyed on the name rather than the osmId, so a dual carriageway carried on two
-            // separate bridge decks is announced once rather than twice. Genuinely crossing the
-            // same road again later in the journey still re-announces, once the earlier entry has
-            // aged or fallen far enough behind to be pruned above.
-            val key = "road|$roadName"
-            if (announcedCrossings.any { it.key == key }) continue
+                // Keyed on the name rather than the osmId, so a dual carriageway carried on two
+                // separate bridge decks is announced once rather than twice. Genuinely crossing
+                // the same road again later in the journey still re-announces, once the earlier
+                // entry has aged or fallen far enough behind to be pruned above.
+                val key = "road|$roadName"
+                if (announcedCrossings.any { it.key == key }) continue
 
-            // Inverted: a road recorded as being over the railway is one the train goes under.
-            val goingUnder = road.properties?.get("crossing_position") == "over"
-            val text = if (goingUnder) {
-                localized?.get(StringKey.DirectionsGoingUnderRailway, roadName)
-                    ?: "Passing under $roadName"
-            } else {
-                localized?.get(StringKey.DirectionsCrossingWaterway, roadName)
-                    ?: "Passing over $roadName"
+                // Inverted: a road recorded as being over the railway is one the train goes under.
+                val goingUnder = crossing.position == AlongWayPosition.OVER
+                val text = if (goingUnder) {
+                    localized?.get(StringKey.DirectionsGoingUnderRailway, roadName)
+                        ?: "Passing under $roadName"
+                } else {
+                    localized?.get(StringKey.DirectionsCrossingWaterway, roadName)
+                        ?: "Passing over $roadName"
+                }
+
+                announcedCrossings.add(
+                    AnnouncedCrossing(key, point, userGeometry.timestampMilliseconds)
+                )
+                return TrackedCallout(
+                    userGeometry,
+                    trackedText = roadName,
+                    location = userGeometry.location,
+                    positionedStrings = listOf(
+                        PositionedString(
+                            text = text,
+                            location = userGeometry.location,
+                            type = AudioType.STANDARD
+                        )
+                    ),
+                    isPoint = true,
+                    isGeneric = false,
+                )
             }
-
-            announcedCrossings.add(
-                AnnouncedCrossing(key, point, userGeometry.timestampMilliseconds)
-            )
-            return TrackedCallout(
-                userGeometry,
-                trackedText = roadName,
-                location = userGeometry.location,
-                positionedStrings = listOf(
-                    PositionedString(
-                        text = text,
-                        location = userGeometry.location,
-                        type = AudioType.STANDARD
-                    )
-                ),
-                isPoint = true,
-                isGeneric = false,
-            )
         }
         return null
     }
 
-    // position is the user's relationship to the structure, "over" or "under" - see CrossingInfo
-    // in MvtToGeoJson.kt for why the raw OSM brunnel value isn't good enough. point is where the
-    // road and the structure actually cross, absent for the water-polygon fallback below.
+    // The union of a crossing recorded against a Way (an AlongWayFeature) and the live
+    // named-water-polygon fallback in wayCrossingInfo below, which has no crossing point at all -
+    // hence the nullable point, which an AlongWayFeature doesn't have.
+    //
+    // position is the user's relationship to the structure - see AlongWayPosition for why the raw
+    // OSM brunnel value isn't good enough.
     private data class WayCrossingInfo(
-        val type: String,
+        val kind: AlongWayKind,
         val name: String?,
-        val position: String?,
+        val position: AlongWayPosition?,
         val point: LngLatAlt?
-    )
+    ) {
+        constructor(feature: AlongWayFeature) :
+            this(feature.kind, feature.name, feature.position, feature.point)
+    }
 
     private data class AnnouncedCrossing(
         val key: String,
@@ -629,35 +635,31 @@ class AutoCallout(
     )
 
     /**
-     * Reads the crossing_type/crossing_name/crossing_position/crossing_latitude/crossing_longitude
-     * properties extractCrossings (see
-     * MvtToGeoJson.kt) attaches directly onto the Way(s) that cross a named river/canal or a
+     * Reads the crossing AlongWayFeature that extractCrossings (see MvtToGeoJson.kt) or
+     * GridState.attachRailwayCrossings attaches to the Way(s) that cross a named river/canal or a
      * railway, if any. An unnamed waterway crossing isn't worth announcing - there's nothing
      * useful to say beyond "Crossing" nothing - but an unnamed railway still is, since "Crossing
      * the railway" is meaningful on its own even without a line name.
      *
+     * Where a Way carries more than one crossing (a viaduct over both a river and a railway), the
+     * waterway is preferred: it's the bigger landmark of the two.
+     *
      * extractCrossings only covers named river/canal `waterway` lines - a firth/bay/strait is
-     * tagged `natural=bay`/`natural=strait` in OSM, not as a waterway, so it never gets a
-     * crossing_* property attached at parse time. Rather than trying to compute a specific
-     * crossing point for those at parse time (unreliable - a firth is commonly wider than a
-     * single MVT tile, so a bridge across one can straddle several tiles), fall back to a live
-     * check here instead: if we're on a bridge with no pre-attached crossing info, look for a
-     * named water polygon (see TreeId.NAMED_WATER_POLYGONS) at/near the current location.
+     * tagged `natural=bay`/`natural=strait` in OSM, not as a waterway, so it never gets a crossing
+     * attached at parse time. Rather than trying to compute a specific crossing point for those at
+     * parse time (unreliable - a firth is commonly wider than a single MVT tile, so a bridge
+     * across one can straddle several tiles), fall back to a live check here instead: if we're on
+     * a bridge with no pre-attached crossing info, look for a named water polygon (see
+     * TreeId.NAMED_WATER_POLYGONS) at/near the current location.
      */
     private fun wayCrossingInfo(way: Way, gridState: GridState, location: LngLatAlt): WayCrossingInfo? {
-        val type = way.properties?.get("crossing_type") as? String
-        if (type != null) {
-            val name = way.properties?.get("crossing_name") as? String
-            if (type == "waterway" && name.isNullOrEmpty()) return null
-            val position = way.properties?.get("crossing_position") as? String
-            val latitude = way.properties?.get("crossing_latitude") as? Double
-            val longitude = way.properties?.get("crossing_longitude") as? Double
-            val point = if (latitude != null && longitude != null) {
-                LngLatAlt(longitude, latitude)
-            } else {
-                null
+        val attached = way.firstAlongWayFeature(AlongWayKind.WATERWAY_CROSSING)
+            ?: way.firstAlongWayFeature(AlongWayKind.RAILWAY_CROSSING)
+        if (attached != null) {
+            if ((attached.kind == AlongWayKind.WATERWAY_CROSSING) && attached.name.isNullOrEmpty()) {
+                return null
             }
-            return WayCrossingInfo(type, name, position, point)
+            return WayCrossingInfo(attached)
         }
 
         // A bridge carries the user over the water, a tunnel takes them under it - the Clyde
@@ -665,8 +667,8 @@ class AutoCallout(
         // extractCrossings, because a firth/bay/tidal river is a water polygon rather than a
         // waterway line.
         val position = when (way.properties?.get("brunnel")) {
-            "bridge" -> "over"
-            "tunnel" -> "under"
+            "bridge" -> AlongWayPosition.OVER
+            "tunnel" -> AlongWayPosition.UNDER
             else -> return null
         }
         val waterTree = gridState.getFeatureTree(TreeId.NAMED_WATER_POLYGONS)
@@ -677,7 +679,7 @@ class AutoCallout(
         // No crossing point for this one - a firth is commonly wider than a tile, so there's no
         // precomputed intersection to aim at. The Way is itself the bridge or tunnel though, so
         // the Way change is already an accurate trigger; see crossingToAnnounce.
-        return WayCrossingInfo("waterway", waterName, position, null)
+        return WayCrossingInfo(AlongWayKind.WATERWAY_CROSSING, waterName, position, null)
     }
 
     // How much warning to give before reaching a crossing the user passes under, and the bounds
@@ -736,7 +738,7 @@ class AutoCallout(
                     crossingForgetDistanceMetres)
         }
 
-        val key = "${way.osmId}|${crossing.type}|${crossing.name}"
+        val key = "${way.osmId}|${crossing.kind}|${crossing.name}"
         if (announcedCrossings.any { it.key == key }) return null
 
         val radius = (userGeometry.speed * crossingTriggerLeadSeconds)
@@ -760,7 +762,7 @@ class AutoCallout(
         // the brunnel evidence (see CrossingInfo in MvtToGeoJson.kt) - worth distinguishing, since
         // "going under" reads oddly for a bridge and vice versa. It applies just as much to a
         // waterway as to a railway: an aqueduct carries a canal over the road beneath it.
-        val goingUnder = crossing.position == "under"
+        val goingUnder = crossing.position == AlongWayPosition.UNDER
         return if (name != null) {
             if (goingUnder) {
                 localized?.get(StringKey.DirectionsGoingUnderRailway, name) ?: "Passing under $name"
