@@ -470,18 +470,19 @@ class AutoCallout(
     /**
      * Announces the roads a train passes over and under, and the rivers and canals it crosses.
      *
-     * The two halves come from opposite directions. GridState.attachRailwayCrossings already
-     * records, on every road Way that crosses a railway, which railway it crosses and exactly
-     * where - so riding a railway, the same data can simply be read the other way round: find the
-     * roads whose recorded crossing is with *this* line, and name them as they go by. Waterway
-     * crossings have no such road-side record to borrow (extractCrossings leaves railways out
-     * entirely), so attachRailwayWaterwayCrossing writes them directly onto the railway Way and
-     * they're read off the line the passenger is on.
+     * Both come straight off the line the passenger is riding. The map matcher has already decided
+     * which railway Way that is, and GridState.attachRailwayCrossings records every road crossing
+     * and every named river/canal crossing onto the railway Ways themselves - so this is a walk of
+     * two short pre-sorted lists on one known Way, with no geographic search at all.
      *
-     * For the roads, the over/under sense inverts, since the stored position describes the road
-     * user's relationship to the railway: a road recorded as going "over" the line is a bridge the
-     * train passes beneath, and vice versa. The waterway crossings need no such flip - they were
-     * written from the train's point of view to begin with.
+     * That matters for the roads in particular. They used to be found by searching the road tree
+     * around the user and keeping the ones whose recorded crossing named this line, which meant
+     * sifting every road within the trigger radius - and on a railway most of those are running
+     * *alongside* the line rather than crossing it. The crossing is now recorded on both sides
+     * when it's found, which is the same single geometric test either way.
+     *
+     * The stored position is the train's own in both lists: for a road it was inverted at attach
+     * time, since a road recorded as going over the line is a bridge the train passes beneath.
      *
      * Only grade-separated crossings appear, because that's all attachRailwayCrossings records - a
      * level crossing has no brunnel on either side and is deliberately left to the explicit
@@ -490,7 +491,7 @@ class AutoCallout(
      */
     private fun buildCalloutForTrainCrossing(userGeometry: UserGeometry, gridState: GridState): TrackedCallout? {
         if (!userGeometry.probablyOnTrain()) return null
-        val railwayName = userGeometry.mapMatchedRailway?.name ?: return null
+        val railway = userGeometry.mapMatchedRailway ?: return null
 
         announcedCrossings.removeAll {
             ((userGeometry.timestampMilliseconds - it.timestampMilliseconds) >
@@ -502,112 +503,86 @@ class AutoCallout(
         val radius = (userGeometry.speed * crossingTriggerLeadSeconds)
             .coerceIn(crossingTriggerMinimumRadiusMetres, crossingTriggerMaximumRadiusMetres)
 
-        // The rivers and canals the line itself carries the passenger over or under, recorded on
-        // the railway Way by GridState.attachRailwayWaterwayCrossing. Checked before the roads
-        // below because a river is the bigger landmark of the two - crossing the Clyde is worth
-        // more to a passenger than passing under a side street.
-        val nearbyRailways = gridState.getFeatureTree(TreeId.TRANSIT).getNearbyCollection(
-            userGeometry.location, radius, gridState.ruler
-        ).features.filterIsInstance<Way>()
+        // The rivers and canals the line carries the passenger over or under. Checked before the
+        // roads below because a river is the bigger landmark of the two - crossing the Clyde is
+        // worth more to a passenger than passing under a side street.
+        for (crossing in railway.alongWayFeatures(AlongWayKind.WATERWAY_CROSSING)) {
+            val waterName = crossing.name ?: continue
+            val point = crossing.point
+            if (gridState.ruler.distance(userGeometry.location, point) > radius) continue
 
-        for (railway in nearbyRailways) {
-            // Belongs to the line actually being ridden, not one running alongside it. The road
-            // loop below tests the same thing the other way round, via the crossing's name.
-            if (railway.name != railwayName) continue
-            for (crossing in railway.alongWayFeatures(AlongWayKind.WATERWAY_CROSSING)) {
-                val waterName = crossing.name ?: continue
-                val point = crossing.point
-                if (gridState.ruler.distance(userGeometry.location, point) > radius) continue
+            // Keyed on the water's name, so a line crossing a river on two adjacent bridge decks
+            // announces it once.
+            val key = "water|$waterName"
+            if (announcedCrossings.any { it.key == key }) continue
 
-                // Keyed on the water's name, so a line crossing a river on two adjacent bridge
-                // decks announces it once.
-                val key = "water|$waterName"
-                if (announcedCrossings.any { it.key == key }) continue
+            // The recorded position already describes the train's own relationship to the water,
+            // as it does for the roads below - both were inverted when they were attached.
+            val text = crossingCalloutText(WayCrossingInfo(crossing))
 
-                // Not inverted, unlike the road case below: the recorded position here already
-                // describes the train's own relationship to the water.
-                val text = crossingCalloutText(WayCrossingInfo(crossing))
-
-                announcedCrossings.add(
-                    AnnouncedCrossing(key, point, userGeometry.timestampMilliseconds)
-                )
-                return TrackedCallout(
-                    userGeometry,
-                    trackedText = waterName,
-                    location = userGeometry.location,
-                    positionedStrings = listOf(
-                        PositionedString(
-                            text = text,
-                            location = userGeometry.location,
-                            type = AudioType.STANDARD
-                        )
-                    ),
-                    isPoint = true,
-                    isGeneric = false,
-                )
-            }
+            announcedCrossings.add(
+                AnnouncedCrossing(key, point, userGeometry.timestampMilliseconds)
+            )
+            return TrackedCallout(
+                userGeometry,
+                trackedText = waterName,
+                location = userGeometry.location,
+                positionedStrings = listOf(
+                    PositionedString(
+                        text = text,
+                        location = userGeometry.location,
+                        type = AudioType.STANDARD
+                    )
+                ),
+                isPoint = true,
+                isGeneric = false,
+            )
         }
 
-        // TreeId.ROADS rather than ROADS_AND_PATHS: footways, pavements, cycleways and bridleways
-        // are excluded from it (see WayGenerator), which is both what a rail passenger wants and a
-        // good deal less to sift through. The Way objects are shared between the two collections,
-        // so the crossing properties attachRailwayCrossings wrote are on these same instances.
-        //
-        // Searched at the trigger radius, not wider: the crossing point lies on the road's own
-        // geometry, so any road whose crossing is close enough to announce is itself within that
-        // radius. Anything found beyond it would only be discarded below.
-        val nearbyRoads = gridState.getFeatureTree(TreeId.ROADS).getNearbyCollection(
-            userGeometry.location, radius, gridState.ruler
-        ).features.filterIsInstance<Way>()
+        for (crossing in railway.alongWayFeatures(AlongWayKind.ROAD_CROSSING)) {
+            val point = crossing.point
+            if (gridState.ruler.distance(userGeometry.location, point) > radius) continue
 
-        for (road in nearbyRoads) {
-            for (crossing in road.alongWayFeatures(AlongWayKind.RAILWAY_CROSSING)) {
-                if (crossing.name != railwayName) continue
-                val point = crossing.point
-                if (gridState.ruler.distance(userGeometry.location, point) > radius) continue
+            // Only genuinely named roads. Way.getName confects a name for anything unnamed, which
+            // from a train reads as noise rather than a landmark - "Passing over Service that
+            // joins Lennox Park and Crossveggate" tells a passenger nothing.
+            val road = crossing.feature as? Way ?: continue
+            if ((road.name == null) && (road.ref == null)) continue
+            val roadName = road.getName(null, gridState, localized, true)
+            if (roadName.isEmpty()) continue
 
-                // Only genuinely named roads. Way.getName confects a name for anything unnamed,
-                // which from a train reads as noise rather than a landmark - "Passing over Service
-                // that joins Lennox Park and Crossveggate" tells a passenger nothing.
-                if ((road.name == null) && (road.ref == null)) continue
-                val roadName = road.getName(null, gridState, localized, true)
-                if (roadName.isEmpty()) continue
+            // Keyed on the name rather than the osmId, so a dual carriageway carried on two
+            // separate bridge decks is announced once rather than twice. Genuinely crossing the
+            // same road again later in the journey still re-announces, once the earlier entry has
+            // aged or fallen far enough behind to be pruned above.
+            val key = "road|$roadName"
+            if (announcedCrossings.any { it.key == key }) continue
 
-                // Keyed on the name rather than the osmId, so a dual carriageway carried on two
-                // separate bridge decks is announced once rather than twice. Genuinely crossing
-                // the same road again later in the journey still re-announces, once the earlier
-                // entry has aged or fallen far enough behind to be pruned above.
-                val key = "road|$roadName"
-                if (announcedCrossings.any { it.key == key }) continue
-
-                // Inverted: a road recorded as being over the railway is one the train goes under.
-                val goingUnder = crossing.position == AlongWayPosition.OVER
-                val text = if (goingUnder) {
-                    localized?.get(StringKey.DirectionsGoingUnderRailway, roadName)
-                        ?: "Passing under $roadName"
-                } else {
-                    localized?.get(StringKey.DirectionsCrossingWaterway, roadName)
-                        ?: "Passing over $roadName"
-                }
-
-                announcedCrossings.add(
-                    AnnouncedCrossing(key, point, userGeometry.timestampMilliseconds)
-                )
-                return TrackedCallout(
-                    userGeometry,
-                    trackedText = roadName,
-                    location = userGeometry.location,
-                    positionedStrings = listOf(
-                        PositionedString(
-                            text = text,
-                            location = userGeometry.location,
-                            type = AudioType.STANDARD
-                        )
-                    ),
-                    isPoint = true,
-                    isGeneric = false,
-                )
+            val text = if (crossing.position == AlongWayPosition.UNDER) {
+                localized?.get(StringKey.DirectionsGoingUnderRailway, roadName)
+                    ?: "Passing under $roadName"
+            } else {
+                localized?.get(StringKey.DirectionsCrossingWaterway, roadName)
+                    ?: "Passing over $roadName"
             }
+
+            announcedCrossings.add(
+                AnnouncedCrossing(key, point, userGeometry.timestampMilliseconds)
+            )
+            return TrackedCallout(
+                userGeometry,
+                trackedText = roadName,
+                location = userGeometry.location,
+                positionedStrings = listOf(
+                    PositionedString(
+                        text = text,
+                        location = userGeometry.location,
+                        type = AudioType.STANDARD
+                    )
+                ),
+                isPoint = true,
+                isGeneric = false,
+            )
         }
         return null
     }

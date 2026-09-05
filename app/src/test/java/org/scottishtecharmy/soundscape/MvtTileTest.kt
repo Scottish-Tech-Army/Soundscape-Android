@@ -1977,12 +1977,12 @@ class MvtTileTest {
      * Road", "Passing under Milngavie Road" - and the line being ridden must never be announced as
      * something being crossed.
      *
-     * Both come from the same place. Crossings hang off the *road* Way, so on a train the road
-     * matcher latches onto whatever runs alongside and those roads carry the crossings
-     * for the very line being ridden: recordings had "Passing under Milngavie Branch" interleaved
-     * with "On Milngavie Branch". Suppressing that leaves the data available to read the other way
-     * round, naming the road rather than the railway (see buildCalloutForTrainCrossing). The
-     * over/under sense inverts, since the stored position is the road user's.
+     * The road matcher latches onto whatever runs alongside the line, and RAILWAY_CROSSINGs hang
+     * off the *road* Way, so those roads carry crossings for the very line being ridden:
+     * recordings had "Passing under Milngavie Branch" interleaved with "On Milngavie Branch".
+     * Suppressing that leaves the mirrored ROAD_CROSSING on the railway Way to read instead,
+     * naming the road rather than the railway (see buildCalloutForTrainCrossing). The over/under
+     * sense inverts between the two, since the road's own position is the road user's.
      */
     @Test
     fun testTrainCrossingNamesTheRoadNotTheRailway() {
@@ -2001,7 +2001,25 @@ class MvtTileTest {
         assertNotNull("Expected a named road bridging the Milngavie Branch", bridge)
 
         val crossingPoint = bridge!!.crossingNamed("Milngavie Branch")!!.point
-        val railway = Way().apply { name = "Milngavie Branch" }
+
+        // The railway Way the train is riding, carrying the mirror of the same crossing. The
+        // callout reads it straight off this Way - the whole point of recording both sides.
+        val railway = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
+            .filterIsInstance<Way>()
+            .firstOrNull { way ->
+                way.name == "Milngavie Branch" &&
+                    way.alongWayFeatures(AlongWayKind.ROAD_CROSSING).any {
+                        it.feature === bridge
+                    }
+            }
+        assertNotNull("Expected the Milngavie Branch to record the bridge over it", railway)
+        assertEquals(
+            "The train passes under a road that goes over the line",
+            AlongWayPosition.UNDER,
+            railway!!.alongWayFeatures(AlongWayKind.ROAD_CROSSING)
+                .first { it.feature === bridge }.position
+        )
+
         val userGeometry = UserGeometry(
             location = crossingPoint,
             speed = 15.0,

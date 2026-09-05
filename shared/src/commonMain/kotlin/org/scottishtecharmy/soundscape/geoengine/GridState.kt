@@ -274,6 +274,12 @@ open class GridState(
         val waysByOsmId = featureCollections[TreeId.ROADS_AND_PATHS.id].features
             .filterIsInstance<Way>()
             .groupBy { it.osmId }
+        // The same, for the railway side of each crossing. A road bridge is a short Way, and at
+        // line speed a train can pass right over one between two location updates without ever
+        // being map-matched to the single railway piece that intersects it - so the crossing goes
+        // onto every piece of the line, and the approach piece can see it coming. Same reasoning
+        // as the "under" case in applyCrossing.
+        val railwaysByOsmId = railwayWays.groupBy { it.osmId }
         for (railway in railwayWays) {
             val railwayGeometry = railway.geometry as? LineString ?: continue
             if (railwayGeometry.coordinates.size < 2) continue
@@ -319,7 +325,28 @@ open class GridState(
                     AlongWayKind.RAILWAY_CROSSING,
                     railway.name,
                     position,
-                    point
+                    point,
+                    spreadAcrossOsmId = (position == AlongWayPosition.UNDER)
+                )
+                // And the mirror of it on the railway, so that a passenger's callout is a lookup
+                // on the line being ridden rather than a search of the roads that happen to be
+                // nearby - most of which are running alongside the line, not crossing it. The
+                // position inverts: a road that goes over the line is one the train passes under.
+                // The road Way is carried rather than its name, so that the callout can name it
+                // with the user's own localized strings (see Way.getName).
+                applyCrossing(
+                    railway,
+                    railwaysByOsmId,
+                    AlongWayKind.ROAD_CROSSING,
+                    road.name,
+                    if (position == AlongWayPosition.OVER) {
+                        AlongWayPosition.UNDER
+                    } else {
+                        AlongWayPosition.OVER
+                    },
+                    point,
+                    spreadAcrossOsmId = true,
+                    feature = road
                 )
                 crossingsFound++
             }
@@ -396,42 +423,52 @@ open class GridState(
     }
 
     /**
-     * Records a crossing on the road Way(s) it should fire from.
+     * Records a crossing on the Way(s) it should fire from - the road for a RAILWAY_CROSSING, the
+     * railway for the mirrored ROAD_CROSSING.
      *
-     * Going "over", the road carries its own brunnel, so OSM has already split it exactly at the
-     * structure and the single intersecting Way *is* the bridge - marking just that Way keeps the
-     * callout's existing Way-change trigger pixel-accurate.
+     * [spreadAcrossOsmId] decides whether just [way] is marked or every Way sharing its osmId. A
+     * single OSM way is split into several Way objects at its intersections, and which of those
+     * the user is map-matched to when the crossing should fire is not always the one the crossing
+     * point lands on:
      *
-     * Going "under" there's nothing to split on: the road below is untagged and unbroken, so the
-     * intersecting Way is an arbitrary piece of a road that may run for kilometres. Every Way
-     * sharing its osmId is marked, so that whichever piece the user is map-matched to on the
-     * approach can see the crossing coming and fire on proximity to `point` instead. This matches
-     * what WayGenerator.attachCrossings does for waterway crossings, which are attached to every
-     * split Way sharing the road's osmId for the same reason. AlongWayFeature.distanceFromStart on
-     * a piece that doesn't contain the crossing point clamps to one of its ends - see
-     * Way.distanceAlongWay.
+     * - A road going "over" carries its own brunnel, so OSM has already split it exactly at the
+     *   structure and the single intersecting Way *is* the bridge. Marking just that Way keeps the
+     *   callout's Way-change trigger pixel-accurate, so the caller passes false.
+     * - A road going "under" has nothing to split on: the road below is untagged and unbroken, so
+     *   the intersecting Way is an arbitrary piece of a road that may run for kilometres. The
+     *   caller passes true, so that whichever piece the user is matched to on the approach can see
+     *   the crossing coming and fire on proximity to [point] instead.
+     * - A railway always passes true. A road bridge is a short Way, and at line speed a train can
+     *   cross one between two location updates without ever being matched to the railway piece
+     *   that intersects it.
+     *
+     * AlongWayFeature.distanceFromStart on a piece that doesn't contain the crossing point clamps
+     * to one of its ends - see Way.distanceAlongWay.
      */
     private fun applyCrossing(
-        road: Way,
+        way: Way,
         waysByOsmId: Map<Long, List<Way>>,
         kind: AlongWayKind,
         name: String?,
         position: AlongWayPosition,
-        point: LngLatAlt
+        point: LngLatAlt,
+        spreadAcrossOsmId: Boolean,
+        feature: MvtFeature? = null
     ) {
-        val targets = if (position == AlongWayPosition.OVER) {
-            listOf(road)
+        val targets = if (spreadAcrossOsmId) {
+            waysByOsmId[way.osmId] ?: listOf(way)
         } else {
-            waysByOsmId[road.osmId] ?: listOf(road)
+            listOf(way)
         }
-        for (way in targets) {
-            way.addAlongWayFeature(
+        for (target in targets) {
+            target.addAlongWayFeature(
                 AlongWayFeature(
-                    distanceFromStart = way.distanceAlongWay(point, ruler),
+                    distanceFromStart = target.distanceAlongWay(point, ruler),
                     point = point,
                     kind = kind,
                     name = name,
-                    position = position
+                    position = position,
+                    feature = feature
                 )
             )
         }
