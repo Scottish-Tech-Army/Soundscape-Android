@@ -707,10 +707,14 @@ class AutoCallout(
         val way = userGeometry.mapMatchedWay ?: return null
 
         // A Way carrying its own brunnel is the structure, so arriving on it *is* the crossing and
-        // the Way-change edge is already an accurate trigger. This also covers the water-polygon
-        // fallback in wayCrossingInfo, which has no recorded crossing to measure a distance to.
-        val wayIsStructure = way.properties?.get("brunnel") != null
-        if (wayIsStructure || way.alongWayFeatures.isEmpty()) {
+        // the Way-change edge is already an accurate trigger. It's also the only route to the
+        // water-polygon fallback in wayCrossingInfo, which needs the brunnel as its evidence and
+        // has no recorded crossing to measure a distance to.
+        //
+        // Anything else falls through to the walk below, including a Way carrying no crossing of
+        // its own - the crossing being announced is often on a Way further along, and that's the
+        // whole point of walking rather than reading the matched Way alone.
+        if (way.properties?.get("brunnel") != null) {
             val crossing = wayCrossingInfo(way, gridState, userGeometry.location) ?: return null
             val edgeFired = previousOsmId != null && previousOsmId != way.osmId
             return if (edgeFired) crossing else null
