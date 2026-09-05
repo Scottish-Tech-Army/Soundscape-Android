@@ -23,6 +23,9 @@ import org.scottishtecharmy.soundscape.geoengine.NotableVehicleEventTracker
 import org.scottishtecharmy.soundscape.geoengine.describeReverseGeocode
 import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayPosition
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.EntranceDetails
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.EntranceMatching
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
@@ -159,6 +162,16 @@ private fun parseGpxFromFile(filename: String): FeatureCollection {
 
     return fc
 }
+
+/**
+ * The crossing this Way records against the named river/canal/railway, if any. Crossings live in
+ * Way.alongWayFeatures rather than in the flat property map, so a Way can carry more than one -
+ * a viaduct over both a river and a railway, say.
+ */
+fun Way.crossingNamed(name: String): AlongWayFeature? =
+    alongWayFeatures.firstOrNull { it.name == name }
+
+fun Way.crossingNames(): List<String> = alongWayFeatures.mapNotNull { it.name }
 
 fun getGridStateForLocation(
     location: LngLatAlt,
@@ -704,9 +717,9 @@ class MvtTileTest {
     /**
      * The `waterway` layer (near Milngavie) carries "Tannoch Burn" as a stream split into
      * segments, with the segment that passes under a road tagged `brunnel=tunnel` (a culvert).
-     * Checks that the crossing road's Way ends up with crossing_name/crossing_type properties
-     * attached directly to it (see extractCrossings), ready for travel-mode callouts like
-     * "Passing over Allander Water" - no separate search tree needed.
+     * Checks that the crossing road's Way ends up with an AlongWayFeature attached directly to it
+     * (see extractCrossings), ready for travel-mode callouts like "Passing over Allander Water" -
+     * no separate search tree needed.
      */
     @Test
     fun testWaterwayCrossingParsing() {
@@ -716,14 +729,14 @@ class MvtTileTest {
 
         // Tannoch Burn is a class=stream crossing - too minor a landmark to be worth a callout,
         // so it should be filtered out (see significantWaterwayClasses) and no Way should carry it.
-        val tannochBurn = ways.find { it.properties?.get("crossing_name") == "Tannoch Burn" }
+        val tannochBurn = ways.find { it.crossingNamed("Tannoch Burn") != null }
         assertNull("Expected Tannoch Burn (a stream) to be filtered out", tannochBurn)
 
         // Allander Water is class=river, and passes through a culvert further downstream, so the
         // road above it should carry the crossing via its own brunnel=tunnel tag.
-        val allanderWater = ways.find { it.properties?.get("crossing_name") == "Allander Water" }
+        val allanderWater = ways.firstNotNullOfOrNull { it.crossingNamed("Allander Water") }
         assertNotNull("Expected an Allander Water crossing", allanderWater)
-        assertEquals("waterway", allanderWater!!.properties?.get("crossing_type"))
+        assertEquals(AlongWayKind.WATERWAY_CROSSING, allanderWater!!.kind)
     }
 
     /**
@@ -782,7 +795,7 @@ class MvtTileTest {
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 2)
         val crossing = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection()
             .features.filterIsInstance<Way>()
-            .filter { it.properties?.get("crossing_name") == "Allander Water" }
+            .filter { it.crossingNamed("Allander Water") != null }
         assertTrue("Expected at least one Allander Water crossing way", crossing.isNotEmpty())
         for (way in crossing) {
             val name = way.getName(gridState = gridState, strings = null)
@@ -1119,17 +1132,19 @@ class MvtTileTest {
         val ways = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection().features
             .filterIsInstance<Way>()
 
-        val railwayCrossing = ways.find { it.properties?.get("crossing_type") == "railway" }
+        val railwayCrossing = ways.firstNotNullOfOrNull {
+            it.firstAlongWayFeature(AlongWayKind.RAILWAY_CROSSING)
+        }
         assertNotNull("Expected a railway crossing near Renton", railwayCrossing)
-        assertEquals("over", railwayCrossing!!.properties?.get("crossing_position"))
+        assertEquals(AlongWayPosition.OVER, railwayCrossing!!.position)
     }
 
     /**
      * The Union Canal is carried over the A720 City of Edinburgh Bypass on an aqueduct, so it's the
      * *waterway* that's tagged brunnel=bridge (way/4385757) and the road underneath carries no tag
-     * at all. That inverts the usual reading: the user goes under, not over. Before crossing_position
-     * existed the raw brunnel value was stored and this announced "Crossing the Union Canal" while
-     * driving beneath it.
+     * at all. That inverts the usual reading: the user goes under, not over. Before the resolved
+     * AlongWayPosition existed the raw brunnel value was stored and this announced "Crossing the
+     * Union Canal" while driving beneath it.
      *
      * It also pins the multiple-roads behaviour - the aqueduct spans both bypass carriageways and
      * two slip roads, and findCrossingRoads has to return all of them rather than whichever it
@@ -1146,8 +1161,7 @@ class MvtTileTest {
         // The canal runs for miles across this grid and plenty of roads bridge over it, so pick
         // out specifically the ways that pass beneath it.
         val underCanal = ways.filter {
-            it.properties?.get("crossing_name") == "Union Canal" &&
-                it.properties?.get("crossing_position") == "under"
+            it.crossingNamed("Union Canal")?.position == AlongWayPosition.UNDER
         }
         assertTrue(
             "Expected the roads under the Union Canal aqueduct to carry the crossing",
@@ -1163,16 +1177,16 @@ class MvtTileTest {
                 setOf(30612219L, 241161339L, 99205503L, 1446633976L).map { it * 10 + 2 }.toSet()
             )
         )
-        assertTrue(underCanal.all { it.properties?.get("crossing_type") == "waterway" })
-        assertTrue(underCanal.all { it.properties?.get("crossing_latitude") != null })
+        assertTrue(
+            underCanal.all {
+                it.crossingNamed("Union Canal")?.kind == AlongWayKind.WATERWAY_CROSSING
+            }
+        )
 
         // Now the callout itself. The user stays on one Way throughout, so the Way-change edge can
         // never fire - this only works off proximity to the stored crossing point.
         val way = underCanal.first { it.osmId == 30612219L * 10 + 2 }
-        val crossingPoint = LngLatAlt(
-            way.properties?.get("crossing_longitude") as Double,
-            way.properties?.get("crossing_latitude") as Double
-        )
+        val crossingPoint = way.crossingNamed("Union Canal")!!.point
         val autoCallout = AutoCallout(null, null)
 
         // Establish the baseline well short of the aqueduct - nothing to announce yet.
@@ -1243,7 +1257,7 @@ class MvtTileTest {
         ).map { it * 10 + 2 }.toSet()
 
         val bogus = ways.filter {
-            it.osmId in overTheTunnel && it.properties?.get("crossing_name") != null
+            it.osmId in overTheTunnel && it.alongWayFeatures.isNotEmpty()
         }
         assertTrue(
             "Nothing above the Falkirk Tunnel should claim to cross the Union Canal, got " +
@@ -1255,7 +1269,7 @@ class MvtTileTest {
         val southBantaskineRoad = ways.filter { it.osmId == 31875414L * 10 + 2 }
         assertTrue(
             "Expected South Bantaskine Road to still cross the open Union Canal",
-            southBantaskineRoad.any { it.properties?.get("crossing_name") == "Union Canal" }
+            southBantaskineRoad.any { it.crossingNamed("Union Canal") != null }
         )
     }
 
@@ -1278,7 +1292,7 @@ class MvtTileTest {
         val kelvinGrid = getGridStateForLocation(LngLatAlt(-4.3042, 55.8677), MAX_ZOOM_LEVEL, 3)
         val kelvinCrossings = kelvinGrid.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
             .filterIsInstance<Way>()
-            .filter { it.properties?.get("crossing_name") == "River Kelvin" }
+            .mapNotNull { it.crossingNamed("River Kelvin") }
         assertTrue(
             "Expected a North Clyde Line Way to record crossing the River Kelvin",
             kelvinCrossings.isNotEmpty()
@@ -1286,8 +1300,8 @@ class MvtTileTest {
         assertTrue(
             "A railway bridging a river carries the passenger over it",
             kelvinCrossings.any {
-                (it.properties?.get("crossing_type") == "waterway") &&
-                    (it.properties?.get("crossing_position") == "over")
+                (it.kind == AlongWayKind.WATERWAY_CROSSING) &&
+                    (it.position == AlongWayPosition.OVER)
             }
         )
 
@@ -1295,12 +1309,12 @@ class MvtTileTest {
         val canalGrid = getGridStateForLocation(LngLatAlt(-4.3197, 55.8950), MAX_ZOOM_LEVEL, 3)
         val canalCrossings = canalGrid.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
             .filterIsInstance<Way>()
-            .filter { it.properties?.get("crossing_name") == "Forth and Clyde Canal" }
+            .mapNotNull { it.crossingNamed("Forth and Clyde Canal") }
         assertTrue(
             "A railway tunnelling beneath a canal takes the passenger under it",
             canalCrossings.any {
-                (it.properties?.get("crossing_type") == "waterway") &&
-                    (it.properties?.get("crossing_position") == "under")
+                (it.kind == AlongWayKind.WATERWAY_CROSSING) &&
+                    (it.position == AlongWayPosition.UNDER)
             }
         )
 
@@ -1309,7 +1323,7 @@ class MvtTileTest {
         val burnGrid = getGridStateForLocation(LngLatAlt(-4.3110, 55.9340), MAX_ZOOM_LEVEL, 3)
         val burnCrossings = burnGrid.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
             .filterIsInstance<Way>()
-            .mapNotNull { it.properties?.get("crossing_name") as? String }
+            .flatMap { it.crossingNames() }
             .toSet()
         assertTrue(
             "Expected the Allander Water crossing, got $burnCrossings",
@@ -1320,6 +1334,90 @@ class MvtTileTest {
                 "got $burnCrossings",
             burnCrossings.none { it.endsWith("Burn") }
         )
+    }
+
+    /**
+     * A Way can cross more than one named feature - the Castlecary viaduct area has roads which
+     * bridge a railway and a waterway - and Way.alongWayFeatures has to hold all of them, sorted
+     * by distance from the Way's START intersection. The old flat crossing_* properties couldn't:
+     * a second crossing simply overwrote the first.
+     *
+     * Rather than pin a particular pair of real-world features (which tile data churn would break),
+     * this asserts the invariant over every Way in a grid: whatever crossings a Way carries, they
+     * come back in ascending distance order and every one of them is within the Way's own extent.
+     */
+    @Test
+    fun testAlongWayFeaturesAreSortedAndBounded() {
+        val gridState = getGridStateForLocation(LngLatAlt(-3.943732, 55.981647), MAX_ZOOM_LEVEL, 3)
+        val ways = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection().features
+            .filterIsInstance<Way>()
+            .filter { it.alongWayFeatures.isNotEmpty() }
+        assertTrue("Expected some Ways to carry crossings near Castlecary", ways.isNotEmpty())
+
+        for (way in ways) {
+            val distances = way.alongWayFeatures.map { it.distanceFromStart }
+            assertEquals(
+                "alongWayFeatures on ${way.name}/${way.osmId} should be sorted by distance",
+                distances.sorted(),
+                distances
+            )
+            for (distance in distances) {
+                assertTrue(
+                    "$distance is outside ${way.name}/${way.osmId} (length ${way.length})",
+                    distance >= 0.0 && distance <= way.length + 0.001
+                )
+            }
+        }
+
+        // The capability the flat crossing_* properties didn't have. Two reasons a Way genuinely
+        // carries more than one crossing, both present around Castlecary: a bridge over a
+        // double-track line, where each track is its own railway Way sharing the line's name; and
+        // a road which crosses a meandering burn twice. Under last-write-wins the second of each
+        // pair simply overwrote the first.
+        val multiple = ways.filter { it.alongWayFeatures.size > 1 }
+        assertTrue(
+            "Expected at least one Way carrying more than one crossing",
+            multiple.isNotEmpty()
+        )
+        for (way in multiple) {
+            assertTrue(
+                "Every crossing on ${way.name}/${way.osmId} should have its own point, got " +
+                    "${way.alongWayFeatures.map { it.point }}",
+                way.alongWayFeatures.map { it.point }.toSet().size == way.alongWayFeatures.size
+            )
+        }
+    }
+
+    /**
+     * Way.distanceAlongWay is the primitive the whole along-way map is keyed on, so pin it against
+     * a hand-walked LineString rather than only against real tile data. The clamping behaviour
+     * matters as much as the interpolation: a crossing recorded against a road piece that doesn't
+     * contain the crossing point (the "under" case, where OSM never splits the road) has to land
+     * at one end rather than at some arbitrary interior distance.
+     */
+    @Test
+    fun testDistanceAlongWay() {
+        val start = LngLatAlt(-4.3231, 55.9461)
+        val ruler = start.createCheapRuler()
+        val middle = ruler.offset(start, 0.0, 100.0)
+        val end = ruler.offset(middle, 100.0, 0.0)
+        val way = Way().apply {
+            geometry = LineString(start, middle, end)
+            length = ruler.distance(start, middle) + ruler.distance(middle, end)
+        }
+
+        assertEquals(0.0, way.distanceAlongWay(start, ruler), 0.5)
+        assertEquals(100.0, way.distanceAlongWay(middle, ruler), 0.5)
+        assertEquals(200.0, way.distanceAlongWay(end, ruler), 0.5)
+
+        // Halfway along the second leg, and offset sideways off the line - the projection onto the
+        // Way is what counts, not the crow-fly distance from the start.
+        val besideTheLine = ruler.offset(ruler.offset(middle, 50.0, 0.0), 0.0, 20.0)
+        assertEquals(150.0, way.distanceAlongWay(besideTheLine, ruler), 0.5)
+
+        // Well beyond either end, the projection clamps to the Way's extent.
+        assertEquals(0.0, way.distanceAlongWay(ruler.offset(start, 0.0, -500.0), ruler), 0.5)
+        assertEquals(way.length, way.distanceAlongWay(ruler.offset(end, 500.0, 0.0), ruler), 0.5)
     }
 
     /**
@@ -1358,18 +1456,19 @@ class MvtTileTest {
         ).map { it * 10 + 2 }.toSet()
 
         val bogus = ways.filter {
-            it.osmId in overTheTunnels && it.properties?.get("crossing_type") == "railway"
+            it.osmId in overTheTunnels &&
+                it.firstAlongWayFeature(AlongWayKind.RAILWAY_CROSSING) != null
         }
         assertTrue(
             "Streets over the central Glasgow rail tunnels must not announce a crossing, got " +
-                "${bogus.map { "${it.name}: ${it.properties?.get("crossing_name")}" }}",
+                "${bogus.map { "${it.name}: ${it.crossingNames()}" }}",
             bogus.isEmpty()
         )
 
         // ...but bridges over the open cutting still are crossings.
         val overTheCutting = ways.filter {
-            it.properties?.get("crossing_type") == "railway" &&
-                it.properties?.get("crossing_position") == "over"
+            it.firstAlongWayFeature(AlongWayKind.RAILWAY_CROSSING)?.position ==
+                AlongWayPosition.OVER
         }
         assertTrue(
             "Expected the bridges over the open North Clyde Line cutting to still be crossings",
@@ -1397,23 +1496,25 @@ class MvtTileTest {
         // Other roads bridge over this same line elsewhere in the grid, so select the ones that
         // pass beneath it.
         val underViaduct = ways.filter {
-            it.properties?.get("crossing_name") == "Edinburgh and Glasgow Main Line" &&
-                it.properties?.get("crossing_position") == "under"
+            it.crossingNamed("Edinburgh and Glasgow Main Line")?.position ==
+                AlongWayPosition.UNDER
         }
         assertTrue(
             "Expected the M80 under the Castlecary viaduct to carry a railway crossing",
             underViaduct.isNotEmpty()
         )
-        assertTrue(underViaduct.all { it.properties?.get("crossing_type") == "railway" })
+        assertTrue(
+            underViaduct.all {
+                it.crossingNamed("Edinburgh and Glasgow Main Line")?.kind ==
+                    AlongWayKind.RAILWAY_CROSSING
+            }
+        )
 
         // way/94939658 is 2045m long with the viaduct 1705m along it, so the old Way-change edge
         // would have announced this the better part of a minute early at motorway speed.
         val way = underViaduct.firstOrNull { it.osmId == 94939658L * 10 + 2 }
         assertNotNull("Expected the long M80 way to be tagged", way)
-        val crossingPoint = LngLatAlt(
-            way!!.properties?.get("crossing_longitude") as Double,
-            way.properties?.get("crossing_latitude") as Double
-        )
+        val crossingPoint = way!!.crossingNamed("Edinburgh and Glasgow Main Line")!!.point
 
         val autoCallout = AutoCallout(null, null)
         val firstUpdate = UserGeometry(
@@ -1446,8 +1547,8 @@ class MvtTileTest {
     /**
      * A river/canal or railway crossing should be announced while walking too, not just while
      * travelling by car/bus - see AutoCallout.buildCalloutForWalkingCrossing. Fires as an edge:
-     * once when userGeometry.mapMatchedWay transitions onto a Way carrying crossing properties,
-     * not again while staying on that Way, but again if the user leaves and later returns to it.
+     * once when userGeometry.mapMatchedWay transitions onto a Way carrying a crossing, not again
+     * while staying on that Way, but again if the user leaves and later returns to it.
      */
     @Test
     fun testWalkingCrossingCallout() {
@@ -1468,8 +1569,18 @@ class MvtTileTest {
             osmId = 2L
             name = "Bridge"
             geometry = LineString(location, endLocation)
-            setProperty("crossing_type", "waterway")
-            setProperty("crossing_name", "Test River")
+            // brunnel makes this Way itself the structure, which is what makes the Way-change edge
+            // the trigger rather than proximity to the crossing point - see crossingToAnnounce.
+            setProperty("brunnel", "bridge")
+            addAlongWayFeature(
+                AlongWayFeature(
+                    distanceFromStart = 15.0,
+                    point = gridState.ruler.offset(location, 0.0, 15.0),
+                    kind = AlongWayKind.WATERWAY_CROSSING,
+                    name = "Test River",
+                    position = AlongWayPosition.OVER
+                )
+            )
         }
 
         val autoCallout = AutoCallout(null, null)
@@ -1867,7 +1978,7 @@ class MvtTileTest {
      * something being crossed.
      *
      * Both come from the same place. Crossings hang off the *road* Way, so on a train the road
-     * matcher latches onto whatever runs alongside and those roads carry the crossing properties
+     * matcher latches onto whatever runs alongside and those roads carry the crossings
      * for the very line being ridden: recordings had "Passing under Milngavie Branch" interleaved
      * with "On Milngavie Branch". Suppressing that leaves the data available to read the other way
      * round, naming the road rather than the railway (see buildCalloutForTrainCrossing). The
@@ -1884,16 +1995,12 @@ class MvtTileTest {
         val bridge = gridState.getFeatureTree(TreeId.ROADS).getAllCollection().features
             .filterIsInstance<Way>()
             .firstOrNull {
-                it.properties?.get("crossing_name") == "Milngavie Branch" &&
-                    it.properties?.get("crossing_position") == "over" &&
+                it.crossingNamed("Milngavie Branch")?.position == AlongWayPosition.OVER &&
                     it.name != null
             }
         assertNotNull("Expected a named road bridging the Milngavie Branch", bridge)
 
-        val crossingPoint = LngLatAlt(
-            bridge!!.properties?.get("crossing_longitude") as Double,
-            bridge.properties?.get("crossing_latitude") as Double
-        )
+        val crossingPoint = bridge!!.crossingNamed("Milngavie Branch")!!.point
         val railway = Way().apply { name = "Milngavie Branch" }
         val userGeometry = UserGeometry(
             location = crossingPoint,
