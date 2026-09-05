@@ -100,6 +100,7 @@ import org.scottishtecharmy.soundscape.resources.directions_facing_s
 import org.scottishtecharmy.soundscape.resources.directions_facing_se
 import org.scottishtecharmy.soundscape.resources.directions_facing_sw
 import org.scottishtecharmy.soundscape.resources.directions_facing_w
+import org.scottishtecharmy.soundscape.resources.directions_generic_tram
 import org.scottishtecharmy.soundscape.resources.directions_generic_train
 import org.scottishtecharmy.soundscape.resources.directions_crossing_waterway
 import org.scottishtecharmy.soundscape.resources.directions_crossing_railway_generic
@@ -130,6 +131,7 @@ import org.scottishtecharmy.soundscape.resources.directions_on_road
 import org.scottishtecharmy.soundscape.resources.directions_on_road_and_settlement
 import org.scottishtecharmy.soundscape.resources.directions_on_road_and_settlement_since
 import org.scottishtecharmy.soundscape.resources.directions_on_road_at_junction
+import org.scottishtecharmy.soundscape.resources.directions_approaching_name
 import org.scottishtecharmy.soundscape.resources.directions_at_junction_inline
 import org.scottishtecharmy.soundscape.resources.directions_towards_settlement
 import org.scottishtecharmy.soundscape.resources.directions_away_from_settlement
@@ -301,6 +303,7 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.OsmEntranceNamedWithDestination -> Res.string.osm_entrance_named_with_destination
         StringKey.OsmEntranceWithDestination -> Res.string.osm_entrance_with_destination
         StringKey.DirectionsNearName -> Res.string.directions_near_name
+        StringKey.DirectionsApproachingName -> Res.string.directions_approaching_name
         StringKey.DirectionsStreetSettlement -> Res.string.directions_street_settlement
         StringKey.DirectionsNearRoadAndSettlement -> Res.string.directions_near_road_and_settlement
         StringKey.DirectionsTransitStopNearSettlement -> Res.string.directions_transit_stop_near_settlement
@@ -322,6 +325,7 @@ class ComposeLocalizedStrings : LocalizedStrings {
         StringKey.DirectionsNearSettlementInline -> Res.string.directions_near_settlement_inline
         StringKey.DirectionsCloseToSettlementInline -> Res.string.directions_close_to_settlement_inline
         StringKey.DirectionsGenericTrain -> Res.string.directions_generic_train
+        StringKey.DirectionsGenericTram -> Res.string.directions_generic_tram
         StringKey.DirectionsCrossingWaterway -> Res.string.directions_crossing_waterway
         StringKey.DirectionsCrossingRailwayGeneric -> Res.string.directions_crossing_railway_generic
         StringKey.DirectionsGoingUnderRailway -> Res.string.directions_going_under_railway

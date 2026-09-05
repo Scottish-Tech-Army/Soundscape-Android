@@ -2,9 +2,13 @@ package org.scottishtecharmy.soundscape.geoengine
 
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
+import org.scottishtecharmy.soundscape.geoengine.utils.WayCursor
+import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
+import org.scottishtecharmy.soundscape.geoengine.utils.distanceAlongLineString
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import kotlin.math.abs
 
@@ -157,6 +161,39 @@ class UserGeometry(
             }
         }
         return heading
+    }
+
+    /**
+     * Where the user is along [way], as a cursor the along-way queries can walk from - see
+     * WayCursor and nextAlongWayFeature.
+     *
+     * [way] is passed in rather than assumed to be [mapMatchedWay] because roads and railways are
+     * matched independently: on a train the caller wants a cursor on [mapMatchedRailway], and the
+     * road match is whatever happens to run alongside.
+     *
+     * The position is projected onto the Way from [mapMatchedLocation] where there is one - it's
+     * already been smoothed against the road network, so it's a better answer than the raw GPS
+     * fix - and from [location] otherwise. Note that mapMatchedLocation's own index/
+     * positionAlongLine can't be used directly: they're relative to the follower's accumulated
+     * LineString across several Ways, not to any one Way (see MapMatchFilter).
+     *
+     * Direction comes from the travel heading against the Way's own heading at that point.
+     * [fallbackHeading] stands in when there is no travel heading - the GPS fix carried no bearing,
+     * or its bearing accuracy was too poor to use (see GeoEngine) - and callers pass the bearing
+     * from where the user was on the previous fix, which is what movement itself says about which
+     * way they are going. With neither, the direction is left null and the queries look both ways
+     * rather than guess.
+     */
+    fun cursorOn(way: Way, fallbackHeading: Double? = null): WayCursor? {
+        val line = way.geometry as? LineString ?: return null
+        if (line.coordinates.size < 2) return null
+
+        val point = mapMatchedLocation?.point ?: location
+        val pdh = ruler.distanceToLineString(point, line)
+        val forwards = (getTravelHeading() ?: fallbackHeading)?.let { heading ->
+            calculateHeadingOffset(heading, pdh.heading) < 90.0
+        }
+        return WayCursor(way, distanceAlongLineString(line, pdh, ruler), forwards)
     }
 
     /**

@@ -11,6 +11,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.PointAndDistanceAndHeading
 import org.scottishtecharmy.soundscape.geoengine.utils.Side
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
+import org.scottishtecharmy.soundscape.geoengine.utils.distanceAlongLineString
 import org.scottishtecharmy.soundscape.geoengine.utils.getCentralPointForFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getSideOfLine
@@ -126,18 +127,8 @@ class StreetDescription(
         var totalDistance = 0.0
         for (way in ways) {
             if (way.first == nearestWay) {
-                var lineDistance = 0.0
                 val line = way.first.geometry as LineString
-                for (i in 0 until pdh.index) {
-                    lineDistance += gridState.ruler.distance(
-                        line.coordinates[i],
-                        line.coordinates[i + 1]
-                    )
-                }
-                lineDistance += (pdh.positionAlongLine - pdh.index) * gridState.ruler.distance(
-                    line.coordinates[pdh.index],
-                    line.coordinates[pdh.index + 1]
-                )
+                val lineDistance = distanceAlongLineString(line, pdh, gridState.ruler)
                 totalDistance += if (way.second) {
                     lineDistance
                 } else {
