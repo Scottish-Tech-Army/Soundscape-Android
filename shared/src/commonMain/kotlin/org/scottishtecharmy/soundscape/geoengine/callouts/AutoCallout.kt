@@ -30,6 +30,7 @@ import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.WayContinuation
 import org.scottishtecharmy.soundscape.geoengine.utils.forEachAlongWayFeatureAhead
+import org.scottishtecharmy.soundscape.geoengine.utils.nextAlongWayFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.orderPoisForSpeech
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
@@ -356,6 +357,64 @@ class AutoCallout(
         )
         notableVehicleEventTracker.recordEvent(userGeometry.timestampMilliseconds)
         return callout
+    }
+
+    // How far ahead a railway stop is announced. Longer than the road equivalent because a train
+    // covers ground faster and there is more a passenger might want to do with the warning - at
+    // 30m/s this is about seventeen seconds. Expected to be tuned, like the road one.
+    private val railwayStopLookaheadMetres = 500.0
+
+    /**
+     * Announces the next station the line stops at, on the approach to it.
+     *
+     * Read off the line being ridden, from the railway=stop nodes OSM places on the line itself
+     * (see GridState.attachRailwayStopsToWays). A station POI could only be matched to a line by
+     * proximity, and where lines run close together the nearest station to a train is often one
+     * its line runs straight past - which is exactly the mistake this avoids.
+     *
+     * Follows the line by name through junctions (WayContinuation.SAME_ROAD), since half a
+     * kilometre of railway crosses junctions the way a main road crosses side streets.
+     */
+    private fun buildCalloutForTrainStop(
+        userGeometry: UserGeometry,
+        gridState: GridState
+    ): TrackedCallout? {
+        if (!userGeometry.probablyOnTrain()) return null
+        val railway = userGeometry.mapMatchedRailway ?: return null
+        val cursor = userGeometry.cursorOn(railway, sweepHeading(userGeometry)) ?: return null
+        if (cursor.forwards == null) return null
+
+        val found = nextAlongWayFeature(
+            cursor,
+            railwayStopLookaheadMetres,
+            AlongWayKind.RAILWAY_STOP,
+            WayContinuation.SAME_ROAD
+        ) ?: return null
+        val name = found.feature.name ?: return null
+
+        // Keyed on the name, not the node: a station is commonly several stop nodes, one per
+        // platform, and they are all the same station to a passenger.
+        val key = "railwaystop|$name"
+        if (announcedAlongWayFeatures.any { it.key == key }) return null
+        announcedAlongWayFeatures.add(
+            AnnouncedAlongWayFeature(key, found.feature.point, userGeometry.timestampMilliseconds)
+        )
+
+        val text = localized?.get(StringKey.DirectionsNearName, name) ?: "Near $name"
+        return TrackedCallout(
+            userGeometry,
+            trackedText = name,
+            location = found.feature.point,
+            positionedStrings = listOf(
+                PositionedString(
+                    text = text,
+                    location = found.feature.point,
+                    type = AudioType.LOCALIZED
+                )
+            ),
+            isPoint = true,
+            isGeneric = false,
+        )
     }
 
     /**
@@ -688,7 +747,9 @@ class AutoCallout(
     private val crossingTriggerMinimumRadiusMetres = 25.0
     private val crossingTriggerMaximumRadiusMetres = 150.0
     // An announced crossing or stop is forgotten once well clear of it - see updateSweepWindow.
-    private val announcedForgetDistanceMetres = 300.0
+    // Must exceed the largest lookahead below, or something announced at range is forgotten while
+    // still being approached and announced again on the next fix.
+    private val announcedForgetDistanceMetres = 1500.0
     private val announcedForgetTimeMilliseconds = 300_000L
 
     /**
@@ -1298,6 +1359,7 @@ class AutoCallout(
                     // instead.
                     val trainCrossingCallout =
                         buildCalloutForTrainCrossing(userGeometry, gridState)
+                    val trainStopCallout = buildCalloutForTrainStop(userGeometry, gridState)
                     // Always run alongside its vehicle equivalent above (rather than only in the
                     // pedestrian branch below) so its own tracked Way osmId resets correctly the
                     // moment vehicle travel starts - the same reason buildCalloutForVehicleCrossing
@@ -1306,7 +1368,7 @@ class AutoCallout(
                         buildCalloutForWalkingCrossing(userGeometry, gridState)
                     val vehicleCallouts = listOfNotNull(
                         roadSenseCallout, vehicleLandmarkCallout, vehicleTransitStopCallout,
-                        vehicleWaterwayCrossingCallout, trainCrossingCallout
+                        vehicleWaterwayCrossingCallout, trainCrossingCallout, trainStopCallout
                     )
                     if (vehicleCallouts.isNotEmpty()) {
                         val primary = vehicleCallouts.first()

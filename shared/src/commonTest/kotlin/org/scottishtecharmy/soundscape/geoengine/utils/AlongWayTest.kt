@@ -72,6 +72,17 @@ class AlongWayTest {
         )
     }
 
+    private fun Way.addAlong(atMetresAlong: Double, name: String, kind: AlongWayKind) {
+        addAlongWayFeature(
+            AlongWayFeature(
+                distanceFromStart = atMetresAlong,
+                point = ruler.along(geometry as LineString, atMetresAlong),
+                kind = kind,
+                name = name
+            )
+        )
+    }
+
     // ---- slicing -------------------------------------------------------------------------
 
     @Test
@@ -330,6 +341,54 @@ class AlongWayTest {
         )
         assertEquals("Over The Tile Edge", found?.feature?.name)
         assertEquals(130.0, found!!.distance, 1.0)
+    }
+
+    @Test
+    fun theNextStopIsFoundAlongTheLine() {
+        // The shape a railway takes: one named line split into pieces, with railway=stop nodes
+        // recorded against the piece each sits on. A stop node commonly lands exactly on the
+        // boundary between two pieces, which is why the walk has to cross them rather than only
+        // reading the piece the train is currently matched to.
+        val first = straightWay("North Clyde Line", 0.0, 400.0)
+        val second = straightWay("North Clyde Line", 400.0, 900.0)
+        val junction = join(first, second)
+
+        // A branch makes the join a real junction, so only SAME_ROAD gets past it.
+        val branch = straightWay("Argyle Line", 400.0, 700.0)
+        branch.intersections[WayEnd.START.id] = junction
+        junction.members.add(branch)
+
+        second.addAlong(120.0, "Singer", AlongWayKind.RAILWAY_STOP)
+        branch.addAlong(50.0, "Wrong Line", AlongWayKind.RAILWAY_STOP)
+
+        val cursor = WayCursor(first, 100.0, forwards = true)
+        val found = nextAlongWayFeature(
+            cursor, 500.0, AlongWayKind.RAILWAY_STOP, WayContinuation.SAME_ROAD
+        )
+        assertEquals("Singer", found?.feature?.name)
+        // 300m to the end of the first piece, 120m into the second.
+        assertEquals(420.0, found!!.distance, 1.0)
+    }
+
+    @Test
+    fun aStopOnAnotherLineIsNotTheNextStop() {
+        // Two lines meeting: following by name must not wander onto the branch, which is the whole
+        // reason a stop node on the line beats the nearest station to the train.
+        val main = straightWay("North Clyde Line", 0.0, 400.0)
+        val branch = straightWay("Argyle Line", 400.0, 900.0)
+        val other = straightWay("Argyle Line", 400.0, 700.0)
+        val junction = join(main, branch)
+        other.intersections[WayEnd.START.id] = junction
+        junction.members.add(other)
+
+        branch.addAlong(50.0, "Wrong Line", AlongWayKind.RAILWAY_STOP)
+
+        assertNull(
+            nextAlongWayFeature(
+                WayCursor(main, 100.0, forwards = true), 500.0,
+                AlongWayKind.RAILWAY_STOP, WayContinuation.SAME_ROAD
+            )
+        )
     }
 
     @Test

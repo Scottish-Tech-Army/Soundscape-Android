@@ -31,6 +31,17 @@ enum class AlongWayKind {
      * direction of travel from the one across the street serving the other.
      */
     TRANSIT_STOP,
+
+    /**
+     * A point on this railway Way at which trains stop - OSM's `railway=stop`, which sits on the
+     * line itself rather than beside it.
+     *
+     * That is what makes it worth having over the station POI nearby: a station is a place next to
+     * the tracks, and where lines run close together several can pass one without calling at it.
+     * A stop node belongs to the line it is on, so the line being ridden knows its own stops
+     * without guessing from distance.
+     */
+    RAILWAY_STOP,
 }
 
 /**
