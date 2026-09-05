@@ -135,6 +135,7 @@ enum class StringKey {
     DirectionsNearSettlementInline,
     DirectionsCloseToSettlementInline,
     DirectionsGenericTrain,
+    DirectionsGenericTram,
     DirectionsCrossingWaterway,
     DirectionsCrossingRailwayGeneric,
     DirectionsGoingUnderRailway,
