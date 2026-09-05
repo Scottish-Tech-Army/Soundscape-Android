@@ -41,6 +41,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.network.VectorTileClient
@@ -77,8 +78,9 @@ enum class TreeId(
     HIGHWAY_JUNCTIONS(22, "Highway Junctions"),
     NAMED_WATER_POLYGONS(23, "Named Water Polygons"),
     NAMED_WATERWAYS(24, "Named Waterways"),
-    MAX_COLLECTION_ID(25, ""),
-    WAYS_SELECTION(id = 25, "Either Roads OR Roads and Paths")
+    RAILWAY_STOPS(25, "Railway Stops"),
+    MAX_COLLECTION_ID(26, ""),
+    WAYS_SELECTION(id = 26, "Either Roads OR Roads and Paths")
 }
 
 fun treeIdToIndex(id: TreeId): TreeId {
@@ -682,6 +684,68 @@ open class GridState(
         return attached
     }
 
+    // How far off a railway line a railway=stop node can sit and still be taken as being on it.
+    // OSM puts these nodes on the line itself, so a genuine one is at zero distance and this only
+    // has to absorb the tile's coordinate quantisation. Anything further out is a tagging mistake,
+    // and taking it would put a stop on a line that doesn't serve it - the very thing these nodes
+    // exist to avoid.
+    private val railwayStopWayToleranceMetres = 2.0
+
+    /**
+     * Records each railway=stop node against the railway Way it sits on, as a RAILWAY_STOP
+     * AlongWayFeature at its position along that line.
+     *
+     * A station POI can only ever be matched to a line by proximity, and in a dense area that is
+     * wrong often enough to matter - several lines pass Glasgow Central without stopping at it.
+     * These nodes are on the line, so the match is exact and the line being ridden can simply be
+     * asked what it stops at next.
+     *
+     * Returns the number attached, for the timing log in the caller.
+     */
+    private fun attachRailwayStopsToWays(
+        featureCollections: Array<FeatureCollection>,
+        localTrees: Array<FeatureTree>
+    ): Int {
+        val stops = featureCollections[TreeId.RAILWAY_STOPS.id].features
+        if (stops.isEmpty()) return 0
+        val transitTree = localTrees[TreeId.TRANSIT.id]
+        var attached = 0
+
+        for (feature in stops) {
+            val stop = feature as? MvtFeature ?: continue
+            val point = (stop.geometry as? Point)?.coordinates ?: continue
+
+            var nearestWay: Way? = null
+            var nearestDistance = Double.POSITIVE_INFINITY
+            for (candidate in transitTree.getNearbyCollection(
+                point, railwayStopWayToleranceMetres, ruler
+            )) {
+                val way = candidate as? Way ?: continue
+                val line = way.geometry as? LineString ?: continue
+                if (line.coordinates.size < 2) continue
+                val distance = ruler.distanceToLineString(point, line).distance
+                if (distance < nearestDistance) {
+                    nearestDistance = distance
+                    nearestWay = way
+                }
+            }
+            val way = nearestWay ?: continue
+            if (nearestDistance > railwayStopWayToleranceMetres) continue
+
+            way.addAlongWayFeature(
+                AlongWayFeature(
+                    distanceFromStart = way.distanceAlongWay(point, ruler),
+                    point = point,
+                    kind = AlongWayKind.RAILWAY_STOP,
+                    name = stop.name,
+                    feature = stop
+                )
+            )
+            attached++
+        }
+        return attached
+    }
+
     /**
      * processGridState is now called from within the single thread that can access the tile grid.
      * This makes it somewhat performance critical. However, by doing this it allows us to
@@ -736,10 +800,15 @@ open class GridState(
         println("Nearest ways took $nearestWayTiming")
 
         var transitStopsAttached = 0
+        var railwayStopsAttached = 0
         val transitStopTiming = measureTime {
             transitStopsAttached = attachTransitStopsToWays(featureCollections, localTrees)
+            railwayStopsAttached = attachRailwayStopsToWays(featureCollections, localTrees)
         }
-        println("Transit stops took $transitStopTiming ($transitStopsAttached stops)")
+        println(
+            "Transit stops took $transitStopTiming " +
+                "($transitStopsAttached road stops, $railwayStopsAttached railway stops)"
+        )
 
         if (featureCollections[TreeId.ROADS_AND_PATHS.id].features.isNotEmpty()) {
             joinTileEdgeIntersections(grid, newGridIntersections)
@@ -1161,6 +1230,30 @@ private fun getHighwayJunctionsFromTileFeatureCollection(tileFeatureCollection: 
 }
 
 /**
+ * Parses out the `railway=stop` nodes, which OSM places on the railway line itself at the point a
+ * train actually stops - see the transportation layer in planetiler-openmaptiles, which emits them
+ * as points with class=rail, subclass=stop.
+ *
+ * Kept in their own collection rather than folded into TreeId.TRANSIT_STOPS, and deliberately not
+ * added to POIS: a stop node is not a place in its own right. The station POI is already there, and
+ * putting both in would name the same station twice in any list of what's nearby.
+ *
+ * @param tileFeatureCollection
+ * A FeatureCollection object.
+ * @return A FeatureCollection object that contains only railway stop nodes.
+ */
+private fun getRailwayStopsFromTileFeatureCollection(tileFeatureCollection: FeatureCollection): FeatureCollection {
+    val stopsFeatureCollection = FeatureCollection()
+    for (feature in tileFeatureCollection) {
+        val mvtFeature = feature as MvtFeature
+        if (mvtFeature.featureType == "rail" && mvtFeature.featureValue == "stop") {
+            stopsFeatureCollection.addFeature(feature)
+        }
+    }
+    return stopsFeatureCollection
+}
+
+/**
  * Parses out the named `water` layer polygons used for the water-crossing proximity check - see
  * [org.scottishtecharmy.soundscape.geoengine.mvttranslation.extractNamedWaterPolygons].
  * @param tileFeatureCollection
@@ -1274,6 +1367,9 @@ fun processTileFeatureCollection(
         tileFeatureCollection
     )
     initialFeatureCollections[TreeId.NAMED_WATERWAYS.id] += getNamedWaterwaysFromTileFeatureCollection(
+        tileFeatureCollection
+    )
+    initialFeatureCollections[TreeId.RAILWAY_STOPS.id] += getRailwayStopsFromTileFeatureCollection(
         tileFeatureCollection
     )
 
