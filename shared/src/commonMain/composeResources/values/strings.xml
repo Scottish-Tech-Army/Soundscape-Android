@@ -358,6 +358,8 @@
     <string name="directions_my_location">My Location</string>
     <!-- Notification announced to the user that they are near a location, %s is a physical address or the name of a place, examples: "Near 123 Columbia Street", "Near Starbucks" -->
     <string name="directions_near_name">Near %1$s</string>
+    <!-- Notification announced to a passenger while travelling, when a stop they are heading towards is coming up but has not been reached yet, %s is the name of a bus stop, tram stop or railway station, examples: "Approaching Princes Street", "Approaching Milngavie" -->
+    <string name="directions_approaching_name">Approaching %1$s</string>
     <!-- The location of a place which has no street address of its own, %1$s is the nearest road or path, %2$s is the settlement it's in, example: "London Road, Bridgeton" -->
     <string name="directions_street_settlement">%1$s, %2$s</string>
     <!-- An unnamed transit stop (e.g. "Bus Stop") with a nearby small settlement added for context while travelling by vehicle, %1$s is the generic stop description, %2$s is the settlement name, example: "Bus Stop, Kingsbarns" -->

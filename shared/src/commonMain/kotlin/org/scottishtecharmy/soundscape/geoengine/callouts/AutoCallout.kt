@@ -342,8 +342,11 @@ class AutoCallout(
             location = found.feature.point,
             positionedStrings = listOf(
                 PositionedString(
-                    text = localized?.get(StringKey.DirectionsNearName, calloutText)
-                        ?: "Near $calloutText",
+                    // "Approaching", not "Near": this fires while the stop is still ahead, and
+                    // "Near X" reads as a note of passing something rather than a warning that
+                    // it's coming up.
+                    text = localized?.get(StringKey.DirectionsApproachingName, calloutText)
+                        ?: "Approaching $calloutText",
                     location = found.feature.point,
                     type = AudioType.LOCALIZED
                 )
@@ -400,7 +403,8 @@ class AutoCallout(
             AnnouncedAlongWayFeature(key, found.feature.point, userGeometry.timestampMilliseconds)
         )
 
-        val text = localized?.get(StringKey.DirectionsNearName, name) ?: "Near $name"
+        val text = localized?.get(StringKey.DirectionsApproachingName, name)
+            ?: "Approaching $name"
         return TrackedCallout(
             userGeometry,
             trackedText = name,
