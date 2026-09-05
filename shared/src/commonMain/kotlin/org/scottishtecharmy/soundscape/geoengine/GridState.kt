@@ -1230,9 +1230,9 @@ private fun getHighwayJunctionsFromTileFeatureCollection(tileFeatureCollection: 
 }
 
 /**
- * Parses out the `railway=stop` nodes, which OSM places on the railway line itself at the point a
- * train actually stops - see the transportation layer in planetiler-openmaptiles, which emits them
- * as points with class=rail, subclass=stop.
+ * Parses out the `railway=stop` and `railway=tram_stop` nodes, which OSM places on the line itself
+ * at the point a train or tram actually stops - see the transportation layer in
+ * planetiler-openmaptiles, which emits them as points with subclass=stop/tram_stop.
  *
  * Kept in their own collection rather than folded into TreeId.TRANSIT_STOPS, and deliberately not
  * added to POIS: a stop node is not a place in its own right. The station POI is already there, and
@@ -1246,12 +1246,24 @@ private fun getRailwayStopsFromTileFeatureCollection(tileFeatureCollection: Feat
     val stopsFeatureCollection = FeatureCollection()
     for (feature in tileFeatureCollection) {
         val mvtFeature = feature as MvtFeature
-        if (mvtFeature.featureType == "rail" && mvtFeature.featureValue == "stop") {
+        // Both halves matter. The value alone would also match the poi layer's own tram_stop
+        // entries, which are the platform beside the track rather than the point on the line, and
+        // taking those would attach every tram stop to its line twice. The type alone would not
+        // do either: a tram stop is "transit" and a train stop "rail", matching the lines they
+        // sit on, and both types carry plenty that isn't a stop.
+        if ((mvtFeature.featureType in railwayStopTypes) &&
+            (mvtFeature.featureValue in railwayStopValues)
+        ) {
             stopsFeatureCollection.addFeature(feature)
         }
     }
     return stopsFeatureCollection
 }
+
+// The stop-position nodes emitted into the transportation layer - see the Transportation layer in
+// planetiler-openmaptiles. Both sit on the line itself, unlike the station or platform beside it.
+private val railwayStopValues = setOf("stop", "tram_stop")
+private val railwayStopTypes = setOf("rail", "transit")
 
 /**
  * Parses out the named `water` layer polygons used for the water-crossing proximity check - see
