@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.mvttranslation
 
+import org.scottishtecharmy.soundscape.geoengine.utils.Side
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 
 /**
@@ -22,6 +23,14 @@ enum class AlongWayKind {
      * inverted from the road's own.
      */
     ROAD_CROSSING,
+
+    /**
+     * A bus/tram stop or station beside this road, recorded on the road it serves. Unlike the
+     * crossings this isn't an intersection of two lines - the stop is a point near the road - so
+     * [AlongWayFeature.side] says which kerb it is on, which is what tells a stop serving this
+     * direction of travel from the one across the street serving the other.
+     */
+    TRANSIT_STOP,
 }
 
 /**
@@ -49,6 +58,8 @@ enum class AlongWayPosition {
  * @param name the name of the thing being crossed (the river, the railway line), or of the
  * feature itself. Null when unnamed.
  * @param position for a crossing, whether the user passes over or under. Null when not applicable.
+ * @param side which side of the Way the feature sits on, relative to travelling from the Way's
+ * START intersection towards its END. Null when it is on the Way itself, as a crossing is.
  * @param feature the other Way or POI involved, for kinds which have one. For [ROAD_CROSSING] this
  * is the road Way itself, so that the callout can call Way.getName with the user's localized
  * strings at callout time rather than baking a name in at tile-load time. Null for the crossings
@@ -60,5 +71,6 @@ data class AlongWayFeature(
     val kind: AlongWayKind,
     val name: String? = null,
     val position: AlongWayPosition? = null,
+    val side: Side? = null,
     val feature: MvtFeature? = null,
 )

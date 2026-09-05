@@ -4,6 +4,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.Ruler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 
@@ -55,6 +56,31 @@ data class WayCursor(
 )
 
 /**
+ * How far a walk along the Way network is willing to follow the road.
+ *
+ * A single road is split into many Ways - at every junction, and at every tile boundary - so any
+ * question about what lies ahead has to decide what counts as "ahead" once the road stops being
+ * one Way.
+ */
+enum class WayContinuation {
+    /**
+     * Through intersections joining exactly two Ways, stopping at any real junction. The same
+     * definition of "straight on" that Way.followWays uses and Street Preview follows, and the
+     * honest answer for something the user is about to arrive at: past a junction there is no
+     * single road ahead to be looking down.
+     */
+    STRAIGHT_ON,
+
+    /**
+     * Through junctions too, taking whichever Way continues the same road by name or ref. Needed
+     * to see any distance up a road that is worth naming: an urban main road has a side street
+     * every fifty metres, so STRAIGHT_ON stops almost immediately and a hundred-metre lookahead
+     * would never reach anything.
+     */
+    SAME_ROAD,
+}
+
+/**
  * Index of the first entry strictly beyond [distance] in a list sorted by distanceFromStart.
  *
  * Binary search rather than a scan. The lists are short while only crossings are recorded, but
@@ -97,10 +123,7 @@ data class AlongWayFeatureAhead(
  * Walks the Way network from [cursor] in the direction of travel, calling [action] for each
  * along-way feature met, nearest first, until [maxDistance] is exhausted or [action] returns false.
  *
- * Continuation between Ways runs on through intersections joining exactly two Ways and stops at a
- * real junction - the same definition of "straight on" that Way.followWays uses and Street Preview
- * follows. That's the honest answer for a lookahead: past a junction there's no single road ahead
- * to be looking down.
+ * [continuation] decides how far the walk is willing to follow the road - see [WayContinuation].
  *
  * When the cursor's direction is unknown, both directions are walked and the results interleaved
  * by distance, so a caller still gets "how far away is this, along the road" rather than a
@@ -109,15 +132,16 @@ data class AlongWayFeatureAhead(
 fun forEachAlongWayFeatureAhead(
     cursor: WayCursor,
     maxDistance: Double,
+    continuation: WayContinuation = WayContinuation.STRAIGHT_ON,
     action: (AlongWayFeatureAhead) -> Boolean
 ) {
     when (cursor.forwards) {
-        true, false -> walkOneDirection(cursor, cursor.forwards, maxDistance, action)
+        true, false -> walkOneDirection(cursor, cursor.forwards, maxDistance, continuation, action)
         null -> {
             // Merge the two directions by distance so the nearest feature is still seen first.
             val both = mutableListOf<AlongWayFeatureAhead>()
-            walkOneDirection(cursor, true, maxDistance) { both.add(it); true }
-            walkOneDirection(cursor, false, maxDistance) { both.add(it); true }
+            walkOneDirection(cursor, true, maxDistance, continuation) { both.add(it); true }
+            walkOneDirection(cursor, false, maxDistance, continuation) { both.add(it); true }
             for (found in both.sortedBy { it.distance }) {
                 if (!action(found)) return
             }
@@ -136,8 +160,14 @@ private fun walkOneDirection(
     cursor: WayCursor,
     forwards: Boolean,
     maxDistance: Double,
+    continuation: WayContinuation,
     action: (AlongWayFeatureAhead) -> Boolean
 ) {
+    // The identity of the road being followed, for WayContinuation.SAME_ROAD. Taken once from the
+    // Way the walk starts on: a road keeps its name and ref across the Ways it is split into, and
+    // that is what makes them the same road.
+    val roadName = cursor.way.name
+    val roadRef = cursor.way.ref
     var way = cursor.way
     var stepForwards = forwards
     // Where on the current Way the walk enters it: at the cursor to begin with, then at whichever
@@ -170,23 +200,49 @@ private fun walkOneDirection(
         travelled += if (stepForwards) way.length - entry else entry
         if (travelled > maxDistance) return
 
-        // Straight on, by the same rule Way.followWays uses and Street Preview follows: through an
-        // intersection joining exactly two Ways, and no further at a real junction, where there is
-        // no single road ahead to be looking down. Walked here rather than by calling followWays
-        // because that seeds from the intersection *behind* the first Way, which a Way at the end
-        // of the mapped network doesn't have.
+        // Walked here rather than by calling Way.followWays because that seeds from the
+        // intersection *behind* the first Way, which a Way at the end of the mapped network
+        // doesn't have.
         val exit = if (stepForwards) {
             way.intersections[WayEnd.END.id]
         } else {
             way.intersections[WayEnd.START.id]
+        } ?: return
+
+        val candidates = exit.members.filter { it !== way }
+        val next = when {
+            // A pass-through node: one road in, one road out, nothing to choose between.
+            candidates.size == 1 -> candidates.first()
+            continuation == WayContinuation.STRAIGHT_ON -> return
+            // A real junction, and we're following the road rather than stopping at it. Exactly
+            // one continuation has to identify itself as the same road, otherwise there's no
+            // single answer and guessing would be worse than stopping - which is what a staggered
+            // junction of two same-named arms looks like from here.
+            else -> {
+                val sameRoad = candidates.filter { sameRoad(it, roadName, roadRef) }
+                sameRoad.singleOrNull()
+                // A JOINER carries no name to match on - it's the synthetic zero-length link
+                // across a tile boundary (see GridState.joinTileEdgeIntersections) - so it's the
+                // fallback when nothing else here continues the road, not a rival to something
+                // that does.
+                    ?: candidates.filter { it.wayType == WayType.JOINER }
+                        .takeIf { sameRoad.isEmpty() }?.singleOrNull()
+                    ?: return
+            }
         }
-        if ((exit == null) || (exit.members.size != 2)) return
-        val next = exit.members.firstOrNull { it !== way } ?: return
 
         stepForwards = (next.intersections[WayEnd.START.id] === exit)
         entry = if (stepForwards) 0.0 else next.length
         way = next
     }
+}
+
+/** Whether a Way continues the road the walk started on, by name or by route number. */
+private fun sameRoad(candidate: Way, name: String?, ref: String?): Boolean {
+    if (candidate.wayType == WayType.JOINER) return false
+    if ((name != null) && (candidate.name == name)) return true
+    if ((ref != null) && (candidate.ref == ref)) return true
+    return false
 }
 
 /**
@@ -198,10 +254,11 @@ private fun walkOneDirection(
 fun nextAlongWayFeature(
     cursor: WayCursor,
     maxDistance: Double,
-    kind: AlongWayKind? = null
+    kind: AlongWayKind? = null,
+    continuation: WayContinuation = WayContinuation.STRAIGHT_ON
 ): AlongWayFeatureAhead? {
     var found: AlongWayFeatureAhead? = null
-    forEachAlongWayFeatureAhead(cursor, maxDistance) {
+    forEachAlongWayFeatureAhead(cursor, maxDistance, continuation) {
         if ((kind == null) || (it.feature.kind == kind)) {
             found = it
             false

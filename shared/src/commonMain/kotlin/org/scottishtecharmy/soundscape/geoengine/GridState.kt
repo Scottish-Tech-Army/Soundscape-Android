@@ -27,7 +27,9 @@ import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.getCentralPointForFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getCentroidOfPolygon
+import org.scottishtecharmy.soundscape.geoengine.utils.distanceAlongLineString
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.getSideOfLine
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.getPoiFeatureCollectionBySuperCategory
 import org.scottishtecharmy.soundscape.geoengine.utils.pointIsWithinBoundingBox
@@ -606,6 +608,80 @@ open class GridState(
         }
     }
 
+    // How far from a road a transit stop can be and still be taken as serving it. Bus stops sit on
+    // the kerb, so this is tighter than nearestWaySearchDistanceMetres - which is about finding a
+    // POI an address, where the far side of a dual carriageway is still a fair answer, and here it
+    // very much isn't.
+    private val transitStopWaySearchDistanceMetres = 20.0
+
+    /**
+     * Records each bus/tram stop against the road it serves, as a TRANSIT_STOP AlongWayFeature at
+     * its position along that road.
+     *
+     * This is what lets "which stop have I just gone past?" be a walk along the road being driven,
+     * rather than a search of everything near the path travelled since the last fix - a search
+     * which can't tell the stop on this road from one on the next street over, and can't tell
+     * either kerb apart without comparing bearings.
+     *
+     * [AlongWayFeature.side] settles the kerb question once, here, where the geometry is to hand:
+     * which side of the road the stop is on, relative to the road's own START-to-END direction.
+     * The callout then only has to know which way along the road it's travelling.
+     *
+     * TreeId.ROADS rather than ROADS_AND_PATHS: a stop belongs to the street, not to the pavement
+     * running alongside it. Unnamed roads count - a stop on an unnamed service road is still on
+     * that road, and unlike attachNearestWays this isn't looking for a name to use as an address.
+     */
+    private fun attachTransitStopsToWays(
+        featureCollections: Array<FeatureCollection>,
+        localTrees: Array<FeatureTree>
+    ): Int {
+        val stops = featureCollections[TreeId.TRANSIT_STOPS.id].features
+        if (stops.isEmpty()) return 0
+        val roadTree = localTrees[TreeId.ROADS.id]
+        var attached = 0
+
+        for (feature in stops) {
+            val stop = feature as? MvtFeature ?: continue
+            val point = probePointFor(stop) ?: continue
+
+            var nearestWay: Way? = null
+            var nearestDistance = Double.POSITIVE_INFINITY
+            for (candidate in roadTree.getNearbyCollection(
+                point, transitStopWaySearchDistanceMetres, ruler
+            )) {
+                val way = candidate as? Way ?: continue
+                val line = way.geometry as? LineString ?: continue
+                if (line.coordinates.size < 2) continue
+                val distance = ruler.distanceToLineString(point, line).distance
+                if (distance < nearestDistance) {
+                    nearestDistance = distance
+                    nearestWay = way
+                }
+            }
+            val way = nearestWay ?: continue
+            if (nearestDistance > transitStopWaySearchDistanceMetres) continue
+
+            val line = way.geometry as LineString
+            val projection = ruler.distanceToLineString(point, line)
+            way.addAlongWayFeature(
+                AlongWayFeature(
+                    distanceFromStart = distanceAlongLineString(line, projection, ruler),
+                    point = point,
+                    kind = AlongWayKind.TRANSIT_STOP,
+                    name = stop.name,
+                    side = getSideOfLine(
+                        line.coordinates[projection.index],
+                        line.coordinates[projection.index + 1],
+                        point
+                    ),
+                    feature = stop
+                )
+            )
+            attached++
+        }
+        return attached
+    }
+
     /**
      * processGridState is now called from within the single thread that can access the tile grid.
      * This makes it somewhat performance critical. However, by doing this it allows us to
@@ -658,6 +734,12 @@ open class GridState(
             attachNearestWays(featureCollections, localTrees)
         }
         println("Nearest ways took $nearestWayTiming")
+
+        var transitStopsAttached = 0
+        val transitStopTiming = measureTime {
+            transitStopsAttached = attachTransitStopsToWays(featureCollections, localTrees)
+        }
+        println("Transit stops took $transitStopTiming ($transitStopsAttached stops)")
 
         if (featureCollections[TreeId.ROADS_AND_PATHS.id].features.isNotEmpty()) {
             joinTileEdgeIntersections(grid, newGridIntersections)

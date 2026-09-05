@@ -25,22 +25,20 @@ import org.scottishtecharmy.soundscape.geoengine.utils.CountryBoundaries
 import org.scottishtecharmy.soundscape.geoengine.utils.DrivingSide
 import org.scottishtecharmy.soundscape.geoengine.utils.AlongWayFeatureAhead
 import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
+import org.scottishtecharmy.soundscape.geoengine.utils.Side
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.WayContinuation
 import org.scottishtecharmy.soundscape.geoengine.utils.forEachAlongWayFeatureAhead
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
-import org.scottishtecharmy.soundscape.geoengine.utils.normalizeHeading
 import org.scottishtecharmy.soundscape.geoengine.utils.orderPoisForSpeech
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.preferences.PreferenceDefaults
 import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
-import kotlin.math.roundToInt
 
 class AutoCallout(
     private val localized: LocalizedStrings?,
@@ -68,25 +66,25 @@ class AutoCallout(
     private val roadSenseCalloutHistory = CalloutHistory()
     private val vehicleLandmarkFilter = LocationUpdateFilter(10000, 50.0)
     private val vehicleLandmarkCalloutHistory = CalloutHistory()
-    private val vehicleTransitStopCalloutHistory = CalloutHistory()
-    private var lastTransitStopSweepLocation: LngLatAlt? = null
     // null means "no baseline yet" (just entered this travel mode), not "currently unmatched" -
     // losing map-match briefly (mapMatchedWay == null) deliberately leaves this alone rather than
     // resetting it, so a transient map-match gap right as the user reaches a bridge doesn't
     // suppress the callout. See buildCalloutForVehicleCrossing/buildCalloutForWalkingCrossing.
     private var lastVehicleCrossingWayOsmId: Long? = null
     private var lastWalkingCrossingWayOsmId: Long? = null
-    // Crossings already announced via the proximity trigger (see crossingToAnnounce). Shared
-    // between the vehicle and walking builders so that flipping travel mode partway across a
-    // structure can't announce the same crossing twice. CalloutHistory isn't usable here: its
-    // trim() hardcodes a 50m radius, which at motorway speed is inside the trigger radius, so an
-    // entry would be dropped and re-armed while still approaching the same crossing.
-    private val announcedCrossings = mutableListOf<AnnouncedCrossing>()
-    // Where the user was on the previous update, and how far back along the Ways the crossing
-    // queries should therefore look - see crossingsInReach.
-    private var lastCrossingSweepLocation: LngLatAlt? = null
-    private var lastCrossingSweepTimestamp = 0L
-    private var crossingSweepBehindMetres = 0.0
+    // Along-way features already announced - crossings and transit stops alike. Shared across the
+    // builders so that flipping travel mode partway across a structure can't announce the same
+    // crossing twice.
+    //
+    // CalloutHistory isn't usable for any of these: its trim() hardcodes a 50m radius, so an entry
+    // is dropped and re-armed while the user is still approaching the thing it was recorded for -
+    // which is most of the approach when a stop is announced 100m out.
+    private val announcedAlongWayFeatures = mutableListOf<AnnouncedAlongWayFeature>()
+    // Where the user was on the previous update, and how far back along the Ways the along-way
+    // queries should therefore look - see updateSweepWindow.
+    private var lastSweepLocation: LngLatAlt? = null
+    private var lastSweepTimestamp = 0L
+    private var sweepBehindMetres = 0.0
     private val lastStationTracker = LastStationTracker()
     private val notableVehicleEventTracker = NotableVehicleEventTracker()
     private var lastTrainTimestampMs: Long? = null
@@ -287,91 +285,65 @@ class AutoCallout(
         return callout
     }
 
+    // How far ahead a transit stop is announced while travelling by vehicle. Far enough to be of
+    // any use - being told about a stop as it goes past is too late to do anything with - and this
+    // is expected to be tuned once it has been ridden with.
+    private val transitStopLookaheadMetres = 100.0
+
     /**
-     * Announces a bus/tram/train stop as it's passed while travelling by car/bus/train. Checking
-     * only the current location against a fixed radius (as buildCalloutForRoadSense/
-     * describeReverseGeocode used to) misses most stops at driving speed: this callout only runs
-     * every ~10s/50m, but a stop's ~20m detection radius is crossed in a couple of seconds, so the
-     * odds of a periodic check landing inside that narrow window are poor. Instead this sweeps the
-     * path travelled since the last location update (FeatureTree.getNearbyLine) and checks the
-     * whole segment against the stop radius, so a stop can't be skipped over between updates
-     * regardless of speed.
+     * Announces a bus/tram stop on the approach to it while travelling by car/bus, about
+     * [transitStopLookaheadMetres] before it is reached.
+     *
+     * The stop is found by walking up the road being driven -
+     * GridState.attachTransitStopsToWays records each stop against the road it serves, at its
+     * position along it - so this is a lookup on the road ahead rather than a search of everything
+     * near the path travelled. That search could only judge by proximity, and so couldn't tell a
+     * stop on this road from one on the street behind the hedge.
+     *
+     * The walk follows the road by name or ref through junctions (WayContinuation.SAME_ROAD). A
+     * hundred metres of an urban main road crosses several side streets, and stopping dead at the
+     * first of them would put almost every stop out of reach.
      */
     private fun buildCalloutForVehicleTransitStop(
         userGeometry: UserGeometry,
         gridState: GridState,
         settlementGrid: GridState
     ): TrackedCallout? {
-        // Also covers a brief stop (red light, station dwell) via recentlyInVehicle, so the sweep
-        // anchor isn't lost (and a stop right at that moment isn't missed) - only reset once
-        // genuinely no longer in a vehicle, e.g. actually got out and started walking.
-        if (!userGeometry.inVehicle() && !recentlyInVehicle(userGeometry)) {
-            lastTransitStopSweepLocation = null
-            return null
-        }
+        // Also covers a brief stop (red light, station dwell) via recentlyInVehicle, so an
+        // approaching stop isn't dropped the moment the traffic does - only skipped once genuinely
+        // no longer in a vehicle, e.g. actually got out and started walking.
+        if (!userGeometry.inVehicle() && !recentlyInVehicle(userGeometry)) return null
+        val way = userGeometry.mapMatchedWay ?: return null
 
-        val previousLocation = lastTransitStopSweepLocation
-        lastTransitStopSweepLocation = userGeometry.location
-        if (previousLocation == null) {
-            // Nothing to sweep yet - this is the first update since entering vehicle mode.
-            return null
-        }
+        val found = transitStopAhead(userGeometry, way) ?: return null
+        val stopFeature = found.feature.feature ?: return null
+        val stopText = stopFeature.getText(localized)
+        if (stopText.generic) return null
 
-        vehicleTransitStopCalloutHistory.trim(userGeometry)
+        // Keyed on the stop itself rather than on its text, so that the whole approach is one
+        // announcement: the callout fires when the stop first comes within range and stays quiet
+        // for the rest of the way in. CalloutHistory can't do this - see announcedAlongWayFeatures.
+        val key = "stop|${stopFeature.osmId}|${found.feature.point}"
+        if (announcedAlongWayFeatures.any { it.key == key }) return null
 
-        val sweep = LineString(previousLocation, userGeometry.location)
-        val nearbyStops = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
-            .getNearbyLine(sweep, 20.0, gridState.ruler)
-
-        // A stop on the far side of the road serves the opposite direction of travel and isn't
-        // relevant to us - both directions' stops are easily within the 20m sweep radius of an
-        // ordinary two-way street, so distance alone can't tell them apart. The near-side kerb
-        // (stops serving our direction) is to the left of the direction of travel in a left-hand
-        // traffic country, or the right in a right-hand traffic one - see CountryBoundaries. If
-        // the country can't be determined (e.g. no bundled boundary covers this location), don't
-        // filter at all rather than guess.
-        val drivingSide = CountryBoundaries.drivingSide(userGeometry.location)
-        val travelBearing = gridState.ruler.bearing(previousLocation, userGeometry.location)
-        val candidate = nearbyStops.features
-            .mapNotNull { feature ->
-                val mvtFeature = feature as? MvtFeature ?: return@mapNotNull null
-                val text = mvtFeature.getText(localized)
-                if (text.generic) return@mapNotNull null
-                if (drivingSide != null) {
-                    val stopLocation = (mvtFeature.geometry as? Point)?.coordinates
-                        ?: return@mapNotNull null
-                    val stopBearing = gridState.ruler.bearing(userGeometry.location, stopLocation)
-                    val relativeAngle = normalizeHeading((stopBearing - travelBearing).roundToInt())
-                    // relativeAngle in 1..179 is to the right of travel, 180..359 to the left.
-                    val isFarSide = if (drivingSide == DrivingSide.LEFT) {
-                        relativeAngle in 1..179
-                    } else {
-                        relativeAngle in 180..359
-                    }
-                    if (isFarSide) return@mapNotNull null
-                }
-                Pair(mvtFeature, text)
-            }
-            .minByOrNull {
-                getDistanceToFeature(userGeometry.location, it.first, userGeometry.ruler).distance
-            } ?: return null
-
-        val (stopFeature, stopText) = candidate
-        val nearestPoint = getDistanceToFeature(userGeometry.location, stopFeature, userGeometry.ruler)
         val calloutText = if (stopFeature.name == null) {
-            enrichUnnamedTransitStopText(stopText.text, nearestPoint.point, gridState, settlementGrid)
+            enrichUnnamedTransitStopText(
+                stopText.text, found.feature.point, gridState, settlementGrid
+            )
         } else {
             stopText.text
         }
         val callout = TrackedCallout(
             userGeometry,
             trackedText = calloutText,
-            location = nearestPoint.point,
+            // The stop's own position, not the nearest point on it to the user: it's ahead, and
+            // that's where the spatialised audio should come from.
+            location = found.feature.point,
             positionedStrings = listOf(
                 PositionedString(
                     text = localized?.get(StringKey.DirectionsNearName, calloutText)
                         ?: "Near $calloutText",
-                    location = nearestPoint.point,
+                    location = found.feature.point,
                     type = AudioType.LOCALIZED
                 )
             ),
@@ -379,14 +351,64 @@ class AutoCallout(
             isGeneric = false,
         )
 
-        if (vehicleTransitStopCalloutHistory.find(callout)) {
-            return null
-        }
-
-        // Added eagerly - see the equivalent comment in buildCalloutForVehicleLandmark.
-        vehicleTransitStopCalloutHistory.add(callout)
+        announcedAlongWayFeatures.add(
+            AnnouncedAlongWayFeature(key, found.feature.point, userGeometry.timestampMilliseconds)
+        )
         notableVehicleEventTracker.recordEvent(userGeometry.timestampMilliseconds)
         return callout
+    }
+
+    /**
+     * The next transit stop up the road, within [transitStopLookaheadMetres], or null.
+     *
+     * Stops on the far kerb serve the opposite direction and are skipped. Which kerb is the near
+     * one is a property of the country - left of the direction of travel where traffic drives on
+     * the left, right where it drives on the right (see CountryBoundaries) - and which kerb the
+     * stop is on was settled when it was attached, as a side relative to the road's own direction.
+     * So this only has to flip that when travelling against the road's direction. Where the
+     * country can't be determined, no filtering happens rather than a guess: naming the stop
+     * across the road beats naming none.
+     *
+     * A known direction of travel is required. Without one there is no "ahead" to look down, and
+     * no way to tell which kerb is near - and no direction means barely moving, when nothing is
+     * being approached anyway.
+     */
+    private fun transitStopAhead(
+        userGeometry: UserGeometry,
+        way: Way
+    ): AlongWayFeatureAhead? {
+        val cursor = userGeometry.cursorOn(way, sweepHeading(userGeometry)) ?: return null
+        val forwards = cursor.forwards ?: return null
+        val nearSide = CountryBoundaries.drivingSide(userGeometry.location)?.let {
+            if (it == DrivingSide.LEFT) Side.LEFT else Side.RIGHT
+        }
+
+        var found: AlongWayFeatureAhead? = null
+        forEachAlongWayFeatureAhead(
+            cursor,
+            transitStopLookaheadMetres,
+            WayContinuation.SAME_ROAD
+        ) { candidate ->
+            if (candidate.feature.kind != AlongWayKind.TRANSIT_STOP) return@forEachAlongWayFeatureAhead true
+            val side = candidate.feature.side
+            if ((nearSide != null) && (side != null)) {
+                // The recorded side is relative to the road's START-to-END direction, so it reads
+                // directly when travelling that way and inverts when travelling back.
+                val sideOfTravel = if (forwards) {
+                    side
+                } else {
+                    when (side) {
+                        Side.LEFT -> Side.RIGHT
+                        Side.RIGHT -> Side.LEFT
+                        Side.INLINE -> Side.INLINE
+                    }
+                }
+                if (sideOfTravel != nearSide) return@forEachAlongWayFeatureAhead true
+            }
+            found = candidate
+            false
+        }
+        return found
     }
 
     /**
@@ -500,13 +522,6 @@ class AutoCallout(
         if (!userGeometry.probablyOnTrain()) return null
         val railway = userGeometry.mapMatchedRailway ?: return null
 
-        announcedCrossings.removeAll {
-            ((userGeometry.timestampMilliseconds - it.timestampMilliseconds) >
-                crossingForgetTimeMilliseconds) ||
-                (gridState.ruler.distance(userGeometry.location, it.location) >
-                    crossingForgetDistanceMetres)
-        }
-
         // Everything the line meets within reach, in the order it will be met - measured along the
         // rails, not as the crow flies.
         for (found in crossingsInReach(userGeometry, railway, railwaySideCrossingKinds)) {
@@ -517,12 +532,12 @@ class AutoCallout(
                 // Keyed on the water's name, so a line crossing a river on two adjacent bridge
                 // decks announces it once.
                 val key = "water|$waterName"
-                if (announcedCrossings.any { it.key == key }) continue
+                if (announcedAlongWayFeatures.any { it.key == key }) continue
 
                 // The recorded position already describes the train's own relationship to the
                 // water, as it does for the roads - both were inverted when they were attached.
-                announcedCrossings.add(
-                    AnnouncedCrossing(key, crossing.point, userGeometry.timestampMilliseconds)
+                announcedAlongWayFeatures.add(
+                    AnnouncedAlongWayFeature(key, crossing.point, userGeometry.timestampMilliseconds)
                 )
                 return trainCrossingCallout(
                     userGeometry, waterName, crossingCalloutText(WayCrossingInfo(crossing))
@@ -542,7 +557,7 @@ class AutoCallout(
             // same road again later in the journey still re-announces, once the earlier entry has
             // aged or fallen far enough behind to be pruned above.
             val key = "road|$roadName"
-            if (announcedCrossings.any { it.key == key }) continue
+            if (announcedAlongWayFeatures.any { it.key == key }) continue
 
             val text = if (crossing.position == AlongWayPosition.UNDER) {
                 localized?.get(StringKey.DirectionsGoingUnderRailway, roadName)
@@ -552,8 +567,8 @@ class AutoCallout(
                     ?: "Passing over $roadName"
             }
 
-            announcedCrossings.add(
-                AnnouncedCrossing(key, crossing.point, userGeometry.timestampMilliseconds)
+            announcedAlongWayFeatures.add(
+                AnnouncedAlongWayFeature(key, crossing.point, userGeometry.timestampMilliseconds)
             )
             return trainCrossingCallout(userGeometry, roadName, text)
         }
@@ -576,7 +591,7 @@ class AutoCallout(
             this(feature.kind, feature.name, feature.position, feature.point)
     }
 
-    private data class AnnouncedCrossing(
+    private data class AnnouncedAlongWayFeature(
         val key: String,
         val location: LngLatAlt,
         val timestampMilliseconds: Long
@@ -660,11 +675,11 @@ class AutoCallout(
     private val roadSideCrossingKinds =
         setOf(AlongWayKind.WATERWAY_CROSSING, AlongWayKind.RAILWAY_CROSSING)
 
-    // Bounds on the backward window in updateCrossingSweep. A minute without a fix is a gap in
+    // Bounds on the backward window in updateSweepWindow. A minute without a fix is a gap in
     // tracking rather than a long step, and 1km is further than any single step at line speed -
     // beyond either, the ground in between wasn't necessarily travelled.
-    private val crossingSweepMaximumGapMilliseconds = 60_000L
-    private val crossingSweepMaximumBehindMetres = 1000.0
+    private val sweepMaximumGapMilliseconds = 60_000L
+    private val sweepMaximumBehindMetres = 1000.0
 
     // How much warning to give before reaching a crossing the user passes under, and the bounds
     // the resulting radius is clamped to. Scaling with speed matters: at 30m/s locations arrive
@@ -672,10 +687,9 @@ class AutoCallout(
     private val crossingTriggerLeadSeconds = 3.0
     private val crossingTriggerMinimumRadiusMetres = 25.0
     private val crossingTriggerMaximumRadiusMetres = 150.0
-    // An announced crossing is forgotten once well clear of it, so that genuinely returning to the
-    // same crossing later announces it again.
-    private val crossingForgetDistanceMetres = 300.0
-    private val crossingForgetTimeMilliseconds = 300_000L
+    // An announced crossing or stop is forgotten once well clear of it - see updateSweepWindow.
+    private val announcedForgetDistanceMetres = 300.0
+    private val announcedForgetTimeMilliseconds = 300_000L
 
     /**
      * Decides whether the crossing on the currently matched Way should be announced now.
@@ -720,13 +734,6 @@ class AutoCallout(
             return if (edgeFired) crossing else null
         }
 
-        announcedCrossings.removeAll {
-            ((userGeometry.timestampMilliseconds - it.timestampMilliseconds) >
-                crossingForgetTimeMilliseconds) ||
-                (gridState.ruler.distance(userGeometry.location, it.location) >
-                    crossingForgetDistanceMetres)
-        }
-
         val found = crossingsInReach(userGeometry, way, roadSideCrossingKinds).firstOrNull()
             ?: return null
         val crossing = WayCrossingInfo(found.feature)
@@ -737,18 +744,19 @@ class AutoCallout(
         // Keyed on the Way the crossing is recorded against rather than the one we're matched to,
         // so that approaching it across a Way boundary and then reaching it doesn't announce twice.
         val key = "${found.way.osmId}|${crossing.kind}|${crossing.name}"
-        if (announcedCrossings.any { it.key == key }) return null
+        if (announcedAlongWayFeatures.any { it.key == key }) return null
 
-        announcedCrossings.add(
-            AnnouncedCrossing(key, found.feature.point, userGeometry.timestampMilliseconds)
+        announcedAlongWayFeatures.add(
+            AnnouncedAlongWayFeature(key, found.feature.point, userGeometry.timestampMilliseconds)
         )
         return crossing
     }
 
     /**
      * Records how far the user has moved since the previous update, which is how far back along
-     * the Ways crossingsInReach looks. Called once per update, before any callout is built, so
-     * that the three crossing builders all see the same window.
+     * the Ways the along-way queries look - crossingsInReach for the crossings, and
+     * transitStopsPassed for the stops. Called once per update, before any callout is built, so
+     * that they all see the same window.
      *
      * Gated on elapsed time rather than on distance moved. Distance is no help in telling travel
      * from a jump - 400m between fixes is thirteen seconds of motorway, and rejecting it would
@@ -757,21 +765,30 @@ class AutoCallout(
      * Preview teleport, or tracking that stopped and restarted somewhere else. The cap catches
      * what's left, a jump inside the time limit.
      */
-    private fun updateCrossingSweep(userGeometry: UserGeometry) {
-        val previous = lastCrossingSweepLocation
-        val elapsed = userGeometry.timestampMilliseconds - lastCrossingSweepTimestamp
-        crossingSweepBehindMetres = if (
-            (previous == null) || (elapsed <= 0) || (elapsed > crossingSweepMaximumGapMilliseconds)
+    private fun updateSweepWindow(userGeometry: UserGeometry) {
+        // Forget what was announced long ago or far behind, so that genuinely coming back to the
+        // same crossing or stop later announces it again.
+        announcedAlongWayFeatures.removeAll {
+            ((userGeometry.timestampMilliseconds - it.timestampMilliseconds) >
+                announcedForgetTimeMilliseconds) ||
+                (userGeometry.ruler.distance(userGeometry.location, it.location) >
+                    announcedForgetDistanceMetres)
+        }
+
+        val previous = lastSweepLocation
+        val elapsed = userGeometry.timestampMilliseconds - lastSweepTimestamp
+        sweepBehindMetres = if (
+            (previous == null) || (elapsed <= 0) || (elapsed > sweepMaximumGapMilliseconds)
         ) {
             0.0
         } else {
             // Crow-fly between the two fixes, with slack for the road not being straight between
             // them, so the window is never shorter than the road actually travelled.
             (userGeometry.ruler.distance(previous, userGeometry.location) * 1.5)
-                .coerceAtMost(crossingSweepMaximumBehindMetres)
+                .coerceAtMost(sweepMaximumBehindMetres)
         }
-        lastCrossingSweepLocation = userGeometry.location
-        lastCrossingSweepTimestamp = userGeometry.timestampMilliseconds
+        lastSweepLocation = userGeometry.location
+        lastSweepTimestamp = userGeometry.timestampMilliseconds
     }
 
     /**
@@ -797,12 +814,27 @@ class AutoCallout(
      * Ties go to the waterway. A Way can carry both (a viaduct over a river and a railway at once)
      * and the river is the bigger landmark.
      */
+    /**
+     * The bearing from where the user was on the previous fix, for when the fix itself carries no
+     * usable travel heading. Movement between two fixes says which way they are going just as well,
+     * and this is how the transit stop sweep used to decide it before the along-way queries
+     * existed.
+     *
+     * Null below a couple of metres of movement, where the bearing is mostly noise.
+     */
+    private fun sweepHeading(userGeometry: UserGeometry): Double? {
+        val previous = lastSweepLocation ?: return null
+        if (userGeometry.ruler.distance(previous, userGeometry.location) < 2.0) return null
+        return userGeometry.ruler.bearing(previous, userGeometry.location)
+    }
+
     private fun crossingsInReach(
         userGeometry: UserGeometry,
         way: Way,
         kinds: Set<AlongWayKind>
     ): List<AlongWayFeatureAhead> {
-        val cursor = userGeometry.cursorOn(way) ?: return emptyList()
+        val cursor = userGeometry.cursorOn(way, sweepHeading(userGeometry))
+            ?: return emptyList()
         val lookahead = (userGeometry.speed * crossingTriggerLeadSeconds)
             .coerceIn(crossingTriggerMinimumRadiusMetres, crossingTriggerMaximumRadiusMetres)
 
@@ -814,10 +846,10 @@ class AutoCallout(
 
         // Only needed when the direction is known, since the walk above then went one way only.
         val forwards = cursor.forwards
-        if ((forwards != null) && (crossingSweepBehindMetres > 0.0)) {
+        if ((forwards != null) && (sweepBehindMetres > 0.0)) {
             forEachAlongWayFeatureAhead(
                 cursor.copy(forwards = !forwards),
-                crossingSweepBehindMetres
+                sweepBehindMetres
             ) {
                 if (it.feature.kind in kinds) found.add(it)
                 true
@@ -1235,8 +1267,8 @@ class AutoCallout(
             withContext(gridState.treeContext) {
                 var trackedCallout: TrackedCallout? = null
 
-                // Before any builder runs, so the three crossing builders share one window.
-                updateCrossingSweep(userGeometry)
+                // Before any builder runs, so every along-way query shares one window.
+                updateSweepWindow(userGeometry)
 
                 val destinationCallout = buildCalloutForDestination(userGeometry)
                 if (destinationCallout != null) {

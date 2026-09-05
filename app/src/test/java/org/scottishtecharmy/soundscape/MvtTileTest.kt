@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertNotNull
+import org.junit.Assert.assertNotEquals
 import junit.framework.TestCase.assertNull
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -41,7 +42,9 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJ
 import org.scottishtecharmy.soundscape.geoengine.processTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.CountryBoundaries
 import org.scottishtecharmy.soundscape.geoengine.utils.DrivingSide
+import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
+import org.scottishtecharmy.soundscape.geoengine.utils.Side
 import org.scottishtecharmy.soundscape.geoengine.utils.ResourceMapper
 import org.scottishtecharmy.soundscape.geoengine.utils.confectNamesForRoad
 import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
@@ -164,14 +167,27 @@ private fun parseGpxFromFile(filename: String): FeatureCollection {
 }
 
 /**
+ * The kinds of AlongWayFeature that are crossings. Way.alongWayFeatures also carries transit stops
+ * (and will carry more), so "has any along-way feature" is not the same question as "crosses
+ * something" and the helpers below have to say which they mean.
+ */
+val crossingKinds = setOf(
+    AlongWayKind.WATERWAY_CROSSING,
+    AlongWayKind.RAILWAY_CROSSING,
+    AlongWayKind.ROAD_CROSSING,
+)
+
+fun Way.crossings(): List<AlongWayFeature> = alongWayFeatures.filter { it.kind in crossingKinds }
+
+/**
  * The crossing this Way records against the named river/canal/railway, if any. Crossings live in
  * Way.alongWayFeatures rather than in the flat property map, so a Way can carry more than one -
  * a viaduct over both a river and a railway, say.
  */
 fun Way.crossingNamed(name: String): AlongWayFeature? =
-    alongWayFeatures.firstOrNull { it.name == name }
+    crossings().firstOrNull { it.name == name }
 
-fun Way.crossingNames(): List<String> = alongWayFeatures.mapNotNull { it.name }
+fun Way.crossingNames(): List<String> = crossings().mapNotNull { it.name }
 
 fun getGridStateForLocation(
     location: LngLatAlt,
@@ -1089,32 +1105,43 @@ class MvtTileTest {
         assertNull("Expected this stop to be unnamed for the test to be meaningful", stop!!.name)
         val stopLocation = (stop.geometry as Point).coordinates
 
-        val road = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS)
-            .getNearestFeature(stopLocation, gridState.ruler, 30.0) as? Way
-        assertNotNull("Expected a road near the stop", road)
-        val roadCoordinates = (road!!.geometry as LineString).coordinates
-        assertTrue("Expected the road to have at least two points", roadCoordinates.size >= 2)
+        // The road the stop was attached to, rather than whichever way happens to be nearest -
+        // stops are recorded against roads only (see GridState.attachTransitStopsToWays).
+        val road = gridState.getFeatureTree(TreeId.ROADS).getAllCollection().features
+            .filterIsInstance<Way>()
+            .first { way ->
+                way.alongWayFeatures(AlongWayKind.TRANSIT_STOP).any { it.feature === stop }
+            }
+        val line = road.geometry as LineString
+        val stopAlong = road.alongWayFeatures(AlongWayKind.TRANSIT_STOP)
+            .first { it.feature === stop }
+
+        // Approach from 60m back - inside the 100m lookahead but not yet reached - travelling in
+        // whichever direction puts the stop on the near kerb, since Britain drives on the left and
+        // a far-side stop is deliberately not announced.
+        val approachForwards = (stopAlong.side == Side.LEFT)
+        val fromAlong = if (approachForwards) {
+            (stopAlong.distanceFromStart - 60.0).coerceAtLeast(0.0)
+        } else {
+            (stopAlong.distanceFromStart + 60.0).coerceAtMost(road.length)
+        }
+        val from = gridState.ruler.along(line, fromAlong)
+        val towards = gridState.ruler.along(line, stopAlong.distanceFromStart)
+        val heading = gridState.ruler.bearing(from, towards)
 
         val autoCallout = AutoCallout(null, null)
-
-        // First update just establishes the sweep anchor - no callout expected yet.
-        val firstUpdate = UserGeometry(
-            location = roadCoordinates.first(), speed = 15.0, mapMatchedWay = road,
-            timestampMilliseconds = 1000L
+        val callout = autoCallout.updateLocation(
+            UserGeometry(
+                location = from, speed = 15.0, travelHeading = heading, mapMatchedWay = road,
+                timestampMilliseconds = 1000L
+            ),
+            gridState, settlementGrid
         )
-        autoCallout.updateLocation(firstUpdate, gridState, settlementGrid)
-
-        // Second update sweeps along the rest of the road, past the stop.
-        val secondUpdate = UserGeometry(
-            location = roadCoordinates.last(), speed = 15.0, mapMatchedWay = road,
-            timestampMilliseconds = 6000L
-        )
-        val secondCallout = autoCallout.updateLocation(secondUpdate, gridState, settlementGrid)
-        assertNotNull("Expected a transit stop callout", secondCallout)
+        assertNotNull("Expected a transit stop callout", callout)
         assertTrue(
             "Expected the callout to include both the generic stop text and settlement " +
-                "context, got: ${secondCallout!!.positionedStrings.map { it.text }}",
-            secondCallout.positionedStrings.any {
+                "context, got: ${callout!!.positionedStrings.map { it.text }}",
+            callout.positionedStrings.any {
                 it.text.contains("Bus Stop") && it.text.contains(", ")
             }
         )
@@ -1257,7 +1284,7 @@ class MvtTileTest {
         ).map { it * 10 + 2 }.toSet()
 
         val bogus = ways.filter {
-            it.osmId in overTheTunnel && it.alongWayFeatures.isNotEmpty()
+            it.osmId in overTheTunnel && it.crossings().isNotEmpty()
         }
         assertTrue(
             "Nothing above the Falkirk Tunnel should claim to cross the Union Canal, got " +
@@ -1479,6 +1506,184 @@ class MvtTileTest {
                 it.text == "Passing under Edinburgh and Glasgow Main Line"
             }
         )
+    }
+
+    /**
+     * Approaching a bus stop should name it before it is reached - and should name the one on
+     * *this* side of the road, not the one across the street serving the opposite direction.
+     *
+     * Boclair Road in Hillfoot has a pair 6m apart along the road and on opposite kerbs, which
+     * NaPTAN confirms serve opposite directions ("Northeastbound" and "Southwestbound"). Which one
+     * is announced therefore depends entirely on which way the car is going, and the two runs
+     * below differ in nothing but the travel heading. Driving back the other way the far-side stop
+     * is also the *nearer* of the two, so getting the right answer means genuinely skipping a
+     * closer stop rather than just taking the first one found.
+     *
+     * The side is settled when the stop is attached to the road (see
+     * GridState.attachTransitStopsToWays), as a side relative to the road's own direction; the
+     * callout only flips it for the direction of travel. Britain drives on the left, so the near
+     * kerb - the stops serving this direction - is the left one.
+     */
+    @Test
+    fun testVehicleTransitStopAnnouncesTheNearSideStopAhead() {
+        val location = LngLatAlt(-4.3115, 55.9295)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val way = gridState.getFeatureTree(TreeId.ROADS).getAllCollection().features
+            .filterIsInstance<Way>()
+            .first { candidate ->
+                val stops = candidate.alongWayFeatures(AlongWayKind.TRANSIT_STOP)
+                candidate.name == "Boclair Road" && stops.size >= 2 &&
+                    stops.map { it.side }.toSet().size > 1
+            }
+        val line = way.geometry as LineString
+        val stops = way.alongWayFeatures(AlongWayKind.TRANSIT_STOP)
+        val leftStop = stops.first { it.side == Side.LEFT }
+        val rightStop = stops.first { it.side == Side.RIGHT }
+        val leftText = leftStop.feature!!.getText(null).text
+        val rightText = rightStop.feature!!.getText(null).text
+        assertNotEquals(
+            "Fixture needs two distinguishable stops on opposite kerbs",
+            leftText,
+            rightText
+        )
+        // Driving back the other way, the right-hand stop is the nearer one - so the far-side
+        // filter has to skip a stop that a plain "nearest ahead" would have taken.
+        assertTrue(
+            "Fixture needs the right-hand stop first when driving in reverse",
+            rightStop.distanceFromStart < leftStop.distanceFromStart
+        )
+
+        val startPoint = gridState.ruler.along(line, 0.0)
+        val endPoint = gridState.ruler.along(line, way.length)
+        val forwardHeading = gridState.ruler.bearing(startPoint, endPoint)
+
+        // Driving in the Way's own direction from before both stops: the left-hand one is the
+        // near kerb, and it is announced while still short of it.
+        val forward = driveOneFix(gridState, settlementGrid, way, startPoint, forwardHeading)
+        assertNotNull("Expected a stop callout approaching Boclair Road", forward)
+        assertTrue(
+            "Expected the near-side stop named, got: " +
+                "${forward!!.positionedStrings.map { it.text }}",
+            forward.positionedStrings.any { it.text.contains(leftText) }
+        )
+        assertTrue(
+            "The far-side stop must not be named, got: " +
+                "${forward.positionedStrings.map { it.text }}",
+            forward.positionedStrings.none { it.text.contains(rightText) }
+        )
+
+        // ...and driving the other way it's the other one, from exactly the same data.
+        val backward = driveOneFix(
+            gridState, settlementGrid, way, endPoint, (forwardHeading + 180.0) % 360.0
+        )
+        assertNotNull("Expected a stop callout driving the other way", backward)
+        assertTrue(
+            "Expected the other kerb's stop named, got: " +
+                "${backward!!.positionedStrings.map { it.text }}",
+            backward.positionedStrings.any { it.text.contains(rightText) }
+        )
+        assertTrue(
+            "The far-side stop must not be named, got: " +
+                "${backward.positionedStrings.map { it.text }}",
+            backward.positionedStrings.none { it.text.contains(leftText) }
+        )
+    }
+
+    /**
+     * The approach is one announcement, not one per location update: the stop is named when it
+     * first comes within range and stays quiet for the rest of the way in. CalloutHistory can't
+     * express that - it drops entries more than 50m from the user, which is most of a 100m
+     * approach - so AutoCallout keeps its own record.
+     */
+    @Test
+    fun testVehicleTransitStopIsAnnouncedOnceOnTheApproach() {
+        val location = LngLatAlt(-4.3115, 55.9295)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val way = gridState.getFeatureTree(TreeId.ROADS).getAllCollection().features
+            .filterIsInstance<Way>()
+            .first { candidate ->
+                val stops = candidate.alongWayFeatures(AlongWayKind.TRANSIT_STOP)
+                candidate.name == "Boclair Road" && stops.size >= 2 &&
+                    stops.map { it.side }.toSet().size > 1
+            }
+        val line = way.geometry as LineString
+        val leftText = way.alongWayFeatures(AlongWayKind.TRANSIT_STOP)
+            .first { it.side == Side.LEFT }.feature!!.getText(null).text
+        val heading = gridState.ruler.bearing(
+            gridState.ruler.along(line, 0.0), gridState.ruler.along(line, way.length)
+        )
+
+        val autoCallout = AutoCallout(null, null)
+        val spoken = mutableListOf<String>()
+        var t = 1000L
+        // Creep up the road so several updates have the stop inside the lookahead at once.
+        for (step in 0..8) {
+            val callout = autoCallout.updateLocation(
+                UserGeometry(
+                    location = gridState.ruler.along(line, way.length * step / 16.0),
+                    speed = 10.0, travelHeading = heading, mapMatchedWay = way,
+                    timestampMilliseconds = t
+                ),
+                gridState, settlementGrid
+            )
+            callout?.positionedStrings?.forEach { spoken.add(it.text) }
+            t += 1000L
+        }
+        assertEquals(
+            "Expected the stop to be named exactly once across the approach, got $spoken",
+            1,
+            spoken.count { it.contains(leftText) }
+        )
+    }
+
+    /** A single location fix along [way], returning whatever callout it produced. */
+    private fun driveOneFix(
+        gridState: GridState,
+        settlementGrid: GridState,
+        way: Way,
+        from: LngLatAlt,
+        heading: Double
+    ): TrackedCallout? = AutoCallout(null, null).updateLocation(
+        UserGeometry(
+            location = from, speed = 10.0, travelHeading = heading, mapMatchedWay = way,
+            timestampMilliseconds = 1000L
+        ),
+        gridState, settlementGrid
+    )
+
+    /**
+     * A stop is attached to the road it is beside, and sits at its real position along it. This is
+     * what replaces searching the stop tree around the path travelled - a search that could only
+     * judge by proximity, and so couldn't tell a stop on this road from one on the street behind
+     * the hedge.
+     */
+    @Test
+    fun testTransitStopsAreAttachedToTheirRoad() {
+        val location = LngLatAlt(-4.3115, 55.9295)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val roads = gridState.getFeatureTree(TreeId.ROADS).getAllCollection().features
+            .filterIsInstance<Way>()
+        val attached = roads.flatMap { way ->
+            way.alongWayFeatures(AlongWayKind.TRANSIT_STOP).map { Pair(way, it) }
+        }
+        assertTrue("Expected bus stops to be attached to roads", attached.isNotEmpty())
+
+        for ((way, stop) in attached) {
+            assertTrue(
+                "${stop.name} sits at ${stop.distanceFromStart} on a ${way.length}m way",
+                stop.distanceFromStart >= 0.0 && stop.distanceFromStart <= way.length + 0.001
+            )
+            assertNotNull("A stop should carry the POI it came from", stop.feature)
+            assertNotNull("A stop should record which kerb it is on", stop.side)
+            // Attached to a road it is genuinely beside, not merely the nearest thing in the grid.
+            val distance = gridState.ruler
+                .distanceToLineString(stop.point, way.geometry as LineString).distance
+            assertTrue("${stop.name} is ${distance}m from ${way.name}", distance <= 20.0)
+        }
     }
 
     /**
