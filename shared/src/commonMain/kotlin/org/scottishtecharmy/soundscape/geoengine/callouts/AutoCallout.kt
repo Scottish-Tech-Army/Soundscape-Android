@@ -23,9 +23,11 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.CountryBoundaries
 import org.scottishtecharmy.soundscape.geoengine.utils.DrivingSide
+import org.scottishtecharmy.soundscape.geoengine.utils.AlongWayFeatureAhead
 import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.forEachAlongWayFeatureAhead
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.normalizeHeading
 import org.scottishtecharmy.soundscape.geoengine.utils.orderPoisForSpeech
@@ -80,6 +82,11 @@ class AutoCallout(
     // trim() hardcodes a 50m radius, which at motorway speed is inside the trigger radius, so an
     // entry would be dropped and re-armed while still approaching the same crossing.
     private val announcedCrossings = mutableListOf<AnnouncedCrossing>()
+    // Where the user was on the previous update, and how far back along the Ways the crossing
+    // queries should therefore look - see crossingsInReach.
+    private var lastCrossingSweepLocation: LngLatAlt? = null
+    private var lastCrossingSweepTimestamp = 0L
+    private var crossingSweepBehindMetres = 0.0
     private val lastStationTracker = LastStationTracker()
     private val notableVehicleEventTracker = NotableVehicleEventTracker()
     private var lastTrainTimestampMs: Long? = null
@@ -500,48 +507,27 @@ class AutoCallout(
                     crossingForgetDistanceMetres)
         }
 
-        val radius = (userGeometry.speed * crossingTriggerLeadSeconds)
-            .coerceIn(crossingTriggerMinimumRadiusMetres, crossingTriggerMaximumRadiusMetres)
+        // Everything the line meets within reach, in the order it will be met - measured along the
+        // rails, not as the crow flies.
+        for (found in crossingsInReach(userGeometry, railway, railwaySideCrossingKinds)) {
+            val crossing = found.feature
+            if (crossing.kind == AlongWayKind.WATERWAY_CROSSING) {
+                val waterName = crossing.name ?: continue
 
-        // The rivers and canals the line carries the passenger over or under. Checked before the
-        // roads below because a river is the bigger landmark of the two - crossing the Clyde is
-        // worth more to a passenger than passing under a side street.
-        for (crossing in railway.alongWayFeatures(AlongWayKind.WATERWAY_CROSSING)) {
-            val waterName = crossing.name ?: continue
-            val point = crossing.point
-            if (gridState.ruler.distance(userGeometry.location, point) > radius) continue
+                // Keyed on the water's name, so a line crossing a river on two adjacent bridge
+                // decks announces it once.
+                val key = "water|$waterName"
+                if (announcedCrossings.any { it.key == key }) continue
 
-            // Keyed on the water's name, so a line crossing a river on two adjacent bridge decks
-            // announces it once.
-            val key = "water|$waterName"
-            if (announcedCrossings.any { it.key == key }) continue
-
-            // The recorded position already describes the train's own relationship to the water,
-            // as it does for the roads below - both were inverted when they were attached.
-            val text = crossingCalloutText(WayCrossingInfo(crossing))
-
-            announcedCrossings.add(
-                AnnouncedCrossing(key, point, userGeometry.timestampMilliseconds)
-            )
-            return TrackedCallout(
-                userGeometry,
-                trackedText = waterName,
-                location = userGeometry.location,
-                positionedStrings = listOf(
-                    PositionedString(
-                        text = text,
-                        location = userGeometry.location,
-                        type = AudioType.STANDARD
-                    )
-                ),
-                isPoint = true,
-                isGeneric = false,
-            )
-        }
-
-        for (crossing in railway.alongWayFeatures(AlongWayKind.ROAD_CROSSING)) {
-            val point = crossing.point
-            if (gridState.ruler.distance(userGeometry.location, point) > radius) continue
+                // The recorded position already describes the train's own relationship to the
+                // water, as it does for the roads - both were inverted when they were attached.
+                announcedCrossings.add(
+                    AnnouncedCrossing(key, crossing.point, userGeometry.timestampMilliseconds)
+                )
+                return trainCrossingCallout(
+                    userGeometry, waterName, crossingCalloutText(WayCrossingInfo(crossing))
+                )
+            }
 
             // Only genuinely named roads. Way.getName confects a name for anything unnamed, which
             // from a train reads as noise rather than a landmark - "Passing over Service that
@@ -567,22 +553,9 @@ class AutoCallout(
             }
 
             announcedCrossings.add(
-                AnnouncedCrossing(key, point, userGeometry.timestampMilliseconds)
+                AnnouncedCrossing(key, crossing.point, userGeometry.timestampMilliseconds)
             )
-            return TrackedCallout(
-                userGeometry,
-                trackedText = roadName,
-                location = userGeometry.location,
-                positionedStrings = listOf(
-                    PositionedString(
-                        text = text,
-                        location = userGeometry.location,
-                        type = AudioType.STANDARD
-                    )
-                ),
-                isPoint = true,
-                isGeneric = false,
-            )
+            return trainCrossingCallout(userGeometry, roadName, text)
         }
         return null
     }
@@ -657,6 +630,42 @@ class AutoCallout(
         return WayCrossingInfo(AlongWayKind.WATERWAY_CROSSING, waterName, position, null)
     }
 
+    private fun trainCrossingCallout(
+        userGeometry: UserGeometry,
+        trackedText: String,
+        text: String
+    ) = TrackedCallout(
+        userGeometry,
+        trackedText = trackedText,
+        location = userGeometry.location,
+        positionedStrings = listOf(
+            PositionedString(
+                text = text,
+                location = userGeometry.location,
+                type = AudioType.STANDARD
+            )
+        ),
+        isPoint = true,
+        isGeneric = false,
+    )
+
+    // What a train passenger can meet: the roads crossing the line, and the water the line itself
+    // crosses. RAILWAY_CROSSING is the road-side mirror and belongs to the road user.
+    private val railwaySideCrossingKinds =
+        setOf(AlongWayKind.WATERWAY_CROSSING, AlongWayKind.ROAD_CROSSING)
+
+    // The crossing kinds a road user can meet. ROAD_CROSSING is the railway-side mirror and would
+    // be nonsense here, and the kinds still to come (transit stops, junctions) aren't crossings at
+    // all - so this is an allow-list rather than an exclusion.
+    private val roadSideCrossingKinds =
+        setOf(AlongWayKind.WATERWAY_CROSSING, AlongWayKind.RAILWAY_CROSSING)
+
+    // Bounds on the backward window in updateCrossingSweep. A minute without a fix is a gap in
+    // tracking rather than a long step, and 1km is further than any single step at line speed -
+    // beyond either, the ground in between wasn't necessarily travelled.
+    private val crossingSweepMaximumGapMilliseconds = 60_000L
+    private val crossingSweepMaximumBehindMetres = 1000.0
+
     // How much warning to give before reaching a crossing the user passes under, and the bounds
     // the resulting radius is clamped to. Scaling with speed matters: at 30m/s locations arrive
     // roughly 30m apart, so a small fixed radius would be stepped straight over on a motorway.
@@ -696,12 +705,13 @@ class AutoCallout(
         if (userGeometry.probablyOnTrain() || recentlyOnTrain(userGeometry)) return null
 
         val way = userGeometry.mapMatchedWay ?: return null
-        val crossing = wayCrossingInfo(way, gridState, userGeometry.location) ?: return null
 
-        // A Way carrying its own brunnel is the structure, so the edge is already accurate. This
-        // also covers the water-polygon fallback above, which has no point to aim at.
+        // A Way carrying its own brunnel is the structure, so arriving on it *is* the crossing and
+        // the Way-change edge is already an accurate trigger. This also covers the water-polygon
+        // fallback in wayCrossingInfo, which has no recorded crossing to measure a distance to.
         val wayIsStructure = way.properties?.get("brunnel") != null
-        if (crossing.point == null || wayIsStructure) {
+        if (wayIsStructure || way.alongWayFeatures.isEmpty()) {
+            val crossing = wayCrossingInfo(way, gridState, userGeometry.location) ?: return null
             val edgeFired = previousOsmId != null && previousOsmId != way.osmId
             return if (edgeFired) crossing else null
         }
@@ -713,17 +723,103 @@ class AutoCallout(
                     crossingForgetDistanceMetres)
         }
 
-        val key = "${way.osmId}|${crossing.kind}|${crossing.name}"
+        val found = crossingsInReach(userGeometry, way, roadSideCrossingKinds).firstOrNull()
+            ?: return null
+        val crossing = WayCrossingInfo(found.feature)
+        if ((crossing.kind == AlongWayKind.WATERWAY_CROSSING) && crossing.name.isNullOrEmpty()) {
+            return null
+        }
+
+        // Keyed on the Way the crossing is recorded against rather than the one we're matched to,
+        // so that approaching it across a Way boundary and then reaching it doesn't announce twice.
+        val key = "${found.way.osmId}|${crossing.kind}|${crossing.name}"
         if (announcedCrossings.any { it.key == key }) return null
 
-        val radius = (userGeometry.speed * crossingTriggerLeadSeconds)
-            .coerceIn(crossingTriggerMinimumRadiusMetres, crossingTriggerMaximumRadiusMetres)
-        if (gridState.ruler.distance(userGeometry.location, crossing.point) > radius) return null
-
         announcedCrossings.add(
-            AnnouncedCrossing(key, crossing.point, userGeometry.timestampMilliseconds)
+            AnnouncedCrossing(key, found.feature.point, userGeometry.timestampMilliseconds)
         )
         return crossing
+    }
+
+    /**
+     * Records how far the user has moved since the previous update, which is how far back along
+     * the Ways crossingsInReach looks. Called once per update, before any callout is built, so
+     * that the three crossing builders all see the same window.
+     *
+     * Gated on elapsed time rather than on distance moved. Distance is no help in telling travel
+     * from a jump - 400m between fixes is thirteen seconds of motorway, and rejecting it would
+     * throw away exactly the sparse-fix case this window exists for. A long gap between fixes is
+     * the real signal that the intervening ground wasn't travelled: a resumed session, a Street
+     * Preview teleport, or tracking that stopped and restarted somewhere else. The cap catches
+     * what's left, a jump inside the time limit.
+     */
+    private fun updateCrossingSweep(userGeometry: UserGeometry) {
+        val previous = lastCrossingSweepLocation
+        val elapsed = userGeometry.timestampMilliseconds - lastCrossingSweepTimestamp
+        crossingSweepBehindMetres = if (
+            (previous == null) || (elapsed <= 0) || (elapsed > crossingSweepMaximumGapMilliseconds)
+        ) {
+            0.0
+        } else {
+            // Crow-fly between the two fixes, with slack for the road not being straight between
+            // them, so the window is never shorter than the road actually travelled.
+            (userGeometry.ruler.distance(previous, userGeometry.location) * 1.5)
+                .coerceAtMost(crossingSweepMaximumBehindMetres)
+        }
+        lastCrossingSweepLocation = userGeometry.location
+        lastCrossingSweepTimestamp = userGeometry.timestampMilliseconds
+    }
+
+    /**
+     * Every along-way feature of [kinds] within reach of the user along the Way network, nearest
+     * first.
+     *
+     * Distance is measured *along the road* from where the user is on it, walking into the Ways
+     * beyond the end of this one - not as the crow flies from the user's location, which is what
+     * this used to do. Crow-fly is only an approximation of "how far until I reach it", and it
+     * gets worse the less straight the road is: on a road curving back towards a bridge it reads
+     * small while the distance still to drive is large.
+     *
+     * Two windows. Ahead is the lead distance, so there's time to say it before it arrives. Behind
+     * is however far the user has come since the last update, because a crossing that fell between
+     * two fixes was never inside the lookahead on either of them, and saying "Passing under X" a
+     * moment late beats never saying it. That second window is normally inert - fixes arrive about
+     * a second apart and the lookahead is three seconds of travel - and earns its place when fixes
+     * are sparse, or at line speed where the lookahead is clamped.
+     *
+     * When the direction of travel isn't known - stationary, or no travel heading yet - the walk
+     * goes both ways and the nearest wins, which beats guessing which way the user is pointing.
+     *
+     * Ties go to the waterway. A Way can carry both (a viaduct over a river and a railway at once)
+     * and the river is the bigger landmark.
+     */
+    private fun crossingsInReach(
+        userGeometry: UserGeometry,
+        way: Way,
+        kinds: Set<AlongWayKind>
+    ): List<AlongWayFeatureAhead> {
+        val cursor = userGeometry.cursorOn(way) ?: return emptyList()
+        val lookahead = (userGeometry.speed * crossingTriggerLeadSeconds)
+            .coerceIn(crossingTriggerMinimumRadiusMetres, crossingTriggerMaximumRadiusMetres)
+
+        val found = mutableListOf<AlongWayFeatureAhead>()
+        forEachAlongWayFeatureAhead(cursor, lookahead) {
+            if (it.feature.kind in kinds) found.add(it)
+            true
+        }
+
+        // Only needed when the direction is known, since the walk above then went one way only.
+        val forwards = cursor.forwards
+        if ((forwards != null) && (crossingSweepBehindMetres > 0.0)) {
+            forEachAlongWayFeatureAhead(
+                cursor.copy(forwards = !forwards),
+                crossingSweepBehindMetres
+            ) {
+                if (it.feature.kind in kinds) found.add(it)
+                true
+            }
+        }
+        return found.sortedWith(compareBy({ it.distance }, { it.feature.kind.ordinal }))
     }
 
     /**
@@ -1134,6 +1230,9 @@ class AutoCallout(
         return runBlocking {
             withContext(gridState.treeContext) {
                 var trackedCallout: TrackedCallout? = null
+
+                // Before any builder runs, so the three crossing builders share one window.
+                updateCrossingSweep(userGeometry)
 
                 val destinationCallout = buildCalloutForDestination(userGeometry)
                 if (destinationCallout != null) {

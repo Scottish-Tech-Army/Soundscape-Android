@@ -137,12 +137,10 @@ class Way : MvtFeature() {
      * The distance in metres from this Way's START intersection to the nearest point on this Way
      * to [point].
      *
-     * Note that [point] needn't actually lie on the Way: a crossing is recorded against every Way
-     * sharing the road's osmId (see GridState.applyCrossing), because the road passing *under* a
-     * structure is never split at it, and the piece the user is matched to on the approach has to
-     * be able to see the crossing coming. Ruler.distanceToLineString clamps to the line's extent,
-     * so for such a piece this returns 0.0 or [length] - correctly reading as "off my start" or
-     * "off my end" rather than as a position within the Way.
+     * Ruler.distanceToLineString clamps to the line's extent, so a [point] that isn't on this Way
+     * comes back as 0.0 or [length] rather than as a position beyond either end. Everything that
+     * records an [AlongWayFeature] therefore picks the Way the point genuinely lies on first - an
+     * entry sitting at a clamped end would be read by the along-way queries as a real position.
      */
     fun distanceAlongWay(point: LngLatAlt, ruler: Ruler): Double {
         val line = geometry as? LineString ?: return 0.0
@@ -653,21 +651,30 @@ class WayGenerator(val transit: Boolean = false) {
      * they belong to. Must be called after [generateWays], since the distance along a Way is only
      * meaningful once the parent feature has been split into Ways with their own geometry.
      *
-     * A crossing is attached to *every* Way sharing the crossing road's osmId, not just the piece
-     * the crossing point lands on. Going under a structure there's nothing for OSM to split the
-     * road on, so the piece the user is map-matched to on the approach is often not the piece
-     * containing the crossing point, and it still has to be able to see the crossing coming. See
-     * Way.distanceAlongWay for what distanceFromStart means on a piece that doesn't contain the
-     * point.
+     * The crossings arrive keyed by the road's osmId, which several Ways share once that road has
+     * been split at its intersections - so each one goes onto the single piece it actually lies
+     * on, found by projecting the crossing point onto each candidate. Marking them all would put
+     * the same crossing at a distance clamped to the end of every other piece, which the along-way
+     * queries (see nextAlongWayFeature) would read as a real position. Reaching a crossing that is
+     * on the Way ahead is the graph walk's job, not this step's.
      */
     internal fun attachCrossings(
         crossingsByOsmId: Map<Long, MutableList<CrossingInfo>>,
         ruler: Ruler
     ) {
         if (crossingsByOsmId.isEmpty()) return
-        for (way in ways) {
-            val crossings = crossingsByOsmId[way.osmId] ?: continue
+        val waysByOsmId = ways.groupBy { it.osmId }
+        for ((osmId, crossings) in crossingsByOsmId) {
+            val candidates = waysByOsmId[osmId] ?: continue
             for (crossing in crossings) {
+                val way = candidates.minByOrNull { candidate ->
+                    val line = candidate.geometry as? LineString
+                    if ((line == null) || (line.coordinates.size < 2)) {
+                        Double.MAX_VALUE
+                    } else {
+                        ruler.distanceToLineString(crossing.point, line).distance
+                    }
+                } ?: continue
                 way.addAlongWayFeature(
                     AlongWayFeature(
                         distanceFromStart = way.distanceAlongWay(crossing.point, ruler),
