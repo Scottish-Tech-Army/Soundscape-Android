@@ -177,18 +177,21 @@ class UserGeometry(
      * positionAlongLine can't be used directly: they're relative to the follower's accumulated
      * LineString across several Ways, not to any one Way (see MapMatchFilter).
      *
-     * Direction comes from the travel heading against the Way's own heading at that point, and is
-     * left null when there's no travel heading to compare - stationary, or the first fix. A null
-     * direction makes the queries look both ways rather than guess.
+     * Direction comes from the travel heading against the Way's own heading at that point.
+     * [fallbackHeading] stands in when there is no travel heading - the GPS fix carried no bearing,
+     * or its bearing accuracy was too poor to use (see GeoEngine) - and callers pass the bearing
+     * from where the user was on the previous fix, which is what movement itself says about which
+     * way they are going. With neither, the direction is left null and the queries look both ways
+     * rather than guess.
      */
-    fun cursorOn(way: Way): WayCursor? {
+    fun cursorOn(way: Way, fallbackHeading: Double? = null): WayCursor? {
         val line = way.geometry as? LineString ?: return null
         if (line.coordinates.size < 2) return null
 
         val point = mapMatchedLocation?.point ?: location
         val pdh = ruler.distanceToLineString(point, line)
-        val forwards = getTravelHeading()?.let { travelHeading ->
-            calculateHeadingOffset(travelHeading, pdh.heading) < 90.0
+        val forwards = (getTravelHeading() ?: fallbackHeading)?.let { heading ->
+            calculateHeadingOffset(heading, pdh.heading) < 90.0
         }
         return WayCursor(way, distanceAlongLineString(line, pdh, ruler), forwards)
     }

@@ -5,6 +5,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.CheapRuler
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -226,6 +227,109 @@ class AlongWayTest {
         junction.members.add(sideRoad)
 
         assertNull(nextAlongWayFeature(WayCursor(first, 20.0, forwards = true), 500.0))
+    }
+
+    @Test
+    fun sameRoadFollowsTheRoadThroughAJunction() {
+        val first = straightWay("Main Street", 0.0, 100.0)
+        val second = straightWay("Main Street", 100.0, 200.0)
+        val junction = join(first, second)
+        second.addCrossing(50.0, "Past The Junction")
+
+        // A side road makes this a real junction, which STRAIGHT_ON refuses to cross.
+        val sideRoad = straightWay("Side Road", 100.0, 180.0)
+        sideRoad.intersections[WayEnd.START.id] = junction
+        junction.members.add(sideRoad)
+
+        val cursor = WayCursor(first, 20.0, forwards = true)
+        assertNull(nextAlongWayFeature(cursor, 500.0))
+
+        // Following the road by name gets there - 80m to the junction, 50m beyond it.
+        val found = nextAlongWayFeature(
+            cursor, 500.0, continuation = WayContinuation.SAME_ROAD
+        )
+        assertEquals("Past The Junction", found?.feature?.name)
+        assertEquals(130.0, found!!.distance, 1.0)
+    }
+
+    @Test
+    fun sameRoadFollowsARefWhenThereIsNoName() {
+        val first = straightWay("", 0.0, 100.0).apply { name = null; ref = "A81" }
+        val second = straightWay("", 100.0, 200.0).apply { name = null; ref = "A81" }
+        val junction = join(first, second)
+        second.addCrossing(50.0, "Up The A81")
+
+        val sideRoad = straightWay("Side Road", 100.0, 180.0)
+        sideRoad.intersections[WayEnd.START.id] = junction
+        junction.members.add(sideRoad)
+
+        val found = nextAlongWayFeature(
+            WayCursor(first, 20.0, forwards = true), 500.0,
+            continuation = WayContinuation.SAME_ROAD
+        )
+        assertEquals("Up The A81", found?.feature?.name)
+    }
+
+    @Test
+    fun sameRoadStopsWhenTheContinuationIsAmbiguous() {
+        val first = straightWay("Main Street", 0.0, 100.0)
+        val second = straightWay("Main Street", 100.0, 200.0)
+        val junction = join(first, second)
+        second.addCrossing(50.0, "Past The Junction")
+
+        // A staggered junction where the other arm carries the same name too: there is no single
+        // road ahead, so stopping beats guessing.
+        val otherArm = straightWay("Main Street", 100.0, 180.0)
+        otherArm.intersections[WayEnd.START.id] = junction
+        junction.members.add(otherArm)
+
+        assertNull(
+            nextAlongWayFeature(
+                WayCursor(first, 20.0, forwards = true), 500.0,
+                continuation = WayContinuation.SAME_ROAD
+            )
+        )
+    }
+
+    @Test
+    fun sameRoadCrossesATileJoiner() {
+        // The shape a road takes across a tile boundary: it ends at a TILE_EDGE intersection, a
+        // zero-length JOINER links that to the matching intersection in the next tile, and the
+        // road resumes there. The joiner carries no name to match on, so it has to be followed on
+        // the grounds that nothing else at that intersection continues the road.
+        val first = straightWay("Main Street", 0.0, 100.0)
+        val second = straightWay("Main Street", 100.0, 200.0)
+        second.addCrossing(50.0, "Over The Tile Edge")
+
+        val edgeA = intersectionAt(east(100.0))
+        val edgeB = intersectionAt(east(100.0))
+        val joiner = straightWay("", 100.0, 100.0).apply {
+            name = null
+            wayType = WayType.JOINER
+            length = 0.0
+        }
+        first.intersections[WayEnd.END.id] = edgeA
+        joiner.intersections[WayEnd.START.id] = edgeA
+        joiner.intersections[WayEnd.END.id] = edgeB
+        second.intersections[WayEnd.START.id] = edgeB
+        edgeA.members.add(first)
+        edgeA.members.add(joiner)
+        edgeB.members.add(joiner)
+        edgeB.members.add(second)
+
+        // A side road at the tile edge stops STRAIGHT_ON, so the joiner has to be chosen rather
+        // than simply being the only option.
+        val sideRoad = straightWay("Side Road", 100.0, 180.0)
+        sideRoad.intersections[WayEnd.START.id] = edgeA
+        edgeA.members.add(sideRoad)
+
+        val cursor = WayCursor(first, 20.0, forwards = true)
+        assertNull(nextAlongWayFeature(cursor, 500.0))
+        val found = nextAlongWayFeature(
+            cursor, 500.0, continuation = WayContinuation.SAME_ROAD
+        )
+        assertEquals("Over The Tile Edge", found?.feature?.name)
+        assertEquals(130.0, found!!.distance, 1.0)
     }
 
     @Test
