@@ -8,8 +8,20 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
  * river and a railway is one Way with two entries.
  */
 enum class AlongWayKind {
+    /** A named river or canal this Way crosses. */
     WATERWAY_CROSSING,
+
+    /** A railway this road Way crosses. Recorded on the road, read while driving or walking. */
     RAILWAY_CROSSING,
+
+    /**
+     * A road that crosses this railway Way. The mirror of [RAILWAY_CROSSING], recorded on the
+     * railway at the same time and from the same geometric test, so that a train passenger's
+     * callout is a lookup on the line they're riding rather than a search for roads that happen to
+     * be nearby. [AlongWayFeature.position] is the *train's* relationship to the road, already
+     * inverted from the road's own.
+     */
+    ROAD_CROSSING,
 }
 
 /**
@@ -37,8 +49,10 @@ enum class AlongWayPosition {
  * @param name the name of the thing being crossed (the river, the railway line), or of the
  * feature itself. Null when unnamed.
  * @param position for a crossing, whether the user passes over or under. Null when not applicable.
- * @param feature the POI itself, for kinds which have one. Null for crossings, which are derived
- * from a geometric intersection rather than from a point feature.
+ * @param feature the other Way or POI involved, for kinds which have one. For [ROAD_CROSSING] this
+ * is the road Way itself, so that the callout can call Way.getName with the user's localized
+ * strings at callout time rather than baking a name in at tile-load time. Null for the crossings
+ * that are named after a feature which isn't a Way in its own right.
  */
 data class AlongWayFeature(
     val distanceFromStart: Double,
