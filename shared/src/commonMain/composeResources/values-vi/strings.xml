@@ -438,7 +438,7 @@
     <string name="osm_taxi_waiting_area">Khu vực chờ taxi</string>
     <string name="osm_bike_parking">Bãi đỗ xe đạp</string>
     <string name="osm_gas_station">Trạm xăng</string>
-    <string name="osm_bus_stop_named">Điểm dừng xe buýt %1$s</string>
+    <string name="osm_bus_stop_named">Điểm dừng xe buýt: %1$s</string>
     <string name="osm_recycling_bin">Thùng tái chế</string>
     <string name="osm_water_fountain">Đài nước uống công cộng</string>
     <string name="osm_sports_field">Sân thể thao</string>
@@ -1141,7 +1141,7 @@
     <string name="osm_stairs">Cầu thang</string>
     <string name="osm_bicycle_rental">Cho thuê xe đạp</string>
     <string name="osm_tram_stop">Trạm tàu điện</string>
-    <string name="osm_tram_stop_named">Trạm tàu điện %1$s</string>
+    <string name="osm_tram_stop_named">Trạm tàu điện: %1$s</string>
     <string name="osm_subway">Ga tàu điện ngầm</string>
     <string name="osm_subway_named">Ga tàu điện ngầm %1$s</string>
     <string name="osm_hampshire_gate">Cổng Hampshire</string>
@@ -1496,4 +1496,8 @@
     <string name="legacy_migration_not_now">Không phải bây giờ</string>
     <string name="legacy_migration_failed">Không thể nhập dữ liệu của bạn. Phiên bản Soundscape trước đó của bạn vẫn còn giữ dữ liệu — vui lòng liên hệ hỗ trợ từ Cài đặt, Trợ giúp.</string>
     <string name="legacy_migration_continue">Tiếp tục</string>
+    <string name="callouts_bus_and_tram_stops">Điểm dừng xe buýt và trạm tàu điện</string>
+    <string name="callouts_bus_and_tram_stops_description">Thông báo điểm dừng xe buýt và trạm tàu điện khi bạn đi ngang qua</string>
+    <string name="directions_approaching_name">Đang đến gần %1$s</string>
+    <string name="directions_generic_tram">tàu điện</string>
 </resources>
