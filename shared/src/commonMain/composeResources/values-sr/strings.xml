@@ -973,7 +973,7 @@
     <string name="osm_stairs">Степенице</string>
     <string name="osm_bicycle_rental">Изнајмљивање бицикала</string>
     <string name="osm_tram_stop">Трамвајска станица</string>
-    <string name="osm_tram_stop_named">Трамвајска станица %1$s</string>
+    <string name="osm_tram_stop_named">Трамвајска станица: %1$s</string>
     <string name="osm_subway">Станица метроа</string>
     <string name="osm_subway_named">Станица метроа %1$s</string>
     <string name="osm_hampshire_gate">Хемпшир капија</string>
@@ -1348,7 +1348,7 @@
     <string name="osm_taxi_waiting_area">Чекалиште за такси</string>
     <string name="osm_bike_parking">Паркинг за бицикле</string>
     <string name="osm_gas_station">Бензинска пумпа</string>
-    <string name="osm_bus_stop_named">Аутобуско стајалиште %1$s</string>
+    <string name="osm_bus_stop_named">Аутобуско стајалиште: %1$s</string>
     <string name="osm_recycling_bin">Контејнер за рециклажу</string>
     <string name="osm_water_fountain">Чесма за пиће</string>
     <string name="osm_sports_field">Спортски терен</string>
@@ -1506,4 +1506,8 @@
     <string name="legacy_migration_not_now">Не сада</string>
     <string name="legacy_migration_failed">Ваши подаци нису могли бити увезени. Претходна верзија Soundscape-а их и даље има — контактирајте подршку у Подешавања, Помоћ.</string>
     <string name="legacy_migration_continue">Настави</string>
+    <string name="callouts_bus_and_tram_stops">Аутобуска и трамвајска стајалишта</string>
+    <string name="callouts_bus_and_tram_stops_description">Најављуј аутобуска и трамвајска стајалишта док пролазиш поред њих</string>
+    <string name="directions_approaching_name">Прилазите %1$s</string>
+    <string name="directions_generic_tram">трамвај</string>
 </resources>
