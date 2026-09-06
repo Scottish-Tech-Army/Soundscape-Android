@@ -331,7 +331,7 @@
     <string name="osm_bank">Bank</string>
     <string name="osm_atm">Geldautomaat</string>
     <string name="osm_bus_stop">Bushalte</string>
-    <string name="osm_bus_stop_named">Bushalte van %1$s</string>
+    <string name="osm_bus_stop_named">Bushalte: %1$s</string>
     <string name="osm_recycling_bin">Recyclingbak</string>
     <string name="osm_fountain">Fontein</string>
     <string name="osm_place_of_worship">Gebedshuis</string>
@@ -454,7 +454,7 @@
     <string name="osm_train_station">treinstation</string>
     <string name="osm_train_station_named">%1$s treinstation</string>
     <string name="osm_tram_stop">Tramhalte</string>
-    <string name="osm_tram_stop_named">%1$s tramhalte</string>
+    <string name="osm_tram_stop_named">Tramhalte: %1$s</string>
     <string name="osm_subway">Metrostation</string>
     <string name="osm_subway_named">%1$s metrostation</string>
     <string name="osm_ferry_terminal">Veerterminal</string>
@@ -1501,4 +1501,8 @@
     <string name="legacy_migration_not_now">Niet nu</string>
     <string name="legacy_migration_failed">Uw gegevens konden niet worden geïmporteerd. Uw vorige versie van Soundscape heeft ze nog — neem contact op met ondersteuning via Instellingen, Help.</string>
     <string name="legacy_migration_continue">Doorgaan</string>
+    <string name="callouts_bus_and_tram_stops">Bus- en tramhaltes</string>
+    <string name="callouts_bus_and_tram_stops_description">Bushaltes en tramhaltes aankondigen wanneer u er langs komt</string>
+    <string name="directions_approaching_name">U nadert %1$s</string>
+    <string name="directions_generic_tram">tram</string>
 </resources>
