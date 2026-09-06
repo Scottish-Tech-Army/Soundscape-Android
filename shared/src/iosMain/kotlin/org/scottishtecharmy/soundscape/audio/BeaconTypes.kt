@@ -13,10 +13,25 @@ package org.scottishtecharmy.soundscape.audio
 data class AssetSelection(val assetIndex: Int, val volume: Float)
 
 /**
- * Selector function type: takes user heading (nullable) and POI bearing,
- * returns which asset to play and at what volume, or null for silence.
+ * Everything a selector needs to pick an asset. The directional beacons use the angular
+ * relationship between the user and the beacon; the proximity beacon uses the distance.
  */
-typealias BeaconSelector = (userHeading: Double?, poiBearing: Double) -> AssetSelection?
+data class BeaconGeometry(
+    /** User heading in degrees, or null when the heading is unknown. */
+    val userHeading: Double?,
+    /** Bearing from the user to the beacon, in degrees. */
+    val poiBearing: Double,
+    /** Distance from the user to the beacon, in metres. */
+    val distance: Double,
+    /** Range within which the proximity beacon plays its "close" asset, in metres. */
+    val proximityNear: Double,
+)
+
+/**
+ * Selector function type: takes the current beacon geometry and returns which asset to
+ * play and at what volume, or null for silence.
+ */
+typealias BeaconSelector = (geometry: BeaconGeometry) -> AssetSelection?
 
 data class BeaconType(
     val name: String,
@@ -32,9 +47,9 @@ data class BeaconType(
  *   On-Axis:  central 45° window (337.5° to 22.5°) → asset[0]
  *   Off-Axis: remaining → asset[1]
  */
-private fun twoRegionSelector(userHeading: Double?, poiBearing: Double): AssetSelection? {
-    if (userHeading == null) return AssetSelection(1, 1f)
-    val angle = normalizeAngle(userHeading - poiBearing)
+private fun twoRegionSelector(geometry: BeaconGeometry): AssetSelection? {
+    val userHeading = geometry.userHeading ?: return AssetSelection(1, 1f)
+    val angle = normalizeAngle(userHeading - geometry.poiBearing)
     return if (angle >= 337.5 || angle <= 22.5) {
         AssetSelection(0, 1f)
     } else {
@@ -48,9 +63,9 @@ private fun twoRegionSelector(userHeading: Double?, poiBearing: Double): AssetSe
  *   A:      110° side windows (235°–345° or 15°–125°) → asset[1]
  *   Behind: remaining (125°–235°) → asset[2]
  */
-private fun threeRegionSelector(userHeading: Double?, poiBearing: Double): AssetSelection? {
-    if (userHeading == null) return AssetSelection(2, 1f)
-    val angle = normalizeAngle(userHeading - poiBearing)
+private fun threeRegionSelector(geometry: BeaconGeometry): AssetSelection? {
+    val userHeading = geometry.userHeading ?: return AssetSelection(2, 1f)
+    val angle = normalizeAngle(userHeading - geometry.poiBearing)
     return when {
         angle >= 345 || angle <= 15 -> AssetSelection(0, 1f)
         (angle in 235.0..345.0) || (angle in 15.0..125.0) -> AssetSelection(1, 1f)
@@ -65,15 +80,26 @@ private fun threeRegionSelector(userHeading: Double?, poiBearing: Double): Asset
  *   B:      70° side windows (235°–305° or 55°–125°) → asset[2]
  *   Behind: remaining (125°–235°) → asset[3]
  */
-private fun fourRegionSelector(userHeading: Double?, poiBearing: Double): AssetSelection? {
-    if (userHeading == null) return AssetSelection(3, 1f)
-    val angle = normalizeAngle(userHeading - poiBearing)
+private fun fourRegionSelector(geometry: BeaconGeometry): AssetSelection? {
+    val userHeading = geometry.userHeading ?: return AssetSelection(3, 1f)
+    val angle = normalizeAngle(userHeading - geometry.poiBearing)
     return when {
         angle >= 345 || angle <= 15 -> AssetSelection(0, 1f)
         (angle in 305.0..345.0) || (angle in 15.0..55.0) -> AssetSelection(1, 1f)
         (angle in 235.0..305.0) || (angle in 55.0..125.0) -> AssetSelection(2, 1f)
         else -> AssetSelection(3, 1f)
     }
+}
+
+/**
+ * Distance-based selector for the proximity beacon (ProximityBeacon in the original iOS
+ * app, msc_ProximityDescriptor on Android): the "close" asset within
+ * [BeaconGeometry.proximityNear], the "far" asset out to twice that, silence beyond.
+ */
+private fun proximitySelector(geometry: BeaconGeometry): AssetSelection? = when {
+    geometry.distance < geometry.proximityNear -> AssetSelection(0, 1f)
+    geometry.distance < (2 * geometry.proximityNear) -> AssetSelection(1, 1f)
+    else -> null
 }
 
 /** Normalize angle to [0, 360) range */
@@ -164,4 +190,16 @@ val BEACON_TYPES: Map<String, BeaconType> = mapOf(
         beatsInPhrase = 18,
         selector = ::threeRegionSelector
     ),
+)
+
+/**
+ * The second beacon that plays alongside the directional one whenever a destination
+ * beacon is set, telling the user how close they are getting. Unlike the directional
+ * beacons it is not spatialised — it is about distance, not direction.
+ */
+val PROXIMITY_BEACON_TYPE = BeaconType(
+    name = "Proximity",
+    assets = listOf("Proximity_Close", "Proximity_Far"),
+    beatsInPhrase = 6,
+    selector = ::proximitySelector
 )

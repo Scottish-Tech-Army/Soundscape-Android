@@ -42,6 +42,12 @@ private const val SESSION_ACTIVATION_TIMEOUT_MS = 2_000
 private const val SESSION_ACTIVATION_RETRY_INTERVAL_MS = 200
 
 /**
+ * Proximity range used until the first updateGeometry call supplies one. Matches the
+ * value IosSoundscapeService passes.
+ */
+private const val DEFAULT_PROXIMITY_NEAR = 15.0
+
+/**
  * iOS audio engine implementing the KMP AudioEngine interface.
  * Uses Apple's AVAudioEngine with AVAudioEnvironmentNode for HRTF spatial audio.
  * Ported from the original Soundscape iOS Swift implementation.
@@ -97,6 +103,11 @@ class IosAudioEngine : AudioEngine {
     private var currentBeaconType = "Current"
     private var beaconMuted = false
 
+    // Range within which the proximity beacon plays its "close" asset. Updated by
+    // updateGeometry; seeded so a beacon created before the first geometry update
+    // still uses a sensible range.
+    private var proximityNear = DEFAULT_PROXIMITY_NEAR
+
     // Media control target for remote commands
     var mediaControlTarget: MediaControlTarget? = null
 
@@ -119,7 +130,13 @@ class IosAudioEngine : AudioEngine {
 
     private sealed class PlayerEntry {
         class Discrete(val player: DiscretePlayer, val isTts: Boolean) : PlayerEntry()
-        class Beacon(val player: BeaconPlayer) : PlayerEntry()
+        class Beacon(
+            val player: BeaconPlayer,
+            /** The distance beacon that plays alongside [player]; null for heading-only beacons. */
+            val proximityPlayer: BeaconPlayer?
+        ) : PlayerEntry() {
+            val players: List<BeaconPlayer> get() = listOfNotNull(player, proximityPlayer)
+        }
     }
 
     private inline fun <T> withActivePlayersLock(block: () -> T): T {
@@ -558,17 +575,52 @@ class IosAudioEngine : AudioEngine {
         player.startPlaying()
         player.setMuted(beaconMuted)
 
-        // Apply initial geometry
-        player.updateForGeometry(listenerLatitude, listenerLongitude, listenerHeading)
+        // The distance beacon plays alongside the directional one, telling the user how
+        // close the destination is. A heading-only beacon (the settings preview) has no
+        // real destination to be close to, so it gets none.
+        val proximityPlayer = if (headingOnly) null else createProximityPlayer(location)
 
-        withActivePlayersLock { activePlayers[handle] = PlayerEntry.Beacon(player) }
+        // Apply initial geometry
+        player.updateForGeometry(
+            listenerLatitude, listenerLongitude, listenerHeading, proximityNear
+        )
+        proximityPlayer?.updateForGeometry(
+            listenerLatitude, listenerLongitude, listenerHeading, proximityNear
+        )
+
+        withActivePlayersLock {
+            activePlayers[handle] = PlayerEntry.Beacon(player, proximityPlayer)
+        }
         return handle
+    }
+
+    /**
+     * Create and start the non-spatialised distance beacon. Returns null if its assets
+     * can't be loaded — the directional beacon is still worth playing on its own.
+     */
+    private fun createProximityPlayer(location: LngLatAlt): BeaconPlayer? {
+        val player = BeaconPlayer(
+            PROXIMITY_BEACON_TYPE,
+            location.latitude,
+            location.longitude,
+            spatialised = false
+        )
+        if (!player.loadAssets()) {
+            println("IosAudioEngine: Failed to load proximity beacon assets")
+            return null
+        }
+
+        player.layer.attach(engine)
+        player.layer.connect(engine.mainMixerNode)
+        player.startPlaying()
+        player.setMuted(beaconMuted)
+        return player
     }
 
     override fun destroyBeacon(beaconHandle: Long) {
         val entry = withActivePlayersLock { activePlayers.remove(beaconHandle) }
         if (entry is PlayerEntry.Beacon) {
-            entry.player.stop()
+            entry.players.forEach { it.stop() }
         }
     }
 
@@ -578,7 +630,7 @@ class IosAudioEngine : AudioEngine {
             activePlayers.values.filterIsInstance<PlayerEntry.Beacon>()
         }
         for (entry in beacons) {
-            entry.player.setMuted(beaconMuted)
+            entry.players.forEach { it.setMuted(beaconMuted) }
         }
         return beaconMuted
     }
@@ -596,6 +648,7 @@ class IosAudioEngine : AudioEngine {
         this.listenerLatitude = listenerLatitude
         this.listenerLongitude = listenerLongitude
         this.listenerHeading = listenerHeading
+        this.proximityNear = proximityNear
 
         // Update listener orientation on all environment nodes
         if (listenerHeading != null) {
@@ -616,9 +669,11 @@ class IosAudioEngine : AudioEngine {
             activePlayers.values.filterIsInstance<PlayerEntry.Beacon>()
         }
         for (entry in beacons) {
-            entry.player.updateForGeometry(
-                listenerLatitude, listenerLongitude, this.listenerHeading
-            )
+            entry.players.forEach {
+                it.updateForGeometry(
+                    listenerLatitude, listenerLongitude, this.listenerHeading, proximityNear
+                )
+            }
         }
     }
 

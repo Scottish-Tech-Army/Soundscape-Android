@@ -3,6 +3,7 @@ package org.scottishtecharmy.soundscape.audio
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.get
 import kotlinx.cinterop.set
+import org.scottishtecharmy.soundscape.geoengine.utils.distance
 import platform.AVFAudio.AVAudioFile
 import platform.AVFAudio.AVAudioPCMBuffer
 import platform.AVFAudio.AVAudioPlayerNodeBufferInterrupts
@@ -20,6 +21,12 @@ class BeaconPlayer(
     private val beaconType: BeaconType,
     val beaconLatitude: Double,
     val beaconLongitude: Double,
+    /**
+     * Whether the beacon is positioned in the 3D environment. False for the proximity
+     * beacon, which conveys distance rather than direction and so plays flat, matching
+     * `isLocalized: false` in the original iOS app.
+     */
+    private val spatialised: Boolean = true,
 ) {
     val layer = AudioLayer()
     private val buffers = mutableMapOf<String, AVAudioPCMBuffer>()
@@ -77,7 +84,8 @@ class BeaconPlayer(
     fun updateForGeometry(
         listenerLatitude: Double,
         listenerLongitude: Double,
-        listenerHeading: Double?
+        listenerHeading: Double?,
+        proximityNear: Double
     ) {
         if (!isPlaying) return
 
@@ -86,10 +94,22 @@ class BeaconPlayer(
             beaconLatitude, beaconLongitude
         )
 
-        // Update 3D position based on bearing from listener to beacon
-        layer.position = bearingToPoint(poiBearing)
+        if (spatialised) {
+            // Update 3D position based on bearing from listener to beacon
+            layer.position = bearingToPoint(poiBearing)
+        }
 
-        val selection = beaconType.selector(listenerHeading, poiBearing)
+        val selection = beaconType.selector(
+            BeaconGeometry(
+                userHeading = listenerHeading,
+                poiBearing = poiBearing,
+                distance = distance(
+                    listenerLatitude, listenerLongitude,
+                    beaconLatitude, beaconLongitude
+                ),
+                proximityNear = proximityNear
+            )
+        )
         val newAssetName = if (selection != null) {
             beaconType.assets.getOrNull(selection.assetIndex)
         } else {
