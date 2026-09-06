@@ -1295,8 +1295,8 @@ Please continue to report any problems, however small, through Contact Support i
     <string name="osm_bike_parking">Bike Parking</string>
     <!-- OpenStreetMap term. Used to map a fuel station, also known as a filling station, petrol station, gas station and petrol garage. It is the retail-type facility where motor vehicles can be refueled. -->
     <string name="osm_gas_station">Gas Station</string>
-    <!-- OpenStreetMap term. Used as a display name for place or a location. %s is a bus stop name, such as "London Bus Stop". -->
-    <string name="osm_bus_stop_named">%1$s Bus Stop</string>
+    <!-- OpenStreetMap term. Used as a display name for place or a location. %1$s is a bus stop name, such as "Bus Stop: London". -->
+    <string name="osm_bus_stop_named">Bus Stop: %1$s</string>
     <!-- OpenStreetMap term. Used for a container or centre that accepts waste for recycling, and donations of used goods. -->
     <string name="osm_recycling_bin">Recycling Bin</string>
     <!-- OpenStreetMap term. Used for places where humans can obtain potable water for consumption. -->
@@ -2681,8 +2681,8 @@ Please continue to report any problems, however small, through Contact Support i
     <string name="osm_bicycle_rental">Bicycle Rental</string>
     <!-- OpenStreetMap term tram_stop. Designated stop for trams or light rail vehicles.-->
     <string name="osm_tram_stop">Tram Stop</string>
-    <!-- OSM tag for tram stop preceded by its name e.g. "Moor Road tram stop" -->
-    <string name="osm_tram_stop_named">%1$s Tram Stop</string>
+    <!-- OSM tag for tram stop followed by its name e.g. "Tram Stop: Moor Road" -->
+    <string name="osm_tram_stop_named">Tram Stop: %1$s</string>
     <!-- OpenStreetMap term subway. Underground railway system or metro network.-->
     <string name="osm_subway">Subway Station</string>
     <!-- OSM tag for named subway station (underground trains) e.g. "Kings Cross underground station -->
