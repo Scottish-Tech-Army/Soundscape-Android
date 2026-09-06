@@ -811,6 +811,91 @@ open class GridState(
      *
      * Returns the number attached, for the timing log in the caller.
      */
+    // How far off a railway line a station can sit and still be taken as served by it. Far looser
+    // than railwayStopWayToleranceMetres above, because a station is a place beside the tracks
+    // rather than a node on them, and this has to reach across a full width of platforms.
+    //
+    // Not looser still: King's Cross and St Pancras are about 100m apart with through lines
+    // running between them, and a wider radius starts giving each station's name to the other's
+    // lines - which is the guess railway=stop exists to remove.
+    private val stationWayToleranceMetres = 100.0
+
+    // The transit stop kinds that are railway stations. TRANSIT_STOPS carries bus and tram stops
+    // and ferry terminals too, and none of those belongs on a railway. Subway is left out for the
+    // same reason it is excluded from rail map matching.
+    private val railwayStationValues = setOf("station", "train_station")
+
+    /**
+     * Attaches named railway stations as RAILWAY_STOP along-way features, for lines that have no
+     * railway=stop node of their own.
+     *
+     * A stop node is the better record, and attachRailwayStopsToWays above uses it in preference:
+     * it lies on the line itself, so a line knows exactly which stations it calls at. But the tag
+     * is missing from parts of OSM, and from any tileset built before it was carried, and with
+     * nothing attached the approaching-station callout never fires at all -
+     * AutoCallout.buildCalloutForTrainStop has no fallback of its own.
+     *
+     * So where no stop node stands for a station, the station itself does, attached to every line
+     * running past it: a station serves several platforms and often several lines, and the train
+     * may be map-matched to any one of them.
+     *
+     * This is knowingly the guess that railway=stop exists to remove - a line running past a
+     * station without calling there will be given a stop. It applies only where there is no
+     * stop-node data at all, where the alternative is silence. Decided per station rather than per
+     * grid, so a mixture of the two works and this stops doing anything, station by station, as
+     * the tiles improve.
+     */
+    private fun attachStationsAsRailwayStops(
+        featureCollections: Array<FeatureCollection>,
+        localTrees: Array<FeatureTree>
+    ): Int {
+        val transitTree = localTrees[TreeId.TRANSIT.id]
+        var attached = 0
+
+        for (feature in featureCollections[TreeId.TRANSIT_STOPS.id].features) {
+            val station = feature as? MvtFeature ?: continue
+            if (station.featureValue !in railwayStationValues) continue
+            // Only the name is any use here - "Approaching" an unnamed station says nothing.
+            val name = station.name ?: continue
+            val point = (station.geometry as? Point)?.coordinates ?: continue
+
+            val linesPastTheStation = transitTree
+                .getNearbyCollection(point, stationWayToleranceMetres, ruler)
+                .features
+                .filterIsInstance<Way>()
+                .filter { way ->
+                    val line = way.geometry as? LineString
+                    (line != null) && (line.coordinates.size >= 2) &&
+                        (ruler.distanceToLineString(point, line).distance <=
+                            stationWayToleranceMetres)
+                }
+            if (linesPastTheStation.isEmpty()) continue
+
+            // A real stop node already standing for this station makes the station POI redundant,
+            // and it is the more precise record of the two.
+            val alreadyHasStopNode = linesPastTheStation.any { way ->
+                way.alongWayFeatures(AlongWayKind.RAILWAY_STOP).any {
+                    ruler.distance(point, it.point) <= stationWayToleranceMetres
+                }
+            }
+            if (alreadyHasStopNode) continue
+
+            for (way in linesPastTheStation) {
+                way.addAlongWayFeature(
+                    AlongWayFeature(
+                        distanceFromStart = way.distanceAlongWay(point, ruler),
+                        point = point,
+                        kind = AlongWayKind.RAILWAY_STOP,
+                        name = name,
+                        feature = station
+                    )
+                )
+                attached++
+            }
+        }
+        return attached
+    }
+
     private fun attachRailwayStopsToWays(
         featureCollections: Array<FeatureCollection>,
         localTrees: Array<FeatureTree>
@@ -913,13 +998,17 @@ open class GridState(
 
         var transitStopsAttached = 0
         var railwayStopsAttached = 0
+        var stationsAttached = 0
         val transitStopTiming = measureTime {
             transitStopsAttached = attachTransitStopsToWays(featureCollections, localTrees)
             railwayStopsAttached = attachRailwayStopsToWays(featureCollections, localTrees)
+            // After the stop nodes, so that it can see which stations they already stand for.
+            stationsAttached = attachStationsAsRailwayStops(featureCollections, localTrees)
         }
         println(
             "Transit stops took $transitStopTiming " +
-                "($transitStopsAttached road stops, $railwayStopsAttached railway stops)"
+                "($transitStopsAttached road stops, $railwayStopsAttached railway stops, " +
+                "$stationsAttached stations as stops)"
         )
 
         if (featureCollections[TreeId.ROADS_AND_PATHS.id].features.isNotEmpty()) {
