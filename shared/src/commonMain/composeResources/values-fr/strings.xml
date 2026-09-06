@@ -335,7 +335,7 @@
     <string name="osm_bank">Banque</string>
     <string name="osm_atm">Distributeur de billets</string>
     <string name="osm_bus_stop">Arrêt de bus</string>
-    <string name="osm_bus_stop_named">Arrêt de bus %1$s</string>
+    <string name="osm_bus_stop_named">Arrêt de bus : %1$s</string>
     <string name="osm_recycling_bin">Poubelle de recyclage</string>
     <string name="osm_fountain">Fontaine</string>
     <string name="osm_place_of_worship">Lieu de culte</string>
@@ -439,7 +439,7 @@
     <string name="directions_cardinal_west_abb">O</string>
     <string name="directions_cardinal_north_west_abb">NO</string>
     <string name="osm_tram_stop">Arrêt de tram</string>
-    <string name="osm_tram_stop_named">%1$s arrêt de tram</string>
+    <string name="osm_tram_stop_named">Arrêt de tram : %1$s</string>
     <string name="osm_subway">Station de métro</string>
     <string name="directions_cardinal_south_east_abb">SE</string>
     <string name="directions_cardinal_south_abb">S</string>
@@ -1506,4 +1506,8 @@
     <string name="legacy_migration_not_now">Pas maintenant</string>
     <string name="legacy_migration_failed">Vos données n’ont pas pu être importées. Votre version précédente de Soundscape les contient toujours — veuillez contacter le support depuis Réglages, Aide.</string>
     <string name="legacy_migration_continue">Continuer</string>
+    <string name="callouts_bus_and_tram_stops">Arrêts de bus et de tram</string>
+    <string name="callouts_bus_and_tram_stops_description">Annoncer les arrêts de bus et de tram lorsque vous passez à côté</string>
+    <string name="directions_approaching_name">Vous approchez de %1$s</string>
+    <string name="directions_generic_tram">le tram</string>
 </resources>
