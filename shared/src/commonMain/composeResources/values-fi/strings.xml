@@ -331,7 +331,7 @@
     <string name="osm_bank">Pankki</string>
     <string name="osm_atm">Pankkiautomaatti</string>
     <string name="osm_bus_stop">Linja-autopysäkki</string>
-    <string name="osm_bus_stop_named">%1$s linja-autopysäkki</string>
+    <string name="osm_bus_stop_named">Linja-autopysäkki: %1$s</string>
     <string name="osm_recycling_bin">Kierrätysastia</string>
     <string name="osm_fountain">Suihkulähde</string>
     <string name="osm_place_of_worship">Uskonnollinen rakennus</string>
@@ -454,7 +454,7 @@
     <string name="osm_train_station">Rautatieasema</string>
     <string name="osm_train_station_named">%1$s Rautatieasema</string>
     <string name="osm_tram_stop">Raitiovaunupysäkki</string>
-    <string name="osm_tram_stop_named">%1$s Raitiovaunupysäkki</string>
+    <string name="osm_tram_stop_named">Raitiovaunupysäkki: %1$s</string>
     <string name="osm_subway">Metroasema</string>
     <string name="osm_subway_named">%1$s Metroasema</string>
     <string name="osm_ferry_terminal">Lauttaterminaali</string>
@@ -1501,4 +1501,8 @@
     <string name="legacy_migration_not_now">Ei nyt</string>
     <string name="legacy_migration_failed">Tietojasi ei voitu tuoda. Ne ovat edelleen tallessa Soundscapen aiemmassa versiossa — ota yhteyttä tukeen kohdasta Asetukset, Ohjeet.</string>
     <string name="legacy_migration_continue">Jatka</string>
+    <string name="callouts_bus_and_tram_stops">Linja-auto- ja raitiovaunupysäkit</string>
+    <string name="callouts_bus_and_tram_stops_description">Ilmoita linja-auto- ja raitiovaunupysäkeistä, kun ohitat ne</string>
+    <string name="directions_approaching_name">Lähestytään kohdetta %1$s</string>
+    <string name="directions_generic_tram">raitiovaunu</string>
 </resources>
