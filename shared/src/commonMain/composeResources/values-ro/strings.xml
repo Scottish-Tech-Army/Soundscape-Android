@@ -524,7 +524,7 @@
     <string name="osm_taxi_waiting_area">Zonă de așteptare taxi</string>
     <string name="osm_bike_parking">Parcare biciclete</string>
     <string name="osm_gas_station">Benzinărie</string>
-    <string name="osm_bus_stop_named">Stație de autobuz %1$s</string>
+    <string name="osm_bus_stop_named">Stație de autobuz: %1$s</string>
     <string name="osm_recycling_bin">Coș de reciclare</string>
     <string name="osm_water_fountain">Cișmea</string>
     <string name="osm_sports_field">Teren de sport</string>
@@ -1208,7 +1208,7 @@
     <string name="osm_stairs">Scări</string>
     <string name="osm_bicycle_rental">Închirieri biciclete</string>
     <string name="osm_tram_stop">Stație de tramvai</string>
-    <string name="osm_tram_stop_named">Stația de tramvai %1$s</string>
+    <string name="osm_tram_stop_named">Stație de tramvai: %1$s</string>
     <string name="osm_subway">Stație de metrou</string>
     <string name="osm_subway_named">Stația de metrou %1$s</string>
     <string name="osm_hampshire_gate">Poartă Hampshire</string>
@@ -1506,4 +1506,8 @@
     <string name="legacy_migration_not_now">Nu acum</string>
     <string name="legacy_migration_failed">Datele tale nu au putut fi importate. Versiunea ta anterioară de Soundscape le are în continuare — te rugăm să contactezi asistența din Setări, Ajutor.</string>
     <string name="legacy_migration_continue">Continuă</string>
+    <string name="callouts_bus_and_tram_stops">Stații de autobuz și de tramvai</string>
+    <string name="callouts_bus_and_tram_stops_description">Anunță stațiile de autobuz și de tramvai pe măsură ce treci pe lângă ele</string>
+    <string name="directions_approaching_name">Apropiere de %1$s</string>
+    <string name="directions_generic_tram">tramvai</string>
 </resources>
