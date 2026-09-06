@@ -363,7 +363,7 @@
     <string name="osm_bank">Банк</string>
     <string name="osm_atm">Банкомат</string>
     <string name="osm_bus_stop">Автобусна зупинка</string>
-    <string name="osm_bus_stop_named">%1$s автобусна зупинка</string>
+    <string name="osm_bus_stop_named">Автобусна зупинка: %1$s</string>
     <string name="osm_recycling_bin">Контейнер для вторсировини</string>
     <string name="osm_fountain">Фонтан</string>
     <string name="osm_place_of_worship">Культова споруда</string>
@@ -450,7 +450,7 @@
     <string name="osm_train_station">Залізнична станція</string>
     <string name="osm_train_station_named">Залізнична станція %1$s</string>
     <string name="osm_tram_stop">Трамвайна зупинка</string>
-    <string name="osm_tram_stop_named">%1$s трамвайна зупинка</string>
+    <string name="osm_tram_stop_named">Трамвайна зупинка: %1$s</string>
     <string name="osm_subway">Станція метро</string>
     <string name="osm_subway_named">%1$s станція метро</string>
     <string name="osm_ferry_terminal">Поромний термінал</string>
@@ -1511,4 +1511,8 @@
     <string name="legacy_migration_not_now">Не зараз</string>
     <string name="legacy_migration_failed">Не вдалося імпортувати ваші дані. Попередня версія Soundscape усе ще зберігає їх — будь ласка, зверніться до служби підтримки через Налаштування, Довідка.</string>
     <string name="legacy_migration_continue">Продовжити</string>
+    <string name="callouts_bus_and_tram_stops">Автобусні та трамвайні зупинки</string>
+    <string name="callouts_bus_and_tram_stops_description">Оголошувати автобусні та трамвайні зупинки, коли ви проїжджаєте повз</string>
+    <string name="directions_approaching_name">Наближення до %1$s</string>
+    <string name="directions_generic_tram">трамвай</string>
 </resources>
