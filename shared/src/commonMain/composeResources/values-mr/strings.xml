@@ -637,7 +637,7 @@
     <string name="osm_stairs">जिना</string>
     <string name="osm_bicycle_rental">सायकल भाडे सेवा</string>
     <string name="osm_tram_stop">ट्राम थांबा</string>
-    <string name="osm_tram_stop_named">%1$s ट्राम थांबा</string>
+    <string name="osm_tram_stop_named">ट्राम थांबा: %1$s</string>
     <string name="osm_subway">भुयारी रेल्वे स्थानक</string>
     <string name="osm_subway_named">%1$s भुयारी रेल्वे स्थानक</string>
     <string name="osm_hampshire_gate">हॅम्पशायर गेट</string>
@@ -892,7 +892,7 @@
     <string name="osm_taxi_waiting_area">टॅक्सी प्रतीक्षा क्षेत्र</string>
     <string name="osm_bike_parking">सायकल पार्किंग</string>
     <string name="osm_gas_station">पेट्रोल पंप</string>
-    <string name="osm_bus_stop_named">%1$s बस थांबा</string>
+    <string name="osm_bus_stop_named">बस थांबा: %1$s</string>
     <string name="osm_recycling_bin">पुनर्वापर कचरापेटी</string>
     <string name="osm_water_fountain">पिण्याच्या पाण्याचे कारंजे</string>
     <string name="osm_sports_field">क्रीडांगण</string>
@@ -1501,4 +1501,8 @@
     <string name="legacy_migration_not_now">आत्ता नाही</string>
     <string name="legacy_migration_failed">तुमचा डेटा इंपोर्ट करता आला नाही. Soundscape च्या तुमच्या मागील आवृत्तीत तो अजूनही आहे — कृपया सेटिंग्ज, मदत मधून सपोर्टशी संपर्क साधा.</string>
     <string name="legacy_migration_continue">सुरू ठेवा</string>
+    <string name="callouts_bus_and_tram_stops">बस आणि ट्राम थांबे</string>
+    <string name="callouts_bus_and_tram_stops_description">जवळून जाताना बस थांबे आणि ट्राम थांबे जाहीर करा</string>
+    <string name="directions_approaching_name">%1$s जवळ येत आहे</string>
+    <string name="directions_generic_tram">ट्राम</string>
 </resources>
