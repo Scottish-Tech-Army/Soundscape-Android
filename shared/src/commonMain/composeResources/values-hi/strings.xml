@@ -520,7 +520,7 @@
     <string name="osm_taxi_waiting_area">टैक्सी प्रतीक्षा क्षेत्र</string>
     <string name="osm_bike_parking">बाइक पार्किंग</string>
     <string name="osm_gas_station">पेट्रोल पंप</string>
-    <string name="osm_bus_stop_named">%1$s बस स्टॉप</string>
+    <string name="osm_bus_stop_named">बस स्टॉप: %1$s</string>
     <string name="osm_recycling_bin">रीसाइक्लिंग बिन</string>
     <string name="osm_water_fountain">पेयजल फव्वारा</string>
     <string name="osm_sports_field">खेल का मैदान</string>
@@ -1204,7 +1204,7 @@
     <string name="osm_stairs">सीढ़ियाँ</string>
     <string name="osm_bicycle_rental">साइकिल किराया</string>
     <string name="osm_tram_stop">ट्राम स्टॉप</string>
-    <string name="osm_tram_stop_named">%1$s ट्राम स्टॉप</string>
+    <string name="osm_tram_stop_named">ट्राम स्टॉप: %1$s</string>
     <string name="osm_subway">मेट्रो स्टेशन</string>
     <string name="osm_subway_named">%1$s मेट्रो स्टेशन</string>
     <string name="osm_hampshire_gate">हैम्पशायर गेट</string>
@@ -1501,4 +1501,8 @@
     <string name="legacy_migration_not_now">अभी नहीं</string>
     <string name="legacy_migration_failed">आपका डेटा आयात नहीं किया जा सका। Soundscape के आपके पिछले संस्करण में यह अब भी मौजूद है — कृपया सेटिंग्स, सहायता में जाकर सपोर्ट से संपर्क करें।</string>
     <string name="legacy_migration_continue">जारी रखें</string>
+    <string name="callouts_bus_and_tram_stops">बस और ट्राम स्टॉप</string>
+    <string name="callouts_bus_and_tram_stops_description">पास से गुज़रते समय बस स्टॉप और ट्राम स्टॉप की घोषणा करें</string>
+    <string name="directions_approaching_name">%1$s के पास पहुँच रहे हैं</string>
+    <string name="directions_generic_tram">ट्राम</string>
 </resources>
