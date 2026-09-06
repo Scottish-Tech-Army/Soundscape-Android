@@ -369,7 +369,7 @@
     <string name="osm_bank">Bank</string>
     <string name="osm_atm">ATM</string>
     <string name="osm_bus_stop">Przystanek autobusowy</string>
-    <string name="osm_bus_stop_named">Przystanek autobusowy – %1$s</string>
+    <string name="osm_bus_stop_named">Przystanek autobusowy: %1$s</string>
     <string name="osm_recycling_bin">Kosz na recykling</string>
     <string name="osm_fountain">Fontanna</string>
     <string name="osm_place_of_worship">Miejsce kultu</string>
@@ -456,7 +456,7 @@
     <string name="osm_train_station">Stacja kolejowa</string>
     <string name="osm_train_station_named">Stacja kolejowa – %1$s</string>
     <string name="osm_tram_stop">Przystanek tramwajowy</string>
-    <string name="osm_tram_stop_named">Przystanek tramwajowy – %1$s</string>
+    <string name="osm_tram_stop_named">Przystanek tramwajowy: %1$s</string>
     <string name="osm_subway">Stacja metra</string>
     <string name="osm_subway_named">Stacja metra – %1$s</string>
     <string name="osm_ferry_terminal">Terminal promowy</string>
@@ -1511,4 +1511,8 @@
     <string name="legacy_migration_not_now">Nie teraz</string>
     <string name="legacy_migration_failed">Nie udało się zaimportować Twoich danych. Poprzednia wersja Soundscape nadal je przechowuje — skontaktuj się z pomocą techniczną w Ustawieniach, Pomoc.</string>
     <string name="legacy_migration_continue">Kontynuuj</string>
+    <string name="callouts_bus_and_tram_stops">Przystanki autobusowe i tramwajowe</string>
+    <string name="callouts_bus_and_tram_stops_description">Zapowiadaj przystanki autobusowe i tramwajowe, gdy je mijasz</string>
+    <string name="directions_approaching_name">Zbliżasz się do %1$s</string>
+    <string name="directions_generic_tram">tramwaj</string>
 </resources>
