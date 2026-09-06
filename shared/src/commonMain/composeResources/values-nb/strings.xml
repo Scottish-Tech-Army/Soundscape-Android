@@ -331,7 +331,7 @@
     <string name="osm_bank">Bank</string>
     <string name="osm_atm">Minibank</string>
     <string name="osm_bus_stop">Busstopp</string>
-    <string name="osm_bus_stop_named">%1$s-busstopp</string>
+    <string name="osm_bus_stop_named">Busstopp: %1$s</string>
     <string name="osm_recycling_bin">Gjenvinningsstasjon</string>
     <string name="osm_fountain">Fontene</string>
     <string name="osm_place_of_worship">Tilbedelsessted</string>
@@ -454,7 +454,7 @@
     <string name="osm_train_station">Togstasjon</string>
     <string name="osm_train_station_named">%1$s-togstasjon</string>
     <string name="osm_tram_stop">Trikkestopp</string>
-    <string name="osm_tram_stop_named">%1$s-trikkestopp</string>
+    <string name="osm_tram_stop_named">Trikkestopp: %1$s</string>
     <string name="osm_subway">T-banestasjon</string>
     <string name="osm_subway_named">%1$s-t-banestasjon</string>
     <string name="osm_ferry_terminal">Fergeterminal</string>
@@ -1501,4 +1501,8 @@
     <string name="legacy_migration_not_now">Ikke nå</string>
     <string name="legacy_migration_failed">Dataene dine kunne ikke importeres. Din forrige versjon av Soundscape har dem fortsatt — kontakt brukerstøtte fra Innstillinger, Hjelp.</string>
     <string name="legacy_migration_continue">Fortsett</string>
+    <string name="callouts_bus_and_tram_stops">Buss- og trikkestopp</string>
+    <string name="callouts_bus_and_tram_stops_description">Annonser busstopp og trikkestopp når du passerer dem</string>
+    <string name="directions_approaching_name">Du nærmer deg %1$s</string>
+    <string name="directions_generic_tram">trikk</string>
 </resources>
