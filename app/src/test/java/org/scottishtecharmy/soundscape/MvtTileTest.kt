@@ -1997,6 +1997,106 @@ class MvtTileTest {
     }
 
     /**
+     * A named station stands in as a rail stop for the lines running past it, where those lines
+     * carry no railway=stop node of their own.
+     *
+     * railway=stop is the better record and is preferred wherever it exists, but it is absent from
+     * parts of OSM and from any tileset built before the tag was carried - including these
+     * fixtures. With nothing attached, buildCalloutForTrainStop has nothing to find and the
+     * approaching-station callout never fires at all. See GridState.attachStationsAsRailwayStops.
+     */
+    @Test
+    fun testStationStandsInAsARailStopWhenThereAreNoStopNodes() {
+        val location = LngLatAlt(-4.25057977437973, 55.85762197620575)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+
+        // The fixtures predate railway=stop, which is the case this fallback exists for. If they
+        // ever gain it, this test is asserting the wrong thing and should be rewritten around a
+        // station that genuinely has no stop node.
+        assertTrue(
+            "Fixture is expected to carry no railway=stop nodes",
+            gridState.getFeatureTree(TreeId.RAILWAY_STOPS).getAllCollection().features.isEmpty()
+        )
+
+        val railways = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
+            .filterIsInstance<Way>()
+        val stops = railways.flatMap { way ->
+            way.alongWayFeatures(AlongWayKind.RAILWAY_STOP).map { Pair(way, it) }
+        }
+        assertTrue("Expected stations to be attached to the lines past them", stops.isNotEmpty())
+
+        val argyleStreet = stops.filter { it.second.name == "Argyle Street" }
+        assertTrue(
+            "Expected Argyle Street attached to the lines past it, got: " +
+                "${stops.map { it.second.name }.distinct().take(20)}",
+            argyleStreet.isNotEmpty()
+        )
+
+        for ((way, stop) in stops) {
+            assertNotNull("A stood-in stop should carry the station it came from", stop.feature)
+            // Attached only to lines it is genuinely beside, and sitting on the line it is
+            // recorded against.
+            val distance = gridState.ruler
+                .distanceToLineString(stop.point, way.geometry as LineString).distance
+            assertTrue("${stop.name} is ${distance}m from ${way.name}", distance <= 100.0)
+            // A metre of slack rather than a rounding error's worth: Way.length is accumulated
+            // with the per-tile ruler while distanceAlongWay measures with the grid's, so the two
+            // disagree by about a hundredth of a percent - a few centimetres over a couple of
+            // hundred metres. That applies to the railway=stop nodes just the same.
+            assertTrue(
+                "${stop.name} sits at ${stop.distanceFromStart} on a ${way.length}m way",
+                stop.distanceFromStart >= 0.0 && stop.distanceFromStart <= way.length + 1.0
+            )
+        }
+    }
+
+    /**
+     * ...and the callout follows from it: riding the line towards the station names it before it
+     * is reached, which is the whole point of the fallback above.
+     */
+    @Test
+    fun testTrainStopCalloutNamesAStationStoodInFor() {
+        val location = LngLatAlt(-4.25057977437973, 55.85762197620575)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val railway = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
+            .filterIsInstance<Way>()
+            .first { way ->
+                way.alongWayFeatures(AlongWayKind.RAILWAY_STOP).any { it.name == "Argyle Street" }
+            }
+        val stop = railway.alongWayFeatures(AlongWayKind.RAILWAY_STOP)
+            .first { it.name == "Argyle Street" }
+        val line = railway.geometry as LineString
+
+        // Approaching along the line from 200m short of the station - inside the 500m lookahead
+        // and still short of it. Which way round that is depends on where the stop sits on this
+        // piece, so run both and expect one of them to name it.
+        val texts = mutableListOf<String>()
+        for (offset in listOf(-200.0, 200.0)) {
+            val from = stop.distanceFromStart + offset
+            if ((from < 0.0) || (from > railway.length)) continue
+            val start = gridState.ruler.along(line, from)
+            val callout = AutoCallout(null, null).updateLocation(
+                UserGeometry(
+                    location = start,
+                    speed = 20.0,
+                    travelHeading = gridState.ruler.bearing(start, stop.point),
+                    mapMatchedRailway = railway,
+                    timestampMilliseconds = 1000L
+                ),
+                gridState, settlementGrid
+            )
+            callout?.positionedStrings?.forEach { texts.add(it.text) }
+        }
+
+        assertTrue(
+            "Expected the station named on the approach, got: $texts",
+            texts.any { it.contains("Approaching Argyle Street") }
+        )
+    }
+
+    /**
      * A stop is attached to the road it is beside, and sits at its real position along it. This is
      * what replaces searching the stop tree around the path travelled - a search that could only
      * judge by proximity, and so couldn't tell a stop on this road from one on the street behind
