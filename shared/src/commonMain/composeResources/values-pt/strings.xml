@@ -335,7 +335,7 @@
     <string name="osm_bank">Agência bancária</string>
     <string name="osm_atm">Caixa multibanco</string>
     <string name="osm_bus_stop">Paragem de autocarro</string>
-    <string name="osm_bus_stop_named">Paragem de Autocarro de %1$s</string>
+    <string name="osm_bus_stop_named">Paragem de autocarro: %1$s</string>
     <string name="osm_recycling_bin">Contentor de reciclagem</string>
     <string name="osm_fountain">Fonte</string>
     <string name="osm_place_of_worship">Local de culto</string>
@@ -446,7 +446,7 @@
     <string name="osm_train_station">Estação Ferroviária</string>
     <string name="osm_train_station_named">%1$s estação ferroviária</string>
     <string name="osm_tram_stop">Paragem de Eléctrico</string>
-    <string name="osm_tram_stop_named">%1$s Paragem de Eléctrico</string>
+    <string name="osm_tram_stop_named">Paragem de Eléctrico: %1$s</string>
     <string name="osm_subway">Estação de Metro</string>
     <string name="osm_subway_named">Estação de Metro %1$s</string>
     <string name="osm_ferry_terminal">Terminal de balsas</string>
@@ -1506,4 +1506,8 @@
     <string name="legacy_migration_not_now">Agora não</string>
     <string name="legacy_migration_failed">Não foi possível importar os seus dados. A sua versão anterior do Soundscape ainda os tem — por favor, contacte o apoio ao cliente em Definições, Ajuda.</string>
     <string name="legacy_migration_continue">Continuar</string>
+    <string name="callouts_bus_and_tram_stops">Paragens de autocarro e de elétrico</string>
+    <string name="callouts_bus_and_tram_stops_description">Anunciar as paragens de autocarro e de elétrico à medida que passa por elas</string>
+    <string name="directions_approaching_name">A aproximar-se de %1$s</string>
+    <string name="directions_generic_tram">elétrico</string>
 </resources>
