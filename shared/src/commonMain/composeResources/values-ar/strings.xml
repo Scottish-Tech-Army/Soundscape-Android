@@ -889,7 +889,7 @@
     <string name="osm_stairs">درج</string>
     <string name="osm_bicycle_rental">تأجير الدراجات</string>
     <string name="osm_tram_stop">محطة ترام</string>
-    <string name="osm_tram_stop_named">محطة ترام %1$s</string>
+    <string name="osm_tram_stop_named">محطة ترام: %1$s</string>
     <string name="osm_subway">محطة مترو الأنفاق</string>
     <string name="osm_subway_named">محطة مترو الأنفاق %1$s</string>
     <string name="osm_hampshire_gate">بوابة هامبشير</string>
@@ -1080,7 +1080,7 @@
     <string name="osm_taxi_waiting_area">منطقة انتظار سيارات الأجرة</string>
     <string name="osm_bike_parking">موقف دراجات</string>
     <string name="osm_gas_station">محطة وقود</string>
-    <string name="osm_bus_stop_named">محطة حافلات %1$s</string>
+    <string name="osm_bus_stop_named">محطة حافلات: %1$s</string>
     <string name="osm_recycling_bin">حاوية إعادة تدوير</string>
     <string name="osm_water_fountain">نافورة مياه للشرب</string>
     <string name="osm_sports_field">ميدان رياضي</string>
@@ -1521,4 +1521,8 @@
     <string name="legacy_migration_not_now">ليس الآن</string>
     <string name="legacy_migration_failed">تعذّر استيراد بياناتك. لا يزال إصدارك السابق من Soundscape يحتفظ بها — يُرجى التواصل مع الدعم من الإعدادات، المساعدة.</string>
     <string name="legacy_migration_continue">متابعة</string>
+    <string name="callouts_bus_and_tram_stops">محطات الحافلات والترام</string>
+    <string name="callouts_bus_and_tram_stops_description">الإعلان عن محطات الحافلات والترام عند المرور بها</string>
+    <string name="directions_approaching_name">الاقتراب من %1$s</string>
+    <string name="directions_generic_tram">ترام</string>
 </resources>
