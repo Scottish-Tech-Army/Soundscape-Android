@@ -345,7 +345,7 @@
     <string name="osm_taxi_waiting_area">Зона за изчакване на таксита</string>
     <string name="osm_bike_parking">Велопаркинг</string>
     <string name="osm_gas_station">Бензиностанция</string>
-    <string name="osm_bus_stop_named">Автобусна спирка %1$s</string>
+    <string name="osm_bus_stop_named">Автобусна спирка: %1$s</string>
     <string name="osm_recycling_bin">Контейнер за рециклиране</string>
     <string name="osm_water_fountain">Чешма за питейна вода</string>
     <string name="osm_sports_field">Спортно игрище</string>
@@ -1038,7 +1038,7 @@
     <string name="osm_stairs">Стълби</string>
     <string name="osm_bicycle_rental">Велосипеди под наем</string>
     <string name="osm_tram_stop">Спирка на трамвай</string>
-    <string name="osm_tram_stop_named">Трамвайна спирка %1$s</string>
+    <string name="osm_tram_stop_named">Спирка на трамвай: %1$s</string>
     <string name="osm_subway">Метростанция</string>
     <string name="osm_subway_named">Метростанция %1$s</string>
     <string name="osm_hampshire_gate">Хампширска порта</string>
@@ -1501,4 +1501,8 @@
     <string name="legacy_migration_not_now">Не сега</string>
     <string name="legacy_migration_failed">Данните Ви не можаха да бъдат импортирани. Предишната Ви версия на Soundscape все още ги съдържа — моля, свържете се с поддръжката от Настройки, Помощ.</string>
     <string name="legacy_migration_continue">Продължи</string>
+    <string name="callouts_bus_and_tram_stops">Автобусни и трамвайни спирки</string>
+    <string name="callouts_bus_and_tram_stops_description">Съобщаване на автобусните и трамвайните спирки, покрай които минавате</string>
+    <string name="directions_approaching_name">Приближаване към %1$s</string>
+    <string name="directions_generic_tram">трамвай</string>
 </resources>
