@@ -331,7 +331,7 @@
     <string name="osm_bank">Bank</string>
     <string name="osm_atm">Geldautomat</string>
     <string name="osm_bus_stop">Bushaltestelle</string>
-    <string name="osm_bus_stop_named">%1$s Bushaltestelle</string>
+    <string name="osm_bus_stop_named">Bushaltestelle: %1$s</string>
     <string name="osm_recycling_bin">Recyclingtonne</string>
     <string name="osm_fountain">Brunnen</string>
     <string name="osm_place_of_worship">Gotteshaus</string>
@@ -454,7 +454,7 @@
     <string name="osm_train_station">Bahnhof</string>
     <string name="osm_train_station_named">%1$s Bahnhof</string>
     <string name="osm_tram_stop">Straßenbahnhaltestelle</string>
-    <string name="osm_tram_stop_named">%1$s Straßenbahnhaltestelle</string>
+    <string name="osm_tram_stop_named">Straßenbahnhaltestelle: %1$s</string>
     <string name="osm_subway">U-Bahnhof</string>
     <string name="osm_subway_named">%1$s U-Bahnhof</string>
     <string name="osm_ferry_terminal">Fährterminal</string>
@@ -1501,4 +1501,8 @@
     <string name="legacy_migration_not_now">Jetzt nicht</string>
     <string name="legacy_migration_failed">Ihre Daten konnten nicht importiert werden. Ihre vorherige Version von Soundscape enthält sie weiterhin — bitte kontaktieren Sie den Support über Einstellungen, Hilfe.</string>
     <string name="legacy_migration_continue">Weiter</string>
+    <string name="callouts_bus_and_tram_stops">Bus- und Straßenbahnhaltestellen</string>
+    <string name="callouts_bus_and_tram_stops_description">Bus- und Straßenbahnhaltestellen ansagen, wenn Sie daran vorbeikommen</string>
+    <string name="directions_approaching_name">%1$s voraus</string>
+    <string name="directions_generic_tram">Straßenbahn</string>
 </resources>
