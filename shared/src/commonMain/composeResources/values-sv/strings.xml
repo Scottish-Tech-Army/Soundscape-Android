@@ -331,7 +331,7 @@
     <string name="osm_bank">Bank</string>
     <string name="osm_atm">Bankomat</string>
     <string name="osm_bus_stop">Busshållplats</string>
-    <string name="osm_bus_stop_named">%1$s busshållplats</string>
+    <string name="osm_bus_stop_named">Busshållplats: %1$s</string>
     <string name="osm_recycling_bin">Återvinningskärl</string>
     <string name="osm_fountain">Fontän</string>
     <string name="osm_place_of_worship">Gudstjänstlokal</string>
@@ -448,7 +448,7 @@
     <string name="osm_train_station">Tågstation</string>
     <string name="osm_train_station_named">%1$s Tågstation</string>
     <string name="osm_tram_stop">Spårvagnshållplats</string>
-    <string name="osm_tram_stop_named">%1$s spårvagnshållplats</string>
+    <string name="osm_tram_stop_named">Spårvagnshållplats: %1$s</string>
     <string name="osm_subway">Tunnelbanestation</string>
     <string name="osm_subway_named">%1$s tunnelbanestation</string>
     <string name="osm_ferry_terminal">Färjeterminal</string>
@@ -1501,4 +1501,8 @@
     <string name="legacy_migration_not_now">Inte nu</string>
     <string name="legacy_migration_failed">Dina data kunde inte importeras. Din tidigare version av Soundscape har dem fortfarande — kontakta supporten via Inställningar, Hjälp.</string>
     <string name="legacy_migration_continue">Fortsätt</string>
+    <string name="callouts_bus_and_tram_stops">Buss- och spårvagnshållplatser</string>
+    <string name="callouts_bus_and_tram_stops_description">Meddela busshållplatser och spårvagnshållplatser när du passerar dem</string>
+    <string name="directions_approaching_name">Du närmar dig %1$s</string>
+    <string name="directions_generic_tram">spårvagn</string>
 </resources>
