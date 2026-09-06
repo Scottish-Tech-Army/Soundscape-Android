@@ -767,7 +767,7 @@
     <string name="osm_stairs">楼梯</string>
     <string name="osm_bicycle_rental">自行车租赁</string>
     <string name="osm_tram_stop">有轨电车站</string>
-    <string name="osm_tram_stop_named">%1$s有轨电车站</string>
+    <string name="osm_tram_stop_named">有轨电车站：%1$s</string>
     <string name="osm_subway">地铁站</string>
     <string name="osm_subway_named">%1$s地铁站</string>
     <string name="osm_hampshire_gate">汉普郡门</string>
@@ -1055,7 +1055,7 @@
     <string name="osm_taxi_waiting_area">出租车等候区</string>
     <string name="osm_bike_parking">自行车停车处</string>
     <string name="osm_gas_station">加油站</string>
-    <string name="osm_bus_stop_named">%1$s公交站</string>
+    <string name="osm_bus_stop_named">公交站：%1$s</string>
     <string name="osm_recycling_bin">回收箱</string>
     <string name="osm_water_fountain">饮水台</string>
     <string name="osm_sports_field">运动场</string>
@@ -1496,4 +1496,8 @@
     <string name="legacy_migration_not_now">暂不</string>
     <string name="legacy_migration_failed">无法导入您的数据。您之前版本的 Soundscape 中仍保留着这些数据 — 请从设置、帮助中联系客服。</string>
     <string name="legacy_migration_continue">继续</string>
+    <string name="callouts_bus_and_tram_stops">公交站和有轨电车站</string>
+    <string name="callouts_bus_and_tram_stops_description">经过公交站和有轨电车站时进行播报</string>
+    <string name="directions_approaching_name">正在接近%1$s</string>
+    <string name="directions_generic_tram">有轨电车</string>
 </resources>
