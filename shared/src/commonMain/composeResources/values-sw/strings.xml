@@ -987,7 +987,7 @@
     <string name="osm_taxi_waiting_area">Eneo la Kusubiria Teksi</string>
     <string name="osm_bike_parking">Maegesho ya Baiskeli</string>
     <string name="osm_gas_station">Kituo cha Mafuta</string>
-    <string name="osm_bus_stop_named">Kituo cha Basi cha %1$s</string>
+    <string name="osm_bus_stop_named">Kituo cha Basi: %1$s</string>
     <string name="osm_recycling_bin">Pipa la Kuchakata Taka</string>
     <string name="osm_water_fountain">Chemchemi ya Maji</string>
     <string name="osm_sports_field">Uwanja wa Michezo</string>
@@ -1146,7 +1146,7 @@
     <string name="osm_stairs">Ngazi</string>
     <string name="osm_bicycle_rental">Kukodisha Baiskeli</string>
     <string name="osm_tram_stop">Kituo cha Tramu</string>
-    <string name="osm_tram_stop_named">Kituo cha Tramu cha %1$s</string>
+    <string name="osm_tram_stop_named">Kituo cha Tramu: %1$s</string>
     <string name="osm_subway">Kituo cha Treni ya Chini ya Ardhi</string>
     <string name="osm_subway_named">Kituo cha Treni ya Chini ya Ardhi cha %1$s</string>
     <string name="osm_hampshire_gate">Lango la Hampshire</string>
@@ -1501,4 +1501,8 @@
     <string name="legacy_migration_not_now">Si sasa</string>
     <string name="legacy_migration_failed">Data yako haikuweza kuingizwa. Toleo lako la awali la Soundscape bado linayo — tafadhali wasiliana na timu ya usaidizi kutoka Mipangilio, Usaidizi.</string>
     <string name="legacy_migration_continue">Endelea</string>
+    <string name="callouts_bus_and_tram_stops">Vituo vya Basi na Tramu</string>
+    <string name="callouts_bus_and_tram_stops_description">Tangaza vituo vya basi na tramu unapovipita</string>
+    <string name="directions_approaching_name">Unakaribia %1$s</string>
+    <string name="directions_generic_tram">tramu</string>
 </resources>
