@@ -626,7 +626,7 @@
     <string name="osm_taxi_waiting_area">택시 대기 구역</string>
     <string name="osm_bike_parking">자전거 주차장</string>
     <string name="osm_gas_station">주유소</string>
-    <string name="osm_bus_stop_named">%1$s 버스 정류장</string>
+    <string name="osm_bus_stop_named">버스 정류장: %1$s</string>
     <string name="osm_recycling_bin">재활용 수거함</string>
     <string name="osm_water_fountain">식수대</string>
     <string name="osm_sports_field">운동장</string>
@@ -1319,7 +1319,7 @@
     <string name="osm_stairs">계단</string>
     <string name="osm_bicycle_rental">자전거 대여소</string>
     <string name="osm_tram_stop">트램 정류장</string>
-    <string name="osm_tram_stop_named">%1$s 트램 정류장</string>
+    <string name="osm_tram_stop_named">트램 정류장: %1$s</string>
     <string name="osm_subway">지하철역</string>
     <string name="osm_subway_named">%1$s 지하철역</string>
     <string name="osm_hampshire_gate">햄프셔 게이트</string>
@@ -1496,4 +1496,8 @@
     <string name="legacy_migration_not_now">지금은 안 함</string>
     <string name="legacy_migration_failed">데이터를 가져올 수 없습니다. 이전 버전의 Soundscape에 데이터가 그대로 남아 있습니다 — 설정, 도움말에서 지원팀에 문의해 주세요.</string>
     <string name="legacy_migration_continue">계속</string>
+    <string name="callouts_bus_and_tram_stops">버스 및 트램 정류장</string>
+    <string name="callouts_bus_and_tram_stops_description">지나갈 때 버스 정류장과 트램 정류장을 안내</string>
+    <string name="directions_approaching_name">%1$s 접근 중</string>
+    <string name="directions_generic_tram">트램</string>
 </resources>
