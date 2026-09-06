@@ -1285,12 +1285,17 @@ open class GridState(
         featureCollections[TreeId.PLACES_AND_LANDMARKS.id] += featureCollections[TreeId.PLACE_POIS.id]
         featureCollections[TreeId.PLACES_AND_LANDMARKS.id] += featureCollections[TreeId.LANDMARK_POIS.id]
 
-        // Create merged collection of currently selected super categories
+        // Create merged collection of currently selected super categories. The two settings each
+        // cover more than one super-category, as they do on iOS (see CalloutSettingsCellView) -
+        // the switches are worded for what the user hears rather than for our category names, and
+        // "Places and Landmarks" is where a guidepost or a notice board belongs.
         if (enabledCategories.contains(PLACES_AND_LANDMARKS_KEY)) {
             featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id] +=
                 featureCollections[TreeId.PLACE_POIS.id]
             featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id] +=
                 featureCollections[TreeId.LANDMARK_POIS.id]
+            featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id] +=
+                featureCollections[TreeId.INFORMATION_POIS.id]
         }
         if (enabledCategories.contains(MOBILITY_KEY)) {
             featureCollections[TreeId.SELECTED_SUPER_CATEGORIES.id] +=
