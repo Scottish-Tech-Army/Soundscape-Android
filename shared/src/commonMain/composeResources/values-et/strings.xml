@@ -579,7 +579,7 @@
     <string name="osm_taxi_waiting_area">Taksode ooteala</string>
     <string name="osm_bike_parking">Jalgrattaparkla</string>
     <string name="osm_gas_station">Tankla</string>
-    <string name="osm_bus_stop_named">%1$s bussipeatus</string>
+    <string name="osm_bus_stop_named">Bussipeatus: %1$s</string>
     <string name="osm_recycling_bin">Taaskasutuskonteiner</string>
     <string name="osm_water_fountain">Joogiveeallikas</string>
     <string name="osm_sports_field">Spordiväljak</string>
@@ -983,7 +983,7 @@
     <string name="osm_stairs">Trepp</string>
     <string name="osm_bicycle_rental">Jalgrattarent</string>
     <string name="osm_tram_stop">Trammipeatus</string>
-    <string name="osm_tram_stop_named">%1$s trammipeatus</string>
+    <string name="osm_tram_stop_named">Trammipeatus: %1$s</string>
     <string name="osm_subway">Metroojaam</string>
     <string name="osm_subway_named">%1$s metroojaam</string>
     <string name="osm_hampshire_gate">Hampshire'i värav</string>
@@ -1501,4 +1501,8 @@
     <string name="legacy_migration_not_now">Mitte praegu</string>
     <string name="legacy_migration_failed">Sinu andmeid ei õnnestunud importida. Soundscape'i eelmine versioon hoiab neid endiselt alles — palun võta ühendust toega menüüs Seadistused, Abi.</string>
     <string name="legacy_migration_continue">Jätka</string>
+    <string name="callouts_bus_and_tram_stops">Bussi- ja trammipeatused</string>
+    <string name="callouts_bus_and_tram_stops_description">Teavita bussi- ja trammipeatustest, kui neist möödud</string>
+    <string name="directions_approaching_name">Läheneb %1$s</string>
+    <string name="directions_generic_tram">trammis</string>
 </resources>
