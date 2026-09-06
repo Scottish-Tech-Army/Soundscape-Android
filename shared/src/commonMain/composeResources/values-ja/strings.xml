@@ -327,7 +327,7 @@
     <string name="osm_bank">銀行</string>
     <string name="osm_atm">ATM</string>
     <string name="osm_bus_stop">バス停</string>
-    <string name="osm_bus_stop_named">%1$s バス停</string>
+    <string name="osm_bus_stop_named">バス停: %1$s</string>
     <string name="osm_recycling_bin">リサイクル用ごみ箱</string>
     <string name="osm_fountain">噴水</string>
     <string name="osm_place_of_worship">礼拝所</string>
@@ -450,7 +450,7 @@
     <string name="osm_train_station">駅</string>
     <string name="osm_train_station_named">%1$s 駅</string>
     <string name="osm_tram_stop">トラム停留所</string>
-    <string name="osm_tram_stop_named">%1$s トラム停留所</string>
+    <string name="osm_tram_stop_named">トラム停留所: %1$s</string>
     <string name="osm_subway">地下鉄駅</string>
     <string name="osm_subway_named">%1$s 地下鉄駅</string>
     <string name="osm_ferry_terminal">フェリーターミナル</string>
@@ -1496,4 +1496,8 @@
     <string name="legacy_migration_not_now">今はしない</string>
     <string name="legacy_migration_failed">データをインポートできませんでした。以前のバージョンの Soundscape にはまだデータが残っています — 設定、ヘルプからサポートにご連絡ください。</string>
     <string name="legacy_migration_continue">続行</string>
+    <string name="callouts_bus_and_tram_stops">バス停とトラム停留所</string>
+    <string name="callouts_bus_and_tram_stops_description">通過するときにバス停とトラム停留所を読み上げます</string>
+    <string name="directions_approaching_name">まもなく %1$s</string>
+    <string name="directions_generic_tram">トラム</string>
 </resources>
