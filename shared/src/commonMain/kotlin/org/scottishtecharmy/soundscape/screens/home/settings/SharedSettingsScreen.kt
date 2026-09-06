@@ -45,6 +45,8 @@ import org.scottishtecharmy.soundscape.resources.callouts_allow_callouts
 import org.scottishtecharmy.soundscape.resources.callouts_allow_callouts_description
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon
 import org.scottishtecharmy.soundscape.resources.callouts_audio_beacon_description
+import org.scottishtecharmy.soundscape.resources.callouts_bus_and_tram_stops
+import org.scottishtecharmy.soundscape.resources.callouts_bus_and_tram_stops_description
 import org.scottishtecharmy.soundscape.resources.callouts_mobility
 import org.scottishtecharmy.soundscape.resources.callouts_mobility_description
 import org.scottishtecharmy.soundscape.resources.callouts_places_and_landmarks
@@ -284,6 +286,19 @@ fun SharedSettingsScreen(
                         SettingDetails(
                             Res.string.callouts_mobility,
                             Res.string.callouts_mobility_description,
+                            textColor
+                        )
+                    },
+                    enabled = { allowCallouts },
+                )
+                switchPreference(
+                    key = PreferenceKeys.BUS_AND_TRAM_STOPS,
+                    defaultValue = PreferenceDefaults.BUS_AND_TRAM_STOPS,
+                    modifier = expandedSectionModifier,
+                    title = {
+                        SettingDetails(
+                            Res.string.callouts_bus_and_tram_stops,
+                            Res.string.callouts_bus_and_tram_stops_description,
                             textColor
                         )
                     },

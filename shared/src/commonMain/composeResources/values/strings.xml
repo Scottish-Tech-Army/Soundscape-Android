@@ -316,6 +316,10 @@
     <string name="callouts_mobility">Mobility</string>
     <!-- A description for the mobility callouts setting. -->
     <string name="callouts_mobility_description">Intersection and transportation information</string>
+    <!-- Settings option under Manage Callouts which turns callouts for bus stops and tram stops on or off. -->
+    <string name="callouts_bus_and_tram_stops">Bus and Tram Stops</string>
+    <!-- A description for the bus and tram stops callout setting. -->
+    <string name="callouts_bus_and_tram_stops_description">Announce bus stops and tram stops as you pass them</string>
     <!-- Title for a setting under the Manage Callouts settings section. This toggle enables or disables periodic callouts that inform the user about their distance from the location of the audio beacon. -->
     <string name="callouts_audio_beacon">Distance to the Audio Beacon</string>
     <!-- A description for the distance to audio beacon setting. -->

@@ -307,6 +307,25 @@ class AutoCallout(
     // is expected to be tuned once it has been ridden with.
     private val transitStopLookaheadMetres = 100.0
 
+    // The transit stop kinds the "Bus and tram stops" setting covers. Deliberately not the whole
+    // of TreeId.TRANSIT_STOPS: a station or a ferry terminal is a destination in its own right and
+    // is passed rarely enough that nobody needs it switched off, whereas these two are what make
+    // an urban street or a bus route noisy.
+    private val busAndTramStopValues = setOf("bus_stop", "tram_stop")
+
+    /**
+     * Whether this feature is one the "Bus and tram stops" setting silences, given that setting's
+     * current value. Read on each callout rather than captured once, so turning the switch off
+     * takes effect on the next location update rather than at the next grid rebuild.
+     */
+    private fun suppressedAsBusOrTramStop(feature: MvtFeature): Boolean {
+        if (feature.featureValue !in busAndTramStopValues) return false
+        return !(preferences?.getBoolean(
+            PreferenceKeys.BUS_AND_TRAM_STOPS,
+            PreferenceDefaults.BUS_AND_TRAM_STOPS
+        ) ?: PreferenceDefaults.BUS_AND_TRAM_STOPS)
+    }
+
     /**
      * Announces a bus/tram stop on the approach to it while travelling by car/bus, about
      * [transitStopLookaheadMetres] before it is reached.
@@ -342,6 +361,7 @@ class AutoCallout(
 
         val found = transitStopAhead(userGeometry, way) ?: return null
         val stopFeature = found.feature.feature ?: return null
+        if (suppressedAsBusOrTramStop(stopFeature)) return null
         val stopText = stopFeature.getText(localized)
         if (stopText.generic) return null
 
@@ -1124,7 +1144,9 @@ class AutoCallout(
         val uniquelyNamedPOIs = mutableMapOf<String, Feature>()
         ordered.map { it.feature }.filter { feature ->
 
-            val name = (feature as MvtFeature).getText(localized)
+            if (suppressedAsBusOrTramStop(feature as MvtFeature)) return@filter true
+
+            val name = feature.getText(localized)
             val nearestPoint =
                 getDistanceToFeature(userGeometry.location, feature, userGeometry.ruler)
 
