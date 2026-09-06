@@ -260,7 +260,7 @@
     <string name="osm_taxi_waiting_area">Area Tunggu Taksi</string>
     <string name="osm_bike_parking">Parkir Sepeda</string>
     <string name="osm_gas_station">Pom Bensin</string>
-    <string name="osm_bus_stop_named">Halte Bus %1$s</string>
+    <string name="osm_bus_stop_named">Halte Bus: %1$s</string>
     <string name="osm_recycling_bin">Tempat Sampah Daur Ulang</string>
     <string name="osm_water_fountain">Keran Air Minum</string>
     <string name="osm_sports_field">Lapangan Olahraga</string>
@@ -1141,7 +1141,7 @@
     <string name="osm_stairs">Tangga</string>
     <string name="osm_bicycle_rental">Penyewaan Sepeda</string>
     <string name="osm_tram_stop">Halte Trem</string>
-    <string name="osm_tram_stop_named">Halte Trem %1$s</string>
+    <string name="osm_tram_stop_named">Halte Trem: %1$s</string>
     <string name="osm_subway">Stasiun Kereta Bawah Tanah</string>
     <string name="osm_subway_named">Stasiun Kereta Bawah Tanah %1$s</string>
     <string name="osm_hampshire_gate">Gerbang Hampshire</string>
@@ -1496,4 +1496,8 @@
     <string name="legacy_migration_not_now">Jangan sekarang</string>
     <string name="legacy_migration_failed">Data Anda tidak dapat diimpor. Soundscape versi sebelumnya masih menyimpannya — silakan hubungi dukungan dari Pengaturan, Bantuan.</string>
     <string name="legacy_migration_continue">Lanjutkan</string>
+    <string name="callouts_bus_and_tram_stops">Halte Bus dan Trem</string>
+    <string name="callouts_bus_and_tram_stops_description">Umumkan halte bus dan halte trem saat Anda melewatinya</string>
+    <string name="directions_approaching_name">Mendekati %1$s</string>
+    <string name="directions_generic_tram">trem</string>
 </resources>
