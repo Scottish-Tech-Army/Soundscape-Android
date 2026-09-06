@@ -188,7 +188,12 @@ class UserGeometry(
         val line = way.geometry as? LineString ?: return null
         if (line.coordinates.size < 2) return null
 
-        val point = mapMatchedLocation?.point ?: location
+        // Only when [way] is the Way that point was matched to. mapMatchedLocation is a point on
+        // mapMatchedWay - the *road* - so projecting it onto anything else carries the road
+        // matcher's own offset into the result. On a train that matters: the road running beside
+        // the line can be 35-70m away (see above), and this cursor's distance along the Way is
+        // what the stop and crossing lookaheads are measured from.
+        val point = if (way === mapMatchedWay) (mapMatchedLocation?.point ?: location) else location
         val pdh = ruler.distanceToLineString(point, line)
         val forwards = (getTravelHeading() ?: fallbackHeading)?.let { heading ->
             calculateHeadingOffset(heading, pdh.heading) < 90.0

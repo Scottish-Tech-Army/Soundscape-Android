@@ -950,10 +950,10 @@ class MvtTileTest {
      * named LineString ("Afon Menai / Menai Strait", class=strait) rather than a named polygon -
      * found via a worldwide test extract (too large - ~92GB - to keep as a permanent local test
      * fixture, so this reads directly from that path and skips itself if it's not present).
-     * extractNamedWaterPolygons handles both shapes, and it's specifically wayCrossingInfo's
-     * nearest-feature fallback (containment only applies to polygons) that makes a LineString
-     * work here - this exercises that fallback end-to-end against real data, complementing
-     * testFirthOfForthCrossingCallout's polygon-containment case.
+     * extractNamedWaterPolygons handles both shapes, and it is specifically the line-intersection
+     * branch of GridState.waterPolygonCrossingPoint (containment only applies to polygons) that
+     * makes a LineString work here - this exercises that end-to-end against real data,
+     * complementing testFirthOfForthCrossingCallout's polygon-containment case.
      */
     @Test
     fun testMenaiStraitCrossingCallout() {
@@ -988,44 +988,68 @@ class MvtTileTest {
             FeatureTree(FeatureCollection().apply { addFeature(menaiStrait) })
         val settlementGrid = FileGridState(12, 3)
 
+        // A bridge that genuinely spans the water, laid across the strait at right angles to it.
+        // The crossing is worked out from the geometry now rather than from wherever the user
+        // happens to be standing, so the fixture has to be a bridge rather than a point.
+        val ruler = gridState.ruler
+        val straitBearing = ruler.bearing(
+            straitCoordinates[straitCoordinates.size / 2 - 1],
+            straitCoordinates[straitCoordinates.size / 2 + 1]
+        )
+        val bridgeStart = ruler.destination(crossingPoint, 100.0, straitBearing + 90.0)
+        val bridgeEnd = ruler.destination(crossingPoint, 100.0, straitBearing - 90.0)
         val bridgeWay = Way().apply {
             osmId = 1L
             name = "Menai Bridge"
-            geometry = LineString(crossingPoint, crossingPoint)
+            geometry = LineString(bridgeStart, bridgeEnd)
+            length = ruler.distance(bridgeStart, bridgeEnd)
             setProperty("brunnel", "bridge")
         }
-        val approachWay = Way().apply {
-            osmId = 2L
-            name = "Approach"
-            geometry = LineString(crossingPoint, crossingPoint)
-        }
 
+        // What the grid build does for every bridge in the tiles - see
+        // GridState.attachWaterPolygonCrossings. This fixture assembles its trees by hand rather
+        // than running a grid build, so it has to do the same for its one Way.
+        assertTrue(
+            "Expected the strait to be attached to the bridge",
+            gridState.attachWaterPolygonCrossing(
+                bridgeWay,
+                bridgeWay.geometry as LineString,
+                "bridge",
+                gridState.featureTrees[TreeId.NAMED_WATER_POLYGONS.id]
+            )
+        )
+        val attached = bridgeWay.alongWayFeatures(AlongWayKind.WATERWAY_CROSSING).single()
+        assertEquals("Afon Menai / Menai Strait", attached.name)
+        assertEquals(AlongWayPosition.OVER, attached.position)
+
+        // Part-way onto the bridge with the water ahead: the crossing is announced when it comes
+        // within the lookahead, which at this speed is 45m, rather than on arriving at the bridge.
         val autoCallout = AutoCallout(null, null)
-        val firstUpdate = UserGeometry(
-            location = crossingPoint, speed = 15.0, mapMatchedWay = approachWay, timestampMilliseconds = 1000L
+        val callout = autoCallout.updateLocation(
+            UserGeometry(
+                location = ruler.along(bridgeWay.geometry as LineString, 70.0),
+                speed = 15.0,
+                travelHeading = ruler.bearing(bridgeStart, bridgeEnd),
+                mapMatchedWay = bridgeWay, timestampMilliseconds = 1000L
+            ),
+            gridState, settlementGrid
         )
-        autoCallout.updateLocation(firstUpdate, gridState, settlementGrid)
-
-        val secondUpdate = UserGeometry(
-            location = crossingPoint, speed = 15.0, mapMatchedWay = bridgeWay, timestampMilliseconds = 6000L
-        )
-        val secondCallout = autoCallout.updateLocation(secondUpdate, gridState, settlementGrid)
-        assertNotNull(secondCallout)
+        assertNotNull(callout)
         assertTrue(
             "Expected a Menai Strait crossing callout, got: " +
-                "${secondCallout!!.positionedStrings.map { it.text }}",
-            secondCallout.positionedStrings.any { it.text.contains("Menai") }
+                "${callout!!.positionedStrings.map { it.text }}",
+            callout.positionedStrings.any { it.text.contains("Menai") }
         )
     }
 
     /**
      * The Firth of Forth is a tidal inlet, tagged `natural=bay`/`natural=strait` in OSM rather
-     * than as a `waterway` river/canal line, so extractCrossings never sees it and no Way gets a
-     * crossing_* property for it at parse time (unlike testWaterwayCrossingParsing above). The
-     * Queensferry Crossing bridge over it is caught instead by AutoCallout's live water-polygon
-     * proximity check (see wayCrossingInfo's fallback) - this exercises that end-to-end via
-     * AutoCallout.updateLocation, using a real bridge Way and real Firth of Forth polygon from
-     * TreeId.NAMED_WATER_POLYGONS rather than fabricated properties.
+     * than as a `waterway` river/canal line, so extractCrossings never sees it (unlike
+     * testWaterwayCrossingParsing above). The Queensferry Crossing bridge over it is caught by
+     * GridState.attachWaterPolygonCrossings instead, which records it as an along-way crossing at
+     * grid-build time - this exercises that end-to-end via AutoCallout.updateLocation, using a
+     * real bridge Way and real Firth of Forth polygon from TreeId.NAMED_WATER_POLYGONS rather
+     * than fabricated properties.
      */
     @Test
     fun testFirthOfForthCrossingCallout() {
@@ -1509,6 +1533,59 @@ class MvtTileTest {
     }
 
     /**
+     * The approach to a crossing is one announcement, not one per fix.
+     *
+     * The crossing sits inside the lookahead for several fixes running as it is driven towards, so
+     * something has to remember it has been said. That is the callout's own location doing the
+     * work: it is placed at the crossing rather than at the user, so the callout built on the next
+     * fix - from a different place on the road, and a different distance away - is recognisably
+     * the same callout.
+     */
+    @Test
+    fun testCrossingIsAnnouncedOnceOnTheApproach() {
+        val location = LngLatAlt(-3.943732, 55.981647)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val way = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection().features
+            .filterIsInstance<Way>()
+            .first {
+                it.osmId == 94939658L * 10 + 2 &&
+                    it.crossingNamed("Edinburgh and Glasgow Main Line") != null
+            }
+        val crossing = way.crossingNamed("Edinburgh and Glasgow Main Line")!!
+        val line = way.geometry as LineString
+        val ruler = gridState.ruler
+        val heading = ruler.bearing(
+            ruler.along(line, crossing.distanceFromStart - 100.0),
+            ruler.along(line, crossing.distanceFromStart + 100.0)
+        )
+
+        // 20m a second at 20m/s, so the 60m lookahead holds the viaduct for three fixes running
+        // before it is reached, and the backward window for two after.
+        val autoCallout = AutoCallout(null, null)
+        val spoken = mutableListOf<String>()
+        var t = 1000L
+        for (offset in listOf(-80.0, -60.0, -40.0, -20.0, 0.0, 20.0)) {
+            val callout = autoCallout.updateLocation(
+                UserGeometry(
+                    location = ruler.along(line, crossing.distanceFromStart + offset),
+                    speed = 20.0, travelHeading = heading, mapMatchedWay = way,
+                    timestampMilliseconds = t
+                ),
+                gridState, settlementGrid
+            )
+            callout?.positionedStrings?.forEach { spoken.add(it.text) }
+            t += 1000L
+        }
+
+        assertEquals(
+            "Expected the crossing named exactly once across the approach, got $spoken",
+            1,
+            spoken.count { it.contains("Edinburgh and Glasgow Main Line") }
+        )
+    }
+
+    /**
      * Approaching a bus stop should name it before it is reached - and should name the one on
      * *this* side of the road, not the one across the street serving the opposite direction.
      *
@@ -1654,6 +1731,270 @@ class MvtTileTest {
         ),
         gridState, settlementGrid
     )
+
+    /**
+     * A fix carrying no travel heading of its own still knows which way the user is going, from
+     * where they were on the previous fix.
+     *
+     * That fallback is what keeps stops announced when the location provider reports no bearing,
+     * or reports one GeoEngine rejects as too inaccurate. Without it there is no "ahead" to look
+     * down and no way to tell the near kerb from the far one, so no stop is named at all - which
+     * is exactly what a heading derived from the current fix alone would produce, every time.
+     *
+     * Both runs below pass travelHeading = null on every fix, so the only thing separating them
+     * is the direction of movement between the two. Naming the near-kerb stop in each - and they
+     * are opposite stops - means the direction genuinely came from that movement.
+     */
+    @Test
+    fun testVehicleTransitStopUsesMovementWhenTheFixHasNoHeading() {
+        val location = LngLatAlt(-4.3115, 55.9295)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val way = gridState.getFeatureTree(TreeId.ROADS).getAllCollection().features
+            .filterIsInstance<Way>()
+            .first { candidate ->
+                val stops = candidate.alongWayFeatures(AlongWayKind.TRANSIT_STOP)
+                candidate.name == "Boclair Road" && stops.size >= 2 &&
+                    stops.map { it.side }.toSet().size > 1
+            }
+        val line = way.geometry as LineString
+        val stops = way.alongWayFeatures(AlongWayKind.TRANSIT_STOP)
+        val leftStop = stops.first { it.side == Side.LEFT }
+        val rightStop = stops.first { it.side == Side.RIGHT }
+        val leftText = leftStop.feature!!.getText(null).text
+        val rightText = rightStop.feature!!.getText(null).text
+        // Both fixes of a run have to sit before both stops for either to be "ahead".
+        assertTrue(
+            "Fixture needs room on the road before the first stop",
+            minOf(leftStop.distanceFromStart, rightStop.distanceFromStart) > 20.0
+        )
+
+        // Driving the Way's own direction, from before both stops. Britain drives on the left, so
+        // the left-hand stop is the near kerb.
+        val (firstForward, forward) = driveTwoFixesWithoutHeading(
+            gridState, settlementGrid, way,
+            gridState.ruler.along(line, 0.0),
+            gridState.ruler.along(line, 10.0)
+        )
+        // The opening fix has nothing to compare against, so it cannot know a direction yet.
+        assertTrue(
+            "The first fix has no previous location and should name no stop, got: " +
+                "${firstForward?.positionedStrings?.map { it.text }}",
+            firstForward == null || firstForward.positionedStrings.none {
+                it.text.contains(leftText) || it.text.contains(rightText)
+            }
+        )
+        assertNotNull("Expected a stop callout with the heading taken from movement", forward)
+        assertTrue(
+            "Expected the near-side stop named, got: " +
+                "${forward!!.positionedStrings.map { it.text }}",
+            forward.positionedStrings.any { it.text.contains(leftText) }
+        )
+        assertTrue(
+            "The far-side stop must not be named, got: " +
+                "${forward.positionedStrings.map { it.text }}",
+            forward.positionedStrings.none { it.text.contains(rightText) }
+        )
+
+        // ...and driving the other way, from the same data and still with no heading on the fix.
+        // The left-hand stop is now both the far kerb and the nearer of the two, so taking the
+        // first stop found would get this wrong.
+        val (_, backward) = driveTwoFixesWithoutHeading(
+            gridState, settlementGrid, way,
+            gridState.ruler.along(line, way.length),
+            gridState.ruler.along(line, way.length - 10.0)
+        )
+        assertNotNull("Expected a stop callout driving the other way", backward)
+        assertTrue(
+            "Expected the other kerb's stop named, got: " +
+                "${backward!!.positionedStrings.map { it.text }}",
+            backward.positionedStrings.any { it.text.contains(rightText) }
+        )
+        assertTrue(
+            "The far-side stop must not be named, got: " +
+                "${backward.positionedStrings.map { it.text }}",
+            backward.positionedStrings.none { it.text.contains(leftText) }
+        )
+    }
+
+    /**
+     * Two consecutive fixes along [way], neither carrying a travel heading, returning the callout
+     * from each. One second apart, as real fixes are.
+     */
+    private fun driveTwoFixesWithoutHeading(
+        gridState: GridState,
+        settlementGrid: GridState,
+        way: Way,
+        from: LngLatAlt,
+        to: LngLatAlt
+    ): Pair<TrackedCallout?, TrackedCallout?> {
+        val autoCallout = AutoCallout(null, null)
+        val first = autoCallout.updateLocation(
+            UserGeometry(
+                location = from, speed = 10.0, travelHeading = null, mapMatchedWay = way,
+                timestampMilliseconds = 1000L
+            ),
+            gridState, settlementGrid
+        )
+        val second = autoCallout.updateLocation(
+            UserGeometry(
+                location = to, speed = 10.0, travelHeading = null, mapMatchedWay = way,
+                timestampMilliseconds = 2000L
+            ),
+            gridState, settlementGrid
+        )
+        return Pair(first, second)
+    }
+
+    /**
+     * A rail passenger is not told about the bus stops on the road running beside the line.
+     *
+     * On a train the road matcher still latches onto whatever road runs alongside - the same
+     * reason onARoadRatherThanATrain suppresses the crossings there - and the stop lookahead
+     * then walks a hundred
+     * metres up that road and names its stops. The stops that matter on a train are the station
+     * stops on the line itself, which buildCalloutForTrainStop reads off the railway.
+     */
+    @Test
+    fun testVehicleTransitStopIsSuppressedOnATrain() {
+        val location = LngLatAlt(-4.3115, 55.9295)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val way = gridState.getFeatureTree(TreeId.ROADS).getAllCollection().features
+            .filterIsInstance<Way>()
+            .first { candidate ->
+                val stops = candidate.alongWayFeatures(AlongWayKind.TRANSIT_STOP)
+                candidate.name == "Boclair Road" && stops.size >= 2 &&
+                    stops.map { it.side }.toSet().size > 1
+            }
+        val line = way.geometry as LineString
+        val leftText = way.alongWayFeatures(AlongWayKind.TRANSIT_STOP)
+            .first { it.side == Side.LEFT }.feature!!.getText(null).text
+        val startPoint = gridState.ruler.along(line, 0.0)
+        val heading = gridState.ruler.bearing(startPoint, gridState.ruler.along(line, way.length))
+
+        // The same fix names the stop when it is a car on the road...
+        val driving = driveOneFix(gridState, settlementGrid, way, startPoint, heading)
+        assertNotNull("Expected the driving case to still name the stop", driving)
+        assertTrue(
+            "Expected the near-side stop named when driving, got: " +
+                "${driving!!.positionedStrings.map { it.text }}",
+            driving.positionedStrings.any { it.text.contains(leftText) }
+        )
+
+        // ...and says nothing about it once a railway is matched too, which is what riding a
+        // train beside this road looks like to the callout.
+        val onTrain = AutoCallout(null, null).updateLocation(
+            UserGeometry(
+                location = startPoint, speed = 10.0, travelHeading = heading,
+                mapMatchedWay = way,
+                mapMatchedRailway = Way().apply { name = "Fake Railway Line" },
+                timestampMilliseconds = 1000L
+            ),
+            gridState, settlementGrid
+        )
+        assertTrue(
+            "No roadside stop should be announced to a rail passenger, got: " +
+                "${onTrain?.positionedStrings?.map { it.text }}",
+            onTrain == null || onTrain.positionedStrings.none { it.text.contains(leftText) }
+        )
+    }
+
+    /**
+     * A bridge split into several Ways still announces what it crosses, whichever piece is
+     * entered first.
+     *
+     * One OSM way split into pieces gives every piece the same osmId, and attachCrossings records
+     * the crossing against only the piece nearest it. The trigger is an osmId edge, so it fires on
+     * whichever piece is entered first - which needn't be the one carrying the crossing - and can
+     * never fire again on the one that does.
+     *
+     * A water crossing usually survives that, because attachWaterPolygonCrossings records the
+     * named water under every piece of the bridge. A railway crossing
+     * has no such fallback: Drymen Road over the Milngavie Branch is two bridge pieces with both
+     * crossing records on one of them, no water anywhere near, and a junction between the pieces
+     * that the along-way walk will not cross. Entering by the other piece lost the callout
+     * outright.
+     */
+    @Test
+    fun testSplitBridgeStillAnnouncesItsCrossing() {
+        val location = LngLatAlt(-4.3115, 55.9295)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+        val roads = gridState.getFeatureTree(TreeId.ROADS).getAllCollection().features
+            .filterIsInstance<Way>()
+
+        fun carriesTheCrossing(way: Way) = way.alongWayFeatures(AlongWayKind.RAILWAY_CROSSING)
+            .any { it.name == "Milngavie Branch" }
+
+        // A bridge whose pieces share one osmId, with the crossing recorded on just one of them.
+        val pieces = roads
+            .filter { (it.name == "Drymen Road") && (it.properties?.get("brunnel") != null) }
+            .groupBy { it.osmId }
+            .values
+            .first { group -> group.size > 1 && group.count { carriesTheCrossing(it) } == 1 }
+        val carrier = pieces.first { carriesTheCrossing(it) }
+        val approach = pieces.first { piece ->
+            piece !== carrier && sharesAnIntersection(piece, carrier)
+        }
+
+        val approachLine = approach.geometry as LineString
+        val approachMidpoint = gridState.ruler.along(approachLine, approach.length / 2.0)
+        // The crux of the fixture: with a named water polygon under it, attachWaterPolygonCrossings
+        // would record the water on the approach piece too and the split would never show. A
+        // railway crossing has no such second source.
+        assertNull(
+            "Fixture needs no water polygon to fall back on",
+            gridState.getFeatureTree(TreeId.NAMED_WATER_POLYGONS)
+                .getNearestFeature(approachMidpoint, gridState.ruler, 200.0)
+        )
+
+        // Arrive from a different road, so the osmId edge fires on the approach piece - the piece
+        // with nothing recorded on it.
+        val elsewhere = roads.first {
+            (it.osmId != carrier.osmId) && ((it.geometry as? LineString)?.coordinates?.size ?: 0) > 1
+        }
+
+        val autoCallout = AutoCallout(null, null)
+        val spoken = mutableListOf<String>()
+        var t = 1000L
+        for (way in listOf(elsewhere, approach, carrier)) {
+            val line = way.geometry as LineString
+            val callout = autoCallout.updateLocation(
+                UserGeometry(
+                    location = gridState.ruler.along(line, way.length / 2.0),
+                    speed = 15.0,
+                    travelHeading = gridState.ruler.bearing(
+                        line.coordinates.first(), line.coordinates.last()
+                    ),
+                    mapMatchedWay = way,
+                    timestampMilliseconds = t
+                ),
+                gridState, settlementGrid
+            )
+            callout?.positionedStrings?.forEach { spoken.add(it.text) }
+            t += 1000L
+        }
+
+        assertEquals(
+            "Expected the crossing named exactly once across the bridge, got $spoken",
+            1,
+            spoken.count { it.contains("Milngavie Branch") }
+        )
+    }
+
+    /** Whether two Ways meet, sharing an intersection object at one of their ends. */
+    private fun sharesAnIntersection(first: Way, second: Way): Boolean {
+        val firstEnds = listOfNotNull(
+            first.intersections[WayEnd.START.id], first.intersections[WayEnd.END.id]
+        )
+        val secondEnds = listOfNotNull(
+            second.intersections[WayEnd.START.id], second.intersections[WayEnd.END.id]
+        )
+        return firstEnds.any { a -> secondEnds.any { it === a } }
+    }
 
     /**
      * A stop is attached to the road it is beside, and sits at its real position along it. This is
@@ -1835,8 +2176,7 @@ class MvtTileTest {
             osmId = 2L
             name = "Bridge"
             geometry = LineString(location, endLocation)
-            // brunnel makes this Way itself the structure, which is what makes the Way-change edge
-            // the trigger rather than proximity to the crossing point - see crossingToAnnounce.
+            // brunnel makes this Way itself the structure, as a real bridge Way is.
             setProperty("brunnel", "bridge")
             addAlongWayFeature(
                 AlongWayFeature(
@@ -1887,8 +2227,10 @@ class MvtTileTest {
             thirdCallout?.positionedStrings?.none { it.text.contains("Test River") } != false
         )
 
-        // Leave the bridge and come back - should re-announce, since the old sweep-based
-        // mechanism couldn't express "returned to the same crossing" at all.
+        // Step off the bridge and straight back on: still the same crossing, still just announced,
+        // so it stays quiet. What decides that is now how far away and how long ago it was said -
+        // see announcedForgetDistanceMetres and announcedForgetTimeMilliseconds - rather than a
+        // Way-change edge, which treated a few seconds' round trip as a fresh arrival.
         val fourthUpdate = UserGeometry(
             location = location, speed = 1.4, mapMatchedWay = approachWay, timestampMilliseconds = 10000L
         )
@@ -1899,11 +2241,24 @@ class MvtTileTest {
             mapMatchedWay = crossingWay, timestampMilliseconds = 12000L
         )
         val fifthCallout = autoCallout.updateLocation(fifthUpdate, gridState, settlementGrid)
-        assertNotNull(fifthCallout)
         assertTrue(
-            "Expected the crossing callout to re-announce after returning to the bridge, got: " +
-                "${fifthCallout!!.positionedStrings.map { it.text }}",
-            fifthCallout.positionedStrings.any { it.text.contains("Test River") }
+            "Stepping back onto the same bridge moments later should stay quiet, got: " +
+                "${fifthCallout?.positionedStrings?.map { it.text }}",
+            fifthCallout?.positionedStrings?.none { it.text.contains("Test River") } != false
+        )
+
+        // Long enough afterwards, it is a fresh crossing again.
+        val muchLater = UserGeometry(
+            location = gridState.ruler.offset(location, 0.0, 30.0), speed = 1.4,
+            mapMatchedWay = crossingWay,
+            timestampMilliseconds = 12000L + 400_000L
+        )
+        val laterCallout = autoCallout.updateLocation(muchLater, gridState, settlementGrid)
+        assertNotNull(laterCallout)
+        assertTrue(
+            "Expected the crossing to be announced again long afterwards, got: " +
+                "${laterCallout!!.positionedStrings.map { it.text }}",
+            laterCallout.positionedStrings.any { it.text.contains("Test River") }
         )
     }
 

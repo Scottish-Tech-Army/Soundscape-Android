@@ -22,6 +22,8 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.significantWaterwayClasses
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
+import org.scottishtecharmy.soundscape.geoengine.utils.multiPolygonContainsCoordinates
+import org.scottishtecharmy.soundscape.geoengine.utils.polygonContainsCoordinates
 import org.scottishtecharmy.soundscape.geoengine.utils.findLineIntersectionPoint
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
@@ -359,6 +361,113 @@ open class GridState(
      *
      * Returns true if a crossing was recorded.
      */
+    // How far from a bridge or tunnel a named water body can be and still be the thing it crosses.
+    // Only shortlists polygons for the containment test below, so it can afford to be generous.
+    private val waterPolygonSearchDistanceMetres = 100.0
+
+    /**
+     * Records the named water a road bridge or tunnel crosses where that water is a *polygon* - a
+     * firth, a bay, a tidal river - rather than a waterway line.
+     *
+     * extractCrossings only ever sees waterway lines, so without this the Firth of Forth under the
+     * Queensferry Crossing, or the Menai Strait under the bridges to Anglesey, is not a recorded
+     * crossing at all. It used to be answered live instead, from wherever the user happened to be
+     * standing, which is precisely why the callout needed a Way-change edge to trigger it: there
+     * was no point to measure a distance to. Recorded here it is an along-way feature like any
+     * other, found by the same walk at the same measured distance.
+     */
+    private fun attachWaterPolygonCrossings(
+        featureCollections: Array<FeatureCollection>,
+        localTrees: Array<FeatureTree>
+    ): Int {
+        val waterTree = localTrees[TreeId.NAMED_WATER_POLYGONS.id]
+        var attached = 0
+        for (way in featureCollections[TreeId.ROADS_AND_PATHS.id].features.filterIsInstance<Way>()) {
+            val geometry = way.geometry as? LineString ?: continue
+            val brunnel = way.properties?.get("brunnel") as? String
+            if (attachWaterPolygonCrossing(way, geometry, brunnel, waterTree)) attached++
+        }
+        return attached
+    }
+
+    /**
+     * Records the named water this bridge or tunnel crosses, for the one road Way [way].
+     *
+     * Returns whether anything was attached. Broken out from the pass above, and public rather
+     * than internal, so that a test in the app module can drive it for a single Way without
+     * standing up a whole tile grid first.
+     */
+    fun attachWaterPolygonCrossing(
+        way: Way,
+        wayGeometry: LineString,
+        brunnel: String?,
+        waterTree: FeatureTree
+    ): Boolean {
+        val position = when (brunnel) {
+            "bridge" -> AlongWayPosition.OVER
+            "tunnel" -> AlongWayPosition.UNDER
+            else -> return false
+        }
+        if (wayGeometry.coordinates.size < 2) return false
+
+        // A waterway line already found here is the better record - it has a real intersection
+        // point rather than a stretch of open water - so the same water isn't described twice.
+        val alreadyNamed = way.alongWayFeatures(AlongWayKind.WATERWAY_CROSSING)
+            .mapNotNull { it.name }
+            .toSet()
+
+        var attached = false
+        val candidates = waterTree
+            .getNearbyLine(wayGeometry, waterPolygonSearchDistanceMetres, ruler)
+            .features
+            .filterIsInstance<MvtFeature>()
+        for (water in candidates) {
+            val name = water.name ?: continue
+            if (name in alreadyNamed) continue
+            val point = waterPolygonCrossingPoint(wayGeometry, water) ?: continue
+            way.addAlongWayFeature(
+                AlongWayFeature(
+                    distanceFromStart = way.distanceAlongWay(point, ruler),
+                    point = point,
+                    kind = AlongWayKind.WATERWAY_CROSSING,
+                    name = name,
+                    position = position
+                )
+            )
+            attached = true
+        }
+        return attached
+    }
+
+    /**
+     * Where [way] meets [water]: the middle of the stretch that is actually over the water, or
+     * failing that the bank it crosses.
+     *
+     * The second case covers two things - a single-span bridge over a narrow channel, which has
+     * both its ends on dry land and so no vertex inside the polygon at all, and the entries in
+     * this collection which are not polygons: despite the name it carries whatever the tiles tag
+     * as named water, and a strait or a firth commonly arrives as the line of its shore.
+     */
+    private fun waterPolygonCrossingPoint(way: LineString, water: MvtFeature): LngLatAlt? {
+        val geometry = water.geometry
+        val inside = way.coordinates.filter { point ->
+            when (geometry.type) {
+                "Polygon" -> polygonContainsCoordinates(point, geometry as Polygon)
+                "MultiPolygon" -> multiPolygonContainsCoordinates(point, geometry as MultiPolygon)
+                else -> false
+            }
+        }
+        if (inside.isNotEmpty()) return inside[inside.size / 2]
+
+        val rings = when (geometry.type) {
+            "Polygon" -> (geometry as Polygon).coordinates
+            "MultiPolygon" -> (geometry as MultiPolygon).coordinates.map { it.first() }
+            "LineString" -> listOf((geometry as LineString).coordinates)
+            else -> return null
+        }
+        return rings.firstNotNullOfOrNull { findLineIntersectionPoint(way.coordinates, it) }
+    }
+
     private fun attachRailwayWaterwayCrossing(
         railway: Way,
         railwayGeometry: LineString,
@@ -781,8 +890,10 @@ open class GridState(
         // Needs both the ROADS_AND_PATHS and TRANSIT rtrees built above, but nothing else from
         // this function, so it can run before the tile-edge stitching below.
         var railwayCrossings = 0
+        var waterPolygonCrossings = 0
         val crossingTiming = measureTime {
             railwayCrossings = attachRailwayCrossings(featureCollections, localTrees)
+            waterPolygonCrossings = attachWaterPolygonCrossings(featureCollections, localTrees)
         }
         // Waterway crossings are resolved per-tile at parse time instead (see extractCrossings),
         // so only the railway half is timed here - but report both counts, since the time is only
@@ -791,7 +902,8 @@ open class GridState(
             .sumOf { (it as? Way)?.alongWayFeatures(AlongWayKind.WATERWAY_CROSSING)?.size ?: 0 }
         println(
             "Crossings took $crossingTiming " +
-                "($railwayCrossings railway crossings, $waterwayCrossings waterway crossings)"
+                "($railwayCrossings railway crossings, $waterwayCrossings waterway crossings, " +
+                "$waterPolygonCrossings water polygon crossings)"
         )
 
         val nearestWayTiming = measureTime {

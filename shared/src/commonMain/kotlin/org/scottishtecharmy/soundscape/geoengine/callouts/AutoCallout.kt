@@ -21,6 +21,7 @@ import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayPosition
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
 import org.scottishtecharmy.soundscape.geoengine.utils.CountryBoundaries
 import org.scottishtecharmy.soundscape.geoengine.utils.DrivingSide
 import org.scottishtecharmy.soundscape.geoengine.utils.AlongWayFeatureAhead
@@ -67,23 +68,38 @@ class AutoCallout(
     private val roadSenseCalloutHistory = CalloutHistory()
     private val vehicleLandmarkFilter = LocationUpdateFilter(10000, 50.0)
     private val vehicleLandmarkCalloutHistory = CalloutHistory()
-    // null means "no baseline yet" (just entered this travel mode), not "currently unmatched" -
-    // losing map-match briefly (mapMatchedWay == null) deliberately leaves this alone rather than
-    // resetting it, so a transient map-match gap right as the user reaches a bridge doesn't
-    // suppress the callout. See buildCalloutForVehicleCrossing/buildCalloutForWalkingCrossing.
-    private var lastVehicleCrossingWayOsmId: Long? = null
-    private var lastWalkingCrossingWayOsmId: Long? = null
-    // Along-way features already announced - crossings and transit stops alike. Shared across the
-    // builders so that flipping travel mode partway across a structure can't announce the same
-    // crossing twice.
+    // An announced crossing or stop is forgotten once well clear of it - see updateSweepWindow.
+    // Must exceed the largest lookahead below, or something announced at range is forgotten while
+    // still being approached and announced again on the next fix.
+    private val announcedForgetDistanceMetres = 1500.0
+    private val announcedForgetTimeMilliseconds = 300_000L
+    // Two records of one thing, near enough to each other to be that thing rather than another of
+    // the same name: the platform nodes of a station, and the separate bridge decks a river or a
+    // dual carriageway is carried over a railway on. Generous because the name has to match as
+    // well - see TrackedCallout.matchRadiusMetres - and short of announcedForgetDistanceMetres, so
+    // that meeting the same name again much later in a journey is still a new callout.
+    private val stationNodeMatchRadiusMetres = 1000.0
+    private val adjacentStructureMatchRadiusMetres = 200.0
+
+    // Everything announced off an along-way lookup - crossings and stops alike - so that the
+    // whole approach to one of them is a single announcement rather than one per fix. One history
+    // across all the builders, so that changing travel mode partway across a structure can't
+    // announce the same crossing twice.
     //
-    // CalloutHistory isn't usable for any of these: its trim() hardcodes a 50m radius, so an entry
-    // is dropped and re-armed while the user is still approaching the thing it was recorded for -
-    // which is most of the approach when a stop is announced 100m out.
-    private val announcedAlongWayFeatures = mutableListOf<AnnouncedAlongWayFeature>()
+    // Its own radii rather than CalloutHistory's defaults: these are announced at range, keyed on
+    // where the thing is rather than where the user was, so an entry has to outlive the approach
+    // instead of being dropped and re-armed throughout it.
+    private val alongWayCalloutHistory = CalloutHistory(
+        expiryPeriodMilliseconds = announcedForgetTimeMilliseconds,
+        trimRadiusMetres = announcedForgetDistanceMetres
+    )
     // Where the user was on the previous update, and how far back along the Ways the along-way
     // queries should therefore look - see updateSweepWindow.
     private var lastSweepLocation: LngLatAlt? = null
+    // Where the user was on the update *before* this one. Held separately because
+    // lastSweepLocation is overwritten by updateSweepWindow before any builder runs, so by the
+    // time sweepHeading is called it is already the current location - see sweepHeading.
+    private var sweepPreviousLocation: LngLatAlt? = null
     private var lastSweepTimestamp = 0L
     private var sweepBehindMetres = 0.0
     private val lastStationTracker = LastStationTracker()
@@ -314,18 +330,20 @@ class AutoCallout(
         // approaching stop isn't dropped the moment the traffic does - only skipped once genuinely
         // no longer in a vehicle, e.g. actually got out and started walking.
         if (!userGeometry.inVehicle() && !recentlyInVehicle(userGeometry)) return null
+        // Not on a train, for the same reason the crossings aren't (see
+        // onARoadRatherThanATrain): the
+        // road matcher still latches onto whatever runs alongside the line, and this then walks a
+        // hundred metres up that road and announces its bus stops to a rail passenger. The stops
+        // that matter on a train are the station stops on the line itself - see
+        // buildCalloutForTrainStop. Suppressed shortly after losing rail lock too, since
+        // probablyOnTrain() can flicker false for an instant mid-journey.
+        if (userGeometry.probablyOnTrain() || recentlyOnTrain(userGeometry)) return null
         val way = userGeometry.mapMatchedWay ?: return null
 
         val found = transitStopAhead(userGeometry, way) ?: return null
         val stopFeature = found.feature.feature ?: return null
         val stopText = stopFeature.getText(localized)
         if (stopText.generic) return null
-
-        // Keyed on the stop itself rather than on its text, so that the whole approach is one
-        // announcement: the callout fires when the stop first comes within range and stays quiet
-        // for the rest of the way in. CalloutHistory can't do this - see announcedAlongWayFeatures.
-        val key = "stop|${stopFeature.osmId}|${found.feature.point}"
-        if (announcedAlongWayFeatures.any { it.key == key }) return null
 
         val calloutText = if (stopFeature.name == null) {
             enrichUnnamedTransitStopText(
@@ -353,11 +371,18 @@ class AutoCallout(
             ),
             isPoint = stopFeature.geometry.type == "Point",
             isGeneric = false,
+            calloutHistory = alongWayCalloutHistory,
+            // The stop itself rather than its text, so that the whole approach is one
+            // announcement: the callout fires when the stop first comes within range and stays
+            // quiet for the rest of the way in, however the text is worded.
+            dedupText = "stop|${stopFeature.osmId}",
         )
 
-        announcedAlongWayFeatures.add(
-            AnnouncedAlongWayFeature(key, found.feature.point, userGeometry.timestampMilliseconds)
-        )
+        // Whether this has already been said. Recorded eagerly rather than left to the speak path,
+        // which only sees a callout that is returned standalone - this one is commonly merged into
+        // another's positionedStrings, the same reason buildCalloutForVehicleLandmark adds here.
+        if (alongWayCalloutHistory.find(callout)) return null
+        alongWayCalloutHistory.add(callout)
         notableVehicleEventTracker.recordEvent(userGeometry.timestampMilliseconds)
         return callout
     }
@@ -395,17 +420,9 @@ class AutoCallout(
         ) ?: return null
         val name = found.feature.name ?: return null
 
-        // Keyed on the name, not the node: a station is commonly several stop nodes, one per
-        // platform, and they are all the same station to a passenger.
-        val key = "railwaystop|$name"
-        if (announcedAlongWayFeatures.any { it.key == key }) return null
-        announcedAlongWayFeatures.add(
-            AnnouncedAlongWayFeature(key, found.feature.point, userGeometry.timestampMilliseconds)
-        )
-
         val text = localized?.get(StringKey.DirectionsApproachingName, name)
             ?: "Approaching $name"
-        return TrackedCallout(
+        val callout = TrackedCallout(
             userGeometry,
             trackedText = name,
             location = found.feature.point,
@@ -418,7 +435,15 @@ class AutoCallout(
             ),
             isPoint = true,
             isGeneric = false,
+            calloutHistory = alongWayCalloutHistory,
+            // A station is commonly several stop nodes, one per platform, and they are all the
+            // same station to a passenger - so any node of a station of this name counts as this
+            // one. The name still has to match, so this never merges two different stations.
+            matchRadiusMetres = stationNodeMatchRadiusMetres,
         )
+        if (alongWayCalloutHistory.find(callout)) return null
+        alongWayCalloutHistory.add(callout)
+        return callout
     }
 
     /**
@@ -441,7 +466,8 @@ class AutoCallout(
         way: Way
     ): AlongWayFeatureAhead? {
         val cursor = userGeometry.cursorOn(way, sweepHeading(userGeometry)) ?: return null
-        val forwards = cursor.forwards ?: return null
+        // Only as a precondition - which kerb is near is read per-Way off each candidate below.
+        if (cursor.forwards == null) return null
         val nearSide = CountryBoundaries.drivingSide(userGeometry.location)?.let {
             if (it == DrivingSide.LEFT) Side.LEFT else Side.RIGHT
         }
@@ -455,9 +481,12 @@ class AutoCallout(
             if (candidate.feature.kind != AlongWayKind.TRANSIT_STOP) return@forEachAlongWayFeatureAhead true
             val side = candidate.feature.side
             if ((nearSide != null) && (side != null)) {
-                // The recorded side is relative to the road's START-to-END direction, so it reads
-                // directly when travelling that way and inverts when travelling back.
-                val sideOfTravel = if (forwards) {
+                // The recorded side is relative to the START-to-END direction of the Way the stop
+                // is on, so it reads directly when travelling that way and inverts when travelling
+                // back. That is the walk's direction on *that* Way, not the cursor's on the one
+                // the walk started from: following a road across a Way digitised the other way
+                // round flips which kerb is which.
+                val sideOfTravel = if (candidate.forwards) {
                     side
                 } else {
                     when (side) {
@@ -510,51 +539,20 @@ class AutoCallout(
         return genericText
     }
 
-    // How far from a bridge's current location to look for a named water polygon (see
-    // TreeId.NAMED_WATER_POLYGONS) that isn't literally containing it - digitisation of the
-    // bridge deck and the water polygon's coastline are independent, so they don't always overlap
-    // exactly, especially where a coastline is heavily simplified at max zoom.
-    private val waterCrossingSearchDistanceMetres = 50.0
-
     /**
      * Announces a river/canal or railway crossing while travelling by car/bus - these are major
-     * navigation points ("Passing over Allander Water", "Passing over the railway") worth calling out on
-     * their own, not just as part of a "via a bridge" road name. Fires as a simple edge: once when
-     * userGeometry.mapMatchedWay's osmId changes to a Way carrying crossing properties (see
-     * extractCrossings in MvtToGeoJson.kt, which computes and attaches these directly onto the
-     * crossing Way at tile-parse time - no runtime search needed). Since an OSM way can be split
-     * into several Way pieces that all share the same osmId (see WayGenerator), moving between
-     * pieces of the same bridge/tunnel never re-fires; leaving and later returning to the same
-     * crossing does re-fire, which is the desired behaviour.
+     * navigation points ("Passing over Allander Water", "Passing over the railway") worth calling
+     * out on their own, not just as part of a "via a bridge" road name.
+     *
+     * All the work is in buildCalloutForCrossingOn, which is shared with the walking and train
+     * cases; what is left here is who this applies to.
      */
     private fun buildCalloutForVehicleCrossing(userGeometry: UserGeometry, gridState: GridState): TrackedCallout? {
-        if (!userGeometry.inVehicle() && !recentlyInVehicle(userGeometry)) {
-            lastVehicleCrossingWayOsmId = null
-            return null
-        }
+        if (!userGeometry.inVehicle() && !recentlyInVehicle(userGeometry)) return null
+        if (!onARoadRatherThanATrain(userGeometry)) return null
+        val way = userGeometry.mapMatchedWay ?: return null
 
-        val matchedWay = userGeometry.mapMatchedWay ?: return null
-
-        val previousOsmId = lastVehicleCrossingWayOsmId
-        lastVehicleCrossingWayOsmId = matchedWay.osmId
-
-        val crossing = crossingToAnnounce(userGeometry, gridState, previousOsmId) ?: return null
-        val text = crossingCalloutText(crossing)
-        val callout = TrackedCallout(
-            userGeometry,
-            trackedText = crossing.name ?: "railway",
-            location = userGeometry.location,
-            positionedStrings = listOf(
-                PositionedString(
-                    text = text,
-                    location = userGeometry.location,
-                    type = AudioType.STANDARD
-                )
-            ),
-            isPoint = true,
-            isGeneric = false,
-        )
-
+        val callout = buildCalloutForCrossingOn(userGeometry, gridState, way) ?: return null
         notableVehicleEventTracker.recordEvent(userGeometry.timestampMilliseconds)
         return callout
     }
@@ -579,68 +577,18 @@ class AutoCallout(
      * Only grade-separated crossings appear, because that's all attachRailwayCrossings records - a
      * level crossing has no brunnel on either side and is deliberately left to the explicit
      * railway=level_crossing point. Unnamed roads are skipped: "Crossing" an unnamed track isn't
-     * worth saying, the same reasoning as for an unnamed waterway in wayCrossingInfo.
+     * worth saying, the same reasoning as for an unnamed waterway crossing.
      */
     private fun buildCalloutForTrainCrossing(userGeometry: UserGeometry, gridState: GridState): TrackedCallout? {
         if (!userGeometry.probablyOnTrain()) return null
         val railway = userGeometry.mapMatchedRailway ?: return null
 
-        // Everything the line meets within reach, in the order it will be met - measured along the
-        // rails, not as the crow flies.
-        for (found in crossingsInReach(userGeometry, railway, railwaySideCrossingKinds)) {
-            val crossing = found.feature
-            if (crossing.kind == AlongWayKind.WATERWAY_CROSSING) {
-                val waterName = crossing.name ?: continue
-
-                // Keyed on the water's name, so a line crossing a river on two adjacent bridge
-                // decks announces it once.
-                val key = "water|$waterName"
-                if (announcedAlongWayFeatures.any { it.key == key }) continue
-
-                // The recorded position already describes the train's own relationship to the
-                // water, as it does for the roads - both were inverted when they were attached.
-                announcedAlongWayFeatures.add(
-                    AnnouncedAlongWayFeature(key, crossing.point, userGeometry.timestampMilliseconds)
-                )
-                return trainCrossingCallout(
-                    userGeometry, waterName, crossingCalloutText(WayCrossingInfo(crossing))
-                )
-            }
-
-            // Only genuinely named roads. Way.getName confects a name for anything unnamed, which
-            // from a train reads as noise rather than a landmark - "Passing over Service that
-            // joins Lennox Park and Crossveggate" tells a passenger nothing.
-            val road = crossing.feature as? Way ?: continue
-            if ((road.name == null) && (road.ref == null)) continue
-            val roadName = road.getName(null, gridState, localized, true)
-            if (roadName.isEmpty()) continue
-
-            // Keyed on the name rather than the osmId, so a dual carriageway carried on two
-            // separate bridge decks is announced once rather than twice. Genuinely crossing the
-            // same road again later in the journey still re-announces, once the earlier entry has
-            // aged or fallen far enough behind to be pruned above.
-            val key = "road|$roadName"
-            if (announcedAlongWayFeatures.any { it.key == key }) continue
-
-            val text = if (crossing.position == AlongWayPosition.UNDER) {
-                localized?.get(StringKey.DirectionsGoingUnderRailway, roadName)
-                    ?: "Passing under $roadName"
-            } else {
-                localized?.get(StringKey.DirectionsCrossingWaterway, roadName)
-                    ?: "Passing over $roadName"
-            }
-
-            announcedAlongWayFeatures.add(
-                AnnouncedAlongWayFeature(key, crossing.point, userGeometry.timestampMilliseconds)
-            )
-            return trainCrossingCallout(userGeometry, roadName, text)
-        }
-        return null
+        return buildCalloutForCrossingOn(userGeometry, gridState, railway)
     }
 
-    // The union of a crossing recorded against a Way (an AlongWayFeature) and the live
-    // named-water-polygon fallback in wayCrossingInfo below, which has no crossing point at all -
-    // hence the nullable point, which an AlongWayFeature doesn't have.
+    // A crossing recorded against a Way, flattened out of its AlongWayFeature. Every crossing has
+    // a real point now that the firths and bays are attached alongside the waterway lines - see
+    // GridState.attachWaterPolygonCrossings - which is what let the Way-change edge trigger go.
     //
     // position is the user's relationship to the structure - see AlongWayPosition for why the raw
     // OSM brunnel value isn't good enough.
@@ -648,95 +596,26 @@ class AutoCallout(
         val kind: AlongWayKind,
         val name: String?,
         val position: AlongWayPosition?,
-        val point: LngLatAlt?
+        val point: LngLatAlt
     ) {
         constructor(feature: AlongWayFeature) :
             this(feature.kind, feature.name, feature.position, feature.point)
     }
 
-    private data class AnnouncedAlongWayFeature(
-        val key: String,
-        val location: LngLatAlt,
-        val timestampMilliseconds: Long
+
+    // The along-way kinds that are crossings, as opposed to the stops - an allow-list, since the
+    // kinds still to come (junctions) aren't crossings either.
+    //
+    // One set for road and rail rather than one each, because the two railway kinds are mirrors
+    // recorded on opposite Ways: GridState.attachRailwayCrossings puts RAILWAY_CROSSING on the
+    // road and ROAD_CROSSING on the railway, always as a pair. So a road Way never carries a
+    // ROAD_CROSSING and a railway Way never carries a RAILWAY_CROSSING, and which of them a
+    // lookup can find is already decided by the Way it is asked about.
+    private val crossingKinds = setOf(
+        AlongWayKind.WATERWAY_CROSSING,
+        AlongWayKind.RAILWAY_CROSSING,
+        AlongWayKind.ROAD_CROSSING
     )
-
-    /**
-     * Reads the crossing AlongWayFeature that extractCrossings (see MvtToGeoJson.kt) or
-     * GridState.attachRailwayCrossings attaches to the Way(s) that cross a named river/canal or a
-     * railway, if any. An unnamed waterway crossing isn't worth announcing - there's nothing
-     * useful to say beyond "Crossing" nothing - but an unnamed railway still is, since "Crossing
-     * the railway" is meaningful on its own even without a line name.
-     *
-     * Where a Way carries more than one crossing (a viaduct over both a river and a railway), the
-     * waterway is preferred: it's the bigger landmark of the two.
-     *
-     * extractCrossings only covers named river/canal `waterway` lines - a firth/bay/strait is
-     * tagged `natural=bay`/`natural=strait` in OSM, not as a waterway, so it never gets a crossing
-     * attached at parse time. Rather than trying to compute a specific crossing point for those at
-     * parse time (unreliable - a firth is commonly wider than a single MVT tile, so a bridge
-     * across one can straddle several tiles), fall back to a live check here instead: if we're on
-     * a bridge with no pre-attached crossing info, look for a named water polygon (see
-     * TreeId.NAMED_WATER_POLYGONS) at/near the current location.
-     */
-    private fun wayCrossingInfo(way: Way, gridState: GridState, location: LngLatAlt): WayCrossingInfo? {
-        val attached = way.firstAlongWayFeature(AlongWayKind.WATERWAY_CROSSING)
-            ?: way.firstAlongWayFeature(AlongWayKind.RAILWAY_CROSSING)
-        if (attached != null) {
-            if ((attached.kind == AlongWayKind.WATERWAY_CROSSING) && attached.name.isNullOrEmpty()) {
-                return null
-            }
-            return WayCrossingInfo(attached)
-        }
-
-        // A bridge carries the user over the water, a tunnel takes them under it - the Clyde
-        // Tunnel under the River Clyde being the obvious example. Neither is reachable through
-        // extractCrossings, because a firth/bay/tidal river is a water polygon rather than a
-        // waterway line.
-        val position = when (way.properties?.get("brunnel")) {
-            "bridge" -> AlongWayPosition.OVER
-            "tunnel" -> AlongWayPosition.UNDER
-            else -> return null
-        }
-        val waterTree = gridState.getFeatureTree(TreeId.NAMED_WATER_POLYGONS)
-        val containing = waterTree.getContainingPolygons(location).features.firstOrNull()
-        val nearby = containing
-            ?: waterTree.getNearestFeature(location, gridState.ruler, waterCrossingSearchDistanceMetres)
-        val waterName = (nearby as? MvtFeature)?.name ?: return null
-        // No crossing point for this one - a firth is commonly wider than a tile, so there's no
-        // precomputed intersection to aim at. The Way is itself the bridge or tunnel though, so
-        // the Way change is already an accurate trigger; see crossingToAnnounce.
-        return WayCrossingInfo(AlongWayKind.WATERWAY_CROSSING, waterName, position, null)
-    }
-
-    private fun trainCrossingCallout(
-        userGeometry: UserGeometry,
-        trackedText: String,
-        text: String
-    ) = TrackedCallout(
-        userGeometry,
-        trackedText = trackedText,
-        location = userGeometry.location,
-        positionedStrings = listOf(
-            PositionedString(
-                text = text,
-                location = userGeometry.location,
-                type = AudioType.STANDARD
-            )
-        ),
-        isPoint = true,
-        isGeneric = false,
-    )
-
-    // What a train passenger can meet: the roads crossing the line, and the water the line itself
-    // crosses. RAILWAY_CROSSING is the road-side mirror and belongs to the road user.
-    private val railwaySideCrossingKinds =
-        setOf(AlongWayKind.WATERWAY_CROSSING, AlongWayKind.ROAD_CROSSING)
-
-    // The crossing kinds a road user can meet. ROAD_CROSSING is the railway-side mirror and would
-    // be nonsense here, and the kinds still to come (transit stops, junctions) aren't crossings at
-    // all - so this is an allow-list rather than an exclusion.
-    private val roadSideCrossingKinds =
-        setOf(AlongWayKind.WATERWAY_CROSSING, AlongWayKind.RAILWAY_CROSSING)
 
     // Bounds on the backward window in updateSweepWindow. A minute without a fix is a gap in
     // tracking rather than a long step, and 1km is further than any single step at line speed -
@@ -750,77 +629,87 @@ class AutoCallout(
     private val crossingTriggerLeadSeconds = 3.0
     private val crossingTriggerMinimumRadiusMetres = 25.0
     private val crossingTriggerMaximumRadiusMetres = 150.0
-    // An announced crossing or stop is forgotten once well clear of it - see updateSweepWindow.
-    // Must exceed the largest lookahead below, or something announced at range is forgotten while
-    // still being approached and announced again on the next fix.
-    private val announcedForgetDistanceMetres = 1500.0
-    private val announcedForgetTimeMilliseconds = 300_000L
 
     /**
-     * Decides whether the crossing on the currently matched Way should be announced now.
+     * Whether crossings read off the road matcher's Way mean anything right now.
      *
-     * The Way-change edge this used to rely on exclusively is only meaningful when the matched Way
-     * *is* the structure. Going over, it is: the road carries brunnel=bridge, so OSM split it there
-     * and the Way change coincides with the crossing. Going under, the road below carries no tag at
-     * all, so it is never split and the Way change lands wherever that road happens to begin -
-     * measured 1705m before the railway viaduct over the M80 at Castlecary, roughly 55 seconds
-     * early. So a Way with a crossing it passes under triggers on proximity to the stored crossing
-     * point instead.
+     * On a train the road matcher still latches onto whatever runs alongside the line, and those
+     * roads carry the crossing records for the very railway being ridden - recordings had "Passing
+     * under Milngavie Branch" and "Passing over Milngavie Branch" interleaved with "On Milngavie
+     * Branch". What a passenger should hear instead comes off the line itself, in
+     * buildCalloutForTrainCrossing.
+     *
+     * False shortly after losing rail lock too, for the same reason as the vehicle landmark
+     * callouts: probablyOnTrain() can flicker false for an instant mid-journey.
      */
-    private fun crossingToAnnounce(
+    private fun onARoadRatherThanATrain(userGeometry: UserGeometry) =
+        !userGeometry.probablyOnTrain() && !recentlyOnTrain(userGeometry)
+
+    /**
+     * What this crossing should be called, or null if it isn't worth announcing.
+     *
+     * The rule differs by kind rather than by who is travelling. An unnamed waterway is nothing to
+     * say - "Crossing" nothing - while an unnamed railway still is, since "Passing over the
+     * railway" stands on its own. A road is named through Way.getName so it reads in the user's
+     * own language, but only when it has a real name or number: getName confects something for
+     * anything unnamed, and "Passing over Service that joins Lennox Park and Crossveggate" tells a
+     * passenger nothing.
+     */
+    private fun announceableCrossing(
+        feature: AlongWayFeature,
+        gridState: GridState
+    ): WayCrossingInfo? = when (feature.kind) {
+        AlongWayKind.WATERWAY_CROSSING ->
+            if (feature.name.isNullOrEmpty()) null else WayCrossingInfo(feature)
+
+        AlongWayKind.RAILWAY_CROSSING -> WayCrossingInfo(feature)
+
+        AlongWayKind.ROAD_CROSSING -> {
+            val road = feature.feature as? Way
+            if ((road == null) || ((road.name == null) && (road.ref == null))) {
+                null
+            } else {
+                val roadName = road.getName(null, gridState, localized, true)
+                if (roadName.isEmpty()) null else WayCrossingInfo(feature).copy(name = roadName)
+            }
+        }
+
+        else -> null
+    }
+
+    /**
+     * The callout for the next crossing along [way] that hasn't been announced yet, or null.
+     *
+     * One function for the road being driven or walked and for the line being ridden. The two used
+     * to be written out separately, but the difference between them was never in the logic - it is
+     * entirely in which Way is asked and what is recorded against it, and
+     * GridState.attachRailwayCrossings records both sides of a rail/road crossing as a mirrored
+     * pair for exactly that reason.
+     *
+     * Crossings that aren't worth announcing are stepped over rather than stopping the search, so
+     * an unnamed burn immediately ahead doesn't hide the river beyond it.
+     */
+    private fun buildCalloutForCrossingOn(
         userGeometry: UserGeometry,
         gridState: GridState,
-        previousOsmId: Long?
-    ): WayCrossingInfo? {
-        // Crossings hang off the *road* the user is matched to, so they only mean anything if the
-        // user is actually on a road. On a train the road matcher still latches onto whatever runs
-        // alongside the line, and those roads carry the crossing properties for the very railway
-        // being ridden - recordings had "Passing under Milngavie Branch" and "Passing over Milngavie
-        // Branch" interleaved with "On Milngavie Branch". Announcing a train's own crossings would
-        // mean attaching them to railway Ways, which is a separate job from this one.
-        //
-        // Suppressed shortly after losing rail lock too, for the same reason as the vehicle
-        // landmark callouts above: probablyOnTrain() can flicker false for an instant mid-journey.
-        if (userGeometry.probablyOnTrain() || recentlyOnTrain(userGeometry)) return null
-
-        val way = userGeometry.mapMatchedWay ?: return null
-
-        // A Way carrying its own brunnel is the structure, so arriving on it *is* the crossing and
-        // the Way-change edge is already an accurate trigger. It's also the only route to the
-        // water-polygon fallback in wayCrossingInfo, which needs the brunnel as its evidence and
-        // has no recorded crossing to measure a distance to.
-        //
-        // Anything else falls through to the walk below, including a Way carrying no crossing of
-        // its own - the crossing being announced is often on a Way further along, and that's the
-        // whole point of walking rather than reading the matched Way alone.
-        if (way.properties?.get("brunnel") != null) {
-            val crossing = wayCrossingInfo(way, gridState, userGeometry.location) ?: return null
-            val edgeFired = previousOsmId != null && previousOsmId != way.osmId
-            return if (edgeFired) crossing else null
+        way: Way
+    ): TrackedCallout? {
+        // In the order they will be met - measured along the road or the rails, not as the crow
+        // flies.
+        for (found in crossingsInReach(userGeometry, way, crossingKinds)) {
+            val crossing = announceableCrossing(found.feature, gridState) ?: continue
+            val callout = crossingCallout(userGeometry, crossing)
+            if (alongWayCalloutHistory.find(callout)) continue
+            alongWayCalloutHistory.add(callout)
+            return callout
         }
-
-        val found = crossingsInReach(userGeometry, way, roadSideCrossingKinds).firstOrNull()
-            ?: return null
-        val crossing = WayCrossingInfo(found.feature)
-        if ((crossing.kind == AlongWayKind.WATERWAY_CROSSING) && crossing.name.isNullOrEmpty()) {
-            return null
-        }
-
-        // Keyed on the Way the crossing is recorded against rather than the one we're matched to,
-        // so that approaching it across a Way boundary and then reaching it doesn't announce twice.
-        val key = "${found.way.osmId}|${crossing.kind}|${crossing.name}"
-        if (announcedAlongWayFeatures.any { it.key == key }) return null
-
-        announcedAlongWayFeatures.add(
-            AnnouncedAlongWayFeature(key, found.feature.point, userGeometry.timestampMilliseconds)
-        )
-        return crossing
+        return null
     }
 
     /**
      * Records how far the user has moved since the previous update, which is how far back along
      * the Ways the along-way queries look - crossingsInReach for the crossings, and
-     * transitStopsPassed for the stops. Called once per update, before any callout is built, so
+     * transitStopAhead for the stops. Called once per update, before any callout is built, so
      * that they all see the same window.
      *
      * Gated on elapsed time rather than on distance moved. Distance is no help in telling travel
@@ -833,18 +722,15 @@ class AutoCallout(
     private fun updateSweepWindow(userGeometry: UserGeometry) {
         // Forget what was announced long ago or far behind, so that genuinely coming back to the
         // same crossing or stop later announces it again.
-        announcedAlongWayFeatures.removeAll {
-            ((userGeometry.timestampMilliseconds - it.timestampMilliseconds) >
-                announcedForgetTimeMilliseconds) ||
-                (userGeometry.ruler.distance(userGeometry.location, it.location) >
-                    announcedForgetDistanceMetres)
-        }
+        alongWayCalloutHistory.trim(userGeometry)
 
         val previous = lastSweepLocation
         val elapsed = userGeometry.timestampMilliseconds - lastSweepTimestamp
-        sweepBehindMetres = if (
-            (previous == null) || (elapsed <= 0) || (elapsed > sweepMaximumGapMilliseconds)
-        ) {
+        // A gap in the record: the two fixes are too far apart in time to say anything about how
+        // the user got from one to the other, so neither the window nor the heading is derived
+        // from them.
+        val gap = (previous == null) || (elapsed <= 0) || (elapsed > sweepMaximumGapMilliseconds)
+        sweepBehindMetres = if (gap) {
             0.0
         } else {
             // Crow-fly between the two fixes, with slack for the road not being straight between
@@ -852,8 +738,23 @@ class AutoCallout(
             (userGeometry.ruler.distance(previous, userGeometry.location) * 1.5)
                 .coerceAtMost(sweepMaximumBehindMetres)
         }
+        sweepPreviousLocation = if (gap) null else previous
         lastSweepLocation = userGeometry.location
         lastSweepTimestamp = userGeometry.timestampMilliseconds
+    }
+
+    /**
+     * The bearing from where the user was on the previous fix, for when the fix itself carries no
+     * usable travel heading. Movement between two fixes says which way they are going just as well,
+     * and this is how the transit stop sweep used to decide it before the along-way queries
+     * existed.
+     *
+     * Null below a couple of metres of movement, where the bearing is mostly noise.
+     */
+    private fun sweepHeading(userGeometry: UserGeometry): Double? {
+        val previous = sweepPreviousLocation ?: return null
+        if (userGeometry.ruler.distance(previous, userGeometry.location) < 2.0) return null
+        return userGeometry.ruler.bearing(previous, userGeometry.location)
     }
 
     /**
@@ -879,20 +780,6 @@ class AutoCallout(
      * Ties go to the waterway. A Way can carry both (a viaduct over a river and a railway at once)
      * and the river is the bigger landmark.
      */
-    /**
-     * The bearing from where the user was on the previous fix, for when the fix itself carries no
-     * usable travel heading. Movement between two fixes says which way they are going just as well,
-     * and this is how the transit stop sweep used to decide it before the along-way queries
-     * existed.
-     *
-     * Null below a couple of metres of movement, where the bearing is mostly noise.
-     */
-    private fun sweepHeading(userGeometry: UserGeometry): Double? {
-        val previous = lastSweepLocation ?: return null
-        if (userGeometry.ruler.distance(previous, userGeometry.location) < 2.0) return null
-        return userGeometry.ruler.bearing(previous, userGeometry.location)
-    }
-
     private fun crossingsInReach(
         userGeometry: UserGeometry,
         way: Way,
@@ -924,6 +811,43 @@ class AutoCallout(
     }
 
     /**
+     * The callout for a river/canal or railway crossing, shared between the vehicle and walking
+     * paths - neither the wording nor what counts as the same crossing depends on how it is being
+     * travelled.
+     *
+     * Placed at the crossing itself. That is what the callout is about, so it is where the audio
+     * belongs and what says whether this is a crossing already announced - approaching one across
+     * a Way boundary and then reaching it is one crossing, and the user's own position, which is
+     * different on every fix, cannot express that.
+     */
+    private fun crossingCallout(
+        userGeometry: UserGeometry,
+        crossing: WayCrossingInfo
+    ): TrackedCallout {
+        val location = crossing.point
+        return TrackedCallout(
+            userGeometry,
+            trackedText = crossing.name ?: "railway",
+            location = location,
+            positionedStrings = listOf(
+                PositionedString(
+                    text = crossingCalloutText(crossing),
+                    location = location,
+                    type = AudioType.STANDARD
+                )
+            ),
+            isPoint = true,
+            isGeneric = false,
+            calloutHistory = alongWayCalloutHistory,
+            // A bridge over open water is one crossing however many Ways it is split into, and
+            // every piece carries its own recorded point - see
+            // GridState.attachWaterPolygonCrossings. They are the same water by name, so the
+            // radius has to span the structure rather than just the road under it.
+            matchRadiusMetres = adjacentStructureMatchRadiusMetres,
+        )
+    }
+
+    /**
      * Builds the spoken text for a river/canal or railway crossing, shared between the vehicle and
      * walking crossing callouts below - the wording doesn't depend on how the crossing is being
      * travelled.
@@ -949,38 +873,17 @@ class AutoCallout(
     }
 
     /**
-     * Announces a river/canal or railway crossing as it's passed while walking - the same
-     * landmark buildCalloutForVehicleCrossing announces for car/bus travel, using the same
-     * mapMatchedWay-based edge-trigger (see its doc comment), since extractCrossings detects a
-     * crossing for any highway class (including footway/path), not just vehicle roads.
+     * Announces a river/canal or railway crossing as it's passed while walking - the same landmark
+     * buildCalloutForVehicleCrossing announces for car/bus travel, off the same Way and the same
+     * records, since crossings are detected for any highway class (including footway/path) and not
+     * just for vehicle roads.
      */
     private fun buildCalloutForWalkingCrossing(userGeometry: UserGeometry, gridState: GridState): TrackedCallout? {
-        if (userGeometry.inVehicle() || recentlyInVehicle(userGeometry)) {
-            lastWalkingCrossingWayOsmId = null
-            return null
-        }
+        if (userGeometry.inVehicle() || recentlyInVehicle(userGeometry)) return null
+        if (!onARoadRatherThanATrain(userGeometry)) return null
+        val way = userGeometry.mapMatchedWay ?: return null
 
-        val matchedWay = userGeometry.mapMatchedWay ?: return null
-
-        val previousOsmId = lastWalkingCrossingWayOsmId
-        lastWalkingCrossingWayOsmId = matchedWay.osmId
-
-        val crossing = crossingToAnnounce(userGeometry, gridState, previousOsmId) ?: return null
-        val text = crossingCalloutText(crossing)
-        return TrackedCallout(
-            userGeometry,
-            trackedText = crossing.name ?: "railway",
-            location = userGeometry.location,
-            positionedStrings = listOf(
-                PositionedString(
-                    text = text,
-                    location = userGeometry.location,
-                    type = AudioType.STANDARD
-                )
-            ),
-            isPoint = true,
-            isGeneric = false,
-        )
+        return buildCalloutForCrossingOn(userGeometry, gridState, way)
     }
 
     /**
@@ -1359,7 +1262,7 @@ class AutoCallout(
                     val vehicleWaterwayCrossingCallout =
                         buildCalloutForVehicleCrossing(userGeometry, gridState)
                     // On a train the road-matched crossings above are suppressed (see
-                    // crossingToAnnounce), so this names the roads the line passes over/under
+                    // onARoadRatherThanATrain), so this names the roads the line passes over/under
                     // instead.
                     val trainCrossingCallout =
                         buildCalloutForTrainCrossing(userGeometry, gridState)

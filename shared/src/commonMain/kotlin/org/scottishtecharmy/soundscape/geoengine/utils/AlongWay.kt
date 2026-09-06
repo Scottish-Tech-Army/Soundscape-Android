@@ -98,10 +98,37 @@ internal fun List<AlongWayFeature>.firstIndexBeyond(distance: Double): Int {
 }
 
 /**
- * The features on this Way strictly beyond [distance], nearest first.
+ * Index of the first entry at or beyond [distance] - the inclusive counterpart of
+ * [firstIndexBeyond], for a [distance] which is a Way boundary rather than the user's position.
  */
-fun Way.alongWayFeaturesAfter(distance: Double): List<AlongWayFeature> =
-    alongWayFeatures.subList(alongWayFeatures.firstIndexBeyond(distance), alongWayFeatures.size)
+internal fun List<AlongWayFeature>.firstIndexAtOrBeyond(distance: Double): Int {
+    var low = 0
+    var high = size
+    while (low < high) {
+        val mid = (low + high).ushr(1)
+        if (this[mid].distanceFromStart >= distance) high = mid else low = mid + 1
+    }
+    return low
+}
+
+/**
+ * The features on this Way beyond [distance], nearest first.
+ *
+ * Exclusive by default, so a feature exactly at the user's position counts as passed rather than
+ * still ahead. [inclusive] is for the other caller: a walk entering this Way at one of its ends,
+ * where [distance] is that boundary and a feature sitting exactly on it has not been reached yet.
+ */
+fun Way.alongWayFeaturesAfter(
+    distance: Double,
+    inclusive: Boolean = false
+): List<AlongWayFeature> {
+    val from = if (inclusive) {
+        alongWayFeatures.firstIndexAtOrBeyond(distance)
+    } else {
+        alongWayFeatures.firstIndexBeyond(distance)
+    }
+    return alongWayFeatures.subList(from, alongWayFeatures.size)
+}
 
 /**
  * The features on this Way at or before [distance], nearest first - so in descending order of
@@ -117,6 +144,16 @@ data class AlongWayFeatureAhead(
     val distance: Double,
     /** The Way the feature is recorded on, which needn't be the cursor's own Way. */
     val way: Way,
+    /**
+     * Whether the walk is travelling [way]'s own START-to-END direction where it met the feature.
+     *
+     * Not the same as the cursor's own direction once the walk has left the Way it started on: the
+     * Ways a road is split into aren't all digitised the same way round, so a walk that is going
+     * forwards along one can be going backwards along the next. Anything recorded relative to a
+     * Way's own direction - [AlongWayFeature.side] above all - has to be read against this rather
+     * than against the cursor.
+     */
+    val forwards: Boolean,
 )
 
 /**
@@ -174,6 +211,11 @@ private fun walkOneDirection(
     // end we came in by.
     var entry = cursor.distanceFromStart
     var travelled = 0.0
+    // The walk starts at the user, where a feature exactly at the cursor has been passed. Every
+    // Way after this one is entered at one of its ends instead, and a feature sitting exactly on
+    // that boundary is still ahead - a railway=stop on the node where a line is split, say, which
+    // would otherwise be invisible to the walk arriving from the previous piece.
+    var entryIsBoundary = false
     val visited = mutableSetOf<Way>()
 
     while (true) {
@@ -181,8 +223,10 @@ private fun walkOneDirection(
         if (visited.size > MAX_WAYS_WALKED) return
 
         val features = if (stepForwards) {
-            way.alongWayFeaturesAfter(entry)
+            way.alongWayFeaturesAfter(entry, inclusive = entryIsBoundary)
         } else {
+            // Already inclusive of its own boundary: alongWayFeaturesBefore takes everything at
+            // or before the entry, which on a backwards entry is the Way's END.
             way.alongWayFeaturesBefore(entry)
         }
         for (feature in features) {
@@ -194,7 +238,7 @@ private fun walkOneDirection(
             // Features come out nearest-first and travelled only grows, so nothing later in this
             // walk can be nearer than one that has already overshot.
             if (distance > maxDistance) return
-            if (!action(AlongWayFeatureAhead(feature, distance, way))) return
+            if (!action(AlongWayFeatureAhead(feature, distance, way, stepForwards))) return
         }
 
         travelled += if (stepForwards) way.length - entry else entry
@@ -233,6 +277,7 @@ private fun walkOneDirection(
 
         stepForwards = (next.intersections[WayEnd.START.id] === exit)
         entry = if (stepForwards) 0.0 else next.length
+        entryIsBoundary = true
         way = next
     }
 }
