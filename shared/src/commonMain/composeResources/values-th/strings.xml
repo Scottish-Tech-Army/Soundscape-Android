@@ -804,7 +804,7 @@
     <string name="osm_taxi_waiting_area">จุดจอดรอแท็กซี่</string>
     <string name="osm_bike_parking">ที่จอดจักรยาน</string>
     <string name="osm_gas_station">ปั๊มน้ำมัน</string>
-    <string name="osm_bus_stop_named">ป้ายรถประจำทาง %1$s</string>
+    <string name="osm_bus_stop_named">ป้ายรถประจำทาง: %1$s</string>
     <string name="osm_recycling_bin">ถังรีไซเคิล</string>
     <string name="osm_water_fountain">น้ำพุสำหรับดื่มน้ำ</string>
     <string name="osm_sports_field">สนามกีฬา</string>
@@ -1141,7 +1141,7 @@
     <string name="osm_stairs">บันได</string>
     <string name="osm_bicycle_rental">จักรยานให้เช่า</string>
     <string name="osm_tram_stop">ป้ายรถราง</string>
-    <string name="osm_tram_stop_named">ป้ายรถราง %1$s</string>
+    <string name="osm_tram_stop_named">ป้ายรถราง: %1$s</string>
     <string name="osm_subway">สถานีรถไฟใต้ดิน</string>
     <string name="osm_subway_named">สถานีรถไฟใต้ดิน %1$s</string>
     <string name="osm_hampshire_gate">ประตูแบบแฮมป์เชียร์</string>
@@ -1496,4 +1496,8 @@
     <string name="legacy_migration_not_now">ยังไม่ใช่ตอนนี้</string>
     <string name="legacy_migration_failed">ไม่สามารถนำเข้าข้อมูลของคุณได้ Soundscape เวอร์ชันก่อนหน้ายังคงมีข้อมูลอยู่ — กรุณาติดต่อฝ่ายสนับสนุนจากการตั้งค่า ความช่วยเหลือ</string>
     <string name="legacy_migration_continue">ดำเนินการต่อ</string>
+    <string name="callouts_bus_and_tram_stops">ป้ายรถประจำทางและป้ายรถราง</string>
+    <string name="callouts_bus_and_tram_stops_description">ประกาศป้ายรถประจำทางและป้ายรถรางเมื่อคุณผ่าน</string>
+    <string name="directions_approaching_name">กำลังใกล้ถึง %1$s</string>
+    <string name="directions_generic_tram">รถราง</string>
 </resources>
