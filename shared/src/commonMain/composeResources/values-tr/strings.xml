@@ -530,7 +530,7 @@
     <string name="osm_taxi_waiting_area">Taksi Bekleme Alanı</string>
     <string name="osm_bike_parking">Bisiklet Parkı</string>
     <string name="osm_gas_station">Benzin İstasyonu</string>
-    <string name="osm_bus_stop_named">%1$s Otobüs Durağı</string>
+    <string name="osm_bus_stop_named">Otobüs Durağı: %1$s</string>
     <string name="osm_recycling_bin">Geri Dönüşüm Kutusu</string>
     <string name="osm_water_fountain">Çeşme</string>
     <string name="osm_sports_field">Spor Sahası</string>
@@ -1214,7 +1214,7 @@
     <string name="osm_stairs">Merdiven</string>
     <string name="osm_bicycle_rental">Bisiklet Kiralama</string>
     <string name="osm_tram_stop">Tramvay Durağı</string>
-    <string name="osm_tram_stop_named">%1$s Tramvay Durağı</string>
+    <string name="osm_tram_stop_named">Tramvay Durağı: %1$s</string>
     <string name="osm_subway">Metro İstasyonu</string>
     <string name="osm_subway_named">%1$s Metro İstasyonu</string>
     <string name="osm_hampshire_gate">Hampshire Kapısı</string>
@@ -1501,4 +1501,8 @@
     <string name="legacy_migration_not_now">Şimdi değil</string>
     <string name="legacy_migration_failed">Verileriniz içe aktarılamadı. Soundscape'in önceki sürümü onları hâlâ saklıyor — lütfen Ayarlar, Yardım bölümünden destek ile iletişime geçin.</string>
     <string name="legacy_migration_continue">Devam Et</string>
+    <string name="callouts_bus_and_tram_stops">Otobüs ve Tramvay Durakları</string>
+    <string name="callouts_bus_and_tram_stops_description">Yanlarından geçerken otobüs ve tramvay duraklarını duyur</string>
+    <string name="directions_approaching_name">%1$s yaklaşıyor</string>
+    <string name="directions_generic_tram">tramvay</string>
 </resources>
