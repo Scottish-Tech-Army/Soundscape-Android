@@ -35,6 +35,14 @@ object PreferenceKeys {
     const val PLACES_AND_LANDMARKS =
         org.scottishtecharmy.soundscape.geoengine.PLACES_AND_LANDMARKS_KEY
     const val MOBILITY = org.scottishtecharmy.soundscape.geoengine.MOBILITY_KEY
+
+    /**
+     * Bus and tram stops are part of the Mobility super-category, but there are far more of them
+     * than of anything else in it - a walk down an urban main road passes one every couple of
+     * hundred metres, and a bus ride passes nothing else - so they get a switch of their own.
+     * Turning them off leaves the rest of Mobility (crossings, gates, lifts, steps...) alone.
+     */
+    const val BUS_AND_TRAM_STOPS = "BusAndTramStops"
     const val DISTANCE_TO_BEACON = "DistanceToBeacon"
     const val POSITION_INCLUDES_HEADING_AND_DISTANCE = "PositionTextDescription"
     const val RELATIVE_DIRECTION = "RelativeDirectionMode"
@@ -69,6 +77,7 @@ object PreferenceDefaults {
     const val ALLOW_CALLOUTS = true
     const val PLACES_AND_LANDMARKS = true
     const val MOBILITY = true
+    const val BUS_AND_TRAM_STOPS = true
     const val DISTANCE_TO_BEACON = true
     const val POSITION_INCLUDES_HEADING_AND_DISTANCE = false
     const val RELATIVE_DIRECTION = "ClockFace"

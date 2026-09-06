@@ -72,6 +72,9 @@ import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.PluralKey
 import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.locationprovider.MAXIMUM_USABLE_ACCURACY_METRES
+import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
+import org.scottishtecharmy.soundscape.preferences.PreferencesListener
+import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.utils.toLocationDescription
 import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.process
@@ -98,6 +101,27 @@ class FileGridState(
     init {
         validateContext = false
     }
+}
+
+/** In-memory [PreferencesProvider] for tests that need a callout setting set one way or another. */
+private class MvtTestPreferences : PreferencesProvider {
+    private val booleans = mutableMapOf<String, Boolean>()
+    private val strings = mutableMapOf<String, String>()
+
+    override fun getBoolean(key: String, default: Boolean): Boolean = booleans[key] ?: default
+    override fun getString(key: String, default: String): String = strings[key] ?: default
+    override fun getFloat(key: String, default: Float): Float = default
+
+    override fun putBoolean(key: String, value: Boolean) { booleans[key] = value }
+    override fun putString(key: String, value: String) { strings[key] = value }
+
+    override fun clearAll() {
+        booleans.clear()
+        strings.clear()
+    }
+
+    override fun addListener(listener: PreferencesListener) {}
+    override fun removeListener(listener: PreferencesListener) {}
 }
 
 /**
@@ -1717,14 +1741,66 @@ class MvtTileTest {
         )
     }
 
+    /**
+     * A rider who doesn't want to hear about bus stops can turn them off, and the same drive that
+     * announces one with the setting on says nothing with it off.
+     *
+     * The two runs below differ in nothing but the preference, so a stop going unnamed in the
+     * second is the setting doing it rather than the fixture or the geometry. It's checked on the
+     * vehicle callout because that's the path a bus rider is actually on - the walking POI callout
+     * shares the same filter.
+     */
+    @Test
+    fun testVehicleTransitStopIsSilencedByThePreference() {
+        val location = LngLatAlt(-4.3115, 55.9295)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(location, 12, 3)
+
+        val way = gridState.getFeatureTree(TreeId.ROADS).getAllCollection().features
+            .filterIsInstance<Way>()
+            .first { candidate ->
+                val stops = candidate.alongWayFeatures(AlongWayKind.TRANSIT_STOP)
+                candidate.name == "Boclair Road" && stops.size >= 2 &&
+                    stops.map { it.side }.toSet().size > 1
+            }
+        val line = way.geometry as LineString
+        val startPoint = gridState.ruler.along(line, 0.0)
+        val heading = gridState.ruler.bearing(
+            startPoint, gridState.ruler.along(line, way.length)
+        )
+        val leftText = way.alongWayFeatures(AlongWayKind.TRANSIT_STOP)
+            .first { it.side == Side.LEFT }.feature!!.getText(null).text
+
+        val on = MvtTestPreferences()
+        val spokenWithStopsOn =
+            driveOneFix(gridState, settlementGrid, way, startPoint, heading, on)
+        assertNotNull("Expected a stop callout with the setting on", spokenWithStopsOn)
+        assertTrue(
+            "Expected the stop named with the setting on, got: " +
+                "${spokenWithStopsOn!!.positionedStrings.map { it.text }}",
+            spokenWithStopsOn.positionedStrings.any { it.text.contains(leftText) }
+        )
+
+        val off = MvtTestPreferences()
+        off.putBoolean(PreferenceKeys.BUS_AND_TRAM_STOPS, false)
+        val spokenWithStopsOff =
+            driveOneFix(gridState, settlementGrid, way, startPoint, heading, off)
+        assertTrue(
+            "The stop must not be named with the setting off, got: " +
+                "${spokenWithStopsOff?.positionedStrings?.map { it.text }}",
+            spokenWithStopsOff?.positionedStrings.orEmpty().none { it.text.contains(leftText) }
+        )
+    }
+
     /** A single location fix along [way], returning whatever callout it produced. */
     private fun driveOneFix(
         gridState: GridState,
         settlementGrid: GridState,
         way: Way,
         from: LngLatAlt,
-        heading: Double
-    ): TrackedCallout? = AutoCallout(null, null).updateLocation(
+        heading: Double,
+        preferences: PreferencesProvider? = null
+    ): TrackedCallout? = AutoCallout(null, preferences).updateLocation(
         UserGeometry(
             location = from, speed = 10.0, travelHeading = heading, mapMatchedWay = way,
             timestampMilliseconds = 1000L
