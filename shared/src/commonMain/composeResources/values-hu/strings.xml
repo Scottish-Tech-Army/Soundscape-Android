@@ -597,7 +597,7 @@
     <string name="osm_stairs">Lépcső</string>
     <string name="osm_bicycle_rental">Kerékpárkölcsönző</string>
     <string name="osm_tram_stop">Villamosmegálló</string>
-    <string name="osm_tram_stop_named">%1$s villamosmegálló</string>
+    <string name="osm_tram_stop_named">Villamosmegálló: %1$s</string>
     <string name="osm_subway">Metróállomás</string>
     <string name="osm_subway_named">%1$s metróállomás</string>
     <string name="osm_hampshire_gate">Hampshire-kapu</string>
@@ -1343,7 +1343,7 @@
     <string name="osm_taxi_waiting_area">Taxiváró terület</string>
     <string name="osm_bike_parking">Kerékpártároló</string>
     <string name="osm_gas_station">Benzinkút</string>
-    <string name="osm_bus_stop_named">%1$s buszmegálló</string>
+    <string name="osm_bus_stop_named">Buszmegálló: %1$s</string>
     <string name="osm_recycling_bin">Szelektív hulladékgyűjtő</string>
     <string name="osm_water_fountain">Ivókút</string>
     <string name="osm_sports_field">Sportpálya</string>
@@ -1501,4 +1501,8 @@
     <string name="legacy_migration_not_now">Most nem</string>
     <string name="legacy_migration_failed">Az adataidat nem sikerült importálni. A Soundscape korábbi verziója továbbra is tárolja őket — kérjük, vedd fel a kapcsolatot az ügyfélszolgálattal a Beállítások, Súgó menüpontban.</string>
     <string name="legacy_migration_continue">Folytatás</string>
+    <string name="callouts_bus_and_tram_stops">Busz- és villamosmegállók</string>
+    <string name="callouts_bus_and_tram_stops_description">Busz- és villamosmegállók bemondása, amikor elhalad mellettük</string>
+    <string name="directions_approaching_name">Közeledés ide: %1$s</string>
+    <string name="directions_generic_tram">villamos</string>
 </resources>
