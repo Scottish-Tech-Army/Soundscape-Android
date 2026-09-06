@@ -330,7 +330,7 @@
     <string name="osm_bank">Bank</string>
     <string name="osm_atm">ATM</string>
     <string name="osm_bus_stop">Bus Stop</string>
-    <string name="osm_bus_stop_named">%1$s Bus Stop</string>
+    <string name="osm_bus_stop_named">Bus Stop: %1$s</string>
     <string name="osm_recycling_bin">Recycling Bin</string>
     <string name="osm_fountain">Fountain</string>
     <string name="osm_place_of_worship">Place of Worship</string>
@@ -421,7 +421,7 @@
     <string name="osm_ferry_terminal_named">%1$s ferry terminal</string>
     <string name="confect_name_joins">%1$s that joins %2$s and %3$s</string>
     <string name="notification_text">The Soundscape location service runs even when the phone is locked.</string>
-    <string name="osm_tram_stop_named">%1$s tram stop</string>
+    <string name="osm_tram_stop_named">Tram stop: %1$s</string>
     <string name="osm_subway">Underground station</string>
     <string name="menu_manage_accessibility">Accessibility</string>
     <string name="settings_theme_is_light">Use light theme</string>
@@ -1501,4 +1501,8 @@
     <string name="legacy_migration_not_now">Not now</string>
     <string name="legacy_migration_failed">Your data couldn\\'t be imported. Your previous version of Soundscape still has it — please contact support from Settings, Help.</string>
     <string name="legacy_migration_continue">Continue</string>
+    <string name="callouts_bus_and_tram_stops">Bus and Tram Stops</string>
+    <string name="callouts_bus_and_tram_stops_description">Announce bus stops and tram stops as you pass them</string>
+    <string name="directions_approaching_name">Approaching %1$s</string>
+    <string name="directions_generic_tram">tram</string>
 </resources>
