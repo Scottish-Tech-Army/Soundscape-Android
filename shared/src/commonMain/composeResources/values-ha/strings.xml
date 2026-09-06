@@ -616,7 +616,7 @@
     <string name="osm_taxi_waiting_area">Wurin Jiran Tasi</string>
     <string name="osm_bike_parking">Wurin Ajiye Keke</string>
     <string name="osm_gas_station">Tashar Man Fetur</string>
-    <string name="osm_bus_stop_named">Tashar Bas ta %1$s</string>
+    <string name="osm_bus_stop_named">Tashar Bas: %1$s</string>
     <string name="osm_recycling_bin">Kwandon Sake Amfani</string>
     <string name="osm_water_fountain">Marmaron Ruwa</string>
     <string name="osm_sports_field">Filin Wasanni</string>
@@ -1146,7 +1146,7 @@
     <string name="osm_stairs">Matakala</string>
     <string name="osm_bicycle_rental">Hayar Keke</string>
     <string name="osm_tram_stop">Tashar Tram</string>
-    <string name="osm_tram_stop_named">Tashar Tram ta %1$s</string>
+    <string name="osm_tram_stop_named">Tashar Tram: %1$s</string>
     <string name="osm_subway">Tashar Jirgin Ƙasa ta Ƙarƙashin Ƙasa</string>
     <string name="osm_subway_named">Tashar Jirgin Ƙasa ta Ƙarƙashin Ƙasa ta %1$s</string>
     <string name="osm_hampshire_gate">Ƙofar Hampshire</string>
@@ -1501,4 +1501,8 @@
     <string name="legacy_migration_not_now">Ba yanzu ba</string>
     <string name="legacy_migration_failed">Ba a iya shigo da bayananka ba. Tsohon sigar Soundscape naka na nan da su — da fatan za ka tuntuɓi Tallafi daga Saitunan, Taimako.</string>
     <string name="legacy_migration_continue">Ci gaba</string>
+    <string name="callouts_bus_and_tram_stops">Tashoshin Bas da Tram</string>
+    <string name="callouts_bus_and_tram_stops_description">Sanar da tashoshin bas da na tram yayin da kake wucewa</string>
+    <string name="directions_approaching_name">Ana kusanto %1$s</string>
+    <string name="directions_generic_tram">tram</string>
 </resources>
