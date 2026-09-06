@@ -331,7 +331,7 @@
     <string name="osm_bank">Τράπεζα</string>
     <string name="osm_atm">ATM</string>
     <string name="osm_bus_stop">Στάση λεωφορείου</string>
-    <string name="osm_bus_stop_named">%1$s Στάση Λεωφορείου</string>
+    <string name="osm_bus_stop_named">Στάση λεωφορείου: %1$s</string>
     <string name="osm_recycling_bin">Κάδος ανακύκλωσης</string>
     <string name="osm_fountain">Σιντριβάνι</string>
     <string name="osm_place_of_worship">Τόπος Λατρείας</string>
@@ -454,7 +454,7 @@
     <string name="osm_train_station">Σιδηροδρομικός σταθμός</string>
     <string name="osm_train_station_named">%1$s Σιδηροδρομικός σταθμός</string>
     <string name="osm_tram_stop">Στάση τραμ</string>
-    <string name="osm_tram_stop_named">%1$s Στάση τραμ</string>
+    <string name="osm_tram_stop_named">Στάση τραμ: %1$s</string>
     <string name="osm_subway">Σταθμός μετρό</string>
     <string name="osm_subway_named">%1$s Σταθμός μετρό</string>
     <string name="osm_ferry_terminal">Τερματικός σταθμός φέρι</string>
@@ -1501,4 +1501,8 @@
     <string name="legacy_migration_not_now">Όχι τώρα</string>
     <string name="legacy_migration_failed">Δεν ήταν δυνατή η εισαγωγή των δεδομένων σας. Η προηγούμενη έκδοση του Soundscape τα διατηρεί ακόμη — επικοινωνήστε με την υποστήριξη από τις Ρυθμίσεις, Βοήθεια.</string>
     <string name="legacy_migration_continue">Συνέχεια</string>
+    <string name="callouts_bus_and_tram_stops">Στάσεις λεωφορείου και τραμ</string>
+    <string name="callouts_bus_and_tram_stops_description">Αναγγελία στάσεων λεωφορείου και τραμ καθώς τις προσπερνάτε</string>
+    <string name="directions_approaching_name">Πλησιάζετε %1$s</string>
+    <string name="directions_generic_tram">τραμ</string>
 </resources>
