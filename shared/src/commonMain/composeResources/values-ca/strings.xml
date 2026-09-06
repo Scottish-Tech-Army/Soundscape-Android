@@ -636,7 +636,7 @@
     <string name="osm_taxi_waiting_area">Zona d'espera de taxis</string>
     <string name="osm_bike_parking">Aparcament de bicicletes</string>
     <string name="osm_gas_station">Estació de servei</string>
-    <string name="osm_bus_stop_named">Parada d'autobús %1$s</string>
+    <string name="osm_bus_stop_named">Parada d'autobús: %1$s</string>
     <string name="osm_recycling_bin">Contenidor de reciclatge</string>
     <string name="osm_water_fountain">Font d'aigua potable</string>
     <string name="osm_sports_field">Camp esportiu</string>
@@ -1329,7 +1329,7 @@
     <string name="osm_stairs">Escales</string>
     <string name="osm_bicycle_rental">Lloguer de bicicletes</string>
     <string name="osm_tram_stop">Parada de tramvia</string>
-    <string name="osm_tram_stop_named">Parada de tramvia %1$s</string>
+    <string name="osm_tram_stop_named">Parada de tramvia: %1$s</string>
     <string name="osm_subway">Estació de metro</string>
     <string name="osm_subway_named">Estació de metro %1$s</string>
     <string name="osm_hampshire_gate">Porta Hampshire</string>
@@ -1506,4 +1506,8 @@
     <string name="legacy_migration_not_now">Ara no</string>
     <string name="legacy_migration_failed">No s'han pogut importar les teves dades. La teva versió anterior de Soundscape encara les té — contacta amb el suport des de Configuració, Ajuda.</string>
     <string name="legacy_migration_continue">Continua</string>
+    <string name="callouts_bus_and_tram_stops">Parades d'autobús i de tramvia</string>
+    <string name="callouts_bus_and_tram_stops_description">Anuncia les parades d'autobús i de tramvia quan hi passis a prop</string>
+    <string name="directions_approaching_name">T'acostes a %1$s</string>
+    <string name="directions_generic_tram">tramvia</string>
 </resources>
