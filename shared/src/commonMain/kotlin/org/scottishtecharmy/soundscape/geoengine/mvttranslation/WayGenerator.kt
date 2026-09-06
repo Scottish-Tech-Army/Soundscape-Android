@@ -667,6 +667,11 @@ class WayGenerator(val transit: Boolean = false) {
      * queries (see nextAlongWayFeature) would read as a real position. Reaching a crossing that is
      * on the Way ahead is the graph walk's job, not this step's.
      */
+    // How near a piece of a split structure has to be to a crossing to count as being at it. A
+    // bridge's pieces are metres apart; this is loose enough to cover the approach spans either
+    // side and far tighter than the length of a street sharing the same osmId.
+    private val structurePieceAttachDistanceMetres = 30.0
+
     internal fun attachCrossings(
         crossingsByOsmId: Map<Long, MutableList<CrossingInfo>>,
         ruler: Ruler
@@ -676,23 +681,50 @@ class WayGenerator(val transit: Boolean = false) {
         for ((osmId, crossings) in crossingsByOsmId) {
             val candidates = waysByOsmId[osmId] ?: continue
             for (crossing in crossings) {
-                val way = candidates.minByOrNull { candidate ->
+                // Every piece of the structure that is genuinely at the crossing, not just the one
+                // nearest it. OSM splits a road at a bridge and again at anything else along it,
+                // so a bridge is routinely several Ways sharing one osmId - Drymen Road over the
+                // Milngavie Branch is two - and a driver can enter by any of them. Recording it
+                // against only the nearest piece leaves the others with nothing to find, and the
+                // along-way walk will not cross the junction between them to reach it.
+                //
+                // Bounded by distance rather than given to every piece of the osmId, which can run
+                // the length of a street: a piece that far away would take the crossing point's
+                // distance clamped to its own end, and announce at the wrong moment.
+                val atTheCrossing = candidates.filter { candidate ->
                     val line = candidate.geometry as? LineString
                     if ((line == null) || (line.coordinates.size < 2)) {
-                        Double.MAX_VALUE
+                        false
                     } else {
-                        ruler.distanceToLineString(crossing.point, line).distance
+                        ruler.distanceToLineString(crossing.point, line).distance <=
+                            structurePieceAttachDistanceMetres
                     }
-                } ?: continue
-                way.addAlongWayFeature(
-                    AlongWayFeature(
-                        distanceFromStart = way.distanceAlongWay(crossing.point, ruler),
-                        point = crossing.point,
-                        kind = crossing.kind,
-                        name = crossing.name,
-                        position = crossing.position
+                }.ifEmpty {
+                    // Nothing within reach, so fall back to whichever piece is nearest: better a
+                    // crossing announced slightly off than one lost altogether.
+                    listOfNotNull(
+                        candidates.minByOrNull { candidate ->
+                            val line = candidate.geometry as? LineString
+                            if ((line == null) || (line.coordinates.size < 2)) {
+                                Double.MAX_VALUE
+                            } else {
+                                ruler.distanceToLineString(crossing.point, line).distance
+                            }
+                        }
                     )
-                )
+                }
+
+                for (way in atTheCrossing) {
+                    way.addAlongWayFeature(
+                        AlongWayFeature(
+                            distanceFromStart = way.distanceAlongWay(crossing.point, ruler),
+                            point = crossing.point,
+                            kind = crossing.kind,
+                            name = crossing.name,
+                            position = crossing.position
+                        )
+                    )
+                }
             }
         }
     }

@@ -12,6 +12,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -48,6 +49,33 @@ class AlongWayTest {
         }
     }
 
+    /**
+     * A straight Way covering the same ground as [straightWay] but digitised the other way round,
+     * so its START is the eastern end. OSM says nothing about which way traffic runs by the order
+     * of a way's nodes, so the pieces one road is split into routinely disagree like this.
+     */
+    private fun reversedWay(name: String, fromMetres: Double, toMetres: Double): Way {
+        val start = east(toMetres)
+        val end = east(fromMetres)
+        return Way().apply {
+            this.name = name
+            featureType = "highway"
+            featureValue = "residential"
+            geometry = LineString(start, end)
+            length = ruler.distance(start, end)
+        }
+    }
+
+    /** Joins two Ways which meet END to END, as two pieces digitised towards each other do. */
+    private fun joinEndToEnd(before: Way, after: Way): Intersection {
+        val intersection = intersectionAt((after.geometry as LineString).coordinates.last())
+        before.intersections[WayEnd.END.id] = intersection
+        after.intersections[WayEnd.END.id] = intersection
+        intersection.members.add(before)
+        intersection.members.add(after)
+        return intersection
+    }
+
     private fun join(before: Way, after: Way): Intersection {
         val intersection = intersectionAt((after.geometry as LineString).coordinates.first())
         before.intersections[WayEnd.END.id] = intersection
@@ -79,6 +107,18 @@ class AlongWayTest {
                 point = ruler.along(geometry as LineString, atMetresAlong),
                 kind = kind,
                 name = name
+            )
+        )
+    }
+
+    private fun Way.addStop(atMetresAlong: Double, name: String, side: Side) {
+        addAlongWayFeature(
+            AlongWayFeature(
+                distanceFromStart = atMetresAlong,
+                point = ruler.along(geometry as LineString, atMetresAlong),
+                kind = AlongWayKind.TRANSIT_STOP,
+                name = name,
+                side = side
             )
         )
     }
@@ -387,6 +427,109 @@ class AlongWayTest {
             nextAlongWayFeature(
                 WayCursor(main, 100.0, forwards = true), 500.0,
                 AlongWayKind.RAILWAY_STOP, WayContinuation.SAME_ROAD
+            )
+        )
+    }
+
+    // ---- which way round the Way under the feature is -----------------------------------
+
+    /**
+     * A feature reports the walk's direction along *its own* Way, which is not the cursor's
+     * direction once the walk has crossed into a piece digitised the other way round.
+     *
+     * This is what anything recorded relative to a Way's own direction has to be read against.
+     * AlongWayFeature.side is the case that matters: a bus stop's kerb is stored relative to its
+     * Way's START-to-END, so reading it against the cursor instead announces the stop across the
+     * road - the one serving the opposite direction - for every stop on a reversed continuation.
+     */
+    @Test
+    fun aFeatureCarriesTheWalkDirectionOfItsOwnWay() {
+        // 0---100 east as "first", then 200---100 east as "second": the two pieces are digitised
+        // towards each other and meet END to END.
+        val first = straightWay("Main Street", 0.0, 100.0)
+        val second = reversedWay("Main Street", 100.0, 200.0)
+        joinEndToEnd(first, second)
+
+        // 30m from second's START, which is its *eastern* end - so 170m east of the origin.
+        second.addStop(30.0, "Far Piece Stop", Side.LEFT)
+
+        val cursor = WayCursor(first, 20.0, forwards = true)
+        val found = nextAlongWayFeature(
+            cursor, 500.0, AlongWayKind.TRANSIT_STOP, WayContinuation.SAME_ROAD
+        )
+        assertEquals("Far Piece Stop", found?.feature?.name)
+        // 80m to the end of first, then 70m back along second from the end it was entered by.
+        assertEquals(150.0, found!!.distance, 1.0)
+        assertEquals(second, found.way)
+
+        // The cursor is travelling its own Way forwards, but the walk meets this feature going
+        // against second's direction, and it is second's direction the recorded side refers to.
+        assertTrue(cursor.forwards!!)
+        assertFalse(found.forwards)
+    }
+
+    @Test
+    fun aFeatureOnASameDirectionContinuationKeepsTheWalkDirection() {
+        // The other half of the pair above: where the pieces agree, so does the reported
+        // direction, and the walk direction is the cursor's.
+        val first = straightWay("Main Street", 0.0, 100.0)
+        val second = straightWay("Main Street", 100.0, 200.0)
+        join(first, second)
+        second.addStop(50.0, "Same Direction Stop", Side.LEFT)
+
+        val ahead = nextAlongWayFeature(
+            WayCursor(first, 20.0, forwards = true), 500.0,
+            AlongWayKind.TRANSIT_STOP, WayContinuation.SAME_ROAD
+        )
+        assertEquals("Same Direction Stop", ahead?.feature?.name)
+        assertTrue(ahead!!.forwards)
+
+        // ...and a walk that sets off backwards reports backwards.
+        val behind = nextAlongWayFeature(
+            WayCursor(second, 80.0, forwards = false), 500.0,
+            AlongWayKind.TRANSIT_STOP, WayContinuation.SAME_ROAD
+        )
+        assertEquals("Same Direction Stop", behind?.feature?.name)
+        assertEquals(30.0, behind!!.distance, 1.0)
+        assertFalse(behind.forwards)
+    }
+
+    /**
+     * A feature sitting exactly on the node a road was split at is still ahead of a walk arriving
+     * from the previous piece.
+     *
+     * The slice is exclusive at the cursor, because a feature at the user's own position has been
+     * passed rather than reached. A Way boundary is not the user's position though, and
+     * railway=stop nodes land on one routinely - a station throat, where the line splits as the
+     * tracks diverge, puts the stop node on the split itself.
+     */
+    @Test
+    fun aFeatureOnTheBoundaryOfTheNextWayIsStillAhead() {
+        val first = straightWay("North Clyde Line", 0.0, 100.0)
+        val second = straightWay("North Clyde Line", 100.0, 200.0)
+        join(first, second)
+        second.addAlong(0.0, "On The Boundary", AlongWayKind.RAILWAY_STOP)
+
+        val found = nextAlongWayFeature(
+            WayCursor(first, 20.0, forwards = true), 500.0,
+            AlongWayKind.RAILWAY_STOP, WayContinuation.SAME_ROAD
+        )
+        assertEquals("On The Boundary", found?.feature?.name)
+        // 80m to the end of the first piece, and the stop is on the boundary itself.
+        assertEquals(80.0, found!!.distance, 1.0)
+        assertEquals(second, found.way)
+    }
+
+    @Test
+    fun aFeatureAtTheCursorItselfHasBeenPassed() {
+        // The other side of the rule above: on the Way the walk starts from, the entry point is
+        // the user, and something level with them is behind rather than ahead.
+        val way = straightWay("Main Street", 0.0, 300.0)
+        way.addAlong(20.0, "Level With Us", AlongWayKind.RAILWAY_STOP)
+
+        assertNull(
+            nextAlongWayFeature(
+                WayCursor(way, 20.0, forwards = true), 500.0, AlongWayKind.RAILWAY_STOP
             )
         )
     }

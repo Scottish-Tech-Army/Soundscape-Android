@@ -28,6 +28,19 @@ class TrackedCallout(
      * again which road you're on straight afterwards is not.
      */
     val extraDedupText: String? = null,
+    /**
+     * How close two callouts carrying the same text have to be to count as the same callout.
+     *
+     * The default is tight, for a callout about one thing in one place. It is widened by a callout
+     * about something recorded at several points which are all one thing to the person being told
+     * about it: a station's platform nodes, or a dual carriageway carried over a railway on two
+     * separate bridge decks. The text has to match either way, so a generous radius here never
+     * merges two differently-named things - it only stops one thing being announced twice.
+     *
+     * Read off whichever callout is already in the history, so a call site gets the radius it
+     * asked for when its own earlier callout is looked up.
+     */
+    val matchRadiusMetres: Double = 10.0,
 ) {
     val time = userGeometry?.timestampMilliseconds ?: 0L
     val ruler = location.createCheapRuler()
@@ -47,7 +60,7 @@ class TrackedCallout(
             // If the TrackedCallout isn't for a point i.e. it's a Polygon, then we can't compare
             // it's location, as the nearest point on a Polygon changes as we move.
             return (other.comparableText == comparableText)
-                    && (!isPoint || ruler.distance(location, other.location) < 10.0)
+                    && (!isPoint || ruler.distance(location, other.location) < matchRadiusMetres)
         }
         return false
     }
@@ -59,7 +72,20 @@ class TrackedCallout(
     }
 }
 
-class CalloutHistory(expiryPeriodMilliseconds: Long = 60000) {
+class CalloutHistory(
+    expiryPeriodMilliseconds: Long = 60000,
+    /**
+     * How far from a recorded callout's own location the user has to get before it is forgotten,
+     * and so could be announced again.
+     *
+     * The default suits a callout made about where the user is standing now. Anything announced at
+     * range needs a radius comfortably bigger than its own lookahead: keyed on the thing's own
+     * position, an entry recorded when it was first seen 150m ahead is otherwise dropped
+     * immediately and re-armed on the next fix, announcing it over and over for the whole
+     * approach.
+     */
+    private val trimRadiusMetres: Double = 50.0
+) {
 
     // List of recent history
     private val history = mutableListOf<TrackedCallout>()
@@ -81,7 +107,8 @@ class CalloutHistory(expiryPeriodMilliseconds: Long = 60000) {
                     userGeometry = callout.userGeometry,
                     trackedText = extra,
                     location = callout.location,
-                    isPoint = callout.isPoint
+                    isPoint = callout.isPoint,
+                    matchRadiusMetres = callout.matchRadiusMetres
                 )
             )
         }
@@ -95,7 +122,7 @@ class CalloutHistory(expiryPeriodMilliseconds: Long = 60000) {
                 ((now - it.time) > expiryPeriod) || (it.isPoint && userGeometry.ruler.distance(
                     userGeometry.location,
                     it.location
-                ) > 50.0)
+                ) > trimRadiusMetres)
 //            if(result)  println("Trim ${it.callout} - ${now - it.time} ${userGeometry.location.distance(it.location)}")
             result
         }
