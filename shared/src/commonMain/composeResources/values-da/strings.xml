@@ -331,7 +331,7 @@
     <string name="osm_bank">Bank</string>
     <string name="osm_atm">Hæveautomat</string>
     <string name="osm_bus_stop">Busstoppested</string>
-    <string name="osm_bus_stop_named">%1$s busstoppested</string>
+    <string name="osm_bus_stop_named">Busstoppested: %1$s</string>
     <string name="osm_recycling_bin">Genbrugsspand</string>
     <string name="osm_fountain">Springvand</string>
     <string name="osm_place_of_worship">Bedested</string>
@@ -413,7 +413,7 @@
     <string name="faq_tip_create_marker_at_bus_stop">Hvis du ofte tager en bestemt busrute, kan du gemme dine på- og afstigningsstoppesteder som mærker. På den måde bliver de gemt, så du nemt kan finde dem igen. Gå til *"Mærker og Ruter"* fra startskærmen, og find dem derefter på siden *"Mærker"*. Du kan sætte et lydfyr på dem for at få periodiske opdateringer om, hvor tæt du er på dit udstigningsstop. Bemærk: du kan slå den rytmiske lyd fra og stadig få afstandsopdateringer undervejs.</string>
     <string name="first_launch_permissions_notification">Meddelelser</string>
     <string name="no_language_selected">Ingen sprog valgt</string>
-    <string name="osm_tram_stop_named">%1$s sporvognsstop</string>
+    <string name="osm_tram_stop_named">Sporvognsstop: %1$s</string>
     <string name="notification_text">Soundscape-lokalitetstjenesten kører, selv når telefonen er låst.</string>
     <string name="osm_train_station">Togstation</string>
     <string name="osm_train_station_named">%1$s togstation</string>
@@ -1501,4 +1501,8 @@
     <string name="legacy_migration_not_now">Ikke nu</string>
     <string name="legacy_migration_failed">Dine data kunne ikke importeres. Din tidligere version af Soundscape har dem stadig — kontakt venligst support via Indstillinger, Hjælp.</string>
     <string name="legacy_migration_continue">Fortsæt</string>
+    <string name="callouts_bus_and_tram_stops">Bus- og sporvognsstop</string>
+    <string name="callouts_bus_and_tram_stops_description">Annoncer busstoppesteder og sporvognsstop, når du passerer dem</string>
+    <string name="directions_approaching_name">Nærmer sig %1$s</string>
+    <string name="directions_generic_tram">sporvogn</string>
 </resources>
