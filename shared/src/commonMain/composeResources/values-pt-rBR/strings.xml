@@ -335,7 +335,7 @@
     <string name="osm_bank">Agência bancária</string>
     <string name="osm_atm">Caixa Eletrônico</string>
     <string name="osm_bus_stop">Ponto de Ônibus</string>
-    <string name="osm_bus_stop_named">%1$s Ponto de Ônibus</string>
+    <string name="osm_bus_stop_named">Ponto de Ônibus: %1$s</string>
     <string name="osm_recycling_bin">Lixeira</string>
     <string name="osm_fountain">Fonte</string>
     <string name="osm_place_of_worship">Local de Culto</string>
@@ -446,7 +446,7 @@
     <string name="osm_train_station">Estação Ferroviária</string>
     <string name="osm_train_station_named">%1$s Estação Ferroviária</string>
     <string name="osm_tram_stop">Ponto de bonde</string>
-    <string name="osm_tram_stop_named">%1$s Ponto de bonde</string>
+    <string name="osm_tram_stop_named">Ponto de bonde: %1$s</string>
     <string name="osm_subway">Estação de metrô</string>
     <string name="osm_subway_named">%1$s Estação de Metrô</string>
     <string name="osm_ferry_terminal">Terminal de balsas</string>
@@ -1506,4 +1506,8 @@
     <string name="legacy_migration_not_now">Agora não</string>
     <string name="legacy_migration_failed">Não foi possível importar seus dados. Sua versão anterior do Soundscape ainda os tem — por favor, contate o suporte em Ajustes, Ajuda.</string>
     <string name="legacy_migration_continue">Continuar</string>
+    <string name="callouts_bus_and_tram_stops">Pontos de Ônibus e de Bonde</string>
+    <string name="callouts_bus_and_tram_stops_description">Anunciar pontos de ônibus e de bonde ao passar por eles</string>
+    <string name="directions_approaching_name">Aproximando-se de %1$s</string>
+    <string name="directions_generic_tram">bonde</string>
 </resources>
