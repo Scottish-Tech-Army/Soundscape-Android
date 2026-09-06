@@ -335,7 +335,7 @@
     <string name="osm_bank">Banco</string>
     <string name="osm_atm">Cajero automático</string>
     <string name="osm_bus_stop">Parada de autobús</string>
-    <string name="osm_bus_stop_named">%1$s Parada de autobús</string>
+    <string name="osm_bus_stop_named">Parada de autobús: %1$s</string>
     <string name="osm_recycling_bin">Contenedor de reciclaje</string>
     <string name="osm_fountain">Fuente</string>
     <string name="osm_place_of_worship">Lugar de culto</string>
@@ -443,7 +443,7 @@
     <string name="osm_train_station">Estación de tren</string>
     <string name="osm_train_station_named">%1$s estación de tren</string>
     <string name="osm_tram_stop">Parada de tranvía</string>
-    <string name="osm_tram_stop_named">%1$s parada de tranvía</string>
+    <string name="osm_tram_stop_named">Parada de tranvía: %1$s</string>
     <string name="osm_subway">Estación de metro</string>
     <string name="osm_subway_named">%1$s estación de metro</string>
     <string name="osm_ferry_terminal">Terminal de ferry</string>
@@ -1506,4 +1506,8 @@
     <string name="legacy_migration_not_now">Ahora no</string>
     <string name="legacy_migration_failed">No se han podido importar sus datos. Su versión anterior de Soundscape todavía los tiene — póngase en contacto con soporte desde Ajustes, Ayuda.</string>
     <string name="legacy_migration_continue">Continuar</string>
+    <string name="callouts_bus_and_tram_stops">Paradas de autobús y tranvía</string>
+    <string name="callouts_bus_and_tram_stops_description">Anunciar las paradas de autobús y de tranvía al pasar junto a ellas</string>
+    <string name="directions_approaching_name">A punto de llegar a %1$s</string>
+    <string name="directions_generic_tram">tranvía</string>
 </resources>
