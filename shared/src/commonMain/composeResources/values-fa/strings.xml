@@ -359,7 +359,7 @@
     <string name="osm_bank">بانک</string>
     <string name="osm_atm">دستگاه خودپرداز</string>
     <string name="osm_bus_stop">ایستگاه اتوبوس</string>
-    <string name="osm_bus_stop_named">ایستگاه اتوبوس %1$s</string>
+    <string name="osm_bus_stop_named">ایستگاه اتوبوس: %1$s</string>
     <string name="osm_recycling_bin">سطل بازیافت</string>
     <string name="osm_fountain">فواره</string>
     <string name="osm_place_of_worship">عبادتگاه</string>
@@ -446,7 +446,7 @@
     <string name="osm_train_station">ایستگاه قطار</string>
     <string name="osm_train_station_named">ایستگاه قطار %1$s</string>
     <string name="osm_tram_stop">ایستگاه تراموا</string>
-    <string name="osm_tram_stop_named">ایستگاه تراموا %1$s</string>
+    <string name="osm_tram_stop_named">ایستگاه تراموا: %1$s</string>
     <string name="osm_subway">ایستگاه مترو</string>
     <string name="osm_subway_named">ایستگاه مترو %1$s</string>
     <string name="osm_ferry_terminal">اسکله</string>
@@ -1502,4 +1502,8 @@
     <string name="legacy_migration_not_now">اکنون نه</string>
     <string name="legacy_migration_failed">وارد کردن داده‌های شما ممکن نشد. نسخه‌ی پیشین Soundscape هنوز آن‌ها را دارد — لطفاً از تنظیمات، راهنما با پشتیبانی تماس بگیرید.</string>
     <string name="legacy_migration_continue">ادامه</string>
+    <string name="callouts_bus_and_tram_stops">ایستگاه‌های اتوبوس و تراموا</string>
+    <string name="callouts_bus_and_tram_stops_description">اعلام ایستگاه‌های اتوبوس و تراموا هنگام عبور از کنار آن‌ها</string>
+    <string name="directions_approaching_name">به %1$s نزدیک می‌شوید</string>
+    <string name="directions_generic_tram">تراموا</string>
 </resources>
