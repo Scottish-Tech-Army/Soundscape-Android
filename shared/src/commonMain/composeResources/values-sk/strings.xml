@@ -241,7 +241,7 @@
     <string name="osm_stairs">Schody</string>
     <string name="osm_bicycle_rental">Požičovňa bicyklov</string>
     <string name="osm_tram_stop">Zastávka električky</string>
-    <string name="osm_tram_stop_named">Zastávka električky %1$s</string>
+    <string name="osm_tram_stop_named">Zastávka električky: %1$s</string>
     <string name="osm_subway">Stanica metra</string>
     <string name="osm_subway_named">Stanica metra %1$s</string>
     <string name="osm_hampshire_gate">Hampshirská bránka</string>
@@ -1353,7 +1353,7 @@
     <string name="osm_taxi_waiting_area">Miesto čakania taxíkov</string>
     <string name="osm_bike_parking">Parkovisko pre bicykle</string>
     <string name="osm_gas_station">Čerpacia stanica</string>
-    <string name="osm_bus_stop_named">Autobusová zastávka %1$s</string>
+    <string name="osm_bus_stop_named">Autobusová zastávka: %1$s</string>
     <string name="osm_recycling_bin">Recyklačný kontajner</string>
     <string name="osm_water_fountain">Pitná fontánka</string>
     <string name="osm_sports_field">Športové ihrisko</string>
@@ -1511,4 +1511,8 @@
     <string name="legacy_migration_not_now">Teraz nie</string>
     <string name="legacy_migration_failed">Vaše údaje sa nepodarilo importovať. Predchádzajúca verzia Soundscape ich stále má — kontaktujte prosím podporu v Nastavenia, Pomocník.</string>
     <string name="legacy_migration_continue">Pokračovať</string>
+    <string name="callouts_bus_and_tram_stops">Zastávky autobusov a električiek</string>
+    <string name="callouts_bus_and_tram_stops_description">Oznamovať zastávky autobusov a električiek, keď okolo nich prechádzate</string>
+    <string name="directions_approaching_name">Blížite sa k %1$s</string>
+    <string name="directions_generic_tram">električka</string>
 </resources>
