@@ -335,7 +335,7 @@
     <string name="osm_bank">Banca</string>
     <string name="osm_atm">Sportello bancomat</string>
     <string name="osm_bus_stop">Fermata dell'autobus</string>
-    <string name="osm_bus_stop_named">Fermata dell'autobus %1$s</string>
+    <string name="osm_bus_stop_named">Fermata dell'autobus: %1$s</string>
     <string name="osm_recycling_bin">Contenitore per la raccolta differenziata</string>
     <string name="osm_fountain">Fontana</string>
     <string name="osm_place_of_worship">Luogo di culto</string>
@@ -443,7 +443,7 @@
     <string name="osm_train_station">Stazione ferroviaria</string>
     <string name="osm_train_station_named">%1$s stazione ferroviaria</string>
     <string name="osm_tram_stop">Fermata tram</string>
-    <string name="osm_tram_stop_named">%1$s fermata del tram</string>
+    <string name="osm_tram_stop_named">Fermata tram: %1$s</string>
     <string name="osm_subway">Stazione della metropolitana</string>
     <string name="osm_subway_named">%1$s stazione della metropolitana</string>
     <string name="osm_ferry_terminal">Terminal traghetti</string>
@@ -1506,4 +1506,8 @@
     <string name="legacy_migration_not_now">Non ora</string>
     <string name="legacy_migration_failed">Non è stato possibile importare i tuoi dati. La tua versione precedente di Soundscape li contiene ancora — contatta l'assistenza da Impostazioni, Guida.</string>
     <string name="legacy_migration_continue">Continua</string>
+    <string name="callouts_bus_and_tram_stops">Fermate di autobus e tram</string>
+    <string name="callouts_bus_and_tram_stops_description">Annuncia le fermate di autobus e tram mentre le superi</string>
+    <string name="directions_approaching_name">Ti stai avvicinando a %1$s</string>
+    <string name="directions_generic_tram">tram</string>
 </resources>
