@@ -1,5 +1,5 @@
 ---
-title: fyrir framan mig
+title: Ahead of Me
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: is
 permalink: /users/help-ahead-of-me.html
 ---
 
-# fyrir framan mig
+# Ahead of Me
 
-## hvað er það?
+## What is it?
 
-Hnappurinn *"Fyrir framan mig"* segir þér frá allt að fimm hlutum fyrir framan þig. *"Fyrir framan mig"* er ætlaður til að hjálpa þér að kanna það sem er framundan þegar þú ert að kynnast nýju svæði.
+The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
 
-## hvenar skal nota?
+## When would I use it?
 
-prófaðu að nota fyrir framan mig hnappinn þegar þú gengur niður götu sem þú þekkir. Það mun gefa upplýsingar um það sem er framundan.
+When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
 
-## hvernig virkar það?
+## How does it work?
 
-Eins og með alla fjóra hnappana neðst á heimaskjánum skaltu halda símanum flötum (skjárinn snýr upp að himni) og toppinn á símanum í þá átt sem þú snýrð áður en þú ýtir á *"fyrir framan mig"* hnappinn. Þetta virkar eins og áttaviti og segir forritinu hvaða átt þú snýrð. Ýttu einfaldlega á *"fyrir framan mig"* hnappinn og þú munt heyra nokkur áhugaverð staði sem eru um það bil fyrir framan þig.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
 

@@ -1,5 +1,5 @@
 ---
-title: मेरे आगे
+title: Ahead of Me
 layout: page
 parent: "Soundscape का उपयोग"
 has_toc: false
@@ -7,17 +7,17 @@ lang: hi
 permalink: /users/help-ahead-of-me.html
 ---
 
-# मेरे आगे
+# Ahead of Me
 
-## यह क्या है?
+## What is it?
 
-*"मेरे आगे"* बटन आपको आपके सामने अधिकतम पाँच चीज़ों के बारे में बताता है। *"मेरे आगे"* का उद्देश्य नए क्षेत्र को सीखते समय आपके सामने के मार्ग की खोज करने में आपकी मदद करना है।
+The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
 
-## मैं इसका उपयोग कब करूँ?
+## When would I use it?
 
-जब आप सड़क पर चल रहे हों, तो *"मेरे आगे"* का उपयोग करके आगे सड़क के दोनों ओर आने वाले स्थानों और चीज़ों की खोज करें।
+When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
 
-## यह कैसे काम करता है?
+## How does it work?
 
-होम स्क्रीन के नीचे चारों बटनों की तरह, *"मेरे आगे"* बटन दबाने से पहले अपने फ़ोन को स्क्रीन ऊपर (आकाश की ओर) रखकर सपाट पकड़ें और फ़ोन का ऊपरी हिस्सा उस दिशा में इंगित करें जिस तरफ़ आपका मुँह है। यह एक कम्पास की तरह काम करता है जो ऐप को बताता है कि आप किस दिशा में देख रहे हैं। बस *"मेरे आगे"* बटन पर टैप करें और आप अपने लगभग सामने के कई रुचि के स्थानों के बारे में सुनेंगे।
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
 

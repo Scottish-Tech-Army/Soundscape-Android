@@ -1,5 +1,5 @@
 ---
-title: Baliză audio
+title: Audio Beacon
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: ro
 permalink: /users/help-audio-beacon.html
 ---
 
-# Baliză audio
+# Audio Beacon
 
-## Ce este?
+## What is it?
 
-Setarea unei balize pe o locație din apropiere permite Soundscape să te țină informat prin redarea unui sunet de baliză audibilă din direcția locației respective. Această baliză poate fi dezactivată sau activată de pe ecranul principal. În plus, Soundscape afișează informații despre locație pe ecranul principal, inclusiv distanța până la aceasta și adresa stradală, dacă este cunoscută.
+Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
 
-## Când aș folosi această funcție?
+## When would I use it?
 
-Setarea unei balize este utilă atunci când vrei să urmărești un reper familiar în timp ce explorezi o zonă nouă sau când te deplasezi undeva și vrei să fii informat despre împrejurimi pe parcurs. Funcția de baliză nu îți oferă indicații pas cu pas, dar îți oferă un sunet audibil continuu care îți indică direcția balizei, relativ la locația ta actuală. Folosind baliza audio, abilitățile tale de orientare existente și chiar aplicația ta preferată de navigare, poți alege singur cum să ajungi la locațiile din apropiere.
+Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
 
-## Cum funcționează?
+## How does it work?
 
-**Pentru a seta o baliză :**
+**To set a beacon :**
 
- Mai întâi, vizualizează detaliile unei locații fie folosind bara de căutare pentru a căuta un loc, fie atingând unul din butoanele *"Locuri din apropiere"*, *"Marcaje și rute"* sau *"Locația curentă"* și selectând o locație. Din ecranul *"Detalii locație"* poți selecta butonul *"Pornește baliza audio"*. Atingând acest buton vei reveni la ecranul principal și vei activa o baliză audibilă emisă din direcția locului selectat. Numele locului selectat, împreună cu distanța până la acesta și adresa sa fizică, dacă sunt disponibile, vor fi afișate acum pe ecranul principal al aplicației.
+ First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-**Pentru a elimina baliza curentă :**
+**To remove the current beacon :**
 
- Pur și simplu apasă butonul *"Oprește ruta"* de pe ecranul principal.
+ Simply press the *\"Stop Route\"* button on the home screen.
 
-**Pentru a dezactiva sunetul balizei audibile :**
+**To mute the audible beacon :**
 
- Atinge butonul *"Dezactivează sunetul balizei"* de lângă butonul *"Oprește ruta"* de pe ecranul principal.
+ Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
 

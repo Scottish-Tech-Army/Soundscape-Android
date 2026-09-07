@@ -1,5 +1,5 @@
 ---
-title: Налаштування міток
+title: Customizing Markers
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: uk
 permalink: /users/help-customizing-markers.html
 ---
 
-# Налаштування міток
+# Customizing Markers
 
-Якщо ви хочете перейменувати раніше створену мітку або додати до неї анотацію, виберіть мітку на вкладці *"Мітки"* сторінки *"Мітки та Маршрути"*, а потім натисніть кнопку *"Редагувати мітку"*. Це дозволить давати міткам описові чи корисні прізвиська, а також додавати довший опис у полі анотації.
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-На екрані *"Редагування"* ви також можете видалити мітку, якщо вона вам більше не потрібна.
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

@@ -1,5 +1,5 @@
 ---
-title: Попереду Мене
+title: Ahead of Me
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: uk
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Попереду Мене
+# Ahead of Me
 
-## Що це?
+## What is it?
 
-Кнопка *"Попереду Мене"* повідомляє про до п'яти об'єктів попереду вас. *"Попереду Мене"* призначена, щоб допомогти вам дослідити шлях попереду, коли ви знайомитеся з новою місцевістю.
+The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
 
-## Коли б я міг це використати?
+## When would I use it?
 
-Коли ви йдете вулицею, спробуйте використовувати *"Попереду Мене"*, щоб дізнатися про місця та об'єкти, які знаходяться з обох боків вулиці попереду.
+When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
 
-## Як це працює?
+## How does it work?
 
-Як і у випадку з усіма чотирма кнопками в нижній частині головного екрана, перш ніж натиснути кнопку *"Попереду мене"*, тримайте телефон горизонтально (екраном вгору) і верхньою частиною телефона в напрямку, куди ви дивитесь. Це діє як компас, дозволяючи програмі,визначити в якому напрямку ви знаходитесь. Просто натисніть кнопку *"Попереду мене"*, і ви почуєте інформацію про кілька точок інтересу, що знаходяться перед вами.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
 

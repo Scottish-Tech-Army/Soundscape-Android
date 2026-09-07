@@ -1,5 +1,5 @@
 ---
-title: Marcadores cercanos
+title: Nearby Markers
 layout: page
 parent: "Usar Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: es
 permalink: /users/help-nearby-markers.html
 ---
 
-# Marcadores cercanos
+# Nearby Markers
 
-## ¿Qué es?
+## What is it?
 
-El botón *"Marcadores cercanos"* le informa de hasta cuatro marcadores que están cerca de usted. *"Marcadores cercanos"* está pensado para ayudarle a orientarse con lugares que ya conoce.
+The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
 
-## ¿Cuándo lo usaría?
+## When would I use it?
 
-Cuando intente orientarse en su entorno, use *"Marcadores cercanos"* para escuchar sobre las ubicaciones de los lugares que conoce.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
 
-## ¿Cómo funciona?
+## How does it work?
 
-Como con los cuatro botones de la parte inferior de la pantalla principal, mantenga el teléfono con la pantalla en posición horizontal (hacia arriba) y la parte superior del teléfono apuntando en la dirección en la que está mirando antes de presionar el botón *"Marcadores cercanos"*. Esto actúa como una brújula que le indica a la aplicación hacia qué dirección está orientado. Solo tiene que pulsar en el botón *"Marcadores cercanos"* y escuchar hasta cuatro marcadores cerca de usted.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
 

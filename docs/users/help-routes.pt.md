@@ -1,5 +1,5 @@
 ---
-title: Rotas
+title: Routes
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: pt
 permalink: /users/help-routes.html
 ---
 
-# Rotas
+# Routes
 
-## O que é?
+## What is it?
 
-As rotas são uma série de pontos de passagem. Será informado quando chegar a cada ponto de passagem e o Sinal de Áudio avançará automaticamente para o ponto de passagem seguinte.
+Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
 
-## Quando devo utilizá-lo?
+## When would I use it?
 
-Poderá pretender criar e utilizar uma rota num local conhecido para se certificar de que está no caminho certo, ou como ferramenta para o ajudar a familiarizar-se com um percurso novo.
+You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
 
-## Como funciona?
+## How does it work?
 
-**Criar uma rota**:
+**Creating a route :**
 
- Aceda a "Marcos e Rotas", selecione o separador "Rotas" e, em seguida, selecione o botão "Nova Rota". Atribua um nome e uma descrição opcional à rota e, em seguida, adicione pontos de passagem durante o percurso ou selecione-os na lista de Marcos. É possível reordenar a lista de pontos de passagem numa rota a qualquer momento editando a rota.
+ First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
 
-**Editar uma rota :**
+**Editing a route :**
 
- Selecione a sua rota no ecrã *"Marcos e Rotas"* e, em seguida, selecione *"Editar Rota"*. A partir daqui pode adicionar e remover pontos de passagem, bem como editar o nome e a descrição da rota.
+ Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
 
-**Partilhar uma rota :**
+**Sharing a route :**
 
-Selecione a sua rota no ecrã *"Marcos e Rotas"* e, em seguida, selecione a opção *"Partilhar"* utilizando as opções de partilha habituais disponíveis.
+ Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
 

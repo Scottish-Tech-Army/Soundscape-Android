@@ -1,5 +1,5 @@
 ---
-title: Davanti a me
+title: Ahead of Me
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: it
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Davanti a me
+# Ahead of Me
 
-## Cos'è?
+## What is it?
 
-Il pulsante *"Davanti a me"* ti indica fino a cinque elementi che si trovano davanti a te. *"Davanti a me"* serve ad aiutarti a esplorare ciò che c'è più avanti mentre impari a conoscere una nuova area.
+The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
 
-## Quando si usa?
+## When would I use it?
 
-Quando cammini per strada, prova a utilizzare *"Davanti a me"* per scoprire i luoghi e le cose che si trovano su entrambi i lati della strada.
+When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
 
-## Come funziona?
+## How does it work?
 
-Come per tutti e quattro i pulsanti nella parte inferiore della schermata iniziale, tieni il telefono con lo schermo piatto (rivolto verso il cielo) e la parte superiore del telefono che punta davanti a te prima di premere il pulsante *"Davanti a me "*. Questo pulsante funziona come una bussola che indica all'app verso quale direzione sei rivolto. Tocca semplicemente il pulsante *"Davanti a me"* e sentirai diversi punti di interesse tutti più o meno davanti a te.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
 

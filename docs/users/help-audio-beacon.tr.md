@@ -1,5 +1,5 @@
 ---
-title: Sesli İşaret
+title: Audio Beacon
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
@@ -7,27 +7,27 @@ lang: tr
 permalink: /users/help-audio-beacon.html
 ---
 
-# Sesli İşaret
+# Audio Beacon
 
-## Bu nedir?
+## What is it?
 
-Yakın bir konuma işaret ayarlamak, Soundscape'in o konumun yönünden gelen sesli işaret sesi çalarak sizi bilgilendirmesini sağlar. Bu işaret, ana ekranda sessize alınabilir veya sesi açılabilir. Ayrıca Soundscape, ana ekranda konum hakkında bilgi gösterir; buna konuma olan mesafe ve biliniyorsa sokak adresi dahildir.
+Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
 
-## Ne zaman kullanırım?
+## When would I use it?
 
-İşaret ayarlamak, yeni bir alanda gezerken tanıdık bir yer işaretini takip etmek istediğinizde ya da bir yere giderken çevreniz hakkında bilgi almak istediğinizde kullanışlıdır. İşaret özelliği adım adım yol tarifi vermez; ancak şu anda bulunduğunuz konuma göre işarete olan yönü sürekli bir sesli sinyal olarak bildirir. Sesli işareti, mevcut yol bulma becerilerinizi ve hatta en sevdiğiniz navigasyon uygulamasını kullanarak yakın konumlara kendi tercihlerinize göre nasıl gideceğinizi seçebilirsiniz.
+Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
 
-## Nasıl çalışır?
+## How does it work?
 
-**İşaret ayarlamak için :**
+**To set a beacon :**
 
- Önce, arama çubuğunu kullanarak bir yer arayarak ya da *"Yakındaki Yerler"*, *"Kayıtlı Noktalar ve Rotalar"* veya *"Mevcut Konum"* düğmelerinden birine dokunup bir konum seçerek o konumun ayrıntılarını görüntüleyin. *"Konum Ayrıntıları"* ekranından *"Sesli İşareti Başlat"* düğmesini seçebilirsiniz. Buna dokunduğunuzda ana ekrana dönecek ve seçtiğiniz yerin bulunduğu yönden gelen duyulabilir bir işaret açılacaktır. Seçtiğiniz yerin adı ile birlikte mesafesi ve biliniyorsa fiziksel adresi artık ana ekranda gösterilecektir.
+ First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-**Mevcut işareti kaldırmak için :**
+**To remove the current beacon :**
 
- Ana ekrandaki *"Rotayı Durdur"* düğmesine dokunun.
+ Simply press the *\"Stop Route\"* button on the home screen.
 
-**Sesli işareti sessize almak için:**
+**To mute the audible beacon :**
 
- Ana ekranda *"Rotayı Durdur"* düğmesinin yanındaki *"İşareti Sessize Al"* düğmesine dokunun.
+ Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
 

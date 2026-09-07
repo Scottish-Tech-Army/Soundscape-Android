@@ -11,7 +11,7 @@ permalink: /users/help-ahead-of-me.html
 
 ## What is it?
 
-The *"Ahead of Me"* button tells you about up to five things ahead of you. *"Ahead of Me"* is intended to help you explore the way ahead when you are learning about a new area.
+The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
 
 ## When would I use it?
 

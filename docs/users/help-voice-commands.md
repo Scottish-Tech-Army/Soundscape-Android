@@ -25,7 +25,7 @@ There are no exact phrases to memorise. Ask for what you want in your own words 
 
 You can ask Soundscape to:
 
-Describe *"My Location"*, what is *"Around Me"*, or what is *"Ahead of Me"*.
+Describe *\"My Location\"*, what is *\"Around Me\"*, or what is *\"Ahead of Me\"*.
 
 Call out the saved markers near you.
 

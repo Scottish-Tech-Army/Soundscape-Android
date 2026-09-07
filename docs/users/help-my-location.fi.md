@@ -1,5 +1,5 @@
 ---
-title: Oma sijaintini
+title: My Location
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
@@ -7,17 +7,17 @@ lang: fi
 permalink: /users/help-my-location.html
 ---
 
-# Oma sijaintini
+# My Location
 
-## Mikä se on?
+## What is it?
 
-*"Oma sijaintini"*painike antaa sinulle nopeasti tietoja, jotka auttavat sinua tunnistamaan, missä olet sillä hetkellä. *"Oma sijaintini"* kertoo sinulle nykyisestä sijainnistasi, mukaan lukien, mihin suuntaan olet kääntyneenä, missä lähiympäristön tiet ja risteykset sijaitsevat, ja missä lähiympäristön kohteet ovat.
+The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
 
-## Milloin käyttäisin sitä?
+## When would I use it?
 
-*"Oma sijaintini"* on hyödyllinen, kun sinun on selvitettävä, missä olet, tai mitä ilmansuuntaa kohti olet kääntyneenä.
+*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
 
-## Kuinka se toimii?
+## How does it work?
 
-Kuten kaikkien aloitusnäytön alaosassa olevien painikkeiden tapauksessa, pidä puhelintasi näyttö vaakatasossa (osoittaen taivasta kohti) ja puhelimen yläosa kohti sitä suuntaa, johon olet kääntyneenä, ennen kuin painat *"Oma sijaintini"* -painiketta. Tämä toimii kompassin tapaan kertoen sovellukselle, mihin suuntaan olet kääntynyt. Napauta yksinkertaisesti *"Oma sijaintini"* -painiketta ja kuuntele.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
 

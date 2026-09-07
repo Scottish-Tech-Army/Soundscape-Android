@@ -1,5 +1,5 @@
 ---
-title: Lähiympäristö
+title: Around Me
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
@@ -7,17 +7,17 @@ lang: fi
 permalink: /users/help-around-me.html
 ---
 
-# Lähiympäristö
+# Around Me
 
-## Mikä se on?
+## What is it?
 
-*"Lähiympäristö"*-painike kertoo sinulle yhdestä asiasta kussakin lähiympäristösi neljässä neljänneksessä (edessä, oikealla, takana ja vasemmalla). *"Lähiympäristö"* on tarkoitettu auttamaan sinua perehtymään ympäristöösi.
+The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
 
-## Milloin käyttäisin sitä?
+## When would I use it?
 
-Kun haluat päästä jyvälle siitä, missä olet, ja perehtyä ympäristöösi, käytä *"Lähiympäristö"*-toimintoa kuullaksesi lähiympäristösi asioista.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
 
-## Kuinka se toimii?
+## How does it work?
 
-Kuten kaikkien aloitusnäytön alaosassa olevien painikkeiden tapauksessa, pidä puhelintasi näyttö vaakatasossa (osoittaen taivasta kohti) ja puhelimen yläosa kohti sitä suuntaa, johon olet kääntyneenä, ennen kuin painat *"Lähiympäristössä"*-painiketta. Tämä toimii kompassin tapaan kertoen sovellukselle, mihin suuntaan olet kääntynyt. Napauta yksinkertaisesti *"Lähiympäristössä"*-painiketta ja kuulet neljä kiinnostavaa kohdetta sijoiteltuina ympärillesi.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
 

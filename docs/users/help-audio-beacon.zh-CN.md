@@ -1,5 +1,5 @@
 ---
-title: 音频信标
+title: Audio Beacon
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: zh-CN
 permalink: /users/help-audio-beacon.html
 ---
 
-# 音频信标
+# Audio Beacon
 
-## 这是什么？
+## What is it?
 
-在附近地点上设置信标后，Soundscape会从该地点的方向播放音频信标声音，让您随时了解方位。您可以在主屏幕上将信标设为静音或取消静音。此外，Soundscape还会在主屏幕上显示该地点的相关信息，包括到该地点的距离以及其街道地址（如果已知）。
+Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
 
-## 什么时候使用？
+## When would I use it?
 
-当您想在探索新区域时保持对某个熟悉地标的追踪，或者当您在前往某地途中想了解周围环境时，设置信标非常有用。信标功能不会提供逐向导航，但它会持续播放音频声音，告诉您信标相对于您当前位置的方向。借助音频信标、您自身的导航技能，甚至您常用的导航应用，您可以自行选择如何到达附近地点。
+Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
 
-## 如何使用？
+## How does it work?
 
-**要设置信标：**
+**To set a beacon :**
 
-首先，使用搜索栏搜索地点，或点击*"附近地点"*、*"标记点和路线"*或*"当前位置"*按钮并选择一个地点以查看该地点的详情。在*"位置详情"*屏幕上，选择*"启动音频信标"*按钮。点击后将返回主屏幕，并开启从您所选地点方向传来的可听信标。您选择的地点名称及其距离和实际地址（如有）将显示在主屏幕上。
+ First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-**要移除当前信标：**
+**To remove the current beacon :**
 
-只需在主屏幕上点击*"停止路线"*按钮。
+ Simply press the *\"Stop Route\"* button on the home screen.
 
-**要将可听信标静音：**
+**To mute the audible beacon :**
 
-点击主屏幕上位于*"停止路线"*按钮旁的*"静音信标"*按钮。
+ Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
 

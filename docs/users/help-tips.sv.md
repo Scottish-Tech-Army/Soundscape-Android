@@ -9,17 +9,17 @@ permalink: /users/help-tips.html
 
 # Tips
 
-Du kan hitta busshållplatser i närheten genom att välja filtret *"Kollektivtrafik"* i listan *"Platser i närheten"*.
+You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
 
-Du kan ställa in en ljudfyr på vilken adress som helst. Från Soundscapes huvudskärm söker du efter adressen. Efter att du valt adressen i sökresultaten visas en skärm *"Platsuppgifter"* som har alternativet *"Ställ in ljudfyr"* för adressen. På så vis kan du ställa in en ljudfyr på företag, platser, intressepunkter och bostäder som inte finns i OpenStreetMap.
+You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
 
-Om det finns en busslinje du brukar ta, ställ in uppstignings‑ och avstigningshållplatser som platsmarkörer. Då sparas de så att du enkelt hittar dem igen – gå till *"Platsmarkörer och rutter"* från startskärmen och hitta dem på sidan *"Platsmarkörer"*. Du kan ställa in en ljudfyr på dem och få periodiska uppdateringar om hur nära du är din avstigningshållplats. Obs: du kan stänga av det rytmiska ljudet och ändå få avståndsuppdateringar under resans gång.
+If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
 
-Om du lägger telefonen i fickan och slutar gå blir ljudfyren tystare eftersom Soundscape inte vet vilket håll du står åt. Du löser detta genom att börja gå igen, eller ta upp telefonen och hålla den plant.
+If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
 
-Soundscape fungerar bäst när du håller telefonen plant med skärmen riktad upp mot himlen och telefonens överkant riktad från dig.
+Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
 
-Du kan aktivera och inaktivera ljudfyrens rytmiska ljud med ljudavstängningsknappen på startskärmen. Om ljudfyrens ljud är avstängt får du ändå uppdateringar om avståndet ungefär var 50:e meter.
+You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
 
-Om du fortfarande vill använda Soundscape men inte vill höra automatiska informationsljud kan du stänga av dem i avsnittet *"Hantera informationsljud"* på skärmen *"Inställningar"* i menyn. Om du inte tänker använda Soundscape kan du istället sätta appen i viloläge eller snoozeläge med knappen *"Inaktivera"* på startskärmen.
+To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
 

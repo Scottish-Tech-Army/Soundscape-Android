@@ -1,5 +1,5 @@
 ---
-title: Reitit
+title: Routes
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
@@ -7,27 +7,27 @@ lang: fi
 permalink: /users/help-routes.html
 ---
 
-# Reitit
+# Routes
 
-## Mikä se on?
+## What is it?
 
-Reitit ovat reittipisteiden sarjoja. Sinulle ilmoitetaan kuhunkin reittipisteeseen saapumisesta, ja äänimajakka siirtyy automaattisesti seuraavaan reittipisteeseen.
+Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
 
-## Milloin käyttäisin sitä?
+## When would I use it?
 
-Saatat haluta luoda reitin ja käyttää sitä tuntemassasi paikassa varmistaaksesi, että pysyt reitillä, tai saatat haluta käyttää sitä työkaluna uudella matkalla siihen tutustuessasi.
+You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
 
-## Kuinka se toimii?
+## How does it work?
 
-**Reitin luominen**:
+**Creating a route :**
 
- Siirry ensin kohtaan "Merkinnät ja Reitit", valitse "reitit" välilehti, ja valitse sitten "Uusi reitti" -painike. Anna reitille nimi ja valinnainen kuvaus ja lisää sitten reittipisteitä matkan varrella, tai valitse ne merkintäluettelosta. Voit järjestää reittipisteet uudelleen reitissä koska tahansa muokkaamalla reittiä.
+ First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
 
-**Reitin muokkaaminen :**
+**Editing a route :**
 
- Valitse reittisi *"Merkinnät ja reitit"* -näytössä ja valitse sitten *"Muokkaa reittiä"*. Täältä voit lisätä ja poistaa reittipisteitä sekä muokata reitin nimeä ja kuvausta.
+ Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
 
-**Reitin jakaminen:**
+**Sharing a route :**
 
- Valitse reittisi *"Merkinnät ja reitit"* -näytöltä ja valitse sitten *"Jaa"* -vaihtoehto käyttäen tavallisia jakamismahdollisuuksia.
+ Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
 

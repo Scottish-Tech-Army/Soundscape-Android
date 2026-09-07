@@ -1,5 +1,5 @@
 ---
-title: Tworzenie znaczników (pinezek)
+title: Creating Markers
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: pl
 permalink: /users/help-creating-markers.html
 ---
 
-# Tworzenie znaczników (pinezek)
+# Creating Markers
 
-Możesz tworzyć znaczniki na trzy sposoby: wyszukując miejsce, które chcesz zapisać, za pomocą paska wyszukiwania; znajdując miejsce przy użyciu przycisku *„Miejsca w pobliżu”*; lub korzystając z przycisku *„Bieżąca lokalizacja”* — wszystkie te opcje są dostępne na ekranie głównym Soundscape. Gdy znajdziesz miejsce, które chcesz zapisać, wybierz je, aby przejść do ekranu *„Szczegóły lokalizacji”*. Na tym ekranie wybierz przycisk *„Zapisz jako znacznik (pinezkę)”*.
+You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
 
-Otrzymasz teraz możliwość dostosowania znacznika. Możesz zmienić jego nazwę oraz dodać adnotację, która będzie odtwarzana wraz ze znacznikiem, aby dostarczyć dodatkowych informacji. Po zakończeniu wybierz przycisk *„Gotowe”*, aby zapisać znacznik.
+You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
 

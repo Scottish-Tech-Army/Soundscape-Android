@@ -1,5 +1,5 @@
 ---
-title: 前方
+title: Ahead of Me
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ja
 permalink: /users/help-ahead-of-me.html
 ---
 
-# 前方
+# Ahead of Me
 
-## どのようなものですか?
+## What is it?
 
-[*前方*] ボタンでは、前方にある最大 5 件の情報が伝えられます。[*前方*] は、新しいエリアを学習しているときに、進行方向の状況を確認するのに役立ちます。
+The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
 
-## どのような場合に使用できますか?
+## When would I use it?
 
-通りを歩いているときに [*前方*] ボタンを使用すると、前方にある通りの両側に何があるかがわかります。
+When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
 
-## どのような仕組みですか?
+## How does it work?
 
-ホーム画面の下部の 4 つのボタンはどれも同じですが、スマートフォンの画面を上 (空) に向けて水平に持ち、スマートフォンの画面上部を自分が向いている方向に合わせてから、[*前方*] ボタンを押します。これにより、コンパスを合わせるように、自分が向いている方向をアプリに伝えることができます。[*前方*] ボタンをタップすると、自分の前方にあるいくつかの特定地点の情報が聞こえます。
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
 

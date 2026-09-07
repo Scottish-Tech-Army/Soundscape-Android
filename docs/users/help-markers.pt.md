@@ -1,5 +1,5 @@
 ---
-title: Marcos
+title: Markers
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: pt
 permalink: /users/help-markers.html
 ---
 
-# Marcos
+# Markers
 
-Com o Soundscape, pode marcar o seu mundo e tudo o que lhe interessa, como pinos num mapa.
+With Soundscape, you can mark your world and anything you care about, like pins in a map.
 
-Pode marcar locais pessoais e relevantes para si, como a sua casa, o seu escritório e a sua mercearia favorita. É possível marcar qualquer local ou endereço, mas também é possível marca coisas que poderão não estar habitualmente disponíveis em mapas, como a entrada de edifícios ou parques, passadeiras ou pontes, paragens de autocarro e até mesmo a árvore favorita do seu cão, e utilizá-las como referências enquanto caminha.
+You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
 
-Para experienciar locais marcados, o Soundscape anunciará automaticamente os marcos à medida que passa por eles ou se aproxima, ou pode também usar o botão *"Marcos nas Proximidades"* na parte inferior do ecrã principal do Soundscape para ouvir um aviso espacial dos marcos à sua volta. Além disso, pode definir um sinal de áudio em qualquer marco. Ao fazê‑lo, ouvirá o Sinal de Áudio do Soundscape com o qual já está familiarizado e poderá operá‑lo normalmente.
+To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
 

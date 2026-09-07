@@ -1,5 +1,5 @@
 ---
-title: Platsmarkörer i närheten
+title: Nearby Markers
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: sv
 permalink: /users/help-nearby-markers.html
 ---
 
-# Platsmarkörer i närheten
+# Nearby Markers
 
-## Vad är det?
+## What is it?
 
-Knappen *"Platsmarkörer i närheten"* berättar om upp till fyra platsmarkörer som finns närmast dig. *"Platsmarkörer i närheten"* hjälper dig att orientera dig med hjälp av platser du redan känner till.
+The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
 
-## När ska jag använda det?
+## When would I use it?
 
-När du försöker orientera dig i omgivningarna kan du använda *"Platsmarkörer i närheten"* för att höra om platser som du känner till.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
 
-## Hur fungerar det?
+## How does it work?
 
-Som med alla fyra knappar längst ned på startskärmen ska du hålla telefonen plant med skärmen riktad uppåt och peka med telefonen i färdriktningen innan du trycker på knappen *"Platsmarkörer i närheten"*. Detta fungerar som en kompass som talar om för appen vilken riktning du står i. Tryck på knappen *"Platsmarkörer i närheten"* så hör du upp till fyra platsmarkörer i närheten.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
 

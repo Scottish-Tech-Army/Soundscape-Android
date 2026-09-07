@@ -1,5 +1,5 @@
 ---
-title: Μπροστά μου
+title: Ahead of Me
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: el
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Μπροστά μου
+# Ahead of Me
 
-## Τι είναι?
+## What is it?
 
-Το κουμπί *"Μπροστά μου"* σας ενημερώνει για έως και πέντε πράγματα που βρίσκονται μπροστά σας. Το *"Μπροστά μου"* προορίζεται να σας βοηθήσει να εξερευνήσετε την πορεία που έχετε μπροστά σας όταν εξοικειώνεστε με μια νέα περιοχή.
+The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
 
-## Πότε θα το χρησιμοποιούσα;
+## When would I use it?
 
-Όταν περπατάτε στο δρόμο, Προσπαθήστε να χρησιμοποιήσετε το *"Μπροστά μου"* για να ανακαλύψετε τα μέρη και τα πράγματα που έρχονται σε κάθε πλευρά του δρόμου μπροστά σας.
+When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
 
-## Πώς λειτουργεί;
+## How does it work?
 
-Όπως και με τα τέσσερα κουμπιά στο κάτω μέρος της αρχικής οθόνης, κρατήστε το τηλέφωνό σας με την οθόνη επίπεδη (στραμμένη προς τον ουρανό) και το επάνω μέρος του τηλεφώνου στραμμένο προς την κατεύθυνση που κοιτάτε πριν πατήσετε το κουμπί *"Μπροστά μου"*. Αυτό λειτουργεί σαν πυξίδα που λέει στην εφαρμογή προς ποια κατεύθυνση αντιμετωπίζετε. Απλά, πατήστε το κουμπί*"Μπροστά μου"* και θα ακούσετε για πολλά σημεία ενδιαφέροντος που βρίσκονται μπροστά σας.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
 

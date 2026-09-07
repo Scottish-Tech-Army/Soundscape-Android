@@ -1,5 +1,5 @@
 ---
-title: Utilizar Controlos Multimédia
+title: Using Media Controls
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
@@ -7,41 +7,33 @@ lang: pt
 permalink: /users/help-using-media-controls.html
 ---
 
-# Utilizar Controlos Multimédia
+# Using Media Controls
 
-## O que é?
+## What is it?
 
-Pode aceder a determinadas funcionalidades do Soundscape com a ajuda dos botões de controlo multimédia dos auscultadores. Isto funciona em quaisquer auscultadores Bluetooth com ou sem fios equipados com botões de controlo multimédia como Reproduzir, Pausa, Seguinte, Anterior e outros. Os botões podem variar consoante os auscultadores. Por este motivo, consulte a lista de ações abaixo para identificar as que estão disponíveis para si.Note também que esta funcionalidade só funciona com auscultadores que suportem controlos multimédia da Apple (como reproduzir e pausa).
+You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
 
-## Quando devo utilizá-lo?
+## When would I use it?
 
-É possível utilizar os controlos multimédia dos auscultadores enquanto o Soundscape está em execução. Isto aplica-se quer esteja a utilizar atualmente o Soundscape enquanto o Soundscape está em segundo plano e até mesmo quando o dispositivo está bloqueado. No entanto, note que os botões de controlo multimédia dos auscultadores não funcionarão com o Soundscape se estiver a reproduzir áudio (como música, podcasts ou vídeos) noutra aplicação.
+Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
 
-## Como funciona?
+## How does it work?
 
-Existem 3 modos de funcionamento para os controlos multimédia. O modo pode ser selecionado na secção *"Definições"* *"Controlos Multimédia"*. Os modos são:
+There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
 
-Modo Original.
+ Original mode. 
 
-⏯ Reproduzir/Pausa: Alterna o som do sinal de áudio entre ligado e desligado.
+⏯ Play/Pause: Toggles the beacon audio on and off. 
 
-⏭ Seguinte: Se uma rota estiver a ser reproduzida, move o sinal de áudio para o próximo Ponto de Passagem da rota. Se não estiver a reproduzir nenhuma rota, anuncia *"A Minha Localização"*.
+⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
 
-⏮ Anterior: Se uma rota estiver a ser reproduzida, move o sinal de áudio para o ponto de passagem anterior da rota. Se não estiver a reproduzir nenhuma rota, anuncia *"Em Meu Redor"*.
-
-
-
-Comando de voz.
+⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
 
 
 
-⏯ Reproduzir/Pausa: Faz com que a aplicação comece a ouvir comandos de voz.
+Audio menu. 
 
 
 
-Menu de Áudio.
-
-
-
-⏭ Seguinte e ⏮ Anterior deslocam‑se por uma série de opções de menu que a aplicação descreve por síntese de voz. ⏯ Reproduzir/Pausa faz com que a aplicação execute a opção atualmente descrita. Existe um único menu de topo que contém apenas sub‑menus como opções. Cada sub‑menu contém um grupo de ações semelhantes.
+⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
 

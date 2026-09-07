@@ -1,5 +1,5 @@
 ---
-title: اعلان‌های خودکار
+title: Automatic Callouts
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
@@ -7,33 +7,33 @@ lang: fa
 permalink: /users/help-automatic-callouts.html
 ---
 
-# اعلان‌های خودکار
+# Automatic Callouts
 
-## این چیست؟
+## What is it?
 
-ساند‌اسکیپ می‌تواند هنگام نزدیک شدن به اشیاء پیرامون شما، نام آنها را از جهتی که قرار دارند اعلام کند. اپ این کار را به‌طور خودکار برای انواع مواردی مانند کسب‌وکارها، ایستگاه‌های اتوبوس و حتی تقاطع‌ها انجام می‌دهد. می‌توانید تعیین کنید اپ به‌طور خودکار چه مواردی را اعلام کند در بخش *«مدیریت اعلان‌ها»* در صفحه‌ی *«تنظیمات»*، و هر زمان که بخواهید اپ ساکت باشد می‌توانید همهٔ اعلان‌ها را خاموش کنید.
+Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
 
-## چه زمانی از آن استفاده کنم؟
+## When would I use it?
 
-**آشنایی با یک محل جدید:**
+**Exploring a new area :**
 
-اعلان‌های خودکار را فعال کرده و شروع به حرکت نمایید تا از فروشگاه‌ها، رستوران‌ها و موارد مشابه که از کنارشان عبور می‌کنید مطلع شوید.
+ Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
 
-**رفتن به یک مکان خاص:**
+**Walking to a specific location :**
 
-وقتی در حال حرکت به‌سمت یک مکان معین هستید، اطلاع از تقاطع‌ها به‌شکل اعلان‌های خودکار می‌تواند بسیار مفید باشد. پیام‌هایی که در قالب اعلان تقاطع در اختیار شما قرار می‌گیرد، شما را از نقشه‌ی کلی تقاطع آگاه می‌سازد و پس از عبور از تقاطع به شما می‌گوید که اکنون در کدام خیابان قرار دارید.
+ When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
 
-**وقتی به سکوت نیاز دارید:**
+**When you need silence :**
 
-هنگامی که قصد دارید از خیابان عبور کنید یا به هر دلیلی می‌خواهید اپلیکیشن ساکت شود، می‌توانید اعلان‌ها را خاموش نمایید. وقتی اعلان‌ها خاموش باشد، اپلیکیشن تنها زمانی به شما اطلاعات می‌دهد که خودتان روی یکی از دکمه‌های *«موقعیت مکانی من»*، *«نشانه‌های نزدیک»*، *«اطراف من»* یا *«مقابل من»* ضربه بزنید.
+ When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
 
-## چگونه کار می‌کند؟
+## How does it work?
 
-**روشن یا خاموش کردن اعلان‌ها:**
+**Turning callouts on or off :**
 
-خاموش کردن اعلان‌ها باعث بی‌صدا شدن اپلیکیشن می‌شود. برای روشن یا خاموش کردن اعلان‌ها به بخش *«مدیریت اعلان‌ها»* در صفحه‌ی *«تنظیمات»* مراجعه کنید و با زدن کلید تغییر وضعیت *«اجازه به اعلان‌ها»* آنها را روشن یا خاموش نمایید. اگر هدفون شما دکمه‌های کنترل رسانه‌ای دارد، می‌توانید با استفاده از فرمان *«پرش به جلو»* (دو بار ضربه و نگه‌داشتن) نیز اعلان‌ها را روشن یا خاموش کنید. همچنین، می‌توانید با استفاده از دکمه‌ی *«حالت خواب»* در گوشهٔ بالای سمت چپ صفحه‌ی اصلی، از پخش اعلان‌ها جلوگیری کنید تا زمانی که خودتان اپ را دوباره بیدار نمایید.
+ Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
 
-**مدیریت اعلان‌هایی که می‌شنوید:**
+**Managing which callouts you hear :**
 
-برای انتخاب نوع مواردی که ساند‌اسکیپ به‌صورت خودکار اعلام می‌کند، از منوی صفحهٔ اصلی وارد صفحهٔ *«تنظیمات»* شوید. بخش *«مدیریت اعلان‌ها»* در صفحهٔ *«تنظیمات»* فهرستی از انواع مواردی را که اپ می‌تواند اعلام کند در خود دارد. هر مورد دارای یک دکمهٔ تغییر وضعیت است که می‌توانید آن را روشن یا خاموش کنید. اگر می‌خواهید همهٔ اعلان‌ها را خاموش نمایید، روی کلید تغییر وضعیت *«اجازه به اعلان‌ها»* در بالای فهرست ضربه بزنید.
+ To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
 

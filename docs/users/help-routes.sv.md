@@ -1,5 +1,5 @@
 ---
-title: Rutter
+title: Routes
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: sv
 permalink: /users/help-routes.html
 ---
 
-# Rutter
+# Routes
 
-## Vad är det?
+## What is it?
 
-Rutter är en serie brytpunkter. Du kommer att bli informerad när du kommer till en brytpunkt och ljudfyren kommer automatiskt att fortsätta till nästa brytpunkt.
+Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
 
-## När ska jag använda det?
+## When would I use it?
 
-Du kanske vill skapa och använda en rutt på en plats som du känner till för att vara säker på att du håller dig på rätt spår, eller så kanske du vill använda den som ett verktyg för att bekanta dig med platsen under en ny resa.
+You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
 
-## Hur fungerar det?
+## How does it work?
 
-**Skapa en rutt**:
+**Creating a route :**
 
- Gå först till "Platsmarkörer och rutter", välj fliken "Rutter" och välj sedan knappen "Ny rutt". Ge rutten ett namn och en valfri beskrivning och lägg sedan till brytpunkter när du går eller välj dem från listan med platsmarkörer. Du kan när som helst ändra ordningen på brytpunkterna längs en rutt genom att redigera rutten.
+ First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
 
-**Redigera en rutt:**
+**Editing a route :**
 
-Välj din rutt på skärmen *"Platsmarkörer och rutter"* och välj sedan *"Redigera rutt"*. Här kan du lägga till och ta bort brytpunkter samt ändra ruttnamn och beskrivning.
+ Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
 
-**Dela en rutt :**
+**Sharing a route :**
 
- Välj din rutt på skärmen *"Platsmarkörer och rutter"* och välj sedan alternativet *"Dela"* med de vanliga delningsalternativ som finns tillgängliga.
+ Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
 

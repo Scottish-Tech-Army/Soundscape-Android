@@ -1,5 +1,5 @@
 ---
-title: Edessäpäin
+title: Ahead of Me
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
@@ -7,17 +7,17 @@ lang: fi
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Edessäpäin
+# Ahead of Me
 
-## Mikä se on?
+## What is it?
 
-*"Edessäpäin"*‑painike kertoo enintään viidestä edessäsi olevasta asiasta. *"Edessäpäin"* on tarkoitettu auttamaan sinua selvittämään, mitä on edessäsi, kun tutustut uuteen alueeseen.
+The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
 
-## Milloin käyttäisin sitä?
+## When would I use it?
 
-Kun kävelet kadulla, kokeile käyttää *"Edessäpäin"*-toimintoa löytääksesi kummallakin puolella katua vastaan tulevia asioita.
+When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
 
-## Kuinka se toimii?
+## How does it work?
 
-Kuten kaikkien aloitusnäytön alaosassa olevien painikkeiden tapauksessa, pidä puhelintasi näyttö vaakatasossa (osoittaen taivasta kohti) ja puhelimen yläosa kohti sitä suuntaa, johon olet kääntyneenä, ennen kuin painat *"Edessäpäin"*-painiketta. Tämä toimii kompassin tapaan kertoen sovellukselle, mihin suuntaan olet kääntynyt. Napauta yksinkertaisesti *"Edessäpäin"*-painiketta ja kuulet useita kiinnostavia kohteita, jotka ovat suunnilleen edessäsi.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
 

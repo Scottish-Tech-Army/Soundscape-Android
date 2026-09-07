@@ -1,5 +1,5 @@
 ---
-title: Utilisation des commandes multimédias
+title: Using Media Controls
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
@@ -7,41 +7,33 @@ lang: fr
 permalink: /users/help-using-media-controls.html
 ---
 
-# Utilisation des commandes multimédias
+# Using Media Controls
 
-## De quoi s’agit-il ?
+## What is it?
 
-Vous pouvez accéder à certaines fonctionnalités de Soundscape grâce aux boutons de commandes multimédias de votre casque. Cette fonctionnalité fonctionne avec tous les casques avec fil ou Bluetooth comportant des boutons de commandes multimédias comme Lecture, Pause, Suivant, Précédent, etc. Les boutons peuvent varier selon les casques, consultez la liste des actions ci-dessous pour déterminer celles qui sont disponibles.Notez également que cette fonctionnalité ne fonctionne qu’avec des casques prenant en charge les commandes multimédias Apple (comme la lecture et la pause).
+You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
 
-## Quand l’utiliser ?
+## When would I use it?
 
-Les boutons de commandes multimédias des casques peuvent être utilisés lorsque Soundscape est en cours d’exécution, et ce, que Soundscape soit en cours d’utilisation ou qu’il s’exécute en arrière-plan, et même lorsque votre appareil est verrouillé. Notez toutefois que les boutons de commandes multimédias des casques ne fonctionnent pas avec Soundscape si vous écoutez de la musique, des podcasts ou que vous regardez des vidéos avec une autre application.
+Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
 
-## Comment ça fonctionne ?
+## How does it work?
 
-Il existe 3 modes de fonctionnement pour les contrôles multimédias. Le mode se sélectionne dans la section *"Réglages"* *"Contrôles multimédias"*. Les modes sont :
+There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
 
-Mode original.
+ Original mode. 
 
-⏯ Lecture/Pause : active ou désactive le son de la balise.
+⏯ Play/Pause: Toggles the beacon audio on and off. 
 
-⏭ Suivant : si un itinéraire est en cours de lecture, déplace la balise audio vers le point de repère suivant de l’itinéraire. Si aucun itinéraire n’est en cours, annonce *"Mon emplacement"*.
+⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
 
-⏮ Précédent : si un itinéraire est en cours de lecture, déplace la balise audio vers le point de repère précédent de l’itinéraire. Si aucun itinéraire n’est en cours, annonce *"Autour de moi"*.
-
-
-
-Commande vocale.
+⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
 
 
 
-⏯ Lecture/Pause : lance l’écoute des commandes vocales par l’application.
+Audio menu. 
 
 
 
-Menu audio.
-
-
-
-⏭ Suivant et ⏮ Précédent parcourent une série d’options de menu que l’application décrit par synthèse vocale. ⏯ Lecture/Pause déclenche ensuite l’exécution de l’option décrite. Il y a un seul menu de niveau supérieur qui ne contient que des sous-menus comme options. Chaque sous-menu regroupe un ensemble d’actions similaires.
+⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
 

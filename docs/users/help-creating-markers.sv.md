@@ -1,5 +1,5 @@
 ---
-title: Skapar platsmarkörer
+title: Creating Markers
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: sv
 permalink: /users/help-creating-markers.html
 ---
 
-# Skapar platsmarkörer
+# Creating Markers
 
-Du kan skapa platsmarkörer på tre sätt: söka efter platsen du vill spara via sökfältet, hitta en plats med knappen *"Platser i närheten"*, eller använda knappen *"Aktuell plats"* — alla finns på Soundscapes startskärm. När du hittat platsen du vill spara väljer du den så kommer du till skärmen *"Platsuppgifter"*. På den skärmen trycker du på knappen *"Spara som platsmarkör"*.
+You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
 
-Du får nu möjlighet att anpassa platsmarkören. Du kan ändra dess namn och lägga till en anteckning som kommer att läsas upp tillsammans med platsmarkören för att ge extra information. När du är klar väljer du knappen *"Klart"* för att spara platsmarkören.
+You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
 

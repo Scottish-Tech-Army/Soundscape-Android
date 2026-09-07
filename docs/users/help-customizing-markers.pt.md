@@ -1,5 +1,5 @@
 ---
-title: Personalizar Marcos
+title: Customizing Markers
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: pt
 permalink: /users/help-customizing-markers.html
 ---
 
-# Personalizar Marcos
+# Customizing Markers
 
-Se quiser renomear um marco que criou anteriormente, ou adicionar uma anotação, pode fazê‑lo selecionando o marco no separador *"Marcos"* da página *"Marcos e Rotas"* e, em seguida, tocando no botão *"Editar Marco"*. Pode usar esta funcionalidade para atribuir nomes descritivos ou apelidos úteis aos marcos, bem como adicionar uma descrição mais longa usando o campo de anotação.
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-A partir deste ecrã *"Editar"* também pode eliminar um marco se já não o precisar.
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

@@ -1,5 +1,5 @@
 ---
-title: Использование элементов управления мультимедиа
+title: Using Media Controls
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
@@ -7,41 +7,33 @@ lang: ru
 permalink: /users/help-using-media-controls.html
 ---
 
-# Использование элементов управления мультимедиа
+# Using Media Controls
 
-## Что это такое?
+## What is it?
 
-Вы можете получить доступ к некоторым функциям Soundscape с помощью кнопок управления мультимедиа на наушниках. Эта функция работает с любыми проводными или Bluetooth‑наушниками, у которых есть кнопки управления мультимедиа, такие как Воспроизведение, Пауза, Следующий, Предыдущий и др. Разные наушники могут иметь разные наборы кнопок, поэтому ознакомьтесь со списком действий ниже, чтобы узнать, какие из них доступны для ваших наушников.
+You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
 
-## Когда использовать Soundscape?
+## When would I use it?
 
-Кнопки управления мультимедиа на наушниках можно использовать, пока Soundscape запущен. Это верно как если вы находитесь в самом приложении, так и если Soundscape работает в фоне или когда устройство заблокировано. Обратите внимание, что кнопки управления мультимедиа на наушниках не будут взаимодействовать с Soundscape, если в другом приложении воспроизводится аудио (например, музыка, подкасты или видео).
+Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
 
-## Как оно работает?
+## How does it work?
 
-Существует 3 режима работы кнопок управления мультимедиа. Режим можно выбрать в разделе *"Настройки"* *"Элементы управления мультимедиа"*. Режимы:
+There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
 
-Исходный режим.
+ Original mode. 
 
-⏯ Воспроизведение/Пауза: переключает звук звукового маяка (включить/выключить).
+⏯ Play/Pause: Toggles the beacon audio on and off. 
 
-⏭ Следующий: если воспроизводится маршрут, перемещает звуковой маяк к следующей путевой точке маршрута. Если маршрут не воспроизводится, выполняет уточнение *"Моё местоположение"*.
+⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
 
-⏮ Предыдущий: если воспроизводится маршрут, перемещает звуковой маяк к предыдущей путевой точке маршрута. Если маршрут не воспроизводится, выполняет уточнение *"Вокруг меня"*.
-
-
-
-Голосовое управление.
+⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
 
 
 
-⏯ Воспроизведение/Пауза: запускает у приложения прослушивание голосовых команд.
+Audio menu. 
 
 
 
-Аудио‑меню.
-
-
-
-⏭ Кнопка «Следующий» и ⏮ «Предыдущий» перемещаются по элементам меню, которые приложение озвучивает с помощью синтеза речи. ⏯ Воспроизведение/Пауза затем выполняет описанную опцию. Существует одно меню верхнего уровня, в котором в качестве пунктов присутствуют только подменю. Каждое подменю содержит группу схожих действий.
+⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
 

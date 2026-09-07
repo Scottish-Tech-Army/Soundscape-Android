@@ -1,5 +1,5 @@
 ---
-title: Sugestões
+title: Tips
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: pt
 permalink: /users/help-tips.html
 ---
 
-# Sugestões
+# Tips
 
-Pode encontrar paragens de autocarro nas proximidades selecionando o filtro *"Transportes Públicos"* na lista *"Locais nas Proximidades"*.
+You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
 
-Pode definir um sinal em qualquer endereço. No ecrã principal do Soundscape, pesquise o endereço. Após selecionar o endereço nos resultados da pesquisa, será apresentado o ecrã *"Detalhes da Localização"*, que tem a opção *"Iniciar Sinal de Áudio"* para esse endereço. Desta forma, pode definir um sinal em empresas, locais, pontos de interesse e residências que não constam do Open Street Map.
+You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
 
-Se existir uma linha de autocarro que utiliza regularmente, defina as suas paragens de entrada e saída como Marcos. Deste modo serão guardadas e poderá encontrá‑las facilmente: aceda a *"Marcos e Rotas"* a partir do ecrã principal e procure‑as na página *"Marcos"*. Pode definir um sinal sobre essas paragens e receberá atualizações periódicas sobre a distância até à sua paragem de saída. Nota: pode desativar o som rítmico e continuará a receber atualizações de distância ao longo do percurso.
+If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
 
-Se guardar o telemóvel no bolso e ficar imóvel, o som do sinal ficará mais baixo porque o Soundscape não consegue identificar para que direção está virado. Para o resolver, comece novamente a caminhar ou pegue no telemóvel e segure-o numa posição plana.
+If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
 
-O Soundscape funciona melhor quando segura no telemóvel numa posição plana, com o ecrã virado para o céu e a extremidade superior do telemóvel apontada na direção oposta ao do seu corpo.
+Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
 
-Pode ativar e desativar o som rítmico do sinal utilizando o botão Desativar no ecrã principal. Mesmo que o sinal esteja desativado, irá receber atualizações sobre a distância a que se encontra do destino a intervalos aproximados de 50 metros.
+You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
 
-Se ainda quiser interagir com o Soundscape mas não quiser ouvir avisos automáticos, pode desativar os avisos indo à secção *"Gerir Avisos"* do ecrã *"Definições"* a partir do menu. Ou, se não for usar o Soundscape, pode colocá‑lo em Modo de Suspensão ou em Modo de Pausa usando o botão *"Suspender"* no ecrã principal.
+To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
 

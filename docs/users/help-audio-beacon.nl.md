@@ -1,5 +1,5 @@
 ---
-title: Audiobaken
+title: Audio Beacon
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
@@ -7,27 +7,27 @@ lang: nl
 permalink: /users/help-audio-beacon.html
 ---
 
-# Audiobaken
+# Audio Beacon
 
-## Wat is het?
+## What is it?
 
-Als u een baken instelt op een locatie in de buurt kan Soundscape u op de hoogte houden door een audiobaken te laten klinken vanuit de richting van die locatie. Dit baken kan al dan niet worden gedempt op het hoofdscherm. Bovendien geeft Soundscape informatie over de locatie weer op het hoofdscherm met de afstand en het adres, indien bekend.
+Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
 
-## Wanneer zou ik het moeten gebruiken?
+## When would I use it?
 
-Het instellen van een baken is handig wanneer u een herkenningspunt wilt volgen bij het verkennen van een nieuw gebied of wanneer u ergens naartoe gaat en onderweg informatie wilt horen over de omgeving. De bakenfunctie geeft geen routebeschrijving maar een voortdurend hoorbaar geluid dat de richting van het baken aangeeft in relatie tot de plek waar u zich bevindt. Met het audiobaken, uw eigen navigatievaardigheden en desgewenst uw favoriete navigatie-app, kunt u zelf kiezen hoe u zich naar locaties in de buurt begeeft.
+Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
 
-## Hoe werkt het?
+## How does it work?
 
-**Om een baken in te stellen :**
+**To set a beacon :**
 
-Bekijk eerst de gegevens van een locatie door in de zoekbalk naar een plaats te zoeken, of door te tikken op één van de knoppen *"Plaatsen in de buurt"*, *"Markeringen en routes"* of *"Huidige locatie"* en vervolgens een locatie te kiezen. Op het scherm *"Locatiedetails"* kunt u de knop *"Audiobaken starten"* selecteren. Als u daarop tikt, keert u terug naar het hoofdscherm en wordt er een hoorbaar baken ingeschakeld dat klinkt vanuit de richting van de gekozen plaats. De naam van de geselecteerde plaats met de afstand en het fysieke adres, indien beschikbaar, wordt nu op het hoofdscherm weergegeven.
+ First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-**Om het huidige baken te verwijderen :**
+**To remove the current beacon :**
 
-Tik eenvoudig op de *"Route stoppen"* knop op het hoofdscherm.
+ Simply press the *\"Stop Route\"* button on the home screen.
 
-**Om het hoorbare baken te dempen :**
+**To mute the audible beacon :**
 
-Tik op de knop *"Baken dempen"* naast de knop *"Route stoppen"* op het hoofdscherm.
+ Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
 

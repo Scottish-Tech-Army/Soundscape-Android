@@ -1,5 +1,5 @@
 ---
-title: Por que o Soundscape está funcionando offline?
+title: Why is Soundscape working offline?
 layout: page
 parent: "Usando o Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: pt-BR
 permalink: /users/help-why-is-soundscape-working-offline-.html
 ---
 
-# Por que o Soundscape está funcionando offline?
+# Why is Soundscape working offline?
 
-## Por que o Soundscape está funcionando offline?
+## Why is Soundscape working offline?
 
-Quando não houver conexão com a Internet ou uma interrupção nos serviços do Soundscape, o Soundscape mudará para um modo offline. Entretanto, o Soundscape continuará a funcionar, mas algumas funções poderão ser limitadas.
+When there is no internet connection, or the Soundscape services are down, Soundscape switches to offline mode. It will keep working, but some features may be limited.
 
-## Limitações
+## Limitations
 
-As notificações continuarão a funcionar se você estiver em uma área por onde passou antes e que foi armazenada em seu histórico de notificações. Da mesma forma, você pode colocar um sinalizador sonoro ou criar um favorito em locais armazenados em seu histórico de notificações.
+Callouts still work in areas you have walked through before, since Soundscape stores them in your callout history. You can also place an audio beacon or create a marker on places already stored in your callout history.
 
-## O que você pode fazer?
+## What can you do?
 
-O Soundscape tentará retomar a operação normal quando seu telefone estiver conectado ao Wi-Fi ou dados da rede celular estiverem habilitados e você estiver em uma área com sinal forte. Se o seu telefone tiver uma boa conexão com a Internet, mas o Soundscape não retomar a operação normal, então pode haver uma interrupção nos serviços do Soundscape.
+Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or cellular data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
 

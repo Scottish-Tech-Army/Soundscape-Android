@@ -1,5 +1,5 @@
 ---
-title: Γύρω μου
+title: Around Me
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: el
 permalink: /users/help-around-me.html
 ---
 
-# Γύρω μου
+# Around Me
 
-## Τι είναι?
+## What is it?
 
-Το κουμπί *"Γύρω μου"* σας λέει για ένα πράγμα σε καθένα από τα τέσσερα τεταρτημόρια γύρω σας (μπροστά, δεξιά, πίσω και αριστερά). Το *"Γύρω μου"* έχει ως στόχο να σας βοηθήσει να προσανατολιστείτε στο περιβάλλον σας.
+The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
 
-## Πότε θα το χρησιμοποιούσα;
+## When would I use it?
 
-Όταν προσπαθείτε να βρείτε την πορεία σας και να προσανατολίζεστε στο περιβάλλον σας, χρησιμοποιήστε το *"Γύρω μου"* για να ακούσετε για τα πράγματα γύρω σας.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
 
-## Πώς λειτουργεί;
+## How does it work?
 
-Όπως και με τα τέσσερα κουμπιά στο κάτω μέρος της αρχικής οθόνης, κρατήστε το τηλέφωνό σας με την οθόνη επίπεδη (στραμμένη προς τον ουρανό) και το επάνω μέρος του τηλεφώνου στραμμένο προς την κατεύθυνση που κοιτάτε πριν πατήσετε το κουμπί *"Γύρω μου"*. Αυτό λειτουργεί σαν πυξίδα που λέει στην εφαρμογή προς ποια κατεύθυνση είστε στραμμένοι. Απλά, πατήστε το κουμπί *"Γύρω μου"* και θα ακούσετε τέσσερα σημεία ενδιαφέροντος τοποθετημένα γύρω σας.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
 

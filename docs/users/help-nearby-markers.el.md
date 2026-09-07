@@ -1,5 +1,5 @@
 ---
-title: Κοντινοί δείκτες
+title: Nearby Markers
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: el
 permalink: /users/help-nearby-markers.html
 ---
 
-# Κοντινοί δείκτες
+# Nearby Markers
 
-## Τι είναι?
+## What is it?
 
-Το κουμπί *"Κοντινοί δείκτες"* σας ενημερώνει για έως και τέσσερις δείκτες που βρίσκονται πιο κοντά σας. Το *"Κοντινοί δείκτες"* προορίζεται να σας βοηθήσει να προσανατολιστείτε χρησιμοποιώντας μέρη που γνωρίζετε ήδη.
+The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
 
-## Πότε θα το χρησιμοποιούσα;
+## When would I use it?
 
-Όταν προσπαθείτε να βρείτε τον δρόμο σας και να προσανατολιστείτε στο περιβάλλον σας, χρησιμοποιήστε το *"Κοντινοί δείκτες"* για να μάθετε τις τοποθεσίες των θέσεων που γνωρίζετε.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
 
-## Πώς λειτουργεί;
+## How does it work?
 
-Όπως και με τα τέσσερα κουμπιά στο κάτω μέρος της αρχικής οθόνης, κρατήστε το τηλέφωνό σας με την οθόνη επίπεδη.στραμμένη προς τον ουρανό) και το επάνω μέρος του τηλεφώνου στραμμένο προς την κατεύθυνση που κοιτάτε πριν πατήσετε το κουμπί *"Κοντινοί δείκτες"*. Αυτό λειτουργεί σαν πυξίδα που λέει στην εφαρμογή προς ποια κατεύθυνση αντιμετωπίζετε. Απλά, πατήστε το κουμπί *"Κοντινοί δείκτες"* και θα ακούσετε έως και τέσσερις δείκτες κοντά σας.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
 

@@ -1,5 +1,5 @@
 ---
-title: Lydsignal
+title: Audio Beacon
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: nb
 permalink: /users/help-audio-beacon.html
 ---
 
-# Lydsignal
+# Audio Beacon
 
-## Hva er det?
+## What is it?
 
-Ved å angi et lydsignal på en posisjon i nærheten kan Soundscape holde deg oppdatert ved å spille av et lydsignal som kommer fra retningen til posisjonen. Lydsignalet kan slås av eller på på startskjermen. Soundscape viser i tillegg informasjon om posisjonen på startskjermen deriblant avstanden til den og gateadressen hvis den er kjent.
+Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
 
-## Når skal jeg bruke den?
+## When would I use it?
 
-Det kan være nyttig å angi et lydsignal når du vil følge med på et kjent landemerke mens du utforsker et nytt område, eller når du går et sted og vil være oppdatert på omgivelsene på veien. Lydsignalfunksjonen gir ikke veibeskrivelser, men gir deg et kontinuerlig lydsignal som forteller deg retning til lydsignalet i forhold til der du for øyeblikket er. Ved å bruke lydsignalet, eksisterende navigasjonsferdigheter og en navigasjonsapp du liker, kan du selv velge hvordan du kommer til posisjoner i nærheten.
+Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
 
-## Hvordan fungerer den?
+## How does it work?
 
-**For å angi et lydsignal :**
+**To set a beacon :**
 
- Først, vis detaljene for et sted enten ved å bruke søkefeltet for å søke etter et sted, eller ved å trykke på en av knappene *"Steder i nærheten"*, *"Markører og ruter"* eller *"Nåværende posisjon"* og velge et sted. På skjermen *"Posisjonsinformasjon"* kan du velge knappen *"Start lydsignal"*. Når du trykker på denne, kommer du tilbake til startskjermen og et hørbart lydsignal som kommer fra retningen til det valgte stedet slås på. Navnet på stedet du har valgt, sammen med avstanden og gateadressen hvis tilgjengelig, vises nå på hovedskjermen.
+ First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-**For å fjerne det nåværende lydsignalet:**
+**To remove the current beacon :**
 
-Trykk bare på knappen *"Stopp rute"* på startskjermen.
+ Simply press the *\"Stop Route\"* button on the home screen.
 
-**For å dempe lydsignalet:**
+**To mute the audible beacon :**
 
-Trykk på knappen *"Slå av lydsignal"* ved siden av knappen *"Stopp rute"* på startskjermen.
+ Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
 

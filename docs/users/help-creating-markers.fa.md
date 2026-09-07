@@ -1,5 +1,5 @@
 ---
-title: ایجاد نشانه
+title: Creating Markers
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
@@ -7,9 +7,9 @@ lang: fa
 permalink: /users/help-creating-markers.html
 ---
 
-# ایجاد نشانه
+# Creating Markers
 
-شما می‌توانید نشانه‌ها را به سه روش ایجاد کنید: جستجوی مکانی که می‌خواهید ذخیره کنید از طریق نوار جستجو، یافتن مکان با استفاده از دکمهٔ *«مکان‌های نزدیک»*، یا استفاده از دکمهٔ *«موقعیت مکانی فعلی»*؛ همهٔ این گزینه‌ها در صفحهٔ اصلی ساند‌اسکیپ موجودند. پس از یافتن مکانی که می‌خواهید، انتخاب آن شما را به صفحهٔ *«جزئیات موقعیت مکانی»* می‌برد. در این صفحه دکمهٔ *«نشانه‌گذاری و ذخیره»* را انتخاب کنید.
+You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
 
-شما اکنون می‌توانید نشانه‌ای که ایجاد کرده‌اید را شخصی‌سازی نمایید. البته این مرحله اختیاریست. شما می‌توانید در این مرحله نام نشانه‌ای که ایجاد نموده‌اید را تغییر داده و پاره‌ای توضیحات نیز به آن اضافه کنید. زمانی که کارتان در این مرحله تکمیل شد، دکمه‌ی *«تمام»* را بزنید تا نشانه ذخیره گردد.
+You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
 

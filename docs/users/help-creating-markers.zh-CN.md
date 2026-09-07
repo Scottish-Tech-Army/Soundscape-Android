@@ -1,5 +1,5 @@
 ---
-title: 创建标记点
+title: Creating Markers
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: zh-CN
 permalink: /users/help-creating-markers.html
 ---
 
-# 创建标记点
+# Creating Markers
 
-您可以通过三种方式创建标记点：在搜索栏中搜索要保存的地点、使用*"附近地点"*按钮查找地点，或使用主屏幕上的*"当前位置"*按钮。找到想要保存的地点后，选择该地点将进入*"位置详情"*屏幕。在该页面上，选择*"保存为标记点"*按钮。
+You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
 
-现在您可以自定义此标记点。您可以更改标记点的名称，还可以添加注释，注释会与标记点一起播报以提供额外信息。完成后，点击*"完成"*按钮保存您的标记点。
+You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
 

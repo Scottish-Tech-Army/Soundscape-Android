@@ -1,5 +1,5 @@
 ---
-title: Om me heen
+title: Around Me
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
@@ -7,17 +7,17 @@ lang: nl
 permalink: /users/help-around-me.html
 ---
 
-# Om me heen
+# Around Me
 
-## Wat is het?
+## What is it?
 
-Met de knop *Om me heen* hoort u informatie over één ding in elk van de vier kwadranten om u heen (vóór, rechts, achter en links van u). *Om me heen* is bedoeld om u te helpen bij het oriënteren in uw omgeving.
+The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
 
-## Wanneer zou ik het moeten gebruiken?
+## When would I use it?
 
-Wanneer u probeert om uw positie te ontdekken en u te oriënteren in uw omgeving, gebruikt u *Om me heen* om meer te horen over de dingen om u heen.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
 
-## Hoe werkt het?
+## How does it work?
 
-Net als met de vier knoppen onderaan het hoofdscherm houdt u de telefoon met het scherm horizontaal en met de bovenkant in de richting waarin u loopt, voordat u op *Om me heen* drukt. Dit werkt als een kompas en geeft aan de app door in welke richting u kijkt. Tik op de knop *Om me heen* en u hoort de referentiepunten die zich om u heen bevinden.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
 

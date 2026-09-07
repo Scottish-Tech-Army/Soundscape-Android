@@ -1,5 +1,5 @@
 ---
-title: Voci
+title: Voices
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
@@ -7,7 +7,7 @@ lang: ro
 permalink: /users/help-voices.html
 ---
 
-# Voci
+# Voices
 
-Soundscape poate utiliza oricare dintre vocile pe care le-ai descărcat pe telefonul tău Android în setările de ieșire text‑în‑vorbire. În aplicația Soundscape, pentru a selecta o voce diferită de cea implicită a Android, accesează *"Setări"* din meniul principal, extinde secțiunea *"Audio"* și apoi selectează *"Voci"*.
+Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
 

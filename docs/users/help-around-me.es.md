@@ -1,5 +1,5 @@
 ---
-title: Alrededor de mí
+title: Around Me
 layout: page
 parent: "Usar Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: es
 permalink: /users/help-around-me.html
 ---
 
-# Alrededor de mí
+# Around Me
 
-## ¿Qué es?
+## What is it?
 
-El botón *"Alrededor de mí"* le informa de algo cosa en cada uno de los cuatro cuadrantes que se encuentran a su alrededor (delante, a la derecha, detrás y a la izquierda). *"Alrededor de mí"* está pensado para ayudarle a orientarse en su entorno.
+The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
 
-## ¿Cuándo lo usaría?
+## When would I use it?
 
-Cuando intente orientarse en su entorno, use *"Alrededor de mí"* para escuchar sobre lo que hay a su alrededor.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
 
-## ¿Cómo funciona?
+## How does it work?
 
-Como con los cuatro botones de la parte inferior de la pantalla principal, mantenga el teléfono con la pantalla en posición horizontal (hacia arriba) y la parte superior del teléfono apuntando en la dirección en la que está mirando antes de presionar el botón *"Alrededor de mí"*. Esto actúa como una brújula que le indica a la aplicación hacia qué dirección está orientado. Solo tiene que pulsar el botón *"Alrededor de mí"* y oirá los cuatro puntos de interés situados a su alrededor.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
 

@@ -1,5 +1,5 @@
 ---
-title: मेरे आसपास
+title: Around Me
 layout: page
 parent: "Soundscape का उपयोग"
 has_toc: false
@@ -7,17 +7,17 @@ lang: hi
 permalink: /users/help-around-me.html
 ---
 
-# मेरे आसपास
+# Around Me
 
-## यह क्या है?
+## What is it?
 
-*"मेरे आसपास"* बटन आपके चारों ओर के चार चतुर्थांशों (आगे, दाईं ओर, पीछे और बाईं ओर) में से प्रत्येक में एक चीज़ के बारे में बताता है। *"मेरे आसपास"* का उद्देश्य आपको अपने परिवेश से परिचित होने में मदद करना है।
+The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
 
-## मैं इसका उपयोग कब करूँ?
+## When would I use it?
 
-जब आप अपनी दिशा समझने और अपने परिवेश से तालमेल बिठाने की कोशिश कर रहे हों, तो *"मेरे आसपास"* का उपयोग करके अपने आसपास की चीज़ों के बारे में सुनें।
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
 
-## यह कैसे काम करता है?
+## How does it work?
 
-होम स्क्रीन के नीचे चारों बटनों की तरह, *"मेरे आसपास"* बटन दबाने से पहले अपने फ़ोन को स्क्रीन ऊपर (आकाश की ओर) रखकर सपाट पकड़ें और फ़ोन का ऊपरी हिस्सा उस दिशा में इंगित करें जिस तरफ़ आपका मुँह है। यह एक कम्पास की तरह काम करता है जो ऐप को बताता है कि आप किस दिशा में देख रहे हैं। बस *"मेरे आसपास"* बटन पर टैप करें और आप अपने चारों ओर व्यवस्थित चार रुचि के स्थानों के बारे में सुनेंगे।
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
 

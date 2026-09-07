@@ -1,5 +1,5 @@
 ---
-title: Häufig gestellte Fragen
+title: Frequently Asked Questions
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
@@ -7,125 +7,123 @@ lang: de
 permalink: /users/help-frequently-asked-questions.html
 ---
 
-# Häufig gestellte Fragen
+# Frequently Asked Questions
 
-## Was ist Soundscape, und wie wird es verwendet?
+## What is Soundscape and how should I use it?
 
-### Wann sollte ich Soundscape verwenden?
-Soundscape hat Funktionen und Vorteile, die eine Vielzahl von Szenarien und Zeitskalen umfassen. Darüber hinaus kann sich der Wert von Soundscape für Sie im Laufe der Zeit ändern, sodass die Art und Weise, wie Sie es heute nutzen, sich von der Art und Weise unterscheiden kann, wie Sie es in drei Monaten nutzen werden. Die Leute denken bei Apps oft im Sinne von *„Welches Problem kann diese App gut lösen?“*. Soundscape kann von Fall zu Fall verwendet werden, wenn Sie einen bestimmten Informationsbedarf haben, zum Beispiel, um ein Ziel unterwegs im Auge zu behalten, um sich zu orientieren, wenn Sie aus einer U-Bahn-Station kommen oder aus dem Auto aussteigen, oder um die Straßennamen und die Entfernung zur nächsten Kreuzung zu finden. Die Philosophie, die hinter Soundscape steckt, ist jedoch eine andere: *„Vertonen Sie Ihre Welt“*. Soundscape ist so konzipiert, dass Sie es jederzeit nutzen können, wenn Sie unterwegs sind, um sich Ihrer Umgebung bewusst zu werden, z. B. um sich die Namen der Straßen, auf denen Sie sich befinden, die Richtung, in die Sie gehen, und die Namen der Geschäfte, an denen Sie vorbeikommen, zu merken. In diesem Nutzungsmodus haben unsere Nutzer Soundscape als eine *„nette Begleit-App“* bezeichnet, die *„Entdeckungen“* bietet, um die *„Lücken auf Ihrer mentalen Karte zu füllen“* und mehr *„Konfidenz beim Gehen“* zu schaffen. Hier sind einige weitere Beispiele dafür, wie unsere Nutzer Soundscape in ihr Leben einbeziehen:
+### When should I use Soundscape?
+Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *"what problem is this app good at solving?"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *"lighting up your world with sound"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *"nice companion app"*, which supports *"serendipity"*, helps *"fill in the gaps in your mental map"*, and provides more *"confidence when walking"*. Here are some other examples of how our users are using Soundscape in their life:
 
-„Soundscape hat mir geholfen, wieder den richtigen Weg zu finden, nachdem ich aus dem Bus ausgestiegen und in die falsche Richtung gegangen war.“
+"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction."
 
-„Sogar in der Stadt, in der ich seit 3 Jahren lebe, habe ich Neues darüber erfahren, was um mich herum ist [mit Soundscape]“
+"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape]."
 
-„Der 3D-Sound verbessert meine Spaziergänge, da ich mich mehr mit meiner Umgebung verbunden fühle … Jetzt, da ich die App nutze, bin ich eher geneigt, eine neue Route auszuprobieren“
+"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use."
 
-„Mir fehlt die Erfahrung, durch die Gegend zu laufen und Dinge zu entdecken. Es ist schön, Soundscape zu haben – es ist jetzt so einfach, etwas über meine Umgebung zu erfahren. Die Informationen sind nützlich, und es ist eine großartige App für die Erkundung.“
+"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors."
 
-„[Ich habe Soundscape] verwendet, um einen Pub mitten in York zu finden. [Ich] nutzte eine Reihe von Optionen, um das Lokal zunächst zu lokalisieren und dann tatsächlich zu finden. Es hat mich bis auf 3 Meter an die Tür herangeführt – genial!“
+"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!"
 
-### Was sind Markierungen, und wie nutze ich sie optimal?
-Markierungen sind Orte, die Sie gespeichert haben. Dabei kann es sich um Orte handeln, die in der App gefunden werden können, oder um völlig neue Orte, die Sie selbst hinzugefügt haben. Sie können Ihren aktuellen Standort als Markierung speichern, indem Sie auf dem Startbildschirm die Schaltfläche *„Aktueller Standort“* auswählen und dann *„Als Markierung speichern“* tippen. Andere Orte können Sie als Markierung speichern, indem Sie in der Suchleiste nach dem gewünschten Ort suchen oder die Schaltfläche *„Orte in der Nähe“* verwenden. Sobald Sie den gewünschten Ort gefunden haben, führt die Auswahl dorthin zum Bildschirm *„Standortdetails“*. Auf diesem Bildschirm wählen Sie die Schaltfläche *„Als Markierung speichern“*.
+### What are Markers and how do I get the most out of them?
+Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *\"Current Location\"* button on the home screen and then selecting *\"Save as Marker\"*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *\"Places Nearby\"* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the button called *\"Save as Marker\"*.
 
-## Wie nutze ich Soundscape optimal?
+## How do I get the best out of Soundscape?
 
-### Auf was kann ich ein Beacon platzieren?
-Sie können ein Audiobeacon auf jedes Geschäft, jeden Ort, jeden Point of Interest, jede Adresse oder jede Kreuzung setzen. Es gibt mehrere Möglichkeiten, ein Beacon an einem Ort zu platzieren. Zeigen Sie zunächst die Details eines Ortes an, indem Sie entweder die Suchleiste verwenden, um nach einem Ort zu suchen, oder auf eine der Schaltflächen *„Orte in der Nähe“*, *„Markierungen und Routen“* oder *„Aktueller Standort“* tippen und einen Ort auswählen. Auf dem Bildschirm *„Standortdetails“* können Sie die Schaltfläche *„Audiobeacon starten“* auswählen. Wenn Sie diese antippen, kehren Sie zum Startbildschirm zurück und ein hörbares Beacon wird aus der Richtung des ausgewählten Ortes abgespielt. Der Name des ausgewählten Ortes sowie dessen Entfernung und die physische Adresse, falls verfügbar, werden nun auf dem Hauptbildschirm der App angezeigt.
+### What can I set as a beacon?
+You can set an audio beacon on any business, place, point of interest, address, or intersection. There are a few ways you can add a beacon at a location. First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-### Wie nutze ich das Beacon optimal?
-Sie können das hörbare Beacon als eine Art *„Leuchtturm für die Ohren“* betrachten, das Ihnen anzeigt, wo sich Ihr Ziel in Luftlinie in Bezug auf Ihren Standort befindet. Wie ein Leuchtturm sagt es nicht, wie Sie dorthin kommen müssen – unterwegs müssen Sie möglicherweise viele Navigationsentscheidungen treffen, ebenso wie ein Segelboot zahlreiche strategische *„Wenden“* durchführen muss, um dem Leuchtturm näher zu kommen. Der kontinuierliche, rhythmische Ton des hörbaren Beacons wird räumlich aus der Richtung des Ziels wiedergegeben und hilft Ihnen, beim Gehen die Lage des Ziels relativ zu sich im Blick zu behalten. Wenn Sie direkt auf das Ziel zugehen oder das Telefon in Richtung des Ziels halten, hören Sie einen höher klingenden *„Ring“*-Ton. Diese Funktion hilft Ihnen, die Richtung des Ziels genau zu lokalisieren, da die Richtung des rhythmischen Tons in lauten Umgebungen manchmal schwer zu erkennen ist. Um den höher klingenden *„Ring“* zu finden, halten Sie das Telefon flach und schwenken Sie es langsam; drehen Sie den Kopf so, dass Sie in die gleiche Richtung schauen wie das Telefon, um das beste räumliche Audioerlebnis zu erzielen.
+### How do I get the most out of a beacon?
+You can think of the audible beacon like a *\"lighthouse for your ears\"*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the audible beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *\"ring\"* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *\"ring\"*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.
 
-Die Leuchtturm‑Metapher für das Design des Beacons hat einige logische Implikationen:
+This design has a few natural results:
 
-1. Es gibt keine *„richtige“* Richtung, in die Sie reisen müssen, wenn Sie das Beacon verwenden – mit Soundscape entscheiden Sie selbst, wie Sie dorthin gelangen;
+1. There is no *\"correct\"* direction to travel when using the beacon – with Soundscape, you choose how to get there;
 
-2. Der höher klingende *„Ring“* hilft Ihnen nur, die Richtung zum Ziel zu bestimmen – er sagt Ihnen nicht, welchen Weg Sie nehmen sollen;
+2. The higher-pitched *\"ring\"* only helps you pinpoint the direction of the destination – it does not tell you how to get there;
 
-3. Wenn Sie im Groben wissen, wie Sie zu Ihrem Ziel gelangen, möchten Sie das Beacon eventuell während der überwiegenden Strecke stummschalten und es nur einschalten, wenn Sie sich dem Ziel nähern.
+3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.
 
-### Warum verschwindet das Audiobeacon manchmal?
-Das Audiobeacon von Soundscape ist im Wesentlichen ein Richtungshinweis, der Ihnen mitteilt, wo sich Ihr Ziel in Bezug auf die Richtung, in die Sie schauen, befindet. Wenn Soundscape nicht sicher ist, in welche Richtung Sie schauen, wird die Lautstärke des Signaltons verringert. Dies geschieht meistens dann, wenn Sie mit eingestecktem Telefon unterwegs sind und sich nicht mehr bewegen, z. B. weil Sie gleich eine Straße überqueren möchten. Das Signal wird lauter, sobald Sie sich wieder in Bewegung setzen, oder wenn Sie das Telefon flach (mit der Oberseite zum Himmel) halten und in die Richtung zeigen, in die Sie schauen.
+### Why does the audible beacon disappear sometimes?
+Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.
 
-### Kann ich ein Beacon auf einer Adresse platzieren?
-Ja, das können Sie. Adressen sind standardmäßig nicht aufgeführt, lassen sich aber über das Suchfeld finden. Um eine Adresse zu speichern, damit Sie nicht erneut danach suchen müssen, können Sie sie auf dem Bildschirm *„Standortdetails“* über die Schaltfläche *„Als Markierung speichern“* als Markierung hinzufügen.
+### Can I set a beacon on an address?
+Yes you can. Addresses are not listed by default but can be found using the search field. To save this address so you don’t need to search for it again, you can add it as a marker from the *\"Location Details\"* screen by selecting the *\"Save as Marker\"* button.
 
-### Wie platziere ich ein Beacon auf meiner Hausadresse?
-Soundscape unterstützt das Platzieren von Beacons auf Adressen. Um ein Beacon auf Ihre Hausadresse oder eine andere Adresse zu platzieren, suchen Sie nach dem Standort über den Soundscape-Startbildschirm. Tippen Sie auf dem *„Standortdetails“*-Bildschirm auf die Schaltfläche *„Audiobeacon starten“*.
+### How do I set a beacon on my home?
+Soundscape supports setting beacons on addresses. To set a beacon on your home, or any other address, search for a location from the main Soundscape screen. On the *"Location Details"* screen, tap the *"Start Audio Beacon"* button.
 
-### Wenn ich ein Beacon an einem Ziel platziere, wie nah komme ich mit Soundscape an das Ziel heran?
-Soundscape kann die Position Ihres Ziels mit einer Genauigkeit von einigen Metern bestimmen. Wenn Soundscape feststellt, dass Sie sich in der Nähe Ihres Ziels befinden, hören Sie einen letzten Hinweis, dass Ihr Ziel in der Nähe ist, und das Beacon schaltet sich aus.
+### When I set a beacon on a destination, how close will Soundscape get me to the destination?
+Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.
 
-### Kann ich das Beacon wieder aktivieren, wenn ich in der Nähe meines Ziels bin?
-Ja, Sie können das Beacon wieder einschalten, sobald es von Soundscape ausgeschaltet wird, indem Sie „Stummschaltung des Beacons aufheben“ auswählen. Jedoch kann angesichts der geringen Genauigkeit der Ortungsdienste unter 10 Metern das Verhalten des Beacons nicht garantiert werden, wenn Sie sich nur noch wenige Meter von Ihrem Ziel entfernt sind.
+### Can I turn the beacon back on when I am close to my destination?
+Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *"unmute beacon button"*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.
 
-### Warum werden Straßennamen von Soundscape doppelt angekündigt, wenn ich mich einer Kreuzung nähere?
-Um eine Vielzahl von Kreuzungskonfigurationen zu ermöglichen, beschreibt Soundscape Kreuzungen als Segmente von Straßen, die von einem gemeinsamen Punkt ausgehen. Soundscape verwendet räumliches Audio, um den Namen der Straße anzugeben, die nach links abgeht, den Namen der Straße, die gerade aus verläuft, dann die Straße, die nach rechts abgeht und so weiter in dieser Reihenfolge. Wenn die Beschreibung der Kreuzung mit der Straße beginnt, auf der Sie sich gerade befinden, und nicht mit der Straße links, dann handelt es sich um eine T-Kreuzung, bei der die Straße, auf der Sie sich befinden, von einer Straße von rechts gekreuzt wird. Ähnlich verhält es sich, wenn die Beschreibung nur eine Straße nach links und nach rechts enthält, dann wissen Sie, dass die Straße, auf der Sie sich befinden, an einer T-Kreuzung vor Ihnen endet. Diese Beschreibungsmethode für Kreuzungen unterstützt auch den Fall, dass eine Straße an einer Kreuzung ihren Namen ändert.
+### Why does Soundscape call out road names twice when I approach an intersection?
+To accommodate a variety of intersection configurations, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the name of the road that goes to the left, the name of the road that continues straight ahead, and the name of the road that goes to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection is a T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.
 
-### Warum weist Soundscape nicht auf jedes Geschäft zu, dass ich passiere?
-Soundscape ist so konzipiert, dass es nicht zu gesprächig ist. Darüber hinaus verwendet es Open Street Map als Back-End-Datenquelle. Open Street Map (OSM, https://www.openstreetmap.org/) ist eine von der Gemeinschaft entwickelte und bearbeitete Weltkarte, für die Einzelpersonen die Daten eingeben. Wenn ein Geschäft oder ein Point-of-Interest nicht von Soundscape angezeigt wird, ist es möglicherweise so, dass dieses Geschäft noch nicht von einem Mitglied der OSM-Community hinzugefügt oder in einigen Fällen aktualisiert wurde.
+### Why doesn’t Soundscape announce every business that I pass?
+Soundscape is designed to avoid giving you too many callouts. It also uses OpenStreetMap as its data source. OpenStreetMap (OSM, https://www.openstreetmap.org/) is a map of the world built and edited by a community of individual contributors. If Soundscape does not announce a business or point of interest, the most likely reason is that a member of the OSM community has not yet added, or in some cases updated, that business in the data.
 
-### Warum höre ich manche Hinweise nicht, wenn ich in einem Fahrzeug unterwegs bin?
-Um zu verhindern, dass die Anzahl der Hinweise zu überwältigend wird, werden einige Kategorien, z. B. Kreuzungen, nicht automatisch angekündigt, wenn Sie in einem Fahrzeug unterwegs sind.
+### Why do some callouts stop when I'm in a vehicle?
+In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re traveling in a vehicle.
 
-### Was wenn ich einen Hinweis nicht verstehe oder ihn aufgrund der Umgebungsgeräusche verpasse?
-Soundscape führt eine Liste Ihrer letzten Hinweise, sodass Sie Hinweise, die Sie verpasst haben, noch einmal anhören können. Tippen Sie dazu auf dem Soundscape-Startbildschirm auf die Suchleiste. Am unteren Rand dieses Bildschirms finden Sie den Abschnitt *„Letzte Hinweise“*, in dem der Hinweis, den Sie verpasst haben, aufgeführt wird.
+### What if I don't understand a callout or miss it because of ambient noise?
+Soundscape has a list of your recent callouts so that you can revisit callouts that you might have missed. To find this, tap on the search bar on the Soundscape home screen. At the bottom of this screen, there is a section for *"Recent Callouts"* where the callout you missed will be listed.
 
-## Wie funktioniert Soundscape?
+## How does Soundscape work?
 
-### Mit welchen Mobilgeräten ist Soundscape kompatibel?
-Soundscape für Android ist derzeit für Android-Smartphones mit Android 11 oder einer neueren Version verfügbar.
+### What phone does Soundscape run on?
+Soundscape is currently available for iPhones running iOS 16 or later, and for Android phones running Android 11 or later.
 
-### Welche Kopfhörer sollte ich mit Soundscape verwenden?
-Welche Kopfhörer Sie mit Soundscape verwenden, hängt von Ihren persönlichen Präferenzen ab. Jede Option hat ihre Vor- und Nachteile. Die einzige spezifische Anforderung ist die Verwendung eines Stereo-Kopfhörers, damit Sie die Vorteile der räumlichen 3D-Audiohinweise von Soundscape genießen können.
+### What headphones should I use with Soundscape?
+Which headphones you use with Soundscape is a matter of personal preference, and each option comes with benefits and trade-offs. The only specific requirement is to use a pair of stereo headphones so that you can take advantage of Soundscape’s 3D spatial audio callouts.
 
-### Wie wirkt sich Soundscape auf den Akku meines Telefons?
-Die Akkulaufzeit hängt stark davon ab, welches Telefon Sie besitzen und wie alt es ist. Der größte Stromverbraucher ist das eingeschaltete Display. Um die Akkulaufzeit zu maximieren, sollten Sie den Bildschirm nach Möglichkeit gesperrt halten. Um die Auswirkungen auf den Akku zu verringern, verfügt Soundscape jetzt über einen Ruhemodus. Wenn Sie noch mehr Akku sparen möchten, schließen Sie Soundscape, wenn Sie es nicht verwenden, vollständig über den App‑Umschalter Ihres Telefons.
+### How does Soundscape impact my phone’s battery?
+Battery life varies significantly depending on which phone you own and how old it is. The biggest drain on your battery is having the screen on, so to maximize the battery life of your phone, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape now has a Sleep Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.
 
-### Wie verwenden ich den Ruhemodus, um die Auswirkung von Soundscape auf den Akku zu minimieren?
-Um Soundscape in den Ruhemodus zu versetzen, tippen Sie oben rechts auf dem Bildschirm auf die Schaltfläche *„Ruhemodus aktivieren“*. Wenn Sie dies tun, wird Soundscape die Ortungsdienste und die mobilen Daten nicht mehr verwenden, bis Sie die App wieder aufwecken.
+### How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?
+To put Soundscape in to Sleep Mode, select the *"Sleep"* button in the top-right corner of the screen. When you select this, Soundscape will stop using Location Services and mobile data until you choose to wake it up again.
 
+### How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?
+To put Soundscape in to Snooze Mode, select the *"Sleep"* button in the top-right corner of the screen. Once Soundscape’s in Sleep Mode, select the *"Wake up when I leave"* button and Soundscape will go in to a low power state until you leave your current location.
 
-### Wie verwende ich den Standbymodus, um die Auswirkung von Soundscape auf den Akku zu minimieren?
-Um Soundscape in den Standbymodus zu versetzen, tippen Sie oben rechts auf dem Bildschirm auf die Schaltfläche *„Ruhemodus aktivieren“*. Sobald Soundscape im Ruhemodus ist, wählen Sie die Schaltfläche *„Beim Verlassen aufwecken“* und Soundscape wechselt in einen Energiesparmodus, bis Sie Ihren aktuellen Standort verlassen.
+### How does my choice of headphones affect the battery life of my phone?
+In our tests, the battery consumption of Bluetooth headphones is comparable to wired headphones and should not be a significant factor to consider when selecting headphones.
 
+### How does running Soundscape in the background impact battery life of my phone?
+Soundscape is a location-based app and uses Location Services to determine your location. In our tests, Soundscape does not consume any more battery than the average map application; but if you are concerned about battery consumption when using your phone, the following are a few tips which will help lower usage:
 
-### Wie wirkt sich die Kopfhörerauswahl auf die Akkuleistung meines Telefons aus?
-In unseren Tests ist der Akkuverbrauch von Bluetooth-Kopfhörern mit dem von kabelgebundenen Kopfhörern vergleichbar und spielt bei der Auswahl eines Headsets keine wesentliche Rolle.
+1. Turn the screen display off as much as possible when you are not interacting with the app.
 
-### Wie wirkt sich die Ausführung von Soundscape im Hintergrund auf die Akkulaufzeit meines Telefons aus?
-Soundscape ist eine standortbasierte App, die die Ortungsdienste verwendet, um Ihren Standort zu bestimmen. In unseren Tests verbrauchte Soundscape nicht mehr Batterieleistung als die durchschnittliche kartenbasierte Anwendung. Wenn Sie jedoch Bedenken wegen des Batterieverbrauchs bei der Nutzung Ihres Telefons haben, beachten Sie die nachfolgenden Tipps, um den Verbrauch zu senken:
+2. When not using the app, close it down. Soundscape uses location services continually when it is running so that it always knows your location, even when you are not moving. Don’t forget to restart the app when you resume your journey.
 
-1. Schalten Sie die Bildschirmanzeige möglichst aus, wenn Sie nicht mit der App interagieren.
+3. In cold weather, keep your phone warm as batteries perform more poorly in colder temperatures.
 
-2. Schließen Sie die App, wenn Sie sie nicht verwenden. Soundscape verwendet im laufenden Betrieb kontinuierlich den Ortungsdienst, sodass es Ihren Standort immer kennt, auch wenn Sie sich nicht bewegen. Vergessen Sie nicht, die App neu zu starten, wenn Sie Ihren Weg fortsetzen.
+### How much mobile data does Soundscape use?
+The amount of mobile data used depends on how you use Soundscape. We have designed Soundscape to use only a small amount of data when you’re out and about by doing things like saving points as you walk around so you don’t need to download them again every time you go back to somewhere you’ve already been. To reduce the amount of mobile data you use, make sure you are connected to Wi-Fi whenever possible, particularly to download the app. When you are not using Soundscape, you should use the *"Sleep"* button to put Soundscape to sleep or force close the app.
 
-3. Halten Sie Ihr Telefon bei Kälte warm, da die Batterieleistung bei kalten Temperaturen nachlässt.
+### How is Soundscape different from other map apps?
+Soundscape provides an ambient description of your surroundings in aid of exploration and way-finding. Using spatial audio, Soundscape will call out points of interest, parks, roads, and intersections from the direction they physically are in your immediate environment as you walk. For example, if you pass a shop on your right, you will hear the name of the shop sounding from your right. As you approach an intersection, you will hear each road name sounding from the direction it goes in, beginning to your left, ahead and to the right.
 
-### Wie hoch ist die mobile Datenmenge, die Soundscape verbraucht?
-Die Menge an mobilen Daten, die verwendet wird, hängt davon ab, wie Sie Soundscape nutzen. Wir haben Soundscape so gestaltet, dass es unterwegs nur wenig Daten verbraucht, z. B. indem Punkte beim Herumlaufen gespeichert werden, sodass Sie sie nicht jedes Mal neu herunterladen müssen, wenn Sie an einen bereits besuchten Ort zurückkehren. Um den mobilen Datenverbrauch zu reduzieren, stellen Sie sicher, dass Sie wann immer möglich mit WLAN verbunden sind, insbesondere beim Herunterladen der App. Wenn Sie Soundscape nicht verwenden, sollten Sie die Schaltfläche *„Ruhemodus“* verwenden, um Soundscape in den Ruhemodus zu versetzen, oder die App vollständig schließen.
+Instead of turn-by-turn directions as often provided by other map applications, Soundscape will play an audible beacon in the direction of your destination, empowering you to make your way there however works best for you, using your increased awareness of your surroundings and the location of your destination. Soundscape is designed to run in the background, enabling you to use a turn-by-turn directions app, all the while continuing to provide environmental awareness as you make your way to your destination.
 
-### Wie unterscheidet sich Soundscape von anderen Karten-Apps?
-Soundscape bietet eine ambientartige Beschreibung Ihrer Umgebung, um beim Erkunden und bei der Wegfindung zu unterstützen. Mithilfe räumlichen Audios sagt Soundscape Points of Interest, Parks, Straßen und Kreuzungen aus der Richtung an, in der sie sich in Ihrer unmittelbaren Umgebung befinden, während Sie gehen. Wenn Sie zum Beispiel an einem Geschäft auf Ihrer rechten Seite vorbeigehen, hören Sie den Namen dieses Geschäfts von rechts. Wenn Sie sich einer Kreuzung nähern, hören Sie die Namen der einzelnen Straßen jeweils aus der Richtung, in die sie verlaufen – beginnend mit der links liegenden, dann der geradeaus führenden und schließlich der rechts liegenden.
+### How do I use Soundscape with a wayfinding app?
+Soundscape is designed as an awareness app to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.
 
-Anstatt Schritt‑für‑Schritt‑Anweisungen, wie sie viele andere Karten‑Apps bieten, spielt Soundscape ein Audiobeacon in Richtung Ihres Ziels ab. So können Sie dank Ihrer verbesserten Wahrnehmung der Umgebung und des Wissens über die Lage Ihres Ziels selbstbestimmt dorthin gelangen. Soundscape ist so konzipiert, dass es im Hintergrund läuft, sodass Sie parallel eine Navigations‑App mit Schritt‑für‑Schritt‑Anweisungen verwenden können, während Soundscape weiterhin Umgebungsinformationen liefert, während Sie sich auf den Weg zu Ihrem Ziel machen.
+### How do I control what I hear and when I hear it in Soundscape?
+Soundscape provides several ways to control what you hear and when:
 
-### Wie verwende ich Soundscape mit einer Wegfindungs-App?
-Soundscape liefert Ihnen Details zu Ihrer Umgebung, die Ihnen sonst möglicherweise nicht bekannt sind. Soundscape ist zwar nicht als eine standardmäßige Navigations-App konzipiert, kann aber zusammen mit solchen Apps verwendet werden, um ergänzende Informationen bereitzustellen. Um Soundscape mit diesen Apps zu verwenden, starten Sie zuerst Ihre Navigations-App. Wechseln Sie dann zu Soundscape, und platzieren Sie ein Beacon auf dasselbe Ziel wie in der Navigations-App. Ab diesem Punkt werden beide Apps ausgeführt, und Sie hören Wegbeschreibungen von Ihrer Navigations-App, während Sie Hinweise zu Points-of-Interest, Kreuzungen und der Entfernung zu Ihrem Ziel von Soundscape erhalten.
+1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *\"unmute beacon button\"* on the main screen to resume hearing the beacon.
 
-### Wie steuere ich in Soundscape, was ich höre und wann ich es höre?
-Soundscape bietet mehrere Möglichkeiten zu steuern, was Sie hören und wann:
+2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape in to Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you choose to turn it back on. Alternatively, you can select *\"Settings\"* from the menu and choose to turn all callouts off in the *\"Manage Callouts\"* section.
 
-1. Alle Audios sofort stoppen: Tippen Sie mit zwei Fingern doppelt auf den Bildschirm, um alle Audioausgaben sofort auszuschalten, einschließlich aktuell abgespielter Hinweise und des Beacons, falls dieses eingeschaltet ist. Hinweise werden automatisch wiedergegeben, wenn Sie sich der nächsten Kreuzung oder einem Point‑of‑Interest nähern, das hörbare Audiobeacon jedoch nicht. Wählen Sie auf dem Hauptbildschirm die Schaltfläche *„Stummschaltung des Audiobeacons aufheben“*, um das Beacon wieder zu aktivieren.
+3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *\"mute beacon\"*/*\"unmute beacon\"* button on the main screen.
 
-2. Automatische Hinweise stoppen: Wenn Sie sich nicht fortbewegen oder ein Ziel erreicht haben, benötigen Sie wahrscheinlich nicht, dass Soundscape Sie weiterhin über die Umgebung informiert. Anstatt die App zu beenden, können Sie Soundscape in den Standbymodus versetzen; es wird dann wieder aktiviert, wenn Sie weggehen. Alternativ können Sie Soundscape in den Ruhemodus versetzen; es bleibt ausgeschaltet, bis Sie es wieder einschalten. Sie können außerdem im Menü unter *„Einstellungen“* im Abschnitt *„Hinweise verwalten“* alle Hinweise deaktivieren.
+If you still want to interact with Soundscape but don’t want to hear automatic callouts, you can turn callouts off by going to the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *\"Sleep\"* button on the home screen.
 
-3. Das Beacon stoppen: Es gibt Situationen, in denen Sie ein Ziel gesetzt haben, das hörbare Beacon aber nicht benötigen. Zum Beispiel, wenn Sie genau wissen, wie Sie zum Ziel gelangen, aber dennoch automatische Entfernungs‑Updates erhalten möchten, oder wenn Sie das Beacon nur beim Annähern an das Ziel brauchen. In jedem Fall können Sie selbst entscheiden, wann Sie das Beacon hören, indem Sie auf dem Hauptbildschirm die Schaltfläche *„Beacon stummschalten“*/*„Stummschaltung des Beacons aufheben“* umschalten.
+### Do I need to hold the phone in my hand all the time?
+No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *\"flat\"* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.
 
-Wenn Sie weiterhin mit Soundscape interagieren möchten, aber keine automatischen Hinweise hören wollen, schalten Sie diese im Menü unter *„Einstellungen“* → *„Hinweise verwalten“* aus. Oder wenn Sie Soundscape längere Zeit nicht verwenden, versetzen Sie die App über die Schaltfläche *„Ruhemodus aktivieren“* auf dem Startbildschirm in den Ruhe‑ oder Standbymodus.
-
-### Muss ich das Telefon die ganze Zeit in der Hand halten?
-Nein! Beim Gehen können Sie das Telefon in einer Tasche, einem Beutel oder dort aufbewahren, wo es für Sie praktisch ist. Soundscape verwendet die Richtung, in die Sie gehen, um zu entscheiden, welche Hinweise links bzw. rechts angesagt werden. Wenn Sie anhalten, weiß Soundscape nicht, in welche Richtung Sie schauen. Ist das Audiobeacon eingeschaltet, werden Sie bemerken, dass es leiser wird, bis Sie sich wieder bewegen. Sie können das Telefon jederzeit herausnehmen, um die Standort‑ und Erkundungsschaltflächen am unteren Bildschirmrand zu bedienen; halten Sie dann das Telefon mit der Oberseite in Blickrichtung und dem Bildschirm nach oben. In dieser *„flachen“* Position verwendet Soundscape den Kompass des Telefons, um Ihre Blickrichtung zu bestimmen und genaue räumliche Ansagen zu liefern. Wenn das Beacon aktiv ist, wird es dann auch wieder mit voller Lautstärke hörbar.
-
-### Was ist Open Street Map, und warum wird es für Soundscape verwendet?
-Soundscape ruft geografische Kartendaten ab, um die Informationshinweise in der App bereitzustellen. Die primäre Kartenquelle, die wir verwenden, ist Open Street Map (www.openstreetmap.org), eine von der Community generierte Kartenplattform, die es Organisationen und Einzelpersonen ermöglicht, die Qualität und Granularität der bereitgestellten Informationen und die Zugänglichkeit ihrer Bereiche mithilfe von Open Street Map-Kartenerstellungstools zu verbessern.
+### What is OpenStreetMap and why do we use it for Soundscape?
+Soundscape uses map data to create its audio callouts. Our main map source is OpenStreetMap (www.openstreetmap.org). This is a mapping platform created by a community of contributors. Organizations and individuals can use OpenStreetMap's tools to improve the data and make their spaces more accessible.
 

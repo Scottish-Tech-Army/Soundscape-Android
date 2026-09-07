@@ -1,5 +1,5 @@
 ---
-title: Anpassen von Markierungen
+title: Customizing Markers
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
@@ -7,9 +7,9 @@ lang: de
 permalink: /users/help-customizing-markers.html
 ---
 
-# Anpassen von Markierungen
+# Customizing Markers
 
-Wenn Sie eine zuvor erstellte Markierung umbenennen oder ihr eine Anmerkung hinzufügen möchten, wählen Sie die Markierung auf der Registerkarte *„Markierungen“* der Seite *„Markierungen und Routen“* aus und tippen Sie dann auf die Schaltfläche *„Markierung bearbeiten“*. Damit können Sie Markierungen aussagekräftige oder nützliche Spitznamen geben und im Feld für Anmerkungen eine längere Beschreibung einfügen.
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-Auf dem Bildschirm *„Bearbeiten“* können Sie eine Markierung auch löschen, wenn Sie sie nicht mehr benötigen.
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

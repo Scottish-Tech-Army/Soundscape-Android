@@ -1,5 +1,5 @@
 ---
-title: A Minha Localização
+title: My Location
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: pt
 permalink: /users/help-my-location.html
 ---
 
-# A Minha Localização
+# My Location
 
-## O que é?
+## What is it?
 
-O botão *"A Minha Localização"* fornece rapidamente informações que o ajudam a determinar onde se encontra atualmente. *"A Minha Localização"* informa-o sobre a sua localização atual, incluindo aspetos como a direção em que está virado, a localização de ruas ou cruzamentos nas proximidades e a localização de pontos de interesse nas proximidades.
+The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
 
-## Quando devo utilizá-lo?
+## When would I use it?
 
-*"A Minha Localização"* é útil quando necessita de saber onde se encontra ou para que ponto cardial está virado.
+*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
 
-## Como funciona?
+## How does it work?
 
-Tal como acontece com os quatro botões existentes na parte inferior do ecrã principal, segure no telemóvel com o ecrã numa posição plana (virado para o céu) e a parte superior apontada para a extremidade voltada para a direção em que está virado antes de premir o botão *"A Minha Localização"*. Isto funciona como uma bússola, indicando à aplicação a direção em que está virado. Basta tocar no botão *"A Minha Localização"* e ouvir.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
 

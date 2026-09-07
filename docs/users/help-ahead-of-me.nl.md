@@ -1,5 +1,5 @@
 ---
-title: Vóór me
+title: Ahead of Me
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
@@ -7,17 +7,17 @@ lang: nl
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Vóór me
+# Ahead of Me
 
-## Wat is het?
+## What is it?
 
-De knop *"Vóór me"* vertelt u over maximaal vijf dingen die zich voor u bevinden. *"Vóór me"* is bedoeld om u te helpen de weg voor u te verkennen wanneer u een nieuw gebied leert kennen.
+The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
 
-## Wanneer zou ik het moeten gebruiken?
+## When would I use it?
 
-Wanneer u door de straat loopt, kunt u met *Vóór me* de plaatsen en dingen ontdekken die voor u aan beide kanten van de straat verschijnen.
+When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
 
-## Hoe werkt het?
+## How does it work?
 
-Net als met de vier knoppen onderaan het hoofdscherm houdt u de telefoon met het scherm horizontaal en met de bovenkant in de richting waarin u loopt, voordat u op *Vóór me* drukt. Dit werkt als een kompas en geeft aan de app door in welke richting u kijkt. Tik op de knop *Vóór me* en u hoort de referentiepunten die zich voor u bevinden.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
 

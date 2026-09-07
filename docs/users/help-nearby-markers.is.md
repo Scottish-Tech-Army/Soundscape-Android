@@ -1,5 +1,5 @@
 ---
-title: nálæg merki
+title: Nearby Markers
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: is
 permalink: /users/help-nearby-markers.html
 ---
 
-# nálæg merki
+# Nearby Markers
 
-## hvað er það?
+## What is it?
 
-hnappurinn nálæg merki gefur upplýsingar um allt að fjögur, nálæg, vistuð merki. Þetta getur verið hjálplegt til að átta sig á stöðu.
+The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
 
-## hvenar skal nota?
+## When would I use it?
 
-Þegar verið er að ná áttum má nota nálæg merki til að átta sig á umhverfinu.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
 
-## hvernig virkar það?
+## How does it work?
 
-heppligast er að snúa símanum með skjáinn upp, hleðslu rauf að notanda og toppinn beint fram. Þetta gefur ´símanum rétta stefnu.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
 

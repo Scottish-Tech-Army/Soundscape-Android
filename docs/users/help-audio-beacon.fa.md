@@ -1,5 +1,5 @@
 ---
-title: جهت‌نمای صوتی
+title: Audio Beacon
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
@@ -7,27 +7,27 @@ lang: fa
 permalink: /users/help-audio-beacon.html
 ---
 
-# جهت‌نمای صوتی
+# Audio Beacon
 
-## این چیست؟
+## What is it?
 
-هنگامی که جهت‌نمای صوتی را روی یک مکان معین در نزدیکی خود تنظیم می‌کنید، ساند‌اسکیپ با پخش یک علامت صوتی خاص به شما اطلاع می‌دهد که آن مکان در کدام جهت قرار دارد. شما می‌توانید صدای جهت‌نما را در صفحه‌ی اصلی اپلیکیشن قطع یا وصل نمایید. به‌علاوه، ساند‌اسکیپ اطلاعاتی همچون فاصله‌ی شما تا مقصد و در صورت امکان نام خیابانی که مقصد در آن واقع شده است را نیز در صفحه‌ی اصلی نمایش می‌دهد.
+Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
 
-## چه زمانی از آن استفاده کنم؟
+## When would I use it?
 
-استفاده از جهت‌نمای صوتی هنگامی مفید است که شما در یک محیط نا‌آشنا قرار داشته باشید و بخواهید به‌طور مداوم از موقعیت خود نسبت به یک نقطه‌ی مشخص در آن محدوده مطلع شوید. شما همچنین می‌توانید از این قابلیت در طول مسیرتان به‌سمت مقصد استفاده نمایید تا در ارتباط با آنچه در اطرافتان قرار دارد آگاهی کسب کنید. جهت‌نمای صوتی به شما دستور‌العمل‌های مسیریابی گام‌به‌گام نمی‌دهد؛ اما برای شما یک علامت صوتی ممتد پخش می‌کند تا به‌کمک آن بتوانید موقعیت خود نسبت به مکانی که جهت‌نما روی آن تنظیم شده است را تشخیص دهید. شما می‌توانید با استفاده از جهت‌نمای صوتی در ساند‌اسکیپ و با اتکا به مهارت‌های جهت‌یابیتان تصمیم بگیرید که چگونه می‌خواهید خود را به مقصدتان برسانید. همچنین این امکان برای شما فراهم است که همزمان با ساند‌اسکیپ از یک اپلیکیشن مسیریابی دیگر نیز استفاده نمایید.
+Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
 
-## چگونه کار می‌کند؟
+## How does it work?
 
-**برای تنظیم جهت‌نما:**
+**To set a beacon :**
 
-ابتدا جزئیات یک مکان را مشاهده کنید؛ این کار را می‌توانید با استفاده از نوار جستجو یا با ضربه زدن روی یکی از دکمه‌های *«مکان‌های نزدیک»*، *«نشانه‌ها و مسیرها»* یا *«موقعیت مکانی فعلی»* و انتخاب یک مکان انجام دهید. در صفحه‌ی *«جزئیات موقعیت مکانی»*، دکمه‌ی *«فعال‌سازی جهت‌نمای صوتی»* را انتخاب کنید. با ضربه زدن روی این دکمه، شما به صفحه‌ی اصلی باز‌می‌گردید و جهت‌نمای صوتی قابل شنیدنی که از سمت مکانی که انتخاب کرده‌اید پخش می‌شود روشن خواهد شد. نام مکانی که انتخاب کرده‌اید همراه با فاصلهٔ آن و آدرس فیزیکی‌اش (در صورت در دسترس بودن) اکنون در صفحهٔ اصلی برنامه نمایش داده خواهد شد.
+ First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-**برای حذف جهت‌نمای فعلی:**
+**To remove the current beacon :**
 
-به‌سادگی روی دکمه‌ی *«توقف مسیر»* در صفحه‌ی اصلی ضربه بزنید.
+ Simply press the *\"Stop Route\"* button on the home screen.
 
-**برای قطع صدای جهت‌نمای صوتی:**
+**To mute the audible beacon :**
 
-روی دکمه‌ی *«بستن صدای جهت‌نما»* در کنار دکمه‌ی *«توقف مسیر»* در صفحه‌ی اصلی ضربه بزنید.
+ Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
 

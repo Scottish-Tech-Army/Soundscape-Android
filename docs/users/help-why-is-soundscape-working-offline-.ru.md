@@ -1,5 +1,5 @@
 ---
-title: Почему Soundscape работает автономно?
+title: Why is Soundscape working offline?
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ru
 permalink: /users/help-why-is-soundscape-working-offline-.html
 ---
 
-# Почему Soundscape работает автономно?
+# Why is Soundscape working offline?
 
-## Почему Soundscape работает автономно?
+## Why is Soundscape working offline?
 
-При отсутствии интернет-соединения или сбое в работе сервисов Soundscape он переходит в автономный режим. Тем не менее, Soundscape продолжит работать, но некоторые возможности могут быть ограничены.
+When there is no internet connection, or the Soundscape services are down, Soundscape switches to offline mode. It will keep working, but some features may be limited.
 
-## Ограничения
+## Limitations
 
-Вызовы будут работать, если вы находитесь в области, которую вы уже проходили и которая сохранена в вашей истории вызовов. Аналогичным образом вы можете разместить звуковой маяк или создать маркер в местах, сохраненных в вашей истории вызовов.
+Callouts still work in areas you have walked through before, since Soundscape stores them in your callout history. You can also place an audio beacon or create a marker on places already stored in your callout history.
 
-## Что можно сделать?
+## What can you do?
 
-Soundscape попытается возобновить нормальную работу, когда ваш телефон подключён к Wi-Fi или включена передача данных по сотовой сети, и вы находитесь в зоне с хорошим сигналом. Если у вашего телефона хорошее интернет-соединение, но Soundscape не восстанавливает нормальную работу, возможно, произошел сбой в работе сервисов Soundscape.
+Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or cellular data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
 

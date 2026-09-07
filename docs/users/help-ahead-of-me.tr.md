@@ -1,5 +1,5 @@
 ---
-title: Önümde
+title: Ahead of Me
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
@@ -7,17 +7,17 @@ lang: tr
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Önümde
+# Ahead of Me
 
-## Bu nedir?
+## What is it?
 
-*"Önümde"* düğmesi, önünüzdeki en fazla beş şey hakkında bilgi verir. *"Önümde"* yeni bir bölgeyi keşfederken önünüzdeki yolu incelemenize yardımcı olmak için tasarlanmıştır.
+The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
 
-## Ne zaman kullanırım?
+## When would I use it?
 
-Sokakta yürürken, ilerde caddenin her iki tarafında karşılaşacağınız yerleri ve şeyleri keşfetmek için *"Önümde"* kullanmayı deneyin.
+When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
 
-## Nasıl çalışır?
+## How does it work?
 
-Ana ekranın altındaki dört düğmenin tümünde olduğu gibi, *"Önümde"* düğmesine basmadan önce telefonunuzu ekran düz (gökyüzüne bakacak şekilde) ve telefonun üst kısmı baktığınız yöne işaret edecek şekilde tutun. Bu, uygulamaya hangi yönde baktığınızı söyleyen bir pusula gibi davranır. Sadece *"Önümde"* düğmesine dokunun; kabaca önünüzdeki birkaç ilgi noktasını duyacaksınız.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
 

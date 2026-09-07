@@ -1,5 +1,5 @@
 ---
-title: Conseils
+title: Tips
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: fr
 permalink: /users/help-tips.html
 ---
 
-# Conseils
+# Tips
 
-Vous pouvez trouver les arrêts de bus à proximité en sélectionnant le filtre *"Transport public"* dans la liste *"Emplacements à proximité"*.
+You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
 
-Vous pouvez définir une balise sur n’importe quelle adresse. Depuis l’écran principal de Soundscape, recherchez l’adresse. Après avoir sélectionné l’adresse dans les résultats de recherche, un écran *"Détails de l’emplacement"* s’affichera et comporte une option *"Démarrer la Balise sonore"* pour cette adresse. De cette façon, vous pouvez définir une balise sur des commerces, lieux, points d’intérêt et résidences qui ne figurent pas dans Open Street Map.
+You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
 
-Si vous empruntez régulièrement une ligne de bus, enregistrez vos arrêts d’embarquement et de descente comme Marqueurs. Ils seront ainsi sauvegardés et faciles à retrouver : allez sur *"Marqueurs et Itinéraires"* depuis l’écran d’accueil et trouvez‑les dans la page *"Marqueurs"*. Vous pouvez définir une balise sur ces marqueurs et vous recevrez des mises à jour périodiques sur la distance qui vous sépare de votre arrêt de sortie. Remarque : vous pouvez couper le son rythmique et continuer à recevoir des mises à jour de distance en cours de route.
+If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
 
-Si vous placez votre téléphone dans votre poche et arrêtez de vous déplacer, le son de la balise diminue, car Soundscape ne peut pas déterminer la route face à vous. Pour résoudre ce problème, recommencez à marcher ou sortez votre téléphone et tenez-le à plat.
+If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
 
-Soundscape fonctionne de manière optimale lorsque vous tenez le téléphone à plat avec l’écran face au ciel et le haut du téléphone dirigé devant vous.
+Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
 
-Vous pouvez activer et désactiver le son rythmique de la balise en utilisant le bouton de désactivation du son de l’écran d’accueil. Si le son de la balise est désactivé, vous recevrez encore les mises à jour sur votre distance par rapport à votre destination tous les 50 mètres environ.
+You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
 
-Si vous souhaitez continuer à interagir avec Soundscape sans entendre les notifications automatiques, vous pouvez les désactiver depuis la section *"Gérer les notifications"* de l’écran *"Réglages"* du menu. Ou, si vous n’allez pas utiliser Soundscape, vous pouvez le mettre en mode Mettre en veille ou Désactiver temporairement en utilisant le bouton *"Mettre en veille"* sur l’écran d’accueil.
+To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
 

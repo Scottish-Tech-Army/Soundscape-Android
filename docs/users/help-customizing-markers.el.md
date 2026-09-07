@@ -1,5 +1,5 @@
 ---
-title: Εξατομίκευση δεικτών
+title: Customizing Markers
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: el
 permalink: /users/help-customizing-markers.html
 ---
 
-# Εξατομίκευση δεικτών
+# Customizing Markers
 
-Εάν θέλετε να μετονομάσετε έναν δείκτη που δημιουργήσατε προηγουμένως ή να του προσθέσετε μια σημείωση, μπορείτε να το κάνετε επιλέγοντας τον δείκτη στην καρτέλα *"Δείκτες"* της σελίδας *"Δείκτες και Διαδρομές"* και στη συνέχεια επιλέγοντας το κουμπί *"Επεξεργασία δείκτη"*. Μπορείτε να χρησιμοποιήσετε αυτή τη λειτουργία για να δώσετε στους δείκτες περιγραφικά ή χρήσιμα ψευδώνυμα, καθώς και να τους προσθέσετε μια μακρύτερη περιγραφή μέσω του πεδίου σημείωσης.
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-Από αυτή την οθόνη *"Επεξεργασία"* μπορείτε επίσης να διαγράψετε έναν δείκτη εάν δεν τον χρειάζεστε πλέον.
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

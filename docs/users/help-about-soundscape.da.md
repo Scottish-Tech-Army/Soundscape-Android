@@ -1,5 +1,5 @@
 ---
-title: Om Soundscape
+title: About Soundscape
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
@@ -7,17 +7,19 @@ lang: da
 permalink: /users/help-about-soundscape.html
 ---
 
-# Om Soundscape
+# About Soundscape
 
-Soundscape udforsker brugen af innovativ lydbaseret teknologi for at hjælpe folk med at opbygge en rigere bevidsthed om deres omgivelser, så de får mere selvtillid og bliver bedre i stand til at færdes.
+Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
 
-Soundscape ville ikke være muligt uden disse fantastiske tredjepartsbiblioteker og -data. Klik på linkene for at se deres licenser:
+Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) leverer alle geodata til kortlægning og lyd, som bruges i Soundscape.
+[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) bruges til at generere de kortfliser, vi bruger.
+[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) bruges til at generere 3D-lyden og stilles til rådighed under [Apache 2.0-licensen](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
 
-Alle tredjeparts produkt- og firmanavne samt logoer er varemærker eller registrerede varemærker og forbliver deres respektive ejeres ejendom.
+[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+
+All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
 

@@ -1,5 +1,5 @@
 ---
-title: Συμβουλές
+title: Tips
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: el
 permalink: /users/help-tips.html
 ---
 
-# Συμβουλές
+# Tips
 
-Μπορείτε να βρείτε κοντινές στάσεις λεωφορείων επιλέγοντας το φίλτρο *"Δημόσια συγκοινωνία"* στη λίστα *"Κοντινές τοποθεσίες"*.
+You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
 
-Μπορείτε να ορίσετε ηχητικό σήμα σε οποιαδήποτε διεύθυνση. Από την κύρια οθόνη του Soundscape, αναζητήστε τη διεύθυνση. Αφού επιλέξετε τη διεύθυνση στα αποτελέσματα αναζήτησης, θα εμφανιστεί η οθόνη *"Λεπτομέρειες τοποθεσίας"* που περιλαμβάνει την επιλογή *"Έναρξη Ηχητικού σήματος"* για τη διεύθυνση. Με αυτόν τον τρόπο μπορείτε να ορίσετε ηχητικά σήματα σε επιχειρήσεις, μέρη, σημεία ενδιαφέροντος και κατοικίες που δεν υπάρχουν στο Open Street Map.
+You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
 
-Αν υπάρχει γραμμή λεωφορείου που χρησιμοποιείτε τακτικά, ορίστε τις στάσεις επιβίβασης και αποβίβασης ως δείκτες. Με αυτόν τον τρόπο θα αποθηκευτούν και θα μπορείτε να τις βρείτε εύκολα — απλώς μεταβείτε στο *"Δείκτες και Διαδρομές"* από την αρχική οθόνη και βρείτε τις στην καρτέλα *"Δείκτες"*. Μπορείτε να ορίσετε ένα ηχητικό σήμα σε αυτές και θα λαμβάνετε περιοδικές ενημερώσεις για το πόσο κοντά είστε στην στάση αποβίβασής σας. Σημείωση: μπορείτε να απενεργοποιήσετε τον ρυθμικό ήχο και παρόλα αυτά θα λαμβάνετε ενημερώσεις απόστασης κατά τη διάρκεια της διαδρομής.
+If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
 
-Αν βάλετε το τηλέφωνό σας στην τσέπη σας και σταματήσετε να κινείστε, το ηχητικό σήμα θα γίνει πιο ήσυχο επειδή το Soundscape δεν μπορεί να καταλάβει προς τα πού στρέφεστε. Λύστε αυτό το πρόβλημα ξεκινώντας να περπατάτε ξανά. αφαιρώντας το τηλέφωνό σας από την τσέπη ή την τσάντα και κρατώντας το επίπεδο.
+If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
 
-Το Soundscape λειτουργεί καλύτερα όταν κρατάτε το τηλέφωνο επίπεδο με την οθόνη στραμμένη προς τον ουρανό και το πάνω μέρος του τηλεφώνου να δείχνει μακριά σας.
+Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
 
-Μπορείτε να ενεργοποιήσετε και να απενεργοποιήσετε τον ρυθμικό ήχο του ηχητικού σήματος χρησιμοποιώντας το κουμπί σίγασης στην αρχική οθόνη. Εάν το ηχητικό σήμα είναι σε σίγαση, θα εξακολουθείτε να ενημερώνεστε για την απόστασή σας από τον προορισμό σας κάθε 50 μέτρα περίπου.
+You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
 
-Εάν θέλετε να συνεχίσετε να αλληλεπιδράτε με το Soundscape αλλά δεν θέλετε να ακούτε αυτόματες επεξηγήσεις, μπορείτε να τις απενεργοποιήσετε πηγαίνοντας στην ενότητα *"Διαχείριση επεξηγήσεων"* στην οθόνη *"Ρυθμίσεις"* από το μενού. Εναλλακτικά, αν δεν πρόκειται να χρησιμοποιήσετε το Soundscape, μπορείτε να το θέσετε σε Λειτουργία Αναστολής ή σε Λειτουργία Αναβολής χρησιμοποιώντας το κουμπί *"Αναστολή λειτουργίας"* στην αρχική οθόνη.
+To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
 

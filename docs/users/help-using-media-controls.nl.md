@@ -1,5 +1,5 @@
 ---
-title: Mediaregelaars gebruiken
+title: Using Media Controls
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
@@ -7,37 +7,33 @@ lang: nl
 permalink: /users/help-using-media-controls.html
 ---
 
-# Mediaregelaars gebruiken
+# Using Media Controls
 
-## Wat is het?
+## What is it?
 
-U hebt toegang tot bepaalde functies in Soundscape met de mediaregelknoppen op uw koptelefoon. Deze functionaliteit werkt alle vaste en Bluetooth-koptelefoons met mediaregelknoppen als Afspelen, Pauzeren, Volgende, Vorige en andere. Verschillende koptelefoons hebben mogelijk andere knoppen dus kijk in de onderstaande lijst met acties om te bepalen welke beschikbaar zijn op uw koptelefoon.Houd er ook rekening mee dat deze functie alleen werkt op koptelefoons die mediaregelknoppen van Apple ondersteunen (zoals afspelen en pauzeren).
+You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
 
-## Wanneer zou ik het moeten gebruiken?
+## When would I use it?
 
-Mediaregelaars op de koptelefoon kunnen worden gebruikt terwijl Soundscape actief is. Dit geldt wanneer u in Soundscape bent of terwijl Soundscape in de achtergrond werkt en zelfs wanneer uw apparaat is vergrendeld. Mediaregelknoppen werken echter niet met Soundscape als u met een andere app audio afspeelt zoals muziek, podcasts of video's.
+Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
 
-## Hoe werkt het?
+## How does it work?
 
-Er zijn 3 modi voor de mediacontrole. De modus kan worden geselecteerd in de *"Instellingen"*‑sectie *"Mediaregelaars"*. De modi zijn:
+There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
 
-Originele modus.
+ Original mode. 
 
-⏯ Afspelen/Pauzeren: Zet het audiobaken aan of uit.
+⏯ Play/Pause: Toggles the beacon audio on and off. 
 
-⏭ Volgende: Als er een route wordt afgespeeld, verplaatst dit het audiobaken naar het volgende routepunt in de route. Als er geen route wordt afgespeeld, roept het *"Mijn locatie"* op.
+⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
 
-⏮ Vorige: Als er een route wordt afgespeeld, verplaatst dit het audiobaken naar het vorige routepunt in de route. Als er geen route wordt afgespeeld, roept het *"Om me heen"* op.
-
-
-
-Spraakbediening.
-
-⏯ Afspelen/Pauzeren: Hiermee begint de app te luisteren naar spraakopdrachten.
+⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
 
 
 
-Audiomenu.
+Audio menu. 
 
-⏭ Volgende en ⏮ Vorige bladeren door een reeks menuopties die de app via tekst‑naar‑spraak uitspeelt. ⏯ Afspelen/Pauzeren activeert vervolgens de beschreven optie. Er is één hoofdmenu dat alleen submenus als opties heeft. Elk submenu bevat een groep vergelijkbare acties.
+
+
+⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
 

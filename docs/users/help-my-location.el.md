@@ -1,5 +1,5 @@
 ---
-title: Η τοποθεσία μου
+title: My Location
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: el
 permalink: /users/help-my-location.html
 ---
 
-# Η τοποθεσία μου
+# My Location
 
-## Τι είναι?
+## What is it?
 
-Το κουμπί *"Η τοποθεσία μου"* σας δίνει γρήγορα πληροφορίες που σας βοηθούν να καταλάβετε πού βρίσκεστε αυτήν τη στιγμή. *"Η τοποθεσία μου"* σας λέει για την τρέχουσα τοποθεσία σας, συμπεριλαμβανομένων στοιχείων όπως η κατεύθυνση που αντιμετωπίζετε, πού βρίσκονται κοντινοί δρόμοι ή διασταυρώσεις και πού βρίσκονται τα κοντινά σημεία ενδιαφέροντος.
+The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
 
-## Πότε θα το χρησιμοποιούσα;
+## When would I use it?
 
-*"Η τοποθεσία μου"* είναι χρήσιμη όταν πρέπει να καταλάβετε πού βρίσκεστε ή ποια βασική κατεύθυνση αντιμετωπίζετε.
+*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
 
-## Πώς λειτουργεί;
+## How does it work?
 
-Όπως και με τα τέσσερα κουμπιά στο κάτω μέρος της αρχικής οθόνης, κρατήστε το τηλέφωνό σας με την οθόνη επίπεδη.στραμμένη προς τον ουρανό) και το επάνω μέρος του τηλεφώνου στραμμένο προς την κατεύθυνση που κοιτάτε πριν πατήσετε το κουμπί *"Η τοποθεσία μου"*. Αυτό λειτουργεί σαν πυξίδα που λέει στην εφαρμογή προς ποια κατεύθυνση στρέφεστε. Απλά, πατήστε το κουμπί *"Η τοποθεσία μου"* και ακούστε.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
 

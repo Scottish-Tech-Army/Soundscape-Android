@@ -1,5 +1,5 @@
 ---
-title: Creación de marcadores
+title: Creating Markers
 layout: page
 parent: "Usar Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: es
 permalink: /users/help-creating-markers.html
 ---
 
-# Creación de marcadores
+# Creating Markers
 
-Puede crear marcadores de tres maneras: buscando el lugar que desea guardar usando la barra de búsqueda, encontrando un lugar con el botón *"Lugares cercanos"* o usando el botón *"Ubicación actual"*, todo ello en la pantalla principal de Soundscape. Una vez que haya encontrado el lugar que desea, al seleccionarlo, irá a la pantalla *"Detalles de la ubicación"*. En esta pantalla, seleccione el botón *"Guardar como marcador"*.
+You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
 
-Tendrá la opción de personalizar este marcador. Si lo desea, puede cambiar el nombre del marcador y también agregar una anotación que se oirá con el marcador para proporcionar información adicional. Una vez que acabó, seleccione el botón *"Listo"* para guardar el marcador.
+You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
 

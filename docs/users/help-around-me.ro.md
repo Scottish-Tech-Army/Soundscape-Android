@@ -1,5 +1,5 @@
 ---
-title: În jurul meu
+title: Around Me
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ro
 permalink: /users/help-around-me.html
 ---
 
-# În jurul meu
+# Around Me
 
-## Ce este?
+## What is it?
 
-Butonul *"În jurul meu"* te informează despre câte un lucru din fiecare dintre cele patru cadrane din jurul tău (în față, la dreapta, în spate și la stânga). *"În jurul meu"* este conceput pentru a te ajuta să te orientezi în raport cu împrejurimile.
+The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
 
-## Când aș folosi această funcție?
+## When would I use it?
 
-Când încerci să te orientezi și să te familiarizezi cu împrejurimile, folosește *"În jurul meu"* pentru a auzi despre lucrurile din jurul tău.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
 
-## Cum funcționează?
+## How does it work?
 
-La fel ca toate cele patru butoane din partea de jos a ecranului principal, ține telefonul cu ecranul orizontal (orientat spre cer) și cu partea de sus a telefonului îndreptată în direcția în care ești orientat înainte de a apăsa butonul *"În jurul meu"*. Acesta funcționează ca o busolă care indică aplicației direcția în care ești orientat. Pur și simplu apasă butonul *"În jurul meu"* și vei auzi patru puncte de interes dispuse în jurul tău.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
 

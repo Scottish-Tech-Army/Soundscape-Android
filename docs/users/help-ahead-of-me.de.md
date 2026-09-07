@@ -1,5 +1,5 @@
 ---
-title: Vor mir
+title: Ahead of Me
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
@@ -7,17 +7,17 @@ lang: de
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Vor mir
+# Ahead of Me
 
-## Was ist es?
+## What is it?
 
-Die Schaltfläche *„Vor mir“* informiert Sie über bis zu fünf Dinge vor Ihnen. *„Vor mir“* soll Ihnen helfen, den Weg vor Ihnen zu erkunden, wenn Sie ein neues Gebiet kennenlernen.
+The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
 
-## Wann würde ich es verwenden?
+## When would I use it?
 
-Wenn Sie eine Straße entlang laufen, können Sie *„Vor mir“* verwenden, um Plätze und Points-of-Interest auf beiden Seiten des Weges vor Ihnen zu entdecken.
+When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
 
-## Wie funktioniert es?
+## How does it work?
 
-Wie bei allen vier Schaltflächen am unteren Rand des Startbildschirms, halten Sie Ihr Telefon mit dem Bildschirm flach (zum Himmel zeigend) und mit der Oberseite in die Richtung, in die Sie schauen, bevor Sie die Schaltfläche *„Vor mir“* antippen. Dies wirkt wie ein Kompass, der der App mitteilt, in welche Richtung Sie schauen. Tippen Sie einfach auf die Schaltfläche *„Vor mir“*, und Sie werden Hinweise zu mehreren Points-of-Interest hören, die alle ungefähr vor Ihnen liegen.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
 

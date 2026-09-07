@@ -1,5 +1,5 @@
 ---
-title: Automatyczne powiadomienia głosowe
+title: Automatic Callouts
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: pl
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatyczne powiadomienia głosowe
+# Automatic Callouts
 
-## Co to jest?
+## What is it?
 
-Soundscape może informować o rzeczach wokół Ciebie w miarę zbliżania się do nich, ogłaszając ich nazwy z kierunku, w którym się znajdują. Aplikacja zrobi to automatycznie dla różnych obiektów, takich jak firmy, przystanki autobusowe, a nawet skrzyżowania. Możesz skonfigurować, co aplikacja ma ogłaszać automatycznie w sekcji *„Zarządzaj powiadomieniami”* na ekranie *„Ustawienia”*, a gdy chcesz, aby aplikacja była cicha, możesz wyłączyć wszystkie powiadomienia.
+Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
 
-## Kiedy używać?
+## When would I use it?
 
-**Odkrywanie nowej okolicy:**
+**Exploring a new area :**
 
-Włącz automatyczne powiadomienia i chodź swobodnie, aby usłyszeć o różnych sklepach, restauracjach i podobnych miejscach, gdy je mijasz.
+ Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
 
-Idąc do określonego miejsca:
+**Walking to a specific location :**
 
-Gdy zmierzasz do konkretnego punktu, automatyczne powiadomienia o skrzyżowaniach mogą być szczególnie przydatne. Powiadomienia o skrzyżowaniach informują o układzie skrzyżowań podczas zbliżania się do nich i potwierdzają, którą ulicą się poruszasz, gdy je opuszczasz.
+ When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
 
-Gdy potrzebujesz ciszy:
+**When you need silence :**
 
-Jeśli zamierzasz przejść przez jezdnię lub po prostu potrzebujesz, aby aplikacja była cicha, możesz wyłączyć powiadomienia. Gdy powiadomienia są wyłączone, aplikacja przekaże informacje tylko wtedy, gdy ręcznie naciśniesz jeden z przycisków „Moja lokalizacja”, „Bliskie znaczniki mapy (pinezki)”, „Wokół mnie” lub „Przede mną”.
+ When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
 
-## Jak to działa?
+## How does it work?
 
-**Włączanie lub wyłączanie powiadomień:**
+**Turning callouts on or off :**
 
- Wyłączenie powiadomień spowoduje wyciszenie aplikacji. Powiadomienia można włączyć lub wyłączyć w sekcji *„Zarządzaj powiadomieniami”* na ekranie *„Ustawienia”* — stuknij przełącznik *„Zezwól na powiadomienia”*, aby je włączyć lub wyłączyć. Możesz też sterować powiadomieniami za pomocą polecenia *„przewiń do przodu”* (podwójne stuknięcie i przytrzymanie), jeśli Twoje słuchawki mają przyciski sterowania mediami. Alternatywnie możesz użyć przycisku *„Tryb uśpienia”* w prawym górnym rogu ekranu głównego, aby zatrzymać wyświetlanie powiadomień przez Soundscape aż do momentu, gdy zdecydujesz się ją obudzić.
+ Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
 
-**Zarządzanie powiadomieniami, które słyszysz :**
+**Managing which callouts you hear :**
 
- Aby wybrać rodzaje informacji, które Soundscape będzie automatycznie ogłaszać, przejdź do ekranu *„Ustawienia”* z menu na ekranie głównym. Sekcja *„Zarządzaj powiadomieniami”* na ekranie *„Ustawienia”* zawiera listę typów obiektów, które aplikacja może ogłaszać. Każdy element ma przełącznik, który możesz włączyć lub wyłączyć. Jeśli chcesz wyłączyć wszystkie powiadomienia, stuknij przełącznik *„Zezwól na powiadomienia”* na górze listy.
+ To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
 

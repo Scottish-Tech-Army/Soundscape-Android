@@ -1,5 +1,5 @@
 ---
-title: 周围
+title: Around Me
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: zh-CN
 permalink: /users/help-around-me.html
 ---
 
-# 周围
+# Around Me
 
-## 这是什么？
+## What is it?
 
-*"周围"*按钮会告诉您周围四个象限（前方、右侧、后方和左侧）各一个事物。*"周围"*旨在帮助您了解周围环境。
+The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
 
-## 什么时候使用？
+## When would I use it?
 
-当您试图确定方位并了解周围环境时，使用*"周围"*来听取您周围的事物。
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
 
-## 如何使用？
+## How does it work?
 
-与主屏幕底部的所有四个按钮一样，在按下*"周围"*按钮之前，请将手机屏幕朝上平放（面向天空），手机顶部指向您面朝的方向。这就像指南针一样告诉应用您面朝的方向。只需点击*"周围"*按钮，您就会听到分布在您周围的四个兴趣点。
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
 

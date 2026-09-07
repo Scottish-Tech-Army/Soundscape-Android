@@ -1,5 +1,5 @@
 ---
-title: Konumum
+title: My Location
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
@@ -7,17 +7,17 @@ lang: tr
 permalink: /users/help-my-location.html
 ---
 
-# Konumum
+# My Location
 
-## Bu nedir?
+## What is it?
 
-"Konumum" düğmesi, şu anda nerede olduğunuzu anlamanıza yardımcı olan bilgileri hızla verir. *"Konumum"*, baktığınız yön, yakındaki yollar veya kavşaklar ve yakındaki ilgi noktaları gibi mevcut konumunuz hakkında bilgi verir.
+The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
 
-## Ne zaman kullanırım?
+## When would I use it?
 
-*"Konumum"*, nerede olduğunuzu veya hangi yönde ilerlediğinizi anlamanız gerektiğinde kullanışlıdır.
+*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
 
-## Nasıl çalışır?
+## How does it work?
 
-Ana ekranın altındaki dört düğmenin tümünde olduğu gibi, *"Konumum"* düğmesine basmadan önce telefonunuzu ekran düz (gökyüzüne bakacak şekilde) ve telefonun üst kısmı baktığınız yöne işaret edecek şekilde tutun. Bu, uygulamaya hangi yönde baktığınızı söyleyen bir pusula gibi davranır. Sadece *"Konumum"* düğmesine dokunun ve dinleyin.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
 

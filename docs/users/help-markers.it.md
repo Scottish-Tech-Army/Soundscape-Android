@@ -1,5 +1,5 @@
 ---
-title: Indicatori
+title: Markers
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: it
 permalink: /users/help-markers.html
 ---
 
-# Indicatori
+# Markers
 
-Con Soundscape puoi contrassegnare il tuo mondo e tutto ciò che ti interessa, come perni in una mappa.
+With Soundscape, you can mark your world and anything you care about, like pins in a map.
 
-Puoi contrassegnare cose personali e rilevanti per te, come la tua casa, il tuo ufficio e il tuo negozio di alimentari preferito. Puoi contrassegnare qualsiasi luogo o indirizzo, ma puoi anche contrassegnare cose che tradizionalmente potrebbero non essere disponibili sulle mappe, ad esempio ingressi a edifici o parchi, pulsanti per attraversare ai semafori, attraversamenti pedonali o ponti, fermate di autobus o persino l'albero preferito del tuo cane e usare questi indicatori come riferimenti lungo la tua passeggiata.
+You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
 
-Per ascoltare i luoghi contrassegnati, Soundscape li annuncerà automaticamente mentre li superi o ti avvicini; in alternativa puoi usare il pulsante *"Indicatori nelle vicinanze"* nella parte inferiore della schermata principale di Soundscape per sentire un annuncio spaziale degli indicatori intorno a te. Inoltre, puoi impostare un audiofaro su qualsiasi indicatore salvato. In tal caso sentirai l'audiofaro di Soundscape a cui sei abituato e potrai usarlo normalmente.
+To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
 

@@ -1,5 +1,5 @@
 ---
-title: Tilpasning af mærker
+title: Customizing Markers
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: da
 permalink: /users/help-customizing-markers.html
 ---
 
-# Tilpasning af mærker
+# Customizing Markers
 
-Hvis du vil omdøbe et mærke, du tidligere har oprettet, eller tilføje en anmærkning til det, kan du gøre det ved at vælge mærket på fanen *"Mærker"* på siden *"Mærker og Ruter"* og derefter vælge knappen *"Rediger mærke"*. Du kan bruge dette til at give mærker beskrivende eller nyttige øgenavne samt tilføje en længere beskrivelse i anmærkningsfeltet.
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-Fra denne *"Rediger"*-skærm kan du også slette et mærke, hvis du ikke længere har brug for det.
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

@@ -1,5 +1,5 @@
 ---
-title: Devant moi
+title: Ahead of Me
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: fr
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Devant moi
+# Ahead of Me
 
-## De quoi s’agit-il ?
+## What is it?
 
-Le bouton *"Devant moi"* vous indique jusqu’à cinq éléments se trouvant devant vous. *"Devant moi"* est conçu pour vous aider à explorer ce qui se présente devant vous lorsque vous découvrez une nouvelle zone.
+The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
 
-## Quand l’utiliser ?
+## When would I use it?
 
-Lorsque vous marchez dans la rue, essayez d’utiliser *"Devant moi"* pour découvrir les lieux et les repères situés de part et d’autre.
+When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
 
-## Comment ça fonctionne ?
+## How does it work?
 
-Comme avec les quatre boutons situés en bas de l’écran d’accueil, tenez votre téléphone à plat (écran face au ciel) et le haut de votre téléphone pointé vers la direction face à vous avant d’appuyer sur le bouton *"Devant moi"*. Cette opération agit comme une boussole et indique à l’application la direction dans laquelle vous êtes. Appuyez simplement sur le bouton *"Devant moi"* et vous entendrez plusieurs points d’intérêt se trouvant à proximité.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
 

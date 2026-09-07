@@ -1,5 +1,5 @@
 ---
-title: Διαδρομές
+title: Routes
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: el
 permalink: /users/help-routes.html
 ---
 
-# Διαδρομές
+# Routes
 
-## Τι είναι?
+## What is it?
 
-Οι διαδρομές είναι μια σειρά από σημεία πορείας. Θα ενημερωθείτε κατά την άφιξη σε κάθε σημείο πορείας και το Ηχητικό σήμα θα προχωρήσει αυτόματα στο επόμενο σημείο πορείας.
+Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
 
-## Πότε θα το χρησιμοποιούσα;
+## When would I use it?
 
-Μπορεί να θέλετε να δημιουργήσετε και να χρησιμοποιήσετε μια διαδρομή κάπου που γνωρίζετε για να βεβαιωθείτε ότι βρίσκεστε στον σωστό δρόμο ή μπορεί να θέλετε να τη χρησιμοποιήσετε ως εργαλείο για να εξοικειωθείτε σε ένα νέο ταξίδι.
+You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
 
-## Πώς λειτουργεί;
+## How does it work?
 
-**Δημιουργία διαδρομής**:
+**Creating a route :**
 
-Πρώτα, μεταβείτε στην επιλογή "Δείκτες και Διαδρομές", επιλέξτε την καρτέλα "Διαδρομές" και, στη συνέχεια, επιλέξτε το κουμπί "Νέα διαδρομή". Δώστε στη διαδρομή ένα όνομα και μια προαιρετική περιγραφή και, στη συνέχεια, προσθέστε σημεία καθώς προχωράτε. επιλέξτε τα από τη λίστα δεικτών. Μπορείτε να αναδιατάξετε τη σειρά των σημείων κατά μήκος της μιας διαδρομής ανά πάσα στιγμή, τροποποιώντας τη διαδρομή.
+ First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
 
-**Επεξεργασία διαδρομής :**
+**Editing a route :**
 
- Επιλέξτε τη διαδρομή σας στην οθόνη *"Δείκτες και Διαδρομές"* και στη συνέχεια επιλέξτε *"Επεξεργασία διαδρομής"*. Από εδώ μπορείτε να προσθέσετε και να αφαιρέσετε σημεία πορείας, καθώς και να επεξεργαστείτε το όνομα και την περιγραφή της διαδρομής.
+ Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
 
-**Κοινή χρήση διαδρομής :**
+**Sharing a route :**
 
- Επιλέξτε τη διαδρομή σας στην οθόνη *"Δείκτες και Διαδρομές"* και στη συνέχεια επιλέξτε την επιλογή *"Κοινή χρήση"* χρησιμοποιώντας όλες τις συνηθισμένες επιλογές κοινοποίησης που έχετε στη διάθεσή σας.
+ Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
 

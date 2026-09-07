@@ -1,5 +1,5 @@
 ---
-title: Δημιουργία δεικτών
+title: Creating Markers
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: el
 permalink: /users/help-creating-markers.html
 ---
 
-# Δημιουργία δεικτών
+# Creating Markers
 
-Μπορείτε να δημιουργήσετε δείκτες με τρεις τρόπους: αναζητώντας το μέρος που θέλετε να αποθηκεύσετε χρησιμοποιώντας τη γραμμή αναζήτησης, βρίσκοντας κάποιο μέρος μέσω του κουμπιού *"Κοντινές τοποθεσίες"* ή χρησιμοποιώντας το κουμπί *"Τρέχουσα τοποθεσία"*, τα οποία όλα βρίσκονται στην αρχική οθόνη του Soundscape. Αφού βρείτε το μέρος που θέλετε, επιλέγοντάς το θα μεταβείτε στην οθόνη *"Λεπτομέρειες τοποθεσίας"*. Σε αυτή την οθόνη, επιλέξτε το κουμπί *"Αποθήκευση ως δείκτη"*.
+You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
 
-Τώρα θα έχετε την επιλογή να προσαρμόσετε αυτόν τον δείκτη. Μπορείτε να αλλάξετε το όνομα του δείκτη και επίσης να προσθέσετε ένα σχόλιο/σημείωση που θα ανακοινώνεται μαζί με τον δείκτη για να παρέχει επιπλέον πληροφορίες. Μόλις τελειώσετε, επιλέξτε το κουμπί *"Έτοιμο"* για να αποθηκεύσετε τον δείκτη σας.
+You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
 

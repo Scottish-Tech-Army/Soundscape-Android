@@ -1,5 +1,5 @@
 ---
-title: 前方
+title: Ahead of Me
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: zh-CN
 permalink: /users/help-ahead-of-me.html
 ---
 
-# 前方
+# Ahead of Me
 
-## 这是什么？
+## What is it?
 
-*"前方"*按钮会告诉您最多五个位于您前方的事物。*"前方"*旨在帮助您在熟悉新区域时探索前方的路况与事物。
+The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
 
-## 什么时候使用？
+## When would I use it?
 
-当您走在街上时，尝试使用*"前方"*来发现前方街道两侧即将出现的地点和事物。
+When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
 
-## 如何使用？
+## How does it work?
 
-与主屏幕底部的所有四个按钮一样，在按下*"前方"*按钮之前，请将手机屏幕朝上平放（面向天空），手机顶部指向您面朝的方向。这就像指南针一样告诉应用您面朝的方向。只需点击*"前方"*按钮，您就会听到大致在您前方的多个兴趣点。
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
 

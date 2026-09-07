@@ -1,5 +1,5 @@
 ---
-title: Yakındaki Kayıtlı Noktalar
+title: Nearby Markers
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
@@ -7,17 +7,17 @@ lang: tr
 permalink: /users/help-nearby-markers.html
 ---
 
-# Yakındaki Kayıtlı Noktalar
+# Nearby Markers
 
-## Bu nedir?
+## What is it?
 
-*"Yakındaki Kayıtlı Noktalar"* düğmesi, size en yakın dört kayıtlı nokta hakkında bilgi verir. *"Yakındaki Kayıtlı Noktalar"*, zaten bildiğiniz yerleri kullanarak kendinizi yönlendirmenize yardımcı olmak için tasarlanmıştır.
+The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
 
-## Ne zaman kullanırım?
+## When would I use it?
 
-Çevrenize göre yönünüzü bulmaya çalıştığınızda, bildiğiniz yerlerin konumlarını duymak için *"Yakındaki Kayıtlı Noktalar"* kullanın.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
 
-## Nasıl çalışır?
+## How does it work?
 
-Ana ekranın altındaki dört düğmenin tümünde olduğu gibi, *"Yakındaki Kayıtlı Noktalar"* düğmesine basmadan önce telefonunuzu ekran düz (gökyüzüne bakacak şekilde) ve telefonun üst kısmı baktığınız yöne işaret edecek şekilde tutun. Bu, uygulamaya hangi yönde baktığınızı söyleyen bir pusula gibi davranır. Sadece *"Yakındaki Kayıtlı Noktalar"* düğmesine dokunun; size yakın dört kayıtlı noktayı duyacaksınız.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
 
