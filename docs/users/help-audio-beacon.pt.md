@@ -1,5 +1,5 @@
 ---
-title: Sinal de Áudio
+title: Audio Beacon
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: pt
 permalink: /users/help-audio-beacon.html
 ---
 
-# Sinal de Áudio
+# Audio Beacon
 
-## O que é?
+## What is it?
 
-A definição de um sinal numa localização nas proximidades permite que o Soundscape o mantenha informado reproduzindo um som de sinal audível proveniente da direção dessa localização. Este sinal pode ser desativado ou ativado no ecrã principal. Adicionalmente, o Soundscape apresenta informações sobre a localização no ecrã principal, incluindo a distância a que o local se encontra e o endereço, se este for conhecido.
+Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
 
-## Quando devo utilizá-lo?
+## When would I use it?
 
-A definição de um sinal é útil quando pretende monitorizar um marco familiar à medida que explora uma nova área ou quando está a dirigir-se para um local e pretende ser informado sobre o ambiente que o rodeia ao longo do caminho. A funcionalidade de sinal não fornece direções curva-a-curva, mas proporciona um som audível contínuo que indica a direção do sinal relativamente à sua localização atual. Utilizando o sinal de áudio, as suas competências de navegação e até mesmo a sua aplicação de navegação favorita, pode escolher a forma como pretende chegar a localizações nas suas proximidades.
+Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
 
-## Como funciona?
+## How does it work?
 
-**Para definir um sinal :**
+**To set a beacon :**
 
- Primeiro, visualize os detalhes de uma localização, usando a barra de pesquisa para procurar um local ou tocando num dos botões *"Locais nas Proximidades"*, *"Marcos e Rotas"* ou *"Localização Atual"* e selecionando uma localização. No ecrã *"Detalhes da Localização"* pode selecionar o botão *"Iniciar Sinal de Áudio"*. Ao tocar neste botão será retornado ao ecrã principal e será ativado um sinal audível vindo da direção do local selecionado. O nome do local selecionado, juntamente com a sua distância e o endereço físico, se disponível, será agora apresentado no ecrã principal da aplicação.
+ First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-**Para remover o sinal atual:**
+**To remove the current beacon :**
 
-Basta tocar no botão *"Parar Rota"* no ecrã principal.
+ Simply press the *\"Stop Route\"* button on the home screen.
 
-**Para silenciar o sinal audível:**
+**To mute the audible beacon :**
 
-Toque no botão *"Desativar Sinal"* ao lado do botão *"Parar Rota"* no ecrã principal.
+ Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
 

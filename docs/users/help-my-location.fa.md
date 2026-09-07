@@ -1,5 +1,5 @@
 ---
-title: موقعیت مکانی من
+title: My Location
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
@@ -7,17 +7,17 @@ lang: fa
 permalink: /users/help-my-location.html
 ---
 
-# موقعیت مکانی من
+# My Location
 
-## این چیست؟
+## What is it?
 
-دکمه‌ی *«موقعیت مکانی من»* به‌سرعت اطلاعاتی را در اختیار شما قرار می‌دهد که می‌توانید به‌کمک آن متوجه شوید در حال حاضر در چه نقطه‌ای قرار دارید. شما می‌توانید با استفاده از این قابلیت به اطلاعاتی از قبیل جهتی که رو به آن ایستاده‌اید، خیابان‌ها و تقاطع‌هایی که در نزدیکی شما واقع شده‌اند و نقاط شاخصی که در اطرافتان قرار دارد دست پیدا کنید.
+The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
 
-## چه زمانی از آن استفاده کنم؟
+## When would I use it?
 
-قابلیت *«موقعیت مکانی من»* زمانی مفید است که شما می‌خواهید بدانید کجا هستید یا رو به کدام جهت اصلی ایستاده‌اید.
+*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
 
-## چگونه کار می‌کند؟
+## How does it work?
 
-پیش از آنکه روی دکمه‌ی *«موقعیت مکانی من»* ضربه بزنید، گوشی خود را به حالت افقی نگه دارید؛ به‌گونه‌ای که صفحه‌ی نمایش گوشی رو به آسمان و جلوی گوشی در جهتی باشد که شما رو به آن ایستاده‌اید. این کار را هنگام استفاده از هر چهار دکمه‌ی پایین صفحه‌ی اصلی انجام دهید. در این حالت، گوشی شما مانند یک قطب‌نما عمل کرده و به اپلیکیشن می‌گوید که شما رو به کدام جهت ایستاده‌اید. حالا کافیست روی دکمه‌ی *«موقعیت مکانی من»* ضربه بزنید تا ساند‌اسکیپ به شما بگوید کجا هستید.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
 

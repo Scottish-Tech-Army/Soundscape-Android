@@ -1,5 +1,5 @@
 ---
-title: Пути
+title: Routes
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: ru
 permalink: /users/help-routes.html
 ---
 
-# Пути
+# Routes
 
-## Что это такое?
+## What is it?
 
-Маршруты — это последовательность путевых точек. Вы будете уведомлены о прибытии в каждую путевую точку, а звуковой маяк автоматически переключится на следующую точку.
+Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
 
-## Когда использовать Soundscape?
+## When would I use it?
 
-Возможно, вы захотите создать маршрут в знакомом месте, чтобы не сбиться с пути, или использовать маршрут как инструмент для знакомства с новым направлением.
+You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
 
-## Как оно работает?
+## How does it work?
 
-**Создание маршрута:**
+**Creating a route :**
 
-Сначала перейдите в *"Отметки и пути"*, выберите вкладку *"Маршруты"* и нажмите кнопку *"Новый маршрут"*. Присвойте маршруту название и, при желании, описание, затем добавляйте путевые точки по ходу или выберите их из списка отметок. Порядок путевых точек на маршруте можно изменить в любое время, редактируя маршрут.
+ First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
 
-**Редактирование маршрута:**
+**Editing a route :**
 
-Выберите ваш маршрут на экране *"Отметки и пути"* и нажмите *"Изменить маршрут"*. Здесь вы можете добавлять и удалять путевые точки, а также редактировать название и описание маршрута.
+ Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
 
-**Поделиться маршрутом:**
+**Sharing a route :**
 
-Выберите маршрут на экране *"Отметки и пути"*, затем выберите опцию *"Посоветовать приложение"*, воспользовавшись обычными доступными способами обмена.
+ Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
 

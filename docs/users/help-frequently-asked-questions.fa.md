@@ -1,5 +1,5 @@
 ---
-title: پرسش‌های متداول
+title: Frequently Asked Questions
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
@@ -7,125 +7,123 @@ lang: fa
 permalink: /users/help-frequently-asked-questions.html
 ---
 
-# پرسش‌های متداول
+# Frequently Asked Questions
 
-## ساند‌اسکیپ چیست و چگونه باید از آن استفاده کنم؟
+## What is Soundscape and how should I use it?
 
-### چه زمانی باید از ساند‌اسکیپ استفاده کنم؟
-ساند‌اسکیپ دارای قابلیت‌ها و مزایایی می‌باشد که طیفی از شرایط مکانی و زمانی را شامل می‌گردد. علاوه بر این، ارزش ساند‌اسکیپ ممکن است برای شما در طول زمان تغییر یابد. بنابراین، نحوه‌ی استفاده‌ی شما از ساند‌اسکیپ در حال حاضر ممکن است با سه ماه آینده تفاوت کند. معمولاً کاربران هنگام انتخاب یک اپلیکیشن از خود می‌پرسند: *«این اپلیکیشن به چه کاری می‌آید؟»* شما یقیناً می‌توانید از ساند‌اسکیپ به‌صورت موردی، زمانی که به اطلاعات مسیریابی خاصی نیاز دارید استفاده نمایید؛ مانند هنگامی که می‌خواهید موقعیت خود را نسبت به مقصدی که به‌سمت آن می‌روید بسنجید، یا وقتی که پس از خروج از ایستگاه مترو می‌خواهید بدانید دقیقاً کجا هستید و یا زمانی که می‌خواهید مطلع شوید از تقاطع بعدی چقدر فاصله دارید. اما فلسفه‌ی وجودی ساند‌اسکیپ *«روشن کردن دنیای شما با صداست.»* هدف از طراحی این اپلیکیشن آن است که سطح آگاهی محیطی شما ارتقا یابد. این امر از طریق مطلع ساختن شما از مواردی مانند نام خیابانی که در آن قرار دارید، جهت حرکتتان و نام کسب‌وکار‌هایی که از کنارشان عبور می‌کنید صورت می‌پذیرد. در این شیوه‌ی استفاده، کاربران ما از ساند‌اسکیپ به‌عنوان یک *«همراه خوب»* یاد کرده‌اند که به *«کشف بهتر»* و ایجاد یک *«تصویر ذهنی کامل‌تر»* از محیط اطراف به شما کمک می‌کند. این امر به‌نوبه‌ی خود سبب می‌شود تا هنگام راه رفتن در خیابان اعتماد به نفس بیشتری داشته باشید. در زیر به چند نمونه‌ی دیگر از شیوه‌ای که کاربران ما ساند‌اسکیپ را در زندگی روزمره‌ی خود به‌کار می‌گیرند اشاره می‌کنیم:
+### When should I use Soundscape?
+Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *"what problem is this app good at solving?"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *"lighting up your world with sound"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *"nice companion app"*, which supports *"serendipity"*, helps *"fill in the gaps in your mental map"*, and provides more *"confidence when walking"*. Here are some other examples of how our users are using Soundscape in their life:
 
-«وقتی بعد از پیاده شدن از اتوبوس راه رو اشتباه رفتم، ساند‌اسکیپ کمکم کرد تا مسیرم رو اصلاح کنم.»
+"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction."
 
-«حتی بعد از سه سال زندگی در شهر محل سکونتم، استفاده از ساند‌اسکیپ باعث شده بتونم تصویر بهتری از محیط اطرافم در ذهنم ایجاد کنم.»
+"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape]."
 
-«صدای سه‌بعدی برام تجربه‌ی بهتری از راه رفتن توی خیابون ایجاد می‌کنه چون حس می‌کنم ارتباطم با محیط اطراف قوی‌تر شده … حالا که این اپلیکیشن رو دارم، احتمالش بیشتره که بخوام مسیرهای جدید رو امتحان کنم.»
+"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use."
 
-«دلم برای اینکه همینطوری توی خیابون گشت بزنم و به‌طور اتفاقی جاهایی رو که اطرافم قرار داره کشف کنم تنگ شده. خوبه که ساند‌اسکیپ رو روی گوشیم دارم؛ بدون هیچ زحمتی می‌تونم بفهمم چه چیزهایی دور و‌برمه. اطلاعاتی که از اپلیکیشن در ارتباط با موقعیت مکانیم نسبت به یه نقطه‌ی خاص دریافت می‌کنم برام مفیده. این اپلیکیشن برای دریافت آگاهی محیطی و گشت و‌گذار توی بازار عالیه.»
+"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors."
 
-«من از ساند‌اسکیپ برای پیدا کردن یه میکده وسط شهر یورک استفاده کردم. از چند تا از قابلیت‌های این اپلیکیشن کمک گرفتم تا اول جایی رو که می‌خواستم روی نقشه پیدا کنم و بعدش خودم رو به اونجا برسونم. من رو تا سه متری در برد؛ محشره!»
+"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!"
 
-### نشانه‌ها چه هستند و چگونه می‌توانم بیشترین بهره را از آنها ببرم؟
-نشانه‌ها مکان‌هایی هستند که شما ذخیره کرده‌اید. این مکان‌ها می‌توانند مواردی باشند که داخل اپ قابل یافتنند یا مکان‌های کاملاً جدیدی که خودتان اضافه کرده‌اید. می‌توانید موقعیت مکانی فعلی خود را با زدن دکمهٔ *«موقعیت مکانی فعلی»* در صفحهٔ اصلی و سپس انتخاب *«نشانه‌گذاری و ذخیره»* به‌عنوان نشانه ذخیره کنید. برای ذخیرهٔ سایر مکان‌ها به‌صورت نشانه، می‌توانید از نوار جستجو برای یافتن مکان مورد نظر استفاده کنید یا از دکمهٔ *«مکان‌های نزدیک»* مکان مورد نظر را بیابید؛ هر دو گزینه در صفحهٔ اصلی ساند‌اسکیپ موجودند. پس از یافتن مکان دلخواه، با انتخاب آن به صفحهٔ *«جزئیات موقعیت مکانی»* منتقل می‌شوید. در آن صفحه، دکمهٔ *«نشانه‌گذاری و ذخیره»* را انتخاب کنید.
+### What are Markers and how do I get the most out of them?
+Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *\"Current Location\"* button on the home screen and then selecting *\"Save as Marker\"*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *\"Places Nearby\"* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the button called *\"Save as Marker\"*.
 
-## چگونه از ساند‌اسکیپ حد‌اکثر استفاده را ببرم؟
+## How do I get the best out of Soundscape?
 
-### نشانه‌ی صوتی را می‌توانم روی چه چیزی تنظیم کنم؟
-می‌توانید جهت‌نمای صوتی را روی هر کسب‌وکار، مکان، نقطهٔ شاخص، آدرس یا تقاطع تنظیم کنید. چند روش برای افزودن جهت‌نما روی یک مکان وجود دارد. ابتدا جزئیات یک مکان را مشاهده کنید؛ این کار را می‌توانید با استفاده از نوار جستجو یا با ضربه زدن روی یکی از دکمه‌های *«مکان‌های نزدیک»*، *«نشانه‌ها و مسیرها»* یا *«موقعیت مکانی فعلی»* و انتخاب یک مکان انجام دهید. در صفحهٔ *«جزئیات موقعیت مکانی»*، دکمهٔ *«فعال‌سازی جهت‌نمای صوتی»* را انتخاب کنید. با ضربه زدن روی این دکمه به صفحهٔ اصلی بازخواهید گشت و جهت‌نمای صوتی قابل شنیدنی که از سمت مکانی که انتخاب کرده‌اید پخش می‌شود روشن خواهد شد. نام مکانی که انتخاب کرده‌اید همراه با فاصلهٔ آن و آدرس فیزیکی‌اش (در صورت در دسترس بودن) اکنون در صفحهٔ اصلی برنامه نمایش داده می‌شود.
+### What can I set as a beacon?
+You can set an audio beacon on any business, place, point of interest, address, or intersection. There are a few ways you can add a beacon at a location. First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-### چگونه از جهت‌نمای صوتی به بهترین شکل ممکن استفاده کنم؟
-می‌توانید جهت‌نمای صوتی قابل شنیدن را مانند یک *«فانوس دریایی برای گوش‌ها»* تصور کنید؛ این جهت‌نما به شما می‌گوید مقصدتان نسبت به موقعیت شما در چه جهتی قرار دارد (به‌صورت خط مستقیم). مانند یک فانوس دریایی، جهت‌نما به شما نمی‌گوید چگونه دقیقاً به مقصد برسید — ممکن است در طول مسیر نیاز به اتخاذ تصمیمات مسیریابی متعددی داشته باشید، درست همان‌طور که یک قایق بادبانی برای نزدیک‌تر شدن به فانوس دریایی باید چندین بار «دورتاب» بزند. صدای ریتمیک و ممتد جهت‌نمای صوتی از جهت مقصد سه‌بعدی‌سازی می‌شود و به شما کمک می‌کند تا هنگام راه رفتن، مکان مقصد را نسبت به خودتان درک کنید. وقتی مستقیماً به‌سمت مقصد راه می‌روید یا گوشی را به‌سمت مقصد می‌گیرید، صدای «زنگ» با زیرتر (بالاتر) شنیده می‌شود. این ویژگی به شما امکان می‌دهد جهت مقصد را دقیق‌تر مشخص کنید، زیرا در محیط‌های پر‌صدا گاهی جهت‌گیری صدای ریتمیک دشوار است. هنگام جستجوی صدای «زنگ» با زیرتر، گوشی را به‌حالت افقی نگه دارید و آن را به‌آهستگی جاروب کنید؛ هم‌چنین چرخاندن سر تا در همان جهتی که گوشی را گرفته‌اید، بهترین تجربهٔ صوتی فضایی را فراهم می‌آورد.
+### How do I get the most out of a beacon?
+You can think of the audible beacon like a *\"lighthouse for your ears\"*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the audible beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *\"ring\"* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *\"ring\"*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.
 
-استفاده از استعارهٔ فانوس دریایی برای طراحی جهت‌نما پیامدهای طبیعی زیر را دارد:
+This design has a few natural results:
 
-1. هنگام استفاده از جهت‌نما هیچ جهت «صحیح» واحدی برای حرکت وجود ندارد؛ با ساند‌اسکیپ این شما هستید که انتخاب می‌کنید چگونه به مقصد برسید؛
+1. There is no *\"correct\"* direction to travel when using the beacon – with Soundscape, you choose how to get there;
 
-2. صدای «زنگ» با زیرتر صرفاً به شما در مشخص کردن جهت مقصد کمک می‌کند — این صدا راهنمایی دربارهٔ نحوهٔ رسیدن به مقصد نیست؛
+2. The higher-pitched *\"ring\"* only helps you pinpoint the direction of the destination – it does not tell you how to get there;
 
-3. اگر عموماً می‌دانید چگونه به مقصد برسید، ممکن است بخواهید جهت‌نما را در بخش اعظم مسیر بی‌صدا کنید و تنها در هنگام نزدیک شدن به مقصد آن را روشن نمایید.
+3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.
 
-### چرا صدای جهت‌نمای صوتی گاهی قطع می‌شود؟
-صدای جهت‌نمای ساند‌اسکیپ اساساً یک نشانه‌ی جهت‌یابیست که به شما می‌گوید مقصد مورد نظرتان نسبت به جهتی که رو به آن ایستاده‌اید در کدام سمت قرار دارد. وقتی ساند‌اسکیپ نمی‌تواند جهت شما را به‌درستی تعیین کند، صدای جهت‌نما را کاهش می‌دهد. این مسئله غالباً زمانی پیش می‌آید که شما گوشی خود را در جیب یا کیفتان قرار داده و بدون حرکت جایی ایستاده‌اید؛ مثل هنگامی که می‌خواهید از خیابان عبور کنید. وقتی دوباره شروع به حرکت نمایید یا گوشی خود را به‌حالت افقی در جهتی که رو به آن هستید نگه دارید، صدای جهت‌نما افزایش می‌یابد.
+### Why does the audible beacon disappear sometimes?
+Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.
 
-### آیا می‌توانم جهت‌نمای صوتی را روی یک آدرس تنظیم کنم؟
-بله می‌توانید. آدرس‌ها به‌صورت پیش‌فرض فهرست نمی‌شوند اما از طریق فیلد جستجو قابل یافتنند. برای اینکه نیازی به جستجوی مجدد نداشته باشید، می‌توانید این آدرس را از صفحهٔ *«جزئیات موقعیت مکانی»* به‌عنوان یک نشانه ذخیره کنید؛ کافیست دکمهٔ *«نشانه‌گذاری و ذخیره»* را انتخاب نمایید.
+### Can I set a beacon on an address?
+Yes you can. Addresses are not listed by default but can be found using the search field. To save this address so you don’t need to search for it again, you can add it as a marker from the *\"Location Details\"* screen by selecting the *\"Save as Marker\"* button.
 
-### چگونه جهت‌نمای صوتی را روی خانه‌ام تنظیم کنم؟
-ساند‌اسکیپ از تنظیم جهت‌نمای صوتی روی آدرس‌ها پشتیبانی می‌کند. برای تنظیم جهت‌نما روی خانه‌ی خود یا هر آدرس دیگر، مکان مورد نظرتان را در صفحه‌ی اصلی ساند‌اسکیپ جستجو نمایید. در صفحه‌ی *«جزئیات موقعیت مکانی»*، روی دکمه‌ی *«فعال‌سازی جهت‌نمای صوتی»* ضربه بزنید.
+### How do I set a beacon on my home?
+Soundscape supports setting beacons on addresses. To set a beacon on your home, or any other address, search for a location from the main Soundscape screen. On the *"Location Details"* screen, tap the *"Start Audio Beacon"* button.
 
-### وقتی جهت‌نمای صوتی را روی یک مکان معین تنظیم می‌کنم، ساند‌اسکیپ چقدر مرا به مقصد نزدیک می‌کند؟
-ساند‌اسکیپ می‌تواند موقعیت مقصد مورد نظر شما را تا فاصله‌ی چند متری تعیین کند، ولی نه کمتر. وقتی ساند‌اسکیپ تشخیص دهد که شما به مقصدتان نزدیک شده‌اید، یک اعلان نهایی خواهید شنید با این مضمون که شما در نزدیکی مقصد قرار دارید. سپس جهت‌نمای صوتی خاموش می‌شود.
+### When I set a beacon on a destination, how close will Soundscape get me to the destination?
+Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.
 
-### آیا می‌توانم وقتی به مقصدم نزدیک هستم جهت‌نمای صوتی را دوباره روشن کنم؟
-بله، پس از آنکه ساند‌اسکیپ جهت‌نمای صوتی را خاموش کرد، شما می‌توانید با استفاده از دکمه‌ی *«باز کردن صدای جهت‌نما»* دوباره آن را روشن نمایید. با این حال، از آنجا که دقت خدمات مکان‌یابی تنها تا حدود ۱۰ متر می‌باشد، ما قادر نیستیم نحوه‌ی عمل‌کرد جهت‌نما را زمانی که شما در فاصله‌ی چند متری از مقصدتان قرار دارید تضمین کنیم.
+### Can I turn the beacon back on when I am close to my destination?
+Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *"unmute beacon button"*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.
 
-### چرا هنگام نزدیک شدن به یک تقاطع، ساند‌اسکیپ نام خیابان‌ها را دو بار اعلام می‌کند؟
-به‌منظور سازگاری با انواع مختلف تقاطع‌ها، ساند‌اسکیپ آنها را به‌عنوان نقطه‌ی تلاقی چند خیابان توصیف می‌کند. با استفاده از فن‌آوری صوتی سه‌بعدی، ساند‌اسکیپ به شما اعلام می‌کند که به ترتیب کدام خیابان به چپ، کدام خیابان مستقیم و کدام خیابان به راست می‌رود. اگر توصیف یک تقاطع به‌جای آنکه با خیابانی که به چپ می‌رود، با خیابانی که شما در آن قرار دارید آغاز شد، این به آن معناست که این تقاطع به شکل حرف تی انگلیسی (T) می‌باشد که از تلاقی خیابانی که شما در آن قرار دارید و یک خیابان دیگر که به سمت راست می‌رود تشکیل شده است. به همین ترتیب، اگر توصیف یک تقاطع تنها شامل نام یک خیابان در سمت چپ و یک خیابان در سمت راست باشد، شما خواهید دانست خیابانی که در آن قرار دارید به یک تقاطع تی-شکل در مقابلتان ختم می‌شود. این شیوه‌ی توصیف تقاطع‌ها همچنین با مواردی سازگار است که در آن نام یک خیابان در محل یک تقاطع به نام دیگری تغییر می‌یابد.
+### Why does Soundscape call out road names twice when I approach an intersection?
+To accommodate a variety of intersection configurations, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the name of the road that goes to the left, the name of the road that continues straight ahead, and the name of the road that goes to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection is a T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.
 
-### چرا ساند‌اسکیپ هر کسب‌وکاری را که از کنارش می‌گذرم اعلام نمی‌کند؟
-ساند‌اسکیپ طوری طراحی شده که زیاد پر‌حرف نباشد. به‌علاوه، این اپلیکیشن برای دریافت اطلاعات مسیریابی از اوپن‌استریت‌مپ استفاده می‌کند. داده‌های مسیریابی در اوپن‌استریت‌مپ (OSM, https://www.openstreetmap.org/) توسط جامعه‌ی کاربران گرد‌آوری و ویرایش می‌گردد. اگر یک کسب‌وکار خاص یا نقطه‌ی شاخص توسط ساند‌اسکیپ اعلام نمی‌شود، محتمل‌ترین علت این است که آن مکان هنوز به‌وسیله‌ی اعضای جامعه‌ی کاربران اوپن‌استریت‌مپ در نقشه مشخص یا به‌روزرسانی نشده است.
+### Why doesn’t Soundscape announce every business that I pass?
+Soundscape is designed to avoid giving you too many callouts. It also uses OpenStreetMap as its data source. OpenStreetMap (OSM, https://www.openstreetmap.org/) is a map of the world built and edited by a community of individual contributors. If Soundscape does not announce a business or point of interest, the most likely reason is that a member of the OSM community has not yet added, or in some cases updated, that business in the data.
 
-### چرا هنگام حرکت در خودرو بعضی از اعلان‌ها متوقف می‌شود؟
-به‌منظور جلوگیری از افزایش بی‌رویه‌ی تعداد اعلان‌ها، برخی از انواع مکان‌ها، مانند تقاطع‌ها، زمانی که شما سوار بر وسایل نقلیه هستید اعلام نمی‌شود.
+### Why do some callouts stop when I'm in a vehicle?
+In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re traveling in a vehicle.
 
-### اگر به‌علت سر‌و‌صدای محیط اعلانی را متوجه نشدم، چه باید بکنم؟
-ساند‌اسکیپ مجموعه‌ای از اعلان‌های اخیر شما را ذخیره می‌کند تا شما بتوانید در صورت نیاز به آنها مراجعه نمایید. برای دسترسی به فهرست اعلان‌های اخیر، روی نوار جستجو در صفحه‌ی اصلی ساند‌اسکیپ ضربه بزنید. شما می‌توانید در پایین این صفحه فهرست اعلان‌های اخیر را مشاهده نمایید.
+### What if I don't understand a callout or miss it because of ambient noise?
+Soundscape has a list of your recent callouts so that you can revisit callouts that you might have missed. To find this, tap on the search bar on the Soundscape home screen. At the bottom of this screen, there is a section for *"Recent Callouts"* where the callout you missed will be listed.
 
-## ساند‌اسکیپ چگونه کار می‌کند؟
+## How does Soundscape work?
 
-### ساند‌اسکیپ روی چه گوشی‌هایی اجرا می‌شود؟
-نسخه‌ی تحت اندروید ساند‌اسکیپ در حال حاضر برای گوشی‌هایی که اندروید ۱۱ یا جدید‌تر را اجرا می‌کنند در دسترس است.
+### What phone does Soundscape run on?
+Soundscape is currently available for iPhones running iOS 16 or later, and for Android phones running Android 11 or later.
 
-### برای کار با ساند‌اسکیپ باید از چه نوع هندزفری‌هایی استفاده کنم؟
-انتخاب نوع هندزفری برای استفاده با ساند‌اسکیپ به ترجیحات شخصی افراد باز می‌گردد و هر گزینه‌ای مزایا و معایب خاص خود را دارد. تنها امر الزامی، استفاده از یک هندزفری استریو می‌باشد که امکان بهره‌گیری شما از اعلان‌های سه‌بعدی ساند‌اسکیپ را فراهم سازد.
+### What headphones should I use with Soundscape?
+Which headphones you use with Soundscape is a matter of personal preference, and each option comes with benefits and trade-offs. The only specific requirement is to use a pair of stereo headphones so that you can take advantage of Soundscape’s 3D spatial audio callouts.
 
-### استفاده از ساند‌اسکیپ چه تأثیری روی باتری گوشی من دارد؟
-عمر باتری به‌طور قابل‌توجهی بستگی به نوع و سن گوشی شما دارد. بزرگ‌ترین مصرف‌کنندهٔ باتری روشن بودن صفحه‌نمایش است؛ بنابراین برای بیشینه کردن عمر باتری گوشی‌تان تا حد امکان صفحه را قفل نگه دارید. برای کمک به کاهش تأثیر بر باتری، ساند‌اسکیپ اکنون دارای «حالت خواب» است. برای کاهش بیشتر مصرف باتری، هنگامی که از ساند‌اسکیپ استفاده نمی‌کنید، آن را از طریق سوئیچر برنامه‌های گوشی‌تان به‌صورت کامل ببندید.
+### How does Soundscape impact my phone’s battery?
+Battery life varies significantly depending on which phone you own and how old it is. The biggest drain on your battery is having the screen on, so to maximize the battery life of your phone, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape now has a Sleep Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.
 
-### چگونه از حالت خواب برای به حد‌اقل رساندن تأثیر ساند‌اسکیپ روی باتری گوشی خود استفاده کنم؟
-برای قرار دادن ساند‌اسکیپ در حالت خواب، روی دکمهٔ *«حالت خواب»* در گوشهٔ بالای سمت چپ صفحه ضربه بزنید. با انتخاب این گزینه، ساند‌اسکیپ تا زمانی که خودتان آن را دوباره بیدار نکنید از خدمات مکان‌یابی و دادهٔ تلفن همراه استفاده نخواهد کرد.
+### How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?
+To put Soundscape in to Sleep Mode, select the *"Sleep"* button in the top-right corner of the screen. When you select this, Soundscape will stop using Location Services and mobile data until you choose to wake it up again.
 
+### How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?
+To put Soundscape in to Snooze Mode, select the *"Sleep"* button in the top-right corner of the screen. Once Soundscape’s in Sleep Mode, select the *"Wake up when I leave"* button and Soundscape will go in to a low power state until you leave your current location.
 
-### چگونه از حالت چرت برای به حد‌اقل رساندن تأثیر ساند‌اسکیپ روی باتری گوشی خود استفاده کنم؟
-برای قرار دادن ساند‌اسکیپ در حالت چرت، روی دکمهٔ *«حالت خواب»* در گوشهٔ بالای سمت چپ صفحه ضربه بزنید. پس از قرار گرفتن ساند‌اسکیپ در حالت خواب، دکمهٔ *«بیدار شدن هنگام ترک محل»* را انتخاب کنید؛ در این صورت ساند‌اسکیپ در حالت کم‌مصرف قرار می‌گیرد تا زمانی که محل فعلی خود را ترک کنید.
+### How does my choice of headphones affect the battery life of my phone?
+In our tests, the battery consumption of Bluetooth headphones is comparable to wired headphones and should not be a significant factor to consider when selecting headphones.
 
+### How does running Soundscape in the background impact battery life of my phone?
+Soundscape is a location-based app and uses Location Services to determine your location. In our tests, Soundscape does not consume any more battery than the average map application; but if you are concerned about battery consumption when using your phone, the following are a few tips which will help lower usage:
 
-### انتخاب نوع هندزفری چه تأثیری روی عمر باتری گوشی من دارد؟
-در تست‌های ما، هندزفری‌های بلوتوثی از لحاظ مصرف باتری تفاوت چندانی با هندزفری‌های سیمی نشان نداده‌اند. در نتیجه، این امر نباید عامل مهمی در تصمیم‌گیری شما برای انتخاب هندزفری باشد.
+1. Turn the screen display off as much as possible when you are not interacting with the app.
 
-### اجرای ساند‌اسکیپ در پس‌زمینه چه تأثیری روی عمر باتری گوشی من می‌گذارد؟
-ساند‌اسکیپ یک اپلیکیشن مکان-محور است و از خدمات مکان‌یابی برای تشخیص موقعیت مکانی شما استفاده می‌کند. طبق تست‌های ما، ساند‌اسکیپ در قیاس با اپلیکیشن‌های مسیریابی دیگر باتری بیشتری مصرف نمی‌کند. با این حال، اگر نگران مصرف باتری هنگام استفاده از گوشی خود هستید، نکات زیر به کاهش مصرف باتری شما کمک می‌کند:
+2. When not using the app, close it down. Soundscape uses location services continually when it is running so that it always knows your location, even when you are not moving. Don’t forget to restart the app when you resume your journey.
 
-۱- زمانی که از اپلیکیشن استفاده نمی‌کنید، صفحه‌ی نمایش گوشی خود را حتی‌المقدور خاموش نگه دارید.
+3. In cold weather, keep your phone warm as batteries perform more poorly in colder temperatures.
 
-۲- هنگام عدم استفاده از اپلیکیشن، آن را ببندید. ساند‌اسکیپ برای اطلاع از موقعیت مکانی شما به‌طور مداوم از خدمات مکان‌یابی استفاده می‌کند، حتی زمانی که در حال حرکت نیستید. فراموش نکنید هنگامی که می‌خواهید مسیر خود را از سر بگیرید، اپلیکیشن را مجدداً فعال نمایید.
+### How much mobile data does Soundscape use?
+The amount of mobile data used depends on how you use Soundscape. We have designed Soundscape to use only a small amount of data when you’re out and about by doing things like saving points as you walk around so you don’t need to download them again every time you go back to somewhere you’ve already been. To reduce the amount of mobile data you use, make sure you are connected to Wi-Fi whenever possible, particularly to download the app. When you are not using Soundscape, you should use the *"Sleep"* button to put Soundscape to sleep or force close the app.
 
-۳- در هوای سرد، گوشی خود را گرم نگه دارید چرا که عمل‌کرد باتری در سرما دچار افت می‌شود.
+### How is Soundscape different from other map apps?
+Soundscape provides an ambient description of your surroundings in aid of exploration and way-finding. Using spatial audio, Soundscape will call out points of interest, parks, roads, and intersections from the direction they physically are in your immediate environment as you walk. For example, if you pass a shop on your right, you will hear the name of the shop sounding from your right. As you approach an intersection, you will hear each road name sounding from the direction it goes in, beginning to your left, ahead and to the right.
 
-### ساند‌اسکیپ چقدر اینترنت تلفن همراه مصرف می‌کند؟
-میزان مصرف اینترنت تلفن همراه به نحوه‌ی استفاده‌ی شما از ساند‌اسکیپ بستگی دارد. ما ساند‌اسکیپ را به‌گونه‌ای طراحی کرده‌ایم که هنگامی که شما بیرون از خانه هستید، تنها حجم اندکی از بسته‌ی اینترنت تلفن همراه شما را مصرف کند. مثلاً وقتی شما در یک مسیر حرکت می‌کنید، ساند‌اسکیپ اطلاعات مربوط به آن مسیر را ذخیره می‌کند تا لازم نباشد هنگام بازگشت آن اطلاعات دوباره دانلود شود. به‌منظور کاهش میزان مصرف اینترنت تلفن همراه، سعی کنید در صورت امکان از وای-فای استفاده نمایید، به‌خصوص هنگام دانلود اپلیکیشن. هر زمان که از ساند‌اسکیپ استفاده نمی‌کنید، باید آن را در حالت خواب قرار داده یا ببندید.
+Instead of turn-by-turn directions as often provided by other map applications, Soundscape will play an audible beacon in the direction of your destination, empowering you to make your way there however works best for you, using your increased awareness of your surroundings and the location of your destination. Soundscape is designed to run in the background, enabling you to use a turn-by-turn directions app, all the while continuing to provide environmental awareness as you make your way to your destination.
 
-### ساند‌اسکیپ چه تفاوتی با سایر اپلیکیشن‌های مسیریابی دارد؟
-ساند‌اسکیپ توضیحاتی محیطی دربارهٔ پیرامون شما ارائه می‌دهد تا در کاوش و جهت‌یابی به شما کمک کند. با استفاده از صدای سه‌بعدی، ساند‌اسکیپ نقاط شاخص، پارک‌ها، خیابان‌ها و تقاطع‌ها را از جهتی که آن‌ها به‌طور فیزیکی در محیط اطراف شما قرار دارند اعلام می‌کند. برای مثال، اگر از کنار یک فروشگاه در سمت راست خود عبور کنید، نام فروشگاه را از سمت راست خواهید شنید. هنگامی که به یک تقاطع نزدیک می‌شوید، نام هر خیابان را از جهتی که آن خیابان می‌رود خواهید شنید؛ به ترتیب از چپ، روبه‌رو و راست.
+### How do I use Soundscape with a wayfinding app?
+Soundscape is designed as an awareness app to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.
 
-به‌جای دستورالعمل‌های مسیریابی گام‌به‌گام که اغلب در سایر برنامه‌های نقشه ارائه می‌شوند، ساند‌اسکیپ یک جهت‌نمای صوتی را در جهت مقصد شما پخش می‌کند تا شما را قادر سازد با تکیه بر آگاهی بیشتر از محیط و موقعیت مقصد، خودتان تصمیم بگیرید چگونه به آنجا برسید. ساند‌اسکیپ طوری طراحی شده که در پس‌زمینه اجرا شود و به شما اجازه دهد هم‌زمان از یک اپلیکیشن مسیریابی گام‌به‌گام استفاده کنید، در حالی که همچنان هنگام حرکت به‌سمت مقصدتان آگاهی‌های محیطی را در اختیار شما قرار می‌دهد.
+### How do I control what I hear and when I hear it in Soundscape?
+Soundscape provides several ways to control what you hear and when:
 
-### چگونه به‌طور همزمان از ساند‌اسکیپ با یک اپلیکیشن مسیریابی دیگر استفاده کنم؟
-ساند‌اسکیپ را می‌توان یک اپلیکیشن اطلاع‌رسانی محیطی در نظر گرفت که با هدف آگاه نمودن افراد نابینا و کم‌بینا از آن دسته از جزئیات محیط اطرافشان که ممکن است نسبت به آن بی‌اطلاع باشند طراحی گردیده است. هرچند ساند‌اسکیپ به‌عنوان یک اپلیکیشن مسیریابی گام‌به‌گام طراحی نشده است، می‌توان آن را به‌منظور دریافت اطلاعات تکمیلی مسیریابی در کنار چنین اپلیکیشن‌هایی مورد استفاده قرار داد. برای بهره‌گیری از قابلیت‌های ساند‌اسکیپ در کنار یک اپلیکیشن مسیریابی دیگر، ابتدا اپلیکیشن مسیریابی دل‌خواهتان را فعال نمایید. سپس وارد ساند‌اسکیپ شوید و جهت‌نمای صوتی را روی همان مقصدی که در اپلیکیشن مسیریابی دیگر انتخاب کرده‌اید تنظیم کنید. با انجام این کار، هر دو اپلیکیشن به‌طور همزمان اجرا خواهند شد و شما دستور‌العمل‌های مسیریابی گام‌به‌گام را توأم با اطلاعات تکمیلی که ساند‌اسکیپ در اختیارتان قرار می‌دهد خواهید شنید.
+1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *\"unmute beacon button\"* on the main screen to resume hearing the beacon.
 
-### چگونه محتوا و زمان پیام‌های ساند‌اسکیپ را مدیریت کنم؟
-ساند‌اسکیپ چند روش برای کنترل اینکه چه صداهایی را کی می‌شنوید در اختیار شما می‌گذارد:
+2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape in to Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you choose to turn it back on. Alternatively, you can select *\"Settings\"* from the menu and choose to turn all callouts off in the *\"Manage Callouts\"* section.
 
-۱. توقف فوری همهٔ صداها: دو بار با دو انگشت روی صفحه ضربه بزنید تا فوراً تمام صداها قطع شوند، از جمله هر اعلانِ در حال پخش و جهت‌نمای صوتی (در صورت روشن بودن). اعلان‌ها به‌طور خودکار وقتی به تقاطع یا نقطهٔ شاخص بعدی نزدیک می‌شوید از سر گرفته می‌شوند، اما جهت‌نمای صوتی به‌طور خودکار بازنمی‌گردد. برای شنیدن دوبارهٔ جهت‌نما، دکمهٔ *«باز کردن صدای جهت‌نما»* در صفحهٔ اصلی را انتخاب کنید.
+3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *\"mute beacon\"*/*\"unmute beacon\"* button on the main screen.
 
-۲. توقف اعلان‌های خودکار: وقتی در حال حرکت نیستید یا به مقصد رسیده‌اید، احتمالاً نیازی به ادامهٔ اعلان‌های خودکار ندارید. به‌جای خروج از اپ، می‌توانید ساند‌اسکیپ را در *حالت چرت* قرار دهید تا هنگام ترک محل فعلی دوباره فعال شود، یا آن را در *حالت خواب* قرار دهید تا تا زمانی که خودتان آن را روشن نکنید خاموش بماند. همچنین می‌توانید از منو *«تنظیمات»* را انتخاب کرده و در بخش *«مدیریت اعلان‌ها»* همهٔ اعلان‌ها را خاموش کنید.
+If you still want to interact with Soundscape but don’t want to hear automatic callouts, you can turn callouts off by going to the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *\"Sleep\"* button on the home screen.
 
-۳. متوقف کردن جهت‌نما: در برخی شرایط ممکن است مقصد را بدانید اما به جهت‌نمای صوتی نیاز نداشته باشید؛ برای مثال ممکن است دقیقاً بدانید چگونه به مقصد برسید اما همچنان بخواهید به‌روزرسانی خودکار دربارهٔ فاصله تا مقصد را دریافت کنید، یا تنها هنگام نزدیک‌شدن به مقصد به جهت‌نما نیاز داشته باشید. در هر حال می‌توانید با استفاده از دکمهٔ *«بستن صدای جهت‌نما»* / *«باز کردن صدای جهت‌نما»* در صفحهٔ اصلی پخش جهت‌نما را خاموش یا روشن کنید.
+### Do I need to hold the phone in my hand all the time?
+No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *\"flat\"* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.
 
-اگر همچنان می‌خواهید با ساند‌اسکیپ تعامل داشته باشید اما اعلان‌های خودکار را نشنوید، می‌توانید از منو وارد بخش *«تنظیمات»* شوید و در قسمت *«مدیریت اعلان‌ها»* اعلان‌ها را خاموش کنید. یا اگر قرار نیست از ساند‌اسکیپ استفاده کنید، می‌توانید با دکمهٔ *«حالت خواب»* در صفحهٔ اصلی آن را در *حالت خواب* یا *حالت چرت* قرار دهید.
-
-### آیا باید همیشه گوشی را در دست بگیرم؟
-خیر! هنگام راه رفتن می‌توانید گوشی را در کیف یا جیبتان یا هرجای مناسب قرار دهید. ساند‌اسکیپ جهت حرکت شما را مبنای تعیین اینکه چه اعلان‌هایی از سمت چپ و راست پخش شود قرار می‌دهد. وقتی حرکت نمی‌کنید، ساند‌اسکیپ نمی‌داند به کدام جهت نگاه می‌کنید. اگر جهت‌نمای صوتی روشن باشد، خواهید دید که صدا کاهش می‌یابد تا زمانی که دوباره شروع به حرکت کنید. هر زمان می‌توانید گوشی را بیرون آورده و دکمه‌های موقعیت و کاوش در پایین صفحه را فشار دهید، اما مطمئن شوید گوشی را طوری نگه داشته‌اید که جلوی گوشی (بالای آن) به سمت جهتی باشد که شما رو به آن ایستاده‌اید و صفحهٔ نمایش رو به آسمان باشد. در این وضعیت *افقی*، ساند‌اسکیپ از قطب‌نما (کامپاس) گوشی برای تعیین جهت دقیق شما استفاده کند و اعلان‌های فضایی دقیقی ارائه دهد. اگر جهت‌نما روشن باشد، همچنین خواهید دید که صدا به حجم کامل برمی‌گردد.
-
-### اوپن‌استریت‌مپ چیست و چرا از آن در ساند‌اسکیپ استفاده می‌کنیم؟
-ساند‌اسکیپ برای ارائه‌ی اعلان‌های خود از داده‌های موجود در نقشه‌های جغرافیایی بهره می‌گیرد. منبع اصلی ما برای دریافت این داده‌ها اوپن‌استریت‌مپ می‌باشد (www.openstreetmap.org). اوپن‌استریت‌مپ یک بستر غنی نقشه‌برداریست که داده‌های آن توسط کاربران گردآوری و ثبت می‌گردد. این پلتفرم به اشخاص و سازمان‌ها امکان می‌دهد تا کیفیت و دقت داده‌های ارائه شده و دسترسی‌پذیری فضا‌های خود را با استفاده از ابزارهای نقشه‌نگاری اوپن‌استریت‌مپ بهبود بخشند.
+### What is OpenStreetMap and why do we use it for Soundscape?
+Soundscape uses map data to create its audio callouts. Our main map source is OpenStreetMap (www.openstreetmap.org). This is a mapping platform created by a community of contributors. Organizations and individuals can use OpenStreetMap's tools to improve the data and make their spaces more accessible.
 

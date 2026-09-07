@@ -1,5 +1,5 @@
 ---
-title: نکات کاربردی
+title: Tips
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
@@ -7,19 +7,19 @@ lang: fa
 permalink: /users/help-tips.html
 ---
 
-# نکات کاربردی
+# Tips
 
-می‌توانید ایستگاه‌های اتوبوس نزدیک را با انتخاب فیلتر *«حمل‌و‌نقل عمومی»* در فهرست *«مکان‌های نزدیک»* بیابید.
+You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
 
-می‌توانید جهت‌نمای صوتی را روی هر آدرسی تنظیم کنید. از صفحهٔ اصلی ساند‌اسکیپ برای جستجوی آدرس استفاده کنید. پس از انتخاب آدرس از نتایج جستجو، صفحهٔ *«جزئیات موقعیت مکانی»* نمایش داده می‌شود و در آن گزینهٔ *«فعال‌سازی جهت‌نمای صوتی»* برای آدرس موجود است. به این ترتیب می‌توانید برای کسب‌وکارها، مکان‌ها، نقاط شاخص و محل‌های مسکونی که در اوپن‌استریت‌مپ ثبت نشده‌اند نیز جهت‌نما تنظیم کنید.
+You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
 
-اگر یک خط اتوبوس را به‌طور مرتب استفاده می‌کنید، ایستگاه‌های سوار شدن و پیاده شدن خود را به‌عنوان نشانه ذخیره کنید. به این ترتیب آن‌ها ذخیره می‌شوند و می‌توانید به‌سادگی دوباره آن‌ها را پیدا کنید؛ کافیست از صفحهٔ اصلی به *«نشانه‌ها و مسیرها»* بروید و در صفحهٔ *«نشانه‌ها»* آن‌ها را بیابید. می‌توانید روی آن‌ها جهت‌نمای صوتی تنظیم کنید و به‌روزرسانی‌های دوره‌ای دربارهٔ فاصله‌تان تا ایستگاه خروج دریافت خواهید کرد. نکته: می‌توانید صدای ریتمیک را خاموش کنید و همچنان در طول مسیر به‌روزرسانی‌های فاصله را دریافت خواهید کرد.
+If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
 
-اگر گوشی خود را در جیبتان گذاشته و از حرکت باز ایستید، صدای جهت‌نمای صوتی کاهش می‌یابد زیرا ساند‌اسکیپ نمی‌تواند جهت شما را تشخیص دهد. برای حل این مشکل، دوباره شروع به حرکت نمایید یا گوشی را از جیبتان خارج کرده و آن را به حالت افقی نگه دارید.
+If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
 
-برای داشتن تجربه‌ی بهتر هنگام استفاده از ساند‌اسکیپ، گوشی خود را به حالت افقی نگه دارید؛ به‌گونه‌ای که صفحه‌ی نمایش گوشی رو به آسمان و جلوی آن در امتداد جهتی باشد که شما رو به آن ایستاده‌اید.
+Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
 
-شما می‌توانید صدای ریتمیک جهت‌نمای صوتی را با استفاده از دکمه‌ی بستن صدای جهت‌نما در صفحه‌ی اصلی خاموش و روشن کنید. حتی اگر صدای جهت‌نما بسته باشد، شما همچنان در ارتباط با فاصله‌تان تا مقصد حدوداً هر ۵۰ متر یک بار به‌روزرسانی دریافت خواهید کرد.
+You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
 
-اگر می‌خواهید همچنان با ساند‌اسکیپ تعامل داشته باشید اما صدای اعلان‌های خودکار را نشنوید، می‌توانید از منو به بخش *«مدیریت اعلان‌ها»* در صفحهٔ *«تنظیمات»* رفته و اعلان‌ها را خاموش کنید. یا اگر قرار نیست از ساند‌اسکیپ استفاده کنید، می‌توانید با دکمهٔ *«حالت خواب»* در صفحهٔ اصلی آن را در حالت خواب یا حالت چرت قرار دهید.
+To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
 

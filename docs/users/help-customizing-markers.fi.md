@@ -1,5 +1,5 @@
 ---
-title: Merkintöjen mukauttaminen
+title: Customizing Markers
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
@@ -7,9 +7,9 @@ lang: fi
 permalink: /users/help-customizing-markers.html
 ---
 
-# Merkintöjen mukauttaminen
+# Customizing Markers
 
-Jos haluat nimetä aiemmin luomasi merkinnän uudelleen tai lisätä siihen annotaation, voit tehdä sen valitsemalla merkinnän *"Merkinnät ja reitit"* -sivun *"Merkinnät"*‑välilehdeltä ja napauttamalla *"Muokkaa merkintää"* -painiketta. Tämän avulla voit antaa merkinnöille kuvaavia tai hyödyllisiä lempinimiä sekä kirjoittaa pidemmän kuvauksen annotaatio‑kenttään.
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-Tältä *"Muokkaa merkintää"* -näytöltä voit myös poistaa merkinnän, jos et enää tarvitse sitä.
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

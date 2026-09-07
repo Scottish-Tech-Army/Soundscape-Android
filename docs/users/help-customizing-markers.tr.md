@@ -1,5 +1,5 @@
 ---
-title: Kayıtlı Noktaları Özelleştirme
+title: Customizing Markers
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
@@ -7,9 +7,9 @@ lang: tr
 permalink: /users/help-customizing-markers.html
 ---
 
-# Kayıtlı Noktaları Özelleştirme
+# Customizing Markers
 
-Daha önce oluşturduğunuz bir kayıtlı noktayı yeniden adlandırmak veya ona bir açıklama eklemek isterseniz, *"Kayıtlı Noktalar ve Rotalar"* sayfasının *"Kayıtlı Noktalar"* sekmesinden kayıtlı noktayı seçip ardından *"Kayıtlı Noktayı Düzenle"* düğmesini seçerek bunu yapabilirsiniz. Bunu, kayıtlı noktalara açıklayıcı veya kullanışlı takma adlar vermek ve açıklama alanını kullanarak daha uzun bir açıklama eklemek için kullanabilirsiniz.
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-Bu *"Düzenle"* ekranından artık ihtiyaç duymadığınız bir kayıtlı noktayı da silebilirsiniz.
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

@@ -1,5 +1,5 @@
 ---
-title: Creazione di indicatori
+title: Creating Markers
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: it
 permalink: /users/help-creating-markers.html
 ---
 
-# Creazione di indicatori
+# Creating Markers
 
-Puoi creare indicatori in tre modi: cercando il luogo da salvare tramite la barra di ricerca, trovando un posto con il pulsante *"Luoghi nelle vicinanze"* oppure usando il pulsante *"Posizione attuale"*, tutti presenti nella schermata iniziale di Soundscape. Una volta trovato il luogo che desideri salvare, selezionandolo accederai alla schermata *"Dettagli posizione"*. In questa schermata, seleziona il pulsante *"Salva come indicatore"*.
+You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
 
-Ora hai la possibilità di personalizzare questo indicatore. Se lo desideri, puoi modificare il nome dell'indicatore e aggiungere anche un'annotazione che verrà notificata insieme all'indicatore per fornirti informazioni aggiuntive. Al termine, seleziona il pulsante *"Fatto"* per salvare il tuo indicatore.
+You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
 

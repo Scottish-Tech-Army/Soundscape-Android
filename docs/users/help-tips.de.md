@@ -1,5 +1,5 @@
 ---
-title: Tipps
+title: Tips
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
@@ -7,19 +7,19 @@ lang: de
 permalink: /users/help-tips.html
 ---
 
-# Tipps
+# Tips
 
-Sie finden nahegelegene Bushaltestellen, indem Sie in der Liste *„Orte in der Nähe“* den Filter *„Öffentliche Verkehrsmittel“* auswählen.
+You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
 
-Sie können ein Beacon auf jede Adresse setzen. Suchen Sie dazu auf dem Soundscape‑Startbildschirm nach der Adresse. Nachdem Sie die Adresse in den Suchergebnissen ausgewählt haben, erscheint der Bildschirm *„Standortdetails“*, der die Option *„Audiobeacon starten“* für diese Adresse bietet. Auf diese Weise können Sie Beacons auf Geschäften, Orten, Points of Interest und Wohnadressen setzen, die nicht in Open Street Map erfasst sind.
+You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
 
-Wenn Sie eine Buslinie regelmäßig nutzen, speichern Sie Ihre Ein‑ und Ausstiegsstellen als Markierungen. So sind sie gesichert und jederzeit leicht wiederzufinden: Gehen Sie dazu vom Startbildschirm auf *„Markierungen und Routen“* und suchen Sie auf der Seite *„Markierungen“* nach ihnen. Sie können auf diese Markierungen ein Beacon setzen und erhalten dann in regelmäßigen Abständen Angaben dazu, wie nahe Sie Ihrer Ausstiegsstelle sind. Hinweis: Sie können den rhythmischen Ton stummschalten; Entfernungs‑Updates erhalten Sie trotzdem.
+If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
 
-Wenn Sie Ihr Telefon in die Tasche stecken und anhalten, wird das Beaconsignal leiser, weil Soundscape nicht ermitteln kann, in welche Richtung Sie gerade blicken. Dies wird dadurch gelöst, dass Sie sich wieder in Bewegung setzen oder Ihr Telefon herausziehen und es mit der Oberseite nach oben flach halten.
+If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
 
-Soundscape funktioniert am besten, wenn Sie das Telefon flach halten, so dass der Bildschirm in den Himmel zeigt und die Oberseite des Telefons von Ihnen weg zeigt.
+Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
 
-Sie können den rhythmischen Beacon-Ton mit der Stummschalttaste auf dem Startbildschirm ein- und ausschalten. Wenn das Beacon stummgeschaltet ist, erhalten Sie weiterhin etwa alle 50 Meter Updates über die Entfernung zu Ihrem Ziel.
+You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
 
-Wenn Sie weiterhin mit Soundscape interagieren möchten, aber keine automatischen Hinweise hören wollen, können Sie die Hinweise im Abschnitt *„Hinweise verwalten“* des Bildschirms *„Einstellungen“* im Menü ausschalten. Alternativ können Sie Soundscape über die Schaltfläche *„Ruhemodus aktivieren“* auf dem Startbildschirm in den Ruhe‑ oder Standbymodus versetzen, wenn Sie die App vorübergehend nicht nutzen möchten.
+To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
 

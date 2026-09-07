@@ -1,5 +1,5 @@
 ---
-title: Raddir
+title: Voices
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
@@ -7,7 +7,7 @@ lang: is
 permalink: /users/help-voices.html
 ---
 
-# Raddir
+# Voices
 
-Soundscape getur notað hvaða raddir sem þú hefur hlaðið niður í Android-símann í stillingunum fyrir texta‑til‑tals. Í Soundscape skaltu fara í *"Stillingar"* úr aðalvalmyndinni, opna kaflann *"Hljóð"* og velja síðan *"Raddir"* til að velja aðra rödd en þá sem Android notar sjálfgefið.
+Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
 

@@ -1,5 +1,5 @@
 ---
-title: Over Soundscape
+title: About Soundscape
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
@@ -7,17 +7,19 @@ lang: nl
 permalink: /users/help-about-soundscape.html
 ---
 
-# Over Soundscape
+# About Soundscape
 
-Soundscape onderzoekt het gebruik van innovatieve, op audio gebaseerde technologie om mensen te helpen een rijker bewustzijn van hun omgeving op te bouwen, zodat ze zich zelfverzekerder en zelfstandiger kunnen verplaatsen.
+Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
 
-Soundscape zou niet mogelijk zijn zonder deze fantastische bibliotheken en gegevens van derden. Klik op de links om hun licenties te bekijken:
+Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) leveren alle geografische gegevens die worden gebruikt voor de kaarten en audio in Soundscape.
+[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) wordt gebruikt om de kaarttegels te genereren die we gebruiken.
+[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) wordt gebruikt om de 3D-audio te genereren en is beschikbaar voor gebruik onder de [Apache 2.0-licentie](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
 
-Alle product- en bedrijfsnamen en logo's van derden zijn handelsmerken of geregistreerde handelsmerken en blijven het eigendom van de betreffende houders.
+[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+
+All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
 

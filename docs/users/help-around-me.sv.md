@@ -1,5 +1,5 @@
 ---
-title: Omkring mig
+title: Around Me
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: sv
 permalink: /users/help-around-me.html
 ---
 
-# Omkring mig
+# Around Me
 
-## Vad är det?
+## What is it?
 
-Knappen *"Omkring mig"* berättar om en sak i var och en av de fyra kvadranterna omkring dig (framför, till höger, bakom och till vänster). *"Omkring mig"* hjälper dig att orientera dig i omgivningarna.
+The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
 
-## När ska jag använda det?
+## When would I use it?
 
-När du försöker orientera dig i omgivningarna kan du använda *"Omkring mig"* för att höra om vad som finns omkring dig.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
 
-## Hur fungerar det?
+## How does it work?
 
-Som med alla fyra knappar längst ned på startskärmen ska du hålla telefonen plant med skärmen riktad uppåt och peka med telefonen i färdriktningen innan du trycker på knappen *"Omkring mig"*. Detta fungerar som en kompass som talar om för appen vilken riktning du står i. Tryck på knappen *"Omkring mig"* så hör du flera olika intressepunkter som finns omkring dig.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
 

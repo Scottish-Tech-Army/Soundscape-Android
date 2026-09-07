@@ -1,5 +1,5 @@
 ---
-title: Usein kysytyt kysymykset
+title: Frequently Asked Questions
 layout: page
 parent: "Soundscapen käyttö"
 has_toc: false
@@ -7,125 +7,123 @@ lang: fi
 permalink: /users/help-frequently-asked-questions.html
 ---
 
-# Usein kysytyt kysymykset
+# Frequently Asked Questions
 
-## Mikä on Soundscape ja kuinka minun tulisi käyttää sitä?
+## What is Soundscape and how should I use it?
 
-### Milloin minun kannattaa käyttää Soundscapea?
-Soundscapella on ominaisuuksia ja hyötyjä monenlaisiin tilanteisiin ja erilaisiin aikajänteisiin. Lisäksi Soundscapen arvo sinulle voi muuttua ajan myötä, joten se, miten käytät sovellusta nyt, saattaa poiketa siitä, miten käytät sitä kolmen kuukauden kuluttua. Ihmiset pohtivat usein sovelluksia sillä tavalla, että "mihin ongelmaan tämä sovellus parhaiten vastaa?". Soundscapea voi ehdottomasti käyttää tapauskohtaisesti, kun sinulla on jokin tietty tiedontarve — esimerkiksi pitää kirjaa määränpäästäsi matkallasi sinne, saada suuntaa metron asemalta tullessa, löytää orientoiva paikka auton poistuttua tai selvittää katujen nimet tai etäisyys seuraavaan risteykseen. Kuitenkin Soundscapen taustalla on ajatus siitä, että se "valaisee maailmaasi äänellä": se on suunniteltu käytettäväksi aina ulkona liikkuessasi, jotta saat ympäristönsävyisen tilannetietoisuuden, kuten tiedon kävelemiesi katujen nimistä, kulkusuunnastasi ja ohittamistesi yritysten nimistä. Tässä käyttötilassa käyttäjämme ovat kuvaileet Soundscapea "mukavana kumppanisovelluksena", joka tukee sattumanvaraisia löydöksiä ("serendipity"), auttaa "täyttämään aukkoja mielikartassasi" ja lisää "itseluottamusta kävellessä". Tässä muutamia esimerkkejä siitä, miten käyttäjämme ovat ottaneet Soundscapen osaksi elämäänsä:
+### When should I use Soundscape?
+Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *"what problem is this app good at solving?"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *"lighting up your world with sound"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *"nice companion app"*, which supports *"serendipity"*, helps *"fill in the gaps in your mental map"*, and provides more *"confidence when walking"*. Here are some other examples of how our users are using Soundscape in their life:
 
-"Soundscape auttoi minut takaisin oikeaan suuntaan, kun jäin bussista ja lähdin vahingossa väärään suuntaan."
+"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction."
 
-"Vaikka olen asunut tässä kaupungissa jo kolme vuotta, Soundscapen avulla olen saanut paremman kuvan siitä, mitä ympärilläni on." 
+"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape]."
 
-"3D-ääni parantaa kävelykokemustani, sillä tunnen olevani yhteydessä ympäristöön… Nyt, kun minulla on tämä sovellus, uskallan todennäköisemmin kokeilla uutta reittiä."
+"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use."
 
-"Ikävöin sitä sattumanvaraisuutta, kun kävelee ja huomaa asioita. Soundscape on mukava — sen kuuleminen ei vaadi vaivaa. Suhteellinen tieto on hyödyllistä, ja sovellus on loistava tilannetietoisuuden ja kaupallisten käytävien tutkimiseen."
+"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors."
 
-"[Käytin Soundscapea] löytääkseni pubin Yorkin keskeltä. Käytin monia sen vaihtoehtoja ensin paikantamiseen ja sitten todelliseen löytymiseen. Se vei minut noin 3 metrin päähän ovesta — loistavaa!"
+"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!"
 
-### Mitä ovat merkinnät ja kuinka saan niistä parhaan hyödyn?
-Merkinnät ovat paikkoja, jotka olet tallentanut. Ne voivat olla sovelluksesta löydettäviä paikkoja tai täysin uusia paikkoja, jotka olet itse lisännyt. Voit tallentaa nykyisen sijaintisi merkinnäksi napauttamalla aloitusnäytöllä *"Nykyinen sijainti"* -painiketta ja valitsemalla sitten *"Tallenna merkintänä"*. Voit tallentaa muita sijainteja merkinnäksi etsimällä tallennettavan paikan hakupalkin avulla tai etsimällä paikkoja *"Lähiympäristön paikat"* -painikkeella, jotka molemmat löytyvät Soundscapen aloitusnäytöltä. Kun olet löytänyt haluamasi paikan, sen valitseminen vie sinut *"Sijainnin tiedot"* -näytölle. Tältä näytöltä valitse *"Tallenna merkintänä"* -painike.
+### What are Markers and how do I get the most out of them?
+Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *\"Current Location\"* button on the home screen and then selecting *\"Save as Marker\"*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *\"Places Nearby\"* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the button called *\"Save as Marker\"*.
 
-## Kuinka saan Soundscapen parhaat ominaisuudet käyttööni?
+## How do I get the best out of Soundscape?
 
-### Minkä voin määrittää majakaksi?
-Voit asettaa äänimajakan mihin tahansa yritykseen, paikkaan, kiinnostavaan kohteeseen, osoitteeseen tai risteykseen. Majakan lisäämiseen on useita tapoja. Ensiksi näytä sijainnin tiedot joko hakupalkin avulla etsimällä paikka tai napauttamalla jotakin aloitusnäytön painikkeista *"Lähiympäristön paikat"*, *"Merkinnät ja reitit"* tai *"Nykyinen sijainti"* ja valitsemalla sijainti. *"Sijainnin tiedot"* -näytöltä voit valita *"Käynnistä äänimajakka"* -painikkeen. Sen napauttaminen palauttaa sinut aloitusnäytölle ja käynnistää kuultavan majakan, joka kuuluu valitsemasi paikan suunnasta. Valitsemasi paikan nimi sekä sen etäisyys ja katuosoite (jos saatavilla) näkyvät nyt sovelluksen pääruudulla.
+### What can I set as a beacon?
+You can set an audio beacon on any business, place, point of interest, address, or intersection. There are a few ways you can add a beacon at a location. First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-### Kuinka majakkaa kannattaa käyttää?
-Voit ajatella kuultavaa majakkaa *"korvien majakkana"* — se ilmoittaa, missä määränpääsi sijaitsee suhteessa sinun sijaintiisi suorinta linjaa ajatellen. Kuten majakka, se ei kerro tarkkaa reittiä sinne — matkalla täytyy usein tehdä useita reittivalintoja, aivan kuten purjevene joutuu tekemään monia strategisia *"luovauksia"* lähestyäkseen majakkaa. Äänimajakan jatkuva rytminen ääni on sijoitettu kuultavaksi määränpään suunnasta ja se auttaa sinua hahmottamaan määränpään sijainnin suhteessa itseesi kävellessäsi. Kun kävelet suoraan määränpäätä kohti tai osoitat puhelimen määränpäähän, kuulet korkeammalta soivan *"ring"*-äänen. Tämä ominaisuus auttaa paikantamaan määränpään suunnan, koska rytmisen äänen suunnan havaitseminen voi olla vaikeaa meluisassa ympäristössä. Etsiessäsi korkeampaa *"ring"*-ääntä, pidä puhelin vaakatasossa ja liikuta sitä hitaasti; käännä pääsi samaan suuntaan kuin puhelin saadaksesi parhaan tilaäänikokemuksen.
+### How do I get the most out of a beacon?
+You can think of the audible beacon like a *\"lighthouse for your ears\"*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the audible beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *\"ring\"* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *\"ring\"*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.
 
-Majakan metaforilla on useita luonnollisia seurauksia:
+This design has a few natural results:
 
-1. Majakan käytössä ei ole yhtä *"oikeaa"* suuntaa — Soundscapen kanssa sinä päätät, miten sinne menet;
+1. There is no *\"correct\"* direction to travel when using the beacon – with Soundscape, you choose how to get there;
 
-2. Korkeampi *"ring"* auttaa ainoastaan paikantamaan määränpään suunnan — se ei kerro, miten sinun tulisi sinne päästä;
+2. The higher-pitched *\"ring\"* only helps you pinpoint the direction of the destination – it does not tell you how to get there;
 
-3. Jos tiedät suurin piirtein, miten pääset määränpäähäsi, saatat haluta hiljentää majakan suurimman osan matkasta ja kytkeä sen päälle vasta lähestyessäsi määränpäätä.
+3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.
 
-### Miksi äänimajakka toisinaan katoaa?
-Soundscapen äänimajakka on pohjimmiltaan suuntavihje, joka kertoo, missä suunnassa määränpääsi on suhteessa suuntaan, johon olet kääntyneenä. Kun Soundscape ei ole varma siitä, mihin suuntaan olet kääntyneenä, se vaimentaa majakan ääntä. Useimmiten tämä tapahtuu, kun olet kävellyt puhelin taskussa tai laukussa ja lakkaat liikkumasta esimerkiksi kadun ylitystä varten. Majakan ääni voimistuu, kun alat jälleen liikkumaan tai pitelet puhelinta vaakatasossa ja osoitat sillä suuntaan, johon olet kääntyneenä.
+### Why does the audible beacon disappear sometimes?
+Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.
 
-### Voinko asettaa majakan osoitteeseen?
-Kyllä voit. Osoitteet eivät ole oletuksena listattuna, mutta ne löytyvät hakukentän kautta. Tallentaaksesi osoitteen niin, että sinun ei tarvitse etsiä sitä uudelleen, voit lisätä sen merkinnäksi *"Sijainnin tiedot"* -näytöltä valitsemalla *"Tallenna merkintänä"* -painikkeen.
+### Can I set a beacon on an address?
+Yes you can. Addresses are not listed by default but can be found using the search field. To save this address so you don’t need to search for it again, you can add it as a marker from the *\"Location Details\"* screen by selecting the *\"Save as Marker\"* button.
 
-### Kuinka määritän majakan kotiini?
-Soundscape tukee majakoiden asettamista osoitteisiin. Asettaaksesi majakan kotiisi tai mihin tahansa muuhun osoitteeseen, etsi sijainti Soundscapen pääruudulta. *"Sijainnin tiedot"* -näytöllä napauta *"Käynnistä äänimajakka"* -painiketta.
+### How do I set a beacon on my home?
+Soundscape supports setting beacons on addresses. To set a beacon on your home, or any other address, search for a location from the main Soundscape screen. On the *"Location Details"* screen, tap the *"Start Audio Beacon"* button.
 
-### Kun määritän majakan määränpäähän, kuinka lähelle määränpäätä Soundscape vie minut?
-Soundscape voi tunnistaa määränpääsi paikan muutamien metrien etäisyydellä, mutta ei sitä lähempänä. Kun Soundscape päättelee, että olet lähellä määränpäätäsi, kuulet viimeisen ilmoituksen siitä, että määränpääsi on lähellä, ja majakka poistuu käytöstä.
+### When I set a beacon on a destination, how close will Soundscape get me to the destination?
+Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.
 
-### Voinko ottaa majakan takaisin käyttöön, kun olen lähellä päämäärääni?
-Kyllä, voit ottaa majakan takaisin käyttöön sen jälkeen, kun Soundscape on sen poistanut käytöstä, valitsemalla *"Poista majakan hiljennys"* -painikkeen; huomaa kuitenkin, että Sijaintipalvelut ovat vain noin 10 metrin tarkkuudella, joten emme voi taata majakan käyttäytymistä, kun olet vain muutaman metrin päässä määränpäästä.
+### Can I turn the beacon back on when I am close to my destination?
+Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *"unmute beacon button"*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.
 
-### Miksi Soundscape ilmoittaa teiden nimet kahdesti, kun lähestyn risteystä?
-Soundscape kuvailee risteyksiä tiesegmentteinä, jotka lähtevät yhteisestä pisteestä mahdollistaakseen useita erilaisia risteysten muotoja. Soundscape käyttää tilaääntä osoittamaan vasemmalle lähtevän tien nimen, sen tien nimen, joka jatkuu suoraan eteenpäin ja sen tien nimen, joka lähtee oikealle, tässä järjestyksessä. Jos risteyksen kuvaus alkaa tiellä, jolla olet, eikä vasemmanpuoleisella tiellä, kyseessä on T-risteys, jossa tie, jolla olet, kulkee eteenpäin ja toinen tie risteää oikealta. Samoin jos kuvaus sisältää vain vasemmalle ja oikealle lähtevät tiet, tiedät, että tie, jolla olet, päättyy edessä olevassa T-risteyksessä. Tämä risteysten kuvailumenetelmä tukee myös tilannetta, jossa tien nimi muuttuu risteyksessä.
+### Why does Soundscape call out road names twice when I approach an intersection?
+To accommodate a variety of intersection configurations, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the name of the road that goes to the left, the name of the road that continues straight ahead, and the name of the road that goes to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection is a T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.
 
-### Miksi Soundscape ei ilmoita kaikista yrityksistä, jotka ohitan?
-Soundscape on suunniteltu olemaan puhumatta liikaa. Se käyttää myös Open Street Map -karttapalvelua taustatietolähteenään. Open Street Map (OSM, https://www.openstreetmap.org/) on yhteisön kehittämä ja muokkaama maailmankartta, joka on riippuvainen yksilöistä, jotka syöttävät ja valikoivat tietoja. Jos Soundscape ei ilmoita yritystä tai kiinnostavaa kohdetta, todennäköisin syy siihen on, että OSM-yhteisön jäsen ei ole lisännyt, tai joissakin tapauksissa päivittänyt, yritystä.
+### Why doesn’t Soundscape announce every business that I pass?
+Soundscape is designed to avoid giving you too many callouts. It also uses OpenStreetMap as its data source. OpenStreetMap (OSM, https://www.openstreetmap.org/) is a map of the world built and edited by a community of individual contributors. If Soundscape does not announce a business or point of interest, the most likely reason is that a member of the OSM community has not yet added, or in some cases updated, that business in the data.
 
-### Miksi jotkin ilmoitukset lakkaavat, kun olen ajoneuvossa?
-Jotta ilmoitusten määrää voidaan estää kasvamasta hallitsemattomaksi, joitakin luokkia, kuten risteyksiä, ei ilmoiteta automaattisesti, kun kuljet ajoneuvolla.
+### Why do some callouts stop when I'm in a vehicle?
+In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re traveling in a vehicle.
 
-### Mitä, jos en ymmärrä ilmoitusta tai en huomaa sitä ympäristön melun takia?
-Soundscapella on luettelo viimeisistä ilmoituksistasi, jotta voit palata kuuntelemaan ilmoituksia, jotka ehkä jäivät huomaamatta. Löytääksesi tämän napauta Soundscapen aloitusnäytön hakupalkkia. Tämän ruudun alaosassa on osio *"Äskettäiset ilmoitukset"*, jonne jättämäsi ilmoitus on listattu.
+### What if I don't understand a callout or miss it because of ambient noise?
+Soundscape has a list of your recent callouts so that you can revisit callouts that you might have missed. To find this, tap on the search bar on the Soundscape home screen. At the bottom of this screen, there is a section for *"Recent Callouts"* where the callout you missed will be listed.
 
-## Kuinka Soundscape toimii?
+## How does Soundscape work?
 
-### Missä puhelimessa Soundscape toimii?
-Soundscape Androidille on saatavilla Android-puhelimille, joissa on Android 11 tai uudempi.
+### What phone does Soundscape run on?
+Soundscape is currently available for iPhones running iOS 16 or later, and for Android phones running Android 11 or later.
 
-### Mitä kuulokkeita Soundscapen kanssa tulisi käyttää?
-Se, mitä kuulokkeita käytät Soundscapen kanssa, riippuu henkilökohtaisista mieltymyksistä, ja kullakin vaihtoehdolla on etuja ja kääntöpuolia. Ainoa erityinen suositus on käyttää stereokuulokkeita, jotta voit hyödyntää Soundscapen 3D- tilaääni-ilmoituksia.
+### What headphones should I use with Soundscape?
+Which headphones you use with Soundscape is a matter of personal preference, and each option comes with benefits and trade-offs. The only specific requirement is to use a pair of stereo headphones so that you can take advantage of Soundscape’s 3D spatial audio callouts.
 
-### Kuinka Soundscape vaikuttaa puhelimesi akun kestoon?
-Akun kesto vaihtelee merkittävästi puhelimen mallin ja iän mukaan. Suurin akun kuluttaja on näytön pitäminen päällä, joten pidä näyttö lukittuna aina kun mahdollista maksimoidaksesi akun keston. Vähentääksesi Soundscapen vaikutusta puhelimesi akkuun, Soundcapella on nyt lepotila. Vähentääksesi akun käyttöä entisestään sulje Soundscape kokonaan, kun et käytä sitä, pakottamalla sovellus sulkeutumaan puhelimesi sovellusvalitsimesta.
+### How does Soundscape impact my phone’s battery?
+Battery life varies significantly depending on which phone you own and how old it is. The biggest drain on your battery is having the screen on, so to maximize the battery life of your phone, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape now has a Sleep Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.
 
-### Kuinka käytän lepotilaa, jotta Soundscape vaikuttaisi mahdollisimman vähän akun kestoon?
-Laita Soundscape lepotilaan valitsemalla näytön oikeassa yläkulmassa oleva *"Siirry lepotilaan"* -painike. Valitsemalla tämän Soundscape lopettaa Sijaintipalveluiden ja mobiilidatan käytön siihen asti, kunnes herätät sen uudelleen.
+### How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?
+To put Soundscape in to Sleep Mode, select the *"Sleep"* button in the top-right corner of the screen. When you select this, Soundscape will stop using Location Services and mobile data until you choose to wake it up again.
 
+### How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?
+To put Soundscape in to Snooze Mode, select the *"Sleep"* button in the top-right corner of the screen. Once Soundscape’s in Sleep Mode, select the *"Wake up when I leave"* button and Soundscape will go in to a low power state until you leave your current location.
 
-### Kuinka käytän odotustilaa, jotta Soundscape vaikuttaisi mahdollisimman vähän akun kestoon?
-Laita Soundscape odotustilaan valitsemalla näytön oikeassa yläkulmassa oleva *"Siirry lepotilaan"* -painike. Kun Soundscape on lepotilassa, valitse *"Herää kun lähden"* -painike, jolloin Soundscape siirtyy vähävirtaiseen tilaan siihen asti, kunnes poistut nykyisestä sijainnistasi.
+### How does my choice of headphones affect the battery life of my phone?
+In our tests, the battery consumption of Bluetooth headphones is comparable to wired headphones and should not be a significant factor to consider when selecting headphones.
 
+### How does running Soundscape in the background impact battery life of my phone?
+Soundscape is a location-based app and uses Location Services to determine your location. In our tests, Soundscape does not consume any more battery than the average map application; but if you are concerned about battery consumption when using your phone, the following are a few tips which will help lower usage:
 
-### Kuinka kuulokevalinta vaikuttaa puhelimen akun kestoon?
-Testiemme mukaan Bluetooth-kuulokkeiden akunkulutus on verrattavissa langallisiin kuulokkeisiin, eikä sen pitäisi olla merkittävä tekijä kuulokkeita valittaessa.
+1. Turn the screen display off as much as possible when you are not interacting with the app.
 
-### Kuinka Soundscapen suorittaminen taustalla vaikuttaa puhelimen akun kestoon?
-Soundscape on sijaintipohjainen sovellus ja käyttää Sijaintipalveluita määrittääkseen sijaintisi. Testiemme mukaan Soundscape ei kuluta enempää akkua kuin keskimääräinen karttasovellus; jos kuitenkin huolehdit akun kulutuksesta puhelinta käyttäessäsi, seuraavat vinkit auttavat vähentämään kulutusta:
+2. When not using the app, close it down. Soundscape uses location services continually when it is running so that it always knows your location, even when you are not moving. Don’t forget to restart the app when you resume your journey.
 
-1. Sammuta näyttö aina kun et ole vuorovaikutuksessa sovelluksen kanssa.
+3. In cold weather, keep your phone warm as batteries perform more poorly in colder temperatures.
 
-2. Kun et käytä sovellusta, sulje se kokonaan. Soundscape käyttää sijaintipalveluita jatkuvasti käynnissä ollessaan, jotta se tietää sijaintisi myös silloin, kun et liiku. Älä unohda käynnistää sovellusta uudelleen, kun jatkat matkaa.
+### How much mobile data does Soundscape use?
+The amount of mobile data used depends on how you use Soundscape. We have designed Soundscape to use only a small amount of data when you’re out and about by doing things like saving points as you walk around so you don’t need to download them again every time you go back to somewhere you’ve already been. To reduce the amount of mobile data you use, make sure you are connected to Wi-Fi whenever possible, particularly to download the app. When you are not using Soundscape, you should use the *"Sleep"* button to put Soundscape to sleep or force close the app.
 
-3. Pidä puhelin lämpimänä kylmässä säässä, sillä akut toimivat heikommin alhaisissa lämpötiloissa.
+### How is Soundscape different from other map apps?
+Soundscape provides an ambient description of your surroundings in aid of exploration and way-finding. Using spatial audio, Soundscape will call out points of interest, parks, roads, and intersections from the direction they physically are in your immediate environment as you walk. For example, if you pass a shop on your right, you will hear the name of the shop sounding from your right. As you approach an intersection, you will hear each road name sounding from the direction it goes in, beginning to your left, ahead and to the right.
 
-### Kuinka paljon mobiilidataa Soundscape käyttää?
-Mobiilidatan käyttömääriin vaikuttaa se, miten käytät Soundscapea. Olemme suunnitelleet Soundscapen käyttämään vain pientä määrää dataa liikkuessasi esimerkiksi tallentamalla paikkoja kävellessäsi, jotta sinun ei tarvitse ladata niitä uudelleen joka kerta palatessasi samaan paikkaan. Vähentääksesi mobiilidatan käyttöä, varmista että olet yhteydessä Wi‑Fi‑verkkoon aina kun mahdollista, erityisesti ladatessasi sovellusta. Kun et käytä Soundscapea, käytä *"Siirry lepotilaan"* -painiketta laittaaksesi sovelluksen lepotilaan tai pakota sovellus sulkeutumaan.
+Instead of turn-by-turn directions as often provided by other map applications, Soundscape will play an audible beacon in the direction of your destination, empowering you to make your way there however works best for you, using your increased awareness of your surroundings and the location of your destination. Soundscape is designed to run in the background, enabling you to use a turn-by-turn directions app, all the while continuing to provide environmental awareness as you make your way to your destination.
 
-### Kuinka Soundscape eroaa muista karttasovelluksista?
-Soundscape antaa ympäristöstä ääneen luonnehdinnan, joka auttaa alueeseen tutustumisessa ja reitillä suunnistamisessa. Tilaäänen avulla Soundscape ilmoittaa kiinnostavista kohteista, puistoista, teistä ja risteyksistä siitä suunnasta, jossa ne fyysisesti sijaitsevat lähiympäristössäsi kävellessäsi. Esimerkiksi jos ohitat kaupan oikealla puolellasi, kuulet kaupan nimen oikealta kuuluvana. Lähestyessäsi risteystä kuulet kunkin tien nimen siitä suunnasta, johon tie jatkuu — alkaen vasemmalta, sitten edestä ja oikealta.
+### How do I use Soundscape with a wayfinding app?
+Soundscape is designed as an awareness app to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.
 
-Sen sijaan että annettaisiin askel‑askelelta toimivia käännösohjeita, kuten monissa muissa karttasovelluksissa, Soundscape soittaa äänimajakkaa määränpääsi suunnasta. Se antaa sinulle mahdollisuuden edetä omalla tavallasi hyödyntäen parempaa ympäristötietoisuuttasi ja käsitystä määränpään sijainnista. Soundscape on suunniteltu toimimaan taustalla, joten voit käyttää samanaikaisesti askel‑askelelta ohjeita antavaa navigaattoria, samalla kun Soundscape jatkaa ympäristön tiedottamista matkallasi.
+### How do I control what I hear and when I hear it in Soundscape?
+Soundscape provides several ways to control what you hear and when:
 
-### Kuinka Soundscapea käytetään opastussovelluksen kanssa?
-Soundscape on suunniteltu parantamaan tietoisuutta ympäristöstäsi ja antamaan lisätietoja sen yksityiskohdista, joita et ehkä muuten huomaisi. Sitä ei ole suunniteltu kääntymisohjeita antavaksi navigointisovellukseksi, mutta sitä voidaan käyttää sellaisten rinnalla antamaan täydentäviä tietoja. Jos haluat käyttää Soundscapea näiden sovellusten rinnalla, käynnistä ensin navigointisovellus. Siirry sitten Soundscapeen ja määritä äänimajakka samaan määränpäähän kuin navigointisovelluksessa. Tässä vaiheessa molemmat sovellukset ovat käynnissä ja kuulet kävelyohjeita navigointisovelluksestasi samalla, kun saat päivityksiä mielenkiintoisista kohteista, risteyksistä ja etäisyydestäsi määränpäähän Soundscapesta.
+1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *\"unmute beacon button\"* on the main screen to resume hearing the beacon.
 
-### Kuinka hallitsen sitä, mitä kuulen, ja milloin kuulen sen Soundscapessa?
-Soundscape tarjoaa useita tapoja hallita, mitä kuulet ja milloin:
+2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape in to Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you choose to turn it back on. Alternatively, you can select *\"Settings\"* from the menu and choose to turn all callouts off in the *\"Manage Callouts\"* section.
 
-1. Pysäytä kaikki äänet välittömästi: kaksoisnapauta näyttöä kahdella sormella pysäyttääksesi kaikki äänet välittömästi, mukaan lukien parhaillaan toistuvat ilmoitukset ja äänimajakka, jos se on päällä. Ilmoitukset alkavat taas automaattisesti, kun lähestyt seuraavaa risteystä tai kiinnostavaa kohdetta, mutta äänimajakka ei palaudu automaattisesti. Valitse pääruudulta *"Poista majakan hiljennys"* -painike kuullaksesi majakan uudelleen.
+3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *\"mute beacon\"*/*\"unmute beacon\"* button on the main screen.
 
-2. Lopeta automaattiset ilmoitukset: kun et ole liikkeessä tai olet saapunut määränpäähäsi, et todennäköisesti tarvitse Soundscapea jatkamaan ympäristötietojen ilmoittamista. Sulkemisen sijaan voit laittaa Soundscapen odotustilaan (Snooze), jolloin se herää, kun poistut paikalta, tai voit laittaa Soundscapen lepotilaan (Sleep), jolloin se pysyy pois päältä kunnes päätät käynnistää sen uudelleen. Vaihtoehtoisesti valitse valikosta *"Asetukset"* ja kytke kaikki ilmoitukset pois päältä *"Ilmoitusten hallinta"* -osiossa.
+If you still want to interact with Soundscape but don’t want to hear automatic callouts, you can turn callouts off by going to the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *\"Sleep\"* button on the home screen.
 
-3. Pysäytä majakka: on tilanteita, joissa määrittelet määränpään mutta et halua äänimajakan olevan päällä. Esimerkiksi saatat tietää tarkalleen reitin määränpäähän, mutta haluat silti saada automaattisia etäisyyspäivityksiä. Tai saatat tarvita äänimajakkaa vain lähestyessäsi määränpäätä. Voit päättää, milloin kuulet majakan, kytkemällä pääruudun *"Hiljennä majakka"*/*"Poista majakan hiljennys"* -painiketta.
+### Do I need to hold the phone in my hand all the time?
+No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *\"flat\"* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.
 
-Jos haluat edelleen käyttää Soundscapea mutta et halua kuulla automaattisia ilmoituksia, voit kytkeä ilmoitukset pois päältä valikosta valitsemalla *"Asetukset"* → *"Ilmoitusten hallinta"*. Tai jos et aio käyttää Soundscapea lainkaan, voit laittaa sen Lepo‑ tai Odotustilaan käyttämällä aloitusnäytön *"Siirry lepotilaan"* -painiketta.
-
-### Onko minun pideltävä puhelinta kädessäni koko ajan?
-Ei! Kävellessäsi voit laittaa puhelimen laukkuun, taskuun tai muuhun kätevään paikkaan. Soundscape käyttää kävelysuuntaasi päättääkseen, mitä ilmoituksia toistaa vasemmalla ja oikealla. Kun pysähdyt, Soundscape ei tiedä, mihin suuntaan olet kääntynyt, ja jos äänimajakka on päällä, sen ääni hiljenee, kunnes alat liikkua uudelleen. Voit milloin tahansa ottaa puhelimen esiin ja painaa näytön alareunasta löytyviä sijainti‑ ja tutkimispainikkeita, mutta pidä silloin puhelinta siten, että sen yläosa osoittaa suuntaan, johon olet kääntynyt, ja näyttö kohti taivasta. Tässä *"vaakatasoisessa"* asennossa Soundscape käyttää puhelimen kompassia määrittääkseen suuntasi ja antaa tarkkoja tilaäänisiä ilmoituksia. Jos majakka on päällä, huomaat myös sen palautuvan täyteen äänenvoimakkuuteen.
-
-### Mikä on Open Street Map ja miksi käytämme sitä Soundscapessa?
-Soundscape käyttää maantieteellisiä karttatietoja antaakseen tietoja sovelluksen ilmoituksissa. Tärkein käyttämämme lähde on Open Street Map (www.openstreetmap.org), joka on rikas yhteisön luoma kartta-alusta, joka antaa organisaatioille ja yksilöille mahdollisuuden parantaa annettujen tietojen laatua ja tarkkuutta sekä tilojen saavutettavuutta Open Street Map -karttojen luontityökalujen avulla.
+### What is OpenStreetMap and why do we use it for Soundscape?
+Soundscape uses map data to create its audio callouts. Our main map source is OpenStreetMap (www.openstreetmap.org). This is a mapping platform created by a community of contributors. Organizations and individuals can use OpenStreetMap's tools to improve the data and make their spaces more accessible.
 

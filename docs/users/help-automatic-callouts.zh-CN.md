@@ -1,5 +1,5 @@
 ---
-title: 自动提示
+title: Automatic Callouts
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: zh-CN
 permalink: /users/help-automatic-callouts.html
 ---
 
-# 自动提示
+# Automatic Callouts
 
-## 这是什么？
+## What is it?
 
-Soundscape 会在您接近周围事物时，从其所在方向播报其名称，告诉您周围有什么。应用会为各种事物（例如商家、公交站，甚至路口）自动执行此操作。您可以在*"设置"*页面的*"管理提示"*部分配置应用自动播报的内容；当您希望应用保持安静时，也可以关闭所有提示。
+Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
 
-## 什么时候使用？
+## When would I use it?
 
-**探索新区域：**
+**Exploring a new area :**
 
-打开自动播报，四处走走，当您经过各种商店、餐馆等时就会听到相关播报。
+ Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
 
-**步行前往特定地点：**
+**Walking to a specific location :**
 
-当您在前往某个特定地点的途中，路口自动播报特别有用。路口提示会在您接近路口时告诉您路口的布局，并在您离开路口时确认您所在的道路。
+ When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
 
-**当您需要安静时：**
+**When you need silence :**
 
-当您准备过马路或只是需要应用保持安静时，可以关闭播报。关闭播报后，应用只会在您手动点击*"我的位置"*、*"附近标记点"*、*"周围"*或*"前方"*按钮时才会播报信息。
+ When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
 
-## 如何使用？
+## How does it work?
 
-**开启或关闭提示：**
+**Turning callouts on or off :**
 
-关闭提示将使应用静音。您可以在*"设置"*屏幕的*"管理提示"*部分通过点击*"允许提示"*切换来开启或关闭提示。如果您的耳机带有媒体控制按钮，也可以通过*"跳过向前"*命令（双击并按住）来开启或关闭提示。或者，您可以使用主屏幕右上角的*"休眠"*按钮，让 Soundscape 停止播报提示，直到您再次唤醒它。
+ Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
 
-**管理您听到的提示：**
+**Managing which callouts you hear :**
 
-要选择 Soundscape 会自动播报的内容类型，请从主屏幕的菜单进入*"设置"*页面。*"设置"*页面中的*"管理提示"*部分列出了应用可播报的各类项目。每一项旁边都有一个开关，您可以将其打开或关闭。如果您想关闭所有播报，请点击列表顶部的*"允许提示"*切换开关。
+ To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
 

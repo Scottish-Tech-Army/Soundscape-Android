@@ -1,5 +1,5 @@
 ---
-title: Por que motivo é que o Soundscape está a trabalhar offline?
+title: Why is Soundscape working offline?
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: pt
 permalink: /users/help-why-is-soundscape-working-offline-.html
 ---
 
-# Por que motivo é que o Soundscape está a trabalhar offline?
+# Why is Soundscape working offline?
 
-## Por que motivo é que o Soundscape está a trabalhar offline?
+## Why is Soundscape working offline?
 
-Quando não existe ligação à Internet, ou quando ocorre uma falha nos serviços do Soundscape, o Soundscape passa para um modo offline. O Soundscape continuará a funcionar, mas algumas funções poderão estar limitadas.
+When there is no internet connection, or the Soundscape services are down, Soundscape switches to offline mode. It will keep working, but some features may be limited.
 
-## Limitações
+## Limitations
 
-Os avisos continuarão a funcionar se estiver numa área em que já tenha caminhado e que tenha sido armazenada no histórico de avisos. Também é possível colocar um sinal de áudio ou criar um marco em locais que tenham sido armazenados no histórico de avisos.
+Callouts still work in areas you have walked through before, since Soundscape stores them in your callout history. You can also place an audio beacon or create a marker on places already stored in your callout history.
 
-## O que pode fazer?
+## What can you do?
 
-O Soundscape tentará retomar o funcionamento normal quando o telemóvel estiver ligado a uma rede Wi-Fi ou os dados móveis estiverem ativados e estiver numa rede com bom sinal. Se o telemóvel tiver uma boa ligação à Internet e o Soundscape não retomar o funcionamento normal, é possível que exista uma falha nos serviços do Soundscape.
+Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or cellular data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
 

@@ -1,5 +1,5 @@
 ---
-title: Tilpass markører
+title: Customizing Markers
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: nb
 permalink: /users/help-customizing-markers.html
 ---
 
-# Tilpass markører
+# Customizing Markers
 
-Hvis du vil gi en tidligere opprettet markør nytt navn eller legge til en annotasjon, kan du gjøre dette ved å velge markøren fra fanen *"Markører"* på siden *"Markører og ruter"*, og deretter velge knappen *"Rediger markør"*. Du kan bruke dette til å gi markører beskrivende eller nyttige kallenavn, samt legge inn en lengre beskrivelse i annotasjonsfeltet.
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-Fra denne skjermen *"Rediger"* kan du også slette en markør hvis du ikke lenger trenger den.
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

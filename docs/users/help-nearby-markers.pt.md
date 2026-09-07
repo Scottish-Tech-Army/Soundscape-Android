@@ -1,5 +1,5 @@
 ---
-title: Marcos nas Proximidades
+title: Nearby Markers
 layout: page
 parent: "Utilizar o Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: pt
 permalink: /users/help-nearby-markers.html
 ---
 
-# Marcos nas Proximidades
+# Nearby Markers
 
-## O que é?
+## What is it?
 
-O botão *"Marcos nas Proximidades"* informa-o sobre até quatro marcos que estejam mais próximos de si. *"Marcos nas Proximidades"* destina-se a ajudá-lo a orientar-se utilizando locais que já conhece.
+The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
 
-## Quando devo utilizá-lo?
+## When would I use it?
 
-Quando estiver a tentar orientar-se no ambiente que o rodeia, utilize *"Marcos nas Proximidades"* para ouvir informações sobre a localização de locais que conhece.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
 
-## Como funciona?
+## How does it work?
 
-Tal como acontece com os quatro botões existentes na parte inferior do ecrã principal, segure no telemóvel com o ecrã numa posição plana (virado para o céu) e a parte superior apontada para a extremidade voltada para a direção em que está virado antes de premir o botão *"Marcos nas Proximidades"*. Isto funciona como uma bússola, indicando à aplicação a direção em que está virado. Basta tocar no botão *"Marcos nas Proximidades"* e ouvirá até quatro marcos nas proximidades.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
 

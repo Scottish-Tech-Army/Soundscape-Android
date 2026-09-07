@@ -1,5 +1,5 @@
 ---
-title: اطراف من
+title: Around Me
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
@@ -7,17 +7,17 @@ lang: fa
 permalink: /users/help-around-me.html
 ---
 
-# اطراف من
+# Around Me
 
-## این چیست؟
+## What is it?
 
-دکمه‌ی *«اطراف من»* در مورد یک مکان در هر یک از چهار جهت اطرافتان (جلو، سمت راست، پشت سر و سمت چپ) به شما اطلاع می‌دهد. هدف از این قابلیت آن است که شما نسبت به موقعیت خود در محیط پیرامونتان آگاه شوید.
+The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
 
-## چه زمانی از آن استفاده کنم؟
+## When would I use it?
 
-هنگامی که می‌خواهید از موقعیت خود نسبت به مکان‌های اطرافتان آگاه شوید، از گزینه‌ی *«اطراف من»* استفاده نمایید تا در مورد مکان‌هایی که در پیرامونتان قرار دارد اطلاع کسب کنید.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
 
-## چگونه کار می‌کند؟
+## How does it work?
 
-پیش از آنکه روی دکمه‌ی *«اطراف من»* ضربه بزنید، گوشی خود را به حالت افقی نگه دارید؛ به‌گونه‌ای که صفحه‌ی نمایش گوشی رو به آسمان و جلوی آن در جهتی باشد که رو به آن ایستاده‌اید. این کار را هنگام استفاده از هر چهار دکمه‌ی پایین صفحه‌ی اصلی انجام دهید. در این حالت، گوشی شما مانند یک قطب‌نما عمل کرده و به اپلیکیشن می‌گوید که شما رو به کدام جهت ایستاده‌اید. حالا کافیست روی دکمه‌ی *«اطراف من»* ضربه بزنید تا ساند‌اسکیپ چهار مورد از نقاط شاخصی که پیرامونتان قرار گرفته‌اند را به شما اعلام کند.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
 

@@ -1,5 +1,5 @@
 ---
-title: Uso de controles multimedia
+title: Using Media Controls
 layout: page
 parent: "Usar Soundscape"
 has_toc: false
@@ -7,41 +7,33 @@ lang: es
 permalink: /users/help-using-media-controls.html
 ---
 
-# Uso de controles multimedia
+# Using Media Controls
 
-## ¿Qué es?
+## What is it?
 
-Puede obtener acceso a determinadas características de Soundscape con la ayuda de los botones de control multimedia de sus auriculares. Esta funcionalidad funciona con auriculares Bluetooth o por cable que tenga botones de control multimedia, como Reproducir, Pausa, Siguiente, Anterior y otros. Distintos modelos de auriculares con micrófono pueden incluir diferentes botones; consulte la lista de acciones a continuación para determinar cuáles están disponibles para usted.
+You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
 
-## ¿Cuándo lo usaría?
+## When would I use it?
 
-Los controles multimedia de auriculares se pueden usar mientras Soundscape se está ejecutando. Esto es así si se encuentra actualmente en Soundscape o mientras Soundscape se encuentra en segundo plano e incluso cuando el dispositivo está bloqueado. Sin embargo, tenga en cuenta que los botones de control multimedia no funcionarán con Soundscape si está reproduciendo audio como música, podcasts o vídeos con otra aplicación.
+Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
 
-## ¿Cómo funciona?
+## How does it work?
 
-Existen 3 modos de funcionamiento para los controles multimedia. El modo se puede seleccionar en la sección *"Ajustes"* *"Controles multimedia"*. Los modos son:
+There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
 
- Modo Original.
+ Original mode. 
 
-⏯ Reproducir/Pausa: Activa o desactiva el audio de la señal.
+⏯ Play/Pause: Toggles the beacon audio on and off. 
 
-⏭ Siguiente: Si se está reproduciendo una ruta, mueve la señal de audio al siguiente Punto de ruta de la ruta. Si no se está reproduciendo ninguna ruta, activa *"Mi ubicación"*.
+⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
 
-⏮ Anterior: Si se está reproduciendo una ruta, mueve la señal de audio al punto de ruta anterior de la ruta. Si no se está reproduciendo ninguna ruta, activa *"Alrededor de mí"*.
-
-
-
-Comandos de voz.
+⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
 
 
 
-⏯ Reproducir/Pausa: Esto hace que la aplicación empiece a escuchar comandos de voz.
+Audio menu. 
 
 
 
-Menú de audio.
-
-
-
-⏭ Siguiente y ⏮ Anterior avanzan o retroceden por una serie de opciones de menú que la aplicación describe mediante síntesis de voz. ⏯ Reproducir/Pausa hace que la aplicación ejecute la opción descrita. Hay un único menú de primer nivel que solo tiene submenús como opciones. Cada submenú agrupa un conjunto de acciones similares.
+⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
 

@@ -1,5 +1,5 @@
 ---
-title: Markeringen in de buurt
+title: Nearby Markers
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
@@ -7,17 +7,17 @@ lang: nl
 permalink: /users/help-nearby-markers.html
 ---
 
-# Markeringen in de buurt
+# Nearby Markers
 
-## Wat is het?
+## What is it?
 
-Met de knop *Markeringen in de buurt* hoort u maximaal vier markeringen die het dichtst bij u zijn. Met *Markeringen in de buurt* kunt u zich gemakkelijker oriënteren met behulp van plaatsen die u al kent.
+The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
 
-## Wanneer zou ik het moeten gebruiken?
+## When would I use it?
 
-Wanneer u probeert om uw positie te ontdekken en u te oriënteren in uw omgeving, gebruikt u *Markeringen in de buurt* om meer te horen over de locaties die u kent.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
 
-## Hoe werkt het?
+## How does it work?
 
-Net als met de vier knoppen onderaan het hoofdscherm houdt u de telefoon met het scherm horizontaal en met de bovenkant in de richting waarin u loopt, voordat u op *Markeringen in de buurt* drukt. Dit werkt als een kompas en geeft aan de app door in welke richting u kijkt. Tik op de knop *Markeringen in de buurt* en u hoort maximaal vier markeringen vlakbij u.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
 

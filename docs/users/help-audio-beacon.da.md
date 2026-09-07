@@ -1,5 +1,5 @@
 ---
-title: Lydfyr
+title: Audio Beacon
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: da
 permalink: /users/help-audio-beacon.html
 ---
 
-# Lydfyr
+# Audio Beacon
 
-## Hvad er det?
+## What is it?
 
-Hvis du indstiller et lydfyr på et sted i nærheden, kan Soundscape holde dig informeret ved at afspille en hørbar lyd fra lydfyr, der kommer fra retningen af det pågældende sted. Dette lydfyr kan slås til eller fra på startskærmen. Derudover viser Soundscape oplysninger om placeringen på startskærmen, herunder afstanden til den og dens adresse, hvis den er kendt.
+Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
 
-## Hvornår ville jeg bruge det?
+## When would I use it?
 
-Det er nyttigt at sætte et lydfyr, når du vil holde styr på et velkendt landemærke, når du udforsker et nyt område, eller når du skal et sted hen og vil have oplysninger om dine omgivelser undervejs. Lydfyrfunktionen giver dig ikke trinvise anvisninger, men den giver dig en kontinuerlig hørbar lyd, der fortæller dig retningen til lydfyret i forhold til, hvor du befinder dig i øjeblikket. Ved hjælp af lydfyret og dine eksisterende færdigheder til at finde vej og måske din foretrukne navigationsapp kan du selv vælge, hvordan du vil komme til steder i nærheden.
+Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
 
-## Hvordan virker det?
+## How does it work?
 
-**For at sætte et lydfyr:**
+**To set a beacon :**
 
- Først skal du se oplysningerne for en placering ved enten at søge efter et sted i søgefeltet eller ved at trykke på en af knapperne *"Steder i nærheden"*, *"Mærker og Ruter"* eller *"Aktuel placering"* og vælge en placering. På skærmen *"Oplysninger om placering"* kan du vælge knappen *"Start lydfyr"*. Når du trykker på denne, vender du tilbage til startskærmen, og et hørbart lydfyr fra den valgte placering tændes. Navnet på det valgte sted samt dets afstand og fysiske adresse, hvis tilgængelig, vises nu på appens hovedskærm.
+ First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-**For at fjerne det aktuelle lydfyr:**
+**To remove the current beacon :**
 
- Tryk blot på knappen *"Stop rute"* på startskærmen.
+ Simply press the *\"Stop Route\"* button on the home screen.
 
-**For at slå det hørbare lydfyr fra:**
+**To mute the audible beacon :**
 
- Tryk på knappen *"Slå lydfyr fra"* ved siden af knappen *"Stop rute"* på startskærmen.
+ Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
 

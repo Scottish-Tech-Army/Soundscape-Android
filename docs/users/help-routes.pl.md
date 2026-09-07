@@ -1,5 +1,5 @@
 ---
-title: Zapisane trasy
+title: Routes
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: pl
 permalink: /users/help-routes.html
 ---
 
-# Zapisane trasy
+# Routes
 
-## Co to jest?
+## What is it?
 
-Trasy to ciąg punktów trasy. Po dotarciu do każdego punktu zostaniesz poinformowany, a Dźwięk naprowadzający automatycznie przełączy się na następny punkt.
+Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
 
-## Kiedy używać?
+## When would I use it?
 
-Możesz utworzyć i używać trasę w miejscu, które znasz, aby upewnić się, że jesteś na właściwej drodze, albo użyć jej jako narzędzia pomagającego zapoznać się z trasą podczas nowej podróży.
+You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
 
-## Jak to działa?
+## How does it work?
 
-Tworzenie trasy:
+**Creating a route :**
 
-Najpierw przejdź do "Znaczniki (pinezki) i Trasy", wybierz kartę "Trasy", a następnie naciśnij przycisk "Nowa trasa". Nadaj trasie nazwę i opcjonalny opis, a następnie dodawaj punkty trasy w trakcie tworzenia lub wybierz je ze swojej listy Znaczników (pinezek). Kolejność punktów trasy możesz zmienić w dowolnym momencie, edytując trasę.
+ First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
 
-**Edycja trasy:**
+**Editing a route :**
 
- Wybierz swoją trasę na ekranie *„Znaczniki (pinezki) i trasy”*, a następnie wybierz *„Edytuj trasę”*. Z tego miejsca możesz dodawać i usuwać punkty trasy oraz edytować nazwę i opis trasy.
+ Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
 
-**Udostępnianie trasy :**
+**Sharing a route :**
 
- Wybierz swoją trasę na ekranie *"Znaczniki (pinezki) i trasy"*, a następnie wybierz opcję *"Udostępnij"*, korzystając z dostępnych standardowych opcji udostępniania.
+ Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
 

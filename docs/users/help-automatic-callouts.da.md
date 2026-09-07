@@ -1,5 +1,5 @@
 ---
-title: Automatiske lydbeskeder
+title: Automatic Callouts
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
@@ -7,33 +7,33 @@ lang: da
 permalink: /users/help-automatic-callouts.html
 ---
 
-# Automatiske lydbeskeder
+# Automatic Callouts
 
-## Hvad er det?
+## What is it?
 
-Soundscape kan fortælle dig om ting omkring dig, når du nærmer dig dem, ved at annoncere deres navn fra den retning, de ligger i. Appen gør dette automatisk for alle slags objekter, f.eks. virksomheder, busstoppesteder og endda kryds. Du kan konfigurere, hvad appen automatisk annoncerer, i afsnittet *"Administrer lydbeskeder"* på skærmen *"Indstillinger"*, og du kan slå alle lydbeskeder fra, når du ønsker, at appen skal være stille.
+Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
 
-## Hvornår ville jeg bruge det?
+## When would I use it?
 
-**Udforskning af et nyt område**:
+**Exploring a new area :**
 
- Slå automatiske lydbeskeder til, og gå rundt for at høre om alle de forskellige butikker, restauranter og lignende, når du passerer dem.
+ Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
 
-**Når du går til et bestemt sted**:
+**Walking to a specific location :**
 
- Når du er på vej til et bestemt sted, kan automatiske lydbeskeder om kryds være særligt nyttige. Lydbeskeder om kryds fortæller dig om krydsenes opbygning, når du nærmer dig dem, og bekræfter den vej, du er på, når du forlader dem.
+ When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
 
-**Når du har brug for stilhed**:
+**When you need silence :**
 
- Når du er ved at krydse en vej eller bare har brug for, at appen er stille, kan du slå lydbeskeder fra. Når lydbeskeder er slået fra, sender appen dig kun oplysninger, hvis du manuelt trykker på én af knapperne *"Min placering"*, *"Mærker i nærheden"*, *"Omkring mig"* eller *"Foran mig"*.
+ When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
 
-## Hvordan virker det?
+## How does it work?
 
-**Slå lydbeskeder til eller fra:**
+**Turning callouts on or off :**
 
- Hvis du slår lydbeskeder fra, vil appen være tavs. Du kan slå lydbeskeder til eller fra i afsnittet *"Administrer lydbeskeder"* på skærmen *"Indstillinger"*, hvor du kan trykke på omskifteren *"Tillad lydbeskeder"* for at slå lydbeskeder til eller fra. Du kan også slå lydbeskeder til eller fra ved at bruge kommandoen *"spring frem"* (dobbelttap og hold), hvis dine hovedtelefoner har medieknapper. Alternativt kan du bruge knappen *"Dvale"* i øverste højre hjørne af startskærmen for at få Soundscape til at stoppe med at lave lydbeskeder, indtil du vælger at vække den igen.
+ Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
 
-**Administrer hvilke lydbeskeder du hører:**
+**Managing which callouts you hear :**
 
- For at vælge, hvilke typer ting Soundscape automatisk vil annoncere, skal du gå til skærmen *"Indstillinger"* via menuen på startskærmen. Afsnittet *"Administrer lydbeskeder"* på skærmen *"Indstillinger"* indeholder en liste over de typer ting, appen kan annoncere. Hvert punkt har en omskifter, som du kan slå til eller fra. Hvis du vil slå alle lydbeskeder fra, skal du trykke på omskifteren *"Tillad lydbeskeder"* øverst i listen.
+ To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
 

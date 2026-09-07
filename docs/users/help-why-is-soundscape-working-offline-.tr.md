@@ -1,5 +1,5 @@
 ---
-title: Soundscape neden çevrimdışı çalışıyor?
+title: Why is Soundscape working offline?
 layout: page
 parent: "Soundscape Kullanımı"
 has_toc: false
@@ -7,17 +7,17 @@ lang: tr
 permalink: /users/help-why-is-soundscape-working-offline-.html
 ---
 
-# Soundscape neden çevrimdışı çalışıyor?
+# Why is Soundscape working offline?
 
-## Soundscape neden çevrimdışı çalışıyor?
+## Why is Soundscape working offline?
 
-İnternet bağlantısı olmadığında veya Soundscape hizmetlerinde kesinti yaşandığında, Soundscape Çevrimdışı Mod'a geçer. Bununla birlikte Soundscape çalışmaya devam eder, ancak bazı işlevler sınırlı olabilir.
+When there is no internet connection, or the Soundscape services are down, Soundscape switches to offline mode. It will keep working, but some features may be limited.
 
-## Sınırlamalar
+## Limitations
 
-Anonslar, daha önce geçtiğiniz ve anons geçmişinizde kaydedilen alanlarda çalışmaya devam eder. Benzer şekilde, anons geçmişinizde kayıtlı yerlere Sesli İşaret yerleştirebilir veya Kayıtlı Nokta oluşturabilirsiniz.
+Callouts still work in areas you have walked through before, since Soundscape stores them in your callout history. You can also place an audio beacon or create a marker on places already stored in your callout history.
 
-## Ne yapabilirsiniz?
+## What can you do?
 
-Soundscape, telefonunuz Wi-Fi'ya bağlandığında veya hücresel veri etkinleştirildiğinde ve iyi sinyal olan bir alanda bulunduğunuzda normal çalışmaya devam etmeye çalışır. Telefonunuzda iyi bir internet bağlantısı olmasına rağmen Soundscape normal çalışmaya devam etmiyorsa, Soundscape hizmetlerinde bir kesinti olabilir.
+Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or cellular data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
 

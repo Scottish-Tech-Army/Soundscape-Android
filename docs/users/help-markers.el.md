@@ -1,5 +1,5 @@
 ---
-title: Δείκτες
+title: Markers
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: el
 permalink: /users/help-markers.html
 ---
 
-# Δείκτες
+# Markers
 
-Με το Soundscape μπορείτε να επισημάνετε τον κόσμο σας και οτιδήποτε σας ενδιαφέρει, σαν καρφίτσες σε χάρτη.
+With Soundscape, you can mark your world and anything you care about, like pins in a map.
 
-Μπορείτε να επισημάνετε πράγματα που είναι προσωπικά και σχετικά με εσάς, όπως το σπίτι σας, το γραφείο σας και το παντοπωλείο της προτίμησής σας. Μπορείτε να επισημάνετε οποιοδήποτε μέρος ή διεύθυνση, αλλά μπορείτε επίσης να επισημάνετε πράγματα που μπορεί παραδοσιακά να μην είναι διαθέσιμα σε χάρτες, για παράδειγμα, εισόδους σε κτίρια ή πάρκα, μπουτόν διάβασης πεζών, διαβάσεις πεζών ή γέφυρες, στάσεις λεωφορείων ή ακόμα και το αγαπημένο δέντρο του σκύλου σας και να τα χρησιμοποιήσετε ως αναφορές κατά μήκος της βόλτας σας.
+You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
 
-Για να ακούσετε τις αποθηκευμένες τοποθεσίες, το Soundscape θα ανακοινώνει αυτόματα τους δείκτες καθώς τα προσεγγίζετε ή περνάτε κοντά τους, ή μπορείτε επίσης να χρησιμοποιήσετε το κουμπί *"Κοντινοί δείκτες"* στο κάτω μέρος της αρχικής οθόνης του Soundscape για να ακούσετε μια χωρική ανακοίνωση των αποθηκευμένων σημείων γύρω σας. Επιπλέον, έχετε τη δυνατότητα να ορίσετε ένα ηχητικό σήμα σε οποιονδήποτε αποθηκευμένο δείκτη. Όταν το κάνετε αυτό, θα ακούσετε το ηχητικό σήμα του Soundscape που ήδη γνωρίζετε και θα μπορείτε να το χειρίζεστε όπως συνήθως.
+To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
 

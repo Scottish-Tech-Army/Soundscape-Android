@@ -1,5 +1,5 @@
 ---
-title: 关于 Soundscape
+title: About Soundscape
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
@@ -7,17 +7,19 @@ lang: zh-CN
 permalink: /users/help-about-soundscape.html
 ---
 
-# 关于 Soundscape
+# About Soundscape
 
-Soundscape 探索使用创新的音频技术，帮助人们更好地感知周围环境，从而更加自信、自主地出行。
+Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
 
-没有这些优秀的第三方库和数据，Soundscape 无法实现。点击以下链接查看它们的许可证：
+Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) 为 Soundscape 提供用于地图和音频的全部地理数据。
+[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) 用于生成我们使用的地图切片。
+[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) 用于生成 3D 音频，并在 [Apache 2.0 许可证](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md) 下提供使用。
+[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
 
-所有第三方产品、公司名称和徽标均为其各自所有者的商标或注册商标，且仍归其各自所有者所有。
+[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+
+All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
 

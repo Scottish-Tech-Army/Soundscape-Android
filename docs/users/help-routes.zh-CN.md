@@ -1,5 +1,5 @@
 ---
-title: 路线
+title: Routes
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: zh-CN
 permalink: /users/help-routes.html
 ---
 
-# 路线
+# Routes
 
-## 这是什么？
+## What is it?
 
-路线是一系列航点。当您到达每个航点时会收到通知，音频信标会自动前进到下一个航点。
+Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
 
-## 什么时候使用？
+## When would I use it?
 
-您可能想在熟悉的地方创建并使用路线以确保不偏离方向，也可能想将其作为工具来帮助自己熟悉新的旅程。
+You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
 
-## 如何使用？
+## How does it work?
 
-**创建路线：**
+**Creating a route :**
 
-首先，进入*"标记点和路线"*，选择*"路线"*选项卡，然后点击*"新建路线"*按钮。为路线命名并添加可选的描述，然后随行添加航点或从您的标记点列表中选择。您可以随时通过编辑路线来重新排列航点的顺序。
+ First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
 
-**编辑路线：**
+**Editing a route :**
 
-在*"标记点和路线"*屏幕上选择您的路线，然后选择*"编辑路线"*。在此界面中，您可以添加或移除航点，并编辑路线的名称和描述。
+ Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
 
-**分享路线：**
+**Sharing a route :**
 
-在*"标记点和路线"*页面选择您的路线，然后选择*"分享"*选项，使用所有可用的分享方式进行分享。
+ Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
 

@@ -1,5 +1,5 @@
 ---
-title: Personnalisation de marqueurs
+title: Customizing Markers
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: fr-CA
 permalink: /users/help-customizing-markers.html
 ---
 
-# Personnalisation de marqueurs
+# Customizing Markers
 
-Si vous souhaitez renommer un marqueur que vous avez créé précédemment ou y ajouter une annotation, vous pouvez le faire en sélectionnant le marqueur dans l’onglet *« Marqueurs »* de la page *« Marqueurs et Itinéraires »*, puis en sélectionnant le bouton *« Modifier le marqueur »*. Vous pouvez ainsi donner aux marqueurs des surnoms descriptifs ou utiles, et leur ajouter une description plus longue via le champ d’annotation.
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-Sur cet écran *Modifier*, vous pouvez également supprimer un marqueur si vous n’en avez plus besoin.
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

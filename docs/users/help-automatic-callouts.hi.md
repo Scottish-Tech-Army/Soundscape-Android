@@ -1,5 +1,5 @@
 ---
-title: स्वचालित कॉलआउट
+title: Automatic Callouts
 layout: page
 parent: "Soundscape का उपयोग"
 has_toc: false
@@ -7,33 +7,33 @@ lang: hi
 permalink: /users/help-automatic-callouts.html
 ---
 
-# स्वचालित कॉलआउट
+# Automatic Callouts
 
-## यह क्या है?
+## What is it?
 
-जब आप किसी चीज़ के पास पहुँचते हैं, तो Soundscape आपको उसके उस दिशा से उसका नाम बोलकर उसके बारे में बता सकता है जहाँ वह स्थित है। ऐप यह व्यवसायों, बस स्टॉप और यहाँ तक कि चौराहों जैसी विभिन्न चीज़ों के लिए स्वचालित रूप से करेगा। आप यह सेट कर सकते हैं कि ऐप स्वचालित रूप से क्या‑क्या घोषित करे — *"सेटिंग्स"* स्क्रीन के *"कॉलआउट प्रबंधित करें"* अनुभाग में — और जब आप चाहते हैं कि ऐप शांत रहे, तो आप सभी कॉलआउट्स बंद कर सकते हैं।
+Soundscape can tell you about things around you as you approach them by calling out their name from the direction they are located in. The app will do this automatically for all sorts of things like businesses, bus stops, and even intersections. You can configure what the app automatically calls out in the *\"Manage Callouts\"* section of the *\"Settings\"* screen, and you can turn all callouts off when you want the app to be silent.
 
-## मैं इसका उपयोग कब करूँ?
+## When would I use it?
 
-**नए क्षेत्र की खोज :**
+**Exploring a new area :**
 
- स्वचालित कॉलआउट चालू करें और चलें, जैसे-जैसे आप विभिन्न दुकानों, रेस्तराँ और इसी तरह के स्थानों के पास से गुज़रेंगे, उनके बारे में सुनें।
+ Turn automatic callouts on and walk around to hear about all of the different stores, restaurants, and the like as you pass them.
 
-**किसी विशेष स्थान पर चलकर जाना :**
+**Walking to a specific location :**
 
- जब आप किसी विशेष स्थान पर जा रहे हों, तो चौराहों के लिए स्वचालित कॉलआउट विशेष रूप से उपयोगी हो सकते हैं। चौराहों के कॉलआउट आपको चौराहों के लेआउट के बारे में बताते हैं जब आप उनके पास पहुँचते हैं, और जब आप उन्हें छोड़ते हैं तो उस सड़क की पुष्टि करते हैं जिस पर आप हैं।
+ When you are on your way to a particular location, automatic callouts for intersections can be particularly useful. Intersection callouts tell you about the layout of intersections as you approach them, and confirm the road you are on when you leave them.
 
-**जब आपको शांति चाहिए :**
+**When you need silence :**
 
- जब आप सड़क पार करने वाले हों या बस ऐप को चुप रखना चाहते हों, तो आप कॉलआउट बंद कर सकते हैं। जब कॉलआउट बंद हों, तो ऐप आपको केवल तभी जानकारी देगा जब आप स्वयं *"मेरा स्थान"*, *"पास के मार्कर"*, *"मेरे आसपास"*, या *"मेरे आगे"* बटनों में से किसी एक पर टैप करें।
+ When you are about to cross a road or just need the app to be quiet, you can turn callouts off. When callouts are off, the app will only tell you information if you manually tap one of the *"My Location"*, *"Nearby Markers"*, *"Around Me"*, or *"Ahead of Me"* buttons.
 
-## यह कैसे काम करता है?
+## How does it work?
 
-**कॉलआउट चालू या बंद करना :**
+**Turning callouts on or off :**
 
- कॉलआउट्स बंद करने पर ऐप चुप हो जाएगा। आप कॉलआउट्स को *"सेटिंग्स"* स्क्रीन के *"कॉलआउट प्रबंधित करें"* सेक्शन में जाकर चालू या बंद कर सकते हैं; वहाँ *"कॉलआउट की अनुमति दें"* टॉगल को टैप करके कॉलआउट्स चालू/बंद करें। यदि आपके हेडफ़ोन में मीडिया कंट्रोल बटन हैं, तो आप *"skip forward"* कमांड (डबल‑टैप करके होल्ड) से भी कॉलआउट्स चालू या बंद कर सकते हैं। वैकल्पिक रूप से, आप होम स्क्रीन के ऊपर‑दाएँ कोने में स्थित *"स्लीप"* बटन का उपयोग करके Soundscape को तब तक कॉलआउट न करने के लिए रोक सकते हैं जब तक आप इसे फिर से जगाना न चाहें।
+ Turning callouts off will silence the app. Callouts can be turned on or off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen where you can tap the *\"Allow Callouts\"* toggle to turn callouts on or off. You can also turn callouts on or off by using the *\"skip forward\"* command (double tap and hold) if your headphones have media control buttons. Alternatively, you can use the *\"Sleep\"* button in the top-right corner of the home screen to stop Soundscape from making callouts until you choose to wake it up again.
 
-**आप किन कॉलआउट्स को सुनते हैं इसे प्रबंधित करना :**
+**Managing which callouts you hear :**
 
- यह चुनने के लिए कि Soundscape स्वचालित रूप से किस प्रकार की चीज़ें घोषित करेगा, होम स्क्रीन के मेनू का उपयोग करके *"सेटिंग्स"* स्क्रीन पर जाएँ। *"सेटिंग्स"* स्क्रीन के *"कॉलआउट प्रबंधित करें"* सेक्शन में उन प्रकारों की एक सूची होती है जिन्हें ऐप घोषित कर सकता है। प्रत्येक आइटम के पास एक टॉगल बटन होता है जिसे आप चालू या बंद कर सकते हैं। यदि आप सभी कॉलआउट्स बंद करना चाहते हैं, तो सूची के शीर्ष पर स्थित *"कॉलआउट की अनुमति दें"* टॉगल पर टैप करें।
+ To choose the types of things Soundscape will automatically call out, go to the *\"Settings\"* screen using the menu on the *\"Home\"* screen. The *\"Manage Callouts\"* section of the *\"Settings\"* screen contains a list of types of things the app can call out. Each item has a toggle button that you can turn on or off. If you wish to turn off all callouts, tap the *\"Allow Callouts\"* toggle at the top of the list.
 

@@ -1,5 +1,5 @@
 ---
-title: Sugerencias
+title: Tips
 layout: page
 parent: "Usar Soundscape"
 has_toc: false
@@ -7,19 +7,19 @@ lang: es
 permalink: /users/help-tips.html
 ---
 
-# Sugerencias
+# Tips
 
-Puede encontrar paradas de autobús cercanas seleccionando el filtro *"Transporte público"* en la lista *"Lugares cercanos"*.
+You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
 
-Puede establecer una señal en cualquier dirección. Desde la pantalla principal de Soundscape, busque la dirección. Tras seleccionar la dirección en los resultados de búsqueda, se mostrará la pantalla *"Detalles de la ubicación"*, que incluye la opción *"Iniciar señal de audio"* para esa dirección. De este modo, puede colocar una señal en negocios, lugares, puntos de interés y residencias que no estén en Open Street Map.
+You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
 
-Si hay una ruta de autobús que utiliza con regularidad, establezca sus paradas de subida y bajada como Marcadores. De este modo se guardarán y podrá encontrarlas fácilmente; vaya a *"Marcadores y rutas"* desde la pantalla principal y búsquelas en la página *"Marcadores"*. Puede establecer una señal en ellas y recibirá actualizaciones periódicas sobre lo cerca que está de su parada de bajada. Nota: puede desactivar el sonido rítmico y aun así recibirá actualizaciones de la distancia durante el recorrido.
+If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
 
-Si se mete el teléfono en el bolsillo y deja de moverse, bajará el volumen del sonido de la señal porque Soundscape no sabrá hacia qué dirección está orientado. Para solucionar esto, empiece a andar de nuevo o saque el teléfono y manténgalo en posición horizontal.
+If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
 
-Soundscape funciona mejor cuando se mantiene el teléfono en posición horizontal con la pantalla hacia arriba y la parte superior del teléfono apuntando al lado contrario de usted.
+Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
 
-Para activar y desactivar el sonido rítmico de la señal, use el botón de silencio en la pantalla principal. Si la señal está silenciada, recibirá actualizaciones de la distancia a su destino cada 50 metros aproximadamente.
+You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
 
-Si aún desea interactuar con Soundscape pero no quiere oír avisos automáticos, puede desactivarlos yendo a la sección *"Administrar avisos"* de la pantalla *"Ajustes"* desde el menú. O bien, si no va a usar Soundscape, puede ponerlo en modo de suspensión o en modo de aplazamiento usando el botón *"Suspender"* en la pantalla principal.
+To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
 

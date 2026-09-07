@@ -1,5 +1,5 @@
 ---
-title: 自定义标记点
+title: Customizing Markers
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: zh-CN
 permalink: /users/help-customizing-markers.html
 ---
 
-# 自定义标记点
+# Customizing Markers
 
-如果您想重命名之前创建的标记点或为其添加注释，可在*"标记点和路线"*页面的*"标记点"*选项卡中选择该标记点，然后点击*"编辑标记点"*按钮进行。您可以为标记点设置描述性或有用的昵称，并在注释字段中填写更详细的描述。
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-在此*"编辑"*页面中，如果您不再需要某个标记点，也可以将其删除。
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

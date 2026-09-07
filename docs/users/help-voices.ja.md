@@ -1,5 +1,5 @@
 ---
-title: 声
+title: Voices
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
@@ -7,7 +7,7 @@ lang: ja
 permalink: /users/help-voices.html
 ---
 
-# 声
+# Voices
 
-Soundscape は、Android のテキスト読み上げ（音声合成）出力設定で端末にダウンロードした任意の音声を使用できます。Soundscape アプリ内で Android の既定の音声以外を選択するには、メインメニューから *「設定」* を開き、*「音声」* セクションを展開してから *「声」* を選択してください。
+Soundscape can use any of the voices you have downloaded to your Android phone in the Text-to-speech output settings. Within the Soundscape app, to select a voice other than the default Android one, go to *\"Settings\"* from the main menu, expand the *\"Audio\"* section, and then select *\"Voices\"*.
 

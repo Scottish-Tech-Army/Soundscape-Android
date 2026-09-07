@@ -1,5 +1,5 @@
 ---
-title: 常见问题
+title: Frequently Asked Questions
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
@@ -7,125 +7,123 @@ lang: zh-CN
 permalink: /users/help-frequently-asked-questions.html
 ---
 
-# 常见问题
+# Frequently Asked Questions
 
-## 什么是Soundscape，我该如何使用？
+## What is Soundscape and how should I use it?
 
-### 我应该在什么时候使用Soundscape？
-Soundscape的功能和优势涵盖多种场景和时间跨度。此外，Soundscape对您的价值可能会随时间演变，因此您今天的使用方式可能与三个月后有所不同。人们常常以*"这个应用能解决什么问题？"*的角度来看待应用。Soundscape当然可以在您有特定信息需求时按需使用——例如在前往目的地途中追踪目的地位置、从地铁站出来时帮助您辨别方向、下车后确定方位，或者查找下一个路口的街道名称和距离。然而，Soundscape背后的理念是*"用声音照亮您的世界"*，设计初衷是在您外出时随时使用，提供对周围环境的感知，例如让您了解所在街道的名称、行进方向以及经过的商家名称。在这种使用模式下，我们的用户将Soundscape称为*"不错的伴侣应用"*，支持*"偶然发现"*，能*"填补心理地图中的空白"*，并在*"步行时提供更多信心"*。以下是我们用户将Soundscape融入生活的一些其他例子：
+### When should I use Soundscape?
+Soundscape has features and benefits that span a variety of scenarios and time scales. Soundscape’s value to you may also change over time, so how you use it today may be different from how you use it in three months. People often think about apps in terms of *"what problem is this app good at solving?"* Soundscape can certainly be used for specific needs – such as keeping track of a destination as you make your way there, helping you orient yourself when you emerge from a metro station, getting your bearings when exiting a car, or finding the street names for, or distance to, the next intersection. However, the philosophy behind Soundscape is *"lighting up your world with sound"* – designed to be used anytime you are out and about, to give you ambient awareness of your surroundings, such as the names of the streets you are on, the direction you are heading, and the names of businesses you are passing. In this use mode, our users have referred to Soundscape as a *"nice companion app"*, which supports *"serendipity"*, helps *"fill in the gaps in your mental map"*, and provides more *"confidence when walking"*. Here are some other examples of how our users are using Soundscape in their life:
 
-"Soundscape帮助我在下错公交车后重新找到了方向。"
+"Soundscape helped me get back on track after I got off the bus and headed off in the wrong direction."
 
-"即使在我已经住了3年的城镇，使用Soundscape后，我对周围环境有了更好的了解。"
+"Even in the town where I have lived for 3 years, I have built an improved picture of what is around me [with Soundscape]."
 
-"3D声音增强了我的步行体验，因为我感觉与环境的联系更加紧密……有了这个应用，我更愿意尝试新路线了。"
+"The 3D sound enhances my experience of a walk, as I feel more connected to my environment…I am more likely to try a new route now that I have the app to use."
 
-"我怀念走在路上偶然发现事物的感觉。有了Soundscape真好——无需任何努力就能听到周围事物的信息。位置关系信息非常有用，是一款很棒的情境感知和探索商业区的应用。"
+"I miss the serendipity of walking around and noticing things. Having Soundscape is nice – it requires no effort to hear about things around me. The relational information is useful and is a great app for situational awareness and exploring commercial corridors."
 
-"我用Soundscape在约克市中心找到一家酒吧。我使用了它的多种功能先定位再实际找到它。它把我带到了距离门口3米以内的地方——太棒了！"
+"[I used Soundscape] to locate a pub in the middle of York. [I] used a range of its options to first locate and then actually find it. It took me to within 3 meters of the door – brilliant!"
 
-### 什么是标记点，如何充分利用它们？
-标记点是您保存的地点。它们可以是应用中可发现的地点，也可以是您亲自添加的全新地点。您可以通过在主屏幕选择*"当前位置"*按钮并点击*"保存为标记点"*来将当前位置保存为标记点。也可以在主屏幕使用搜索栏搜索想要保存的地点，或使用*"附近地点"*按钮查找地点来保存其他位置。找到想保存的地点后，选择该地点将进入*"位置详情"*屏幕，在该屏幕上点击名为*"保存为标记点"*的按钮即可。
+### What are Markers and how do I get the most out of them?
+Markers are places that you have saved. They could be places that are discoverable within the app, or they could be entirely new places you have added yourself. You can save your current location as a marker by selecting the *\"Current Location\"* button on the home screen and then selecting *\"Save as Marker\"*. You can save other locations as a marker by searching for the place you would like to save using the search bar, or finding somewhere using the *\"Places Nearby\"* button, both of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the button called *\"Save as Marker\"*.
 
-## 如何获得Soundscape的最佳体验？
+## How do I get the best out of Soundscape?
 
-### 我可以在什么上设置信标？
-您可以在任何商家、地点、兴趣点、地址或路口上设置信标。有几种在某地添加信标的方法。首先，通过使用搜索栏搜索地点，或点击*"附近地点"*、*"标记点和路线"*或*"当前位置"*按钮并选择一个地点来查看该地点的详情。在*"位置详情"*屏幕上，您可以选择*"启动音频信标"*按钮。点击后将返回主屏幕，并开启从您所选地点方向传来的可听信标。您选择的地点名称及其距离和实际地址（如有）将显示在主屏幕上。
+### What can I set as a beacon?
+You can set an audio beacon on any business, place, point of interest, address, or intersection. There are a few ways you can add a beacon at a location. First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-### 如何像专家一样使用信标？
-您可以把可听信标看作“耳朵的灯塔”，它会提示目的地相对于您位置的方向（按直线方向计算）。像灯塔一样，它并不告诉您如何到达目的地——在途中您可能需要做出许多导航选择，就像帆船需要多次“迎风转向”来靠近灯塔一样。音频信标会从目的地方向持续播放有节奏的声音，帮助您在行走时保持对目的地位置的感知。当您正朝目的地走去，或将手机指向目的地时，会听到更高音调的“铃”声。该功能帮助您在嘈杂环境中定位目的地方向，因为节奏声的方向有时难以分辨。寻找高音调“铃”声时，请将手机平放并缓慢扫动；同时将头部转向与手机指向相同的方向，可以获得最佳的空间音频体验。
+### How do I get the most out of a beacon?
+You can think of the audible beacon like a *\"lighthouse for your ears\"*: it tells you where your destination is, in a straight line from your current location. Like a lighthouse, it does not tell you how to get there – you may still need to make navigation choices along the way to work around obstacles. The continuous rhythmic sound of the audible beacon comes from the direction of the destination, and helps you stay aware of where the destination is relative to you as you walk. When you are walking directly toward the destination, or you point the phone toward the destination, you will hear a higher-pitched *\"ring\"* sound. This helps you pinpoint the direction of the destination, since the direction of the rhythmic sound can sometimes be difficult to hear in loud environments. To find the higher-pitched *\"ring\"*, hold the phone flat and slowly turn in a circle; turning your head to face the same direction as the phone will give you the best spatial audio experience.
 
-将信标比作灯塔有以下含义：
+This design has a few natural results:
 
-1. 使用信标时没有“正确”的行进方向，您可以自主选择如何前往；
+1. There is no *\"correct\"* direction to travel when using the beacon – with Soundscape, you choose how to get there;
 
-2. 更高音调的“铃”仅帮助您确定目的地方向——它并不指示具体路线；
+2. The higher-pitched *\"ring\"* only helps you pinpoint the direction of the destination – it does not tell you how to get there;
 
-3. 如果您大致知道如何到达目的地，可以在大部分行程中将信标静音，仅在接近目的地时再打开它。
+3. If you generally know how to get to your destination, you may wish to mute the beacon for most of your trip and turn it on only as you get closer to your destination.
 
-### 为什么音频信标有时会消失？
-Soundscape的音频信标本质上是一个方向提示，告诉您目的地相对于您面朝方向的位置。当Soundscape无法确定您面朝的方向时，它会降低信标的音量。这种情况通常发生在您将手机放在口袋或包中行走并停下来（例如等过马路）时。当您重新开始行走或将手机平放并指向您面朝的方向时，信标音量会恢复。
+### Why does the audible beacon disappear sometimes?
+Soundscape’s audible beacon is fundamentally a directional cue, telling you where your destination is relative to the direction you are facing. When Soundscape is uncertain about what direction you are facing, it lowers the volume of the beacon. Most often this occurs if you have been walking with the phone stored in a pocket or bag, and you stop moving, such as to cross a street. The beacon will get louder once you start moving again, or if you hold the phone flat and point it in the direction you are facing.
 
-### 我可以在地址上设置信标吗？
-可以。地址默认不列出，但可以通过搜索栏找到。若要保存此地址以便日后无需重复搜索，您可在*"位置详情"*页面选择*"保存为标记点"*将其添加为标记点。
+### Can I set a beacon on an address?
+Yes you can. Addresses are not listed by default but can be found using the search field. To save this address so you don’t need to search for it again, you can add it as a marker from the *\"Location Details\"* screen by selecting the *\"Save as Marker\"* button.
 
-### 如何在我家设置信标？
-Soundscape支持在地址上设置信标。要在您的家或任何其他地址上设置信标，请在Soundscape主屏幕上搜索该位置。在*"位置详情"*页面上，点击*"启动音频信标"*按钮。
+### How do I set a beacon on my home?
+Soundscape supports setting beacons on addresses. To set a beacon on your home, or any other address, search for a location from the main Soundscape screen. On the *"Location Details"* screen, tap the *"Start Audio Beacon"* button.
 
-### 当我在目的地设置信标后，Soundscape能把我带到多近的距离？
-Soundscape可以将目的地的位置确定到几米范围内，但不会更精确。当Soundscape判定您已接近目的地时，您会听到一条最终播报提示目的地就在附近，信标随即关闭。
+### When I set a beacon on a destination, how close will Soundscape get me to the destination?
+Soundscape can determine the location of your destination to within several meters, but not less. When Soundscape determines that you are close to your destination, you will hear a final callout that your destination is nearby, and the beacon will turn off.
 
-### 当我接近目的地时可以重新打开信标吗？
-是的，当Soundscape关闭信标后，您可以点击*"取消静音信标按钮"*重新打开信标；但由于定位服务的精度约为10米，当您在目的地几米范围内时，我们无法保证信标的行为。
+### Can I turn the beacon back on when I am close to my destination?
+Yes, you can turn the beacon back on once Soundscape turns it off by selecting the *"unmute beacon button"*; however, since Location Services is only accurate to about 10 meters, we cannot guarantee the behavior of the beacon when you are within a few meters of your destination.
 
-### 为什么Soundscape在我接近路口时会播报两次路名？
-为了适应各种路口配置，Soundscape将路口描述为从一个公共点出发的道路段。Soundscape使用空间音频依次指示左侧道路的名称、正前方继续的道路名称以及右侧道路的名称。如果路口描述以您所在的道路开头而不是左侧的道路，那么这是一个T形路口，您所在的道路继续向前延伸，另一条道路从右侧交汇。同样，如果描述只包含左侧和右侧的道路，您就知道您所在的道路在前方的T形路口处终止。这种描述路口的方法也适用于道路在路口处更名的情况。
+### Why does Soundscape call out road names twice when I approach an intersection?
+To accommodate a variety of intersection configurations, Soundscape describes intersections as segments of roadways that depart from a common point. Soundscape uses spatial audio to indicate the name of the road that goes to the left, the name of the road that continues straight ahead, and the name of the road that goes to the right, in that order. If the description of the intersection begins with the road you are on rather than one to the left, then the intersection is a T with the road you are on continuing ahead and a road intersecting from the right. Similarly, if the description only includes a road to the left and to the right, you will know that the road you are on ends at a T ahead of you. This method of describing intersections also works when a road changes name at an intersection.
 
-### 为什么Soundscape不会播报我经过的每家商铺？
-Soundscape的设计避免过于频繁地播报。此外，它使用Open Street Map作为后端数据源。Open Street Map（OSM，https://www.openstreetmap.org/）是一个由社区开发和编辑的世界地图，依赖个人来输入和维护数据。如果某个商铺或兴趣点没有被Soundscape播报，最可能的原因是该商铺尚未被OSM社区成员添加，或在某些情况下尚未被更新。
+### Why doesn’t Soundscape announce every business that I pass?
+Soundscape is designed to avoid giving you too many callouts. It also uses OpenStreetMap as its data source. OpenStreetMap (OSM, https://www.openstreetmap.org/) is a map of the world built and edited by a community of individual contributors. If Soundscape does not announce a business or point of interest, the most likely reason is that a member of the OSM community has not yet added, or in some cases updated, that business in the data.
 
-### 为什么某些播报在我乘坐交通工具时停止了？
-为了避免播报数量过多，某些类别（如路口）在您乘坐交通工具行驶时不会自动播报。
+### Why do some callouts stop when I'm in a vehicle?
+In order to stop the number of callouts becoming overwhelming, some categories, such as intersections, are not announced automatically when you’re traveling in a vehicle.
 
-### 如果我没听清播报或因环境噪音错过了怎么办？
-Soundscape有一个最近播报列表，方便您查看可能错过的播报。要找到此列表，请点击Soundscape主屏幕上的搜索栏。在页面底部，有一个*"最近播报"*部分，您错过的播报会列在其中。
+### What if I don't understand a callout or miss it because of ambient noise?
+Soundscape has a list of your recent callouts so that you can revisit callouts that you might have missed. To find this, tap on the search bar on the Soundscape home screen. At the bottom of this screen, there is a section for *"Recent Callouts"* where the callout you missed will be listed.
 
-## Soundscape如何运作？
+## How does Soundscape work?
 
-### Soundscape可以在什么手机上运行？
-Soundscape安卓版目前适用于运行Android 11或更高版本的安卓手机。
+### What phone does Soundscape run on?
+Soundscape is currently available for iPhones running iOS 16 or later, and for Android phones running Android 11 or later.
 
-### 使用Soundscape应该搭配什么耳机？
-使用Soundscape搭配哪种耳机是个人偏好的问题，每种选择都有其优缺点。唯一的特定要求是使用一副立体声耳机，以便您能充分利用Soundscape的3D空间音频播报。
+### What headphones should I use with Soundscape?
+Which headphones you use with Soundscape is a matter of personal preference, and each option comes with benefits and trade-offs. The only specific requirement is to use a pair of stereo headphones so that you can take advantage of Soundscape’s 3D spatial audio callouts.
 
-### Soundscape对我手机电池有什么影响？
-电池续航会因手机型号和使用年限而有显著差异。最耗电的通常是屏幕点亮，因此要尽可能延长电池寿命，请尽量保持屏幕锁定。为尽量减少对手机电池的影响，Soundscape 现在提供了休眠模式。若要进一步降低耗电，在不使用 Soundscape 时，请通过手机的应用切换器将其强制关闭。
+### How does Soundscape impact my phone’s battery?
+Battery life varies significantly depending on which phone you own and how old it is. The biggest drain on your battery is having the screen on, so to maximize the battery life of your phone, you should keep the screen locked whenever possible. To help minimize the impact on your phone battery, Soundscape now has a Sleep Mode. To further reduce the amount of battery you use, when you aren’t using Soundscape, you should force close it via your phones App Switcher.
 
-### 如何使用休眠模式来减少Soundscape对手机电池的影响？
-要将 Soundscape 设为休眠模式，请点击屏幕右上角的*"休眠"*按钮。选择此项后，Soundscape 将停止使用定位服务和移动数据，直到您选择再次唤醒它。
+### How do I use Sleep Mode to minimize Soundscape’s impact on my phone battery?
+To put Soundscape in to Sleep Mode, select the *"Sleep"* button in the top-right corner of the screen. When you select this, Soundscape will stop using Location Services and mobile data until you choose to wake it up again.
 
+### How do I use Snooze mode to minimize Soundscape’s impact on my phone battery?
+To put Soundscape in to Snooze Mode, select the *"Sleep"* button in the top-right corner of the screen. Once Soundscape’s in Sleep Mode, select the *"Wake up when I leave"* button and Soundscape will go in to a low power state until you leave your current location.
 
-### 如何使用小睡模式来减少Soundscape对手机电池的影响？
-要将 Soundscape 设为小睡模式，请点击屏幕右上角的*"休眠"*按钮。进入休眠模式后，选择*"离开时唤醒"*按钮，Soundscape 将进入低功耗状态，直到您离开当前位置时再唤醒。
+### How does my choice of headphones affect the battery life of my phone?
+In our tests, the battery consumption of Bluetooth headphones is comparable to wired headphones and should not be a significant factor to consider when selecting headphones.
 
+### How does running Soundscape in the background impact battery life of my phone?
+Soundscape is a location-based app and uses Location Services to determine your location. In our tests, Soundscape does not consume any more battery than the average map application; but if you are concerned about battery consumption when using your phone, the following are a few tips which will help lower usage:
 
-### 耳机的选择如何影响手机的电池续航？
-在我们的测试中，蓝牙耳机的电池消耗与有线耳机相当，在选择耳机时不应将其视为重要考虑因素。
+1. Turn the screen display off as much as possible when you are not interacting with the app.
 
-### 在后台运行Soundscape对手机电池续航有什么影响？
-Soundscape是一款基于位置的应用，使用定位服务来确定您的位置。在我们的测试中，Soundscape的电池消耗不会超过一般地图应用；但如果您担心使用手机时的电池消耗，以下是一些有助于降低用量的建议：
+2. When not using the app, close it down. Soundscape uses location services continually when it is running so that it always knows your location, even when you are not moving. Don’t forget to restart the app when you resume your journey.
 
-1. 在不与应用交互时，尽可能关闭屏幕显示。
+3. In cold weather, keep your phone warm as batteries perform more poorly in colder temperatures.
 
-2. 不使用应用时，请将其关闭。Soundscape在运行时会持续使用定位服务，以便始终了解您的位置，即使您没有移动。别忘了在继续旅程时重新启动应用。
+### How much mobile data does Soundscape use?
+The amount of mobile data used depends on how you use Soundscape. We have designed Soundscape to use only a small amount of data when you’re out and about by doing things like saving points as you walk around so you don’t need to download them again every time you go back to somewhere you’ve already been. To reduce the amount of mobile data you use, make sure you are connected to Wi-Fi whenever possible, particularly to download the app. When you are not using Soundscape, you should use the *"Sleep"* button to put Soundscape to sleep or force close the app.
 
-3. 在寒冷天气中，请保持手机温暖，因为电池在较低温度下性能会下降。
+### How is Soundscape different from other map apps?
+Soundscape provides an ambient description of your surroundings in aid of exploration and way-finding. Using spatial audio, Soundscape will call out points of interest, parks, roads, and intersections from the direction they physically are in your immediate environment as you walk. For example, if you pass a shop on your right, you will hear the name of the shop sounding from your right. As you approach an intersection, you will hear each road name sounding from the direction it goes in, beginning to your left, ahead and to the right.
 
-### Soundscape使用多少移动数据？
-移动数据的使用量取决于您如何使用Soundscape。我们设计Soundscape在您外出时仅使用少量数据，例如在您走过时保存地点数据，这样您再次回到已经去过的地方时就无需重新下载。要减少移动数据使用量，请确保尽可能连接Wi-Fi，特别是在下载应用时。当您不使用Soundscape时，应使用*"休眠"*按钮让Soundscape进入休眠状态或强制关闭应用。
+Instead of turn-by-turn directions as often provided by other map applications, Soundscape will play an audible beacon in the direction of your destination, empowering you to make your way there however works best for you, using your increased awareness of your surroundings and the location of your destination. Soundscape is designed to run in the background, enabling you to use a turn-by-turn directions app, all the while continuing to provide environmental awareness as you make your way to your destination.
 
-### Soundscape与其他地图应用有何不同？
-Soundscape 提供关于您周围环境的概览性语音描述，帮助您进行探索与定位。借助空间音频，Soundscape 会在您行走时从事物实际所在的方向播报兴趣点、公园、道路和路口。例如，如果您在右侧经过一家商店，您会听到该商店的名称从右侧传来。接近路口时，您会依次听到每条道路的名称从其所在方向传来，顺序为左侧、前方和右侧。
+### How do I use Soundscape with a wayfinding app?
+Soundscape is designed as an awareness app to help fill in details about your environment that you may not be aware of otherwise. While it is not designed as a turn-by-turn navigation app, it can be used alongside such apps to provide complementary information. To use Soundscape with these apps, start your navigation app first. Then, move over to Soundscape and set a beacon on the same destination as in the navigation app. At this point, both apps will be running and you will hear walking directions from your navigation app, while getting updates on points of interest, intersections, and your distance to your destination from Soundscape.
 
-与其他地图应用常提供的逐向导航不同，Soundscape 会在目的地方向播放音频信标，帮助您在增强的环境感知和对目的地位置的了解基础上，按您自己的方式前行。Soundscape 被设计为在后台运行，这样即便您同时使用逐向导航应用，它也能在您前往目的地的过程中持续提供环境感知信息。
+### How do I control what I hear and when I hear it in Soundscape?
+Soundscape provides several ways to control what you hear and when:
 
-### 如何将Soundscape与导航应用一起使用？
-Soundscape是一款环境感知应用，旨在帮助您了解可能不知道的周围环境细节。虽然它不是一款逐向导航应用，但可以与此类应用配合使用以提供补充信息。要将Soundscape与这些应用一起使用，请先启动您的导航应用。然后切换到Soundscape，在与导航应用相同的目的地上设置信标。此时，两个应用都将运行，您将听到导航应用的步行路线指引，同时从Soundscape获取兴趣点、路口以及到目的地距离的更新信息。
+1. Immediately stop all audio: Double tap the screen with two fingers to immediately turn off all audio, including any callout that is currently playing and the beacon if it is on. Callouts will resume automatically when you approach the next intersection or point of interest, but the audible beacon will not. Select the *\"unmute beacon button\"* on the main screen to resume hearing the beacon.
 
-### 如何控制在Soundscape中听到的内容和时间？
-Soundscape 提供多种方式来控制您听到的内容及其触发时机：
+2. Stop automatic callouts: When you are not traveling or have reached a destination, you probably will not need Soundscape to continue to notify you of things around you. Instead of exiting the app, you can put Soundscape in to Snooze Mode and it will wake up again when you leave, or you can put Soundscape into Sleep Mode and it will stay off until you choose to turn it back on. Alternatively, you can select *\"Settings\"* from the menu and choose to turn all callouts off in the *\"Manage Callouts\"* section.
 
-1. 立即停止所有音频：用两指在屏幕上双击即可立即关闭所有音频，包括当前正在播放的任何播报以及（如果开启的）信标。播报会在您接近下一个路口或兴趣点时自动恢复，但可听信标不会。要恢复信标声音，请在主屏幕上选择*"取消静音信标按钮"*。
+3. Stop the beacon: There are several scenarios where you might set a destination but not need the audible beacon on. For example, you may know exactly how to get to your destination but still want automatic updates about how far away you are. Or you might only need the audio beacon as you near your destination. Whatever the case, you can choose when to hear the beacon by toggling the *\"mute beacon\"*/*\"unmute beacon\"* button on the main screen.
 
-2. 停止自动播报：当您不在行进中或已到达目的地时，通常不需要 Soundscape 继续播报周围信息。您无需退出应用，可将 Soundscape 设为小睡模式，它会在您离开时再次唤醒；或者将 Soundscape 设为休眠模式，它会保持关闭状态，直到您选择再次打开。或者，您也可以从菜单中选择*"设置"*，在*"管理提示"*部分关闭所有播报。
+If you still want to interact with Soundscape but don’t want to hear automatic callouts, you can turn callouts off by going to the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. Or, if you aren’t going to be using Soundscape, you can put it in either Sleep or Snooze Mode using the *\"Sleep\"* button on the home screen.
 
-3. 停止信标：有些情况下尽管已设定目的地，您并不需要开启可听信标。例如您可能已经非常清楚如何到达目的地，但仍希望自动收到关于与目的地距离的更新；或者您可能只在接近目的地时才需要信标提示。无论哪种情况，您都可以通过主屏幕上的*"静音信标"*/*"取消静音信标"*切换按钮来选择何时听到信标。
+### Do I need to hold the phone in my hand all the time?
+No! When walking you can put the phone away in a bag or pocket or wherever is convenient. Soundscape will use the direction you are walking to figure out which callouts to announce to your left and to your right. When you stop moving, Soundscape does not know which direction you are facing. If the audible beacon is on, you will notice it get quiet until you start moving again. You can pull the phone out to press the location and exploration buttons at the bottom of the screen at any time, but make sure to hold the phone with the top of the phone pointing in the direction you are facing and with the screen to the sky. In this *\"flat\"* position, Soundscape will use the phone’s compass to determine which way you are facing and provide accurate spatial callouts. If the beacon is on, you will also notice that it returns to full volume.
 
-如果您仍想与 Soundscape 交互但不想听到自动播报，可在菜单中进入*"设置"*屏幕的*"管理提示"*部分将播报关闭。或者，如果您暂时不打算使用 Soundscape，可在主屏幕使用*"休眠"*按钮将其设为休眠或小睡模式。
-
-### 我需要一直将手机拿在手上吗？
-不需要！走路时您可以将手机放在包里或口袋或任何方便的地方。Soundscape 会使用您行走的方向来判断应从左侧和右侧播报哪些内容。当您停止移动时，Soundscape 无法知道您面朝的方向；如果可听信标开启，您会发现它会变安静，直到您再次开始移动。您可以随时拿出手机按下屏幕底部的位置和探索按钮，但请确保将手机顶端指向您面朝的方向，屏幕朝向天空。在这种“平放”姿势下，Soundscape 将使用手机的指南针来确定您面朝的方向并提供准确的空间播报。如果信标开启，您也会注意到它恢复到满音量。
-
-### 什么是Open Street Map，为什么Soundscape使用它？
-Soundscape利用地理地图数据提供应用中的信息播报。我们使用的主要地图数据源是Open Street Map（www.openstreetmap.org），这是一个丰富的社区生成的地图平台，使组织和个人能够使用Open Street Map地图编辑工具改善所提供信息的质量和精细度以及其空间的无障碍性。
+### What is OpenStreetMap and why do we use it for Soundscape?
+Soundscape uses map data to create its audio callouts. Our main map source is OpenStreetMap (www.openstreetmap.org). This is a mapping platform created by a community of contributors. Organizations and individuals can use OpenStreetMap's tools to improve the data and make their spaces more accessible.
 

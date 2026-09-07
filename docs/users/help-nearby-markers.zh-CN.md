@@ -1,5 +1,5 @@
 ---
-title: 附近标记点
+title: Nearby Markers
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: zh-CN
 permalink: /users/help-nearby-markers.html
 ---
 
-# 附近标记点
+# Nearby Markers
 
-## 这是什么？
+## What is it?
 
-*"附近标记点"*按钮会告诉您距您最近的最多四个标记点。*"附近标记点"*旨在帮助您使用已知的地点来确定方位。
+The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
 
-## 什么时候使用？
+## When would I use it?
 
-当您试图确定方位并了解周围环境时，使用*"附近标记点"*来听取您熟悉的地点位置信息。
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
 
-## 如何使用？
+## How does it work?
 
-与主屏幕底部的所有四个按钮一样，在按下*"附近标记点"*按钮之前，请将手机屏幕朝上平放（面向天空），手机顶部指向您面朝的方向。这就像指南针一样告诉应用您面朝的方向。只需点击*"附近标记点"*按钮，您就会听到附近最多四个标记点的信息。
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
 

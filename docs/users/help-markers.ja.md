@@ -1,5 +1,5 @@
 ---
-title: マーカー
+title: Markers
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
@@ -7,11 +7,11 @@ lang: ja
 permalink: /users/help-markers.html
 ---
 
-# マーカー
+# Markers
 
-Soundscape を使えば、地図のピンのように、自分にとって大切な場所や気になる場所にマーカーを付けられます。
+With Soundscape, you can mark your world and anything you care about, like pins in a map.
 
-自宅やオフィス、よく行くコンビニやスーパーなど、個人的に重要な場所にマーカーを付けることができます。マーカーは任意の場所や住所に付けることができますが、たとえば、ビルや公園の入口、横断歩道の押しボタン、横断歩道や歩道橋、バス停、飼っているイヌのお気に入りの木など、これまでは地図上になかったような場所にもマーカーを付けることができ、歩くときの目印として使用できます。
+You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
 
-マーカーを設定した場所を体験するには、近くを歩いたり接近したりしたときに Soundscape が自動的にそのマーカーをコールアウトします。あるいは、Soundscape ホーム画面下部にある [*近くのマーカー*] ボタンを使って、周囲のマーカーの空間的なコールアウトを聞くこともできます。さらに、任意のマーカーに音声ビーコンを設定することも可能です。設定すると、いつも聞き慣れている Soundscape の音声ビーコンが鳴り、通常どおり操作できます。
+To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
 

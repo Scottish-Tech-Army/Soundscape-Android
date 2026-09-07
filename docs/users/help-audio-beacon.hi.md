@@ -1,5 +1,5 @@
 ---
-title: ऑडियो बीकन
+title: Audio Beacon
 layout: page
 parent: "Soundscape का उपयोग"
 has_toc: false
@@ -7,27 +7,27 @@ lang: hi
 permalink: /users/help-audio-beacon.html
 ---
 
-# ऑडियो बीकन
+# Audio Beacon
 
-## यह क्या है?
+## What is it?
 
-पास के किसी स्थान पर बीकन सेट करने से Soundscape उस स्थान की दिशा से एक श्रव्य बीकन ध्वनि बजाकर आपको सूचित रखता है। इस बीकन को होम स्क्रीन पर म्यूट या अनम्यूट किया जा सकता है। इसके अतिरिक्त, Soundscape होम स्क्रीन पर स्थान के बारे में जानकारी प्रदर्शित करता है, जिसमें उसकी दूरी और सड़क का पता शामिल है, यदि वह ज्ञात है।
+Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
 
-## मैं इसका उपयोग कब करूँ?
+## When would I use it?
 
-बीकन सेट करना तब उपयोगी होता है जब आप किसी नए क्षेत्र की खोज करते हुए किसी परिचित स्थान पर नज़र रखना चाहते हैं, या जब आप कहीं जा रहे हों और रास्ते में अपने आसपास के बारे में जानकारी चाहते हों। बीकन सुविधा आपको मोड़-दर-मोड़ दिशा-निर्देश नहीं देती, लेकिन यह एक निरंतर श्रव्य ध्वनि देती है जो आपकी वर्तमान स्थिति के सापेक्ष बीकन की दिशा बताती है। ऑडियो बीकन, आपके मौजूदा मार्ग-निर्धारण कौशल, और यहाँ तक कि आपके पसंदीदा नेविगेशन ऐप का उपयोग करके, आप स्वयं चुन सकते हैं कि पास के स्थानों तक कैसे पहुँचना है।
+Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
 
-## यह कैसे काम करता है?
+## How does it work?
 
-**बीकन सेट करने के लिए :**
+**To set a beacon :**
 
- सबसे पहले किसी स्थान का विवरण देखने के लिए खोज बार का उपयोग करके उस स्थान को खोजें, या *"पास के स्थान"*, *"मार्कर और मार्ग"* या *"वर्तमान स्थान"* बटनों में से किसी एक पर टैप करके कोई स्थान चुनें। *"स्थान विवरण"* स्क्रीन पर जाएँ और *"ऑडियो बीकन शुरू करें"* बटन चुनें। इसे टैप करने पर आप होम स्क्रीन पर लौटेंगे और आपके चुने हुए स्थान की दिशा से आने वाला श्रव्य बीकन चालू हो जाएगा। आपके द्वारा चुने गए स्थान का नाम, उसकी दूरी और भौतिक पता (यदि उपलब्ध हो) अब मुख्य ऐप स्क्रीन पर प्रदर्शित होगा।
+ First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-**मौजूदा बीकन हटाने के लिए :**
+**To remove the current beacon :**
 
- बस होम स्क्रीन पर *"मार्ग रोकें"* बटन दबाएँ।
+ Simply press the *\"Stop Route\"* button on the home screen.
 
-**श्रव्य बीकन को म्यूट करने के लिए :**
+**To mute the audible beacon :**
 
- होम स्क्रीन पर *"मार्ग रोकें"* बटन के बगल में स्थित *"बीकन म्यूट करें"* बटन पर टैप करें।
+ Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
 

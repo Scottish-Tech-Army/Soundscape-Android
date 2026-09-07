@@ -1,5 +1,5 @@
 ---
-title: Personalizarea marcajelor
+title: Customizing Markers
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: ro
 permalink: /users/help-customizing-markers.html
 ---
 
-# Personalizarea marcajelor
+# Customizing Markers
 
-Dacă vrei să redenumești un marcaj creat anterior sau să adaugi o adnotare la acesta, poți face acest lucru selectând marcajul din fila *"Marcaje"* a paginii *"Marcaje și rute"*, apoi selectând butonul *"Editează marcaj"*. Poți folosi această opțiune pentru a atribui marcajelor porecle descriptive sau utile, precum și pentru a le oferi o descriere mai lungă folosind câmpul de adnotare.
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-Din acest ecran *"Editare"* poți, de asemenea, șterge un marcaj dacă nu mai ai nevoie de el.
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

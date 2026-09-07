@@ -1,5 +1,5 @@
 ---
-title: Anpassa platsmarkörer
+title: Customizing Markers
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: sv
 permalink: /users/help-customizing-markers.html
 ---
 
-# Anpassa platsmarkörer
+# Customizing Markers
 
-Om du vill byta namn på en platsmarkör du skapat tidigare eller lägga till en anteckning kan du göra det genom att välja platsmarkören på fliken *"Platsmarkörer"* på sidan *"Platsmarkörer och rutter"* och sedan välja knappen *"Redigera platsmarkör"*. Du kan ge platsmarkörer beskrivande eller användbara smeknamn och ange en längre beskrivning i anteckningsfältet.
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-På skärmen *"Redigera"* kan du även ta bort en platsmarkör om du inte längre behöver den.
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

@@ -1,5 +1,5 @@
 ---
-title: पास के मार्कर
+title: Nearby Markers
 layout: page
 parent: "Soundscape का उपयोग"
 has_toc: false
@@ -7,17 +7,17 @@ lang: hi
 permalink: /users/help-nearby-markers.html
 ---
 
-# पास के मार्कर
+# Nearby Markers
 
-## यह क्या है?
+## What is it?
 
-*"पास के मार्कर"* बटन आपको आपके सबसे निकट के चार मार्करों के बारे में बताता है। *"पास के मार्कर"* का उद्देश्य आपको उन स्थानों का उपयोग करके अपनी दिशा समझने में मदद करना है जिनके बारे में आप पहले से जानते हैं।
+The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
 
-## मैं इसका उपयोग कब करूँ?
+## When would I use it?
 
-जब आप अपनी दिशा समझने और अपने परिवेश से तालमेल बिठाने की कोशिश कर रहे हों, तो *"पास के मार्कर"* का उपयोग करके उन स्थानों की स्थिति के बारे में सुनें जिन्हें आप जानते हैं।
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
 
-## यह कैसे काम करता है?
+## How does it work?
 
-होम स्क्रीन के नीचे चारों बटनों की तरह, *"पास के मार्कर"* बटन दबाने से पहले अपने फ़ोन को स्क्रीन ऊपर (आकाश की ओर) रखकर सपाट पकड़ें और फ़ोन का ऊपरी हिस्सा उस दिशा में इंगित करें जिस तरफ़ आपका मुँह है। यह एक कम्पास की तरह काम करता है जो ऐप को बताता है कि आप किस दिशा में देख रहे हैं। बस *"पास के मार्कर"* बटन पर टैप करें और आप अपने पास के चार मार्करों के बारे में सुनेंगे।
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
 

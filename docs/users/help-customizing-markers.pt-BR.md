@@ -1,5 +1,5 @@
 ---
-title: Personalizando Favoritos
+title: Customizing Markers
 layout: page
 parent: "Usando o Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: pt-BR
 permalink: /users/help-customizing-markers.html
 ---
 
-# Personalizando Favoritos
+# Customizing Markers
 
-Se você quiser renomear um favorito que criou anteriormente ou adicionar uma anotação a ele, faça isso selecionando o favorito na aba *"Favoritos"* da página *"Favoritos e Rotas"* e, em seguida, selecionando o botão *"Editar Favorito"*. Você pode usar esse recurso para dar apelidos descritivos ou úteis aos favoritos, bem como fornecer uma descrição mais longa usando o campo de anotação.
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-Nessa tela *"Editar"* você também pode excluir um favorito se não precisar mais dele.
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

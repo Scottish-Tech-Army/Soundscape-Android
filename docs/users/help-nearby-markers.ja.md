@@ -1,5 +1,5 @@
 ---
-title: 近くのマーカー
+title: Nearby Markers
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ja
 permalink: /users/help-nearby-markers.html
 ---
 
-# 近くのマーカー
+# Nearby Markers
 
-## どのようなものですか?
+## What is it?
 
-[*近くのマーカー*] ボタンでは、最大 4 つの近くにあるマーカーの情報がわかります。[*近くのマーカー*] ボタンは、既に知っている場所をもとに自分の位置を把握するのに役立ちます。
+The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
 
-## どのような場合に使用できますか?
+## When would I use it?
 
-自分がどこにいて、どの方向を向いているのかを確認したい場合は、[*近くのマーカー*] ボタンを使用すると、既に知っている場所の位置を確認することができます。
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
 
-## どのような仕組みですか?
+## How does it work?
 
-ホーム画面の下部の 4 つのボタンはどれも同じですが、スマートフォンの画面を上 (空) に向けて水平に持ち、スマートフォンの画面上部を自分が向いている方向に合わせてから、[*近くのマーカー*] ボタンを押します。これにより、コンパスを合わせるように、自分が向いている方向をアプリに伝えることができます。[*近くのマーカー*] ボタンをタップすると、最大 4 つの近くにあるマーカーの情報が聞こえます。
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
 

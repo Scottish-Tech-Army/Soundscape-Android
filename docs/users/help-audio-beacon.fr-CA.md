@@ -1,5 +1,5 @@
 ---
-title: Balise sonore
+title: Audio Beacon
 layout: page
 parent: "Utiliser Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: fr-CA
 permalink: /users/help-audio-beacon.html
 ---
 
-# Balise sonore
+# Audio Beacon
 
-## De quoi s’agit-il?
+## What is it?
 
-La définition d’une balise à un emplacement situé à proximité permet à Soundscape de vous tenir informé en lisant un son de balise audible provenant de la direction de cet emplacement. Le son de cette balise peut être désactivé ou réactivé depuis l’écran d’accueil. En outre, Soundscape affiche des informations sur l’emplacement sur l’écran d’accueil, notamment la distance pour s’y rendre et son adresse si celle-ci est connue.
+Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
 
-## Utilisation?
+## When would I use it?
 
-La définition d’une balise est utile pour effectuer le suivi d’un repère familier quand vous explorez un nouvel environnement ou lorsque vous allez quelque part et que vous souhaitez rester informé de ce qui vous entoure sur votre trajet. La fonctionnalité de balise ne vous fournit pas un itinéraire détaillé, mais émet un son audible continu vous indiquant la direction de la balise, en fonction de votre emplacement actuel. Grâce à la balise sonore, votre recherche d’itinéraire et même votre appli de navigation préférée, vous pouvez choisir comment accéder à des emplacements situés à proximité par vous-même.
+Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
 
-## Fonctionnement
+## How does it work?
 
-**Pour définir une balise :**
+**To set a beacon :**
 
- Tout d’abord, affichez les détails d’un emplacement en utilisant la barre de recherche, ou en appuyant sur l’un des boutons *« Emplacements à proximité »*, *« Marqueurs et Itinéraires »* ou *« Emplacement actuel »* puis en sélectionnant un emplacement. Depuis l’écran *« Détails de l’emplacement »*, sélectionnez le bouton *« Démarrer la balise sonore »*. En appuyant dessus, vous reviendrez à l’écran d’accueil et une balise audible se déclenchera depuis la direction de l’emplacement sélectionné. Le nom de l’emplacement sélectionné, ainsi que sa distance et son adresse physique, si elles sont disponibles, seront désormais affichés sur l’écran principal de l’application.
+ First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-**Pour supprimer la balise actuelle :**
+**To remove the current beacon :**
 
- Appuyez simplement sur le bouton *« Arrêter l’Itinéraire »* de l’écran d’accueil.
+ Simply press the *\"Stop Route\"* button on the home screen.
 
-**Pour couper le son de la balise audible :**
+**To mute the audible beacon :**
 
- Appuyez sur le bouton *« Désactiver le son de la balise »* situé à côté du bouton *« Arrêter l’Itinéraire »* sur l’écran d’accueil.
+ Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
 

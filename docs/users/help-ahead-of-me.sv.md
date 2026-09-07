@@ -1,5 +1,5 @@
 ---
-title: Framför mig
+title: Ahead of Me
 layout: page
 parent: "Använda Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: sv
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Framför mig
+# Ahead of Me
 
-## Vad är det?
+## What is it?
 
-Knappen *"Framför mig"* berättar om upp till fem saker som finns framför dig. *"Framför mig"* är avsedd att hjälpa dig utforska vad som kommer i din väg när du lär dig känna ett nytt område.
+The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
 
-## När ska jag använda det?
+## When would I use it?
 
-När du går på en gata kan du testa att använda *"Framför mig"* för att upptäcka platser och annat som dyker upp vid sidan av gatan.
+When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
 
-## Hur fungerar det?
+## How does it work?
 
-Som med alla fyra knappar längst ned på startskärmen ska du hålla telefonen plant med skärmen riktad uppåt och peka med telefonen i färdriktningen innan du trycker på knappen *"Framför mig"*. Detta fungerar som en kompass som talar om för appen vilken riktning du står i. Tryck på knappen *"Framför mig"* så hör du flera olika intressepunkter som finns framför dig.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
 

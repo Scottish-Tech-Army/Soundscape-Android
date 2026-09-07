@@ -1,5 +1,5 @@
 ---
-title: Markeringen aanpassen
+title: Customizing Markers
 layout: page
 parent: "Soundscape gebruiken"
 has_toc: false
@@ -7,9 +7,9 @@ lang: nl
 permalink: /users/help-customizing-markers.html
 ---
 
-# Markeringen aanpassen
+# Customizing Markers
 
-Als u een eerder gemaakte markering wilt hernoemen of er een aantekening aan wilt toevoegen, selecteert u de markering op het tabblad *"Markeringen"* van de pagina *"Markeringen en routes"* en tikt u vervolgens op de knop *"Markering bewerken"*. Hiermee kunt u markeringen voorzien van beschrijvende of bruikbare bijnamen en een langere omschrijving toevoegen via het aantekeningsveld.
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-Op dit scherm *"Markering bewerken"* kunt u ook een markering verwijderen als u die niet meer nodig hebt.
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

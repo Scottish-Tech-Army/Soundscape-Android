@@ -1,5 +1,5 @@
 ---
-title: Merki
+title: Markers
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: is
 permalink: /users/help-markers.html
 ---
 
-# Merki
+# Markers
 
-Með Soundscape geturðu merkt heiminn þinn og það sem þér þykir mikilvægt, eins og nál á korti.
+With Soundscape, you can mark your world and anything you care about, like pins in a map.
 
-Þú getur merkt hluti sem eru persónulegir og þér mikilvægir, eins og heimilið þitt, vinnustaðinn eða uppáhalds matvöruverslunina þína. Þú getur merkt hvaða stað eða heimilisfang sem er en einnig hluti sem venjulega eru ekki á kortum, til dæmis innganga að byggingum eða görðum, hnappa fyrir gangbrautarljós, gangbrautir eða brýr, strætóstopp eða jafnvel uppáhaldstré hundsins þíns, og nota þessi atriði sem viðmiðun við gönguferðir.
+You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
 
-Til að upplifa vistuð merki mun Soundscape sjálfkrafa tilkynna vistuð merki þegar þú gengur framhjá þeim eða nálgast þau. Þú getur líka notað hnappinn *"Nálæg merki"* neðst á heimaskjánum til að heyra rúmsnertilega tilkynningu um vistuð merki í kringum þig. Að auki geturðu sett hljóðvita á hvaða vistað merki sem er. Þá munt þú heyra hljóðvitann úr Soundscape eins og venjulega og geta notað hann á sama hátt.
+To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
 

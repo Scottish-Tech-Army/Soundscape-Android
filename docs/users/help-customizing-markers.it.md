@@ -1,5 +1,5 @@
 ---
-title: Personalizzazione di indicatori
+title: Customizing Markers
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: it
 permalink: /users/help-customizing-markers.html
 ---
 
-# Personalizzazione di indicatori
+# Customizing Markers
 
-Se vuoi rinominare un indicatore creato in precedenza o aggiungergli un'annotazione, selezionalo nella scheda *"Indicatori"* della pagina *"Indicatori e Percorsi"* e poi tocca il pulsante *"Modifica indicatore"*. Puoi così assegnare ai tuoi indicatori soprannomi descrittivi o utili e aggiungere una descrizione più lunga tramite il campo annotazione.
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-Da questa schermata Modifica puoi anche eliminare un indicatore se non ne hai più bisogno.
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

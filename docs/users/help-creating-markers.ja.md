@@ -1,5 +1,5 @@
 ---
-title: マーカーの作成
+title: Creating Markers
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
@@ -7,9 +7,9 @@ lang: ja
 permalink: /users/help-creating-markers.html
 ---
 
-# マーカーの作成
+# Creating Markers
 
-マーカーは次の 3 通りの方法で作成できます：検索バーで保存したい場所を検索する、ホーム画面の *「近くの場所」* ボタンで場所を探す、またはホーム画面の *「現在地」* ボタンを使う、いずれかです。保存したい場所を見つけたらそれを選択すると *「場所の詳細」* 画面に移動します。この画面で *「マーカーを保存」* ボタンを選択してください。
+You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
 
-ここでこのマーカーをカスタマイズできます。名前を変更したり、マーカーと一緒に読み上げる注記を追加して補足情報を付けることができます。完了したら [完了] を選択してマーカーを保存してください。
+You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
 

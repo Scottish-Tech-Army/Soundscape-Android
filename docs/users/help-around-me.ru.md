@@ -1,5 +1,5 @@
 ---
-title: Вокруг меня
+title: Around Me
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ru
 permalink: /users/help-around-me.html
 ---
 
-# Вокруг меня
+# Around Me
 
-## Что это такое?
+## What is it?
 
-Кнопка «Вокруг меня» сообщает об одном объекте в каждом из четырёх квадрантов вокруг вас (впереди, справа, позади и слева). «Вокруг меня» предназначена помочь вам сориентироваться в окружении.
+The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
 
-## Когда использовать Soundscape?
+## When would I use it?
 
-Когда вы пытаетесь сориентироваться и понять своё окружение, используйте «Вокруг меня», чтобы услышать о вещах вокруг вас.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
 
-## Как оно работает?
+## How does it work?
 
-Как и для всех четырёх кнопок внизу главного экрана, держите телефон ровно (экран вверх, к небу) и направьте верх телефона в ту сторону, куда вы смотрите, прежде чем нажать кнопку «Вокруг меня». Это действует как компас, указывая приложению направление, в котором вы смотрите. Просто нажмите кнопку «Вокруг меня», и вы услышите четыре объекта интереса, расположенные вокруг вас.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
 

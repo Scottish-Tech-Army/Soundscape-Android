@@ -1,5 +1,5 @@
 ---
-title: Criando Favoritos
+title: Creating Markers
 layout: page
 parent: "Usando o Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: pt-BR
 permalink: /users/help-creating-markers.html
 ---
 
-# Criando Favoritos
+# Creating Markers
 
-Você pode criar favoritos de três maneiras: procurando o lugar que deseja salvar usando a barra de pesquisa, encontrando um local com o botão *"Locais Próximos"* ou usando o botão *"Localização Atual"*, todos disponíveis na tela inicial do Soundscape. Depois de localizar o lugar desejado, selecioná‑lo levará você à tela *"Detalhes da Localização"*. Nessa tela, selecione o botão *"Salvar como Favorito"*.
+You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
 
-Agora você terá a opção de personalizar esse favorito. Você pode alterar o nome do favorito e também adicionar uma anotação que será anunciada junto com o favorito para fornecer informações extras. Quando terminar, selecione o botão *"Concluído"* para salvar seu favorito.
+You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
 

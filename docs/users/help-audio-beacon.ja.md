@@ -1,5 +1,5 @@
 ---
-title: 音声ビーコン
+title: Audio Beacon
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
@@ -7,27 +7,27 @@ lang: ja
 permalink: /users/help-audio-beacon.html
 ---
 
-# 音声ビーコン
+# Audio Beacon
 
-## どのようなものですか?
+## What is it?
 
-近くの場所にビーコンを設定すると、その場所の方向から音声ビーコンが鳴り、常に場所を確認することができます。このビーコンはホーム画面でミュートの設定/解除ができます。また、Soundscape のホーム画面に、その場所への距離や、住所がわかる場合は住所など、その場所の情報が表示されます。
+Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
 
-## どのような場合に使用できますか?
+## When would I use it?
 
-新しい場所に出かけるときに、知っているランドマークが常にわかるようにしておきたい場合や、どこかへ行く際に道中に何があるか周辺の情報を確認したい場合に、ビーコンを設定しておくと便利です。ビーコンの機能では、細かな道順はわかりませんが、継続的にサウンドが鳴って、現在いる場所に対してビーコンがどちらの方向にあるかがわかります。音声ビーコンを使いながら、自分で道順を考えたり、お気に入りのウェイファインディング アプリを使ったりして、目的地までの行き方を自分で選択することができます。
+Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
 
-## どのような仕組みですか?
+## How does it work?
 
-**ビーコンを設定するには：**
+**To set a beacon :**
 
- まず、検索バーで場所を検索するか、ホーム画面の *「近くの場所」*、*「マーカーおよびルート」*、または *「現在地」* のいずれかのボタンをタップして場所を選び、場所の詳細を表示します。*「場所の詳細」* 画面で *「音声ビーコンを開始」* ボタンを選択してください。これをタップするとホーム画面に戻り、選択した場所の方向から聞こえる音声ビーコンがオンになります。選択した場所の名前と、利用可能であれば距離や住所がメイン画面に表示されます。
+ First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-**現在のビーコンを削除するには：**
+**To remove the current beacon :**
 
- 単にホーム画面の *"ルートを中止する"* ボタンを押してください。
+ Simply press the *\"Stop Route\"* button on the home screen.
 
-**音声ビーコンをミュートするには：**
+**To mute the audible beacon :**
 
- ホーム画面で *"ルートを中止する"* ボタンの隣にある *"ビーコンをミュート"* ボタンをタップしてください。
+ Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
 

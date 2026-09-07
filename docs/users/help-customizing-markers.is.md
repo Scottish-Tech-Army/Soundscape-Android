@@ -1,5 +1,5 @@
 ---
-title: merki sérsniðin
+title: Customizing Markers
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: is
 permalink: /users/help-customizing-markers.html
 ---
 
-# merki sérsniðin
+# Customizing Markers
 
-Ef þú vilt endurnefna merki sem þú bjóst til áður eða bæta við athugasemd skaltu velja merkið á flipanum *"Merki"* á síðunni *"Merki og leiðir"* og velja svo hnappinn *"Uppfæra Merki"*. Þú getur gefið merkjunum lýsandi eða gagnleg gælunöfn og bætt við lengri lýsingu í athugasemdareitinn.
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-Frá þessum *"Uppfæra"* skjá geturðu einnig eytt merki ef þú þarft það ekki lengur.
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

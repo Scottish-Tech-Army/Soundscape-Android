@@ -1,5 +1,5 @@
 ---
-title: Przede mną
+title: Ahead of Me
 layout: page
 parent: "Korzystanie z Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: pl
 permalink: /users/help-ahead-of-me.html
 ---
 
-# Przede mną
+# Ahead of Me
 
-## Co to jest?
+## What is it?
 
-Przycisk *„Przede mną”* informuje o maksymalnie pięciu obiektach znajdujących się przed Tobą. *„Przede mną”* ma pomóc w poznawaniu trasy przed Tobą, gdy zapoznajesz się z nową okolicą.
+The *\"Ahead of Me\"* button tells you about up to five things ahead of you. *\"Ahead of Me\"* is intended to help you explore the way ahead of yourself when you are learning about a new area.
 
-## Kiedy używać?
+## When would I use it?
 
-Idąc ulicą, spróbuj użyć „Przede mną”, aby odkryć miejsca i obiekty pojawiające się po obu stronach ulicy przed Tobą.
+When you are walking down the street, try using *"Ahead of Me"* to discover the places and things coming up on either side of the street ahead.
 
-## Jak to działa?
+## How does it work?
 
-Jak w przypadku wszystkich czterech przycisków na dole ekranu głównego, trzymaj telefon płasko (ekran skierowany w stronę nieba) i górną krawędź telefonu zwróconą w kierunku, w którym patrzysz, zanim naciśniesz przycisk „Przede mną”. To działa jak kompas, informując aplikację o kierunku, w którym jesteś zwrócony. Po prostu naciśnij przycisk „Przede mną” i usłyszysz kilka punktów zainteresowania rozmieszczonych mniej więcej przed Tobą.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Ahead of Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Ahead of Me"* button and you will hear several points of interest all roughly ahead of you.
 

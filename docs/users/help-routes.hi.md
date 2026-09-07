@@ -1,5 +1,5 @@
 ---
-title: मार्ग
+title: Routes
 layout: page
 parent: "Soundscape का उपयोग"
 has_toc: false
@@ -7,27 +7,27 @@ lang: hi
 permalink: /users/help-routes.html
 ---
 
-# मार्ग
+# Routes
 
-## यह क्या है?
+## What is it?
 
-मार्ग, मार्ग बिंदुओं की एक श्रृंखला होते हैं। प्रत्येक मार्ग बिंदु पर पहुँचने पर आपको सूचित किया जाएगा, और ऑडियो बीकन स्वचालित रूप से अगले मार्ग बिंदु पर आगे बढ़ जाएगा।
+Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
 
-## मैं इसका उपयोग कब करूँ?
+## When would I use it?
 
-आप कहीं जाने के लिए मार्ग बना सकते हैं और उसका उपयोग कर सकते हैं ताकि आप सही रास्ते पर बने रहें, या आप इसे किसी नई यात्रा के साथ परिचित होने में मदद करने के उपकरण के रूप में उपयोग कर सकते हैं।
+You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
 
-## यह कैसे काम करता है?
+## How does it work?
 
-**मार्ग बनाना :**
+**Creating a route :**
 
- सबसे पहले, *"मार्कर और मार्ग"* पर जाएँ, *"मार्ग"* टैब चुनें, और फिर *"नया मार्ग"* बटन चुनें। मार्ग को एक नाम और वैकल्पिक विवरण दें, फिर चलते-चलते मार्ग बिंदु जोड़ें या अपनी मार्कर सूची से उन्हें चुनें। आप किसी भी समय मार्ग को संपादित करके मार्ग बिंदुओं के क्रम को पुनर्व्यवस्थित कर सकते हैं।
+ First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
 
-**मार्ग संपादित करना :**
+**Editing a route :**
 
- *"मार्कर और मार्ग"* स्क्रीन पर अपना मार्ग चुनें और फिर *"मार्ग संपादित करें"* चुनें। यहाँ से आप मार्ग बिंदु जोड़ और हटाने के साथ-साथ मार्ग का नाम और विवरण भी संपादित कर सकते हैं।
+ Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
 
-**मार्ग साझा करना :**
+**Sharing a route :**
 
- *"मार्कर और मार्ग"* स्क्रीन पर अपना मार्ग चुनें और फिर आपके लिए उपलब्ध सभी सामान्य शेयर विकल्पों का उपयोग करके *"साझा करें"* का विकल्प चुनें।
+ Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
 

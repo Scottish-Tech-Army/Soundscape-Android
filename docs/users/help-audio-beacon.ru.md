@@ -1,5 +1,5 @@
 ---
-title: Звуковой маяк
+title: Audio Beacon
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: ru
 permalink: /users/help-audio-beacon.html
 ---
 
-# Звуковой маяк
+# Audio Beacon
 
-## Что это такое?
+## What is it?
 
-Установив маяк в близлежащем месте, Soundscape будет информировать вас, воспроизводя звуковой сигнал маяка, исходящий с этого места. Звук маяка можно отключить или включить на главном экране. Кроме того, Soundscape отображает информацию о местоположении на главном экране, включая расстояние до него и адрес, если он известен.
+Setting a beacon on a nearby location allows Soundscape to keep you informed by playing an audible beacon sound coming from the direction of that location. This beacon can be muted or unmuted on the home screen. Additionally, Soundscape displays information about the location on the home screen including the distance to it and its street address if it is known.
 
-## Когда использовать Soundscape?
+## When would I use it?
 
-Настройка маяка полезна, когда вы хотите отслеживать знакомый ориентир, исследуя новую местность, или когда вы направляетесь куда-то и хотите быть в курсе об окружающей обстановке по пути. Функция маяка не выдаёт пошаговые инструкции, но воспроизводит непрерывный звуковой сигнал, указывающий направление к маяку относительно вашего текущего местоположения. Используя звуковой сигнал, ваши навыки ориентирования и даже любимое навигационное приложение, вы можете самостоятельно выбрать способ добраться до близлежащих мест.
+Setting a beacon is useful when you want to keep track of a familiar landmark as you explore a new area or when you are going somewhere and want to be informed about your surroundings along the way. The beacon feature does not give you turn-by-turn directions, but it does give you a continuous audible sound that tells you the direction to the beacon, relative to where you are currently located. Using the audio beacon, your existing wayfinding skills, and even your favorite navigation app, you can choose how you want to get to nearby locations yourself.
 
-## Как оно работает?
+## How does it work?
 
-**Чтобы установить маяк:**
+**To set a beacon :**
 
-Сначала откройте сведения о местоположении — найдите место через строку поиска или нажмите одну из кнопок *"Места рядом"*, *"Отметки и пути"* или *"Текущее место"* и выберите нужное место. На экране *"Сведения о местоположении"* нажмите кнопку *"Включить звуковой маяк"*. После нажатия вы вернётесь на главный экран, и будет включён слышимый маяк, исходящий со стороны выбранного места. Название выбранного места вместе с расстоянием до него и физическим адресом, если он доступен, теперь будет отображаться на главном экране приложения.
+ First, view the details for a location by either using the search bar to search for a place, or tapping one of the *\"Places Nearby\"*, *\"Markers and Routes\"*, or *\"Current Location\"* buttons and selecting a location. From the *\"Location Details\"* screen you can select the *\"Start Audio Beacon\"* button. Tapping this will return you to the home screen and turn on an audible beacon coming from the direction of the place you selected. The name of the place you have selected along with its distance and physical address, if available, will now be displayed on the main app screen.
 
-**Чтобы удалить текущий маяк:**
+**To remove the current beacon :**
 
-Просто нажмите кнопку *"Остановить маршрут"* на главном экране.
+ Simply press the *\"Stop Route\"* button on the home screen.
 
-**Чтобы отключить звуковой маяк:**
+**To mute the audible beacon :**
 
-Нажмите кнопку *"Отключить маяк"* рядом с кнопкой *"Остановить маршрут"* на главном экране.
+ Tap the *\"Mute Beacon\"* button next to the *\"Stop Route\"* button on the home screen.
 

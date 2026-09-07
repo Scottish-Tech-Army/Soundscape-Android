@@ -9,17 +9,17 @@ permalink: /users/help-tips.html
 
 # Tips
 
-U kunt nabijgelegen bushaltes vinden door in de lijst *"Plaatsen in de buurt"* het filter *"Openbaar vervoer"* te selecteren.
+You can find nearby bus stops by selecting the *\"Public Transit\"* filter in the *\"Places Nearby\"* list.
 
-U kunt een baken instellen op elk adres. Zoek vanaf het hoofdscherm van Soundscape naar het adres. Nadat u het adres in de zoekresultaten hebt geselecteerd, verschijnt het scherm *"Locatiedetails"* met de optie *"Audiobaken starten"* voor dat adres. Op deze manier kunt u een baken instellen op bedrijven, plaatsen, referentiepunten en woningen die niet in Open Street Map staan.
+You can set a beacon on any address. From the main Soundscape screen, search for the address. Select the address in the search results to open a *\"Location Details\"* screen. This screen has an option to *\"Start Audio Beacon\"* on the address. This way, you can set a beacon on businesses, places, points of interest, and homes that are not in OpenStreetMap.
 
-Als er een buslijn is die u regelmatig neemt, stelt u uw instap‑ en uitstaphaltes in als Markeringen. Zo worden ze opgeslagen en vindt u ze later gemakkelijk terug via *"Markeringen en routes"* op het startscherm, op de pagina *"Markeringen"*. U kunt er een audiobaken op instellen en u krijgt periodieke updates over hoe dicht u bij uw uitstaphalte bent. Opmerking: u kunt het ritmische geluid uitschakelen; u ontvangt dan nog steeds afstandsupdates onderweg.
+If you take a bus route regularly, save your pickup and exit stops as Markers. This saves them so you can find them again easily. Go to *\"Markers and Routes\"* from the home screen, then find them on the *\"Markers\"* page. You can set a beacon on them to get periodic updates on how close you are to your exit stop. Note: you can turn off the rhythmic sound and still get distance updates along the way.
 
-Als u uw telefoon in uw zak houdt en niet verder loopt, stopt het bakengeluid omdat Soundscape niet kan bepalen in welke richting u kijkt. Los dit op door weer te gaan lopen, of door uw telefoon tevoorschijn te halen en horizontaal voor u uit te houden.
+If you put your phone in your pocket and stop moving, the beacon sound gets quieter because Soundscape cannot tell which way you are facing. To fix this, start walking again, or take your phone out and hold it flat.
 
-Soundscape werkt het beste als u de telefoon vlak houdt met het scherm naar boven en de bovenkant van de telefoon van u af wijzend.
+Soundscape works best when you hold the phone flat with the screen facing the sky and the top of the phone pointing away from you.
 
-U kunt het ritmische geluid van het baken uitzetten met de knop Dempen op het hoofdscherm. Als het baken is gedempt, krijgt u om de circa 50 meter nog wel updates over de afstand tot uw bestemming.
+You can turn the rhythmic sound of the beacon on and off using the mute button on the home screen. If the beacon is muted, you will still get updates about your distance to your destination approximately every 50 meters.
 
-Als u nog wel met Soundscape wilt werken maar geen automatische waarschuwingen wilt horen, kunt u waarschuwingen uitschakelen door in het menu naar het scherm *"Instellingen"* te gaan en de sectie *"Waarschuwingen beheren"* te openen. Of, als u Soundscape niet gaat gebruiken, kunt u het via de knop *"Slapen"* op het startscherm in de Slaap‑ of Sluimerstand zetten.
+To keep using Soundscape without hearing automatic callouts, turn callouts off in the *\"Manage Callouts\"* section of the *\"Settings\"* screen from the menu. If you are not going to use Soundscape for a while, you can put it in Sleep or Snooze mode instead using the *\"Sleep\"* button on the home screen.
 

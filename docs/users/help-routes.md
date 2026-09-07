@@ -13,7 +13,7 @@ Routes are a series of waypoints. You will be informed on arrival to each waypoi
 
 ## When would I use it?
 
-You may want to create and use a route somewhere you know to make sure you keep on track, or you may want to use it as a tool to help familiarise yourself along a new journey.
+You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
 
 ## How does it work?
 
@@ -23,7 +23,7 @@ You may want to create and use a route somewhere you know to make sure you keep 
 
 **Editing a route :**
 
- Select your route on the *"Markers and Routes"* screen and then select *"Edit Route"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
+ Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
 
 **Sharing a route :**
 

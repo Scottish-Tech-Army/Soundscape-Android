@@ -1,5 +1,5 @@
 ---
-title: Создание отметок
+title: Creating Markers
 layout: page
 parent: "Использование Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: ru
 permalink: /users/help-creating-markers.html
 ---
 
-# Создание отметок
+# Creating Markers
 
-Создать отметки можно тремя способами: найти место через строку поиска, воспользоваться кнопкой *"Места рядом"* или кнопкой *"Текущее место"* — все эти элементы находятся на главном экране Soundscape. После того как вы найдёте нужное место, его выбор откроет экран *"Сведения о местоположении"*. На этом экране нажмите кнопку *"Сохранить как отметку"*.
+You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
 
-Теперь вы сможете настроить эту отметку. Можно изменить её название и добавить аннотацию, которая будет озвучиваться вместе с отметкой, чтобы дать дополнительную информацию. Когда закончите, нажмите кнопку *"Готово"*, чтобы сохранить отметку.
+You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
 

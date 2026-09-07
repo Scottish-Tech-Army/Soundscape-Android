@@ -1,5 +1,5 @@
 ---
-title: Моє місцезнаходження
+title: My Location
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: uk
 permalink: /users/help-my-location.html
 ---
 
-# Моє місцезнаходження
+# My Location
 
-## Що це?
+## What is it?
 
-Кнопка *"Моє місцезнаходження"* швидко надає вам інформацію, яка допомагає з'ясувати, де ви зараз знаходитесь. *"Моє місцезнаходження"* повідомляє вам про ваше поточне місцезнаходження, включаючи деталі, як напрямок, в якому ви рухаєтесь, де знаходяться найближчі дороги чи перехрестя та де розташовані найближчі точки інтересу.
+The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
 
-## Коли б я міг це використати?
+## When would I use it?
 
-*"Моє місцезнаходження"* корисна, коли вам потрібно з'ясувати, де ви знаходитесь або в якому географічному напрямку дивитеся.
+*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
 
-## Як це працює?
+## How does it work?
 
-Як і з усіма чотирма кнопками в нижній частині головного екрана, перш ніж натиснути кнопку *"Моє місцезнаходження"*, тримайте телефон горизонтально (екраном догори) і верхньою частиною телефона в напрямку, куди ви дивитесь. Це діє як компас, дозволяючи програмівизначити, в якому напрямку ви дивитеся. Просто торкніться кнопки *"Моє місцезнаходження"* і прослухайте сповіщення.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
 

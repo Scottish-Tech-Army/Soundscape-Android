@@ -1,5 +1,5 @@
 ---
-title: Σχετικά με το Soundscape
+title: About Soundscape
 layout: page
 parent: "Χρήση του Soundscape"
 has_toc: false
@@ -7,17 +7,19 @@ lang: el
 permalink: /users/help-about-soundscape.html
 ---
 
-# Σχετικά με το Soundscape
+# About Soundscape
 
-Το Soundscape εξερευνά τη χρήση καινοτόμου τεχνολογίας βασισμένης στον ήχο ώστε να επιτρέπει στους ανθρώπους να αποκτήσουν πληρέστερη αντίληψη του περιβάλλοντός τους και, έτσι, να γίνουν πιο αυτοπεποίθητοι και ανεξάρτητοι στην κίνηση.
+Soundscape uses innovative audio-based technology to help people build a richer awareness of their surroundings. This makes people more confident and able to get around independently.
 
-Το Soundscape δεν θα ήταν δυνατό χωρίς αυτές τις εξαιρετικές βιβλιοθήκες τρίτων και τα δεδομένα τους. Κάντε κλικ στους συνδέσμους για να δείτε τις άδειές τους:
+Soundscape depends on these excellent third-party libraries and data. Click the links to see their licenses:
 
-[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) παρέχουν όλα τα γεωγραφικά δεδομένα για τη χαρτογράφηση και τον ήχο που χρησιμοποιούνται στο Soundscape.
+[©OpenStreetMap contributors](https://www.openstreetmap.org/copyright) provide all of the geo data for mapping and audio used in Soundscape.
 
-[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) χρησιμοποιείται για τη δημιουργία των πλακιδίων χάρτη (map tiles) που χρησιμοποιούμε.
+[©OpenMapTiles](https://github.com/openmaptiles/openmaptiles/blob/master/LICENSE.md) is used to generate the mapping tiles that we use.
 
-[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) χρησιμοποιείται για τη δημιουργία του 3D ήχου και διατίθεται για χρήση υπό την [άδεια Apache 2.0](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
+[Steam Audio library ©Valve Corporation](https://github.com/ValveSoftware/steam-audio) is used to generate the 3D audio, and is made available for use under the [Apache 2.0 license](https://github.com/ValveSoftware/steam-audio/blob/master/LICENSE.md).
 
-Όλα τα ονόματα προϊόντων, εταιρειών και λογότυπα τρίτων είναι εμπορικά σήματα ή καταχωρημένα εμπορικά σήματα και παραμένουν ιδιοκτησία των αντίστοιχων κατόχων τους.
+[Oboe library ©The Android Open Source Project](https://github.com/google/oboe) is used to play the audio with low latency, and is made available for use under the [Apache 2.0 license](https://github.com/google/oboe/blob/main/LICENSE).
+
+All third-party product, company names and logos are trademarks or registered trademarks and remain the property of their respective holders.
 

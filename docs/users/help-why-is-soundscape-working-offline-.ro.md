@@ -1,5 +1,5 @@
 ---
-title: De ce funcționează Soundscape offline?
+title: Why is Soundscape working offline?
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ro
 permalink: /users/help-why-is-soundscape-working-offline-.html
 ---
 
-# De ce funcționează Soundscape offline?
+# Why is Soundscape working offline?
 
-## De ce funcționează Soundscape offline?
+## Why is Soundscape working offline?
 
-Când nu există conexiune la internet sau când serviciile Soundscape sunt întrerupte, Soundscape trece în modul offline. Cu toate acestea, Soundscape va continua să funcționeze, dar unele funcții pot fi limitate.
+When there is no internet connection, or the Soundscape services are down, Soundscape switches to offline mode. It will keep working, but some features may be limited.
 
-## Limitări
+## Limitations
 
-Anunțurile vor continua să funcționeze dacă te afli într-o zonă prin care ai mai trecut și care a fost salvată în istoricul anunțurilor. De asemenea, poți plasa o baliză audio sau crea un marcaj în locurile care au fost salvate în istoricul anunțurilor.
+Callouts still work in areas you have walked through before, since Soundscape stores them in your callout history. You can also place an audio beacon or create a marker on places already stored in your callout history.
 
-## Ce poți face?
+## What can you do?
 
-Soundscape va încerca să revină la funcționarea normală când telefonul tău este conectat la Wi-Fi sau când datele mobile sunt activate și te afli într-o zonă cu semnal bun. Dacă telefonul tău are o conexiune bună la internet, dar Soundscape nu revine la funcționarea normală, atunci este posibil să existe o întrerupere a serviciilor Soundscape.
+Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or cellular data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
 

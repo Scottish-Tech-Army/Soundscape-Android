@@ -1,5 +1,5 @@
 ---
-title: Warum wird Soundscape im Offlinemodus ausgeführt?
+title: Why is Soundscape working offline?
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
@@ -7,17 +7,17 @@ lang: de
 permalink: /users/help-why-is-soundscape-working-offline-.html
 ---
 
-# Warum wird Soundscape im Offlinemodus ausgeführt?
+# Why is Soundscape working offline?
 
-## Warum wird Soundscape im Offlinemodus ausgeführt?
+## Why is Soundscape working offline?
 
-Wenn es keine Internetverbindung oder einen Ausfall des Soundscape-Dienstes gibt, wechselt Soundscape in den Offlinemodus. Soundscape wird dann weiter ausgeführt, aber einige Funktionen sind möglicherweise eingeschränkt.
+When there is no internet connection, or the Soundscape services are down, Soundscape switches to offline mode. It will keep working, but some features may be limited.
 
-## Einschränkungen
+## Limitations
 
-Hinweise funktionieren weiterhin, wenn Sie sich in einem Gebiet befinden, an dem Sie zuvor vorbeigegangen sind und das in Ihrer Hinweishistorie gespeichert wurde. Ebenso können Sie an Orten, die in Ihrer Hinweishistorie gespeichert wurden, ein Audiobeacon platzieren oder eine Markierung erstellen.
+Callouts still work in areas you have walked through before, since Soundscape stores them in your callout history. You can also place an audio beacon or create a marker on places already stored in your callout history.
 
-## Was kann ich tun?
+## What can you do?
 
-Soundscape versucht, in den Normalbetrieb zu wechseln, sobald Ihr Telefon mit WLAN verbunden wird oder mobile Daten aktiviert sind, und Sie sich in einem Bereich mit gutem Signal befinden. Wenn Ihr Telefon über eine gute Internetverbindung verfügt, aber Soundscape nicht in den Normalbetrieb zurückkehrt, gibt es möglicherweise einen Ausfall der Soundscape-Dienste.
+Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or cellular data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
 

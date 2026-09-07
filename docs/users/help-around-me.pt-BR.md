@@ -1,5 +1,5 @@
 ---
-title: Ao Meu Redor
+title: Around Me
 layout: page
 parent: "Usando o Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: pt-BR
 permalink: /users/help-around-me.html
 ---
 
-# Ao Meu Redor
+# Around Me
 
-## O que é?
+## What is it?
 
-O botão *"Ao Meu Redor"* mostra a você uma coisa em cada um dos quatro quarteirões ao seu redor (à frente, à direita, atrás e à esquerda). *"Ao Meu Redor"* destina-se a ajudar você a se orientar nos arredores.
+The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
 
-## Quando eu o usaria?
+## When would I use it?
 
-Quando você estiver tentando se orientar em seus arredores, use *"Ao Meu Redor"* para ouvir sobre o que há ao seu redor.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
 
-## Como ele funciona?
+## How does it work?
 
-Tal como acontece com os quatro botões da parte inferior da tela inicial, segure seu telefone com a tela na horizontal (com a tela voltada para cima) e o topo apontando na direção para a qual você estava voltado antes de pressionar o botão *"Ao Meu Redor"*. Isso age como uma bússola, mostrando ao aplicativo a direção para a qual você está voltado. Bastará tocar no botão *"Ao Meu Redor"* e você ouvirá vários pontos de interesse organizados ao seu redor.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
 

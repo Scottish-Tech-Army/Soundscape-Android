@@ -1,5 +1,5 @@
 ---
-title: 标记点
+title: Markers
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
@@ -7,11 +7,11 @@ lang: zh-CN
 permalink: /users/help-markers.html
 ---
 
-# 标记点
+# Markers
 
-使用Soundscape，您可以标记您的世界和您关心的任何事物，就像在地图上插图钉一样。
+With Soundscape, you can mark your world and anything you care about, like pins in a map.
 
-您可以标记与您个人相关的事物，如您的家、办公室和常去的杂货店。您可以标记任何地点或地址，也可以标记传统地图上可能没有的事物，例如建筑物或公园的入口、行人过街按钮、人行横道或桥梁、公交站，甚至您家狗最喜欢的树，并将这些作为步行途中的参考点。
+You can mark places that are personal and relevant to you, like your home, your office, or your preferred grocery store. You can mark any place or address, and you can also mark things that are not normally shown on maps, for example: building or park entrances, push-to-walk buttons, pedestrian crossings, bridges, bus stops, or even your dog’s favorite tree. Use these marks as references along your walk.
 
-要体验已标记的地点，Soundscape 会在您经过或接近这些地点时自动播报它们，或者您也可以使用 Soundscape 主屏幕底部的*"附近标记点"*按钮收听周围标记点的空间播报。此外，您可以在任何已标记地点上设置信标。设置信标后，您熟悉的 Soundscape 音频信标将被听到，并且可以照常操作。
+To experience marked places, Soundscape will automatically call out marked places as you walk by or approach them, or you can also use the *\"Nearby markers\"* button at the bottom of the Soundscape home screen to hear a spatial callout of marked places around you. In addition, you have the ability to set an audio beacon on any marked place. When you do this, the Soundscape audio beacon you are familiar with, will be heard and you can operate it as usual.
 

@@ -1,5 +1,5 @@
 ---
-title: Brug af mediebetjeningsknapper
+title: Using Media Controls
 layout: page
 parent: "Brug af Soundscape"
 has_toc: false
@@ -7,37 +7,33 @@ lang: da
 permalink: /users/help-using-media-controls.html
 ---
 
-# Brug af mediebetjeningsknapper
+# Using Media Controls
 
-## Hvad er det?
+## What is it?
 
-Du kan få adgang til visse funktioner i Soundscape ved hjælp af mediebetjeningsknapperne på hovedtelefonerne. Denne funktionalitet fungerer sammen med alle hovedtelefoner med kabel eller Bluetooth, der har mediebetjeningsknapper som Afspil, Pause, Næste, Forrige og andre. Forskellige hovedtelefoner kan have forskellige knapper, så se listen over handlinger nedenfor for at afgøre, hvilke der er tilgængelige for dig.Bemærk også, at denne funktion kun fungerer sammen med hovedtelefoner, der understøtter Apples mediebetjeningsknapper (f.eks. afspil og pause).
+You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
 
-## Hvornår ville jeg bruge det?
+## When would I use it?
 
-Mediebetjeningsknapper på hovedtelefoner kan bruges, mens Soundscape kører. Dette gælder, uanset om du er i øjeblikket bruger Soundscape, eller mens Soundscape er i baggrunden, og selv mens enheden er låst. Bemærk dog, at mediebetjeningsknapper på hovedtelefoner ikke fungerer sammen med Soundscape, hvis du afspiller lyd som musik, podcasts eller videoer fra en anden app.
+Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
 
-## Hvordan virker det?
+## How does it work?
 
-Der er 3 driftsmåder for mediebetjeningsknapperne. Tilstanden vælges i afsnittet *"Indstillinger"* > *"Mediebetjeninger"*. Måderne er:
+There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
 
-Originaltilstand.
+ Original mode. 
 
-⏯ Afspil/Pause: Slår lydfyret til eller fra.
+⏯ Play/Pause: Toggles the beacon audio on and off. 
 
-⏭ Næste: Hvis en rute afspilles, flytter lydfyret til det næste vejpunkt i ruten. Hvis der ikke afspilles nogen rute, afspilles *"Min placering"*.
+⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
 
-⏮ Forrige: Hvis en rute afspilles, flytter lydfyret til det forrige vejpunkt i ruten. Hvis der ikke afspilles nogen rute, afspilles *"Omkring mig"*.
-
-
-
-Stemmekommando.
-
-⏯ Afspil/Pause: Starter appens lytning efter stemmekommandoer.
+⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
 
 
 
-Lydmenu.
+Audio menu. 
 
-⏭ Næste og ⏮ Forrige: Navigerer frem og tilbage gennem en række menumuligheder, som appen beskriver vha. tekst‑til‑tale. ⏯ Afspil/Pause vælger den aktuelle mulighed, hvorefter appen udfører den beskrevne handling. Der er én top‑niveau‑menu, som kun indeholder undermenuer som valgmuligheder. Hver undermenu indeholder en gruppe af lignende handlinger.
+
+
+⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
 

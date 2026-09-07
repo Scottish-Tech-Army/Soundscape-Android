@@ -1,5 +1,5 @@
 ---
-title: Навколишні мітки
+title: Nearby Markers
 layout: page
 parent: "Використання Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: uk
 permalink: /users/help-nearby-markers.html
 ---
 
-# Навколишні мітки
+# Nearby Markers
 
-## Що це?
+## What is it?
 
-Кнопка *"Найближчі мітки"* дозволяє вам почути інформацію про 4 найближчі до вас мітки. Функцію *"Найближчі мітки"* створено, щоб ви могли орієнтуватися на місцевості відносно уже відомих вам місць.
+The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
 
-## Коли б я міг це використати?
+## When would I use it?
 
-Коли ви намагаєтеся зорієнтуватися та зрозуміти, що навколо вас, використовуйте *"Найближчі мітки"*, щоб дізнатися про розташування знайомих вам місць.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
 
-## Як це працює?
+## How does it work?
 
-Як і з усіма чотирма кнопками в нижній частині головного екрана, перш ніж натиснути кнопку *"Найближчі мітки"*, тримайте телефон горизонтально (екраном догори) і верхньою частиною телефона в напрямку, куди ви дивитесь. Це працює як компас, дозволяючи програмі визначити, в якому напрямку ви дивитесь. Просто натисніть кнопку *"Найближчі мітки"*, і ви почуєте до чотирьох міток поблизу вас.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
 

@@ -1,5 +1,5 @@
 ---
-title: Opprett markører
+title: Creating Markers
 layout: page
 parent: "Bruke Soundscape"
 has_toc: false
@@ -7,9 +7,9 @@ lang: nb
 permalink: /users/help-creating-markers.html
 ---
 
-# Opprett markører
+# Creating Markers
 
-Du kan opprette markører på tre måter: ved å søke etter stedet du vil lagre i søkefeltet, finne et sted ved å bruke knappen *"Steder i nærheten"*, eller ved å bruke knappen *"Bruk nåværende posisjon"*, som alle finnes på Soundscapes startskjerm. Når du har funnet stedet du ønsker, tar valg av stedet deg til skjermen *"Posisjonsinformasjon"*. På denne skjermen velger du knappen *"Lagre som markør"*.
+You can create markers in three ways: searching for the place you would like to save using the search bar, finding somewhere using the *\"Places Nearby\"* button, or using the *\"Use Current Location\"* button, all of which can be found on the Soundscape home screen. Once you have found the place you would like, selecting it will take you to the *\"Location Details\"* screen. On this screen, select the *\"Save as Marker\"* button.
 
-Du får nå mulighet til å tilpasse denne markøren. Du kan endre navnet på markøren, og du kan også legge til en annotasjon som vil bli opplest sammen med markøren for å gi litt ekstra informasjon. Når du er ferdig, velger du knappen *"Ferdig"* for å lagre markøren.
+You will now have the option to customize this marker. You can change the name of the marker, and also add an annotation that will be called out along with the marker to provide some extra information. Once you are done, select the *"Done"* button to save your Marker.
 

@@ -1,5 +1,5 @@
 ---
-title: 現在地
+title: My Location
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ja
 permalink: /users/help-my-location.html
 ---
 
-# 現在地
+# My Location
 
-## どのようなものですか?
+## What is it?
 
-[*現在地*] ボタンを使用すると、自分の現在地を簡単に確認できるように情報が提供されます。[*現在地*] ボタンでは、自分が向いている方向、近くの道路や交差点がどこにあるか、近くの特定地点がどこにあるかなど、現在地に関する情報がわかります。
+The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
 
-## どのような場合に使用できますか?
+## When would I use it?
 
-[*現在地*] は、自分の現在地や向かっている方向を確認する必要がある場合に役立ちます。
+*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
 
-## どのような仕組みですか?
+## How does it work?
 
-ホーム画面の下部の 4 つのボタンはどれも同じですが、スマートフォンの画面を上 (空) に向けて水平に持ち、スマートフォンの画面上部を自分が向いている方向に合わせてから、[*現在地*] ボタンを押します。これにより、コンパスを合わせるように、自分が向いている方向をアプリに伝えることができます。[*現在地*] ボタンをタップすると、音声が聞こえます。
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
 

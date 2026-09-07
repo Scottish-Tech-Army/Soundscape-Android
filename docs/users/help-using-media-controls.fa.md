@@ -1,5 +1,5 @@
 ---
-title: استفاده از دکمه‌های کنترل پخش صوت و تصویر روی هندزفری
+title: Using Media Controls
 layout: page
 parent: "استفاده از ساند‌اسکیپ"
 has_toc: false
@@ -7,35 +7,33 @@ lang: fa
 permalink: /users/help-using-media-controls.html
 ---
 
-# استفاده از دکمه‌های کنترل پخش صوت و تصویر روی هندزفری
+# Using Media Controls
 
-## این چیست؟
+## What is it?
 
-شما می‌توانید به‌کمک دکمه‌های کنترل پخش صوت و تصویر روی هندزفری خود به برخی از قابلیت‌های ساند‌اسکیپ دسترسی داشته باشید. این ویژگی با هندزفری‌های سیمی و بلوتوثی که دارای دکمه‌های پلی، پاز، ترک بعد، ترک قبل و غیره می‌باشند کار می‌کند. توجه داشته باشید که دکمه‌هایی که روی هندزفری‌های مختلف قرار دارند، با هم متفاوت هستند؛ پس لطفاً برای اطلاع از اینکه چه قابلیت‌هایی در دسترس شما قرار دارد، به فهرست زیر مراجعه نمایید.
+You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
 
-## چه زمانی از آن استفاده کنم؟
+## When would I use it?
 
-می‌توان از دکمه‌های کنترل پخش صوت و تصویر روی هندزفری زمانی که ساند‌اسکیپ در حال اجراست استفاده کرد. این امر چه موقعی که شما داخل ساند‌اسکیپ باشید و چه موقعی که ساند‌اسکیپ در پس‌زمینه در حال اجرا باشد و حتی هنگامی که گوشی شما قفل است میسر می‌باشد. اما توجه داشته باشید زمانی که شما مشغول کار با یک اپلیکیشن دیگر برای پخش صدا یا ویدئو هستید، امکان استفاده از دکمه‌های کنترل پخش صوت و تصویر برای فعال کردن قابلیت‌های ساند‌اسکیپ وجود ندارد.
+Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
 
-## چگونه کار می‌کند؟
+## How does it work?
 
-سه حالت عملکردی برای دکمه‌های کنترل رسانه وجود دارد. حالت مورد نظر را می‌توانید از بخش *«تنظیمات»* > *«کنترل‌های رسانه‌ای»* انتخاب کنید. حالت‌ها عبارت‌اند از:
+There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
 
-حالت اصلی.
+ Original mode. 
 
-⏯ پخش/مکث: صدای جهت‌نمای صوتی را روشن یا خاموش می‌کند.
+⏯ Play/Pause: Toggles the beacon audio on and off. 
 
-⏭ بعدی: اگر مسیری در حال پخش باشد، جهت‌نمای صوتی را به نقطه‌ی بین‌راهی بعدی در مسیر منتقل می‌کند. اگر هیچ مسیری در حال پخش نباشد، گزینه‌ی *«موقعیت مکانی من»* را اعلام می‌کند.
+⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
 
-⏮ قبلی: اگر مسیری در حال پخش باشد، جهت‌نمای صوتی را به نقطه‌ی بین‌راهی قبلی در مسیر منتقل می‌کند. اگر هیچ مسیری در حال پخش نباشد، گزینه‌ی *«اطراف من»* را اعلام می‌کند.
-
-
-حالت فرمان صوتی.
-
-⏯ پخش/مکث: باعث می‌شود اپ برای دریافت فرمان‌های صوتی گوش دهد.
+⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
 
 
-منوی صوتی.
 
-⏭ بعدی و ⏮ قبلی از میان گزینه‌های منو که اپ از طریق تبدیل متن به گفتار برایتان می‌خواند جلو و عقب می‌روند. سپس با فشردن ⏯ پخش/مکث، اپ گزینه‌ی فعلی را اجرا می‌کند. یک منوی سطح بالا وجود دارد که فقط زیرمنوها را به‌عنوان گزینه دربردارد و هر زیرمنو گروهی از اقدامات مشابه را شامل می‌شود.
+Audio menu. 
+
+
+
+⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
 

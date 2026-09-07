@@ -1,5 +1,5 @@
 ---
-title: mín staðsettning
+title: My Location
 layout: page
 parent: "Að nota Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: is
 permalink: /users/help-my-location.html
 ---
 
-# mín staðsettning
+# My Location
 
-## hvað er það?
+## What is it?
 
-Mín staðsettning hnappurinn gefur upplýsingar u stefnu í höfuðáttum, nálæg gatnamót og aðra áhugaverða staði.
+The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
 
-## hvenar skal nota?
+## When would I use it?
 
-notaðu mín staðsettning til að fá upplýsingar um staðsettningu og höfuðátt.
+*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
 
-## hvernig virkar það?
+## How does it work?
 
-fyrir mín staðsettning hnappinn og hina hnappana neðst á skjánnum er best að snúa símnum með skjáinn beint upp og hleðslu rauf að notanda. þannig fær síminn rétta stefnu. Svo er hnappurinn virkjaður og hlustað.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
 

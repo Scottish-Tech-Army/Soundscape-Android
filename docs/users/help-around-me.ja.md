@@ -1,5 +1,5 @@
 ---
-title: 周辺
+title: Around Me
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ja
 permalink: /users/help-around-me.html
 ---
 
-# 周辺
+# Around Me
 
-## どのようなものですか?
+## What is it?
 
-[*周辺*] ボタンでは、ユーザーの周辺の 4 方向 (前方、右側、後方、左側) のそれぞれについて 1 つ程度の情報が聞こえます。[*周辺*] ボタンは、その場所で自分がどの方向に向いているかを確認するのに役立ちます。
+The *"Around Me"* button tells you about one thing in each of the four quadrants around you (ahead, to the right, behind, and to the left). *"Around Me"* is intended to help you orient yourself to your surroundings.
 
-## どのような場合に使用できますか?
+## When would I use it?
 
-自分がどこにいて、どの方向を向いているのかを確認したい場合は、[*周辺*] ボタンを使用すると、自分の周辺の情報を聞くことができます。
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Around Me"* to hear about the things around you.
 
-## どのような仕組みですか?
+## How does it work?
 
-ホーム画面の下部の 4 つのボタンはどれも同じですが、スマートフォンの画面を上 (空) に向けて水平に持ち、スマートフォンの画面上部を自分が向いている方向に合わせてから、[*周辺*] ボタンを押します。これにより、コンパスを合わせるように、自分が向いている方向をアプリに伝えることができます。[*周辺*] ボタンをタップすると、自分の周辺にある 4 つの特定地点の情報が聞こえます。
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Around Me"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Around Me"* button and you will hear four points of interest arranged around you.
 

@@ -1,5 +1,5 @@
 ---
-title: Marcaje din apropiere
+title: Nearby Markers
 layout: page
 parent: "Utilizarea Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: ro
 permalink: /users/help-nearby-markers.html
 ---
 
-# Marcaje din apropiere
+# Nearby Markers
 
-## Ce este?
+## What is it?
 
-Butonul *"Marcaje din apropiere"* te informează despre până la patru marcaje care sunt cele mai aproape de tine. *"Marcaje din apropiere"* este conceput pentru a te ajuta să te orientezi folosind locuri pe care le cunoști deja.
+The *"Nearby Markers"* button tells you about up to four markers that are closest to you. *"Nearby Markers"* is intended to help you orient yourself using places you already know about.
 
-## Când aș folosi această funcție?
+## When would I use it?
 
-Când încerci să te orientezi și să te familiarizezi cu împrejurimile, folosește *"Marcaje din apropiere"* pentru a auzi despre locațiile locurilor pe care le cunoști.
+When you are trying to get your bearings and orient yourself to your surroundings, use *"Nearby Markers"* to hear about the locations of places you know of.
 
-## Cum funcționează?
+## How does it work?
 
-La fel ca toate cele patru butoane din partea de jos a ecranului principal, ține telefonul cu ecranul orizontal (orientat spre cer) și cu partea de sus a telefonului îndreptată în direcția în care ești orientat înainte de a apăsa butonul *"Marcaje din apropiere"*. Acesta funcționează ca o busolă care indică aplicației direcția în care ești orientat. Pur și simplu apasă butonul *"Marcaje din apropiere"* și vei auzi până la patru marcaje din apropierea ta.
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"Nearby Markers"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"Nearby Markers"* button and you will hear up to four markers near you.
 

@@ -1,5 +1,5 @@
 ---
-title: Mediensteuerungen verwenden
+title: Using Media Controls
 layout: page
 parent: "Soundscape verwenden"
 has_toc: false
@@ -7,37 +7,33 @@ lang: de
 permalink: /users/help-using-media-controls.html
 ---
 
-# Mediensteuerungen verwenden
+# Using Media Controls
 
-## Was ist es?
+## What is it?
 
-Sie können auf bestimmte Funktionen in Soundscape über die Mediensteuerungen an Ihren Kopfhörern zugreifen. Dies funktioniert mit jedem kabelgebundenen oder Bluetooth-Kopfhörer, der über Mediensteuertasten wie Wiedergabe, Pause, Weiter, Zurück und andere verfügt. Verschiedene Kopfhörer können unterschiedliche Tasten haben, daher sehen Sie bitte in der Liste der Aktionen unten nach, welche für Sie verfügbar sind. Beachten Sie auch, dass diese Funktion nur mit Kopfhörern funktioniert, die Mediensteuerungen von Apple (wie Wiedergabe und Pause) unterstützen.
+You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
 
-## Wann würde ich es verwenden?
+## When would I use it?
 
-Kopfhörer-Mediensteuerungen können während der Ausführung von Soundscape verwendet werden. Dies gilt sowohl dann, wenn Sie die Soundscape-App gerade offen haben, wenn Soundscape im Hintergrund arbeitet und sogar wenn Ihr Gerät gerade gesperrt ist. Beachten Sie jedoch, dass die Kopfhörer-Mediensteuerungen nicht mit Soundscape funktionieren, wenn Sie über eine andere App Audio abspielen, wie Musik, Podcasts oder Videos.
+Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
 
-## Wie funktioniert es?
+## How does it work?
 
-Es gibt drei Betriebsmodi für die Mediensteuerungen. Den Modus können Sie im Abschnitt *„Einstellungen“* → *„Mediensteuerungen“* auswählen. Die Modi sind:
+There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
 
-Originalmodus.
+ Original mode. 
 
-⏯ Wiedergabe/Pause: Schaltet das Audiobeacon ein bzw. aus.
+⏯ Play/Pause: Toggles the beacon audio on and off. 
 
-⏭ Weiter: Wenn gerade eine Route abgespielt wird, verschiebt das Audiobeacon den Ton zum nächsten Wegpunkt der Route. Wenn keine Route abgespielt wird, wird *„Mein Standort“* angesagt.
+⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
 
-⏮ Zurück: Wenn gerade eine Route abgespielt wird, verschiebt das Audiobeacon den Ton zum vorherigen Wegpunkt der Route. Wenn keine Route abgespielt wird, wird *„Um mich herum“* angesagt.
-
-
-
-Sprachsteuerung.
-
-⏯ Wiedergabe/Pause: Startet die Spracherkennung der App (die App hört auf Sprachbefehle).
+⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
 
 
 
-Audio‑Menü.
+Audio menu. 
 
-⏭ Weiter und ⏮ Zurück: Navigieren vorwärts bzw. rückwärts durch eine Reihe von Menüoptionen, die die App per Sprachausgabe beschreibt. ⏯ Wiedergabe/Pause wählt dann die aktuell beschriebene Option aus und führt sie aus. Es gibt ein oberstes Menü, das nur Untermenüs als Optionen enthält. Jedes Untermenü fasst eine Gruppe ähnlicher Aktionen zusammen.
+
+
+⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
 

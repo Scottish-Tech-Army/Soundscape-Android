@@ -1,5 +1,5 @@
 ---
-title: 我的位置
+title: My Location
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: zh-CN
 permalink: /users/help-my-location.html
 ---
 
-# 我的位置
+# My Location
 
-## 这是什么？
+## What is it?
 
-*"我的位置"*按钮可以快速为您提供帮助确定当前位置的信息。*"我的位置"*会告诉您当前位置的相关信息，包括您面朝的方向、附近的道路或路口，以及附近的兴趣点。
+The *"My Location"* button quickly gives you information that helps you figure out where you currently are. *"My Location"* tells you about your current location including things like the direction you are facing, where nearby roads or intersections are, and where nearby points of interest are.
 
-## 什么时候使用？
+## When would I use it?
 
-当您需要确定自己所在的位置或面朝的方向时，*"我的位置"*非常有用。
+*"My Location"* is useful when you need to figure out where you are or what cardinal direction you are facing.
 
-## 如何使用？
+## How does it work?
 
-与主屏幕底部的所有四个按钮一样，在按下*"我的位置"*按钮之前，请将手机屏幕朝上平放（面向天空），手机顶部指向您面朝的方向。这就像指南针一样告诉应用您面朝的方向。只需点击*"我的位置"*按钮并聆听即可。
+As with all four of the buttons at the bottom of the home screen, hold your phone with the screen flat (facing towards the sky) and the top of the phone pointing in the direction you are facing before you press the *"My Location"* button. This acts like a compass telling the app which direction you are facing. Simply, tap the *"My Location"* button and listen.
 

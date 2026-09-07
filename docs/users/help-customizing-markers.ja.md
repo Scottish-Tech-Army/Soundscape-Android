@@ -1,5 +1,5 @@
 ---
-title: マーカーのカスタマイズ
+title: Customizing Markers
 layout: page
 parent: "Soundscape を使う"
 has_toc: false
@@ -7,9 +7,9 @@ lang: ja
 permalink: /users/help-customizing-markers.html
 ---
 
-# マーカーのカスタマイズ
+# Customizing Markers
 
-以前に作成したマーカーの名前を変更したり注記を追加したい場合は、*「マーカーおよびルート」* 画面の *「マーカー」* タブから対象のマーカーを選択し、*「マーカーを編集」* ボタンを押してください。これにより、マーカーに分かりやすいニックネームを付けたり、注記欄で詳しい説明を追加したりできます。
+If you want to rename a marker you previously created, or add an annotation to it, then you can do so by selecting the marker from the *\"Markers\"* tab of the *\"Markers and Routes\"* page, then selecting the *\"Edit Marker\"* button. You can use this to give markers descriptive or useful nicknames, as well as give them a longer description using the annotation field.
 
-この [編集] 画面では、不要になったマーカーを削除することもできます。
+From this *"Edit"* screen you can also delete a marker if you no longer need it.
 

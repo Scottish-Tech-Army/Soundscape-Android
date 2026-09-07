@@ -1,5 +1,5 @@
 ---
-title: Percorsi
+title: Routes
 layout: page
 parent: "Usare Soundscape"
 has_toc: false
@@ -7,27 +7,27 @@ lang: it
 permalink: /users/help-routes.html
 ---
 
-# Percorsi
+# Routes
 
-## Cos'è?
+## What is it?
 
-I percorsi sono una serie di waypoint. Riceverai una notifica all'arrivo a ciascun waypoint e l'audiofaro avanzerà automaticamente al successivo waypoint.
+Routes are a series of waypoints. You will be informed on arrival to each waypoint, and the Audio Beacon will automatically advance to the next waypoint.
 
-## Quando si usa?
+## When would I use it?
 
-Puoi creare e usare un percorso in un luogo che conosci per assicurarti di rimanere sulla strada giusta oppure usarlo come uno strumento per acquisire familiarità lungo un nuovo percorso.
+You may want to create and use a route somewhere you already know, to help you stay on the right path. Or you may want to use a route to help you learn a new journey.
 
-## Come funziona?
+## How does it work?
 
-**Creazione di un percorso**:
+**Creating a route :**
 
- Vai a "Indicatori e Percorsi", seleziona la scheda "Percorsi", quindi il pulsante "Nuovo Percorso". Assegna un nome al percorso e immetti una descrizione facoltativa, quindi aggiungi waypoint durante il tuo tragitto o sceglili dall'elenco di Indicatori. Puoi modificare in qualsiasi momento l'ordine dei waypoint lungo un percorso modificando quest'ultimo.
+ First, go to *"Markers and Routes"*, select the *"Routes"* tab, and then select the *"New Route"* button. Give the route a name and an optional description, then add waypoints as you go or pick them from your list of Markers. You can rearrange the order of the waypoints along a route at any time by editing the route.
 
-**Modifica di un percorso :**
+**Editing a route :**
 
- Seleziona il percorso nella schermata *"Indicatori e Percorsi"* e poi scegli *"Modifica percorso"*. Da qui puoi aggiungere o rimuovere waypoint, oltre a modificare il nome e la descrizione del percorso.
+ Select your route on the *\"Markers and Routes\"* screen and then select *\"Edit Route\"*. From here you can add and remove waypoints, as well as edit the name and description of the route.
 
-**Condivisione di un percorso**:
+**Sharing a route :**
 
- seleziona il percorso nella pagina "Indicatori e Percorsi", quindi scegli l'opzione "Condividi" e usa le solite opzioni di condivisione disponibili.
+ Select your route on the *"Markers and Routes"* screen and then select the option to *"Share"* using all of the usual share options available to you.
 

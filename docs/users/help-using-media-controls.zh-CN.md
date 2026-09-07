@@ -1,5 +1,5 @@
 ---
-title: 使用媒体控制
+title: Using Media Controls
 layout: page
 parent: "使用 Soundscape"
 has_toc: false
@@ -7,37 +7,33 @@ lang: zh-CN
 permalink: /users/help-using-media-controls.html
 ---
 
-# 使用媒体控制
+# Using Media Controls
 
-## 这是什么？
+## What is it?
 
-您可以借助耳机上的媒体控制按钮使用Soundscape的某些功能。此功能适用于任何带有媒体控制按钮（如播放、暂停、下一曲、上一曲等）的有线或蓝牙耳机。不同的耳机可能包含不同的按钮，请参考以下操作列表来确定哪些功能可供您使用。
+You can access certain features in Soundscape with the help of the media control buttons on your headphones. This functionality works with any wired or Bluetooth headphones that have media control buttons like Play, Pause, Next, Previous and others. Different headphones may include different buttons so please refer to the list of actions below to determine which ones are available to you.
 
-## 什么时候使用？
+## When would I use it?
 
-在Soundscape运行时可以使用耳机媒体控制。无论您当前正在使用Soundscape还是Soundscape在后台运行，甚至设备已锁定，都可以使用。但请注意，如果您正在使用其他应用播放音乐、播客或视频等音频内容，耳机媒体控制按钮将无法与Soundscape配合使用。
+Headphone media controls can be used while Soundscape is running — whether you are actively using the app, it is running in the background, or your device is locked. However, headphone media control buttons will not work with Soundscape if you are playing audio, such as music, podcasts, or videos, with another app.
 
-## 如何使用？
+## How does it work?
 
-媒体控制有 3 种操作模式。可以在*"设置"*的*"媒体控制"*部分选择模式。模式如下：
+There are 2 modes of operation for the media controls. The mode can be selected in the *"Settings"* *"Media Controls"* section. The modes are:
 
-经典模式。
+ Original mode. 
 
-⏯ 播放/暂停：切换音频信标的开/关。
+⏯ Play/Pause: Toggles the beacon audio on and off. 
 
-⏭ 下一曲：如果正在播放路线，则将音频信标移到路线中的下一个航点；如果没有播放路线，则播报*"我的位置"*。
+⏭ Next: If a route is playing back move the audio beacon to the next Waypoint in the route. If no route is being played back callout *"My Location"*.
 
-⏮ 上一曲：如果正在播放路线，则将音频信标移到路线中的上一个航点；如果没有播放路线，则播报*"周围"*。
-
-
-
-语音命令。
-
-⏯ 播放/暂停：触发应用开始监听语音命令。
+⏮ Previous: If a route is playing back move the audio beacon to the previous Waypoint in the route. If no route is being played back callout *"What's Around Me"*.
 
 
 
-音频菜单。
+Audio menu. 
 
-⏭ 下一曲 和 ⏮ 上一曲 在应用通过文字转语音朗读的菜单选项中向前或向后移动。⏯ 播放/暂停 则触发应用执行当前所述的选项。菜单为单一顶层菜单，顶层菜单仅包含子菜单作为选项。每个子菜单将一组相似的可执行操作归为一类。
+
+
+⏭ Next and ⏮ Previous move through a series of menu options which the app describes via text to speech. ⏯ Play/Pause then triggers the app to perform the option described. There is a single top level menu which only has sub-menus as options. Each sub-menu has a group of similar possible actions.
 

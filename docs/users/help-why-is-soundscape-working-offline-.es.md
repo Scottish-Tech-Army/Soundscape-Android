@@ -1,5 +1,5 @@
 ---
-title: ¿Por qué está Soundscape funcionando sin conexión?
+title: Why is Soundscape working offline?
 layout: page
 parent: "Usar Soundscape"
 has_toc: false
@@ -7,17 +7,17 @@ lang: es
 permalink: /users/help-why-is-soundscape-working-offline-.html
 ---
 
-# ¿Por qué está Soundscape funcionando sin conexión?
+# Why is Soundscape working offline?
 
-## ¿Por qué está Soundscape funcionando sin conexión?
+## Why is Soundscape working offline?
 
-Cuando no hay conexión a Internet o se produce una interrupción en los servicios de Soundscape, Soundscape realiza la transición a un modo sin conexión. Sin embargo, Soundscape continuará funcionando, aunque algunas características pueden estar limitadas.
+When there is no internet connection, or the Soundscape services are down, Soundscape switches to offline mode. It will keep working, but some features may be limited.
 
-## Limitaciones
+## Limitations
 
-Los avisos continuarán funcionando si se encuentra en una zona por la que ha pasado antes y que se ha guardado en su historial de avisos. De manera similar, puede colocar una señal de audio o crear un marcador en lugares que se han almacenado en su historial de avisos.
+Callouts still work in areas you have walked through before, since Soundscape stores them in your callout history. You can also place an audio beacon or create a marker on places already stored in your callout history.
 
-## ¿Qué puede hacer?
+## What can you do?
 
-Soundscape intentará reanudar el funcionamiento normal cuando su teléfono se conecte a Wi-Fi o los datos móviles estén habilitados y se encuentre en una zona con buena señal. Si su teléfono tiene una buena conexión a Internet, pero Soundscape no reanuda el funcionamiento normal, es posible que haya una interrupción en los servicios de Soundscape.
+Soundscape will try to resume normal operation once your phone has a good internet connection, either over Wi-Fi or cellular data. If your phone has a good connection but Soundscape still does not resume normal operation, the Soundscape services may be experiencing an outage.
 
