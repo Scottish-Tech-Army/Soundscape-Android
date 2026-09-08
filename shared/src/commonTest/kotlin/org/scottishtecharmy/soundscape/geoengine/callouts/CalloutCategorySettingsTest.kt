@@ -132,6 +132,61 @@ class CalloutCategorySettingsTest {
     }
 
     /**
+     * Walking mode gets Places and Landmarks for free: the setting chooses what goes into
+     * TreeId.SELECTED_SUPER_CATEGORIES at grid load time, and buildCalloutForNearbyPOI reads only
+     * that tree - so the switch is tested where it acts, on the classification.
+     */
+    @Test
+    fun placesAndLandmarksAreNotSelectedWhenTheSettingIsOff() {
+        val selected = classify(setOf(MOBILITY_KEY))[TreeId.SELECTED_SUPER_CATEGORIES.id].features
+
+        assertTrue(selected.none { (it as MvtFeature).name == "Post Office" })
+        assertTrue(selected.none { (it as MvtFeature).name == "Kelvingrove Park" })
+    }
+
+    @Test
+    fun placesAndLandmarksAreSelectedWhenTheSettingIsOn() {
+        val selected =
+            classify(setOf(PLACES_AND_LANDMARKS_KEY))[TreeId.SELECTED_SUPER_CATEGORIES.id].features
+
+        assertTrue(selected.any { (it as MvtFeature).name == "Post Office" })
+        assertTrue(selected.any { (it as MvtFeature).name == "Kelvingrove Park" })
+    }
+
+    /**
+     * Travel mode does not get it for free. buildCalloutForVehicleLandmark reads
+     * TreeId.LANDMARK_POIS directly rather than the tree the setting selects into, so until it
+     * checked the preference itself a user with Places and Landmarks off was still told about
+     * every park and hospital they drove past. iOS runs its in-vehicle landmarks through the same
+     * sense check as the walking ones - see filterAnnounceablePOIs in AutoCalloutGenerator.swift.
+     */
+    @Test
+    fun vehicleLandmarkIsAnnouncedWhenPlacesAndLandmarksIsOn() {
+        val preferences = FakePreferences().apply { putBoolean(PLACES_AND_LANDMARKS_KEY, true) }
+
+        val callout = AutoCallout(null, preferences).updateLocation(
+            vehicleFix(1000L), landmarkGrid(), GridState()
+        )
+
+        assertNotNull(callout)
+        assertTrue(
+            callout.positionedStrings.any { it.text.contains("Kelvingrove Park") },
+            "Expected the landmark named, got ${callout.positionedStrings.map { it.text }}"
+        )
+    }
+
+    @Test
+    fun vehicleLandmarkIsSilencedWhenPlacesAndLandmarksIsOff() {
+        val preferences = FakePreferences().apply { putBoolean(PLACES_AND_LANDMARKS_KEY, false) }
+
+        assertNull(
+            AutoCallout(null, preferences).updateLocation(
+                vehicleFix(1000L), landmarkGrid(), GridState()
+            )
+        )
+    }
+
+    /**
      * The Mobility guard in buildCalloutForRoadSense sits *below* that function's vehicle
      * bookkeeping, not at the top of it: lastVehicleTimestampMs is recorded there on every update
      * and read by callouts this setting has nothing to do with, so it has to keep being updated
@@ -180,6 +235,17 @@ class CalloutCategorySettingsTest {
         timestampMilliseconds = timestamp,
     )
 
+    /** A grid holding one named landmark, 20m north of [userLocation] - a landmark being passed. */
+    private fun landmarkGrid(): GridState {
+        val grid = GridState().apply { validateContext = false }
+        val park = poi("Kelvingrove Park", SuperCategoryId.LANDMARK).apply {
+            geometry = Point(getDestinationCoordinate(userLocation, 0.0, 20.0))
+        }
+        grid.featureTrees[TreeId.LANDMARK_POIS.id] =
+            FeatureTree(FeatureCollection().apply { addFeature(park) })
+        return grid
+    }
+
     /** A grid holding one named place POI, 5m north of [userLocation] and well within range. */
     private fun poiGrid(): GridState {
         val grid = GridState().apply { validateContext = false }
@@ -196,6 +262,7 @@ class CalloutCategorySettingsTest {
         val collections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
         collections[TreeId.POIS.id] = FeatureCollection().apply {
             addFeature(poi("Post Office", SuperCategoryId.PLACE))
+            addFeature(poi("Kelvingrove Park", SuperCategoryId.LANDMARK))
             addFeature(poi("Guidepost", SuperCategoryId.INFORMATION))
             addFeature(poi("Lift", SuperCategoryId.MOBILITY))
         }

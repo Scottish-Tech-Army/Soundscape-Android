@@ -247,11 +247,20 @@ class AutoCallout(
      * major/minor junction selection in travellingReverseGeocodeName, which shares
      * notableVehicleEventTracker with this so a quiet stretch of neither can fall back to
      * mentioning a minor junction.
+     *
+     * This is the travel-mode counterpart of buildCalloutForNearbyPOI, so it answers to the same
+     * setting. It reads TreeId.LANDMARK_POIS rather than the tree that setting selects into
+     * (TreeId.SELECTED_SUPER_CATEGORIES holds what a *pedestrian* should hear, which is a wider
+     * net than a car should be given), so it has to check the preference itself.
      */
     private fun buildCalloutForVehicleLandmark(
         userGeometry: UserGeometry,
         gridState: GridState
     ): TrackedCallout? {
+        if (!placesAndLandmarkCalloutsEnabled()) {
+            return null
+        }
+
         if (!vehicleLandmarkFilter.shouldUpdate(userGeometry)) {
             return null
         }
@@ -330,6 +339,19 @@ class AutoCallout(
     private fun mobilityCalloutsEnabled(): Boolean =
         preferences?.getBoolean(PreferenceKeys.MOBILITY, PreferenceDefaults.MOBILITY)
             ?: PreferenceDefaults.MOBILITY
+
+    /**
+     * The "Places and Landmarks" callout setting.
+     *
+     * Walking callouts get this for free - the setting chooses what goes into
+     * TreeId.SELECTED_SUPER_CATEGORIES at grid load time, and buildCalloutForNearbyPOI reads only
+     * that. Anything reaching past that tree to a super-category tree of its own has to ask here.
+     */
+    private fun placesAndLandmarkCalloutsEnabled(): Boolean =
+        preferences?.getBoolean(
+            PreferenceKeys.PLACES_AND_LANDMARKS,
+            PreferenceDefaults.PLACES_AND_LANDMARKS
+        ) ?: PreferenceDefaults.PLACES_AND_LANDMARKS
 
     /**
      * Whether this feature is one the "Bus and tram stops" setting silences, given that setting's
