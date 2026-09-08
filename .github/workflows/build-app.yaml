@@ -174,23 +174,39 @@ jobs:
             adb logcat >> app/emulator.log &                                # pipe all logcat messages into log file as a background process
             # Run only the DocumentationScreens tests
             ./gradlew connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.class=org.scottishtecharmy.soundscape.DocumentationScreens
-            # And then get the resulting screenshots from the emulator
+            # And then get the resulting screenshots from the emulator. Only pull
+            # screenshots that a test still writes — adb pull fails on a missing file
+            # and the script would stop there, skipping everything below it.
             adb pull /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Pictures/screenshots/homeScreen.png docs/documentationScreens/homeScreen.png
             adb pull /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Pictures/screenshots/homeScreenWithRoute.png docs/documentationScreens/homeScreenWithRoute.png
             adb pull /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Pictures/screenshots/routeDetails.png docs/documentationScreens/routeDetails.png
-            adb pull /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Pictures/screenshots/routeEdit.png docs/documentationScreens/routeEdit.png
-            adb pull /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Documents/help docs/users/
-            mv docs/users/help/* docs/users/
+            # The getHelp test writes the localized help markdown. Stage it here; the
+            # sync step below copies it into docs/users.
+            mkdir -p generated-help
+            adb pull /storage/emulated/0/Android/data/org.scottishtecharmy.soundscape/files/Documents/help/. generated-help/
+
+      # The emulator step is continue-on-error, so only sync when it actually got
+      # as far as producing the markdown — a flaky emulator run must not wipe the
+      # committed pages.
+      - name: Sync generated markdown into docs/users
+        if: steps.documentation-screenshot-tests.outcome == 'success'
+        run: |
+          # Remove stale localized files (help-<slug>.<lang>.md — two dots) so dropped
+          # locales/pages don't linger. The English base files (help-<slug>.md) and any
+          # hand-authored pages (e.g. help-beacon-styles.md) are left in place and the
+          # English ones are overwritten by the copy below.
+          find docs/users -name 'help-*.*.md' -delete
+          cp generated-help/*.md docs/users/
 
       - name: ImageMagick Action to trim off status and navigation bars from screenshots
         uses: jruipinto/ImageMagick-action@v1
         with:
           command: mogrify -path docs/documentationScreens -crop 1080x2130+0+140 docs/documentationScreens/*.*
 
-      - name: Commit new screenshots
+      - name: Commit new screenshots and help pages
         uses: stefanzweifel/git-auto-commit-action@v7
         with:
-          commit_message: "New documentation screenshots"
+          commit_message: "New documentation screenshots and localized help pages"
           file_pattern: 'docs/documentationScreens/*.png docs/users/help-*.md'
 
       # Run Build Project
