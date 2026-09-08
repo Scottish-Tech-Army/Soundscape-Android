@@ -68,7 +68,7 @@ The set of locales lives in `localeMap` in `DocumentationScreens.kt`, which mirr
 
 ### Regenerating the help pages
 
-The `generate-help-docs.yaml` workflow runs `getHelp` on an emulator, pulls the generated markdown off the device, and commits any changes to `v1.0` (which triggers the Pages deploy). It runs weekly and can be triggered manually from the Actions tab — run it after a batch of Weblate translations has landed.
+The `build-app.yaml` release workflow runs `getHelp` on an emulator, pulls the generated markdown off the device, and commits any changes to `main` (which triggers the Pages deploy). It runs as part of every release, so the pages pick up whatever Weblate translations had landed by then — cut a release to publish a batch of translations.
 
 To regenerate locally instead:
 
