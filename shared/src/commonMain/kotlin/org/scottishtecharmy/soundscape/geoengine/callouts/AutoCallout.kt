@@ -74,11 +74,10 @@ class AutoCallout(
     private val announcedForgetDistanceMetres = 1500.0
     private val announcedForgetTimeMilliseconds = 300_000L
     // Two records of one thing, near enough to each other to be that thing rather than another of
-    // the same name: the platform nodes of a station, and the separate bridge decks a river or a
-    // dual carriageway is carried over a railway on. Generous because the name has to match as
-    // well - see TrackedCallout.matchRadiusMetres - and short of announcedForgetDistanceMetres, so
-    // that meeting the same name again much later in a journey is still a new callout.
-    private val stationNodeMatchRadiusMetres = 1000.0
+    // the same name: the separate bridge decks a river or a dual carriageway is carried over a
+    // railway on. Generous because the name has to match as well - see
+    // TrackedCallout.matchRadiusMetres - and short of announcedForgetDistanceMetres, so that
+    // meeting the same name again much later in a journey is still a new callout.
     private val adjacentStructureMatchRadiusMetres = 200.0
 
     // Everything announced off an along-way lookup - crossings and stops alike - so that the
@@ -394,7 +393,7 @@ class AutoCallout(
         // road matcher still latches onto whatever runs alongside the line, and this then walks a
         // hundred metres up that road and announces its bus stops to a rail passenger. The stops
         // that matter on a train are the station stops on the line itself - see
-        // buildCalloutForTrainStop. Suppressed shortly after losing rail lock too, since
+        // travellingReverseGeocodeName. Suppressed shortly after losing rail lock too, since
         // probablyOnTrain() can flicker false for an instant mid-journey.
         if (userGeometry.probablyOnTrain() || recentlyOnTrain(userGeometry)) return null
         val way = userGeometry.mapMatchedWay ?: return null
@@ -444,65 +443,6 @@ class AutoCallout(
         if (alongWayCalloutHistory.find(callout)) return null
         alongWayCalloutHistory.add(callout)
         notableVehicleEventTracker.recordEvent(userGeometry.timestampMilliseconds)
-        return callout
-    }
-
-    // How far ahead a railway stop is announced. Longer than the road equivalent because a train
-    // covers ground faster and there is more a passenger might want to do with the warning - at
-    // 30m/s this is about seventeen seconds. Expected to be tuned, like the road one.
-    private val railwayStopLookaheadMetres = 500.0
-
-    /**
-     * Announces the next station the line stops at, on the approach to it.
-     *
-     * Read off the line being ridden, from the railway=stop nodes OSM places on the line itself
-     * (see GridState.attachRailwayStopsToWays). A station POI could only be matched to a line by
-     * proximity, and where lines run close together the nearest station to a train is often one
-     * its line runs straight past - which is exactly the mistake this avoids.
-     *
-     * Follows the line by name through junctions (WayContinuation.SAME_ROAD), since half a
-     * kilometre of railway crosses junctions the way a main road crosses side streets.
-     */
-    private fun buildCalloutForTrainStop(
-        userGeometry: UserGeometry,
-        gridState: GridState
-    ): TrackedCallout? {
-        if (!userGeometry.probablyOnTrain()) return null
-        val railway = userGeometry.mapMatchedRailway ?: return null
-        val cursor = userGeometry.cursorOn(railway, sweepHeading(userGeometry)) ?: return null
-        if (cursor.forwards == null) return null
-
-        val found = nextAlongWayFeature(
-            cursor,
-            railwayStopLookaheadMetres,
-            AlongWayKind.RAILWAY_STOP,
-            WayContinuation.SAME_ROAD
-        ) ?: return null
-        val name = found.feature.name ?: return null
-
-        val text = localized?.get(StringKey.DirectionsApproachingName, name)
-            ?: "Approaching $name"
-        val callout = TrackedCallout(
-            userGeometry,
-            trackedText = name,
-            location = found.feature.point,
-            positionedStrings = listOf(
-                PositionedString(
-                    text = text,
-                    location = found.feature.point,
-                    type = AudioType.LOCALIZED
-                )
-            ),
-            isPoint = true,
-            isGeneric = false,
-            calloutHistory = alongWayCalloutHistory,
-            // A station is commonly several stop nodes, one per platform, and they are all the
-            // same station to a passenger - so any node of a station of this name counts as this
-            // one. The name still has to match, so this never merges two different stations.
-            matchRadiusMetres = stationNodeMatchRadiusMetres,
-        )
-        if (alongWayCalloutHistory.find(callout)) return null
-        alongWayCalloutHistory.add(callout)
         return callout
     }
 
@@ -1330,7 +1270,6 @@ class AutoCallout(
                     // instead.
                     val trainCrossingCallout =
                         buildCalloutForTrainCrossing(userGeometry, gridState)
-                    val trainStopCallout = buildCalloutForTrainStop(userGeometry, gridState)
                     // Always run alongside its vehicle equivalent above (rather than only in the
                     // pedestrian branch below) so its own tracked Way osmId resets correctly the
                     // moment vehicle travel starts - the same reason buildCalloutForVehicleCrossing
@@ -1339,7 +1278,7 @@ class AutoCallout(
                         buildCalloutForWalkingCrossing(userGeometry, gridState)
                     val vehicleCallouts = listOfNotNull(
                         roadSenseCallout, vehicleLandmarkCallout, vehicleTransitStopCallout,
-                        vehicleWaterwayCrossingCallout, trainCrossingCallout, trainStopCallout
+                        vehicleWaterwayCrossingCallout, trainCrossingCallout
                     )
                     if (vehicleCallouts.isNotEmpty()) {
                         val primary = vehicleCallouts.first()

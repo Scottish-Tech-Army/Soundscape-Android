@@ -865,17 +865,19 @@ open class GridState(
                 }
             if (linesPastTheStation.isEmpty()) continue
 
-            for (way in linesPastTheStation) {
-                // Decided per line, not per station. attachRailwayStopsToWays gives each
-                // railway=stop node to the single nearest Way, so at a station with several
-                // platform tracks one node lands on one of them - and asking "does this station
-                // have a stop node anywhere near it" would then skip the station for the other
-                // tracks too, leaving a train on one of those with nothing to announce.
-                val alreadyHasStopNode = way.alongWayFeatures(AlongWayKind.RAILWAY_STOP).any {
+            // Decided for the station as a whole, not line by line. Where OSM records stops for a
+            // station it records them per line - Glasgow Queen Street has separate High Level and
+            // Low Level nodes - so a line running past with no stop of its own is a line that
+            // doesn't call there. Standing the station in on it announces a stop the train will
+            // sail straight through, which is what happened to Pollokshields West.
+            val stationHasStopNodes = linesPastTheStation.any { way ->
+                way.alongWayFeatures(AlongWayKind.RAILWAY_STOP).any {
                     ruler.distance(point, it.point) <= stationWayToleranceMetres
                 }
-                if (alreadyHasStopNode) continue
+            }
+            if (stationHasStopNodes) continue
 
+            for (way in linesPastTheStation) {
                 way.addAlongWayFeature(
                     AlongWayFeature(
                         distanceFromStart = way.distanceAlongWay(point, ruler),
