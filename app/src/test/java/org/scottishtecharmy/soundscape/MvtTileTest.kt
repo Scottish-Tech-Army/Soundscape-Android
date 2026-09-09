@@ -2347,6 +2347,45 @@ class MvtTileTest {
     }
 
     /**
+     * A rail passenger is not told about the pavements and footbridges the line passes, but
+     * someone on one of those paths is still told about the railway.
+     *
+     * The two are recorded as a pair by attachRailwayCrossings, and the pair is deliberately
+     * asymmetric. The railway side is the noisy one: a path is usually unnamed, and
+     * WayNaming.confectNamesForRoad writes a made-up name onto an unnamed way, so a footbridge
+     * over the line was being announced as "Passing over Pavement next to Clyde Place".
+     */
+    @Test
+    fun testTrainsAreNotToldAboutThePathsTheyPass() {
+        val location = LngLatAlt(-4.25057977437973, 55.85762197620575)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+
+        val roadsCrossingLines = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection()
+            .features
+            .filterIsInstance<Way>()
+            .flatMap { it.alongWayFeatures(AlongWayKind.ROAD_CROSSING) }
+        assertTrue(
+            "Fixture is expected to have roads crossing the lines",
+            roadsCrossingLines.isNotEmpty()
+        )
+        val paths = roadsCrossingLines.mapNotNull { it.feature as? Way }.filter { it.isPath() }
+        assertTrue(
+            "A line should carry no crossing for a path, got: ${paths.map { it.name }}",
+            paths.isEmpty()
+        )
+
+        // ...while the path keeps its own record of the railway, which is the half worth having.
+        val pathsOverLines = gridState.getFeatureTree(TreeId.ROADS_AND_PATHS).getAllCollection()
+            .features
+            .filterIsInstance<Way>()
+            .filter { it.isPath() && it.alongWayFeatures(AlongWayKind.RAILWAY_CROSSING).isNotEmpty() }
+        assertTrue(
+            "Expected a path to still know about the railway it crosses",
+            pathsOverLines.isNotEmpty()
+        )
+    }
+
+    /**
      * A stop is attached to the road it is beside, and sits at its real position along it. This is
      * what replaces searching the stop tree around the path travelled - a search that could only
      * judge by proximity, and so couldn't tell a stop on this road from one on the street behind

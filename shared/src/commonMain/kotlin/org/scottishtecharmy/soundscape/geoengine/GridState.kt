@@ -314,24 +314,34 @@ open class GridState(
                 val position =
                     if (roadBrunnel == "bridge") AlongWayPosition.OVER else AlongWayPosition.UNDER
                 applyCrossing(road, AlongWayKind.RAILWAY_CROSSING, railway.name, position, point)
+
                 // And the mirror of it on the railway, so that a passenger's callout is a lookup
                 // on the line being ridden rather than a search of the roads that happen to be
                 // nearby - most of which are running alongside the line, not crossing it. The
                 // position inverts: a road that goes over the line is one the train passes under.
                 // The road Way is carried rather than its name, so that the callout can name it
                 // with the user's own localized strings (see Way.getName).
-                applyCrossing(
-                    railway,
-                    AlongWayKind.ROAD_CROSSING,
-                    road.name,
-                    if (position == AlongWayPosition.OVER) {
-                        AlongWayPosition.UNDER
-                    } else {
-                        AlongWayPosition.OVER
-                    },
-                    point,
-                    feature = road
-                )
+                //
+                // Deliberately asymmetric. On a path, the railway overhead is worth knowing about;
+                // on a train, the pavements and footbridges the line passes are not, and they are
+                // the ones with nothing to be called - WayNaming.confectNamesForRoad writes a
+                // made-up name onto an unnamed way, so a footbridge was announced as "Passing over
+                // Pavement next to Clyde Place". So the path keeps its RAILWAY_CROSSING above and
+                // only the railway side is dropped.
+                if (!road.isPath()) {
+                    applyCrossing(
+                        railway,
+                        AlongWayKind.ROAD_CROSSING,
+                        road.name,
+                        if (position == AlongWayPosition.OVER) {
+                            AlongWayPosition.UNDER
+                        } else {
+                            AlongWayPosition.OVER
+                        },
+                        point,
+                        feature = road
+                    )
+                }
                 crossingsFound++
             }
         }
