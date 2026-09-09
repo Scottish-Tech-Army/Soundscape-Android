@@ -2090,42 +2090,58 @@ class MvtTileTest {
 
     /**
      * A named station stands in as a rail stop for the lines running past it, where those lines
-     * carry no railway=stop node of their own.
+     * carry no stop node of their own.
      *
-     * railway=stop is the better record and is preferred wherever it exists, but it is absent from
-     * parts of OSM and from any tileset built before the tag was carried - including these
-     * fixtures. With nothing attached, buildCalloutForTrainStop has nothing to find and the
-     * approaching-station callout never fires at all. See GridState.attachStationsAsRailwayStops.
+     * A stop node is the better record and is preferred wherever it exists, but the tagging for one
+     * is absent from parts of OSM. With nothing attached, buildCalloutForTrainStop has nothing to
+     * find and the approaching-station callout never fires at all. See attachStationsAsRailwayStops,
+     * which decides this per station rather than per grid, so a mixture of the two works - which
+     * is what central Glasgow now is: ten of its stations carry stop nodes and Bellgrove does not.
      */
     @Test
     fun testStationStandsInAsARailStopWhenThereAreNoStopNodes() {
         val location = LngLatAlt(-4.25057977437973, 55.85762197620575)
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
 
-        // The fixtures predate railway=stop, which is the case this fallback exists for. If they
-        // ever gain it, this test is asserting the wrong thing and should be rewritten around a
-        // station that genuinely has no stop node.
-        assertTrue(
-            "Fixture is expected to carry no railway=stop nodes",
-            gridState.getFeatureTree(TreeId.RAILWAY_STOPS).getAllCollection().features.isEmpty()
-        )
-
+        // Identity, not name: a station stood in for carries the station feature itself, while a
+        // real stop carries the railway=stop node, and the two are what tell them apart here.
+        val stopNodes = gridState.getFeatureTree(TreeId.RAILWAY_STOPS).getAllCollection().features
         val railways = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
             .filterIsInstance<Way>()
         val stops = railways.flatMap { way ->
             way.alongWayFeatures(AlongWayKind.RAILWAY_STOP).map { Pair(way, it) }
         }
-        assertTrue("Expected stations to be attached to the lines past them", stops.isNotEmpty())
+        val stoodIn = stops.filter { (_, stop) -> stopNodes.none { it === stop.feature } }
 
-        val argyleStreet = stops.filter { it.second.name == "Argyle Street" }
+        // Bellgrove has no stop node on the North Clyde Line past it, so the station stands in.
+        // Not because OSM doesn't record one: it is tagged public_transport=stop_position with
+        // train=yes rather than railway=stop, which is the newer scheme and which the tile
+        // pipeline has since been taught to emit as well. So a rebuild will give Bellgrove a stop
+        // node like the rest, and this test will need a station that still doesn't have one - and
+        // if none is left, the fallback has nothing to cover and both this test and
+        // attachStationsAsRailwayStops can go.
         assertTrue(
-            "Expected Argyle Street attached to the lines past it, got: " +
-                "${stops.map { it.second.name }.distinct().take(20)}",
-            argyleStreet.isNotEmpty()
+            "Expected Bellgrove stood in for, got: ${stoodIn.mapNotNull { it.second.name }
+                .distinct()}",
+            stoodIn.any { it.second.name == "Bellgrove" }
+        )
+
+        // The other half of "per station": a station that does have stop nodes is left alone, or
+        // the guess this makes would be laid on top of the real record.
+        assertTrue(
+            "Expected the stations carrying stop nodes not to be stood in for as well, got: " +
+                "${stoodIn.mapNotNull { it.second.name }.distinct()}",
+            stoodIn.none { it.second.name == "Argyle Street" }
+        )
+        assertTrue(
+            "Expected Argyle Street's own stop nodes attached to the lines past it",
+            stops.any { (_, stop) ->
+                (stop.name == "Argyle Street") && stopNodes.any { it === stop.feature }
+            }
         )
 
         for ((way, stop) in stops) {
-            assertNotNull("A stood-in stop should carry the station it came from", stop.feature)
+            assertNotNull("A stop should carry the feature it came from", stop.feature)
             // Attached only to lines it is genuinely beside, and sitting on the line it is
             // recorded against.
             val distance = gridState.ruler
@@ -2148,10 +2164,12 @@ class MvtTileTest {
      *
      * On the Milngavie Branch, where Hillfoot sits alone on its piece of the line - central
      * Glasgow has stations close enough together that a point 350m from one is inside another's
-     * "at" range, which would test nothing about the approach.
+     * "at" range, which would test nothing about the approach. Hillfoot carries a railway=stop
+     * node of its own, so this reads the ordinary record rather than the stand-in above; the
+     * callout can't tell the two apart, since both arrive as AlongWayKind.RAILWAY_STOP.
      */
     @Test
-    fun testTrainStopCalloutNamesAStationStoodInFor() {
+    fun testTrainStopCalloutNamesTheStationOnTheLine() {
         val location = LngLatAlt(-4.3115, 55.9295)
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
         val settlementGrid = getGridStateForLocation(location, 12, 3)
