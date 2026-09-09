@@ -78,6 +78,8 @@ import org.scottishtecharmy.soundscape.utils.fuzzyCompare
 import org.scottishtecharmy.soundscape.utils.process
 import java.io.File
 import java.io.FileOutputStream
+import java.time.Instant
+import java.time.format.DateTimeParseException
 import kotlin.io.path.Path
 import kotlin.io.path.listDirectoryEntries
 import kotlin.io.path.nameWithoutExtension
@@ -164,6 +166,27 @@ private fun vectorTileToGeoJsonFromFile(
     return result
 }
 
+/**
+ * Turn a GPX <time> into epoch milliseconds.
+ *
+ * Two flavours turn up in our recordings: ISO-8601 as the GPX spec asks for
+ * ("2026-09-08T14:14:17.605Z"), and bare epoch milliseconds, which older Soundscape recordings
+ * wrote. Anything else - or a track point with no time at all, as in the RideWithGPS exports -
+ * returns null and leaves the caller to make a time up.
+ */
+private fun gpxTimeToEpochMilliseconds(time: String?): Long? {
+    val text = time?.trim().orEmpty()
+    if (text.isEmpty()) return null
+
+    text.toLongOrNull()?.let { return it }
+
+    return try {
+        Instant.parse(text).toEpochMilli()
+    } catch (_: DateTimeParseException) {
+        null
+    }
+}
+
 private fun parseGpxFromFile(filename: String): FeatureCollection {
     val fc = FeatureCollection()
     val gpx = parseGpx(File(filename).readText())
@@ -179,6 +202,7 @@ private fun parseGpxFromFile(filename: String): FeatureCollection {
                     tp.bearing?.let { set("heading", it.toDouble()) }
                     tp.speed?.let { set("speed", it.toDouble()) }
                     tp.accuracy?.let { set("accuracy", it.toDouble()) }
+                    gpxTimeToEpochMilliseconds(tp.time)?.let { set("time", it.toDouble()) }
                 }
                 fc.addFeature(feature)
             }
@@ -3978,7 +4002,12 @@ class MvtTileTest {
         markers.addFeature(marker)
         gridState.markerTree = FeatureTree(markers)
 
-        var time = 0L
+        // Callout throttling is all elapsed-time arithmetic (CalloutHistory's expiry, AutoCallout's
+        // sticky vehicle/train windows, the POI sweep interval), so a replay only behaves like the
+        // journey it recorded if it uses the journey's own clock. Recordings made by the app carry
+        // a timestamp on every track point; GPX exported from elsewhere (RideWithGPS routes, for
+        // instance) carries none, so those fall back to one point per second.
+        var fallbackTime = 0L
         var lastLocation: LngLatAlt? = null
         gps.features.filterIndexed { index, _ ->
             (index > startIndex) and (index < endIndex)
@@ -4079,6 +4108,10 @@ class MvtTileTest {
                 position.properties?.set("index", index + startIndex)
                 collection.addFeature(position)
 
+                val timestamp = (position.properties?.get("time") as? Double?)?.toLong()
+                    ?: fallbackTime
+                fallbackTime = timestamp + 1000L
+
                 // We can replay GPX files exported from apps like RideWithGPS. This is useful for
                 // mocking up GPX where we don't have a live recording, however some information will
                 // be missing so we need to mock it up.
@@ -4090,10 +4123,8 @@ class MvtTileTest {
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
                     mapMatchedRailway = railMatchArbiter.update(mapMatchFilter, railMapMatchFilter),
-                    timestampMilliseconds = (position.properties?.get("time") as? Double?)?.toLong()
-                        ?: time
+                    timestampMilliseconds = timestamp
                 )
-                time += 1000L
 
                 val callout = autoCallout.updateLocation(
                     userGeometry,
@@ -4184,7 +4215,12 @@ class MvtTileTest {
         enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
         enabledCategories.add(MOBILITY_KEY)
 
-        var time = 0L
+        // Callout throttling is all elapsed-time arithmetic (CalloutHistory's expiry, AutoCallout's
+        // sticky vehicle/train windows, the POI sweep interval), so a replay only behaves like the
+        // journey it recorded if it uses the journey's own clock. Recordings made by the app carry
+        // a timestamp on every track point; GPX exported from elsewhere (RideWithGPS routes, for
+        // instance) carries none, so those fall back to one point per second.
+        var fallbackTime = 0L
         var lastLocation: LngLatAlt? = null
         gps.features.filterIndexed { index, _ ->
             (index > startIndex) and (index < endIndex)
@@ -4228,6 +4264,10 @@ class MvtTileTest {
                     speed > UserGeometry.VEHICLE_SPEED_THRESHOLD_MPS
                 )
 
+                val timestamp = (position.properties?.get("time") as? Double?)?.toLong()
+                    ?: fallbackTime
+                fallbackTime = timestamp + 1000L
+
                 val userGeometry = UserGeometry(
                     location = LngLatAlt(location.longitude, location.latitude),
                     travelHeading = position.properties?.get("heading") as? Double?
@@ -4235,10 +4275,8 @@ class MvtTileTest {
                     speed = speed,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
-                    timestampMilliseconds = (position.properties?.get("time") as? Double?)?.toLong()
-                        ?: time
+                    timestampMilliseconds = timestamp
                 )
-                time += 1000L
 
                 val wayName = userGeometry.mapMatchedWay?.properties?.get("pavement") as String?
                     ?: userGeometry.mapMatchedWay?.name
