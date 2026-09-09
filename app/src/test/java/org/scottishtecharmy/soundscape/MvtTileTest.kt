@@ -4206,7 +4206,7 @@ class MvtTileTest {
     fun testCalloutsSingleTest  () {
         val resultsStorageDir = File("gpxFiles/")
         if (!resultsStorageDir.exists()) resultsStorageDir.mkdirs()
-        val testFile = "ToTown"
+        val testFile = "PartickToCentral"
         testMovingGrid(
             "src/test/res/org/scottishtecharmy/soundscape/gpxFiles/$testFile.gpx",
             "gpxFiles/$testFile.txt",
