@@ -2119,33 +2119,33 @@ class MvtTileTest {
     }
 
     /**
-     * ...and the callout follows from it: riding the line towards the station names it before it
-     * is reached, which is the whole point of the fallback above.
+     * ...and the callout follows from it: riding the line names the station, as something coming
+     * up while there is still distance to it, and as where the train is once close.
+     *
+     * On the Milngavie Branch, where Hillfoot sits alone on its piece of the line - central
+     * Glasgow has stations close enough together that a point 350m from one is inside another's
+     * "at" range, which would test nothing about the approach.
      */
     @Test
     fun testTrainStopCalloutNamesAStationStoodInFor() {
-        val location = LngLatAlt(-4.25057977437973, 55.85762197620575)
+        val location = LngLatAlt(-4.3115, 55.9295)
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
         val settlementGrid = getGridStateForLocation(location, 12, 3)
 
         val railway = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
             .filterIsInstance<Way>()
             .first { way ->
-                way.alongWayFeatures(AlongWayKind.RAILWAY_STOP).any { it.name == "Argyle Street" }
+                way.alongWayFeatures(AlongWayKind.RAILWAY_STOP)
+                    .singleOrNull()?.name == "Hillfoot"
             }
-        val stop = railway.alongWayFeatures(AlongWayKind.RAILWAY_STOP)
-            .first { it.name == "Argyle Street" }
+        val stop = railway.alongWayFeatures(AlongWayKind.RAILWAY_STOP).single()
         val line = railway.geometry as LineString
 
-        // Approaching along the line from 200m short of the station - inside the 500m lookahead
-        // and still short of it. Which way round that is depends on where the stop sits on this
-        // piece, so run both and expect one of them to name it.
-        val texts = mutableListOf<String>()
-        for (offset in listOf(-200.0, 200.0)) {
+        fun ride(offset: Double): List<String> {
             val from = stop.distanceFromStart + offset
-            if ((from < 0.0) || (from > railway.length)) continue
+            if ((from < 0.0) || (from > railway.length)) return emptyList()
             val start = gridState.ruler.along(line, from)
-            val callout = AutoCallout(null, null).updateLocation(
+            return AutoCallout(null, null).updateLocation(
                 UserGeometry(
                     location = start,
                     speed = 20.0,
@@ -2154,13 +2154,22 @@ class MvtTileTest {
                     timestampMilliseconds = 1000L
                 ),
                 gridState, settlementGrid
-            )
-            callout?.positionedStrings?.forEach { texts.add(it.text) }
+            )?.positionedStrings?.map { it.text } ?: emptyList()
         }
 
+        // 350m short of it: inside the 500m "approaching" reach, outside the 200m "at" one. Which
+        // side of the stop that is depends on how the piece is digitised, so try both.
+        val approaching = ride(-350.0) + ride(350.0)
         assertTrue(
-            "Expected the station named on the approach, got: $texts",
-            texts.any { it.contains("Approaching Argyle Street") }
+            "Expected the station named on the approach, got: $approaching",
+            approaching.any { it.contains("Approaching Hillfoot") }
+        )
+
+        // ...and 100m away it is where the train is, not something ahead of it.
+        val at = ride(-100.0) + ride(100.0)
+        assertTrue(
+            "Expected the station named as where the train is, got: $at",
+            at.any { it.contains("At Hillfoot") }
         )
     }
 
@@ -2267,24 +2276,23 @@ class MvtTileTest {
     }
 
     /**
-     * Whether a station already has a railway=stop node is decided per line, not per station.
+     * A station that OSM records stops for is left alone entirely - including on lines that run
+     * past it without calling.
      *
-     * attachRailwayStopsToWays gives each stop node to the single nearest Way, so at a station
-     * with several platform tracks one node lands on one of them. Asking "does this station have a
-     * stop node anywhere near it" would then skip the station for every other track, and a train
-     * matched to one of those would have nothing to announce.
+     * Where stops exist they are recorded per line: Glasgow Queen Street has separate High Level
+     * and Low Level nodes. So a line with no stop for a station is a line that doesn't stop there,
+     * and standing the station in on it announces a stop the train sails straight through - which
+     * is what a GiffnockToCentral replay did with Pollokshields West.
      *
-     * Hand-built rather than real data: the committed fixtures carry no railway=stop nodes at all,
-     * so this case cannot be reached with them.
+     * Hand-built because the committed extracts carry no railway=stop nodes at all.
      */
     @Test
-    fun testStationStandsInPerLineNotPerStation() {
+    fun testAStationWithStopNodesIsNotStoodInOnLinesThatPassIt() {
         val origin = LngLatAlt(-4.2506, 55.8576)
         val gridState = FileGridState()
         gridState.ruler = origin.createCheapRuler()
         val ruler = gridState.ruler
 
-        // Two parallel tracks 20m apart, with the station between them.
         fun track(name: String, northMetres: Double): Way {
             val start = ruler.offset(origin, -300.0, northMetres)
             val end = ruler.offset(origin, 300.0, northMetres)
@@ -2294,8 +2302,8 @@ class MvtTileTest {
                 length = ruler.distance(start, end)
             }
         }
-        val withNode = track("Platform 1", 10.0)
-        val bare = track("Platform 2", -10.0)
+        val callsHere = track("Calling Line", 10.0)
+        val passesBy = track("Passing Line", -10.0)
 
         val station = MvtFeature().apply {
             name = "Test Central"
@@ -2304,10 +2312,10 @@ class MvtTileTest {
             geometry = Point(origin)
         }
 
-        // The stop node landed on one track only, as attachRailwayStopsToWays would leave it.
-        withNode.addAlongWayFeature(
+        // OSM has a stop for this station, on the line that calls at it.
+        callsHere.addAlongWayFeature(
             AlongWayFeature(
-                distanceFromStart = withNode.distanceAlongWay(origin, ruler),
+                distanceFromStart = callsHere.distanceAlongWay(origin, ruler),
                 point = origin,
                 kind = AlongWayKind.RAILWAY_STOP,
                 name = "Test Central"
@@ -2316,24 +2324,25 @@ class MvtTileTest {
 
         val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
         featureCollections[TreeId.TRANSIT_STOPS.id].addFeature(station)
-        val transit = FeatureCollection().apply {
-            addFeature(withNode)
-            addFeature(bare)
-        }
         val localTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
-        localTrees[TreeId.TRANSIT.id] = FeatureTree(transit)
+        localTrees[TreeId.TRANSIT.id] = FeatureTree(
+            FeatureCollection().apply {
+                addFeature(callsHere)
+                addFeature(passesBy)
+            }
+        )
 
         gridState.attachStationsAsRailwayStops(featureCollections, localTrees)
 
         assertEquals(
-            "The track carrying the stop node should not gain a second stop for it",
+            "The calling line keeps its own stop and gains nothing",
             1,
-            withNode.alongWayFeatures(AlongWayKind.RAILWAY_STOP).size
+            callsHere.alongWayFeatures(AlongWayKind.RAILWAY_STOP).size
         )
-        assertEquals(
-            "The other platform track should have the station stood in for it",
-            listOf("Test Central"),
-            bare.alongWayFeatures(AlongWayKind.RAILWAY_STOP).map { it.name }
+        assertTrue(
+            "A line that runs past without stopping should not be given the station, got: " +
+                "${passesBy.alongWayFeatures(AlongWayKind.RAILWAY_STOP).map { it.name }}",
+            passesBy.alongWayFeatures(AlongWayKind.RAILWAY_STOP).isEmpty()
         )
     }
 
@@ -2870,31 +2879,39 @@ class MvtTileTest {
      */
     @Test
     fun testTravelCalloutTracksStationForSinceDistance() {
-        val argyleStreetStation = LngLatAlt(-4.25057977437973, 55.85762197620575)
-        val gridState = getGridStateForLocation(argyleStreetStation, MAX_ZOOM_LEVEL, 3)
-        val settlementGrid = getGridStateForLocation(argyleStreetStation, 12, 3)
+        // Suburban Bearsden rather than central Glasgow: the since-distance is only reached when
+        // no station is close and the user isn't inside a named POI, and the city centre offers
+        // few points that are both.
+        val stationLocation = LngLatAlt(-4.3115, 55.9295)
+        val gridState = getGridStateForLocation(stationLocation, MAX_ZOOM_LEVEL, 3)
+        val settlementGrid = getGridStateForLocation(stationLocation, 12, 3)
 
-        // The stop is read off the line being ridden, so the line has to carry one. This is what
-        // the grid build attaches for Argyle Street - see the real-data coverage in
-        // testStationStandsInAsARailStopWhenThereAreNoStopNodes; kept synthetic here so that the
-        // spoken line name stays fixed and this test is about the since-distance wording.
+        // The stop is read off the line being ridden, and how far along that line it is, so the
+        // line needs real geometry as well as a stop. Synthetic so that the spoken line name stays
+        // fixed and no other station is on it - this test is about the since-distance wording, and
+        // the real-data attachment is covered by
+        // testStationStandsInAsARailStopWhenThereAreNoStopNodes.
+        val lineStart = gridState.ruler.offset(stationLocation, 0.0, -200.0)
+        val lineEnd = gridState.ruler.offset(stationLocation, 0.0, 1200.0)
         val fakeMatchedRailway = Way().apply {
             name = "Fake Railway Line"
+            geometry = LineString(lineStart, lineEnd)
+            length = gridState.ruler.distance(lineStart, lineEnd)
             addAlongWayFeature(
                 AlongWayFeature(
-                    distanceFromStart = 0.0,
-                    point = argyleStreetStation,
+                    distanceFromStart = distanceAlongWay(stationLocation, gridState.ruler),
+                    point = stationLocation,
                     kind = AlongWayKind.RAILWAY_STOP,
-                    name = "Argyle Street"
+                    name = "Test Station"
                 )
             )
         }
         val tracker = LastStationTracker()
 
         // Just past the station - outside the 20m "at a stop" radius (which would otherwise name
-        // the stop directly and never reach the station-tracking logic), but inside the 50m
-        // radius within which a stop on this line is taken as the one just passed.
-        val justPastStation = gridState.ruler.offset(argyleStreetStation, 0.0, 30.0)
+        // the stop directly and never reach the station-tracking logic), and well inside the
+        // radius within which a stop on this line is where the train is.
+        val justPastStation = gridState.ruler.offset(stationLocation, 0.0, 30.0)
         val userGeometryNearStation = UserGeometry(
             location = justPastStation,
             speed = 15.0,
@@ -2903,14 +2920,13 @@ class MvtTileTest {
         )
         describeReverseGeocode(userGeometryNearStation, gridState, settlementGrid, null, tracker)
 
-        assertEquals("Argyle Street", tracker.name)
+        assertEquals("Test Station", tracker.name)
         assertNotNull(tracker.location)
 
         // Further down the line - the callout should describe the live distance since Argyle
-        // Street. 200m north keeps us well clear of Glasgow Queen Street station, which real data
-        // has ~500m further north again - close enough that a bigger offset would hit its 20m
-        // "at a stop" radius instead.
-        val furtherAlong = gridState.ruler.offset(argyleStreetStation, 0.0, 200.0)
+        // Street. Beyond the 500m within which the station itself is what gets said; no other
+        // station is on this synthetic line, so nothing else can claim the callout.
+        val furtherAlong = gridState.ruler.offset(stationLocation, 0.0, 700.0)
         val userGeometryFurtherAlong = UserGeometry(
             location = furtherAlong,
             speed = 15.0,
@@ -2921,9 +2937,10 @@ class MvtTileTest {
             describeReverseGeocode(userGeometryFurtherAlong, gridState, settlementGrid, null, tracker)
 
         assertNotNull(result)
-        assertEquals(
-            "On Fake Railway Line and close to Merchant City, 0.2 km since Argyle Street",
-            result!!.text
+        assertTrue(
+            "Expected the distance since Test Station, got: ${result!!.text}",
+            result.text.contains("since Test Station") &&
+                result.text.startsWith("On Fake Railway Line and close to ")
         )
 
         // Further still - the spoken distance moves on, but the dedup key (road, settlement,
@@ -2931,7 +2948,7 @@ class MvtTileTest {
         // decent step to change the spoken text, since at this speed the distance is read out in
         // tenths of a kilometre (see formatDistanceAndDirection), and Glasgow Queen Street
         // station is only ~500m further north again.
-        val evenFurtherAlong = gridState.ruler.offset(argyleStreetStation, 0.0, 400.0)
+        val evenFurtherAlong = gridState.ruler.offset(stationLocation, 0.0, 1000.0)
         val userGeometryEvenFurtherAlong = UserGeometry(
             location = evenFurtherAlong,
             speed = 15.0,

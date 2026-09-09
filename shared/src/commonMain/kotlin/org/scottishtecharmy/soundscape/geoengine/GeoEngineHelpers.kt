@@ -3,6 +3,10 @@ package org.scottishtecharmy.soundscape.geoengine
 import org.scottishtecharmy.soundscape.audio.AudioType
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.nextAlongWayFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.WayCursor
+import org.scottishtecharmy.soundscape.geoengine.utils.WayContinuation
+import org.scottishtecharmy.soundscape.geoengine.utils.AlongWayFeatureAhead
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.calculateHeadingOffset
@@ -322,6 +326,18 @@ private data class ReverseGeocodeText(
     val extraDedupText: String? = null
 )
 
+// How near a station has to be, measured along the line, to be the thing worth saying. "At" is
+// symmetric - a station just behind is as much where the train is as one just ahead - while
+// "approaching" only looks forward, and reaches far enough to be of use at line speed.
+private const val stationAtDistanceMetres = 200.0
+private const val stationApproachingDistanceMetres = 500.0
+
+/** The nearest named station within [maxDistance] along the line from [cursor], or null. */
+private fun namedStationWithin(cursor: WayCursor, maxDistance: Double): AlongWayFeatureAhead? =
+    nextAlongWayFeature(
+        cursor, maxDistance, AlongWayKind.RAILWAY_STOP, WayContinuation.SAME_ROAD
+    )?.takeIf { it.feature.name != null }
+
 private fun travellingReverseGeocodeName(
     userGeometry: UserGeometry,
     gridState: GridState,
@@ -341,25 +357,43 @@ private fun travellingReverseGeocodeName(
 
     val probablyOnTrain = userGeometry.probablyOnTrain()
 
-    // Note the most recent railway station we've passed close to, so progress along the line can
-    // be described as "distance since {station}" further down.
-    //
-    // Read only off the stops recorded against the line being ridden, because they are *on* it: a
-    // station is a place beside the tracks, and where lines run close together the nearest one to
-    // a train can easily be a station its line doesn't call at. There used to be a proximity
-    // fallback here for when the line carried no stops, which is what a search of TRANSIT_STOPS
-    // amounts to - it is gone because GridState.attachStationsAsRailwayStops now records a stop
-    // for every named station beside a line, whatever shape the station is mapped as and whether
-    // or not OSM tags it with a railway=stop node.
-    if (probablyOnTrain && (lastStationTracker != null)) {
-        val stopOnThisLine = userGeometry.mapMatchedRailway?.let { railway ->
-            railway.alongWayFeatures(AlongWayKind.RAILWAY_STOP)
-                .filter { it.name != null }
-                .minByOrNull { gridState.ruler.distance(location, it.point) }
-                ?.takeIf { gridState.ruler.distance(location, it.point) <= 50.0 }
-        }
-        if ((stopOnThisLine != null) && (stopOnThisLine.name != lastStationTracker.name)) {
-            lastStationTracker.updateStation(stopOnThisLine.name!!, stopOnThisLine.point)
+    // On a train, a station close by is the whole answer - the line and the settlement say nothing
+    // a passenger wants at that moment. Measured along the rails rather than as the crow flies, so
+    // "approaching" is 500m of travel rather than 500m of map, and so that a station behind can be
+    // told from one ahead on a curving approach.
+    if (probablyOnTrain) {
+        val cursor = userGeometry.mapMatchedRailway?.let { userGeometry.cursorOn(it) }
+        if (cursor != null) {
+            val forwards = cursor.forwards
+            // Without a direction of travel the walk goes both ways on its own, which is what
+            // "either direction" wants - so this one call covers both when forwards is null.
+            val nearAhead = namedStationWithin(cursor, stationAtDistanceMetres)
+            val nearBehind = forwards?.let {
+                namedStationWithin(cursor.copy(forwards = !it), stationAtDistanceMetres)
+            }
+
+            val at = listOfNotNull(nearAhead, nearBehind).minByOrNull { it.distance }
+            if (at != null) {
+                // Also what "since" counts from further down, so the two agree about which station
+                // was last called at.
+                lastStationTracker?.updateStation(at.feature.name!!, at.feature.point)
+                return ReverseGeocodeText(
+                    localized?.get(StringKey.DirectionsAtPoi, at.feature.name!!)
+                        ?: "At ${at.feature.name}"
+                )
+            }
+
+            // Only with a known direction: without one, the walk above would have reported a
+            // station behind as though it were coming up.
+            if (forwards != null) {
+                val approaching = namedStationWithin(cursor, stationApproachingDistanceMetres)
+                if (approaching != null) {
+                    return ReverseGeocodeText(
+                        localized?.get(StringKey.DirectionsApproachingName, approaching.feature.name!!)
+                            ?: "Approaching ${approaching.feature.name}"
+                    )
+                }
+            }
         }
     }
 
