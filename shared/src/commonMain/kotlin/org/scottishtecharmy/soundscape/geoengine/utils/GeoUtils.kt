@@ -89,10 +89,23 @@ fun getCentroidOfPolygon(polygon: Polygon): LngLatAlt? {
     return LngLatAlt(finalCentroidX, finalCentroidY)
 }
 
+/**
+ * A single point standing for [feature], whatever shape it is - what to search around, or to
+ * measure from, when only one coordinate will do.
+ *
+ * MultiPolygon and LineString are covered as well as the obvious two. fixupCollections merges
+ * polygons straddling a tile boundary into MultiPolygons - exactly the large features (parks,
+ * retail parks) most in need of an address - and a handful of features are LineStrings: piers and
+ * steps are ways which are also POIs, and a station is sometimes mapped as its platform edge.
+ * Returning null for those meant they were silently skipped by every caller.
+ */
 fun getCentralPointForFeature(feature: Feature): LngLatAlt? {
-    return when (feature.geometry.type) {
-        "Point" -> (feature.geometry as Point).coordinates
-        "Polygon" -> getCentroidOfPolygon(feature.geometry as Polygon)
+    return when (val geometry = feature.geometry) {
+        is Point -> geometry.coordinates
+        is Polygon -> getCentroidOfPolygon(geometry)
+        is MultiPolygon ->
+            geometry.coordinates.firstOrNull()?.firstOrNull()?.let { getCentroidOfPolygon(Polygon(it)) }
+        is LineString -> geometry.coordinates.getOrNull(geometry.coordinates.size / 2)
         else -> null
     }
 }

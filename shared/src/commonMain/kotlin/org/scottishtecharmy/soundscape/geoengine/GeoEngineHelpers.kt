@@ -342,43 +342,24 @@ private fun travellingReverseGeocodeName(
     val probablyOnTrain = userGeometry.probablyOnTrain()
 
     // Note the most recent railway station we've passed close to, so progress along the line can
-    // be described as "distance since {station}" further down. A station is commonly two
-    // separate features in this tile schema: a bare railway=station point (often just named after
-    // the settlement, e.g. "Milngavie") and a building=train_station footprint with the fuller
-    // name commuters would recognise (e.g. "Milngavie Station") - we want either.
+    // be described as "distance since {station}" further down.
+    //
+    // Read only off the stops recorded against the line being ridden, because they are *on* it: a
+    // station is a place beside the tracks, and where lines run close together the nearest one to
+    // a train can easily be a station its line doesn't call at. There used to be a proximity
+    // fallback here for when the line carried no stops, which is what a search of TRANSIT_STOPS
+    // amounts to - it is gone because GridState.attachStationsAsRailwayStops now records a stop
+    // for every named station beside a line, whatever shape the station is mapped as and whether
+    // or not OSM tags it with a railway=stop node.
     if (probablyOnTrain && (lastStationTracker != null)) {
-        // The railway=stop nodes recorded against the line being ridden are the better answer,
-        // because they are *on* it: a station is a place beside the tracks, and where lines run
-        // close together the nearest one to a train can easily be a station its line doesn't call
-        // at. Named after the station, so what gets spoken is unchanged.
         val stopOnThisLine = userGeometry.mapMatchedRailway?.let { railway ->
             railway.alongWayFeatures(AlongWayKind.RAILWAY_STOP)
                 .filter { it.name != null }
                 .minByOrNull { gridState.ruler.distance(location, it.point) }
                 ?.takeIf { gridState.ruler.distance(location, it.point) <= 50.0 }
         }
-        if (stopOnThisLine != null) {
-            if (stopOnThisLine.name != lastStationTracker.name) {
-                lastStationTracker.updateStation(stopOnThisLine.name!!, stopOnThisLine.point)
-            }
-        } else {
-            // No stop node on this line - older tiles carry none at all, and not every station is
-            // tagged with one - so fall back to the nearest station POI. A station is commonly two
-            // separate features in this tile schema: a bare railway=station point (often just
-            // named after the settlement, e.g. "Milngavie") and a building=train_station footprint
-            // with the fuller name commuters would recognise (e.g. "Milngavie Station") - we want
-            // either.
-            val nearestStation = gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
-                .getNearestFeature(location, gridState.ruler, 50.0) as? MvtFeature
-            val isStation = (nearestStation?.featureValue == "station") ||
-                (nearestStation?.featureValue == "train_station")
-            if (isStation && (nearestStation.name != null) &&
-                (nearestStation.name != lastStationTracker.name)
-            ) {
-                lastStationTracker.updateStation(
-                    nearestStation.name!!, (nearestStation.geometry as? Point)?.coordinates
-                )
-            }
+        if ((stopOnThisLine != null) && (stopOnThisLine.name != lastStationTracker.name)) {
+            lastStationTracker.updateStation(stopOnThisLine.name!!, stopOnThisLine.point)
         }
     }
 
