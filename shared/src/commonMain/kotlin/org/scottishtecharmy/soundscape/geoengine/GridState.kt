@@ -28,7 +28,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.findLineIntersectionPoint
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.TileGrid.Companion.getTileGrid
 import org.scottishtecharmy.soundscape.geoengine.utils.getCentralPointForFeature
-import org.scottishtecharmy.soundscape.geoengine.utils.getCentroidOfPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.distanceAlongLineString
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getSideOfLine
@@ -565,36 +564,6 @@ open class GridState(
     var settlementNameProvider: ((LngLatAlt) -> String?)? = null
 
     /**
-     * The nearest way to [probe] which identifies itself, or null if there isn't one within
-     * [nearestWaySearchDistanceMetres].
-     *
-     * getNearbyCollection rather than getNearestCollection: the latter passes its metre distance
-     * into RTree.nearest as a planar degree bound and asks for an unbounded k, so it ends up
-     * walking the whole tree. This is a properly pruned box search, and it already deduplicates
-     * the per-segment rtree entries back down to whole Ways.
-     */
-    /**
-     * The point to search around for a POI's surroundings.
-     *
-     * getCentralPointForFeature handles points and polygons only. fixupCollections merges polygons
-     * which straddle a tile boundary into MultiPolygons - exactly the large features (parks,
-     * retail parks) most in need of an address - and a handful of POIs are LineStrings, so both
-     * get a fallback here rather than being skipped.
-     */
-    private fun probePointFor(feature: Feature): LngLatAlt? {
-        getCentralPointForFeature(feature)?.let { return it }
-        when (val geometry = feature.geometry) {
-            is MultiPolygon -> {
-                val exteriorRing = geometry.coordinates.firstOrNull()?.firstOrNull()
-                return exteriorRing?.let { getCentroidOfPolygon(Polygon(it)) }
-            }
-            // Piers and steps are ways which are also POIs, so they turn up here as LineStrings
-            is LineString -> return geometry.coordinates.getOrNull(geometry.coordinates.size / 2)
-            else -> return null
-        }
-    }
-
-    /**
      * How far [feature] reaches from [probe] - zero for a point. Added to the candidate search
      * radius so that a road alongside the far edge of a large feature is still found.
      */
@@ -695,7 +664,7 @@ open class GridState(
             // "Kersland Drive" with no town, so the settlement is recorded either way.
             val hasOwnStreet = (poi.street != null) || (poi.housenumber != null)
 
-            val probe = probePointFor(poi) ?: continue
+            val probe = getCentralPointForFeature(poi) ?: continue
             val extent = extentFrom(poi, probe)
 
             // Roads first, and only if there's nothing there do we accept a path. A named path
@@ -753,7 +722,7 @@ open class GridState(
 
         for (feature in stops) {
             val stop = feature as? MvtFeature ?: continue
-            val point = probePointFor(stop) ?: continue
+            val point = getCentralPointForFeature(stop) ?: continue
 
             var nearestWay: Way? = null
             var nearestDistance = Double.POSITIVE_INFINITY
@@ -844,8 +813,12 @@ open class GridState(
      * stop-node data at all, where the alternative is silence. Decided per station rather than per
      * grid, so a mixture of the two works and this stops doing anything, station by station, as
      * the tiles improve.
+     *
+     * Public rather than private so a test can drive it over a hand-built pair of lines - the
+     * committed fixtures carry no railway=stop nodes at all, so the per-line case below cannot be
+     * reached with real tile data yet. Same reason as attachWaterPolygonCrossing.
      */
-    private fun attachStationsAsRailwayStops(
+    fun attachStationsAsRailwayStops(
         featureCollections: Array<FeatureCollection>,
         localTrees: Array<FeatureTree>
     ): Int {
@@ -857,7 +830,11 @@ open class GridState(
             if (station.featureValue !in railwayStationValues) continue
             // Only the name is any use here - "Approaching" an unnamed station says nothing.
             val name = station.name ?: continue
-            val point = (station.geometry as? Point)?.coordinates ?: continue
+            // Not just Point: a station is commonly mapped as a building=train_station footprint,
+            // and the parser drops the point feature where a polygon of the same id exists. Around
+            // a quarter of the named stations in central Glasgow arrive as polygons, and requiring
+            // a Point here skipped every one of them.
+            val point = getCentralPointForFeature(station) ?: continue
 
             val linesPastTheStation = transitTree
                 .getNearbyCollection(point, stationWayToleranceMetres, ruler)
@@ -871,16 +848,17 @@ open class GridState(
                 }
             if (linesPastTheStation.isEmpty()) continue
 
-            // A real stop node already standing for this station makes the station POI redundant,
-            // and it is the more precise record of the two.
-            val alreadyHasStopNode = linesPastTheStation.any { way ->
-                way.alongWayFeatures(AlongWayKind.RAILWAY_STOP).any {
+            for (way in linesPastTheStation) {
+                // Decided per line, not per station. attachRailwayStopsToWays gives each
+                // railway=stop node to the single nearest Way, so at a station with several
+                // platform tracks one node lands on one of them - and asking "does this station
+                // have a stop node anywhere near it" would then skip the station for the other
+                // tracks too, leaving a train on one of those with nothing to announce.
+                val alreadyHasStopNode = way.alongWayFeatures(AlongWayKind.RAILWAY_STOP).any {
                     ruler.distance(point, it.point) <= stationWayToleranceMetres
                 }
-            }
-            if (alreadyHasStopNode) continue
+                if (alreadyHasStopNode) continue
 
-            for (way in linesPastTheStation) {
                 way.addAlongWayFeature(
                     AlongWayFeature(
                         distanceFromStart = way.distanceAlongWay(point, ruler),

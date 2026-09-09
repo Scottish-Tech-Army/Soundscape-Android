@@ -51,7 +51,6 @@ import org.scottishtecharmy.soundscape.geoengine.utils.createPolygonFromTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.OfflineGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.StreetDescription
 import org.scottishtecharmy.soundscape.geoengine.utils.getCentralPointForFeature
-import org.scottishtecharmy.soundscape.geoengine.utils.getCentroidOfPolygon
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geoengine.utils.getFovTriangle
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
@@ -65,7 +64,6 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
-import org.scottishtecharmy.soundscape.geojsonparser.geojson.MultiPolygon
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Polygon
 import org.scottishtecharmy.soundscape.geojsonparser.moshi.GeoJsonObjectMoshiAdapter
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
@@ -310,15 +308,6 @@ class MvtTileTest {
      * The pinned POI is a post box on London Road (found by scanning TreeId.POIS around
      * [glasgowTestLocation] for un-named features).
      */
-    /** Mirrors GridState.probePointFor, which isn't public. */
-    private fun probePoint(feature: MvtFeature): LngLatAlt =
-        getCentralPointForFeature(feature)
-            ?: (feature.geometry as? LineString)?.coordinates?.let { it[it.size / 2] }
-            ?: (feature.geometry as? MultiPolygon)?.coordinates?.first()?.first()?.let {
-                getCentroidOfPolygon(Polygon(it))
-            }
-            ?: error("no probe point for ${feature.osmId}")
-
     @Test
     fun testNearestWayAssociatesUnnamedPoisWithTheirStreet() {
         val location = LngLatAlt(-4.254034459590912, 55.87014482990583)
@@ -355,7 +344,10 @@ class MvtTileTest {
                 // Measured POI-to-way, the way GridState does it - a large feature is judged by
                 // how close it actually gets to the road, not by where its centre is
                 val pointOnWay =
-                    getDistanceToFeature(probePoint(poi), nearestWay, gridState.ruler).point
+                    getDistanceToFeature(
+                        getCentralPointForFeature(poi) ?: error("no point for ${poi.osmId}"),
+                        nearestWay, gridState.ruler
+                    ).point
                 assertTrue(
                     "${poi.osmId} associated with a way more than 30m away",
                     getDistanceToFeature(pointOnWay, poi, gridState.ruler).distance < 31.0
@@ -2173,6 +2165,145 @@ class MvtTileTest {
     }
 
     /**
+     * A station mapped as an area, not a point, still stands in as a rail stop.
+     *
+     * A station is commonly two features in this tile schema - a bare railway=station point and a
+     * building=train_station footprint with the fuller name - and where a polygon exists the
+     * parser drops the point of the same id (see MvtToGeoJson). Around a quarter of the named
+     * stations in central Glasgow arrive as polygons, so requiring a Point silently skipped every
+     * one of them, and the approaching-station callout stayed silent for all of those stations.
+     */
+    @Test
+    fun testAreaMappedStationsAlsoStandInAsRailStops() {
+        val location = LngLatAlt(-4.25057977437973, 55.85762197620575)
+        val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+
+        val polygonStations = gridState.getFeatureTree(TreeId.TRANSIT_STOPS).getAllCollection()
+            .features
+            .filterIsInstance<MvtFeature>()
+            .filter {
+                ((it.featureValue == "station") || (it.featureValue == "train_station")) &&
+                    (it.geometry.type != "Point") && (it.name != null)
+            }
+        assertTrue(
+            "Fixture is expected to carry area-mapped stations",
+            polygonStations.isNotEmpty()
+        )
+
+        val attachedNames = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
+            .filterIsInstance<Way>()
+            .flatMap { it.alongWayFeatures(AlongWayKind.RAILWAY_STOP) }
+            .mapNotNull { it.name }
+            .toSet()
+
+        // Every area-mapped station beside a line should have been stood in for. Checked by name
+        // against a station that exists only as a polygon, so a Point-only implementation cannot
+        // pass this by finding some other feature.
+        val onlyAsPolygon = polygonStations
+            .filter { station ->
+                gridState.getFeatureTree(TreeId.TRANSIT_STOPS).getAllCollection().features
+                    .filterIsInstance<MvtFeature>()
+                    .none { (it.name == station.name) && (it.geometry.type == "Point") }
+            }
+            // Only those with a line to be attached to. The Subway is tagged train_station but
+            // its lines are deliberately kept out of TreeId.TRANSIT, so Cowcaddens and
+            // St. George's Cross have nothing to stand in on - correctly.
+            .filter { station ->
+                val centre = getCentralPointForFeature(station)
+                (centre != null) && gridState.getFeatureTree(TreeId.TRANSIT)
+                    .getAllCollection().features
+                    .filterIsInstance<Way>()
+                    .any { way ->
+                        val geometry = way.geometry as? LineString
+                        (geometry != null) && (geometry.coordinates.size >= 2) &&
+                            (gridState.ruler.distanceToLineString(centre, geometry).distance <= 100.0)
+                    }
+            }
+            .mapNotNull { it.name }
+            .toSet()
+        assertTrue(
+            "Fixture needs a station mapped only as an area, beside a line",
+            onlyAsPolygon.isNotEmpty()
+        )
+        assertTrue(
+            "Expected the area-mapped stations stood in for, missing: " +
+                "${onlyAsPolygon - attachedNames}, got: $attachedNames",
+            attachedNames.containsAll(onlyAsPolygon)
+        )
+    }
+
+    /**
+     * Whether a station already has a railway=stop node is decided per line, not per station.
+     *
+     * attachRailwayStopsToWays gives each stop node to the single nearest Way, so at a station
+     * with several platform tracks one node lands on one of them. Asking "does this station have a
+     * stop node anywhere near it" would then skip the station for every other track, and a train
+     * matched to one of those would have nothing to announce.
+     *
+     * Hand-built rather than real data: the committed fixtures carry no railway=stop nodes at all,
+     * so this case cannot be reached with them.
+     */
+    @Test
+    fun testStationStandsInPerLineNotPerStation() {
+        val origin = LngLatAlt(-4.2506, 55.8576)
+        val gridState = FileGridState()
+        gridState.ruler = origin.createCheapRuler()
+        val ruler = gridState.ruler
+
+        // Two parallel tracks 20m apart, with the station between them.
+        fun track(name: String, northMetres: Double): Way {
+            val start = ruler.offset(origin, -300.0, northMetres)
+            val end = ruler.offset(origin, 300.0, northMetres)
+            return Way().apply {
+                this.name = name
+                geometry = LineString(start, end)
+                length = ruler.distance(start, end)
+            }
+        }
+        val withNode = track("Platform 1", 10.0)
+        val bare = track("Platform 2", -10.0)
+
+        val station = MvtFeature().apply {
+            name = "Test Central"
+            featureType = "transit"
+            featureValue = "station"
+            geometry = Point(origin)
+        }
+
+        // The stop node landed on one track only, as attachRailwayStopsToWays would leave it.
+        withNode.addAlongWayFeature(
+            AlongWayFeature(
+                distanceFromStart = withNode.distanceAlongWay(origin, ruler),
+                point = origin,
+                kind = AlongWayKind.RAILWAY_STOP,
+                name = "Test Central"
+            )
+        )
+
+        val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
+        featureCollections[TreeId.TRANSIT_STOPS.id].addFeature(station)
+        val transit = FeatureCollection().apply {
+            addFeature(withNode)
+            addFeature(bare)
+        }
+        val localTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
+        localTrees[TreeId.TRANSIT.id] = FeatureTree(transit)
+
+        gridState.attachStationsAsRailwayStops(featureCollections, localTrees)
+
+        assertEquals(
+            "The track carrying the stop node should not gain a second stop for it",
+            1,
+            withNode.alongWayFeatures(AlongWayKind.RAILWAY_STOP).size
+        )
+        assertEquals(
+            "The other platform track should have the station stood in for it",
+            listOf("Test Central"),
+            bare.alongWayFeatures(AlongWayKind.RAILWAY_STOP).map { it.name }
+        )
+    }
+
+    /**
      * A stop is attached to the road it is beside, and sits at its real position along it. This is
      * what replaces searching the stop tree around the path travelled - a search that could only
      * judge by proximity, and so couldn't tell a stop on this road from one on the street behind
@@ -2689,8 +2820,10 @@ class MvtTileTest {
     }
 
     /**
-     * Once probablyOnTrain() detects a nearby real station (via TreeId.TRANSIT_STOPS), it should
-     * be tracked in a LastStationTracker so a later call can describe progress as "distance since
+     * Once probablyOnTrain() passes a station recorded on the line being ridden (an
+     * AlongWayKind.RAILWAY_STOP - see GridState.attachStationsAsRailwayStops, which stands a
+     * station in where OSM carries no railway=stop node), it should be tracked in a
+     * LastStationTracker so a later call can describe progress as "distance since
      * {station}" - but only combined with a nearby settlement, e.g. "On the line and close to
      * Merchant City, 0.2 km since Argyle Street" - a standalone since-distance with nothing
      * else to describe would fire on every location update as the distance keeps climbing, which
@@ -2707,12 +2840,26 @@ class MvtTileTest {
         val gridState = getGridStateForLocation(argyleStreetStation, MAX_ZOOM_LEVEL, 3)
         val settlementGrid = getGridStateForLocation(argyleStreetStation, 12, 3)
 
-        val fakeMatchedRailway = Way().apply { name = "Fake Railway Line" }
+        // The stop is read off the line being ridden, so the line has to carry one. This is what
+        // the grid build attaches for Argyle Street - see the real-data coverage in
+        // testStationStandsInAsARailStopWhenThereAreNoStopNodes; kept synthetic here so that the
+        // spoken line name stays fixed and this test is about the since-distance wording.
+        val fakeMatchedRailway = Way().apply {
+            name = "Fake Railway Line"
+            addAlongWayFeature(
+                AlongWayFeature(
+                    distanceFromStart = 0.0,
+                    point = argyleStreetStation,
+                    kind = AlongWayKind.RAILWAY_STOP,
+                    name = "Argyle Street"
+                )
+            )
+        }
         val tracker = LastStationTracker()
 
         // Just past the station - outside the 20m "at a stop" radius (which would otherwise name
         // the stop directly and never reach the station-tracking logic), but inside the 50m
-        // station-tracking radius.
+        // radius within which a stop on this line is taken as the one just passed.
         val justPastStation = gridState.ruler.offset(argyleStreetStation, 0.0, 30.0)
         val userGeometryNearStation = UserGeometry(
             location = justPastStation,
