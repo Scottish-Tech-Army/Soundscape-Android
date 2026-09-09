@@ -101,6 +101,13 @@ class GeoEngine {
     // RailMatchArbiter's verdict from the most recent location update.
     private var arbitratedRailway: Way? = null
 
+    // Running total of the time fixes have been arriving too inaccurate to place, and the
+    // bookkeeping behind it - see UserGeometry.unobservedMillis and
+    // AutoCallout.discountUnobservedTime.
+    private var unobservedMillis = 0L
+    private var lastUsableFixMillis: Long? = null
+    private var blindSinceLastUsableFix = false
+
     fun setHeadTrackingProvider(provider: HeadTrackingProvider?) {
         headTrackingProvider = provider
     }
@@ -217,7 +224,8 @@ class GeoEngine {
             mapMatchedRailway = arbitratedRailway,
             currentBeacon = beaconLocation,
             inStreetPreview = streetPreview.running,
-            timestampMilliseconds = currentTimeMillis()
+            timestampMilliseconds = currentTimeMillis(),
+            unobservedMillis = unobservedMillis
         )
     }
 
@@ -433,8 +441,21 @@ class GeoEngine {
                     // first fix is taken whatever it reports, since a rough position beats none at
                     // all. This deliberately doesn't gate the flows themselves: the map dot and the
                     // audio engine still follow the raw fix.
-                    if (!isAccuracyUsable(location) && haveUsableLocation) return@let
+                    if (!isAccuracyUsable(location) && haveUsableLocation) {
+                        // Fixes are arriving, they just can't be placed. That's the geoengine
+                        // going blind rather than idle, and the two mean opposite things to the
+                        // callout sticky windows - see AutoCallout.discountUnobservedTime.
+                        blindSinceLastUsableFix = true
+                        return@let
+                    }
                     haveUsableLocation = true
+
+                    val nowMillis = currentTimeMillis()
+                    if (blindSinceLastUsableFix) {
+                        lastUsableFixMillis?.let { unobservedMillis += nowMillis - it }
+                        blindSinceLastUsableFix = false
+                    }
+                    lastUsableFixMillis = nowMillis
 
                     analytics.crashSetCustomKey("latitude", newLocation.latitude.toString())
                     analytics.crashSetCustomKey("longitude", newLocation.longitude.toString())

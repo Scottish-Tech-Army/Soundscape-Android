@@ -4017,6 +4017,13 @@ class MvtTileTest {
         // instance) carries none, so those fall back to one point per second.
         var fallbackTime = 0L
         var lastLocation: LngLatAlt? = null
+        // The other half of mirroring the accuracy gate below: the time it swallows. GeoEngine
+        // keeps this running total so the callout sticky windows can tell a spell of unusable
+        // fixes from a spell of no news - see UserGeometry.unobservedMillis - and a replay through
+        // a tunnel only behaves like the journey it recorded if it keeps it too.
+        var unobservedMillis = 0L
+        var lastUsableFixMillis: Long? = null
+        var blindSinceLastUsableFix = false
         gps.features.filterIndexed { index, _ ->
             (index > startIndex) and (index < endIndex)
         }.forEachIndexed { index, position ->
@@ -4027,6 +4034,7 @@ class MvtTileTest {
             // production.
             val accuracy = position.properties?.get("accuracy") as? Double?
             if ((accuracy != null) && (accuracy > MAXIMUM_USABLE_ACCURACY_METRES)) {
+                blindSinceLastUsableFix = true
                 return@forEachIndexed
             }
 
@@ -4120,6 +4128,12 @@ class MvtTileTest {
                     ?: fallbackTime
                 fallbackTime = timestamp + 1000L
 
+                if (blindSinceLastUsableFix) {
+                    lastUsableFixMillis?.let { unobservedMillis += timestamp - it }
+                    blindSinceLastUsableFix = false
+                }
+                lastUsableFixMillis = timestamp
+
                 // We can replay GPX files exported from apps like RideWithGPS. This is useful for
                 // mocking up GPX where we don't have a live recording, however some information will
                 // be missing so we need to mock it up.
@@ -4132,7 +4146,8 @@ class MvtTileTest {
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
                     mapMatchedRailway =
                         railMatchArbiter.update(mapMatchFilter, railMapMatchFilter, speed),
-                    timestampMilliseconds = timestamp
+                    timestampMilliseconds = timestamp,
+                    unobservedMillis = unobservedMillis
                 )
 
                 val callout = autoCallout.updateLocation(

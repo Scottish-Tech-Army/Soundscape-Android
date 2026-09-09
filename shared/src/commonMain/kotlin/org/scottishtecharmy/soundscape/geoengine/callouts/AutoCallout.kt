@@ -139,6 +139,54 @@ class AutoCallout(
         return (userGeometry.timestampMilliseconds - last) < vehicleStickyWindowMs
     }
 
+    /**
+     * [UserGeometry.unobservedMillis] as it stood on the previous update, so that each spell of it
+     * is discounted once. Counted rather than reset by the caller because
+     * [AutoCallout.updateLocation] doesn't run for every location update - it's skipped while the
+     * audio engine is busy - so a spell must survive until an update actually reaches here.
+     */
+    private var lastUnobservedMillis = 0L
+
+    /**
+     * The longest blind spell the sticky windows are carried across. Long enough for any tunnel a
+     * train goes through - the recorded Argyle Line run from Finnieston to Exhibition Centre is a
+     * little over a minute of unusable fixes, and the longest tunnels on the network are a few
+     * minutes at line speed - and short enough that a phone reporting useless fixes from indoors
+     * all afternoon doesn't eventually come back out still believing it's on a train.
+     */
+    private val blindSpellLimitMs = 300_000L
+
+    /**
+     * Discounts time the geoengine couldn't see from the sticky windows above.
+     *
+     * Both windows are elapsed-time measurements, which quietly assumes someone was watching
+     * throughout. Underground nobody is: GeoEngine drops fixes too inaccurate to place at all (see
+     * isAccuracyUsable), and a train through central Glasgow produces a minute or more of them in
+     * one go. That is not a minute of evidence that the journey ended, it is no evidence at all -
+     * and yet it was enough to run [trainStickyWindowMs] out. Coming up from the Finnieston Tunnel
+     * into Exhibition Centre, standing at the platform at walking pace, the passenger was handed
+     * the street above: "Ahead Minerva Street", "Passing over Argyle Line" - while sitting on it.
+     *
+     * So the blind spell is added back to both windows, which makes them measure the time that was
+     * actually observed. A stop still ends them at the same point in the journey; it just takes
+     * being seen to happen.
+     *
+     * Deliberately driven by fixes the geoengine *rejected* rather than by a gap between the ones
+     * it kept. Sparse updates are not the same thing as blindness and are entirely normal - a
+     * phone reports a walk at a few seconds a fix and stretches that when the walker is barely
+     * moving, so the recorded tesco.gpx has 129 gaps over five seconds and BackFromTown.gpx one of
+     * ten minutes, none of them a blackout. Rejected fixes say something a silence cannot: the
+     * phone was trying, and could not place the user.
+     */
+    private fun discountUnobservedTime(userGeometry: UserGeometry) {
+        val unobserved = userGeometry.unobservedMillis - lastUnobservedMillis
+        lastUnobservedMillis = userGeometry.unobservedMillis
+        if ((unobserved <= 0L) || (unobserved > blindSpellLimitMs)) return
+
+        lastVehicleTimestampMs = lastVehicleTimestampMs?.plus(unobserved)
+        lastTrainTimestampMs = lastTrainTimestampMs?.plus(unobserved)
+    }
+
     private fun buildCalloutForDestination(userGeometry: UserGeometry): TrackedCallout? {
 
         // Check that we have a destination
@@ -1241,6 +1289,10 @@ class AutoCallout(
 
                 // Before any builder runs, so every along-way query shares one window.
                 updateSweepWindow(userGeometry)
+
+                // Also before any builder runs, since the sticky windows it adjusts are read by
+                // most of them.
+                discountUnobservedTime(userGeometry)
 
                 val destinationCallout = buildCalloutForDestination(userGeometry)
                 if (destinationCallout != null) {

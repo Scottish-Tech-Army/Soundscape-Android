@@ -32,6 +32,10 @@ import kotlin.math.abs
  * which is why it's a property of the UserGeometry class.
  * @param headingMode is the method used to calculate the heading
  * @param inStreetPreview is true if the user is in StreetPreview mode
+ * @param unobservedMillis is how long, in total this session, the geoengine has had fixes arriving
+ * that were too inaccurate to place at all (see isAccuracyUsable) - time that passed with nothing
+ * observed in it. A running total rather than a per-update figure, since not every location update
+ * reaches every consumer; see AutoCallout.discountUnobservedTime, which takes the difference.
  *
  * The heading prioritization comes from iOS - see https://github.com/Scottish-Tech-Army/Soundscape-Android/issues/364
  *
@@ -54,6 +58,7 @@ class UserGeometry(
     val currentBeacon: LngLatAlt? = null,
     val ruler: Ruler = CheapRuler(location.latitude),
     val timestampMilliseconds: Long = 0L,
+    val unobservedMillis: Long = 0L,
     private val headingMode: HeadingMode = HeadingMode.CourseAuto,
     private var travelHeading: Double? = null,
     private var headHeading: Double? = null,
