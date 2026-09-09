@@ -630,7 +630,9 @@ class WayNamingTest {
         val name = addWaterAdjacency(path, gridState, null)
 
         assertEquals("Path next to Allander Water", name)
-        assertEquals("Path next to Allander Water", path.name)
+        // Composed on demand, not written onto the way: a name on the way is how the rest of the
+        // engine asks whether it is named in OSM, and this one isn't. Only the water is memoised.
+        assertNull(path.name)
         assertEquals("Allander Water", path.properties?.get("waterside"))
     }
 
@@ -750,6 +752,35 @@ class WayNamingTest {
         val gridState = waterGridState(waterOrigin, near, far)
 
         assertEquals("Path next to Allander Water", addWaterAdjacency(path, gridState, null))
+    }
+
+    /**
+     * getName composes the waterside name every time it is asked, rather than reading one left on
+     * the way by an earlier call.
+     *
+     * That is what keeps way.name meaning "named in OSM" - GridState.nearestNamedWay and
+     * StreetDescription both use it that way to decide whether a way can serve as an address, and
+     * a made-up name is not an answer to that. It also keeps the wording tied to the
+     * LocalizedStrings of whoever is asking, rather than to whoever asked first.
+     */
+    @Test
+    fun getName_waterAdjacentPath_isComposedEachTimeAndNotStoredOnTheWay() {
+        val path = ridingPath()
+        val river = waterway(
+            "Allander Water",
+            offset(waterOrigin, 20.0, -50.0),
+            offset(waterOrigin, 20.0, 250.0),
+        )
+        val gridState = waterGridState(waterOrigin, river)
+
+        assertEquals("Path next to Allander Water", path.getName(null, gridState, null))
+        assertNull(path.name)
+
+        // Again, to show the second answer comes from the memoised water rather than from a name
+        // left behind by the first.
+        assertEquals("Path next to Allander Water", path.getName(null, gridState, null))
+        assertNull(path.name)
+        assertEquals("Allander Water", path.properties?.get("waterside"))
     }
 
     @Test
