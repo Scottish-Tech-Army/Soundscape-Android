@@ -795,6 +795,23 @@ open class GridState(
     private val railwayStationValues = setOf("station", "train_station")
 
     /**
+     * Whether [feature] is a station in its own right, rather than a building belonging to one.
+     *
+     * building=train_station arrives here as featureType "building", and it marks a *structure*,
+     * not a stop: a station commonly has several of them - entrances, booking halls, the buildings
+     * either side of the tracks - so taking them would put a stop on the line several times over
+     * for one station. Worse, the tag stays on the building when it stops being a station: South
+     * West Community Cycles at Pollokshaws West is a bike shop in the old station building, and
+     * was being announced to passengers as somewhere the train was about to call.
+     *
+     * railway=station is the operational record and is what is left. Nothing is lost by dropping
+     * the buildings - every station in the test extracts has such a point within about a hundred
+     * metres of its building, including the ones whose building carries the fuller name.
+     */
+    private fun isARailwayStation(feature: MvtFeature) =
+        (feature.featureValue in railwayStationValues) && (feature.featureType != "building")
+
+    /**
      * Attaches named railway stations as RAILWAY_STOP along-way features, for lines that have no
      * railway=stop node of their own.
      *
@@ -827,7 +844,7 @@ open class GridState(
 
         for (feature in featureCollections[TreeId.TRANSIT_STOPS.id].features) {
             val station = feature as? MvtFeature ?: continue
-            if (station.featureValue !in railwayStationValues) continue
+            if (!isARailwayStation(station)) continue
             // Only the name is any use here - "Approaching" an unnamed station says nothing.
             val name = station.name ?: continue
             // Not just Point: a station is commonly mapped as a building=train_station footprint,

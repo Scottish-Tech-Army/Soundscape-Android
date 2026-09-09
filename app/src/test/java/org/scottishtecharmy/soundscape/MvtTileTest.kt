@@ -2165,29 +2165,27 @@ class MvtTileTest {
     }
 
     /**
-     * A station mapped as an area, not a point, still stands in as a rail stop.
+     * A station's buildings are not stood in for - only the station itself is.
      *
-     * A station is commonly two features in this tile schema - a bare railway=station point and a
-     * building=train_station footprint with the fuller name - and where a polygon exists the
-     * parser drops the point of the same id (see MvtToGeoJson). Around a quarter of the named
-     * stations in central Glasgow arrive as polygons, so requiring a Point silently skipped every
-     * one of them, and the approaching-station callout stayed silent for all of those stations.
+     * building=train_station marks a structure, not a stop. A station commonly has several, so
+     * taking them would put the same station on the line over and over; and the tag outlives the
+     * use, so a building that has become something else is still tagged as a station. South West
+     * Community Cycles is a bike shop in the old station building at Pollokshaws West, and it was
+     * being announced to passengers as a stop the train was approaching.
      */
     @Test
-    fun testAreaMappedStationsAlsoStandInAsRailStops() {
-        val location = LngLatAlt(-4.25057977437973, 55.85762197620575)
+    fun testStationBuildingsAreNotStoodInForAsRailStops() {
+        val location = LngLatAlt(-4.2874, 55.8281)
         val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
 
-        val polygonStations = gridState.getFeatureTree(TreeId.TRANSIT_STOPS).getAllCollection()
-            .features
+        val buildings = gridState.getFeatureTree(TreeId.TRANSIT_STOPS).getAllCollection().features
             .filterIsInstance<MvtFeature>()
-            .filter {
-                ((it.featureValue == "station") || (it.featureValue == "train_station")) &&
-                    (it.geometry.type != "Point") && (it.name != null)
-            }
+            .filter { (it.featureType == "building") && (it.featureValue == "train_station") }
+            .mapNotNull { it.name }
+            .toSet()
         assertTrue(
-            "Fixture is expected to carry area-mapped stations",
-            polygonStations.isNotEmpty()
+            "Fixture is expected to carry building=train_station features",
+            buildings.contains("South West Community Cycles")
         )
 
         val attachedNames = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
@@ -2196,40 +2194,76 @@ class MvtTileTest {
             .mapNotNull { it.name }
             .toSet()
 
-        // Every area-mapped station beside a line should have been stood in for. Checked by name
-        // against a station that exists only as a polygon, so a Point-only implementation cannot
-        // pass this by finding some other feature.
-        val onlyAsPolygon = polygonStations
-            .filter { station ->
-                gridState.getFeatureTree(TreeId.TRANSIT_STOPS).getAllCollection().features
-                    .filterIsInstance<MvtFeature>()
-                    .none { (it.name == station.name) && (it.geometry.type == "Point") }
-            }
-            // Only those with a line to be attached to. The Subway is tagged train_station but
-            // its lines are deliberately kept out of TreeId.TRANSIT, so Cowcaddens and
-            // St. George's Cross have nothing to stand in on - correctly.
-            .filter { station ->
-                val centre = getCentralPointForFeature(station)
-                (centre != null) && gridState.getFeatureTree(TreeId.TRANSIT)
-                    .getAllCollection().features
-                    .filterIsInstance<Way>()
-                    .any { way ->
-                        val geometry = way.geometry as? LineString
-                        (geometry != null) && (geometry.coordinates.size >= 2) &&
-                            (gridState.ruler.distanceToLineString(centre, geometry).distance <= 100.0)
-                    }
-            }
-            .mapNotNull { it.name }
-            .toSet()
         assertTrue(
-            "Fixture needs a station mapped only as an area, beside a line",
-            onlyAsPolygon.isNotEmpty()
+            "No station building should be stood in for, got: ${attachedNames.intersect(buildings)}",
+            attachedNames.intersect(buildings).isEmpty()
         )
+        // ...while the actual stations on the line still are, so this isn't passing by attaching
+        // nothing at all.
         assertTrue(
-            "Expected the area-mapped stations stood in for, missing: " +
-                "${onlyAsPolygon - attachedNames}, got: $attachedNames",
-            attachedNames.containsAll(onlyAsPolygon)
+            "Expected the real stations still stood in for, got: $attachedNames",
+            attachedNames.contains("Crossmyloof")
         )
+    }
+
+    /**
+     * A station mapped as an area is stood in for at its centre.
+     *
+     * railway=station is commonly a node but is allowed to be an area, and where it straddles a
+     * tile boundary fixupCollections merges it into a MultiPolygon. Both resolve through
+     * getCentralPointForFeature. Note this is *not* the building=train_station case excluded
+     * above: a building tag overrides featureType/featureValue in MvtToGeoJson, so a station area
+     * carrying one never reaches TRANSIT_STOPS at all.
+     *
+     * Hand-built because every station in the committed extracts happens to be a node.
+     */
+    @Test
+    fun testAnAreaMappedStationIsStoodInFor() {
+        val origin = LngLatAlt(-4.2506, 55.8576)
+        val gridState = FileGridState()
+        gridState.ruler = origin.createCheapRuler()
+        val ruler = gridState.ruler
+
+        val start = ruler.offset(origin, -300.0, 15.0)
+        val end = ruler.offset(origin, 300.0, 15.0)
+        val line = Way().apply {
+            name = "Test Line"
+            geometry = LineString(start, end)
+            length = ruler.distance(start, end)
+        }
+
+        // A square of platforms around the origin, tagged as the station itself rather than as a
+        // building on it.
+        val corners = arrayListOf(
+            ruler.offset(origin, -40.0, -20.0),
+            ruler.offset(origin, 40.0, -20.0),
+            ruler.offset(origin, 40.0, 20.0),
+            ruler.offset(origin, -40.0, 20.0),
+            ruler.offset(origin, -40.0, -20.0)
+        )
+        val station = MvtFeature().apply {
+            name = "Test Area Station"
+            featureType = "railway"
+            featureValue = "station"
+            geometry = Polygon(corners)
+        }
+
+        val featureCollections = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureCollection() }
+        featureCollections[TreeId.TRANSIT_STOPS.id].addFeature(station)
+        val localTrees = Array(TreeId.MAX_COLLECTION_ID.id) { FeatureTree(null) }
+        localTrees[TreeId.TRANSIT.id] =
+            FeatureTree(FeatureCollection().apply { addFeature(line) })
+
+        gridState.attachStationsAsRailwayStops(featureCollections, localTrees)
+
+        val attached = line.alongWayFeatures(AlongWayKind.RAILWAY_STOP)
+        assertEquals(
+            "Expected the area-mapped station stood in for",
+            listOf("Test Area Station"),
+            attached.map { it.name }
+        )
+        // Placed at the area's centre, not at an arbitrary corner of it.
+        assertEquals(0.0, ruler.distance(origin, attached.single().point), 1.0)
     }
 
     /**
