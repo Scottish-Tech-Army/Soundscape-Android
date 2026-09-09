@@ -3299,6 +3299,14 @@ class MvtTileTest {
     }
 
     /**
+     * The speed the two geometry-driven arbiter tests below claim to be travelling at. They step
+     * along a Way's own coordinates rather than replaying a recording, so there's no speed in the
+     * data; both are about whether a lock is *acquired*, which doesn't consult it, and vehicle
+     * speed is the honest thing to say about driving a motorway or riding a line.
+     */
+    private val motorwaySpeedMps = 31.0
+
+    /**
      * Driving the M90 past Winchburgh must never be reported as being on a train. The Winchburgh
      * Chord runs alongside the motorway there - the recorded track sits 35-70m from it for about
      * sixty consecutive fixes at 70mph, well inside the rail follower's DISTANT threshold at that
@@ -3337,7 +3345,7 @@ class MvtTileTest {
             mapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null, true)
             railMapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null)
             if (railMapMatchFilter.isMatchConfident) railEverConfident = true
-            val railway = arbiter.update(mapMatchFilter, railMapMatchFilter)
+            val railway = arbiter.update(mapMatchFilter, railMapMatchFilter, motorwaySpeedMps)
             assertNull(
                 "Driving the M90 must never be reported as a train, got ${railway?.name}",
                 railway
@@ -3375,7 +3383,7 @@ class MvtTileTest {
             runBlocking { gridState.locationUpdate(coordinate, emptySet(), null) }
             mapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null, true)
             railMapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null)
-            if (arbiter.update(mapMatchFilter, railMapMatchFilter) != null) {
+            if (arbiter.update(mapMatchFilter, railMapMatchFilter, motorwaySpeedMps) != null) {
                 matchedAsTrain = true
                 break
             }
@@ -4122,7 +4130,8 @@ class MvtTileTest {
                     speed = speed,
                     mapMatchedWay = mapMatchFilter.matchedWay,
                     mapMatchedLocation = mapMatchFilter.matchedLocation,
-                    mapMatchedRailway = railMatchArbiter.update(mapMatchFilter, railMapMatchFilter),
+                    mapMatchedRailway =
+                        railMatchArbiter.update(mapMatchFilter, railMapMatchFilter, speed),
                     timestampMilliseconds = timestamp
                 )
 

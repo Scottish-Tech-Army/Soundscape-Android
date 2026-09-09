@@ -456,6 +456,7 @@ class GeoEngine {
                     runBlocking {
                         withContext(gridState.treeContext) {
                             locationProvider.locationFlow.value?.let { unfilteredLocation ->
+                                val unfilteredSpeed = speedFromLocation(unfilteredLocation)
                                 val mapMatchTime = measureTime {
                                     mapMatchFilter.filter(
                                         LngLatAlt(
@@ -466,7 +467,7 @@ class GeoEngine {
                                         FeatureCollection(),
                                         false,
                                         localizedStrings,
-                                        speedFromLocation(unfilteredLocation) > UserGeometry.VEHICLE_SPEED_THRESHOLD_MPS
+                                        unfilteredSpeed > UserGeometry.VEHICLE_SPEED_THRESHOLD_MPS
                                     )
                                 }
                                 val matchedWay = mapMatchFilter.matchedWay
@@ -484,9 +485,12 @@ class GeoEngine {
                                 )
 
                                 // Both matchers have now run for this location, so the railway
-                                // match can be weighed against the road one.
-                                arbitratedRailway =
-                                    railMatchArbiter.update(mapMatchFilter, railMapMatchFilter)
+                                // match can be weighed against the road one. The speed goes with
+                                // them: a ride can only end somewhere the train has slowed enough
+                                // to be got off at.
+                                arbitratedRailway = railMatchArbiter.update(
+                                    mapMatchFilter, railMapMatchFilter, unfilteredSpeed
+                                )
                             }
                         }
                     }
