@@ -304,15 +304,22 @@ private fun sampleAlongLine(line: LineString, ruler: Ruler): List<LngLatAlt> {
 }
 
 /**
- * "Path next to Allander Water" - the way's generic class noun joined to the water it follows. Also
- * assigns it, so a way that has already been matched comes back named however it's reached.
+ * "Path next to Allander Water" - the way's generic class noun joined to the water it follows.
+ *
+ * Composed on every call rather than assigned to way.name. The water's name is memoised in the
+ * "waterside" property, so the expensive part still happens once per way per grid, and composing
+ * the rest is a string join. Two reasons not to keep the finished text on the way:
+ *
+ * - the text depends on the LocalizedStrings passed in, so storing one caller's wording would
+ *   hand it to the next caller whatever language they asked in;
+ * - a name on the way is how the rest of the engine asks "is this named in OSM?" - see
+ *   GridState.nearestNamedWay and StreetDescription, which use it to decide whether a way can
+ *   serve as an address. A confected name is not an answer to that question.
  */
 private fun nameForWaterside(way: Way, waterName: String, strings: LocalizedStrings?): String {
     val noun = way.genericClassName(strings)
-    val text = strings?.get(StringKey.ConfectNameNextTo, noun, waterName)
+    return strings?.get(StringKey.ConfectNameNextTo, noun, waterName)
         ?: "$noun next to $waterName"
-    way.name = text
-    return text
 }
 
 /**
