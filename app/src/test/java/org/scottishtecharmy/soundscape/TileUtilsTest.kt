@@ -83,7 +83,7 @@ class TileUtilsTest {
             val mvtFeature = feature as MvtFeature
             Assert.assertEquals("crossing", mvtFeature.featureValue)
         }
-        Assert.assertEquals(369, testCrossingsFeatureCollection.features.size)
+        Assert.assertEquals(382, testCrossingsFeatureCollection.features.size)
     }
 
     @Test
@@ -100,7 +100,7 @@ class TileUtilsTest {
         }
         // Check that the number of path segments (road_and_paths - roads) is correct
         Assert.assertEquals(
-            4634,
+            4737,
             testPathsCollectionFromTileFeatureCollection.features.size - testRoadsCollectionFromTileFeatureCollection.features.size
         )
     }
@@ -114,7 +114,7 @@ class TileUtilsTest {
             Assert.assertTrue("Feature should be of type Intersection", feature is Intersection)
         }
         Assert.assertEquals(
-            5359,
+            5490,
             testIntersectionsCollectionFromTileFeatureCollection.features.size
         )
     }
@@ -135,7 +135,7 @@ class TileUtilsTest {
         val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
-        Assert.assertEquals(2779, testPoiCollection.features.size)
+        Assert.assertEquals(2794, testPoiCollection.features.size)
     }
 
     @Test
@@ -146,7 +146,7 @@ class TileUtilsTest {
         // select "mobility" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory(SuperCategoryId.MOBILITY, testPoiCollection)
-        Assert.assertEquals(616, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(630, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
@@ -185,7 +185,7 @@ class TileUtilsTest {
         // select "place" super category
         val testSuperCategoryPoiCollection =
             getPoiFeatureCollectionBySuperCategory(SuperCategoryId.PLACE, testPoiCollection)
-        Assert.assertEquals(1374, testSuperCategoryPoiCollection.features.size)
+        Assert.assertEquals(1375, testSuperCategoryPoiCollection.features.size)
     }
 
     @Test
