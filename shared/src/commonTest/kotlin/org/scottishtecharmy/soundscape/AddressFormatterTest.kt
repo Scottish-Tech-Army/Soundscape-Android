@@ -62,6 +62,32 @@ class AddressFormatterTest {
     }
 
     @Test
+    fun japaneseAddressInJapaneseIsWrittenLargestFirst() {
+        val formatter =
+            AddressFormatter(abbreviate = false, appendCountry = false, appendUnknown = false)
+        val json = """{"house_number":"20","road":"創造のみち","city":"北区","country_code":"JP"}"""
+        assertEquals("北区\n創造のみち\n20\n", formatter.format(json))
+    }
+
+    @Test
+    fun japaneseAddressInLatinScriptIsWrittenSmallestFirst() {
+        val formatter =
+            AddressFormatter(abbreviate = false, appendCountry = false, appendUnknown = false)
+        val json = """{"house_number":"20","road":"Sozo-no-michi","city":"Kita","country_code":"JP"}"""
+        assertEquals("20 Sozo-no-michi\nKita\n", formatter.format(json))
+    }
+
+    @Test
+    fun iranianAddressInPersianUsesThePersianTemplate() {
+        // The Persian template starts from the province, where the English one ends with it
+        val formatter =
+            AddressFormatter(abbreviate = false, appendCountry = false, appendUnknown = false)
+        val json =
+            """{"house_number":"۱۴","road":"رشتچی","city":"تهران","state":"استان تهران","country_code":"IR"}"""
+        assertEquals("استان تهران\nتهران\nرشتچی\n۱۴\n", formatter.format(json))
+    }
+
+    @Test
     fun allSupportedCountries() {
         val countries = listOf(
             "AD", "AE", "AF", "AG", "AI", "AL", "AM", "AO", "AQ", "AR", "AS", "AT", "AU", "AW",
