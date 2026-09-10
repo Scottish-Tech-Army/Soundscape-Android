@@ -755,9 +755,9 @@ fun vectorTileToGeoJson(
                     else if (raw.sint_value != null)
                         value = raw.sint_value
                     else if (raw.float_value != null)
-                        value = raw.double_value
-                    else if (raw.double_value != null)
                         value = raw.float_value
+                    else if (raw.double_value != null)
+                        value = raw.double_value
                     else if (raw.string_value != null)
                         value = raw.string_value
                     else if (raw.uint_value != null)
