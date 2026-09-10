@@ -83,11 +83,16 @@ class TileSearch(
         return null
     }
 
+    /**
+     * [houseNumber] is the word taken out of the search string as a house number to make this
+     * match, or empty if the match was made with the search string as a whole.
+     */
     data class TileSearchResult(
         var score: Double,
         var string: String,
         val tileX: Int,
         val tileY: Int,
+        val houseNumber: String = "",
     )
 
     fun compareAndAddToResults(
@@ -95,15 +100,21 @@ class TileSearch(
         haystackString: String,
         searchResults: MutableList<TileSearchResult>,
         searchResultLimit: Int,
-        tileX: Int, tileY: Int
+        tileX: Int, tileY: Int,
+        houseNumber: String = "",
     ): Boolean {
-        val score = normalizedNeedle.fuzzyCompare(haystackString, true)
-        if (score < 0.25) {
+        val fuzzyScore = normalizedNeedle.fuzzyCompare(haystackString, true)
+        if (fuzzyScore < 0.25) {
+            // Taking a house number out of the search string makes the rest of it easier to match,
+            // so a match made that way loses a tie with one made from the whole string - otherwise
+            // "4a Avenida Sur" finds number 4a on 5a Avenida Sur.
+            val score = if (houseNumber.isEmpty()) fuzzyScore else fuzzyScore + HOUSE_NUMBER_PENALTY
+
             // If we already have better search results, discard this one
             val countOfBetter = searchResults.count { it.score < score }
             if (countOfBetter < searchResultLimit) {
                 println("Found $normalizedNeedle as $haystackString (score $score) in tile ($tileX, $tileY)")
-                searchResults += TileSearchResult(score, haystackString, tileX, tileY)
+                searchResults += TileSearchResult(score, haystackString, tileX, tileY, houseNumber)
                 searchResults.sortBy { it.score }
                 if (searchResults.size > searchResultLimit)
                     searchResults.removeAt(searchResults.lastIndex)
@@ -112,6 +123,46 @@ class TileSearch(
             }
         }
         return false
+    }
+
+    /**
+     * Compares [needle] with a string from a tile, and adds it to [searchResults] if it matches
+     * as a whole, by its last words ("rivoli" in "rue de rivoli"), or with a settlement name taken
+     * off the end of the needle.
+     */
+    private fun addMatches(
+        needle: String,
+        needleWithoutSettlement: String?,
+        houseNumber: String,
+        string: String,
+        searchResults: MutableList<TileSearchResult>,
+        searchResultLimit: Int,
+        tileX: Int, tileY: Int,
+    ) {
+        if (compareAndAddToResults(needle, string, searchResults, searchResultLimit, tileX, tileY, houseNumber))
+            return
+        if (string.length > needle.length) {
+            if (compareAndAddToResults(
+                    needle,
+                    generateEndOfString(string, needle.length),
+                    searchResults,
+                    searchResultLimit,
+                    tileX, tileY,
+                    houseNumber
+                )
+            )
+                return
+        }
+        if (needleWithoutSettlement != null) {
+            compareAndAddToResults(
+                needleWithoutSettlement,
+                string,
+                searchResults,
+                searchResultLimit,
+                tileX, tileY,
+                houseNumber
+            )
+        }
     }
 
     fun addLastWords(wordCount: Int, words: List<String>): String {
@@ -225,14 +276,16 @@ class TileSearch(
         val maxSearchRadius = 10
         val maxTurns = maxSearchRadius * 2
 
-        // Can we decode this into a street number and a street?
+        // Can we decode this into a street number and a street? A word starting with a digit may be
+        // a house number ("21 Kersland Drive", "Avenida Corrientes 1155"), but it may just as well
+        // be part of the name ("Avenida 9 de Julio", "4a Avenida Sur"), so when there is one the
+        // search is made both ways: without the number, and with the string as a whole.
         var housenumber = ""
         val needleBuilder = StringBuilder()
         val words = searchString.split(" ")
         for (word in words) {
             if (word.isEmpty()) continue
             if (word.first().isDigit()) {
-                // If any word starts with a number we're going to assume is a house number...big if.
                 housenumber = word
             } else {
                 // All other parts we use as the needle
@@ -241,18 +294,21 @@ class TileSearch(
             }
         }
         val normalizedNeedle = normalizeForSearch(needleBuilder.toString())
+        val wholeNeedle = if (housenumber.isEmpty()) null else normalizeForSearch(searchString)
 
         data class DetailedSearchResult(
             var score: Double,
             var string: String,
             var location: LngLatAlt,
             var properties: HashMap<String, Any?> = hashMapOf(),
-            val layer: String
+            val layer: String,
+            val houseNumber: String,
         )
 
         val searchResults = mutableListOf<TileSearchResult>()
         val searchResultLimit = 8
         val needleWithoutSettlement = generateWithoutSettlement(normalizedNeedle, settlementNames)
+        val wholeNeedleWithoutSettlement = wholeNeedle?.let { generateWithoutSettlement(it, settlementNames) }
         val tilesUsed = mutableSetOf<Long>()
         while (turnCount < maxTurns) {
             val tileIndex = cacheIndex(x, y)
@@ -281,35 +337,26 @@ class TileSearch(
                 }
             }
             for (string in cache) {
-                if (!compareAndAddToResults(
-                        normalizedNeedle,
+                addMatches(
+                    normalizedNeedle,
+                    needleWithoutSettlement,
+                    housenumber,
+                    string,
+                    searchResults,
+                    searchResultLimit,
+                    x, y
+                )
+                // The number can only be part of the name if the name has a number in it
+                if ((wholeNeedle != null) && string.any { it.isDigit() }) {
+                    addMatches(
+                        wholeNeedle,
+                        wholeNeedleWithoutSettlement,
+                        "",
                         string,
                         searchResults,
                         searchResultLimit,
                         x, y
                     )
-                ) {
-                    if (string.length > normalizedNeedle.length) {
-                        if (compareAndAddToResults
-                                (
-                                normalizedNeedle,
-                                generateEndOfString(string, normalizedNeedle.length),
-                                searchResults,
-                                searchResultLimit,
-                                x, y
-                            )
-                        )
-                            continue
-                    }
-                    if (needleWithoutSettlement != null) {
-                        compareAndAddToResults(
-                            needleWithoutSettlement,
-                            string,
-                            searchResults,
-                            searchResultLimit,
-                            x, y
-                        )
-                    }
                 }
             }
             // --- 2. Move to the next position in the spiral ---
@@ -449,7 +496,8 @@ class TileSearch(
                                                                 stringValue,
                                                                 coordinate,
                                                                 properties,
-                                                                layer.name
+                                                                layer.name,
+                                                                result.houseNumber
                                                             )
                                                         )
                                                         break
@@ -485,7 +533,8 @@ class TileSearch(
                                                             stringValue,
                                                             lineCentre,
                                                             properties,
-                                                            layer.name
+                                                            layer.name,
+                                                            result.houseNumber
                                                         )
                                                     )
                                                     break
@@ -534,7 +583,8 @@ class TileSearch(
                                                         stringValue,
                                                         centroid ?: polygonGeo.coordinates[0][0],
                                                         properties,
-                                                        layer.name
+                                                        layer.name,
+                                                        result.houseNumber
                                                     )
                                                 )
                                                 break
@@ -602,7 +652,7 @@ class TileSearch(
                             if (result.layer == "transportation") {
                                 val sd = StreetDescription(result.string, gridState)
                                 sd.createDescription(nearestWay, localizedStrings)
-                                val numberResult = sd.getLocationFromStreetNumber(housenumber)
+                                val numberResult = sd.getLocationFromStreetNumber(result.houseNumber)
                                 if (numberResult != null) {
                                     mvt.properties?.set("housenumber", numberResult.second)
                                     result.location = numberResult.first
@@ -697,6 +747,11 @@ class TileSearch(
                 featureName = mvt.getText(localizedStrings)
             )
         }
+    }
+
+    companion object {
+        // Added to the score of a match made by taking a house number out of the search string
+        private const val HOUSE_NUMBER_PENALTY = 0.001
     }
 }
 
