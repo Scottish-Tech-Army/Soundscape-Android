@@ -177,13 +177,22 @@ open class GridState(
     ) {
         if (grid.tiles.size <= 1) return
 
-        // Center of grid is bottom right of first tile
-        val gridCenter = getLatLonTileWithOffset(
-            grid.tiles[0].tileX,
-            grid.tiles[0].tileY,
-            zoomLevel,
-            1.0, 1.0
-        )
+        // The boundaries between tiles inside the grid, as opposed to around its outside. The tiles
+        // are listed row by row from the top left, so the left edges of the first row's tiles after
+        // the first are the grid's internal lines of longitude, and the top edges of the first
+        // column's tiles after the first are its internal lines of latitude. A 2x2 grid has one of
+        // each, through its centre, but a 3x3 grid has two - and joining only the pair through the
+        // corner of the first tile left every road and railway stopping dead at the other two.
+        val columns = grid.tiles.count { it.tileY == grid.tiles[0].tileY }
+        val rows = grid.tiles.size / columns
+        val internalLongitudes = (1 until columns).map { column ->
+            val tile = grid.tiles[column]
+            getLatLonTileWithOffset(tile.tileX, tile.tileY, zoomLevel, 0.0, 0.0).longitude
+        }.toSet()
+        val internalLatitudes = (1 until rows).map { row ->
+            val tile = grid.tiles[row * columns]
+            getLatLonTileWithOffset(tile.tileX, tile.tileY, zoomLevel, 0.0, 0.0).latitude
+        }.toSet()
 
         val tileEdgeList = mutableListOf<Intersection>()
         for (intersectionList in newGridIntersections) {
@@ -191,8 +200,8 @@ open class GridState(
                 if (intersection.value.intersectionType == IntersectionType.TILE_EDGE) {
                     // We have an edge - check if it's an internal edge to the grid
                     if (
-                        (intersection.value.location.longitude == gridCenter.longitude) or
-                        (intersection.value.location.latitude == gridCenter.latitude)
+                        (intersection.value.location.longitude in internalLongitudes) or
+                        (intersection.value.location.latitude in internalLatitudes)
                     ) {
                         // This intersection needs joining, so put add it to our list
                         tileEdgeList.add(intersection.value)
