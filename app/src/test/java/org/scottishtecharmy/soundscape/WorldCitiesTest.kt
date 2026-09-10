@@ -3,7 +3,6 @@ package org.scottishtecharmy.soundscape
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
-import org.junit.Ignore
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
@@ -24,9 +23,6 @@ import org.scottishtecharmy.soundscape.utils.process
  *
  * Addresses are written the way the country they're in writes them, whatever the phone is set
  * to, so the tests which check one run with the phone set to more than one country.
- *
- * The tests marked @Ignore describe what should happen where the app currently gets it wrong, and
- * say what happens instead.
  */
 class WorldCitiesTest {
 
@@ -162,17 +158,20 @@ class WorldCitiesTest {
         assertEquals("4a Avenida Sur", sanSalvador.search("4a Avenida Sur").first().name)
     }
 
-    @Ignore(
-        "Known bug: the cathedral comes back four times, once for each language its name is " +
-            "tagged in (Spanish, Catalan, Portuguese and Indonesian)."
-    )
     @Test
     fun sanSalvadorSearchListsEachPlaceOnce() {
-        val cathedral = LngLatAlt(-89.19107526540756, 13.698520089700347)
-        val results = sanSalvador.search("Catedral").filter {
-            sanSalvador.gridState.ruler.distance(it.location, cathedral) < 50.0
-        }
-        assertEquals(results.joinToString { it.name }, 1, results.size)
+        // The cathedral's name is tagged in Spanish, Catalan, Portuguese and Indonesian, and all
+        // of them match. (Its crypt is a separate place, and is found too.)
+        val cathedralNames = setOf(
+            "Catedral Metropolitana del Divino Salvador del Mundo",
+            "Catedral de San Salvador",
+            "Catedral Metropolitana de San Salvador",
+            "Katedral San Salvador",
+        )
+        val results = sanSalvador.search("Catedral")
+        val cathedral = results.filter { it.name in cathedralNames }
+        assertEquals(results.joinToString { it.name }, 1, cathedral.size)
+        assertEquals("Catedral Metropolitana del Divino Salvador del Mundo", cathedral.first().name)
     }
 
     // ------------------------------------------------------------------------------------ Paris
@@ -199,10 +198,6 @@ class WorldCitiesTest {
         )
     }
 
-    @Ignore(
-        "Known bug: searching for \"Rivoli\" from beside Rue de Rivoli only finds the Louvre - " +
-            "Rivoli metro station, 500m away."
-    )
     @Test
     fun parisSearchLastWordOfStreetName() {
         val results = paris.search("Rivoli")
@@ -242,19 +237,16 @@ class WorldCitiesTest {
         )
     }
 
-    @Ignore(
-        "Known bug: finds nothing, though the Carlos Pellegrini subway station is 30m away on the " +
-            "street of the same name."
-    )
     @Test
     fun buenosAiresSearchStationAndStreetOfTheSameName() {
+        // The station is on the street of the same name, 30m away
         val results = buenosAires.search("Carlos Pellegrini")
         assertTrue(results.joinToString { it.name }, results.any { it.name == "Carlos Pellegrini" })
     }
 
-    @Ignore("Known bug: only \"Terminal de Combis Obelisco\" comes back, not the Obelisco itself.")
     @Test
     fun buenosAiresSearchObelisco() {
+        // "Terminal de Combis Obelisco" mustn't hide the Obelisco itself
         val results = buenosAires.search("Obelisco")
         assertTrue(results.joinToString { it.name }, results.any { it.name == "Obelisco" })
     }
