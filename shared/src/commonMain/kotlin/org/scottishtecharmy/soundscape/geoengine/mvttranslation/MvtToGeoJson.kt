@@ -989,14 +989,13 @@ fun vectorTileToGeoJson(
                 geoFeature.osmId = id
                 geoFeature.housenumber = housenumber
                 if (layer.name == "housenumber") {
-                    // We store house numbers in a FeatureCollection per named street
-                    // TODO: What if there's no street? That's an OSM error, but there are plenty of
-                    //  cases where it happens.
+                    // We store house numbers in a FeatureCollection per named street. One without a
+                    // street goes under "null", with the POIs and buildings that have no street -
+                    // which is most of them in Japan, where a building is numbered within its
+                    // block rather than along a street.
                     geoFeature.superCategory = SuperCategoryId.HOUSENUMBER
-                    if (!streetNumberMap.containsKey(street.toString())) {
-                        streetNumberMap[street.toString()] = FeatureCollection()
-                    }
-                    streetNumberMap[street]?.addFeature(geoFeature)
+                    streetNumberMap.getOrPut(street.toString()) { FeatureCollection() }
+                        .addFeature(geoFeature)
                 } else {
                     geoFeature.name = name
                     geoFeature.ref = ref
