@@ -50,7 +50,11 @@ class PolygonMergePerformanceTest {
     private val regions = listOf(
         Region("Edinburgh", 16090 / 2, 10207 / 2, 4),
         Region("Bristol", 16128 / 2, 10880 / 2, 16),
-        Region("Manchester", 16128 / 2, 10560 / 2, 16),
+        // 8x8 tiles at the centre of each city with a test extract outside the UK
+        Region("Tehran", 10526, 6446, 8),
+        Region("San Salvador", 4128, 7558, 8),
+        Region("Paris", 8294, 5632, 8),
+        Region("Buenos Aires", 5530, 9868, 8),
     )
 
     @Test

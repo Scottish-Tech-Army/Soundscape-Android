@@ -21,6 +21,21 @@ private class FakePreferencesProvider(private val values: Map<String, String>) :
 }
 
 /**
+ * Runs [block] with the JVM default locale set to [languageTag] - a bare language like "ar", or a
+ * language and region like "es-AR" - and restores the original afterwards. The region is what
+ * getDefaultCountryCode() reports as the device's country.
+ */
+internal fun <T> withDefaultLocale(languageTag: String, block: () -> T): T {
+    val original = Locale.getDefault()
+    try {
+        Locale.setDefault(Locale.forLanguageTag(languageTag))
+        return block()
+    } finally {
+        Locale.setDefault(original)
+    }
+}
+
+/**
  * The Photon search server (https://photon.soundscape.scottishtecharmy.org) is only built with
  * English, French, German and each location's local language. Passing any other "lang" query
  * param makes Photon return an error, so getPhotonLanguage() must fall back to not passing a
@@ -28,15 +43,6 @@ private class FakePreferencesProvider(private val values: Map<String, String>) :
  * and named in the local language, which is exactly what's wanted.
  */
 class GeoEngineLanguageTest {
-    private fun withDefaultLocale(language: String, block: () -> Unit) {
-        val original = Locale.getDefault()
-        try {
-            Locale.setDefault(Locale.Builder().setLanguage(language).build())
-            block()
-        } finally {
-            Locale.setDefault(original)
-        }
-    }
 
     @Test
     fun unsupportedDeviceLanguageFallsBackToNull() {

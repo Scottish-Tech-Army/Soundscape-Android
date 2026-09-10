@@ -1,5 +1,6 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
+import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -69,5 +70,46 @@ class SearchNormalizationTest {
     @Test
     fun emptyStringReturnsEmptyString() {
         assertEquals("", normalizeForSearch(""))
+    }
+
+    @Test
+    fun foldsFrenchAndSpanishAccents() {
+        // Paris, San Salvador and Buenos Aires street names are routinely typed without accents.
+        assertEquals("chatelet", normalizeForSearch("Châtelet"))
+        assertEquals("rue saint honore", normalizeForSearch("Rue Saint-Honoré"))
+        assertEquals("francois", normalizeForSearch("François"))
+        assertEquals("avenida espana", normalizeForSearch("Avenida España"))
+        assertEquals("pena", normalizeForSearch("Peña"))
+    }
+
+    @Ignore // Known bug: NFKD doesn't decompose the œ ligature, so "Sacré-Cœur" can't be found by typing "coeur".
+    @Test
+    fun foldsOeLigature() {
+        assertEquals("sacre coeur", normalizeForSearch("Sacré-Cœur"))
+    }
+
+    @Test
+    fun zeroWidthNonJoinerSeparatesPersianWords() {
+        // Persian writes the parts of some words with a zero-width non-joiner (U+200C) between
+        // them rather than a space, e.g. "بن‌بست" (dead end). It isn't a letter, so it's treated
+        // like any other separator - which makes the data match a search typed with a space.
+        assertEquals("بن بست", normalizeForSearch("بن‌بست"))
+        assertEquals(normalizeForSearch("بن بست"), normalizeForSearch("بن‌بست"))
+    }
+
+    @Ignore // Known bug: Persian (U+06F0..U+06F9) and Arabic-Indic (U+0660..U+0669) digits aren't folded to ASCII.
+    @Test
+    fun foldsPersianAndArabicIndicDigits() {
+        assertEquals("پلاک 12", normalizeForSearch("پلاک ۱۲"))
+        assertEquals("12", normalizeForSearch("١٢"))
+    }
+
+    @Ignore // Known bug: Arabic yeh/kaf (U+064A, U+0643) aren't folded to Persian yeh/keheh (U+06CC, U+06A9), so text typed on an Arabic keyboard only finds Tehran names when it's close enough for the fuzzy match.
+    @Test
+    fun foldsArabicYehAndKafToPersian() {
+        // "خیابان" (street) as it's written in Iranian OSM data, and as typed on an Arabic keyboard.
+        assertEquals(normalizeForSearch("خیابان"), normalizeForSearch("خيابان"))
+        // "کوچه" (alley)
+        assertEquals(normalizeForSearch("کوچه"), normalizeForSearch("كوچه"))
     }
 }

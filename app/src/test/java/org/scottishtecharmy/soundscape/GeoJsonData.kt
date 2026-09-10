@@ -64,7 +64,10 @@ object GeoJsonData {
 val sixtyAcresCloseTestLocation = LngLatAlt(-2.693002695425122, 51.43938442591545)
 val longAshtonRoadTestLocation = LngLatAlt(-2.6573400576040456, 51.430456817236575)
 val woodlandWayTestLocation = LngLatAlt(-2.695517313268283, 51.44082881061331)
-val centralManchesterTestLocation = LngLatAlt(-2.239529, 53.480408)
+val tehranTestLocation = LngLatAlt(51.3910, 35.7009)          // Meydan-e Enghelab-e Eslami
+val sanSalvadorTestLocation = LngLatAlt(-89.1895, 13.6975)    // Plaza Libertad
+val parisTestLocation = LngLatAlt(2.3470, 48.8584)            // Place du Châtelet
+val buenosAiresTestLocation = LngLatAlt(-58.3816, -34.6037)   // Obelisco
 val failandTestLocation = LngLatAlt(-2.69439697265625, 51.43860066718254)
 val edinburghTestLocation = LngLatAlt(-3.2024509, 55.9511984)
 val glasgowTestLocation = LngLatAlt(-4.2368873, 55.8553207)
