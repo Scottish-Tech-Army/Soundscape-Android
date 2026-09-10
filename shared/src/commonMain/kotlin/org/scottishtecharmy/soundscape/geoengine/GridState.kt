@@ -215,8 +215,9 @@ open class GridState(
             for (intersection2 in tileEdgeList) {
                 // Don't join to ourselves
                 if (intersection1 != intersection2) {
-                    // Don't join if already joined
-                    if (intersection1.members.size < 2) {
+                    // Don't join if already joined. The number of members doesn't say, as Ways
+                    // which share their geometry share the intersection where they cross the edge.
+                    if (intersection1.members.none { it.wayType == WayType.JOINER }) {
                         // Join if within 1.0m
                         val distance =
                             ruler.distance(intersection1.location, intersection2.location)

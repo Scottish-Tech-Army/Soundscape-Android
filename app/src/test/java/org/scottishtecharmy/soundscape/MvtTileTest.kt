@@ -3330,46 +3330,62 @@ class MvtTileTest {
 
     /**
      * Every boundary between the tiles of a grid is stitched, not just the ones through its
-     * centre. A 3x3 grid has two internal lines of longitude and two of latitude, and only the pair
-     * through the corner of the first tile used to be joined, so roads and railways alike stopped
-     * dead at the other two - riding FC Mitre into Retiro ended at the tile edge 700m out.
+     * centre, and every Way crossing one is joined to its continuation in the next tile. A 3x3 grid
+     * has two internal lines of longitude and two of latitude, and only the pair through the corner
+     * of the first tile used to be joined, so roads and railways alike stopped dead at the other two
+     * - riding FC Mitre into Retiro ended at the tile edge 700m out.
      *
-     * Even on a stitched boundary the odd tile edge end in real data goes unjoined (one of 173 roads
-     * on Glasgow's), so this checks for the boundary as a whole being stitched rather than every
-     * last end on it.
+     * The odd end went unjoined even on a stitched boundary, wherever the last vertex before the
+     * edge was a junction on the tile's outermost row of samples. The clipped edge point is only
+     * half a sample from that vertex, so it was taken for the same junction and never became a
+     * TILE_EDGE - the footway off the end of Templeton Street in Glasgow was one. And where Ways
+     * share their geometry, as Métro 8 and 9 do under the Grands Boulevards, only one of them was
+     * joined.
      */
     @Test
     fun testTileEdgesAreStitchedOnEveryInternalBoundaryOfTheGrid() {
-        val tileGrid = getTileGrid(glasgowTestLocation, MAX_ZOOM_LEVEL, 3)
-        val gridState = getGridStateForLocation(glasgowTestLocation, MAX_ZOOM_LEVEL, 3)
-        val internalLongitudes = (1..2).map { column ->
-            val tile = tileGrid.tiles[column]
-            getLatLonTileWithOffset(tile.tileX, tile.tileY, MAX_ZOOM_LEVEL, 0.0, 0.0).longitude
-        }
-        val internalLatitudes = (1..2).map { row ->
-            val tile = tileGrid.tiles[row * 3]
-            getLatLonTileWithOffset(tile.tileX, tile.tileY, MAX_ZOOM_LEVEL, 0.0, 0.0).latitude
-        }
-
-        for (tree in listOf(TreeId.ROADS_AND_PATHS, TreeId.TRANSIT)) {
-            val tileEdges = gridState.getFeatureTree(tree).getAllCollection().features
-                .filterIsInstance<Way>()
-                .flatMap { it.intersections.filterNotNull() }
-                .filter { it.intersectionType == IntersectionType.TILE_EDGE }
-                .distinct()
-
-            val boundaries = internalLongitudes.map { longitude ->
-                "longitude $longitude" to tileEdges.filter { it.location.longitude == longitude }
-            } + internalLatitudes.map { latitude ->
-                "latitude $latitude" to tileEdges.filter { it.location.latitude == latitude }
+        val cities = mapOf(
+            "Glasgow" to glasgowTestLocation,
+            "Tehran" to tehranTestLocation,
+            "San Salvador" to sanSalvadorTestLocation,
+            "Paris" to parisTestLocation,
+            "Buenos Aires" to buenosAiresTestLocation,
+        )
+        for ((city, location) in cities) {
+            val tileGrid = getTileGrid(location, MAX_ZOOM_LEVEL, 3)
+            val gridState = getGridStateForLocation(location, MAX_ZOOM_LEVEL, 3)
+            val internalLongitudes = (1..2).map { column ->
+                val tile = tileGrid.tiles[column]
+                getLatLonTileWithOffset(tile.tileX, tile.tileY, MAX_ZOOM_LEVEL, 0.0, 0.0).longitude
             }
-            for ((boundary, ends) in boundaries) {
-                val joined = ends.count { end -> end.members.any { it.wayType == WayType.JOINER } }
-                assertTrue("$tree: expected Ways crossing $boundary", ends.isNotEmpty())
-                assertTrue(
-                    "$tree: only $joined of ${ends.size} tile edges joined at $boundary",
-                    joined >= ends.size * 0.9
-                )
+            val internalLatitudes = (1..2).map { row ->
+                val tile = tileGrid.tiles[row * 3]
+                getLatLonTileWithOffset(tile.tileX, tile.tileY, MAX_ZOOM_LEVEL, 0.0, 0.0).latitude
+            }
+
+            for (tree in listOf(TreeId.ROADS_AND_PATHS, TreeId.TRANSIT)) {
+                val tileEdges = gridState.getFeatureTree(tree).getAllCollection().features
+                    .filterIsInstance<Way>()
+                    .flatMap { it.intersections.filterNotNull() }
+                    .filter { it.intersectionType == IntersectionType.TILE_EDGE }
+                    .distinct()
+
+                val boundaries = internalLongitudes.map { longitude ->
+                    "longitude $longitude" to tileEdges.filter { it.location.longitude == longitude }
+                } + internalLatitudes.map { latitude ->
+                    "latitude $latitude" to tileEdges.filter { it.location.latitude == latitude }
+                }
+                for ((boundary, ends) in boundaries) {
+                    // San Salvador has no railway to speak of, so nothing of it crosses the grid
+                    if ((tree == TreeId.ROADS_AND_PATHS) || (city != "San Salvador"))
+                        assertTrue("$city $tree: expected Ways crossing $boundary", ends.isNotEmpty())
+                    val unjoined = ends.filter { end -> end.members.none { it.wayType == WayType.JOINER } }
+                    assertTrue(
+                        "$city $tree: ${unjoined.size} of ${ends.size} tile edges unjoined at $boundary: " +
+                            unjoined.joinToString { "${it.location.latitude},${it.location.longitude}" },
+                        unjoined.isEmpty()
+                    )
+                }
             }
         }
     }
