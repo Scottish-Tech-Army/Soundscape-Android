@@ -1,6 +1,5 @@
 package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
-import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
@@ -82,9 +81,9 @@ class SearchNormalizationTest {
         assertEquals("pena", normalizeForSearch("Peña"))
     }
 
-    @Ignore // Known bug: NFKD doesn't decompose the œ ligature, so "Sacré-Cœur" can't be found by typing "coeur".
     @Test
     fun foldsOeLigature() {
+        // NFKD doesn't decompose the œ ligature, but "Sacré-Cœur" is typed "coeur"
         assertEquals("sacre coeur", normalizeForSearch("Sacré-Cœur"))
     }
 
@@ -97,19 +96,23 @@ class SearchNormalizationTest {
         assertEquals(normalizeForSearch("بن بست"), normalizeForSearch("بن‌بست"))
     }
 
-    @Ignore // Known bug: Persian (U+06F0..U+06F9) and Arabic-Indic (U+0660..U+0669) digits aren't folded to ASCII.
     @Test
     fun foldsPersianAndArabicIndicDigits() {
+        // Persian (U+06F0..U+06F9) and Arabic-Indic (U+0660..U+0669) digits, which are used for
+        // house numbers and numbered alleys in Iranian map data, but often typed as ASCII
         assertEquals("پلاک 12", normalizeForSearch("پلاک ۱۲"))
         assertEquals("12", normalizeForSearch("١٢"))
     }
 
-    @Ignore // Known bug: Arabic yeh/kaf (U+064A, U+0643) aren't folded to Persian yeh/keheh (U+06CC, U+06A9), so text typed on an Arabic keyboard only finds Tehran names when it's close enough for the fuzzy match.
     @Test
     fun foldsArabicYehAndKafToPersian() {
-        // "خیابان" (street) as it's written in Iranian OSM data, and as typed on an Arabic keyboard.
+        // An Arabic keyboard types yeh, alef maksura and kaf (U+064A, U+0649, U+0643) where
+        // Persian has farsi yeh and keheh (U+06CC, U+06A9), and Iranian map data has both.
+        // "خیابان" (street)
         assertEquals(normalizeForSearch("خیابان"), normalizeForSearch("خيابان"))
         // "کوچه" (alley)
         assertEquals(normalizeForSearch("کوچه"), normalizeForSearch("كوچه"))
+        // "حقوقی" (legal)
+        assertEquals(normalizeForSearch("حقوقی"), normalizeForSearch("حقوقى"))
     }
 }

@@ -86,9 +86,7 @@ class WorldCitiesTest {
 
     @Test
     fun tehranSearchTypedOnArabicKeyboard() {
-        // An Arabic keyboard types kaf and yeh (ك ي) where Persian has keheh and farsi yeh (ک ی).
-        // Search doesn't treat them as the same letter (see SearchNormalizationTest), but the
-        // fuzzy match is loose enough to find a name with a couple of them in it.
+        // An Arabic keyboard types kaf and yeh (ك ي) where Persian has keheh and farsi yeh (ک ی)
         assertEquals("کتاب نوین", tehran.search("كتاب نوين").first().name)
     }
 
