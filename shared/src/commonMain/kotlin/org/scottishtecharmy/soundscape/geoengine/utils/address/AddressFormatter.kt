@@ -154,9 +154,31 @@ class AddressFormatter(
 
     private fun findTemplate(components: MutableMap<String, String>): JsonElement {
         val cc = components["country_code"] ?: "default"
-        return Templates.worldwide[cc]
+        return languageTemplate(cc, components)
+            ?: Templates.worldwide[cc]
             ?: Templates.worldwide["default"]
             ?: JsonObject(emptyMap())
+    }
+
+    /**
+     * The country's template for the language the address is written in, where it has one. The
+     * countries whose own script isn't Latin - Japan, China, Korea, Iran and their neighbours - have
+     * a template in their own language and one in a Latin-script language, which order an address
+     * differently: "北区, 創造のみち, 20" but "20 Sozo-no-michi, Kita". The names in an address are
+     * in whichever script the map has them in, so it's the script that picks the template. Their
+     * plain country template is only one or the other, and not always the same one - Japan's is the
+     * English one, and China's the Chinese.
+     */
+    private fun languageTemplate(countryCode: String, components: Map<String, String>): JsonElement? {
+        val languages = Templates.worldwide.keys
+            .filter { (it.length == 5) && it.startsWith("${countryCode}_") }
+            .map { it.substring(3) }
+        if (languages.isEmpty()) return null
+
+        val latinScript = components.filterKeys { !it.endsWith("_code") }.values
+            .all { value -> value.none { it.isLetter() && !isLatinLetter(it) } }
+        val language = languages.firstOrNull { (it in latinScriptLanguages) == latinScript } ?: return null
+        return Templates.worldwide["${countryCode}_$language"]
     }
 
     private fun resolveTemplateRef(ref: String): String {
@@ -344,6 +366,13 @@ class AddressFormatter(
     }
 
     companion object {
+        // The Latin-script languages among the country templates' language variants - English, and
+        // Portuguese for Macau
+        private val latinScriptLanguages = setOf("en", "pt")
+
+        // Basic Latin through Latin Extended-B, and Latin Extended Additional (Vietnamese)
+        private fun isLatinLetter(c: Char) = (c.code < 0x0250) || (c.code in 0x1E00..0x1EFF)
+
         private val cleanupReplacements = listOf(
             Regex("[},\\s]+$") to "",
             Regex("^[,\\s]+") to "",
