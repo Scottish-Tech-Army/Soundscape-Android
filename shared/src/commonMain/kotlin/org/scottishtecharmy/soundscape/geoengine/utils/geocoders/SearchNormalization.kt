@@ -5,6 +5,17 @@ expect fun normalizeUnicode(input: String): String
 private val apostrophes =
     setOf('\'', '\u2018', '\u2019', '\u201B', '\u02BB', '\u02BC', '\u02B9', '\uA78C', '\uFF07')
 
+// Letters which are spelt more than one way and which NFKD leaves alone. Arabic yeh, alef maksura
+// and kaf (ي ى ك) are what an Arabic keyboard types where Persian has farsi yeh and keheh (ی ک),
+// and Iranian map data has a mixture of both. The ligatures are routinely typed as two letters.
+private val foldedLetters = mapOf(
+    'ي' to "ی",
+    'ى' to "ی",
+    'ك' to "ک",
+    'œ' to "oe", 'Œ' to "oe",
+    'æ' to "ae", 'Æ' to "ae",
+)
+
 fun normalizeForSearch(input: String): String {
     val nfkd = normalizeUnicode(input)
 
@@ -23,6 +34,15 @@ fun normalizeForSearch(input: String): String {
             continue
         }
         if (ch in apostrophes) continue
+
+        // Digits from any script, e.g. Persian ۱۲, become ASCII so that a number matches however
+        // it was typed or mapped
+        val folded = if (ch.isDigit()) ('0' + ch.digitToInt()).toString() else foldedLetters[ch]
+        if (folded != null) {
+            sb.append(folded)
+            lastWasSpace = false
+            continue
+        }
 
         val isLetterOrDigit = ch.isLetterOrDigit()
         val outCh = when {
