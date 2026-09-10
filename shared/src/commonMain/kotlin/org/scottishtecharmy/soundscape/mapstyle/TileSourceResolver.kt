@@ -54,8 +54,11 @@ fun resolveTileSourceUrl(
     for (extract in offlineExtractPaths) {
         try {
             val reader = PmTilesReader(extract.toPath())
-            val tile = reader.getTile(MAX_ZOOM_LEVEL, tileXY.first, tileXY.second)
-            reader.close()
+            val tile = try {
+                reader.getTile(MAX_ZOOM_LEVEL, tileXY.first, tileXY.second)
+            } finally {
+                reader.close()
+            }
 
             if (tile != null) {
                 val fileSize = systemFileSystem.metadata(extract.toPath()).size ?: 0L

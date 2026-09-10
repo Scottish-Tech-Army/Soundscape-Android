@@ -12,6 +12,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import okio.Buffer
 import okio.GzipSink
+import okio.IOException
 import okio.Path
 import okio.Path.Companion.toPath
 import okio.buffer
@@ -51,7 +52,20 @@ class OfflineMapManagerTest {
 
     @AfterTest
     fun tearDown() {
-        systemFileSystem.deleteRecursively(tempDir)
+        // OfflineMapManager validates downloaded extracts on a background scope of its own, which
+        // can still have one open when a test finishes - and Windows won't delete an open file. So
+        // give it a moment to finish rather than failing the test in its clean up.
+        runBlocking {
+            for (attempt in 1..20) {
+                try {
+                    systemFileSystem.deleteRecursively(tempDir)
+                    return@runBlocking
+                } catch (e: IOException) {
+                    if (attempt == 20) throw e
+                    delay(50)
+                }
+            }
+        }
     }
 
     private fun writeFile(name: String, text: String) {

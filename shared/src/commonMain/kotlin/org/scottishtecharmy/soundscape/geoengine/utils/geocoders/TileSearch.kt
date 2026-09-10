@@ -195,12 +195,17 @@ class TileSearch(
         val extracts = findExtractPaths(offlineExtractPath).toMutableList()
         var reader: PmTilesReader? = null
         for (extract in extracts) {
+            // PmTilesReader closes its own file if it can't be opened
+            val candidate = try { PmTilesReader(extract.toPath()) } catch (_: Exception) { continue }
+            // Keep the last extract that could be read even if it doesn't have this tile, but close
+            // the one it replaces
+            try { reader?.close() } catch (_: Exception) {}
+            reader = candidate
             try {
-                reader = PmTilesReader(extract.toPath())
-                if (reader.getTile(MAX_ZOOM_LEVEL, tileLocation.first, tileLocation.second) != null)
+                if (candidate.getTile(MAX_ZOOM_LEVEL, tileLocation.first, tileLocation.second) != null)
                     break
             } catch (_: Exception) {
-                try { reader?.close() } catch (_: Exception) {}
+                try { candidate.close() } catch (_: Exception) {}
                 reader = null
             }
         }
