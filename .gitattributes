@@ -1,0 +1,3 @@
+# The travel-mode tests regenerate their synthetic GPX tracks with LF line endings on every run, so
+# check GPX files out that way too - otherwise they show as modified on Windows after every test run.
+*.gpx text eol=lf
