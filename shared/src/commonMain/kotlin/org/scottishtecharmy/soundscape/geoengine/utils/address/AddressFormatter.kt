@@ -166,8 +166,8 @@ class AddressFormatter(
      * a template in their own language and one in a Latin-script language, which order an address
      * differently: "北区, 創造のみち, 20" but "20 Sozo-no-michi, Kita". The names in an address are
      * in whichever script the map has them in, so it's the script that picks the template. Their
-     * plain country template is only one or the other, and not always the same one - Japan's is the
-     * English one, and China's the Chinese.
+     * plain country template isn't necessarily the one for their own language - Japan's and China's
+     * are both the English one.
      */
     private fun languageTemplate(countryCode: String, components: Map<String, String>): JsonElement? {
         val languages = Templates.worldwide.keys
