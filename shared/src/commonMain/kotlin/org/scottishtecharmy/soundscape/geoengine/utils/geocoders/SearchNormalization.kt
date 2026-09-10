@@ -2,8 +2,15 @@ package org.scottishtecharmy.soundscape.geoengine.utils.geocoders
 
 expect fun normalizeUnicode(input: String): String
 
-private val apostrophes =
-    setOf('\'', '‘', '’', '‛', 'ʻ', 'ʼ', 'ʹ', 'ꞌ', '＇')
+// normalizeForSearch runs over every string in the tiles around the user whenever the search needs
+// them, so it keeps what it does per character cheap: ASCII - most of the characters there are, even
+// in names in other scripts - takes a short path, and the lookups are `when`s, which don't box the
+// Char the way looking it up in a Set or Map would.
+
+private fun isApostrophe(ch: Char) = when (ch) {
+    '\'', '‘', '’', '‛', 'ʻ', 'ʼ', 'ʹ', 'ꞌ', '＇' -> true
+    else -> false
+}
 
 // Letters which are spelt more than one way and which NFKD leaves alone, folded to the way they're
 // most often typed:
@@ -15,30 +22,32 @@ private val apostrophes =
 //   ɓ ɗ ƙ ƴ - and Icelandic's eth and thorn aren't an accent on a letter, but they're typed as the
 //   letter they look like on a keyboard without them.
 // - Greek's final sigma (ς) is the σ that an upper case Σ lowercases to.
-private val foldedLetters = mapOf(
-    'ي' to "ی", 'ى' to "ی", 'ك' to "ک", // ي ى ك to ی ی ک
-    'ة' to "ه", 'ہ' to "ه", 'ٱ' to "ا", // ة ہ ٱ to ه ه ا
-    'œ' to "oe", 'Œ' to "oe",
-    'æ' to "ae", 'Æ' to "ae",
-    'ß' to "ss", 'ẞ' to "ss",                                     // ß ẞ
-    'ø' to "o", 'Ø' to "o",
-    'ł' to "l", 'Ł' to "l",
-    'đ' to "d", 'Đ' to "d",                                 // đ Đ
-    'ð' to "d", 'Ð' to "d",                                 // ð Ð
-    'þ' to "th", 'Þ' to "th",
-    'ı' to "i",                                                  // ı
-    'ɓ' to "b", 'Ɓ' to "b",                                 // ɓ Ɓ
-    'ɗ' to "d", 'Ɗ' to "d",                                 // ɗ Ɗ
-    'ƙ' to "k", 'Ƙ' to "k",                                 // ƙ Ƙ
-    'ƴ' to "y", 'Ƴ' to "y",                                 // ƴ Ƴ
-    'ς' to "σ",                                             // ς to σ
-)
+private fun foldedLetter(ch: Char): String? = when (ch) {
+    'ي', 'ى' -> "ی"
+    'ك' -> "ک"
+    'ة', 'ہ' -> "ه"
+    'ٱ' -> "ا"
+    'œ', 'Œ' -> "oe"
+    'æ', 'Æ' -> "ae"
+    'ß', 'ẞ' -> "ss"
+    'ø', 'Ø' -> "o"
+    'ł', 'Ł' -> "l"
+    'đ', 'Đ', 'ð', 'Ð' -> "d"
+    'þ', 'Þ' -> "th"
+    'ı' -> "i"
+    'ɓ', 'Ɓ' -> "b"
+    'ɗ', 'Ɗ' -> "d"
+    'ƙ', 'Ƙ' -> "k"
+    'ƴ', 'Ƴ' -> "y"
+    'ς' -> "σ"
+    else -> null
+}
 
 // Invisible characters which change how the letters around them are drawn, but not what's written:
-// the Arabic tatweel (ـ), which draws out the join between two letters, and the zero width joiner,
+// the Arabic tatweel, which draws out the join between two letters, and the zero width joiner,
 // which picks out a way of joining letters in Hindi, Marathi and Bengali, as in कार्‍यालय
-private val droppedCharacters = setOf('ـ', '‍')
-
+private const val TATWEEL = 'ـ'
+private const val ZERO_WIDTH_JOINER = '‍'
 private const val ZERO_WIDTH_NON_JOINER = '‌'
 
 private fun isArabicScript(ch: Char) =
@@ -71,17 +80,19 @@ internal fun codePointBefore(string: String, index: Int): Int {
 private fun isSymbolBeyondBmp(codePoint: Int) =
     (codePoint in 0x1D000..0x1D24F) || (codePoint in 0x1F000..0x1FAFF) || (codePoint in 0xE0000..0xE007F)
 
-private val combiningMarks = setOf(
-    CharCategory.NON_SPACING_MARK,
-    CharCategory.COMBINING_SPACING_MARK,
-    CharCategory.ENCLOSING_MARK,
-)
+private fun isCombiningMark(ch: Char) = when (ch.category) {
+    CharCategory.NON_SPACING_MARK, CharCategory.COMBINING_SPACING_MARK, CharCategory.ENCLOSING_MARK -> true
+    else -> false
+}
 
 fun normalizeForSearch(input: String): String {
-    val nfkd = normalizeUnicode(input)
+    // NFKD leaves ASCII as it is, and seeing that a string is all ASCII costs less than asking the
+    // platform to normalize it
+    val nfkd = if (input.all { it.code < 0x80 }) input else normalizeUnicode(input)
 
     val sb = StringBuilder(nfkd.length)
     var lastWasSpace = false
+    var hasLetterBeyondBmp = false
 
     fun appendSpace() {
         if (!lastWasSpace) {
@@ -90,10 +101,28 @@ fun normalizeForSearch(input: String): String {
         }
     }
 
+    // Catalan's l·l, which is also typed as l.l, is a double l
+    fun isBetweenCatalanDoubleL(index: Int) =
+        (sb.lastOrNull() == 'l') && (index + 1 < nfkd.length) && (nfkd[index + 1].lowercaseChar() == 'l')
+
     var skip = 0
     for ((index, ch) in nfkd.withIndex()) {
         if (skip > 0) {
             skip--
+            continue
+        }
+
+        // ASCII needs nothing of what follows beyond lowercasing its letters, taking its apostrophe
+        // out, and taking anything else for a gap between words
+        if (ch.code < 0x80) {
+            when {
+                ch.isLetterOrDigit() -> {
+                    sb.append(ch.lowercaseChar())
+                    lastWasSpace = false
+                }
+                (ch == '\'') || ((ch == '.') && isBetweenCatalanDoubleL(index)) -> {}
+                else -> appendSpace()
+            }
             continue
         }
 
@@ -110,6 +139,7 @@ fun normalizeForSearch(input: String): String {
                     sb.append(ch)
                     sb.append(nfkd[index + 1])
                     lastWasSpace = false
+                    hasLetterBeyondBmp = true
                 }
             }
             continue
@@ -129,9 +159,9 @@ fun normalizeForSearch(input: String): String {
         }
 
         // A variation selector picks out one way of drawing the character before it, which the
-        // same character drawn the other way has to match
-        if (ch.code in 0xFE00..0xFE0F) continue
-        if (ch in droppedCharacters) continue
+        // same character drawn the other way has to match - and like the tatweel and the joiner,
+        // it isn't part of what's written
+        if ((ch.code in 0xFE00..0xFE0F) || (ch == TATWEEL) || (ch == ZERO_WIDTH_JOINER)) continue
 
         // The zero width non-joiner separates the parts of a Persian word, as in "بن‌بست", where
         // it's typed as a space as often as not - so there it counts as one. Elsewhere, in Hindi,
@@ -144,7 +174,7 @@ fun normalizeForSearch(input: String): String {
             continue
         }
 
-        if (ch.category in combiningMarks) {
+        if (isCombiningMark(ch)) {
             // Strip the Latin/Greek/Cyrillic combining diacritics, which is what NFKD produces for
             // accented letters (e.g. é -> e + U+0301). Arabic's vowel marks (U+064B..U+0652) are
             // hardly ever typed, and the hamza and madda which NFKD takes off an alef (أ إ آ,
@@ -158,13 +188,7 @@ fun normalizeForSearch(input: String): String {
             lastWasSpace = false
             continue
         }
-        if (ch in apostrophes) continue
-
-        // Catalan's l·l, which is also typed as l.l, is a double l
-        if (((ch == '·') || (ch == '.')) && (sb.lastOrNull() == 'l') &&
-            (index + 1 < nfkd.length) && (nfkd[index + 1].lowercaseChar() == 'l')
-        )
-            continue
+        if (isApostrophe(ch) || ((ch == '·') && isBetweenCatalanDoubleL(index))) continue
 
         // Hiragana and katakana spell the same sounds, and a name written in one is looked for in
         // the other, so katakana become hiragana
@@ -176,7 +200,7 @@ fun normalizeForSearch(input: String): String {
 
         // Digits from any script, e.g. Persian ۱۲, become ASCII so that a number matches however
         // it was typed or mapped
-        val folded = if (ch.isDigit()) ('0' + ch.digitToInt()).toString() else foldedLetters[ch]
+        val folded = if (ch.isDigit()) ('0' + ch.digitToInt()).toString() else foldedLetter(ch)
         if (folded != null) {
             sb.append(folded)
             lastWasSpace = false
@@ -191,5 +215,8 @@ fun normalizeForSearch(input: String): String {
         }
     }
 
-    return sb.toString().trim().lowercase()
+    // Every letter has been lowercased as it went in, apart from those beyond U+FFFF, which only the
+    // whole string can be
+    val normalized = sb.toString().trim()
+    return if (hasLetterBeyondBmp) normalized.lowercase() else normalized
 }

@@ -103,6 +103,10 @@ class TileSearch(
         tileX: Int, tileY: Int,
         houseNumber: String = "",
     ): Boolean {
+        // A haystack a quarter shorter than the needle is at least a quarter of the needle's length
+        // from it, which is too far to match - and that's cheaper to see than the distance
+        if (normalizedNeedle.isNotEmpty() && (haystackString.length * 4 <= normalizedNeedle.length * 3))
+            return false
         val fuzzyScore = normalizedNeedle.fuzzyCompare(haystackString, true)
         if (fuzzyScore < 0.25) {
             // Taking a house number out of the search string makes the rest of it easier to match,
@@ -144,7 +148,7 @@ class TileSearch(
         if (string.length > needle.length) {
             if (compareAndAddToResults(
                     needle,
-                    generateEndOfString(string, needle.length),
+                    endOfNormalizedString(string, needle.length),
                     searchResults,
                     searchResultLimit,
                     tileX, tileY,
@@ -157,9 +161,7 @@ class TileSearch(
             // so a word can start anywhere in a run of them - "梅田" in "大阪梅田". Only worth
             // looking for when the needle is written that way too.
             if (needle.isNotEmpty() && isUnspacedScript(codePointAt(needle, 0))) {
-                val bestEnd = generateEndsWithinWords(string)
-                    .filter { it.length >= needle.length }
-                    .minByOrNull { needle.fuzzyCompare(it, true) }
+                val bestEnd = closestEndWithinWords(needle, string)
                 if ((bestEnd != null) &&
                     compareAndAddToResults(needle, bestEnd, searchResults, searchResultLimit, tileX, tileY, houseNumber)
                 )
@@ -176,9 +178,7 @@ class TileSearch(
             if ((joinedNeedle != needle) || (joinedString != string)) {
                 if (compareAndAddToResults(joinedNeedle, joinedString, searchResults, searchResultLimit, tileX, tileY, houseNumber))
                     return
-                val bestEnd = generateEndsWithinWords(joinedString)
-                    .filter { it.length >= joinedNeedle.length }
-                    .minByOrNull { joinedNeedle.fuzzyCompare(it, true) }
+                val bestEnd = closestEndWithinWords(joinedNeedle, joinedString)
                 if ((bestEnd != null) &&
                     compareAndAddToResults(joinedNeedle, bestEnd, searchResults, searchResultLimit, tileX, tileY, houseNumber)
                 )
@@ -253,18 +253,21 @@ class TileSearch(
         return finalWordsBuilder.toString().trim()
     }
 
-    fun generateEndOfString(string: String, maxLength: Int): String {
-        val normalizedString = normalizeForSearch(string)
+    fun generateEndOfString(string: String, maxLength: Int): String =
+        endOfNormalizedString(normalizeForSearch(string), maxLength)
 
-        val hayStackWords = normalizedString.split(" ")
-        val finalWordsBuilder = StringBuilder()
-        for (word in hayStackWords.reversed()) {
-            finalWordsBuilder.insert(0, " ")
-            finalWordsBuilder.insert(0, word)
-            if (finalWordsBuilder.length >= maxLength)
-                break
+    /**
+     * The last words of [normalizedString] - as few as make [maxLength] characters, counting a space
+     * after each word. The strings the search goes through are all normalized already, so they
+     * don't need normalizing again for this.
+     */
+    private fun endOfNormalizedString(normalizedString: String, maxLength: Int): String {
+        var start = normalizedString.lastIndexOf(' ') + 1
+        while ((normalizedString.length - start + 1 < maxLength) && (start > 0)) {
+            // Take in the word before, which ends with the space just before this one
+            start = normalizedString.lastIndexOf(' ', start - 2) + 1
         }
-        return finalWordsBuilder.toString().trim()
+        return normalizedString.substring(start)
     }
 
     /**
@@ -275,25 +278,52 @@ class TileSearch(
      * "梅田駅", "田駅" and "駅". An end never starts at a Thai vowel written after its consonant, or
      * at the consonant after a Thai vowel written before it, as either would split the two.
      */
-    fun generateEndsWithinWords(normalizedString: String): List<String> {
-        val ends = mutableListOf<String>()
-        var previous = 0
-        var index = 0
-        while (index < normalizedString.length) {
-            // By code point, so that an ideograph beyond U+FFFF isn't split into its surrogates
-            val codePoint = codePointAt(normalizedString, index)
-            // A voicing mark (U+3099) left separate by normalization belongs to the kana before it,
-            // as a Thai tone mark or vowel sign does to its consonant, so it counts as part of the
-            // run but never starts an end
-            val mark = normalizedString[index].category == CharCategory.NON_SPACING_MARK
-            if (isUnspacedScript(codePoint) && isUnspacedScript(previous) && !mark &&
-                (codePoint !in thaiVowelsAfterConsonant) && (previous !in thaiVowelsBeforeConsonant)
-            )
-                ends.add(normalizedString.substring(index))
-            previous = codePoint
-            index += if (codePoint > 0xFFFF) 2 else 1
+    fun generateEndsWithinWords(normalizedString: String): List<String> =
+        normalizedString.indices
+            .filter { startsWithinWord(normalizedString, it) }
+            .map { normalizedString.substring(it) }
+
+    /** Whether one of [generateEndsWithinWords] starts at [index] in [string]. */
+    private fun startsWithinWord(string: String, index: Int): Boolean {
+        if (index == 0) return false
+        // By code point, so that an ideograph beyond U+FFFF isn't split into its surrogates - the
+        // second of the pair isn't in any of the scripts, so an end never starts there
+        val codePoint = codePointAt(string, index)
+        val previous = codePointBefore(string, index)
+        // A voicing mark (U+3099) left separate by normalization belongs to the kana before it, as
+        // a Thai tone mark or vowel sign does to its consonant, so it's part of the run but never
+        // starts an end
+        return isUnspacedScript(codePoint) && isUnspacedScript(previous) &&
+            (string[index].category != CharCategory.NON_SPACING_MARK) &&
+            (codePoint !in thaiVowelsAfterConsonant) && (previous !in thaiVowelsBeforeConsonant)
+    }
+
+    /** Whether [end] is one of the [generateEndsWithinWords] of [normalizedString], without making them all. */
+    private fun isEndWithinWords(normalizedString: String, end: String): Boolean {
+        val start = normalizedString.length - end.length
+        return end.isNotEmpty() && (start > 0) && normalizedString.endsWith(end) &&
+            startsWithinWord(normalizedString, start)
+    }
+
+    /**
+     * Of the [generateEndsWithinWords] of [normalizedString] at least as long as [needle], the one
+     * the needle is closest to, or null if there are none. The needle is compared with the start of
+     * each, so that's all that's taken to compare - as long as the needle, and a character more to
+     * tell an end which goes on beyond it from one which doesn't.
+     */
+    private fun closestEndWithinWords(needle: String, normalizedString: String): String? {
+        var bestStart = -1
+        var bestScore = Double.MAX_VALUE
+        for (start in 1..(normalizedString.length - needle.length)) {
+            if (!startsWithinWord(normalizedString, start)) continue
+            val compared = normalizedString.substring(start, minOf(normalizedString.length, start + needle.length + 1))
+            val score = needle.fuzzyCompare(compared, true)
+            if (score < bestScore) {
+                bestScore = score
+                bestStart = start
+            }
         }
-        return ends
+        return if (bestStart < 0) null else normalizedString.substring(bestStart)
     }
 
     // The Thai vowels written after their consonant which aren't marks - sara a, sara aa, sara am
@@ -308,18 +338,19 @@ class TileSearch(
      * "hep five 梅田店".
      */
     fun joinUnspacedWords(normalizedString: String): String {
-        if (' ' !in normalizedString) return normalizedString
+        // Most strings have no such space, and they're returned as they are rather than copied
+        if (normalizedString.indices.none { isSpaceBetweenUnspacedWords(normalizedString, it) })
+            return normalizedString
         val joined = StringBuilder(normalizedString.length)
         for ((index, ch) in normalizedString.withIndex()) {
-            if ((ch == ' ') && (index > 0) && (index + 1 < normalizedString.length) &&
-                isUnspacedScript(codePointBefore(normalizedString, index)) &&
-                isUnspacedScript(codePointAt(normalizedString, index + 1))
-            )
-                continue
-            joined.append(ch)
+            if (!isSpaceBetweenUnspacedWords(normalizedString, index)) joined.append(ch)
         }
         return joined.toString()
     }
+
+    private fun isSpaceBetweenUnspacedWords(string: String, index: Int): Boolean =
+        (string[index] == ' ') && (index > 0) && (index + 1 < string.length) &&
+            isUnspacedScript(codePointBefore(string, index)) && isUnspacedScript(codePointAt(string, index + 1))
 
     /**
      * Whether [codePoint] is in a script which doesn't put spaces between its words, or doesn't
@@ -333,6 +364,32 @@ class TileSearch(
             (codePoint in 0xAC00..0xD7A3) ||  // Hangul syllables
             (codePoint in 0xF900..0xFAFF) ||  // CJK Compatibility Ideographs
             (codePoint in 0x20000..0x3FFFF)   // CJK Unified Ideographs Extensions B onwards
+
+    /** A layer of a tile which the search looks in, with its strings normalized to compare with a match. */
+    private class SearchedLayer(
+        val layer: Tile.Layer,
+        val nameTagIndices: Set<Int>,
+        val normalizedValues: List<String?>,
+        val joinedValues: List<String?>,
+    )
+
+    /** The layers of the tile at [tileX], [tileY] which the search looks in - none if it can't be read. */
+    private fun searchedLayers(reader: PmTilesReader?, tileX: Int, tileY: Int): List<SearchedLayer> {
+        val tileData = try { reader?.getTile(MAX_ZOOM_LEVEL, tileX, tileY) } catch (_: Exception) { null }
+        if ((reader == null) || (tileData == null)) return emptyList()
+        val tile = decompressTile(reader.tileCompression, tileData) ?: return emptyList()
+        return tile.layers
+            .filter { (it.name == "transportation") || (it.name == "poi") }
+            .map { layer ->
+                val normalizedValues = layer.values.map { value -> value.string_value?.let { normalizeForSearch(it) } }
+                SearchedLayer(
+                    layer,
+                    layer.keys.withIndex().filter { (_, key) -> isNameKey(key) }.map { it.index }.toSet(),
+                    normalizedValues,
+                    normalizedValues.map { value -> value?.let { joinUnspacedWords(it) } },
+                )
+            }
+    }
 
     /** Whether [feature] has the string at [stringKey] in its layer's values as one of its names. */
     private fun featureHasName(feature: Tile.Feature, nameTagIndices: Set<Int>, stringKey: Int): Boolean {
@@ -577,68 +634,59 @@ class TileSearch(
         // duplicates due to tile boundary overlap and roads crossing tiles
         val ruler = CheapRuler(location.latitude)
         val detailedResults = mutableListOf<DetailedSearchResult>()
+        // Results are often in the same tile, so each tile is read, and the strings in its layers
+        // normalized, only once
+        val searchedLayersByTile = mutableMapOf<Long, List<SearchedLayer>>()
         for (result in searchResults) {
-            val tileData = try { reader?.getTile(MAX_ZOOM_LEVEL, result.tileX, result.tileY) } catch (_: Exception) { null }
-            val currentReader = reader
-            if (tileData != null && currentReader != null) {
-                val tile = decompressTile(currentReader.tileCompression, tileData)
-                if (tile != null) {
-                    for (layer in tile.layers) {
-                        // Was the string found in transportation or POI? TODO: Or both?
-                        if ((layer.name == "transportation") || (layer.name == "poi")) {
-                            val nameTagIndices = layer.keys.withIndex()
-                                .filter { (_, key) -> isNameKey(key) }
-                                .map { it.index }
-                                .toSet()
+            val searchedLayers = searchedLayersByTile.getOrPut(cacheIndex(result.tileX, result.tileY)) {
+                searchedLayers(reader, result.tileX, result.tileY)
+            }
+            for (searchedLayer in searchedLayers) {
+                val layer = searchedLayer.layer
 
-                            // Every string in the layer which could have made this match - those
-                            // which are the match, and then those which end with it. They all
-                            // have to be looked at, not just the first one found, or a park called
-                            // "Plazoleta Carlos Pellegrini" hides the station called "Carlos
-                            // Pellegrini".
-                            val exactKeys = mutableListOf<Int>()
-                            val endKeys = mutableListOf<Int>()
-                            for ((index, value) in layer.values.withIndex()) {
-                                val sv = value.string_value ?: continue
-                                val normalizedValue = normalizeForSearch(sv)
-                                val joinedValue = joinUnspacedWords(normalizedValue)
-                                if ((normalizedValue == result.string) || (joinedValue == result.string)) {
-                                    exactKeys.add(index)
-                                } else if ((sv.length > result.string.length) &&
-                                    ((generateEndOfString(sv, result.string.length) == result.string) ||
-                                        (result.string in generateEndsWithinWords(normalizedValue)) ||
-                                        ((joinedValue != normalizedValue) &&
-                                            (result.string in generateEndsWithinWords(joinedValue))))
-                                ) {
-                                    endKeys.add(index)
-                                }
-                            }
+                // Every string in the layer which could have made this match - those which are the
+                // match, and then those which end with it. They all have to be looked at, not just
+                // the first one found, or a park called "Plazoleta Carlos Pellegrini" hides the
+                // station called "Carlos Pellegrini".
+                val exactKeys = mutableListOf<Int>()
+                val endKeys = mutableListOf<Int>()
+                for ((index, normalizedValue) in searchedLayer.normalizedValues.withIndex()) {
+                    if (normalizedValue == null) continue
+                    val joinedValue = searchedLayer.joinedValues[index] ?: normalizedValue
+                    val valueLength = layer.values[index].string_value?.length ?: 0
+                    if ((normalizedValue == result.string) || (joinedValue == result.string)) {
+                        exactKeys.add(index)
+                    } else if ((valueLength > result.string.length) &&
+                        ((endOfNormalizedString(normalizedValue, result.string.length) == result.string) ||
+                            isEndWithinWords(normalizedValue, result.string) ||
+                            ((joinedValue != normalizedValue) && isEndWithinWords(joinedValue, result.string)))
+                    ) {
+                        endKeys.add(index)
+                    }
+                }
 
-                            var featuresFound = 0
-                            for (stringKey in exactKeys + endKeys) {
-                                if (featuresFound == MAX_FEATURES_PER_LAYER) break
-                                // Take the first feature with this name that's within the tile
-                                for (feature in layer.features) {
-                                    if (!featureHasName(feature, nameTagIndices, stringKey)) continue
-                                    val featureLocation =
-                                        featureLocation(feature, result.tileX, result.tileY, location, ruler)
-                                            ?: continue
-                                    detailedResults.add(
-                                        DetailedSearchResult(
-                                            result.score,
-                                            layer.values[stringKey].string_value ?: "",
-                                            featureLocation.location,
-                                            featureProperties(layer, feature),
-                                            layer.name,
-                                            result.houseNumber,
-                                            featureLocation.distance
-                                        )
-                                    )
-                                    featuresFound++
-                                    break
-                                }
-                            }
-                        }
+                var featuresFound = 0
+                for (stringKey in exactKeys + endKeys) {
+                    if (featuresFound == MAX_FEATURES_PER_LAYER) break
+                    // Take the first feature with this name that's within the tile
+                    for (feature in layer.features) {
+                        if (!featureHasName(feature, searchedLayer.nameTagIndices, stringKey)) continue
+                        val featureLocation =
+                            featureLocation(feature, result.tileX, result.tileY, location, ruler)
+                                ?: continue
+                        detailedResults.add(
+                            DetailedSearchResult(
+                                result.score,
+                                layer.values[stringKey].string_value ?: "",
+                                featureLocation.location,
+                                featureProperties(layer, feature),
+                                layer.name,
+                                result.houseNumber,
+                                featureLocation.distance
+                            )
+                        )
+                        featuresFound++
+                        break
                     }
                 }
             }
