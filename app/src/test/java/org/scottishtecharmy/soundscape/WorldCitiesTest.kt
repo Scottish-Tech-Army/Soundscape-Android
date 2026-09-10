@@ -100,6 +100,14 @@ class WorldCitiesTest {
     }
 
     @Test
+    fun tehranSearchNumberedAlley() {
+        // The alleys off Namjoo are numbered, and the numbers are part of their names
+        for (typed in listOf("نامجو ۱۲", "نامجو 12")) {
+            assertEquals(typed, "نامجو ۱۲", tehran.search(typed).first().name)
+        }
+    }
+
+    @Test
     fun tehranSearchHouseNumberInPersianOrWesternDigits() {
         for (typed in listOf("رشتچی ۱۴", "رشتچی 14")) {
             assertEquals(typed, "رشتچی ۱۴", tehran.search(typed).first().name)
@@ -148,12 +156,9 @@ class WorldCitiesTest {
         }
     }
 
-    @Ignore(
-        "Known bug: finds 5a Avenida Sur. Any search word starting with a digit is taken to be the " +
-            "house number, so this is searched for as \"Avenida Sur\"."
-    )
     @Test
     fun sanSalvadorSearchNumberedStreet() {
+        // Most of the streets in the centre are numbered
         assertEquals("4a Avenida Sur", sanSalvador.search("4a Avenida Sur").first().name)
     }
 
@@ -229,10 +234,6 @@ class WorldCitiesTest {
         }
     }
 
-    @Ignore(
-        "Known bug: finds nothing. Any search word starting with a digit is taken to be the house " +
-            "number, so this is searched for as \"Avenida de Julio\"."
-    )
     @Test
     fun buenosAiresSearchStreetNamedAfterDate() {
         assertEquals(
