@@ -12,21 +12,28 @@ class PmTilesReader(path: Path, fileSystem: FileSystem = systemFileSystem) : Aut
 
     private val fileHandle: FileHandle = fileSystem.openReadOnly(path)
     private val header = Header()
-    private val rootDirectory: Directory
+    private val rootDirectory = Directory()
     private val leafCache = LruCache<Long, Directory>(20)
     private val tileCount = mutableListOf(0L)
 
     val tileCompression: Byte get() = header.tileCompression
 
     init {
-        header.read(fileHandle)
-        rootDirectory = Directory()
-        rootDirectory.read(
-            fileHandle,
-            header.rootDirOffset,
-            header.rootDirLength,
-            header.internalCompression
-        )
+        // The file is already open by the time we find out whether it's a valid PMTiles file. If
+        // it isn't, the caller never gets a reader to close, so close the file here - otherwise
+        // the handle leaks, and on Windows the file can't be deleted.
+        try {
+            header.read(fileHandle)
+            rootDirectory.read(
+                fileHandle,
+                header.rootDirOffset,
+                header.rootDirLength,
+                header.internalCompression
+            )
+        } catch (e: Throwable) {
+            fileHandle.close()
+            throw e
+        }
     }
 
     fun getTile(zoom: Int, x: Int, y: Int): ByteArray? {
