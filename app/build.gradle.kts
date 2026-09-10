@@ -486,6 +486,11 @@ dependencies {
 val nightlyOnlyTestCategory = "org.scottishtecharmy.soundscape.NightlyOnlyTest"
 
 tasks.withType<Test>().configureEach {
+    // Many of the tests build grids from the real map extracts of seven cities, and all the test
+    // classes share one JVM. Since Osaka's, the densest of them, that's more than Gradle's default
+    // 512 MB test heap holds.
+    maxHeapSize = "2g"
+
     // Matches the AGP-generated testDebugUnitTest/testReleaseUnitTest/testReleaseTestUnitTest
     // tasks, but not nightlyUnitTest below (that one includes the category instead).
     if (name.startsWith("test") && name.endsWith("UnitTest")) {

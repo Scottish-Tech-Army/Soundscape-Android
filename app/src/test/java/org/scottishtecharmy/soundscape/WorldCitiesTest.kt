@@ -1,25 +1,34 @@
 package org.scottishtecharmy.soundscape
 
 import kotlinx.coroutines.runBlocking
+import okio.Path.Companion.toPath
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
+import org.junit.Ignore
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
 import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
+import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
+import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.OfflineGeocoder
 import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.TileSearch
+import org.scottishtecharmy.soundscape.geoengine.utils.pmtiles.PmTilesReader
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
 import org.scottishtecharmy.soundscape.utils.process
 
 /**
- * Offline search, geocoding and callouts on the map data of cities outside the UK where
- * Soundscape has users: Tehran, San Salvador, Paris and Buenos Aires. Between them they have
- * Persian script and digits, French and Spanish accents, house numbers written after the street,
- * numbered street names and both hemispheres, none of which the UK extracts do.
+ * Offline search, geocoding and callouts on the map data of cities outside the UK: Tehran, San
+ * Salvador, Paris, Buenos Aires and Osaka. Between them they have Persian script and digits,
+ * Japanese with no spaces between its words, French and Spanish accents, house numbers written
+ * after the street, addresses written from the largest place to the smallest, numbered street
+ * names and both hemispheres, none of which the UK extracts do.
  *
  * Addresses are written the way the country they're in writes them, whatever the phone is set
  * to, so the tests which check one run with the phone set to more than one country.
@@ -51,7 +60,9 @@ class WorldCitiesTest {
         /** The callout for the nearest subway station, ignoring its entrances. */
         fun nearestSubwayStation(): String? =
             gridState.getFeatureTree(TreeId.TRANSIT_STOPS)
-                .getNearestCollection(location, 500.0, 50, gridState.ruler)
+                // Enough stops to get past the dozens of entrances and bus stops around a big
+                // station - Osaka's are all nearer than the station on the Midōsuji Line below it
+                .getNearestCollection(location, 500.0, 200, gridState.ruler)
                 .map { it as MvtFeature }
                 .firstOrNull { it.featureValue == "subway" && it.properties?.get("entrance") == null }
                 ?.getText(null)?.text
@@ -62,6 +73,7 @@ class WorldCitiesTest {
         private val sanSalvador = City(sanSalvadorTestLocation)
         private val paris = City(parisTestLocation)
         private val buenosAires = City(buenosAiresTestLocation)
+        private val osaka = City(osakaTestLocation)
     }
 
     // ---------------------------------------------------------------------------------- Tehran
@@ -251,13 +263,85 @@ class WorldCitiesTest {
         assertTrue(results.joinToString { it.name }, results.any { it.name == "Obelisco" })
     }
 
+    // ------------------------------------------------------------------------------------ Osaka
+
+    @Test
+    fun osakaSearchInJapanese() {
+        assertEquals("大阪駅", osaka.search("大阪駅").first().name)
+    }
+
+    @Test
+    fun osakaSearchByEnglishName() {
+        // The station's name:en - the result is named in whichever language matched
+        assertEquals("Osaka Station", osaka.search("Osaka Station").first().name)
+    }
+
+    @Test
+    fun osakaSearchTypedFullOrHalfWidth() {
+        // Japanese keyboards can type Latin letters full width, and katakana half width
+        assertEquals("MUJI", osaka.search("ＭＵＪＩ").first().name)
+        assertEquals("ルクア大阪", osaka.search("ﾙｸｱ").first().name)
+    }
+
+    @Test
+    fun osakaSearchWithIdeographicSpace() {
+        // The space bar on a Japanese keyboard types the full-width U+3000
+        assertEquals("ホテル イビス 大阪 梅田", osaka.search("ホテル　イビス").first().name)
+    }
+
+    @Test
+    fun osakaAddressIsWrittenLargestFirst() {
+        // Japanese addresses go from the largest place to the smallest, whatever language the phone
+        // is set to - the names in them are in Japanese either way
+        for (phone in listOf("en-GB", "ja-JP")) {
+            withDefaultLocale(phone) {
+                assertEquals(
+                    phone,
+                    "北区, 創造のみち, 20",
+                    osaka.search("グランフロント大阪郵便局").first().description
+                )
+            }
+        }
+    }
+
+    @Ignore("Known bug: a house number without a street is dropped - MvtToGeoJson files it under \"null\" but adds it with a null key")
+    @Test
+    fun osakaHouseNumberWithoutAStreetIsKept() {
+        // Most Japanese addresses number the building within its block rather than along a street,
+        // so their house numbers have no addr:street - 88 of the 101 in the tile around Osaka
+        // station. The Festival Tower's is 18.
+        val tileX = 14358
+        val tileY = 6506
+        val reader = PmTilesReader("$offlineExtractPath/osaka-prefecture-jp.pmtiles".toPath())
+        val tile = decompressTile(reader.tileCompression, reader.getTile(MAX_ZOOM_LEVEL, tileX, tileY)!!)!!
+        reader.close()
+
+        val intersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+        val streetNumberMap: HashMap<String, FeatureCollection> = hashMapOf()
+        vectorTileToGeoJson(tileX, tileY, tile, intersectionMap, streetNumberMap, true, MAX_ZOOM_LEVEL)
+
+        val festivalTower = streetNumberMap.values.flatMap { it.features }.map { it as MvtFeature }
+            .firstOrNull { (it.osmId == 941884472L) && (it.superCategory == SuperCategoryId.HOUSENUMBER) }
+        assertEquals("18", festivalTower?.housenumber)
+    }
+
+    @Ignore("Known bug: search only matches from the start of a name or of a word in it, and Japanese doesn't put spaces between words")
+    @Test
+    fun osakaSearchWordInsideName() {
+        // The Hanshin and Hankyu stations are both 大阪梅田, and it's 梅田 people look for
+        val results = osaka.search("梅田")
+        assertTrue(results.joinToString { it.name }, results.any { it.name == "大阪梅田" })
+    }
+
     // ---------------------------------------------------------------------------------- Transit
 
     @Test
     fun subwayStationCallouts() {
-        // Tehran Metro, Paris Métro and Buenos Aires Subte stations are all railway=subway
+        // Tehran Metro, Paris Métro, Buenos Aires Subte and Osaka Metro stations are all
+        // railway=subway
         assertEquals("میدان انقلاب اسلامی Subway Station", tehran.nearestSubwayStation())
         assertEquals("Châtelet Subway Station", paris.nearestSubwayStation())
         assertEquals("Carlos Pellegrini Subway Station", buenosAires.nearestSubwayStation())
+        assertEquals("梅田 Subway Station", osaka.nearestSubwayStation())
     }
 }

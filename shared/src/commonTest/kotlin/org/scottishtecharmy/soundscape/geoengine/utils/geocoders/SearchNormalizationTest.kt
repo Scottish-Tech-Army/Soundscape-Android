@@ -105,6 +105,28 @@ class SearchNormalizationTest {
     }
 
     @Test
+    fun foldsFullWidthAndHalfWidthJapaneseInput() {
+        // Japanese keyboards can type Latin letters and digits full width, and katakana half width,
+        // where the map data has them the other way round
+        assertEquals("muji 12", normalizeForSearch("ＭＵＪＩ　１２"))
+        assertEquals(normalizeForSearch("ルクア"), normalizeForSearch("ﾙｸｱ"))
+        assertEquals(normalizeForSearch("グランフロント"), normalizeForSearch("ｸﾞﾗﾝﾌﾛﾝﾄ"))
+    }
+
+    @Test
+    fun ideographicSpaceSeparatesWords() {
+        // The space bar on a Japanese keyboard types U+3000
+        assertEquals(normalizeForSearch("ホテル イビス"), normalizeForSearch("ホテル　イビス"))
+    }
+
+    @Test
+    fun kanaMatchWhicheverWayTheirVoicingMarkIsWritten() {
+        // "グ" can be the one character (U+30B0) or "ク" followed by a combining voicing mark
+        // (U+3099), and the two have to match
+        assertEquals(normalizeForSearch("グランフロント"), normalizeForSearch("グランフロント"))
+    }
+
+    @Test
     fun foldsArabicYehAndKafToPersian() {
         // An Arabic keyboard types yeh, alef maksura and kaf (U+064A, U+0649, U+0643) where
         // Persian has farsi yeh and keheh (U+06CC, U+06A9), and Iranian map data has both.

@@ -16,6 +16,8 @@ import org.scottishtecharmy.soundscape.geoengine.filters.MapMatchFilter
 import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.AlongWayKind
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayEnd
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.WayType
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.FeatureCollection
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -32,13 +34,18 @@ private fun GridState.railways(filter: (Way) -> Boolean) =
 private fun GridState.roads(filter: (Way) -> Boolean) =
     getFeatureTree(TreeId.ROADS).getAllCollection().features.filterIsInstance<Way>().filter(filter)
 
-/** The line [start] is part of, followed from it for [distance] metres through the Ways it's split into. */
+/**
+ * The line [start] is part of, followed from it for [distance] metres through the Ways it's split
+ * into, and across tile edges by the JOINERs that stitch it together.
+ */
 private fun GridState.lineFrom(start: Way, distance: Double) =
-    buildContinuousRoute(this, start, distance) { (it.name == start.name) && (it.service == null) }
+    buildContinuousRoute(this, start, distance) {
+        (it.wayType == WayType.JOINER) || ((it.name == start.name) && (it.service == null))
+    }
 
 /**
  * Travel mode on the railways of the cities outside the UK with a test extract: Paris, Tehran,
- * Buenos Aires and San Salvador.
+ * Buenos Aires, Osaka and San Salvador.
  *
  * Metro lines are matched like any other railway, so a metro ride is picked up wherever its line
  * runs above ground - Paris Métro 6 on its viaduct, Tehran Line 1 in the south of the city - and
@@ -60,7 +67,13 @@ class WorldCitiesRailTest {
         var railMatched = false
 
         val wasATrain get() = onTrain.any { it != null }
-        val trainNames get() = onTrain.filterNotNull().map { it.name }.toSet()
+
+        /**
+         * The lines the user was reckoned to be on. Service tracks are left out: crossovers,
+         * sidings and spurs have no name, and run alongside the line at junctions and stations,
+         * where GPS can't tell them from it.
+         */
+        val trainNames get() = onTrain.filterNotNull().filter { it.service == null }.map { it.name }.toSet()
 
         init {
             val gridState = getGridStateForLocation(centre, MAX_ZOOM_LEVEL, 3)
@@ -226,6 +239,48 @@ class WorldCitiesRailTest {
             val start = grid.railways {
                 (it.name == "Línea B") && (it.brunnel == "tunnel") && (it.service == null)
             }.maxBy { it.length }
+            grid.lineFrom(start, 2500.0)
+        }
+
+        journey.assertRailMatched()
+        assertFalse(journey.wasATrain)
+    }
+
+    // ------------------------------------------------------------------------------------ Osaka
+
+    @Test
+    fun osakaLoopLineOnItsViaductIsATrain() {
+        // The Loop Line runs west from Osaka station on a viaduct, through Fukushima and Noda. The
+        // ride starts just beyond the station, where its dozen tracks have narrowed to the line's.
+        val journey = Journey(osakaTestLocation, 15.0) { grid ->
+            val station = grid.railways { way ->
+                val line = way.geometry as LineString
+                (way.name == "大阪環状線") && (way.brunnel == "bridge") && ("大阪" in way.stopNames()) &&
+                    (line.coordinates.first().longitude > line.coordinates.last().longitude)
+            }.single()
+            val start = grid.railways { way ->
+                (way.name == station.name) && (way != station) &&
+                    (way.intersections[WayEnd.START.id] == station.intersections[WayEnd.END.id])
+            }.single()
+            // As far as Noda - beyond it, the Sakurajima Line joins alongside for Nishikujō
+            grid.lineFrom(start, 2600.0)
+        }
+
+        assertEquals(setOf("大阪環状線"), journey.trainNames)
+        journey.assertCalledOut("Approaching 福島")
+        journey.assertCalledOut("At 福島")
+        journey.assertCalledOut("At 野田")
+    }
+
+    @Test
+    fun osakaMetroUnderMidosujiIsNeverATrain() {
+        // The Midōsuji Line runs under Midōsuji from Yodoyabashi through Hommachi to Shinsaibashi
+        val journey = Journey(osakaTestLocation, 15.0) { grid ->
+            val start = grid.railways { way ->
+                val line = way.geometry as LineString
+                (way.name == "Osaka Metro御堂筋線") && ("淀屋橋" in way.stopNames()) &&
+                    (line.coordinates.first().latitude > line.coordinates.last().latitude)
+            }.single()
             grid.lineFrom(start, 2500.0)
         }
 

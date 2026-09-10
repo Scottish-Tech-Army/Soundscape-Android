@@ -57,6 +57,8 @@ internal fun buildContinuousRoute(
     }
 
     var currentWay = startWay
+    // Whether the route runs along currentWay from its END to its START
+    var currentReversed = false
     visited.add(currentWay)
     appendCoords(currentWay, reversed = false, isFirst = true)
     println("  way: ref=${currentWay.ref} name=${currentWay.name} class=${currentWay.featureValue} length=${currentWay.length}")
@@ -67,7 +69,9 @@ internal fun buildContinuousRoute(
         val gridChanged = runBlocking { gridState.locationUpdate(orderedCoords.last(), emptySet(), null) }
         println("  locationUpdate at totalDistance=$totalDistance gridChanged=$gridChanged")
 
-        val endIntersection = currentWay.intersections[WayEnd.END.id]
+        // The end the route leaves currentWay by - its START if the route joined it at its END
+        val endIntersection =
+            currentWay.intersections[if (currentReversed) WayEnd.START.id else WayEnd.END.id]
         if (endIntersection == null) {
             println("  stopped: no END intersection (dead end / tile edge)")
             break
@@ -81,8 +85,12 @@ internal fun buildContinuousRoute(
         }
         println("  intersection has ${endIntersection.members.size} members, ${candidates.size} unvisited candidates")
 
-        val lastCoords = (currentWay.geometry as LineString).coordinates
-        val approachHeading = ruler.bearing(lastCoords[lastCoords.size - 2], lastCoords.last())
+        // The heading the route arrives with, taken from the route itself rather than from
+        // currentWay's geometry, which runs the other way when the route follows it reversed and
+        // is a single point when it's the JOINER across a tile edge
+        val arrival = orderedCoords.last()
+        val approachFrom = orderedCoords.lastOrNull { it != arrival } ?: break
+        val approachHeading = ruler.bearing(approachFrom, arrival)
 
         var bestCandidate: Way? = null
         var bestReversed = false
@@ -107,6 +115,7 @@ internal fun buildContinuousRoute(
         visited.add(next)
         appendCoords(next, bestReversed, isFirst = false)
         currentWay = next
+        currentReversed = bestReversed
         println("  way: ref=${currentWay.ref} name=${currentWay.name} class=${currentWay.featureValue} length=${currentWay.length} totalDistance=$totalDistance")
     }
 
