@@ -99,7 +99,9 @@ fun SharedRouteDetailsScreen(
         )
     }
 
-    val firstWaypoint = waypoints.firstOrNull()?.location ?: LngLatAlt()
+    // Centre on the route's start, falling back to where we are if the route has no waypoints -
+    // an empty LngLatAlt() would put the map out in the Atlantic at 0,0.
+    val firstWaypoint = waypoints.firstOrNull()?.location ?: userLocation ?: LngLatAlt()
     val fullscreenMap = remember { mutableStateOf(false) }
     var mapInteracting by remember { mutableStateOf(false) }
     val contentScrollState = rememberScrollState()

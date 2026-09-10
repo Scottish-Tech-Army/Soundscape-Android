@@ -253,8 +253,7 @@ class AddAndEditRouteViewModelTest {
     // RuntimeException that fails whichever test drives it via advanceUntilIdle() - even though
     // the assertion itself never runs. There's no fake to substitute for this (it isn't a
     // RouteDao/ServiceConnection dependency), so those error-message branches are left
-    // uncovered here; RouteDetailsViewModel avoids the same trap because its only reachable
-    // "not found" case just returns null rather than throwing.
+    // uncovered here.
 
     @Test
     fun initializeRouteFromDatabase_found_populatesState() = runTest {
