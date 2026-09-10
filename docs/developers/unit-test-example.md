@@ -15,11 +15,11 @@ At this point, it's worth making sure that you are familiar with the [geoengine 
 
 The tests have grown organically and as always there are improvements that could be made. However, here's what's currently required.
 
-Most unit tests create grids of geo data just like the app. These are 2x2 grids of decoded map tiles at the maximum zoom level surrounding the current location. The map data is taken from pmtiles found in `offlineExtractPath` which is currently set to `src/test/res/org/scottishtecharmy/soundscape`. The unit tests use 6 separate map extracts and a manifest which can be downloaded from Cloudflare. Two are in the UK (Bristol and Glasgow) and four cover cities elsewhere in the world (Tehran, San Salvador, Paris and Buenos Aires) so that non-Latin scripts, accents, other address conventions and both hemispheres get tested too:
+Most unit tests create grids of geo data just like the app. These are 2x2 grids of decoded map tiles at the maximum zoom level surrounding the current location. The map data is taken from pmtiles found in `offlineExtractPath` which is currently set to `src/test/res/org/scottishtecharmy/soundscape`. The unit tests use 7 separate map extracts and a manifest which can be downloaded from Cloudflare. Two are in the UK (Bristol and Glasgow) and five cover places elsewhere in the world (Tehran, San Salvador, Paris, Buenos Aires and Osaka Prefecture) so that non-Latin scripts, Japanese text with no spaces between words, accents, other address conventions and both hemispheres get tested too:
 
 ```
 base=https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/August2026-update
-for extract in bristol-gb glasgow-gb tehran-ir san-salvador-sv paris-fr buenos-aires-ar; do
+for extract in bristol-gb glasgow-gb tehran-ir san-salvador-sv paris-fr buenos-aires-ar osaka-prefecture-jp; do
   wget $base/$extract.pmtiles -O app/src/test/res/org/scottishtecharmy/soundscape/$extract.pmtiles
 done
 wget https://pub-0a3501283b024ab3bbfbb6d1e217f5d0.r2.dev/manifest.geojson.gz -O app/src/test/res/org/scottishtecharmy/soundscape/manifest.geojson.gz
