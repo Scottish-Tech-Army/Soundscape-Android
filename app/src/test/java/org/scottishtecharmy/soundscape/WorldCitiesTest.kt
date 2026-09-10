@@ -22,8 +22,8 @@ import org.scottishtecharmy.soundscape.utils.process
  * Persian script and digits, French and Spanish accents, house numbers written after the street,
  * numbered street names and both hemispheres, none of which the UK extracts do.
  *
- * Addresses are formatted according to the phone's locale, so tests that check an address set
- * one rather than depending on the machine running them.
+ * Addresses are written the way the country they're in writes them, whatever the phone is set
+ * to, so the tests which check one run with the phone set to more than one country.
  *
  * The tests marked @Ignore describe what should happen where the app currently gets it wrong, and
  * say what happens instead.
@@ -100,29 +100,24 @@ class WorldCitiesTest {
     }
 
     @Test
-    fun tehranSearchHouseNumberInPersianOrWesternDigits() = withDefaultLocale("en-GB") {
+    fun tehranSearchHouseNumberInPersianOrWesternDigits() {
         for (typed in listOf("رشتچی ۱۴", "رشتچی 14")) {
-            assertEquals(typed, "۱۴ رشتچی", tehran.search(typed).first().name)
+            assertEquals(typed, "رشتچی ۱۴", tehran.search(typed).first().name)
         }
     }
 
     @Test
-    fun tehranReverseGeocodePersianHouseNumber() = withDefaultLocale("en-GB") {
-        assertEquals(
-            "۱۴ رشتچی",
-            tehran.reverseGeocode(LngLatAlt(51.390515863895416, 35.69980174504374)).name
-        )
-    }
-
-    @Ignore(
-        "Known bug: on a phone set to Persian the name is just \"رشتچی\". The Iranian address " +
-            "templates put the house number on the line after the road, and only the first line " +
-            "becomes the name."
-    )
-    @Test
-    fun tehranReverseGeocodeHouseNumberOnPersianPhone() = withDefaultLocale("fa-IR") {
-        val name = tehran.reverseGeocode(LngLatAlt(51.390515863895416, 35.69980174504374)).name
-        assertTrue(name, name.contains("۱۴"))
+    fun tehranReverseGeocodePersianHouseNumber() {
+        // Iranian addresses put the house number on the line after the road
+        for (phone in listOf("en-GB", "fa-IR")) {
+            withDefaultLocale(phone) {
+                assertEquals(
+                    phone,
+                    "رشتچی ۱۴",
+                    tehran.reverseGeocode(LngLatAlt(51.390515863895416, 35.69980174504374)).name
+                )
+            }
+        }
     }
 
     // ------------------------------------------------------------------------------ San Salvador
@@ -136,17 +131,19 @@ class WorldCitiesTest {
     fun sanSalvadorSearchHouseNumberAfterStreet() = withDefaultLocale("en-GB") {
         // Spanish addresses put the number after the street, and accents are often left out
         assertEquals(
-            "225 Calle Presbítero Vicente Aguilar",
+            "Calle Presbítero Vicente Aguilar 225",
             sanSalvador.search("Calle Presbitero Vicente Aguilar 225").first().name
         )
     }
 
     @Test
-    fun sanSalvadorReverseGeocodeHouseNumberOnSalvadoranPhone() = withDefaultLocale("es-SV") {
-        assertEquals(
-            "Calle Presbítero Vicente Aguilar 315",
-            sanSalvador.reverseGeocode(LngLatAlt(-89.18934255838394, 13.697920728666729)).name
-        )
+    fun sanSalvadorReverseGeocodeHouseNumber() {
+        for (phone in listOf("en-GB", "es-SV")) {
+            withDefaultLocale(phone) {
+                val address = sanSalvador.reverseGeocode(LngLatAlt(-89.18934255838394, 13.697920728666729))
+                assertEquals(phone, "Calle Presbítero Vicente Aguilar 315", address.name)
+            }
+        }
     }
 
     @Ignore(
@@ -193,14 +190,14 @@ class WorldCitiesTest {
     }
 
     @Test
-    fun parisSearchHouseNumberBeforeOrAfterStreet() = withDefaultLocale("en-GB") {
+    fun parisSearchHouseNumberBeforeOrAfterStreet() {
         for (typed in listOf("45 Rue de Rivoli", "Rue de Rivoli 45")) {
             assertEquals(typed, "45 Rue de Rivoli", paris.search(typed).first().name)
         }
     }
 
     @Test
-    fun parisReverseGeocodeHouseNumber() = withDefaultLocale("en-GB") {
+    fun parisReverseGeocodeHouseNumber() {
         assertEquals(
             "2 Rue Jean Lantier",
             paris.reverseGeocode(LngLatAlt(2.34695702791214, 48.85846994039124)).name
@@ -225,27 +222,21 @@ class WorldCitiesTest {
     }
 
     @Test
-    fun buenosAiresAddressOnArgentinePhone() = withDefaultLocale("es-AR") {
-        assertEquals(
-            "Avenida Corrientes 1155, San Nicolás",
-            buenosAires.search("Teatro Broadway").first().description
-        )
-        assertEquals(
-            "Avenida Corrientes 1124",
-            buenosAires.reverseGeocode(LngLatAlt(-58.382594883441925, -34.6039276783525)).name
-        )
-    }
-
-    @Ignore(
-        "Known bug: a British phone in Buenos Aires is told \"1155 Avenida Corrientes\". Addresses " +
-            "are formatted for the phone's country rather than the country the map is of."
-    )
-    @Test
-    fun buenosAiresAddressFormatFollowsTheMapNotThePhone() = withDefaultLocale("en-GB") {
-        assertEquals(
-            "Avenida Corrientes 1155, San Nicolás",
-            buenosAires.search("Teatro Broadway").first().description
-        )
+    fun buenosAiresAddress() {
+        for (phone in listOf("en-GB", "es-AR")) {
+            withDefaultLocale(phone) {
+                assertEquals(
+                    phone,
+                    "Avenida Corrientes 1155, San Nicolás",
+                    buenosAires.search("Teatro Broadway").first().description
+                )
+                assertEquals(
+                    phone,
+                    "Avenida Corrientes 1124",
+                    buenosAires.reverseGeocode(LngLatAlt(-58.382594883441925, -34.6039276783525)).name
+                )
+            }
+        }
     }
 
     @Ignore(
