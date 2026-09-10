@@ -235,6 +235,96 @@ class TileSearch(
         return finalWordsBuilder.toString().trim()
     }
 
+    /** Whether [feature] has the string at [stringKey] in its layer's values as one of its names. */
+    private fun featureHasName(feature: Tile.Feature, nameTagIndices: Set<Int>, stringKey: Int): Boolean {
+        val tags = feature.tags
+        for (i in 0 until tags.size - 1 step 2) {
+            if ((tags[i] in nameTagIndices) && (tags[i + 1] == stringKey)) return true
+        }
+        return false
+    }
+
+    private fun featureProperties(layer: Tile.Layer, feature: Tile.Feature): HashMap<String, Any?> {
+        val properties = hashMapOf<String, Any?>()
+        val tags = feature.tags
+        for (i in 0 until tags.size - 1 step 2) {
+            val raw = layer.values[tags[i + 1]]
+            properties[layer.keys[tags[i]]] = raw.bool_value ?: raw.int_value ?: raw.sint_value
+                ?: raw.float_value ?: raw.double_value ?: raw.string_value ?: raw.uint_value
+        }
+        return properties
+    }
+
+    private class FeatureLocation(val location: LngLatAlt, val distance: Double)
+
+    /**
+     * Where to put a search result for [feature] from the tile at [tileX], [tileY] - the point,
+     * the middle of the part of the line that's within the tile, or the centre of the polygon - and
+     * how far the feature is from [searchLocation]. Null if none of the feature is within the tile.
+     *
+     * A line's distance is to its nearest point rather than its middle, so that searching for the
+     * street you're standing on ranks it as near as it is.
+     */
+    private fun featureLocation(
+        feature: Tile.Feature,
+        tileX: Int,
+        tileY: Int,
+        searchLocation: LngLatAlt,
+        ruler: CheapRuler
+    ): FeatureLocation? {
+        when (feature.type) {
+            Tile.GeomType.POINT -> {
+                for (point in parseGeometry(true, feature.geometry)) {
+                    if (point.isNotEmpty()) {
+                        val coordinates = convertGeometry(tileX, tileY, MAX_ZOOM_LEVEL, point)
+                        if (coordinates.isNotEmpty())
+                            return FeatureLocation(coordinates[0], ruler.distance(searchLocation, coordinates[0]))
+                    }
+                }
+            }
+
+            Tile.GeomType.LINESTRING -> {
+                for (line in parseGeometry(false, feature.geometry)) {
+                    val interpolatedNodes: MutableList<LngLatAlt> = mutableListOf()
+                    val clippedLines = convertGeometryAndClipLineToTile(
+                        tileX,
+                        tileY,
+                        MAX_ZOOM_LEVEL,
+                        line,
+                        interpolatedNodes
+                    )
+                    for (clippedLine in clippedLines) {
+                        val centreDistance = ruler.lineLength(clippedLine) / 2
+                        return FeatureLocation(
+                            ruler.along(clippedLine, centreDistance),
+                            ruler.distanceToLineString(searchLocation, clippedLine).distance
+                        )
+                    }
+                }
+            }
+
+            Tile.GeomType.POLYGON -> {
+                val polygons = parseGeometry(false, feature.geometry)
+
+                // If all of the polygon points are outside the tile, then we can immediately
+                // discard it
+                val allOutside = polygons.all { polygon ->
+                    polygon.all { point -> pointIsOffTile(point.first, point.second) }
+                }
+                if (allOutside) return null
+
+                for (polygon in polygons) {
+                    val polygonGeo = Polygon(convertGeometry(tileX, tileY, MAX_ZOOM_LEVEL, polygon))
+                    val centre = getCentroidOfPolygon(polygonGeo) ?: polygonGeo.coordinates[0][0]
+                    return FeatureLocation(centre, ruler.distance(searchLocation, centre))
+                }
+            }
+
+            else -> {}
+        }
+        return null
+    }
+
     @OptIn(ExperimentalCoroutinesApi::class)
     override fun search(
         location: LngLatAlt,
@@ -303,6 +393,7 @@ class TileSearch(
             var properties: HashMap<String, Any?> = hashMapOf(),
             val layer: String,
             val houseNumber: String,
+            val distance: Double,
         )
 
         val searchResults = mutableListOf<TileSearchResult>()
@@ -393,7 +484,6 @@ class TileSearch(
             if (tileData != null && currentReader != null) {
                 val tile = decompressTile(currentReader.tileCompression, tileData)
                 if (tile != null) {
-                    var stringValue = ""
                     for (layer in tile.layers) {
                         // Was the string found in transportation or POI? TODO: Or both?
                         if ((layer.name == "transportation") || (layer.name == "poi")) {
@@ -402,200 +492,50 @@ class TileSearch(
                                 .map { it.index }
                                 .toSet()
 
-                            var stringKey = -1
+                            // Every string in the layer which could have made this match - those
+                            // which are the match, and then those which end with it. They all
+                            // have to be looked at, not just the first one found, or a park called
+                            // "Plazoleta Carlos Pellegrini" hides the station called "Carlos
+                            // Pellegrini".
+                            val exactKeys = mutableListOf<Int>()
+                            val endKeys = mutableListOf<Int>()
                             for ((index, value) in layer.values.withIndex()) {
-                                val sv = value.string_value
-                                if (sv != null) {
-                                    if (normalizeForSearch(sv) == result.string) {
-                                        stringKey = index
-                                        stringValue = sv
-                                        break
-                                    } else {
-                                        if (sv.length <= result.string.length)
-                                            continue
-                                        if (
-                                            generateEndOfString(
-                                                sv, result.string.length
-                                            ) == result.string
-                                        ) {
-                                            stringKey = index
-                                            stringValue = sv
-                                            break
-                                        }
-                                    }
+                                val sv = value.string_value ?: continue
+                                if (normalizeForSearch(sv) == result.string) {
+                                    exactKeys.add(index)
+                                } else if ((sv.length > result.string.length) &&
+                                    (generateEndOfString(sv, result.string.length) == result.string)
+                                ) {
+                                    endKeys.add(index)
                                 }
                             }
-                            if (stringKey != -1) {
-                                // We need to look for the feature
+
+                            var featuresFound = 0
+                            for (stringKey in exactKeys + endKeys) {
+                                if (featuresFound == MAX_FEATURES_PER_LAYER) break
+                                // Take the first feature with this name that's within the tile
                                 for (feature in layer.features) {
-                                    var firstInPair = true
-                                    var skip = false
-                                    var found = false
-                                    for (tag in feature.tags) {
-                                        if (firstInPair) {
-                                            skip = (tag !in nameTagIndices)
-                                        } else {
-                                            if (!skip) {
-                                                val raw = layer.values[tag]
-                                                if (raw.string_value != null && (tag == stringKey)) {
-                                                    found = true
-                                                    break
-                                                }
-                                            }
-                                        }
-                                        firstInPair = !firstInPair
-                                    }
-                                    if (found) {
-                                        // Parse all of the properties
-                                        var firstInPair = true
-                                        var key = ""
-                                        var value: Any? = null
-                                        val properties = hashMapOf<String, Any?>()
-                                        for (tag in feature.tags) {
-                                            if (firstInPair)
-                                                key = layer.keys[tag]
-                                            else {
-                                                val raw = layer.values[tag]
-                                                if (raw.bool_value != null)
-                                                    value = raw.bool_value
-                                                else if (raw.int_value != null)
-                                                    value = raw.int_value
-                                                else if (raw.sint_value != null)
-                                                    value = raw.sint_value
-                                                else if (raw.float_value != null)
-                                                    value = raw.double_value
-                                                else if (raw.double_value != null)
-                                                    value = raw.float_value
-                                                else if (raw.string_value != null)
-                                                    value = raw.string_value
-                                                else if (raw.uint_value != null)
-                                                    value = raw.uint_value
-                                            }
-
-                                            if (!firstInPair) {
-                                                properties[key] = value
-                                                firstInPair = true
-                                            } else
-                                                firstInPair = false
-                                        }
-
-                                        if (feature.type == Tile.GeomType.POINT) {
-                                            val points = parseGeometry(true, feature.geometry)
-                                            for (point in points) {
-                                                if (point.isNotEmpty()) {
-                                                    val coordinates = convertGeometry(
-                                                        result.tileX,
-                                                        result.tileY,
-                                                        MAX_ZOOM_LEVEL,
-                                                        point
-                                                    )
-                                                    for (coordinate in coordinates) {
-                                                        detailedResults.add(
-                                                            DetailedSearchResult(
-                                                                result.score,
-                                                                stringValue,
-                                                                coordinate,
-                                                                properties,
-                                                                layer.name,
-                                                                result.houseNumber
-                                                            )
-                                                        )
-                                                        break
-                                                    }
-                                                }
-                                            }
-                                            break
-                                        } else if (feature.type == Tile.GeomType.LINESTRING) {
-                                            val lines = parseGeometry(
-                                                false,
-                                                feature.geometry
-                                            )
-                                            for (line in lines) {
-                                                val interpolatedNodes: MutableList<LngLatAlt> =
-                                                    mutableListOf()
-                                                val clippedLines = convertGeometryAndClipLineToTile(
-                                                    result.tileX,
-                                                    result.tileY,
-                                                    MAX_ZOOM_LEVEL,
-                                                    line,
-                                                    interpolatedNodes
-                                                )
-                                                var resultValid = false
-                                                for (clippedLine in clippedLines) {
-                                                    resultValid = true
-                                                    val centreDistance =
-                                                        ruler.lineLength(clippedLine) / 2
-                                                    val lineCentre =
-                                                        ruler.along(clippedLine, centreDistance)
-                                                    detailedResults.add(
-                                                        DetailedSearchResult(
-                                                            result.score,
-                                                            stringValue,
-                                                            lineCentre,
-                                                            properties,
-                                                            layer.name,
-                                                            result.houseNumber
-                                                        )
-                                                    )
-                                                    break
-                                                }
-                                                if (resultValid) break
-                                            }
-                                            break
-                                        } else if (feature.type == Tile.GeomType.POLYGON) {
-                                            val polygons = parseGeometry(
-                                                false,
-                                                feature.geometry
-                                            )
-
-                                            // If all of the polygon points are outside the tile, then we can immediately
-                                            // discard it
-                                            var allOutside = true
-                                            for (polygon in polygons) {
-                                                for (point in polygon) {
-                                                    if (!pointIsOffTile(
-                                                            point.first,
-                                                            point.second
-                                                        )
-                                                    ) {
-                                                        allOutside = false
-                                                        break
-                                                    }
-                                                }
-                                                if (!allOutside)
-                                                    break
-                                            }
-                                            if (allOutside) continue
-
-                                            for (polygon in polygons) {
-                                                val polygonGeo = Polygon(
-                                                    convertGeometry(
-                                                        result.tileX,
-                                                        result.tileY,
-                                                        MAX_ZOOM_LEVEL,
-                                                        polygon
-                                                    )
-                                                )
-                                                val centroid = getCentroidOfPolygon(polygonGeo)
-                                                detailedResults.add(
-                                                    DetailedSearchResult(
-                                                        result.score,
-                                                        stringValue,
-                                                        centroid ?: polygonGeo.coordinates[0][0],
-                                                        properties,
-                                                        layer.name,
-                                                        result.houseNumber
-                                                    )
-                                                )
-                                                break
-                                            }
-                                        }
-                                    }
+                                    if (!featureHasName(feature, nameTagIndices, stringKey)) continue
+                                    val featureLocation =
+                                        featureLocation(feature, result.tileX, result.tileY, location, ruler)
+                                            ?: continue
+                                    detailedResults.add(
+                                        DetailedSearchResult(
+                                            result.score,
+                                            layer.values[stringKey].string_value ?: "",
+                                            featureLocation.location,
+                                            featureProperties(layer, feature),
+                                            layer.name,
+                                            result.houseNumber,
+                                            featureLocation.distance
+                                        )
+                                    )
+                                    featuresFound++
+                                    break
                                 }
                             }
                         }
                     }
-                    result.string = stringValue
                 }
             }
         }
@@ -603,14 +543,26 @@ class TileSearch(
         // Sort the results so far and deduplicate them
         val whittledResults = detailedResults
             .sortedWith { a, b ->
-                if (a.score == b.score) {
-                    val aDistance = ruler.distance(a.location, location)
-                    val bDistance = ruler.distance(b.location, location)
-                    aDistance.compareTo(bDistance)
-                } else
+                if (a.score == b.score)
+                    a.distance.compareTo(b.distance)
+                else
                     a.score.compareTo(b.score)
             }
             .fold(mutableListOf<DetailedSearchResult>()) { accumulator, result ->
+                // A feature is found once for each of its names that matches - a cathedral with
+                // its name tagged in Spanish, Catalan and Portuguese is found three times - but
+                // it's one place, so it only gets one result. That's named with the feature's own
+                // name if that was one of the names which matched equally well.
+                val sameFeature = accumulator.firstOrNull {
+                    (it.layer == result.layer) && (it.properties == result.properties) &&
+                        (ruler.distance(it.location, result.location) < 100.0)
+                }
+                if (sameFeature != null) {
+                    if ((result.score == sameFeature.score) && (result.string == result.properties["name"]))
+                        sameFeature.string = result.string
+                    return@fold accumulator
+                }
+
                 // Check if we already have this exact name at approximately the same location
                 val isDuplicate = accumulator.any {
                     it.string == result.string && ruler.distance(
@@ -752,6 +704,9 @@ class TileSearch(
     companion object {
         // Added to the score of a match made by taking a house number out of the search string
         private const val HOUSE_NUMBER_PENALTY = 0.001
+
+        // How many differently named features one match can find in each layer of a tile
+        private const val MAX_FEATURES_PER_LAYER = 4
     }
 }
 
