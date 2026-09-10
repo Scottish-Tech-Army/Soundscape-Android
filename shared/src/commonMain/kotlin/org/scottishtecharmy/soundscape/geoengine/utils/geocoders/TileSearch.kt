@@ -152,6 +152,19 @@ class TileSearch(
                 )
             )
                 return
+
+            // Chinese and Japanese don't put spaces between words, so a word can start anywhere
+            // in a run of them - "梅田" in "大阪梅田". Only worth looking for when the needle is
+            // written that way too.
+            if (needle.firstOrNull()?.let { isUnspacedScript(it) } == true) {
+                val bestEnd = generateEndsWithinWords(string)
+                    .filter { it.length >= needle.length }
+                    .minByOrNull { needle.fuzzyCompare(it, true) }
+                if ((bestEnd != null) &&
+                    compareAndAddToResults(needle, bestEnd, searchResults, searchResultLimit, tileX, tileY, houseNumber)
+                )
+                    return
+            }
         }
         if (needleWithoutSettlement != null) {
             compareAndAddToResults(
@@ -234,6 +247,31 @@ class TileSearch(
         }
         return finalWordsBuilder.toString().trim()
     }
+
+    /**
+     * The rest of [normalizedString] from each character part-way through a run of Chinese or
+     * Japanese. Those scripts don't put spaces between words, so where [generateEndOfString] finds
+     * "rivoli" at the end of "rue de rivoli", these are what find "梅田" in "大阪梅田駅": the
+     * comparison is with the start of each of "阪梅田駅", "梅田駅", "田駅" and "駅".
+     */
+    fun generateEndsWithinWords(normalizedString: String): List<String> {
+        val ends = mutableListOf<String>()
+        for (i in 1 until normalizedString.length) {
+            val ch = normalizedString[i]
+            if (!isUnspacedScript(ch) || (ch.category == CharCategory.NON_SPACING_MARK)) continue
+            // A voicing mark (U+3099) left separate by normalization belongs to the kana before it
+            val previous = normalizedString[i - 1]
+            if (isUnspacedScript(previous)) ends.add(normalizedString.substring(i))
+        }
+        return ends
+    }
+
+    /** Whether [ch] is Chinese or Japanese - kanji/hanzi, hiragana or katakana. */
+    private fun isUnspacedScript(ch: Char): Boolean =
+        (ch.code in 0x3040..0x30FF) ||    // Hiragana and Katakana, including the voicing marks
+            (ch.code in 0x3400..0x4DBF) || // CJK Unified Ideographs Extension A
+            (ch.code in 0x4E00..0x9FFF) || // CJK Unified Ideographs
+            (ch.code in 0xF900..0xFAFF)    // CJK Compatibility Ideographs
 
     /** Whether [feature] has the string at [stringKey] in its layer's values as one of its names. */
     private fun featureHasName(feature: Tile.Feature, nameTagIndices: Set<Int>, stringKey: Int): Boolean {
@@ -501,10 +539,12 @@ class TileSearch(
                             val endKeys = mutableListOf<Int>()
                             for ((index, value) in layer.values.withIndex()) {
                                 val sv = value.string_value ?: continue
-                                if (normalizeForSearch(sv) == result.string) {
+                                val normalizedValue = normalizeForSearch(sv)
+                                if (normalizedValue == result.string) {
                                     exactKeys.add(index)
                                 } else if ((sv.length > result.string.length) &&
-                                    (generateEndOfString(sv, result.string.length) == result.string)
+                                    ((generateEndOfString(sv, result.string.length) == result.string) ||
+                                        (result.string in generateEndsWithinWords(normalizedValue)))
                                 ) {
                                     endKeys.add(index)
                                 }
