@@ -110,7 +110,7 @@ class TileUtilsTest {
             CityTile(
                 "San Salvador", sanSalvadorTestLocation,
                 TileCounts(
-                    crossings = 159, paths = 1007, intersections = 2533, entrances = 53,
+                    crossings = 159, paths = 1007, intersections = 2532, entrances = 53,
                     pois = 1451, mobility = 309, objects = 130, information = 1, places = 575,
                     landmarks = 266, safety = 87,
                 )
@@ -118,7 +118,7 @@ class TileUtilsTest {
             CityTile(
                 "Paris", parisTestLocation,
                 TileCounts(
-                    crossings = 962, paths = 7015, intersections = 6699, entrances = 285,
+                    crossings = 962, paths = 7015, intersections = 6694, entrances = 285,
                     pois = 8148, mobility = 1392, objects = 740, information = 150, places = 4178,
                     landmarks = 1167, safety = 296,
                 )

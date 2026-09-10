@@ -843,11 +843,16 @@ class WayGenerator(val transit: Boolean = false) {
                     }
                     currentSegment.coordinates.add(coordinate)
 
-                    // Is this coordinate at an intersection?
+                    // Is this coordinate at an intersection? A point exactly on the tile edge never
+                    // is: it's where the line was clipped, not a vertex from the tile, and vertices
+                    // always sit half a sample inside. The clipped point is only half a sample from
+                    // a vertex on the outermost row, so it shares that vertex's coordinate key -
+                    // and if that vertex is a junction, the edge would be taken for it too and
+                    // never become the TILE_EDGE that stitches it to the next tile.
                     val tileCoordinates =
                         convertBackToTileCoordinates(coordinate, tileZoom)
                     coordinateKey = tileCoordinates.first.shl(12) + tileCoordinates.second
-                    highwayNodes[coordinateKey]?.let {
+                    if (!tileEdge) highwayNodes[coordinateKey]?.let {
                         if (it > 1) {
                             // Create an intersection if we don't have one already
                             var intersection = intersections.get(coordinate)
