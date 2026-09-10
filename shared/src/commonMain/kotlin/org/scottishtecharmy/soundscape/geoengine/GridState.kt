@@ -255,12 +255,12 @@ open class GridState(
      * side tagged is a level crossing, handled separately (an explicit `railway=level_crossing`
      * point), not by this geometric test.
      *
-     * A railway that is itself in a tunnel is skipped outright. TreeId.TRANSIT does now contain
-     * `brunnel=tunnel` segments (they're needed to keep a train matched underground - see
-     * isUnmatchableRailway in MvtToGeoJson.kt), but a road bridge that happens to pass over the
-     * horizontal projection of a deep tunnel isn't crossing anything a traveller can perceive, and
-     * announcing "Passing over the North Clyde Line" to a driver on a bridge above the Charing
-     * Cross tunnel would be nonsense. Subway lines are still excluded from the tree entirely.
+     * A railway that is itself in a tunnel is skipped outright. TreeId.TRANSIT contains
+     * `brunnel=tunnel` segments, heavy rail and metro alike, because they're needed to keep a
+     * train matched underground, but a road bridge that happens to pass over the horizontal
+     * projection of a deep tunnel isn't crossing anything a traveller can perceive, and announcing
+     * "Passing over the North Clyde Line" to a driver on a bridge above the Charing Cross tunnel
+     * would be nonsense.
      *
      * Returns the number of road/railway crossings found, for the timing log in the caller.
      */
@@ -800,8 +800,10 @@ open class GridState(
     private val stationWayToleranceMetres = 100.0
 
     // The transit stop kinds that are railway stations. TRANSIT_STOPS carries bus and tram stops
-    // and ferry terminals too, and none of those belongs on a railway. Subway is left out for the
-    // same reason it is excluded from rail map matching.
+    // and ferry terminals too, and none of those belongs on a railway. Subway stations are left
+    // out: metro lines carry railway=stop nodes of their own in every extract with one, and a
+    // metro station stood in on every line within reach would give its name to the surface
+    // railways that pass over it without calling.
     private val railwayStationValues = setOf("station", "train_station")
 
     /**
@@ -869,7 +871,10 @@ open class GridState(
                 .filterIsInstance<Way>()
                 .filter { way ->
                     val line = way.geometry as? LineString
-                    (line != null) && (line.coordinates.size >= 2) &&
+                    // Not a metro line: those carry railway=stop nodes of their own, and pass
+                    // within reach of plenty of stations they don't serve, above or below them.
+                    (way.featureValue != "subway") &&
+                        (line != null) && (line.coordinates.size >= 2) &&
                         (ruler.distanceToLineString(point, line).distance <=
                             stationWayToleranceMetres)
                 }

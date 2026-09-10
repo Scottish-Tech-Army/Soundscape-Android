@@ -269,41 +269,6 @@ private fun extractNamedWaterways(
 // check in MvtToGeoJson's main Way-building loop.
 private val railwayClasses = setOf("rail", "transit")
 
-/**
- * A `subclass=subway` line - the whole Glasgow Subway, for example - is excluded from
- * TreeId.TRANSIT, the network railMapMatchFilter matches GPS fixes against (see GeoEngine.kt).
- *
- * GPS is 2D: it can't tell a road apart from a railway running directly beneath it. Where a road
- * sits right above a buried line for a sustained stretch - e.g. Byres Road above the Glasgow
- * Subway, around 55.872965,-4.296419 - the line's horizontal projection coincides with the road
- * closely enough, for long enough, to build up the same kind of sustained frechetQueue history as
- * a genuine train ride (see MapMatchFilter.isMatchConfident), which would wrongly flip
- * UserGeometry.probablyOnTrain for a driver or pedestrian who was never anywhere near a train. A
- * brief level crossing is already handled by isMatchConfident's history requirement; a subway
- * running underneath for hundreds of metres is not "brief". A subway line is underground for its
- * entire length, so there's nothing to be gained by keeping it: a rider on one has no usable GPS
- * fix to match with anyway.
- *
- * A `brunnel=tunnel` heavy-rail segment is a different case and is deliberately *not* excluded
- * here, even though it poses exactly the same road-above-the-line hazard (Kent Road sits directly
- * over the North Clyde Line at Charing Cross). Unlike a subway, such a segment is a buried stretch
- * of an otherwise surface line, and recordings show GPS keeps producing genuinely good fixes for a
- * couple of hundred metres past the tunnel mouth - tracking the tunnel centreline to within 8m
- * while reporting 6-26m accuracy. Excluding the tunnel used to leave the road overhead as the only
- * thing left to match against, so a train through the Charing Cross tunnel was announced as
- * "Traveling east along Kent Road". Keeping the tunnel matchable fixes that; the road-above hazard
- * is handled instead by RailMatchArbiter, which lets a tunnel match sustain a train lock but never
- * acquire one.
- *
- * Keeping tunnels in also means the tunnel line reaches WayGenerator.addLine, so the node at the
- * tunnel mouth is counted twice and an Intersection is created there. That's what joins the
- * surface and tunnel Ways into one connected network, which MapMatchFilter's reachability check
- * needs in order to follow a train underground.
- */
-private fun isUnmatchableRailway(subClass: String?): Boolean {
-    return subClass == "subway"
-}
-
 private class NamedLine(val name: String?, val featureClass: String?, val coordinates: List<LngLatAlt>)
 
 // Every non-railway "transportation" LineString in the tile, brunnel-tagged or not - broader than
@@ -950,9 +915,18 @@ fun vectorTileToGeoJson(
                                 println("Feature ID is zero for $name")
                             }
                             if ((featureClass == "transit") || (featureClass == "rail")) {
-                                if (!isUnmatchableRailway(featureSubClass)) {
-                                    transitGenerator.addLine(line)
-                                }
+                                // Every railway goes into the network trains are matched against,
+                                // tunnels and subway lines included. GPS can't tell a road from a
+                                // line buried beneath it, so a bus on the street above a tunnel
+                                // matches the tunnel just as well - RailMatchArbiter deals with that
+                                // by letting a tunnel keep a train ride going but never start one.
+                                // A metro ride is picked up wherever its line runs above ground.
+                                //
+                                // Keeping tunnels in also means the node at a tunnel mouth is added
+                                // twice and becomes an Intersection, which joins the surface and
+                                // tunnel Ways into the connected network MapMatchFilter needs to
+                                // follow a train underground.
+                                transitGenerator.addLine(line)
                             } else {
                                 wayGenerator.addLine(line)
                             }
@@ -1057,9 +1031,7 @@ fun vectorTileToGeoJson(
                                 collection.addFeature(geoFeature)
                             } else {
                                 if ((featureClass == "transit") || (featureClass == "rail")) {
-                                    if (!isUnmatchableRailway(featureSubClass)) {
-                                        transitGenerator.addFeature(geoFeature)
-                                    }
+                                    transitGenerator.addFeature(geoFeature)
                                 } else {
                                     wayGenerator.addFeature(geoFeature)
                                 }

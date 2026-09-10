@@ -35,7 +35,7 @@ import kotlin.math.abs
  * limitation. The recentring is kept anyway since it costs nothing and is the more correct thing
  * to do for a route long enough to actually leave the initial tile window.
  */
-private fun buildContinuousRoute(
+internal fun buildContinuousRoute(
     gridState: GridState,
     startWay: Way,
     targetDistance: Double,
@@ -115,7 +115,7 @@ private fun buildContinuousRoute(
 
 data class VehicleSample(val location: LngLatAlt, val bearing: Double)
 
-private fun resampleAtSpeed(
+internal fun resampleAtSpeed(
     coords: List<LngLatAlt>,
     ruler: Ruler,
     speedMps: Double,
