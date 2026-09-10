@@ -161,7 +161,7 @@ class VisuallyCheckOutput {
         // The tile that I've been using above doesn't have any paths mapped in it
         // so I'm swapping to a different tile.
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
+        val gridState = getGridStateForLocation(parisTestLocation, MAX_ZOOM_LEVEL, 1)
 
         val testPathCollection = gridState.getFeatureCollection(TreeId.WAYS_SELECTION)
 
@@ -173,7 +173,7 @@ class VisuallyCheckOutput {
     @Test
     fun entrancesFeatureCollection() {
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
+        val gridState = getGridStateForLocation(parisTestLocation, MAX_ZOOM_LEVEL, 1)
         val testEntrancesCollection = gridState.getFeatureCollection(TreeId.ENTRANCES)
 
         val entrances = moshi.adapter(FeatureCollection::class.java).toJson(testEntrancesCollection)
@@ -184,7 +184,7 @@ class VisuallyCheckOutput {
     @Test
     fun poiSuperCategory() {
         val moshi = GeoMoshi.registerAdapters(Moshi.Builder()).build()
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
+        val gridState = getGridStateForLocation(parisTestLocation, MAX_ZOOM_LEVEL, 1)
         val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
 
         // select super category

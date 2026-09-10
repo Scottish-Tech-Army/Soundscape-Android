@@ -75,139 +75,214 @@ class TileUtilsTest {
         Assert.assertEquals(8, testBusStopFeatureCollectionFromTileFeatureCollection.features.size)
     }
 
+    private class TileCounts(
+        val crossings: Int,
+        val paths: Int,
+        val intersections: Int,
+        val entrances: Int,
+        val pois: Int,
+        val mobility: Int,
+        val objects: Int,
+        val information: Int,
+        val places: Int,
+        val landmarks: Int,
+        val safety: Int,
+    )
+
+    private class CityTile(val name: String, val location: LngLatAlt, val counts: TileCounts) {
+        // Loading the tile is the slow part and the tests only read from it, so each city's tile
+        // is loaded once and shared between them.
+        val gridState by lazy { getGridStateForLocation(location, MAX_ZOOM_LEVEL, 1) }
+    }
+
+    companion object {
+        // The single max-zoom tile at the centre of each city with a test extract outside the UK,
+        // and what it contains. The counts move whenever the test extracts are rebuilt.
+        private val cityTiles = listOf(
+            CityTile(
+                "Tehran", tehranTestLocation,
+                TileCounts(
+                    crossings = 288, paths = 799, intersections = 1978, entrances = 12,
+                    pois = 1426, mobility = 470, objects = 11, information = 1, places = 678,
+                    landmarks = 223, safety = 12,
+                )
+            ),
+            CityTile(
+                "San Salvador", sanSalvadorTestLocation,
+                TileCounts(
+                    crossings = 159, paths = 1007, intersections = 2533, entrances = 53,
+                    pois = 1451, mobility = 309, objects = 130, information = 1, places = 575,
+                    landmarks = 266, safety = 87,
+                )
+            ),
+            CityTile(
+                "Paris", parisTestLocation,
+                TileCounts(
+                    crossings = 962, paths = 7015, intersections = 6699, entrances = 285,
+                    pois = 8148, mobility = 1392, objects = 740, information = 150, places = 4178,
+                    landmarks = 1167, safety = 296,
+                )
+            ),
+            CityTile(
+                "Buenos Aires", buenosAiresTestLocation,
+                TileCounts(
+                    crossings = 86, paths = 740, intersections = 1045, entrances = 86,
+                    pois = 2959, mobility = 559, objects = 43, information = 1, places = 1491,
+                    landmarks = 619, safety = 135,
+                )
+            ),
+        )
+    }
+
     @Test
     fun getCrossingsFeatureCollectionFromTileFeatureCollectionTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
-        val testCrossingsFeatureCollection = gridState.getFeatureCollection(TreeId.CROSSINGS)
-        for (feature in testCrossingsFeatureCollection) {
-            val mvtFeature = feature as MvtFeature
-            Assert.assertEquals("crossing", mvtFeature.featureValue)
+        for (city in cityTiles) {
+            val testCrossingsFeatureCollection = city.gridState.getFeatureCollection(TreeId.CROSSINGS)
+            for (feature in testCrossingsFeatureCollection) {
+                val mvtFeature = feature as MvtFeature
+                Assert.assertEquals("crossing", mvtFeature.featureValue)
+            }
+            Assert.assertEquals(city.name, city.counts.crossings, testCrossingsFeatureCollection.features.size)
         }
-        Assert.assertEquals(382, testCrossingsFeatureCollection.features.size)
     }
 
     @Test
     fun getPathsFeatureCollectionFromTileFeatureCollectionTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
-        val testPathsCollectionFromTileFeatureCollection =
-            gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
-        val testRoadsCollectionFromTileFeatureCollection =
-            gridState.getFeatureCollection(TreeId.ROADS)
-        for (feature in testPathsCollectionFromTileFeatureCollection) {
-            val mvtFeature = feature as MvtFeature
-            Assert.assertEquals("highway", mvtFeature.featureType)
-            Assert.assertTrue("Feature should be of type Way", feature is Way)
+        for (city in cityTiles) {
+            val testPathsCollectionFromTileFeatureCollection =
+                city.gridState.getFeatureCollection(TreeId.ROADS_AND_PATHS)
+            val testRoadsCollectionFromTileFeatureCollection =
+                city.gridState.getFeatureCollection(TreeId.ROADS)
+            for (feature in testPathsCollectionFromTileFeatureCollection) {
+                val mvtFeature = feature as MvtFeature
+                Assert.assertEquals("highway", mvtFeature.featureType)
+                Assert.assertTrue("Feature should be of type Way", feature is Way)
+            }
+            // Check that the number of path segments (road_and_paths - roads) is correct
+            Assert.assertEquals(
+                city.name,
+                city.counts.paths,
+                testPathsCollectionFromTileFeatureCollection.features.size - testRoadsCollectionFromTileFeatureCollection.features.size
+            )
         }
-        // Check that the number of path segments (road_and_paths - roads) is correct
-        Assert.assertEquals(
-            4737,
-            testPathsCollectionFromTileFeatureCollection.features.size - testRoadsCollectionFromTileFeatureCollection.features.size
-        )
     }
 
     @Test
     fun getIntersectionsFeatureCollectionFromTileFeatureCollectionTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
-        val testIntersectionsCollectionFromTileFeatureCollection =
-            gridState.getFeatureCollection(TreeId.INTERSECTIONS)
-        for (feature in testIntersectionsCollectionFromTileFeatureCollection) {
-            Assert.assertTrue("Feature should be of type Intersection", feature is Intersection)
+        for (city in cityTiles) {
+            val testIntersectionsCollectionFromTileFeatureCollection =
+                city.gridState.getFeatureCollection(TreeId.INTERSECTIONS)
+            for (feature in testIntersectionsCollectionFromTileFeatureCollection) {
+                Assert.assertTrue("Feature should be of type Intersection", feature is Intersection)
+            }
+            Assert.assertEquals(
+                city.name,
+                city.counts.intersections,
+                testIntersectionsCollectionFromTileFeatureCollection.features.size
+            )
         }
-        Assert.assertEquals(
-            5490,
-            testIntersectionsCollectionFromTileFeatureCollection.features.size
-        )
     }
 
     @Test
     fun getEntrancesFeatureCollectionFromTileFeatureCollectionTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
-        val testEntrancesCollectionFromTileFeatureCollection =
-            gridState.getFeatureCollection(TreeId.ENTRANCES)
-        for (feature in testEntrancesCollectionFromTileFeatureCollection) {
-            Assert.assertEquals(true, feature.properties!!.contains("entrance"))
+        for (city in cityTiles) {
+            val testEntrancesCollectionFromTileFeatureCollection =
+                city.gridState.getFeatureCollection(TreeId.ENTRANCES)
+            for (feature in testEntrancesCollectionFromTileFeatureCollection) {
+                Assert.assertEquals(true, feature.properties!!.contains("entrance"))
+            }
+            Assert.assertEquals(
+                city.name,
+                city.counts.entrances,
+                testEntrancesCollectionFromTileFeatureCollection.features.size
+            )
         }
-        Assert.assertEquals(142, testEntrancesCollectionFromTileFeatureCollection.features.size)
     }
 
     @Test
     fun getPoiFeatureCollectionFromTileFeatureCollectionTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
-        val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
+        for (city in cityTiles) {
+            val testPoiCollection = city.gridState.getFeatureCollection(TreeId.POIS)
 
-        Assert.assertEquals(2794, testPoiCollection.features.size)
+            Assert.assertEquals(city.name, city.counts.pois, testPoiCollection.features.size)
+        }
     }
 
     @Test
     fun getPoiFeatureCollectionBySuperCategoryMobilityTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
-        val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
+        for (city in cityTiles) {
+            val testPoiCollection = city.gridState.getFeatureCollection(TreeId.POIS)
 
-        // select "mobility" super category
-        val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.MOBILITY, testPoiCollection)
-        Assert.assertEquals(630, testSuperCategoryPoiCollection.features.size)
+            // select "mobility" super category
+            val testSuperCategoryPoiCollection =
+                getPoiFeatureCollectionBySuperCategory(SuperCategoryId.MOBILITY, testPoiCollection)
+            Assert.assertEquals(city.name, city.counts.mobility, testSuperCategoryPoiCollection.features.size)
+        }
     }
 
     @Test
     fun getPoiFeatureCollectionBySuperCategoryObjectTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
-        val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
+        for (city in cityTiles) {
+            val testPoiCollection = city.gridState.getFeatureCollection(TreeId.POIS)
 
-        // select "object" super category
-        val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.OBJECT, testPoiCollection)
-        Assert.assertEquals(105, testSuperCategoryPoiCollection.features.size)
+            // select "object" super category
+            val testSuperCategoryPoiCollection =
+                getPoiFeatureCollectionBySuperCategory(SuperCategoryId.OBJECT, testPoiCollection)
+            Assert.assertEquals(city.name, city.counts.objects, testSuperCategoryPoiCollection.features.size)
 
-        for (feature in testSuperCategoryPoiCollection) {
-            val mvtFeature = feature as MvtFeature
-            println("${mvtFeature.featureType} - ${mvtFeature.featureValue}")
+            for (feature in testSuperCategoryPoiCollection) {
+                val mvtFeature = feature as MvtFeature
+                println("${mvtFeature.featureType} - ${mvtFeature.featureValue}")
+            }
         }
     }
 
     @Test
     fun getPoiFeatureCollectionBySuperCategoryInformationTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
-        val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
+        for (city in cityTiles) {
+            val testPoiCollection = city.gridState.getFeatureCollection(TreeId.POIS)
 
-        // select "information" super category
-        val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.INFORMATION, testPoiCollection)
-        Assert.assertEquals(7, testSuperCategoryPoiCollection.features.size)
-
+            // select "information" super category
+            val testSuperCategoryPoiCollection =
+                getPoiFeatureCollectionBySuperCategory(SuperCategoryId.INFORMATION, testPoiCollection)
+            Assert.assertEquals(city.name, city.counts.information, testSuperCategoryPoiCollection.features.size)
+        }
     }
 
     @Test
     fun getPoiFeatureCollectionBySuperCategoryPlaceTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
-        val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
+        for (city in cityTiles) {
+            val testPoiCollection = city.gridState.getFeatureCollection(TreeId.POIS)
 
-        // select "place" super category
-        val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.PLACE, testPoiCollection)
-        Assert.assertEquals(1375, testSuperCategoryPoiCollection.features.size)
+            // select "place" super category
+            val testSuperCategoryPoiCollection =
+                getPoiFeatureCollectionBySuperCategory(SuperCategoryId.PLACE, testPoiCollection)
+            Assert.assertEquals(city.name, city.counts.places, testSuperCategoryPoiCollection.features.size)
+        }
     }
 
     @Test
     fun getPoiFeatureCollectionBySuperCategoryLandmarkTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
-        val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
+        for (city in cityTiles) {
+            val testPoiCollection = city.gridState.getFeatureCollection(TreeId.POIS)
 
-        // select "landmark" super category
-        val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.LANDMARK, testPoiCollection)
-        Assert.assertEquals(222, testSuperCategoryPoiCollection.features.size)
+            // select "landmark" super category
+            val testSuperCategoryPoiCollection =
+                getPoiFeatureCollectionBySuperCategory(SuperCategoryId.LANDMARK, testPoiCollection)
+            Assert.assertEquals(city.name, city.counts.landmarks, testSuperCategoryPoiCollection.features.size)
+        }
     }
 
     @Test
     fun getPoiFeatureCollectionBySuperCategorySafetyTest() {
-        val gridState = getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 1)
-        val testPoiCollection = gridState.getFeatureCollection(TreeId.POIS)
+        for (city in cityTiles) {
+            val testPoiCollection = city.gridState.getFeatureCollection(TreeId.POIS)
 
-        // select "safety" super category
-        val testSuperCategoryPoiCollection =
-            getPoiFeatureCollectionBySuperCategory(SuperCategoryId.SAFETY, testPoiCollection)
-        Assert.assertEquals(268, testSuperCategoryPoiCollection.features.size)
+            // select "safety" super category
+            val testSuperCategoryPoiCollection =
+                getPoiFeatureCollectionBySuperCategory(SuperCategoryId.SAFETY, testPoiCollection)
+            Assert.assertEquals(city.name, city.counts.safety, testSuperCategoryPoiCollection.features.size)
+        }
     }
 
     @Test

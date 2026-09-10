@@ -307,6 +307,16 @@ class MvtTileTest {
         assertEquals("AU", CountryBoundaries.countryCode(sydney))
         assertEquals(DrivingSide.LEFT, CountryBoundaries.drivingSide(sydney))
 
+        assertEquals("IR", CountryBoundaries.countryCode(tehranTestLocation))
+        assertEquals(DrivingSide.RIGHT, CountryBoundaries.drivingSide(tehranTestLocation))
+
+        // El Salvador is small enough that the simplified boundaries could easily lose it
+        assertEquals("SV", CountryBoundaries.countryCode(sanSalvadorTestLocation))
+        assertEquals(DrivingSide.RIGHT, CountryBoundaries.drivingSide(sanSalvadorTestLocation))
+
+        assertEquals("AR", CountryBoundaries.countryCode(buenosAiresTestLocation))
+        assertEquals(DrivingSide.RIGHT, CountryBoundaries.drivingSide(buenosAiresTestLocation))
+
         // Middle of the Atlantic - no country.
         val ocean = LngLatAlt(-40.0, 30.0)
         assertEquals(null, CountryBoundaries.countryCode(ocean))
@@ -4521,7 +4531,11 @@ class MvtTileTest {
         val regions = listOf(
             Region("Edinburgh", 16090 / 2, 10207 / 2, 16095 / 2, 10212 / 2),
             Region("Bristol", 16128 / 2, 10880 / 2, 16192 / 2, 10944 / 2),
-            Region("Manchester", 16128 / 2, 10560 / 2, 16192 / 2, 10624 / 2),
+            // 16x16 tiles at the centre of each city with a test extract outside the UK
+            Region("Tehran", 10522, 6442, 10538, 6458),
+            Region("San Salvador", 4124, 7554, 4140, 7570),
+            Region("Paris", 8290, 5628, 8306, 5644),
+            Region("Buenos Aires", 5526, 9864, 5542, 9880),
         )
         for (region in regions) {
             println("Test ${region.name}")
@@ -4755,15 +4769,19 @@ class MvtTileTest {
         enabledCategories.add(PLACES_AND_LANDMARKS_KEY)
         enabledCategories.add(MOBILITY_KEY)
 
-        // Intersperse locations that are in each of the extracts (Glasgow, Liverpool, Bristol)
-        // with some that are outside and should fail
+        // Intersperse locations that are in each of the extracts (Glasgow, Bristol, Tehran, San
+        // Salvador, Paris and Buenos Aires) with some that are outside and should fail. The
+        // failing one is Isfahan, which is in Iran but well outside the Tehran extract.
         val locations: List<Pair<LngLatAlt, Boolean>> = listOf(
             Pair(sixtyAcresCloseTestLocation, true),
+            Pair(tehranTestLocation, true),
             Pair(longAshtonRoadTestLocation, true),
             Pair(LngLatAlt(51.69046, 32.66160), false),
+            Pair(buenosAiresTestLocation, true),
             Pair(woodlandWayTestLocation, true),
-            Pair(centralManchesterTestLocation, true),
+            Pair(parisTestLocation, true),
             Pair(LngLatAlt(51.69046, 32.66160), false),
+            Pair(sanSalvadorTestLocation, true),
             Pair(failandTestLocation, true),
             Pair(LngLatAlt(51.69046, 32.66160), false),
             Pair(edinburghTestLocation, true),
@@ -4788,7 +4806,7 @@ class MvtTileTest {
     fun timeParsingPerformance() {
         val duration = measureTime {
             val gridState =
-                getGridStateForLocation(centralManchesterTestLocation, MAX_ZOOM_LEVEL, 2)
+                getGridStateForLocation(parisTestLocation, MAX_ZOOM_LEVEL, 2)
         }
         println("Processing time $duration")
     }

@@ -18,9 +18,12 @@ runs:
         path: |
           ${{ inputs.output_dir }}/bristol-gb.pmtiles
           ${{ inputs.output_dir }}/glasgow-gb.pmtiles
-          ${{ inputs.output_dir }}/liverpool-gb.pmtiles
+          ${{ inputs.output_dir }}/tehran-ir.pmtiles
+          ${{ inputs.output_dir }}/san-salvador-sv.pmtiles
+          ${{ inputs.output_dir }}/paris-fr.pmtiles
+          ${{ inputs.output_dir }}/buenos-aires-ar.pmtiles
           ${{ inputs.output_dir }}/manifest.geojson.gz
-        key: pmtiles-v4-${{ hashFiles('.github/actions/setup-offline-maps/action.yml') }}
+        key: pmtiles-v5-${{ hashFiles('.github/actions/setup-offline-maps/action.yml') }}
 
     - name: Download pmtiles + manifest
       if: steps.cache.outputs.cache-hit != 'true'
@@ -35,7 +38,10 @@ runs:
         # --waitretry backs off between retries. Without these, wget can silently hang
         # for an hour at <50 KB/s when R2 connections drop.
         WGET_OPTS="--no-verbose --show-progress --progress=dot:giga --tries=5 --timeout=30 --waitretry=10"
-        wget $WGET_OPTS "$base/$current_version/bristol-gb.pmtiles"   -O "$OUTPUT_DIR/bristol-gb.pmtiles"
-        wget $WGET_OPTS "$base/$current_version/glasgow-gb.pmtiles"   -O "$OUTPUT_DIR/glasgow-gb.pmtiles"
-        wget $WGET_OPTS "$base/$current_version/liverpool-gb.pmtiles" -O "$OUTPUT_DIR/liverpool-gb.pmtiles"
-        wget $WGET_OPTS "$base/manifest.geojson.gz"                  -O "$OUTPUT_DIR/manifest.geojson.gz"
+        wget $WGET_OPTS "$base/$current_version/bristol-gb.pmtiles"      -O "$OUTPUT_DIR/bristol-gb.pmtiles"
+        wget $WGET_OPTS "$base/$current_version/glasgow-gb.pmtiles"      -O "$OUTPUT_DIR/glasgow-gb.pmtiles"
+        wget $WGET_OPTS "$base/$current_version/tehran-ir.pmtiles"       -O "$OUTPUT_DIR/tehran-ir.pmtiles"
+        wget $WGET_OPTS "$base/$current_version/san-salvador-sv.pmtiles" -O "$OUTPUT_DIR/san-salvador-sv.pmtiles"
+        wget $WGET_OPTS "$base/$current_version/paris-fr.pmtiles"        -O "$OUTPUT_DIR/paris-fr.pmtiles"
+        wget $WGET_OPTS "$base/$current_version/buenos-aires-ar.pmtiles" -O "$OUTPUT_DIR/buenos-aires-ar.pmtiles"
+        wget $WGET_OPTS "$base/manifest.geojson.gz"                     -O "$OUTPUT_DIR/manifest.geojson.gz"
