@@ -787,6 +787,24 @@ class WayGenerator(val transit: Boolean = false) {
         way.length = currentSegmentLength
     }
 
+    /**
+     * The TILE_EDGE intersection at [location], created by the first Way to cross the tile edge
+     * there. Ways which share their geometry - Métro 8 and 9 run through the same tunnel under the
+     * Grands Boulevards - cross at exactly the same point, and giving each its own intersection
+     * lost all but the last of them from the map that the grid stitches tiles together with.
+     */
+    private fun tileEdgeIntersection(location: LngLatAlt): Intersection {
+        intersections[location]?.let { existing ->
+            if (existing.intersectionType == IntersectionType.TILE_EDGE) return existing
+        }
+        val intersection = Intersection()
+        intersection.name = ""
+        intersection.location = location
+        intersection.intersectionType = IntersectionType.TILE_EDGE
+        intersections[location] = intersection
+        return intersection
+    }
+
     fun generateWays(
         intersectionCollection: FeatureCollection?,
         mainWaysCollection: FeatureCollection,
@@ -824,14 +842,10 @@ class WayGenerator(val transit: Boolean = false) {
                     if (tileEdge and (currentSegment.coordinates.isEmpty())) {
                         // We're starting at a tile edge, so create an intersection that we can
                         // join to other tiles later
-                        val intersection = Intersection()
-                        intersection.name = ""
-                        intersection.location = coordinate
-                        intersection.intersectionType = IntersectionType.TILE_EDGE
+                        val intersection = tileEdgeIntersection(coordinate)
 
                         // The current way starts here
                         currentWay.intersections[WayEnd.START.id] = intersection
-                        intersections[intersection.location] = intersection
                     }
 
                     if (currentSegment.coordinates.isNotEmpty()) {
@@ -908,15 +922,11 @@ class WayGenerator(val transit: Boolean = false) {
                     if (tileEdge) {
                         // We're ending at a tile edge, so create an intersection that we can
                         // join to other tiles later
-                        val intersection = Intersection()
-                        intersection.name = ""
-                        intersection.location = currentSegment.coordinates.last()
-                        intersection.intersectionType = IntersectionType.TILE_EDGE
+                        val intersection = tileEdgeIntersection(currentSegment.coordinates.last())
 
                         // The current way ends here
                         currentWay.intersections[WayEnd.END.id] = intersection
                         intersection.members.add(currentWay)
-                        intersections[intersection.location] = intersection
                     }
                 }
             }
