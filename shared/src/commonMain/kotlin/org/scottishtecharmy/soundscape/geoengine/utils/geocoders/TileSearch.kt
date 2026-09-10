@@ -156,7 +156,7 @@ class TileSearch(
             // Chinese and Japanese don't put spaces between words, so a word can start anywhere
             // in a run of them - "梅田" in "大阪梅田". Only worth looking for when the needle is
             // written that way too.
-            if (needle.firstOrNull()?.let { isUnspacedScript(it) } == true) {
+            if (needle.isNotEmpty() && isUnspacedScript(codePointAt(needle, 0))) {
                 val bestEnd = generateEndsWithinWords(string)
                     .filter { it.length >= needle.length }
                     .minByOrNull { needle.fuzzyCompare(it, true) }
@@ -256,22 +256,29 @@ class TileSearch(
      */
     fun generateEndsWithinWords(normalizedString: String): List<String> {
         val ends = mutableListOf<String>()
-        for (i in 1 until normalizedString.length) {
-            val ch = normalizedString[i]
-            if (!isUnspacedScript(ch) || (ch.category == CharCategory.NON_SPACING_MARK)) continue
-            // A voicing mark (U+3099) left separate by normalization belongs to the kana before it
-            val previous = normalizedString[i - 1]
-            if (isUnspacedScript(previous)) ends.add(normalizedString.substring(i))
+        var previousUnspaced = false
+        var index = 0
+        while (index < normalizedString.length) {
+            // By code point, so that an ideograph beyond U+FFFF isn't split into its surrogates
+            val codePoint = codePointAt(normalizedString, index)
+            val unspaced = isUnspacedScript(codePoint)
+            // A voicing mark (U+3099) left separate by normalization belongs to the kana before it,
+            // so it counts as part of the run but never starts an end
+            val mark = normalizedString[index].category == CharCategory.NON_SPACING_MARK
+            if (unspaced && !mark && previousUnspaced) ends.add(normalizedString.substring(index))
+            previousUnspaced = unspaced
+            index += if (codePoint > 0xFFFF) 2 else 1
         }
         return ends
     }
 
-    /** Whether [ch] is Chinese or Japanese - kanji/hanzi, hiragana or katakana. */
-    private fun isUnspacedScript(ch: Char): Boolean =
-        (ch.code in 0x3040..0x30FF) ||    // Hiragana and Katakana, including the voicing marks
-            (ch.code in 0x3400..0x4DBF) || // CJK Unified Ideographs Extension A
-            (ch.code in 0x4E00..0x9FFF) || // CJK Unified Ideographs
-            (ch.code in 0xF900..0xFAFF)    // CJK Compatibility Ideographs
+    /** Whether [codePoint] is Chinese or Japanese - kanji/hanzi, hiragana or katakana. */
+    private fun isUnspacedScript(codePoint: Int): Boolean =
+        (codePoint in 0x3040..0x30FF) ||     // Hiragana and Katakana, including the voicing marks
+            (codePoint in 0x3400..0x4DBF) ||  // CJK Unified Ideographs Extension A
+            (codePoint in 0x4E00..0x9FFF) ||  // CJK Unified Ideographs
+            (codePoint in 0xF900..0xFAFF) ||  // CJK Compatibility Ideographs
+            (codePoint in 0x20000..0x3FFFF)   // CJK Unified Ideographs Extensions B onwards
 
     /** Whether [feature] has the string at [stringKey] in its layer's values as one of its names. */
     private fun featureHasName(feature: Tile.Feature, nameTagIndices: Set<Int>, stringKey: Int): Boolean {

@@ -266,6 +266,14 @@ class TileSearchTest {
     }
 
     @Test
+    fun generateEndsWithinWords_ideographBeyondU_FFFF_isOneCharacter() {
+        // 𩸽 (U+29E3D, hokke) is a surrogate pair, which mustn't be split
+        val tileSearch = newTileSearch()
+        assertEquals(listOf("定食", "食"), tileSearch.generateEndsWithinWords("𩸽定食"))
+        assertEquals(listOf("𩸽"), tileSearch.generateEndsWithinWords("焼𩸽"))
+    }
+
+    @Test
     fun generateEndsWithinWords_neverStartsWithASeparatedVoicingMark() {
         // Normalization leaves "グ" as "ク" followed by the combining voicing mark U+3099, which
         // mustn't be split from it

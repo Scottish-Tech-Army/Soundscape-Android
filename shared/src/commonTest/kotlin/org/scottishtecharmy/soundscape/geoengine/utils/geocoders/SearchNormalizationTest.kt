@@ -75,6 +75,29 @@ class SearchNormalizationTest {
     }
 
     @Test
+    fun keepsCharactersBeyondU_FFFF() {
+        // Each of these is a surrogate pair in a String, and neither half is a letter on its own
+        // 𩸽 (U+29E3D, hokke) in "𩸽定食", a Japanese set meal
+        assertEquals("𩸽定食", normalizeForSearch("𩸽定食"))
+        // Deseret, a script with case: 𐐀 (U+10400) lowercases to 𐐨 (U+10428)
+        assertEquals("𐐨", normalizeForSearch("𐐀"))
+    }
+
+    @Test
+    fun emojiBeyondU_FFFFAreAGapBetweenWords() {
+        // 🍜 (U+1F35C), like the symbols before U+FFFF
+        assertEquals("ramen bar", normalizeForSearch("🍜 Ramen🍜Bar"))
+    }
+
+    @Test
+    fun dropsVariationSelectors() {
+        // 葛城 with the variation selector picking out 葛's other form, either before U+FFFF
+        // (U+FE00) or after it (U+E0100)
+        assertEquals("葛城", normalizeForSearch("葛︀城"))
+        assertEquals("葛城", normalizeForSearch("葛󠄀城"))
+    }
+
+    @Test
     fun preservesDigits() {
         assertEquals("abc123", normalizeForSearch("abc123"))
         assertEquals("route 66", normalizeForSearch("Route 66"))
