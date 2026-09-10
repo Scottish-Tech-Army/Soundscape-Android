@@ -61,6 +61,20 @@ class SearchNormalizationTest {
     }
 
     @Test
+    fun preservesSpacingVowelSigns() {
+        // Vowel signs written beside their consonant are spacing combining marks (category Mc).
+        // They aren't letters, but they're part of the word, not a gap in it.
+        // Devanagari "दिल्ली" (Delhi): ि U+093F and ी U+0940 are spacing, ् U+094D isn't
+        assertEquals("दिल्ली", normalizeForSearch("दिल्ली"))
+        // Burmese "ကား" (car): ာ U+102C and း U+1038
+        assertEquals("ကား", normalizeForSearch("ကား"))
+        // Khmer "កា": ា U+17B6
+        assertEquals("កា", normalizeForSearch("កា"))
+        // Tamil "கா": ா U+0BBE
+        assertEquals("கா", normalizeForSearch("கா"))
+    }
+
+    @Test
     fun preservesDigits() {
         assertEquals("abc123", normalizeForSearch("abc123"))
         assertEquals("route 66", normalizeForSearch("Route 66"))
