@@ -98,6 +98,88 @@ class SearchNormalizationTest {
     }
 
     @Test
+    fun foldsLettersTypedAsTheLettersTheyLookLike() {
+        // NFKD leaves these alone, but they're typed as the letters they look like on a keyboard
+        // without them
+        assertEquals("strasse", normalizeForSearch("Straße"))
+        assertEquals("strasse", normalizeForSearch("STRAẞE"))
+        assertEquals("sondergade", normalizeForSearch("Søndergade"))
+        assertEquals("lodz", normalizeForSearch("Łódź"))
+        assertEquals("thingvellir", normalizeForSearch("Þingvellir"))
+        assertEquals("gardabaer", normalizeForSearch("Garðabær"))
+        assertEquals("dakovo", normalizeForSearch("Đakovo"))
+        assertEquals("kadikoy", normalizeForSearch("Kadıköy"))
+        assertEquals("dan hausa", normalizeForSearch("Ɗan Hausa"))
+    }
+
+    @Test
+    fun catalanMiddleDotIsADoubleL() {
+        assertEquals("collegi", normalizeForSearch("Col·legi"))
+        assertEquals("collegi", normalizeForSearch("Col.legi"))
+        assertEquals("collegi", normalizeForSearch("Coŀlegi"))
+        // A full stop anywhere else is still a gap between words
+        assertEquals("st andrews", normalizeForSearch("St.Andrews"))
+    }
+
+    @Test
+    fun greekFinalSigmaMatchesUpperCase() {
+        assertEquals(normalizeForSearch("ΟΔΟΣ ΕΡΜΟΥ"), normalizeForSearch("Οδός Ερμού"))
+        assertEquals(normalizeForSearch("οδοσ"), normalizeForSearch("Οδός"))
+    }
+
+    @Test
+    fun foldsArabicSpellingVariants() {
+        // أحمد, إسكندرية and آمنة, with the hamza or madda on their alef left off
+        assertEquals("احمد", normalizeForSearch("أحمد"))
+        assertEquals(
+            normalizeForSearch("اسكندرية"),
+            normalizeForSearch("إسكندرية")
+        )
+        assertEquals(normalizeForSearch("امنة"), normalizeForSearch("آمنة"))
+        // شـارع, drawn out with a tatweel
+        assertEquals(normalizeForSearch("شارع"), normalizeForSearch("شـارع"))
+        // مَدْرَسَة, with its vowel marks
+        assertEquals(
+            normalizeForSearch("مدرسة"),
+            normalizeForSearch("مَدْرَسَة")
+        )
+        // Teh marbuta, and Urdu's heh goal, typed as heh
+        assertEquals(normalizeForSearch("مدرسه"), normalizeForSearch("مدرسة"))
+        assertEquals(
+            normalizeForSearch("هسپتال"),
+            normalizeForSearch("ہسپتال")
+        )
+    }
+
+    @Test
+    fun zeroWidthJoinersDontSplitIndicWords() {
+        // Hindi क्‍ष, Marathi कार्‍यालय with its eyelash ra, and Bengali র‍্যাব
+        assertEquals("क्ष", normalizeForSearch("क्‍ष"))
+        assertEquals(
+            normalizeForSearch("कार्यालय"),
+            normalizeForSearch("कार्‍यालय")
+        )
+        assertEquals(
+            normalizeForSearch("র্যাব"),
+            normalizeForSearch("র‍্যাব")
+        )
+        // A non-joiner in Hindi goes too, where in Persian it's a gap between the parts of a word
+        assertEquals("क्ष", normalizeForSearch("क्‌ष"))
+    }
+
+    @Test
+    fun katakanaMatchesHiragana() {
+        assertEquals(normalizeForSearch("うめだ"), normalizeForSearch("ウメダ"))
+        assertEquals(normalizeForSearch("ゔ"), normalizeForSearch("ヴ"))
+    }
+
+    @Test
+    fun hangulSyllablesStayWhole() {
+        // NFKD takes 서울역 apart into its letters, and they're put back together
+        assertEquals("서울역", normalizeForSearch("서울역"))
+    }
+
+    @Test
     fun preservesDigits() {
         assertEquals("abc123", normalizeForSearch("abc123"))
         assertEquals("route 66", normalizeForSearch("Route 66"))
