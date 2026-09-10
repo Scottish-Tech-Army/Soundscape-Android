@@ -572,14 +572,14 @@ class AutoCallout(
             settlementGrid.getFeatureTree(TreeId.SETTLEMENT_VILLAGE)
                 .getNearestFeature(location, settlementGrid.ruler, 2000.0) as? MvtFeature
             )
-        settlement?.name?.let { settlementName ->
+        settlement?.displayName?.let { settlementName ->
             return localized?.get(StringKey.DirectionsTransitStopNearSettlement, genericText, settlementName)
                 ?: "$genericText, $settlementName"
         }
 
         val landmark = gridState.getFeatureTree(TreeId.LANDMARK_POIS)
             .getNearestFeature(location, gridState.ruler, 300.0) as? MvtFeature
-        landmark?.name?.let { landmarkName ->
+        landmark?.displayName?.let { landmarkName ->
             return localized?.get(StringKey.DirectionsTransitStopNearPoi, genericText, landmarkName)
                 ?: "$genericText near $landmarkName"
         }
@@ -647,7 +647,7 @@ class AutoCallout(
         val point: LngLatAlt
     ) {
         constructor(feature: AlongWayFeature) :
-            this(feature.kind, feature.name, feature.position, feature.point)
+            this(feature.kind, feature.displayName, feature.position, feature.point)
     }
 
 

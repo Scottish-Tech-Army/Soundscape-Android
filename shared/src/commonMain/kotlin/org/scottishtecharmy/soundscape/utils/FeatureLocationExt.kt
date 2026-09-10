@@ -52,7 +52,7 @@ fun Feature.toLocationDescription(
  * ("A81"), which names a road just as well.
  */
 private fun streetForFeature(mvt: MvtFeature?, strings: LocalizedStrings?): String? {
-    val way = mvt?.nearestWay?.let { it.name ?: it.ref }
+    val way = mvt?.nearestWay?.let { it.displayName ?: it.ref }
     val settlement = mvt?.nearestSettlement
 
     return when {
@@ -193,7 +193,7 @@ fun LocationDescription.process(strings: LocalizedStrings? = null) {
                         setIfLower(LocationType.StreetNumber, locationTypeProperty)
                 }
                 if (mvt != null) {
-                    nameLocal = mvt.name
+                    nameLocal = mvt.displayName
                 }
 
                 name = nameLocal
@@ -206,9 +206,9 @@ fun LocationDescription.process(strings: LocalizedStrings? = null) {
                 // Northeastbound") over the plain OSM name - featureName is built with
                 // includeTransitTypeSuffix = false here, so no "Bus Stop" suffix is added.
                 name = if (mvt?.featureValue == "bus_stop") {
-                    featureName?.text?.takeIf { it.isNotEmpty() } ?: mvt.name?.takeIf { it.isNotEmpty() } ?: ""
+                    featureName?.text?.takeIf { it.isNotEmpty() } ?: mvt.displayName?.takeIf { it.isNotEmpty() } ?: ""
                 } else {
-                    mvt?.name?.takeIf { it.isNotEmpty() } ?: featureName?.text ?: ""
+                    mvt?.displayName?.takeIf { it.isNotEmpty() } ?: featureName?.text ?: ""
                 }
                 opposite = oppositeProperty
                 locationType = locationTypeProperty

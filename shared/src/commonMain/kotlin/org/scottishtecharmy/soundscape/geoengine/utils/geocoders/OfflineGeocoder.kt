@@ -78,8 +78,10 @@ class OfflineGeocoder(
     fun addNamesFromGrid(treeId: TreeId, names: MutableSet<String>) {
         val features = settlementGrid.getFeatureTree(treeId).getAllCollection()
         for (feature in features) {
-            val name = (feature as MvtFeature).name
-            if (name != null) {
+            val mvt = feature as MvtFeature
+            // Either name could be the one typed - the local one off a sign, or the one in the
+            // app's language
+            for (name in listOfNotNull(mvt.name, mvt.translatedName)) {
                 names.add(normalizeForSearch(name))
             }
         }
@@ -184,12 +186,18 @@ class OfflineGeocoder(
             }
         }
         if (nearbyWay != null) {
-            val nearbyName = (nearbyWay.properties?.get("pavement") as String?)
+            val pavement = (nearbyWay.properties?.get("pavement") as String?)
                 .takeUnless { it.isNullOrEmpty() }
+            val nearbyName = pavement
+                ?.let { (nearbyWay.properties?.get("pavementTranslated") as String?) ?: it }
                 ?: nearbyWay.getName(null, gridState, localizedStrings)
             if (nearbyName.isNotEmpty()) {
+                // The street is followed and its house numbers found by its local name, which is
+                // what the other Ways of it and the house numbers' addr:street carry. nearbyName
+                // may be in the app's language instead, so it's only for saying.
+                val streetKey = pavement ?: nearbyWay.name ?: nearbyName
                 val description = getOrBuildStreetDescription(
-                    nearbyName, nearbyWay, localizedStrings, userGeometry.inVehicle()
+                    streetKey, nearbyWay, localizedStrings, userGeometry.inVehicle()
                 )
                 val nearestWay = description.nearestWayOnStreet(userGeometry.location)
                 if ((nearestWay != null) && !ignoreHouseNumbers) {
@@ -338,7 +346,7 @@ class OfflineGeocoder(
             }
         }
 
-        val nearestSettlementName = nearestSettlement(settlementGrid, location).name
+        val nearestSettlementName = nearestSettlement(settlementGrid, location).displayName
 
         // Check if the location is alongside a road/path
         val nearestRoad = gridState.getNearestFeature(

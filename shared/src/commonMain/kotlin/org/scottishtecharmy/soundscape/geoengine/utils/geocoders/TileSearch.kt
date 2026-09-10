@@ -750,7 +750,7 @@ class TileSearch(
                         )
                         if (nearestWay != null) {
                             if (mvt.properties?.get("street") == null) {
-                                mvt.properties?.set("street", nearestWay.name)
+                                mvt.properties?.set("street", nearestWay.displayName)
                             }
                             if (result.layer == "transportation") {
                                 val sd = StreetDescription(result.string, gridState)
@@ -824,7 +824,7 @@ class TileSearch(
                             }
                         }
                         if (nearestDistrict?.name != null) {
-                            mvt.properties?.set("city", nearestDistrict.name)
+                            mvt.properties?.set("city", nearestDistrict.displayName)
                         }
                     }
                 }

@@ -355,7 +355,7 @@ class StreetDescription(
             )
             // If the description is the same in both directions, then we don't want to include it
             // as it's probably a loop joining on to our road
-            if (segmentName.isNotEmpty() && ((segmentName == member.name) || (segmentName != segmentNameReverse))) ++count
+            if (segmentName.isNotEmpty() && ((segmentName == member.displayName) || (segmentName != segmentNameReverse))) ++count
         }
 
         return count > 0
@@ -774,7 +774,7 @@ class StreetDescription(
                         // confected part - "Thomson Place to dead end", "Mountblow Road via
                         // steps" - which is the same noise the filter above exists to avoid.
                         val crossStreetName = if (travelMode) {
-                            crossStreet.name ?: crossStreet.ref ?: ""
+                            crossStreet.displayName ?: crossStreet.ref ?: ""
                         } else {
                             crossStreet.getName(
                                 crossStreet.intersections[WayEnd.START.id] == intersection,

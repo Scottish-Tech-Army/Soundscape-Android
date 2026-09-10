@@ -68,6 +68,8 @@ enum class AlongWayPosition {
  * lines cross, which is not necessarily on the owning Way - see [Way.distanceAlongWay].
  * @param name the name of the thing being crossed (the river, the railway line), or of the
  * feature itself. Null when unnamed.
+ * @param translatedName [name] in the app's language, where the map has one - see
+ * MvtFeature.translatedName. Speak [displayName]; compare [name].
  * @param position for a crossing, whether the user passes over or under. Null when not applicable.
  * @param side which side of the Way the feature sits on, relative to travelling from the Way's
  * START intersection towards its END. Null when it is on the Way itself, as a crossing is.
@@ -84,4 +86,8 @@ data class AlongWayFeature(
     val position: AlongWayPosition? = null,
     val side: Side? = null,
     val feature: MvtFeature? = null,
-)
+    val translatedName: String? = null,
+) {
+    val displayName: String?
+        get() = translatedName ?: name
+}

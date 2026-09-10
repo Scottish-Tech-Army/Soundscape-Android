@@ -77,6 +77,17 @@ private fun formatNaptanBusStopName(feature: MvtFeature, name: String, localized
 open class MvtFeature : Feature() {
     var osmId: Long = 0L
     var name: String? = null
+
+    /**
+     * The name in the app's language, where the map has one that differs from [name] - see
+     * nameKeysForLanguage. [name] stays the local OSM name, because that's what other features
+     * refer to it by: a house number's street, the other Ways of the same road. So anything
+     * comparing names uses [name], and anything telling the user a name uses [displayName].
+     */
+    var translatedName: String? = null
+    val displayName: String?
+        get() = translatedName ?: name
+
     var ref: String? = null
     var housenumber: String? = null
     var street: String? = null
@@ -116,6 +127,7 @@ open class MvtFeature : Feature() {
     fun copyProperties(other: MvtFeature) {
         osmId = other.osmId
         name = other.name
+        translatedName = other.translatedName
         ref = other.ref
         housenumber = other.housenumber
         street = other.street
@@ -143,7 +155,7 @@ open class MvtFeature : Feature() {
      */
     fun getText(localized: LocalizedStrings?, includeTransitTypeSuffix: Boolean = true): TextForFeature {
         var generic = false
-        val name = name
+        val name = displayName
         val entranceType = properties?.get("entrance") as String?
         val featureValue = featureValue
         val isMarker = superCategory == SuperCategoryId.MARKER

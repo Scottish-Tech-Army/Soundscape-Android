@@ -46,9 +46,11 @@ fun addSidewalk(
         )
         // Find common road that's near the start and the end of our road - ignoring any sidewalks
         var name: Any? = null
+        var translatedName: String? = null
         for (road in startRoads) {
             if ((road as Way).isSidewalkOrCrossing()) continue
             name = road.name
+            translatedName = road.translatedName
             if (name != null) {
                 for (road2 in endRoads) {
                     if ((road2 as Way).isSidewalkOrCrossing()) continue
@@ -80,6 +82,11 @@ fun addSidewalk(
                 val text = strings?.get(StringKey.ConfectNamePavementNextTo, name)
                     ?: "Pavement next to $name"
                 currentRoad.name = text
+                // The name is still made from the road's local name, since pavements are matched
+                // by it, and the translated one is what's said.
+                currentRoad.translatedName = translatedName?.let {
+                    strings?.get(StringKey.ConfectNamePavementNextTo, it) ?: "Pavement next to $it"
+                }
             } else {
                 val text = strings?.get(StringKey.ConfectNamePavement)
                     ?: "Pavement"
@@ -88,10 +95,16 @@ fun addSidewalk(
         }
         (currentRoad.properties ?: HashMap()).also { properties ->
             // Set the property on the map (either the existing one or the new one)
-            if (found)
+            if (found) {
                 properties["pavement"] = name.toString()
-            else
+                if ((name != null) && (translatedName != null))
+                    properties["pavementTranslated"] = translatedName
+                else
+                    properties.remove("pavementTranslated")
+            } else {
                 properties["pavement"] = ""
+                properties.remove("pavementTranslated")
+            }
 
             // Assign the map back to poi.properties, which is crucial if it was initially null
             currentRoad.properties = properties
@@ -388,6 +401,9 @@ fun addWaterAdjacency(
     val midpoint = ruler.along(line, wayLength / 2)
     val searchRadius = (wayLength / 2) + WATER_ADJACENCY_DISTANCE_METRES
     val candidatesByName = mutableMapOf<String, MutableList<Feature>>()
+    // What to call each of those waters - the name in the app's language, where there is one.
+    // Grouped by local name, since that's the one all the pieces of the same water share.
+    val displayNames = mutableMapOf<String, String>()
     for (treeId in listOf(TreeId.NAMED_WATERWAYS, TreeId.NAMED_WATER_POLYGONS)) {
         val nearby = gridState.getFeatureTree(treeId).getNearbyCollection(
             location = midpoint,
@@ -395,8 +411,10 @@ fun addWaterAdjacency(
             ruler = ruler
         )
         for (feature in nearby) {
-            val name = (feature as? MvtFeature)?.name ?: continue
+            val water = feature as? MvtFeature ?: continue
+            val name = water.name ?: continue
             candidatesByName.getOrPut(name) { mutableListOf() }.add(feature)
+            displayNames.getOrPut(name) { water.displayName ?: name }
         }
     }
 
@@ -444,8 +462,9 @@ fun addWaterAdjacency(
         return null
     }
 
-    val text = nameForWaterside(way, bestName, strings)
-    way.setProperty("waterside", bestName)
+    val waterName = displayNames[bestName] ?: bestName
+    val text = nameForWaterside(way, waterName, strings)
+    way.setProperty("waterside", waterName)
     return text
 }
 
@@ -515,7 +534,8 @@ fun traverseIntersectionsConfectingNames(
         var namedRoadToUse: String? = null
         for (road in intersection.value.members) {
             if (namedRoadToUse == null) {
-                namedRoadToUse = road.name
+                // Only ever said ("Path to X"), so in the app's language where there is one
+                namedRoadToUse = road.displayName
             }
         }
         // We've got a named road at this junction, so use if for any un-named roads

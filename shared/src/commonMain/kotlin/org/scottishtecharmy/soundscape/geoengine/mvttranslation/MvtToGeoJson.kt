@@ -8,6 +8,7 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.processTileFeatureCollection
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.findLineIntersectionPoint
+import org.scottishtecharmy.soundscape.geoengine.utils.geocoders.isNameKey
 import org.scottishtecharmy.soundscape.geoengine.utils.getLatLonTileWithOffset
 import org.scottishtecharmy.soundscape.geoengine.utils.rulers.createCheapRuler
 import org.scottishtecharmy.soundscape.geoengine.utils.superCategoryMap
@@ -55,22 +56,27 @@ private fun extractHighwayJunctions(
     mvt: Tile,
     tileX: Int,
     tileY: Int,
-    tileZoom: Int
+    tileZoom: Int,
+    nameKeys: List<String>
 ): List<MvtFeature> {
     val junctions = mutableListOf<MvtFeature>()
     for (layer in mvt.layers) {
         if (layer.name != "transportation_name") continue
+        val translation = NameTranslationPicker(layer.keys, nameKeys)
         for (feature in layer.features) {
             if (feature.type != Tile.GeomType.POINT) continue
 
             var firstInPair = true
             var key = ""
+            var keyIndex = 0
             var name: String? = null
             var ref: String? = null
             var featureClass: String? = null
             var featureSubClass: String? = null
+            translation.reset()
             for (tag in feature.tags) {
                 if (firstInPair) {
+                    keyIndex = tag
                     key = layer.keys[tag]
                 } else {
                     val value = layer.values[tag].string_value
@@ -79,10 +85,12 @@ private fun extractHighwayJunctions(
                         "ref" -> ref = value
                         "class" -> featureClass = value
                         "subclass" -> featureSubClass = value
+                        else -> translation.offer(keyIndex, value)
                     }
                 }
                 firstInPair = !firstInPair
             }
+            val translatedName = translation.translationOf(name)
 
             if (featureSubClass != "junction") continue
 
@@ -93,6 +101,7 @@ private fun extractHighwayJunctions(
                     junction.geometry = Point(coordinate)
                     junction.osmId = feature.id ?: 0L
                     junction.name = name
+                    junction.translatedName = translatedName
                     junction.ref = ref
                     junction.featureType = "highway"
                     junction.featureValue = "highway_junction"
@@ -119,11 +128,13 @@ private fun extractNamedWaterPolygons(
     mvt: Tile,
     tileX: Int,
     tileY: Int,
-    tileZoom: Int
+    tileZoom: Int,
+    nameKeys: List<String>
 ): List<MvtFeature> {
     val waterFeatures = mutableListOf<MvtFeature>()
     for (layer in mvt.layers) {
         if (layer.name != "water") continue
+        val translation = NameTranslationPicker(layer.keys, nameKeys)
         for (feature in layer.features) {
             if (feature.type != Tile.GeomType.POLYGON && feature.type != Tile.GeomType.LINESTRING) {
                 continue
@@ -131,16 +142,22 @@ private fun extractNamedWaterPolygons(
 
             var firstInPair = true
             var key = ""
+            var keyIndex = 0
             var name: String? = null
+            translation.reset()
             for (tag in feature.tags) {
                 if (firstInPair) {
+                    keyIndex = tag
                     key = layer.keys[tag]
                 } else if (key == "name") {
                     name = layer.values[tag].string_value
+                } else {
+                    translation.offer(keyIndex, layer.values[tag].string_value)
                 }
                 firstInPair = !firstInPair
             }
             if (name.isNullOrEmpty()) continue
+            val translatedName = translation.translationOf(name)
 
             if (feature.type == Tile.GeomType.LINESTRING) {
                 // A strait/sound (e.g. "Afon Menai / Menai Strait") is sometimes represented as a
@@ -155,6 +172,7 @@ private fun extractNamedWaterPolygons(
                     waterFeature.geometry = LineString(ArrayList(coordinates))
                     waterFeature.osmId = feature.id ?: 0L
                     waterFeature.name = name
+                    waterFeature.translatedName = translatedName
                     waterFeature.featureType = "water"
                     waterFeature.featureValue = "named_water_polygon"
                     waterFeatures.add(waterFeature)
@@ -171,6 +189,7 @@ private fun extractNamedWaterPolygons(
                     waterFeature.geometry = lastClockwisePolygon
                     waterFeature.osmId = feature.id ?: 0L
                     waterFeature.name = name
+                    waterFeature.translatedName = translatedName
                     waterFeature.featureType = "water"
                     waterFeature.featureValue = "named_water_polygon"
                     waterFeatures.add(waterFeature)
@@ -217,21 +236,26 @@ private fun extractNamedWaterways(
     mvt: Tile,
     tileX: Int,
     tileY: Int,
-    tileZoom: Int
+    tileZoom: Int,
+    nameKeys: List<String>
 ): List<MvtFeature> {
     val waterways = mutableListOf<MvtFeature>()
     for (layer in mvt.layers) {
         if (layer.name != "waterway") continue
+        val translation = NameTranslationPicker(layer.keys, nameKeys)
         for (feature in layer.features) {
             if (feature.type != Tile.GeomType.LINESTRING) continue
 
             var firstInPair = true
             var key = ""
+            var keyIndex = 0
             var name: String? = null
             var featureClass: String? = null
             var brunnel: String? = null
+            translation.reset()
             for (tag in feature.tags) {
                 if (firstInPair) {
+                    keyIndex = tag
                     key = layer.keys[tag]
                 } else {
                     val value = layer.values[tag].string_value
@@ -239,6 +263,7 @@ private fun extractNamedWaterways(
                         "name" -> name = value
                         "class" -> featureClass = value
                         "brunnel" -> brunnel = value
+                        else -> translation.offer(keyIndex, value)
                     }
                 }
                 firstInPair = !firstInPair
@@ -246,6 +271,7 @@ private fun extractNamedWaterways(
             if (name.isNullOrEmpty()) continue
             if (featureClass !in nameableWaterwayClasses) continue
             if (brunnel != null) continue
+            val translatedName = translation.translationOf(name)
 
             for (line in parseGeometry(true, feature.geometry)) {
                 if (line.isEmpty()) continue
@@ -255,6 +281,7 @@ private fun extractNamedWaterways(
                 waterway.geometry = LineString(ArrayList(coordinates))
                 waterway.osmId = feature.id ?: 0L
                 waterway.name = name
+                waterway.translatedName = translatedName
                 waterway.featureType = "waterway"
                 waterway.featureValue = "named_waterway"
                 waterway.featureClass = featureClass
@@ -269,7 +296,12 @@ private fun extractNamedWaterways(
 // check in MvtToGeoJson's main Way-building loop.
 private val railwayClasses = setOf("rail", "transit")
 
-private class NamedLine(val name: String?, val featureClass: String?, val coordinates: List<LngLatAlt>)
+private class NamedLine(
+    val name: String?,
+    val translatedName: String?,
+    val featureClass: String?,
+    val coordinates: List<LngLatAlt>
+)
 
 // Every non-railway "transportation" LineString in the tile, brunnel-tagged or not - broader than
 // just the brunnel-tagged ones, since a self-tagged waterway culvert (case a below) needs to find
@@ -278,7 +310,12 @@ private class RoadLine(val osmId: Long, val brunnel: String?, val coordinates: L
 
 // A waterway segment self-tagged brunnel=tunnel/bridge/ford (case a below) - deferred until
 // roadLines is fully populated, since resolving which road crosses it needs the complete list.
-private class PendingCulvert(val coordinates: List<LngLatAlt>, val name: String, val brunnel: String)
+private class PendingCulvert(
+    val coordinates: List<LngLatAlt>,
+    val name: String,
+    val translatedName: String?,
+    val brunnel: String
+)
 
 // The crossing info to attach to the crossing road's Way, keyed by that road's osmId - see
 // extractCrossings. kind is always WATERWAY_CROSSING here (railway crossings are resolved
@@ -303,7 +340,8 @@ internal data class CrossingInfo(
     val kind: AlongWayKind,
     val name: String?,
     val position: AlongWayPosition,
-    val point: LngLatAlt
+    val point: LngLatAlt,
+    val translatedName: String? = null
 )
 
 /**
@@ -342,7 +380,8 @@ private fun extractCrossings(
     mvt: Tile,
     tileX: Int,
     tileY: Int,
-    tileZoom: Int
+    tileZoom: Int,
+    nameKeys: List<String>
 ): HashMap<Long, MutableList<CrossingInfo>> {
     val crossingsByOsmId = HashMap<Long, MutableList<CrossingInfo>>()
     val namedWaterways = mutableListOf<NamedLine>()
@@ -351,16 +390,20 @@ private fun extractCrossings(
 
     for (layer in mvt.layers) {
         if (layer.name != "waterway" && layer.name != "transportation") continue
+        val translation = NameTranslationPicker(layer.keys, nameKeys)
         for (feature in layer.features) {
             if (feature.type != Tile.GeomType.LINESTRING) continue
 
             var firstInPair = true
             var key = ""
+            var keyIndex = 0
             var name: String? = null
             var featureClass: String? = null
             var brunnel: String? = null
+            translation.reset()
             for (tag in feature.tags) {
                 if (firstInPair) {
+                    keyIndex = tag
                     key = layer.keys[tag]
                 } else {
                     val value = layer.values[tag].string_value
@@ -368,10 +411,12 @@ private fun extractCrossings(
                         "name" -> name = value
                         "class" -> featureClass = value
                         "brunnel" -> brunnel = value
+                        else -> translation.offer(keyIndex, value)
                     }
                 }
                 firstInPair = !firstInPair
             }
+            val translatedName = translation.translationOf(name)
 
             if (layer.name == "waterway") {
                 if (brunnel != null && !name.isNullOrEmpty() && featureClass in significantWaterwayClasses) {
@@ -380,7 +425,7 @@ private fun extractCrossings(
                         val coordinates = convertGeometry(tileX, tileY, tileZoom, line)
                         if (coordinates.isEmpty()) continue
                         if (brunnel != "bridge" && !isRoadWidthSpan(coordinates, line)) continue
-                        pendingCulverts.add(PendingCulvert(coordinates, name, brunnel))
+                        pendingCulverts.add(PendingCulvert(coordinates, name, translatedName, brunnel))
                     }
                 }
                 // Also keep every significant named waterway (regardless of brunnel) to check
@@ -391,7 +436,7 @@ private fun extractCrossings(
                         if (line.isEmpty()) continue
                         val coordinates = convertGeometry(tileX, tileY, tileZoom, line)
                         if (coordinates.size >= 2) {
-                            namedWaterways.add(NamedLine(name, featureClass, coordinates))
+                            namedWaterways.add(NamedLine(name, translatedName, featureClass, coordinates))
                         }
                     }
                 }
@@ -421,7 +466,13 @@ private fun extractCrossings(
             if (culvert.brunnel == "bridge") AlongWayPosition.UNDER else AlongWayPosition.OVER
         for (road in findCrossingRoads(culvert.coordinates, roadLines)) {
             crossingsByOsmId.getOrPut(road.osmId) { mutableListOf() }.add(
-                CrossingInfo(AlongWayKind.WATERWAY_CROSSING, culvert.name, position, road.point)
+                CrossingInfo(
+                    AlongWayKind.WATERWAY_CROSSING,
+                    culvert.name,
+                    position,
+                    road.point,
+                    culvert.translatedName
+                )
             )
         }
     }
@@ -441,7 +492,13 @@ private fun extractCrossings(
             val point =
                 findLineIntersectionPoint(waterway.coordinates, road.coordinates) ?: continue
             crossingsByOsmId.getOrPut(road.osmId) { mutableListOf() }.add(
-                CrossingInfo(AlongWayKind.WATERWAY_CROSSING, waterway.name, position, point)
+                CrossingInfo(
+                    AlongWayKind.WATERWAY_CROSSING,
+                    waterway.name,
+                    position,
+                    point,
+                    waterway.translatedName
+                )
             )
         }
     }
@@ -677,7 +734,10 @@ fun vectorTileToGeoJson(
     streetNumberMap: HashMap<String, FeatureCollection>,
     cropPoints: Boolean = true,
     tileZoom: Int = MAX_ZOOM_LEVEL,
-    transitIntersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf()
+    transitIntersectionMap: HashMap<LngLatAlt, Intersection> = hashMapOf(),
+    // The keys of the name translation to keep, from nameKeysForLanguage. Every other translation
+    // of a name is dropped here - see MvtFeature.translatedName.
+    nameKeys: List<String> = emptyList()
 ): Array<FeatureCollection> {
 
     val collection = FeatureCollection()
@@ -695,15 +755,19 @@ fun vectorTileToGeoJson(
     }
 
     val crossingsByOsmId =
-        if (tileZoom >= MIN_MAX_ZOOM_LEVEL) extractCrossings(mvt, tileX, tileY, tileZoom) else hashMapOf()
+        if (tileZoom >= MIN_MAX_ZOOM_LEVEL) {
+            extractCrossings(mvt, tileX, tileY, tileZoom, nameKeys)
+        } else {
+            hashMapOf()
+        }
     if (tileZoom >= MIN_MAX_ZOOM_LEVEL) {
-        for (junction in extractHighwayJunctions(mvt, tileX, tileY, tileZoom)) {
+        for (junction in extractHighwayJunctions(mvt, tileX, tileY, tileZoom, nameKeys)) {
             collection.addFeature(junction)
         }
-        for (waterPolygon in extractNamedWaterPolygons(mvt, tileX, tileY, tileZoom)) {
+        for (waterPolygon in extractNamedWaterPolygons(mvt, tileX, tileY, tileZoom, nameKeys)) {
             collection.addFeature(waterPolygon)
         }
-        for (waterway in extractNamedWaterways(mvt, tileX, tileY, tileZoom)) {
+        for (waterway in extractNamedWaterways(mvt, tileX, tileY, tileZoom, nameKeys)) {
             collection.addFeature(waterway)
         }
     }
@@ -721,6 +785,7 @@ fun vectorTileToGeoJson(
         //println("Process layer: " + layer.name)
 
         val mapInterpolatedNodes: HashMap<Long, Feature> = hashMapOf()
+        val translation = NameTranslationPicker(layer.keys, nameKeys)
         for (feature in layer.features) {
 
             var entrance = false
@@ -741,12 +806,15 @@ fun vectorTileToGeoJson(
             // Parse tags
             var firstInPair = true
             var key = ""
+            var keyIndex = 0
             var value: Any? = null
             var properties: HashMap<String, Any?>? = null
+            translation.reset()
             for (tag in feature.tags) {
-                if (firstInPair)
+                if (firstInPair) {
+                    keyIndex = tag
                     key = layer.keys[tag]
-                else {
+                } else {
                     val raw = layer.values[tag]
                     if (raw.bool_value != null)
                         value = raw.bool_value
@@ -773,16 +841,24 @@ fun vectorTileToGeoJson(
                         "housenumber" -> housenumber = value.toString()
                         "street" -> street = value.toString()
                         else -> {
-                            if (properties == null) {
-                                properties = HashMap()
+                            if (isNameKey(key) || key.startsWith("name_")) {
+                                // The name in other languages and scripts - name:xx, and
+                                // OpenMapTiles' name_en/name_de/name_int. Only the app language's
+                                // is kept, and not as a property - see MvtFeature.translatedName.
+                                translation.offer(keyIndex, value as? String)
+                            } else {
+                                if (properties == null) {
+                                    properties = HashMap()
+                                }
+                                properties[key] = value
                             }
-                            properties[key] = value
                         }
                     }
                     firstInPair = true
                 } else
                     firstInPair = false
             }
+            val translatedName = translation.translationOf(name)
 
             if (layer.name == "building") {
                 // Check that we have a name, otherwise we're not interested
@@ -862,7 +938,8 @@ fun vectorTileToGeoJson(
                                     properties?.get("layer")?.toString(),
                                     null,
                                     true,
-                                    id
+                                    id,
+                                    translatedName
                                 )
                                 entranceMatching.addGeometry(polygon, entranceDetails)
                             }
@@ -892,7 +969,8 @@ fun vectorTileToGeoJson(
                                             properties?.get("layer")?.toString(),
                                             properties,
                                             false,
-                                            id
+                                            id,
+                                            translatedName
                                         )
                                         entranceMatching.addGeometry(point, entranceDetails)
                                         entrance = true
@@ -998,6 +1076,7 @@ fun vectorTileToGeoJson(
                         .addFeature(geoFeature)
                 } else {
                     geoFeature.name = name
+                    geoFeature.translatedName = translatedName
                     geoFeature.ref = ref
                     geoFeature.street = street
                     geoFeature.featureClass = featureClass
