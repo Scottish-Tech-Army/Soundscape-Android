@@ -87,6 +87,92 @@ class AddressFormatterTest {
         assertEquals("استان تهران\nتهران\nرشتچی\n۱۴\n", formatter.format(json))
     }
 
+    // The other countries with a template in their own language as well as one in a Latin-script
+    // language, each with an address written both ways
+
+    private fun format(json: String) =
+        AddressFormatter(abbreviate = false, appendCountry = false, appendUnknown = false).format(json)
+
+    @Test
+    fun chineseAddressInChineseIsWrittenLargestFirst() {
+        assertEquals(
+            "北京市\n长安街\n1\n",
+            format("""{"house_number":"1","road":"长安街","city":"北京市","country_code":"CN"}""")
+        )
+    }
+
+    @Test
+    fun chineseAddressInLatinScriptIsWrittenSmallestFirst() {
+        assertEquals(
+            "1 Chang'an Avenue\nBeijing\n",
+            format("""{"house_number":"1","road":"Chang'an Avenue","city":"Beijing","country_code":"CN"}""")
+        )
+    }
+
+    @Test
+    fun koreanAddressInKoreanIsWrittenLargestFirst() {
+        assertEquals(
+            "서울특별시\n세종대로\n175\n",
+            format("""{"house_number":"175","road":"세종대로","city":"서울특별시","country_code":"KR"}""")
+        )
+    }
+
+    @Test
+    fun koreanAddressInLatinScriptIsWrittenSmallestFirst() {
+        assertEquals(
+            "175 Sejong-daero\nSeoul\n",
+            format("""{"house_number":"175","road":"Sejong-daero","city":"Seoul","country_code":"KR"}""")
+        )
+    }
+
+    @Test
+    fun taiwaneseAddressInChineseIsWrittenLargestFirst() {
+        assertEquals(
+            "臺北市\n信義路五段\n7\n",
+            format("""{"house_number":"7","road":"信義路五段","city":"臺北市","country_code":"TW"}""")
+        )
+    }
+
+    @Test
+    fun taiwaneseAddressInLatinScriptIsWrittenSmallestFirst() {
+        assertEquals(
+            "7 Xinyi Road Section 5\nTaipei\n",
+            format("""{"house_number":"7","road":"Xinyi Road Section 5","city":"Taipei","country_code":"TW"}""")
+        )
+    }
+
+    @Test
+    fun hongKongAddressInChineseIsWrittenLargestFirst() {
+        assertEquals(
+            "中西區\n皇后大道中\n1\n",
+            format("""{"house_number":"1","road":"皇后大道中","state_district":"中西區","country_code":"HK"}""")
+        )
+    }
+
+    @Test
+    fun hongKongAddressInLatinScriptIsWrittenSmallestFirst() {
+        assertEquals(
+            "1 Queen's Road Central\nCentral and Western\n",
+            format("""{"house_number":"1","road":"Queen's Road Central","state_district":"Central and Western","country_code":"HK"}""")
+        )
+    }
+
+    @Test
+    fun macauAddressInChineseIsWrittenLargestFirst() {
+        assertEquals(
+            "大堂區\n新馬路\n1\n",
+            format("""{"house_number":"1","road":"新馬路","suburb":"大堂區","country_code":"MO"}""")
+        )
+    }
+
+    @Test
+    fun macauAddressInPortugueseIsWrittenStreetFirst() {
+        assertEquals(
+            "Avenida de Almeida Ribeiro 1\nSé\n",
+            format("""{"house_number":"1","road":"Avenida de Almeida Ribeiro","suburb":"Sé","country_code":"MO"}""")
+        )
+    }
+
     @Test
     fun allSupportedCountries() {
         val countries = listOf(
