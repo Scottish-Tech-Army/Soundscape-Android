@@ -289,6 +289,15 @@ class WorldCitiesTest {
     }
 
     @Test
+    fun osakaSearchWithOrWithoutTheSpacesInAName() {
+        // Japanese is typed without spaces between its words, whether or not the name in the map
+        // has them - and a name without them can be looked for with them
+        assertEquals("ホテル イビス 大阪 梅田", osaka.search("ホテルイビス").first().name)
+        val results = osaka.search("大阪 梅田")
+        assertTrue(results.joinToString { it.name }, results.any { it.name == "大阪梅田" })
+    }
+
+    @Test
     fun osakaAddressIsWrittenLargestFirst() {
         // Japanese addresses go from the largest place to the smallest, whatever language the phone
         // is set to - the names in them are in Japanese either way

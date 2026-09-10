@@ -26,6 +26,16 @@ internal fun codePointAt(string: String, index: Int): Int {
     return high.code
 }
 
+/** The code point just before [index] in [string], joining a surrogate pair into the character it encodes. */
+internal fun codePointBefore(string: String, index: Int): Int {
+    val low = string[index - 1]
+    if (low.isLowSurrogate() && (index >= 2)) {
+        val high = string[index - 2]
+        if (high.isHighSurrogate()) return 0x10000 + ((high.code - 0xD800) shl 10) + (low.code - 0xDC00)
+    }
+    return low.code
+}
+
 // Musical symbols, emoji and the other pictographs, playing cards and mahjong tiles, and the tags
 // that follow some emoji - the characters beyond U+FFFF that are no more part of a word than the
 // symbols before it are

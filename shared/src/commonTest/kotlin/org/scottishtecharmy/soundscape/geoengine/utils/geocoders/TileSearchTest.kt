@@ -265,6 +265,31 @@ class TileSearchTest {
         assertEquals(listOf("田店", "店"), tileSearch.generateEndsWithinWords("hep five 梅田店"))
     }
 
+    // ============================================================================================
+    // joinUnspacedWords
+    // ============================================================================================
+
+    @Test
+    fun joinUnspacedWords_removesSpacesBetweenJapaneseWords() {
+        val tileSearch = newTileSearch()
+        assertEquals("ホテルイビス大阪梅田", tileSearch.joinUnspacedWords("ホテル イビス 大阪 梅田"))
+    }
+
+    @Test
+    fun joinUnspacedWords_keepsSpacesNextToOtherScripts() {
+        val tileSearch = newTileSearch()
+        assertEquals("hep five 梅田店", tileSearch.joinUnspacedWords("hep five 梅田店"))
+        assertEquals("lucua 大阪", tileSearch.joinUnspacedWords("lucua 大阪"))
+        assertEquals("rue de rivoli", tileSearch.joinUnspacedWords("rue de rivoli"))
+    }
+
+    @Test
+    fun joinUnspacedWords_ideographBeyondU_FFFFBeforeTheSpace() {
+        // 𩸽 (U+29E3D) is a surrogate pair, so the character before the space is two chars back
+        val tileSearch = newTileSearch()
+        assertEquals("𩸽定食", tileSearch.joinUnspacedWords("𩸽 定食"))
+    }
+
     @Test
     fun generateEndsWithinWords_ideographBeyondU_FFFF_isOneCharacter() {
         // 𩸽 (U+29E3D, hokke) is a surrogate pair, which mustn't be split
