@@ -284,6 +284,14 @@ class TileSearchTest {
     }
 
     @Test
+    fun joinUnspacedWords_koreanAndThai() {
+        val tileSearch = newTileSearch()
+        // 서울 역, Seoul station
+        assertEquals("서울역", tileSearch.joinUnspacedWords("서울 역"))
+        assertEquals("สถานีสยาม", tileSearch.joinUnspacedWords("สถานี สยาม"))
+    }
+
+    @Test
     fun joinUnspacedWords_ideographBeyondU_FFFFBeforeTheSpace() {
         // 𩸽 (U+29E3D) is a surrogate pair, so the character before the space is two chars back
         val tileSearch = newTileSearch()
@@ -296,6 +304,31 @@ class TileSearchTest {
         val tileSearch = newTileSearch()
         assertEquals(listOf("定食", "食"), tileSearch.generateEndsWithinWords("𩸽定食"))
         assertEquals(listOf("𩸽"), tileSearch.generateEndsWithinWords("焼𩸽"))
+    }
+
+    @Test
+    fun generateEndsWithinWords_korean() {
+        // 서울시청, Seoul City Hall
+        val tileSearch = newTileSearch()
+        assertEquals(
+            listOf("울시청", "시청", "청"),
+            tileSearch.generateEndsWithinWords(normalizeForSearch("서울시청"))
+        )
+    }
+
+    @Test
+    fun generateEndsWithinWords_thai_notBetweenAVowelAndItsConsonant() {
+        val tileSearch = newTileSearch()
+        // สถานีสยาม, Siam station: not at the า written after its consonant, nor the ี mark
+        assertEquals(
+            listOf("ถานีสยาม", "นีสยาม", "สยาม", "ยาม", "ม"),
+            tileSearch.generateEndsWithinWords("สถานีสยาม")
+        )
+        // เชียงใหม่, Chiang Mai: not at ช or ห, which follow the เ and ใ written before them
+        assertEquals(
+            listOf("ยงใหม่", "งใหม่", "ใหม่", "ม่"),
+            tileSearch.generateEndsWithinWords("เชียงใหม่")
+        )
     }
 
     @Test
