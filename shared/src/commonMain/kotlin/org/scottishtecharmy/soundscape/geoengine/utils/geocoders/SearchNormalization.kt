@@ -16,6 +16,12 @@ private val foldedLetters = mapOf(
     'æ' to "ae", 'Æ' to "ae",
 )
 
+private val combiningMarks = setOf(
+    CharCategory.NON_SPACING_MARK,
+    CharCategory.COMBINING_SPACING_MARK,
+    CharCategory.ENCLOSING_MARK,
+)
+
 fun normalizeForSearch(input: String): String {
     val nfkd = normalizeUnicode(input)
 
@@ -23,11 +29,14 @@ fun normalizeForSearch(input: String): String {
     var lastWasSpace = false
 
     for (ch in nfkd) {
-        if (ch.category == CharCategory.NON_SPACING_MARK) {
+        if (ch.category in combiningMarks) {
             // Only strip Latin/Greek/Cyrillic combining diacritics, which is what NFKD produces
             // for accented letters (e.g. é -> e + U+0301). Combining marks from other scripts
             // (Devanagari matras/virama, Arabic harakat, Hebrew niqqud, etc.) are semantically
-            // essential, not decorative, so keep them verbatim.
+            // essential, not decorative, so keep them verbatim. That includes the spacing ones -
+            // the vowel signs written beside their consonant, like Devanagari ा, Burmese ာ and
+            // Khmer ា - which aren't letters, and so would otherwise be taken for a gap between
+            // words.
             if (ch.code in 0x0300..0x036F) continue
             sb.append(ch)
             lastWasSpace = false
