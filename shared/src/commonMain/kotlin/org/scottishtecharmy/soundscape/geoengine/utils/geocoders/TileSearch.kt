@@ -153,9 +153,9 @@ class TileSearch(
             )
                 return
 
-            // Chinese and Japanese don't put spaces between words, so a word can start anywhere
-            // in a run of them - "梅田" in "大阪梅田". Only worth looking for when the needle is
-            // written that way too.
+            // Chinese, Japanese and Thai don't put spaces between words, and Korean doesn't always,
+            // so a word can start anywhere in a run of them - "梅田" in "大阪梅田". Only worth
+            // looking for when the needle is written that way too.
             if (needle.isNotEmpty() && isUnspacedScript(codePointAt(needle, 0))) {
                 val bestEnd = generateEndsWithinWords(string)
                     .filter { it.length >= needle.length }
@@ -167,9 +167,9 @@ class TileSearch(
             }
         }
 
-        // Whether there are spaces between the words of a Chinese or Japanese name is up to
-        // whoever typed it, in the map or in the search - "ホテル イビス 大阪 梅田" is looked for as
-        // "ホテルイビス" - so compare those without them too
+        // Whether there are spaces between the words of a Chinese, Japanese, Korean or Thai name is
+        // up to whoever typed it, in the map or in the search - "ホテル イビス 大阪 梅田" is looked
+        // for as "ホテルイビス" - so compare those without them too
         if (needle.isNotEmpty() && isUnspacedScript(codePointAt(needle, 0))) {
             val joinedNeedle = joinUnspacedWords(needle)
             val joinedString = joinUnspacedWords(string)
@@ -268,33 +268,44 @@ class TileSearch(
     }
 
     /**
-     * The rest of [normalizedString] from each character part-way through a run of Chinese or
-     * Japanese. Those scripts don't put spaces between words, so where [generateEndOfString] finds
-     * "rivoli" at the end of "rue de rivoli", these are what find "梅田" in "大阪梅田駅": the
-     * comparison is with the start of each of "阪梅田駅", "梅田駅", "田駅" and "駅".
+     * The rest of [normalizedString] from each character part-way through a run of a script which
+     * doesn't put spaces between its words - Chinese, Japanese and Thai, and Korean, which doesn't
+     * always. Where [generateEndOfString] finds "rivoli" at the end of "rue de rivoli", these are
+     * what find "梅田" in "大阪梅田駅": the comparison is with the start of each of "阪梅田駅",
+     * "梅田駅", "田駅" and "駅". An end never starts at a Thai vowel written after its consonant, or
+     * at the consonant after a Thai vowel written before it, as either would split the two.
      */
     fun generateEndsWithinWords(normalizedString: String): List<String> {
         val ends = mutableListOf<String>()
-        var previousUnspaced = false
+        var previous = 0
         var index = 0
         while (index < normalizedString.length) {
             // By code point, so that an ideograph beyond U+FFFF isn't split into its surrogates
             val codePoint = codePointAt(normalizedString, index)
-            val unspaced = isUnspacedScript(codePoint)
             // A voicing mark (U+3099) left separate by normalization belongs to the kana before it,
-            // so it counts as part of the run but never starts an end
+            // as a Thai tone mark or vowel sign does to its consonant, so it counts as part of the
+            // run but never starts an end
             val mark = normalizedString[index].category == CharCategory.NON_SPACING_MARK
-            if (unspaced && !mark && previousUnspaced) ends.add(normalizedString.substring(index))
-            previousUnspaced = unspaced
+            if (isUnspacedScript(codePoint) && isUnspacedScript(previous) && !mark &&
+                (codePoint !in thaiVowelsAfterConsonant) && (previous !in thaiVowelsBeforeConsonant)
+            )
+                ends.add(normalizedString.substring(index))
+            previous = codePoint
             index += if (codePoint > 0xFFFF) 2 else 1
         }
         return ends
     }
 
+    // The Thai vowels written after their consonant which aren't marks - sara a, sara aa, sara am
+    // and lakkhangyao - and those written before it: sara e, sara ae, sara o and the two sara ai
+    private val thaiVowelsAfterConsonant = setOf(0x0E30, 0x0E32, 0x0E33, 0x0E45)
+    private val thaiVowelsBeforeConsonant = 0x0E40..0x0E44
+
     /**
-     * [normalizedString] without the spaces between its Chinese or Japanese words, which are
-     * sometimes written and often not: "ホテル イビス 大阪 梅田" becomes "ホテルイビス大阪梅田". A space
-     * with anything else on either side of it stays, as in "hep five 梅田店".
+     * [normalizedString] without the spaces between the words of a Chinese, Japanese, Korean or
+     * Thai name, which are sometimes written and often not: "ホテル イビス 大阪 梅田" becomes
+     * "ホテルイビス大阪梅田". A space with anything else on either side of it stays, as in
+     * "hep five 梅田店".
      */
     fun joinUnspacedWords(normalizedString: String): String {
         if (' ' !in normalizedString) return normalizedString
@@ -310,11 +321,16 @@ class TileSearch(
         return joined.toString()
     }
 
-    /** Whether [codePoint] is Chinese or Japanese - kanji/hanzi, hiragana or katakana. */
+    /**
+     * Whether [codePoint] is in a script which doesn't put spaces between its words, or doesn't
+     * always: Chinese and Japanese kanji/hanzi, hiragana and katakana, Korean hangul, and Thai.
+     */
     private fun isUnspacedScript(codePoint: Int): Boolean =
-        (codePoint in 0x3040..0x30FF) ||     // Hiragana and Katakana, including the voicing marks
+        (codePoint in 0x0E00..0x0E7F) ||     // Thai
+            (codePoint in 0x3040..0x30FF) ||  // Hiragana and Katakana, including the voicing marks
             (codePoint in 0x3400..0x4DBF) ||  // CJK Unified Ideographs Extension A
             (codePoint in 0x4E00..0x9FFF) ||  // CJK Unified Ideographs
+            (codePoint in 0xAC00..0xD7A3) ||  // Hangul syllables
             (codePoint in 0xF900..0xFAFF) ||  // CJK Compatibility Ideographs
             (codePoint in 0x20000..0x3FFFF)   // CJK Unified Ideographs Extensions B onwards
 
