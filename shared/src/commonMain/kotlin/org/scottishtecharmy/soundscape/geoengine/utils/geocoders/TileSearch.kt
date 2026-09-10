@@ -166,6 +166,25 @@ class TileSearch(
                     return
             }
         }
+
+        // Whether there are spaces between the words of a Chinese or Japanese name is up to
+        // whoever typed it, in the map or in the search - "ホテル イビス 大阪 梅田" is looked for as
+        // "ホテルイビス" - so compare those without them too
+        if (needle.isNotEmpty() && isUnspacedScript(codePointAt(needle, 0))) {
+            val joinedNeedle = joinUnspacedWords(needle)
+            val joinedString = joinUnspacedWords(string)
+            if ((joinedNeedle != needle) || (joinedString != string)) {
+                if (compareAndAddToResults(joinedNeedle, joinedString, searchResults, searchResultLimit, tileX, tileY, houseNumber))
+                    return
+                val bestEnd = generateEndsWithinWords(joinedString)
+                    .filter { it.length >= joinedNeedle.length }
+                    .minByOrNull { joinedNeedle.fuzzyCompare(it, true) }
+                if ((bestEnd != null) &&
+                    compareAndAddToResults(joinedNeedle, bestEnd, searchResults, searchResultLimit, tileX, tileY, houseNumber)
+                )
+                    return
+            }
+        }
         if (needleWithoutSettlement != null) {
             compareAndAddToResults(
                 needleWithoutSettlement,
@@ -270,6 +289,25 @@ class TileSearch(
             index += if (codePoint > 0xFFFF) 2 else 1
         }
         return ends
+    }
+
+    /**
+     * [normalizedString] without the spaces between its Chinese or Japanese words, which are
+     * sometimes written and often not: "ホテル イビス 大阪 梅田" becomes "ホテルイビス大阪梅田". A space
+     * with anything else on either side of it stays, as in "hep five 梅田店".
+     */
+    fun joinUnspacedWords(normalizedString: String): String {
+        if (' ' !in normalizedString) return normalizedString
+        val joined = StringBuilder(normalizedString.length)
+        for ((index, ch) in normalizedString.withIndex()) {
+            if ((ch == ' ') && (index > 0) && (index + 1 < normalizedString.length) &&
+                isUnspacedScript(codePointBefore(normalizedString, index)) &&
+                isUnspacedScript(codePointAt(normalizedString, index + 1))
+            )
+                continue
+            joined.append(ch)
+        }
+        return joined.toString()
     }
 
     /** Whether [codePoint] is Chinese or Japanese - kanji/hanzi, hiragana or katakana. */
@@ -547,11 +585,14 @@ class TileSearch(
                             for ((index, value) in layer.values.withIndex()) {
                                 val sv = value.string_value ?: continue
                                 val normalizedValue = normalizeForSearch(sv)
-                                if (normalizedValue == result.string) {
+                                val joinedValue = joinUnspacedWords(normalizedValue)
+                                if ((normalizedValue == result.string) || (joinedValue == result.string)) {
                                     exactKeys.add(index)
                                 } else if ((sv.length > result.string.length) &&
                                     ((generateEndOfString(sv, result.string.length) == result.string) ||
-                                        (result.string in generateEndsWithinWords(normalizedValue)))
+                                        (result.string in generateEndsWithinWords(normalizedValue)) ||
+                                        ((joinedValue != normalizedValue) &&
+                                            (result.string in generateEndsWithinWords(joinedValue))))
                                 ) {
                                     endKeys.add(index)
                                 }
