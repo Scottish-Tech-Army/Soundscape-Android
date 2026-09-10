@@ -348,6 +348,9 @@ class AddressFormatter(
             Regex("[},\\s]+$") to "",
             Regex("^[,\\s]+") to "",
             Regex("^- ") to "",
+            // A line of nothing but a separator, e.g. El Salvador's "{{postcode}} - {{city}}"
+            // when neither is known
+            Regex("^[ \t]*-[ \t]*$", RegexOption.MULTILINE) to "",
             Regex(",\\s*,") to ", ",
             Regex("[ \t]+,[ \t]+") to ", ",
             Regex("[ \t][ \t]+") to " ",
