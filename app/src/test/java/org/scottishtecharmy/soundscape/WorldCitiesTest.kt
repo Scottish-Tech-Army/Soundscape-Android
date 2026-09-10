@@ -4,7 +4,6 @@ import kotlinx.coroutines.runBlocking
 import okio.Path.Companion.toPath
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
-import org.junit.Ignore
 import org.junit.Test
 import org.scottishtecharmy.soundscape.geoengine.GRID_SIZE
 import org.scottishtecharmy.soundscape.geoengine.MAX_ZOOM_LEVEL
@@ -324,7 +323,6 @@ class WorldCitiesTest {
         assertEquals("18", festivalTower?.housenumber)
     }
 
-    @Ignore("Known bug: search only matches from the start of a name or of a word in it, and Japanese doesn't put spaces between words")
     @Test
     fun osakaSearchWordInsideName() {
         // The Hanshin and Hankyu stations are both 大阪梅田, and it's 梅田 people look for

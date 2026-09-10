@@ -243,6 +243,38 @@ class TileSearchTest {
     }
 
     // ============================================================================================
+    // generateEndsWithinWords
+    // ============================================================================================
+
+    @Test
+    fun generateEndsWithinWords_japanese_startsAtEveryCharacterAfterTheFirst() {
+        val tileSearch = newTileSearch()
+        assertEquals(listOf("阪梅田駅", "梅田駅", "田駅", "駅"), tileSearch.generateEndsWithinWords("大阪梅田駅"))
+    }
+
+    @Test
+    fun generateEndsWithinWords_spacedScript_hasNone() {
+        val tileSearch = newTileSearch()
+        assertEquals(emptyList(), tileSearch.generateEndsWithinWords("rue de rivoli"))
+    }
+
+    @Test
+    fun generateEndsWithinWords_onlyWithinARunOfJapanese() {
+        // The Japanese word after a space starts at the space, which generateEndOfString covers
+        val tileSearch = newTileSearch()
+        assertEquals(listOf("田店", "店"), tileSearch.generateEndsWithinWords("hep five 梅田店"))
+    }
+
+    @Test
+    fun generateEndsWithinWords_neverStartsWithASeparatedVoicingMark() {
+        // Normalization leaves "グ" as "ク" followed by the combining voicing mark U+3099, which
+        // mustn't be split from it
+        val tileSearch = newTileSearch()
+        val ends = tileSearch.generateEndsWithinWords(normalizeForSearch("大グラン"))
+        assertEquals(listOf(normalizeForSearch("グラン"), "ラン", "ン"), ends)
+    }
+
+    // ============================================================================================
     // compareAndAddToResults
     // ============================================================================================
 
