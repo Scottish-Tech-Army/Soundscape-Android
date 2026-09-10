@@ -11,6 +11,7 @@ import org.scottishtecharmy.soundscape.geoengine.TreeId
 import org.scottishtecharmy.soundscape.geoengine.UserGeometry
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Intersection
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.nameKeysForLanguage
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.vectorTileToGeoJson
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
 import org.scottishtecharmy.soundscape.geoengine.utils.decompressTile
@@ -34,12 +35,14 @@ import org.scottishtecharmy.soundscape.utils.process
  */
 class WorldCitiesTest {
 
-    private class City(val location: LngLatAlt) {
+    private class City(val location: LngLatAlt, private val nameKeys: List<String> = emptyList()) {
         // Loading the grids is the slow part and nothing here changes them, so each city is
         // loaded once and shared between the tests.
-        val gridState by lazy { getGridStateForLocation(location, MAX_ZOOM_LEVEL, GRID_SIZE) }
+        val gridState by lazy {
+            getGridStateForLocation(location, MAX_ZOOM_LEVEL, GRID_SIZE, nameKeys = nameKeys)
+        }
         private val geocoder by lazy {
-            val settlementState = getGridStateForLocation(location, 12, 3)
+            val settlementState = getGridStateForLocation(location, 12, 3, nameKeys = nameKeys)
             OfflineGeocoder(
                 gridState,
                 settlementState,
@@ -73,6 +76,8 @@ class WorldCitiesTest {
         private val paris = City(parisTestLocation)
         private val buenosAires = City(buenosAiresTestLocation)
         private val osaka = City(osakaTestLocation)
+        // The same, with the app set to English
+        private val osakaInEnglish = City(osakaTestLocation, nameKeysForLanguage("en", "GB"))
     }
 
     // ---------------------------------------------------------------------------------- Tehran
@@ -349,5 +354,11 @@ class WorldCitiesTest {
         assertEquals("Châtelet Subway Station", paris.nearestSubwayStation())
         assertEquals("Carlos Pellegrini Subway Station", buenosAires.nearestSubwayStation())
         assertEquals("梅田 Subway Station", osaka.nearestSubwayStation())
+    }
+
+    @Test
+    fun osakaCalloutsAreInTheAppLanguage() {
+        // The station's name:en, where the Japanese app above gets 梅田
+        assertEquals("Umeda Subway Station", osakaInEnglish.nearestSubwayStation())
     }
 }

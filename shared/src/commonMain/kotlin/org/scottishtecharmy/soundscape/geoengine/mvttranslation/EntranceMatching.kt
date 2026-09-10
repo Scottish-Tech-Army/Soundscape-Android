@@ -192,7 +192,10 @@ class EntranceMatching {
                                         remove("has_entrances")
 
                                         if (entranceDetails.name != null)
-                                            set("entrance_name", entranceDetails.name)
+                                            set(
+                                                "entrance_name",
+                                                entranceDetails.translatedName ?: entranceDetails.name
+                                            )
                                     }
                                 collection.addFeature(entrance)
                                 //println("POI entrance: ${entrance.properties?.get("name")} ${entranceDetails.entranceType} ${entranceDetails.osmId} ")
@@ -233,6 +236,7 @@ class EntranceMatching {
                         if (confected) {
                             entrance.setProperty("entrance", entranceDetails.entranceType)
                             entrance.name = entranceDetails.name
+                            entrance.translatedName = entranceDetails.translatedName
                             entrance.superCategory = SuperCategoryId.PLACE
                             collection.addFeature(entrance)
                             //println("Confected Entrance: ${entrance.name} ${entranceDetails.entranceType} ${entranceDetails.osmId} ${entrance.featureClass} ${entrance.featureSubClass}")
@@ -255,4 +259,5 @@ data class EntranceDetails(
     val properties: HashMap<String, Any?>?,
     val poi: Boolean,
     val osmId: Long,
+    val translatedName: String? = null,
 )

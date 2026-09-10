@@ -247,13 +247,16 @@ fun getGridStateForLocation(
      * in - the high-zoom tiles don't carry the "place" layer, so without this there are no
      * settlements to be had.
      */
-    settlementGrid: GridState? = null
+    settlementGrid: GridState? = null,
+    /** Which name translation features get, as GeoEngine sets from the app language. */
+    nameKeys: List<String> = emptyList()
 ): GridState {
 
     val gridState = FileGridState(zoomLevel, gridSize)
+    gridState.nameKeys = nameKeys
     gridState.start(offlineExtractPath)
     settlementGrid?.let { grid ->
-        gridState.settlementNameProvider = { probe -> nearestSettlement(grid, probe).name }
+        gridState.settlementNameProvider = { probe -> nearestSettlement(grid, probe).displayName }
     }
     runBlocking {
 

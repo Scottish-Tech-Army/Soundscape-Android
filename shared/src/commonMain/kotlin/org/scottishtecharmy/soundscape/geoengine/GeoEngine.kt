@@ -21,6 +21,7 @@ import org.scottishtecharmy.soundscape.geoengine.filters.RailMatchArbiter
 import org.scottishtecharmy.soundscape.geoengine.filters.TrackedCallout
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
+import org.scottishtecharmy.soundscape.geoengine.mvttranslation.nameKeysForLanguage
 import org.scottishtecharmy.soundscape.geoengine.utils.FeatureTree
 import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
 import org.scottishtecharmy.soundscape.geoengine.utils.SuperCategoryId
@@ -52,6 +53,9 @@ import org.scottishtecharmy.soundscape.preferences.PreferenceKeys
 import org.scottishtecharmy.soundscape.preferences.PreferencesListener
 import org.scottishtecharmy.soundscape.preferences.PreferencesProvider
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.screens.onboarding.language.getAppLocale
+import org.scottishtecharmy.soundscape.screens.onboarding.language.getSystemLocale
+import org.scottishtecharmy.soundscape.screens.onboarding.language.supportedLanguages
 import org.scottishtecharmy.soundscape.utils.Analytics
 import org.scottishtecharmy.soundscape.utils.process
 import kotlin.math.abs
@@ -77,6 +81,21 @@ fun getPhotonLanguage(preferencesProvider: PreferencesProvider?): String? {
         else -> lang = null
     }
     return lang
+}
+
+/**
+ * The tile keys of the name translation that features are called by - see
+ * MvtFeature.translatedName. That's the app's own language, or the phone's where the app hasn't
+ * been set to one. Where it's a language the app has no strings for, the app is in English, so
+ * the names are too.
+ */
+fun getNameTranslationKeys(): List<String> {
+    val locale = getAppLocale() ?: getSystemLocale()
+    return if (supportedLanguages.any { it.code == locale.language }) {
+        nameKeysForLanguage(locale.language, locale.region)
+    } else {
+        nameKeysForLanguage("en", null)
+    }
 }
 
 @OptIn(ExperimentalCoroutinesApi::class, DelicateCoroutinesApi::class)
@@ -301,13 +320,16 @@ class GeoEngine {
         settlementGrid.tileClient = tileClient
         gridState.analytics = analyticsAdapter
         settlementGrid.analytics = analyticsAdapter
+        val nameKeys = getNameTranslationKeys()
+        gridState.nameKeys = nameKeys
+        settlementGrid.nameKeys = nameKeys
         gridState.start(offlineExtractPath)
         settlementGrid.start(offlineExtractPath)
         // The high-zoom tiles gridState is built from don't carry the "place" layer, so it can't
         // see settlements at all - give it a way to ask the low-zoom grid, which it has no other
         // reference to. Used when associating POIs with an address at tile load time.
         gridState.settlementNameProvider = { location ->
-            nearestSettlement(settlementGrid, location).name
+            nearestSettlement(settlementGrid, location).displayName
         }
         tileSearch = TileSearch(offlineExtractPath, gridState, settlementGrid)
 

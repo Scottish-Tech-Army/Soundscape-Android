@@ -323,7 +323,14 @@ open class GridState(
                 // skipped above, so passing over a rail tunnel is deliberately never announced.)
                 val position =
                     if (roadBrunnel == "bridge") AlongWayPosition.OVER else AlongWayPosition.UNDER
-                applyCrossing(road, AlongWayKind.RAILWAY_CROSSING, railway.name, position, point)
+                applyCrossing(
+                    road,
+                    AlongWayKind.RAILWAY_CROSSING,
+                    railway.name,
+                    position,
+                    point,
+                    translatedName = railway.translatedName
+                )
 
                 // And the mirror of it on the railway, so that a passenger's callout is a lookup
                 // on the line being ridden rather than a search of the roads that happen to be
@@ -450,7 +457,8 @@ open class GridState(
                     point = point,
                     kind = AlongWayKind.WATERWAY_CROSSING,
                     name = name,
-                    position = position
+                    position = position,
+                    translatedName = water.translatedName
                 )
             )
             attached = true
@@ -525,7 +533,8 @@ open class GridState(
                     point = point,
                     kind = AlongWayKind.WATERWAY_CROSSING,
                     name = name,
-                    position = position
+                    position = position,
+                    translatedName = waterway.translatedName
                 )
             )
             return true
@@ -552,7 +561,8 @@ open class GridState(
         name: String?,
         position: AlongWayPosition,
         point: LngLatAlt,
-        feature: MvtFeature? = null
+        feature: MvtFeature? = null,
+        translatedName: String? = null
     ) {
         way.addAlongWayFeature(
             AlongWayFeature(
@@ -561,7 +571,8 @@ open class GridState(
                 kind = kind,
                 name = name,
                 position = position,
-                feature = feature
+                feature = feature,
+                translatedName = translatedName
             )
         )
     }
@@ -582,6 +593,13 @@ open class GridState(
      * or for the settlement grid itself) no settlement is recorded.
      */
     var settlementNameProvider: ((LngLatAlt) -> String?)? = null
+
+    /**
+     * The tile keys of the name translation to keep for each feature, from nameKeysForLanguage -
+     * see MvtFeature.translatedName. Set by GeoEngine before start(); left empty, features have
+     * only their local names.
+     */
+    var nameKeys: List<String> = emptyList()
 
     /**
      * How far [feature] reaches from [probe] - zero for a point. Added to the candidate search
@@ -769,6 +787,7 @@ open class GridState(
                     point = point,
                     kind = AlongWayKind.TRANSIT_STOP,
                     name = stop.name,
+                    translatedName = stop.translatedName,
                     side = getSideOfLine(
                         line.coordinates[projection.index],
                         line.coordinates[projection.index + 1],
@@ -909,7 +928,8 @@ open class GridState(
                         point = point,
                         kind = AlongWayKind.RAILWAY_STOP,
                         name = name,
-                        feature = station
+                        feature = station,
+                        translatedName = station.translatedName
                     )
                 )
                 attached++
@@ -954,7 +974,8 @@ open class GridState(
                     point = point,
                     kind = AlongWayKind.RAILWAY_STOP,
                     name = stop.name,
-                    feature = stop
+                    feature = stop,
+                    translatedName = stop.translatedName
                 )
             )
             attached++

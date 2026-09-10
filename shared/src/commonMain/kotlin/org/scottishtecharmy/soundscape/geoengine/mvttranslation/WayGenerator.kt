@@ -158,7 +158,7 @@ class Way : MvtFeature() {
 
         var destinationModifier: Any? = null
         var passesModifier: Any?
-        var result = name
+        var result = displayName
         var genericName = (result == null)
         var passesString = ""
         val isRailway = (featureType == "rail") || (featureType == "transit")
@@ -721,7 +721,8 @@ class WayGenerator(val transit: Boolean = false) {
                             point = crossing.point,
                             kind = crossing.kind,
                             name = crossing.name,
-                            position = crossing.position
+                            position = crossing.position,
+                            translatedName = crossing.translatedName
                         )
                     )
                 }

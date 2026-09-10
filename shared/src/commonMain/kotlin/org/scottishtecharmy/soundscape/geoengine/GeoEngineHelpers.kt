@@ -33,6 +33,7 @@ import kotlin.math.roundToInt
  */
 data class NearestSettlement(val feature: MvtFeature?, val isCity: Boolean) {
     val name: String? get() = feature?.name
+    val displayName: String? get() = feature?.displayName
 }
 
 /**
@@ -376,10 +377,10 @@ private fun travellingReverseGeocodeName(
             if (at != null) {
                 // Also what "since" counts from further down, so the two agree about which station
                 // was last called at.
-                lastStationTracker?.updateStation(at.feature.name!!, at.feature.point)
+                lastStationTracker?.updateStation(at.feature.displayName!!, at.feature.point)
                 return ReverseGeocodeText(
-                    localized?.get(StringKey.DirectionsAtPoi, at.feature.name!!)
-                        ?: "At ${at.feature.name}"
+                    localized?.get(StringKey.DirectionsAtPoi, at.feature.displayName!!)
+                        ?: "At ${at.feature.displayName}"
                 )
             }
 
@@ -389,8 +390,8 @@ private fun travellingReverseGeocodeName(
                 val approaching = namedStationWithin(cursor, stationApproachingDistanceMetres)
                 if (approaching != null) {
                     return ReverseGeocodeText(
-                        localized?.get(StringKey.DirectionsApproachingName, approaching.feature.name!!)
-                            ?: "Approaching ${approaching.feature.name}"
+                        localized?.get(StringKey.DirectionsApproachingName, approaching.feature.displayName!!)
+                            ?: "Approaching ${approaching.feature.displayName}"
                     )
                 }
             }
@@ -478,7 +479,7 @@ private fun travellingReverseGeocodeName(
         } as MvtFeature?
         if (nearestJunction != null) {
             val ref = nearestJunction.ref
-            val name = nearestJunction.name
+            val name = nearestJunction.displayName
             val junctionText = if (ref != null) {
                 if (name != null) {
                     localized?.get(StringKey.DirectionsJunctionWithRefAndName, ref, name)
@@ -533,7 +534,7 @@ private fun travellingReverseGeocodeName(
     val insidePois = gridPoiTree.getContainingPolygons(location)
     for (poi in insidePois) {
         val mvtPoi = poi as MvtFeature
-        val poiName = mvtPoi.name
+        val poiName = mvtPoi.displayName
         if (poiName != null) {
             return ReverseGeocodeText(
                 localized?.get(StringKey.DirectionsAtPoi, poiName) ?: "At $poiName"
@@ -552,7 +553,7 @@ private fun travellingReverseGeocodeName(
         roadClassSmallestSettlement[nearestRoad?.featureValue] ?: SettlementTier.HAMLET
     )
     val nearestSettlementFeature = settlement.feature
-    val nearestSettlementName = settlement.name
+    val nearestSettlementName = settlement.displayName
     val nearestSettlementIsCity = settlement.isCity
 
     if (spokenRoadName != null) {
