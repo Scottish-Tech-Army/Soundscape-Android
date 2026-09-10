@@ -55,6 +55,7 @@ class PolygonMergePerformanceTest {
         Region("San Salvador", 4128, 7558, 8),
         Region("Paris", 8294, 5632, 8),
         Region("Buenos Aires", 5530, 9868, 8),
+        Region("Osaka", 14354, 6502, 8),
     )
 
     @Test

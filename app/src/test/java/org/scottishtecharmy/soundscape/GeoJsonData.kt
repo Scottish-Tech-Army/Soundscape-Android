@@ -68,6 +68,7 @@ val tehranTestLocation = LngLatAlt(51.3910, 35.7009)          // Meydan-e Enghel
 val sanSalvadorTestLocation = LngLatAlt(-89.1895, 13.6975)    // Plaza Libertad
 val parisTestLocation = LngLatAlt(2.3470, 48.8584)            // Place du Châtelet
 val buenosAiresTestLocation = LngLatAlt(-58.3816, -34.6037)   // Obelisco
+val osakaTestLocation = LngLatAlt(135.4959, 34.7025)          // Osaka Station, Umeda
 val failandTestLocation = LngLatAlt(-2.69439697265625, 51.43860066718254)
 val edinburghTestLocation = LngLatAlt(-3.2024509, 55.9511984)
 val glasgowTestLocation = LngLatAlt(-4.2368873, 55.8553207)

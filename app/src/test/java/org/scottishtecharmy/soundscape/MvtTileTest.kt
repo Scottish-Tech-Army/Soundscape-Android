@@ -319,6 +319,9 @@ class MvtTileTest {
         assertEquals("AR", CountryBoundaries.countryCode(buenosAiresTestLocation))
         assertEquals(DrivingSide.RIGHT, CountryBoundaries.drivingSide(buenosAiresTestLocation))
 
+        assertEquals("JP", CountryBoundaries.countryCode(osakaTestLocation))
+        assertEquals(DrivingSide.LEFT, CountryBoundaries.drivingSide(osakaTestLocation))
+
         // Middle of the Atlantic - no country.
         val ocean = LngLatAlt(-40.0, 30.0)
         assertEquals(null, CountryBoundaries.countryCode(ocean))
@@ -3350,6 +3353,7 @@ class MvtTileTest {
             "San Salvador" to sanSalvadorTestLocation,
             "Paris" to parisTestLocation,
             "Buenos Aires" to buenosAiresTestLocation,
+            "Osaka" to osakaTestLocation,
         )
         for ((city, location) in cities) {
             val tileGrid = getTileGrid(location, MAX_ZOOM_LEVEL, 3)
@@ -4595,6 +4599,7 @@ class MvtTileTest {
             Region("San Salvador", 4124, 7554, 4140, 7570),
             Region("Paris", 8290, 5628, 8306, 5644),
             Region("Buenos Aires", 5526, 9864, 5542, 9880),
+            Region("Osaka", 14350, 6498, 14366, 6514),
         )
         for (region in regions) {
             println("Test ${region.name}")
@@ -4829,13 +4834,16 @@ class MvtTileTest {
         enabledCategories.add(MOBILITY_KEY)
 
         // Intersperse locations that are in each of the extracts (Glasgow, Bristol, Tehran, San
-        // Salvador, Paris and Buenos Aires) with some that are outside and should fail. The
-        // failing one is Isfahan, which is in Iran but well outside the Tehran extract.
+        // Salvador, Paris, Buenos Aires and Osaka) with some that are outside and should fail.
+        // The failing ones are Isfahan, which is in Iran but well outside the Tehran extract, and
+        // Tokyo, which is in Japan but well outside Osaka Prefecture.
         val locations: List<Pair<LngLatAlt, Boolean>> = listOf(
             Pair(sixtyAcresCloseTestLocation, true),
             Pair(tehranTestLocation, true),
             Pair(longAshtonRoadTestLocation, true),
             Pair(LngLatAlt(51.69046, 32.66160), false),
+            Pair(osakaTestLocation, true),
+            Pair(LngLatAlt(139.7671, 35.6812), false),
             Pair(buenosAiresTestLocation, true),
             Pair(woodlandWayTestLocation, true),
             Pair(parisTestLocation, true),
