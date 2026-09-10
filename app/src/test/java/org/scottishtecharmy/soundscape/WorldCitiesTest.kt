@@ -142,20 +142,10 @@ class WorldCitiesTest {
             withDefaultLocale(phone) {
                 val address = sanSalvador.reverseGeocode(LngLatAlt(-89.18934255838394, 13.697920728666729))
                 assertEquals(phone, "Calle Presbítero Vicente Aguilar 315", address.name)
+                // The SV template's "{{postcode}} - {{city}}" line mustn't leave a stray "-"
+                assertEquals(phone, "Calle Presbítero Vicente Aguilar 315", address.description)
             }
         }
-    }
-
-    @Ignore(
-        "Known bug: the description is \"Calle Presbítero Vicente Aguilar 315, -\". The SV " +
-            "template's \"{{postcode}} - {{city}}\" line is left as a lone \"-\" when neither is known."
-    )
-    @Test
-    fun sanSalvadorAddressHasNoStrayDash() = withDefaultLocale("es-SV") {
-        assertEquals(
-            "Calle Presbítero Vicente Aguilar 315",
-            sanSalvador.reverseGeocode(LngLatAlt(-89.18934255838394, 13.697920728666729)).description
-        )
     }
 
     @Ignore(

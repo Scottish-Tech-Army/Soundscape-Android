@@ -2,6 +2,7 @@ package org.scottishtecharmy.soundscape
 
 import org.scottishtecharmy.soundscape.geoengine.utils.address.AddressFormatter
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 class AddressFormatterTest {
@@ -48,6 +49,16 @@ class AddressFormatterTest {
         val result = formatter.format(json)
         println("Fallback result: [$result]")
         assertTrue(result.contains("Glasgow") || result.contains("Milngavie"), "Expected city/neighbourhood in: $result")
+    }
+
+    @Test
+    fun lineOfJustASeparatorIsRemoved() {
+        // El Salvador's template has a "{{postcode}} - {{city}}" line, which leaves a lone "-"
+        // for an address with neither
+        val formatter =
+            AddressFormatter(abbreviate = false, appendCountry = false, appendUnknown = false)
+        val json = """{"house_number":"315","road":"Calle Presbítero Vicente Aguilar","country_code":"SV"}"""
+        assertEquals("Calle Presbítero Vicente Aguilar 315\n", formatter.format(json))
     }
 
     @Test
