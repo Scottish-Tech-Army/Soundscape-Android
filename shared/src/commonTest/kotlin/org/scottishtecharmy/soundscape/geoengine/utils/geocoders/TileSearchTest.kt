@@ -304,7 +304,7 @@ class TileSearchTest {
         // mustn't be split from it
         val tileSearch = newTileSearch()
         val ends = tileSearch.generateEndsWithinWords(normalizeForSearch("大グラン"))
-        assertEquals(listOf(normalizeForSearch("グラン"), "ラン", "ン"), ends)
+        assertEquals(listOf(normalizeForSearch("グラン"), normalizeForSearch("ラン"), normalizeForSearch("ン")), ends)
     }
 
     // ============================================================================================
