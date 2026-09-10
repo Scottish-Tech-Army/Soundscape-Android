@@ -5,6 +5,7 @@ import kotlinx.serialization.json.put
 import org.scottishtecharmy.soundscape.components.LocationSource
 import org.scottishtecharmy.soundscape.geoengine.TextForFeature
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.MvtFeature
+import org.scottishtecharmy.soundscape.geoengine.utils.CountryBoundaries
 import org.scottishtecharmy.soundscape.geoengine.utils.address.AddressFormatter
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
@@ -59,6 +60,36 @@ private fun streetForFeature(mvt: MvtFeature?, strings: LocalizedStrings?): Stri
             strings?.get(StringKey.DirectionsStreetSettlement, way, settlement)
                 ?: "$way, $settlement"
         else -> null
+    }
+}
+
+/**
+ * The country whose address conventions an address at [location] is written in. That's the
+ * country the map puts it in - a street in Buenos Aires reads "Avenida Corrientes 1155" whichever
+ * country the phone is set to - falling back to the phone's country when the location isn't in a
+ * country with a code, e.g. the 0,0 of a feature with no point geometry.
+ */
+private fun addressCountryCode(location: LngLatAlt): String =
+    CountryBoundaries.countryCode(location)?.takeIf { code -> code.length == 2 && code.all { it.isLetter() } }
+        ?: getDefaultCountryCode()
+
+/**
+ * The line of [formattedAddress] which names the street. That's usually the first line ("21
+ * Kersland Drive"), but not in every country - Iran's addresses start with the city, and put the
+ * house number on the line after the road - so look for the road's line, and add the house number
+ * to it when the number is on a line of its own next to it.
+ */
+private fun streetAddressLine(formattedAddress: String, road: String?, houseNumber: String?): String {
+    val lines = formattedAddress.lines().filter { it.isNotBlank() }
+    val roadIndex = if (road == null) -1 else lines.indexOfFirst { it.contains(road) }
+    if (roadIndex == -1) return lines.firstOrNull() ?: ""
+
+    val roadLine = lines[roadIndex]
+    if ((houseNumber == null) || roadLine.contains(houseNumber)) return roadLine
+    return when (lines.indexOfFirst { it.trim() == houseNumber }) {
+        roadIndex + 1 -> "$roadLine $houseNumber"
+        roadIndex - 1 -> "$houseNumber $roadLine"
+        else -> roadLine
     }
 }
 
@@ -139,7 +170,7 @@ fun LocationDescription.process(strings: LocalizedStrings? = null) {
 
                 var fallbackCountryCode: String? = null
                 if (!jsonFields.containsKey("country_code"))
-                    fallbackCountryCode = getDefaultCountryCode()
+                    fallbackCountryCode = addressCountryCode(location)
                 if (fallbackCountryCode?.isEmpty() == true) fallbackCountryCode = "GB"
 
                 val formattedAddress = try {
@@ -165,7 +196,8 @@ fun LocationDescription.process(strings: LocalizedStrings? = null) {
                     nameLocal = mvt.name
                 }
 
-                name = nameLocal ?: formattedAddress.substringBefore('\n')
+                name = nameLocal
+                    ?: streetAddressLine(formattedAddress, jsonFields["road"], jsonFields["house_number"])
                 description = formattedAddress.replace("\n", ", ").substringBeforeLast(",")
                 opposite = oppositeProperty
                 locationType = locationTypeProperty
