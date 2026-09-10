@@ -145,13 +145,14 @@ class RailMatchArbiter {
             return railway
         }
 
-        // A rail tunnel can keep a train ride going, but must never start one. This is the same
-        // road-above-the-line hazard that used to keep tunnels out of TreeId.TRANSIT altogether
-        // (see isUnmatchableRailway in MvtToGeoJson.kt): Kent Road runs directly over the North
-        // Clyde Line at Charing Cross, so a bus on it matches the tunnel below just as well as it
-        // matches the road, and would otherwise be announced as being on a train. Requiring the
-        // lock to be earned on track that's actually above ground rules that out however long the
-        // road runs over the tunnel.
+        // A rail tunnel can keep a train ride going, but must never start one. This is the
+        // road-above-the-line hazard that used to keep tunnels and subway lines out of
+        // TreeId.TRANSIT altogether: Kent Road runs directly over the North Clyde Line at Charing
+        // Cross, and Byres Road over the Glasgow Subway, so a bus on either matches the tunnel below
+        // just as well as it matches the road, and would otherwise be announced as being on a
+        // train. Requiring the lock to be earned on track that's actually above ground rules that
+        // out however long the road runs over the tunnel - and means a metro ride is only picked up
+        // where its line comes to the surface.
         if (rail.inTunnel) {
             fail()
             return null

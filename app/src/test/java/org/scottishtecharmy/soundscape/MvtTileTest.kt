@@ -2476,8 +2476,8 @@ class MvtTileTest {
      *
      * These are excluded by a different route than the canal above: attachRailwayCrossings skips
      * any railway Way carrying brunnel=tunnel outright. (It used to get this for free, because
-     * isUnmatchableRailway kept tunnels out of TreeId.TRANSIT entirely - they're now in the tree so
-     * that a train can stay matched underground, which is exactly why the skip has to be explicit.)
+     * tunnels were once kept out of TreeId.TRANSIT entirely - they're now in the tree so that a
+     * train can stay matched underground, which is exactly why the skip has to be explicit.)
      * This pins it from the callout end, now that the candidate search is wide enough to have found
      * them.
      *
@@ -3396,9 +3396,11 @@ class MvtTileTest {
     @Test
     fun testTravellingAlongARailwayIsATrain() {
         val gridState = getGridStateForLocation(glasgowTestLocation, MAX_ZOOM_LEVEL, 3)
+        // Not a tunnel, which can never start a ride - the longest Way here is otherwise the Subway
         val railway = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
             .filterIsInstance<Way>()
             .filter { (it.geometry as LineString).coordinates.size > 20 }
+            .filter { it.properties?.get("brunnel") != "tunnel" }
             .maxByOrNull { it.length }
         assertNotNull("Expected a reasonably long railway Way in the test data", railway)
 
@@ -3452,57 +3454,50 @@ class MvtTileTest {
     }
 
     /**
-     * The Glasgow Subway runs directly beneath Byres Road for its whole route (e.g. around
-     * 55.872965,-4.296419) - since GPS is 2D, feeding Byres Road's own surface coordinates
-     * through the rail map-matcher could previously build up a confident lock onto the Subway
-     * tunnel running underneath it, wrongly flagging a driver/pedestrian on the road as being on
-     * a train (see MvtToGeoJson.isUnmatchableRailway and UserGeometry.probablyOnTrain). Confirms
-     * the Subway itself never reaches TreeId.TRANSIT, and that map-matching a real Byres Road
-     * route against the rail network never builds up a confident match.
-     *
-     * Note the deliberate asymmetry with heavy-rail tunnels, which *are* in TreeId.TRANSIT so that
-     * a train can stay matched to its line underground. A subway is underground for its entire
-     * length, so there is never a surface match to continue, and it's excluded outright; the
-     * equivalent protection for a `brunnel=tunnel` heavy-rail segment is RailMatchArbiter refusing
-     * to acquire a train lock on one.
+     * The Glasgow Subway runs directly beneath Byres Road (e.g. around 55.872965,-4.296419), and
+     * GPS is 2D: a driver or pedestrian on the road matches the Subway tunnel below as well as they
+     * match the road, for as long as the road runs over it. Subway lines are in TreeId.TRANSIT, so
+     * that a metro ride can be picked up where its line runs above ground - what keeps the street
+     * above from being announced as a train is RailMatchArbiter never starting a ride on a tunnel.
      */
     @Test
-    fun testSubwayExcludedFromRailMapMatching() {
+    fun testStreetAboveTheSubwayIsNeverATrain() {
         val byresRoadLocation = LngLatAlt(-4.296419, 55.872965)
         val gridState = getGridStateForLocation(byresRoadLocation, MAX_ZOOM_LEVEL, 3)
 
-        // No subway-classed way should ever reach the rail-matching network.
-        val transitWays = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
+        val subway = gridState.getFeatureTree(TreeId.TRANSIT).getAllCollection().features
             .filterIsInstance<Way>()
-        assertTrue(
-            "TreeId.TRANSIT should never contain a subway-classed way",
-            transitWays.none { it.featureSubClass == "subway" }
-        )
-        // Heavy-rail tunnels, by contrast, must be present - central Glasgow has plenty, and
-        // without them a train through one is matched to whatever street runs over the top.
-        assertTrue(
-            "TreeId.TRANSIT should contain tunnel-tagged heavy-rail segments",
-            transitWays.any { it.properties?.get("brunnel") == "tunnel" }
-        )
+            .filter { it.featureValue == "subway" }
+        assertTrue("Expected the Glasgow Subway in TreeId.TRANSIT", subway.isNotEmpty())
+        val subwayUnderByresRoad = gridState.getFeatureTree(TreeId.TRANSIT)
+            .getNearestFeature(byresRoadLocation, gridState.ruler, 50.0) as Way?
+        assertEquals("tunnel", subwayUnderByresRoad?.properties?.get("brunnel"))
 
-        // Byres Road itself, running along the surface directly above the Subway, should never
-        // build up a confident match against the rail network.
-        val byresRoad = gridState.getFeatureTree(TreeId.ROADS).getAllCollection().features
-            .filterIsInstance<Way>()
-            .filter { it.name == "Byres Road" }
-            .maxByOrNull { it.length }
-        assertNotNull("Expected to find Byres Road in the test data", byresRoad)
-
-        val coordinates = (byresRoad!!.geometry as LineString).coordinates
+        // Fixes right on the Subway's centreline, a fix every 10m for a kilometre. Byres Road's own
+        // geometry wanders too far from the line to lock onto it, and no fix taken from the street
+        // is ever nearer the line than this, so it's the strongest form of the case.
+        val route = buildContinuousRoute(gridState, subwayUnderByresRoad!!, 1000.0) {
+            it.featureValue == "subway"
+        }
+        val samples = resampleAtSpeed(route, gridState.ruler, 10.0, 1.0)
+        val mapMatchFilter = MapMatchFilter()
         val railMapMatchFilter = MapMatchFilter(networkTree = TreeId.TRANSIT)
-        for (coordinate in coordinates) {
-            runBlocking { gridState.locationUpdate(coordinate, emptySet(), null) }
-            railMapMatchFilter.filter(coordinate, gridState, FeatureCollection(), false, null)
+        val arbiter = RailMatchArbiter()
+
+        var railEverConfident = false
+        for (sample in samples) {
+            runBlocking { gridState.locationUpdate(sample.location, emptySet(), null) }
+            mapMatchFilter.filter(sample.location, gridState, FeatureCollection(), false, null, true)
+            railMapMatchFilter.filter(sample.location, gridState, FeatureCollection(), false, null)
+            if (railMapMatchFilter.isMatchConfident) railEverConfident = true
+            val railway = arbiter.update(mapMatchFilter, railMapMatchFilter, motorwaySpeedMps)
+            assertNull("Byres Road must never be reported as a train, got ${railway?.name}", railway)
         }
 
-        assertFalse(
-            "Byres Road should never build a confident rail match - it's above the Subway, not on it",
-            railMapMatchFilter.isMatchConfident
+        assertTrue(
+            "The rail matcher never locked onto the Subway, so this test isn't exercising the " +
+                "street-above-a-tunnel case it exists for",
+            railEverConfident
         )
     }
 
