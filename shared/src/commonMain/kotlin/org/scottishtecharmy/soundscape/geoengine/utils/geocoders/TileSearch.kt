@@ -117,7 +117,6 @@ class TileSearch(
             // If we already have better search results, discard this one
             val countOfBetter = searchResults.count { it.score < score }
             if (countOfBetter < searchResultLimit) {
-                println("Found $normalizedNeedle as $haystackString (score $score) in tile ($tileX, $tileY)")
                 searchResults += TileSearchResult(score, haystackString, tileX, tileY, houseNumber)
                 searchResults.sortBy { it.score }
                 if (searchResults.size > searchResultLimit)
