@@ -304,7 +304,6 @@ class WorldCitiesTest {
         }
     }
 
-    @Ignore("Known bug: a house number without a street is dropped - MvtToGeoJson files it under \"null\" but adds it with a null key")
     @Test
     fun osakaHouseNumberWithoutAStreetIsKept() {
         // Most Japanese addresses number the building within its block rather than along a street,
