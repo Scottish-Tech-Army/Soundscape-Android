@@ -47,8 +47,11 @@ class RoutePlayer(
         currentMarker = 0
 
         // If the beacon start point is more than 30m away, then we can have it as a destination
+        // and track our distance to it. Note that this is separate from RoutePlayerState.beaconOnly
+        // below, which says that this playback is a beacon rather than a route regardless of how
+        // far away it is - the UI uses that to hide the route-only controls.
         val currentLocation = service.filteredLocationFlow.value
-        var beaconOnly = true
+        var trackDistance = false
         if (currentLocation != null) {
             val distance =
                 beaconLocation.createCheapRuler().distance(
@@ -56,7 +59,7 @@ class RoutePlayer(
                     beaconLocation
                 )
             if (distance > 30.0)
-                beaconOnly = false
+                trackDistance = true
         }
 
         val marker = MarkerEntity(
@@ -74,12 +77,12 @@ class RoutePlayer(
             it.copy(
                 routeData = currentRouteData,
                 currentWaypoint = currentMarker,
-                beaconOnly = beaconOnly
+                beaconOnly = true
             )
         }
         play()
 
-        if (!beaconOnly) {
+        if (trackDistance) {
             // We want to describe how far we are and a route completion
             startMonitoringLocation()
         }

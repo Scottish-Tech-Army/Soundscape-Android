@@ -258,13 +258,15 @@ class RoutePlayerTest {
     }
 
     /**
-     * startBeacon()'s exposed currentRouteFlow.beaconOnly must reflect the same >30m distance
-     * check used internally to decide whether to call startMonitoringLocation() - a far-away
-     * start point is distance-tracked, so beaconOnly must be false, not hardcoded true
-     * regardless of distance.
+     * The >30m distance check only decides whether startBeacon() distance-tracks the beacon; it
+     * must not leak into the exposed currentRouteFlow.beaconOnly, which says that this playback
+     * is a beacon rather than a route. The home screen hides the route-only controls on
+     * beaconOnly, and the Route Details one of those hands the beacon's synthetic routeId of 0
+     * to the route loader - no such route exists, so the screen would come up empty with its map
+     * on 0,0. A beacon stays beaconOnly however far away it starts.
      */
     @Test
-    fun startBeacon_farCurrentLocation_reportsBeaconOnlyFalseInState() = runBlocking {
+    fun startBeacon_farCurrentLocation_stillReportsBeaconOnlyInState() = runBlocking {
         val beaconLocation = LngLatAlt(-4.30, 55.90)
         val currentLocation = farFrom(beaconLocation)
         // First .value read (the internal, correctly-computed distance check) sees the real,
@@ -276,7 +278,7 @@ class RoutePlayerTest {
         player.startBeacon(beaconLocation, "Distant cafe")
 
         val state = player.currentRouteFlow.value
-        assertFalse(state.beaconOnly)
+        assertTrue(state.beaconOnly)
         assertTrue(player.isPlaying())
         assertEquals(listOf(beaconLocation to false), service.createBeaconCalls)
     }
