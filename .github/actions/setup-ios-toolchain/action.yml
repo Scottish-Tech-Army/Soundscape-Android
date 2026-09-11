@@ -48,6 +48,15 @@ runs:
     - name: Setup JDK + Gradle
       uses: ./.github/actions/setup-jdk-gradle
 
+    - name: Stop stale Gradle daemons on self-hosted
+      # A self-hosted runner is a persistent machine, so a Gradle daemon left
+      # running (or stuck) by an earlier job can get reused by this one and
+      # blow up project configuration. Kill any before the job does its own
+      # Gradle work.
+      if: runner.environment == 'self-hosted'
+      shell: bash
+      run: ./gradlew --stop
+
     - name: Ensure ANDROID_HOME on self-hosted
       # The shared Kotlin Multiplatform module has an `android` target, so the
       # Xcode pre-build script that invokes Gradle needs the SDK location.
