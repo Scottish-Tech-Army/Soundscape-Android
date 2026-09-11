@@ -22,6 +22,7 @@ import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
 import org.scottishtecharmy.soundscape.i18n.StringKey
 import org.scottishtecharmy.soundscape.screens.home.data.LocationDescription
+import org.scottishtecharmy.soundscape.utils.addressCountryCode
 import org.scottishtecharmy.soundscape.utils.deferredToLocationDescription
 
 /**
@@ -399,6 +400,13 @@ class OfflineGeocoder(
      * StreetDescription has no street for.
      */
     private fun blockAddress(location: LngLatAlt): LocationDescription? {
+        // Only in Japan, the same test japaneseAddress() makes before it writes one. Block numbers
+        // are tagged elsewhere too - Kuwait, Bahrain, parts of Korea and Taiwan - and a block
+        // address is preferred to the street one below, so without this a building tagged that way
+        // would take priority and then, being outside Japan, be described as a bare house number
+        // with no street at all.
+        if (addressCountryCode(location) != "JP") return null
+
         val houses = gridState.gridStreetNumberTreeMap["null"]
             ?.getNearestCollection(
                 location,

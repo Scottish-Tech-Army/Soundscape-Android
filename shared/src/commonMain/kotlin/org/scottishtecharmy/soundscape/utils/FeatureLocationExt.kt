@@ -70,7 +70,7 @@ private fun streetForFeature(mvt: MvtFeature?, strings: LocalizedStrings?): Stri
  * country the phone is set to - falling back to the phone's country when the location isn't in a
  * country with a code, e.g. the 0,0 of a feature with no point geometry.
  */
-private fun addressCountryCode(location: LngLatAlt): String =
+internal fun addressCountryCode(location: LngLatAlt): String =
     CountryBoundaries.countryCode(location)?.takeIf { code -> code.length == 2 && code.all { it.isLetter() } }
         ?: getDefaultCountryCode()
 
