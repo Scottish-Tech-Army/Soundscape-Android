@@ -74,3 +74,23 @@ fun isPmtilesUsable(path: String): Boolean {
 private class PmtilesValidation(val size: Long?, val lastModified: Long?, val usable: Boolean)
 
 private val pmtilesUsableCache = mutableMapOf<String, PmtilesValidation>()
+
+/**
+ * Manifest "filename" values carry a server-side build prefix ahead of the logical extract name,
+ * e.g. "20260820-1354-glasgow-gb.pmtiles". That prefix changes every time the planet-wide map is
+ * rebuilt and the extracts regenerated, so an extract downloaded from one build has a different
+ * filename from the same extract in a later manifest. Android additionally names its local copies
+ * "glasgow-gb.v<timestamp>.pmtiles".
+ *
+ * [logicalExtractName] reduces any of those - a manifest filename, a remote path, or a local
+ * path - to the stable identity of the extract ("glasgow-gb"), so downloaded files can be matched
+ * against a manifest that has since been regenerated.
+ */
+fun logicalExtractName(filename: String): String =
+    filename.substringAfterLast('/')
+        .removeSuffix(".pmtiles")
+        .replace(buildPrefixRegex, "")
+        .replace(versionSuffixRegex, "")
+
+private val buildPrefixRegex = Regex("""^\d{8}-[0-9a-zA-Z]+-""")
+private val versionSuffixRegex = Regex("""\.v\d+$""")

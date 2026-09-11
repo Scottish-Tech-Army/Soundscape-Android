@@ -263,7 +263,7 @@ fun MainViewController() = ComposeUIViewController {
                 val filename = props["filename"] as? String ?: return@AppCallbacks
                 val extractSize = (props["extract-size"] as? Number)?.toDouble()
                     ?: (props["extract-size"] as? String)?.toDoubleOrNull()
-                mgr.startDownload(filename, extractSize)
+                mgr.startDownload(filename, extractSize, feature)
             },
             onOfflineMapsDelete = { feature -> mgr.deleteExtractByFeature(feature) },
             onOfflineMapsCancelDownload = { mgr.cancelDownload() },
