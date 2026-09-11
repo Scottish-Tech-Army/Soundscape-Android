@@ -12,8 +12,11 @@ import org.scottishtecharmy.soundscape.geoengine.nearestSettlement
 import org.scottishtecharmy.soundscape.geoengine.mvttranslation.Way
 import org.scottishtecharmy.soundscape.geoengine.utils.PoiRankStrategy
 import org.scottishtecharmy.soundscape.geoengine.utils.bestPoiForSpeech
+import org.scottishtecharmy.soundscape.geoengine.utils.address.JapaneseAddress
+import org.scottishtecharmy.soundscape.geoengine.utils.findLineIntersectionPoint
 import org.scottishtecharmy.soundscape.geoengine.utils.getDistanceToFeature
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Feature
+import org.scottishtecharmy.soundscape.geojsonparser.geojson.LineString
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.LngLatAlt
 import org.scottishtecharmy.soundscape.geojsonparser.geojson.Point
 import org.scottishtecharmy.soundscape.i18n.LocalizedStrings
@@ -168,6 +171,10 @@ class OfflineGeocoder(
 
         analyticsLogger("offlineReverseGeocode")
 
+        // Most buildings in Japan are numbered within their block rather than along a street, and
+        // that's how anyone there would say where they are
+        val blockAddress by lazy { if (ignoreHouseNumbers) null else blockAddress(location) }
+
         var nearbyWay = userGeometry.mapMatchedWay
         if (nearbyWay == null) {
             // We're not map matched, so find the nearest way by searching
@@ -217,6 +224,7 @@ class OfflineGeocoder(
                             .also(processor)
                     }
                 }
+                blockAddress?.let { return it }
                 // We couldn't get a street address, so try a descriptive address instead
                 val heading = userGeometry.heading()
                 val result = description.describeLocation(
@@ -294,6 +302,8 @@ class OfflineGeocoder(
                 }
             }
         }
+
+        blockAddress?.let { return it }
 
         if (nameNearbyFeatures) {
             // Check if we're near a bus/tram/train stop. This is useful when travelling on public transport
@@ -381,6 +391,62 @@ class OfflineGeocoder(
         }
 
         return null
+    }
+
+    /**
+     * The address of the nearest building to [location] that's numbered within its block, as most
+     * in Japan are - see JapaneseAddress. Those have no street, so they're among the house numbers
+     * StreetDescription has no street for.
+     */
+    private fun blockAddress(location: LngLatAlt): LocationDescription? {
+        val houses = gridState.gridStreetNumberTreeMap["null"]
+            ?.getNearestCollection(
+                location,
+                50.0,
+                // Enough to see past a whole block of buildings across the road - the tree measures
+                // everything within the distance whatever the count, so asking for more is cheap
+                32,
+                gridState.ruler,
+                include = { house ->
+                    (house as MvtFeature).blockNumber != null &&
+                        (JapaneseAddress.chome(house.quarter, house.neighbourhood) != null)
+                }
+            )
+            ?.features
+            ?: return null
+
+        // A block is bounded by the roads around it, so a building you'd have to cross a road to
+        // reach is in another one - and often in another chōme. The nearest building on this side
+        // of the roads is the address to give; when they're all across one - standing in the middle
+        // of a junction, say - the nearest is still a better answer than none.
+        val nearest = (houses.firstOrNull { house ->
+            !roadBetween(location, getNearestPointOnFeature(house, location))
+        } ?: houses.firstOrNull()) as MvtFeature?
+            ?: return null
+
+        val houseFeature = MvtFeature()
+        houseFeature.properties = hashMapOf()
+        houseFeature.housenumber = nearest.housenumber
+        houseFeature.blockNumber = nearest.blockNumber
+        houseFeature.quarter = nearest.quarter
+        houseFeature.neighbourhood = nearest.neighbourhood
+        houseFeature.suburb = nearest.suburb
+        houseFeature.geometry = Point(location)
+        return houseFeature.deferredToLocationDescription(LocationSource.OfflineGeocoder)
+            .also(processor)
+    }
+
+    /** Whether a road runs between [from] and [to], so that they're in different blocks. */
+    private fun roadBetween(from: LngLatAlt, to: LngLatAlt): Boolean {
+        val between = LineString(from, to)
+        // Paths aren't block boundaries - an alley or a walkway through a block would rule out
+        // every building beyond it - so this is the roads on their own, whatever WAYS_SELECTION is
+        return gridState.getFeatureTree(TreeId.ROADS)
+            .getNearbyLine(between, 1.0, gridState.ruler)
+            .features.any { road ->
+                val line = road.geometry as? LineString ?: return@any false
+                findLineIntersectionPoint(between.coordinates, line.coordinates) != null
+            }
     }
 
     companion object {

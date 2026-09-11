@@ -464,7 +464,10 @@ class StreetDescription(
         if (houseNumberTree != null) {
             val houseCollection = houseNumberTree.getAllCollection()
             for (house in houseCollection) {
-                val nearestWay = nearestWayOnStreet(getCentralPointForFeature(house as MvtFeature))
+                // A building numbered within its block isn't numbered along the street - see
+                // JapaneseAddress
+                if ((house as MvtFeature).blockNumber != null) continue
+                val nearestWay = nearestWayOnStreet(getCentralPointForFeature(house))
                 addHouse(house, nearestWay, houseNumberPoints, true)
             }
         }
@@ -481,6 +484,7 @@ class StreetDescription(
                 )
                 for (result in results) {
                     val house = result as MvtFeature
+                    if (house.blockNumber != null) continue
                     val location = getCentralPointForFeature(house)
                     // A searched for house should only be added if it's the nearest Way that it was
                     // found in...

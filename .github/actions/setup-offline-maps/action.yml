@@ -24,7 +24,7 @@ runs:
           ${{ inputs.output_dir }}/buenos-aires-ar.pmtiles
           ${{ inputs.output_dir }}/osaka-prefecture-jp.pmtiles
           ${{ inputs.output_dir }}/manifest.geojson.gz
-        key: pmtiles-v6-${{ hashFiles('.github/actions/setup-offline-maps/action.yml') }}
+        key: pmtiles-v7-${{ hashFiles('.github/actions/setup-offline-maps/action.yml') }}
 
     - name: Download pmtiles + manifest
       if: steps.cache.outputs.cache-hit != 'true'

@@ -134,9 +134,9 @@ class TileUtilsTest {
             CityTile(
                 "Osaka", osakaTestLocation,
                 TileCounts(
-                    crossings = 684, paths = 5349, intersections = 5985, entrances = 338,
-                    pois = 6809, mobility = 1022, objects = 357, information = 147, places = 4045,
-                    landmarks = 676, safety = 402,
+                    crossings = 686, paths = 5349, intersections = 5983, entrances = 338,
+                    pois = 6883, mobility = 1037, objects = 362, information = 147, places = 4073,
+                    landmarks = 676, safety = 403,
                 )
             ),
         )

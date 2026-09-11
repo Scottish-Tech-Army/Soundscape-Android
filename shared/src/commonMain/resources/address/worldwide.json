@@ -802,6 +802,7 @@
   },
   "JP_ja": {
     "address_template": "{{{country}}}\n{{{postcode}}}\n{{#first}} {{{state}}} || {{{state_district}}} {{/first}}\n{{#first}} {{{city}}} || {{{town}}} || {{{village}}} || {{{hamlet}}} {{/first}}\n{{#first}} {{{suburb}}} || {{{city_district}}} || {{{neighbourhood}}} {{/first}}\n{{{road}}}\n{{{house_number}}}\n{{{house}}}\n{{{attention}}}\n",
+    "fallback_template": "{{{country}}}\n{{{postcode}}}\n{{#first}} {{{state}}} || {{{state_district}}} {{/first}}\n{{#first}} {{{city}}} || {{{town}}} || {{{village}}} || {{{hamlet}}} {{/first}}\n{{#first}} {{{suburb}}} || {{{city_district}}} || {{{neighbourhood}}} {{/first}}\n{{{road}}}\n{{{house_number}}}\n{{{house}}}\n{{{attention}}}\n",
     "postformat_replace": [
       [
         " (\\d{3})(\\d{4})\n",

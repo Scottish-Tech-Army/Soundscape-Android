@@ -796,6 +796,10 @@ fun vectorTileToGeoJson(
             var featureSubClass: String? = null
             var housenumber: String? = null
             var street: String? = null
+            var blockNumber: String? = null
+            var quarter: String? = null
+            var neighbourhood: String? = null
+            var suburb: String? = null
 
             // Convert coordinates to GeoJSON. This is where we find out how many features
             // we're actually dealing with as there can be multiple features that have the
@@ -840,6 +844,10 @@ fun vectorTileToGeoJson(
                         "subclass" -> featureSubClass = value.toString()
                         "housenumber" -> housenumber = value.toString()
                         "street" -> street = value.toString()
+                        "block_number" -> blockNumber = value.toString()
+                        "quarter" -> quarter = value.toString()
+                        "neighbourhood" -> neighbourhood = value.toString()
+                        "suburb" -> suburb = value.toString()
                         else -> {
                             if (isNameKey(key) || key.startsWith("name_")) {
                                 // The name in other languages and scripts - name:xx, and
@@ -1066,6 +1074,10 @@ fun vectorTileToGeoJson(
                 geoFeature.geometry = geometry
                 geoFeature.osmId = id
                 geoFeature.housenumber = housenumber
+                geoFeature.blockNumber = blockNumber
+                geoFeature.quarter = quarter
+                geoFeature.neighbourhood = neighbourhood
+                geoFeature.suburb = suburb
                 if (layer.name == "housenumber") {
                     // We store house numbers in a FeatureCollection per named street. One without a
                     // street goes under "null", with the POIs and buildings that have no street -
