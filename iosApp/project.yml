@@ -50,6 +50,8 @@ targets:
       - path: iosApp
       - path: ../shared/src/commonMain/resources/address
         type: folder
+      - path: ../shared/src/commonMain/resources/geography
+        type: folder
       - path: ../app/src/main/assets/open_source_licenses.json
         buildPhase: resources
       - path: ../app/src/main/assets/osm-liberty-accessible
